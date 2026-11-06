@@ -12,7 +12,8 @@ addresses: "0x003306E0, 0x0032E400, 0x002AC5F0"
 and notices of the four control scripts, mostly Japanese, written in the game's text codes.
 
 The game never opens them: the sibling loader `0x003306E0` asks `0x0032E400` for each companion file's size with resource kind `0xFF`, which
-answers -1, and gives up at the first answer ([ATEL debug companions](../EBP-Script-Files/atel-debug-companions.md),
+answers -1, and returns before registering anything because the first answer is not positive
+([ATEL debug companions](../EBP-Script-Files/atel-debug-companions.md),
 which also gives the file layout).
 
 Only the `in` and `ch` trees ship the files, and the `ch` copy of each is byte for byte the `in` copy. The table keeps
@@ -24,13 +25,14 @@ shows the same bytes through the Chinese font.
 Each message is decoded with the tree's font and its text codes written as placeholders (the `placeholder`
 column of [Text codes](text-codes.md)). Every message opens with `{spacing:8181}`. A choice list is written
 `{choice:n}` followed by its `n` options in square brackets, separated by a bar; `hidden=` gives the mask of options
-the list hides. The start of `ctrl.msb` message 0, the top debug menu, in the `in` column:
+the list hides. `ctrl.msb` message 33, in the `in` column, asks to save or load and offers quit, load and save:
 
 ```
-{spacing:8181}{speed:8180}{size%:81CB}{choice:23}[やめ|イベントきかくメニュー|マップきかくメニュー|バトルきかくメニュー|マップジャンプ|...
+{spacing:8181}{speed:8180}セーブもしくはロード{line}{choice:3}[やめ|ロード|セーブ]
 ```
 
-The menu's 23 options start with `やめ` (quit) and the event, map and battle planning menus. `btlctrl.msb` message 2,
+Message 0, the top debug menu, is a list of 23 options that starts with `やめ` (quit) and the event, map and battle
+planning menus. `btlctrl.msb` message 2,
 `{spacing:8181}{speed:8180}{size%:81D1}{color:BB8080FF}{icon:P:82}：ページ{line}きりかえ`, tells the player to switch
 pages with the button icon `P`.
 

@@ -132,8 +132,12 @@ Measured over the section 0 of all 10,036 containers; `us` figures in brackets.
 
 `0x0032F850(packed)` stores the image at `0x022C6C28[manager]` and tests only its first byte
 (`0x0032F87E cmp byte ptr [rdi], 0`). A zero byte sets `0x022C6D18[manager]` to 0 and returns with
-nothing bound; otherwise `0x022C6D18` becomes 1. It then picks the allocator the manager's actor
-record pool will come from (`0x002679F0` calls it through record `+0x88`):
+nothing bound (`0x0032F88D`-`0x0032F8A6`); that path does not touch the pending word, so pending bit `0x2` stays set
+and it does not run `0x0032F1B0`, and on it a manager of 5 or more goes to `__report_rangecheckfailure`
+(`0x0032F883`-`0x0032F887`, `0x0032FA04`).
+
+Otherwise `0x022C6D18` becomes 1 (`0x0032F8B6`). It then picks the allocator the manager's actor record pool will
+come from (`0x002679F0` calls it through record `+0x88`):
 
 | Manager | Arena | Callback |
 |---|---|---|
@@ -143,8 +147,15 @@ record pool will come from (`0x002679F0` calls it through record `+0x88`):
 
 Each callback pushes its arena (`0x0036C1D0`), allocates with `0x0036A100`, labels the block
 `ateldecode.c` with a per-site tag (`0x1676`, `0x16C1`, `0x16E6`) and pops the arena. The handler
-binds the image with `0x0026C8C0(manager, image, callback)`, stores `0x00330050` at record `+0x108`
-(`0x00268630`) and clears pending bit `0x2` ([script container](ebp-script-container.md)).
+pushes the chosen arena itself with `0x0036C1D0(arena, 5)` (`0x0032F91E`, `0x0032F940`, `0x0032F955`),
+binds the image with `0x0026C8C0(manager, image, callback)` (`0x0032F966`), stores `0x00330050` at record `+0x108`
+(`0x00268630`, `0x0032F974`), pops the arena (`0x0036C140`, `0x0032F979`) and clears pending bit `0x2` (`0x0032F98E`)
+([script container](ebp-script-container.md)).
+
+With the bit cleared it applies the container's clearer rule (`0x0032F99A`-`0x0032F9BF`): when the word without
+bit `0x1` is zero it clears bit `0x8` of the record's `+0x11`, and when the word went from non-zero to zero it
+runs `0x0032F1B0(manager)`. For manager 0, once bits `0x2` and `0x200` are both clear (`0x0032F9D0`), it then runs
+`0x0025AFC0(0)` and `0x002EACC0(0x00331990, [0x022C6D28])` (`0x0032F9DA`-`0x0032F9EE`).
 
 ### The bind
 
@@ -179,7 +190,10 @@ that is still 0. `0x00266530`:
 
 `0x00266C50` reads `startActor`: when it is not negative it files every non-negative function of
 `startList` on that actor, on its top channel in mode 2
-([script requests](../Scripts-And-Script-Commands/script-requests.md)).
+([script requests](../Scripts-And-Script-Commands/script-requests.md)), through
+`0x003DBB60(actor, channels - 1, function, 2, 0)` (`0x00266CD2`). A `startList` offset of 0 files nothing
+(`0x00266C92`), and when `startActor` names no record (`0x00358940` gives null) the first function that is not
+negative makes it read the channel count at address `0x88` (`0x00266CBB`), which faults.
 
 ### Functions, jumps and entry slots
 
@@ -189,37 +203,50 @@ that is still 0. `0x00266530`:
   to the code base, so a jump operand is a table index, not a byte offset.
 - `0x002652D0(slot, record, entrySlot)` gives the function for one of the 18 entry slots: the
   record's override word, or else the footer's entry; with a version word below 6, entry slot 14
-  reads slot 7.
+  reads slot 7. The footer is the image plus the dword at `+0x18` of the record's entry `+0x40`
+  (`0x00265319`-`0x0026532F`); an entry slot above 17 (`0x002652DD`) or at or above the footer's signed count word
+  (`0x0026533A`) gives -1.
 
 ### Actor lists
 
 The group request opcodes take a list index as their operand. They resolve the list table and
 bound the index by its count; an index at or past it gives a null list (`0x00261B27`–`0x00261B57`).
 The wait on a list, `0x002674B0`, steps a cursor over its `{actor, function}` pairs and stays while
-any pair's function is still filed on that actor. Filing and waiting are on
+a pair from the cursor on still has its function filed on that actor: the cursor stops on that pair and
+moves past each pair that is no longer filed (`0x0026751C`), and the pairs behind it are not tested again.
+Filing and waiting are on
 [script requests](../Scripts-And-Script-Commands/script-requests.md).
 
 ### Header tables read later
 
 Each reader below resolves the offset through `0x0020E600`, returns null (or a default) for a zero
-offset, and bounds the index by the table's count. `0x002658B0`, `0x00264AE0` and `0x00264870` read
+offset, and bounds the index by the table's count, except `0x002658B0`: it answers 33 for a zero offset
+(`0x002658F6`, `0x00265910`), clamps the slot to 0 to 2, `i = n - 1 < 0 ? 0 : n - 1 > 2 ? 2 : n - 1` for its
+argument `n` (`0x002658B8`-`0x002658C8`), and reads the byte `[section + 1 + i]`, never the section's count byte
+(`0x00265900`). `0x002658B0`, `0x00264AE0` and `0x00264870` read
 manager 0's image only; all but `0x00264B90`, `0x003B7210` and `0x0035A270` also require the manager
 record's `+0x10` bit `0x1`.
 
 | Field offset | Reader | Returns |
 |---|---|---|
 | `+0x54`, `+0x84` | `0x00264B90`, version above 2 | the first four dwords of 32-byte record `index`; `0x00377AB0` and `0x00377900` take three as a position and convert the fourth with `0x003A1C50` |
-| `+0x5C`, `+0x74` | `0x00264390`, modes 0 and 1 | a pointer to `0x1C`-byte record `index` |
+| `+0x5C`, `+0x74` | `0x00264390`, modes 0 and 1 | a pointer to `0x1C`-byte record `index`: image + offset + 4 + `index * 0x1C` (`0x002643F5`-`0x002643FD`), with the index compared unsigned against the count (`0x002643F3`); any mode other than 0 and 1 returns null (`0x0026439D`-`0x002643A6`) |
 | `+0x60` | `0x002642C0`, version 9 or above | a pointer to 16-byte record `index`; older versions use `0x00264260`; for an older version `0x002642C0` widens 8-byte record `index` from `0x00264260` into one static copy and returns its address (`0x0026436F`): `0x0209A290` and `0x0209A292` take the record's words `+0` and `+2` (`0x00264334`, `0x0026433F`), `0x0209A294` is `0xFFFF` (`0x0026435F`), `0x0209A296` is 0 (`0x00264368`), and `0x0209A298` and `0x0209A29A` take its words `+4` and `+6` (`0x0026434A`, `0x00264355`); every such call rewrites the copy |
 | `+0x64` | `0x002658B0`, version 7 or above | weather slot's chance byte ([weather](../World-Areas-And-Travel/weather.md)) |
-| `+0x68` | `0x003B7210` | first runs `0x002E6420` (`0x003B7231`), which calls `0x00428FE0(record, 0)` on the character render record of every actor of managers 0 to 2 that has one, then binds the first list's actors through `0x00262F50` (`0x003B72C1`): entry 0 to `[0x02EBCC68]`, entry i to `[0x02EBCAC0 + 8 × (i − 1)]` while `i − 1 < [0x02EBCBC0]`; `0x003B72F0` (`capturepartyforsummon`), when the count is above 1 (`0x003B731D`), reads the second list (`0x003B7323`) and has the actor at each non-negative ordinal i (`0x003B7356`) capture `[0x02EBCA80 + 8 × i]` while i is below `[0x02EBCAA0]` (`0x003B7358`-`0x003B7375`) |
+| `+0x68` | `0x003B7210` | first runs `0x002E6420` (`0x003B7231`), which calls `0x00428FE0(record, 0)` on the character render record of every actor of managers 0 to 2 that has one, then binds the first list's actors through `0x00262F50` (`0x003B72C1`): entry 0 to `[0x02EBCC68]`, entry i to `[0x02EBCAC0 + 8 × (i − 1)]` while `i − 1 < [0x02EBCBC0]`; each actor is the record `0x00358940` gives for the entry's ordinal (`0x003B7295`, `0x003B72B2`), a negative ordinal is skipped (`0x003B727D`), entry 0 is bound only while `[0x02EBCC68]` is non-null (`0x003B72A1`-`0x003B72A9`), and a zero `+0x68` offset or a list-table count of 0 or less binds nothing, after `0x002E6420` has run (`0x003B7239`, `0x003B7246`); `0x003B72F0` (`capturepartyforsummon`), when the count is above 1 (`0x003B731D`), reads the second list (`0x003B7323`) and has the actor at each non-negative ordinal i (`0x003B7356`) capture `[0x02EBCA80 + 8 × i]` while i is below `[0x02EBCAA0]` (`0x003B7358`-`0x003B7375`) |
 | `+0x6C` | `0x002641B0` | base of the reference's class (`0x00265770`) plus its low 24 bits; class 2 refused ([traps](../World-Areas-And-Travel/traps.md)) |
 | `+0x70` | `0x00264AE0` | image + entry `index` of the five offsets |
-| `+0x80` | `0x0035A270` | for each `{id, mask}` whose id resolves, `0x002ECAB0(id, bit, 1)` for each set bit `0xFFFFFFFE` |
-| `+0x8C` | `0x00264870` | a pointer to 16-byte record `index` |
+| `+0x80` | `0x0035A270` | for each `{id, mask}` whose id resolves, `0x002ECAB0(id, i, 1)` for each bit `1 << i` set in `mask & 0xFFFFFFFE`: it makes the given manager's record current (`0x0026A480`, `0x0035A28F`) and restores the previous one at the end (`0x0035A392`); the table id is turned into a bound id by `0x002E9A60` (`0x0035A2E7`), and only a non-zero bound id whose entry `0x002E99C0(0x002EB7A0(bound id))` exists and is ready (`0x002E4C20`) goes on (`0x0035A2F2`-`0x0035A316`); that entry gets bit `0x1` of `+0x19` (`0x0035A318`), and for each `i` from 1 to 31 with `mask & (1 << i)` set and a positive bound id it calls `0x002ECAB0(bound id, i, 1)` and then `0x002ECAB0(bound id, 0, 1)` (`0x0035A330`-`0x0035A35F`) |
+| `+0x8C` | `0x00264870` | a pointer to 16-byte record `index`: image + offset + 4 + `index * 16` (`0x002648BD`-`0x002648C8`); the bound is a signed compare (`0x002648B4`), so a negative index passes it and gives a pointer before the table |
 
 `0x00264B90` maps the index -1 to `+0x52`, -2 to `+0x78` and -3 to `+0x7A`, and any other negative
-index to `+0x52`.
+index to `+0x52`. The tests run in that order on the replaced value, so a `+0x52` of -2 goes on to `+0x78`, and
+an index still negative after the last `+0x52` read becomes 0 (`0x00264BEE`-`0x00264C1F`).
+
+`0x00264B90(list, manager, index, x, y, z, angle)` zeroes its four outputs first (`0x00264BBE`-`0x00264BD8`) and
+answers 0 for a null image (`0x00264BE3`), a version of 2 or less (`0x00264C23`), a list offset that decodes to 0 or
+an index not below the count (`0x00264C3D`-`0x00264C49`). Any non-zero `list` takes `+0x84`, and the list is the
+image plus the low 32 bits of the decoded offset (`0x00264C42`-`0x00264C44`); a found record answers 1.
 
 Four more header fields are read as values, not as table offsets:
 
@@ -268,6 +295,10 @@ Four more header fields are read as values, not as table offsets:
 - [`ebp-script-image-list-wait-census.tsv`](ebp-script-image-list-wait-census.tsv): every list request (`REQALL`,
   `REQIALL`, `REQWAITALL`) in the 6,077 images that carry actor lists: the list it names, the list's length and its
   first 12 actor:function pairs (60,362 rows).
+- [`ebp-script-image-actor-lists.tsv`](ebp-script-image-actor-lists.tsv): every actor list of every shipped image in
+  all nine trees, 44,894 rows: `tree`, `script`, `list` (its index in the list table), `list_offset` (from the image
+  start), `list_len` (0 to 41) and `pairs`, all of the list's `{actorOrdinal, functionId}` pairs as `ordinal:funcid`,
+  separated by commas (empty for the 3,276 empty lists).
 
 ### Columns of ebp-script-image-list-wait-census.tsv
 
@@ -281,6 +312,7 @@ One row per request opcode in a shipped script image, read by decoding each scri
 | `in_range` | 1 when the opcode's list index is below that count, 0 when the request names a null list; 1 on all 60,362 rows |
 | `list_len` | the number of `{actor, function}` pairs in the named list, 0 to 41 |
 | `pairs(ordinal:funcid, first 12)` | the list's first 12 pairs, each as the actor's ordinal and the function id, `ordinal:funcid`, separated by commas; empty when the list has no pair |
+
 - [`ebp-script-image-req-channel-census-1.tsv`](ebp-script-image-req-channel-census-1.tsv): every `REQ`, `REQSW`,
   `REQEW`, `REQWAIT`, `REQALL`, `REQIALL`, `REQCHG` and `REQWAITALL` instruction in the shipped images, with the
   pushes before it and, for `REQ`, `REQSW` and `REQEW`, the channel its first push gives: the first part, the images

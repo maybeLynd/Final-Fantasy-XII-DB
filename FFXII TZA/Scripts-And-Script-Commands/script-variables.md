@@ -23,9 +23,9 @@ A script image carries a table of 8-byte variable records, bound into the manage
 out)` reads the record's first dword at `table + 4 + index × 8`:
 
 ```
-bits  0..23  offset into the class's home
-bits 0x7000000  class: 0 global, 1 file, 2 local, 3 msp, 4 scratch1, 5 scratch2, 7 array
-bit  27      float: the value is pushed with tag 2 instead of tag 1
+mask 0x00FFFFFF  offset into the class's home
+mask 0x07000000  class: 0 global, 1 file, 2 local, 3 msp, 4 scratch1, 5 scratch2, 7 array
+bit  0x08000000  float: the value is pushed with tag 2 instead of tag 1
 mask 0xF0000000  width: 0 u8, 1 s8, 2 u16, 3 s16, 4 s32, 5 f32
 ```
 
@@ -37,12 +37,18 @@ The resolver pops one index per dimension from the value
 stack, last dimension `d[n − 1]` first, and folds them row-major with `stride = 1`, then for
 `k = n − 1 … 0`: `i = min(max(pop(), 0), d[k] − 1); flat += i × stride; stride ×= d[k]`
 (`0x002624D2`-`0x00262537`), so a negative index reads element 0 and a large one the last element.
-It then resolves the element descriptor's class as above. The flat index is returned separately and
+An empty stack gives the index 0 (`0x002624D8`), and an entry whose tag is neither 1 nor 2 calls `0x008620C0` and
+gives 0 as well (`0x002624F3`-`0x002624FB`).
+
+It then resolves the element descriptor's class as above; an element class of 6 or 7 has no case and falls to
+base 0, the bare offset as an address (`0x00262552`-`0x00262555`). The flat index is returned separately and
 the caller scales it by the element width.
 
 The resolver fills a `0x30`-byte record for its caller: `+0` the constant 6, `+4` the kind (1 int,
-2 float, from bit `0x8000000`), `+0xA` the variable index, `+0xC` the descriptor, `+0x10` the base address
-plus offset, `+0x18` the element descriptor and `+0x1C` the flat index.
+2 float, from bit `0x8000000` of the element descriptor), `+8` the actor's `u16` at `+0` (`0x00262676`-`0x0026267A`),
+`+0xA` the variable index, `+0xC` the descriptor, `+0x10` the base address
+plus offset, `+0x18` the element descriptor (the descriptor itself for classes 0 to 6) and `+0x1C` the flat index.
+It returns the element's class in `eax` (`0x00262665`), which `POPV` tests.
 
 ### The six homes
 
@@ -60,28 +66,35 @@ address; no shipped script declares one.
 
 `PUSHV` (`0x00267FC0`) loads the element by width (`u8` and `s8` at `base + i`, 16-bit widths at
 `base + 2i`, 32-bit at `base + 4i`), zero- or sign-extending, and pushes it with the kind's tag;
-the kind byte it stores beside the value is the record's `+0`, 6. `POPV` (`0x00267E60`) pops the
+the kind byte it stores beside the value is the record's `+0`, 6. A width nibble above 5 has no load case
+(`0x00267FE4`-`0x00267FE7`): `PUSHV` loads nothing and pushes whatever its stack frame holds in the value dword.
+
+`POPV` (`0x00267E60`) pops the
 top by the kind (a float operand to an int variable is truncated with `cvttss2si`, an int to a
-float variable converted with `cvtdq2ps`) and stores it through `0x0026D530`.
+float variable converted with `cvtdq2ps`) and stores it through `0x0026D530`. It pops the value after the
+resolver has popped any array indices (`0x00267E7F`), so a script pushes the value first and the indices on top.
 
 `PUSHV` refuses at
 stack depth 63 like every other push; `POPV` on an empty stack stores 0 to an int variable
 silently and, for a float variable, calls `0x008620C0` first; a missing array index reads as 0.
+A top entry whose tag is neither 1 nor 2 is the other way round: an int variable gets 0 after `0x008620C0`
+(`0x00267F0E`-`0x00267F13`), a float variable 0.0 silently (`0x00267EB6`, `0x00267EE7`).
 
 ### The store saturates by width
 
 `0x0026D530` clamps before it writes: `u8` into 0 to 255, `s8` into −128 to 127, `u16` into 0 to
-65,535, `s32` and `f32` copied as the raw dword, widths 6 and 7 not stored at all. The `s16` arm
-clamps into −32,767 to +32,768 and stores the low word, so a script that stores 32,768 reads back
+65,535, `s32` and `f32` copied as the raw dword, widths 6 to 15 not stored at all (`0x0026D542`-`0x0026D545`).
+The `s16` arm clamps into −32,767 to +32,768 and stores the low word, so a script that stores 32,768 reads back
 −32,768 and one that stores −32,768 reads back −32,767. A float at or above 2³¹ truncates to
 `0x80000000` first, which the `u8` arm then clamps to 0.
 
 ### References
 
 `PUSHP` (`0x00268100`) pushes a reference instead of a value: the element offset plus the flat
-index scaled by the width, the class bits kept, and the width nibble forced to 7, tagged int; the
-kind byte beside that stack entry is the element's width nibble, so a verb can read the width
-from the entry as well.
+index scaled by the width (2 for widths 2 and 3, 4 for 4 and 5, 1 for any other, `0x00268124`-`0x00268146`), the
+class bits kept, the float bit `0x8000000` dropped and the width nibble forced to 7 (`0x00268155`-`0x0026816C`),
+tagged int; the kind byte beside that stack entry is the element's width nibble, so a verb can read the width
+from the entry as well. At stack depth 63 it pushes nothing (`0x00268173`).
 
 Width 7 is outside the 0 to 5 every loader accepts, so the reference cannot be read as a value by
 mistake. A native verb that takes an out-reference decodes it with `0x002650B0`, which adds the
@@ -90,11 +103,19 @@ writes the result there.
 
 ### Lifetimes of the two banks
 
-`0x0026DB30`, run on every field transition, zeroes `scratch1` unconditionally. It then compares
+`0x0026DB30`, run on every field transition, first clears the dword `0x02099D44` (`0x0026DB3C`), runs the
+field-transition reset `0x003590E0`, zeroes the four party pointers at `0x0209A1F0` (`0x0026DB52`, `0x0026DB5A`), sets
+camera record 0's mode to 2 (`0x0025A500(0, 2)`, `0x0026DB62`), clears the menu request at `0x0215F1A0` (`0x002E15D0`)
+and sets the `disposeentry` state `0x022C8010` to 0 (`0x0035A240`). Then it zeroes `scratch1` unconditionally
+(`0x0026DB80`).
+
+It then compares
 the persistence group word (`+6` of the map-reference row at `[0x02099D88] + [header + 4] +
-field × 8`) of the previous field (`0x00314870`) with the current one (`0x003148F0`): when they differ
-it zeroes `scratch2` and, unless the payload's `+0x1062` has bit `0x20`, runs `0x003149E0`; it also
-zeroes `scratch2` when the transition options (`0x003148D0`) have bit `0x8`.
+field × 8`) of the previous field (`0x00314870`) with the current one (`0x003148F0`); each reads as 0 while
+`[0x02099D88]` or `[0x02099D90]` is null (`0x0026DB91`-`0x0026DB9D`, `0x0026DBC6`-`0x0026DBD2`), so no change is seen then.
+When they differ it zeroes `scratch2` (`0x0026DC11`) and, unless the payload's `+0x1062` has bit `0x20`, runs
+`0x003149E0` before that (`0x0026DBF4`-`0x0026DBFD`); it also zeroes `scratch2` when the transition options
+(`0x003148D0`) have bit `0x8` (`0x0026DC1B`-`0x0026DC2E`).
 
 So `scratch2` lives as long
 as the player stays inside one group of fields, and `0x0025D8E0` / `0x00269A20` copy its 512 bytes
@@ -183,7 +204,7 @@ Banks:
 | save-payload offsets a script declares | 620, `0x0` to `0xCF4`; one offset shared by 575 scripts ([script-variables-global-offsets.tsv](script-variables-global-offsets.tsv), [script-variables-global-by-script.tsv](script-variables-global-by-script.tsv)) |
 | global arrays | 34 ([script-variables-global-arrays.tsv](script-variables-global-arrays.tsv)) |
 | variables whose tests gate script steps | 562 of the 620 offsets, in 4,230 rows, one per variable and script ([script-variables-global-gates.tsv](script-variables-global-gates.tsv)) |
-| variable values and what each leads to | 3,344 rows for all 620 offsets ([script-variables-global-values.tsv](script-variables-global-values.tsv)) |
+| variable values and what each leads to | 3,355 rows for all 620 offsets ([script-variables-global-values.tsv](script-variables-global-values.tsv)) |
 | variables that gate no step | 58, with the reason for each ([script-variables-global-nogate.tsv](script-variables-global-nogate.tsv)) |
 | bank size | 512 bytes each |
 | resolver callers | 4: `PUSHV`, `POPV`, `PUSHP`, `PUSHDBG` |
@@ -244,12 +265,12 @@ scripts and `ttl_a01_e3`, which ships in the `cn` and `kr` trees only.
 ### What each value means
 
 [`script-variables-global-values.tsv`](script-variables-global-values.tsv) says, for every value a script tests or
-writes, what happens when the variable holds it. It has 3,344 rows for all 620 offsets, keyed by `payload_offset`,
+writes, what happens when the variable holds it. It has 3,355 rows for all 620 offsets, keyed by `payload_offset`,
 `element` and `value`, and the `source` column says what a row rests on:
 
 | source | rows | what the row gives |
 |---|---|---|
-| gated steps | 2,332 | a value some step's condition tests: each form of the test, and for each form the place, the actor and function, and what every gated step does |
+| gated steps | 2,343 | a value some step's condition tests: each form of the test, and for each form the place, the actor and function, and what every gated step does |
 | written value | 544 | a value a script stores that no condition names: the stores, and the tested forms the value meets or fails |
 | counter rule | 23 | a counter: the stores that add 1, and the rule by which its value chooses steps, read at the scripts |
 | no gated step | 445 | a variable that gates no step: each value written to it, with the reason no step depends on it |

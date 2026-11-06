@@ -27,9 +27,17 @@ does nothing.
 5. **The main menu.** Parameter 0 builds `0x00280D20`, the main menu procedure `0x00280DE0`
    ([menus](menus.md#the-requests),
    [menu screens](menu-screens.md#the-party-menu-and-its-entries), [widgets](widgets.md#construction)).
-6. **The opening run.** `0x00280D20` installs the menu's descriptor (`0x00247570`) and opens it under the root through
-   `0x00246AC0`, which hands it to `0x00246AD0`: the widget is attached, its forward run starts and message 14 is sent
-   ([widgets](widgets.md#the-tree), [widgets](widgets.md#opening-and-closing-runs), [widget messages](widget-messages.md)).
+6. **The opening run.** `0x00280D20` builds the main menu, `0x288` bytes, only while the root's `+0xD8` is 0, which the
+   menu sets to itself on message 1 (`0x00280D3A`-`0x00280D6D`, `0x00281B23`), and calls `0x002C99A0([0x01E0C3B8],
+   [0x01E0C3BC], 1)`, which runs the band builder `0x002C99E0` (`0x00280D72`-`0x00280D84`,
+   [menu screens](menu-screens.md)).
+   - The descriptor `0x00915C10` (`0x00247570`) and the opening through `0x00246AC0` belong to the side mask `0x0029D340` at
+     `[0x0209C318]`, a `0xC0`-byte widget built the first time (`0x00280D89`-`0x00280DC6`): `0x00246AC0` hands it to
+     `0x00246AD0`, which attaches it, starts its forward run and sends message 14
+     ([widgets](widgets.md#the-tree), [widgets](widgets.md#opening-and-closing-runs),
+     [widget messages](widget-messages.md)).
+   - The main menu opens itself under the root with `0x00246AD0` on message 16, sent when its resources have loaded
+     (`0x00280E62`-`0x00280EA7`).
 7. **While it is open.** The drain sets action availability row 7 to `0x100203` and the main loop to mode 4, which
    captures the screen once and becomes mode 3, waiting each frame for the menu to close
    ([menus](menus.md#while-a-menu-is-open)).

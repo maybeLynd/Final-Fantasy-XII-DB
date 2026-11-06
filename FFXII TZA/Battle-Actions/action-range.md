@@ -84,21 +84,24 @@ only in that mode (`0x0033BF59`-`0x0033BF5F`).
 
 `0x00309300` (169 bytes) takes `(actionRow, weaponId)`. It tests the weapon id as a
 class-6 (equipment) id with `0x00322C50(6, id, 0)` and resolves its row (`0x00309319`-`0x0030935E`). A null
-action row gives 0.0 (`0x00309364`). When bit `0x4000000` (`0x4000000`) of the row's flag word `+0x0C` is clear,
+action row gives 0.0 (`0x00309364`). When bit `0x4000000` of the row's flag word `+0x0C` is clear,
 the reach is the row's byte `+0x05`; when it is set, the reach is the equipment row's byte `+0x18`,
 or 0.0 when there is no equipment row (`0x00309377`-`0x0030938B`). The byte is divided by 10.0
 (`0x008F8180`, `0x0030939B`).
 
 ### The inner values
 
-`0x00320D70` (146 bytes) takes `(actor, actionRow, equipmentRow, component)`:
+`0x00320D70` (146 bytes) takes `(actor, actionRow, equipmentRow, component)` and tests bit `0x4000000` of the
+action row's flag word `+0x0C` (`0x00320D74`):
 
 - **Bit `0x4000000` clear:** the action row's byte `+0x02 + component`, divided by 10.0 - `+0x02` is the near
   value and `+0x03` the middle value (`0x00320DE1`-`0x00320DF5`).
 - **Bit `0x4000000` set:** the equipment row's kind byte `+0x25` (kind 0 for a null row, `0x00320DAF`). Kind 2,
   or any kind above 5, gives 0.0 (`0x00320D93`-`0x00320DA2`). Otherwise the parameter number is the dword
-  at `0x01EED288 + (component + kind * 2) * 4` (table below), and the value comes from
-  `0x003204E0(object, number, &out)`; a negative return gives 0.0 (`0x00320DB1`-`0x00320DD1`).
+  at `0x01EED288 + (component + kind * 2) * 4` (table below).
+- **The parameter's value** comes from `0x003204E0(object, number, &out)`, the object being the first
+  argument's `+0x10` (`0x00320DC4`) and `out` preset to 0.0 (`0x00320D86`); a negative return gives 0.0
+  (`0x00320DB1`-`0x00320DD1`).
 
 | Equipment kind | Near parameter | Middle parameter |
 |---:|---:|---:|
@@ -154,12 +157,13 @@ and multiplies it by the float at `+0x26C` of that character's `0x740`-byte reco
 
 `0x003341A0` returns 1 only when bit `0x1` of block `+0x38` is set, both
 units exist and differ, `0x0030BCB0(unit, target, 0)` is 0 (the relationship class from `0x0030AB40` is
-above 1), and the acting unit is not on the enemy side (stats byte `+0x05` not 1) or has bit `0x2` of byte
-`+0x21` of its `[unit+0xE68]` record set.
+above 1), and the acting unit is not on the enemy side (stats byte `+0x05` not 1, or no stats record at
+`+0x698`, `0x003341F5`) or has bit `0x2` of byte
+`+0x21` of its `[unit+0xE68]` record set (`0x003341A6`-`0x0033420A`).
 
 ### Pacing
 
-`0x00337A50` (442 bytes) runs only while bit `0x100` (`0x100`) of block `+0x3C` is set, the
+`0x00337A50` (442 bytes) runs only while bit `0x100` of block `+0x3C` is set, the
 acting unit's class from `0x002F8E70` is 1, the class of the unit the target is focused on is not 1, and
 the speed `ctx+0xB0` is non-zero; otherwise it clears bit `0x100` and returns 0 (`0x00337A74`-`0x00337ACB`,
 `0x00337BDF`). `0x002F8E70` returns 1 for a party-side unit (stats byte `+0x05` = 0) whose type id (byte

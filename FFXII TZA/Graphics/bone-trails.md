@@ -33,18 +33,43 @@ from section `+0x10`. The descriptor is copied whole into the trail entry at `+0
 - Authored presentation command `0x11` of the bank `0x0041D6C0` registers (`0x00520160`) stores the command's byte `+2` in
   render record `+0x3D0` and sets bit `0x1000000` of `+0x294` ([Authored presentation commands](authored-presentation-commands.md)).
 - The record pass `0x00427DE0` sees bit `0x1000000` (`0x0042858C`) and calls `0x00425E70(record, byte +0x3D0)`, which runs `0x003E6770`
-  on the record, its first child and the child's two subtrees. A command addressed to a character reaches the weapon in
+  on the record and its first child `+8`, then through `0x0042EF90` on the rest of the tree
+  (`0x00425EB7`-`0x00425F15`). A command addressed to a character reaches the weapon in
   its hand this way.
+- `0x0042EF90` calls `0x0042BDD0`, which runs `0x003E6770` with the same value, on that child's children and on its
+  following siblings `+0xA`, each with every record below it. `0x00425E70` does nothing for a record index of -1
+  (`0x00425E90`-`0x00425E94`).
 - On: when the record's first trail handle `+0x438` is `0xFFFF`, `0x003E6770` creates one entry per descriptor
   (`0x0051CC30`) and stores the handles at `+0x438`-`+0x444`. Otherwise it creates nothing.
+- Before each create it writes the record's index word, sign-extended, into the descriptor's `+4` in the model block
+  (`0x003E6810`-`0x003E6813`). It stores what `0x0051CC30` returns, 0 when the pool is full (`0x003E682A`); handle slots
+  past the count keep their values.
+- Both paths need the trail section: with no model block or an offset word `+8` of 0, `0x003E6770` creates and
+  switches off nothing (`0x003E6783`-`0x003E679B`, `0x003E67D3`).
+- With a value of 0 it first clears bit `0x1000000` of `+0x294` when that bit is set and byte `+0x3D0` is non-zero
+  (`0x003E679E`-`0x003E67BB`), so an on-command still waiting for the record pass is dropped.
 - Off: it calls `0x0051CC10` for each handle that is not `0xFFFF` and stores nothing, so the handles stay in place. A
-  stale handle is harmless: every pool routine compares it with the entry's own `+0`.
+  stale handle other than 0 is harmless: every pool routine compares it with the entry's own `+0`.
+- A handle of 0 from a full pool matches entry 0 while that entry is free (its `+0` is 0). `0x003E74C0` passes it to
+  `0x0051BC10`, which then lowers the live count and unlinks entry 0 again through the `+0x18` and `+0x20` it kept
+  from its last time in the list (`0x003E74D6`-`0x003E74E0`, `0x0051BC21`-`0x0051BC65`).
 - `0x0042F250(record index)` is a second off path: it clears bits `0x40000` and `0x80000` of `+0x290`, sets bit `0x100000` and calls
-  `0x003E6770(record, 0)`.
+  `0x003E6770(record, 0)` as a tail jump (`0x0042F279`-`0x0042F290`). It does nothing for an index of -1 or a record
+  whose `+0x284` is 0 (`0x0042F250`-`0x0042F277`).
 
 `0x0051CC10` only clears the entry's on byte `+4`; the entry keeps updating and drawing while it fades and frees itself at
 zero. `0x0051BC10` frees an entry at once. `0x0051CDC0` stores the character's opacity in `+8`, and `0x0051C380`, called from
-`0x004213E0`, writes the two flag bits of byte `+5`.
+`0x004213E0` and `0x00421280`, writes the two flag bits of byte `+5`.
+
+`0x0051BC10(handle)` changes nothing when the entry's `+0` is not the handle. Otherwise it zeroes `+0`, lowers the live
+count `0x02CA8400` by one and unlinks the entry, moving the list head `0x02CA8408` or tail `0x02CA8410` when the entry was
+first or last; the entry's own `+0x18` and `+0x20` keep their values (`0x0051BC21`-`0x0051BC65`).
+
+`0x0051C380(handle, v)` stores `(+5 & (v >> 2)) | (v & 3)` and returns 1, or returns 0 without writing for a stale
+handle (`0x0051C392`-`0x0051C3B1`). `0x00421280` gives it 4 or 6, which clear or set bit `0x2` (do not draw), and
+`0x004213E0` 8 or 9, which clear or set bit `0x1` (do not update), for each of the record's four handles that is not
+`0xFFFF` (`0x0042135F`, `0x0042138F`, `0x004214F5`, `0x0042152F`). When it returns 0, `0x004213E0` frees the handle with
+`0x0051BC10` and sets it to `0xFFFF` (`0x004214FA`-`0x00421505`, `0x00421534`-`0x0042153F`).
 
 `0x003E70F0(record, v)`, from `0x0042CBF0` and `0x0042D050`, passes the opacity to each of the record's
 four handles that is not `0xFFFF` (`0x0051CDC0`). `0x003E74C0(record)` frees each such entry at once
@@ -57,13 +82,33 @@ four handles that is not `0xFFFF` (`0x0051CDC0`). `0x003E74C0(record)` frees eac
 header: live count `0x02CA8400`, flag byte `0x02CA8402`, serial `0x02CA8404`, list head `0x02CA8408` and tail `0x02CA8410`. It
 builds the parameter template at `0x02CA8A90` (`0x005409C0`) and binds the engine's trail image from `0x01F2A220`.
 
+The order is the image, the template, then the pool (`0x0051C276`-`0x0051C2F3`). It allocates only while `[0x02CA8420]` is
+null, under arena 6 (`0x0036C1D0(6, 6)` and `0x0036C140` around `0x0036A100(0x3C00)`, `0x0051C2FF`-`0x0051C321`); every call
+clears the handles and the header again (`0x0051C32D`-`0x0051C36C`). The flag byte is cleared with a 16-bit store,
+which also zeroes `0x02CA8403` (`0x0051C341`).
+
 The image is 64 × 64 with 256 colours. `0x0051C270` keeps the texture's handle from `0x00184140` in `0x02EBA478`
 (`0x0051C2C6`) and the palette's from `0x001837A0` in `0x02EBA470` (`0x0051C2EC`); `0x0051BC70` binds them to GS
 addresses `0x2A00` (`0x0051BFD6`) and `0x2E00` (`0x0051BFEA`) through `0x002D7E00`.
+`0x00184140` gets the pixels at `0x01F2A220` + word `+2` and the width `1 << byte +0xB` and height `1 << byte +0xC`,
+each twice; `0x001837A0` gets the palette at `0x01F2A220` + word `+2` + word `+4`, `0x100` and 1
+(`0x0051C276`-`0x0051C2E0`).
 
 `0x0051CC30` takes the first entry whose handle is 0; with no entry free it returns 0 and the trail is not made. It sets
 the handle to `serial << 8 | slot` (the serial wraps to 1 above `0xFFFFFF`), on = 1, opacity 1.0, `+0xC` = 20.0, fade
 0, copies the descriptor, clears the histories, takes the first sample and appends the entry to the list.
+
+In detail (`0x0051CC64`-`0x0051CDA2`):
+
+- It raises the live count `0x02CA8400`. The `u16` store of 1 at `+0x04` also clears the flags `+0x05`, and the `u64`
+  store of 0 at `+0x10` also zeroes param14 `+0x14`.
+- The descriptor's `0x50` bytes go to `+0x370`-`+0x3BF`, and the histories cleared are the `0x100` bytes at `+0x30`,
+  the `0x100` at `+0x130` and the `0x140` at `+0x230`.
+- The first sample is `0x00422170(record, bone +0x372, +0x130, +0x30)`, taken only when the record index `+0x374` is
+  not -1, the render record `[0x022C6F28] + index × 0x740` is not null and its `+0x284` is not 0
+  (`0x0051CD23`-`0x0051CD5E`).
+- The samples byte `+0x06` and the alternator `+0x07` are set to 1 whether or not the sample is taken
+  (`0x0051CD63`, `0x0051CD77`). It returns the handle (`0x0051CD99`).
 
 ### Sampling a bone
 
@@ -71,6 +116,12 @@ the handle to `serial << 8 | slot` (the serial wraps to 1 above `0xFFFFFF`), on 
 when the instance's first byte has bit `0x80`. `0x003711D0` refuses a bone at or past the skeleton's count, copies the bone's
 world position (`+0xB0` of its `0x290`-byte runtime record) as the base, and builds the tip by putting `(length, 0, 0, 1)`
 through the bone's matrix at `+0x80`.
+
+`0x00422170` returns 0 without sampling when the record's `+0x18` is -1 or the instance
+`0x002ED570([unit + 0xD98], +0x18)`, the unit being `0x0020E600(record +0x10)`, is null (`0x0042218F`-`0x004221B2`), and
+otherwise returns what the callee returns. `0x003711D0` returns 0 when the block its handle `+0xA0` resolves to is
+null (`0x003711FF`) or the bone is not below the instance's signed word `+0x88`, the count (`0x00371215`-`0x00371223`),
+and 1 after the tip (`0x00371298`).
 
 The runtime records are the block the instance handle `+0x84` resolves to
 (`0x00371227`-`0x00371239`); `length` is the float at `+0x74 + 0x4C × n` of the other block, the one handle `+0xA0` resolves to
@@ -114,6 +165,20 @@ trail image and palette, and copies the `0x4A0`-byte template. For each listed e
 `0x005409C0` writes the template as a VIF1 packet: BASE and OFFSET at `+0x08` and `+0x0C`, STCYCL at `+0x18`, an UNPACK
 of `0x45` quadwords to VU address 0 at `+0x1C`, MSCALF at `+0x470` that calls the program, and a DIRECT at `+0x47C`. The
 first quadword it uploads, at template `+0x20`, is a GIF tag: `0x00008000`, `0x602E4000`, `0x00412412`, `0x00008000`.
+
+It first zeroes all `0x4A0` bytes (`0x005409C6`-`0x005409D1`). BASE and OFFSET carry 0 and STCYCL a cycle and a write
+length of 4 (`0x01000404`). FLUSH and a NOP follow the MSCALF at `+0x474`, the DIRECT moves one quadword, the
+GIF tag at `+0x480` with EOP set and NLOOP 0, and FLUSHA at `+0x490` ends the packet (`0x005409D6`-`0x00540C10`).
+
+The uploaded area also holds fixed values (`0x00540A10`-`0x00540BCA`):
+
+- the floats 4090.0, 4090.0, 16777000.0 and 0.98 at `+0x30`-`+0x3C`; the dwords 8 and 15 at `+0x348` and
+  `+0x34C`; 0.2, 1.0 and 1.0 at `+0x350`-`+0x358`;
+- the dword `0x80` at `+0x360`, `+0x36C`, `+0x370`, `+0x37C`, `+0x388`, `+0x38C`, `+0x398` and `+0x39C`; 0.1 at
+  `+0x3A0`; 1.0 at `+0x3B4`, `+0x3C8` and `+0x3DC`; the floats 2, -2, 1, 1, -3, 3, -2 and -1 at
+  `+0x3E0`-`+0x3FC`; 1.0 at `+0x408` and `+0x410`;
+- an A+D list: the GIF tag at `+0x420` (NLOOP 4, EOP, one register, A+D), then CLAMP_1 = 0, TEX0_1 = 0,
+  ALPHA_1 = `0x48` and TEST_1 = `0x53001` (registers `0x08`, `0x06`, `0x42` and `0x47`).
 
 | Field | Value |
 |---|---|
@@ -186,8 +251,8 @@ Measured over the 1,066 `.cm` models in the archive; the model block is the `@FC
 
 ## Modding notes
 
-- `0x003E6770` finds the trail section with a 32-bit sum of the model block and its offset, so a model
-  block must sit below 4 GB.
+- `0x003E6770` finds the trail section with a 32-bit sum of the model block and its offset, sign-extended back to
+  64 bits (`0x003E6794`-`0x003E6796`), so a model block must sit below 2 GB.
 
 - A trail's length and direction come from the bone's length entry and x axis; the descriptor only picks the bone.
 - At most sixteen trails exist at once; a request beyond that makes nothing.

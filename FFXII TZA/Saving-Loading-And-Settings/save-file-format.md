@@ -26,6 +26,16 @@ user-id string from `0x001F3ED0` is non-empty, that id and a backslash; the resu
 followed by the three-digit slot number (`sprintf("%s%03d")` in `0x0057E310` and `0x00584610`); the slot icon
 assets are named `icon.sys` and `static.ico` by the same formatter.
 
+`0x00862A40` keeps a path already at `0x02EAF6E0` while `GetFileAttributesW` reports it as a directory (bit `0x10`);
+otherwise it zeroes the `0x200` bytes there and builds the path again (`0x00862A62`-`0x00862A96`). It returns with
+`0x02EAF6E0` left empty when `SHGetFolderPathW` fails (`0x00862ABC`). It joins the pieces with `0x00408ED0`, 256
+characters at most, and the formats `%s%s`, `%s%s%s\` and `%s` (`0x00862AE7`, `0x00862B50`, `0x00862B6A`, `0x00862BB1`).
+
+It creates `Documents\My Games\` and then the final folder with `CreateDirectoryW` when `GetFileAttributesW` does not
+report a directory (`0x00862AEC`-`0x00862B0F`, `0x00862B6F`-`0x00862B98`); a failed create returns with `0x02EAF6E0` empty.
+With a user id the final folder is the id's folder inside `FINAL FANTASY XII THE ZODIAC AGE\`, which itself gets no
+create call. Only after the last create does it copy the path to `0x02EAF6E0` (`0x00862BB1`).
+
 The container is read by `0x008666B0(path, mode)`, called from the stream opener `0x008624D0`
 (`0x00862543`), and written by `0x00866200`, called from `0x008624D0` (`0x00862508`) and the stream closer
 `0x008620E0` (`0x008620F4`).
@@ -74,8 +84,9 @@ The writer draws the rotation as `abs(rand()) mod 32` (`0x008663C5`-`0x008663ED`
 | `+0x200` | `u8[353424]` | payload | the persistent payload; `0x002EF2B0` returns its address |
 
 The image is 353,936 bytes: the clear `0x002EF5F0` and the boot initialiser `0x002EF650` memset that
-many, the copy to the write buffer passes it (`0x002EF690`), and the submit records it at the
-descriptor's `+0x100` (`0x0057E310`).
+many, the copy to the write buffer passes it (`0x002EF690`), and the submit records it at its widget's
+`+0x100` (`0x0057E310`, `0x0057E42F`). That is `+0x30` of the 56-byte descriptor at widget `+0xD0`, which holds
+the name from `0x00584610` at `+0x00` and the write buffer at `+0x28` (`0x0057E3F2`-`0x0057E423`).
 
 ### The header
 
@@ -115,7 +126,19 @@ The roster loop (`0x00583DC2`-`0x00583EEB`) walks party pages 0-8 from `0x00282D
 whose word `+0x60` is negative or whose flag bit `0x2` is set, and writes for each page `{+0x60 low
 byte, +0xBA, +0x86 << 4 | +0x87, flags}` with flag bit `0x1` when the page is the leader
 (`0x003271D0`), bit `0x2` when the page's dword `+0` has bit `0x400`; the page with flag bit `0x2` is written
-last with flag bit `0x4`, and entries up to seven are filled with `0xFF`.
+last with flag bit `0x4`, and each entry from there up to seven gets `0xFF` in its first byte only, the other
+three bytes left as they were (`0x00583EE0`).
+
+The third byte is stored as a byte, so it holds `(+0x86 << 4) & 0xF0` ORed with the whole byte `+0x87`
+(`0x00583DF1`-`0x00583E01`). Of several pages with flag bit `0x2` only the last is kept (`0x00583DD8`). Its entry's bit
+`0x2` is not taken from that page: the test reads the page pointer left by the loop's last call, `0x00282DF0(8)`, so
+the bit is set when page 8's word `+0x60` is not negative and its dword `+0` has bit `0x400`
+(`0x00583E70`-`0x00583E7F`).
+
+The loop does not stop at seven entries: an eighth would land on `+0x3C`, which the Esper store overwrites
+(`0x00583F0D`), and a ninth on `+0x40`, which the counter store overwrites only when story flag `0x400B` is set
+(`0x00583F27`). The flags byte `+0x57` is only ORed (`0x00583F63`, `0x00583F70`, `0x00583F7D`), so a bit already set in
+the destination stays set. The clan rank at `+0x44` is the low byte of `0x00315390()` (`0x00583F2F`).
 
 ### The checksum
 
@@ -164,6 +187,13 @@ The buffers are `0x566C0` apart, 48 bytes more than the image.
 - `SAFH`: `+0x08` must be below 32 and `+0x04` at most `0x100000` (`0x00866805`, `0x00866817`);
   `0x00865D90` decrypts (`0x00865840`) and inflates (`0x0080C5A0`, zlib `uncompress`) and the result's
   length must equal `+0x04` (`0x00866866`-`0x0086686D`); the image is then copied into the stream.
+- `0x00865D90(out, &len, data, size)` gets `+0x04` as `len`, the bytes from `+0x0C` and the file size less 12,
+  `size - 12` (`0x00866843`-`0x0086685D`). It decrypts with `0x00865840` into a scratch block of `len` bytes from
+  `_aligned_malloc` with alignment 16 (`0x00865DBB`-`0x00865DD9`), and inflates only when the decrypt answers
+  non-zero (`0x00865DE3`).
+- A non-zero `uncompress` result makes `0x00865D90` answer 0; success stores the inflated length through `&len`
+  and answers 1 (`0x00865DFB`-`0x00865E0E`). The scratch block is freed with `_aligned_free` on every path
+  (`0x00865E13`).
 
 ### Writing the container
 
@@ -206,7 +236,17 @@ and `0x01CCFD80` by `0x008656B0(out, directory, name)`, which appends the name t
    inventory descriptors (`0x0030B6A0`) and runs the battle reset `0x00237DF0` twice (`0x00233C3F`,
    `0x00233C48`). With a block, the first dword must equal `0x05071901` (`0x00233C4D`); otherwise
    `0x00237DF0` runs (`0x00233C59`), which reaches `0x002370C0`: the block is zeroed, stamped, and its
-   party arrays at `+0x5A48` filled with `0xFFFF` (`0x002370C0`).
+   seats at `+0x5A48` filled with `0xFFFF` (`0x002370C0`).
+   - `0x002370C0` fills only map 0's nine seats, the words `+0x5A48`-`+0x5A58` (`0x002370EA`-`0x00237116`), empties the
+     inventory lists with `0x003047F0` (`0x002370E5`) and clears the dwords `+0x5AC8` and `+0x5ACC`, the walked
+     distance (`0x00237118`-`0x0023712E`; [Party data](../Party/party-data.md)).
+   - With the magic in place it sets bit `0x1000` of the flag dword `+0x04` when bit `0x1` of `0x02089344` is set,
+     clearing that bit and zeroing the dword `+0x5B00`, the word `+0x5B0C` and the byte `+0x5B0E`; otherwise it
+     clears bit `0x1000` (`0x00233C65`-`0x00233CA6`).
+   - It then rebuilds the gambit order sets (`0x00327F80`, `0x00233CAD`), clears bit `0x2` of the word `+0x5AD0`
+     (`0x003139A0(0)`) and bit `0x1` of the dword `+0x5AE0` (`0x00304770(0)`), empties the trap ring `0x02EC3EA0`
+     (`0x002FA230`) and the presence ledger `0x02EC3E60` (`0x002FA260`), sets the speed index `0x01FD4A98` to 0
+     (`0x00229ED0(0)`, `0x00233CD1`) and stores 0 at `0x0208E6B4` (`0x00233CD6`).
 4. `0x00584210`, called from the load lifecycle `0x00582860` (`0x00582EBA`), handles the stash:
    - load mode `0x00394450()` = 3 with header flag bit `0x1` clear:
      - the play clock `+0x10` to `+0x1B` is copied to `+0x70` to `+0x7B`, the walked total
@@ -219,11 +259,17 @@ and `0x01CCFD80` by `0x008656B0(out, directory, name)`, which appends the name t
        zeroed (`0x005842DC`);
      - `0x00314DC0` stores `0x483` as the destination field `+0x1244` (`0x005842D7`-`0x005842DF`); the
        previous field, previous entrance and mode words `+0x124C` to `+0x1257` keep their values;
-   - any other mode with flag bit `0x1` set: the stash is restored, `0x00329E40(walked)` re-seats the
-     accumulator, `0x00269A20(image + 0xE240)` and `0x002EF410(image + 0x4E660)` run, the flag is
-     cleared, `0x01E0C3EC` is zeroed, bit `0x1` of the battle block's `+0x5B04` is cleared
-     (`0x0058437D`-`0x0058438C`) and `0x0023A390(0)` clears the block's `+4` bit `0x1000`.
-   - Both paths then reseed the gameplay generator from the clock (see the
+   - any other mode with flag bit `0x1` set:
+     - the stash is restored: `+0x70` to `+0x7B` back to `+0x10` to `+0x1B`, `+0x7C` to the walked mirror
+       `+0x0C`, and `+0x80` to `+0x93` back to `+0x1244` to `+0x1257` (`0x005842F9`-`0x00584362`);
+     - `0x00329E40(walked)` re-seats the accumulator, `0x00269A20(image + 0xE240)` and `0x002EF410(image + 0x4E660)`
+       run, the flag is cleared (`0x0058436D`), `0x01E0C3EC` is zeroed, bit `0x1` of the battle block's `+0x5B04`
+       is cleared (`0x0058437D`-`0x0058438C`) and `0x0023A390(0)` clears the block's `+4` bit `0x1000`.
+   - load mode 3 with the flag set, and any other mode with it clear, run neither path (`0x0058424F`,
+     `0x005842F3`).
+   - Both paths, and the two combinations that skip them, then call `0x00316810` (`0x00584398`,
+     [achievements](../Steam-And-Achievements/achievements.md)) and reseed the gameplay generator
+     from the clock (see the
      [random number generators page](../Random-Numbers/random-number-generators.md)).
 
 ### What is initialised at boot
@@ -231,7 +277,12 @@ and `0x01CCFD80` by `0x008656B0(out, directory, name)`, which appends the name t
 `0x002EF650` clears the active image, calls `0x00253A80` and `0x002EF2D0`, then `0x00238A80`. `0x00253A80`
 zeroes the two state blocks (`[0x02092758]`, `0x58` bytes; `[0x020927C0]`, `0x4818` bytes) and writes
 the six header constants at `+0x58`-`+0x6C` from their getters (`0x002EF2A0`, `0x002EF290`, `0x00235E90`,
-`0x00235E80`) and literals (`0x00253AED`, `0x00253AFB`). The debug verb `0x209C` loads development slot
+`0x00235E80`) and literals (`0x00253AED`, `0x00253AFB`). It runs `0x00253240(i, 1)` for the twelve
+inventory classes (`0x00253B02`-`0x00253B13`), installs the in-game options defaults with `0x002DDE60`
+(`0x00253B2A`) and zeroes four ranges of the block (`0x00253B2F`-`0x00253B84`,
+[save data fields](save-data-fields.md)).
+
+The debug verb `0x209C` loads development slot
 images (`0x002EF300`: slot clamped to 0-15, resource kind 1, index `0x75 + slot`, `0xE240` bytes into
 the active buffer).
 

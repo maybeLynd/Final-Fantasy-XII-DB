@@ -24,8 +24,9 @@ them with `eventread` (`0x0E7`, `0x003529E0`) and `eventread_e8` (`0x0E8`, `0x00
 - No scene row lists an item or a party change. All three are loaded by `常駐監督.main` of `var_z01`, field `918`, and
   each is followed by a story counter value and the jump back to Saccio Lane, field `826`.
 - `var_z0100` is followed by 4100, after the truth clouded by Mist: the party resolve to follow Cid to Giruvegan, a
-  song tells of it ("On the farthest shores of the river of time... the holy land sleeps: Giruvegan."), and Reddas
-  stays behind ("I will follow another course.").
+  song tells of it ("On the farthest shores of the river of time... shrouded deep in the roiling Mist... the holy land
+  sleeps: Giruvegan. Who knows the paths? The way to its doors?"), and Reddas stays behind ("I will follow another
+  course.").
 - `var_z0102` is followed by 5150, after To the Pharos at Ridorana: the talk turns to the Sun-cryst and the lighthouse
   on the Naldoan Sea, and a skystone is offered for the ship ("Try putting this one in your ship.").
 - `var_z0101` is followed by 6100, after the Bahamut starts up: Al-Cid brings word that the war begins, with Dalmasca

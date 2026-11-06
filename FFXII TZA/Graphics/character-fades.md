@@ -47,8 +47,12 @@ value = base + ((delta * progress) >> 12)
 - `0x003E5D00(record, n, value)` sets a channel at once: base `value × 4096`, the rest 0. The record clear
   `0x0041F730` sets all ten to 1.0; `0x003E5D30` puts channels 0, 1 and 4 back to 1.0.
 - `0x00428940(record, n, value, frames)` is the forwarder most writers use: one frame or fewer sets the
-  channel at once, more starts a ramp. `0x004293C0` is the same with a flag that redirects the write to
+  channel at once, more starts a ramp. `0x004293C0` is the same with a flag that redirects the ramp to
   the record's first child.
+- The redirect covers only the ramp: for one frame or fewer `0x004293C0` jumps to `0x003E5D00` on the record itself
+  whatever the flag (`0x004293C0`-`0x004293C4`). A flag of exactly 1 sends the ramp to the first child `+8`, and
+  nothing is written when that index is -1 or the child's `+0x284` is 0 (`0x004293CA`-`0x00429402`). Command `0x23`
+  gives the flag its word `+2` (`0x00520190`-`0x0052019F`).
 - `0x003E4370(record)` advances every channel with a non-zero step: progress grows by the step up to
   `0x1000`, and on the update after it arrives the delta is folded into the base and the channel rests.
   It runs from `0x0042C410` and `0x0042C8F0`, the root and child callbacks of the hierarchy walk
@@ -73,6 +77,18 @@ either rate.
 `0x00428C40` starts all four ramps with one frame count. `rgbatrans` (`0x3B2`, `0x0033F530`) reaches it
 through `0x002E84B0` and `puppetrgbatrans` (`0x535`, `0x0033FAD0`) through `0x002E8500`; both pass the
 popped frame count plus one.
+
+`0x00428C40` takes the frame count as a float and truncates it, `n = (int)count` (`cvttss2si ebx, [rsp + 0x78]`
+at `0x00428C4A`), and always ramps through `0x003E5D60`:
+channels 6, 7 and 8 by calls and 9 by a tail jump (`0x00428C50`-`0x00428CBE`), so a count below 1 still ramps over
+one frame. Both verbs pop five floats with `0x00267DB0`, the frame count first and then alpha, blue, green and red,
+and add 1.0 to the count (`0x0033F559`-`0x0033F5A1`, `0x0033FAFB`-`0x0033FB66`).
+
+`0x002E84B0(actor, ...)` writes nothing for a null actor, a null presentation context `+0xC0`, a context whose
+dword `+0x00` or word `+0x00` is -1, or a record whose `+0x284` is 0 (`0x002E84B3`-`0x002E84ED`). `0x002E8500`
+takes the puppet binding itself and makes the same tests from its dword `+0x00` on (`0x002E8503`-`0x002E8531`).
+`puppetrgbatrans` then pops the puppet number (`0x00267E10`), calls the bare `ret` `0x0016D6A0`, and reaches
+`0x002E8500` only when `0x003EB720(number)` gives a binding (`0x0033FB35`-`0x0033FB72`).
 
 A sweep of every reference to `0x003E5D60`, `0x003E5D00`, `0x00428940` and
 `0x004293C0`, conditional jumps included, finds no write of channel 3 and those listed above for the
@@ -105,9 +121,22 @@ to `0x0042E1F0`. For a piece whose parent's kind is `0x11` to `0x15`, the parent
   frames;
 - otherwise it is set to 1.0 at once.
 
+`0x0042E1F0(record, arg)` first runs `0x004292B0(record, [arg + 8], 0)` on every record it is given, piece or not,
+then reads the kind through `0x003E5CF0` (`0x0042E20E`-`0x0042E225`); a piece without a parent is left there
+(`0x0042E227`-`0x0042E22F`). The handled record is `[arg + 8]` (`0x0042E2AC`) and the ramp is
+`0x003E5D60(record, 1, 0, 5)`, a tail jump (`0x0042E2C1`-`0x0042E2D7`). A record whose word `+0x2F2` is non-zero skips
+all of this: it tail-jumps to `0x00423B10(record, [arg + 0x10], dword [arg + 0x20])` (`0x0042E1FA`-`0x0042E208`,
+`0x0042E2E6`-`0x0042E2F8`).
+
 `0x0042F880`, the handler that completes a pending attachment (owner at `+0x3CE`, slot at `+0x3CC`),
-applies the same test for slot `0x10A` and sets channel 1 to 0 at once when the bits are clear, so the
+applies its own test for slot `0x10A` and sets channel 1 to 0 at once when the bits are clear, so the
 piece arrives hidden.
+
+For a piece in slot `0x10A` it reads the record that the owner's word `+0x2C8` names (`0x003326C0`). When that
+record's kind is `0x11` to `0x15`, the piece is tied to it instead of the owner, and channel 1 is set to 0
+after the tie when bits `0x3` of the owner's `+0x40B` are both clear (`0x0042F956`-`0x0042F9CD`,
+`0x0042FA2E`-`0x0042FA3E`). An owner word `+0x2C8` of -1 ends the handler before the tie (`0x0042F97C`). Unlike
+`0x0042E1F0` it does not look at `+0x284` bit `0x8000000` or the event index.
 
 ### Distance fade and cull (channels 0 and 4)
 
@@ -150,6 +179,11 @@ the character is below record `+0x2A8`, plus 0.15 while the character is already
 camera's height is within the character's half-height band, channel 4 ramps to 0 over three frames
 and `+0x4B7` bit `0x20` is cleared; otherwise it ramps to 1.0 and the bit is set.
 
+`0x0042D7A0` tests the parent as word `+0x06` of -1 (`0x0042D7A6`-`0x0042D7C2`). After `0x0042E850` it calls
+`0x00421030(record)` and `0x004210D0(record)`; when the latter returns non-zero and the effect handle `+0x288` is
+not -1, it tail-jumps to `0x003B33A0(+0x288, 0x00420FB0(record))`, the visibility write of
+[character effects](character-effects.md) (`0x0042D7C7`-`0x0042D7F9`).
+
 The settings are the record system's tail ([character render records](character-render-records.md)):
 
 - `setcharclipdistance_327` (`0x327`, `0x00348B00`) pops two floats: the first to `+0x24` (`0x002E83A0`), the
@@ -174,7 +208,10 @@ distance, and `0x021641F8`, the default fade range. `0x002EDA70` and `0x002EDA80
 ### Reading the channels
 
 `0x003E48E0(record, selector)` returns one channel's value for selectors 0 to 9, or a product,
-renormalised after every factor:
+renormalised after every factor (each one shifted right by 12). Any selector other than `0x0B`, `0x0D` and
+`0x0E` is read as the channel at `+0x4C0 + 8 × selector` (`0x003E48FC`-`0x003E4922`); its eight callers give
+4, `0x0B`, `0x0D` and `0x0E` (`0x0042FB59`, `0x0042D3E6`, `0x0042D580`, `0x004FDB49`, `0x0053AE44`, `0x0053AE9A`,
+`0x0053AF2B`, `0x0053D9A1`):
 
 | Selector | Product of channels |
 |---|---|
@@ -315,6 +352,9 @@ capped at `90 × [0x01DFE0B4]`; its 16-bit store of 0 at `+0x456` resets it.
 After the latch, when the record has a presentation entry whose resolved data has byte `+1` equal to 1,
 events `0x35` and `0x36` multiply the accumulator by 0.9 and the speed by the result, event `0x0D`
 forces the speed to 0, and any other event resets the accumulator to 1.0.
+A latched call (case 1) returns straight after its decay (`0x0042411A`) and skips this step, so it runs on the
+arming call and on every unlatched call, also for a record without bit `0x8000000` or with a parent (`0x00424129`,
+`0x00424130`).
 
 ## Modding notes
 

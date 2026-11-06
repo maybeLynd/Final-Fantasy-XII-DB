@@ -28,13 +28,27 @@ row's `+0x07` bits under mask `0xE0` ([Equipment row](equipment-row.md)). An emp
 | Setter | Record | Eligibility free-copy test | Worn counts | Unit refresh | Sites |
 |---|---|---|---|---|---|
 | `0x0031A630(record, slot, id, update)` | given | when `update` | when `update` | when `update` | `0x0031A630`-`0x0031A6ED` |
-| `0x0031A510(mappedId, slot, id, flags)` | by party seat, `[0x02EBF190] + 0x5A7E` | always | always | always | `0x0031A510`-`0x0031A60C` |
-| `0x0031A410(index, slot, id)` | by record index | always | always | always | `0x0031A410`-`0x0031A4DF` |
+| `0x0031A510(mappedId, slot, id, flags)` | by party seat, `[0x02EBF190] + 0x5A7E` | always | always | when `0x0031B860` finds a unit (`0x0031A5F5`-`0x0031A602`) | `0x0031A510`-`0x0031A60C` |
+| `0x0031A410(index, slot, id)` | by record index | always | always | when `0x0031B860` finds a unit (`0x0031A4D2`-`0x0031A4DF`) | `0x0031A410`-`0x0031A4DF` |
 
 Each setter, for an id other than `0xFFFF`, first asks the eligibility test, below. It then moves one worn copy
 from the old item to the new (`0x0030F9A0`, `0x0030C410`, [Inventory](inventory.md)), stores the id, and reconciles the
 hands with `0x00318B40`. When the slot it set has changed, it rebuilds the stats with `0x0030FED0(record, 0x97)` and
 refreshes the unit (`0x00324470`). Only that slot is compared (`0x0031A6BB`, `0x0031A4B2`, `0x0031A5DA`).
+
+`0x0031A630` returns -1 for a null record (`0x0031A64E`) and for an id the eligibility test refuses (`0x0031A67E`), and
+0 otherwise (`0x0031A6F2`). The rebuild runs whatever `update` is (`0x0031A6D4`); the unit refresh needs `update` and a
+unit that `0x0031B860` finds for the record (`0x0031A6D9`-`0x0031A6ED`). The test is `0x00317930(record, record + 0x50,
+slot, id, update)` (`0x0031A668`-`0x0031A677`).
+
+`0x0031A410` and `0x0031A510` return -1 for a record index or seat byte above `0x27` and for an id the eligibility
+test refuses, and 0 otherwise (`0x0031A427`, `0x0031A476`, `0x0031A4E4`; `0x0031A55F`, `0x0031A5A3`, `0x0031A611`). `0x0031A510`
+also returns -1 for a seat that `0x00322C50(0x17, seat)` refuses, any seat outside 0-8 (`0x0031A53C`-`0x0031A547`).
+
+Both test with the free-copy test (`0x0031A45D`, `0x0031A58A`) and give `0x00318B40` an `update` of 1 (`0x0031A4A4`,
+`0x0031A5CC`). Their unit refresh, like that of `0x0031A630`, needs a unit that `0x0031B860` finds
+(`0x0031A4CF`-`0x0031A4DF`, `0x0031A5F2`-`0x0031A602`). `0x0031A510` calls `0x00324380` with `flags` bit `0x1` clear even when
+the slot did not change (`0x0031A607`-`0x0031A60C`).
 
 `0x0031A510` also
 re-records the fighting units and reloads their models (`0x00324380`) unless `flags` bit `0x1` is set (`0x0031A5F5`-`0x0031A610`);
@@ -54,7 +68,7 @@ scenario presets set the slots with `update` 0.
 | the equip menu, remove all | `0x0031A300(member, 1)` | `0x003FF87F` |
 | equipping a piece just bought in a shop | `0x0031A510` | `0x0057AF18` |
 | `takeaway_item_and_equip` `0x388`, `giveback_item_and_equip` `0x387` | `0x0031A300`, `0x0031A710` | `0x0030FC2F`, `0x0030FBA0` |
-| `takeoff_equip` `0x55B`: the given id taken off each of the nine party records that wears it and holds a main character (byte `+4` 6 or less, `0x0030FD6E`; byte `+5` 0, `0x0030FD68`), except members who are down outside a town (`0x0030FD40`-`0x0030FD89`) | `0x0031A630(record, slot, 0xFFFF, 1)` | `0x0030FDC8` |
+| `takeoff_equip` `0x55B`: the given id taken off each of the nine party records that wears it and holds a main character (byte `+4` 6 or less, `0x0030FD6E`; byte `+5` 0, `0x0030FD68`), except members with KO, Stone or X-Zone (`0x80000003` of stats `+0x3C` or `+0x64`) outside a town (`0x00377C20`; `0x0030FD40`-`0x0030FD89`) | `0x0031A630(record, slot, 0xFFFF, 1)` | `0x0030FDC8` |
 | `resetJobs` `0x5D6` ([Licenses](licenses.md)) | `0x0031A260` → `0x0031A410` | `0x00328C11` |
 | the scenario presets and the party record set-up | `0x0031A630(…, 0)` | `0x00239C6F`-`0x00239CBF`, `0x0023AE99`-`0x0023AEE9` |
 | the enemy record set-up: slot 0 from the enemy row's `+0x16`, slot 1 from `+0x1C`, slots 2-4 empty | `0x0031A630(…, 0)` | `0x0023ADB5`-`0x0023ADFA` |
@@ -112,6 +126,31 @@ Taking something off always succeeds: every setter skips the test for `0xFFFF`, 
 empty slot 1-4. The free-copy test runs before the old copy is released (`0x0031A677`, `0x0031A69B`), so re-equipping the
 item already worn needs a spare copy.
 
+The slot check `0x0031794A` belongs to the eligibility test, so `0x0031A510` stores `0xFFFF` without it: `0x0031A581`
+jumps past `0x00317930` to the read of the slot's old word (`0x0031A5A5`). Every caller that stores `0xFFFF` through
+`0x0031A510` gives a slot from 0 to 4:
+
+- The equip pane taking a piece off: `0x003FF040(pane, slot)` calls `0x003FFA20(slot, 0xFFFF)` (`0x003FF0F8`-`0x003FF0FC`),
+  and `0x003FFA20` hands the slot to `0x0031A510` (`0x003FFA49`-`0x003FFA4F`). The slot is the argument of the command
+  `0x8001` the pane receives (`0x003FF6EA`-`0x003FF765`): 1 when the pane sends it to itself (`0x003FF7C3`-`0x003FF7E1`),
+  otherwise the item its grid confirmed.
+- The pane's grid `+0x170` sends only an item below its count `+0xE8` (`0x002D40B8`-`0x002D40FF`), and the pane sets
+  that count to 5 (`0x003FF628`-`0x003FF63C`). The pane decodes record 3 of layout unit 7 as its parent
+  (`0x003FF5AB`-`0x003FF5D5`), and that record's one grid node is item 5, this grid.
+- That item is never below 0. It is `+0xED` + (`+0xF2` + `+0xF4`) × `+0xEC` + `+0xEE` (`0x002D40B8`-`0x002D40E9`),
+  passed as the command's argument (`0x002D40FF`). The grid's build sets all four fields to 0 (`0x002D1667`-`0x002D166E`).
+- The cursor code `0x002D0A20`, `0x002D1DB0`, `0x002D4B70` and `0x002D4D60` keeps those fields at 0 or above on this
+  one-column grid of 5 items, sized by its layout item (`0x0029FA05`-`0x0029FA0C`). `0x002D1B10` runs only for flag
+  `0x800000` of `+0xE0` (`0x002D3CB5`, `0x002D3D66`), which no writer sets on this grid.
+- The equipment list `0x003FDFE0` emptying a slot: it calls `0x003FFA20` with its byte `+0x17E` and the chosen row's id,
+  with no check `0x003FCA70` when that id is `0xFFFF` (`0x003FE1A2`-`0x003FE1CB`). `0x003FD368` is the one write of
+  `+0x17E` to the list; it stores the list's build argument (`0x003FE30B`-`0x003FE324`), which `0x003FDA20` takes from
+  `0x003FF040`'s slot (`0x003FDA35`, `0x003FDA4B`, `0x003FF099`-`0x003FF0A2`).
+- The shop's member picker: `0x0057AF18` gives the picker's byte `+0xC6`, byte `+0x4C` of `0x0035D380(6, item)`
+  (`0x0057ACCE`-`0x0057ACD7`), whose one write is `0x0057ACD7`. For `0xFFFF` the class-6 test `0x00322C50` refuses the id,
+  the 557 equipment ids being `0x1000`-`0x122C`, so `0x0035D380` clears the record and the slot is 0
+  (`0x0031C853`-`0x0031C863`, `0x0035D3A6`-`0x0035D3BB`).
+
 ### The two hands
 
 `0x00318B40(slots, slotJustSet, update)` runs after every store (`0x00318B40`-`0x00318C79`):
@@ -122,6 +161,10 @@ item already worn needs a spare copy.
 3. On a mismatch after setting the off hand: a shield turns the main hand into Unarmed, and so does an emptied off
    hand under a weapon that does not take a shield, a bow, crossbow, gun or hand-bomb (`0x00318C33`-`0x00318C5E`).
 4. On any other mismatch the off hand is emptied (`0x00318C64`-`0x00318C79`).
+
+With `update` non-zero each replacement also moves a worn copy: `0x0030F9A0` for the piece taken off and `0x0030C410`
+for the one put on (`0x00318B79`-`0x00318B89`, `0x00318C4A`-`0x00318C59`, `0x00318C64`-`0x00318C74`). With `update` 0 only the
+words are written.
 
 | Action | Result |
 |---|---|
@@ -140,13 +183,20 @@ read (`0x002F7F70`-`0x002F7F76`, `0x00317A7B`-`0x00317A7F`, `0x00318BE0`).
 party rows 7-25 (`0x0030FBF3`-`0x0030FC14`):
 
 1. It copies the five slot words to the record's `+0x5A`-`+0x63` (`0x0030FC1F`-`0x0030FC29`).
-2. It removes all gear with `0x0031A300(seat, 1)` (`0x0030FC2F`).
+2. It removes all gear with `0x0031A300(seat, 1)` (`0x0030FC2F`). A seat with no record is skipped (`0x0030FC02`).
+   After the nine seats it calls `0x00324380` once (`0x0030FC3B`).
 3. It backs up the counts of items `0x0000`-`0x003F` and equipment `0x1000`-`0x11A3` and sets them to 0
-   ([Inventory](inventory.md); `0x0030FC47`-`0x0030FCEF`); the placeholder rows above `0x11A3` are left alone.
+   ([Inventory](inventory.md); `0x0030FC47`-`0x0030FCEF`); the placeholder rows above `0x11A3` are left alone. The
+   call for `0x1000`, which `0x003008A0` refuses (`0x003008DD`), copies that count but leaves it in place (`0x0030FCE2`).
+   It returns 1 (`0x0030FCFB`).
 
 `giveback_item_and_equip` `0x387`, through `0x0030FAA0`, adds the counts back, re-equips the five stashed words
 through `0x0031A710`, which tests each again, and clears the count backup (`0x0030FAAD`-`0x0030FBC7`). It does not clear
 `+0x5A`-`+0x63`.
+
+The giveback's add for `0x1000` is refused as well (`0x0030FB48`). It re-equips the records of the seats that pass
+the takeaway's test (`0x0030FB70`-`0x0030FBA0`), calls `0x00324380` once before clearing the backup (`0x0030FBAC`) and
+returns 1 (`0x0030FBCC`).
 
 ### Optimise
 
@@ -162,11 +212,20 @@ through `0x0031A710`, which tests each again, and clears the count backup (`0x00
 5. After slot 0, an empty main hand becomes Unarmed and an off hand that no longer pairs is emptied
    (`0x002FA056`-`0x002FA077`).
 
+The record is `0x00320AB0(seat, 3)`; for a seat with no record `0x002F9F20` writes nothing and returns 0, otherwise it
+returns 1 (`0x002F9F5B`-`0x002F9F66`, `0x002FA09D`). The candidate is tested on the loadout being built, `out`
+(`0x002F9FF1`-`0x002F9FFF`). Ammunition, ids `0x1184`-`0x11A3` of the slot-1 walk, is ranked by `0x002F7A10` with the
+weapon's rules, slot 0 (`0x002FA021`-`0x002FA033`).
+
+`0x002F7A10(current, candidate, slot, record)` returns the id it keeps. It keeps `current` when the candidate has no
+row or its row's slot bits are 4 or 5, and takes the candidate when `current` is empty or has no row
+(`0x002F7A3B`-`0x002F7AFC`). For a slot above 3 it goes straight to the final tie (`0x002F7B0C`-`0x002F7B0F`).
+
 `0x002F7A10` ranks by slot:
 
 | Slot | First | Then |
 |---|---|---|
-| weapon, and ammunition | `0x002F7C80`: Attack Power `+0x1A`; for a bow, crossbow, gun or hand-bomb, plus the best usable ammunition's `+0x1A`, or -1 when there is no usable ammunition | the live weapon, then the live weapon's class, then the lower class |
+| weapon, and ammunition | `0x002F7C80(id, record)`: 0 for Unarmed or an empty id (`0x002F7CB4`-`0x002F7CC5`); Attack Power `+0x1A`; for a bow, crossbow, gun or hand-bomb, a weapon whose `+0x11` is 23-26 (`0x002F7D1E`-`0x002F7D26`), plus the best usable ammunition's `+0x1A`, or -1 when there is no usable ammunition. The search starts from the ammunition in the record's off hand `+0x52` when its class is the weapon's `+0x11`, and ranks with `0x002F7A10` slot 0 each id `0x1184`-`0x11A3` of that class that passes the eligibility test for slot 1 with the free-copy test on an empty loadout (`0x002F7D31`-`0x002F7EA9`) | the larger value (`0x002F7BE4`-`0x002F7BE8`), then the live weapon, the record's `+0x50`, then the live weapon's class, then the lower class (`0x002F7B78`-`0x002F7C37`) |
 | shield | evade `+0x18` | magick evade `+0x19` |
 | helm | Magick Resist `+0x19` | Defense `+0x18` |
 | armor | Defense `+0x18` | Magick Resist `+0x19` |

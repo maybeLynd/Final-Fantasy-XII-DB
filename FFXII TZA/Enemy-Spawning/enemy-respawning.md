@@ -57,15 +57,26 @@ rec.b_17 = rec.b_18 = table.b_01 ? row.b_06 : 0                 persistence key
 ```
 
 Both numbers are rolled per entry, so two visits to one zone can give the same monster different
-cooldowns. A committed entry keeps its numbers: the roll happens once per bank life.
+cooldowns. A committed entry keeps its numbers: the roll happens once per bank life. The generator is
+drawn only for a non-zero base (`0x00239607`, `0x00239635`), so an entry takes 0, 1 or 2 draws, and the cooldown
+sum is stored as its low 16 bits (`0x00239652`).
+
+A null table returns at once (`0x002395A3`), and so does a count of 0 or below: `b_00` is read as a signed
+byte (`0x002395C4`, `0x00239679`), and the loop runs `i` from 0 while `i < b_00`, with no test against the
+bank's 64 records. The row address `4 + i * w_02` (with `w_02` signed) is added to the low 32 bits of the
+table pointer and the 32-bit sum is sign-extended (`0x002395ED`-`0x002395F9`). The bank pointer `0x0208E690` is
+read with no null test (`0x002395CA`-`0x002395E3`).
 
 ### The clock
 
 The counter `0x0208D45C` is advanced by `0x0032A100`, which the field frame orchestrator `0x00234590` calls once per
 simulation step (`0x002345CA`): when timer 0 reports done (`0x003EBB70(0)`) it restarts it (`0x003EBBB0(0, 0, 1)`,
 `0x003EBD00(0)`), then reads the timer's value through `0x003EBA90(0)` and increments the counter only
-when that value differs from the one it kept at `0x022C317C` (`0x0032A12A`-`0x0032A135`). The only other
-writer is `0x0032A160`, which zeroes it, and its one caller is the battle runtime reset `0x00237DF0`
+when that value differs from the one it kept at `0x022C317C` (`0x0032A12A`-`0x0032A135`). The compare is a float
+`ucomiss`, and an unordered result counts as a difference (`0x0032A131`). Every call then stores the value it
+read at `0x022C317C` (`0x0032A13B`).
+
+The only other writer is `0x0032A160`, which zeroes it, and its one caller is the battle runtime reset `0x00237DF0`
 (`0x00237E37`). No save writes or restores it.
 
 Measured in the game at Frame Rate 60 (`0x01DFE0B8` 2.0): the counter rose by 60.00 a second whenever the field
@@ -88,8 +99,15 @@ stamp test does not restart the clock.
 
 The zone script reads the death limit and the three fields through four verbs, each a wrapper
 around one accessor that resolves the lane through the unit's lane map at `+0x40` (count at `+0`,
-slot bytes from `+1`, `0xFF` empty) and the live bank `[0x0208E690] + slot * 0x250`; a fifth reads
-the flags of the unit's own entry:
+slot bytes from `+1`, `0xFF` empty) and the live bank `[0x0208E690] + slot * 0x250`; the unit is the one
+`0x0031B760` finds for the calling actor.
+
+An accessor returns -1 when `0x0031B760` finds no unit, the map pointer is null, the lane is negative or above
+count - 1 (a signed compare), the slot byte is `0xFF`, or the record address comes to 0 (`0x00235F01`-`0x00235F38`,
+`0x00235F61`-`0x00235F98`, `0x00235FC1`-`0x00235FF8`, `0x002366F1`-`0x00236728`).
+
+A fifth reads the flags of the unit's own entry, with the same tests and the lane taken from the unit's
+signed byte `+0x57` (`0x00236682`, `0x0023667C`-`0x002366B8`):
 
 | Accessor | Verb wrapper | Returns |
 |---|---|---|
@@ -126,10 +144,14 @@ stamp is exactly `counter + 1`.
 ### Registering a group member
 
 A zone script puts an enemy in a group with verb `0x3030` `btlAtelSetEventFlagGroup(group, mode)`.
-Its handler `0x0050F8C0` pops two ints and calls `0x00239710(actor, mode, group)`, which needs the
-actor's battle unit (`0x0031B760`, else returns -1) and writes unit `+0xE98` = `group` and `+0xE99`
-= `(old & ~3) | (mode == 1) | (mode == 2) << 1`, mask `0xFC` kept (`0x00239746`-`0x00239766`), then calls
-`0x00306E60(unit, 1)`.
+Its handler `0x0050F8C0` pops two ints, `mode` first and `group` second (`0x0050F8D8`, `0x0050F8E2`), and
+tail-jumps to `0x00239710(actor, mode, group)` (`0x0050F8FE`).
+
+`0x00239710` needs the
+actor's battle unit (`0x0031B760`, else returns -1) and writes unit `+0xE98` = the low byte of `group` and `+0xE99`
+= `(old & ~3) | (mode == 1) | (mode == 2) << 1`, mask `0xFC` kept: bit `0x1` is cleared in place first
+(`0x0023973A`), then the byte is rebuilt (`0x00239746`-`0x00239766`). It then calls
+`0x00306E60(unit, 1)` and returns 0 (`0x00239770`, `0x0023977A`).
 
 `0x00306E60(unit, add)` is the only writer of the member mask. It returns without effect when the unit
 is null, its stats record `+0x698` is null or not kind 1, or its group byte `+0xE98` is 0. It
@@ -139,7 +161,9 @@ covers the bits under mask `0xFFFFFFFF80000000` and slots 32 and above alias ont
 gains the bit, otherwise it loses it; the dead bit is cleared either way (`0x00306EEA`).
 
 Range retirement (`0x002350C0`, `0x002352BB`) is the one caller with `add` = 0: a retired member leaves
-the checklist without dying.
+the checklist without dying. Neither `0x00306E60` nor `0x00306F00` tests the group index `group - 1` against the
+table's 64 records (`0x00306EB2`-`0x00306EC3`, `0x00306F57`-`0x00306F6B`): a group byte above 64 reaches memory past
+the table.
 
 ### Completing a group
 
@@ -165,9 +189,22 @@ On completion it locks the party (next section) and chooses an arm by `+0xE99` b
   (`0x00325185`) and, when bit `0x800000000000` is set (`0x0032519C`), calls `0x00307110`, which clears bit `0x800000000000` and
   sets the group table flag (`0x0030711A`-`0x00307133`).
 
+The reaction handler `0x003250F0(actor, event)` returns 0 for a null actor, an actor without a battle unit
+(`0x00263E30`), a unit without flag bit `0x4`, or an event word whose top four bits (`event >> 12`) are not 2
+or 5 (`0x003250FD`-`0x00325130`). Events `0x2002`-`0x203C` go through a jump table (`0x0032513C`-`0x0032515C`): the
+death events are `0x2007`, `0x2008`, `0x200C` and `0x200E`; `0x2002` calls `0x003082F0`, `0x2003` `0x003083A0`,
+`0x2005`, `0x2037` and `0x2039`-`0x203C` call `0x00312FA0`, `0x200D` clears unit flag bit `0x1000000`
+(`0x0032517C`) and `0x201C` calls `0x00317810`.
+
+Every accepted event, in the table's range or not, then runs the same tail (`0x003251B3`-`0x003251EA`): when
+`0x00322280(event)` is non-zero it sets bit `0x1` of unit dword `+0x690` and, when the stats record `+0x698` is
+non-null and its status words `+0x64` and `+0x3C` together hold any bit of `0x80000003`, calls `0x00313F60`; it then
+zeroes unit dword `+0x28` and returns 1.
+
 `0x00306F00` reads no record of an earlier completion. The flag bit `0x1` that both arms set (`0x00306FE0`,
 and `0x00307133` in `0x00307110`) is tested only by `0x00307030` and `0x003070E0`, and cleared by `0x00307030`
-and the reset `0x00307090`.
+and the reset `0x00307090`. `0x00306F00` returns 0 when the mask test fails (`0x00306F88`) and 1 after either
+arm (`0x00306FF2`, `0x0030701C`).
 
 The completion branch stores into neither mask: of the code that addresses the table (`0x02EC13C0`,
 `0x02EC13D0`, `0x02EC19D0`), the masks' only writers are `0x00306E60`, `0x00306F00` at `0x00306F78` and
@@ -179,13 +216,18 @@ until a call sets that bit again.
 
 Three calls run on every completion, each with argument 1 (`0x00306F95`-`0x00306FB2`):
 
-- `0x00307140(on)` calls `0x002E1C20(0xC)` ten times when on (`0x002E1CA0(0xC)` when off): the row-12
+- `0x00307140(on)` calls `0x002E1C20(0xC, n)` ten times when on (`0x002E1CA0(0xC, n)` when off): the row-12
   capability inhibitions ([party roster and control
   suppression](../Party/party-leader.md)), then `0x00359200(on, 2)`,
   `0x00359330(2, 1, on)` and `0x0026BD20(2, on == 0)`;
 - `0x00238B70(on)` sets or clears `0x02089340` bit `0x20` and, for every battle-unit slot whose byte `+0`
   has bit `0x10`, posts `0x002E7C10(actor, actor, 0x30B, 0)`;
 - `0x00238AE0(on)` sets or clears `0x02089340` bit `0x80`.
+
+The ten calls (`0x00307160`-`0x003071BE`) give `n` = 0, 3, 4, 5, 6, 7, 8, 11, 12 and 20, a bit index, so they set or
+clear the bit values `0x1`, `0x8`, `0x10`, `0x20`, `0x40`, `0x80`, `0x100`, `0x800`, `0x1000` and `0x100000`
+(mask `0x1019F9`) of row 12 at `0x0215F1F0` (`0x002E1C35`-`0x002E1C3C`). `0x00307140` takes any non-zero `on` as on
+(`cmovne`, `0x0030715C`), and its last call is a tail jump (`0x003071F2`).
 
 The zone script releases the lock with the same calls' off forms through its own verbs; the group table
 never releases it. The next area entry does clear the two `0x02089340` bits: `0x002342F0`, when `0x02089300` is
@@ -223,8 +265,8 @@ script after every area entry. The group table is BSS and starts at zero.
 ### The two banks and the return window
 
 `0x002368D0` allocates two banks of `0x9400` bytes tagged `btlKeepCharWork1` and `btlKeepCharWork2`
-at `0x0208E690` and `0x0208E698`, 64 spawn records of `0x250` each, and sets the return window
-`0x0208936C` to 300 (`0x00236A0D`). Bank 1 is the live bank; bank 2 holds the previous area.
+at `0x0208E690` and `0x0208E698`, 64 spawn records of `0x250` each, zero-fills both (`0x0023696E`, `0x00236999`), and
+sets the return window `0x0208936C` to 300 (`0x00236A0D`). Bank 1 is the live bank; bank 2 holds the previous area.
 
 `0x00233780` runs once per area initialisation (`0x00234423` in `0x002342F0`), after the area's own reset
 and before the group table reset, and returns at once when either bank pointer is null. It reads the
@@ -271,9 +313,12 @@ reset `0x00237DF0` clears the parity, not the counters.
 ### What the save image carries
 
 `0x00233440(image)` zeroes a `0x20010`-byte image, copies bank 2 to `+0x10` and bank 1 to `+0x10010`
-in `0x128` passes of `0x80` bytes, and stores `0x02089372` at `+0` and `0x02089370` at `+2`.
+in `0x128` passes of `0x80` bytes, and stores `0x02089372` at `+0` and `0x02089370` at `+2`. A bank whose
+pointer is null is skipped and its part of the image stays zero (`0x00233466`, `0x002334CD`); the two words
+are stored either way (`0x00233529`-`0x0023353A`).
 `0x00233550(image)` copies image `+0x10` back into bank 2 and restores the two words; it never touches
-bank 1.
+bank 1. With a null bank 2 pointer it skips the copy and still restores the words (`0x0023355A`,
+`0x002335B9`-`0x002335C7`).
 
 Its two callers are in the slot-0 restore `0x005843E0` (`0x0058443B`, `0x0058445E`), so only a load
 of the field-transition autosave restores bank 2 and the history; a manual slot restores neither
@@ -291,8 +336,10 @@ records a death for each. The mask test keeps 5 bits of the group id, so ids abo
 with `id - 32`.
 
 The teardown `0x00300E40(unit, keepMark)` runs the spawn record clear `0x00237080` (flags
-`& 0xFFFFFF7A`, the word `+0x16` = `0x00FF` so the key `+0x17` is zeroed too, `+0x78`-`+0x7C` zeroed) only when `keepMark` is 0 (`0x00300F5D`-
-`0x00300F68`). Range retirement is the one caller passing 1, so a retired entry keeps its bit `0x1` and
+`& 0xFFFFFF7A`, the word `+0x16` = `0x00FF` so the key `+0x17` is zeroed too, `+0x78`-`+0x7C` zeroed) only
+when `keepMark` is 0 (`0x00300F5D`-`0x00300F68`), and only for a unit whose stats record `+0x698` is null or of
+a kind other than 0 (`0x00300EE4`, `0x00300EEC`); a kind-0 unit takes the party arm and returns at `0x00300F5C`
+without it. Range retirement is the one caller passing 1, so a retired entry keeps its bit `0x1` and
 its transient state while every other teardown clears them.
 
 ## Layouts
@@ -377,8 +424,9 @@ tests the mask; on completion the lock engages and the arm is chosen; the reacti
 the flag for a mode other than 1 when the death track ends; the next simulation step with an open gate
 posts the group number; the zone script wakes and runs the aftermath.
 
-An area entry, in order (`0x002342F0`): the cap `0x0208D458` = 28, the area reset `0x00239960` when
-requested, the bank rotation `0x00233780`, `0x003221B0`, the group table reset `0x00307090`, then the zone
+An area entry, in order (`0x002342F0`, only while the battle system's up flag `0x02089300` is non-zero, `0x002342F4`):
+the cap `0x0208D458` = 28, the area reset `0x00239960` when requested, the bank rotation `0x00233780`, `0x003221B0`, the
+group table reset `0x00307090`, then the zone
 script re-registers every member and reinstalls the spawn table, whose initialiser rolls only the
 uncommitted entries.
 

@@ -47,8 +47,11 @@ scenes](lowtown-scenes.md).
 - North Sprawl: the Resistance man Balzac (`解放軍`) jumps the party to Dalan's Marker, field 856, and posts the ring
   wyrm hunt (`talk_wanted`). The contrite thief (`空き巣シーク`) takes the Stolen Articles, gives the Blackened Fragment and
   sets name-tag flag `0x025F`, after which her name tag reads "Samal".
-- North Sprawl: touching the storehouse door (`制御レクト０２`) gives a reward package of two Potions and four Eye Drops and
-  shows "Hey, Vaan! I finally worked out how to get the door on the left side open!"
+- North Sprawl: touching the storehouse door (`制御レクト０２`) gives a reward package of two Potions and four Eye Drops.
+- North Sprawl: the same touch of the storehouse door shows "Hey, Vaan! I finally worked out how to get the door on
+  the left side open! I hope there's somethin' in there besides rats... I wanted you to go in first, so I waited for
+  you to come before openin' it. Well, that's one of the reasons I waited... Thing is, I'm gonna need some special
+  tools to open the door... Gonna need you to go fetch 'em for me."
 - South Sprawl: while the counter is from 160 to 169, `読み込み監督０１.init` loads scene `slm_a0280` (event 720), Penelo's
   farewell; `制御レクト.パンネロ離脱touch` sets the fighting party to Vaan, plays it, writes 170 and jumps to Dalan's House,
   field 703.
@@ -58,7 +61,15 @@ scenes](lowtown-scenes.md).
   Stone; it writes 175 and sets flag `0x0059`. `ダランの情報` plays scene `slm_a0300` (event 112), gives the Sword of the
   Order, writes 375 and sets flag `0x0058`.
 - Dalan's House: Roh'kenmou (`モウ`), come from Nabudis, takes the Dull, Blackened and Grimy Fragments. At the Residence
-  a letter on the table (`置き手紙`) gives the Dusty Letter ("I have divided it into four pieces...").
+  a letter on the table (`置き手紙`) gives the Dusty Letter.
+
+The letter on the table at Dalan's Residence reads: "You find a letter on the table. It reads: 'I know my days grow
+short. I regret only that I shall not have the opportunity to return that item entrusted to me all these many years.
+'I have divided it into four pieces, in hopes this might prevent it falling easily into searching hands. 'I have
+enclosed the whereabouts of one of the four, in the event its rightful owner should come seeking to recover it. 'Stop
+the water's flow, then loose it once more. East Southeast East Southwest Southeast I pray that it rest there
+undisturbed.'"
+
 - Dalan's Marker: `常駐監督.EVウォースラ将軍前半` loads scene `slm_z0100` (event 111), General Vossler in the hideout; it writes
   386, takes the Sword of the Order and jumps to North Sprawl, field 701.
 - North Sprawl's doors lead to North End and East End (Rabanastre) and to the Garamsythe Waterway; South Sprawl's gate
@@ -101,6 +112,10 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
    `0x00348DF0` (`0x00349884`).
 3. `0x00348DF0` pops eight values. The seventh, the script's second argument, is passed with the current field context
    to `0x00264D60` (`0x00348E6A`-`0x00348E74`), the section 2 lookup, which keeps the low 24 bits of the id.
+4. `0x00348DF0` reads the entry's flag through `0x002673A0`, bit `0x1` of the entry's upper half (`0x00348E85`), and
+   opens the window through `0x002E16B0` only when that flag is clear (`0x00348EE0`-`0x00348EFF`). With the flag set it
+   still makes its six slot calls (`0x00348E91`-`0x00348ECA`) and fills the call record (`0x00348ED7`-`0x00348EDC`) but
+   opens no window ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)).
 
 ### Speakers, places and scenes
 
@@ -116,6 +131,8 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
   passes it to the verb, and `0x00348DF0` hands it to `0x002E16B0`. That actor's name is the second name of each pair its
   `setnpcname` calls name; `0x002E16B0` sets the actor's name flag before the window opens, and `0x00263990` shows the
   second name while that flag is set.
+- `0x00348DF0` makes that `0x002E16B0` call only for a line whose section 2 flag is clear (`0x00348EE0`); for a flagged
+  line it opens no window, so the actor's name flag is not set there.
 - An actor no `setnpcname` or `setshopname` call names keeps the name id `0xFFFF` and the empty text the record set-up
   `0x00266530` writes (`0x0026668B`, `0x0026669B`-`0x002666B4`), so its `{actor-name}` header shows no name; that line reads
   `no name shown`. A system message reads `system message`.
@@ -266,7 +283,7 @@ The steps table [`lowtown-script-steps.tsv`](lowtown-script-steps.tsv) has one r
 | `step` | the step's number in its function, from 1, in the order the function's bytes run |
 | `at` | where the step's instruction sits: its offset in section 0, the script image, of the shipped `plan_master/us` `.ebp`. For `case`, `default` and `label` it is where their code starts. For `shared template` and `same code` it is where the function or actor starts |
 | `line` | the step's line in the script listing, `-` for the `shared template` and `same code` rows |
-| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets |
+| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. A case whose values meet an earlier case's is followed by `not (x = w)` for each such earlier case `w`, so the cell names only the values the case runs on: `x = lte(78); not (x = lt(78))` runs when x is 78. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. When such a way passes a case that an earlier case overlaps, the item counts only the values that case takes: after `case lt(0x0177)`, a `case lt(0x0182)` that returns gives the item `not (x = lt(0x0182)) or x = lt(0x0177)`, which holds unless 0x0177 <= x < 0x0182. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets, and, for a case whose every value an earlier case already matches, on the case values |
 | `verb` | the verb the step calls, by its name in the [verb table](../Scripts-And-Script-Commands/verb-table.md), written `Actor.verb` for a call on another actor. Otherwise the kind of step: `if`, `else if`, `while`, `for`, `switch`, `case`, `default`, `break`, `goto`, `label`, `return`, `returnT`, `store`, `shared template` or `same code` |
 | `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test. A number with a fraction is the listing's print of a 32-bit float to nine significant digits, here and in `condition`: 1.60000002 is the float nearest to 1.6, and 2.36000005e-06 is 2.36000005 times 10 to the power -6 |
 | `addresses` | what the arguments name in the game: the actor, model, animation and motion file, effect file, event sound, camera shot, message window, request slot or variable |

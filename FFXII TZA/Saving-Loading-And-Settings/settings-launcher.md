@@ -264,7 +264,8 @@ and `BlendAmount` 0.5 in all five.
 - The game sets the three values itself. The developer console labels render-parameter fields `+0x19C` "Gaussian
   Filter big kernel" (0 3x3, 1 5x5, 2 7x7, 3 15x15), `+0x1A0` "Gaussian Filter factor" and `+0x1A4` "Gaussian
   Filter blend amount" (`0x001CDFF0`, `0x001D0787`).
-- In play they are 3x3, the screen height divided by 1080.0 and 0.5: the constructor `0x0018CD90` stores 0 and 0.5,
+- In play they are 3x3, the screen height divided by 1080.0 and 0.5, `+0x0C = h > 0 ? h / 1080.0 : 1.0` with h
+  the screen height (`0x002256A0`, `0x001DC3EB`-`0x001DC415`): the constructor `0x0018CD90` stores 0 and 0.5,
   and the copiers take `+0x08`, `+0x0C` and `+0x10` of the object `0x001DC510` returns, which `0x001DC3D0` sets to 0,
   height / 1080.0 and 0.5 ([YEBIS and PPFX](../Third-Party-Libraries/yebis-ppfx-post-effects.md)).
 - Editing the file therefore changes nothing. At 1920 x 1080 the game's factor is 1.0, where the file says 0.91.

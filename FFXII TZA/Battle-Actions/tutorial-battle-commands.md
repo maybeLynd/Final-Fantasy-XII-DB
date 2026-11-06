@@ -26,6 +26,12 @@ group (0, 2, 4, 5, 6). Group *g* is rows end[*g* − 1] to end[*g*] − 1, with 
 
 - A group outside 0 to count − 1, or an empty group, gives 1 and no row: nothing is limited.
 - Otherwise it gives 1 and the row whose word `+0x00` is the member, or 0 when the group has no row for the member.
+- The row pointer is set to 0 first (`0x0032A24A`) and to each row as it is scanned (`0x0032A300`), so a 0 answer
+  leaves it at the group's last row. The member is a byte, compared zero-extended with the row's word
+  (`0x0032A257`, `0x0032A303`).
+- The group test is `group < 0` or `group > count − 1` as an unsigned compare (`0x0032A267`-`0x0032A273`). The slot
+  `0x02EBF020` is read with no null test (`0x0032A25A`): with it null the read of `+0x1C` is at address `0x1C` and
+  faults.
 
 ### Applying it
 
@@ -37,19 +43,24 @@ word `+0x153A` (`0x0027E2F7`, `0x0027D82F`), which `0x002778C0` copies from `+0x
 That word is the argument of script verb `0x45C`, `set_interventionmenu_tutorialmode`. Its handler `0x003419D0` stores it at `+0x10FA0` of `[0x0209BE80]` (`0x00290227`). `0x00290CF0` passes it to `0x00276650` as the fifth argument (`0x00290D9D`-`0x00290DC0`) and then zeroes it (`0x00290DD1`). `0x00276650` puts it at `+0x10` of the creation message (`0x00276675`-`0x002766D1`). No script of the nine language trees calls verb `0x45C`, so no shipped battle applies groups 1 to 4.
 
 - **Command rows:** `0x0032A320(group, member, flag, command)` keeps a command when there is no row, or when an
-  entry of the row allows it; otherwise the row is greyed with reason `0x2B` (`0x0031ED00`-`0x0031ED1E`).
+  entry of the row allows it; otherwise the row is greyed with reason `0x2B` (`0x0031ED00`-`0x0031ED1E`). When the
+  group has no row for the member, `0x0032A230` answers 0 and `0x0032A320` returns 0 at once, so the command is
+  greyed (`0x0032A337`-`0x0032A341`).
 - **Action rows:** when the member's row exists, an action is kept only when it equals an entry whose mask bit is
   clear; otherwise, and when the group has no row for the member, it is greyed with reason `0x2B`
   (`0x0031F1A1`-`0x0031F1FF`).
 
 ### Which entry allows a command
 
-`0x0032A320` walks the up to seven entries until `0xFFFF`. For entry *k* (`0x0032A380`-`0x0032A3B9`):
+`0x0032A320` walks the up to seven entries until `0xFFFF`, returns 1 at the first entry that allows the command
+and 0 when no entry allows it (`0x0032A39C`, `0x0032A3BB`). For entry *k* (`0x0032A380`-`0x0032A3B9`):
 
-- with mask bit *k* set, the entry allows only the Gambits command (flag 0, command 13);
-- otherwise `0x0032A3E0(flag, command, action)` decides: for flag 0, the action's kind `+0x1E` equals the command,
+- with mask bit `1 << k` set (the `bt` at `0x0032A38E`), the entry allows only the Gambits command (flag 0,
+  command 13);
+- otherwise `0x0032A3E0(flag, command, action)` decides. It returns 0 for an action that `0x00322C50(0x14, id, 1)`
+  rejects (`0x0032A40B`-`0x0032A412`). For flag 0, the action's kind `+0x1E` equals the command,
   or kind 1-2 allows command 18 (Magicks & Technicks) and kind 5-6 command 19 (Mist); for flag 1, the action is a
-  magick (kind 1) of school `+0x2C` & 7 = the command.
+  magick (kind 1) of school `+0x2C` & 7 = the command; any other flag gives 0 (`0x0032A463`, `0x0032A4A7`).
 
 The command numbers are the rows of comac_data on [Category names](category-names.md).
 
@@ -63,7 +74,7 @@ of the group index at the header's `+0x1C`; each entry is named by its action ro
 |---|---|---|---|---|
 | `+0x00` | `u16` | member | `0x0032A230` | the party row the entry limits (0 Vaan, 5 Penelo) |
 | `+0x02` | `u16[7]` | entries | `0x0032A320`, `0x0031EB20` | action rows, ended by `0xFFFF` |
-| `+0x10` | `u32` | mask | `0x0032A320`, `0x0031EB20` | bit *k*: entry *k* stands for the Gambits command and is not compared |
+| `+0x10` | `u32` | mask | `0x0032A320`, `0x0031EB20` | bit `1 << k`: entry *k* stands for the Gambits command and is not compared |
 
 The table is loaded only by `0x0032A230` and the loader `0x00236C30`. The words of a masked entry (`0x5000`,
 `0x5005`) are only tested against `0xFFFF`.

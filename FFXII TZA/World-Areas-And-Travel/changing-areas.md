@@ -45,19 +45,21 @@ Nothing moves while the screen is dark, and a second jump asked for in that time
    payload completes, its directory is walked and each section is handed to its handler
    ([EBP script container](../EBP-Script-Files/ebp-script-container.md)).
 9. **The map pack and the navigation bind.** When the map pack completes, its sections are kept or freed and the
-   navigation data is bound; only then is the start hold released, so the zone's actors and scripts cannot start before its navigation
-   exists ([map pack](mpk-map-pack.md),
+   navigation data is bound; only then is the start hold released, so the zone's actors and scripts cannot start
+   before its navigation exists ([map pack](mpk-map-pack.md),
    [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md)).
 10. **The zone starts.** With every pending bit clear the manager is finalised, and the first field pass for manager
    0 runs the start work once and clears the busy bits of the transition
    ([zone changes](zone-changes-and-mapjump.md#the-zone-is-ready)).
 11. **The start work.** The follow camera is set up, the weather slot is rolled and applied, the field's effect
-    rows are instantiated and the map sounds start ([scripted camera](../Graphics/scripted-camera.md),
+    rows are instantiated and the map sounds start
+    ([scripted camera](../Graphics/scripted-camera.md),
     [weather](weather.md), [effect files](../Graphics/effect-files-efx-efb.md),
     [map sounds](../Sound-And-Music/map-sounds.md)).
 
 A loaded save enters at step 2 through the restore path `0x00314530`, which requests managers 1 to 3 and 0, takes the
-destination from the transition record already in the payload and starts fade slot 2 itself ([zone changes](zone-changes-and-mapjump.md#staging-and-the-transition-record)).
+destination from the transition record already in the payload and starts fade slot 2 itself
+([zone changes](zone-changes-and-mapjump.md#staging-and-the-transition-record)).
 
 ## Outcomes
 

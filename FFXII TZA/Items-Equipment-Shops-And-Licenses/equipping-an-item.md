@@ -16,9 +16,13 @@ change.
 1. **The list.** The equip pane `0x003FF360` shows the five slots, the pieces for the chosen slot and the stat rows;
    a piece the character cannot wear is marked, and so is ammunition that does not match the weapon
    ([equipment](equipment.md#the-equip-screen)).
-2. **The setter.** Choosing a piece runs `0x003FFA20`, which calls the party-seat setter
+2. **The setter.** Choosing a piece runs `0x003FFA20(slot, id)`, which calls the party-seat setter
    `0x0031A510(member, slot, id, 1)` ([equipment](equipment.md#who-equips),
    [equipment](equipment.md#the-setters)).
+   - `member` is `0x00282EA0` of the menu block's word `+0xDE0` (`0x003FFA35`-`0x003FFA4F`). `0x003FFA20` then refreshes
+     the menu: `0x00283270(0)`, `0x0027F210`, which fills the five equipment rows, `0x003FEAD0(0)`, `0x00283E40` on
+     `[[0x0209AC30] + 0x130] + 0xC0` when `+0x130` is set, `0x002858A0(0, 0)` and last `0x00283840(1)`
+     (`0x003FFA54`-`0x003FFAA0`).
 3. **The eligibility test.** `0x00317930` checks, in order, the slot, a free copy, the slot bits of the piece's row,
    the pairing with the main hand, the party row's class mask and then the license test `0x00323C60`
    ([equipment](equipment.md#can-it-be-worn), [equipment row](equipment-row.md)).
@@ -33,12 +37,25 @@ change.
    pairing that no longer holds empties the off hand or unarms the main hand
    ([equipment](equipment.md#the-two-hands)).
 8. **The stats.** When the slot's word has changed, `0x0030FED0(record, 0x97)` rebuilds the stats and augments, and
-   `0x00324470` refreshes the unit ([equipment](equipment.md#the-setters), [stats](../Damage-And-Battle-Formulas/stats.md#the-rebuild),
+   `0x00324470` refreshes the unit ([equipment](equipment.md#the-setters),
+   [stats](../Damage-And-Battle-Formulas/stats.md#the-rebuild),
    [augments](../Damage-And-Battle-Formulas/augments.md#the-rebuild)).
+   - `0x00324470(unit)` calls `0x002ECF10(actor, b, 0)`, the actor being the unit's `+0x10` and `b` its flag bit
+     `0x800000` as 0 or 1, and the action reset `0x003105D0(unit)` (`0x00324476`-`0x00324490`). It tears the unit down
+     with `0x00300E40(unit, 0)` when it has no stats record `+0x698`, or one with KO, Stone or X-Zone (`0x80000003`)
+     outside a town (`0x00313F60`), unless unit flag bit `0x2` is set (`0x00324495`-`0x003244C1`).
+   - Then it calls `0x002E42D0`, `0x002699D0` and `0x002ECEC0` on the actor `+0x10` and sets unit flag bit `0x40`
+     (`0x003244C6`-`0x003244E1`).
 9. **The model.** With `flags` bit `0x1` clear, `0x0031A510` then re-records the fighting units and reloads their models
    through `0x00324380`, which runs the model rebuild for slots 0 to 3; the equip menu and the shop pass `flags` 1,
    so their setter call does not reload ([equipment](equipment.md#the-setters),
    [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md#what-runs-it)).
+
+`0x00324380` takes the units of slots 0 to 3 (`0x00236820`). For each unit it calls `0x0037B4B0` on `[unit + 0x10]` when
+that is non-null, and records at `0x022C257C + slot` the row byte `+4` of the stats record `[unit + 0x698]` when unit
+flag bit `0x4` is set, or `0xFF` for no unit or a clear bit (`0x00324398`-`0x003243D6`). It then jumps to the model
+read-in `0x0037CA80` (`0x003243E7`). The stats record is read with no null test (`0x003243BA`-`0x003243C1`), so a unit with
+bit `0x4` set and a null `+0x698` faults there.
 
 ## Outcomes
 

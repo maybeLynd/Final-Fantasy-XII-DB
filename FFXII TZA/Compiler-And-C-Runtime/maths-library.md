@@ -42,7 +42,7 @@ bytes at `0x0300E880` (a step of pi / 32, `0.09817477042088285`), and finishes w
 the one `x = 0` selects, holds 0 and 1.0, so it returns 1.0 for 0, and entry 32, the one `x = pi / 2` selects,
 holds 0 and 0: a cosine at both points.
 
-The other 25 imports have 7 sites or fewer each; `tanh`, `sinh`, `cosh`, `modf`, `log2f`, `log10f`,
+The other 24 imports have 7 sites or fewer each; `tanh`, `sinh`, `cosh`, `modf`, `log2f`, `log10f`,
 `log10`, `fmodf`, `fmod`, `asin`, `acos` and `__setusermatherr` have one each.
 
 ### Only four scalar square roots are instructions
@@ -67,6 +67,9 @@ The code section has four `sqrtss` instructions and no `sqrtsd`, `rsqrtss` or `r
     t^3 p3`, with the points `(x, y)` at `+0x04`, `+0x0C`, `+0x14` and `+0x1C`.
   - `r = sqrt(x^2 + y^2)`, with `p` scaled to length 1 when `r > 1`; the ramp at `+0xB8` gets `atan2(x, y) / pi`
     (0 when `p` is zero) and the ramp at `+0xE8` gets `min(r, 1)` (`0x007E9030`).
+  - A mode byte other than 0 and 1 leaves `p` at (0, 0) (`0x007E90D9`-`0x007E90DB`), so both ramps get 0. Each
+    ramp is set by `0x007CA560` with the ramp, the value and zeros (`0x007E91C3`, `0x007E91F5`, `0x007E9210`), and
+    the function returns 0 (`0x007E921A`).
 
 ### The sound engine's vector routines
 
@@ -79,6 +82,13 @@ and `0x007F1EC0` slot 7 of `SQEX::Sd::Lay::DirectionSound` (`0x01CB9DD0`). `0x00
    two `haddps` (`0x007EF24F`).
 3. A reciprocal square root, `rsqrtps` (`0x007EF257`), refined once:
    `y = (3 - x·y0·y0) · 0.5 · y0`, with `3.0` from `0x00D560A0` and `0.5` from `0x00D22600`.
+4. With the eye `[rdx]`, `b = [r8]` and `a = [r9]`, it writes four 16-byte rows to its first argument:
+   `s`, the normalised `a × b`; `u`, the normalised `b × s`; and `b`, each with `-dot(eye, row)` in its
+   fourth lane; then (0, 0, 0, 1) from `0x008C5FD0` (`0x007EF281`-`0x007EF39E`).
+
+`0x007F1EC0` calls `0x007F0210` with its arguments and returns its result. Unless that result is negative, it
+copies the direction at `+0x18` to `+0x20` of its third argument to `+0x100` and normalises it the same
+way, keeping `+0x10C` (`0x007F1EF2`-`0x007F1F69`).
 
 Routines that use `sqrtps` take the exact root and load only the mask. What the sound engine does
 with these values is on [spatial-sound.md](../Sound-And-Music/spatial-sound.md).
@@ -106,6 +116,10 @@ inverses.
 - `0x0033CB70` wraps an angle. When it is within ±4pi (`0x00D10B0C`, `0x00D10B20`) it adds or subtracts
   2pi until the result is in [-pi, pi]. Beyond that it subtracts 2pi times the truncated quotient
   once (`0x0033CBCD` to `0x0033CBE8`), so the result can lie between pi and 2pi in magnitude.
+- The quotient and the product are rounded to single precision, `r = x - (float)(int)(x / 2pi) * 2pi` in `float`
+  (`divss`, `cvttss2si`, `mulss`, `subss`, 2pi at `0x01CEBC78`, `0x0033CBCD`-`0x0033CBE8`), so that once-only result can
+  land just past 0 or 2pi: `31.415926` (10pi) gives `-1.9e-6` and `2224.2476` gives `6.283203`. From |x / 2pi| of
+  2^31 up the conversion `cvttss2si` (`0x0033CBD5`) yields `0x80000000` and the result is x + 2^31 · 2pi.
 - `0x0033CEF0` turns a moving unit. Below 60 degrees of error (`0x0091572C`) it eases the turn rate:
   `rate = (1 - cos(3a)) / 2 · (rate - 1°) + 1°`, with one degree at `0x008C5F68`. The rest of the
   routine is on [battle-locomotion.md](../Movement-And-Pathfinding/battle-locomotion.md).
@@ -165,15 +179,16 @@ The start-up probe `0x00809458`, called once from `0x00808959`, writes three glo
 2. For `GenuineIntel` it sets `0x01F44860` to all ones (`0x008094F3`) and bit `0x4` of `0x02EAED88` (`0x00809504`), and bit `0x1`
    when the leaf 1 signature masked with `0x0FFF3FF0` is `0x106C0`, `0x20660`, `0x20670`, `0x30650`, `0x30660` or
    `0x30670` (`0x0080953E`).
-3. For `AuthenticAMD` it sets bit `0x4` of `0x02EAED88` when the leaf 1 signature masked with `0x0FF00F00` is at least
-   `0x00600F00` (`0x0080955C`).
+3. For `AuthenticAMD` it sets bit `0x4` of `0x02EAED88` when `sig & 0x0FF00F00`, the leaf 1 signature masked with
+   `0x0FF00F00`, is at least `0x00600F00`: `(sig & 0x0FF00F00) >= 0x00600F00`, unsigned (`0x0080954A`-`0x0080955C`).
 4. When leaf 7 `ebx` bit `0x200` is set it sets bit `0x2` of `0x02EAED88` (`0x00809590`).
 5. When leaf 1 `ecx` bit `0x100000` is set the level becomes 2 and `0x01F4485C` 6 (`0x0080959E`, `0x008095A8`). When `ecx` bits
    `0x8000000` and `0x10000000` are also set and `xgetbv` reports both bits of `XCR0 & 6`, the level becomes 3 and `0x01F4485C` gains
    bit `0x8` (`0x008095E3`, `0x008095F1`). When leaf 7 `ebx` bit `0x20` is set as well, the level becomes 5 and `0x01F4485C` gains
    bit `0x20` (`0x008095FC`, `0x00809606`).
 
-So `0x01F4485C` has bit n set for each level n the probe reached. No instruction outside the probe reads any of
+So `0x01F4485C` has one bit set for each level the probe reached: `0x2` for level 1, `0x4` for 2, `0x8` for 3
+and `0x20` for 5. No instruction outside the probe reads any of
 the three: the probe's own reads are its loads of `0x02EAED88` (`0x008094B2`) and `0x01F4485C` (`0x008095DA`) and the
 `or` on `0x01F44860`. No image-base-relative or disp32 reference and no data qword names them.
 

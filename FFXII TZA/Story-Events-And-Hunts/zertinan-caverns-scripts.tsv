@@ -67,7 +67,7 @@ ztc_c01	The Balamka Fault (Zertinan Caverns)	treasure_03	talk	talk	-	-	-	-	-	-	-
 ztc_c01	The Balamka Fault (Zertinan Caverns)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000220	-	-	-	-	1	-
 ztc_c01	The Balamka Fault (Zertinan Caverns)	treasure_05	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000238	-	-	-	-	1	-
 ztc_c01	The Balamka Fault (Zertinan Caverns)	treasure_06	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000250	-	-	-	-	1	-
-ztc_c01	The Balamka Fault (Zertinan Caverns)	ゼルテニアン地図宝壺	talk	talk	system message	system message 105	Your location map for this area is complete!	Bank512, second half 0x0006: Set or tested in The Balamka Fault (Zertinan Caverns)	-	-	-	-	receives Zertinan Caverns	-	-	-	-	2	-
+ztc_c01	The Balamka Fault (Zertinan Caverns)	ゼルテニアン地図宝壺	talk	talk	system message	system message 105	Your location map for this area is complete!	Bank512, second half 0x0006: The Urn ゼルテニアン地図宝壺 in ztc_c01 has been opened: its talk gives the map Zertinan Caverns (0x801A, additemmes in ゲット＆メッセージ表示) and sets the flag, and its bind function daiji_box_bind turns the talk on only while the flag is clear, so the pot gives it once	-	-	-	-	receives Zertinan Caverns	-	-	-	-	2	-
 ztc_c02	Drybeam Cavern (Zertinan Caverns)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	The Balamka Fault (Zertinan Caverns), field 585, entrance 1	-	-	-	1	-
 ztc_c02	Drybeam Cavern (Zertinan Caverns)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	The Balamka Fault (Zertinan Caverns), field 585, entrance 4	-	-	-	1	-
 ztc_c02	Drybeam Cavern (Zertinan Caverns)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Athroza Quicksands (Zertinan Caverns), field 590, entrance 1	-	-	-	1	-

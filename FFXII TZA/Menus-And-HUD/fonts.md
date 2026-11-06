@@ -59,8 +59,8 @@ then asks for two more files:
 
 | Bit | File | Request | Reader |
 |---:|---|---|---|
-| `0` | `<name>.ker` | `0x001B5750` (`0x001B5040`) | `0x001B5230`, through `0x001B6080` |
-| `1` | `<name>.fex` | `0x001B5480` (`0x001B5061`) | `0x001B4C00`, through `0x001B6030` |
+| `0x1` | `<name>.ker` | `0x001B5750` (`0x001B5024`, `0x001B5040`) | `0x001B5230`, through `0x001B6080` |
+| `0x2` | `<name>.fex` | `0x001B5480` (`0x001B5045`, `0x001B5061`) | `0x001B4C00`, through `0x001B6030` |
 
 The font object keeps three maps keyed by code: the glyphs at `+0x38`, the kerning pairs at `+0x70` and the
 expansion lists at `+0xA8` of the font, each built by the constructor (`0x001FC0E4`, `0x001FC134`, `0x001FC184`). Each map
@@ -74,6 +74,9 @@ header and root are at the font's `+0x40` and `+0x50`:
 - the `.fex` reader `0x001B4C00` adds a list of n entries for a key with `0x001FDB90(font, key, n)`, which returns 0
   when the map at `+0xA8` already holds the key, and writes entry i with `0x001FDB50(font, key, i, v)`; both find
   the key's entry in that map through `0x001FC640`;
+- for a new key `0x001FDB90` inserts the entry, sizes its list to n zero values (`0x001FDF90`) and returns 1
+  (`0x001FDBF0`-`0x001FDC07`). `0x001FDB50` stores v at index i of the list with no test of i (`0x001FDB78`); the reader
+  only gives it i below the chunk's count (`0x001B4CBC`-`0x001B4CE9`);
 - `0x001B4D70` builds three names from the file's name with `0x001B31E0`, each from a suffix pointer:
   - `<name>.dat` at `[rbp - 0x38]` (`0x01DF6E08` to `0x008F81F4`, `0x001B4DA8`);
   - `<name>.dds.phyre` at `[rbp - 0x58]` (`0x01DF6DF8` to `0x008F6748`, `0x001B4DB9`-`0x001B4DC7`);
@@ -97,12 +100,20 @@ this page.
   (`0x001A1220`, `0x001A0A90`, `0x001A0BB0`; the path from `0x001FDF10`) with the completion `0x001B6230`, and, unless
   `0x001E9A20([0x01F811F8])` answers non-zero (`0x001B5A3F`-`0x001B5A46`), its shadow atlas (`0x001FDE60`) with `0x001B6110`,
   each request filed in its map by the font id.
+- `0x001B58E0` requests nothing when the manager's map `+0x28` holds no font of that id (`0x001B593A`). Each request
+  is kind 1 with the font at `+0x10` and byte `+0x18` 0, and its `+0x120` points at the value `+0x28` of its map
+  node, which `0x001AE9B0` inserts when the id has no node yet (`0x001B5950`-`0x001B59DA`, `0x001B5A5C`-`0x001B5AEA`).
 - `0x001E9A20` returns the path byte `+0x2378`. Its one writer `0x001E9F30` is called from `0x001B44A0` with the third
   argument, which `0x0017F9E0` passes on from `0x0029CE40`: `[0x01E02818] > 0` (`0x0029CE4A`-`0x0029CE55`). `0x01E02818` holds 1
   in `.data`, and its only reference in the image is the read in `0x00229E30`, so the byte is 1 and the shadow atlas is
   not requested. None of the 62 shipped atlas files is a `_shadow` one.
 - `0x001B6230(font, ...)` finds the texture of the loaded atlas (`0x0019CE20`, `0x0019CA80`, a resource of type
   `0x02CBB900` in its `+0x38` list) and hands it to the font (`0x00213560`).
+- `0x001B6230` returns at once for a null font (`0x001B6233`) and looks the cluster up by the font's atlas name
+  (`0x001FDF10`, `0x001B6254`-`0x001B6268`). It takes the first entry of the `+0x38` list whose class is `0x02CBB900` or
+  derives from it (the chain `+0x50`, then `+0x78`) and whose count `+0x74` is above 0 (`0x001B62A5`-`0x001B62E4`).
+- The pointer it hands over is that entry's data `+0x60`, stepped by the class size `+0x38` past each instance
+  that the entry's `+0x10` chain lists, plus the class's `+0xF8` (`0x001B62F6`-`0x001B632F`).
 - `0x001B60D0()` asks for the fonts again: `0x001B5140([0x01F81200])` requests every listed name.
 - `0x001B5CC0(manager, id)`, from `0x0017FA70`, frees the slot registered under the key `[manager] x 32 + id`
   (`0x002124C0`, `0x001E9A30`).
@@ -183,7 +194,7 @@ The manager at `[0x01F81200]`, `0x378` bytes, from the constructor `0x001B3940`'
 | `+0x008` | `void*` | namesBegin | the name vector: 0 from the constructor (`0x001B3966`); `0x001B4930` pushes the listed names through its end `+0x10` and capacity `+0x18` (`0x001B4AED`-`0x001B4B04`); `0x001B5140` walks it from begin to end (`0x001B5152`-`0x001B51A1`) |
 | `+0x010` | `void*` | namesEnd |  |
 | `+0x018` | `void*` | namesCap |  |
-| `+0x020` | `void*` | namesAlloc | the EASTL allocator name `0x008C5F58`, set by `0x001EDF00` (`0x001B397C`) |
+| `+0x020` | `void*` | namesAlloc | vtable `0x00902720` from `0x001EDF00` (`0x001B397C`); the name "EASTL vector" (`0x008C5F58`) is dropped |
 | `+0x028` | `u8[56]` | fonts | the fonts by id, an EASTL map: `+0x08` header node pointing at itself, `+0x10` its mirror, `+0x18` root, `+0x20` flag byte, `+0x28` count, `+0x30` allocator `0x008F4120`; built at `0x001B3993`-`0x001B39DE`; `0x001B4590`, `0x001B4C00`, `0x001B51C0`, `0x001B5230`, `0x001B5480`, `0x001B5750` and `0x001B58E0` search it from its header `+0x30` (`0x001B4639`, `0x001B4C71`, `0x001B51F8`, `0x001B5292`, `0x001B54E0`, `0x001B57B0`, `0x001B5937`) and read the node they find, not the manager |
 | `+0x060` | `u8[56]` | atlasRequests | the atlas requests by font id, the same shape: built at `0x001B39E3`-`0x001B3A2E`; `0x001B58E0` files a request (lea `+0x60` at `0x001B59C2`, `+0x68` and `+0x78` at `0x001B596D`-`0x001B5971`) |
 | `+0x098` | `u8[56]` | shadowRequests | the shadow-atlas requests by font id, the same shape: built at `0x001B3A33`-`0x001B3A72`; `0x001B58E0` files one when the shadow path is taken (`+0x98`, `+0xA0`, `+0xB0` at `0x001B5ACF`, `0x001B5A80`, `0x001B5A79`) |
@@ -200,11 +211,15 @@ The manager at `[0x01F81200]`, `0x378` bytes, from the constructor `0x001B3940`'
 | `+0x308` | `void*` | shadowAlphaMul |  |
 | `+0x310` | `u8[104]` | tail | no instruction in the table reaches it (the constructor's last store is the slot clear ending at `+0x2F8`) |
 
-The `0xC0`-byte pools built by `0x001B36D0` and `0x001B3540` open the same way: a vector `{begin, end, cap}` with the
-allocator name `0x008C5F58` at `+0x18`, an EASTL map at `+0x20` (allocator `0x008F3CB0` at `+0x50`), a second map at
+The `0xC0`-byte pools built by `0x001B36D0` and `0x001B3540` open the same way: a vector `{begin, end, cap}` with its
+allocator at `+0x18`, an EASTL map at `+0x20` (allocator at `+0x50`), a second map at
 `+0x58` (allocator at `+0x88`, `0x001B3783`-`0x001B37BF`), a lock at `+0x90` (`0x005CC8A0`, `0x001B37C2`), the flag byte the
 constructor was given at `+0xB8` (`0x001B37CE`), and the capacity, which goes to `0x001B5DE0` (`0x001B37D5`-`0x001B37DB`;
 `0x001B36F5`-`0x001B3766`, `0x001B3565`-`0x001B35D6`).
+
+Each of those allocators holds the vtable `0x00902720`, the only thing `0x001EDF00` stores (`0x001EDF00`-`0x001EDF0D`);
+the names passed to it, `EASTL vector` (`0x008C5F58`, `0x001B3710`) and `EASTL set` (`0x008F3CB0`, `0x001B371D`), are not kept
+([EASTL strings and containers](../Third-Party-Libraries/eastl-strings-and-containers.md)).
 
 ### The atlas files
 
@@ -262,7 +277,7 @@ header's values as arguments and stores each.
 | `+0x059` | `u8[7]` | glyphsPad21 | zeroed by the qword store at `0x001FC0FE` |
 | `+0x060` | `u32` | glyphsCount | entries: 0 (`0x001FC120`); `0x001FD010` raises it (`0x001FD0BB`, `0x001FD14E`) |
 | `+0x064` | `u8[4]` | glyphsPad2C | not written by the constructor |
-| `+0x068` | `void*` | glyphsAlloc | the "EASTL map" allocator name (`0x008F4120`), set by `0x001EDF00` (`0x001FC10C`) |
+| `+0x068` | `void*` | glyphsAlloc | vtable `0x00902720` from `0x001EDF00` (`0x001FC10C`); the name "EASTL map" (`0x008F4120`) is dropped |
 | `+0x070` | `u8[8]` | kerningPad | map of the kerning pairs, filed by `0x001FDC10` and looked up by `0x001FDDD0` (`0x001FC134`); not written by the constructor |
 | `+0x078` | `void*` | kerningHeadA | header node, first word: 0 (`0x001FC143`), then the header itself (`0x001FC161`) |
 | `+0x080` | `void*` | kerningHeadB | header node, second word: 0 (`0x001FC146`), then the header itself (`0x001FC164`) |
@@ -271,7 +286,7 @@ header's values as arguments and stores each.
 | `+0x091` | `u8[7]` | kerningPad21 | zeroed by the qword store at `0x001FC14E` |
 | `+0x098` | `u32` | kerningCount | entries: 0 (`0x001FC170`) |
 | `+0x09C` | `u8[4]` | kerningPad2C | not written by the constructor |
-| `+0x0A0` | `void*` | kerningAlloc | the "EASTL map" allocator name (`0x008F4120`), set by `0x001EDF00` (`0x001FC15C`) |
+| `+0x0A0` | `void*` | kerningAlloc | vtable `0x00902720` from `0x001EDF00` (`0x001FC15C`); the name "EASTL map" (`0x008F4120`) is dropped |
 | `+0x0A8` | `u8[8]` | expansionPad | map of the expansion lists by key, filled by `0x001FDB90` and `0x001FDB50` and found by `0x001FDD60` (`0x001FC184`); not written by the constructor |
 | `+0x0B0` | `void*` | expansionHeadA | header node, first word: 0 (`0x001FC196`), then the header itself (`0x001FC1B4`) |
 | `+0x0B8` | `void*` | expansionHeadB | header node, second word: 0 (`0x001FC199`), then the header itself (`0x001FC1B7`) |
@@ -280,15 +295,15 @@ header's values as arguments and stores each.
 | `+0x0C9` | `u8[7]` | expansionPad21 | zeroed by the qword store at `0x001FC1A1` |
 | `+0x0D0` | `u32` | expansionCount | entries: 0 (`0x001FC1C3`) |
 | `+0x0D4` | `u8[4]` | expansionPad2C | not written by the constructor |
-| `+0x0D8` | `void*` | expansionAlloc | the "EASTL map" allocator name (`0x008F4120`), set by `0x001EDF00` (`0x001FC1AF`) |
+| `+0x0D8` | `void*` | expansionAlloc | vtable `0x00902720` from `0x001EDF00` (`0x001FC1AF`); the name "EASTL map" (`0x008F4120`) is dropped |
 | `+0x0E0` | `void*` | atlasNameBegin | atlas name &lt;name&gt;.dds.phyre (`0x001FE080`, `0x001B4FB8`), first character; the empty string `0x02EBA2E0` from the constructor (`0x001FC1F5`); `0x001FDF10` copies the name for the request |
 | `+0x0E8` | `void*` | atlasNameEnd | end of the characters; `0x02EBA2E0` when empty (`0x001FC1FC`) |
 | `+0x0F0` | `void*` | atlasNameCap | end of the buffer; `0x02EBA2E1` when empty (`0x001FC20A`) |
-| `+0x0F8` | `void*` | atlasNameAlloc | the "EASTL basic_string" allocator name (`0x008F6600`), set by `0x001EDF00` (`0x001FC1E9`) |
+| `+0x0F8` | `void*` | atlasNameAlloc | vtable `0x00902720` from `0x001EDF00` (`0x001FC1E9`); the name "EASTL basic_string" (`0x008F6600`) is dropped |
 | `+0x100` | `void*` | shadowNameBegin | shadow name &lt;name&gt;_shadow.dds.phyre (`0x001FE020`, `0x001B4FF3`), first character; `0x02EBA2E0` when empty (`0x001FC239`); `0x001FDE60` copies the name for the request |
 | `+0x108` | `void*` | shadowNameEnd | end of the characters; `0x02EBA2E0` when empty (`0x001FC240`) |
 | `+0x110` | `void*` | shadowNameCap | end of the buffer; `0x02EBA2E1` when empty (`0x001FC247`) |
-| `+0x118` | `void*` | shadowNameAlloc | the "EASTL basic_string" allocator name (`0x008F6600`), set by `0x001EDF00` (`0x001FC234`) |
+| `+0x118` | `void*` | shadowNameAlloc | vtable `0x00902720` from `0x001EDF00` (`0x001FC234`); the name "EASTL basic_string" (`0x008F6600`) is dropped |
 
 ### Kerning between two glyphs
 
@@ -414,11 +429,21 @@ them.
 4. Read this way, the two unrequested `us` `.fex` files would take their first key as a count and run about 2.3 GB
    past the end.
 5. The `.fex` reader refuses a key already loaded and stops there, without freeing the file (`0x001B4CBA`, `0x001B4D03`).
+   It also leaves the request unfreed: the jump from `0x001B4D11` passes over `0x001B4D21`-`0x001B4D44`.
 6. A `.dat` flag bit asks for its file without checking that it exists; no shipped flag asks for a missing file.
 7. A missing atlas file, or a cluster without a `PTexture2D` instance, is not reported: the completion `0x001B6230`
    skips the store (`0x001B629F`, `0x001B62C0`, `0x001B62F4`, `0x001B6310`) and the font keeps atlas 0. The font is built and
    its text laid out, but the flush skips its batch, so its glyphs are never drawn
    ([Text drawing](text-drawing.md)).
+8. Each reader finds its font by the request's id `+0x30` in the manager's map `+0x28`. With no font of that id,
+   or a null font, it reads nothing (`0x001B4C71`-`0x001B4C81`, `0x001B5292`-`0x001B529E`); with no file data `+0x20` it
+   skips the reading (`0x001B4C8E`, `0x001B52A7`).
+9. Those paths, and a reading that ends normally, free the file data (`0x00210EB0`), zero `+0x20` and `+0x28` and
+   free the request in the pool `+0xD0` (`0x002124C0`) (`0x001B4D21`-`0x001B4D44`, `0x001B52EC`-`0x001B530F`). The
+   completions `0x001B6030` and `0x001B6080` call the readers only while the manager `[0x01F81200]` exists
+   (`0x001B604A`, `0x001B609A`).
+10. A repeated `.ker` pair does not stop its reader: `0x001FDC10` overwrites the adjustment already filed for the
+    same two code points (`0x001FDC5C`-`0x001FDC66`), so the last one in the file applies.
 
 ## Modding notes
 

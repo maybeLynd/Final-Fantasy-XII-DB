@@ -24,17 +24,28 @@ the flags `+0x54`, and
 copies the 16-byte rectangle to `+0x70`. With the third argument set it also creates a light
 (`0x003AB960`) and keeps its handle at `+0x50`.
 
+It also zeroes the visibility `+0x08` (`0x003763D2`). The four kept copies `+0x0C`, `+0x14`, `+0x1C` and `+0x24`
+are left as they were (`0x003763CB`-`0x003763F2`). The slot count is a byte (`0x00376391`). `0x00376350` returns the
+handle (`0x00376450`), or 0 with nothing changed when all eight slots are taken (`0x0037638A`).
+
 The light request is type 1, priority 0, subtype 2, scope 1, sub-kind 9 and class 16 (`+7` = `0x40`):
 a directional light that every character takes and that is re-aimed from the camera
-([how a character is lit](character-lighting-and-shadows.md)).
+([how a character is lit](character-lighting-and-shadows.md)). Its byte `+6` is 1, and the rest of the
+`0x50`-byte request is zero (`memset` at `0x00376406`, `0x0037640B`-`0x0037643F`).
 
 `0x00376990(handle)` frees a slot whose handle still matches: it lowers `0x02ADBB30`, clears the handle and
-releases the light (`0x003ABCA0`). `0x00376A80` empties all eight slots and both counters. Every accessor
-checks that `slot[handle & 0xFF]` still holds the handle and does nothing, or returns 0, otherwise:
+releases the light (`0x003ABCA0`) when `+0x50` is non-zero, then zeroes `+0x50` (`0x003769B2`-`0x003769CA`); a handle
+of 0 returns at once (`0x00376992`). `0x00376A80` empties all eight slots and both counters: it stores 0 in the byte
+`0x02ADBB30`, the serial `0x02ADBB34` and the eight handles and nothing else, so it releases no light and leaves each
+`+0x50` as it was (`0x00376A82`-`0x00376AB9`).
+
+Every accessor
+checks that `slot[handle & 0xFF]` still holds the handle and does nothing, or returns 0, otherwise
+(`0x00377010` and `0x00377090` also refuse a handle of 0, `0x00377026`, `0x003770A6`):
 
 | Function | Does |
 |---|---|
-| `0x00377010(handle, settings)` | copies flag bits `0x1` and `0x2`, the three fade radii `+0x34` to `+0x3C`, the dimming strength `+0x40` and the light colour `+0x44` to `+0x4C` |
+| `0x00377010(handle, settings)` | copies flag bits `0x1` and `0x2`, the three fade radii `+0x34` to `+0x3C`, the dimming strength `+0x40` and the light colour `+0x44` to `+0x4C`: flag bit `0x1` from bit `0x1` of the settings word `+0x00`, flag bit `0x2` from bit `0x1` of the word `+0x04`, the radii from `+0x08` to `+0x10`, the strength from `+0x14` and the colour from `+0x18` to `+0x20` (`0x0037702F`-`0x00377082`) |
 | `0x00377100(handle, rect)` | the test square in GS pixels, `+0x70` |
 | `0x00377130(handle, rect)` | the same square as floats, `+0x80` |
 | `0x003770D0(handle, depth)` | the 24-bit depth `+0x04` |
@@ -58,6 +69,14 @@ with `0x00377010`:
 Then it projects the element's position `+0x230` through `0x02AEECB0` (`0x0039B550`, `0x00399600`) and
 stores the test square, the GS screen position `x / 16 − 0x700` and `y / 16 − 0x720` plus and minus
 the half size `+0x1B6` (`0x00377100`), and the depth (`0x003770D0`). The release `0x00461250` frees the slot.
+
+The birth reads the definition at element `+0x20` (`0x004610C5`) and hands `0x00376350` the square {0, 8, 8, 0}
+(`0x004610D6`-`0x004610E6`). It stores the square and the depth without testing what `0x00399600` returns
+(`0x00461191`); the depth is the projected dword after the two screen words, masked to 24 bits (`0x00461208`).
+
+`0x00461090(element)` returns 0 when `0x002F2D60` fails (`0x004610B7`). Without bit `0x4` of `+0x1B4` it takes no slot
+and leaves `+0x294` as it was (`0x004610D0`). On both paths it then runs `0x00462160(element)`, stores `0x0044B960()` at
+element `+0x290` and returns 1 (`0x00461213`-`0x0046122E`).
 
 Each draw `0x00461270` repeats the projection, stores the square again in both forms (`0x00377130`,
 `0x00377100`) and the depth, and for a bit `0x20` flare sets the light direction from `0x02AEEAD0` with w 1.0
@@ -124,7 +143,7 @@ query list (`0x00184A70`), and for each slot with a handle and flag bit `0x8` cl
    (`+0x18`, radius `+0x38`, copied to `+0x2C`); flag bit `0x1` runs fade C (`+0x20`, radius `+0x3C`,
    copied to `+0x30`).
 3. The visibility target is 0 when the test square leaves the GS screen: `y0` beyond the height,
-   `y1` below 1, `x1` beyond the width or `x0` below 1. Otherwise it is the query
+   `y1` below 1, `x0` beyond the width or `x1` below 1 (`0x003766BB`-`0x003766D1`). Otherwise it is the query
    result whose handle matches the slot's, or the result at the slot's own position when no handle does.
    The visibility `+0x08` moves 40% of the way to the target.
 4. Flag bit `0x1` runs the dimming `0x00376AC0` (below).
@@ -160,15 +179,77 @@ When the slot has a light, it writes into the light's request (`0x003ABD00`): th
 `s × +0x4C` with alpha 1.0. When `s` is 0.0001 or less it sets the skip bit `0x2` of request byte `+7`
 instead, and clears it otherwise.
 
+`0x00376AC0` calls `0x003ABD00` only when `+0x50` is non-zero (`0x00376B30`-`0x00376B35`) and writes through its
+result without a test (`0x00376B43`). `0x003ABD00` returns 0 when entry `handle & 0xFF` holds another handle
+(`0x003ABD0E`-`0x003ABD17`), and no route reaches the call that way. The one caller of `0x00376AC0` is the per-frame
+pass (`0x0037672B`), on a slot with a handle (`0x00376544`); `0x00376BE0` makes the same unchecked writes after its
+own `+0x50` test (`0x00376CBB`-`0x00376CD1`).
+
+A slot's `+0x50` is written by `0x00376350`, which zeroes it (`0x003763EA`) and stores what `0x003AB960` returns, 0
+when the pool is full (`0x0037644D`), and by `0x00376990`, which releases that light (`0x003769C5`) and zeroes
+`+0x50` (`0x003769CA`) in the call that frees the slot. `0x00376350` returns the slot's handle (`0x00376450`), so the
+light's handle is kept nowhere else. `0x00376A80` clears only the slot handles, and the pass and `0x00376BE0` skip
+a slot without one.
+
+A light entry's handle `+0x00` changes in three places. `0x003AB960` fills only an entry whose handle is 0
+(`0x003AB970`); `0x003ABCA0(handle)` zeroes only the listed entry whose handle equals its argument (`0x003ABCB0`,
+`0x003ABCCC`); the pool clear `0x003ABB60` zeroes all 128 (`0x003ABB83`) and files one (`0x003ABC1E`). The clear runs
+only through the tail jump of the set-up `0x003AC890` (`0x003AC8E6`), which only `0x00259180` calls (`0x00259196`), at
+start-up (`0x0022A406`); `0x00259180` then empties the flare slots (`0x00376A80`, `0x002591A0`).
+
+Another owner's handle, live or already released, names the flare's entry with a different counter value:
+each new handle takes the next value of the 24-bit counter `0x02B3F504` (`0x003AB994`-`0x003AB9A5`), so a value
+comes back only after `0xFFFFFF` creations. The pool block `[0x02B3F528]` is stored once, while it is null
+(`0x003AC894`, `0x003AC8B4`). So `0x003ABD00` matches for every slot that `0x00376AC0` and `0x00376BE0` reach.
+
 ### The occlusion query manager
 
-`0x001B29F0` builds the query manager `[0x01F811F0]`, `0x240` bytes (`0x001B2630`: a lock at `+0x218`,
-everything else zero); `0x001B31D0` returns it. `0x001B2680` appends one entry, seven words, to the list
-at `+0x04` and raises the count `+0x00`; `0x001B26D0` clears the list.
+`0x001B29F0` builds the query manager `[0x01F811F0]`, `0x240` bytes, only while `[0x01F811F0]` is 0 (`0x001B29FD`), and
+stores what `0x00210EC0` returns there, a null block included (`0x001B2A24`). `0x001B2630` sets up the lock at `+0x218`
+(`0x005CC8A0`, `0x005CD0A0`), zeroes the count `+0x00`, the two lists `+0x04` to `+0x1C3` (one `memset` of `0x1C0`
+bytes, `0x001B2655`) and the pointer `+0x1C8`, and returns the manager (`0x001B263D`-`0x001B2676`).
+
+`0x001B2630` leaves the query pointers `+0x1D0` and the pending bytes `+0x210` as the allocation returned them.
+`0x001B2A30` zeroes the pending bytes and creates the queries on its first run, while `+0x1C8` is 0
+(`0x001B2BB4`-`0x001B2BCF`). `0x001B31D0` returns the manager. `0x001B2680` appends one entry, seven words, to the list
+at `+0x04` and raises the count `+0x00`, without testing the count against 8 (`0x001B2680`-`0x001B26CD`);
+`0x001B26D0` clears the list. `0x001849E0` hands its seven values to `0x001B2680` and adds nothing while `0x001B31D0()`
+returns 0 (`0x00184A07`-`0x00184A0A`).
 
 `ZBufferObj`, the render command with vtable `0x00903290`, runs `0x001F3A00` as its execute slot: after
 its scene-begin calls it runs `0x001B26F0`, which, when any of the eight entries has a handle, queues
 `0x001B2A30` on the render context (`0x005FEB30`) with a copy of the `0xE0`-byte list.
+
+`0x001F3A00(command, context)` runs `0x00188730` on the render manager (`0x00189120`) and `0x005FEFD0(context, 0)`, then
+`0x001B26F0` only while `0x001B31D0()` returns a manager, and ends with a tail jump to `0x00600A60(context, 3)`
+(`0x001F3A09`-`0x001F3A44`). `0x001B26F0` reads the eight handles from `+0x04` and returns without queuing when all
+are 0 (`0x001B2710`-`0x001B2729`); the context it gives `0x005FEB30` is `[0x00189120() + 0x08]` (`0x001B2703`).
+
+`0x001B26F0` copies the list into the block that `0x005FEB30` returns (`0x001B274F`-`0x001B27C8`) without a test,
+and that block is never null. `0x005FEB30(context, function, size, &block)` returns 1 at once for a null function
+(`0x005FEB4D`); `0x001B26F0` gives it `0x001B2A30` (`0x001B2743`). Otherwise it sets the block to 0 (`0x005FEB76`) and
+takes `size` + 15, rounded up to 16 (`0xF0` here), `n = (size + (size != 0 ? 15 : 0) + 15) & ~0xF`
+(`0x005FEB61`-`0x005FEB85`), from the context's parameter ring; a size of 0 takes no bytes (`0x005FEB9C`).
+
+The block is the cursor `+0x38`, or the start `+0x28` when the cursor would pass the end `+0x30`,
+`[context + 0x38] + n > [context + 0x30]`, and the cursor moves on by `n` from the block (`0x005FEBA0`-`0x005FEBCB`).
+When the start has no room either, it leaves the block 0, sets the cursor to the start and returns `0xD`
+(`0x005FEBB9`-`0x005FEBD1`).
+
+It then takes the 0x80-byte command record from a second ring the same way (cursor `+0x60`, end `+0x58`, start
+`+0x50`) and returns `0xD` with the block already set when that ring has no room (`0x005FEBD3`-`0x005FEC04`). It
+rounds a block it takes up to 16 bytes, `block = block + (-block & 0xF)` (`0x005FEC25`-`0x005FEC32`), and returns 0
+(`0x005FEC46`).
+
+The ring is 64 MiB. The run setup `0x0079F150`
+allocates `0x6000000` bytes for the render context at application `+0xE8` and ends the start-up when that
+fails (`0x0079F5C1`-`0x0079F5DC`). `0x00607E20`, called only at `0x0079F5F7`, passes them to `0x00607F00` (its one call
+is `0x00607ED1`), which sets the start and the cursor to the block and the end `0x4000000` bytes on
+(`0x00607F32`-`0x00607F59`).
+
+The render manager's constructor `0x00184F20` stores that context at `+0x08` (`0x00184F4C`), from `0x00189000` at
+`0x0017D06F`, which passes application `+0xE8`. So `0xF0` bytes always fit at the start of the ring, and
+`0x001B26F0` never writes through a null block.
 
 `0x001B2A30` runs on the render side with the primitive renderer of the context (`0x00624660`). On first
 use it creates eight occlusion queries and keeps them at `+0x1D0` (`+0x1C8` points there). For each
@@ -186,6 +267,13 @@ entry:
 
 Last it copies the eight entries, with their visibility, to `+0xE4` under the lock. `0x001B27E0`, through
 `0x00184AA0`, copies them out under the lock and clamps each visibility again.
+
+`0x001B27E0(manager, out)` copies the `0xE0` bytes from `+0xE4` between `0x005CD4F0` and `0x005CD820` on the lock
+(`0x001B282A`-`0x001B28BE`) and stops there while the queries do not exist yet (`+0x1C8` 0, `0x001B28C4`). Otherwise
+it skips entries without a handle and, for the others, works out the area again as
+`abs(x1 − x0) × 0x00186AA0() / 2 × abs(y1 − y0) × 0x00186A90() / 2` from the render manager
+(`0x001B290E`-`0x001B2978`). An area of 10 or less sets the
+visibility to 0; a larger one keeps `area × v / area`, clamped to 0 to 1 (`0x001B297C`-`0x001B29A5`).
 
 ## Layouts
 
@@ -274,6 +362,11 @@ template when it runs: `0x0022BFF0` copies it into its VU cell at the lane site 
 `0x00376470` calls it (`0x0037683E`) and passes that pointer (`0x00376848`) to `0x00202D70`, which jumps to the multiply `0x00217150`. The multiply
 reads the cells through its second argument at the sites below.
 
+`0x0017ED50(A)` copies its matrix argument to the stack, takes `M` at `0x00189120() + 0x6C8` and forms rows 3, 2, 1
+and 0 of the product as that row of `A` times `M` with `0x0017E7E0(M, out, row)` (`0x0017EDCB`-`0x0017EE20`).
+`0x0017E7E0` stores `out[j] = row[0] × M[j] + row[1] × M[4 + j] + row[2] × M[8 + j] + row[3] × M[12 + j]` and
+returns `out` (`0x0017E7E4`-`0x0017E8D5`).
+
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x01F7F554` | `f32` | 0 (zero-filled tail of `.data`) | row 0, column 1 | `0x0017ED50` (`0x0017EE6A`) | `0x00217150` (`0x002171A5`, `0x002173D5`) |
@@ -314,8 +407,8 @@ copies it to `0x0209A380`, the scene colour of the map ambient
   handle 0, so its visibility and fades read 0 and it draws with intensity 0.
 - The test square's half size is definition `+0x1B6` in GS pixels; a rectangle that covers 10
   back-buffer pixels or less always reads as hidden.
-- Visibility and the fades move 40% of the way a frame, so a hidden light's flare drops below 1% of
-  its brightness after nine frames.
+- Visibility and the fades move 40% of the way a frame, so a hidden light's flare keeps 60% of its brightness
+  each frame and drops below 1% of it after ten frames (0.6 to the ninth power is 1.008%, to the tenth 0.605%).
 - The dimming strength `+0x1DC` of 0 keeps the scene colour unchanged while the flare light still
   shines.
 

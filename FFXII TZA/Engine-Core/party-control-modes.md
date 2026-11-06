@@ -23,12 +23,14 @@ waits in the background until the event's claim is withdrawn.
 
 ### The level
 
-`0x0030D9A0()` reads the dword at `[0x02EBF190] + 0x5B04` and returns the first match: bit `0x8` gives 5,
-bit `0x4` gives 4, the town flag `0x00377C20()` gives 3, bit `0x2` gives 2, and otherwise bit `0x1` gives 1 or 0;
-the word is reloaded after the town call. Only the bits `0xF` are consulted. The town flag is
-authored data ([area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)): `0x00377C20` takes
-the area index `0x003148F0()`, checks it against the count at `[0x02ADD100] + 4` and returns bit `0x8000` of
-the 16-bit word at `+8 + 3 × index`.
+`0x0030D9A0()` reads the dword at `[0x02EBF190] + 0x5B04` and returns the first match: bit `0x8` gives 5, bit `0x4` gives
+4, the town flag `0x00377C20()` gives 3, bit `0x2` gives 2, and otherwise bit `0x1` gives 1 or 0; the word is reloaded
+after the town call. Only the bits `0xF` are consulted.
+
+The town flag is authored data ([area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)): `0x00377C20` takes the
+area index `0x003148F0()`, checks it against the count at `[0x02ADD100] + 4` and returns bit `0x8000` of the 16-bit word
+at `+8 + 3 × index`; with no table (`0x00377C33`) or an index not below the count (`0x00377C39`) it shifts the default
+word `0x0FFF` instead (`0x00377C5F`) and returns 0, not a town.
 
 | Level | Condition | Meaning | Set by |
 |---|---|---|---|
@@ -51,7 +53,10 @@ Four predicates compare the level: `0x003135C0` (= 1, thunk `0x0037C8F0`), `0x00
 | `0x4` | `0x003072E0` (thunk `0x0037C8B0`) | `0x00307240(on)` | the bit only |
 | `0x8` | `0x003072A0` (thunk `0x0037C890`) | `0x00307200(on)` | the bit only |
 
-Every setter writes nothing when the bit already equals its argument. Who calls them:
+Every setter writes nothing when the bit already equals its argument. The compare takes the whole argument
+(`0x00313563`, `0x00303DA9`, `0x00307256`, `0x00307216`), so a non-zero argument other than 1 always takes the on branch:
+it rewrites a set bit, and for bit `0x1` runs `0x0035C620` again, for bit `0x2` refills the charges and the ride time
+(`0x00303DB5`-`0x00303DD4`). Who calls them:
 
 - bit `0x1` on: `summonread` (`0x0034E1F0`: `0x00313550(1)`, `0x00314D40(1)` sets `0x022C253D`, then the task
   installer `0x0037CA80`); `btlAtelSetSummonMode` (`0x0050FFB0`: pops the Esper's row into `+0x5AD4`
@@ -98,8 +103,9 @@ under an event claim `getchocobomode` is 0 while `getchocobomodebit` is still 1.
 `0x0030D8B0(commit)` reads the level, the previous level at `+0x5B08` and the town flag. It writes
 the flag as bit `0x4` of the two source bytes `0x0215FD44` and `0x0215FD45` (`0x002EA8E0(2, town)` and
 `0x002EA8B0(2, town)`): any set bit in a byte sets `0x02B59D70` or `0x02B59D71`, and the second byte's
-value also runs `0x003ACA80`, `0x003AC8F0(0)` and `0x003E0B40(1)` when non-zero, else `0x003ACA90(0x20)`,
-`0x003AC8F0(1)` and `0x003E0B40(0)`.
+value also runs, through `0x003E7C70(1 or 0)` (which stores it in `0x02B59D71` at `0x003E7C74`),
+`0x003ACA80(0x20)`, `0x003AC8F0(0)` and `0x003E0B40(1)` when non-zero, else `0x003ACA90(0x20)`, `0x003AC8F0(1)` and
+`0x003E0B40(0)`; the argument `0x20` is loaded for both arms at `0x003E7C7C`.
 
 Then it indexes the table `0x01EECFC0`, five rows of four pointers: column 0
 enters or stays without commit, column 1 leaves without commit, column 2 enters or stays with
@@ -127,9 +133,19 @@ The handlers:
   clear of `0x80000003` or a town) into `0x022C1740` and makes the first the focus row; then, once
   per ride (unit flag bit `0x4000000`), snaps the mount's position and heading to the rider's (`0x00265020`,
   `0x0026B0C0`, `0x00392170`, `0x0026A0D0`, `0x0026B620`); `0x0035C900(1)` sets `0x022C83E8` bit `0x8`.
+  - It returns at once, before the collection and `0x0035C900(1)`, when roster entry 3 has no unit
+    (`0x0031B8C0(3)`, `0x003041A5`).
+  - The collection runs only when the saved leader's member record (`0x00327240`) exists with byte `+5` zero and a
+    row type from 7 to `0x19` (`0x003041B3`-`0x003041D7`).
+  - The snap sets the unit flag (`0x00304398`), copies the rider's position to the unit's `+0xD0` and `+0xE0` and
+    its heading (`0x00265200`) to `+0x15C` and `+0x160`, and calls `0x0026B0C0` only when the two positions differ
+    (`0x00304322`-`0x00304347`).
 - `0x00304060`: attaches the rider (the selector entry of `+0x5AA4`, `0x00327200`) to the slot-3 unit
   (`0x002E28C0`, `0x002ECF10(rider, 1)`), `0x0025A160` of `0x0031B950(3)`, channel 1 = max(2.0,
   `+0x5AE4`), channel 2 = `+0x5AE8`, `0x00303F00(turbo bit)`, `+0x5AE0` bit `0x1` set.
+  - It returns at once when roster entry 3 has no unit (`0x0031B8C0(3)`, `0x00304076`).
+  - The turbo call's argument equals the bit, so it only sets the presentation request (1 or 3) and
+    `+0x5AEC` (`0x00303F4D`-`0x00303F61`).
 - `0x00304400`: `+0x5AE0` bit `0x1` cleared, `0x022C1F48 &= 0xF9`, `0x022C1F40` = 0, the rider detached
   (`0x002E6B10`).
 - `0x00304140`: `0x0025A160` of the rider's selector entry; when bit `0x2` is already clear, the dismount
@@ -144,7 +160,10 @@ state 3 of the summon task `0x0037C730` once `0x0037CB50()` succeeds.
 `0x00233CF0` (`0x0030D8B0(0)`,
 `0x003266C0`, `0x00311E10(1)`) runs from the manager runtime init `0x0026CE60` and from the task
 installers `0x0037C980`, `0x0037CA00` and `0x0037CA80`, which place the task `0x0037C730` at `0x02EBF400`
-with its entry `0x02EBF3FE` = 0 or 3 and its step `0x02EBF3FD` = 1 or -1.
+with its entry `0x02EBF3FE` = 0 or 3 and its step `0x02EBF3FD` = 1 or -1. An installer reaches `0x00233CF0`
+only when the allocator `0x002F16B0` returns a task: with a null one it still stores the null pointer at
+`0x02EBF400` and the mode byte `0x02EBF3FC`, then returns without filling the task or calling the wrapper
+(`0x0037C99A`, `0x0037CA1A`, `0x0037CA9A`).
 
 ### What the level changes
 
@@ -153,11 +172,16 @@ thunks; the level-1 predicate has 7 direct and 9 through its thunk. The ones rea
 
 - the focus row `0x00326500` (the commit wrapper and `0x00327850`): at levels 0 and 1 the saved leader
   `+0x5AA4`, at level 2 row `0x1A` (the chocobo), at level 3 the town's row `0x00377C70()` (mask `0x70`
-  of the area record's third byte, shifted down by 4), and at levels 4 and 5 the row `0xFF`, which no unit has.
+  of the area record's third byte, shifted down by 4; 0 with no table or an area index not below the
+  count, `0x00377C83`, `0x00377C88`, `0x00377CA4`), and at levels 4 and 5 the row `0xFF`, which no unit has.
   - When that row has no unit with a record it falls back to the first selection entry with one,
     then to `0x003589B0` of roster entry 0, so under an event claim the focus is the first selected
     unit; at level 1 it also runs `0x00317400(unit)`; the result goes out through `0x003594B0`
     (`0x022C7FE4`, `0x022C7FF8` = 1).
+  - Before the pick it runs `0x00311E20` and `0x00326620` (`0x0032650C`, `0x00326511`). `0x00326620` acts at level 0
+    only: when `+0x5AA4` is `0xFF` or not among entries 0 to 3 of `+0x5A5A`, it sets `+0x5AA4` to the row of
+    the first unit `0x0030A880(list, 3)` returns and runs `0x00326500` again (`0x00326626`-`0x003266A9`).
+    `0x00311E20` runs again before the request (`0x003265DB`).
 - the [slot maps](../Party/party-slots.md#the-nine-seats) `0x003266C0` (the no-commit wrapper): map 0 at `+0x5A48` (nine 2-byte
   entries) is copied whole to `+0x5A5A` and `+0x5A7E`; entries 4 to 8 of the first copy are then
   set to -1 and it is copied again to `+0x5A6C` and `+0x5A90`. The per-level loops touch entries
@@ -179,15 +203,25 @@ thunks; the level-1 predicate has 7 direct and 9 through its thunk. The ones rea
 - the lock evaluator `0x0023B040` tests level 2, and at level 1 tests the summoner's unit
   (`0x0031B770(0x003137F0())`: no record, or status words holding `0x80000003` without the town flag,
   raises every lock bit); the input arbiter `0x00253C70` tests level 2.
+  - At level 2 the evaluator skips the leader's derivation and publishes its start mask (all ones under
+    `0x02089340` bit `0x40`, else 0; `0x0023B050`-`0x0023B06C`); at level 1 a missing summoner unit leaves the mask
+    as it is (`0x0023B191`-`0x0023B194`).
 - `0x00309A90`, the approach distance ([battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md)): 24.0 while the party is fighting (`0x00253B90()` = 0, [force fight
   mode](force-fight-mode.md)), else 3.8 at level 1 and 2.2 at any other level while fleeing.
-- `0x00303CC0`: at level 2 only, the distance test `0x00336390` between the mount and the rider.
-- `0x00303F00` grants a turbo at level 2 only, spending one of the two charge bits, or refilling them
-  to 3 while `0x0017D3A0()` holds.
-- the ride's frame step `0x00304440` refreshes `+0x5AE4` from channel 1 (`0x003EBA90(1)`, or 180.0
+- `0x00303CC0`: at level 2 only, the walkable-ground test `0x00336390` at the mount's position (`0x00265020`)
+  with the larger of the rider's two `0x00265090` radii (`0x00303D21`-`0x00303D6C`), which allows a dismount; it
+  returns 0 at any other level and when the mount or the rider has no actor (`0x00303D06`, `0x00303D1F`).
+- `0x00303F00` grants a turbo at level 2 only and with a non-zero charge count (bits `0xC` of `+0x5AE0`,
+  `0x00303F82`-`0x00303F92`), lowering that two-bit count by one, or refilling it to 3 while `0x0017D3A0()`
+  holds (`0x00303FCD`-`0x00303FFD`).
+- the ride's frame step `0x00304440` runs only while `+0x5AE0` bit `0x1` is set (`0x0030444B`-`0x00304452`);
+  it refreshes `+0x5AE4` from channel 1 (`0x003EBA90(1)`, or 180.0
   while `0x0017D380()` holds) and `+0x5AE8` from channel 2, then ends the ride (`0x00311E20`,
   `0x0035CFA0(1)`) only when `0x00303CC0()` passes, channel 1 has expired (`0x003EBB70(1)`), `0x0017D380()`
   is 0, the level is 2 and `0x0031B8C0(3)` is non-null.
+- after that the same step ends the turbo when channel 2 has expired (`0x003EBB70(2)`) and `+0x5AE0` bit `0x2`
+  is on: presentation request 3 on the roster entry-3 actor (`0x002E73C0`), `+0x5AEC` = 0, event `0x2001` to
+  that actor (`0x002EB030`, skipped when there is no actor) and that bit cleared (`0x003044EC`-`0x00304584`).
 - `0x00313590`: at level 1, `0x0031E860(3)`, the actor handle of roster slot 3 (the Esper): `0x00263750(3)`, then
   `0x003589B0` of that actor, or 0 when the slot is empty ([identifier spaces](identifier-spaces.md)); at any other
   level 0.
@@ -201,15 +235,20 @@ summon block `+0x5AD0..+0x5ADF` at `rec+0x18` and the mode word at `rec+0x28`.
 
 `0x002EF410(rec)`
 restores the ride block and the word unconditionally; the summon block only when `rec+0x18` has
-bit `0x2` (the summon timer was running), restarting channel 2 from `rec+0x20` (`0x003139D0`); and when
-`rec+8` has bit `0x1` (the ride timers were armed) it restarts channel 1 from `rec+0xC` (`0x00304790`)
-and channel 2 from `rec+0x10` (`0x003047C0`), then sets bit `0x2` and clears bit `0x1` of the word.
+bit `0x2` (the summon timer was running), restarting channel 2 from `rec+0x20`, never below 2.0 (`0x003139D0`);
+and when `rec+8` has bit `0x1` (the ride timers were armed) it restarts channel 1 from `rec+0xC`, never
+below 2.0 (`0x00304790`), and channel 2 from `rec+0x10` as it is (`0x003047C0`), then sets bit `0x2` and clears
+bit `0x1` of the word (`0x002EF47E`-`0x002EF48C`). When both apply, the ride's load of channel 2 comes last and
+stands.
 `+0x5B08` is not captured.
 
-`0x0030DA10` zeroes the word and `+0x5B08`; its only caller is the battle-storage reset `0x00237DF0`,
-which also runs `0x00313840`, the dismount `0x00304680`, and resets the speed index (`0x00229ED0(0)`,
-[frame update order](frame-update-order.md)). The save handover `0x00584210` clears bit `0x1`
-on both of its sides ([save data fields](../Saving-Loading-And-Settings/save-data-fields.md)).
+`0x0030DA10` zeroes the word and `+0x5B08`; its only caller is the battle-storage reset `0x00237DF0`, which also runs
+`0x00313840`, the dismount `0x00304680`, and resets the speed index (`0x00229ED0(0)`, [frame update
+order](frame-update-order.md)). The save handover `0x00584210` clears bit `0x1` on both of its sides ([save data
+fields](../Saving-Loading-And-Settings/save-data-fields.md)): the stash at load mode 3 with the header flag `+0x57` bit
+`0x1` clear (`0x005842C4`) and the restore at any other mode with that flag set (`0x0058438C`).
+
+Load mode 3 with the flag set and any other mode with it clear leave the bit as it is (`0x0058424F`, `0x005842F3`).
 
 ## Layouts
 

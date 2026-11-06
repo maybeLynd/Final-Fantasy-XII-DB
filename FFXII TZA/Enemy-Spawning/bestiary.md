@@ -126,9 +126,11 @@ raise, for every entry but the two of step 2 ([Clan Primer](../Menus-And-HUD/cla
    - A defeat leaves those two counts unchanged, so the 11 Gilgamesh and 3 Shadowseer definitions name an entry
      their defeats do not count.
    - The field-frame sweep `0x00316930` sets each of the two counts to 1 once `0x00315DC0` passes for its quest
-     ([Achievements](../Steam-And-Achievements/achievements.md)).
+     ([Achievements](../Steam-And-Achievements/achievements.md)), while the count is at most 0 (save
+     byte 0 or 1, `0x003169E0`-`0x003169FA`; the byte becomes 2, `0x00316A0C`).
 3. The entry page's record builder `0x005760A0(record, n)` reads entry *n*'s kill count through `0x00315420(n)`
-   (`0x00576227`), which reads the same byte, save `+0x3404` + *n* (`0x0031545C`).
+   (`0x00576227`), which reads the same byte, save `+0x3404` + *n* (`0x0031545C`), minus 1; a number at or above
+   `0x200` gives -1 (`0x00315424`-`0x0031542C`).
 4. The same builder takes the entry's name from the catalog: the `i32` at `+0x00` of the 12-byte record *n*, a
    battle-text word for the Bestiary, resolved by `0x003214B0` (`0x0057617B`) and read as string 0 of its row by
    `0x002B58B0` (`0x00576185`).
@@ -138,10 +140,11 @@ build's kind-7 path array `0x01EC73A0`, which `0x002DF9A0` loads in its US case 
 `myoshiok/us/handbook/menuhandbook_monster.bin` for it. Its 384 entry names are all words of bank 8, the monster
 names. One entry serves every variant of a monster: Wolf and Alpha Wolf both count for entry 2, Wolf.
 
-129 of the 1,143 placed definitions, in 250 placements, have `0xFFFF` at class row `+0x52` (an empty `primer_entry`),
-which step 1 skips, so their defeats raise no entry's kill count. No Bestiary entry's monsters list in
-[`clan-primer-entries.tsv`](../Menus-And-HUD/clan-primer-entries.tsv) names them either.
-[`bestiary-no-primer-entry.tsv`](bestiary-no-primer-entry.tsv) lists them. By family:
+202 of the 1,143 placed definitions, in 445 placements, have `0xFFFF` at class row `+0x52` (an empty
+`primer_entry`), which step 1 skips, so their defeats raise no entry's kill count. 73 of them, in 195 placements,
+stand in the monsters list of an entry of [`clan-primer-entries.tsv`](../Menus-And-HUD/clan-primer-entries.tsv) through
+that entry's gallery model (entries 33, 35, 278 and 377 to 383). No entry's monsters list names the other 129, in
+250 placements; [`bestiary-no-primer-entry.tsv`](bestiary-no-primer-entry.tsv) lists them. By family:
 
 - Imperial Army 49: Imperial Hoplite 15, Imperial Magus 10, Imperial Gunner 7, Imperial Swordsman 5, Imperial
   Marksman 4, Imperial Pilot 4, Vayne 2, Imperial Beastmaster 1, Larsa 1;
@@ -247,10 +250,10 @@ arguments (`PUSHII`, a pooled int or a pooled float):
 
 | Verb | Handler | What it sets |
 |---|---|---|
-| `btlAtelSetUnit(row)` | `0x00510160` → `0x0023A3B0` | installs definition `0x100` + *row* with `0x0023A570` |
-| `btlAtelSetLevel(base, range)` | `0x0050F910` → `0x002398F0` | level `base + rand % (range + 1)` and reference level `+0x88` = `base`, through `0x0030C470` |
-| `btlAtelSetStatus(table)` | `0x005103B0` → `0x002394C0` | 32 two-bit codes: 3 immune, 2 added at a fresh spawn, 1 added when an LCG draw is odd ([Augments](../Damage-And-Battle-Formulas/augments.md)) |
-| `btlAtelSetAbility(a, b)` | `0x00510440` → `0x002390B0` | the enemy augment mask `+0xE80`: bit *j* of `a` sets augment 31 - *j*, bit *j* of `b` sets augment 63 - *j* |
+| `btlAtelSetUnit(row)` | `0x00510160` → `0x0023A3B0` | installs definition *row* OR `0x100` (`bts` at `0x0023A3E1`; `0x100` + *row* for a row below `0x100`), or `0xFFFF` for row `0xFF` (`0x0023A3D9`-`0x0023A3E7`), with `0x0023A570`, after `0x002355A0` (`0x0023A3D4`); an actor without a battle unit gets nothing (`0x0031B760`, `0x0023A3C4`-`0x0023A3CF`) |
+| `btlAtelSetLevel(base, range)` | `0x0050F910` → `0x002398F0` | level `base + rand % (range + 1)` and reference level `+0x88` = `base`, through `0x0030C470`, returning 0 (`0x00239939`); the draw is the LCG `0x00328370`; refused with −1 when the actor has no unit (`0x0023990F`) or byte `[[unit + 0x6A0]]` has bit `0x1` or `0x4` set (`0x00239918`); the spawn record `+0x6A0` is read with no null test (`0x00239911`), so a unit without one faults there; `range` = −1 divides by zero at `0x00239926` and faults |
+| `btlAtelSetStatus(table)` | `0x005103B0` → `0x002394C0` | 32 two-bit codes: 3 immune, 2 added at a fresh spawn, 1 added when an LCG draw is odd ([Augments](../Damage-And-Battle-Formulas/augments.md)); `+0xE90` is zeroed first (`0x002394FC`), and an actor without a battle unit gets nothing (`0x002394D9`) |
+| `btlAtelSetAbility(a, b)` | `0x00510440` → `0x002390B0` | the enemy augment mask `+0xE80`: bit *j* of `a` sets augment 31 - *j*, bit *j* of `b` sets augment 63 - *j*; an actor without a battle unit gets nothing (`0x002390CA`) |
 
 The status table argument is an msp reference (tag 3, resolved by `0x002650B0`): 8 bytes at the script image's
 `[+0x40]` plus the offset. `0x0023A570` has two other callers: `0x00300E40` passes `0xFFFF` (`0x00300F6D`), and `0x003266C0`
@@ -293,7 +296,7 @@ So a Wolf placed at levels 2-3 and one placed at levels 6-7 both have 94 HP at t
 | `+0x38` | `u32[2]` | the ids of the model's part 8 entries 0 and 1, 0 for no entry; 0 in every row | `0x0031C000` through `0x0031BEC0` ([Actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), states 13-15) |
 | `+0x40` | `u8[2]` | those entries' attach links, through the table at `0x00D107F8`; 0 in every row | `0x0031BE30` |
 | `+0x42` | `u8[2]` | Monograph drop chances | `0x003180F0` |
-| `+0x44` | `u16[2]` | poach: common (95 %), rare (5 %) | `0x00390680` ([Formula slots](../Damage-And-Battle-Formulas/formula-slots.md)) |
+| `+0x44` | `u16[2]` | poach: common (95 %), rare (5 %) | `0x00390680` ([Formula slots](../Damage-And-Battle-Formulas/formula-slots.md)): the common word when `0x00379CD0() % 100` is below 95, else the rare one (`0x00390690`-`0x003906AD`), for an enemy target (byte `+0x05` = 1) with a unit, kept at `[0x02EBF188]`; while the dword `+0xE60` of the console settings object `0x001D50D0()` is 0 the common word is taken and while it is 1 the rare one (`0x0017D410`, `0x0039071D`-`0x00390795`), and its constructor sets it to -1, which keeps the roll (`0x001CCE1F`); a word of `0xFFFF`, or a target that is not an enemy, leaves item 0 in `0x02AEE050` (`0x00390713`, `0x003907A3`-`0x003907AB`); the slot also sets the target's HP outright to 0 (`0x02AEE02C`, `0x003907BE`) and bit `0x80000` of the result's `+0x2C` (`0x003907C8`) |
 | `+0x48` | `u16[4]` | Monograph pairs: key item, item | `0x003180F0` |
 | `+0x50` | `u16[4]` | order sets for orders 0-3 | `0x0023A570` (set 0), `0x00239040`, `0x002FDDA0` ([Battle orders](../Battle-Actions/battle-orders.md)) |
 
@@ -311,7 +314,13 @@ The `+0x03` and `+0x15` bits, by their readers:
 
 `0x0031C540(actorId, &colour, &variant)` resolves the id to its actor (`0x003588B0`) and the actor's unit (`0x00263E30`,
 `+0x30`), and reads the two bytes from the unit's definition (`[unit + 0xE60]`, `+0x12` and `+0x11`) when the
-unit's row `+0x698` byte `+5` is 1. Otherwise it fails with both 0 and a non-zero return. The model rebuild hands them on as
+unit's row `+0x698` byte `+5` is 1. Otherwise it fails with both 0 and a non-zero return.
+
+Both outputs are zeroed first (`0x0031C56F`, `0x0031C575`), and the id is resolved only while battle flag
+`0x02089340` bit `0x10` is set (`0x0031C54A`): the answer is −1 without the flag, the actor, the unit or its row
+(`0x0031C5C2`), −2 for a row whose byte `+5` is not 1 (`0x0031C592`), and 0 after a read (`0x0031C5A9`).
+
+The model rebuild hands them on as
 `0x0026D610(actor, variant, colour)` (`0x0037B77C`-`0x0037B7A5`), or as variant 1 and colour 0 when the read fails
 ([actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md)). From there:
 
@@ -321,10 +330,11 @@ unit's row `+0x698` byte `+5` is 1. Otherwise it fails with both 0 and a non-zer
    `+0x5D` (`0x0042056C`-`0x00420576`).
 3. The bind `0x0041F340` hands both to the model row (`0x0041F641`-`0x0041F69E`, `0x004780C0`). `0x00504F00` matches the
    variant against the model's `@FOR` record keys (`+0xB8`; the first record's key when no key matches, 0 with no
-   record) and keeps the colour as the option number `+0xB9`
-   while it is below the `@FOR` option count `+0x33`, else 0
+   record or a first key of `0xFF`, `0x005050A2`-`0x005050C8`)
    ([model files](../Graphics/model-files-cm-ca.md)).
-4. The variant also picks the `@FOR` scale (`0x00504840`, record `+0x26C`) and the pose sequencer entry
+4. `0x00504F00` keeps the colour as the option number `+0xB9`
+   while it is below the `@FOR` option count `+0x33` and not negative, else 0 (`0x005050DB`-`0x0050510B`).
+5. The variant also picks the `@FOR` scale (`0x00504840`, record `+0x26C`) and the pose sequencer entry
    (`0x004772E0`, record `+0x450`).
 
 Over the 1,146 definitions, `+0x12` is 0 on 1,065, 1 on 46, 2 on 20, 3 on 8, 4 on 3 and 5 on 4; `+0x11` is 0 on
@@ -346,7 +356,7 @@ chocobo definition has variant 0 and one of these colours:
 | Offset | Type | Field | Read by |
 |---|---|---|---|
 | `+0x00` | `u32` | model, a bound id | `0x0031C2F0` |
-| `+0x04` | `u8` | type, unit `+0x55`, named by word bank 13 (word `0x6800` + type: 0 Hume, 1 Humanoid, 2 Giant, 3 Dragon, 4 Beast, 5 Insect, 6 Plant, 7 Avion, 8 Amorph, 9 Fiend, 10 Elemental, 11 Warmech, 12 ???, 13 Undead, 14 Construct, 15 Ichthian); when the source unit's is 13, the Drain slot `0x0038D400` exchanges the target's HP loss and gain with the source's (`0x0038D4D9`-`0x0038D50B`), and its final block then rewrites part of them ([Formula slots](../Damage-And-Battle-Formulas/formula-slots.md)) | `0x0023A570` |
+| `+0x04` | `u8` | type, unit `+0x55`, named by word bank 13 (word `0x6800` + type: 0 Hume, 1 Humanoid, 2 Giant, 3 Dragon, 4 Beast, 5 Insect, 6 Plant, 7 Avion, 8 Amorph, 9 Fiend, 10 Elemental, 11 Warmech, 12 ???, 13 Undead, 14 Construct, 15 Ichthian); when the source unit's is 13, the Drain slot `0x0038D400` exchanges the target's HP loss and gain with the source's (`0x0038D4D9`-`0x0038D50B`), and its final block then rewrites part of them; when the target's is 13 (the slot context `+0x18`) the slot gives the amount to the target and takes it from the source (`0x0038D481`-`0x0038D4BF`, `0x0038D561`-`0x0038D5B8`); the other slots that test the target's 13 are listed below the class row ([Formula slots](../Damage-And-Battle-Formulas/formula-slots.md)) | `0x0023A570` |
 | `+0x05` | `u8` | class, unit `+0x56`, the kill chain's class ([Kill chain](../Rewards-EXP-Gil-And-Loot/kill-chain.md)), named by word bank 14 (word `0x7000` + class, 64 names; class 34 is Skeleton) | `0x0023A570` |
 | `+0x06` | `u16` | unit `+0x52`; 0 in every row | `0x0023A570` |
 | `+0x10` | `i16` | push weight: a positive value divided by 10 is the weight the separation tick gives the body, as the party table's `+0x7A` ([Party table](../Party/party-table.md)); any other value goes over unchanged, and the -1 of 221 rows makes the body one an overlap never moves (`0x00314E10` gives a negative weight a share of 0) | `0x00238BF0` (`0x00238CEB`) → `0x0026DAC0` ([Movement bodies](../Movement-And-Pathfinding/movement-bodies-and-separation.md)) |
@@ -382,6 +392,33 @@ The `+0x12` and `+0x18` bits, by their readers:
   `0x003377C0`, `0x00337C10`, `0x00337D90`, `0x00338490`, `0x0033A240`, `0x0033C310` and `0x0033E1F0` compare the group with 0, 1,
   2, 4 and 5.
 - `+0x18` bits under mask `0x70`: the placement height byte `+0x1F6` (`0x00239E10`, [Enemy spawning](enemy-spawning.md)).
+
+The type `+0x04`, by its readers:
+
+- The slot context `+0x18` holds the target unit's `+0x55` (`0x003847C0`, `0x0038487C`-`0x00384885`;
+  [Damage formula](../Damage-And-Battle-Formulas/damage-formula.md#the-context)), and the formula slots test `+0x18 == 13`
+  as a word (`cmp word ptr [r8 + 0x18], 0xd`, with `rbx` for `r8` at `0x0038D561` and `0x0038DE21`) at `0x00387F76`,
+  `0x0038825F`, `0x003889FF`, `0x0038D10D`, `0x0038D180`, `0x0038D481`, `0x0038D561`, `0x0038D680`, `0x0038DE21`, `0x0038E09E` and
+  `0x0038E7E3`.
+- The drain slot `0x0038D400(source, target, context)` writes the scratch words of
+  [Damage formula](../Damage-And-Battle-Formulas/damage-formula.md#the-scratch-block). A source that is its own target sets
+  `0x02AEDFB8` and `0x02AEDFBC` to 1 (`0x0038D418`-`0x0038D427`); attack `0x02AEE058` below defence `0x02AEE05C` sets
+  `0x02AEDFB8` to 1 and the target's HP loss `0x02AEE004` and the user's HP gain `0x02AEE018` to 0 (`0x0038D441`-`0x0038D46B`).
+- Otherwise the amount is `trunc((attack - defence) * scale)`, the scale `0x02AEE054` (`0x0038D487`-`0x0038D48F`). It
+  goes to the target's loss and the user's gain; against a target of type 13 (`0x0038D481`) it goes to the target's
+  gain `0x02AEE008` and the user's loss `0x02AEE014` instead, while the target's loss takes the old user's loss and the
+  user's gain the old target's gain (`0x0038D4A1`-`0x0038D4BF`).
+- A source whose unit `+0x55` is 13 then swaps the target's loss and gain with the user's (`0x0038D4C5`-`0x0038D50B`,
+  the unit kept at `[0x02EBF188]`). Reverse on the target (context `+0x08` bit `0x1000`) swaps the target's loss and
+  gain, and Reverse on the source (context `+0x04` bit `0x1000`) the user's (`0x0038D52C`-`0x0038D55B`).
+- A final block recomputes the amount and rewrites (`0x0038D561`-`0x0038D5F8`). Against a type-13 target the target's
+  gain and the user's loss are the amount, or with Reverse on the target the target's loss is the amount and its
+  gain and the user's loss -1. Against any other target the target's loss and the user's gain are the amount, or
+  with Reverse on the target the target's gain is the amount and its loss and the user's gain -1.
+- With Reverse on the source the user's word just written moves to the other user's word, and the first becomes
+  -1: against a type-13 target the user's gain takes it and the slot returns (`0x0038D5A8`-`0x0038D5C7`); otherwise
+  the user's loss takes it. The slot then calls `0x00387B00(source, target)` when the user's loss `0x02AEE014` is not
+  -1 (`0x0038D602`-`0x0038D60D`).
 
 ### The base and growth stat rows (slots 5 and 6, 56 bytes)
 
@@ -455,7 +492,7 @@ No instruction in that set touches the bytes above, so the TSV gives them raw.
 | `monograph_1`, `monograph_2` | item, chance and the key item that must be held |
 | `weapon`, `weapon_element`, `weapon_status`, `off_hand` | the two equipment ids by name; the main-hand row's element and on-hit status |
 | `variant` | definition `+0x12` (the colour) then `+0x11` (the model variant), as "colour, variant" |
-| `start_hp` ... `class_bytes30` | the remaining fields as the layout tables above name them, raw; `push_weight` is class row `+0x10` divided by 10, and `class_bytes30` the sixteen bytes of `+0x30` |
+| `start_hp` ... `class_bytes30` | the remaining fields as the layout tables above name them, raw; `push_weight` is class row `+0x10` divided by 10, `+0x10 / 10`, and `class_bytes30` the sixteen bytes of `+0x30` |
 | `flags03` | definition `+0x03` in hex, the bits of the layout above: `0x3` the tracked-HP class, `0x10` the height and AI tests, `0x20` the shadow kind |
 | `flags15` | definition `+0x15` in hex: bit `0x1` Attack and weapon evade from the rows, `0x2` shield and magick evade from the rows, `0x4` the unit flag, `0x18` the target-information query |
 | `scale_x`, `scale_y`, `scale_z` | definition `+0x0A`, `+0x0C` and `+0x0E` (`i16`), the model scale in percent: 55 to 300, 100 on 942 rows; the three are equal on 1,145 of the 1,146 rows |

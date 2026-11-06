@@ -19,18 +19,34 @@ addresses: "0x0028F8B0, 0x00291750, 0x0028F2F0, 0x00273A30, 0x00273B40, 0x002913
 
 The HUD is one `0x10FD0`-byte object whose pointer is at `0x0209BE80`:
 
-1. `0x0028F8B0` first tears down any old one with `0x0028F2F0`, then allocates the object through `0x00271420(0x10FD0)`
+1. `0x0028F8B0` first tears down any old one with `0x0028F2F0` and zeroes the word `0x0209E5E8` (`0x002B9FD0`,
+   `0x0028F8B9`), then allocates the object through `0x00271420(0x10FD0)`
    when the pointer is empty and initialises it with `0x00291750` (`0x0028F8CF`, `0x0028F8DE`).
 2. `0x00291750` clears all `0x10FD0` bytes, allocates the `0x8030`-byte pool into `+0x10FC0` and prepares it
    (`0x00272470`), builds the part at `+0x5380` (`0x0028A080`), the selection marker `+0x7EA0` (`0x0028CA30`), the help
    block `+0x8FA0` (`0x002BE450`, `0x002BE0A0`) and the world-object part `+0x57E0` (`0x003FA760`), and sets
    `+0x10F90` to -1 and byte `+0x10FA2` to 1.
 3. `0x0028F8B0` then clears the two rolling-counter tables (`0x00296260`, `0x00296240`), resets the counter list `+0x80`
-   (`0x004FE3C0`), writes 1 to `+0xAA44`, sets flag bit `0x20` and closes the widget kept at `+0x10F88` (`0x0028F8E3`-`0x0028F952`).
+   (`0x004FE3C0`), writes 1 to `+0xAA44`, sets flag bit `0x20` and closes the widget kept at `+0x10F88`
+   (`0x0028F8E3`-`0x0028F952`).
+4. The flags are the dword `+0x10F68`; it also sets `+0x10F90` to -1 again and zeroes `+0x10F88` after
+   `0x00244F00` (`0x0028F922`-`0x0028F95E`). Its tests of `0x0209BE80` before these stores (`0x0028F8F7`, `0x0028F90F`,
+   `0x0028F930`) follow `0x00291750`, which has just cleared the object through that pointer.
 
 `0x0028F8B0` runs from `0x0035C560` (`0x0035C57F`). `0x0028F2F0` releases every list in the pool, the two `+0x10F74` and
 `+0x10F78` widgets through `0x00274840` (`0x002446E0`, `0x002473B0`, `0x002482E0`: focus, message 18 and release), the
-level-up blink part (`0x00296670`), the pool and the object itself (`0x0028F2F0`-`0x0028F564`).
+level-up blink part (`0x00296670`), the pool and the object itself (`0x0028F2F0`-`0x0028F564`). It does nothing while
+`0x0209BE80` is null (`0x0028F2FE`), and otherwise works in this order:
+
+1. `0x003F8A90` and `0x004FE3C0` on the counter list `+0x80`, the two rolling-counter tables (`0x00296260`, `0x00296240`),
+   `+0x10F90` = -1, and the `+0x10F88` widget closed (`0x00244F00`) and zeroed (`0x0028F304`-`0x0028F368`);
+2. `0x003CA2B0()`, then `0x003F30A0([+0x10F40], 0x00290DF0)` and `+0x10F40` = 0 (`0x0028F374`-`0x0028F39A`);
+3. the pool blocks of the four lists `+0x10F00`, `+0x10F10`, `+0x10F20` and `+0x10F30`, followed through their
+   next pointers `+0xD70`, `+0x868`, `+0x9B0` and `+0x300`, each freed with `0x00273B40` (`0x0028F3A1`-`0x0028F470`);
+4. the widgets through `0x00274840`: `+0x10F74`, read as a dword and passed zero-extended, and `+0x10F78`; then
+   `+0x10F80` through `0x003697F0`; each is zeroed after (`0x0028F472`-`0x0028F4E0`);
+5. the blink part `+0x7FB0` with `0x00296670(+0x7FB0, 6)`, `0x00245020([+0x10FC8])` when it is set, the pool
+   `+0x10FC0` and the object through `0x003697F0`, leaving `0x0209BE80` = 0 (`0x0028F4EE`-`0x0028F554`).
 
 ### Its parts
 
@@ -111,9 +127,12 @@ Each allocation is a `0x20`-byte block header, PoolBlock, followed by the data:
 
 `0x00273A30(mode, pool, size)` rounds the size up to 16 and returns 0 for size 0:
 
-1. In an empty pool the block goes at `start` when it fits before `end`.
+1. In an empty pool the block goes at `start` when it fits before `end`. The fit test and the data address it
+   returns both take the low 32 bits of `start`, and the block gets no next or previous and becomes the head and
+   the cursor (`0x00273A74`-`0x00273AA9`); a block that does not fit returns 0 (`0x00273A81`).
 2. With mode 0 it tries the gaps after each block from the cursor forwards (`0x00276000`), then from the cursor's
-   previous block backwards (`0x002760A0`), then the gap before the head (`0x00276120`).
+   previous block backwards (`0x002760A0`), then the gap before the head (`0x00276120`). With no cursor it starts
+   from the head (`0x00273A6C`).
 3. With another mode it tries the gap before the head first, then forwards from the head.
 4. A found block is linked in and becomes the cursor; when no gap fits it returns 0.
 
@@ -121,7 +140,9 @@ The gap tests compare the low 32 bits of the addresses (`0x00276000`, `0x0027612
 (`0x002910AD`, `0x00291234`, `0x002913B9`, `0x00291624`, `0x00291997`).
 
 `0x00273B40(pool, data)` unlinks a block: the head moves to the next block when the freed one had no previous, and a
-freed cursor moves to its next block, or to its previous one at the end.
+freed cursor moves to its next block, or to its previous one at the end. It finds the header at the low 32 bits of
+`data` less `0x20` (`0x00273B40`-`0x00273B43`), joins the block's neighbours to each other and zeroes its next and
+previous (`0x00273B6C`-`0x00273B94`).
 
 ### Target lines
 
@@ -273,6 +294,16 @@ The `0x80`-byte marker at `+0x7EA0` keeps two slots. `0x0028CA40(marker, unit)` 
 (`0x002E7F70`), or on a new unit fades the old slot out and starts the other. Group 16 of the
 pump (`0x0028C870`) turns it by 10 x `0x01DFE0BC` degrees a frame and fades it in or out by 32 / `0x01DFE0B4` a frame.
 
+The first call, while bit `0x1` of the marker's `+0x28` is clear, zeroes its first `0x30` bytes, keeps the unit
+at `+0x24`, takes the position from `0x002E7F70`, copies it to `+0x10` (`0x00202C90`), and sets bit `0x1`, `+0x20` =
+1.0 and `+0x2B` = `0x80` (`0x0028CA57`-`0x0028CAA2`). A request for the unit at `+0x24` only clears bit `0x2` of
+`+0x28` and of the open slot marking that unit, so a fade out stops (`0x0028CAA8`-`0x0028CAEA`). Another unit first
+runs `0x0028DFD0` (`0x0028CAEB`).
+
+A new slot sets bit `0x2` on every open slot not yet fading (`0x0028CAF5`-`0x0028CB1D`), and starts with flag bit
+`0x1`, the unit at `+0x18` and `+0x12` = `0x80` (`0x0028CB4A`-`0x0028CB62`). A unit that `0x003588B0` does not
+resolve keeps the zeroed position (`0x0028CA7D`, `0x0028CB6E`).
+
 `0x0028C970` draws it with `0x0028D260` and, per slot, `0x0028D8A0`, whose `0x0028D460` draws three sprites 2.094 radians
 apart. Both read a colour track at `0x00915FB0` (four keys, `0x0028CB90`) and scale it by `0x0028CD10(angle)`:
 
@@ -344,7 +375,7 @@ Group 15 of the pump, `0x002C6180`, steps it:
 |---|---|
 | `0x002C8A20(list, entry)`, `0x002C7620(list, entry)` | append an entry to the list `+0x1D70` (next `+0x18`, previous `+0x20`), and unlink one |
 | `0x002C8DF0(part)` | returns every entry whose shown bit is clear to the free list, and clears the `+0x1B80` box's entry `+0x1D30` when it was one of them |
-| `0x002C8A60(part, entry)` | gives an entry a name box: the box already showing its unit, else a free one, else the box after the last one used (`+0x1D7A` bit `0x80` flips). A new box is cleared and filled by `0x002C8BC0`, which writes the menu text `0x46D8` (`0x002C8C07`), a `0F <` baseline shift ([Text codes](text-codes.md)) whose two parameter bytes come from the screen-layout value NAOverHeadTextOffsetY (`0x002C8C22`-`0x002C8C43`), and then the display name from `0x00272CE0` (`0x002C8C02`) when bits `0x10` and `0x20` of the entry's byte `+0x17` are both set (`0x002C8BEC`-`0x002C8BF7`), and the name alone otherwise (`0x002C8CB5`); the unit goes to `+0x1B0` with bit `0x1` set and bit `0x2` clear in `+0x1B4` |
+| `0x002C8A60(part, entry)` | gives an entry a name box: the box already showing its unit, else a free one, else the box after the last one used (`+0x1D7A` bit `0x80` flips). A new box is cleared (`0x1C0` bytes, `0x002C8B4D`) and filled by `0x002C8BC0`; a free box that is the one bit `0x80` names also flips the bit (`0x002C8AFD`-`0x002C8B3A`). The box already showing the unit is filled again by `0x002C8BC0` unless `+0x1D84` equals `0x02092730` and bit `0x80` of the entry's byte `+0x17` is clear (`0x002C8B57`-`0x002C8B89`). `0x002C8BC0` writes into the box's text `+0x130` the menu text `0x46D8` (`0x002C8C07`), a `0F <` baseline shift ([Text codes](text-codes.md)) whose two parameter bytes come from the screen-layout value NAOverHeadTextOffsetY v (`0x002C8C22`-`0x002C8C43`): `0x81` with the bit `0x40` of v >> 1, and the low byte of v with bit `0x80` set; and then the display name from `0x00272CE0` (`0x002C8C02`) when bits `0x10` and `0x20` of the entry's byte `+0x17` are both set (`0x002C8BEC`-`0x002C8BF7`), and the name alone otherwise (`0x002C8CB5`). It measures the text (`0x0029CD00`), keeps the width and height at `+0xF4` and `+0xF6` and minus half of each at `+0xF0` and `+0xF2`, and makes `+0x130` the text of the box's context with `0x002B3400(box, text, sheet)`, the sheet being `+0xB0` of the current actor manager slot `0x002640C0()`, or 0 when there is no slot (`0x002C8CBA`-`0x002C8D32`). The unit's id, the entry's `+0x10`, goes to `+0x1B0` with bit `0x1` set and bit `0x2` clear in `+0x1B4` (`0x002C8B93`-`0x002C8BAB`), and `0x002C8A60` returns the box |
 | `0x002C6B50(part)` | fades each open name box in, or out while its bit `0x2` is set, by 32 / `[0x01DFE0B4]` a frame up to `0x80`; a box faded out loses bit `0x1` |
 | `0x002C6BE0(part, box)` | the same for the box at `+0x1B80`, also moving its ramps `+0x1BC`, `+0x1BE` and `+0x1D0`; a box faded out drops its entry |
 | `0x002C62B0(part, ...)` | the draw: each entry through `0x002C7660`, with bit `0x400` of the script hold mask (`0x002E0FA0`) and the focus unit, then the `+0x1B80` box (`0x002C7F90`) and each open name box at the part's alpha times the box's (`0x003F14D0`) |
@@ -369,7 +400,16 @@ HUD animations read short tracks of keys. `0x00271AB0(out, keys, count, t)` uses
 
 It finds the segment whose times hold `t`, the last one past the end, and blends by `p`, the fraction of the
 segment: curve 1 gives `sin(p x pi/2)`, curve 2 `1 - sin((1 - p) x pi/2)`, any other `p`. Past the last key it keeps
-blending along the last segment.
+blending along the last segment. A `t` before the first key also takes the last segment, as no segment holds it
+(`0x00271AD6`-`0x00271B05`). The segment's curve is that of its end key (`0x00271B24`).
+
+The blend works in 256ths: `(int)(sin(p x pi/2) x 256)` for curve 1, `256 - (int)(sin((1 - p) x pi/2) x 256)` for
+curve 2 and `((t - t0) << 8) / (t1 - t0)` for any other, then divided by 256 (`0x00271B35`-`0x00271BAA`,
+`0x00271BFE`-`0x00271C0B`).
+
+x, y, a and b go to `out + 0`, `+2`, `+4` and `+6` as 16-bit values, and w to `out + 8`,
+each truncated toward zero, `v = (int)(v0 + (v1 - v0) * f)` with `f = (blend << 4) * (1 / 4096.0)`
+(`0x00908E14`; `cvttps2dq` at `0x00271C20` and `0x00271C99`, `0x00271BFE`-`0x00271C9D`).
 `0x0028CB90` does the same over 8-byte keys `{i16 value, u8, u8, i16 curve, u16 time}` and blends through `0x002752E0`.
 `0x002C6DC0(out, keys, n, t)` does it for the overhead display (`0x002C7F90`, `0x002C84E0`) over 8-byte keys
 `{i8, i8, u8 curve, u8, i16 time, i16}`, blending through `0x002752E0`.
@@ -461,8 +501,13 @@ the script hold mask is clear (`0x002E0FA0`), and `0x0035D550` gives 0 otherwise
 Scripts reach it through a word of hide bits, one per verb family:
 
 1. `maskopen`, `maskclose`, `sethpmenu` and their fast and `mesv` forms set or clear their bit of `0x0215F1AC` with
-   `0x002E1C40`; the fast forms also set the same bit of `0x0215F1B4` with `0x002E1C70`
-   ([verb table](../Scripts-And-Script-Commands/verb-table.md)).
+   `0x002E1C40` ([verb table](../Scripts-And-Script-Commands/verb-table.md)):
+   - `0x002E1C40` also clears that bit of `0x0215F1B4` (`0x002E1C5A`-`0x002E1C64`).
+   - The fast forms then set the same bit of `0x0215F1B4` with `0x002E1C70(1, bit)` (`0x003531CE`, `0x00353A8F`, `0x0035609E`,
+     `0x00355DC9`, `0x00353620`).
+   - `maskopen`, `maskclose`, `sethpmenu`, `sethpmenu_436` and `mesvmaskopen` set it the same way while the skip byte
+     `+0x201` of the script's manager slot is set, which `0x00267310` returns (`0x00353DD1`, `0x00354842`, `0x003569C1`,
+     `0x00356416`, `0x00354343`); with that byte clear they end in `0x002E1C40` and the bit of `0x0215F1B4` stays clear.
 2. Each tick `0x002E0940` compares the word with the last one seen (`0x0215F1B0`). On a change it calls
    `0x00254440(word != 0, b)`, with b = 1 when any bit of `0x0215F1B4` is set, and clears `0x0215F1B4`.
 3. `0x00254440` sets bit `0x40` of `0x01E0C320` for a b of 0 or more, keeps the two values at `0x02092744` and `0x020927EC`, and
@@ -499,7 +544,8 @@ The Escape Mode register and arming are on [Escape](../Controls-And-Input/escape
 
 ### The field marker
 
-The field marker is the `0xF8`-byte widget at `0x022C83E0` with procedure `0x0035C160` (State below); every field past the header is set only by its construct message, so it draws nothing.
+The field marker is the `0xF8`-byte widget kept at `0x022C83E0` with procedure `0x0035C160` (State below); every field
+past the header is set only by its construct message, so it draws nothing.
 
 `FieldMarker` (`0xF8` bytes, offsets from the start of the record):
 
@@ -517,7 +563,8 @@ The field marker is the `0xF8`-byte widget at `0x022C83E0` with procedure `0x003
 
 ### The field-effect icon
 
-The field-effect icon is the `0xD8`-byte widget at `0x02B47740` with procedure `0x003C9A30` that the HUD switch opens; it shows the icon of the first field effect in force.
+The field-effect icon is the `0xD8`-byte widget kept at `0x02B47740` with procedure `0x003C9A30` that the HUD switch
+opens; it shows the icon of the first field effect in force.
 
 `FieldEffectIcon` (`0xD8` bytes, offsets from the start of the record):
 
@@ -676,7 +723,7 @@ The part at `+0xA0` keeps 64 sprites of `0x100` bytes at its `+0x20`. `0x003F939
 
 ### The target-line watcher
 
-The target-line watcher is the `0xD0`-byte widget at `0x022C83A8` with procedure `0x0035DAF0`. `0x0035DC60`, run by the
+The target-line watcher is the `0xD0`-byte widget kept at `0x022C83A8` with procedure `0x0035DAF0`. `0x0035DC60`, run by the
 field set-up `0x00253A10` (`0x00253A1E`), builds it while the cell is 0 (`0x0035DC64`-`0x0035DC82`); message 18 clears the
 cell (`0x0035DB30`). Each tick it keeps one `+0x10F30` mark (Line marks above) from the controlled character to that
 character's target.

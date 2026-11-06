@@ -52,7 +52,8 @@ in 1.
 
 - the resolver `0x002650B0` switches on bits `0x7000000` through the table at `0x00265180`;
 - every shipped chest uses tag 3, which `0x00265155` resolves to the image plus the image's msp-area offset (header
-  `+0x40`) plus the low 24 bits ([section 000 of the script container](../EBP-Script-Files/ebp-script-image.md));
+  `+0x40`) plus the low 24 bits ([section 000 of the script
+  container](../EBP-Script-Files/ebp-script-image.md));
 - `setuptreasure`'s begin `0x00354400` resolves it at `0x0035444C` and the payout verb's begin `0x0050FAF0` at
   `0x0050FB25`, each against the script that is running the chest's function.
 
@@ -76,17 +77,21 @@ opened flag and the presence roll below decide whether the chest is there.
 ([script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md) has the placement):
 
 1. When the opened flag `record[+0x09]` is set (`0x0032AA60`, bit *n* of the 256-bit chest and trap set at `+0x14B4`
-   of the save payload, the first half of Bank512 of the [Story flags](../Story-Events-And-Hunts/story-flags.md)), there is no chest
+   of the save payload, the first half of Bank512 of the [Story flags](../Story-Events-And-Hunts/story-flags.md)),
+   there is no chest
    (`0x002FAEE2`-`0x002FAEF0`).
 2. Otherwise a chest when `draw % 100 < record[+0x0A]` (`0x002FAEF2`-`0x002FAF1F`), the draw coming from the gameplay
    Mersenne Twister `0x00379CD0`
    ([which roll uses which generator](../Random-Numbers/which-roll-uses-which-generator.md)).
 
-With no chest the model is set to −1 and the actor stays hidden; with a chest the result `0x00355210` shows it, places
-it at `(x / 10, 0, z / 10)` from `+0x04` and `+0x06` and faces it by the low six bits of `+0x08` in 6° steps
-(`0x002FAF60`).
+With no chest the model is set to −1 and the actor stays hidden. The actor also stays hidden when the map header gives
+no model, since the begin `0x00354400` then leaves `args[0]` at 0 (`0x00354469`, `0x00354480`) and the result returns when
+`args[0]` does not resolve ([script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)). With a
+chest and a model the result `0x00355210` shows it, places it at `(x / 10, 0, z / 10)` from `+0x04` and `+0x06` and
+faces it by the low six bits of `+0x08` in 6° steps (`0x002FAF60`).
 
-A flag byte of `0xFF` means no flag: `0x0032AA60` then tests flag 255 of the story-flag set, which nothing in shipped play sets.
+A flag byte of `0xFF` means no flag: `0x0032AA60` then tests flag 255 of the story-flag set, which nothing in shipped
+play sets.
 
 - The setter `0x0032AD70` has four callers: the trap firing `0x002F8060` and the payout `0x002FAFD0`, both of which skip
   `0xFF` (`0x002F8247`, `0x002FAFF0`), and the verbs `settreasurebattleflag` and `releasetreasurebattleflag`
@@ -107,6 +112,24 @@ Both outcomes of the roll are written to the presence ledger (`0x002FB430`, a ri
 The clear `0x002FA260` zeroes the ledger with 8-byte stores at `0x02EC3E60`, `0x02EC3E68`, `0x02EC3E70`, `0x02EC3E78` and
 `0x02EC3E80` and a 4-byte store at `0x02EC3E88` (`0x002FA262`-`0x002FA285`).
 
+`0x002FB430(ring, field, bit, value)` looks for the field among the first count entries. When it finds it, it
+sets mask bit `1 << bit` and replaces that value bit with `value` (`0x002FB4D0`-`0x002FB4F6`). When it does not, it
+takes the entry at the cursor: it stores the field, sets the mask to `1 << bit` alone and ORs `value << bit` into
+the value bits, so the replaced entry's other value bits stay (`0x002FB460`-`0x002FB499`).
+
+It then moves the cursor on modulo 3 and raises the count, capped at 3: the cursor `+0x24 = (+0x24 + 1) % 3` and
+the count `+0x28 = min(+0x28 + 1, 3)` (`0x002FB49C`-`0x002FB4C2`).
+
+`0x002FA470` adds its entry only when no entry below the count holds field `0x022BE940` (`0x002FA490`-`0x002FA493`); it
+then stores mask `0xFF`, value 0 and the field at the cursor and moves the cursor and count the same way
+(`0x002FA4AA`-`0x002FA50E`). Both paths end in a jump to `0x002F7FA0(ring, 0x022BE940)` (`0x002FA51A`).
+
+`0x002F7FA0(ring, field)` takes the entries below the count in index order. For each whose field matches, it
+swaps that entry with the entry one place after it and then two places after it, modulo 3, `j = (i + k) % 3` for
+`k = 1, 2`, stopping at an index that is the cursor or at or past the count, `j == +0x24` or `j >= +0x28`
+(`0x002F7FC0`-`0x002F8036`). An entry moved to a later index is tested
+again when the walk reaches it.
+
 So `setuptreasure` rolls a chest whose flag is clear every time it runs, and nothing in the chest code carries an
 earlier roll or opening into that roll.
 
@@ -126,7 +149,9 @@ Opening runs `0x002FAFD0` from `btlAtelOpenTreasureMessage`:
 5. Item: a second draw `% 100`. With Treasure Hunter, below 95 gives `+0x10`, otherwise `+0x12`; without it, below
    50 gives `+0x0C`, otherwise `+0x0E`. `0xFFFF` gives nothing; any other id gives one.
 
-The verb then grants the item through `0x00300B80(item, 1, 0)` or the gil through `0x003004B0(gil, 0)`
+The verb then grants the item through `0x00300B80(item, 1, 0)` (`0x0050FBA0`) or the gil through `0x003004B0(gil, 0)`
+(`0x0050FB76`), after adding the matching entry to its message record (`0x0035E500`); when the roll gave nothing it adds
+no entry and grants nothing (`0x0050FB5A`), and on every path it shows the message record (`0x0035DF40`, `0x0050FBA8`)
 ([reward verbs](../Scripts-And-Script-Commands/reward-verbs.md)).
 
 So for a chest with gil chance *g*, the odds are *g*% gil and (100 − *g*)% an item. Without the armlet the two
@@ -200,7 +225,7 @@ Struct PresenceLedger base=`0x02EC3E60` size=`0x2C`:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `i32` | field0 | the field of entry 0 |
-| `+0x04` | `u32` | value0 | bit i: 1 when chest i was placed, 0 when it was not placed or has been opened |
+| `+0x04` | `u32` | value0 | bit i: 1 when chest i was placed, 0 when it was not placed or has been opened (`0x002FB4F6`); an entry `0x002FB430` takes over ORs the new bit in, keeping the replaced entry's bits (`0x002FB488`) |
 | `+0x08` | `u32` | mask0 | bit i = chest i has a value (`0x002FB430`) |
 | `+0x0C` | `i32` | field1 |  |
 | `+0x10` | `u32` | value1 |  |
@@ -235,7 +260,7 @@ there, with a fixed consumable).
 | `map_name`, `region` | the map's name (`0x00377B60`) and its region's name (`0x003778B0`), as [Zone asset list](zone-asset-list.md) gives them; `-` for the three scripts no field loads |
 | `script`, `actor` | the zone script in the archive and the chest's actor in it |
 | `record`, `index` | the record's offset in the script image, and its byte `+0x00` |
-| `x`, `z`, `facing` | `+0x04` and `+0x06` divided by ten, in world units, and the facing code, mask `0x3F` of `+0x08`, in 6° steps |
+| `x`, `z`, `facing` | `+0x04` and `+0x06` divided by ten, `+0x04 / 10` and `+0x06 / 10`, in world units, and the facing code, mask `0x3F` of `+0x08`, in 6° steps, `(+0x08 & 0x3F) * 6` degrees |
 | `flag_id`, `comes_back` | `+0x09`, and `yes` for `0xFF` (no flag: the chest can be there again after it has been opened), `no` for a one-time chest |
 | `presence` | `+0x0A`, the percent chance the chest is there each time it is set out |
 | `gil_chance` | `+0x0B`, the percent chance an opening gives gil instead of an item |
@@ -331,7 +356,8 @@ The 35 pieces of equipment chests give only with Treasure Hunter:
 
 - weapons: Stoneblade, Durandal, Eight-fluted Pole, Sagittarius, Gastrophetes, Scorpion Tail, Shikari Nagasa, Rod
   of Faith, Storm Staff, Grand Mace, Euclid's Sextant, Volcano, Bonebreaker, Great Trango, Seitengrat;
-- shields, helms and armor: Gendarme, Bronze Shield, Venetian Shield, Horned Hat, Pirate Hat, Sorcerer's Hat, Sallet, Bronze
+- shields, helms and armor: Gendarme, Bronze Shield, Venetian Shield, Horned Hat, Pirate Hat, Sorcerer's Hat, Sallet,
+  Bronze
   Chestplate, Mirage Vest, Kilimweave Shirt, Scale Armor;
 - accessories: Gauntlets, Steel Poleyns, Winged Boots, Cat-ear Hood;
 - ammunition: Lightning Arrows, Artemis Arrows, Grand Bolts, Stone Shot, Water Bombs.
@@ -367,11 +393,15 @@ The 35 pieces of equipment chests give only with Treasure Hunter:
 ## Related
 
 - [Reward verbs](../Scripts-And-Script-Commands/reward-verbs.md): the opening sequence, the latch and the grant.
-- [Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md): what `setuptreasure` does in order and the placement decode.
-- [Which roll uses which generator](../Random-Numbers/which-roll-uses-which-generator.md): the presence and contents draws.
+- [Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md): what `setuptreasure` does in order
+  and the placement decode.
+- [Which roll uses which generator](../Random-Numbers/which-roll-uses-which-generator.md): the presence and
+  contents draws.
 - [Story flags](../Story-Events-And-Hunts/story-flags.md): the chest and trap flags, in Bank512.
 - [Traps](traps.md): the other user of the chest and trap flag set, and its own ring of three.
-- [Augments](../Damage-And-Battle-Formulas/augments.md) and [augment list](../Damage-And-Battle-Formulas/augment-list.md): augment 25 and the two layers.
+- [Augments](../Damage-And-Battle-Formulas/augments.md) and [augment list](../Damage-And-Battle-Formulas/augment-list.md): augment 25
+  and the two layers.
 - [Equipment list](../Items-Equipment-Shops-And-Licenses/equipment-list.md): the Diamond Armlet.
 - [Zone asset list](zone-asset-list.md): every field with its map and region name.
-- [Section 000 of the script container](../EBP-Script-Files/ebp-script-image.md): the int pool and the msp area.
+- [Section 000 of the script container](../EBP-Script-Files/ebp-script-image.md): the int pool and the msp
+  area.

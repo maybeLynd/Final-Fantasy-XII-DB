@@ -62,7 +62,8 @@ scenes](archades-scenes.md).
 - Trant: at story counter 3,250 `EventDirector.main` loads scene `alc_b0400` (event 306), writes 3250, after slipping
   into the imperial capital, and sets flag `0x0135`, the location map's exits between Archades and Old Archades;
   touching `RECT_SPLIT_BAL` writes 3253, met Reddas's man in the capital, as Balthier leaves ("We go our separate ways
-  here, Vaan."). One exit of Trant leads to Alley of Muted Sighs (Old Archades), field `762`.
+  here, Vaan. I've some business to attend to. We'll meet again later.").
+- Trant: one exit leads to Alley of Muted Sighs (Old Archades), field `762`.
 - Nilbasse: below story counter 3,255 `SAKIYOMI_ev_alc_a0280` loads scene `alc_a0280` (event 731), in which Jules
   meets the party at the cab.
 - Nilbasse, observed in the game at 3,254 with Vaan and no gil: the Cab Guide's talk plays `alc_a0280` up to
@@ -71,16 +72,17 @@ scenes](archades-scenes.md).
   and Decline leaves the same state.
 - Nilbasse: Jules (`NPC_JULES.talk`) and the Cab Guide (`NPC_タクシー受付.talk`) test the counter below 3,255 and write
   3255, Reddas's man caused trouble in the capital; Jules sets the map icon `0x00C3` (Nilbasse), and the Cab Guide
-  sets `0x00C3` and `0x00C2` (Tsenoble): "Only those with [value] or more chops may ride this cab, boy." The cab
-  (`map_ダミーＰＣ.タクシー乗る`) runs between Nilbasse and Tsenoble.
+  sets `0x00C3` and `0x00C2` (Tsenoble): "Only those with [value] or more chops may ride this cab, boy. Nothing
+  personal, I assure you." The cab (`map_ダミーＰＣ.タクシー乗る`) runs between Nilbasse and Tsenoble.
 - The chops: the townsfolk of Molberry, Trant, Nilbasse and Rienna (`NPC_WEB_*`) ask for and settle each other's
   errands.
 - Of those functions, 9 in Molberry, 6 in Trant, 6 in Nilbasse and 7 in Rienna give a Pinewood Chop and show system
   message 139, "You are now free to ride the cab.", and as many again test the story counter below 3,255;
   `QuestAcceptMenu.disp_accept` lists the errands' titles ("The Eight & Twenty Chops", "A Ticket to the Farce") and
   `disp_clear` closes the list, each setting and releasing flag `0x006F`.
-- In each of the five shops the Chopmaster (`NPC_GUILD.talk`) counts the chops ("Ah, [value] chops, I see.") and takes
-  28 Pinewood Chops for a Sandalwood Chop, and `RECT_LEAF.talk` gives a Sandalwood or a Pinewood Chop.
+- In each of the five shops the Chopmaster (`NPC_GUILD.talk`) counts the chops ("Ah, [value] chops, I see. With just
+  [value] more you'll qualify to ride a cab.") and takes 28 Pinewood Chops for a Sandalwood Chop, and `RECT_LEAF.talk`
+  gives a Sandalwood or a Pinewood Chop.
 - Tsenoble: below story counter 3,260 `EventDirector.main` writes 3260, the start of the infiltration of Draklor
   Laboratory, as Balthier tells of the light airship of the Draklor researchers.
 - Tsenoble: below story counter 3,300 `SAKIYOMI_alc_a0100` loads scene `alc_a0100` (event 307); touching `RECT_ジャッジ`
@@ -88,9 +90,10 @@ scenes](archades-scenes.md).
   (event 732), in which Jules has had Vaan collect the chops; touching `RECT_ジュールと再会` writes 3330, met Jules in the
   capital.
 - Tsenoble: the Cab Guide's cab jumps to the 66th Floor (Draklor Laboratory), field `1008`.
-- Tsenoble and the Grand Arcade: the Docent at the lift (`NPC_エレベーターガール.talk`) tests story counter below 4,000 ("No
-  one is allowed to enter Central at this time.") and turns away a party without a sandalwood chop; the lifts
-  (`map_ダミーＰＣ.エレベーター開く`) run between the Grand Arcade and Tsenoble.
+- Tsenoble and the Grand Arcade: the Docent at the lift (`NPC_エレベーターガール.talk`) tests story counter below 4,000 ("I'm
+  terribly sorry, but there's been an emergency. No one is allowed to enter Central at this time. Please, come
+  again.") and turns away a party without a sandalwood chop; the lifts (`map_ダミーＰＣ.エレベーター開く`) run between the Grand
+  Arcade and Tsenoble.
 - The court: `alc_z01`'s `常駐監督.main` loads scenes `alc_z0100` (event 300), `alc_z0101` (event 301), `alc_z0102` (event
   303), `alc_z0104` (event 305) and `alc_z0103` (event 304); it writes 1180, 1660, 1976, 2000 and 5020 and jumps to
   The Western Divide (Dalmasca Westersand), Sunlit Path (Ozmone Plain), Freezing Gorge (Paramina Rift), Hall of the
@@ -108,7 +111,7 @@ scenes](archades-scenes.md).
   Armaments: `NPC01.talk_04a` sets `0x03BA` and `0x03BB` (Willful Woman, Meek Man).
 - Bulward's Technicks: the Cartographers' Guild moogle (`地図屋.talk`) sells the Tchita Uplands or the Archades map, with
   system message 100 or 85; which one is decided at run time. Granch's Requisites: the notice board (`掲示板.talk`) lists
-  the bills ("Bill No. [value]") and sets a Bank2048 name flag that the function picks from a table.
+  the bills, each headed by its bill number, and sets a Bank2048 name flag that the function picks from a table.
 - Aerodrome: `EventDirector.main` loads scene `pas_z0000` (event 214).
 - Aerodrome: the boarding counter (`乗船カウンタートーク.カウンター処理`, requested by `NPC01.talk_10a` to `talk_12a`) sells passage,
   testing story counter below 6,100.
@@ -156,6 +159,10 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
    `0x00348DF0` (`0x00349884`).
 3. `0x00348DF0` pops eight values. The seventh, the script's second argument, is passed with the current field context
    to `0x00264D60` (`0x00348E6A`-`0x00348E74`), the section 2 lookup, which keeps the low 24 bits of the id.
+4. `0x00348DF0` reads the entry's flag through `0x002673A0`, bit `0x1` of the entry's upper half (`0x00348E85`), and
+   opens the window through `0x002E16B0` only when that flag is clear (`0x00348EE0`-`0x00348EFF`). With the flag set it
+   still makes its six slot calls (`0x00348E91`-`0x00348ECA`) and fills the call record (`0x00348ED7`-`0x00348EDC`) but
+   opens no window ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)).
 
 ### Speakers, places and scenes
 
@@ -171,6 +178,8 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
   passes it to the verb, and `0x00348DF0` hands it to `0x002E16B0`. That actor's name is the second name of each pair its
   `setnpcname` calls name; `0x002E16B0` sets the actor's name flag before the window opens, and `0x00263990` shows the
   second name while that flag is set.
+- `0x00348DF0` makes that `0x002E16B0` call only for a line whose section 2 flag is clear (`0x00348EE0`); for a flagged
+  line it opens no window, so the actor's name flag is not set there.
 - An actor no `setnpcname` or `setshopname` call names keeps the name id `0xFFFF` and the empty text the record set-up
   `0x00266530` writes (`0x0026668B`, `0x0026669B`-`0x002666B4`), so its `{actor-name}` header shows no name; that line reads
   `no name shown`. A system message reads `system message`.
@@ -328,7 +337,7 @@ The steps table [`archades-script-steps.tsv`](archades-script-steps.tsv) has one
 | `step` | the step's number in its function, from 1, in the order the function's bytes run |
 | `at` | where the step's instruction sits: its offset in section 0, the script image, of the shipped `plan_master/us` `.ebp`. For `case`, `default` and `label` it is where their code starts. For `shared template` and `same code` it is where the function or actor starts |
 | `line` | the step's line in the script listing, `-` for the `shared template` and `same code` rows |
-| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets |
+| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. A case whose values meet an earlier case's is followed by `not (x = w)` for each such earlier case `w`, so the cell names only the values the case runs on: `x = lte(78); not (x = lt(78))` runs when x is 78. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. When such a way passes a case that an earlier case overlaps, the item counts only the values that case takes: after `case lt(0x0177)`, a `case lt(0x0182)` that returns gives the item `not (x = lt(0x0182)) or x = lt(0x0177)`, which holds unless 0x0177 <= x < 0x0182. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets, and, for a case whose every value an earlier case already matches, on the case values |
 | `verb` | the verb the step calls, by its name in the [verb table](../Scripts-And-Script-Commands/verb-table.md), written `Actor.verb` for a call on another actor. Otherwise the kind of step: `if`, `else if`, `while`, `for`, `switch`, `case`, `default`, `break`, `goto`, `label`, `return`, `returnT`, `store`, `shared template` or `same code` |
 | `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test. A number with a fraction is the listing's print of a 32-bit float to nine significant digits, here and in `condition`: 1.60000002 is the float nearest to 1.6, and 2.36000005e-06 is 2.36000005 times 10 to the power -6 |
 | `addresses` | what the arguments name in the game: the actor, model, animation and motion file, effect file, event sound, camera shot, message window, request slot or variable |

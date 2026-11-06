@@ -22,8 +22,8 @@ manager, the directory walker `0x003304A0` dispatches each present slot:
 
 | Section | Gate in `0x003304A0` | Handler | Per-manager global | Manager record field | Pending bit |
 |---|---|---|---|---|---|
-| 2 | `0x00330519` (count above 2, offset non-zero) | `0x00330190` | `0x022C6CA0` | `+0xA0` (`0x0026C880`) | 4 |
-| 3 | `0x00330534` (count above 3, offset non-zero) | `0x00330220` | `0x022C6CC8` | `+0xA8` (`0x0026C8A0`) | 5 |
+| 2 | `0x00330519` (count above 2, offset non-zero) | `0x00330190` | `0x022C6CA0` | `+0xA0` (`0x0026C880`) | `0x10` (`0x003301D3`) |
+| 3 | `0x00330534` (count above 3, offset non-zero) | `0x00330220` | `0x022C6CC8` | `+0xA8` (`0x0026C8A0`) | `0x20` (`0x00330263`) |
 
 The handler takes the manager index from the low four bits of its argument and the section
 address from the rest. The manager bind `0x0026C8C0` zeroes both record fields (`0x0026CC49`,
@@ -102,10 +102,21 @@ returns bit `0x1` of the entry's upper half (`0x002673C0`, `0x002673C6`). Sectio
 
 - `mes` (`0x461`, `0x00348DF0`) stores the flag in the message slot's byte `+0x38` through
   `0x002E1E00` (slot record `0x0215F200 + slot * 0x68`), returns it in the call record, and opens the
-  window through `0x002E16B0` only when the flag is clear.
-- `aask_1ff` (`0x0034ADA0`) does the same but opens the window only when the flag is set.
+  window through `0x002E16B0` only when the flag is clear. `0x002E1E00` takes a negative slot as slot 0 and a
+  slot above 7 as slot 7 (`0x002E1E00`-`0x002E1E1F`).
+- `aask_1ff` (`0x0034ADA0`) does the same but opens the window only when the flag is set. It also writes the call
+  record's byte `+0x0C`: 1 when it opens the window, 0 when it does not (`0x0034AE75`, `0x0034AE8B`); `mes` always
+  writes 0 there (`0x00348EDC`).
 - `debug_mesask_43` (`0x0050EAB0`) always opens the window, stores the flag at `+0x38` through
-  `0x002E1D90`, and returns 1 in the call record when it is clear.
+  `0x002E1D90`, and returns 1 in the call record when it is clear. It pops five values (`0x0050EAE0`-`0x0050EB06`):
+  one it drops, the cancel row, the start row, the text id, which it masks to 24 bits (`0x0050EB0B`), and the
+  slot. `0x002E1D90` also zeroes the slot's byte `+0x3C` (`0x002E1DBD`).
+- `debug_mesask_43` then calls `0x002E1D50(slot, start, cancel, start)` (`0x0050EB45`), which sets `+0x24`, `+0x28`,
+  `+0x39` and `+0x3B`, and `0x002E1EA0(slot, 4)` for the window style (`0x0050EB52`), opens the window with
+  `0x002E16B0` from its own second argument, the slot, the text and the current manager record's `+0xB0`
+  (`0x002640C0`, `0x0050EB57`-`0x0050EB67`).
+- `debug_mesask_43` stores what `0x002E16B0` returns at `+0x00` of the call record (`0x0050EB76`) and
+  `flag == 0` at `+0x08` (`0x0050EB86`).
 - `unkCall_5b6` (`0x003545B0`) hands the string to `0x00474070` only when the flag is clear.
 
 `0x00474070(text, a, b, c, d, record)` builds a `0x1D8`-byte widget with procedure `0x00474100` (`0x00244F50`, `0x004740D3`)
@@ -131,6 +142,10 @@ While a slot holds a window with `+0x38` set, `0x002E0540` returns 1 and `0x0026
 then keep the field held ([time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
 until a close path clears the byte (`0x002E0780`).
 
+`0x002E0540` walks the eight slots and returns 1 at the first whose qword `+0x00` is non-null and whose byte
+`+0x38` is non-zero or byte `+0x3E` has bit `0x1` set (`0x002E0568`-`0x002E0580`, `0x002E058C`); with no such slot it
+returns 0 (`0x002E0589`).
+
 ### Readers
 
 | Verb | Id | Handler | Bank | What it does with the string |
@@ -142,8 +157,8 @@ until a close path clears the byte (`0x002E0780`).
 | `setgaugecounterlabel`, `setgaugecounterunit`, `setgaugetimerlabel` | `0x1BC`-`0x1BE` | `0x00352A50`, `0x00352EC0`, `0x003534F0` | 2 | the gauge, through `0x003E8F50`, `0x003E8FC0`, `0x003E9000` |
 | `setfieldsign`, `setfieldsignonce` | `0x174`, `0x175` | `0x00354F20`, `0x003555F0` | 2 | the field-sign table `0x02B59C80` (`0x003DF760`), entries 6-7 and 4-5 |
 | `fieldsignmes` | `0x178` | `0x00356B70` | 2 | the actor's name text (`0x00269F20`) |
-| `fieldsign` | `0x176` | `0x00355A00` | 3 | the actor's name text, from the caption id in the sign record `0x002642C0` returns |
-| `fieldsignmesbyid` | `0x179` | `0x00357120` | 3 | the actor's name text |
+| `fieldsign` | `0x176` | `0x00355A00` | 3 | the actor's name text, from the caption id in the sign record `0x002642C0` returns (`0x00355A90`-`0x00355AAD`); the empty string at `0x02F8F2A0` when that id is negative (`0x00355AC3`-`0x00355AD0`), and no change when there is no record (`0x00355A2E`) |
+| `fieldsignmesbyid` | `0x179` | `0x00357120` | 3 | the actor's name text: the text id it pops (`0x00267E10`, `0x00357140`), read from the current manager record `[0x02099D70]` (`0x002640C0`) through `0x00264D90` (`0x0035714A`) and stored by `0x00269F20(actor, text, 0)` (`0x00357167`) |
 
 `0x00269F20(actor, text, 0)` stores the text at the actor's `+0xF8` and 0 at `+0x100`; that is the
 literal name an actor with a negative name id shows ([NPC names](../Characters-And-Objects/npc-names.md)).
@@ -156,6 +171,15 @@ text object at `+0xD0` (`0x002B32D0`); the
 text object keeps it at `+0x28` and measures it with `0x002B2150` (`0x002B3D50`, `0x002B3C30`), the
 routine that sends every byte below `0x10` to the text interpreter `0x002AC5F0`. Section 2 text is
 therefore read with the codes and lengths on [text codes](../Menus-And-HUD/text-codes.md).
+
+`0x002B32D0` first resets the text object (`0x002AC1E0`, `0x002B32F0`). A non-zero fourth argument takes `0x002B3C30`
+(`0x002B3350`-`0x002B3354`), which writes `[+0x94] + 8` and `[+0x96]` to the fifth and sixth arguments when they are
+set (`0x002B3359`-`0x002B3380`); a zero one takes `0x002B3D50` (`0x002B3384`) and copies the words those arguments point
+to into `+0x94` and `+0x96` (`0x002B3389`-`0x002B33AA`). Both store the string at `+0x28` (`0x002B3C39`, `0x002B3D6F`)
+and call `0x002B2150` (`0x002B3D21`, `0x002B3DC2`).
+
+On both paths `0x002B32D0` ends by setting `+0x90` to the negated signed byte `+0x9E`, the word `+0x99` to
+`0x2500` and the float `+0x50` to `1.0 / [+0x9E]` (`0x002B33B1`-`0x002B33F0`).
 
 ## Modding notes
 

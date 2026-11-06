@@ -27,12 +27,14 @@ A manifest is text, so it has no byte order.
 
 | File | Unit | Separator | Comments | Header, count or version |
 |---|---|---|---|---|
-| prefetch manifest | a file name | whitespace | a token beginning `##` is dropped | no header; the shipped `##Total_data_Size:_361_MB` is a comment |
+| prefetch manifest | a file name | whitespace; the reader steps by the name's length plus 2, so each name starts its line and ends with CRLF (`0x001DA15E`) | a token beginning `##` is dropped | no header; the shipped `##Total_data_Size:_361_MB` is a comment |
 | `eventlist.csv` | a record of four integers | commas within a record | a line beginning `##` is skipped | no header |
-| `.ah` list | a path such as `/GameData/D3D11/ArtData/chr/...phyre`, in load order | whitespace | no comments | no header |
+| `.ah` list | a path such as `/GameData/D3D11/ArtData/chr/...phyre`, in load order | whitespace; the parser steps by the path's length plus 2, so each path starts its line and ends with CRLF (`0x0019E82F`) | no comments | no header |
 | `TexList.txt` | a texture file name, relative to `GameData/D3D11/ArtData/menu/` | CRLF line ends | no comments | no header |
 
-A prefetch manifest is whitespace-separated tokens, each a file name. A token beginning `##` is a
+A prefetch manifest is whitespace-separated tokens, each a file name. The reader steps from one scan start
+to the next by the token's length plus 2, so a name works only at the start of its line and followed by CRLF
+(Loader behaviour). A token beginning `##` is a
 comment and is dropped; the shipped header `##Total_data_Size:_361_MB` is written with underscores so
 that it stays one token. `eventlist.csv` is records of four comma-separated integers, with `##`
 lines likewise skipped.
@@ -149,7 +151,17 @@ Every prefetch list, every name it holds and every entry, in three kinds of tabl
 
 - **Parsing.** `0x001DA0F0` scans tokens with `"%s"` (`0x008F4438`, through `0x0018A330`) until a scan fails,
   frees any token whose first two bytes are `##`, and appends the rest to a list. Nothing reads the
-  size header.
+  size header. Each token is scanned into a 256-byte block of its own, without a bound (`0x001DA129`).
+- **Stepping.** Like the `.ah` parser, `0x001DA0F0` steps the text by the token's length plus 2 from the scan start
+  (`0x001DA15E`-`0x001DA162`), and it also stops once those steps add up to the text's length (`0x001DA179`-`0x001DA183`,
+  `0x001DA120`). It answers 0 for a null text (`0x001DA103`) and 1 otherwise.
+- **The shipped lists.** Each of the 9,341 shipped prefetch `.txt` lists starts every name at a line start and
+  ends it with CRLF, so the steps land on each next name. 3,126 of them end in further whitespace, where the
+  next scan fails and the list ends.
+- **The worker thread.** `0x001DAAC0` sets the manager's `+0x20` to 1, starts the thread through `0x005CD1E0` with
+  the entry `0x001DADB0`, a jump to `0x001DADC0`, a stack of `0xF000` bytes, the priority selector 3 and the name,
+  and then sets `+0x18` to 1
+  (`0x001DAAC9`-`0x001DAB26`).
 - **Start-up.** The prefetch worker `0x001DADC0` (started by `0x001DAAC0`, the only user of the name
   `FileCachePrefetchManager`) first calls `0x001DA610`: with the RAM cache on, it reads
   `/PrefetchData/<language>/common.txt`, parses it, and opens every name with selector 5, closing the
@@ -159,14 +171,23 @@ Every prefetch list, every name it holds and every entry, in three kinds of tabl
   `0x01F83441` is 0, and the map number changed and is not negative) builds
   `/PrefetchData/<language>/Maps/<map>.txt` and files it as a whole-text request; its completion `0x001D9FD0`
   parses the tokens into the map list.
+- **The map list's completion.** Under the lock `+0x38`, `0x001D9FD0` first empties the map list of the previous
+  map's names, logging `[FileCache] Prefetch On Enter Map End` (`0x001DA004`-`0x001DA01E`), and then parses the text
+  into it (`0x001DA0F0`, `0x001DA02D`). With names in the list it clears the empty byte `+0x78`; with the list empty it
+  logs the same line (`0x001DA032`-`0x001DA04B`). It then frees the text and zeroes `+0x30` (`0x001DA058`-`0x001DA06B`).
 - **The map list's name.** `<map>` is the file name, less folder and extension, of the map's zone script:
   `0x0032F170(0, map)` gives kind 5 and id 3 × map (`0x0032F19E`-`0x0032F1A8`), `0x002DF980` returns that entry of
   the language's kind 5 array as it stands (`0x002DF98D`-`0x002DF991`), and `0x001DA3BD`-`0x001DA47A` take the text
   between its last `\` and its last `.`. The map aliases of `0x01EF9490` play no part on this path.
 - **Events.** `0x001D9EC0` walks the records in key order against the manager's word `+0xE8`, the
   story-progress value it last stored. Records keyed with that value load unless `+0x1BC` already holds it.
-  Each record loads `/PrefetchData/<language>/Events/<n>.txt` and `/PrefetchData/add-on/Events/<n>.txt`
-  into the event list (`0x001D9DA0` → `0x001DA9E0`).
+- **An event's lists.** Under the lock `+0xF0`, `0x001D9DA0(manager, n)` logs `[FileCache] LoadEventFileList : event
+  %d` and loads two lists into the event list through `0x001DA9E0`. Both names come from `"%s%s%s%d%s"` (`0x00900798`):
+  `/PrefetchData/<language>/Events/<n>.txt` and `/PrefetchData//add-on//Events/<n>.txt` (`0x001D9E31`, `0x001D9E6B`).
+- **The add-on name.** The archive lookup keeps the doubled slashes (`0x0059F114`-`0x0059F185`). The shipped
+  archive's index holds the digest of `prefetchdata/add-on/events/250.txt` but not that of
+  `prefetchdata//add-on//events/250.txt`, so in the shipped game the add-on list never opens, for 250 as for
+  every other number.
 - **The next key.** Of the keys above that value, the lowest key's records load and that key is stored at
   `+0x1BC`; when the lowest key already equalled `+0x1BC`, the next key's records load as well and that key
   is stored instead (`0x001D9EF1`-`0x001D9F4F`).
@@ -176,6 +197,10 @@ Every prefetch list, every name it holds and every entry, in three kinds of tabl
   above 0 load there.
 - **Map jumps.** `0x001DA090(map)` records the new and previous map numbers and writes them into the
   cache's protected words (`0x0020C1A0`: `+0x80` = new, `+0x84` = previous).
+- `0x001DA090` ignores a negative map number (`0x001DA092`). Otherwise it sets the manager's byte `+0x88`
+  (`0x001DA0A3`), the byte `0x001D6B70` reads for the cache's backfill. Only for a map other than `+0x7C` does it move
+  `+0x7C` to `+0x80`, store the new number at `+0x7C`, call `0x0020C1A0` and log `[FileCache] OnMapJumpBefore (%d)`
+  (`0x001DA0AD`-`0x001DA0DC`).
 
 The worker then loops while running: it stops when `0x01F83441` is set; it sleeps 100 ms while requests
 are pending or too little time has passed since the last activity, or when both lists are empty;
@@ -196,14 +221,18 @@ When a file is missing:
 - **A map number whose kind 5 entry is 0.** `0x001DA290` measures the returned path with no null test
   (`0x001DA342`-`0x001DA34C`), so it reads address 0.
 - **An event list that does not open**, in the language folder or in `add-on`, adds no name
-  (`0x001DAA10`-`0x001DAA28`); the other of the two still loads. `add-on/events/` ships only `250.txt`, so for
-  every other number the add-on open fails and logs as above.
+  (`0x001DAA10`-`0x001DAA28`); the other of the two still loads. The add-on name never opens (Events, above), so
+  for every number the add-on open fails and logs as above.
+- `0x001DA9E0` opens with selector 0 (`0x001DA9FE`), so the RAM cache is not tried. A list of 0 bytes, or one whose
+  block cannot be allocated, adds no name either (`0x001DAA28`, `0x001DAA41`). A parse that leaves names in the event
+  list clears its empty byte `+0x130` (`0x001DAA6F`-`0x001DAA78`); the block is then freed (`0x0019C590`).
 - **A story-progress value no record is keyed with.** The walk skips the records keyed below it and
   loads the keys above it as described; above the highest key the event list stays empty.
 
 ### The prefetch manager
 
-`0x001DAD60` builds the manager once, `0x1C0` bytes at `0x01F82CF0`, with `0x001D9400`. The constructor sets up
+`0x001DAD60` builds the manager once, `0x1C0` bytes at `0x01F82CF0`, with `0x001D9400`; with a null block it skips the
+constructor and stores the null (`0x001DAD89`). The constructor sets up
 the lists and their locks, stores itself as the file cache's owner (`[0x0020C700()] + 0x18`, so the
 cache's group word `+0xE8` is the manager's), and picks the language folder from `0x0017E270()`: 0 and
 10 give `jp`, 2 `fr`, 3 `de`, 4 `it`, 5 `es`, 7 `kr`, 8 `ch`, 11 `cn`, and any other value `us`. The
@@ -215,9 +244,11 @@ paths are built by inserting that code and `/PrefetchData/` in front of the file
 - The map list's completion is the stub `0x001D9920`, which passes the manager to `0x001D9FD0`.
 - `0x001D99C0` empties the map list `+0x60` and `0x001D9930` the event list `+0x118`, freeing each name;
   each sets its list's empty byte (`+0x78`, `+0x130`). `0x001D9D80` is true when both are set.
+- A list that is already empty is left as it is: the function returns before the byte store (`0x001D99D4`,
+  `0x001D9947`). Each frees the names (`0x00210EB0`) and then the 24-byte nodes through the list's allocator.
 - `0x001DA970`, called on every pass of the worker, reloads the event list when the story-progress word
   (`0x00265270`) is positive and differs from `+0xE8`: it stores the value, empties the list under its lock
-  `+0xF0` and runs `0x001D9EC0`.
+  `+0xF0` and runs `0x001D9EC0`. It does nothing while the RAM cache is off (`0x001D6B20`, `0x001DA980`).
 - The worker takes the map list's first name with `0x001DAD30` and logs
   `[FileCache] Prefetch On Enter Map End` when that empties the list.
 
@@ -226,29 +257,49 @@ before opening a name. The asynchronous loader raises counter `+0x24` around eve
 (`0x001D9F70`) and lowers it afterwards (`0x001D9F90`), which also stamps the time.
 
 Opening a name is what loads it. In the resolver a name that passes the cache's name filter is read
-whole into the RAM cache when it misses, and the hit or new entry is stamped by its selector
-(`0x0020C300`): selector 5 makes it kind 5, which eviction never frees; selector 3 stamps its group word;
+whole into the RAM cache when it misses, and the hit or new entry is stamped by its selector, a hit by
+`0x0020C300` and a new entry by `0x0020B680`, which takes the selector as the entry's kind: selector 5 makes
+it kind 5, which eviction never frees; selector 3 stamps its group word;
 selector 4 stamps the current map number, which eviction protects while that map or the previous one
-is current. A name the filter rejects (three- or four-letter extensions) is opened and closed and not
+is current.
+
+A name the filter rejects (three- or four-letter extensions) is opened and closed and not
 cached. The manifests are advisory: a file no manifest names still opens normally.
 
 ### Asset-header lists
 
 `0x0019EB60(manager, path)` files a `.ah` as a whole-text request whose completion `0x0019EF20` jumps to
-the parser `0x0019E7B0`. The parser:
+the parser `0x0019E7B0`. It takes a list record (`0x001BA860` on `+0x08`), empties its entries, clears its done byte
+`+0x128` and text `+0x120`, and copies the path to `+0x00` (`0x0019EB81`-`0x0019EBBD`).
 
-1. scans tokens with `"%s"` into a 256-byte stack buffer, without a bound, and steps the text by the token's length plus 2 from
-   the scan start, so lines must end in CRLF with no leading whitespace;
+Its request is kind 4 with the list record as argument, the byte `+0x18` set to 1 and the text slot `+0x120` as
+result (`0x0019EBCF`-`0x0019EBFF`), filed at the head of the queue (`0x001A0BB0`, `0x0019EC14`). It returns the list record.
+
+A text with no token makes no entry and files no request, so the parser leaves the done byte `+0x128` at the 0
+that `0x0019EB60` stored (`0x0019E8F5`), and no entry completion reaches `0x0019E740` to queue `0x0019EE50`.
+
+The parser returns at once for a null list record (`0x0019E7B3`); otherwise it:
+
+1. scans tokens with `"%s"` into a 256-byte stack buffer, without a bound, and steps the text by the token's
+   length plus 2 from the scan start, so lines must end in CRLF with no leading whitespace; it stops when a scan
+   fails (`0x0019E817`);
 2. makes an entry per token, with its position in the list as a `u16` at `+0`, a done byte at `+2` and
-   the name from `+3`; there is no `##` filter, so every token is taken as a path;
+   the name from `+3`, `+0x108` zeroed and the list record at `+0x110` (`0x0019E852`-`0x0019E894`); there is no
+   `##` filter, so every token is taken as a path;
 3. frees the text and, from the last entry to the first, files a load request (kind 1) for each name,
-   prefixed with `.` when it does not start with one, whose result goes to the entry's `+0x108`.
+   prefixed with `.` when it does not start with one, whose result goes to the entry's `+0x108`;
+4. clears each entry's done byte before that entry's request, which points at it (`0x0019E92B`, `0x0019E995`).
 
 The lists are built from these patterns: map `.\GameData\%s\ArtData\map\%s\%s_%s.ah` and its `_srm`
 form (`0x001A7A50`); character `./GameData/%s/ArtData/chr/%s_%s.ah` and the flat and grouped `chr_shadow`
 forms (`0x001BB2B0`); procedural textures `./GameData/%s/ArtData/map/proceduralTexture/proceduralTexture_%s.ah`
 (`0x001BE730`); and five literal font lists `./GameData/D3D11/ArtData/font/<jp|us|ch|cn|kr>/fontlist.ah`
 (`0x001B44A0`). The varying `%s` is always `D3D11`.
+
+`0x001A7A50` requests the `_srm` form when `0x0019EAA0` can open it and the plain form otherwise (`0x001A7C14`-`0x001A7C53`;
+[Map art](../World-Areas-And-Travel/map-art.md)). `0x001BE730`, the procedural-texture context's constructor, keeps the
+list record `0x0019EB60` returns at `+0x00` (`0x001BE87B`) and writes
+`/ArtData/map/ProceduralTexture/proceduralTextureConfigs.txt` at `+0xB4` (`0x001BE891`).
 
 `0x001BB2B0` takes a character's name from its PS2 model path: `0x002E98F0` turns the model id into a kind
 and index (`0x002ED6F0`, adding `0x33` to the index for kind 1), `0x002DF980` returns that path, and the
@@ -267,16 +318,21 @@ lists loaded only when the shadow record, for a marked model, and then the model
 which files the same two lists for that name (`0x001BB9C6`, `0x001BBAF1`).
 
 `0x0017F000(id)` asks the object at `0x01F81240` (`0x001BC000`, null before it exists) for a model's list
-record through `0x001BB2B0` and returns it. The binding's load `0x002EAD50` calls it before it files the
+record through `0x001BB2B0` and returns it. While the object is null it requests nothing and returns 0 (`0x0017F010`). The binding's load `0x002EAD50` calls it before it files the
 model's own file and ignores the result, so binding a character model also queues its `.ah` lists.
 
 ### Asset-header list records
 
-The lists live in the `AssetListManager` that `0x0019EF40` builds once (`0x188` bytes at `0x01F81158`,
-`0x0019DA30`): a pool of 192 list records of `0x130` bytes at `+0x08` (`0x0019D5B0`) and a pool of 3,072
-entry records of `0x118` bytes at `+0xC8` (`0x0019D740`), each pool with its own lock. `0x0019EB60` takes a
-list record and the parser takes one entry record per token (`0x001BA860`) and writes to it without a
-test, so the 3,072 entry records bound every list loaded at once.
+The lists live in the `AssetListManager` that `0x0019EF40` builds once (`0x188` bytes at `0x01F81158`, `0x0019DA30`): a pool
+of 192 list records of `0x130` bytes at `+0x08` (`0x0019D5B0`) and a pool of 3,072 entry records of `0x118` bytes at
+`+0xC8` (`0x0019D740`), each pool with its own lock. The constructor passes the flag 1 to both pools (`0x0019DA54`,
+`0x0019DA69`), which is what creates the locks; it also stores the vtable `0x008F4430` (RTTI `AssetListManager`,
+`0x0019DA4D`) and returns the manager (`0x0019DA77`). With a null block `0x0019EF40` skips the constructor and stores the
+null (`0x0019EF69`).
+
+`0x0019EB60` takes a list record and the parser takes one entry record per token (`0x001BA860`) and writes to it without a
+test, so the 3,072 entry records bound every list loaded at once. `0x0019EB60` writes to its list record without a
+test too (`0x0019EB9B`), so the 192 list records bound the lists held at once.
 
 - The text is read as a kind 4 request whose completion, `0x0019EF20`, runs on the loading thread, so
   the parse does too.
@@ -285,16 +341,30 @@ test, so the 3,072 entry records bound every list loaded at once.
 - Each entry's request (kind 1) completes in the frame pump through `0x0019EF00`, which passes the
   manager and the entry to `0x0019E740`.
 - When the entry is the list's last (`u16 +0` equals the count less one), `0x0019E740` queues a job
-  `{0x0019EE50, list}` on the second `AsyncJobManager` (`0x01F81100`, through `0x00199F10` and `0x0019A000`).
+  `{0x0019EE50, list}` on the second `AsyncJobManager` (`0x01F81100`, through `0x00199F10` and `0x0019A000`). An entry
+  whose list record `+0x110` is null queues nothing (`0x0019E750`).
 - `0x0019EE50` runs `0x0063DA50` and then `0x0063B010` on each entry's loaded cluster and sets the list's
   done byte `+0x128`. `0x00796350` runs the same two passes over an array of clusters.
 - `0x0063DA50` walks the cluster chain (`+0x98`), skipping a cluster whose `+0x80` bit `0x1` is set,
   hands every `PAssetReferenceImport` object (descriptor `0x02D3E780`) to `0x00677CE0`, and sets that bit.
   `0x0063B010` runs `0x0063B040` on each cluster of the chain until one returns non-zero.
+- In a cluster, `0x0063DA50` takes each node of the list at `+0x38` whose type `+0x50` is `0x02D3E780` or reaches it
+  through the types' `+0x78` links and whose count `+0x74` is above 0 (`0x0063DAB6`-`0x0063DADD`, `0x0063DB82`-`0x0063DBA4`).
+  It visits that many objects from `+0x60`, `[type + 0x38]` bytes apart, skipping each slot that is the next entry
+  of the node's `+0x10` chain (`0x0063DB15`-`0x0063DB29`, `0x0063DB4B`-`0x0063DB59`).
+- It passes object + `[type + 0xF8]` to `0x00677CE0` (`0x0063DB30`-`0x0063DB36`). It sets the bit on a cluster with no
+  import too (`0x0063DBEB`), and returns 0, at once for a null chain (`0x0063DA5C`, `0x0063DC26`).
 - `0x00677CE0` looks the import's name up among the registered assets (`0x00676BD0`). A miss logs
   `Failed to find asset %s of type %s, using fallback` and takes the type's fallback (`0x0063BC00`); a
   hit of another type logs `Found asset %s of wrong type, wanted %s, got %s`. Every pointer chained to
   the import is then set to the asset.
+- An import whose chain `+0x10` is null returns 0 with no lookup (`0x00677CF4`). The name is `+0x08` with bit `0x1`
+  cleared and the wanted type is `+0x00`; a hit counts as the wanted type when its type `+0x40` is that type or
+  reaches it through `+0x78` (`0x00677D50`-`0x00677D6C`), and a hit of another type still gives its asset `+0x38`. Both
+  messages go to `0x005CDAA0` with level 2.
+- The value stored is the asset or fallback less the wanted type's i32 `+0xF4` (`0x00677D9E`-`0x00677DB2`). Each
+  pointer's old value names the next one (`0x00677DC0`-`0x00677DCC`); `+0x10` is then zeroed (`0x00677DCE`) and it
+  returns 0.
 - A token whose file does not open leaves its entry's cluster null: `0x0019CB20` returns 0 when `0x00637C50`
   fails (`0x0019CC20`-`0x0019CC36`), the kind 1 request stores that 0 and still sets the done byte
   (`0x001A0822`-`0x001A083D`), and both passes of `0x0019EE50` return at once for a null cluster (`0x0063DA5C`,
@@ -314,14 +384,19 @@ At start-up `0x001B1630` (through `0x001B1580`) calls `0x001B1750` on the menu s
 
 1. `0x001B14E0` opens `GameData/D3D11/ArtData/menu/TexList.txt` (`0x001D6F20`), reads it whole into a
    zero-terminated block and closes it (`0x001D6E80`); when it does not open it logs
-   `UI TextureList load failed!` and the list stays empty.
+   `UI TextureList load failed!` and the list stays empty. It frees the block after step 2 (`0x001B157A`).
 2. `0x001B07A0` splits the text at each LF, up to 1,024 lines, drops the line's last character (the CR),
    and stores `./GameData/D3D11/ArtData/menu/` plus the rest (`"%s%s"`, `0x008F80F0`) as a string in the
    batcher's vector `+0x00` (`0x001AB6B0` grows it).
 3. For each string, in order, `0x001B1800` files a kind 1 load at the head of the queue with the
    completion `0x001B1C10` and the result slot `batcher + 0x108 + 8 × i`; an empty line files nothing.
 
-A line of 128 characters or more before its CR stops the game (`__report_rangecheckfailure`).
+A line of 128 characters or more before its CR stops the game (`__report_rangecheckfailure`). So does a
+line with no character before its LF, as the length less one is compared unsigned (`0x001B0830`-`0x001B0850`).
+
+The request `0x001B1800` files takes the vector's string `i` as its argument (`0x001B1881`-`0x001B188B`) and has no
+done byte (`0x001B18A9`). The string becomes the request's path as the format of `0x001A1E40` (`0x001B18B7`), so a `%`
+in a name is read as a conversion.
 `0x001B1C10` registers each loaded texture under the hash of its lower-cased path in the batcher's tree
 `+0x28`.
 

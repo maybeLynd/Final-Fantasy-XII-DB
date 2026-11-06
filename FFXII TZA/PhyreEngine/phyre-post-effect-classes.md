@@ -54,7 +54,7 @@ by a CRT initializer calling `0x005DC6F0(record, name, 0)` (60 such registration
 | 3 | `0x00657680` | set `+0x44` and `+0x48` directly |
 | 4 | `0x006571C0` | ready: `+0x10` non-null, `[+0x10]` non-null and `+0x41` set |
 | 5 | `0x00657150` | pass query: when ready, returns the third argument only for the pass record `0x01F2D6E0` (`Transparent`) |
-| 6 | `0x0065B8F0` | render: when `+0x40` is clear, calls slot 1 with `+0x28` / `+0x2C` of the fourth argument (0, 0 when null) |
+| 6 | `0x0065B8F0` | render: when `+0x40` is clear, calls slot 1 with `+0x28` / `+0x2C` of the fourth argument (0, 0 when null) and returns its result (`0x0065B912`); with `+0x40` set it returns 0 (`0x0065B8F8`, `0x0065B919`) |
 | 7 | `0x00653CD0` | returns `+0x44` |
 | 8 | `0x00653B20` | returns `+0x48` |
 
@@ -79,6 +79,18 @@ effect `+0x30`), calls `0x0060B980`, and ends with `0x00600A60`. The selector's 
 returns the item at the index it is given, or null past the end. `0x0060B980` then selects the effect
 variant as on [Shader variant selection](shader-variant-selection.md).
 
+In `0x00652940` the steps and their exits are:
+
+1. When `+0x68` is set, it calls `0x001B81B0([[+0x50] + 8], [+0x68], record)` with a record of `0x42`, `0x02D35140`
+   and its third argument, and returns a non-zero result at once (`0x0065295E`-`0x00652991`).
+2. It pushes the parameter records from `+0xD0` (`0x005DC190`, `0x006529A6`).
+3. It calls `0x0060D4F0`, `0x0060DB50` and `0x005FEFD0`, returning a non-zero result of each at once
+   (`0x006529B7`-`0x006529E8`), then `0x0060CD70(context, 0, 6, 7)` (`0x006529F7`).
+4. It stores the pass record `0x02D36DA0` at context `+0x80` (`0x00652A03`), calls `0x0060B980` with the context's
+   `+0x220` (`0x00652A23`-`0x00652A3F`) and then `0x00600A60` (`0x00652A4F`), returning a non-zero result of either.
+5. Otherwise it returns 0 (`0x00652A72`). Every exit after step 2 first calls the `ret 0` stub `0x0016D6A0` on the
+   pushed records (`0x00652A5F`, `0x00652A6D`).
+
 The instance the workers draw is the one `0x02D34710` points to. The run setup's `0x0064A0E0` passes the static
 `0x01F2E8E0` and the array `0x02D35170` to `0x0060DF70`, then stores the static's address there (`0x0064A3E3`,
 `0x0064A40C`); the application shutdown's `0x0064AD60` stores 0 (`0x0064AE55`). Each worker loads it as the instance
@@ -93,8 +105,11 @@ argument of `0x0060B980`:
 ### How instances come to exist
 
 Each class's `PClassDescriptorConcrete<T>` vtable carries a construct-in-place factory at slot 10
-(`+0x50`); for `PAtmospherics` it is `0x00640280` at `0x00D5B0C0`, which runs the base constructor and stores
-the class vtable and descriptor. The 35 descriptor vtables of the family (`PDepthOfFieldLayered`
+(`+0x50`); for `PAtmospherics` it is `0x00640280` at `0x00D5B0C0`, which, for a non-null object pointer, runs the
+base constructor `0x00645520` and stores the class vtable `0x00D628A0` and the descriptor `0x02D368A0`
+(`0x0064029E`-`0x006402B9`), and returns 1 either way (`0x006402BD`).
+
+The 35 descriptor vtables of the family (`PDepthOfFieldLayered`
 has no descriptor vtable) and the manager's have 36 distinct slot-10 bodies, and no body has a direct call
 site in `.text`; nor does any of the ten slot-6 bodies. They are reached only through the reflection
 loader and through vtables.
@@ -113,8 +128,16 @@ the member (`0x00654160`, `0x00656B10`: render target, `ColorBuffer`, `InvColorB
 `0x0065A630` jumps to the worker `0x0065A640`; it is called from two places:
 
 - `0x00191DA0`, when `+0x3E8` and `+0x3E9` are set and `+0x4A3` is 0 (when `+0x4A3` is set it runs the
-  game's `0x001925D0` instead), with source `[+0x290]`;
-- `0x0018FD70`, called from `0x00187950`, with source `[+0x278]`.
+  game's `0x001925D0` instead), with source `[+0x290]`. It passes `0x0065A630` the object's `+0x378`, its
+  second argument, `[+0x290]`, the target `[arg3]` (null when the byte at `arg3 + 8` is set) and 1
+  (`0x00191E17`-`0x00191E38`); with either flag clear it returns at once (`0x00191DBF`, `0x00191DCC`);
+- `0x0018FD70`, called from `0x00187950`, with source `[+0x278]`. It passes `0x0065A630` the object's `+0x378`, its
+  second argument, `[+0x278]`, the target `[arg3]` (null when the byte at `arg3 + 8` is set) and 1
+  (`0x0018FD87`-`0x0018FDA8`). It then passes `0x001EE8E0` `[[+0x278]]` (null when the byte at `[+0x278] + 8` is set),
+  its fourth argument, a zeroed record and 0 (`0x0018FDBE`-`0x0018FDDF`).
+
+`0x00191DA0` passes `0x001EE8E0` `[[+0x290]]` (null when the byte at `[+0x290] + 8` is set), its third argument,
+a zeroed record and 0 (`0x00191E3D`-`0x00191E70`).
 
 Both then call `0x001EE8E0` (`0x0018FDDF`, `0x00191E70`), the game's shared copy pass, which has 17 call
 sites in all: it sets `ColorBuffer`, `ColorBufferSampler` and
@@ -248,7 +271,7 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x08` | `u8[8]` | bytes08 | cleared by the base constructor `0x006461B0` (`0x006461D2`); no registered member covers it (`0x00645000` registers the `0x50`-byte class at `0x00645050`) |
+| `+0x08` | `u8[8]` | bytes08 | the class descriptor pointer: 0 from the base constructor `0x006461B0` (`0x006461D2`), then stored by each class's constructor (PFXAA's `0x02D35FA0` by `0x00645DB0` at `0x00645DE1`, PAtmospherics's `0x02D368A0` by `0x00640280` at `0x006402B9`); no registered member covers it (`0x00645000` registers the `0x50`-byte class at `0x00645050`) |
 | `+0x34` | `u8[4]` | bytes34 | the four bytes between the dword at `+0x30` and the pointer at `+0x38`; no registered member covers it (`0x00645000` registers the `0x50`-byte class at `0x00645050`) |
 | `+0x42` | `u8[2]` | pad42 | alignment bytes after m_enabled (u8 at `+0x41`) up to width (`+0x44`); no registered member covers it (`0x00645000` registers the `0x50`-byte class at `0x00645050`) |
 | `+0x44` | `u32` | width | width: slot 1 `0x00655DC0` writes it (`0x00655E12`), slot 3 `0x00657680` (`0x00657680`), `0x00657690` (`0x006576B6`) and `0x00655AC0` (`0x00655B53`); slot 7 `0x00653CD0` returns it; no registered member covers it (`0x00645000` registers the `0x50`-byte class at `0x00645050`) |

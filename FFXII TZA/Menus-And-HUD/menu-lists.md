@@ -23,7 +23,15 @@ content widget with procedure `0x002D1420` that holds the rows (`0x002D14FC`, `0
 
 | Record | List | Meaning |
 |---|---|---|
-| `+0x00` bit `0x1` | `+0xE0` bit `0x800000` | a scroll-only list, with no cursor (`0x002D165D`) |
+| `+0x00` bit `0x1` | `+0xE0` bit `0x800000` | a scroll-only list, with no cursor (`0x002D165D`); the same bit clears `+0xE0` bit `0x10000` (`0x002D1659`) |
+| `+0x00` bit `0x4` | `+0xE0` bit `0x200000` | set when the record bit is clear (`0x002D1578`-`0x002D1589`) |
+| `+0x00` bit `0x8` | `+0xE0` bit `0x10000` | set when the record bit is clear (`0x002D158F`-`0x002D15A0`) |
+| `+0x00` bit `0x10` | `+0xE0` bit `0x4000000` | copied (`0x002D15A6`-`0x002D15B4`) |
+| `+0x00` bit `0x20` | `+0xE0` bit `0x2000000` | copied (`0x002D15BA`-`0x002D15C9`) |
+| `+0x00` bit `0x40` | `+0xE0` bit `0x8000000` | copied (`0x002D15CF`-`0x002D15DD`) |
+| `+0x00` bit `0x80` | `+0xE0` bit `0x10000000` | copied (`0x002D15E3`-`0x002D15F2`) |
+| `+0x00` bit `0x100` | `+0xE0` bit `0x20000000` | set when the record bit is clear (`0x002D15F8`-`0x002D1608`) |
+| `+0x00` bit `0x200` | `+0xE0` bit `0x40000000` | copied (`0x002D160E`-`0x002D1636`) |
 | `+0x08` | `+0xD8` | the rows' data |
 | `+0x10` | `+0xE8` | the item count, a `u16`, which also sizes the content widget (`0x002D14E0`) |
 | `+0x14` | `+0xEC` | columns |
@@ -34,6 +42,26 @@ content widget with procedure `0x002D1420` that holds the rows (`0x002D14FC`, `0
 
 It also copies the confirm and cancel masks `0x01E0C2A0` and `0x01E0C2A4` to `+0x110` and `+0x112`. The message window's
 choice list, for example, is such a list with the painter `0x002A1B00` ([Message windows](message-windows.md)).
+
+Before the record bits it zeroes `+0xE0`-`+0xE7` and sets the low 16 bits of `+0xE0` (`0x002D1552`-`0x002D1559`), and
+`+0xE4` then gets bits `0x10`, `0x40` and `0x2000000` (`0x002D1643`). It sets `+0x103` to `0x5D`, `+0x106` to `0xFF`
+and `+0x109` and `+0x10A` to 1, and zeroes `+0xF8`, `+0x104`, `+0x107`, `+0x108`, `+0x10B`, `+0x10C`, `+0x130`,
+`+0x13C`-`+0x143`, `+0x148` and the view and cursor `+0xED`, `+0xEE`, `+0xF2` and `+0xF4` (`0x002D1569`-`0x002D16D7`).
+
+`+0x144` takes bit `0x800` of the list's `+0x40` (`0x002D16B7`-`0x002D16C6`), which also gets bits `0x2` and `0x1000`
+(`0x002D1518`-`0x002D1532`). The rows `+0xF0` are `ceil(items / columns)` (`0x002D16E9`-`0x002D16F0`); a column count of 0
+faults on the `idiv`. The content widget, when it was created, is sized to columns x column width by rows x row
+height, at least one row (`+0x9C`, `+0x9E`, `0x002D16F7`-`0x002D1729`).
+
+The content widget is then attached to the list (`0x00244960`, `0x002D1737`), the mouse wheel is cleared (`0x001E0F20`,
+`0x002D173C`) and the list is returned.
+
+The content procedure `0x002D1420(content, message)` answers 0 to message 1 (`0x002D142D`). On message 4 it draws the
+rows with the content's draw record `+0x38`: `0x002D2600(draw, content)`, or `0x002D28E0` when the list
+`[content + 0x10]` has `+0xE0` bit `0x2000000`, and then stores 0 in `0x02CA8F30` (`0x002D1489`-`0x002D14C6`). On message
+17 whose value `+0x08` is 1 it clears the list's `+0xE4` bit `0x8000000` (`0x002D1453`-`0x002D1477`); message 17 with
+another value only answers 0. Any other message stores 1 in `0x02CA8F30` and goes on to `0x005C5230`, which answers 0
+(`0x002D143F`-`0x002D144E`).
 
 ### The grid
 
@@ -52,7 +80,17 @@ screen is the pair `+0xF4`, `+0xEE`; the view's first row and column are `+0xF2`
 
 - `0x002D4B70(list, item)` puts the cursor on an item and moves the view only as far as needed to show it: to the item's
   row when it is above or left of the view, so that it is the last shown row when it is below. It answers 1 when the
-  view moved, and resets the view for an empty list.
+  view moved, and resets the view for an empty list: with no items it stores 0 in the dword at `+0xF2`, the top row
+  and the cursor row, and answers 1 (`0x002D4BB9`-`0x002D4BCC`).
+- An item past the last becomes the last (`0x002D4BE4`). Its rows, with `s` the shown rows and `r` the item's row
+  (`0x002D4B76`-`0x002D4C8E`): when the top row plus `s` passes the row count `+0xF0`, the view goes back to row 0 with
+  the cursor on row `r`; an item above the view with `r` below `s` does the same.
+- An item above the view with `r` of `s` or more makes `r` the top row and the cursor row the word `+0xF6`; one
+  below makes `r - (s - 1)` the top row and `s - 1` the cursor row; else the cursor row is `r` less the top row.
+- Its columns, with `t` the shown columns and `c` the item's column (`0x002D4C96`-`0x002D4D5A`): when the left column
+  `+0xED` plus the column count `+0xEC` passes `t`, the view goes back to column 0 with the cursor column `+0xEE` on
+  `c`; the other cases follow the rows, except that an item left of the view with `c` of `t` or more puts the cursor
+  column on 0. A column move answers 1; with no column move it answers whether the rows moved.
 - `0x002D4D60(list, first, last)` makes the view start at `first`'s row and column, moves it back only as far as needed
   to keep `last` shown, and puts the cursor on `last`'s row, or on the last shown row when the view is held at the end
   of the list.
@@ -70,6 +108,12 @@ The notices are listed on [widget messages](widget-messages.md).
 otherwise the run lasts the frames `0x002D1870` gives, as `frames x 1000 / 60` ms, with curve 1, curve 5 for kind 7
 (which also sets `+0xE0` bit `0x1000000`) and curve 0 for kinds 3, 9 and 10 (`0x002D4AE4`-`0x002D4B2B`).
 
+It answers 0 when the content is already there (`0x002D4A92`-`0x002D4AA1`, `0x002D4ACD`). Kind 1 is compared before the
+direction bits are masked off, so only a bare 1 places at once (`0x002D4AA3`); it clears the content's tween bit `0x1`
+of `+0x80` and answers 0 (`0x002D4AA8`-`0x002D4ACD`). When `0x002D1870` gives 0 frames no tween starts and it answers 0
+(`0x002D4AE0`-`0x002D4AE2`). After `0x002468A0` it takes 1 off the content's `+0x94`, the frame counter value the tween
+started at, and answers the frames (`0x002D4B30`-`0x002D4B36`).
+
 ### The content position
 
 The content widget `[list+0xC0]` keeps its position as two `i16` words, x at `+0x98` and y at `+0x9A`. The target
@@ -81,7 +125,8 @@ height `+0x100`, `u16`), computed in 32 bits (`0x002D4A53`-`0x002D4A8F`). Both w
   (`0x00246940`-`0x00246981`).
 
 The y target fits the word while first row x row height is at most 32,768, so a list with row height `h` reaches
-row 32,768 / `h` (rounded down) exactly; with `h` = 48 that is row 682.
+row `32768 / h` (rounded down) exactly, the largest row with `-(row × h) >= -32768` (`imul r14d, eax`, `neg r14d`,
+`0x002D4A81`-`0x002D4A8F`, stored as a word at `0x002D4AC5`); with `h` = 48 that is row 682.
 
 `0x002D1870(list, kind, rows, columns)` gives the frames, with `n` the rows moved and `h` the row height:
 
@@ -94,6 +139,12 @@ row 32,768 / `h` (rounded down) exactly; with `h` = 48 that is row 682.
 | `7` | a wrap: `h x n / 24 + 12`, at most 20, when the content is taller than the list; else `h x rows / 24 + 2`, at most 12; the same across columns, taking the larger |
 | `8` | byte `+4` plus byte `+5` x (n - 1) |
 | `9`, `10` | byte `+5` x n, halved for 10 |
+
+`0x002D1870` reads the kind without its direction bits `0xF000` (`0x002D188E`) and takes `n` and the columns moved as
+absolute values (`0x002D1886`-`0x002D18A6`); any other kind gives 0 (`0x002D18A8`, `0x002D1A85`). Kind 7 counts the rows only
+when the kind has an up or down bit, `0x3000` (`0x002D194B`), and the columns only with a left or right bit, `0xC000`
+(`0x002D19C3`); a side it does not count gives 0. Across columns it compares the widths `+0x9C` and uses the column
+width `+0xEA` times the columns moved, or times the column count `+0xEC` (`0x002D19CB`-`0x002D1A50`).
 
 The channel record `0x022CAE90` is described on [Controls](../Controls-And-Input/controls.md).
 
@@ -135,7 +186,11 @@ After a move the cursor is pulled back onto the last item, and the direction bit
 - answers 1-3, a move: the list's sound `+0xFF`, 1 when it is 0 and no sound when it is -1; nothing while `+0xE0` bit
   `0x400000` is set; with `+0xE4` bit `0x20000000` the block-bank sound `0x003A11F0` gives, played through `0x002DF220(id,
   0x40, 0x7F)` while `0x02091098` is 0 ([Sound effects](../Sound-And-Music/sound-effects.md));
-- answers 4-6, a jump: sound `0x17` through `0x00249C60`, or `0x00249CA0` with `+0xE4` bit `0x20000000`.
+- without that bit the move's sound goes through `0x00249C60`, which takes the handle from `0x003A1180` and plays it the
+  same way; both play nothing when the handle is -1 (`0x002D2D64`-`0x002D2D9C`, `0x00249C60`-`0x00249C86`,
+  `0x00249CA0`-`0x00249CC6`);
+- answers 4-6, a jump: sound `0x17` through `0x00249C60`, or `0x00249CA0` with `+0xE4` bit `0x20000000`;
+- any other answer plays nothing (`0x002D2D42`, `0x002D2D4C`).
 
 ### Other switches
 
@@ -155,9 +210,13 @@ out, 3 hidden) with its count `0x022CBE8A` out of `0x022CBE88`. `0x00368360` mov
 
 - `0x00368270()` resets the block: every position to `0x8000`, mode 1 and flags `0x115`.
 - `0x00368010(pos, widget, plain)`, from `0x00368360`, adds up a widget's position and its ancestors' (next at
-  `+0x10`, `0x00246480`): with flag bit `0x20` through each widget's rotation and scale (`0x00398910`, `0x003985B0`,
-  `0x00398C50`) about its centre, with flag bit `0x200` from a widget's `+0x84`/`+0x8C` while its `+0x80` bit `0x1` is set,
-  and with flag bit `0x40` it scales the alpha byte `+0x0E` by each widget's `+0x24` / 128. `plain` skips all three.
+  `+0x10`, `0x00246480`), and `plain` skips all three of these flag steps:
+  - with flag bit `0x20` through each widget's rotation and scale (`0x00398910`, `0x003985B0`, `0x00398C50`) about its
+    centre;
+  - with flag bit `0x200` from a widget's `+0x84`/`+0x8C` while its `+0x80` bit `0x1` is set;
+  - with flag bit `0x40` it scales `+0x0E` by each widget's alpha, `+0x0E = (+0x0E × [widget + 0xA0]) >> 7`
+    (`0x003681AB`-`0x003681B7`): the alpha byte `+0x0E` times the widget's alpha `+0xA0` / 128, which `0x00246480` copies
+    to `+0x24` of its position record (`0x002464ED`-`0x002464F5`), where the `imul` at `0x003681AF` reads it.
 - `0x00367820(widget, pos)`, from `0x00368360`, answers whether a request starts a slide. A widget other than the
   holder clears flag bit `0x80` and gets 1; while the fade is 2 or 3 it answers 1; an unchanged target answers 0, and
   a held target (`pos` flag bit `0x100`) is recorded without a slide.

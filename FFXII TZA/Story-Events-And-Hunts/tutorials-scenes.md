@@ -13,6 +13,17 @@ The table [tutorials-scenes.tsv](tutorials-scenes.tsv) has one row per scene scr
 only 429 (`men_z0005`) is named, in field 13 (`ttl_b01`). The menu scene step `0x003C9FD0` requests the other three
 through `0x0032FC30` (`0x003CA07C`) after `0x003CA140` sets their event.
 
+`0x003C9FD0(m)` acts only for manager 3, while the in-use flag `0x02B47750` is set and the unload request byte
+`0x022C6D20[3]` (`0x0032F6E0(3)`) is clear; otherwise it returns -1 (`0x003C9FD4`-`0x003C9FF6`). In state 1 it requests
+the scene with `0x0032FC30(3, id)` for the id at `0x02B4774C`, sets the start hold with `0x0032ED70(3)` and moves to
+state 2 (`0x003CA071`-`0x003CA08B`).
+
+State 3, which `0x003CA1B0(3)` stores (`0x003CA1B0`), starts the scene: once `0x0032F6C0(3)` reports no load pending,
+the step releases the hold with `0x00332130(3)` and moves to state 0 (`0x003CA04A`-`0x003CA062`). In state 4, once no
+load is pending, it disposes of the scene with `0x00332190(3)`, moves to state 5, clears the in-use flag and sets
+the id to -1 (`0x003CA011`-`0x003CA03B`). In any other state it does nothing, and every path past the first tests
+returns 0. The whole state machine is on [Zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md).
+
 | Scene | Event | Loaded in | Lines | What follows |
 |---|---:|---|---:|---|
 | `men_z0001` | `437` | the menu scene step `0x003C9FD0` (menu mode `0x40`) | 11 | - |
@@ -22,8 +33,13 @@ through `0x0032FC30` (`0x003CA07C`) after `0x003CA140` sets their event.
 
 What opens the three menu scenes: script verb `openfullscreenmenu_48d` with selector 6 opens menu id 22, and
 `0x002E1A60` turns parameters 0, 1 and 2 into the menu modes `0x40`, `0x41` and `0x42` ([Menus](../Menus-And-HUD/menus.md));
-those load events 437, 438 and 439 through `0x003CA140`. Of the 1,274 `openfullscreenmenu_48d` calls of the `us`
+those load events 437, 438 and 439 through `0x003CA140`, which gives event 440 (`0x1B8`) for any other argument
+(`0x003CA153`-`0x003CA164`). Of the 1,274 `openfullscreenmenu_48d` calls of the `us`
 scripts that decode (`evt_t0020` has no `EBP2` header), two pass selector 6: `grm_a0480` with parameter 0 and `rbn_a03` with 2. The `opened_by` column gives each.
+
+`0x003CA140(n)` does nothing while `0x02B47750` is set (`0x003CA140`-`0x003CA147`). Otherwise it sets `0x02B47750` and
+`0x02B47748` to 1 and stores the event at `0x02B4774C`: 437 for n 0, 438 for 1, 439 for 2 and 440 for any other value
+(`0x003CA149`-`0x003CA199`).
 
 No shipped script requests `men_z0002`:
 
@@ -39,12 +55,25 @@ No shipped script requests `men_z0002`:
 ### The scenes
 
 - `men_z0001`, the Gambit Screen tutorial (`gambit_tutorial.main`), holds nine lines of Balthier, each beginning with
-  his name ("This is the Gambit Screen. You can reach it from the Party Menu." ... "Well, that's the long and short of
-  it."), and two list prompts ("A list of available actions. Press to exit." / "A list of available targets. Press to
-  exit.").
-- `men_z0002`, the license board tutorial (`sample_tutorial.main`), walks Vaan through the license board ("This is the
-  license board." ... "Select the Accessories 1 license and press to acquire it.") and his Action List ("Press to open
-  and advance through Vaan's Action List.").
+  his name, from the first message below to the second, and two list prompts ("A list of available actions. Press to
+  exit." / "A list of available targets. Press to exit.").
+
+Balthier's first line: "This is the Gambit Screen. You can reach it from the Party Menu. To create a gambit, you need
+only select an action and a target for that action. Here, let me show you. I'll start by changing the action of one of
+my gambits."
+
+His last: "Well, that's the long and short of it. I'll set my gambits as they were before we started. Feel free to
+change them later if you like."
+
+- `men_z0002`, the license board tutorial (`sample_tutorial.main`), walks Vaan through the license board, from the
+  first message below to the second, and his Action List ("Press to open and advance through Vaan's Action List.").
+
+The board's first line: "This is the license board. The license board shows which licenses you already have, as well
+as some new ones waiting to be obtained. Licenses you've acquired are marked with a star."
+
+Its last: "Use the directional buttons to navigate the license board. Select the Accessories 1 license and press to
+acquire it."
+
 - `men_z0002`: its first two entries are "Not enough LP. Vaan needs [value] LP for this tutorial. Press X to exit."
   and "Already have the Accessories 1 license. Unlearn license and start again. Press X to exit."
 - `men_z0003` holds one line, the map hint "Your location map often bears a mark showing your destination. Consult the
@@ -138,7 +167,7 @@ The steps table [`tutorials-script-steps.tsv`](tutorials-script-steps.tsv) has o
 | `step` | the step's number in its function, from 1, in the order the function's bytes run |
 | `at` | where the step's instruction sits: its offset in section 0, the script image, of the shipped `plan_master/us` `.ebp`. For `case`, `default` and `label` it is where their code starts. For `shared template` and `same code` it is where the function or actor starts |
 | `line` | the step's line in the script listing, `-` for the `shared template` and `same code` rows |
-| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets |
+| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. A case whose values meet an earlier case's is followed by `not (x = w)` for each such earlier case `w`, so the cell names only the values the case runs on: `x = lte(78); not (x = lt(78))` runs when x is 78. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. When such a way passes a case that an earlier case overlaps, the item counts only the values that case takes: after `case lt(0x0177)`, a `case lt(0x0182)` that returns gives the item `not (x = lt(0x0182)) or x = lt(0x0177)`, which holds unless 0x0177 <= x < 0x0182. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets, and, for a case whose every value an earlier case already matches, on the case values |
 | `verb` | the verb the step calls, by its name in the [verb table](../Scripts-And-Script-Commands/verb-table.md), written `Actor.verb` for a call on another actor. Otherwise the kind of step: `if`, `else if`, `while`, `for`, `switch`, `case`, `default`, `break`, `goto`, `label`, `return`, `returnT`, `store`, `shared template` or `same code` |
 | `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test. A number with a fraction is the listing's print of a 32-bit float to nine significant digits, here and in `condition`: 1.60000002 is the float nearest to 1.6, and 2.36000005e-06 is 2.36000005 times 10 to the power -6 |
 | `addresses` | what the arguments name in the game: the actor, model, animation and motion file, effect file, event sound, camera shot, message window, request slot or variable |

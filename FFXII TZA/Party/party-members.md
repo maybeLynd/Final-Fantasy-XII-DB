@@ -38,9 +38,10 @@ function accepts. The names are under Shipped data.
 2. `0x00321100` finds a free reserve seat, the first of seats 4-8 of map 3 whose id check fails or whose byte is
    `0xFF` (`0x0032110A`-`0x00321148`); there is no free seat when all five are taken, and the add fails.
 3. Map 0 is copied to the staging map `0x022C2580`, and the selector is written to that seat if it is empty there
-   (`0x00317343`-`0x00317396`).
+   (`0x00317343`-`0x00317396`). When the staged seat is not `0xFFFF`, the add returns −1 without activating or
+   committing (`0x00317373`, `0x003173EB`); the refusals in steps 1 and 2 return −1 too (`0x003172F2`).
 4. The member's record is activated with `0x00316DF0` and the change is committed with `0x003261D0(0)`
-   (`0x003173BE`-`0x003173D9`).
+   (`0x003173BE`-`0x003173D9`); the add then returns 0 (`0x003173DE`).
 
 ### Adding a guest
 
@@ -48,6 +49,10 @@ function accepts. The names are under Shipped data.
 like the main add. It then tries active seats 3, 2 and 1 of map 3, in that order, and takes the first whose id
 check fails or whose byte is `0xFF` (`0x0031711A`-`0x00317157`). Seat 0 is never tried, but the commit closes up the
 active seats, so a guest given seat 3 while seat 2 is empty ends up in seat 2.
+
+The seated test looks for the selector in map 0's nine seats (`0x00317100`-`0x00317113`). `0x003170E0` returns -1 for a
+refusal and when seats 3, 2 and 1 all fail (`0x00317159`-`0x0031715E`, `0x00317170`); otherwise it tail-jumps to
+`0x00326110` (`0x003171AE`) and returns what that returns.
 
 `0x00326110(sel, seat, 0, 1)` then copies map 0 to the staging map, writes the selector to the seat if it is empty
 there, activates the record with `0x00316DF0` and commits with `0x003261D0(0)` (`0x00326129`-`0x003261B1`).
@@ -57,7 +62,9 @@ there, activates the record with `0x00316DF0` and commits with `0x003261D0(0)` (
 `0x00328B20(sel)` removes a main character and `0x003288F0(sel)` a guest (`0x00328B20`-`0x00328BC2`,
 `0x003288F0`-`0x0032898E`). Each refuses a selector outside its range or not seated in map 0. It copies map 0 to the
 staging map, empties the member's seat with `0xFFFF`, deactivates the record with `0x00323540` and commits with
-`0x003261D0(0)`.
+`0x003261D0(0)`. The staging map is `0x022C2580`. Each returns -1
+for a refusal (`0x00328925`, `0x00328B2C`, `0x00328B59`) and 0 after the commit (`0x00328988`, `0x00328BBC`); the guest
+range is 7-25 (`0x003288F4`-`0x003288F9`) and the main range 0-6 (`0x00328B27`).
 
 ### What a join brings
 
@@ -77,6 +84,9 @@ staging map, empties the member's seat with `0xFFFF`, deactivates the record wit
    `+0x34` (`0x00316FE1`-`0x00317019`), and the gil at row `+0x3E` (`0x0031701B`-`0x00317034`).
 6. HP is set to max HP, or twice max HP under Bubble; under Disease it stays, but at least 1
    (`0x00317048`-`0x00317082`). Flag bits `0x8` and `0x10` are then set.
+
+Steps 3-5 run only for a party record, kind byte `+5` 0, whose selector `+4` is 0-25; any other record goes from
+step 2 straight to step 6 (`0x00316E42`-`0x00316E6A`).
 
 `0x00323540(record)` deactivates an active main character (`0x00323540`-`0x003235BA`): each of the five equipment words
 leaves the equipped count and the inventory, and flag bit `0x10` is cleared. A guest's equipment is never counted, and
@@ -98,6 +108,11 @@ byte `+0x2C`, bits `0x18`, says when: 1 on the first activation only, 2 on every
 
 With no other active main character, the level is 1 plus the row's byte. The shipped values are under Shipped
 data.
+
+The party row is the table's word `+8` times the selector `+4` plus the value `0x0020E600` returns for the table's
+`+0xC`, added in 32 bits (`0x003174BC`-`0x003174D1`). Nothing guards it: when `[0x02EBF130]` is null (`0x0031749E`) or
+`0x0020E600` returns 0 (`0x003174AB`), the row base is 0 and `0x003174D9` reads the byte at address `0x2C`, which faults,
+because the first 64 KB of a Windows x64 process are never mapped.
 
 ### The commit and the wait
 
@@ -151,6 +166,13 @@ target group with `0x002ECD50(actor, 0)`, through its thunk `0x0026DC40` (`0x003
    seat of 0-2 in the staging map (`0x00328E97`-`0x00328F6D`). With no free seat left the change is dropped.
 3. The result is committed with `0x003261D0(0)` (`0x00328F71`).
 
+The held seats are read from map 1, seats 0-3, through `0x002367A0` (`0x00328E0D`-`0x00328E7F`); the listed members are
+found in map 0 and swapped in its staging copy `0x022C2580` (`0x00328EB0`, `0x00328EED`-`0x00328F65`). A listed selector
+that is not seated in map 0 refuses the whole change, and so does running out of free seats: `0x00328DB0` then
+returns -1 and commits nothing (`0x00328EA3`-`0x00328EC8`, `0x00328F40`-`0x00328F43`). It returns 0 after the commit
+(`0x00328F76`). It reads at least three list entries, an entry of `-1` giving no selector (`0x00328DE3`-`0x00328DFA`,
+`0x00328E97`).
+
 If the leader's selector is not among the three, the first one given becomes the leader through `0x00327850`
 (`0x0034D5A0`-`0x0034D5C3`, [Party leader](party-leader.md)).
 
@@ -167,6 +189,14 @@ If the leader's selector is not among the three, the first one given becomes the
 
 The actor that held the slot before is only notified (`0x00269C91`-`0x00269CAD`); its record keeps `+0x12` and
 `+0xF`, so it still names the slot until it is installed again.
+
+The notice sets byte `+0x152` of its controller `+0xC0` to 1 and refreshes its movement mode with `0x002681E0`
+([Player movement](../Movement-And-Pathfinding/player-movement.md)). After step 2 the slot's actor gets `+0x152`
+= 0 and the same refresh (`0x00269CFB`-`0x00269D17`), and after step 3 the installed actor is refreshed once more
+(`0x00269D39`-`0x00269D41`). Both notices and step 3 run only for a slot 0-3 (`0x00269C8C`, `0x00269CF6`, `0x00269D1C`).
+
+Steps 1 and 2 need a non-null actor (`0x00269CB2`). With a null actor the slot keeps its occupant, which gets
+`+0x152` = 1 and then 0 again.
 
 ### Whom the others follow
 

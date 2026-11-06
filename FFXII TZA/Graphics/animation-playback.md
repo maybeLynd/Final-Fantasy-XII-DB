@@ -23,18 +23,22 @@ reference container on [presentation entries](presentation-entries.md) hands out
 
 Its storage is reserved when a model binds: the model bind `0x0041F340` (from `0x0041FCF0`) lays out in the record's
 arena block the skeleton bytes `0x003712E0` sizes, then the `@FCP` section-8 copy at that size (record
-`+0x300`, `0x0041F5C1`) in the block `0x003E6D10` sizes (rounded up to 16), then one entry followed by one
-`0x108`-byte channel row per `@FTR` node (`0x00409240`), the pair rounded up to 16 (`0x0041F452`-`0x0041F47B`).
+`+0x300`, `0x0041F5C1`) in the block `0x003E6D10` sizes (`s`, rounded up to 16: `((s + 15) / 16) × 16`, `0x0041F458`-
+`0x0041F469`), then one entry followed by one `0x108`-byte channel row per `@FTR` node (`0x00409240`), the pair
+rounded up to 16, `0x3A0 + 0x108 × n + (n & 1 ? 8 : 0)` with `n` the node count (`0x0041F452`-`0x0041F47B`).
 
 - The encoded offsets go to record `+0x480` (the entry) and `+0x484` (its rows). When the model's
   `@FCP` byte `+0x01` is non-zero (`0x003E55F0`) a second entry and row block follow at `+0x488` and
   `+0x48C`, and record `+0x284` bit `0x10000` is set (`0x0041F4A4`-`0x0041F4C7`).
-- `0x0051BA80(container, id, …, request)` binds a motion: it builds an entry on its own stack with
-  `0x0041CB90` (the defaults) and `0x0041D220` (the request), admits a new id when given −1
-  (`0x0051F080`), copies the `0x3A0` bytes into the slot `0x0051F240` resolves (`0x0051BB20`-`0x0051BB7D`),
-  re-resolves the copy with `0x0041CA70` and stores the id at `+0x00` (`0x0051BB8B`).
-- When the request fails, an entry that already had the id is reset with `0x0041CF00` and the id
-  released (`0x0051F190`).
+- `0x0051BA80(container, id, source, offset, request)` binds a motion: it builds an entry on its own stack with
+  `0x0041CB90` (the defaults) and `0x0041D220` (the request), admits a new id when given −1 (`0x0051F080` of the source
+  and offset), copies the `0x3A0` bytes into the slot `0x0051F240` resolves (`0x0051BB20`-`0x0051BB7D`), re-resolves the
+  copy with `0x0041CA70`, stores the id at `+0x00` (`0x0051BB8B`) and returns it (`0x0051BB89`).
+- Given −1 it returns −1 before building anything when the container has no free node (`0x0051F150` negative,
+  `0x0051BAB3`-`0x0051BABF`), and after the build when `0x0051F080` answers a negative id (`0x0051BAFC`).
+- When the request fails, an entry that already had the id is reset with `0x0041CF00` and the id in its `+0x00`,
+  read before the reset, released (`0x0051F190`, `0x0051BB8F`-`0x0051BBB2`); with id −1 a failed request changes
+  nothing. Either way it returns −1 (`0x0051BBB7`).
 - The request is at least `0x3C` bytes: `+0x00` the motion file, `+0x08` the skeleton bank, `+0x10` the file
   index, `+0x14` the skeleton id, `+0x18` the section name, `+0x20` the motion number, `+0x24` a word,
   `+0x28` the arena handle of the row block, `+0x30` the row offset, `+0x34` a word and `+0x38` a dword.
@@ -51,16 +55,19 @@ it resolves the stream `+0x368` (`0x004090D0` of the `+0x320` section with `+0x3
 and the motion file's data start `+0x370` (`0x004096C0` with offset 0); either way it then points `+0x18`
 at track state `+0x20` (`0x0041CAE8`, where both skips land).
 
-For every track state whose word `+0x0A` is 1 and motion index `+0x50` is not −1 it then resolves
-`+0x70` (the record at `+0x54` in the section the first index `+0x50` names, `0x00408F80` with the word
-`+0x5C`) and `+0x78` (the data at `+0x58` in the section of the second index `+0x52`)
+For each of the `+0x28` track states whose word `+0x0A` is 1 and motion index `+0x50` is not −1 it then resolves
+`+0x70` (the record at `+0x54` in the section the first index `+0x50` names in the bank `+0x48`, `0x00408F80` with
+the word `+0x5C`) and `+0x78` (the data at `+0x58` in the section of the second index `+0x52`, `0x00408F80` with 0)
 (`0x0041CB10`-`0x0041CB66`).
 
-`0x0041CF00(entry)`, from `0x0051BA40` and `0x0051BA80`, is the reset: every track state gets `+0x00` −1,
-`+0x04` 0, `+0x08` to `+0x17` zero, the words `+0x18` 0 and `+0x1A` 30, `+0x20` 30.0, `+0x48` 0,
-`+0x50` and `+0x52` −1, `+0x60` 0, `+0x68` −1, `+0x70` and `+0x78` 0, its cursor `+0x8C` back to its
-start `+0x88` and bit `0x80` of `+0x96` cleared (`0x0041CF22`-`0x0041CF82`). With `+0x0C` bit `0x1000` set it clears
-the bones' second set first (`0x002ED570` of `+0x330`, `+0x338`, then `0x00372280`) and clears the bit; then `0x0041CB90` restores the entry defaults listed in the layout below.
+`0x0041CF00(entry)`, from `0x0051BA40` and `0x0051BA80`, is the reset: each of the `+0x28` track states gets `+0x00` −1,
+`+0x04` 0, `+0x08` to `+0x17` zero, the words `+0x18` 0 and `+0x1A` 30, `+0x20` 30.0, `+0x48` 0, `+0x50` and
+`+0x52` −1, `+0x60` 0, `+0x68` −1, `+0x70` and `+0x78` 0, its cursor `+0x8C` back to its start `+0x88` and bit
+`0x80` of `+0x96` cleared (`0x0041CF22`-`0x0041CF82`).
+
+With `+0x0C` bit `0x1000` set it clears the bones' second set first (`0x002ED570` of `+0x330`, `+0x338`, then
+`0x00372280`) and clears the bit (`0x0041CFAC`); then `0x0041CB90` restores the entry defaults listed in the layout
+below (a tail jump, `0x0041CFBB`).
 
 The entry is run every frame by the per-entry update `0x0041C410` through the walker `0x0041DA90`,
 which calls the sampler `0x00418880` (both on [presentation entries](presentation-entries.md)); its
@@ -85,6 +92,10 @@ It then walks the `@FMN` records from the start `0x00409190` gives, each record'
 - For a kind-2 skeleton (dword `+0x9C` = 2) `0x00370E00(skeleton, record word +0)` claims the listed
   bone with flag bit `0x100` whose key (`0x00409250`) equals the record's bone id and unlinks it (`0x00373540`,
   `0x003735AF`); for any other kind it returns −1, so no record gets a row (`0x0041C0A6`-`0x0041C0B3`).
+- `0x00373540` takes the first such bone in the order of the scratch list `[0x01EF9438]` and returns its index; it
+  returns −1 when no listed bone matches and when the skeleton's `@FTR` entry `+0xA0` decodes to null
+  (`0x0037354F`-`0x003735D1`). The unlink joins the bone's neighbours and moves the list head on when the bone was
+  first (`0x003735E9`-`0x00373638`).
 - With a layer other than −1 the bone's byte `+0x283` must equal it (`0x0041C0B9`-`0x0041C0D2`).
 - Bit `0x2` of the bone's byte `+0x28B` becomes the inverse of (its own bit `0x1` xor bit `0x2` of byte `+0x28A`),
   and its bit `0x1` becomes bit `0x2` of `+0x28A` (`0x0041C0E2`-`0x0041C11C`).
@@ -127,7 +138,7 @@ bytes, then the u16 slots (`+0x8A` of them list the pool-built nodes). `0x003712
 For a kind-2 skeleton it first writes the identity into node 0's `+0x80` (`0x00372A44`) and clears the
 skeleton's byte `+0xA7` (`0x00372A50`). For each node (`0x00372A80`-`0x00372CA8`):
 
-- A node whose record has flag bit `0x100` (`0x100`) starts with `0x00373DC0`: identity at `+0x1F0` and
+- A node whose record has flag bit `0x100` starts with `0x00373DC0`: identity at `+0x1F0` and
   `+0x230`, `(0, 0, 0, 1)` at `+0x1A0` and `+0x1C0`, 1.0 at `+0x1E0`-`+0x1EC`, `+0x280` 0, bit `0x1` of
   `+0x282` and bit `0x4` of `+0x28B` cleared, `+0x278` the encoded null, the links `+0x270`-`+0x276` and
   `+0x27C` −1, bits `0x1` and `0x2` of `+0x28B` set, `+0x283` 0 and `+0x28A` 3.
@@ -163,23 +174,27 @@ set to 0, so at build time neither writes anything for a kind-0 skeleton; a kind
 `+0x150` from the pool or the identity.
 
 The links form two trees. The parent link `+0x270` and the sibling and first-child links `+0x272`
-and `+0x274` describe the model's own hierarchy; only the builder reads `+0x272` and `+0x274`, while chaining
-(`0x00372B45`, `0x00372B67`, `0x00372B8A`, `0x00372D37`, `0x00372D5B`, `0x00372D80`): among the 71 functions that
-carry the immediate `0x290`, no other function reads either. The composer walks the parent link alone.
+and `+0x274` describe the model's own hierarchy. The builder reads `+0x272` and `+0x274` while chaining
+(`0x00372B45`, `0x00372B67`, `0x00372B8A`, `0x00372D37`, `0x00372D5B`, `0x00372D80`), and no other of the 71 functions that
+carry the immediate `0x290` reads either. The composer walks the parent link alone.
 
 The second tree crosses skeletons: `+0x276` names a bone of the parent skeleton for a root bone,
 and `+0x278` with `+0x27C` names the tied child bone; `0x00372F60`, from the entry refresh `0x0046E420` and
 the bank's re-link `0x0046E8D0`, rewrites `+0x278` from `+0x27C` (`0x00372FCD`-`0x00372FEF`).
 
-`0x00373F40(entry, parent entry)`, from `0x0042E550` and `0x0046E0F0`, places an attached
-skeleton: with a slot `+0x14`, node 0's `+0x1F0` becomes the parent's slot bone `+0x80` (the
-parent's node 0 `+0x1F0` for slot 0) times the entry's own `+0x40` (`0x00373FB3`-`0x00373FE1`); then
-every root bone with a `+0x276` copies that parent bone's `+0x80` into its `+0x1F0` (`0x00373FF0`-`0x0037402E`).
+`0x00373F40(entry, parent entry)`, from `0x0042E550` and `0x0046E0F0`, places an attached skeleton; with a null parent
+entry it returns without writing (`0x00373F63`-`0x00373F66`). With a slot `+0x14`, node 0's `+0x1F0` becomes the
+parent's slot bone `+0x80` (the parent's node 0 `+0x1F0` for slot 0) times the entry's own `+0x40`
+(`0x00373FB3`-`0x00373FE1`); then every root bone with a `+0x276` copies that parent bone's `+0x80` into its `+0x1F0`
+(`0x00373FF0`-`0x0037402E`).
 
-`0x00372280(entry)`, which the player's `0x0041CF00` runs under `+0x0C` bit `0x1000`, clears the second set on
-every listed bone: bit `0x10` of `+0x280`, and `+0x1A0`, `+0x1C0` back to `(0, 0, 0, 1)`. `0x0041D4D0` is its
-counterpart: it sets or clears `+0x0C` bit `0x1000` together with bit `0x20` of every state's `+0x96`
-(`0x0041D4D9`-`0x0041D554`).
+`0x00372280(entry)`, which the player's `0x0041CF00` runs under `+0x0C` bit `0x1000`, clears the second set on every
+listed bone: bit `0x10` of `+0x280`, and `+0x1A0`, `+0x1C0` back to `(0, 0, 0, 1)` (`0x003722F4`-`0x00372322`). The
+listed bones are the `+0x8A` node numbers stored after the `+0x88` nodes of the array `+0x84` decodes to; with
+that array null it writes nothing (`0x0037228D`-`0x003722C0`).
+
+`0x0041D4D0` is its counterpart: it sets or clears `+0x0C` bit `0x1000` together with bit `0x20` of every state's
+`+0x96` (`0x0041D4D9`-`0x0041D554`).
 
 ### Composing the pose
 
@@ -198,7 +213,8 @@ then for each listed bone (`0x00373970`-`0x00373CA3`):
   parent skeleton that entry `+0x0C` names, else node 0's `+0x1F0` (`0x0037399E`-`0x003739DD`);
 - with `+0x280` bit `0x10` set takes the second-set path (the `+0x96` bit `0x20` set): `+0x1A0`
   as a matrix (`0x00477130`) times `+0xC0`, the translation `+0xF0` plus `+0x1C0` (`0x00202B10`), the scale `+0x100` times `+0x1E0`
-  (`0x00202D80`), then `+0x230`, the source, the row scales and `+0x150` (`0x003739EA`-`0x00373B51`);
+  (`0x00202D80`), then `+0x230`, the source, the row scales (row i times `s[i]`, `s = +0x100 × +0x1E0` with
+  `s[3] = +0x10C`; `0x00202FE0`, `0x00373AE4`-`0x00373B39`) and `+0x150` (`0x003739EA`-`0x00373B51`);
 - with that bit clear, takes `0x00372610(source, +0xC0, +0x230, +0x100, +0x150)`
   ([the tie](skeleton-entries-and-bones.md#tying-bones-to-another-skeleton));
 - copies `0x02AD9E40`, the product before `+0x150`, into `+0x80`, and `0x02AD9E80`, the product with
@@ -216,18 +232,34 @@ one named by `+0x284`.
 ### Chunk links and the two-chunk party member
 
 `0x00370390(child, parent, slot)` is the chunk link: it jumps to `0x00373160` only for a kind-2 skeleton
-(dword `+0x9C` = 2, the `@FTR` kind the builder copied) and returns otherwise. `0x0046E640(bank, child, parent, slot)` reaches it to tie one
-skeleton's bones to another's by key; the tie, the saved parent link `+0x28E` (`0x00373244`), the root
-test on it (`0x003732CB`) and the undo are on [skeleton entries](skeleton-entries-and-bones.md#tying-bones-to-another-skeleton).
+(dword `+0x9C` = 2, the `@FTR` kind the builder copied) and returns otherwise.
+`0x0046E640(bank, child, parent, slot)` reaches it to tie one skeleton's bones to another's by key; the tie, the
+saved parent link `+0x28E` (`0x00373244`), the root test on it (`0x003732CB`) and the undo are on
+[skeleton entries](skeleton-entries-and-bones.md#tying-bones-to-another-skeleton).
+
+`0x0046E640` looks both indexes up with `0x002ED570(bank, index)`, taking null for an index of -1 (`0x0046E665`-`0x0046E685`).
+Only when both entries exist does it call `0x00370390(child, parent, slot)` (`0x0046E688`-`0x0046E69B`) and then store at
+the child's `+0x0C` the encoded address (`0x0020E620`) of the entry its `+0x08` names, or of null when `+0x08` is -1
+(`0x0046E6A0`-`0x0046E6BC`). On every path it ends with a tail jump to `0x0046E6F0(bank)`, the update-list rebuild
+(`0x0046E6DC`).
 
 Values the channel writers store into a tied parent bone are stored into the child bone at `+0x278`
 as well (`0x00418679`, `0x00418729`, `0x004186D9`), and the composer takes a tied root's source from the parent skeleton through `+0x276`.
 
-A party member in a story scene can be two chunks: the bound model and a second skeleton tied to
-it. A child record attached with code `0x7FFF` goes through `0x004215A0` to `0x004219C0(parent, −1,
-child)` (`0x0042164D`-`0x00421661`), and `0x004219C0` ties the skeletons with `0x0046E640` (`0x00421AC1`). The
-skeleton-entry update builds `+0x6D0` when the record and the skeleton named by `+0x0C` both have a
-`skeletonmapping.bin` table (`+0x6B8`), and the composer uses it only while `+0x6C8` is 2.
+A party member in a story scene can be two chunks: the bound model and a second skeleton tied to it. A child
+record attached with code `0x7FFF` goes through `0x004215A0` to `0x004219C0(parent, −1, child)`
+(`0x0042164D`-`0x00421661`), and `0x004219C0` ties the skeletons with `0x0046E640` (`0x00421AC1`). The skeleton-entry update
+builds `+0x6D0` when the record and the skeleton named by `+0x0C` both have a `skeletonmapping.bin` table
+(`+0x6B8`), and the composer uses it only while `+0x6C8` is 2.
+
+`0x004219C0` takes both skeleton entries (`0x002ED570` of each record's `+0x18`, no entry for −1) from its banks
+`+0xD98` and ties nothing when either is missing (`0x004219E4`-`0x00421A60`). It sets the child's `+0x2F2` to 0; with
+key −1 it sets the child's `+0x284` bit `0x4000000` and `+0x2F2` to 1 and ties at slot −1 (`0x00421A62`-`0x00421A7E`).
+Another key goes through `0x00372800`, which answers −1 for a skeleton other than kind 2 and asks `0x003737C0`
+otherwise, retried with key `0x1E`; when both give −1 it ties nothing (`0x00421A87`-`0x00421AB1`).
+
+After the tie a child with `+0x284` bit `0x4000000` set gets `0x003E5D30`, which puts its fade channels 0, 1 and 4
+back to 1.0 ([character fades](character-fades.md); `0x00421AC6`-`0x00421AD5`).
 
 Equipment goes the same way: `0x0041F010` ties a child to a bone through `0x004211B0`, which calls
 `0x0046E640` (`0x00421255`) when the child's skeleton entry has bit `0x80` of its first byte (`0x00421237`).
@@ -249,6 +281,8 @@ Two gates in the model decide the fallback:
   resolves the block (`0x003AB7F0`), finds the `@FRM` section (`0x4D524640`) and returns its payload at
   `+0x30` (`0x00422DAB`-`0x00422DCC`); when the `0x60070C30` byte is 2, 3 or 4, the low six bits of byte
   `+2` there decide the fallback (`0x00425B0E`-`0x00425B3D`).
+- `0x00422D90` returns 0 when the block is null or has no `@FRM` section (`0x00422DA1`, `0x00422DBE`); the payload
+  address is the one `0x00408F80` gives cut to 32 bits and sign-extended, plus `0x30` (`0x00422DCA`-`0x00422DCC`).
 
 The query then sets bit `0x2000` of the entry's `+0x0C` (`0x00425B55`), applies the mode (mode 2 only when
 the record's `+0x108` object passes `0x002ED530`, `0x00425B5D`-`0x00425B84`) and returns the state in its
@@ -260,6 +294,16 @@ low word (`0x00425D0C`-`0x00425D11`).
 
 Defaults are the constructor `0x0041CB90`'s unless a site is named. Four track states of `0xA0` bytes
 fill `+0x30` to `+0x2AF`.
+
+`0x0041CB90` writes −1 to the dwords `+0x00`, `+0x04`, `+0x08`, `+0x324` (so `+0x324` and `+0x326`), `+0x338`,
+`+0x35C` and `+0x360` and to the words `+0x318` and `+0x2D8`, `0xFF` to `+0x2DC`, −1.0 to `+0x344`, `+0x348` and
+`+0x34C`, `0x10` to the dword `+0x358` and `[0x01DFE0BC] × [0x008F8D80]` to `+0x340`, and clears mask `0x7` of
+`+0x2E8` (`0x0041CB90`-`0x0041CC90`).
+
+It writes 0 to `+0x0C`, `+0x18`-`+0x2B`, `+0x2B0`-`+0x2BD`, `+0x2C0`-`+0x2D7`, `+0x2E0`-`+0x2E7`,
+`+0x310`-`+0x317`, `+0x31A`-`+0x31D`, `+0x320`-`+0x323`, `+0x328`-`+0x32B`, `+0x330`-`+0x337`, `+0x33C`,
+`+0x350`-`+0x357`, `+0x368`-`+0x36F` and `+0x388`-`+0x38F` (`0x0041CBA0`-`0x0041CC95`). It does not write the track
+states `+0x30`-`+0x2AF`, `+0x370`-`+0x387` or the rows below marked as not touched.
 
 | Offset | Type | Field |
 |---|---|---|
@@ -280,8 +324,7 @@ fill `+0x30` to `+0x2AF`.
 | `+0x2BC` | `u16` | row count, rebuilt by every bind |
 | `+0x2BE` | `u16` | request `+0x34` |
 | `+0x2C0` | `void*` | the actor the bank-A invokers pass (`0x0041CEC0`) |
-| `+0x2C8` | `u32` | flags the commands and walker set (bits `0x10`, `0x20`, `0x40`, `0x1000`) |
-| `+0x2CC` | `u32` | zeroed with `+0x2C8` |
+| `+0x2C8` | `u64` | flags the commands and walker set (bits `0x10`, `0x20`, `0x40`, `0x1000`), eight bytes: every write is a qword read-modify-write (`0x00417BCF`-`0x00417BDB` `bts rax, 4`; `0x0041DC54`-`0x0041DC60` `bts rax, 0xc`), the bit-`0x1000` tests read the low dword (`0x0041C522` `mov eax, dword [rdi+0x2c8]`), and the constructor zeroes all eight bytes with `+0x2CC` (`0x0041CC0D`) |
 | `+0x2D0` | `u64` | zeroed; not read by the routines on this page |
 | `+0x2D8` | `u16` | −1 |
 | `+0x2DA` | `u8[2]` | not touched by the routines on this page |
@@ -369,8 +412,8 @@ Built by `0x0041B550`; the slot fields are on [model effects](model-effects-and-
 |---|---|---|
 | `+0x000` | `slot × 9` | nine `0x1C`-byte channel slots: `+0x00` `i16` the value `0x0041B650` is given, `+0x04` frame (`0xFFFF` for a single key or no data), `+0x06` next frame, `+0x08` previous value, `+0x0C` next value, `+0x10` frame cursor, `+0x16` value cursor |
 | `+0x0FC` | `u32` | the record's offset from the `@FMN` section (`0x0041B582`-`0x0041B594`) |
-| `+0x100` | `u16` | bone index |
-| `+0x102` | `u16` | single-key mask, bit `7 + k` for channel `k` |
+| `+0x100` | `u16` | bone index (`0x0041B585`) |
+| `+0x102` | `u16` | single-key mask: bit `0x80 << k` for channel `k`, set when `0x0041B650` returns 1 for it; 0 before the channels are read (`0x0041B5A3`, `0x0041B5F3`-`0x0041B5FA`) |
 | `+0x104` | `u8[4]` | not touched by the routines on this page |
 
 ### A skeleton node (0x290 bytes)
@@ -384,24 +427,24 @@ placement `0x00373F40` (P).
 | `+0x000` | `u8[64]` | skinning matrix slot A, written by C when byte `+0xA7` of the skeleton has 1 in its low nibble |
 | `+0x040` | `u8[64]` | skinning matrix slot B, written by C otherwise; the slot in use is named by `+0x284` |
 | `+0x080` | `u8[64]` | the bone matrix: rest pose from `0x00373D00`, each frame from C; the source of child bones; what bone lookups return |
-| `+0x0C0` | `u8[48]` | the pose block: rotation from the pool (`0x00409300`) or the template `0x02CA43D0` (`0x0041D180`), written by S and the add-motion tracks |
-| `+0x0F0` | `f32[4]` | translation (x, y, z from the pool; w 1.0 at `+0xFC`), written by S |
-| `+0x100` | `f32[4]` | scale, 1.0 from B, rebuilt by S (`0x00418F83`); C multiplies it by `+0x1E0` on the second-set path |
+| `+0x0C0` | `u8[48]` | the pose block: rotation from the pool (`0x00409300`) or the template `0x02CA43D0` (`0x0041D180`), written by S and the add-motion tracks; L copies the parent bone's `+0xC0`-`+0xFF` into a tied child bone (`0x00373319`) |
+| `+0x0F0` | `f32[4]` | translation (x, y, z from the pool; w 1.0 at `+0xFC`), written by S; copied with `+0xC0` by L |
+| `+0x100` | `f32[4]` | scale, 1.0 from B, rebuilt by S (`0x00418F83`); C multiplies it by `+0x1E0` on the second-set path, `s = +0x100 × +0x1E0` for x, y and z (`0x00202D80` at `0x00373A7B`) with `s[3] = +0x10C` (`0x00373A80`-`0x00373A8E`) |
 | `+0x110` | `f32[4]` | quaternion the blend keeps ([model effects](model-effects-and-motion-commands.md#blending-into-a-new-motion)) |
 | `+0x120` | `f32[4]` | the rotation `0x0041C260` keeps from `+0xC0` |
 | `+0x130` | `u8[32]` | copy of `+0xF0`-`+0x10F` (B; `0x0041C260`) |
-| `+0x150` | `u8[64]` | the bind-pose inverse: the pool matrix with record bit `0x200000`, else `0x01F204E0`; `0x00373EA0` would write the inverse rest pose for a kind-0 skeleton but runs over the listed count, 0 at build time; the last factor of C |
+| `+0x150` | `u8[64]` | the bind-pose inverse: the pool matrix with record bit `0x200000`, else `0x01F204E0`; `0x00373EA0` would write the inverse rest pose for a kind-0 skeleton but runs over the listed count, 0 at build time; the last factor of C; L copies the parent bone's into a tied child bone (`0x0037332C`) |
 | `+0x190` | `f32[3]` | the three angles the add-motion tracks write ([add-motion tables](add-motion-tables.md#applying-a-track)), `+0x19C` 1.0 |
 | `+0x1A0` | `f32[4]` | the second rotation set, `(0, 0, 0, 1)` from I and R; S writes it with `+0x96` bit `0x20` and turns it into a quaternion; C reads it on the second-set path |
 | `+0x1B0` | `f32[4]` | translation copy from B, written by `0x00418700` |
 | `+0x1C0` | `f32[4]` | the second translation set, `(0, 0, 0, 1)` from I and R, written by S with `+0x96` bit `0x20`, added to `+0xF0` by C |
 | `+0x1D0` | `f32[4]` | 1.0 from B; written by `0x004186A0` (not for a tied bone), read by S |
-| `+0x1E0` | `f32[4]` | the second scale set, 1.0 from I, written by S with `+0x96` bit `0x20`; C multiplies `+0x100` by it |
+| `+0x1E0` | `f32[4]` | the second scale set, 1.0 from I, written by S with `+0x96` bit `0x20`; C multiplies `+0x100` by it, `s = +0x100 × +0x1E0` for x, y and z (`0x00202D80` at `0x00373A7B`) |
 | `+0x1F0` | `u8[64]` | identity from B and I; on node 0 the skeleton's root matrix (P writes it for an attached skeleton; C and `0x00373D00` read it); P copies the parent bone's `+0x80` here for a tied root |
 | `+0x230` | `u8[64]` | identity from B and I; a factor of both paths of C |
 | `+0x270` | `i16` | parent node, −1 for a root (B from record bits `0xFFF000`, or the record word `+0x20` for kind 0; L, `0x00370180`, `0x00370890` and `0x00373380`) |
-| `+0x272` | `i16` | next sibling (B; read only by B, `0x00372B8A`, `0x00372D80`) |
-| `+0x274` | `i16` | first child (B; read only by B, `0x00372B67`, `0x00372D5B`) |
+| `+0x272` | `i16` | next sibling (B; read by B, `0x00372B8A`, `0x00372D80`, and by no other function that carries the immediate `0x290`) |
+| `+0x274` | `i16` | first child (B; read by B, `0x00372B67`, `0x00372D5B`, and by no other function that carries the immediate `0x290`) |
 | `+0x276` | `i16` | parent bone in the parent skeleton for a tied root, −1 otherwise (L, `0x00370180`, `0x00370890`, `0x00373380`; read by C and P) |
 | `+0x278` | `u32` | encoded address of the tied child bone, null otherwise (L, `0x00370180`, `0x00370890`, `0x00373380`, `0x00372F60`); the channel writers `0x00418650`, `0x00418700` and `0x004186A0` store into it too |
 | `+0x27C` | `i16` | the tied child bone's node number (L, `0x00370180`, `0x00370890`, `0x00373380`, I); read by `0x00372F60` to re-point `+0x278` |

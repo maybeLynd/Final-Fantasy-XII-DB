@@ -46,13 +46,27 @@ by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic ma
 2. **Metadata** `0x00385BA0`: `+0x138` (when not -1) goes to the byte `[0x02EBF190]+0x5B0E`, `+0x13C` to the
    dword `[0x02EBF190]+0x5B00`; a non-zero steal byte `+0x32`/`+0x33`/`+0x34` clears bit `0x1`/`0x2`/`0x4` of
    `[targetUnit+0x6A0]+0x14`; with `+0x1C` = 1 the battle-message events are posted (`0x00469EC0`).
+   - `+0x13C` is skipped when it is -1 as well (`0x00385BDE`), and the byte stored from `+0x138` is its
+     low byte (`0x00385BC9`).
+   - The steal bytes are tested `+0x34` first, then `+0x33` and `+0x32`; each finds the target unit
+     afresh with `0x0031B860(targetStats)`, kept in `0x02EBF188`, and a null unit or a null `+0x6A0` skips
+     that clear (`0x00385BF0`-`0x00385C6B`).
+   - The poster is called as `0x00469EC0(word [0x02AEDFD4], sourceStats, targetStats, result)`
+     (`0x00385C75`-`0x00385C85`).
 3. Bit `0x80000` of `+0x2C` sets bit `0x8` of the target unit's `+0xE9A`; bit `0x4000` of `+0x140` plays sound `0x34`
    (`0x003A1180`, `0x002DF220`) and sets bit `0x4` (`0x00311384`-`0x003113BF`).
 4. **Levels.** A target level `+0x11C` other than `0xFF` is applied with `0x0030C650(target, level, 0)`,
    and the user's `+0x11D` likewise (`0x003113CB`-`0x003113FD`).
-5. **Steal and poach.** For an enemy-side target, each non-zero steal byte `k` (`+0x32`-`+0x34`) adds
-   one of the item at `[targetUnit+0xE60]+0x32+2k` (when not `0xFFFF`) with `0x003008A0`, clears bit `1 << k`
-   of `[targetUnit+0x6A0]+0x14` (already cleared by step 2) and calls `0x00316A50(3)`; a poach item `+0x38` other than -1 is added (`0x00311402`-`0x003114A8`).
+5. **Steal and poach.**
+   - For an enemy-side target, each non-zero steal byte `k` (`+0x32`-`+0x34`) adds one of the item at
+     `[targetUnit+0xE60]+0x32+2k` (when not `0xFFFF`) with `0x003008A0`, clears bit `1 << k` of
+     `[targetUnit+0x6A0]+0x14` (already cleared by step 2) and calls `0x00316A50(3)` through the thunk
+     `0x00253770` (`0x00311475`).
+   - For any target, a poach item `+0x38` other than -1 is added with `0x003008A0` (`0x00311402`-`0x003114A8`).
+   - A poach that rolled an empty `0xFFFF` word stores item 0 (`0x003907AB`), so the applier passes item 0, the
+     Potion ([item list](../Items-Equipment-Shops-And-Licenses/item-list.md)): `0x003008A0` refuses only `0xFFFF`,
+     `0x1000`, a group above `0xE` and an index past the group's count (`0x003008C0`-`0x00300927`), and group 0
+     counts `0x40` ids and hands them to `0x002FD150` (`0x00300960`).
 6. **Statuses.** Each bit `n` of the add mask `+0x54` calls `0x0030E360(target, source, n, +0x5C[n],
    +0xDC[n], ..., 3)` (add); each bit of the remove mask `+0x58` calls `0x0030E360(target, source, n, 0, 0,
    ..., 0)` (remove). Bits `0x10` and `0x20` of `+0x140` choose a flag passed to those calls (`0x003114D2`-`0x003115AF`).
@@ -102,10 +116,10 @@ by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic ma
 | `+0x030` | `u16` | unused30 | `0xFFFF` by the word store `0x0038490B` in `0x003848E0`; read by no instruction |
 | `+0x032` | `u8[3]` | steal | steal slots 0-2 (step 5, `0x00385BA0`) |
 | `+0x035` | `u8[3]` | zero35 | written only by the clears (below); read by no instruction; nothing fixes its width |
-| `+0x038` | `i32` | poachItem | item id in the low word; -1 when nothing is poached (step 5) |
+| `+0x038` | `i32` | poachItem | item id in the low word, copied from the dword `0x02AEE050` (`0x00386813`-`0x00386819`); -1 from the per-action reset (`0x00384AF9`) when the action does not poach, 0 when a poach rolled an empty `0xFFFF` word (`0x003907AB`) (step 5) |
 | `+0x03C` | `u8[2]` | effectSet | augment bits to set; `0xFF` when the byte sets nothing (step 10) |
 | `+0x03E` | `u8[4]` | effectClear | augment bits to clear; `0xFF` when the byte clears nothing (step 10) |
-| `+0x042` | `i16[8]` | effectTimers copied to target +0x17C..+0x18A when not negative |  |
+| `+0x042` | `i16[8]` | effectTimers | eight timers, each copied to target `+0x17C`-`+0x18A` when not negative (`0x00311778`-`0x00311894`) |
 | `+0x052` | `u8[2]` | zero52 | written only by the two clears (below); read by no instruction; nothing fixes its width |
 | `+0x054` | `u32` | addMask | statuses to add (step 6) |
 | `+0x058` | `u32` | removeMask | statuses to remove (step 6) |

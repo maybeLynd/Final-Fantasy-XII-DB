@@ -60,9 +60,9 @@ it. The developer verb `0x206C` `debug_clearquestall` does nothing: its handler 
 
 When `setquestclear` sets a cleared bit it also means to clear the quest's ordered bit, but it computes the byte
 and bit again from the bit position, `q & 7`, instead of from *q* (`0x0046B2EF`-`0x0046B316`). The byte is therefore
-always the first, and the bit `q & 7`: clearing quest 13 clears the ordered bit of quest 5, and the quest itself
-stays ordered. Only quests 0-7 have their own ordered bit cleared. The same happens when a clear arrives through
-`0x00329E60` kind 5.
+always the first, and the bit value `1 << (q & 7)`: clearing quest 13 clears the ordered bit of quest 5, and the
+quest itself stays ordered. Only quests 0-7 have their own ordered bit cleared. The same happens when a clear
+arrives through `0x00329E60` kind 5.
 
 ### Who else reads it
 

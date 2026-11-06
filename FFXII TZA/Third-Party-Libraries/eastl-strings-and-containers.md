@@ -37,9 +37,19 @@ has six slots, followed by 0 at `0x00902750`:
 | `+0x20` | `0x0016D690` | returns the name `EASTL` (`0x01CDAE78`) |
 | `+0x28` | `0x0016D6A0` | `ret 0`, an empty function at EASTL's `set_name` position |
 
-Each of the three memory slots first creates, once, a 32-byte record at `0x01F82E48` holding
+Each of the three memory slots first creates a 32-byte record at `0x01F82E48` holding
 `0x2000000`, `0x200000`, 0 and 0. Only those three functions refer to the record, and none of them
 reads it, so no allocation is logged or attributed.
+
+Each slot tests `0x01F82E48` (`0x001EDF1A`, `0x001EDF86`, `0x001EDFE6`) and, while it is null, takes `malloc(0x20)`
+(`0x001EDF2F`, `0x001EDF98`, `0x001EDFF8`). A block it gets receives `0x2000000` at `+0x00`, `0x200000` at `+0x04`, a
+zero qword at `+0x10` and a zero dword at `+0x18`; the result is stored at `0x01F82E48` null or not (`0x001EDF56`,
+`0x001EDFBF`, `0x001EE01F`), so after a failed `malloc` the next call tries again.
+
+Then each slot leaves by a tail jump. Slot `+0x08` jumps to `_aligned_malloc` (`0x008C2B60`) with the size and the
+caller's alignment (`0x001EDF6D`), and slot `+0x10` jumps there with the size and 16 (`0x001EDFD3`). Slot `+0x18`
+jumps to `_aligned_free` (`0x008C2B70`) for a non-null pointer (`0x001EE033`) and returns at once for null
+(`0x001EE029`).
 
 ### Strings
 
@@ -63,6 +73,23 @@ Every empty string in the process points at the same byte. Freeing is guarded by
 copies the elements before the insertion point, writes the new ones, copies the rest and frees the
 old block. A vector grown one element at a time therefore holds 1, 2, 4, 8 … elements.
 
+`0x001E7D30(vector, position, n, value)` returns at once when `n` is 0 (`0x001E7D63`), and grows only when `n` is
+above the free count `(capEnd - end) / 16` (`0x001E7D50`, `0x001E7D5A`). It loads the value before it moves any
+element (`0x001E7D69`).
+
+When it grows, a new capacity of 0 allocates nothing (`0x001E7EA4`). The old block is freed through slot `+0x18`
+only when `begin` is not null (`0x001E7F44`, `0x001E7F5F`). Then `begin` takes the new block (`0x001E7F72`), `end`
+the end of the copies (`0x001E7F7E`) and `capEnd` the address `block + newCapacity * 16` (`0x001E7F6B`, `0x001E7F7A`).
+
+In place, with `k = (end - position) / 16` elements behind the position (`0x001E7D73`):
+
+- when `n < k` (`0x001E7D7A`), it copies the last `n` elements past the end, moves `end` on by `n * 16` bytes
+  (`0x001E7DAE`), shifts the other tail elements back from the last one (`0x001E7DC0` to `0x001E7DD2`) and writes
+  `n` copies at the position (`0x001E7DE1`);
+- otherwise it writes `n - k` copies past the end (`0x001E7E09`), copies the `k` tail elements behind them
+  (`0x001E7E38`), moves `end` on in two steps (`0x001E7E1E`, `0x001E7E4F`) and writes the value over the `k` old
+  places (`0x001E7E60`).
+
 ### Sets and maps: the red-black tree
 
 Every EASTL set and map in the game shares one balanced-tree runtime of six functions. A node starts
@@ -70,14 +97,32 @@ with right, left and parent pointers and a colour byte (red 0, black 1); the key
 `+0x20`.
 
 - `0x0016D6D0` steps to the next node: down the right child and then left as far as possible, or up
-  while the node is its parent's right child. It writes nothing.
+  while the node is its parent's right child. It writes nothing. With a right child it returns the leftmost
+  node below it (`0x0016D6E4` to `0x0016D6F0`). After the climb it returns the parent it reached, except that a node
+  whose right link is that parent is returned itself (`0x0016D70C`, `0x0016D70F`).
 - `0x0016D720` steps to the previous node, the mirror image, after first returning the anchor's right
   link when the node is the red anchor itself (its parent's parent is itself).
 - `0x0016D780` and `0x0016D7E0` rotate left and right; only the erase calls them.
+- `0x0016D780(node, root)` lifts the node's right child: the child's left subtree becomes the node's right
+  (`0x0016D787`, `0x0016D793`), the child takes the node's parent (`0x0016D79B`) and the node becomes the child's
+  left child (`0x0016D7A7`, `0x0016D7AE`).
+- When the node is `root`, `0x0016D780` leaves its parent's links as they are and returns the child as the new
+  root (`0x0016D79F`, `0x0016D7A4`). Otherwise the parent's matching link moves to the child (`0x0016D7BD`,
+  `0x0016D7CD`) and `root` is returned.
+- `0x0016D7E0(node, root)` is the mirror image: it lifts the left child (`0x0016D7E0`, `0x0016D807`), with the same
+  root test (`0x0016D7FF`) and return value.
 - `0x0016D840` inserts a node: it initialises the node's links and colour, hangs it on the chosen side
   of its parent, updates the anchor's leftmost, rightmost and root links, recolours, rotates inline
   (for example `0x0016D8C7` to `0x0016D912`, including the root update at the anchor's `+0x10`, and the
   mirror case), and paints the root black (`0x0016DA4F`). It has 90 call sites in 56 functions.
+- Its arguments are `(node, parent, anchor, side)`. The node gets null child links, `parent` as its parent and
+  the colour red (`0x0016D842` to `0x0016D84D`). Side 0 hangs it as the parent's left child (`0x0016D855`); when the
+  parent is the anchor the node also becomes the root, the leftmost (through that same left link) and the
+  rightmost (`0x0016D85E`, `0x0016D878`), and when the
+  parent was the leftmost the node takes its place (`0x0016D86A`).
+- Any other side hangs the node as the parent's right child (`0x0016D870`), and it replaces a parent that was the
+  rightmost (`0x0016D878`). The fix-up loop runs while the node is not the root and its parent is red
+  (`0x0016D87B`, `0x0016D894`, `0x0016DA41`). The function returns the root (`0x0016DA4B`).
 - `0x0016DA60` erases a node: it splices in the replacement, swaps the two nodes' colour bytes
   (`0x0016DBA9` to `0x0016DBB7`) and rebalances with the two rotations.
 
@@ -85,6 +130,17 @@ The comparison that decides left or right is the caller's. `0x001A3380` is a typ
 walks from the root comparing an `int` key at node `+0x20`, allocates a `0x38`-byte node through the
 container's allocator at `+0x30`, copies a 20-byte value to node `+0x20`, calls `0x0016D840` with the
 anchor at container `+0x08`, and increments the count at `+0x28`.
+
+`0x001A3380(map, result, value)` compares signed: a smaller key goes left, any other right (`0x001A33C0` to
+`0x001A33D6`). After a left turn at the leftmost node it inserts at once (`0x001A33EA`). Otherwise it takes the last
+node of the walk, or after a left turn that node's predecessor from `0x0016D720` (`0x001A33F3`). When that node's key
+is not below the new key (`0x001A33FE`), the key is present: it writes that node and 0 to the result and inserts
+nothing (`0x001A34BD`, `0x001A34C0`).
+
+On insert the side is 0 (left) when the parent is the anchor or the key is below the parent's key, else 1
+(`0x001A3407` to `0x001A3412`, `0x001A3419` to `0x001A342D`). The value copy is skipped only when the block address
+`block + 0x20` is 0 (`0x001A3448`, `0x001A3490`). It writes the new node and 1 to the result (`0x001A346C`,
+`0x001A346F`, `0x001A34B4`, `0x001A34B7`) and returns the result (`0x001A34C9`).
 
 ### Static strings and containers built at start-up
 
@@ -94,6 +150,13 @@ allocates 5 bytes for `null`, copies 4, terminates, and registers `0x008A70F0`. 
 empty literal (`0x0015C560`, text `0x01CEB638`) takes the shared byte instead and copies 0 bytes. Two
 more (`0x0015D2F0`, `0x0015DBB0`) build an empty string with no copy at all, and four build empty
 containers (`0x0015D230` a vector, `0x001601C0` a list, `0x0015D260` and `0x0016A2C0` maps).
+
+`0x0015C560` builds the current cut name `0x01F81358`. It constructs the allocator twice, a stack temporary named
+`EASTL basic_string` and then the member `0x01F81370` (`0x0015C576`, `0x0015C59B`). The length is computed as
+`esi - esi + 1`, always 1 (`0x0015C5A7` to `0x0015C5AB`), so the shared-byte branch is always taken (`0x0015C5B0`,
+`0x0015C600` to `0x0015C60E`). `memmove` copies 0 bytes (`0x0015C61E`), `end` is set to the shared byte (`0x0015C624`),
+the terminator 0 is written into the shared byte `0x02EBA2E0` itself (`0x0015C632`), and the routine tail-jumps to
+`atexit` with `0x008A69F0` (`0x0015C63F`).
 
 The 52 non-empty strings are four copies of the 13 strings a JSON writer and reader need: the escapes
 `\"`, `\\`, `\/`, `\b`, `\f`, `\n`, `\r`, `\t`, `\u`, the words `true`, `false`, `null` and the hex
@@ -114,9 +177,22 @@ size of each; the other 76 are on
 - `0x001A52A0` appends a character range to a string. When the result does not fit, the new capacity
   is 8 while the old capacity is below 9, otherwise twice the old one, and never less than the
   length needed; it then copies both parts into the new block and frees the old one.
+- `0x001A52A0(string, first, last)` returns the string at once for an empty range (`0x001A52B5`). The capacity is
+  `capEnd - begin - 1` and the result fits when `size + n <= capacity`, in 32 bits (`0x001A52BB` to `0x001A52D5`).
+  In place it copies all but the first character to `end + 1` (`0x001A53B1`), writes the terminator at `end + n`
+  (`0x001A53BD`), then the first character at the old end (`0x001A53CE`), and moves `end` on by `n` (`0x001A53D3`).
+- When it grows, it allocates `newCapacity + 1` bytes (`0x001A5304`, `0x001A530F`), writes the terminator
+  (`0x001A5346`) and frees the old block through slot `+0x18` only when `capEnd - begin > 1` and `begin` is not
+  null (`0x001A5353`, `0x001A535C`, `0x001A536D`). `capEnd` becomes `block + newCapacity + 1` (`0x001A537F`); both paths
+  return the string (`0x001A5383`, `0x001A53D0`).
 - `0x001FC640` is a map's `operator[]` with a `u32` key at node `+0x20`: it walks from the root
   `+0x18`, and when the key is missing it inserts a default value, an empty vector whose allocator
   is named `EASTL vector`, through `0x001FD310`.
+- `0x001FC640` keeps the first node whose key is not below the key, comparing unsigned (`0x001FC674` to
+  `0x001FC689`); a key equal to that node's key skips the insert (`0x001FC695`). For a missing key it builds the
+  pair through `0x001FBFC0` (`0x001FC6CF`), and after `0x001FD310` (`0x001FC701`) frees each temporary vector's block
+  through slot `+0x18` when its `begin` is not null (`0x001FC713`, `0x001FC72E`, `0x001FC737`, `0x001FC752`).
+- On both paths `0x001FC640` returns the address of the node's value, node `+0x28` (`0x001FC756`).
 
 The string bodies follow the rules under Strings: `0x001B38B0` and `0x001A4BF0` take the shared byte
 `0x02EBA2E0` when the length plus one is below 2.
@@ -298,7 +374,10 @@ with a string key at `+0x20` and a value at `+0x40` that it passes to `0x002001F
   values.
 - [`eastl-strings-and-containers-string-static-initialisers.tsv`](eastl-strings-and-containers-string-static-initialisers.tsv),
   [`eastl-strings-and-containers-basicstring-variant-initialisers.tsv`](eastl-strings-and-containers-basicstring-variant-initialisers.tsv) and
-  [`eastl-strings-and-containers-container-static-initialisers.tsv`](eastl-strings-and-containers-container-static-initialisers.tsv): the start-up initialisers.
+  [`eastl-strings-and-containers-container-static-initialisers.tsv`](eastl-strings-and-containers-container-static-initialisers.tsv): 62 of the 64
+  start-up initialisers.
+  - The other two, `0x0015C560`, which builds the cut name, and `0x0015FFE0`, which builds the fourth copy of `\t`,
+    are described under "Static strings and containers built at start-up" above.
 - [`eastl-strings-and-containers-ordered-container-runtime.tsv`](eastl-strings-and-containers-ordered-container-runtime.tsv) and
   [`eastl-strings-and-containers-ordered-container-runtime-callers.tsv`](eastl-strings-and-containers-ordered-container-runtime-callers.tsv): the tree runtime and its
   callers.

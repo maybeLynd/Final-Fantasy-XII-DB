@@ -22,12 +22,18 @@ addresses: "0x003E1350, 0x003E1610, 0x00370E20, 0x003E6DA0, 0x003E00C0, 0x00427D
 ### The rig and its two switches
 
 The rig is the encoded pointer at `+0x94` of a character's resource entry (`0x00370E20`); `0x003E6DA0` returns it for a
-render record. Its first seventeen dwords are encoded pointers, one per controller, resolved through `0x0020E600` on
+render record: the entry is element `+0x18` of the bank at `+0xD98` of the root decoded from `+0x10` (the skeleton
+entries, `0x002ED570`, `0x003E6DA6`-`0x003E6DC4`), and it returns 0 when `+0x18` is −1 (`0x003E6DAC`) or `0x002ED570` answers
+null (`0x003E6DCC`). Its first seventeen dwords are encoded pointers, one per controller, resolved through `0x0020E600` on
 every use: controller *n* is the dword at `+4n`.
 
 `0x003E1350(rig, n)` switches controller *n* off and `0x003E1610(rig, n)` switches it on. Both refuse `n > 16`
-(`0x003E1350`, `0x003E1610`: `cmp edx, 0x10`), jump through a seventeen-entry table (`0x003E15C8`, `0x003E1888`), resolve the
-controller and tail-jump to its own off or on routine. Entry 4 of both tables goes straight to the exit: slot 4 has no
+(`0x003E1350`, `0x003E1610`: `cmp edx, 0x10`, an unsigned compare, so a negative `n` is refused too), jump through a
+seventeen-entry table (`0x003E15C8`, `0x003E1888`), resolve the controller and tail-jump to its own off or on routine; a
+slot whose pointer resolves to null goes to the exit instead (`0x003E15BF`, `0x003E187F`).
+
+Slot 15, the head shake, is the one exception to the tail jump: both call its routine and then return (`0x003E15BA`
+calls `0x00472810`, `0x003E187A` calls `0x00472950`). Entry 4 of both tables goes straight to the exit: slot 4 has no
 controller.
 
 | n | Offset | Controller | On, off | Switched by |
@@ -64,11 +70,18 @@ Scripts do not call the switches. A verb's service sets a bit in render record `
 | `0x40` | `0x2000` | 9 lip flap | `0x002E8570`; timed `0x002EDF30` |
 | `0x80` | `0x4000` | 13 nod | `0x002EE0D0`; timed `0x002EE130` |
 | `0x8000` | `0x8000` | 15 head shake | `0x002EDE70`; timed `0x002EDED0` |
-| `0x100` | `0x20000` | 10 eyes | `0x002E75A0`, from the `eyemove_381` and `eyemovediff_383` handlers |
+| `0x100` | `0x20000` | 10 eyes | `0x002E75A0`, from the `eyemove_381` and `eyemovediff_383` handlers (`0x00348040`, `0x00348750`), which set the bit (`0x0034808A`, `0x0034879A`); the `eyemovestop` handler `0x00349410` clears it (`0x00349415`); either way it raises the dirty bit (`0x002E75F5`), and it keeps no timer |
 | `0x10000` | `0x10000` | 16 body shake | `0x002EDDC0`, which also stores the amount at `+0x4BC`; an amount of 0 clears the `+0x304` bit instead and still raises the dirty bit (`0x002EDDED`, `0x002EDDF7`) |
 
-Each setter refuses a record whose `+0x284` is 0. The plain forms zero the timer; the timed forms store
-`frames / [0x01DFE0BC]` at `+0x640` (lip flap), `+0x644` (nod) or `+0x648` (head shake).
+Each setter refuses a record whose `+0x284` is 0. `0x002E75A0` and `0x002E8570` take the actor and also do nothing for a
+null actor, a null `+0xC0` object, or one whose first dword or index word is −1 (`0x002E75A3`-`0x002E75BD`,
+`0x002E8573`-`0x002E858D`); the others take the render index and do nothing for −1 (`0x002EDDC4`, `0x002EDE74`, `0x002EDF34`,
+`0x002EE0D4`).
+
+The plain forms zero the timer whether they set or clear the bit (`0x002E85AC`, `0x002EE0F3`, `0x002EDE93`); the eyes and
+body-shake setters keep no timer. The timed forms store
+`frames / [0x01DFE0BC]` at `+0x640` (lip flap), `+0x644` (nod) or `+0x648` (head shake) when switching on
+(`0x002EDF76`, `0x002EE17C`, `0x002EDF1C`) and zero it when switching off (`0x002EDF5E`, `0x002EE161`, `0x002EDF01`).
 
 The division happens in the actor-side wrappers the timed verbs call: `setkutipakustatus_4a2`
 (`0x00352B90`) uses `0x002E85E0`, `setunazukistatus_4a3` (`0x00352F20`) `0x002E8B80` and
@@ -78,9 +91,14 @@ timed setter.
 
 The wrapper (`0x0042DD90` for the
 lip flap, `0x0042E690`, `0x0042D8B0`, `0x0042DCD0`, `0x0042BDE0` for the others) runs on the record, its first child and the
-child's subtrees, skips records `0x00426220` rejects, and switches the controller on when the owner's bit is set and off
-when it is clear. The body-shake wrapper first copies `+0x4BC` into the controller's `+0x38`. After the walk the sync
-routine (`0x00429C40` for bit `0x40`) copies the bit into byte `+0x40B` (bits `0x20`, `0x40`, `0x80` for the three talking-head bits).
+child's subtrees, skips records `0x00426220` rejects and records without a rig (the lookup of `0x003E6DA0` done inline,
+`0x0042DDDF`-`0x0042DDF2`, `0x0042BE33`-`0x0042BE46`), and switches the controller on when the owner's bit is set and off when
+it is clear.
+
+The body-shake wrapper, switching on, first copies the owner's `+0x4BC` into the controller's `+0x38` when the rig has
+controller 16 (`0x0042BE52`-`0x0042BE7A`); switching off copies nothing (`0x0042BEA4`). After the walk the sync routine
+(`0x00429C40` for bit `0x40`) copies the bit into byte `+0x40B` (bits `0x20`, `0x40`, `0x80` for the three talking-head
+bits).
 
 `0x00426220(record, owner)` returns 1, and the wrapper skips the record, when the record is not the owner, its `+0x284`
 bit `0x4000000` is clear and its word `+0x2F8` is -1; when its bit `0x8000000` is set, its word `+0xCC` is below `0x1000` and `0x004232D0`
@@ -90,9 +108,15 @@ it is `'h'` and its bytes `+0x3D`-`+0x41` differ from the owner's `+0x3C`-`+0x40
 ### The countdown
 
 `0x00428F80` walks the active-record list (head at `[0x022C6F28] + 0x48800`, next at each record's word `+4`) and calls
-`0x0042EE90` on each. Unless bit `0x2` of `+0x290` is set, for each timer whose `+0x40B` bit is set and whose value is not 0,
-it subtracts `[0x01DFE0BC]`; at 0 or below it clears the `+0x304` bit, zeroes the timer and calls the same sync routine.
-A timed lip flap ends exactly as `setkutipakustatus(0)` would, and a zero timer never counts down.
+`0x0042EE90` on each. Unless bit `0x2` of `+0x290` is set (`0x0042EEA0`), for each timer whose `+0x40B` bit is set and
+whose value is not 0 (bit `0x20` for `+0x640`, `0x40` for `+0x644`, `0x80` for `+0x648`), it subtracts `[0x01DFE0BC]`
+and stores the result; at 0 or below it clears the `+0x304` bit (`0x40`, `0x80`, `0x8000`), zeroes the timer and calls
+the same sync routine.
+
+The sync routines are `0x00429C40` for the lip flap, `0x0042BBB0` for the nod and `0x00429B40` for the head shake
+(`0x0042EEEC`, `0x0042EF35`, `0x0042EF7E`); each runs its wrapper walk (`0x0042DD90`, `0x0042E690`, `0x0042DCD0`), copies the
+`+0x304` bit into its `+0x40B` bit and clears its dirty bit (`0x00429D19`, `0x0042BC89`, `0x00429C17`). A timed lip flap
+ends exactly as `setkutipakustatus(0)` would, and a zero timer never counts down.
 
 ### The Float bob
 
@@ -100,12 +124,18 @@ On (`0x004718D0`) sets the active byte `+0` and the running byte `+3` and remaps
 (`0x00471640`) clears `+0` and remaps `+2` through `0x01F22760`. The update `0x004716A0`:
 
 - first, on every call, the record's secondary-context base offset `+0x144` is set to 0 and the shape is re-sized
-  (`0x003E4350` → `0x00269E40` → `0x00268380`, `0x004716BF`; [Movement bodies](../Movement-And-Pathfinding/movement-bodies-and-separation.md));
+  (`0x003E4350` → `0x00269E40` → `0x00268380`, `0x004716BF`;
+  [Movement bodies](../Movement-And-Pathfinding/movement-bodies-and-separation.md));
+- the record is the pointer at the controller's decoded `+8` (`0x004716AE`-`0x004716BC`); the reset and re-size go through
+  the record's `+0x108` and its secondary context `+0xC0`, and do nothing when either is null (`0x003E435A`,
+  `0x00269E4A`);
 - active: the envelope `+0x10` rises by `0.125 × [0x01DFE0BC]` to 1.0; the phase `+1` steps round the 60-entry cycle
   `0x01F223B0`; the height `+0x14` = cycle[phase] × envelope; `+0x18` = 0.3 × the 28-entry rise curve `0x01F22590` at
   `+2`, held at its last entry;
-- inactive: the envelope falls at the same rate, the phase holds, `+0x18` = 0.3 × the 30-entry settle curve
-  `0x01F22670`, and the running byte clears when `+2` reaches 30.
+- inactive: the envelope falls at the same rate and stops at 0 (`0x004716EC`), the phase holds, the height `+0x14` is
+  still cycle[phase] × envelope (`0x00471716`), `+2` advances by one (`0x00471713`), `+0x18` = 0.3 × the 30-entry settle
+  curve `0x01F22670` at the advanced `+2` (`0x00471727`, `0x004717AA`), and the running byte clears when `+2` reaches 30
+  (`0x00471723`); the rig frame runs the update only while that byte is set (`0x003E03B9`).
 
 ### The hit flinch
 
@@ -120,11 +150,21 @@ curves `0x01F22130` and `0x01F22170` and turns them by the record's heading `h` 
 `+0x20 = a cos h - b sin h` and `+0x28 = b cos h + a sin h`, sine and cosine read from the 32,768-entry table
 `0x01F004E0` (`0x00471180`-`0x00471221`). At the end of the curves it stops the controller.
 
+It raises the counter before reading the curves (`0x00471164`). When the raised counter reaches the curve length
+`0x01F22120` it stops the controller as the off routine `0x00471140` does, zeroing byte `+0` and word `+2`, and resets
+`+0xD` to 0 (`0x0047116B`-`0x0047117D`); that call still writes the offsets, from entry 0. The record is the pointer at
+the controller's decoded `+4` (`0x00471159`-`0x00471161`).
+
 ### Rotators and authored commands
 
-The update `0x00518F50` walks `0x60`-byte entries (count at controller `+4`). For each enabled entry, while its counter
-is non-zero it counts down and adds the acceleration to the speed (at 60 fps only on odd counts); the angle advances by
-`speed × [0x01DFE0BC]`, wraps at ±2π, and becomes a 2 × 2 rotation through the sine table `0x01F004E0`.
+The update `0x00518F50` walks `0x60`-byte entries (table at the controller's decoded `+0`, count at controller `+4`).
+For each enabled entry (dword `+0x18` non-zero, `0x00518FE4`), while its counter `+0x10` is non-zero it counts down and
+adds the acceleration `+0x14` to the speed `+0x08` (at 60 fps only on odd counts, tested after the count-down through
+`0x001EDE70`, `0x00518FF4`-`0x00519010`).
+
+The angle `+0x04` advances by `speed × [0x01DFE0BC]`, wraps at ±2π (one step of 2π, `0x00519027`-`0x00519040`), and becomes
+a 2 × 2 rotation through the sine table `0x01F004E0`: the cosine at `+0x34` and `+0x48`, minus the sine at `+0x38`, the
+sine at `+0x44` (`0x00519089`-`0x00519098`).
 
 Two authored presentation commands of the bank `0x0041D6C0` registers drive the rig
 ([Authored presentation commands](authored-presentation-commands.md)):
@@ -132,14 +172,20 @@ Two authored presentation commands of the bank `0x0041D6C0` registers drive the 
 - `0x13` (`0x00520430`), only while render record `+0x2F2` is 0, copies command bytes `+2`-`+5` to `+0x3F4`-`+0x3F6`
   and broadcasts the switch at once through `0x00429500(record, 1)` (`0x005204D1`), holding bit `0x200` of `+0x290`
   meanwhile.
-  - When byte `+2 & 0xB9` is `0x80` it instead runs `0x004288B0(record, byte +3)` and `0x0042B580(record)`
-  and clears bit `0x400` of `+0x290` (`0x005204EC`-`0x005204F9`).
-  - With no command it resets `+0x3F4` to `0x11` and broadcasts (`0x0052047B`).
+  - When byte `+2 & 0xB9` is `0x80` it instead runs `0x004288B0(record, byte +3)`, the byte read signed (`0x005204E8`),
+  and `0x0042B580(record)` and clears bit `0x400` of `+0x290` (`0x005204EC`-`0x005204F9`).
+  - With no command it resets `+0x3F4` to `0x11` and broadcasts (`0x0052047B`), holding bit `0x200` the same way, unless
+  bit `0x200` is already set and `+0x3F4 & 0xB9` is `0x10`, when it does nothing (`0x00520452`-`0x00520463`). Every path
+  returns 0 (`0x00520491`, `0x005204E0`, `0x00520503`).
   - With bit `0x40` of `+0x3F4`
   set, the dirty-pass wrapper `0x0042BED0` switches controller 11 by bit `0x1` when the target word `+0x3F6` is 1, the lip
   flap when it is 2, and the nod when it is 4 and `+0x3F5` is 0 or the record's piece number plus 1.
 - `0x24` (`0x005201B0`) calls `0x003DFE70(rig, index, target, frames)`, which sets the entry's counter to
-  `frames × [0x01DFE0B4]` and the acceleration to `(target - speed) / frames`, or the speed itself when frames is 0.
+  `frames × [0x01DFE0B4]` and the acceleration to `(target - speed) / frames`, or sets the speed itself to the target
+  when frames is 0.
+- In `0x003DFE70` the entry is rotator entry `index` of controller 11 (`0x60` bytes each): counter `+0x10`, step
+  `+0x14`, speed `+0x08` (`0x003DFED1`-`0x003DFF00`); with frames 0 the step keeps `target - speed` (`0x003DFED5`). It does
+  nothing without controller 11 or when `index` is not below its count word `+4` (`0x003DFE9A`, `0x003DFEAC`).
 
 - `0x25` (`0x00520320`) calls `0x003DFF20(rig, index, frames)`, which does the same toward the entry's
   default speed `+0x0C`: counter `+0x10` = `frames × [0x01DFE0B4]`, step `+0x14` = `(default − speed) /
@@ -193,10 +239,17 @@ at rig `+0x60` when the oscillator record's byte `+0x06` is set.
 
 ### Controller 5 and the shadow
 
-`0x0051A890` runs after controller 5's solve when bit `0x2` of the controller's byte `+0x17` is set, the render record has a
-shadow (`+0x114`) and the controller's byte `+0x14` is set. It stores `-(angle × weight)` of the first entry into the
-shadow's `+0xBC` (`0x003B6B60`) and writes into the look controller's byte `+7` whether the controller's dword `+4` is
-non-zero. The rig frame zeroes the shadow's `+0xBC` first every frame.
+`0x0051A890` runs after controller 5's solve when bit `0x2` of the controller's byte `+0x17` is set, the render record
+(the pointer at the controller's decoded `+0x18`) has a shadow (`+0x114`) and the controller's byte `+0x14` is set
+(`0x0051A8AD`-`0x0051A8C3`); otherwise it writes nothing. It stores `-(angle × weight)` of the first entry (the floats
+`+0x6C` and `+0x04` of the block at the controller's decoded `+0x10`, `0x0051A8DD`-`0x0051A8ED`) into the shadow's `+0xBC`
+(`0x003B6B60`).
+
+`0x003B6B60` stores only while the shadow slot `[0x02B40528] + (handle & 0xFF) × 0xE0` still holds the handle at `+0x10`
+(`0x003B6B71`). `0x0051A890` then writes into the look controller's byte `+7` whether the controller's dword `+4` is
+non-zero (`0x0051A903`-`0x0051A90A`); the rig frame hands it that byte when the rig has a look controller and a null
+pointer otherwise, which skips the write (`0x003E035B`, `0x003E0369`). The rig frame calls it only while controller 5's
+byte `+0x15` has bit `0x1` (`0x003E0325`), and zeroes the shadow's `+0xBC` first every frame.
 
 ### The rig frame
 
@@ -302,24 +355,28 @@ followed by a `jmp` as its first two instructions.
 | `service_callers` | the functions that call or jump to the forwarder directly, separated by spaces; `verbs` then names the script verbs that reach those functions |
 
 `0x00429920` applies it: for the record, its first child and the child's two subtrees (callback `0x0042D970`), it skips
-records `0x00426220` rejects, takes the rig from `0x003E6DA0` and calls `0x003E37F0(rig, command)`. Then `0x003E37E0` zeroes the
-command, so a request lasts one pass and an attached piece looks where its owner looks.
+records `0x00426220` rejects, takes the rig from `0x003E6DA0` and calls `0x003E37F0(rig, command)`. Then `0x003E37E0` zeroes
+the command, so a request lasts one pass and an attached piece looks where its owner looks.
+
+Every visited record gets the owner's command (`0x0042998E`, `0x0042D9A1`); a record without a rig is skipped (`0x00429984`,
+`0x0042D998`), and an owner whose index word `+0` is −1 visits no record but still has its command zeroed (`0x0042994A`,
+`0x00429A2D`).
 
 | Request bit | Value or payload | What `0x003E37F0` does | Builder, verb |
 |---|---|---|---|
-| 0 | bit `0x400000` | `0x003E0910(rig, value)` | `0x003E0B20`, `denybonephysical` |
-| 1 | bit `0x800000` | look controller `+0x1C` bit `0x1` := value; on `0x00515600`, off `0x00513150` | `0x003E33E0` |
-| 2 | bit `0x1000000` | low nibble of `+0x1D` := value | `0x003E3440` |
-| 4 | bit `0x4000000` | low nibble of `+0x1E` := value | `0x003E37C0`, `lookat_maxangle_limit_lock` and `_unlock` |
-| 5, 6 | - | `+0x8C` := 1, 0 | no builder |
-| 9 with 10 or 11 | `+0x20`-`+0x28` | `+0x60`-`+0x68`, source kind `+0x6C` := 0 (three dwords) or 1 (two) | `0x003E36F0`; `0x003E36C0`, `lookatsrcboneid` |
-| 12 with 13 or 14 | `+0x30`-`+0x38` | `+0x50`-`+0x58`, source kind `+0x5C` := 0 or 1 | the same two builders |
-| 15, 17 | floats `+4`-`+0xC` | angles: `0x003E2FD0`, or `0x003E30A0` with a minimum duration | `0x003E31E0`, `0x003E3120` |
-| 16, 18 | floats `+4`-`+0xC` | direction from an angle: `0x003E3200`, or `0x003E3140` | `0x003E3320`, `0x003E31C0` |
-| 19, 20 | float `+4` | blend: `0x003E2F30`, or `0x003E3340` | `0x003E33C0`, `0x003E33A0` |
-| 27, 28 | floats `+0x40`-`+0x48` | eyes: `0x003E2810`, `0x003E28F0` | `0x003E29D0` `eyemove_381`, `0x003E29B0` `eyemovediff_383` |
-| 29 | - | zeroes the eye object's `+0x2C`, `+0x14`, `+0x18` | `0x003E2800`, `eyemovereset` |
-| 30 | bit `0x80000000` | `0x003E3720`: look `+0x1C` bit `0x20` := value; set with bit `0x1` clear starts the neutral return | `0x003E37A0` |
+| `0x1` | bit `0x400000` | `0x003E0910(rig, value)` | `0x003E0B20`, `denybonephysical` |
+| `0x2` | bit `0x800000` | look controller `+0x1C` bit `0x1` := value; on `0x00515600`, off `0x00513150` | `0x003E33E0` |
+| `0x4` | bit `0x1000000` | low nibble of `+0x1D` := value | `0x003E3440` |
+| `0x10` | bit `0x4000000` | low nibble of `+0x1E` := value | `0x003E37C0`, `lookat_maxangle_limit_lock` and `_unlock` |
+| `0x20`, `0x40` | - | `+0x8C` := 1, 0 | no builder |
+| `0x200` with `0x400` or `0x800` | `+0x20`-`+0x28` | `+0x60`-`+0x68`, source kind `+0x6C` := 0 (three dwords) or 1 (two) | `0x003E36F0`; `0x003E36C0`, `lookatsrcboneid` |
+| `0x1000` with `0x2000` or `0x4000` | `+0x30`-`+0x38` | `+0x50`-`+0x58`, source kind `+0x5C` := 0 or 1 | the same two builders |
+| `0x8000`, `0x20000` | floats `+4`-`+0xC` | angles: `0x003E2FD0`, or `0x003E30A0` with a minimum duration | `0x003E31E0`, `0x003E3120` |
+| `0x10000`, `0x40000` | floats `+4`-`+0xC` | direction from an angle: `0x003E3200`, or `0x003E3140` | `0x003E3320`, `0x003E31C0` |
+| `0x80000`, `0x100000` | float `+4` | blend: `0x003E2F30`, or `0x003E3340` | `0x003E33C0`, `0x003E33A0` |
+| `0x8000000`, `0x10000000` | floats `+0x40`-`+0x48` | eyes: `0x003E2810`, `0x003E28F0` | `0x003E29D0` `eyemove_381`, `0x003E29B0` `eyemovediff_383` |
+| `0x20000000` | - | zeroes the eye object's `+0x2C`, `+0x14`, `+0x18` | `0x003E2800`, `eyemovereset` |
+| `0x40000000` | bit `0x80000000` | `0x003E3720`: look `+0x1C` bit `0x20` := value; set with bit `0x1` clear starts the neutral return | `0x003E37A0` |
 
 The bits under mask `0x1F8000` are one group, tested in the order `0x8000`, `0x20000`, `0x10000`, `0x40000`, `0x80000`, `0x100000`; the first set one runs. `0x003E36A0` (bit `0x80`) and
 `0x003E3570` (bit `0x100`) are staged only from the bind path `0x002E28E0`, and `0x003E37F0` does not test them.
@@ -327,17 +384,28 @@ The bits under mask `0x1F8000` are one group, tested in the order `0x8000`, `0x2
 ### Angles, blends and the eyes
 
 - `0x003E2FD0(rig, frames, a, b)` stores the two angles at `+0x50`, `+0x54` and sets both source kinds to 2. `0x003E3200`
-  sets them to 3 and stores the direction `(sin a, 0, cos a)` from the sine table at `+0x60`-`+0x68`.
+  also stores `a` and `b` at `+0x50`, `+0x54` (`0x003E3243`, `0x003E326C`), sets the kinds to 3 and stores the direction
+  `(sin a, 0, cos a)` from the sine table at `+0x60`-`+0x68` (`0x003E3285`-`0x003E32AE`).
 - Both, and the plain blend `0x003E2F30`, set `+0x88` = 1, zero the progress `+0x70`, set the rate `+0x74` = 1 / frames
   (`[0x01DFE0BC]` when frames is 0), set `+0x3C` when `0x01F82E38` is set, clear the high nibble of `+0x1E` and copy
   `+0x10`, `+0x14` to `+0x78`, `+0x7C`.
-- The minimum-duration forms (`0x003E3340`, `0x003E30A0`, `0x003E3140`) first raise frames to `[0x01DFE0B8] × controller +0x18`.
+- `0x003E2FD0` zeroes the progress with its 8-byte store at `+0x6C`, which writes the kind 2 and the zero `+0x70`
+  together (`0x003E301B`), and `+0x3C` is set to 1 when `0x001EDE70`, which returns `0x01F82E38`, answers non-zero
+  (`0x003E3061`, `0x003E32E6`, `0x003E2F9C`).
+- The minimum-duration forms (`0x003E3340`, `0x003E30A0`, `0x003E3140`) first raise frames to
+  `[0x01DFE0B8] × controller +0x18`; `0x003E3340` takes the larger of the two (`0x003E337D`) and runs `0x003E2F30` with it
+  (`0x003E3381`).
+- Each of `0x003E2FD0`, `0x003E3200`, `0x003E2F30` and `0x003E3340` does nothing when the rig has no look controller
+  (`0x003E300D`, `0x003E323D`, `0x003E2F5B`, `0x003E336B`).
 - The on routine `0x00515600` sets byte `+5` to `0x11`. The off routine `0x00513150` does nothing when the low nibble of
   `+5` is clear; otherwise it clears it and the low nibble of `+0x1D`, sets `+0x1E` to `0x11`, zeroes the progress, sets
   the rate to `[0x01DFE0BC] / +0x18` (`[0x01DFE0BC]` when that is 0) and copies the current angles to `+0x78`, `+0x7C`.
 - `0x003E2810(rig, frames, x, y)` writes the eye object (slot 10): timer `+0x2C` = frames, velocity `+0x1C`, `+0x20` =
   (target − current) / frames, current at `+0x14`, `+0x18`. Frames under 1 become `[0x01DFE0B8]`; the timer is stored
   negated when `0x01F82E38` is set. `0x003E28F0` takes the pair as a displacement.
+- In `0x003E2810` the negation is tested through `0x001EDE70`, which returns `0x01F82E38` (`0x003E2875`); the velocity uses
+  the frames before it (`0x003E2868`). It does nothing for a null rig or a rig without the eye object (`0x003E2813`,
+  `0x003E2848`).
 
 ### Where head-look requests come from
 
@@ -350,13 +418,14 @@ is set, and that bit is cleared.
 |---|---|---|
 | 0, 1 | `0x002E7650`, bit `0x80000` | `0x002E79A0`, bit `0x100000` |
 | 2 | `0x002E7720`, bit `0x8000` | `0x002E77F0`, bit `0x20000` |
-| 3 | stages bit `0x10000` with 0 frames and the angle pair `+0x10`, `+0x14` (`0x003E6B90`), then bits `0x200`/`0x800` and `0x1000`/`0x4000` with the pair (the actor's record index, `0x30B`) (`0x003E6C00`); raises dirty bit `0x800` | stages bit `0x40000` with 1 frame and the angle pair (`0x003E6B70`); raises dirty bit `0x800` |
+| 3 | stages bit `0x10000` with the frame count `+0x60` as a float (`0x002EC49F`-`0x002EC4AA`; `0x003E3327` stores it at `+4`) and the angle pair `+0x10`, `+0x14` (`0x003E6B90`), then bits `0x200`/`0x800` and `0x1000`/`0x4000` with the pair (the actor's record index, `0x30B`) (`0x003E6C00`); raises dirty bit `0x800` | stages bit `0x40000` with the frame count `+0x60` as a float (`0x002EC46D`-`0x002EC478`; `0x003E31C7` stores it at `+4`) and the angle pair (`0x003E6B70`); raises dirty bit `0x800` |
 
 ### Bone physics and the rebind
 
 `0x003E0910(rig, deny)` stores the flag at rig byte `+0x62`. Only when the value changes to 0 does it reset and
 re-initialise the two bone-physics slots (`0x00512AD0`, `0x00512C00`; `0x00519A30`, `0x0051A320`), so physics resumes from
-rest.
+rest. It does nothing for a null rig (`0x003E0913`) or an unchanged value (`0x003E0925`), and each slot's two calls run
+only while that slot's pointer resolves (`0x003E093B`, `0x003E0958`; `0x003E0975`, `0x003E0992`).
 
 `0x00372350(entry, record)` stores the record index at rig `+0x68` and calls `0x003E3D70`, which re-resolves the rig's two
 linked records (`+0x68`, `+0x6C` into `+0x70`, `+0x74`) and their bone arrays (`0x00421D20`, into `+0x78`, `+0x7C`), resets
@@ -369,12 +438,18 @@ the additive bone matrices, calls each slot's reset and then its second-phase in
 
 1. `0x003E5ED0` picks a local offset. When the record's resource (`+0xF0`) has an `@FRM` chunk with a non-zero sub-block
    (`0x004234B0`), it is kind 1 and the offset is the block's `+0x3C`; otherwise kind 0 and the three floats at `+0xD4`
-   of the model block (record `+0x400`, entered through its word `+2`). In kind 1 the height still comes from the model
-   block unless bit `0x1` of `+0x66D` is set.
-2. `0x003E5FA0` gives the frame: for kind 1 with a model block of version 3 or later naming a bone (the first of the words
-   `+0x3A`, `+0x3C`, `+0x3E` that is not `0xFFFF`), that bone's matrix; otherwise the record's matrix `+0x180`. Only its
-   translation is kept, the rows come from `+0x180`, and the height is replaced by `+0x1B4` unless bit `0x1` of `+0x66D` is
-   set. The result goes to `+0x670`.
+   of the model block (record `+0x400`, entered through its word `+2`). In kind 1 the height still comes from the
+   model block unless bit `0x1` of `+0x66D` is set.
+   - Kind 0 without a model block gives (0, 0, 0) (`0x003E5F52`-`0x003E5F57`); the fourth float is 1.0 (`0x003E5F87`), and
+     the kind is the return value (`0x003E5F6B`).
+2. `0x003E5FA0` gives the frame: for kind 1 with a model block of version 3 or later naming a bone (the first of the
+   words `+0x3A`, `+0x3C`, `+0x3E` that is not `0xFFFF`), that bone's matrix; otherwise the record's matrix `+0x180`
+   (`0x003E604C`). Only its translation is kept, the rows come from `+0x180`, and the height is replaced by `+0x1B4`
+   unless bit `0x1` of `+0x66D` is set. The result goes to `+0x670`.
+   - The version is the model block's byte `+0` (`0x003E5FCD`). The bone's matrix is `+0x80` of its `0x290`-byte node in
+     the skeleton entry `0x003E57D0` finds from the record's `+0x18`, copied by `0x003710E0` (`0x003E6031`); when `0x003E57D0`
+     gives no entry, as for `+0x18` −1 (`0x003E57DC`), the frame is the identity matrix at `0x01F204E0` (`0x003E603B`,
+     `0x0046D110`).
 3. Byte `+0x66C` holds two countdowns, the high nibble for kind 1 and the low for kind 0. While the current kind's is
    non-zero, the point is pulled toward the other kind's last point (`+0x690` for kind 1, `+0x660` for kind 0) by
    `ease(n / (8 × [0x01DFE0B4]))` from the 60-entry table `0x01F20C80` (`0x0046FAA0`).
@@ -384,9 +459,18 @@ the additive bone matrices, calls each slot's reset and then its second-phase in
 5. `0x003E6070` fetches a second vector (`@FRM` block `+0x60`; else the `@FRM` chunk of the resource behind `+0x69C`, or
    behind `+0x430` when the motion word's low twelve bits are `0x36`; else model block `+0xEC`; else 0), and `+0x680`
    follows it by `sqrt(0.12)`, about 0.35, a frame; bit `0x2` of `+0x66D` snaps it once. `+0x6A8` gets 0.
+   - The `+0x430` source is tried only when the `+0x69C` one exists (`0x003E60B1`); both are the `@FRM` sub-block whose
+     offset sits at `+0x0C` of the chunk data (`0x00423510`, `0x0042354E`), where step 1's `0x004234B0` reads `+0x10`
+     (`0x004234F9`). The vector's fourth float is 1.0 (`0x003E6136`), and the 0 at `+0x6A8` is the return value of
+     `0x003E6070`, 0 on both paths (`0x003E6108`, `0x003E6120`; stored at `0x003E4622`).
 
-`0x003E5810(record, out)` returns `+0x670` plus `+0x680` turned by the record's matrix. Its callers are `0x003A4290`, which
-also copies the view matrix at `0x02AEDEF0`, `0x003A56F0`, and the actor service `0x002E9A90`. The record initialiser
+`0x003E5810(record, out)` returns `+0x670` plus `+0x680` turned by the record's matrix: it takes the frame `0x003E5FA0`
+gives for the kind at `+0x6A8` (`0x003E5831`), drops its translation (`0x003E5846`-`0x003E5854`), turns `+0x680` by it
+(`0x0046D0C0`, `0x003E585F`) and adds `+0x670` (`0x003E5864`-`0x003E5890`). The record initialiser `0x0041F730` (`0x0041FB54`) and
+the focus pass (`0x003E4622`) store 0 at `+0x6A8`, and for kind 0 the frame is the record's matrix `+0x180`.
+
+Its callers are `0x003A4290`, which also copies the view matrix at `0x02AEDEF0`, `0x003A56F0`, and the actor service
+`0x002E9A90` through the jump `0x003E4E90`. The record initialiser
 `0x0041F730` zeroes `+0x66C` and sets the snap bit.
 
 ## Layouts
@@ -477,8 +561,9 @@ executable image.
 
 The Float bob, nod and head shake tables hold one entry per frame at 30 fps. Their counts and per-pattern scales are
 image values that only the 60 fps stretch, `0x0033F020` through `0x004718F0`, `0x00472580` and `0x00473210`, writes: each
-count is doubled in place and each scale halved, and the nod and head shake counts are also copied, as their low
-byte, into the byte tables their updates read. Every compare below is unsigned.
+count is doubled in place and each scale halved: `count = count + count`, `scale = scale × 0.5` (`0x0047259A`,
+`0x0047259D`, `0x00471907`, `0x00473230`, `0x00473233`; 0.5 from `0x00D22600`). The nod and head shake counts are also copied,
+as their low byte, into the byte tables their updates read (`0x004725AC`, `0x00473248`). Every compare below is unsigned.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -515,7 +600,8 @@ of pattern *p* is the `f32` entry 2*p* + *n* from `0x01F23FF0`, which `0x00471B6
 The head shake keeps five patterns: the count of pattern *p* is the `u32` at `0x01F24100` + 4*p*, the length of its
 three curves (`0x00473308`-`0x00473445`), and its byte copy at `0x01F264A8` + *p* is the frame count `0x00472970` takes when
 it starts the pattern (`0x00472A34`). The scale of bone *n* of pattern *p* is the `f32` entry 3*p* + *n* from `0x01F24118`
-(`0x00472A3D`-`0x00472A48`), multiplied into each channel (`0x00472B22`, `0x00472B5B`, `0x00472B94`).
+(`0x00472A3D`-`0x00472A48`), multiplied into each channel, `channel += sample × scale × [controller + 0x10]` with
+`sample` the pattern's signed curve byte (`0x00472B14`-`0x00472B32`; `0x00472B22`, `0x00472B5B`, `0x00472B94`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

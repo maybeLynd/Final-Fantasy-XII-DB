@@ -87,8 +87,11 @@ instruction: `0x0023AC80` tests bit `0x40` (`0x0023AF22`) and `0x00317480` takes
 
 When two bodies overlap, the separation tick moves each by the other's share of their combined weight
 (`0x00314E10`: A moves by `wB / (wA + wB)`; [Movement bodies](../Movement-And-Pathfinding/movement-bodies-and-separation.md)),
-so a heavy body is barely moved by a light one. `+0x7A` sets that weight for a party unit: a positive value
-divided by 10 goes to `0x0026DAC0`. The shipped weights are 60 for the main characters and guests, 500 for the
+so a heavy body is barely moved by a light one.
+
+`+0x7A` sets that weight for a party unit: a positive value divided by 10 goes to `0x0026DAC0` (`w = w / 10.0` when
+`w > 0`, with `w = (float)(i16)+0x7A`, `0x0031744B`-`0x0031745B`; `0x0026DAC0(body, w)` at `0x00317467`), so a value of 0
+or below would go unchanged. The shipped weights are 60 for the main characters and guests, 500 for the
 Chocobo and 3,000 for the Espers, so an Esper moves by 60 / 3,060 of an overlap with a character, about 2 %.
 
 ### The Quickening slots
@@ -169,7 +172,7 @@ The Esper rows hold their two attacks first, the action rows `0xB6`-`0xCF`, then
 | `mist_bars`, `start_mp_percent` | `+0x46`, `+0x47` |
 | `permanent_statuses`, `immunities` | the statuses of `+0x48` and `+0x4C` |
 | `augments` | the augments of `+0x50`-`+0x57`, each by its term with its id |
-| `push_weight` | `+0x7A` divided by 10 |
+| `push_weight` | `+0x7A` divided by 10: `+0x7A / 10.0`, the weight `0x0026DAC0` receives (`0x0031745B`); every shipped `+0x7A` is positive |
 | `unread_08`, `unread_2D`, `unread_74`, `unread_7C` | the bytes no instruction reads, `+0x08`-`+0x09`, `+0x2D`, `+0x74`-`+0x79` and `+0x7C`-`+0x7D` |
 | `explanation` | a one-line summary of the row |
 | `joins_and_leaves` | each scene that adds the row (`addpartymember` for rows 0-6, `addguestbattlemember` for guests) or removes it (`removepartymember`, `removeguestbattlemember`), or seats it through a scenario preset: the map (region), script, actor, function and step, with the story progress it runs at or sets |

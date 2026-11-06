@@ -113,13 +113,13 @@ mode):
 
 | Slot | Does |
 |---:|---|
-| `1` | the draw entry `0x00213FE0`: viewport, blend and state codes, identity matrix, then its own slot 10 (`0x00214191`) |
+| `1` | the draw entry `0x00213FE0(instance, renderer)`: its own slot 11 with 1 (`0x0021400E`), the viewport from `+0x108`-`+0x118` (`0x0021403F`), the state codes `+0x100` and `+0xF8` (`0x00214046`-`0x00214132`), among them blend `(6, 7, 6, 7)` with program 0 (`0x002140E9`), the identity matrix (`0x00214138`-`0x00214176`), then its own slot 10 (`0x00214191`); after it the viewport goes back to `(0, 0, width, height, 0)` with the width of `0x00182EB0` and the height of `0x00182E80` (`0x00214194`-`0x002141CA`), and slot 11 runs again with 0 (`0x002141DC`) |
 | `3` | sets the 4 x 4 matrix (`0x00214710`) |
 | `4` | sets layer `i`'s texture (`0x00213B30`) |
 | `5` | sizes layer `i`'s vertex array (`0x00213F90`) |
 | `6` | appends a vertex to layer `i` (`0x00213D10`; `Final` `0x00213B40` applies its matrix first) |
 | `10` | draws the layers |
-| `11` | renderer mode 0, 1 for `Shadow`, 2 for `Final` and `ShadowFinal` (`0x00214890`, `0x002148B0`, `0x00214860`) |
+| `11` | renderer mode 0, 1 for `Shadow`, 2 for `Final` and `ShadowFinal` (`0x00214890`, `0x002148B0`, `0x00214860`); that is the mode for an argument of 1: each passes the argument and its mode to the renderer's slot 35 (`+0x118`), and mode 0 for an argument of 0 (`0x002148A1`, `0x002148C3`-`0x002148CA`, `0x00214874`-`0x0021487D`) |
 
 Slots 4, 5 and 6 refuse a layer index of 10 or more (`0x00213B33`, `0x00213F93`, `0x00213D2B`).
 
@@ -129,14 +129,23 @@ Each Special instance holds ten layers, one per font used in the line: a layer's
 vertices are that font's glyphs (`0x001E8801`). The flush numbers the fonts without a limit, so the glyphs of an 11th
 font in one line are dropped.
 
-The shared body `0x002142A0` walks the ten layers. For each layer with a texture and vertices it binds the texture
-(renderer slot 8, `0x0021432A`) and draws the vertices as a triangle list in chunks of at most 480 (`0x0021433A`-`0x0021438E`).
+The shared body `0x002142A0` walks the ten layers: layer `i`'s texture is at `+0x08 + 8i`, its vertex count at
+`+0xA8 + 4i` and its vertices at `+0x58 + 8i` (`0x002142BA`-`0x00214332`). It skips a layer without a texture
+(`0x002142D6`) and binds every other layer's texture (renderer slot 8, `0x0021432A`), also when the layer has no vertices.
+
+It draws the vertices as a triangle list in chunks of at most 480 (`0x0021433A`-`0x0021438E`): renderer slot 0 with the
+chunk's count gives a buffer, the chunk's 48-byte vertices are copied into it (`0x0021436F`), and slot 4 draws it with
+type 2, the result of slot 1 and the count (`0x00214374`-`0x0021438E`).
+
 `Final` (`0x00214210`) and `Shadow` (`0x00214540`) run a short prefix and jump into it (`0x00214296`, `0x0021458D`):
 
 - `Shadow` sets blend `(6, 7, 6, 7)` and program 9 (`0x00214550`-`0x0021457A`).
 - `Final` would replace row 0 of the matrix with `(height x 16/9 / width, 0, 0, 0)` (`0x0021425C`-`0x0021427B`, `0x00183280`),
-  1.0 at 1920 x 1080. Its gate `0x00182F50` needs the display object's first word to be 1; the constructor writes 0
-  (`0x001DC5D6`), and no store to it is found at the 72 call sites of `0x001DDAB0`, so the row is left at the identity.
+  1.0 at 1920 x 1080. Its gate `0x00182F50` needs the first word of the display object `[0x01F82D18]` to be 1
+  (`0x001DD8C4`).
+  - The constructor writes 0 there (`0x001DC5D6`) and nothing else stores it: the 72 calls of the getter
+    `0x001DDAB0` and the 25 functions they hand the object to never write its `+0x00`, and only the creator stores
+    the pointer (`0x001DDAA4`). The row is therefore left at the identity.
 - `ShadowFinal` (`0x002143E0`) does not use the shared body: it draws layer 0 alone as a triangle strip with program 10
   (`0x0021446D`, `0x0021453C`).
 
@@ -175,10 +184,23 @@ target `[object + 0x18]` (`0x00186800`, `0x0060D4F0`) and opens it (`0x005FEFD0(
 The font display's constructor `0x001E71B0` builds the reset object through `0x00212D60`, which writes its vtable and
 clears `+0x18`.
 
+Step 3 is the execute (vtable slot 1, `0x00906D80`) of the `FontBorderOrderedGaussObject`, `0x00212E70(object, ctx)`.
+It closes the bracket with `0x00600A60(ctx, 2)` (`0x00212E98`) and sets byte `+0x19A` of the render-parameter block
+`0x00193D50` to 1 for the call, since `0x00190260` draws nothing while that byte is 0 or the block's `+0x310` is null
+(`0x0019029E`-`0x001902AE`); it puts the byte's old value back after the call (`0x00212EA2`, `0x00212EAE`, `0x00212F47`) and
+ends with a tail jump to `0x005FEFD0(ctx, 0)` (`0x00212F68`).
+
+`0x00212E70` hands `0x00190260` the ladder target `0x00186800` and its partner `0x001867E0` for the object's size `+0x18`
+(`0x00212EBA`-`0x00212ED3`), four zeros that `0x00190260` does not read, 1.0, and the object's four floats `+0x24`-`+0x30`
+(`0x00212EE0`-`0x00212F38`). `0x00190260` divides the 1.0 by the ladder target's width, `1.0 / w`, then by its
+height, `1.0 / h`, for `SingleStepOffset`: `(1.0 / w, 0)`, then `(0, 1.0 / h)`, with `w` and `h` the target's
+dwords `+0x28` and `+0x2C` (`0x001903D7`-`0x001903F1`, `0x001905C8`-`0x001905D7`).
+
 The border shader's parameters are `ColorBuffer`, `SingleStepOffset`, `FontBorderSetting` and `FontBorderColor`
-(`0x001902FF`-`0x00190352`). The colour is the palette's border colour, and `FontBorderSetting` is the border width from
-the font display, 4.0 when no width is set (`0x0017F9A0`, `0x001B5210`). 64 of these objects are kept, one per border colour
-and target size (`0x001E96A0`).
+(`0x001902FF`-`0x00190352`). The colour is the first three of the four floats, the palette's border colour
+(`0x0019047F`-`0x001904D4`), and `FontBorderSetting` is the border width from the font display, 4.0 when no width is
+set (`0x0017F9A0`, `0x001B5210`), times the fourth float `+0x30` (`0x00190434`-`0x00190441`). 64 of these objects are kept,
+one per border colour and target size (`0x001E96A0`).
 
 The 64 border objects are `0x38` bytes each at font display `+0x1500`. `0x001E96A0` takes the first whose byte `+0x20`
 is set, or whose four colour floats `+0x24`-`+0x30` and size `+0x18` already match (`0x00212E30`, `0x001E970E`), and fills
@@ -240,7 +262,8 @@ lists](../Game-Files-And-Data-Tables/ui-typed-lists.md)) with a draw record; the
 it (`0x002D2C3F`, `0x002D2C64`). For each of the header's nodes that has the drawn bit `0x1`, type 5 and a string `+0x18`:
 
 - the record takes the node's scale `+0x28` as the size `+0x60`, `+0x2C` as the palette byte `+0x5C`, `+0x2D`, `+0x2F`
-  and the bits under mask `0xFC0` of `+0x08` as `+0x66`, `+0x65` and `+0x64`, and `+0x24` as the colour `+0x90` unless bit `0x40000` of the
+  and the low byte of the field under mask `0xFFC0` of `+0x08` (its bits under `0x3FC0`, `0x00243912`-`0x0024391F`) as
+  `+0x66`, `+0x65` and `+0x64`, and `+0x24` as the colour `+0x90` unless bit `0x40000` of the
   dword at `+0x5C` is set; node flag `0x2` makes the alpha scale `+0x5A` `0x80` for that node;
 - with `+0x2D` bit `0x4` the node is clipped to its rectangle (`0x0029FE20`, `0x00249FD0`) and recentred from
   `[0x0208F574] / 4` and its `+0x0A`;
@@ -341,7 +364,7 @@ entries.
 | `+0x0A8` | `u32[10]` | layerCount | vertex capacity per layer (slot 5) |
 | `+0x0D0` | `i32[10]` | layerCursor | next vertex per layer |
 | `+0x0F8` | `u32[2]` | blendCode | the alpha-blend code, four 2-bit fields decoded through `0x00902750` by `0x001EE650`: slot 7 `0x002146F0` copies the font display's `+0x1390` (`0x001E874C`, `0x001E895A`, `0x001E8AC1`, `0x001E900C`); the constructors clear it; read only by slot 1 (`0x00214099`) |
-| `+0x100` | `u32[2]` | testCode | bit `0x1` and bits `0xE` the alpha test and its method, bit `0x10000` and bits `0x60000` the depth test and its method, decoded through `0x008E2C60` and `0x008E2CE0` by `0x001EE7C0`: slot 8 `0x002148E0` copies the display's `+0x1398` (`0x001E875C`, `0x001E896A`, `0x001E8AD1`, `0x001E901C`); the constructors clear it; read only by slot 1 (`0x00214046`) |
+| `+0x100` | `u32[2]` | testCode | bit `0x1` and bits `0xE` the alpha test and its method, bit `0x10000` and bits `0x60000` the depth test and its method, decoded through `0x00902C60` and `0x00902CE0` by `0x001EE7C0`: slot 8 `0x002148E0` copies the display's `+0x1398` (`0x001E875C`, `0x001E896A`, `0x001E8AD1`, `0x001E901C`); the constructors clear it; read only by slot 1 (`0x00214046`) |
 | `+0x108` | `i32` | viewX | the viewport slot 1 hands to the renderer's slot `+0x100` (`0x0021402B`); slot 9 `0x00214830` copies `+0x108`-`+0x11B` from the display's `+0x13A0` for the `ShadowFinal` and `Final` objects (`0x001E8AE1`, `0x001E902C`); the constructors do not write it |
 | `+0x10C` | `i32` | viewY | slot 9 |
 | `+0x110` | `i32` | viewW | slot 9; for the `Shadow` objects `0x002147B0` sets the viewport to (0, 0, the render target's width `+0x28`, height `+0x2C`, 0) (`0x002147BC`-`0x00214814`, from `0x001E86D3` and `0x001E88DC`), and `0x00213E30` divides their vertices by this width and the height `+0x114` (`0x00213E4D`, `0x00213E8B`) |
@@ -422,16 +445,20 @@ terminator at `+0x10C8` and clears `+0x10D8`, `+0x10FC`-`+0x10FF`, the column ma
 | `+0x20` | `f32` | firstAlpha | `0x001E84F9` |
 | `+0x24` | `f32` | latestAlpha | `0x001E8523` |
 | `+0x28` | `u8` | offscreen | set by begin `0x001E99AA` |
-| `+0x29` | `u8` | firstPending cleared 0x001E84D0 |  |
+| `+0x29` | `u8` | firstPending | 1 from the begin call (`0x001E99AE`); the line's first glyph clears it and sets `firstAlpha` from its alpha (`0x001E84C6`-`0x001E84F9`) |
 
 ## State
 
 ### The glyph metrics
 
 `0x002AC2F0` reads the next glyph and works out its metrics. It keeps the base width and height `0x0209CC70` and
-`0x0209CC74` and the unscaled advance `0x0209CC78`, then multiplies the four floats from `0x0209CC70` by the text size
-`+0x34` into `0x0209CC60`-`0x0209CC6C`. When the x or y scale `+0x38`, `+0x3C` is not 1.0, it multiplies all four by the
-x scale and the height by the y scale instead (`0x002AC54B`-`0x002AC5A6`).
+`0x0209CC74` and the unscaled advance `0x0209CC78`. It then multiplies: `[0x0209CC60 + 4i] = [0x0209CC70 + 4i] × size`,
+the four floats from `0x0209CC70` times the text size `size` = `+0x34`, into `0x0209CC60`-`0x0209CC6C` (`mulps`,
+`0x002AC54B`-`0x002AC56A`).
+
+When the x scale `sx` = `+0x38` or the y scale `sy` = `+0x3C` is not 1.0 (`0x002AC571`-`0x002AC587`),
+`sx != 1.0 || sy != 1.0`, it multiplies all four by the x scale and the height by the y scale instead:
+`[0x0209CC60 + 4i] = [0x0209CC70 + 4i] × size × sx`, then `[0x0209CC64] = [0x0209CC74] × size × sy` (`0x002AC589`-`0x002AC5A6`).
 
 The drawers read the scaled values to place the glyph's quad and move the pen. These are 0 in the file; the
 eight-byte stores in the lists put 0 in two of them at once.

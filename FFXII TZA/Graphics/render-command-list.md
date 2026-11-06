@@ -12,8 +12,10 @@ refraction, subsurface scattering, post-processing, the PS2-style depth of field
 video and the scene brackets. Each layer is a small job object the frame creates, files in a list
 and runs later; the next frame creates them again.
 
-Two developer-console toggles act on this list directly. "Enable Character Display" (command 35)
-removes every character from the opaque passes, and "Display AO Only" (command 42) stops the second
+Five developer-console toggles act on this list directly. Turning off "Enable Map Display" (command 34),
+"Enable Character Display" (command 35) or "Enable UI Display" (command 37) drops every map, character or
+font-border job from the walks; "Enable VFX Display" (command 38) sets or clears one more bit of the list's
+mask; and "Display AO Only" (command 42) stops the second
 half of the list at the first job after ambient occlusion has run, so the screen shows the
 ambient-occlusion result alone ([debug menu commands](../Engine-Core/debug-menu-commands.md)).
 
@@ -24,10 +26,17 @@ ambient-occlusion result alone ([debug menu commands](../Engine-Core/debug-menu-
 The render-manager installer `0x00186CD0` creates both lists once, at `0x00186D00` and `0x00186D0F`:
 
 - `0x0018B480` allocates the 0x30-byte ordered command list (`0x0018B4AB`) and stores it at `0x01F7F5E0`.
-  Its constructor `0x0018AD00` sets the class mask `+0x20` to `0xFFFFFFFF`, reserves 5,000 entries
-  (`0x0018AD40`, through `0x0018B320`), and sets the split `+0x24` to 0 and the mark `+0x2C` to -1.
+  Its constructor `0x0018AD00` zeroes begin, end and capacity end (`0x0018AD1D`–`0x0018AD24`), sets the class mask
+  `+0x20` to `0xFFFFFFFF`, reserves 5,000 entries (`0x0018AD40`, through `0x0018B320`, which allocates them because
+  the new list's capacity is below 5,000, `0x0018B342`), and sets the split `+0x24` to 0 and the mark `+0x2C` to -1.
+- The same constructor writes a 16-bit zero at `+0x29` (`0x0018AD50`), clearing the opaque-pass byte `+0x29` and the
+  afterwater byte `+0x2A`; it does not write the split-armed byte `+0x28`, and it returns the list (`0x0018AD5B`).
 - `0x0018C9E0` allocates the 0x20-byte owner list (`0x0018C9F9`) and stores it at `0x01F7F5E8`, with
   begin, end and capacity all zero (`0x0018CA10`–`0x0018CA19`).
+- Both creators return at once while their global is already set (`0x0018B4A9`, `0x0018C9F7`); `0x0018B480` first
+  hands the test that `0x01F7F5E0` is null to the return stub `0x0016D6A0` (`0x0018B49D`). Each takes its block from
+  `0x00210EC0` (`0x0018B4AE`, `0x0018C9FE`), fills it only when the block is non-null (`0x0018B4BB`, `0x0018CA0E`), and
+  stores 0 in its global when the allocation fails (`0x0018B4C8`, `0x0018CA32`).
 
 Both are EASTL pointer vectors ([EASTL strings and containers](../Third-Party-Libraries/eastl-strings-and-containers.md)).
 Each constructor passes the name `"EASTL vector"` (`0x008C5F58`) to `0x001EDF00`, whose whole body
@@ -37,16 +46,19 @@ list) and `0x0018CA40` (owner list); `0x0018B4E0` hands its null test to `0x0016
 ### Enqueueing a command
 
 Every allocating producer is one builder per class, 36 of them from `0x0018B540` to `0x0018CCF0`.
-`0x0018C610` (`PostProcessObj`) shows the shape:
+`0x0018C610(owner, mode)` (`PostProcessObj`) shows the shape:
 
-1. `malloc` the object (`0x0085E730`, `0x0018C632`) and run the class constructor (`0x001F1B80`); a failed
-   allocation leaves a null (`0x0018C655`);
+1. `malloc` the 0x20-byte object (`0x0085E730`, `0x0018C62F`, `0x0018C632`) and run the class constructor
+   (`0x001F1B80`) with `mode` (`0x0018C646`); a failed allocation leaves a null (`0x0018C655`);
 2. append the pointer to the owner list inline (`0x0018C65C`–`0x0018C673`), or through the grow routine
    `0x001AB570` (`0x0018C680`) when full;
 3. tail-jump `0x0018AFF0(0x0018B4E0(), object)` (`0x0018C69F`) to append the same pointer to the ordered list.
 
 A null is therefore appended to both lists. The owner list starts with no capacity and grows from its
-first append; the ordered list's 5,000 reserved entries are its whole working size. The 36 builders
+first append. The ordered list starts with 5,000 reserved entries; `0x0018AFF0` appends in place while the end is
+below the capacity end (`0x0018B000`), and the 5,001st append goes through the same grow routine `0x001AB570`
+(`0x0018B020`), which doubles the capacity, `n = ([+0x08] - [+0x00]) >> 3` held and `n ? 2 * n : 1` new
+(`0x001AB5D5`-`0x001AB5FD`, the doubling at `0x001AB5F0`), and moves the entries. The 36 builders
 allocate 0x18 bytes (15 classes), 0x20 (16), 0x28 (3) or 0x30 (2).
 
 Each class constructor starts with the base `0x00212CC0` and stores its argument after the base
@@ -162,10 +174,21 @@ entries, so the list runs in the order the jobs were appended:
 | `[+0x18]` | `0x00879750` | `GiResetRenderTargetObj`, `GiResetDefaultRenderTargetObj` (the constructor's argument) |
 | `[+0x20]` | `0x001F49E0` | `GeometryInstanceOrderedObject` (the mask `0x001F48B0` was given) |
 
-The only writer of the list's own mask besides the constructor is `0x0018B070`, which sets or clears
-bit `0x2`. Console command 35 calls it with the new state of "Enable Character Display"
-(`0x001D1C29`, `0x001D1C3D`), so turning character display off drops every `CharacterOrderedObject`
-from every walk.
+Besides the constructor, four setters write the list's own mask. Each sets one bit of `+0x20` when its
+argument is not 0 and clears it otherwise, and each is called from two sites of one console command, one
+passing 1 and one passing 0, with the ordered list from `0x0018B4E0`:
+
+| Setter | Bit | Call sites | Console command | Classes whose fixed key is the bit |
+|---|---|---|---|---|
+| `0x0018B080` | `0x4` | `0x001D1BED`, `0x001D1C01` | 34 "Enable Map Display" | `MapOrderedObject` |
+| `0x0018B070` | `0x2` | `0x001D1C29`, `0x001D1C3D` | 35 "Enable Character Display" | `CharacterOrderedObject` |
+| `0x0018B090` | `0x20` | `0x001D1C65`, `0x001D1C79` | 37 "Enable UI Display" | the three `FontBorderOrdered*` classes |
+| `0x0018B0A0` | `0x40` | `0x001D1CB0`, `0x001D1CC4` | 38 "Enable VFX Display" | no class in the table above |
+
+Commands 34, 35 and 37 flip a byte (`+0xABC`, `+0xABD`, `+0xABE` of the debug-menu object); command 38
+steps `+0xAC0` through 0, 1 and 2 and sets bit `0x40` while the value is not 0. Turning character
+display off drops every `CharacterOrderedObject` from every walk, and the map and UI toggles do the
+same for their classes.
 
 ### The two parts of a frame
 
@@ -175,7 +198,8 @@ and then sets the split `+0x24` to 0 when it is, or to the current count when it
 
 1. `0x00183100(1)` at `0x0022A5AC` sets the split to 0;
 2. the frame-open producers run for screen 0: `0x001829A0` (`SetScreenIndexToPostProcessManagerObj`),
-   `0x001EC490` (`ApplyJsonForCutSceneObj`) and `0x00214C30` (the depth-of-field commands);
+   `0x001EC490` (`ApplyJsonForCutSceneObj`) and `0x00214C30` (the depth-of-field commands); between the first two
+   `0x00358640(0)` (`0x0022A5BA`) only stores 0 in the draw byte `0x022C7F98` and appends no command;
 3. `0x00183100(0)` at `0x0022A5CF` sets the split to the count, so `[0, split)` holds exactly the frame-open commands.
 
 The render body `0x00187950` (application slot 8, [game application](../Engine-Core/game-application.md))
@@ -269,6 +293,13 @@ walk ran them.
   (1). The ambient-occlusion (`0x001F28CB`), Gaussian (`0x001F30E8`), post-process (`0x001F330A`) and
   subsurface-scattering (`0x001F3749`) executes do no work while it is 0.
 - `AmbientOcclusionObj` (`0x001F28B0`) runs when render-parameter byte `+0x198` is set (`0x001F28BE`).
+- When the device's bit `0x1` bracket is open (`0x00609710`, `0x001F28F4`), that execute first closes it with
+  `0x00600A60(device, 6)` (`0x001F2909`). It then calls `0x0018F510(block, device, a, b, c, d)` (`0x001F2969`),
+  the ambient-occlusion pass on [post-processing](post-processing.md), with the render manager's
+  `a = [+0xB08 + 8 × [+0xC30]]` (`0x001867B0`), `b = [+0xB10]` (`0x001867C0`), `c = [+0xB58]` (`0x00186660`) and
+  `d = [+0xB18]` (`0x001867A0`).
+- After `0x0018F510` the same execute calls `0x00188730` on the render manager (`0x001F2976`), reopens the
+  bracket with `0x005FEFD0(device, 0)` when it closed it (`0x001F299E`), and sets `0x01F7F594` to 1 (`0x001F29A3`).
 - `GaussianFilterObj` (`0x001F3090`) runs when any of `+0x19A`, `+0x3E8` or `+0x180` is set (`0x001F309E`–`0x001F30BA`).
 - `PostProcessObj`'s constructor `0x001F1B80` stores its mode at `+0x18` and sets the screen index
   `0x01F82EC0` to 0 for mode 0 or increments it otherwise (`0x001F1BB5`); it is the index's only writer.
@@ -276,7 +307,7 @@ walk ran them.
 
 ### The render-parameter block
 
-`0x00193D50` returns the 0x4A8-byte block at `0x01F7F5F0`, creating it on first use with the
+`0x00193D50` returns the 0x4A8-byte block kept at `0x01F7F5F0`, creating it on first use with the
 constructor `0x0018CD90`; `0x0015CAF0` copies the same pointer to `0x01F81300`. The fields this page uses
 are the switches `+0x180`, `+0x198`, `+0x199`, `+0x19A`, `+0x3E8` and the walk selector `+0x49C`,
 which the constructor sets to 0 (`0x0018D033`). The constructor also sets the render size
@@ -286,7 +317,10 @@ which the constructor sets to 0 (`0x0018D033`). The constructor also sets the re
 ### The character render-object manager
 
 The installer also calls `0x001BDA50` (`0x00186CFB`), which allocates the 0x108-byte manager at
-`0x01F81248` (constructor `0x001BC9D0`, getter `0x001BDAB0`). Its first 0x20 bytes are the same pointer
+`0x01F81248` (constructor `0x001BC9D0`, getter `0x001BDAB0`). `0x001BDA50` first hands the test that `0x01F81248` is
+null to the return stub `0x0016D6A0` (`0x001BDA6D`) and returns at once while the pointer is set (`0x001BDA79`);
+otherwise it takes `0x00210EC0(0x108)`, runs `0x001BC9D0` only on a non-null block and stores the result, 0 when
+the allocation fails (`0x001BDA9A`). Its first 0x20 bytes are the same pointer
 vector, reserved to 50 entries through `0x0018B320` (`0x001BCACC`).
 
 `0x001BD4A0` creates a 0x668-byte `CharacterRenderObject` (`0x001F4DA0`) when its map has no object for the
@@ -303,6 +337,15 @@ Beside the object list the frame keeps two flat buffers of 16-byte GS register r
 fill index `0x02EBEFF0` to 0, and points each at 512 records of the arena `[0x01FD4A78]` through
 `0x004FE420(record, 0x200, offset)`: the first at offset 0, the second at offset 0x200 records.
 `0x003A1E10(count, offset)` re-points both the same way.
+
+`0x004FE420(record, count, offset)` first releases the record's block through `0x003EC8A0` while its `+0x14` is 0
+(`0x004FE42F`-`0x004FE43E`); `0x003EC8A0` frees `+0x00` with `0x003697F0` when it is set and zeroes it. It then sets
+`+0x14` to 1 and zeroes `+0x00`, `+0x08` and `+0x10` (`0x004FE446`-`0x004FE454`), and a count of 0 leaves the
+record so (`0x004FE45B`).
+
+With a non-zero count `0x004FE420` points `+0x00` and `+0x08` at `[0x01FD4A78] + offset * 16` and stores the
+count at `+0x10` (`0x004FE463`-`0x004FE485`). When `offset << 5` is above `0x80000` in an unsigned compare, which
+includes every negative offset, it first writes 0 to address 0 (`0x004FE46E`-`0x004FE47E`), a deliberate fault.
 
 Producers append through the current record's write cursor `+0x08`, 0x10 bytes per record.
 `0x003A1DB0`, called from 47 sites in 38 functions, flips `0x02EBEFF0`, passes the old buffer's begin and
@@ -336,7 +379,7 @@ Ordered command list ([`0x01F7F5E0`]), `0x30` bytes:
 | `+0x08` | `void*` | end | append cursor |
 | `+0x10` | `void*` | capacity end | 5,000 entries reserved by `0x0018AD00` |
 | `+0x18` | `void*` | allocator | vtable `0x00902720` |
-| `+0x20` | `u32` | class mask | `0xFFFFFFFF`; bit `0x2` toggled by `0x0018B070` |
+| `+0x20` | `u32` | class mask | `0xFFFFFFFF`; bits `0x2`, `0x4`, `0x20`, `0x40` set or cleared by `0x0018B070`-`0x0018B0A0` |
 | `+0x24` | `u32` | split | `0x0018B510`; 0 after a clear |
 | `+0x28` | `u8` | split armed | `0x0018B510`: argument != 0 |
 | `+0x29` | `u8` | opaque pass | 1 during the nested walks of `0x001F36B0`, `0x001F3570`, `0x001F3650` |
@@ -375,7 +418,7 @@ GS command buffer record (`0x02EBEFC0`, `0x02EBEFD8`), `0x18` bytes:
 | `+0x00` | `void*` | begin | [`0x01FD4A78`] + offset * 16 |
 | `+0x08` | `void*` |  | write cursor |
 | `+0x10` | `u32` | capacity | `0x200` |
-| `+0x14` | `u32` | ready | 1 after `0x004FE420` |
+| `+0x14` | `u32` | ready | 1 after `0x004FE420`; while it is 0, `0x004FE420` frees `+0x00` first (`0x003EC8A0`) |
 
 The command classes and their vtables, in vtable order from `0x00902F90` (stride 0x20):
 
@@ -492,6 +535,6 @@ method, slot 2 the order key and slot 3 the setter of the `FontBorder` classes. 
 - [Phyre frame](../PhyreEngine/the-frame.md): the draw, its pass mask and the two draws per frame.
 - [Game application](../Engine-Core/game-application.md): the frame tick, the render slot and the frame-end reset.
 - [Frame update order](../Engine-Core/frame-update-order.md): the frame states that enqueue the passes.
-- [Debug menu commands](../Engine-Core/debug-menu-commands.md): commands 35 and 42.
+- [Debug menu commands](../Engine-Core/debug-menu-commands.md): commands 34, 35, 37, 38 and 42.
 - [EASTL strings and containers](../Third-Party-Libraries/eastl-strings-and-containers.md): the vector layout.
 - [Character render object](character-render-object.md) and [post-processing](post-processing.md).

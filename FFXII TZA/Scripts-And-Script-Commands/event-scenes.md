@@ -30,40 +30,58 @@ never set in retail, so scene verbs always proceed past it.
 
 | Verb | Id | Callbacks | What it does |
 |---|---|---|---|
-| `eventread_e8(slot, id)` | `0x00E8` | begin `0x00351880`, poll `0x00351C90`, result `0x003522C0` | the begin stores both and prefetches `0x001D6A70(id, slot)`; the poll waits while manager `m` is active (`+0x10` bit `0x1`) and busy (`+0x13`); the result queues the load `0x0032FC30(m, id)` and sets the hold `0x0032ED70(m)` |
-| `eventread(id)` | `0x00E7` | result `0x00353080` | slot 0, the same load after `0x00314D40(1)` |
-| `eventreadsync_ea(slot)` | `0x00EA` | begin `0x00353A10`, poll `0x003541B0` | waits while `0x0032F6C0(m)` reports loads pending other than the start hold bit `0x1` (`0x0032F6CD`), so for the scene's files and not for `eventplay`, calling `0x00314D40(1)` each poll |
+| `eventread_e8(slot, id)` | `0x00E8` | begin `0x00351880`, poll `0x00351C90`, result `0x003522C0` | the begin stores both and prefetches `0x001D6A70(id, slot)`; the poll waits while manager `m` is active (`+0x10` bit `0x1`) and busy (`+0x13`) (`0x00351CBD`, `0x00351CC3`) and tests neither gate; the result queues the load `0x0032FC30(m, id)` and sets the hold `0x0032ED70(m)`, and does nothing when the event switch is 0 (`0x003522D8`), the auto-test byte is 1 (`0x003522E2`) or the slot is negative (`0x003522E6`) |
+| `eventread(id)` | `0x00E7` | begin `0x003529E0`, result `0x00353080` | the begin pops the id, pushes 0 and the id back and pops them again, storing the id at `+4` and 0 at `+0`, and prefetches `0x001D6A70(id, 0)` as `eventread_e8`'s begin does (`0x003529F8`-`0x00352A3C`); the result: slot 0, the same gates, sign test and load (`0x003530AA`, `0x003530B3`, `0x003530B7`), after `0x00314D40(1)`, which sets byte `0x022C253D` to 1 and runs before the gates (`0x00353099`) |
+| `eventreadsync_ea(slot)` | `0x00EA` | begin `0x00353A10`, poll `0x003541B0` | the begin stores `m` (`0x00353A28`, `0x00353A3E`); the poll waits while `0x0032F6C0(m)` reports loads pending other than the start hold bit `0x1` (`0x0032F6CD`) in the mask's low 32 bits (`0x0032F6CA`), so for the scene's files and not for `eventplay`, calling `0x00314D40(1)` on each poll that finds loads pending (`0x003541F6`); it stops waiting when the auto-test byte is 1 (`0x003541C7`) or the event switch is 0 (`0x003541E4`). With no load pending it asks `0x0053DD10`, which always returns 1, so it stops (`0x0035420B`) and the branch to the stub `0x0016D6A0` (`0x00354210`) never runs; the `0x00264190(m)` call before the gates has its result discarded (`0x003541D8`) |
 | `eventplay_ec(slot)` | `0x00EC` | result `0x00354B20` | releases the hold `0x00332130(m)`, then `0x001EC680(m)`, `0x0020AF10(m, −1)` and `0x001EC600()` |
-| `eventsync_ee(slot)` | `0x00EE` | begin `0x00353A10`, poll `0x00355970` | waits while `0x00267210(m)` is non-zero: manager active or busy |
+| `eventsync_ee(slot)` | `0x00EE` | begin `0x00353A10`, poll `0x00355970` | waits while `0x00267210(m)` is non-zero: manager active or busy (`0x003559A5`); it stops waiting when the event switch is 0 (`0x00355998`), and when the auto-test byte is 1 it first stores 1 into the auto-test walker's arrival word `0x01EEBADC` (`0x00355983`) |
 | `eventstartsync(slot)` | `0x0165` | begin `0x0034F3C0`, poll `0x0034F6F0` | the begin pushes a 0 flag first; waits while manager `+0x10` has bit `0x2` |
 | `eventstartsync_166(slot, flag)` | `0x0166` | begin `0x0034E460`, poll `0x0034EAB0` | waits while `+0x10` has bit `0x2`, or bit `0x1` while the flag is set and bit `0x80` is set |
 | `eventstartsync_167()` | `0x0167` | begin `0x0034FC50`, poll `0x0034F6F0` | the begin pushes two zeros: manager 1, flag 0 |
-| `eventdispose_f2(slot)` | `0x00F2` | begin `0x00356D40`, poll `0x0033F150` | `0x00332190(m)`: marks `0x022C6D20[m]` and, when the manager is active, requests its teardown through `0x0026A5F0`; a negative slot means the issuer's own manager, and the poll halts the issuer (`+0x14` bit `0x40`) when it disposed itself |
+| `eventdispose_f2(slot)` | `0x00F2` | begin `0x00356D40`, poll `0x0033F150` | `0x00332190(m)`: when manager `m` is busy (`+0x13`), active or loading (`+0x11` bit `0x8`) it sets `0x022C6D20[m]` to 1 (`0x003321BD`) and, when the manager is active, requests its teardown through `0x0026A5F0` (`0x003321CA`); a manager that is idle, inactive and not loading is left as it is (`0x003321B0`). A negative slot means the issuer's own manager, `[0x02099D70] + 0x28` (`0x00356DAC`), disposed only when it is 1 to 3 (`0x00356DB5`); from manager 0 or 4 the begin disposes nothing. The begin clears its flag (`0x00356D5C`) and sets it to 1 when `m` is the issuer's manager (`0x00356DBE`, `0x00356DC3`), and the poll halts the issuer (`+0x14` bit `0x40`) when it disposed itself. After a non-negative slot's dispose it calls the stub `0x0016D6A0(m)` (`0x00356D83`, `0x00356D9D`), which does nothing; on every path it then releases the depth-of-field focus with `0x00382B50(-1, 0, 0)` (`0x00356DD1`, [post-processing](../Graphics/post-processing.md)) and tail-jumps to `0x001EC4B0(m)` (`0x00356DE7`), which empties event-slot panel slot `m` (`0x0020A760`) and raises the scene-reset byte (`0x00214B30`) |
 
 The load request `0x0032FC30` queues the scene's files, and `0x0032ED70` sets bit `0x1` of the manager's
 pending-load mask at `0x022C6E48 + m × 8`. That bit is the start hold: the files are loaded when
 every other bit is clear, but the scene does not start until `eventplay` calls `0x00332130`, which
-clears bit `0x1` and manager `+0x11` bit `0x8` and, when the mask is now empty, runs the finaliser
-`0x0032F1B0(m)`.
+clears bit `0x1` (`0x00332154`). When the mask is then empty it also clears manager `+0x11` bit `0x8`
+(`0x0033215F`, `0x00332168`) and, if the mask was non-zero before the call, runs the finaliser
+`0x0032F1B0(m)` (`0x0033216F`, `0x00332174`, `0x00332178`).
 
-The finaliser binds the payload's lighting sections (`0x0037AA90`), activates the
-manager (`0x0026CE60`, which posts the start entry's request list through `0x00266C50`) and the first
-field pass then warms the start entry up ([script requests](script-requests.md)).
+A second call on an empty mask clears `+0x11` bit `0x8` again and does not run the finaliser; while other bits are
+still pending the call only clears bit `0x1`.
+
+For a manager above 0 the finaliser resets light group `m` (`0x0037B230`, `0x0032F1D4`) and clears its ready byte
+(`0x003DE920(m, 0)`, `0x0032F1E0`). When the payload's lighting section `0x022C6E20[m]` is set (`0x0032F1F2`) it binds it
+(`0x0037AA90`, `0x0032F1F9`), sets the ready byte again (`0x0032F207`) and stores the first cut id plus 1 at manager
+`+0x1FC` (`0x0037B290`, `0x0032F215`); a manager of 0 or below skips all of this (`0x0032F1BB`)
+([lighting](../EBP-Script-Files/ebp-lighting-lgt2.md)).
+
+Every manager is then activated (`0x0026CE60`, `0x0032F227`, which posts the start entry's request list through
+`0x00266C50`), and the finaliser returns `0x00263C30(m)` through its tail jump (`0x0032F233`): the manager's record count
+`+0x20` while it is active, else 0. The first field pass then warms the start entry up
+([script requests](script-requests.md)).
 
 `startscene(n)` (`0x011B`, `0x0034C9A0`) reports the pair (scene id, n) to the achievement hook
-`0x00863240` and calls `0x0026B750(n)`: it resets the frame counter `0x022C252C`, stores `n` at
-`0x022C2538`, pushes the scene id into the event-slot panel through `0x0020AF10` and runs the debug
+`0x00863240`. The scene id is `0x0032F240` of the issuer's manager `[0x02099D70] + 0x28` (`0x0034C9B5`, `0x0034C9B8`): the
+event-script number registered for it, or -1 when its byte `0x022C6D18[m]` is 0 (`0x0032F24A`, `0x0032F25C`). The hook
+does nothing when no Steam manager `[0x01F83450]` exists (`0x00863256`) and otherwise passes the pair to `0x0020CB50`
+(`0x00863265`, [achievements](../Steam-And-Achievements/achievements.md)).
+
+The verb then tail-jumps to `0x0026B750(n)` (`0x0034C9CD`). It reads the frame counter `0x022C252C` through `0x00314890` and
+discards the value (`0x0026B758`), resets the counter to 0 (`0x00314010`), stores `n` at `0x022C2538` and 0 at the bytes
+`0x022C253C` and `0x022C253D` (`0x00314DF0`). It pushes `n`, not the scene id, into the event-slot panel slot of the
+issuer's manager through `0x0020AF10` (`0x001EC6A0(m, n)`, a jump to `0x0020AF10`, `0x0026B775`) and runs the debug
 cutscene JSON hook `0x001EC600`, which returns at once in retail.
 
 ### Movies
 
 | Verb | Id | Callbacks | Effect |
 |---|---|---|---|
-| `moviestandby(id)` | `0x0368` | `0x003567F0` / `0x00356050` / `0x00356460` (→ `0x0035B840(id, manager)`) | waits until `0x0035B7A0` says no fade or load is active, then sets action row 0 bit `0x1`, which bars the main menu, and bit `0x100000` of the same row, which no reader tests (`0x002E1C20`, `0x0035B861`, `0x0035B86D`, [action availability](../Controls-And-Input/action-availability.md)), sets the arena mode to 1 (`0x0037B450(1)`, `0x0035B877`, [resource arena](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md)), raises busy bit `0x10000`, frees `0x022C8058`, opens the movie (`0x001848A0`) and dismisses the loading page `[0x01F82CD8]` through its tail jump to `0x00183070` (`0x0035B8C4`, [game application](../Engine-Core/game-application.md)) |
-| `movieplay(v)` | `0x036A` | `0x00356D20` (pops a value it ignores, then `0x0035B7D0`) | switches off the field systems (`0x00358750` and its siblings, `0x002E1CD0(0, 0)`, `0x002E1C40(0, 4)`) and starts playback `0x001848C0` |
+| `moviestandby(id)` | `0x0368` | `0x003567F0` / `0x00356050` / `0x00356460` (→ `0x0035B840(id, manager)`) | waits until `0x0035B7A0` says no fade or load is active, then resets the movie screen size `0x02ADD933` to 3 (`0x0037B470(−1)`, `0x0035B851`), reads the manager's skip mask through `0x00267310` and discards it (`0x0035B858`), sets action row 0 bit `0x1`, which bars the main menu, and bit `0x100000` of the same row, which no reader tests (`0x002E1C20`, `0x0035B861`, `0x0035B86D`, [action availability](../Controls-And-Input/action-availability.md)), sets the arena mode to 1 (`0x0037B450(1)`, `0x0035B877`, [resource arena](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md)), raises busy bit `0x10000` (`0x003601B0(0x10)`, `0x0035B881`), frees `0x022C8058` when it is set (`0x003697F0`, `0x0035B890`) and zeroes it (`0x0035B897`), fetches the kind-28 entry `2 × id + 1` through `0x002DF980` and discards it (`0x0035B8AE`, [movies](../Graphics/movies.md)), opens the movie (`0x001848A0`) and dismisses the loading page `[0x01F82CD8]` through its tail jump to `0x00183070` (`0x0035B8C4`, [game application](../Engine-Core/game-application.md)) |
+| `movieplay(v)` | `0x036A` | `0x00356D20` (pops a value it ignores, then `0x0035B7D0`) | switches off the field systems (`0x00358750` and its siblings, `0x002E1CD0(0, 0)`, which sets the action row 0 mask `0x139203`, `0x002E1C40(0, 4)`, and `0x00368AA0(0, 0)`, which sets bit `0x1` of `0x02EC0B39`, `0x0035B82B`) and starts playback `0x001848C0` through its tail jump (`0x0035B834`) |
 | `getmoviestatus` | `0x036F` | `0x00340870` (→ `0x0035B740`) | returns the player's state `0x00184860` when it is 1, 2 or 3, else 0, and pumps the opening player (`0x00184880`) while it is 1 |
 | `moviecancel` | `0x036E` | `0x0033FEC0` (→ `0x0035B720`) / `0x00357300` / `0x0033FA20` | asks the player to stop, waits while the status is 1 to 3, then ends |
-| `movieend` | `0x036D` | `0x0033FA20` → `0x0035B8D0` | stops the player, frees the buffer, clears busy bit `0x10000` and switches the field systems back on |
+| `movieend` | `0x036D` | `0x0033FA20` → `0x0035B8D0` | stops the player (`0x001848E0(0)`, `0x0035B8D6`), frees the buffer `0x022C8058` when it is set and zeroes it (`0x0035B8E5`, `0x0035B8EC`), clears busy bit `0x10000` (`0x003601C0(0x10)`, `0x0035B8FC`) and switches the field systems back on: `0x00358750(0, 0)`, the same siblings with 1, `0x00358650(1)` and `0x00358700(1)`, which set bits `0x4` and `0x8` of `0x022C7F92` and which `movieplay` does not touch (`0x0035B953`, `0x0035B95D`), `0x002E1CD0(1, 0)`, which clears the action row 0 mask `0x139203` and with it the bits `0x1` and `0x100000` that `moviestandby` set, `0x002E1C40(1, 4)` and `0x00368AA0(0, 1)`; it ends by setting the arena mode back to 0 through its tail jump to `0x0037B450(0)` (`0x0035B98B`) |
 
 The player object at `0x01F81218` keeps its state at `+4`: 0 idle, 1 opening, 2 ready, 3 playing,
 4 the last 233 ms, 5 ending, 6 the skip fade. A script therefore reads "finished" from the last
@@ -73,14 +91,24 @@ frames onward.
 
 Skip slots are 16-byte entries at `0x022CB730`, indexed `index + manager × 8`: `+0` bit, `+1` mask
 index, `+2` state, `+4` record id, `+8` executed, `+0xC` armed. `skipstart(i)` (`0x051A`,
-`0x0034D3A0` → `0x00360980`) clears user-control denials 13 and 19, sets state 1 and armed, sets the
-bit in `0x022CB9C0` and clears it in `0x022CB9D8`. `skipcheck(i)` (`0x051C`) returns the executed word
+`0x0034D3A0` → `0x00360980(i, manager, record id)`, with the issuer's byte `+0x15` as the manager and its 16-bit word
+`+0` as the record id, `0x0034D3B1`, `0x0034D3B7`) returns at once for manager 0 (`0x00360982`).
+
+For a scene manager `0x00360980` sets action row 0 bits `0x2000` and `0x80000` (`0x002E1C20(0, 0xD)` and
+`0x002E1C20(0, 0x13)`, `0x003609A7`, `0x003609B3`), the two bits that steer Start's event-skip arm
+([action availability](../Controls-And-Input/action-availability.md)). It then sets state 1 and armed (`0x003609ED`,
+`0x003609E9`), sets the bit in `0x022CB9C0` and clears it in `0x022CB9D8` (`0x003609F3`, `0x003609FD`), clears the executed
+word (`0x00360A05`) and stores the record id (`0x00360A0D`). `skipcheck(i)` (`0x051C`) returns the executed word
 through `0x003604A0`.
 
-`skipexec(i)` (`0x0539`, `0x0034ECF0` → `0x00360710`) runs only when the manager's skip mask is
-clear and the entry is armed: state 2, executed 1, busy bit `0x8000`, the teardown of the manager's
-sound, effects and presentation, and finally the mask bit `0x0026A5B0(manager, 1, i)` that ends
-the waits ([native commands](native-commands.md)).
+`skipexec(i)` (`0x0539`, `0x0034ECF0` → `0x00360710`, for the issuer's manager byte `+0x15`) runs only for a manager other
+than 0 whose slot is live with bit `0x80` of its `+0x10` clear (`0x00267330` answers 0, `0x00360758`) and whose entry is
+armed (`+0xC` non-zero, `0x00360768`); otherwise it returns 0 and changes nothing.
+
+When it runs it returns 1: state 2, executed 1, busy bit `0x8000`, the entry's bit set in `0x022CB9D8` and cleared in
+`0x022CB9C0` (`0x003607CD`, `0x003607D9`), time-stop request 27 (`0x002273E0`), the teardown of the manager's sound, effects
+and presentation, and finally the mask bit `0x0026A5B0(manager, 1, i)` that ends the waits ([native
+commands](native-commands.md)).
 
 Part of that teardown, `0x003B08F0`, also run when a skip ends, walks the 36-entry table of 24-byte
 effect records at `0x02EBEC00` and stops at the first entry whose first dword is 0. It frees every
@@ -102,6 +130,17 @@ and waits one more stage on `0x00229EB0`.
 The third stage asks the scheduled-task test `0x002F1A30(1)` (`0x0034DBCE`, [frame update
 order](../Engine-Core/frame-update-order.md)) and then `0x0032E520(1)` (`0x0034DBD9`), and stays while either
 answers non-zero (`0x0034DBD5`, `0x0034DBE0`). The argument is 1 from `0x0034DB49` on that path.
+
+The poll keeps the stage in scratch `+4` and returns 1 while it waits, 0 when it is done. Stage −1 releases
+(`0x00360A20(i, manager)` with the issuer's byte `+0x15`, `0x0034DB59`) and returns 0. Stage 0 moves to 1 once
+`0x0025C070(manager, issuer)` is non-zero (`0x0034DC12`, `0x0034DC1B`) and waits in either case. Stage 1 stays while
+`0x003608D0` returns 0 (`0x0034DBB3`) and stage 2 while `0x00360D60` (`0x022CBA58` non-zero) is non-zero (`0x0034DBC3`); a
+stage that is passed falls through to the next in the same poll (`0x0034DBB5`, `0x0034DBC5`).
+
+Past the third stage the poll releases the entry (`0x0034DBE8`), stores the game-step count `0x02064AD0` (`0x00229EB0`)
+in scratch byte `+8` (`0x0034DBF2`) and moves to stage 4 (`0x0034DBF7`). Stage 4 returns 0 once the count differs from
+that byte (`0x0034DB92`), one game step later. The begin and the poll store only the stages −1 to 4; any other stage
+value returns 1 (`0x0034DB84`).
 
 ## Layouts
 

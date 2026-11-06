@@ -40,6 +40,11 @@ held the old handle, stores the re-keyed unit's stats byte `+0x04` (or `0xFF`) a
 `[0x02EBF190] + 0x5AA4` and runs `0x00326500`, which picks the default controlled member and requests its handle
 ([Party leader](../Party/party-leader.md)).
 
+A null actor gives 0 for both handles and a null focus record counts as handle 0, so with both null the store
+still runs (`0x003220F9`, `0x00322111`, `0x0032212C`). The re-keyed unit is the one `0x003588B0` resolves from the new
+handle, read through `0x00263E30` only while `0x02089340` bit `0x10` is set; without that bit, a unit or its stats
+record, the dword is `0xFF` (`0x00322130`-`0x00322164`). `0x003220E0` returns the new handle (`0x00322183`).
+
 ### The enemy path
 
 With kind 1 the unit must have flag bit `0x4000000` set. The installer then:
@@ -63,7 +68,9 @@ With kind 1 the unit must have flag bit `0x4000000` set. The installer then:
    (`jg`) on a zero-extended word, so a null or empty `0x02EBF168` makes it refuse every enemy;
 2. resolves the spawn record: `0x00236100(unit +0x40, unit +0x57)` reads the lane map's byte
    `1 + lane` (lane below the map's count byte, entry not `0xFF`) and returns
-   `0x0208E690 + entry * 0x250`; no record returns 0. The stats record is that record's `+0x80`;
+   `[0x0208E690] + entry * 0x250`, from the bank pointer held at `0x0208E690` (`0x0023612D`); a null map, a
+   negative lane (`0x00236107`), a lane at or past the count or a `0xFF` entry returns 0. The stats record is
+   that record's `+0x80`;
 3. for a fresh record (record byte `+0` without bits `0x1` and `0x4`) it initialises the stats record
    (`0x0023AC80`, below) and sets the steal bits at record `+0x14`: bits `0x1`, `0x2` and `0x4` when the row's
    words `+0x32`, `+0x34` and `+0x36` are not `0xFFFF`;
@@ -104,7 +111,8 @@ word `+0x30` the same way, and stores `+0x6E0` = `0x02089378 + index * 0x170`, `
 Both paths end with: `+0x48` = 0 (the HP floor), `+0x698` = the stats record, `+0x6A0` = the spawn
 record or null, `+0x18` = the name text, `+0x54` = `0xFF`, then `0x00237040(unit)` and
 `0x002FEAB0(unit)`. When the stats record is null, or its status words `+0x3C | +0x64` carry bits `0x1`, `0x2`
-or 31 outside a town (`0x00377C20`), flag bit `0x4000000` is cleared and bit `0x2` set. Bit `0x4` is set and the
+or `0x80000000` outside a town (`0x00377C20`, tested by `0x002FEAB0` at `0x002FEAF3`), flag bit `0x4000000` is
+cleared and bit `0x2` set. Bit `0x4` is set and the
 installer returns 1.
 
 ### The fresh stats record
@@ -144,6 +152,12 @@ installer returns 1.
    else 0; kind 0 sets `+0x4C` = `cap * row byte +0x47 / 100`, kind 1 sets `+0x4C` = `cap`;
 6. `0x0030FED0(record, 0)` rebuilds the derived state ([augments](../Damage-And-Battle-Formulas/augments.md)).
 
+For kind 0 the party row is the table's word `+8` times byte `+0x04` plus the value `0x0020E600` returns for the
+table's `+0xC`, added in 32 bits (`0x0030C4EC`-`0x0030C4F7`), so the upper half of that pointer is dropped. Nothing
+guards the read: when `[0x02EBF130]` is null (`0x0030C4C7`) or `0x0020E600` returns 0 (`0x0030C4D4`), the base stays 0 and
+`0x0030C4F9` reads the word at address `0x16`, which faults, because the first 64 KB of a Windows x64 process are
+never mapped.
+
 ### The kind byte and the type partition
 
 Stats byte `+0x05` is the kind: 0 for a party-table unit, 1 for an enemy. Stats byte `+0x04` is the
@@ -159,6 +173,8 @@ row index, and for kind 0 it is the type the code partitions:
 
 - `0x002F8E90(record)` classifies a record: kind 0 gives 2 for an Esper and 1 otherwise; kind 1 gives
   4 when the owning unit's actor class nibble (`0x00263C20`) is 3, 8 when it is 1, 2 or 7, else 16.
+  A null record and any other kind give 16 (`0x002F8F09`). For kind 1 it stores the unit `0x0031B860` finds at
+  `0x02EBF188` (`0x002F8EC9`); with no unit the class nibble is 0 (`0x002F8EDB`, `0x00263C2D`), so the result is 16.
 - `0x002F8BB0(recipient, source)` pays experience only for a kind-0 recipient with a unit, outside the
   Espers (the Chocobo, type 26, included), without a terminal status, from a kind-1 source. The amount is
   `(source level +0x1C2 - +0x88) * [source +0xE78] +0x34 + [source +0xE70] +0x34`.
@@ -169,10 +185,25 @@ row index, and for kind 0 it is the type the code partitions:
 - `0x002F90C0(recipient, source)` pays licence points, when `0x00264150()` is 0, for a kind-0 recipient
   of type 26 (the Chocobo), below 7 or above 39 without a terminal status, from a kind-1 source: `(level - +0x88) * [source +0xE78] +0x2F + [source +0xE70] +0x2F`,
   doubled when `(+0x6B | +0x7B) & 0x10` (`0x002F914B`-`0x002F9157`).
+- A kind-1 source is a non-null unit whose stats record `+0x698` is non-null and of kind 1 (`0x002F8C11`-`0x002F8C2E`,
+  `0x002F9104`-`0x002F9119`). The terminal statuses are the bits `0x80000003` of `+0x64 | +0x3C` (`0x002F8C06`,
+  `0x002F90FD`). `0x002F90C0` asks for no unit on the field.
+- A null recipient skips every recipient test and the doubling and zeroing (`0x002F8BCF`, `0x002F8D21`, `0x002F90DD`,
+  `0x002F9146`). `0x002F8BB0` then pays the whole amount when `0x003135C0()` is not 0, since the `0x00313800` member is
+  not compared (`0x002F8C42`), and the split amount otherwise. `0x00312280` calls both that way for the reward display
+  (`0x003124BE`, `0x003124CA`).
 - `0x00309230(unit, actionRow)` returns the row's word `+0x24` as the presentation code, except for
   action row `0x113`, where an Esper type gets `42 + 3 * (type - 27)`.
+- That table is 13 dwords built on the stack from `0x00D103B0` and `0x4E` (`0x00309249`-`0x00309282`), indexed by the
+  unit's stats byte `+0x04` minus 27 with no range test (`0x003092CB`-`0x003092DB`), so another type reads a stack
+  dword outside the table.
+- Row `0x113` is the action table `[0x02EBF138]`'s word `+8` times `0x113` plus the value
+  `0x0020E600` gives for its `+0xC`, added in 32 bits (`0x003092B0`-`0x003092BA`), or 0 when `[0x02EBF138]` is null or
+  `0x0020E600` gives 0 (`0x003092BE`); `0x003092C0` compares the row argument with that zero-extended value.
 - `0x0050FF20`, a script verb's handler, resolves its operand through `0x00320AB0(value, 3)` and pushes
   -2 for no record, -1 for kind 1, and the class above for kind 0.
+  Any other kind pushes 0 (`0x0050FF92`). The operand, popped with `0x00267DB0`, is truncated (`cvttss2si ecx, xmm0`)
+  from its float (`0x0050FF30`-`0x0050FF35`), and the push is the tail jump to `0x0026B4E0` (`0x0050FFA3`).
 
 ## Layouts
 

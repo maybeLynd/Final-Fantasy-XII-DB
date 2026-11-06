@@ -54,8 +54,13 @@ buying a square does are on [Licenses](licenses.md).
 
 ### The readers
 
-Seven functions read cells with the formula above. For a column or row outside the board, six return `0xFFFF`
-and `0x0055BFF0` returns its fourth argument (`0x0055C0D3`). `0x0055BFF0` takes its board from the slot array at
+Seven functions read cells with the formula above, `cells[row * width + col]`, and only when `col < width` and
+`row < height`, the `u16` width and height compared as signed ints in six and as `u16` in `0x003FC900`
+(`0x00328A01`/`0x00328A0A`, `0x0055C0B7`/`0x0055C0C0`, `0x0055E333`/`0x0055E33B`, `0x0055E773`/`0x0055E77C`,
+`0x005600FB`/`0x00560105`, `0x0055F941`/`0x0055F94A`, `0x003FC99B`/`0x003FC9A2`).
+
+For a column or row outside the board, six return `0xFFFF` and `0x0055BFF0` returns its fourth argument (`0x0055C0D3`).
+`0x0055BFF0` takes its board from the slot array at
 `0x02EBF1A0` + 8 x a signed slot byte (`0x0055C0A0`), addressed relative to the image base (`0x0055C0A8`):
 
 | Function | Sites |

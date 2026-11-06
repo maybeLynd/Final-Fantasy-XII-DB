@@ -22,7 +22,8 @@ the same dispatcher.
 ### The console object
 
 `0x001D50D0()` returns the console settings object, created on first use (`0x00210EC0(0x10E8)`, then
-the constructor `0x001CCB20`) and cached at `0x01F81428`. The constructor zeroes and defaults the
+the constructor `0x001CCB20`) and cached at `0x01F81428`; a failed allocation skips the constructor and caches 0
+(`0x001D50FB`, `0x001D5106`). The constructor zeroes and defaults the
 object and calls `0x001D0390`, which stores the row labels when `0x001EA3C0(obj + 8)` returns 0,
 noting that at `+0xA68`: one string pointer per id at `+0x130 + id × 8` for ids 1 to 294 (id 2's
 string is empty), 293 names in all.
@@ -49,21 +50,31 @@ order](frame-update-order.md)), returns at once unless `+0xA70` is set; otherwis
 n/14>` or `<Information Page>` and, for every id on the page, has the row renderer `0x001CD0E0(ctx,
 id, buffer)` format the row (`"None content!!"` when it prints nothing).
 
-The information page (page 14) runs its ids through the filter `0x001D0190` first:
+The information page (page 14) runs its ids through the filter `0x001D0190(ctx, id, buffer)` first. An id that
+passes is rendered by the filter itself, `0x001CD0E0(ctx, id, buffer)`, and the filter returns 1 (`0x001D021B`,
+`0x001D024F`, `0x001D0274`); a dropped id returns 0 with no call (`0x001D01F8`). The arms come from the byte table at
+`0x001D02A4` and the offsets at `0x001D028C`:
 
 - ids 1, 2, 6, 9, 102, 204, 221, 222 and 290 always;
 - 7 only while an event slot holds queued events (`0x01DFE40C`, the slot of the most recent
   `startscene` push, at most 4 and its counter at `0x01F832B0` non-zero; `0x0020AF10` sets it and
   `0x0020AC30` leaves it at -1);
-- 8 only while the save-load manager at `0x01F81258` has its byte `+9` set;
+- 8 only while the procedural-texture context `0x001C0DA0()` (`[0x01F81258]`,
+  [map art](../World-Areas-And-Travel/map-art.md)) is not 0 and has its byte `+9` set (`0x001D023A`, `0x001D0241`);
 - 10 only while `0x0022A550()` holds (main-loop state 2 with `0x00358330(1)`);
-- 101 only while `+0xA74` is 2; any other id is dropped.
+- 101 only while `+0xA74` is 2; any other id is dropped, ids above 290 included (`0x001D01AD`).
 
 Page 14's own list in the table below holds id 3, which the filter drops, and does not hold ids 1 and 7, which
 the filter passes.
 
-`0x001D5520`, called from the render pass list `0x00187950`, redraws rows 9 and 10 of the information
-page at their remembered positions `+0x10B0` / `+0x10B4`.
+`0x001D5520`, called from the render pass list `0x00187950`, redraws rows 9 and 10 of the information page at their
+remembered positions `+0x10B0` / `+0x10B4`. It returns at once unless the open byte `+0xA70` and the information-page
+flag `+0xC56` are both set (`0x001D553B`, `0x001D554B`).
+
+A row whose position is -1 is skipped (`0x001D5558`, `0x001D5599`); otherwise the renderer formats it into a cleared
+256-byte buffer (`0x001CD0E0(ctx, 9 or 10, buffer)`) and `0x001EA380(obj + 8, position, buffer)` puts that text into
+string `position` of the menu's text object (`0x001EAD40`, then its byte `+0xE8` = 1), or hands it to `0x001EA1E0` when
+`position` is not below the object's string count.
 
 | Page | Row ids |
 |---|---|
@@ -91,20 +102,41 @@ read-out rows use two more tables:
   pack](../World-Areas-And-Travel/mpk-map-pack.md)), indexed by the field id at `+0xAB4`;
 - the event-slot panel: five slots whose names (`0x01F832F0 + slot × 0x20`), queued event counts
   (`0x01F832B0`) and classification bytes (`0x01F832E8` for a `sum_` name containing `0001`,
-  `0x01F832E9` for a `spc_` name) the setter `0x0020AC30` and the pusher `0x0020AF10` maintain from
-  the `plan_master\<locale>\event\` paths the resource loads hand them.
+  `0x01F832E9` for a `spc_` name without `sum_`, both cleared by the setter on every call) the setter
+  `0x0020AC30` keeps from the `plan_master\<locale>\event\` paths the resource loads hand it, and whose
+  counts the pusher `0x0020AF10` raises.
 
 The setter's test that a path has that form is `0x0020A800`, a `std::regex` match
 ([MSVC containers](../Compiler-And-C-Runtime/msvc-containers.md),
 story and events).
 
 The setter takes the slot's name from the path with `0x0020AA50(out, path)`: the text between the last
-`\` and the last `.`, the event file's name without its extension.
+`\` and the last `.`, the event file's name without its extension (`0x0020AB60`-`0x0020ABE5`). A path without a `\`
+gives its text from the first character, and one without a `.` after its last `\` gives its text to the end: the
+length `0x001A9E50` receives is cut to what remains of the path (`0x001A9E7F`).
 
-`0x0020A760(slot)` empties a slot. For a slot below 5 it clears the shared name `0x01F832C8`, the
-slot's name, its vector `0x01F83390 + slot × 0x20` and its count; in every case it leaves the marker
-`0x01DFE40C` at -1. The setter `0x0020AC30` calls it, and so does `0x001EC4B0` (from `0x00360120` and from
-`0x00356D40`, the begin of `eventdispose_f2`), which then raises the byte `0x01FD3AE3` (`0x00214B30`).
+The setter first clears both classification bytes (`0x0020AC56`, `0x0020AC5D`) and marks the slot (`0x0020AC64`). It
+compares the new name with the slot's (length, then `memcmp` at `0x0020ACCB`) and stops when they are equal, so a
+repeated name leaves both bytes at 0. A new name is copied into the slot (`0x001A5760`, `0x0020AD07`), and a `sum_`
+name also has `<name>.json` loaded through `0x001C5750` (`0x0020AD6A`) before its `0001` test.
+
+`0x0020AF10(slot, value)` is the pusher. It copies the slot's name into the shared name `0x01F832C8` (`0x001A5760`,
+`0x0020AF56`) and stores the slot in the marker `0x01DFE40C` (`0x0020AF5B`), both before it tests the slot. For a slot above
+4 (unsigned), a value of -1 or an empty slot name it stops there, leaving the marker on that slot; otherwise it
+appends the value to the slot's vector `0x01F83390 + slot × 0x20` (in place, or through `0x001A4250` when the vector is
+full), sets the counter `0x01F832C4` to 0 and adds 1 to the slot's count at `0x01F832B0` (`0x0020AF88`-`0x0020AFB4`).
+
+It ends by passing `0x00189120()` to `0x0016D6A0`, a bare `ret`.
+
+`0x0020A760(slot)` empties a slot. It first stores the slot in the marker `0x01DFE40C` (`0x0020A760`). For a slot below 5
+(an unsigned compare, so a negative slot is skipped too, `0x0020A768`) it clears the shared name `0x01F832C8` and the
+slot's name (each, when not already empty, by a zero first byte and its end set back to its begin), its vector
+`0x01F83390 + slot × 0x20` (end set to begin) and its count; in every case it leaves the marker `0x01DFE40C` at -1
+(`0x0020A7E7`).
+
+The setter `0x0020AC30` calls it when the new name differs from the slot's and the slot's count is non-zero
+(`0x0020ACD8`), and so does `0x001EC4B0` (from `0x00360120` and from `0x00356D40`, the begin of `eventdispose_f2`), which then
+raises the byte `0x01FD3AE3` (`0x00214B30`).
 
 The shared name is a static string: `0x01F832C8` its begin, `0x01F832D0` its end and `0x01F832D8` its capacity end, with
 its allocator at `0x01F832E0`. The initialiser `0x0015DBB0` builds it empty (`0x0015DBDC`); `0x0020A760` empties it by
@@ -115,6 +147,10 @@ On that byte `0x00214C30` runs `0x001C5040`, which empties `0x01F812A8`, clears 
 current index `0x01F813F8` (`0x01F813A8` and `0x01F813D8`, through `0x00202880`) and sets that index's
 words at `0x01F81400` and `0x01F81408` to -1. Script call `0x5C9` (`0x00352F00`) pushes `0x001EC500()`, the
 queued count of the marked slot, or 0 when no slot is marked.
+
+`0x001EC560()` returns 1 only while a slot is marked (`0x01DFE40C` at most 4, unsigned), that slot's queued count is
+non-zero and `0x00265680()` returns 0 (`0x001EC56F`-`0x001EC58A`); otherwise it returns 0. The frame update and the
+graphics settings read it ([frame update order](frame-update-order.md), [graphics settings](graphics-settings.md)).
 
 ### The read-out rows
 
@@ -131,21 +167,45 @@ Several rows print a live value that the renderer `0x001CD0E0` gathers itself:
 | 220 | Extra BGM status | `0x0017E010`: `Not forced`, `Forced on` or `Forced off` from `0x01DF0018` by `0x01DF0010` |
 | 222 | Control character position | `x:%f, y:%f, z:%f` from `0x003091C0`: the position (`0x00265020`) of the actor `0x00263750(0x003272F0())` when `0x00265970` holds; `0x003272F0` is the party leader's roster slot ([party leader](../Party/party-leader.md)) and the call goes through `0x0031ABF0`, a jump to `0x00263750` |
 | 246 | Chara Name | `(%d) %s`: `0x00308E80(i)` gives a name from the record that `0x022C24E0 + i × 8` points to: its byte `+4`, below 6, picks one of `Vaan`, `Ashe`, `Fran`, `Balthier`, `Basch`, `Penelo` at `0x01EEC268`; otherwise `Nobody` |
-| 264 | Game Display Resolution | `0x001DCD30`: `%d X %d ,%dHz, %dHz`, the configured resolution (`[0x01F82D20]` `+0x04` / `+0x06` with `+0x08` set, else `+0x2C` / `+0x2E`), the desktop's refresh rate (`EnumDisplaySettingsW`) and the selected mode's rate; then `Screen Resolution :%dx%d` from `GetSystemMetrics` |
+| 264 | Game Display Resolution | `0x001DCD30` (`[0x01F82D20]`) and `GetSystemMetrics`: the two lines below |
 | 266 | System Adapter | `0x001DCB90`: ` Count %d ,Now: %s ,Video Memory: %lld MB, Temperature: %d(C)`, the memory being the adapter's `+0x110` divided by 1,000,000 |
 | 290 | Game Time Stop is | `Off` while the running byte `[0x0018A7D0()]` is 0; else `On by Debug` when its second byte is set (`0x0018A790`), `On by Focus` when its third is (`0x0018A7B0`), else the third string at `0x008FFF08` |
 
-For row 8, `0x001C0540` asks the map-art context: `0x001A74A0` finds the object's `+0x260` in the map at
+Row 222's `0x003091C0(&x, &y, &z)` writes the console's `+0xE20`, `+0xE24` and `+0xE28` (`0x001CF574`-`0x001CF589`)
+only when the actor `0x0031ABF0` returns exists (`0x003091EC`) and `0x00265970` returns non-zero (`0x003091FC`);
+otherwise the three fields keep their last values. Row 246's `0x00308E80(i)` takes `i` from the console's
+`+0x10A8` (`0x001CFC23`) and also gives `Nobody` (`0x00D10394`) when the record pointer is null (`0x00308E95`).
+
+Row 264 prints `0x001DCD30`'s `%d X %d ,%dHz, %dHz` and then `Screen Resolution :%dx%d` from `GetSystemMetrics`
+(`SM_CXSCREEN` by `SM_CYSCREEN`, called at `0x001CD53F` and `0x001CD535`; format `0x008FFAB8`).
+
+`0x001DCD30` fills the first with the configured resolution (`[0x01F82D20]` `+0x04` / `+0x06` with `+0x08` set, else
+`+0x2C` / `+0x2E`), then the selected mode's rate, the mode record `m = [+0x28] + [+0x24] × 0x1C` of the `0x001DDAB0`
+object with its `+0x08` divided by its `+0x0C`, the unsigned `[m + 0x08] / [m + 0x0C]` (`0x001DCD68`-`0x001DCD80`), then
+the desktop's refresh rate (`EnumDisplaySettingsW(0, -1)`, its `dmDisplayFrequency`); it writes the text into the
+object's `+0x80` and returns that buffer.
+
+Row 266's `0x001DCB90` fills ` Count %d ,Now: %s ,Video Memory: %lld MB, Temperature: %d(C)` with the `0x001DDAB0`
+object's `+0x54`, the current adapter's name, its `+0x110` divided by 1,000 twice, `[+0x110] / 1000 / 1000` as
+unsigned 64-bit numbers (each through the constant `0x0624DD2F1A9FBE77`, `0x001DCC69`-`0x001DCC95`) and the
+temperature, which stays 0 when no provider answers (`0x001DCBBF`); it writes the text into the object's `+0x80` and
+returns that buffer.
+
+For row 8, `0x001C0540(object, out)` asks the map-art context `0x001A9930()`:
+`0x001A74A0(context, out, [object + 0x10])` finds the `+0x260` of the object's `+0x10` in the map at
 `+0x448`, takes the name at the entry's `+0x40`, and keeps the part after the last `/` minus its
-last ten characters. `0x001C0480` copies the string at `+0x80` of the first entry of the object's
+last ten characters. While the object's byte `+9` is 0, or its `+0x10` is 0, `0x001C0540` returns an empty string
+instead (`0x001C0557`, `0x001C05B1`). `0x001C0480` copies the string at `+0x80` of the first entry of the object's
 `+0x18` list (`0x001E3E90`) with `0x001BE660`.
 
-Rows 102 and 266 query the graphics vendors' libraries. The current adapter is the record at
-`+0x78 + [+0x48] × 0x140` of the `0x001DDAB0` object (`0x001DC9C0`), and `0x0020D2B0` builds a chain of
-`AdapterInfos` providers whose head sits on the stack and whose second link is the static
-provider at `0x01E02580`. `0x0020DA50` asks each provider in turn (vtable slot 0) for the
-temperature of the adapter id at the record's `+0x104` until one answers, and `0x0020D9F0` asks the
-same way (slot 1) for the name. `0x001DCB90` falls back to the record's own name (`+0x00`).
+Rows 102 and 266 query the graphics vendors' libraries. The current adapter is the record at `+0x78 + [+0x48] × 0x140`
+of the `0x001DDAB0` object (`0x001DC9C0`), and `0x0020D2B0` builds a chain of `AdapterInfos` providers whose head sits on
+the stack and whose second link is the static provider at `0x01E02580`. `0x0020DA50` asks each provider in turn (vtable
+slot 0) for the temperature of the adapter id at the record's `+0x104` until one answers, and `0x0020D9F0` asks the same
+way (slot 1) for the name.
+
+When no provider gives the name, `0x001DCB90` falls back to the record's own wide name (`+0x00`, formatted with `%ws`,
+`0x001DCC4D`).
 
 ### The dispatcher
 
@@ -166,7 +226,7 @@ the constant's own sign (`+0.01` at `0x008F30E4`, `-0.01` at `0x009002F4`).
 The rest call a subsystem, step an integer with a wrap, toggle a byte or cycle a mode; the table
 on [debug menu commands](debug-menu-commands.md) gives every id. The shared helpers are
 singleton getters: `0x001A9930` (`0x01F81168`), `0x00193D50` (the `0x4A8` post-process parameter object
-at `0x01F7F5F0`), `0x001DDAB0` (`0x01F82D18`), `0x001C2F40` (`0x01F81270`), the game-setting object pointer
+kept at `0x01F7F5F0`), `0x001DDAB0` (`0x01F82D18`), `0x001C2F40` (`0x01F81270`), the game-setting object pointer
 `0x01F82D20` loaded in 18 arms, and the indexed store `0x001DF340(obj, i, v)`.
 
 Rows 205 to 207 (Music, Voice, Sound Effect) set the music, voice and sound-effect category
@@ -193,8 +253,19 @@ records, not a call table), the adapter `0x001CD040(ctx, dir, id)`, whose one ca
 whose two callers are the message procedures `0x0023B330` and `0x0023B6F0` of the retail Config
 screen's rows.
 
-`0x0017DB90(kind, value, dir)` maps a row kind to a console id and dispatches it,
-then returns the row's new value from `0x0017E070(kind)`, a read of `[0x01F82D20] + offset` for most kinds;
+`0x0023B330` handles a press on its message 10 (`0x0023B399`): while its `+0x1D0` is 0, bit `0x80` of the repeat word
+`0x02F9736C` gives direction 1 and, without it, bit `0x20` gives direction 0 for `0x0017DB90([+0xC0], [+0xC4],
+direction)`, and the returned value goes back to `+0xC4` (`0x0023B3D5`); with neither bit, or with `+0x1D0` set, the
+message does nothing. Message 12 sets `+0x1D0` to 1 when the message's `+0x08` is 1 and to 0 otherwise (`0x0023B37C`).
+
+Message 1 takes the row kind `+0xC0` from the message's `+0x08`, reads its value into `+0xC4` with `0x0017E070`
+(`0x0023B4B6`-`0x0023B4C4`) and clears `+0x1D0`; message 4 rebuilds the row's text (`0x0023B530`), and message 14 calls
+`0x002470D0`.
+
+`0x0017DB90(kind, value, dir)` maps a row kind to a console id and dispatches it as
+`0x001CD040(0x001D50D0(), dir != 0, id)` (`0x0017DD34`), then calls the empty stub `0x0016D6A0` (`0x0017DD39`) and,
+for every kind but 6, returns the row's new value from `0x0017E070(kind)`, a read of `[0x01F82D20] + offset` for
+most kinds;
 kind 5 reads the display object through `0x001DD050(0x001DDAB0())` (its `+0x38` when its `+0x18` is 0, else
 `+0x24`), kind 6 reads `+0x08`, and any kind not in the table returns -1:
 
@@ -218,7 +289,15 @@ kind 5 reads the display object through `0x001DD050(0x001DDAB0())` (its `+0x38` 
 | 23 | `0xA6` | Use soft particle | `+0x38` |
 
 Kinds 5 and 6 do not dispatch: 5 runs `0x001DC940` on the `0x001DDAB0` object and `0x001DC730` when
-`[0x01F82D20] + 8` is 0, and 6 cycles its value through 0, 1, 2. So sixteen of the 282 ids are
+`[0x01F82D20] + 8` is 0, and 6 cycles its value through 0, 1, 2.
+
+Kind 5 passes `dir == 0` to `0x001DC940` (`0x0017DC1E`) and does neither call while `0x001DDAB0()` returns 0
+(`0x0017DC08`). Kind 6 steps the passed `value` up by one for `dir` 0 and down by one otherwise, wrapping at both
+ends (`0x0017DC46`-`0x0017DC64`), and returns that value itself, without the stub or `0x0017E070` (`0x0017DD45`). Kinds
+0, 2, 3, 11, 14 and 17 (the Config screen's headings) and any kind outside 1 to 23 dispatch nothing and read back -1.
+While `0x001D50D0()` returns 0 no kind dispatches or steps (`0x0017DBB9`), and the value comes from `0x0017E070(kind)`.
+
+So sixteen of the 282 ids are
 retail, reached from the Config screen; the other 266 have no caller in the shipped game, and
 the menu that would reach them never opens.
 
@@ -244,26 +323,56 @@ shipped game:
 | `debug_switchstatusdisplay` `0x2036` | `0x0050DA20` | jumps to `0x002E2290`, which jumps to `0x00255020`: flips `0x020927E8` and hands it to `0x00251F40`, which returns at once while bits `0x40` and `0x80` of `0x01E0C320` are both set, and otherwise runs one set of calls for a positive value and another for 0 |
 | `debug_switchmonsterhpgauge` `0x206A` | `0x0050C890` | jumps to `0x00254FE0`: flips `0x01E0C2A8` and hands it to `0x0028FFE0(0, v)`, as 0 while bit `0x400` of `0x002E0FA0()` is set |
 
+`debug_eventload`'s begin `0x0050D030` stores the id at `+4`, the kind at `+0` and 0 at `+8` of the call's state. The
+poll `0x0050D0C0` issues the request on its first run, while `+8` is 0, and then sets `+8` to 1 (`0x0050D11A`). For a kind
+other than 4 it first looks at actor manager `kind` (`0x00263FF0`): while that manager has bit `0x1` of `+0x10` set and
+a non-zero byte `+0x13`, the poll requests its teardown (`0x0026A5F0(kind)`) and holds without issuing the load or
+setting `+8`, so it tries again on its next run (`0x0050D0EC`-`0x0050D103`).
+
+After the request a kind-4 call ends at once (`0x0050D11D`); any other kind holds while `0x0032E520(1)` reports a load,
+and each holding run sets `0x022C253D` to 1 through `0x00314D40(1)` (`0x0050D13C`).
+
 ### The debug text display
 
-The rows that print text in the 3D view do it through the `MultipleDebugDisplay` singleton at
-`0x01F81270` (getter `0x001C2F40`). `0x001C2F00` allocates its `0x4670` bytes and runs the constructor
-`0x001C1D40`; `0x001C2120` is the destructor body and `0x001C2670` the deleting wrapper. The start-up
-step `0x0017D6B0` makes the call to `0x001C2F00` ([game application](game-application.md)). A line
-is a `0x230`-byte record: x and y floats, a 256-byte text buffer at `+0x08` and a text object at `+0x108`.
+The rows that print text in the 3D view do it through the `MultipleDebugDisplay` singleton at `0x01F81270` (getter
+`0x001C2F40`). `0x001C2F00` returns at once while `[0x01F81270]` is set; otherwise it allocates its `0x4670` bytes
+(`0x00210EC0`), runs the constructor `0x001C1D40` on them and stores the result at `0x01F81270` (`0x001C2F34`; 0 when the
+allocation returns 0). `0x001C2120` is the destructor body and `0x001C2670` the deleting wrapper. The start-up step
+`0x0017D6B0` makes the call to `0x001C2F00` ([game application](game-application.md)).
 
-The constructor builds 32 fixed records at `+0x10` and prepares each text object with `0x001EA3C0`.
-That loads `PhyreText.fx` and the font `tuffysdf.fgen` (the two paths at `0x01DFDE00`), binds the
-technique `RenderText_SoftEdges` (`0x006CCCE0` looks it up by name from the table at `0x00D89BE0` and
-caches it), writes `"Debug Info:"`.
+A line is a `0x230`-byte record: x and y floats, a 256-byte text buffer at `+0x08` and a text object at `+0x108`.
+
+The destructor body `0x001C2120` stores the vtable `0x008F9DC8` again and releases, with `0x001EAE10`, the 32 fixed
+text objects (`0x001C215A`) and the text object of every record in the vector at `+0x4618` (`0x001C21B5`). It then
+runs `0x001C2070` on the vectors at `+0x4640` and `+0x4618`, which calls `0x001EA180` on each record's text object and
+frees the storage through the vector's allocator (its slot `+0x18`), and last runs `0x001C2110` (`0x001EA180` on the
+record's text object) over the 32 fixed records through the array destructor `0x00809054` (`0x001C2208`).
+
+The constructor stores the vtable `0x008F9DC8` (its first slot is the deleting wrapper `0x001C2670`) and clears the byte
+`+0x08`. It builds 32 fixed records at `+0x10` through the array constructor `0x00808FE4`, each by `0x001C1D20` (the text
+object's constructor `0x001E9F40` at `+0x108`; `0x001C2110` is the matching destructor), and empties the vectors at
+`+0x4618` and `+0x4640` (begin, end and capacity end 0, an `EASTL vector` allocator) with their counts `+0x4638` and
+`+0x4660` (`0x001C1DBF`, `0x001C1DF4`). It then prepares each fixed text object with `0x001EA3C0`.
+
+That loads `PhyreText.fx` and the font `tuffysdf.fgen` (the two paths at `0x01DFDE00`), binds the technique
+`RenderText_SoftEdges` (`0x006CCCE0` looks it up by name from the table at `0x00D89BE0` and caches it), writes `"Debug
+Info:"`.
+
+`0x006CCCE0(i)` returns the cached entry `[0x02E5BE50 + i × 8]` when it is non-zero. Otherwise it takes the name at
+`0x00D89BE0 + i × 16` and walks the list from `[0x02CBF998]` (name pointer at `+0x00`, next node at `+0x08`) for the
+node whose name is the same string; it stores that node, or 0 when the name pointer is null or no node matches,
+in the cache (`0x006CCD53`) and returns it, so a miss is searched again on the next call.
 
 It sizes the glyph arrays for 128 entries (`0x0067C310`, which
-grows them with `0x00672B80` and `0x00672C70`). The constructor then calls `0x001EAA90(object, 1280, 720)` on each
-and leaves the mode `+0x0C` at 0, the overlay byte `+0x463C` at 0, and the scales
-`+0x4664` / `+0x4668` at -5.5 and -10.0.
+grows them with `0x00672B80` and `0x00672C70`). The constructor then calls, on each, `0x001EAC30(object, 1)` (1 into
+the object's `+0xFC`), `0x001EAA90(object, 1280, 720)` and `0x001EAC40(object, 1)` (the visible byte `+0xEA`), sets
+the fixed count `+0x4610` and the mode `+0x0C` to 0 (`0x001C1E40`, `0x001C1E46`), leaves the overlay byte `+0x463C` at
+0 (`0x001C1DC5`), and sets the scales `+0x4664 = -5.5` and `+0x4668 = -10.0` (`0xC0B00000` and `0xC1200000`,
+`0x001C1E49`, `0x001C1E53`).
 
-`0x001C2980(display, line, kind)` queues a line. Both kinds map the position through `0x001C2D10`
-(x × `+0x4664` - 1.65, y × `+0x4668` - 2.0), hand the text to the object (`0x001EADB0`, `0x001EAD20`) and
+`0x001C2980(display, line, kind)` queues a line. Both kinds map the position through `0x001C2D10(display, &x, &y)`
+(x × `+0x4664` - 1.65, y × `+0x4668` - 2.0, written back in place; it changes nothing when either pointer is 0,
+`0x001C2D13`, `0x001C2D18`), hand the text to the object (`0x001EADB0`, `0x001EAD20`) and
 mark it visible (`0x001EAEA0`):
 
 - kind 0, from `0x00181F20` (the character-name printer `0x0053AB50`): taken only while the mode is
@@ -275,26 +384,60 @@ mark it visible (`0x001EAEA0`):
   (count `+0x4638`). The vector grows through `0x001C2D50` and `0x001C2790`, which copy records with
   `0x001C1B00`, `0x001C1C80`, `0x001C2230`, `0x001C1E70` and `0x0067ACF0`.
 
+`0x00181F20(pos, text)` and `0x00181E70(pos, text)` build the line on their stack: a text object made by `0x001E9F40`,
+x and y from `pos` `+0x00` / `+0x04`, and `text` copied byte by byte up to and including its terminator into the
+256-byte buffer, with no length check. They pass it to `0x001C2980(0x001C2F40(), line, 0)` (`0x00181F8E`) and
+`0x001C2980(0x001C2F40(), line, 1)` (`0x00181EE1`) and then release the text object with `0x001EA180`.
+
 Growing a vector copies `DebugLine` records. `0x001C1C80(dst, src)` copy-constructs one: x, y and the
-256-byte text, then the text object through `0x001C1E70`. `0x001C1B00(out, first, last, dest)` does the
-same for a range into new storage, `0x230` bytes apart, and `0x001C1A60(first, last, destEnd)`
-copy-assigns a range backward, the text object through `0x001C22A0`.
+256-byte text, then the text object through `0x001C1E70`, and returns `dst`. `0x001C1B00(out, first, last, dest)`
+does the same for a range into new storage, `0x230` bytes apart: it keeps the next destination in `*out`
+(`0x001C1B1B`, `0x001C1BDB`), skips the copy for a destination of 0 (`0x001C1B40`) and returns `out`.
+`0x001C1A60(first, last, destEnd)` copy-assigns a range backward, the text object through `0x001C22A0`, and returns
+the first record it wrote (`0x001C1AF0`), `destEnd` itself for an empty range.
 
 Both text-object copies take the
 object's array of strings with `0x001C1C00(dst, src)`: a new array of the same count (the low 31 bits
-of its count word) from `0x0017D260`, and `0x001C19A0(dst, src, n)` duplicates each string into its own
-block, its source pointer read with bit `0x1` cleared.
+of its count word) from `0x0017D260(count × 8, 8)`, and `0x001C19A0(dst, src, n)` duplicates each string into its own
+block, its source pointer read with bit `0x1` cleared. An empty source, or a failed allocation, leaves the copy
+with count 0 and array pointer 0 (`0x001C1C2F`, `0x001C1C45`, `0x001C1C69`); the copy's count word never has bit
+`0x80000000` set.
 
-The render pass list `0x00187950` calls `0x001C2DB0`, which draws the fixed lines while the mode is set,
-the overlay lines while `+0x463C` is set, and the lines of the vector at `+0x4640` (count
-`+0x4660`), then zeroes the counts.
+For each string `0x001C19A0` measures the text, takes a block of its length plus one from
+`0x0017D260(length + 1, 2)` and copies the text and its terminator with `memcpy` (`0x00861EBA`, `0x001C1A2C`); a source
+pointer of 0 after the clear, or a failed allocation, stores 0 (`0x001C19F4`, `0x001C1A21`). For `n` = 0 it returns at
+once (`0x001C19A3`).
 
-Each line goes through `0x001EA830`: when the object is visible
-(`+0xEA`) and built (`+0x20`) it draws the string in black at its position plus the offset
-`+0x100` to `+0x108`, then in white at its position, both through `0x001EAC60`, which writes the
-placement into the material at `+0x208` to `+0x234`. `0x001EAE10` releases a text object: its material (`0x001EA050`),
-its glyph object (`0x0067B3A0`) and its two assets (`0x0019CC50`). `0x001EA130`, reached from
-the unwind handlers `0x0089873C` and `0x0089E880`, frees a counted array the same way `0x001EA050` does.
+The render pass list `0x00187950` calls `0x001C2DB0`. While the render manager `0x00189120()` exists it calls `0x00186AA0` and
+`0x00186A90` (the render width and height, both results dropped) and then draws, each line through `0x001EA830(object,
+[manager + 0x08], 0)`, the fixed lines while the mode is set, the overlay lines while `+0x463C` is set, and the lines
+of the vector at `+0x4640` (count `+0x4660`), then zeroes the counts.
+
+With or without the manager (`0x001C2DC7`) the counts it zeroes are `+0x4610` while the mode is set, `+0x4660` always
+and `+0x4638` while `+0x463C` is set (`0x001C2ECD`, `0x001C2ED3`, `0x001C2EE2`); the fixed count is also zeroed right after
+the fixed lines are drawn (`0x001C2E39`).
+
+Each line goes through `0x001EA830(object, context, bracket)`: when the object is visible (`+0xEA`) and built (`+0x20`)
+it sets the string (`0x0067C4F0` on the glyph object, with the pointer at `+0x48`, or a null pointer while the dword
+`+0x50` is 0, `0x001EA886`), posts the render queue's block (`0x00185A50`), and draws the string in black at its position
+plus the offset `+0x100` to `+0x108` (summed into `+0xC8` to `+0xD0`, `0x001EA8E1`), then in white at its position, both
+through `0x001EAC60`, which writes the placement into the glyph object `+0x20` at its `+0x208` to `+0x234`;
+
+the colours go to the material `+0x18` (`0x0067C440`). `0x001EAC60` takes a 4 × 4 transform (`+0x98` for black, `+0x58`
+for white) and stores rows 1 to 3's first three values, with row 0's x, y and z as each row's fourth value.
+
+`0x001EA830` returns 0 after both draws, and 0 for an object that is not visible or not built (`0x001EA979`). A
+non-zero result of a call it checks (`0x005FEFD0`, `0x0067C4F0`, either `0x0067C260` draw, `0x00600A60`) ends it at once
+and is returned, so a zero `+0x50` (for which `0x0067C4F0` returns 1) draws nothing. A non-zero `bracket` opens
+the context's bit `0x1` bracket first (`0x005FEFD0(context, 0)`, `0x001EA86B`) and closes it after the white draw
+(`0x00600A60(context, 3)`, `0x001EA970`); the three calls in `0x001C2DB0` give it 0.
+
+`0x001EAE10` releases a text object: its material (`0x001EA050`),
+its glyph object (`0x0067B3A0`) and its two assets (`0x0019CC50`). Each of the first two, when present, is then
+freed with `0x00584730` and its pointer `+0x18` or `+0x20` set to 0 (`0x001EAE42`, `0x001EAE65`); the assets are the
+pointers at `+0x00` and `+0x08`, each handed to `0x0019CC50` with the loaded-asset registry `0x0019CE20()`.
+`0x001EA130`, reached from the unwind handlers `0x0089873C` and `0x0089E880`, frees a counted array the same way
+`0x001EA050` does.
 
 Four console rows drive it. Row 51 "Draw Chr Names" cycles the mode through 0 to 3 (`0x001D5230`).
 Rows 218 and 219 step `+0x4664` and
@@ -305,8 +448,14 @@ Rows 218 and 219 step `+0x4664` and
 walks the cells of the collision grid `0x0026E500(0)`, draws a four-vertex quad over each cell and prints at its
 centre the list of eight-bit group numbers found in the cell's polygon attribute words
 (`"%d, %s"`). It places the text with `0x00181FD0` and `0x001820E0`, which multiply a point by the
-first (`+0x08`) and second (`+0x78`) matrix of the camera block: the camera pair's (`0x0018A620`)
-while its first byte is set, else the render manager's `+0x690`.
+first (`+0x08`) and second (`+0x78`) matrix of the camera block: the camera pair's (`0x0018A620`, the block
+`0x0018A620() + 8`) while its first byte is set, else the render manager's (`0x00189120()`) `+0x690`.
+
+Both write the point's x, y and z back in place and store 1.0 in its `+0x0C` (`0x001820C7`, `0x00182133`).
+`0x00181FD0` reads the twelve floats `+0x08` to `+0x34`: new x = x·`+0x14` + y·`+0x08` + z·`+0x18` + `+0x28`,
+new y = x·`+0x24` + y·`+0x0C` + z·`+0x1C` + `+0x2C`, new z = x·`+0x34` + y·`+0x10` + z·`+0x20` + `+0x30`.
+`0x001820E0` multiplies the row vector (x, y, z, 1) by the 4 × 4 matrix whose rows are at `+0x78`, `+0x88`,
+`+0x98` and `+0xA8`, keeping the first three columns.
 
 ### The cube-map capture camera
 
@@ -316,7 +465,9 @@ step per frame. Console rows 56 "Capture cube map" and 59 "Recapture cube maps" 
 stored at `0x001D07FE` and `0x001D0828`). The capture never runs in the shipped game.
 
 The step `+0xA8` is set to -2 by the constructor `0x001AA9E0` (`0x001AAA5C`). The only other store,
-`0x001AC7D6` in `0x001AC7C0`, sets it to -1 when the step is -2 and byte `+0xA4` is set, and `+0xA4` is
+`0x001AC7D6` in `0x001AC7C0`, sets it to -1 when the step is -2 and byte `+0xA4` is set; `0x001AC7C0` then, when the
+shadow object `0x001F0850()` is not 0, jumps to `0x001EF540(shadow object, 1)` (`0x001AC7F8`), and in every other case
+returns with no store or call. `+0xA4` is
 written only by the constructor, with 0 (`0x001AAA55`). The step stays at -2.
 
 `0x001ACC30(object, &fov, &scale, &aspect, &a, &b, &c)` turns the step into a camera. It returns false
@@ -332,11 +483,14 @@ and continues by the mode `+0xBC`:
 | other | 2π | the angles stay 0 |
 
 `0x00189570`, run by the per-frame pump `0x0017D6E0` and by the render pass list `0x00187950`, asks
-`0x001ACC30` and, on true, sets five cameras through `0x00185C30`:
+`0x001ACC30` and, on true, sets five cameras through `0x00185C30`; on false it returns with no further call
+(`0x001895E6`):
 
 - the render manager's cameras at `+0x690`, `+0x820`, `+0x358` and `+0x4E8`, with the controllers at
   `+0x798`, `+0x928`, `+0x460` and `+0x5F0`, and, while the camera pair's first byte is set, the
-  pair's camera `0x0018A620() + 8` with the controller at `+0x9C8`;
+  pair's camera `0x0018A620() + 8` with the controller at `+0x9C8`, after which `0x0018A680(pair, pair + 8)` copies
+  that camera into the pair's camera at `+0xE0` (`0x001897A1`,
+  [scripted camera](../Graphics/scripted-camera.md));
 - `0x00185C30` stores the fov at the camera's `+0xD0`, the scale at `+0xD4` and the aspect at `+0xC8`,
   attaches the controller (`0x00184AF0`) and hands it `a`, `b` and `c` through its slot `+0x50`.
 
@@ -362,11 +516,14 @@ While the camera pair's first byte is set, `0x00187950` and the render manager's
 Either way they then call `0x00189130(manager, camera, a, b, c)` with the console's `+0x00`, `+0x04`
 and `+0xC1C`.
 
-`0x00189130` rebuilds the 3 × 4 world matrix that the camera's `+0xB8` points to. It starts from axes
-(1, 0, 0), (0, −1, 0) and (0, 0, −1) with the matrix's own `+0x20`, `+0x24` and `+0x28` as the last
-row, multiplies in turn (`0x00185100`) by a rotation of `a` about (0, −1, 0), a rotation of `b` about
-x, and a rotation of `c` about (0, −1, 0), and writes the result back. `0x00188E60(out, angle, axis)`
-builds the rotation about a unit axis; `0x0062E1C0` uses it too.
+`0x00189130` rebuilds the 3 × 4 world matrix that the camera's `+0xB8` points to. It starts from axes (1, 0, 0), (0, −1,
+0) and (0, 0, −1) with the matrix's own `+0x20`, `+0x24` and `+0x28` as the last row, multiplies in turn (`0x00185100`)
+by a rotation of `a` about (0, −1, 0), a rotation of `b` about x, and a rotation of `c` about (0, −1, 0), and writes
+the result back. `0x00188E60(out, angle, axis)` builds the rotation about a unit axis; `0x0062E1C0` uses it too.
+
+With S = sin(angle) (`0x00861F0E`), C = cos(angle) (`0x00861F08`), T = 1 − C and the axis (x, y, z), it writes the 4 × 4
+rows (xxT + C, xyT + zS, xzT − yS, 0), (xyT − zS, yyT + C, yzT + xS, 0), (xzT + yS, yzT − xS, zzT + C, 0) and (0, 0,
+0, 1) from `0x008C5FD0`, and returns `out`.
 
 None of this reaches the screen in a retail game. The console constructor `0x001CCB20` zeroes `+0x00`
 and `+0x04` (`0x001CCB47`), writes `+0xC18` and `+0xC1C` as one qword with `+0xC1C` = 0 (`0x001CCC40`)
@@ -524,7 +681,9 @@ the string's address is taken only at `0x0020AF3E`.
 - A row's label names the field; the arm defines its type, step and range. Three adjacent rows
   labelled "Enable 100% successful steal / poach / drop" cycle four, three and five states.
 - The gil row is not a cheat path of its own: it calls the setter every shop and reward uses, so
-  the achievement counter behind it moves too: `0x00254EE0` calls `0x00316A50`
+  the achievement counter behind it moves too: `0x00254EE0` calls `0x00316A50` with counter 6 and the gain
+  (`0x00254EF8`), or counter 7 and the loss, whenever the new value differs from the purse; with gil already at
+  99,999,999 it makes no call (`0x00254EF6`, `0x00254EFC`)
   ([achievements](../Steam-And-Achievements/achievements.md)).
 
 ## Related

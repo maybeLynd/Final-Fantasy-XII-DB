@@ -29,9 +29,10 @@ fight. When the party leaves the area or the scene ends, they all disappear toge
 7. **Hold.** A time stop or the world lock holds the record's script while the request is active
    ([time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
    [world lock](../Scripts-And-Script-Commands/world-lock.md)).
-8. **Release.** The manager's teardown `0x002628B0` ends each record's movement jobs (`0x0025B070`), runs the
-   per-record teardown and releases the battle units, then frees the record block; every record address is valid
-   only until then ([actor record](actor-record.md#release)).
+8. **Release.** On every slot but 4 the manager's teardown `0x002628B0` runs `0x0025B070`, which ends the movement
+   job of each class-1 or class-3 record in the slot's two record ranges, runs the per-record teardown and
+   releases the battle units. On every slot it then frees the record block (`0x00262D96`-`0x00262DA4`); every record
+   address is valid only until then ([actor record](actor-record.md#release)).
 9. **The slot's other state.** The same teardown resets the state other systems keep per slot: skips, voices, the
    summon group, event sounds and script effect slots ([actor record](actor-record.md#what-else-the-teardown-resets)).
 10. **Reuse.** `0x002659D0` advances a record's discriminator, so a handle taken before stops resolving

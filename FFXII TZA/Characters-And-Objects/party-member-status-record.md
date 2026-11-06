@@ -23,10 +23,10 @@ level, experience, LP, licence count and equipment. Four wrappers resolve the me
 
 | Wrapper | Member argument | `full` | How the stats record is found |
 |---|---|---|---|
-| `0x0031FE70(table, index, out)` | an index 0-8 into one of the five slot maps (`0x0031B9F0`: map 0 is the nine words at block `+0x5A48`, 1 `+0x5A5A`, 2 `+0x5A6C`, 3 `+0x5A7E`, 4 `+0x5A90`; `0x00322C50(0x17, index)` admits the index) | 0 | the chosen word is the slot; a slot above `0x27`, or a rejected index, gives a null record and the builder fills only the header |
+| `0x0031FE70(table, index, out)` | an index 0-8 into one of the five slot maps (`0x0031B9F0`: map 0 is the nine words at block `+0x5A48`, 1 `+0x5A5A`, 2 `+0x5A6C`, 3 `+0x5A7E`, 4 `+0x5A90`; `0x00322C50(0x17, index)` admits the index) | 0 | the chosen word's low byte is the slot (`0x0031BA3D`); a slot above `0x27` (`0x0031FE88`), a rejected index or a table other than 0-4 (both give `0xFF`, `0x0031BA11`, `0x0031BA34`) gives a null record and the builder fills only the header; the index goes to the builder as `memberSlot` (`0x0031FEAE`) |
 | `0x00320040(table, index, out)` | the same | 1 | the same; the record is `[0x02EBF190] + 8 + slot * 0x1C8` |
-| `0x0031FEC0` | an actor | 1 | the actor's unit (`0x00263E30`), its stats `+0x698`; the member slot is the position of stats byte `+4` among the four party slot words at block `+0x5A5A`, or -1 |
-| `0x0031FF70` | a packed actor handle | 1 | the same through `0x003588B0`, gated on `0x02089340` bit `0x10` |
+| `0x0031FEC0` | an actor, the second argument (`0x0031FED9`) | 1 | the actor's unit (`0x00263E30`), its stats `+0x698`; the member slot is the position of stats byte `+4` among the four party slot words at block `+0x5A5A` (each word's low byte, `0x0031FF10`), or -1; the slot is -1 also when the actor, its unit or its stats record is null or byte `+4` is `0xFF` (`0x0031FEDC`-`0x0031FF24`), and a null actor or unit gives a null record (`0x0031FF27`-`0x0031FF39`) |
+| `0x0031FF70` | a packed actor handle, the second argument (`0x0031FF90`) | 1 | the same through `0x003588B0`, gated on `0x02089340` bit `0x10`: with that bit clear, or a handle that does not resolve, the slot is -1 and the record null (`0x0031FF89`-`0x0031FF9E`, `0x0031FFE7`-`0x0031FFFA`) |
 
 `memberSlot` is therefore the position in the chosen table for the first two wrappers and the
 position in the four-word party table for the other two, while flag bits `0x400` and `0x800` compare it with
@@ -63,25 +63,25 @@ The callers of the wrappers:
 
 ### The flag word
 
-| Bit | Set when |
+| Bit value | Set when |
 |---|---|
-| 0 | the member counts as KO'd: no stats record, or status bits `0x1`, `0x2` or `0x80000000` (KO, Stone, bit `0x80000000`) in `+0x3C` or `+0x64` while the current area's town flag (`0x00313F60`, area word bit `0x8000`) is clear (`0x0032978D`-`0x003297A8`) |
-| 1 | type `+0x60` is 7 to 25 |
-| 2 | type is 27 to 39 |
-| 3 | the squared XZ distance between the unit's and the focus unit's positions (`+0xE0`, `0x003A1960`) is above `400.0` (`0x00915A08`): the member is out of range |
-| 4 | `0x0031FDA0(unit)`: 1 when the unit is null, its flag bit `0x10` is clear or bit `0x80000000000` is set; for a kind-0 stats record, 1 when the type is `0x1A` and 0 otherwise; else 1 when the spawn record has flag bit `0x8` or `0x40`, otherwise status bit `0x1000000` |
-| 6 | unit flag bit `0x2` |
-| 7 | stats `+0x00` bit `0x4` |
-| 8 | unit flag bit `0x1000000`, or an action id at most `0x21E` with phase `+0x6B4` at least 9 |
-| 9 | unit flag bit `0x800000` |
-| 10 | block `+0x5B04` bit `0x1` is set (`0x003135E0`) and `0x00320890(block +0x5AD5)` equals `memberSlot` (`0x00313800`) |
-| 11 | block `+0x5B04` bit `0x2` is set (`0x00303EE0`) and the position of block byte `+0x5AA4` in the nine bytes at `+0x5A48` (stride 2, `0x00327200`) equals `memberSlot` |
-| 12 | action id at most `0x21E` and phase at least 9 |
-| 13 | action id at most `0x21E` and phase at least 3 |
-| 14 | the unit has flag bit `0x10`, its stats record is null or of a kind other than 0, and the spawn record has flag bit `0x40` or the status words carry bit `0x1000000` (`0x00329337`-`0x0032937B`) |
-| 15 | idle: no action context `+0x708`, action id `0xFFFF`, or phase 0 |
-| 16 | `0x003879C0(stats)`: for a kind-1 owner, bit `0x80` of byte `+0x12` of the class row `[unit + 0xE68]` |
-| 17 | `0x0030C2C0(unit)`: unit flag bit `0x10000000000000` (dword `+4` bit `0x100000`), after `0x002FEAD0` when `0x003278C0()` is 0 |
+| `0x1` | the member counts as KO'd: no stats record, or status bits `0x1`, `0x2` or `0x80000000` (KO, Stone, bit `0x80000000`) in `+0x3C` or `+0x64` while the current area's town flag (`0x00313F60`, area word bit `0x8000`) is clear (`0x0032978D`-`0x003297A8`) |
+| `0x2` | type `+0x60` is 7 to 25 |
+| `0x4` | type is 27 to 39 |
+| `0x8` | the squared XZ distance between the unit's and the focus unit's positions (`+0xE0`, `0x003A1960`) is above `400.0` (`0x00915A08`): the member is out of range |
+| `0x10` | `0x0031FDA0(unit)`: 1 when the unit is null, its flag bit `0x10` is clear or bit `0x80000000000` is set (`0x0031FDA3`-`0x0031FDBA`); for a kind-0 stats record (`+0x698`), 1 when the type is `0x1A` and 0 otherwise (`0x0031FDC8`-`0x0031FDE3`); else 1 when the spawn record `[unit + 0x6A0]` has flag bit `0x8` or `0x40` (`0x0031FDE4`-`0x0031FDF5`), otherwise status bit `0x1000000` of the stats words `+0x64` or `+0x3C` (`0x0031FDF7`-`0x0031FE00`), which for a unit with no stats record reads address `0x64` |
+| `0x40` | unit flag bit `0x2` |
+| `0x80` | stats `+0x00` bit `0x4` |
+| `0x100` | unit flag bit `0x1000000`, or an action id at most `0x21E` with phase `+0x6B4` at least 9 |
+| `0x200` | unit flag bit `0x800000` |
+| `0x400` | block `+0x5B04` bit `0x1` is set (`0x003135E0`) and `0x00320890(block +0x5AD5)` equals `memberSlot` (`0x00313800`) |
+| `0x800` | block `+0x5B04` bit `0x2` is set (`0x00303EE0`) and the position of block byte `+0x5AA4` in the nine bytes at `+0x5A48` (stride 2, `0x00327200`) equals `memberSlot` |
+| `0x1000` | action id at most `0x21E` and phase at least 9 |
+| `0x2000` | action id at most `0x21E` and phase at least 3 |
+| `0x4000` | the unit has flag bit `0x10`, its stats record is null or of a kind other than 0, and the spawn record has flag bit `0x40` or the status words carry bit `0x1000000` (`0x00329337`-`0x0032937B`) |
+| `0x8000` | idle: no action context `+0x708`, action id `0xFFFF`, or phase 0 |
+| `0x10000` | `0x003879C0(stats)`: for a kind-1 owner, bit `0x80` of byte `+0x12` of the class row `[unit + 0xE68]` (`0x00387A21`-`0x00387A2C`); 0 for a null stats record, with no owning unit (`0x0031B860`, kept at `[0x02EBF188]`), when the owner's stats record `+0x698` is null or not of kind 1, or with a null class row (`0x003879C9`-`0x003879F9`, `0x00387A44`) |
+| `0x20000` | `0x0030C2C0(unit)`: unit flag bit `0x10000000000000` (dword `+4` bit `0x100000`), after `0x002FEAD0` when `0x003278C0()` is 0 (bit `0x1` of the dword at `0x022C25A0` clear, `0x0030C2D6`-`0x0030C2E2`); 0 for a null unit (`0x0030C2CE`) |
 
 Block offsets are offsets into the party block `[0x02EBF190]`
 ([its field map](../Party/party-data.md)); `+0x5AA4` is
@@ -128,6 +128,12 @@ While a unit owns the record:
 - while the unit is acting (context `+0x708` set, id at most `0x21E`, phase not 0): `+0x3C` and
   `+0x40` are the unit's `+0x768` and `+0x76C`, `+0x08` the focus `+0x710`, and `+0x5C` the action
   id, or `0x00387090(stats)` once the phase is 9 or more; otherwise they are 0, 0, 0 and `0xFFFF`;
+- `0x00387090(stats)` returns the owning unit's action id `+0x714`, except that for action `0x9F` it returns word
+  `+0x10` of the unit's 64-byte record (`0x00387100`-`0x0038710E`): `0x0208D480 + type * 0x40` for a kind-0 stats record,
+  else `0x0208DE80 + unit[+0xEA9] * 0x40`, a record of 0 without a unit (`0x003870A3`-`0x003870E7`;
+  [Status timers](../Status-Effects-And-KO/status-timers.md));
+- `0x00387090` keeps the unit at `[0x02EBF188]` for a record of a kind other than 0 (`0x003870C4`) and reads address
+  `0x714` when no unit owns the record (`0x00387118`);
 - `+0x5E` is the unit's `+0xBA0` while unit flag bit `0x4000` is set, else `0xFFFF`.
 
 ## Layouts

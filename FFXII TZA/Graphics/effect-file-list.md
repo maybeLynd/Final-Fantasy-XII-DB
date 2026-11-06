@@ -56,7 +56,8 @@ The columns come from the path arrays, the US size table, the archive index and 
    kind `0x0B` then, kind `0x26` with Japanese voices.
 7. It sizes the id (`0x0032E400`) and, when there is no file, loads id 120 for ids 120-137, id 138
    for 138-153 and id 0 otherwise (`0x002FC8E4`-`0x002FC911`), then requests it (`0x0032E620`, completion
-   `0x002FC830`). `0x002FCFF0` sizes all 512 ids with the same rule into the load-cost table `0x02EC19C0`.
+   `0x002FC830`). `0x002FCFF0` sizes all 512 ids in the same kind into the load-cost table `0x02EC19C0`,
+   storing each size as it comes, without the fallback (`0x002FD015`-`0x002FD02F`).
 8. The event effects: the verbs `effectread` `0x0DB` and `effectread_e0` `0x0E0` pass variant 0,
    `locationeffectread` `0x127` and `0x128` variant 1, `questeffectread` `0x1DA` and `0x1DB` variant
    2 (`0x0034BC90`, `0x0034B880`, `0x0034C430`, `0x0034C0F0`, `0x0034CB80`, `0x0034C820`) to `0x003576D0`.
@@ -74,6 +75,74 @@ The columns come from the path arrays, the US size table, the archive index and 
     144 slots of the `0x28000`-entry table at `+0x228` of its object; `0x001A09E0` reads the slot
     `letter x 0x500 + number` for a model name `<letter><number>` (`0x001A0A74`-`0x001A0A7F`), for
     `0x001A0CF0`, `0x001A0E50` and `0x001D6EC0`. The row's `requested_by` names those models.
+
+In step 4, `0x0030A190(row)` answers -1 for a null row (`0x0030A199`). It takes the row's number in the
+action table as the row's distance from the decoded base divided by the row size word, `n = (row - b) / w`,
+with `T = [0x02EBF138]`, the decoded base `b = 0x0020E600([T + 0x0C])` and the size word `w = [T + 0x08]`, a 32-bit
+unsigned `div` (`0x0030A1A2`-`0x0030A1F1`).
+
+The cinematic id `+0x28` of rows `0xD0`-`0xF1` is returned untested while the battle state is 5 or 6:
+`[row + 0x28]` when `n >= 0xD0`, `n <= 0xF1` and `[0x022C2160] - 5 <= 1` unsigned (`0x0030A1CB`-`0x0030A209`). The
+three tests turn only the row's `+0x24` into -1: with `r = [row + 0x24]`, the answer is -1 when `r == 0xFFFF`,
+when `[row + 0x0C] & 0x40000000` is non-zero or when `(int16)r < 0`, and `r` otherwise (`0x0030A213`-`0x0030A238`).
+
+In step 5, `0x002FCBF0(id)` works under arena 8 (`0x0036C1D0(8, 10)` at `0x002FCC04`, `0x0036C140`). It returns 0
+when the free list `0x02EC3D70` is empty (`0x002FCC13`). Otherwise it moves the first free record to the tail
+of the active list `0x02EC3D60` / `0x02EC3D68` (links `+0x28` and `+0x30`, `0x002FCC15`-`0x002FCC56`).
+
+It then raises the serial `0x02EC3D78` and puts `serial << 6` into the handle bits under mask `0x0FFFFFC0`,
+clears the low five bits of `+0x23` and the context `+0x08`, and stores the id at `+0x20`
+(`0x002FCC5A`-`0x002FCC7F`). It returns the handle `+0x00` after `0x002FC860` (`0x002FCCA7`). `0x002FC860` answers 1
+on every path (`0x002FC876`, `0x002FC991`), so the branch that clears the state on 0 (`0x002FCC8C`) is never taken.
+
+`0x002FC860(record)` first reads `0x02EC3D7C`: while a read runs it sets the state's low nibble to 1 and
+returns 1 (`0x002FC866`-`0x002FC884`). Otherwise it keeps the size at `+0x1C`. With the load-cost table set
+(`0x02EC3D7D`) it takes the size from `0x02EC19C0 + 8 x id`, and a size of 0 or less loads id 0 with entry 0's
+size instead of the 120 and 138 ranges (`0x002FC8AD`-`0x002FC8C6`).
+
+It then requests the id in kind `0x0B` or `0x26` into the buffer `[0x01FD4A30]`, with the record's handle
+and the completion `0x002FC830`, stores the request at `+0x18`, sets state 2 and `0x02EC3D7C` to 1, and returns
+1 (`0x002FC928`-`0x002FC996`).
+
+`0x002FCFF0` asks `0x0032E400` for ids 0 to 511 in kind `0x0B`, or `0x26` when `0x002DEBB0()` is 0, stores
+each answer at `0x02EC19C0 + 8 x id` and then sets `0x02EC3D7D` (`0x002FD015`-`0x002FD04A`). Its one caller is
+the stub `0x0036DDB0`, the tail of `0x0050F070` (`0x0050F096`), the result callback of the debug verb
+`debug_efffilesizecache` (`0x2062`), which only the developer menu script `bin/ctrl` calls
+([Script verb table](../Scripts-And-Script-Commands/verb-table.md)).
+
+In step 9, `0x003576D0` pops three values with `0x00267E10`, the variant, the number and the slot in that
+order, and takes the first argument of `0x0036E320` from `+0x28` of `0x002640C0()` (`0x003576F3`-`0x00357717`).
+It skips the call while the skip byte of the calling actor's manager (its byte `+0x15`) is set
+(`0x00267310`, `0x0035771B`-`0x00357722`), and ends with `0x00314D40(1)` on both paths (`0x00357734`-`0x00357753`).
+
+`0x0036E320(manager, slot, number, variant)` clamps the slot to 0-31, `s = slot < 0 ? 0 : slot > 31 ? 31 : slot`
+(`0x0036E32C`-`0x0036E33D`), and works on the record `0x022D94B0 + 0x18 x s` (`0x0036E342`-`0x0036E34D`). It adds
+`variant == 1 ? 0x1000 : variant == 2 ? 0x2000 : 0` to the number, so any variant other than 1 and 2 adds 0
+(`0x0036E351`-`0x0036E36D`).
+
+A record whose word `+4` is set is left as it is. Otherwise it clears `+0x10`, stores the handle
+`0x003B1A80(number, slot)` at `+0x00` and the manager's low byte at `+0x08`, and sets `+4` to 1 when the handle is
+non-zero (`0x0036E370`-`0x0036E396`).
+The handle call takes the slot as passed, not the clamped `s`; `0x003B1A80` keeps `slot & 0x3F` of it (`0x003B1ADC`).
+
+`0x003B2310(entry)` waits while another load runs (`0x02EBEBE4`): it sets the entry's state `+0x1C` to 1 and
+returns 1 (`0x003B2316`-`0x003B2333`). Otherwise it writes the id back to `+0x04`. Only the two variants fall
+back: any other number without a file returns 0 (`0x003B244F`), and a fallback is sized again until it
+answers a size (`0x003B23CE`-`0x003B23E1`).
+
+It then requests the id in kind `0x0C` into the buffer `[0x01FD4A30]`, which it keeps at `+0x28`, with the
+entry's id and the completion `0x003B22D0`. It stores the request at `+0x18`, sets state 2 and `0x02EBEBE4`
+to 1, and returns 1 (`0x003B23E3`-`0x003B2442`).
+
+In step 11, `0x003B0660` works under arena 8, pushed twice and popped twice (`0x003B0671`, `0x003B06DB`,
+`0x003B0752`, `0x003B075F`). It first zeroes `+0x00`, `+0x08` and `+0x11` and the low three bits of `+0x13`
+of the 36 request entries at `0x02EBEC00`, clears bit `0x1` of `0x02EBEF68` and the qword `0x02EBEF60`, and
+frees the instances of kinds 5, 6 and 9 (`0x0024C460`, `0x003B0676`-`0x003B06CE`).
+
+When kind 10 id 0 has a size, `0x003B0660` reads it into `[0x01FD4A30]` without a request record and waits
+for the read (`0x0032E520(0)`). It then builds the type-5 context from a zeroed `0x890`-byte template
+(`0x0024B3A0`) and parses the stream (`0x003EDAD0`, `0x003B0712`-`0x003B0745`). With a size of 0 or less it goes
+straight to the pops (`0x003B06EC`).
 
 ## Columns
 

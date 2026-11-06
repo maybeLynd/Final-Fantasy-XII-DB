@@ -164,6 +164,15 @@ A target that survives gets event `0x2005` plus the variant bit, unless flag bit
 (`0x00300861`-`0x00300887`). Steps 3 to 6 need a target unit; a record without one is only KO'd
 (`0x003007D4`).
 
+Both events go through `0x003299B0(unit, event, value)` (`0x00300887`). It does nothing for event -1 (`0x003299B3`).
+Otherwise it stores the value in unit `+0x2C`, ORs `0x5000` into the event when its low 12 bits are `0x100` or
+more (`0x003299CA`-`0x003299E4`; the low 12 bits of these events are below `0x100`), and hands the event to the unit's
+actor `[unit+0x10]` with `0x002EB030` (`0x003299E9`). `0x003299B0` then keeps the event in unit `+0x5C` and sets `+0x2C`
+back to 0 (`0x003299EE`-`0x003299F6`).
+
+`0x002EB030` stores the event in actor `+0xF0` and posts it through `0x002EB0D0` unless actor byte `+0x18` is 1
+(`0x002EB04D`-`0x002EB073`).
+
 Measured in the game at Frame Rate 60: Reks's Attack hit a Cactite (72 HP) twice. `0x00300749` stored 72 to 32
 (delta -40) and then 32 to 0 (delta -41), each time with the Cactite's unit as the target and Reks's as the
 source; `0x00306F00` ran with the Cactite's unit in the same frame as the second store, and its spawn record's

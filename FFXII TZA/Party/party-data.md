@@ -10,12 +10,28 @@ addresses: "0x02EBF190, 0x00233C10, 0x002370C0, 0x0030B6A0, 0x00320A40, 0x0031B9
 The party block is `0x7410` bytes inside the save image: buffer `0x02164280` + `0x4E68C`, which is payload
 `+0x4E48C` ([Save data](../Saving-Loading-And-Settings/save-data-fields.md)). `0x00233C10` points `0x02EBF190` at it when the
 pointer is empty and rebases the inventory class descriptors, and checks the magic `0x05071901` when it is set
-(`0x00233C25`-`0x00233C4D`).
+(`0x00233C25`-`0x00233C4D`). Before that it runs `0x00235AF0` (`0x00233C14`), which compares the block with the image's
+copy ([Save file format](../Saving-Loading-And-Settings/save-file-format.md)).
 
-With an empty pointer or a wrong magic `0x00233C10` then runs the battle-state reset `0x00237DF0`,
+With an empty pointer (twice, `0x00233C3F` and `0x00233C48`) or a wrong magic (`0x00233C59`) `0x00233C10` then runs the
+battle-state reset `0x00237DF0`,
 whose first step `0x0023AF50` resets the block and adds the starting inventory
 ([Starting inventory](starting-inventory.md)). With the magic in place it rebuilds the gambit order set of all forty
 members with `0x00327F80`, the loop form of `0x00327DE0` (`0x00233CAD`; [Gambits](../Enemy-AI-And-Gambits/gambits.md)).
+
+On that path `0x00233C10` also, in this order:
+
+- before the rebuild, sets bit `0x1000` of the flag dword `+0x04` when bit `0x1` of the battle flags `0x02089344` is
+  set, then clears that bit and zeroes the dword `+0x5B00`, the word `+0x5B0C` and the byte `+0x5B0E`; with bit
+  `0x1` clear it clears bit `0x1000` (`0x00233C65`-`0x00233CA6`);
+- after it, clears bit `0x2` of the word `+0x5AD0` (`0x003139A0(0)`, `0x00233CB4`) and bit `0x1` of the dword
+  `+0x5AE0` (`0x00304770(0)`, `0x00233CBB`);
+- empties the ring of fired traps `0x02EC3EA0` (`0x002FA230`, `0x00233CC0`;
+  [Traps](../World-Areas-And-Travel/traps.md)) and the presence ledger `0x02EC3E60` (`0x002FA260`, `0x00233CC5`;
+  [Reward verbs](../Scripts-And-Script-Commands/reward-verbs.md));
+- calls the empty `0x0016D6A0` (`0x00233CCA`), which does no work;
+- sets the speed index `0x01FD4A98` to 0 (`0x00229ED0(0)`, `0x00233CD1`) and stores a dword 0 at `0x0208E6B4`
+  (`0x00233CD6`) ([Frame update order](../Engine-Core/frame-update-order.md)).
 
 The reset `0x002370C0` clears all `0x7410` bytes, writes the magic, clears the inventory counts and empties the inventory lists of `[0x020927C0]` ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md#the-inventory-lists)) (`0x003047F0`, `0x002370E5`; [Save data](../Saving-Loading-And-Settings/save-data-fields.md)), empties map 0's seats
 and zeroes the walked distance (`0x002370CD`-`0x0023712E`).
@@ -32,7 +48,9 @@ The block holds:
   ([Party member status record](../Characters-And-Objects/party-member-status-record.md),
   [Battle menu](../Menus-And-HUD/battle-menu.md));
 - the counters three formulas keep ([Weapon formulas](../Damage-And-Battle-Formulas/weapon-formulas.md));
-- the gambit banks ([Gambits](../Enemy-AI-And-Gambits/gambits.md)).
+- the gambit banks ([Gambits](../Enemy-AI-And-Gambits/gambits.md)). `0x00327C40(type, out)` copies member
+  `type`'s selected bank, the 52 bytes at `+0x5B10 + (3 * type + [+0x7370 + 4 * type]) * 0x34`, to `out` and
+  returns 1; for a type above 39 it copies nothing and returns 0 (`0x00327C46`-`0x00327CA8`).
 
 ## Columns
 

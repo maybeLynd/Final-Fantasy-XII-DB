@@ -44,8 +44,15 @@ The motion entries are read when a presentation entry is set up to play a motion
 | `+0x04` | `u16` |  | record length |
 | `+0x06` | `...` |  | sub-records: u16 key, u16 (length << 6 \| command count), then the commands |
 
-A key of `0xFFFF` marks the block of commands that `0x0041CD30` runs before the keyed ones; the other
-keys are motion frames. The commands themselves are the authored presentation commands
+A key of `0xFFFF` marks the block of commands that the walker `0x0041DA90` runs before the keyed ones; the other
+keys are motion frames. `0x0041CD30` runs no commands: it keeps the marker's offset in the track state's `+0x90`
+(`0x0041CE3D`-`0x0041CE42`). The walker reads `+0x90` (`0x0041DAD3`) and runs that block's commands through the table
+`0x01EFFAF0` (`0x0041DB05`-`0x0041DB81`) before its calls to `0x0041E1D0`, `0x0041E000`, `0x00418880` and `0x00418750`
+(`0x0041DBAD`-`0x0041DBFD`).
+
+It runs them only for an active state (byte `+0x95`, `0x0041DAA8`) and an entry with `+0x0C` bit `0x100000`; with
+bit `0x10` also set it skips a command whose table entry has a non-zero byte `+8` (`0x0041DB10`-`0x0041DB3D`). The
+commands themselves are the authored presentation commands
 ([authored-presentation-commands.md](authored-presentation-commands.md)).
 
 ### @FMN, the bone channel list
@@ -60,6 +67,12 @@ keys are motion frames. The commands themselves are the authored presentation co
 | `+0x00` | `u16` |  | node key |
 | `+0x02` | `u16` |  | mask `0x1FF` channel mask, mask `0x7E00` record length (22) |
 | `+0x04` | `u16[9]` |  | channel numbers in the paired @FMW; `0x8000` \| n where the mask bit is clear |
+
+`0x00409190(entry)` gives the start of the records from the kind `+0x04`, by `kind & 3` and `(kind >> 24) & 3`
+(`0x00409195`, `0x004091A1`). For `kind & 3` of 0 it is `+0x40`, `+0x60` or `+0xC0` for 0, 1 or 2; for `kind & 3`
+of 1 it is `+0x70` for 0, `+0x90` for 1, and for 2 `+0xF0` with bit `0x1000` set (`0x004091B3`) or `+0xC0`
+without it. Every other kind gives 0 (`0x004091E7`). The start is added to the entry's low 32 bits,
+sign-extended (`0x004091B7`); both shipped kinds have bit `0x1000` set and give `+0xF0`.
 
 ### @FMW, the channel data
 
@@ -92,7 +105,8 @@ literals add to the previous key's frame.
 
 `+0x30` holds 80 (the columns) and `+0x34` the rows. `0x004090D0(container, row, column)` returns the
 entry at slot `row × 80 + column` when the row is below `+0x34`, otherwise slot `column`; an empty
-slot gives NULL. The `@FMC` blocks fill the first `80 × rows` slots and `@FRM` is the last slot.
+slot gives NULL, and so does a slot at or past the count `+0x0C` (`0x00409113`-`0x00409117`). The `@FMC`
+blocks fill the first `80 × rows` slots and `@FRM` is the last slot.
 
 ## Shipped data
 
@@ -118,6 +132,10 @@ slot gives NULL. The `@FMC` blocks fill the first `80 × rows` slots and `@FRM` 
 - `0x00504940` stores the section pointer at row `+0x230` and calls `0x0016D6A0(ticket, section + 0x30)`
   with the bank entry's ticket `+0x44` (`0x005049BD`). `0x0016D6A0` is a bare `ret`: binding the row does
   nothing with the embedded effect.
+- The bank entry is the container's own (word `+0x1F0`) when its first word equals the `@FEF` id word
+  `+0x228` (`0x00504981`), else the one `0x00409F50` gives for `+0x228` (`0x00504991`); the section is
+  `0x004096C0` of that entry with the offset `+0x238` (`0x005049A2`). The call is made only for a non-null
+  section (`0x005049B1`).
 - `0x0041F340` makes the render record's effect context: when the record's `+0x288` is −1 and the row's
   `@FEF` bank index is set, it calls `0x003B3550(record, ticket)` and stores the result at record `+0x288`
   and row `+0x240`.
@@ -190,9 +208,22 @@ The model binder `0x0041FCF0` also keeps the model's own first `@FMC` index at r
 
 - `0x0041BEE0` binds `@FMN` (or `@FRP`) and `@FMW` by tag and name into a track descriptor (`+0x54`,
   `+0x58`), and `0x0041B4E0` resolves the entries.
+- `0x0041B4E0` returns at once, leaving `+0x70` and `+0x78` as they are, when the first resource index
+  `+0x50` is `0xFFFF` (`0x0041B4F1`). Otherwise `+0x70` gets slot `+0x5C` (signed) of the section at
+  `+0x54` in the resource that `0x00409F50` gives for `+0x50` in the bank `+0x48` (`0x0041B51B`).
+- `+0x78` gets slot 0 of the section at `+0x58` in the resource of `+0x52` (`0x0041B539`). Both go through
+  `0x004096C0` and `0x00408F80`; a `+0x52` of `0xFFFF` gives `+0x78` = 0.
 - It walks the `@FMN` records from the start `0x00409190` gives, advancing by each record's length.
   `0x00370E00` turns the node key into a bone, and `0x0041B550` sets up the record's nine channels in a
   `0x108`-byte row (count at owner `+0x2BC`).
+- `0x0041B550` stores the bone at row `+0x100`, the record's offset in the section at `+0xFC` and 0 at `+0x102`
+  (`0x0041B585`-`0x0041B5A3`).
+- For channel `k`, 0 to 8, `0x0041B550` tests bit `1 << k` of the record word `+2`: a present channel goes to
+  `0x0041B650` with the next u16 of the list at record `+4`, and bit `0x80 << k` of `+0x102` is set when that
+  returns 1; an absent one gets frame `0xFFFF` at slot `+0x04` and 0 in the eight bytes at `+0x08`
+  (`0x0041B5B2`-`0x0041B608`).
+- With the section's dword `+0x54` at 0 only present channels take a u16 from the list; otherwise every channel
+  takes one (`0x0041B5B9`-`0x0041B5BD`, `0x0041B603`-`0x0041B60F`).
 - The `@FMN` duration goes to the descriptor's `+0x16`, and to `+0x18` unless state `+0x96` bit `0x40` is
   set.
 - `0x0041B650` starts a channel and `0x0041A470(slot, @FMW, frame)` moves its pair of keys forward until
@@ -200,6 +231,11 @@ The model binder `0x0041FCF0` also keeps the model's own first `@FMC` index at r
 - The values are written to the bone and every bone linked through `+0x278`: `0x00418650` into bone
   `+0x190`, `0x00418700` into `+0x1B0` and `0x004186A0` into `+0x1D0`, the last skipped while bone byte
   `+0x280` bit `0x2` is set.
+- Each writer `(bone, row, column, value)` stores the float at element `row * 4 + column` of its array
+  (`0x00418670`, `0x00418720`, `0x004186D0`), then moves to the bone `0x0020E600` decodes from `+0x278` and
+  stops when that is 0. `0x00418650` and `0x00418700` do nothing for a null bone (`0x00418653`, `0x00418703`).
+- `0x004186A0` tests bit `0x2` of the first bone only (`0x004186A4`): with it set no bone is written, and
+  the linked bones are written whatever their own bit.
 
 ### Stepping a channel
 

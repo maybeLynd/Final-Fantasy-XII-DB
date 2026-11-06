@@ -41,6 +41,11 @@ The listener is one `0xA0`-byte object whose pointer is at `0x02EADE08` (`0x007B
 3. Lay action 2, `0x007EF630`, stores them and builds the world-to-listener matrix with `0x007EF3B0`, the right-handed
    builder the game selects (`0x002108CA`).
 
+`0x007EF630` keeps the position with w = 1.0 at `+0x30` and the front and the up at `+0x40` and `+0x50`, each
+normalised, `v / |v|`, with a refined `rsqrtps` (`0x007EF68D`-`0x007EF741`); the matrix goes to `+0x60`. When the mode
+`0x007A5AF0` reads from `0x02EACFF8` is 2 it builds with `0x007EF1E0` instead (`0x007EF746`-`0x007EF767`); the start block
+gives 1 (`0x002108CA`), which `0x007A5B50` copies there (`0x007A5BAE`). It returns 0 (`0x007EF771`).
+
 `0x007EF100` builds the listener with identity axes. Lay action 1 sets it from a position and two direction vectors,
 which `0x007EF790` normalises; actions 3 and 4 set it from a 4 x 4 matrix, inverted first by `0x007A5780` when the
 action's byte `+0x08` is 0, and `0x007EF580` stores it. Each pass, `0x007EF8F0` (from `0x007BB670`) stores the listener's
@@ -77,12 +82,19 @@ and otherwise the three edges are tried (`0x007F7440`, `0x007F7570`). Distances 
 `0x007F0320(rel, range, inner, k, curve)` turns the source's position in listener space into a gain and a pan:
 
 1. With `d` the distance, the gain is 1 inside `inner`, and otherwise `(range - d) / (range - inner)`, floored at 0
-   (`0x007F03AA`-`0x007F03E8`).
+   (`0x007F03AA`-`0x007F03E8`). A range of 0 or less gives gain 0 and skips step 2 (`0x007F03AA`-`0x007F03AE`).
 2. The gain then goes through curve `curve` of the configuration file's `curv` chunk (`0x007ADC40`, `0x007AE260`). The
-   curve number is byte `+0x21` of the sound's bank record.
-3. The pan is `atan2(x, -z) / pi`: 0 straight ahead, +0.5 to the right (`0x007F0482`-`0x007F0487`).
+   curve number is byte `+0x21` of the sound's bank record. When the lookup leaves the second qword of its result
+   0, the gain stays as it is (`0x007F043F`-`0x007F0444`).
+3. The pan is `atan2(x, -z) / pi`: 0 straight ahead, +0.5 to the right (`0x007F0482`-`0x007F0487`). That is mode 1 of
+   `0x02EACFF8` (`0x007A5AF0`), the game's; mode 2 gives `atan2(x, z) / pi` (`0x007F0473`-`0x007F0493`). When `x` and `z`
+   are both 0, the pan, the directionality and the vertical pan stay 0 and it returns (`0x007F045A`-`0x007F046D`).
 4. The directionality is `1 - (1 - t) * k`, with `t` the horizontal distance past `inner` as a share of the rest of the
    range, capped at the horizontal distance over 1.0 (`0x02EAD3F0`) and clamped to 0-1. The vertical pan is always 0.
+
+`0x007F0320` writes the gain, the pan, the directionality and the vertical pan through its first four arguments; the
+inputs above follow on the stack (`0x007F0354`-`0x007F036F`). In step 4, `t` is 0 when the horizontal distance
+`h = sqrt(x^2 + z^2)` is not past `inner` or the range is not above `inner` (`0x007F04CD`-`0x007F04EE`).
 
 `AmbientSound` gets gain 1 and no direction (`0x007F1CE0`). Each pass the tick `0x007F0820` sends the sound its own volume
 ramp times the gain (`0x007F0C49`-`0x007F0CA5`) and the pan and directionality (`0x007F0D4E`). It also sends three distance
@@ -148,19 +160,24 @@ The source classes are built over the shared base `0x007EF910` (`0x007EFA30` des
 
 ### The update pass
 
-The `Lay` thread `0x007A5E50` runs every 32 milliseconds:
+The `Lay` thread `0x007A5E50` runs a pass, sleeps 32 milliseconds (`Sleep(0x20)`, `0x007A5EEA`) and loops while the stop
+flag `0x02EACFE9` is 0; it makes no pass when the flag is set on entry (`0x007A5E54`-`0x007A5E5D`, `0x007A5EF0`-`0x007A5EF9`).
+Each pass gives every step the time since the last pass in seconds, `(count - [0x02EACFF0]) / rate`, from `0x007AD630`
+and `0x007AD670`, and keeps the new count at `0x02EACFF0` (`0x007A5E80`-`0x007A5EC1`):
 
-1. It applies the queued actions (`0x007BAEC0`) and the listener's movement (`0x007BB670`).
-2. It runs every source's slot 34; a source out of range for good is stopped (`0x007EFB60`).
-3. It runs every source's tick (`0x007F0820`), which starts, stops and updates its sound.
+1. It applies the queued actions (`0x007BAEC0`) and the listener's movement (`0x007BB670`), at `0x007A5EC8` and `0x007A5ED0`.
+2. It runs `0x007BB780` on the pages (`0x007A5ED8`).
+3. It runs every source's slot 34; a source out of range for good is stopped (`0x007EFB60`).
+4. It runs every source's tick (`0x007F0820`), which starts, stops and updates its sound.
 
-Steps 2 and 3 are the source pass `0x007BC4F0`. Between them it collects every source whose slot 6 answers true, whose
-`+0xE0` is set and `+0xE1` clear and that is not in state 2 or 3, into a 32-byte record each (`0x02EADEE0`); it hands
+Steps 3 and 4 are the source pass `0x007BC4F0` (`0x007A5EE0`). Between them it collects every source whose slot 6
+answers true, whose `+0xE0` is set and `+0xE1` clear and that is not in state 2 or 3, into a 32-byte record each
+(`0x02EADEE0`); it hands
 them to the layer's callback (`0x02EADE28`, a `SoundObjectManagerCallback` that `0x007A5AA0` forwards to the object at
 `0x02EACFA0`) and stores each answer back in its source (`0x007EFB20`, `+0xD0`-`+0xF8`).
 
-After the ticks it frees the sources in state 5. The thread then runs `0x007BB780`, which runs `0x007BBD60` on every
-page, which drops the handles of sources that have ended.
+After the ticks it frees the sources in state 5. `0x007BB780`, step 2, runs `0x007BBD60` on every page, which drops the
+handles of sources that have ended; it runs before the source pass (`0x007A5ED8`, `0x007A5EE0`).
 
 Only `DynamicSound` moves: action 8 from `0x00332C40` sets its new position each call while its sound plays (`0x007F1310`).
 Its Doppler step (speed of sound 340.29, `0x01CB9B30`) needs bank record `+0x48`, which is 0 in every shipped sound, and its
@@ -191,7 +208,7 @@ to the record builder `0x00221940`, its only reader. Every field is 0 in the fil
 | `0x0215E72C` | `i32` | 0 | `+0x1C`: the outline mode a `PolygonSound` keeps at `+0x104`: 1, line segments, for shape 2; 3, a triangle fan, for shapes 0 and 1 | `0x002DE360`, 0 (`0x002DE3B3`); `0x002DE800` (`0x002DEA4D`, `0x002DEB0A`) | `0x00221940`, as a byte (`0x00221A5F`) |
 | `0x0215E730` | `i32` | 0 | `+0x20`: the outline's point count: 15 for the ellipse, 6 for the rectangle, the record's points plus one for a line | `0x002DE800` (`0x002DEB00`, `0x002DEA9F`, `0x002DEA57`) | `0x00221940` (`0x00221A47`) |
 | `0x0215E734`, `0x0215E744`, `0x0215E754`, `0x0215E764`, `0x0215E774`, `0x0215E784` | `f32[4]` each | 0 | `+0x24` on: the outline's points, 16 bytes each (x, y, z, 1.0); these six are the rectangle's | `0x002DE420`: the rectangle (`0x002DE56B`-`0x002DE61B`) and the ellipse, through the address `0x0215E734` (`0x002DE733`); `0x002DE800`: a line's points (`0x002DE940`-`0x002DE9E6`, `0x002DEA18`-`0x002DEA44`) | `0x00221940`, x, y and z of each point (`0x00221A80`-`0x00221A99`) |
-| `0x0215EF38` | `i32` | 0 | `+0x828`: the record's percentage byte for the current weather slot, record `+0x0C` plus the slot from `0x00265920` minus 1 | `0x002DE800` (`0x002DE843`) | `0x00221940`, the starting volume (`0x00221C1D`) |
+| `0x0215EF38` | `i32` | 0 | `+0x828`: the record's percentage byte for the current weather slot, record `+0x0C` plus the slot from `0x00265920` minus 1: `[0x0215EF38] = (u8)[record + 0x0C + 0x00265920() - 1]` (`0x002DE831`-`0x002DE843`) | `0x002DE800` (`0x002DE843`) | `0x00221940`, the starting volume (`0x00221C1D`) |
 | `0x0215EF3C` | `i32` | 0 | `+0x82C`: the record's volume byte `+0x19` | `0x002DE800` (`0x002DE84E`) | `0x00221940`, the starting volume (`0x00221C11`) |
 | `0x0215EF4C` | `u8` | 0 | `+0x83C`: a byte the reset clears; nothing reads it | `0x002DE360`, 0 (`0x002DE3BF`) | no instruction |
 
@@ -246,6 +263,7 @@ pan and volume step `0x00361810`, and by the two calls that hand it to the drive
 No other instruction reaches these four. The cutscene skip masks `0x022CB9C0` and `0x022CB9D8`, `u32[6]` each, are the
 only indexed tables below them (`0x003604D0`, `0x003605A0`, `0x00360710`, `0x00360980`, `0x00360A50`), and they end at
 `0x022CB9F0`.
+
 ### The layer's pools
 
 | Global | Type | Start | Meaning | Set by | Read by |

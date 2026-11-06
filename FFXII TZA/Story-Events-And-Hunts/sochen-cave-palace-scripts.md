@@ -50,13 +50,20 @@ Palace scenes](sochen-cave-palace-scenes.md).
 
 ### What the scripts do
 
-- Falls of Time: an inscription (`gim_sign`) reads "You who are yet drawn toward the Pilgrim's Door, journey Heaven
-  and Earth in search of the heart, and you will surely reach it.", and `Map_Director.main` holds the lines "You hear
-  a door open in the distance." and "The waterfalls seem to have returned to their original course."
-- Mirror of the Soul: two doors (`gim_door01`, `gim_door02`) bear the Pilgrim's Door inscription ("From the heart look
-  north to Heaven. From the heart step south to Earth. Walk in Time's footfalls to open the way."). `hunt_kansi.main`
-  gives the Ensanguined Trophy and removes the foes of a group, and `ソーヘン地下宮殿地図` gives the area map, Sochen Cave
-  Palace, with system message 112.
+- Falls of Time: an inscription (`gim_sign`) reads "'Wayfarer travelling the road to Archades, the Pilgrim's Door
+  holds naught for you. That way lie trouble and confusion. 'You who are yet drawn toward the Pilgrim's Door, journey
+  Heaven and Earth in search of the heart, and you will surely reach it.'"
+- Falls of Time: `Map_Director.main` holds the lines "You hear a door open in the distance." and "The waterfalls seem
+  to have returned to their original course."
+- Mirror of the Soul: two doors (`gim_door01`, `gim_door02`) bear the Pilgrim's Door inscription, given below.
+- Mirror of the Soul: `hunt_kansi.main` gives the Ensanguined Trophy and removes the foes of a group, and `ソーヘン地下宮殿地図`
+  gives the area map, Sochen Cave Palace, with system message 112.
+
+The Pilgrim's Door inscription in Mirror of the Soul: "'Wayfarer travelling the road to Archades, the Pilgrim's Door
+holds naught for you. That way lie trouble and confusion. 'You who are yet drawn toward the Pilgrim's Door, the heart
+of Time and the deeds you must accomplish share their place midst the falls. 'From the heart look north to Heaven.
+From the heart step south to Earth. Walk in Time's footfalls to open the way.'"
+
 - The Acolyte's Burden holds a crystal that `クリスタル監視さん.init` hides while `g_btl_クリスタルミミックブルー` is 1; while it is 1,
   `クリスタル監視さん.main` shows "A crystal appears!" (system message 129), sets it to 2 and removes the foes of a group. A
   corpse (`バンガ死体レクト１`) reads "An adventurer bound for the capital. It would seem he didn't make it."
@@ -67,7 +74,9 @@ Palace scenes](sochen-cave-palace-scenes.md).
   3130, the value after the Sochen Cave Palace.
 - Doubt Abandoned: while `g_btl_nm_オーバーロード` is 1, `監督.main` gives `THIRD_シーク`, the Insecure Seeq, the lines "Let's
   find this overlord. Don't wanna keep the ladies waiting!" and "Hrm? No sign of this overlord...";
-  `wanted_kansi.main`, also while it is 1, sets it to 2, removes the foes and holds the seeq's line "Ha ha! I did it!"
+  `wanted_kansi.main`, also while it is 1, sets it to 2, removes the foes and holds the seeq's line "Ha ha! I did it!
+  The sooner I get back to the technicks store and start singing my own praises, the better for womankind! See you
+  there!"
 - Doubt Abandoned: the door `big_door_01` shows "The door is locked. You will need the soul ward key to open it.";
   with the key held it offers "Use the soul ward key.", sets flag `0x014C` and leads to Hall of Lambent Darkness,
   field 200.
@@ -78,9 +87,12 @@ Palace scenes](sochen-cave-palace-scenes.md).
   entrance 0), `DIRECTOR.init` loads scenes `rui_b0300` (event 166) and `rui_a0500` (event 169) and `main` plays both;
   any other arrival loads and plays `rui_a0500` alone in Skybent Chamber and `rui_b0300` alone in Chamber of the
   Chosen.
-- Destiny's March: the inscription (`gim_sign`) reads "You who are yet drawn toward the Ascetic's Door, in circles
-  travel from land of Sun's birth. Stray but once, another day must you return." The door `secret_door` bears "count
-  out your steps tracing Sun's round. At journey's end, the Door embrace you."
+- Destiny's March: the inscription (`gim_sign`) reads "'Wayfarer travelling the road to Archades, the Ascetic's Door
+  holds naught for you. That way lie trouble and confusion. 'You who are yet drawn toward the Ascetic's Door, in
+  circles travel from land of Sun's birth. Stray but once, another day must you return.'"
+- Destiny's March: the door `secret_door` bears "'Wayfarer travelling the road to Archades, the Ascetic's Door holds
+  naught for you. That way lie trouble and confusion. 'You who are yet drawn toward the Ascetic's Door, count out your
+  steps tracing Sun's round. At journey's end, the Door embrace you.'"
 - Destiny's March: twenty actors (`gim_door02` to `gim_door17b`) hold the line "You hear a door open in the distance."
   and request `secret_door.map_door_ok`, which sets flag `0x014D`.
 - Destiny's March: `big_door_02` shows "The door is securely locked. With the proper key, it might be possible to open
@@ -135,6 +147,10 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
    `0x00348DF0` (`0x00349884`).
 3. `0x00348DF0` pops eight values. The seventh, the script's second argument, is passed with the current field context
    to `0x00264D60` (`0x00348E6A`-`0x00348E74`), the section 2 lookup, which keeps the low 24 bits of the id.
+4. `0x00348DF0` reads the entry's flag through `0x002673A0`, bit `0x1` of the entry's upper half (`0x00348E85`), and
+   opens the window through `0x002E16B0` only when that flag is clear (`0x00348EE0`-`0x00348EFF`). With the flag set it
+   still makes its six slot calls (`0x00348E91`-`0x00348ECA`) and fills the call record (`0x00348ED7`-`0x00348EDC`) but
+   opens no window ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)).
 
 ### Speakers, places and scenes
 
@@ -150,6 +166,8 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
   passes it to the verb, and `0x00348DF0` hands it to `0x002E16B0`. That actor's name is the second name of each pair its
   `setnpcname` calls name; `0x002E16B0` sets the actor's name flag before the window opens, and `0x00263990` shows the
   second name while that flag is set.
+- `0x00348DF0` makes that `0x002E16B0` call only for a line whose section 2 flag is clear (`0x00348EE0`); for a flagged
+  line it opens no window, so the actor's name flag is not set there.
 - An actor no `setnpcname` or `setshopname` call names keeps the name id `0xFFFF` and the empty text the record set-up
   `0x00266530` writes (`0x0026668B`, `0x0026669B`-`0x002666B4`), so its `{actor-name}` header shows no name; that line reads
   `no name shown`. A system message reads `system message`.
@@ -303,7 +321,7 @@ The steps table [`sochen-cave-palace-script-steps.tsv`](sochen-cave-palace-scrip
 | `step` | the step's number in its function, from 1, in the order the function's bytes run |
 | `at` | where the step's instruction sits: its offset in section 0, the script image, of the shipped `plan_master/us` `.ebp`. For `case`, `default` and `label` it is where their code starts. For `shared template` and `same code` it is where the function or actor starts |
 | `line` | the step's line in the script listing, `-` for the `shared template` and `same code` rows |
-| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets |
+| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. A case whose values meet an earlier case's is followed by `not (x = w)` for each such earlier case `w`, so the cell names only the values the case runs on: `x = lte(78); not (x = lt(78))` runs when x is 78. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. When such a way passes a case that an earlier case overlaps, the item counts only the values that case takes: after `case lt(0x0177)`, a `case lt(0x0182)` that returns gives the item `not (x = lt(0x0182)) or x = lt(0x0177)`, which holds unless 0x0177 <= x < 0x0182. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets, and, for a case whose every value an earlier case already matches, on the case values |
 | `verb` | the verb the step calls, by its name in the [verb table](../Scripts-And-Script-Commands/verb-table.md), written `Actor.verb` for a call on another actor. Otherwise the kind of step: `if`, `else if`, `while`, `for`, `switch`, `case`, `default`, `break`, `goto`, `label`, `return`, `returnT`, `store`, `shared template` or `same code` |
 | `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test. A number with a fraction is the listing's print of a 32-bit float to nine significant digits, here and in `condition`: 1.60000002 is the float nearest to 1.6, and 2.36000005e-06 is 2.36000005 times 10 to the power -6 |
 | `addresses` | what the arguments name in the game: the actor, model, animation and motion file, effect file, event sound, camera shot, message window, request slot or variable |

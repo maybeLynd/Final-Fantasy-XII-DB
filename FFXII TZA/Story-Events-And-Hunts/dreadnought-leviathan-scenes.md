@@ -33,8 +33,8 @@ changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)).
 
 - `rsn_z0100`, loaded on the Bridge from story counter 830 below 890, opens with "View scene again?" (Yes / No) and
   holds the prisoners brought to the bridge ("The prisoners, my lord." ... "I will not play puppet to Vayne."), the
-  Dusk Shard ("It is your birthright: the Dusk Shard.") and the Stone ("Splendid! You've brought the Stone with you!"
-  ... "Take them away. Lady Ashe is to be quartered separately.").
+  Dusk Shard ("It is your birthright: the Dusk Shard.") and the Stone ("Splendid! You've brought the Stone with you!
+  This spares us a great deal of trouble." ... "Take them away. Lady Ashe is to be quartered separately.").
 - `rsn_a0100`, in Port Launch from 890 below 920, holds "So you were carrying it all along. The Fates jest." ... "I'm
   getting her out. I need your help." / "Of course."; it gives the item Leviathan and shows "Your location map for
   this area is complete!"

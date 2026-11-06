@@ -47,13 +47,17 @@ the movement body `[controller + 0x138]`:
    steering update `0x002E45E0` ([facing and steering](facing-and-steering.md));
 2. it computes the step: `0x002E4380(actor, &delta, mode, override)`;
 3. it publishes pitch `+0xA0` and yaw `+0xA4` to the render record (`0x002E5C10`, the record's
-   `+0x240`, `+0x244`, `+0x248` = 0, when `[0x022C6F28] + id * 0x740` has a non-zero `+0x284`);
-4. it integrates: `context + 0xB8` = `0x002E5610(actor, body, context, &delta)`, the squared
-   displacement;
+   `+0x240`, `+0x244`, `+0x248` = 0, when `[0x022C6F28] + id * 0x740` has a non-zero `+0x284`;
+   it writes nothing when the actor or its controller is null, the controller's dword `+0x00` is -1, its low word
+   `id` is -1 or the record address comes out 0, `0x002E5C13`-`0x002E5C4A`);
+4. it integrates: `context + 0xB8` = `0x002E5610(actor, body, context, &delta, 0)`, the squared
+   displacement, with mode 0 (`0x002E50F0`);
 5. when `0x002EA7F0(actor)` is non-zero it registers the body's cell from the context's position, plus
    the offset at `+0x40`/`+0x48` when byte `+0x107` has bit `0x2` (`0x003DB020`, [movement bodies and
-   separation](movement-bodies-and-separation.md));
-6. it runs `0x002E6330(actor)`.
+   separation](movement-bodies-and-separation.md); its arguments are `(body, x, z, &radii)`, the radii being the
+   body's `+0xF0`, `0x002E5136`);
+6. it runs `0x002E6330(actor)` when the class is still 3, the driver's second class test
+   (`0x002E5145`-`0x002E515A`).
 
 The driver's own `mode` and `override` arrive from the resolver and are passed to the delta
 unchanged; from the walking path `mode` is 0.
@@ -74,8 +78,8 @@ Otherwise it reads the speed `+0xD0`, repairs a negative `+0xF8` to that speed, 
 an exact `+pi` comes back as `-pi` and `-pi` as `+pi`.
 
 When the controller exists and its first dword is not -1, the animation override `0x00424080`
-receives that record id, the wrapped yaw and the speed by address (next section). Then, with the
-possibly rewritten values:
+receives that dword's low word as the record id (`0x002E44FD`), the wrapped yaw and the speed by address (next
+section). Then, with the possibly rewritten values:
 
 ```python
 speed == 0                                  : out = {0, 0, 0, 1}
@@ -88,6 +92,10 @@ otherwise                                   : out = {sin(yaw) * cos(pitch) * spe
 `sinf` and `cosf` are the CRT imports. On the three-dimensional path the horizontal components
 are scaled by `speed * cos(pitch)`, so a climbing actor covers less ground per frame than one on
 the flat at the same requested speed.
+
+The wrapped angles and the override's yaw and speed live only in locals: nothing writes them back to `+0xA0`,
+`+0xA4` or `+0xD0`. The step's one store into the context is `+0xF8`, the repair on the normal path (`0x002E445C`)
+or the magnitude on the pass-through (`0x002E43E6`).
 
 ### Flat or three-dimensional
 
@@ -108,6 +116,11 @@ and `0x003B7C60`, with four more writers in `0x003B7E00`, `0x003B72F0`, `0x003B6
 the flat path is switched off mid-session while the actor list is being
 rewritten, not only before bring-up.
 
+The reset `0x003B6ED0` sets `0x02B40534` first (`0x003B6ED7`) and `0x02B40530` last (`0x003B6F1A`). Between them it zeroes
+the 32 bytes at `0x02EBCA80` and `0x02EBCA90` (`0x003B6F12`, `0x003B6F24`), the dword `0x02EBCAA0`, the summon group's
+unique count `0x02EBCBC0`, its 32 handles at `0x02EBCBE0` (`0x003B6EF9`), its requested count `0x02EBCC60` and the leader
+handle `0x02EBCC70`.
+
 ### The animation override
 
 `0x00424080(id, &yaw, &speed)` indexes the character render record array at `[0x022C6F28]` by
@@ -115,7 +128,8 @@ rewritten, not only before bring-up.
 `s = word +0xCC & 0xFFF`:
 
 - latched (`+0x62C` bit `0x1`): `+0x624 *= 0.83`, then `yaw = +0x620` and `speed = +0x624`; the latch
-  clears once that speed is at most 0.05;
+  clears once that speed is at most 0.05, and the call returns there
+  (`0x0042411A`), so the last step below runs only on a call that finds the latch clear;
 - not latched, when `+0x284` has bit `0x8000000` and word `+0x06` is -1, with `s == 0x10`, `speed == 0`
   and the frame counter at byte `+0x457` (read signed, compared unsigned, so 0x80-0xFF qualify) at
   least `[0x01DFE0B4] * 30`: it enters the latch (`+0x624 *= 0.83`, `yaw = +0x620`, `speed =
@@ -142,22 +156,43 @@ new position:
   (below);
 - when the actor has a battle unit at `+0x30`, it publishes the move to the unit: `0x00329B00(handle,
   moved, vector)` with the body's `+0x70` vector and its `+0x90` bit `0x10` (the cell solver moved the
-  body), or, without a body, `0x00329B00(handle, 0, NULL)`. When `0x02089340` bit `0x10` is set the unit's `+0x1F0` bit `0x200` is set
-  and `+0x1C0` receives the vector, or bit `0x200` is cleared;
+  body), or, without a body, `0x00329B00(handle, 0, NULL)`, the handle being `0x003589B0(actor)`
+  (`0x002E5654`, `0x002E56A3`);
+- `0x00329B00` acts only when `0x02089340` bit `0x10` is set, and returns at once when `0x003588B0(handle)` or the unit
+  `0x00263E30` of that actor is null (`0x00329B0A`-`0x00329B2D`). With `moved` non-zero the unit's `+0x1F0` bit `0x200`
+  is set and `+0x1C0` receives all 16 bytes of the vector (`0x00329B33`-`0x00329B40`); with `moved` 0 it clears bit
+  `0x200` and leaves `+0x1C0` as it was (`0x00329B52`);
 - the measure is planar, `dx^2 + dz^2`, when `0x00264460` is 0 and actor byte `+0x08` bit `0x4` is clear,
   else three-dimensional;
 - the context's position `+0x00`-`+0x08` becomes the candidate.
 
 `0x002E5380` does extra work only when `mode` is non-zero, which the walking path never passes: it
 sets the body's `+0xEF` from `+0xEC`, `+0xE8` and `+0xEE`, adds the body's `+0x100`-`+0x108` to the
-delta, computes two `0x003A1D30` magnitudes under `+0xEC` that nothing reads, and rebuilds the body
-(`0x003DA9F0`). Its other caller is `0x002E5180`.
+delta, computes two `0x003A1D30` magnitudes under `+0xEC` that nothing reads, and clears the
+accumulators (`0x003DA9F0`: `+0x100`-`+0x108`, `+0xE8`, `+0xEC`, `+0xED` and `+0xEE`, not `+0xEF`). It does not
+rebuild the body.
+
+`+0xEF` becomes 1 when `+0xEC` is non-zero, `+0xE8` is exactly 0.0 and `+0xEE` is non-zero, else 0
+(`0x002E53AB`-`0x002E53D8`). The two magnitudes are of the context's `+0x00`/`+0x08` less `+0x10`/`+0x18` and of the
+delta's x and z (`0x002E5422`-`0x002E545F`). With mode 0 it only jumps on to `0x002E54A0` (`0x002E53A5`, `0x002E548C`). Its
+one call site is `0x002E5647` in `0x002E5610`, which forwards its own `mode`; `0x002E5180` reaches it through `0x002E5610`
+(`0x002E5257`) with mode 1.
 
 It always ends in `0x002E54A0(actor, body, context, &delta)`. On the three-dimensional path
 (`0x00267260` = 0) the delta is offset by the context's `+0x40` triple when byte `+0x107` has bit `0x2`
-and solved against the body (`0x003DB150(context, body, &delta)`), and the candidate is the context
+and placed on the body by `0x003DB150(context, body, &delta)`, and the candidate is the context
 position plus the delta as it was before the offset. On the flat path (`0x00267260` non-zero)
 `0x003DB140` and `0x003DAE00` solve the delta and the offset is subtracted after.
+
+`0x003DB150` adds the context position to the delta, copies the sum to the body's `+0x30`-`+0x38` and its y also to
+`+0xAC`, and sets the body's word `+0x82` to `0xFFFF` (`0x003DB150`-`0x003DB1A6`); it runs no collision move.
+`0x002E54A0` then overwrites the delta with the context position plus the delta it saved before the offset
+(`0x002E557C`-`0x002E559E`), so the body takes the offset point and the candidate does not.
+
+On the flat path `0x003DB140(body, &delta)` runs the collision-mesh move `0x00380C40(placement, move)` on the body's
+placement `+0x30` ([collision mesh movement](collision-mesh-movement.md)), and `0x003DAE00(body, &delta)` copies the
+body's `+0x30`-`+0x38` back into the delta (`0x002E54C7`, `0x002E54D2`). The candidate is the solved body position,
+less the offset when bit `0x2` is set (`0x002E54E4`-`0x002E550A`).
 
 ### Setting the speed
 
@@ -166,9 +201,12 @@ position plus the delta as it was before the offset. On the flat path (`0x002672
 for mode 1 when the value differs, writes the body's `+0xC8` = `[0x01DFE0B8] * 30.0 * 3.6 * speed`
 (108 × speed as shipped) when the body exists.
 
-It then rewrites the body's mask word `+0x110` through `0x002E9BB0`/`0x002EC5B0`: bit `0x4` cleared, then for a party-roster record (`+0x12` below 4) bit `0x4` set
-when the speed is 0, or bit `0x400` set when the actor is the party focus (`0x003590D0` → `0x003588B0`),
-mode 1 also clearing bits `0x4` and `0x8`. It has ten call sites.
+It then rewrites the body's mask word `+0x110` through `0x002E9BB0`/`0x002EC5B0`: bit `0x4` cleared, then for a
+party-roster record (`+0x12` below 4, from 0 to 3, `0x0026D7AB`) bit `0x4` set when the speed is 0 (`0x0026D7BA`);
+with a non-zero speed, bit `0x400` set when the actor is the party focus (`0x003590D0` → `0x003588B0`, `0x0026D7D8`),
+and for that focus mode 1 also clears bit `0x8` (`0x0026D7E1`), bit `0x4` staying clear. Any other record keeps the
+word as read with bit `0x4` cleared. Without a body `0x002E9BB0` reads 0 and `0x002EC5B0` writes nothing. It has ten
+call sites.
 
 `0x0026D6A0(actor, authored)` is the scaled form: `0x0026D6F0(actor, [0x01DFE0BC] * authored, authored >
 0 ? 0 : 2)`. `0x0026A330(actor, speed)` calls `0x0026D6F0(actor, speed, speed > 0)` unless
@@ -191,6 +229,10 @@ For a battle unit the producer is `0x0023A070(unit)`, run from the per-unit fram
 0 it sets the speed to 0 (`0x0026A330(actor, 0)`); otherwise it writes the yaw from unit `+0x15C`,
 the pitch from `+0x174`, the facing from `+0x160` (`0x0026B5A0`) and, unless unit flag bit `0x40000` is set,
 the speed from `+0x158`.
+
+A unit without a stats record (`+0x698` null) takes the second path, and so does a null unit
+(`0x0023A085`-`0x0023A094`). The actor every setter gets is the unit's `+0x10`, the flag bit `0x40000` is in the
+unit's dword `+0x00` (`0x0023A0E2`), and both speed calls are tail jumps (`0x0023A0AA`, `0x0023A0FC`).
 
 ## Layouts
 

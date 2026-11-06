@@ -38,6 +38,10 @@ shot list at `+0xD8`; otherwise:
    `+0x201` is set (`0x00267300`), runs it to its end (`0x00257A00`).
 4. A player at its end marker (`0x002567B0` returns 2) marks the channel finished, state 2.
 
+A finished channel skips only step 2: steps 3 and 4 still run for it every frame, at a clock that no
+longer grows (`0x003DA0E9`-`0x003DA0ED`, `0x003DA11E`). Step 3 passes the manager's dword `+0x28`, the
+channel's dword `+0x110 + 0x18 × channel` and the channel number (`0x003DA11E`-`0x003DA13A`).
+
 `0x01DFE0BC` is 1.0 at 30 fps and 0.5 at 60 fps
 ([game settings](../Saving-Loading-And-Settings/game-settings.md)), so a shot plays at the same speed at
 either frame rate.
@@ -54,12 +58,14 @@ The shake tick `0x003DCFB0(slot)` keeps one shake table per manager, `0x3D0` byt
 ### Publishing a shot
 
 `0x002555D0` runs once per frame over the 20 players (5 managers × 4 channels), manager 4 first and
-manager 0 last, so the lowest manager wins a conflict. For each player with a frame it calls
-`0x0025A3B0(frame, 5, view)`:
+manager 0 last, so the lowest manager wins a conflict. For each player with a frame (its frame
+`+0x184` is not −1, `0x0025561A`) it calls `0x0025A3B0(frame, 5, view)`:
 
-- frame 0 copies the player's 0xD0-byte view (`+0x210`) into camera record 5 (`0x0025A2C0`) and
-  sets its mode to 3 (`0x0025A500`);
-- frame 1 copies it into the sub view `0x02097B80` (`0x0025A3D0`).
+- frame 0 copies the player's 0xD0-byte view (`+0x210`) into camera record 5 (`0x0025A2C0`);
+- frame 1, or any other non-zero frame, copies it into the sub view `0x02097B80` (`0x0025A3D0`, `0x0025A3B4`).
+
+After either copy `0x002555D0` itself sets record 5's mode to 3 (`0x0025A500`, `0x00255638`) and notes that it
+wrote (`0x0025563D`), so a player on frame 1 alone also gives record 5 mode 3 and, below, bit `0x20`.
 
 Once the field is loaded (`[0x02ADD0D8]` through `0x00377DB0`), both copies then replace the view's floats `+0x00`
 and `+0x04`: with `0x02098DE0` / `0x02098DE4` while byte `0x02098DE8` is set, else with `0x0209A6EC` / `0x0209A6F0`,
@@ -67,7 +73,8 @@ dwords 2 and 3 of the map pack's section 11 (`0x0025A359`-`0x0025A3A0`, `0x0025A
 [MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md)).
 
 Then the two transition cameras: when `0x00257520` is blending it writes record 5 from `0x02096410`
-with mode 3, and when `0x00255850` is moving it writes record 5 from `0x02096290`. Last,
+with mode 3, and when `0x00255850` is moving it writes record 5 from `0x02096290`, also with mode 3
+(`0x002556AC`, `0x002556B9`). Last,
 `0x0025A520(5, any)` sets bit `0x20` of the active mask `0x02098DEC` when any of these wrote, and clears it
 otherwise.
 
@@ -85,6 +92,15 @@ Eight camera records of 0x110 bytes sit at `0x02097300`. `0x00259820` takes the 
 
 It keeps the result at `0x020972F0` and submits it at priority `0x14` (below). With no bit set it
 submits nothing. So record 5 outranks records 0-4 and yields to 6 and 7.
+
+`0x00259820` first stores the record's view address, record `+0x20`, at `0x020972F0` (`0x00259893`), which is
+`0x20` when no bit is set. On every call it also asks `0x001825C0(0, −1.0, 0)` (`0x0025989C`), the
+depth-of-field request of [field camera](field-camera.md), with mode 0, distance −1.0 and a null point.
+
+Mode 1 passes `0x00259820`'s own argument first, `0x00259990(arg, +0xF4, view)` (`0x00259916`-`0x00259921`). The
+rebuild of the other modes ends in `0x00259A90` (`0x002598F6`), which, once the field is loaded, replaces the
+view's `+0x00` and `+0x04` as the copies into record 5 do (`0x00259A99`-`0x00259ADE`). After the submission
+`0x020972F0` is copied to `0x020972F8` (`0x0025993E`).
 
 ### Resetting the records
 
@@ -113,7 +129,9 @@ call `0x00257830`, which arms a blend:
 
 - duration `frames × 0x01DFE0B8`, the counter at 0;
 - the start pose, entry `index` of the poses at `0x02096370` (0x40 apart) that the shot player
-  writes, turned into polar form about its target (`0x003CC130`);
+  writes, turned into polar form about its target (`0x003CC130`) and stored back into the entry: the
+  yaw at `+0x28`, the pitch at `+0x2C` and the distance at `+0x30` (`0x00257881`-`0x0025789D`,
+  `0x003CC1C4`-`0x003CC23A`);
 
 - the polar form is the distance, the yaw `atan2(dx, dz)`, and the pitch read after turning the
   offset back by the yaw about the up axis with `0x005068C0(matrix, axis, angle)`, which builds the
@@ -225,7 +243,14 @@ The clear of the frames, `0x00255810` (from the tick `0x00314020` at `0x003140F0
 `0x003829D0(camera, priority)` files a 0xD0-byte camera into the first free of eight 0xE0-byte
 slots at `0x02AED630`, with the priority at `+0xD4` and the submitted flag at `+0xD0`; with all
 eight taken it drops the camera. When `0x00181DD0` reports an override it first applies three vectors
-from `0x00181CD0`, `0x00181C50` and `0x00181CB0` to the camera (`0x003CC000`). There are three submitters:
+from `0x00181CD0`, `0x00181C50` and `0x00181CB0` to the camera (`0x003CC000`). It rebuilds the caller's camera
+in place from the eye `0x00181C50()` with x and y negated, the target `0x00181CB0()` and the up vector
+`0x00181CD0()` with y negated (`0x003829F7`-`0x00382A57`).
+
+Last, filed or dropped, it tells the render manager which view the camera is: `0x001821F0` when the
+camera is the sub view `0x02097B80` (`0x00259FA0`), else `0x00182340` (`0x00382B15`-`0x00382B28`); they reach
+`0x00185A10` and `0x001860E0`, which set the manager's view byte `+0x1C` to 1 and to 0 (`0x00185A1D`,
+`0x001860E6`; [map art](../World-Areas-And-Travel/map-art.md)). There are three submitters:
 
 | Caller | Camera | Priority |
 |---|---|---|
@@ -449,11 +474,11 @@ the eye offset, `+0x0C`-`+0x14` to the target offset and `+0x18` to the roll it 
 |---|---|---|---|---|---|
 | `0x02EBF388` | `f32[2]` | 0 (zero-filled tail of `.data`) | row 0 `+0x08` (the eye offset's z) and `+0x0C` (the target offset's x) | `0x0037D970` (`0x0037DA3A`; `0x0037DA45`, 16 bytes); `0x0037D890`, 0 (`0x0037D91E`) | `0x0037D4C0` (`0x0037D77B`, `0x0037D781`) |
 | `0x02EBF390` | `f32[2]` | 0 (zero-filled tail of `.data`) | row 0 `+0x10` and `+0x14`, the target offset's y and z | `0x0037D970` (`0x0037DA45`); `0x0037D890`, 0 (`0x0037D925`) | `0x0037D4C0` (`0x0037D787`, `0x0037D78D`) |
-| `0x02EBF398` | `f32[2]` | 0 (zero-filled tail of `.data`) | row 0 `+0x18`, the roll offset, and `+0x1C`, written with it and not read | `0x0037D970` (`0x0037DA45`); `0x0037D890`, 0 (`0x0037D92C`) | `0x0037D4C0` (`0x0037D793`, `+0x18` only) |
+| `0x02EBF398` | `f32[2]` | 0 (zero-filled tail of `.data`) | row 0 `+0x18`, the roll offset, and `+0x1C`, which only `0x0037D890` writes and no instruction reads | `0x0037D970` (`0x0037DA45`, `+0x18` only: its 16-byte store covers `+0x0C`-`+0x1B`); `0x0037D890`, 0 (`0x0037D92C`, both) | `0x0037D4C0` (`0x0037D793`, `+0x18` only) |
 | `0x02EBF3A0` | `f32[2]` | 0 (zero-filled tail of `.data`) | row 1 `+0x00` and `+0x04`, the eye offset's x and y | `0x0037D970` (`0x0037DA23`, `0x0037DA2E`); `0x0037D890`, 0 (`0x0037D933`) | `0x0037D4C0` (`0x0037D770`, `0x0037D775`) |
 | `0x02EBF3A8` | `f32[2]` | 0 (zero-filled tail of `.data`) | row 1 `+0x08` and `+0x0C` | `0x0037D970` (`0x0037DA3A`; `0x0037DA45`); `0x0037D890`, 0 (`0x0037D93A`) | `0x0037D4C0` (`0x0037D77B`, `0x0037D781`) |
 | `0x02EBF3B0` | `f32[2]` | 0 (zero-filled tail of `.data`) | row 1 `+0x10` and `+0x14` | `0x0037D970` (`0x0037DA45`); `0x0037D890`, 0 (`0x0037D941`) | `0x0037D4C0` (`0x0037D787`, `0x0037D78D`) |
-| `0x02EBF3B8` | `f32[2]` | 0 (zero-filled tail of `.data`) | row 1 `+0x18` and `+0x1C` | `0x0037D970` (`0x0037DA45`); `0x0037D890`, 0 (`0x0037D948`) | `0x0037D4C0` (`0x0037D793`, `+0x18` only) |
+| `0x02EBF3B8` | `f32[2]` | 0 (zero-filled tail of `.data`) | row 1 `+0x18` and `+0x1C`; only `0x0037D890` writes `+0x1C` | `0x0037D970` (`0x0037DA45`, `+0x18` only: its 16-byte store covers `+0x0C`-`+0x1B`); `0x0037D890`, 0 (`0x0037D948`, both) | `0x0037D4C0` (`0x0037D793`, `+0x18` only) |
 
 ### The two transitions' state
 

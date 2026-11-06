@@ -18,6 +18,14 @@ and others in front of the menu.
 bracketed by the engine's marker text. The draw-side order inside a layer comes from the grouped
 pass `0x00259030`.
 
+The menu draw callback `0x0022BEB0` asks for layers 1 to 5 as well, while a monster is shown (`0x00181DD0()` non-zero)
+and `0x002EF030()` is 1, each request behind `0x003583F0(0)` or `0x00358350(0)` (`0x0022BECC`-`0x0022BF55`,
+[frame update order](../Engine-Core/frame-update-order.md)). It never asks for layer 6.
+
+Two more requests ask for layer 3 alone: the bone-trail draw `0x0051BC70` (`0x0051BC9E`), which ends the render root's
+model pass `0x0041E4D0` ([bone trails](bone-trails.md)), and `0x0051D1D0`, which the record-system reset `0x00425DC0`
+runs first (`0x0051D1ED`, [model files](model-files-cm-ca.md)).
+
 | Layer | Marker | Work |
 |---:|---|---|
 | 1 | `display VFX [layer : first]` | grouped pass, then `0x0024C640` |
@@ -36,15 +44,24 @@ files a `GiEndScene` (`0x001B2600`).
 `0x00862C40`, `0x00862C00` and `0x00862BF0` return those two words; the drain uses them to close and
 reopen the bracket around the post-processing block, with `0x10` added to the layer (`0x003A3740`).
 
-`0x00259030(layer)` selects arena 8, calls `0x0024D370(layer, group)` for groups 2, 3, 5, 6, 9, 1, 7 and
-4, then drains the draw list (`0x003A3740`) (`0x00259036`–`0x002590C0`). A group is an instance kind.
+`0x00258EE0` opens the bracket and then the marker, except in layer 3, where the marker comes first
+(`0x00258EED`-`0x00258EFD`); a layer outside 1 to 6 only opens and closes the bracket (`0x00258F5A`, `0x00259009`). In
+layer 5 `0x0036F9F0` runs before the marker (`0x00258FE3`-`0x00258FF8`). Layer 3's pair is `0x00862FD0` and `0x00863010(2)`
+while `0x02F8F310` bit `0x4` is set, else `0x00862E50` and `0x00862E90(2)`, the pairs the drain opens with
+(`0x00258F0E`-`0x00258F30`).
+
+`0x00259030(layer)` selects arena 8 (`0x0036C1D0(8, 10)`), calls `0x0039D570(0)` and `0x0039D3F0` as layer 3 does
+(`0x00259054`-`0x0025905B`), then `0x0024D370(layer, group)` for groups 2, 3, 5, 6, 9, 1, 7 and
+4, then drains the draw list (`0x003A3740`) (`0x00259036`–`0x002590C0`), and ends with a tail jump to `0x0036C140`,
+which restores the arena (`0x002590DE`). A group is an instance kind.
 
 ### Drawing one group
 
 `0x0024D370(layer, group)` takes the list `0x020910F0[group]` and asks the group gate `0x0024D4E0`
-(`0x0024D382`–`0x0024D3AF`). The gate refuses group 8; groups 1–4 and 7 need bit `group − 1` in the AND
+(`0x0024D382`–`0x0024D3AF`); an empty list or a refusal returns 0 (`0x0024D394`). The gate refuses group 8; groups 1–4
+and 7 need the bit value `1 << (group − 1)` (`0x1`, `0x2`, `0x4`, `0x8`, `0x40`) in the AND
 of `0x02092162`, `0x02092164` and `0x02092166`; group 2 also needs `0x02F8F29E` bit `0x1` clear and group 5
-`0x02EBEF68` bit `0x1` clear (`0x0024D4E0`–`0x0024D538`).
+`0x02EBEF68` bit `0x1` clear, and groups 6 and 9 always pass (`0x0024D4E0`–`0x0024D538`).
 
 For each instance the group draw publishes the group at `0x02092700` and skips the instance unless
 its `+0x3A8` equals `0x00181DD0()`, the high nibble of its word `+0x378` equals the layer, and the
@@ -52,6 +69,11 @@ per-instance gate `0x0024D770(instance, 1)` passes (`0x0024D3C0`–`0x0024D3FC`)
 current and walks its emitters through `0x003A72F0` → `0x003A8D80`, which calls `0x00441970` for each
 (`0x0024D405`, `0x0024D499`, `0x003A8D84`–`0x003A8DAB`). So an effect's layer is authored in its
 instance.
+
+The call at `0x0024D405` that makes the instance current is `0x0024ED80`, and `0x0024C060` rebuilds the effect matrices
+just before the walk (`0x0024D494`). The two waits on `0x02EAF6D8` fall through (`0x0024D40A`, `0x0024D47E`;
+[graphics thread handshake](graphics-thread-handshake.md)). After the last instance the group draw stores −1 at
+`0x02092700` and returns 1 (`0x0024D4C2`-`0x0024D4CF`).
 
 `0x00441970(emitter)` returns when the emitter has no elements. Unless the instance's flag byte
 `+0x36A` has bit `0x1`, only emitters whose definition type is `0x40`, `0x41`, `0xA1`, `0xA2`, `0xA5`
@@ -78,8 +100,9 @@ and stores its operand byte `+4` in `0x020926F8` (`0x003B9797`-`0x003B97A7`). Op
 |---|---|---|---|---|---|
 | `0x020926F8` | `u8` | 0 (zero-filled tail) | the pass nibble less 8 for kind-3 instances while `0x020926E4` bit `0x400` is set | `0x003B8670`: opcode `0x3E`, its operand byte `+4` (`0x003B97A7`); `0x0024C970`, 0 (its `0x1670`-byte clear from `0x020910A0`, `0x0024C983`) | `0x00441970` (`0x004419E4`) |
 
-It then calls `0x002F4020(element, emitter)` for each element, forward from the head, or backward from
-the tail when the emitter record's byte `+0x2C4` has bits `0x3` set (`0x00441A15`–`0x00441A82`).
+It then calls `0x002F4020(element, emitter)` for each element, forward from the head `+0x118` along each element's
+`+0x30`, or backward from the tail `+0x128` along `+0x28` when the emitter record `+0x100` has bit `0x1` or `0x2`
+of its byte `+0x2C4` set (`0x00441A15`–`0x00441A82`). It reads the next element before each call.
 
 ### Instance flags at draw time
 
@@ -88,6 +111,9 @@ records the instance's target `+0x380`, when there is one, for texture id `0x330
 × 224 (`0x002D7D90`), then calls `0x003AA2E0(0)` and skips the instance when that returns 0. With bit `0x2`
 set it files a `GiZNormalOnOff` command with 1 (`0x0039D410`, through `0x00864E00`) and sets bit `0x1` of
 `0x02F8F310`, which makes the drain open with `GiTransNz` instead of `GiTrans` (`0x003A3740`).
+
+Between the bit `0x1` and bit `0x2` work, while the open layer `+0x94` (`0x00862BF0`) is 2, it calls
+`0x00183060(1)`, which sets `0x01F7F50E` (`0x0024D451`-`0x0024D45E`).
 
 ### Widescreen and mask-border flags
 
@@ -156,15 +182,39 @@ Blended primitives do not draw at once. An emitter appends a `0x28`-byte entry t
 projected depth word as the sort key `+8` and ORs the pass nibble into the bits under mask `0xF0000000`
 (`0x0039D986`–`0x0039DA05`). `0x003A3670` allocates the list, `0x190000` bytes, which is 40,960 entries.
 
-`0x003A3740` drains it. It returns for an empty list, sorts the entries by `+8` (`0x003A3A50`), and for
+`0x003A3740` drains it. For an empty list it only clears bit `0x1` of `0x02F8F310` and returns (`0x003A374E`,
+`0x003A397F`). Otherwise it sorts the entries by `+8` (`0x003A3A50`), and for
 each entry calls the function at `+0x10` with `+0x00`; without one, it submits the command at
 `+0x18` through `0x0020E630(command, 2)`, or with flag bit `0x4` defers it to `0x02AEF420` for layer 3's
 `0x003A3990` (`0x003A3744`–`0x003A3908`). It empties the list and keeps the last and peak counts
 (`0x003A3929`–`0x003A3973`).
 
+Before the walk the drain copies bit `0x1` of `0x02F8F310` into bit `0x4`, the bit layer 3 tests, and opens with
+`0x00862FD0` and `0x00863010(2)` while bit `0x1` is set, else `0x00862E50` and `0x00862E90(2)` (`0x003A3765`-`0x003A37A4`).
+Before an entry's callback come the one-time post-processing insert and, for flag bit `0x1`, a call of `0x003A2BD0`
+([GI render commands](gi-render-commands.md#the-draw-list)). The count is read again after every entry, so entries
+filed during the walk are drained too (`0x003A38FB`-`0x003A3908`).
+
+At the end the drain stores the packet bytes used, the cursor `0x02F8F2D0` less the base `0x02F8F308`, at `0x02F8F2E8`,
+keeps the larger of that and `0x02F8F2F0` in `0x02F8F2F0`, and clears bit `0x1` of `0x02F8F310`
+(`0x003A3929`-`0x003A397F`).
+
 `0x0024D540`, the frame's draw setup, drains once more and then rewinds: `0x003A3A00` resets the packet
-cursor `0x02F8F2D0` to the arena base `0x02F8F308`, sets its end `0x02F8F2D8`, and zeroes the count
-(`0x0024D556`, `0x0024D55B`, `0x003A3A00`–`0x003A3A42`).
+cursor `0x02F8F2D0` to the arena base `0x02F8F308`, sets its end `0x02F8F2D8` to the base plus `[0x02F8F2C0]` / 16 × 16
+(the division signed, toward zero), zeroes the count and the byte `0x02F8F2C5`, and clears bit `0x1` of
+`0x02F8F310` (`0x0024D556`, `0x0024D55B`, `0x003A3A00`–`0x003A3A42`).
+
+`0x0024D540(draw)` runs `0x002D7FC0` and `0x003B3D20` before the drain and `0x0039D200` after the rewind
+(`0x0024D54C`-`0x0024D560`). In draw 0 it then makes each kind-3 instance from `0x02091108` current in turn, storing
+the same globals as `0x0024ED80`, runs `0x0024FCF0` on it and repeats the source repair that `0x003B3480` makes
+(`0x0024D573`-`0x0024D690`).
+
+While the main-loop state `0x00229EA0()` is 2 or 6 it runs the screen effect bodies
+([script screen effects](script-screen-effects.md); `0x0024D6AA`-`0x0024D6F6`). On every draw it then sets the four
+lanes of the scene colour `0x020926C0` to 1.0 (`0x0024D721`). When the AND of `0x02092162`, `0x02092164` and
+`0x02092166` is 0 it calls `0x003ACA80`, `0x003B4A30(1)` and `0x0024DA40`, otherwise `0x003ACA90` and `0x003B4A40(1)`
+(`0x0024D6FB`-`0x0024D74A`). Last it clears bit `0x80` of `0x020926E4` and bit `0x1` of `0x02EBDBBC`
+(`0x0024D74F`-`0x0024D75B`).
 
 Three other producers copy data into the packet arena behind `0x02F8F2D0` and file an entry for it;
 each does nothing when the arena lacks room. `0x003A2C80(callback, data, size, pass, key)`, called

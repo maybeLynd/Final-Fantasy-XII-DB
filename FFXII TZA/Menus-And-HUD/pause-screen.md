@@ -20,29 +20,41 @@ The field's input arbiter calls `0x00228380` before it reads a button and reads 
 ([Controls](../Controls-And-Input/controls.md), `0x00253CC3`). Each call (`0x00228380`-`0x0022843A`):
 
 1. When the window is not in front (`0x0017E4C0` answers 0) and no inactive-window task exists, it starts one
-   (`0x00228490`).
+   (`0x00228490`). This comes before every test below, so a call that answers 0 can still start the task
+   (`0x0022839B`-`0x002283AE`).
 2. It answers 0 while `0x003603C0` or `0x001D6B70` answers non-zero, or while `0x01FD4950` is 0. `0x01FD4950` is set once,
-   by `0x00229AD0`, which the title asset's factory `0x00394460` runs ([Widgets](widgets.md)).
-3. With action availability bit `0x200000` set (`0x002E0FA0`) it goes on only when `0x002E1020(1)` also has bit `0x200000`, and then passes argument 0
-   to the overlay of step 5 ([Action availability](../Controls-And-Input/action-availability.md)).
-4. With an overlay open it answers 1. With the count `0x01FD46FC` above 0 it counts it down and answers 1.
+   by `0x00229AD0`, which the title asset's factory `0x00394460` runs ([Widgets](widgets.md)). `0x001D6B70` is reached
+   through the jump `0x0017D930` (`0x002283C0`-`0x002283D8`).
+3. With action availability bit `0x200000` set (`0x002E0FA0`, read first at `0x0022838F`) it goes on only when
+   `0x002E1020(1)` also has bit `0x200000`, and then passes argument 0
+   to the overlay of step 5 ([Action availability](../Controls-And-Input/action-availability.md)). Otherwise the argument is 1
+   (`0x00228396`, `0x002283DA`-`0x002283ED`).
+4. With an overlay open it answers 1. With the count `0x01FD46FC` above 0 it counts it down and answers 1
+   (`0x002283EF`-`0x0022840B`).
 5. Otherwise, while the inactive-window task exists, it builds the overlay through `0x002282F0(argument)`; with no task
-   it answers 0.
+   it answers 0. The task is looked at after step 1, so one that the same call started counts (`0x002283B3`-`0x002283BC`),
+   and the call ends with a jump to `0x002282F0`, whose answer it returns (`0x00228420`-`0x00228435`).
 
 `0x002282F0` builds the `0xD0`-byte overlay `0x00229590` into `0x01FD4940` when that is empty (`0x00228303`-`0x00228352`).
+The record it passes is `{0, argument, 0}` (`0x00228321`-`0x00228345`). It answers 0 when an overlay is already there
+(`0x0022830D`) and otherwise whether `0x00244F50` returned 0 (`0x0022834F`-`0x0022835C`), so the call that builds the overlay
+answers 0 and the opener's later calls answer 1 through step 4 while the overlay stays.
 `0x01FD46FC` is set to 5 when an overlay is destroyed, so a new one cannot open for five calls.
 
 ### The inactive-window task
 
-`0x00228490` builds the `0xD0`-byte task `0x002284F0` into `0x01FD4948` ([Action availability](../Controls-And-Input/action-availability.md)).
+`0x00228490` builds the `0xD0`-byte task `0x002284F0` into `0x01FD4948`
+([Action availability](../Controls-And-Input/action-availability.md)) only while `0x01FD4948` is 0, with a zero record
+(`0x002284A3`-`0x002284D2`).
 `0x00228480` answers whether it exists.
 
 | Message | What the task does |
 |---|---|
 | `1`, built | runs `0x00196710` on the input manager (`0x001E0980`), runs the drain over the root `0x0208EA40` (`0x00248030`), takes the focus unless `[0x0209AC30] + 0x308` is set, attaches under `0x0208EA48`, and while a movie plays clears the active bit of message window 3 (`0x002E2570(3, 0)`) |
 | `10`, its input turn | sets `0x022CBE34` to 5 (`0x00368810`); when channel 0's newest word from `0x0035EF10(0, 0)` equals the cancel mask `0x01E0C2A4`, writes 0 to `0x022CA5F0` (`0x0035ED40`), moves to state 1 and, while a movie plays, sets message window 3 active again |
-| `2`, each tick | in state 1: posts window message `0x8002` with 0 (`0x0017E500`), closes the overlay (`0x00244DD0`) and releases itself, state 3; then clears the mouse wheel (`0x001E0F20`), and while `[0x0209AC30] + 0x308` is set treats the cancel word the same way, clearing the input words `0x02F97360`-`0x02F9739B` |
+| `2`, each tick | in state 1: posts window message `0x8002` with 0 (`0x0017E500`), closes the overlay (`0x00244DD0`) when `0x01FD4940` holds one (`0x002285A9`-`0x002285B5`) and releases itself (`0x00245020`), state 3; then, in any state, clears the mouse wheel (`0x001E0F20`), and while `[0x0209AC30] + 0x308` is set reads the cancel word as the input turn does (`0x00368810`, `0x0035EF10(0, 0)`): on a match it clears the input words `0x02F97360`-`0x02F9739B` and moves to state 1, setting message window 3 active while a movie plays (`0x002285E6`-`0x0022863C`, `0x00228570`); this path does not call `0x0035ED40`, so `0x022CA5F0` keeps its value |
 | `18`, destroyed | clears `0x01FD4948` and the wheel; gives the focus to `+0xC8` when set |
+| any other | goes to the default `0x005C5230` (`0x00228517`-`0x0022851F`) |
 
 `0x001EC5A0` answers whether a movie plays: the movie player's status `+4` is 3 (`0x001B7F20`, `0x001B7D20`,
 [Movies](../Graphics/movies.md)). `0x0017E500(on)` sends the message `0x8002` with 1 or 0 to the game
@@ -109,11 +121,19 @@ State 3 undoes each in turn (`0x002297F9`-`0x00229833`): audio on again unless l
 (`0x0018A820` with 0 also clears bytes 1 and 2), the behind-camera switch restored, and the viewer flag cleared unless
 its `+0x26D` is set.
 
+`0x00183200(on)` and `0x00182FF0(on)` take the running object from `0x0018A7D0` and do nothing when it is 0
+(`0x00183208`-`0x00183210`, `0x00182FF8`-`0x00183000`). Otherwise they end with a jump to `0x0018A820(object, on != 0)` and
+`0x0018A830(object, on != 0)` (`0x00183212`-`0x00183227`, `0x00183002`-`0x00183017`): `0x0018A830` stores byte 2, and
+`0x0018A820` stores byte 0 and, for 0, the word at byte 1 (`0x0018A820`-`0x0018A826`).
+
+`0x0018A7D0` makes the object on its first call: three bytes from `0x00210EC0(3)`, all set to 0 and kept at
+`[0x01F7F5D8]`; when `0x00210EC0` returns 0 it stores that 0 and answers it (`0x0018A7D4`-`0x0018A812`).
+
 ## Layouts
 
 ### The pause overlay
 
-The overlay is the `0xD0`-byte widget at `0x01FD4940` with procedure `0x00229590` (Building the overlay above).
+The overlay is the `0xD0`-byte widget kept at `0x01FD4940` with procedure `0x00229590` (Building the overlay above).
 
 `PauseOverlay` (`0xD0` bytes, offsets from the start of the record):
 
@@ -127,7 +147,7 @@ The overlay is the `0xD0`-byte widget at `0x01FD4940` with procedure `0x00229590
 
 ### The inactive-window task
 
-The task is the `0xD0`-byte widget at `0x01FD4948` with procedure `0x002284F0` (The inactive-window task above).
+The task is the `0xD0`-byte widget kept at `0x01FD4948` with procedure `0x002284F0` (The inactive-window task above).
 
 `InactiveWindowTask` (`0xD0` bytes, offsets from the start of the record):
 

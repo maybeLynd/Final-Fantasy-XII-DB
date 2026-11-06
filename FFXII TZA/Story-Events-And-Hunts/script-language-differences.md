@@ -54,14 +54,29 @@ listing's bitwise OR is written `bitor`.
 ### Picture positions (`picture-position`)
 
 `setshapepos_183` (`0x183`, `0x00343610`) places one part of a picture window. It pops five values and calls
-`0x003E9570(window, part, x, y, centre)`, which writes x and y to the part's record (`+0x3F8 + part × 0x60`, at `+0x10`
-and `+0x12`) and bit `0x2` of `+0x08` from `centre`. Every row of this kind passes `centre` 0, so x and y are the
-top-left corner of the part, in the 1920 × 1080 window that `shapewin(3, 0, 0, 0x0780, 0x0438, 0)` opens.
+`0x003E9570(window, part, x, y, centre)`, which writes x and y as words to `+0x10` and `+0x12` of the part's record,
+`part × 0x60` into the part array that the window object's `+0x3F8` points to, and bit `0x2` of `+0x08` from bit
+`0x1` of `centre` (`0x003E959D`-`0x003E95C0`).
+
+`0x003E9570` changes nothing when the message slot (`0x002E1040`, 0 to 7) holds no window object or the part is not
+below the slot's word `+0x54` (`0x003E9588`-`0x003E959B`). Every row of this kind passes `centre` 0, so x and y are
+the top-left corner of the part, in the 1920 × 1080 window that `shapewin(3, 0, 0, 0x0780, 0x0438, 0)` opens.
 
 `setshape` (`0x17E`, `0x003405C0` → `0x003E9320`) chooses the frame a part shows. The frames are cut from the picture
 block in the script's own reference area, so each tree draws its own wording: the block's frame table gives each
-frame's corner and size in a TIM2 image that follows it (`0x002A7950` takes the image address). The script moves a part
-because the tree's frame has a different width or reads in another order:
+frame's corner and size in a TIM2 image that follows it.
+
+`0x002A7950`, which `registshape` runs while the context's `+0xB8` is empty (`0x003E92F6`-`0x003E930D`), takes the
+block's address, not the image's: it keeps `block + 0x10` and `block + 0x10 + [block + 4]` in the first free of
+the eight picture slots at `0x0209C510` (-1 when all eight are taken) and loads from `block + 0x10 + [block + 4] +
+[block + 8]` through `0x0024A440`, the last two sums made in 32 bits (`0x002A7970`-`0x002A79CE`).
+
+`0x003E9320` changes nothing but the slot's `+0x4C` when the slot holds no window, no picture is registered (the
+context's `+0xB8`) or the part is not below the slot's word `+0x54` (`0x003E934F`-`0x003E9371`, `0x003E941D`). After it
+sets the frame it puts the part at x 0, y 0 with bit `0x2` of `+0x08` set, through `0x003E9570(window, part, 0, 0,
+1)`, and sets bit `0x1` of `+0x08` (`0x003E93D5`-`0x003E9412`), so a part's position is the one a later
+`setshapepos_183` gives it. The script moves a part because the tree's frame has a different width or reads in
+another order:
 
 | Picture | Trees | Rows | Scripts | What moves | Why |
 |---|---|---:|---:|---|---|
@@ -73,9 +88,10 @@ because the tree's frame has a different width or reads in another order:
 | Bhujerba notoriety gauge (`byu`) | `de` | 17 | 14 | title x 1528 → 1488, y 346 → 350 | the `de` title `Gerücht in Umlauf` is wider than `NOTORIETY` |
 | Barheim Passage charge gauge (`mic`) | `fr` | 11 | 11 | title x 1529 → 1519, the 8 × 8 piece beside it 1525 → 1515 | the `fr` title `PUISSANCE` is wider than `CHARGE` |
 
-The Pharos floor number is part 1 (tens), part 2 (ones) and part 3 (the floor word) of window 3. Its y is 358, or 42
-when the script's register `I2` holds 1. The floor word is `F` in `us`, `in`, `kr`, `cn` and `ch`, `E` in `fr` and
-`de`, `° PIANO` in `it` and `Nv.` in `es`; only `it` and `es` move a part.
+The Pharos floor number is part 1 (tens, `regI0 = n / 10`), part 2 (ones, `regI1 = n % 10`) and part 3 (the floor
+word) of window 3, for the number `n`. Its y is 358, or 42 when the script's register `I2` holds 1:
+`y = 0x0166 - 0x013c * regI2` (`floor_disp_ctrl.init`, all 27 `us` `rbl` scripts). The floor word is `F` in `us`,
+`in`, `kr`, `cn` and `ch`, `E` in `fr` and `de`, `° PIANO` in `it` and `Nv.` in `es`; only `it` and `es` move a part.
 
 The script sets `I2` to 1 only under `if ((mp_rbl_flg6 & 4))` (108 stores in the 27 `rbl` scripts), and back to
 0 when the story counter is above 6,000. Bit `0x4` of `mp_rbl_flg6` (global `0x0933`) is set by the Knowledge
@@ -98,9 +114,10 @@ In 12 scripts, `kr`, `cn` and `ch` insert 392 calls `setcharclipall(1)` (`0x156`
 scripts, four in `gol_c01` (Dell of the Dreamer) and one in `nal_d01`. Most of them sit in the block that hands
 control back to the player, straight after `ucon(); sethpmenu(1);` and before `clear_force_char_nearfade();`.
 
-`setcharclipall` reaches `0x002EBBB0`: a non-zero value clears bit `0x1` of the byte `0x0215FD56`, and 0 sets it. While
-the whole byte is 0, bit `0x1` of the render system tail `+0x18` (`0x022C6F28 + 0x48818`) is on, so characters past
-the distance fade (start 34.0, range 4.0 by default) fade out and are culled
+`setcharclipall` reaches `0x002EBBB0`: a non-zero value clears bit `0x1` of the byte `0x0215FD56`, and 0 sets it. It
+then writes bit `0x1` of the render system tail `+0x18` (`[0x022C6F28] + 0x48818`) from the whole byte: set when the
+byte is 0, clear otherwise (`0x002EBBC7`-`0x002EBBDA`). While that bit is on, characters past the distance fade (start
+34.0, range 4.0 by default) fade out and are culled
 ([character fades](../Graphics/character-fades.md),
 [character render records](../Graphics/character-render-records.md)).
 
@@ -133,6 +150,9 @@ runs `mes` (`0x00348DF0`). The result is `amest(slot, text, x, y, style)`: `0x00
 the window corner with an automatic size, and `0x002E1F40` the window kind
 ([message windows](../Menus-And-HUD/message-windows.md)). `mesclose` (`0x012`, `0x0034D920`) closes the window of a slot.
 
+`mes` opens the window through `0x002E16B0` only when the text's section 2 flag, which `0x002673A0` reads, is clear
+(`0x00348E85`, `0x00348EE0`-`0x00348EFF`) ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)).
+
 Each row of this kind opens a small window whose text is the escape `0F ;` and one inline icon, letter `H`
 ([text codes](../Menus-And-HUD/text-codes.md)): icon 8, the Square button in the button order of
 [controls](../Controls-And-Input/controls.md), drawn as sprite `0x2D` of the icon tables `0x01E0CE10` and `0x01E0CE30`, or as
@@ -164,6 +184,9 @@ false; `0x5B1` runs the same body ([standard file formats](../Game-Files-And-Dat
 | `gol_c01`, `nal_d01` | 4 | the thank-you return to the title, under `verb_0x5B4()` | never runs |
 | `gol_c01` | 32 | the same variables under new numbers | no change |
 | `rui_a04` (Doubt Abandoned) | 5 | the save offer wrapped in `if (!verb_0x5B4())` | runs as in `us` |
+
+`setmapidmj` (`0x100`, `0x003458D0`) pushes -1 and pops it straight back (`0x003458DF`-`0x003458F0`), then pops the
+value, the kind and the group and jumps to `0x00379430(group, kind, value)` (`0x003458F5`-`0x00345927`).
 
 `setmapidmj` (`0x100`, `0x003458D0` → `0x00379430`) with kinds 0 and 7 and value 0 would turn the floor of the map-jump
 group into a wall for movement kinds 0 and 5 ([doors, gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md)),
@@ -198,16 +221,20 @@ In `rui_a04` the save offer ("You will now have the option of saving your game."
 
 ### Capture references (`capture-reference`)
 
-`captureactor_367` (`0x367`, `0x00355570`) takes a class-3 reference: the reference decoder `0x002650B0` resolves class 3
-through its jump table at `0x00265180` to the image plus the image's `+0x40` (the reference area) plus the offset
-(`0x00265155`) ([party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md)). The area holds the
-actor names and the scripts' pictures. In every row the same name sits at the new offset:
+`captureactor_367` (`0x367`, `0x00355570`) takes a reference of class three: the reference decoder `0x002650B0` resolves
+class 3 through its jump table at `0x00265180` to the image plus the image's `+0x40` (the reference area) plus the
+offset (`0x00265155`) ([party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md)). The area
+holds the actor names and the scripts' pictures. In every row the same name sits at the new offset:
 
 | Scripts | Trees | Actors captured | Why the offset moves |
 |---|---|---|---|
 | `mic_d0100`, `mic_d0101` | `in, kr, cn, ch` | `BOSS_ザルエラ` | the picture at the start of the area has 4,096 palette colours instead of 2,304: 0x1C00 bytes more |
 | `rsn_a0101`, `rsn_a0102` | `in, kr, cn, ch` | `BOSS_Jギース`, `BOSS_剣士兵隊長`, `BOSS_雑魚剣士兵01`, `BOSS_雑魚剣士兵02` | the same |
 | `rui_e0101` | `it` | `BOSS_魔神竜` | the first picture is 256 × 256 instead of 256 × 128: 0x8000 bytes more |
+
+With the resolved name, `0x00355570` takes manager 0's actor of that name (`0x00358800(0, name)`, `0x003555AB`) and,
+when one is found and it is not the issuer, binds them with `0x00262F50(issuer, found)` (`0x003555C5`-`0x003555D7`), as
+`captureactor` does; the gate `0x0053DD10(name)` it calls twice always returns 1.
 
 ### Sign record (`sign-record`)
 

@@ -20,7 +20,7 @@ minus 1 over 14 cases (`0x002F3384`–`0x002F33EA`, `0x003A575E`–`0x003A5797`)
 14-case switch on the same byte (`0x003A4303`–`0x003A4319`).
 
 Their arms are in
-[`effect-element-runtime-switch-family-3a42-3a56.tsv`](effect-element-runtime-switch-family-3a42-3a56.tsv); [`effect-element-runtime-switch-family-frontier-decode.tsv`](effect-element-runtime-switch-family-frontier-decode.tsv)
+[`effect-element-runtime-switch-family-3a42-3a56.tsv`](effect-element-runtime-switch-family-3a42-3a56.tsv); [`effect-element-runtime-switch-family-jump-tables.tsv`](effect-element-runtime-switch-family-jump-tables.tsv)
 decodes `0x00442170` and `0x00442460` (the emitter-record subtype switches) and the record-store
 fronts `0x00500980` / `0x00500850`, together with dispatchers outside the effect code.
 
@@ -38,11 +38,11 @@ switches inside the kind-6 arm, 17 rows. The arms were checked against the table
 | `calls_4290`, `calls_56F0` | the functions the arm calls in its first stretch, joined by `+`, with `x2` or `xN` for a repeated call; `same as kind n` for a shared arm; on the head row the work done before the switch, and on the inner rows the arm addresses |
 | `evidence` | the instruction addresses and ranges read for the row in each function, separated by a semicolon |
 
-### Columns of effect-element-runtime-switch-family-frontier-decode.tsv
+### Columns of effect-element-runtime-switch-family-jump-tables.tsv
 
 One row per case of a decoded jump table, 450 rows from 12 tables in 10 dispatchers. Every `arm` equals the
-table's entry for the row: the table's dword at `case` (132 rows) or, when a byte map comes first, at the byte map's
-entry for `case` (318 rows), plus the image base.
+table's entry for the row: the table's dword at `case` (125 rows, nine tables) or, when a byte map comes first, at
+the byte map's entry for `case` (325 rows, tables `0x00277854`, `0x0028144C` and `0x00282590`), plus the image base.
 
 | Column | Holds |
 |---|---|
@@ -77,19 +77,25 @@ The element's byte `+0x102` is the slot the owner and target reads take ([target
 | 1 | the owner's record (`0x003A3FD0`, `0x003A440B`) | yes |
 | 2 | the target's record (`0x003A6BA0`, `0x003A4432`) | yes |
 | 3, 11 | the camera matrix `0x02AEDEF0`; kind 11 takes the position `0x02AED600`, `0x02AED604` and `0x02AED608`, x, y and z (`0x003A449C`, `0x003A44A9`, `0x003A44B6`), which `0x003820C0` moves on by a vector each call (`0x0038241F`, `0x00382434`, `0x0038244A`). The third axis is scaled by tan(pi/8) / tan(fov / 2), fov the angle `0x02AED568`, or 45 degrees in Super Wide mode while `0x02AED568` and `0x02AED56C` are above 1.0 (`0x003A44C3`-`0x003A4553`) | no |
-| 4 | the record of the actor in `effectactor` slot `n` (`0x003A40F0`, through the tables `0x003A4220` uses) | yes |
+| 4 | the record of the actor in `effectactor` slot `n` (`0x003A40F0`, through the tables `0x003A4220` uses). `0x003A40F0` returns 0 when no table names an actor, and the query then goes to `0x003A53DC`, the path for an anchor that cannot be resolved (`0x003A4194`, `0x003A45A6`). For an actor without a render index (`0x002E9B80` gives −1) it writes the actor's position (`0x003588B0`, `0x00265020`) into the work matrix's `+0x30`-`+0x38` and gives no record; it resets that matrix to the identity (`0x00250010`) first only on the `0x0036E4E0` lookup (`0x003A4145`-`0x003A41CF`). The query then goes to `0x003A53DC` as well (`0x003A4696`): frame 0 zeroes `work` and `out`, and later frames place the element at that position plus the offset (`0x003A43B9`). A render index whose low word is `0xFFFF`, or a record whose `+0x284` is 0, also gives no record (`0x003A416C`, `0x003A41ED`) | yes |
 | 5 | the record of the party-focus actor (`0x003590D0`, `0x002E9B80`) | yes |
 | 6 | the `n`-th member of manager 0 that has a record (`0x00263FF0`, `0x00263C30`, `0x00358940`) | yes |
-| 7 | the matrix of map model `n` (`0x003A6FC0`), copied to `out` as it is, without the offset (`0x003A5368`-`0x003A5386`): the draw-list build `0x002F5550` stores each model's index in the 32 words at `0x0209A71C` under the anchor number its placement row names (`0x002F6533`-`0x002F6554`); `n` is the instance's byte `+0x376` while its `+0x368` bit `0x200` is set | no |
-| 8 | the centre of the instance's targets as the position (`0x003A6C30`) | no |
+| 7 | the matrix of map model `n` (`0x003A6FC0`), copied to `out` as it is, without the offset (`0x003A5368`-`0x003A5386`): the draw-list build `0x002F5550` stores each model's index in the 32 words at `0x0209A71C` under the anchor number its placement row names (`0x002F6533`-`0x002F6554`); `n` is the instance's byte `+0x376` while its `+0x368` bit `0x200` is set. `0x003A6FC0` returns 0 when the map model list `[0x0209A670]` is null or the model's word at `0x0209A71C` is `0xFFFF`, and the query then goes to `0x003A53DC` (`0x003A6FCE`, `0x003A6FE6`, `0x003A5366`). Otherwise it returns the model's placement matrix, the `0x40`-byte row of list `+0x188` that word `+2` of the model's `0x30`-byte entry in list `+0x178` names; when the model's `0x70`-byte entry in list `+0x1C0` has a matrix pointer at `+0x50`, it returns that entry instead, after `0x00217150` (through `0x00202D70`) has multiplied the placement matrix and `+0x50` into it (`0x003A6FF0`-`0x003A702E`) | no |
+| 8 | the centre of the instance's targets as the position (`0x003A6C30`): the mean of the `n_hara` (`0x100`) translations of the render records of target slots 0 to count − 1 (`0x003A5640`, `0x00421E20`), the count being `+0x372`, or `0x02096B24` with `+0x378` bit `0x200`. `0x003A6C30` returns 0, and the query goes to `0x003A53DC`, with no targets or when any target has no live record (`0x003A6C73`, `0x003A6CBD`-`0x003A6CEF`, `0x003A5215`) | no |
 | 9, 13 | the path object `0x003A8240(key, +0x4E)` finds, first advanced by `0x004FF0D0(object, 2.0)` while its `+0x103` bit `0x1` is clear, with the key the work object's byte `+0x42` (kind 9) or `[0x02F97348] + 0x388` (kind 13) | no |
 | 10 | the targets' centre (`0x003A6C30`); the offset's height is added only when `0x0026E350` finds ground there | no |
 | 12, or any other | no anchor: the identity matrix at the offset (`0x003A54DD`) | no |
-| 14 | a screen position turned into a matrix (`0x0057A040`): the menu record's `+0x10`-`+0x18` for a menu-effect instance (id top nibble 4, `0x003B2CA0`), else `0x02096B2C`-`0x02096B34` | no |
+| 14 | a screen position turned into a matrix (`0x0057A040`): the menu record's `+0x10`-`+0x18` for a menu-effect instance (id top nibble 4, `0x003B2CA0`), else `0x02096B2C`-`0x02096B34`. `0x0057A040(out, x, y, z)` returns 0 while byte `+0xDEA` of `[0x0209AC30]` is 0, and the query then places the identity at the offset (`0x0057A073`, `0x003A54D7`). Otherwise it puts the position into the translation of an identity matrix (`0x00203170`) and has `0x00217150` (through `0x00202D70`) multiply it with the matrix `0x0208ED10` (`0x002465C0`) into `out` (`0x0057A1BB`-`0x0057A1C3`). While `[0x0209AC30]` + `0x158` is set and its byte `+0x187` is 0, x and y go through `0x00561CA0` and `0x00561D30`, z is 0, and a copy of `0x0208ED10` with its `+0x30` and `+0x34` scaled by `[0x01F2CAF0]` (`0x0055F730`) is used (`0x0057A0A4`-`0x0057A142`). Otherwise the position is (x, y, z × 0.0001), with 10.5 added to y while `+0x158` is set, and −18.5 more when the current instance's word `+4` is 1 (`0x0024E3F0`) (`0x0057A144`-`0x0057A1AD`) | no |
 
 On a record, the point kind picks the point; the point ids are those of
 [character render records](character-render-records.md#attaching-a-record-the-pending-tie-and-the-slot-table).
-"Child" means the first child record with that point (`0x00426770`), for example the weapon a character holds.
+"Child" means a record of the record's tree with that point (`0x00426770`), for example the weapon a character
+holds.
+
+`0x00426770` asks the record itself first (`0x004267B7`), then its first child `+0x08` (`0x004267FC`), then
+that child's children and next siblings `+0x0A` with their descendants, through `0x0042EF90` and the body
+`0x0042DA00` (`0x00426829`, `0x00426844`). Each hit replaces the stored result (`0x004267C1`, `0x00426806`, `0x0042DA1F`),
+so the last record in that order with the point gives it.
 
 | Point kind (`+0x49`) | Point |
 |---|---|
@@ -111,13 +117,14 @@ On a record, the point kind picks the point; the point ids are those of
 | 32 | `n_hara` at the ground height (`0x00264670` on the record's `+0x108`) |
 | 33 | the focus point `+0x670` at the ground height |
 | 34, 35 | slot 17 (`j_kaochild_s`) or 18 (`j_blade`) |
-| 37, 38 | `n_hara` with the position replaced by `@FCP` section 1's point `+0xD4` (`0x003E5600`), at the ground height (37) or not (38) |
+| 37, 38 | `n_hara` with the position replaced by `@FCP` section 1's point `+0xD4` (`0x003E5600`), at the ground height (37) or not (38). `0x003E5600` reads that point through the model block `+0x400` and its word `+2`, the address summed in 32 bits, with w 1.0, or takes (0, 0, 0) without a block, and turns it by the record's matrix `+0x180` (`0x003E5FA0` with kind 0, then `0x0046D0C0`) (`0x003E561B`-`0x003E567A`) |
 | 40 | `model`, with the position replaced by section 9's point (`0x003E4F50`) |
 | 0, or above 40 | `n_hara` |
 
-When a point is missing the query falls back to `n_hara` and then to a child's `n_grip` (`0x003A471A`-`0x003A4777`). On
-a record, and for record kinds 3 and 11, the position is then divided by the published instance scale `0x02096810`. Unless `+0x4A` bit `0x2` is set,
-the record's own scale (`0x003E5710`) is applied when it is not 1, 1, 1 (`0x003A47B8`-`0x003A4861`). The height rule
+When a point is missing the query falls back to `n_hara` and then to a child's `n_grip` (`0x003A471A`-`0x003A4777`).
+On a record, and for record kinds 3 and 11, the position is then divided (`x / [0x02096810]`, `y / [0x02096814]`,
+`z / [0x02096818]`, `0x003A478C`-`0x003A47B3`) by the published instance scale `0x02096810`. Unless `+0x4A` bit `0x2` is
+set, the record's own scale (`0x003E5710`) is applied when it is not 1, 1, 1 (`0x003A47B8`-`0x003A4861`). The height rule
 follows (`0x003A4868`-`0x003A489F`):
 
 | `+0x4A` bits `0xC` | Height |
@@ -135,9 +142,19 @@ The random lists hold point ids; `0x003A6E60(count)` draws the index:
 | 1 (`0x01EFAC80`) | 6 | `0x100`, 13, 0, 1, `0x17`, `0x18` |
 | 2 (`0x01EFAC90`) | 6 | `0x100`, 0, 1, `0x17`, `0x18`, 0 |
 
-A drawn `0x100` is looked up on the record itself, and any other id on its children (`0x00426770`). When the record has
-no such point, the query draws once more. Ids `0x17`-`0x19` lie past the 22-entry slot tables. A keyed skeleton
+A drawn `0x100` is looked up on the record itself alone (`0x00421E20` at `0x003A6ABA` and `0x003A6B43`), and any other id
+on the record and then its children in the order above (`0x00426770` at `0x003A6AFF` and `0x003A6B73`). When the
+record has no such point, the query draws once more. Ids `0x17`-`0x19` lie past the 22-entry slot tables. A keyed skeleton
 takes them as `@FCP` special ids (`0x003E5AD0`, `0x00421F46`); a named one would index the name table past its end.
+
+`0x003A69F0(record, list, work, frame)` keeps the drawn id in the work object's word `+0x40` and `frame` (from
+`0x003A4290` the element's frame `+0xFC`) in its `+0x44`; while `+0x44` is not −1 it only looks the kept id up again
+(`0x003A6A73`, `0x003A6B29`). The second draw is kept as well, whether or not the record has that point: `+0x44` is
+set before that look-up (`0x003A6B14`-`0x003A6B2D`).
+
+A missing point, or a list number above 2 (`0x003A6A19`), gives 0, and the query then falls back to `n_hara`
+(`0x003A4BE0`, `0x003A471A`). An id other than `0x100` is looked up only on a live record
+(`0x003A6AD6`-`0x003A6AF7`, `0x003A6B4A`-`0x003A6B6B`).
 
 ### Target slots
 
@@ -170,8 +187,8 @@ Two wrappers hand these to element handlers:
   passes the slot's `+0x10` entry, or for −1 the `+0x90` entry and else the first `+0x10` one,
   through `0x002E9B80`. With `+0x378` bit `0x200` it reads the global list `0x02096A24` instead.
 
-The three 64-entry tables are filled by script verbs, each taking an index clamped to 0 to 63 and
-storing the calling script's actor (`0x00263F10`, `0x003589B0`):
+The three 64-entry tables are filled by script verbs, each taking an index clamped, `n < 0 ? 0 : n > 63 ? 63 : n`
+(0 to 63; `0x0036E880`, `0x0036E7E0`, `0x0036E7B0`), and storing the calling script's actor (`0x00263F10`, `0x003589B0`):
 
 | Verb | Table | Set | Clear |
 |---|---|---|---|

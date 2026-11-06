@@ -20,12 +20,12 @@ Matrices are 16 floats, row-major, with the translation in the last row.
 
 | Function | What it does |
 |---|---|
-| `0x005DFCD0(m, out, p)` | transforms the point `p` (w = 1): `out = p.x·row0 + p.y·row1 + p.z·row2 + row3`, three floats |
-| `0x005DFDE0(m, out, v)` | transforms the 4-vector `v` through the first three columns and copies `v.w` |
-| `0x005EB670(out, m)`, `0x006107F0(out, m)` | transpose a 4×4 matrix |
+| `0x005DFCD0(m, out, p)` | transforms the point `p` (w = 1): `out = p.x·row0 + p.y·row1 + p.z·row2 + row3`, three floats (`0x005DFD69`, `0x005DFDB8`, `0x005DFDC7`); the w lane of each row takes no part and `out` +0x0C keeps its value; it returns `out` (`0x005DFCD7`) |
+| `0x005DFDE0(m, out, v)` | transforms the 4-vector `v` through the first three columns and copies `v.w`: `out.x = v.x·row0.x + v.y·row1.x + v.z·row2.x + v.w·row3.x`, and likewise y and z (`0x005DFE85`, `0x005DFEEF`, `0x005DFF08`), and `out.w = v.w` (`0x005DFE53`); it returns `out` (`0x005DFDE7`) |
+| `0x005EB670(out, m)`, `0x006107F0(out, m)` | transpose a 4×4 matrix. Both load all of `m` before their first store to `out` (`0x005EB6CE`; `0x0061089B`), so `out` may be `m`. `0x006107F0` returns `out` (`0x006107FE`); `0x005EB670` returns with `rax` holding its entry stack pointer (`0x005EB670` `mov rax, rsp`), not `out` |
 | `0x001871B0(out, m)` | affine inverse: inverts the upper 3×3 through its cofactors and determinant and negates the translation through it. It writes only the three float lanes of each row; the w lanes (`+0x0C`, `+0x1C`, `+0x2C`, `+0x3C`) are copied from stack slots it never sets (`0x00187417`–`0x00187448`), so its output must not be used as a full 4×4 |
-| `0x00185AF0(out, m)` | that inverse as a 4×4 matrix with the last column `(0, 0, 0, 1)` |
-| `0x0018A4A0(out, camera)` | copies the `0xC0` bytes of a `PCamera`; the script getter `0x00678140` uses it |
+| `0x00185AF0(out, m)` | that inverse as a 4×4 matrix with the last column `(0, 0, 0, 1)`: it copies the x, y and z lanes of each row of `m` to a stack matrix (`0x00185B0C`–`0x00185B7B`), inverts that with `0x001871B0` (`0x00185B80`), copies the x, y and z lanes of each result row to `out` and writes the w lanes itself, 0 for rows 0 to 2 (`0x00185B8A`, `0x00185BAA`, `0x00185BCB`) and 1.0 for row 3 (`0x00185BEC`), so the unset w lanes of `0x001871B0` never reach `out`; the w lanes of `m` take no part. It returns `out` (`0x00185BF3`) |
+| `0x0018A4A0(out, camera)` | copies the `0xC0` bytes of a `PCamera` (dword moves, one qword at `+0xB0`) and returns `out` (`0x0018A614`); the script getter `0x00678140` uses it, reaching it by a tail jump (`0x0067815C`), and it is called at `0x006ACF59` and `0x006AD7C9` |
 
 ### The renderer's camera
 
@@ -67,7 +67,10 @@ down the camera's -z, with clip-space depth from -1 at the near plane to +1 at t
 
 `0x006A0E10(node, out)` copies the node's `m_localMatrix` (`+0x20`) and multiplies it by the local
 matrix of each parent in turn (`m_parent` at `+0x08`, `0x00185100`), so the result is the node's
-matrix in world space.
+matrix in world space. Each step calls `0x00185100` with the parent's `+0x20` in `rcx` and `out` in `r8`
+(`0x006A0E5C`), so `out` stays on the left (`out = out·parent`), and copies the 64 bytes it returns back to
+`out` (`0x006A0E68`–`0x006A0EC3`). The walk ends at the first null `m_parent` (`0x006A0E43`, `0x006A0EC9`), and the
+function returns `out` (`0x006A0ECB`).
 
 ### Mesh-instance bounds
 
@@ -77,16 +80,32 @@ A `PMeshInstanceBounds` keeps a minimum corner at `+0x00`, a size at `+0x18`, th
 - `0x005DC040(bounds, meshInstance)` attaches new bounds: it takes the instance's world matrix
   (`+0x08`) and the instance, copies corner and size from the bounds the instance already has
   (`m_bounds`, `+0x38`) or zeroes them, and becomes the instance's `m_bounds`.
+- In `0x005DC040` the copy (`0x005DC075`–`0x005DC08D`) runs when `m_bounds` is set (`0x005DC050`); when it is null the
+  corner and size are zeroed (`0x005DC097`–`0x005DC0A1`). Both paths store the new bounds in `m_bounds` (`0x005DC092`,
+  `0x005DC0A7`), leave the earlier bounds object unchanged and return `bounds` (`0x005DC072`, `0x005DC0A4`).
 - `0x0060E410(bounds, corner, size)` sets the corner and size.
 - `0x006045E0(bounds, &min, &max)` gives the world-space box: it expands the 4×3 world matrix to 4×4
   (identity when there is no world matrix) and transforms the box with `0x005FD810`, which puts all eight corners
   through the matrix and keeps the smallest and largest of each axis.
+- The 4×3 holds rows 1 to 3 of the 4×4 in the x, y and z lanes of its three 16-byte rows and row 0 in their w
+  lanes: `0x006045E0` builds row 0 from floats 3, 7 and 11 (`0x0060460A`, `0x0060461E`, `0x00604627`) and rows 1 to 3
+  from floats 0–2, 4–6 and 8–10, with w lanes 0, 0, 0 and 1.0 (`0x0060467F`, `0x00604686`, `0x0060468D`, `0x00604670`).
+- A null `m_worldMatrix` (`0x006045F5`) takes the identity rows at `0x008C5F80`–`0x008C5FD0` (`0x00604696`). `0x006045E0`
+  then calls `0x005FD810(&corner, &size, &min, &max, &matrix)` (`0x00604737`) with copies of `+0x00` and `+0x18`
+  and returns what it returns; row 3 is the translation `0x005FD810` adds to each corner (`0x005FD929`).
 
 ### Look-at
 
 `0x0067F280(matrix, target)` is a `PWorldMatrix` script method registered by `0x0067E6C0`. It rebuilds
 the 4×3 matrix with the look-at builder `0x001EB4B0`, aimed at the point at `+0x20` of its second
-argument. `0x001EB4B0(out, eye, target, up)` normalises the direction from eye to target, takes the
+argument. It first expands the 4×3 to 4×4 the way `0x006045E0` does (`0x0067F293`–`0x0067F37C`).
+
+It then calls `0x001EB4B0` (`0x0067F383`) with that 4×4 as `out`, its row 3 (the matrix's own translation) as
+the eye, the target, and its row 1 as `up`. Afterwards it packs rows 1 to 3 back into the x, y and z lanes
+and row 0 into the w lanes (`0x0067F3A3`–`0x0067F3CA`), so the matrix keeps its position and turns to face the
+target.
+
+`0x001EB4B0(out, eye, target, up)` normalises the direction from eye to target, takes the
 side axis as the normalised cross product of that direction and `up`, the new up axis as the cross
 product of side and direction, and writes side, up, the negated direction and the eye as the four
 rows.
@@ -102,6 +121,11 @@ rows.
 - Cone: for a spot light, with `ci = cos(m_innerConeAngle − 1e-6)` (`+0x28`) and
   `co = cos(m_outerConeAngle + 1e-6)` (`+0x2C`), `c = −1 / (co − ci)` and `d = co / (co − ci)`, so
   `c·cosθ + d` is 1 at the inner angle and 0 at the outer. Other lights get `c = 0`, `d = 1`.
+- Type test: the light's type object is the pointer at `+0x20` (`0x005FF644`), compared with `0x01F2EDA8`
+  (`0x005FF668`, `0x005FF681`) and `0x01F2ED48` (`0x005FF674`). The divisions (`0x005FF603`, `0x005FF65F`, `0x005FF663`) and
+  both `cosf` calls (import slot `0x008C2BA8` through `0x00861F08`, at `0x005FF629` and `0x005FF63F`) run for every light
+  before that test; the other-light values are set at `0x005FF679`–`0x005FF689`.
+- The four terms are stored at `0x005FF692` (`a`), `0x005FF6A5` (`b`), `0x005FF6B3` (`c`) and `0x005FF6BB` (`d`).
 
 ### Lights and shadow types
 
@@ -114,7 +138,11 @@ rows.
 
 `0x00606BE0(shadowCaster, out)` writes the far planes of up to four shadow splits as one 4-vector:
 the splits are the caster's `PShadowSplit` records (`+0x10` count, `+0x18` data, `0xE8` bytes each)
-and `m_farPlane` is the split's `+0xC8`. A split the caster does not have gives 100000.0. The
+and `m_farPlane` is the split's `+0xC8`. A split the caster does not have gives 100000.0.
+
+The count's bit `0x80000000` is cleared first (`0x00606BEC`). Split `k` is read when the count is above `k`
+(`0x00606C36`, `0x00606C1F`, `0x00606C08`, `0x00606BF1` for `k` = 0 to 3), at `+0xC8`, `+0x1B0`, `+0x298` and `+0x380`
+of the data; the four floats go to `out` (`0x00606C47`–`0x00606C58`), which it returns (`0x00606C4B`). The
 shader-parameter evaluator `0x00600F30` uses it for parameter type `0xD8`, passing the light's
 `m_shadowCaster` (`+0x18`).
 
@@ -124,6 +152,12 @@ shader-parameter evaluator `0x00600F30` uses it for parameter type `0xD8`, passi
 `+0x20`/`+0x28` (the inline slot when there is one element). The shader-parameter evaluator
 `0x00600F30` reads its first float as the LOD blend weight, the value the `LOD_BLEND` context switch
 tests.
+
+The count is the dword at `+0x20` with bit `0x80000000` cleared (`0x006073D3`). Above 1 the base is the pointer
+at `+0x28` (`0x006073DC`), at 1 it is `+0x28` itself (`0x006073EB`), and at 0 it is 0 (`0x006073F5`), so the result
+is `12·i`. `0x00600F30` skips the call when the pointer it would pass is null (`0x00601F2F`); otherwise it passes
+`i` read at `0x00601F31` and reads the result at once (`0x00601F39`), which faults for a count of 0 while `12·i` is
+below 0x10000.
 
 ## Layouts
 
@@ -204,9 +238,9 @@ and registers the exit stub `0x008B7C90`, which only puts back the `PCameraProje
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02EA5760` | `void*` | 0 (zero-filled tail of `.data`) | the object's vtable: `0x00902ED8` (`PCameraOrthographic`), then `0x008C5D50` at exit | `0x00169580` (`0x001695A8`); `0x008B7C90` (`0x008B7C97`) | no instruction names it; `0x00169580` passes the object's address to `0x001F0A00` (`0x001695A1`) |
-| `0x02EA5828` | `f32` | 0 (zero-filled tail of `.data`) | `+0xC8`, `m_aspect`: 1.0 | `0x00169580` (`0x00169597`) | no instruction names it |
-| `0x02EA5830` | `f32` | 0 (zero-filled tail of `.data`) | `+0xD0`, the first member after the `0xD0` bytes of `PCameraProjection`: 1.0 | `0x00169580` (`0x001695AF`) | no instruction names it |
+| `0x02EA5760` | `void*` | 0 (zero-filled tail of `.data`) | the object's vtable: `0x00902ED8` (`PCameraOrthographic`), then `0x008C5D50` at exit | `0x00169580` (`0x001695A8`); `0x008B7C90` (`0x008B7C97`) | no instruction reads it; `0x00169580` passes the object's address to `0x001F0A00` (`0x001695A1`), which reads `+0xC0`, `+0xC4`, `+0xC8` and `+0xD0` and stores the 16 dwords `0x001F05B0` returns at `+0x38`-`+0x77` |
+| `0x02EA5828` | `f32` | 0 (zero-filled tail of `.data`) | `+0xC8`, `m_aspect`: 1.0 | `0x00169580` (`0x00169597`) | `0x001F0A00`, through the address `0x00169580` passes (`0x001F0A1F`, times `+0xD0`) |
+| `0x02EA5830` | `f32` | 0 (zero-filled tail of `.data`) | `+0xD0`, the first member after the `0xD0` bytes of `PCameraProjection`: 1.0 | `0x00169580` (`0x001695AF`) | `0x001F0A00`, through the address `0x00169580` passes (`0x001F0A09`) |
 
 ## Modding notes
 

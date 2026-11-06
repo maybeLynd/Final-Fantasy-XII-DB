@@ -7,7 +7,7 @@ addresses: ""
 
 ## What it lists
 
-[`glossary.tsv`](glossary.tsv) holds 150 terms: engine objects, records, ids, handles, pools, file kinds and recurring words that
+[`glossary.tsv`](glossary.tsv) holds 153 terms: engine objects, records, ids, handles, pools, file kinds and recurring words that
 several pages use. Each row says what the thing is, the other names the pages use for it, and the
 page and section that explain it in full. Player-facing names (items, magicks, statuses) are in the reference tables
 of their own pages, not here.

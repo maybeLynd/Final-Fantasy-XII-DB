@@ -31,14 +31,29 @@ Byte `+1` of the record picks how the position becomes a distance:
 
 | Mode | Distance |
 |---|---|
-| 0 | `0x0039B550` installs the matrix `0x02AEECB0` in the workbench and `0x0039ABF0` returns lane 3 (w) of the transformed point (`0x0039ADA7` `psrldq xmm1, 0xC`, `0x0039ADAC` `movd eax, xmm1`) |
+| 0 | `0x0039B550` installs the matrix `0x02AEECB0` in the workbench as the rows `vf01` to `vf04` (`0x0039B569`-`0x0039B5D4`) and raises lane 2 of `vf04` (`0x022D91E8`) by the depth offset `[0x02AEE7F0]` as a float (`0x0039B5F3`-`0x0039B60A`, [menu effects](menu-effects.md)), a lane that does not enter w. On the way it leaves the sign-extended offset in both halves of `v0` (`0x022D8F30`) and its four 32-bit words converted to float in `vf26` (`0x022D9340`) (`0x0039B55F`-`0x0039B5FA`). `0x0039ABF0` returns lane 3 (w) of the transformed point (`0x0039ADA7` `psrldq xmm1, 0xC`, `0x0039ADAC` `movd eax, xmm1`) |
 | 1 | the point goes through the matrix `0x02AEEA20` (`0x0039AF70`, `0x00398F90`), then `0x002F1D90` returns its Euclidean distance from the vector `0x02AED5F0` |
 | 2 | as mode 1, with lane 1 zeroed in the vector before the transform (`0x002F1FF2`) and in the point after it (`0x002F200F`): a distance in the other two axes |
 
-`0x002F1D90` takes the square root of the summed squared differences under the workbench lock and adds
-the float at `0x01EF93F0`, which ships as 0.0. The vector `0x02AED5F0` is written by `0x003820C0`
-(`0x00382460`), the camera update of [Scripted camera](scripted-camera.md). All three matrices and the
-vector are past the raw end of `.data`, so the image holds no values for them.
+In mode 0, `0x0039ABF0(p)` computes the depth `w = p.x × vf01.w + p.y × vf02.w + p.z × vf03.w + vf04.w` from
+the rows `vf01` to `vf04` (`0x022D91B0` to `0x022D91EC`) that `0x0039B550` fills (`0x0039AC54`-`0x0039AD29`); the
+point's own lane 3 takes no part, and the last row is weighted by lane 3 of `vf00`, 1.0 (`0x0039AC9D`). It
+returns `w` in `eax` (`0x0039ADAC`), the register both calls in `0x002F1F40` read (`0x002F206A`, `0x002F21F5`), and
+leaves the product's `(x, y, z, w)` in `vf22` (`0x022D9300`, `0x0039ADB0`, `0x0039ADB8`, `0x0039AD35`, `0x0039AD61`).
+
+`0x002F1D90(a, b)` returns `sqrtf(dx × dx + dy × dy + dz × dz)` with `d = b - a`, the square root of the
+summed squared differences in lanes 0 to 2 (`0x002F1DC8`-`0x002F1E54`; `sqrtf` `0x00861F14` at `0x002F1E66`); lane 3
+takes no part. It copies `a` into `vf20` (`0x022D92E0`) and `b` into `vf21` (`0x022D92F0`), and the root also goes
+to `Q` (`0x022D9198`). It then adds the float at `0x01EF93F0`, which ships as 0.0: that is lane 0 of `vf00`,
+re-stored as `(0, 0, 0, 1)` by `0x0036DD80` at `0x002F1E17`, so the result is the distance itself.
+
+`0x002F1D90` saves the workbench register `t0` (`0x022D8F90`) on entry and restores it on the way out
+(`0x0036D930` at `0x002F1DAC`, `0x0036D8E0` at `0x002F1E9B`), so its copy of the result into `t0` (`0x002F1E8E`)
+does not last.
+
+The vector `0x02AED5F0` is written by `0x003820C0` (`0x00382460`), the camera update of
+[Scripted camera](scripted-camera.md). All three matrices and the vector are past the raw end of `.data`, so
+the image holds no values for them.
 
 ### The four fade kinds
 
@@ -59,6 +74,20 @@ Kind 3 reads the global settings through `0x003ED0E0`: near `0x02EBB7E4`, far `0
 `0x02EBB7EF`, whose complement `255 - byte` is the floor. `0x003ECF70` sets near 10 and far 100. When the
 record's float `+0x0C` is not 1.0 the floor becomes `255 - (255 - floor) x +0x0C`, kept in 0 to 256.
 The alpha is then `(far - w) x 255 / (far - near)` with `w` from mode 0, capped and floored as above.
+
+`0x003ED0E0(out)` fills four floats: the floor `255 - [0x02EBB7EF]` at `+0x00` (`0x003ED10F`, `0x003ED130`), 0 at
+`+0x04` (`0x003ED111`), the slope `255.0 / (far - near)` at `+0x08`, with `far - near` taken in whole
+numbers (`0x003ED0F8`, `0x003ED11F`), and `far` at `+0x0C` (`0x003ED11A`). The caller takes the alpha as
+`(out[+0x0C] - w) × out[+0x08]` (`0x002F21F0`-`0x002F21FD`).
+
+`0x003ECF70` resets the whole settings block (`0x003ECF70`-`0x003ECFC3`):
+
+- near `0x02EBB7E4` = 10 (`0x003ECFAE`) and the eight bytes at `0x02EBB7E8` = 100 (`0x003ECFB8`): far 100 and the
+  colour word `0x02EBB7EC` 0, so the byte `0x02EBB7EF` is 0 and the floor `255 - 0` is 255;
+- `0x02EBB7E0` = 0 (`0x003ECF8A`) and the kept priority `0x02EBB7D0` = −1 (`0x003ECFA4`);
+- the map defaults: near `0x02EBB7F8` = 10 and far `0x02EBB7FC` = 100 (`0x003ECF72`, `0x003ECF90`), and 0 in the eight
+  bytes at `0x02EBB804`, the default colour and the loaded flag `0x02EBB808` (`0x003ECF83`);
+- `0x02EBB800` = `0xFFFFFFFF` (`0x003ECF9A`) and 0 in the eight bytes at `0x02EBB7F0` (`0x003ECF7C`).
 
 ### Where the global settings come from
 
@@ -94,12 +123,35 @@ to 0 to 255):
 | `0x20` | alpha 0 while `0x003E7DE0` returns non-zero (the byte `0x02B59D71`) |
 | `0x4` | alpha x the global scale `0x020926E8` |
 
+For bit `0x10`, `0x002F1F40` asks `0x003A3FD0(−1)` for the owner (`0x002F2438`). With bit `0x200` of the
+container's word `+0x378` set, `0x003A3FD0` passes the slot-0 target `[0x02096A20]` through `0x002E9B80`
+(`0x003A3FE5`, `0x003A404C`). Otherwise it goes by the container's kind byte `+0x00`: kind 3 returns the owner
+`+0x08` as stored (`0x003A3FF1`, `0x003A4043`); kinds 5, 6 and 9 look up the request `0x003B0BF0(+0x04)`, give −1
+when it is missing (`0x003A400D`) and `+0x08` as stored when its byte `+0x11` is 1 (`0x003A400F`); every other
+case passes `+0x08` through `0x002E9B80` (`0x003A403C`, `0x003A4052`).
+
+`0x002E9B80` returns the first dword of the `+0xC0` object of the actor `0x003588B0` finds, or −1
+(`0x002E9B84`-`0x002E9BA1`). `0x002F1F40` sets the alpha to 0 when the owner is −1 or its low 16 bits are
+`0xFFFF` (`0x002F2440`-`0x002F2449`, `0x002F24A7`), or when the record `index × 0x740 + [0x022C6F28]` has `+0x284`
+= 0 (`0x002F245D`-`0x002F246A`), before it asks `0x0041E590`. With the fade `f` the alpha becomes
+`min(trunc(alpha × f), 255)`, and 0 when that is negative (`0x002F248C`-`0x002F24A2`).
+
+`0x0042FB20(index)` returns 1.0 for index −1 (`0x0042FB24`) and for a record `index × 0x740 + [0x022C6F28]` that
+is null or has `+0x284` = 0 (`0x0042FB42`-`0x0042FB52`); otherwise it returns the signed 16-bit fade channel
+`0xB` of `0x003E48E0(record, 0xB)` × 1/4096 (`0x00908E14`, `0x0042FB59`-`0x0042FB68`).
+
 ### The global dimming ramp
 
 `0x0024BFD0(0)` moves `0x020926E8` while bits `0x100` and `0x200` of `0x020926E4` hold 1 or 2: it counts `0x020926E6`
 down, adds the step `0x020926F0`, and at zero stores the target `0x020926EC` and clears the two bits;
-for the value 2 it then calls `0x002FD060` and `0x003B1000`. The ramp is started by `0x0024FB90` and `0x0024FBF0`, the time-stop fades on
-[Time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
+for the value 2 it then calls `0x002FD060` and `0x003B1000`. The ramp is started by `0x0024FB90` and `0x0024FBF0`, the
+time-stop fades on [Time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
+
+With a non-zero argument `0x0024BFD0` returns at once (`0x0024BFD6`), and with the two bits at 0 or 3 it returns
+without a step (`0x0024BFE9`). The two calls at the end of a value-2 ramp clear bit `0x4` of `+0x368`, the alpha x
+`0x020926E8` modifier above: `0x002FD060` on every instance of the kind-1 list `0x02EC3D60` (`0x002FD07A`), `0x003B1000` on
+the instance `+0x08` of each of the 36 request entries at `0x02EBEC00`, up to the first whose dword `+0` is 0
+(`0x003B1010`-`0x003B1030`).
 
 ### The callers
 

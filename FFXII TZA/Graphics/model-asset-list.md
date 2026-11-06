@@ -36,13 +36,15 @@ archive index:
 1. **The model file.** `0x002ED6F0` turns a letter into a resource kind, the number into a file index and gives the
    model's lane count (the table above). The kind's path array names the `.cm` at that index
    ([Model files](model-files-cm-ca.md)).
-2. **The lane files.** The lane loader `0x002E6EB0` files lane *k* as index + 1 + *k*. For class `m` it files lane 0 as
+2. **The lane files.** The lane loader `0x002E6EB0` files lane *k* as index + 1 + *k* (index + `0x43` + *k* for kind
+   1, which no class of the eleven maps to; `0x002E6F99`-`0x002E6FA2`). For class `m` it files lane 0 as
    index + 1, lanes 1-15 all as index + 2, and lanes from 16 as index + 1 + (*k* − 14) (`0x002E6FD1`-`0x002E6FF6`), so a
    monster has one motion set where a character has fifteen.
 3. **The remastered parts.** `0x001BB2B0` names a model's `.ah` list from its `.cm` path: the text after
    `PS2Data\obj_finish\in\`, less `.cm`, with `\` turned into `/`, as `./GameData/D3D11/ArtData/chr/<name>_d3d11.ah`.
    The binding's load `0x002EAD50` requests it through `0x0017F000` before the model's own file
    ([Prefetch and asset-header manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md)).
+   - `0x0017F000` requests nothing and returns 0 while the object at `0x01F81240` is null (`0x0017F010`).
 4. **The remastered files.** `pc_meshes` and `pc_textures` count the list's `.dae.phyre` and `.dds.phyre` paths.
 5. **Further motions.** Kind 30's motion files are listed with the model whose `.cm` folder holds them.
 6. **The sounds.** Row *n* of the model's letter table `charseinfo_<letter>.bin`, which `0x002ED950` returns, names
@@ -56,7 +58,11 @@ archive index:
 ### The motion lanes
 
 A 24-lane model's lane files follow its `.cm` in this order. `0x00320170` gives a unit's lane as its animation set
-from `0x003202F0`, which the main-hand weapon's motion class picks ([Weapon motion list](../Battle-Actions/weapon-motion-list.md)):
+from `0x003202F0`, which the main-hand weapon's motion class picks unless an enemy record's definition row
+byte `+0x13` or the bare-handed Brawler row gives it (`0x0032031F`-`0x00320389`)
+([Weapon motion list](../Battle-Actions/weapon-motion-list.md)), and an actor that is one of the four
+`0x00263750` roster actors its set from `0x00320230` (`0x003201B0`-`0x0032021C`); without battle flag `0x02089340` bit
+`0x10` the lane is −1 (`0x0032018F`, `0x0032030B`):
 
 | Lane | File | Animation set: the equipment categories of its weapons |
 |---:|---|---|
@@ -143,7 +149,7 @@ Replacing a file:
 |---|---|
 | models | 1,084; their `.cm` ships for 1,066, the count [Model files](model-files-cm-ca.md) gives |
 | `.cm` named but not shipped | 18, among them `c1010` and `c1014`-`c1018`, `n1037`, `g0054` and `w2123` |
-| a model whose `.cm` is not shipped | all twelve size tables give its id −1 (18 of 18). The binding's load `0x002EAD50` sizes the file with `0x0032E400` and requests it with that size (`0x002EADEA`, `0x002EAE08`); the read issuer refuses a −1 request and the queue reports it delivered with nothing read ([File size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)). No table or manifest names those 18 ids |
+| a model whose `.cm` is not shipped | all twelve size tables give its id −1 (18 of 18). The binding's load `0x002EAD50` sizes the file with `0x0032E400` and requests it with that size (`0x002EADEA`, `0x002EAE08`), but a binding of such a model never reaches it: the request pump `0x002E6700` gets the same −1 first (`0x002E6776`) and, for a size of 0 or less, takes no buffer and files no load (`0x002E6789`-`0x002E678B`), so the entry moves to the live list with `+0x10` = 0 and no completion runs for it. The read issuer refuses a −1 request and the queue reports it delivered with nothing read ([File size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)); the binding files no such request. No table or manifest names those 18 ids |
 | a motion file that is not shipped | 7,198 path-array entries name a `.ca` the archive lacks: 6,843 lanes and 355 of kind 30, and all twelve size tables give each −1. The lane loader `0x002E6EB0` takes a lane's size from `0x002E9920`, which returns `0x0032E400`'s answer, and skips the lane with no buffer and no request when it is not above 0 (`0x002E6F43`-`0x002E6F45`) |
 | every shipped `.cm` and `.ca` is named | each `.cm` by its bound id's kind (1,066 of 1,066); 1,195 `.ca` by a lane of their model and the other 1,969 by kind 30's array (3,164 of 3,164) |
 | remastered `.ah` lists | 1,050 models, 4 of them with no shipped `.cm`; each list names one `.dae.phyre` mesh, and 8,418 textures in all |

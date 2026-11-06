@@ -13,9 +13,9 @@ the range over three tables of 10-byte rows:
 
 | Ids | Table | Entry | Slot | Rows | Named | Icon frame |
 |---|---|---|---|---:|---:|---|
-| `0x8000`-`0x803F` | m_daiji_data | `+0x88` | `0x02EBF090` | 64 | 47 | 112 |
-| `0x8040`-`0x805F` | g_daiji_data | `+0x8C` | `0x02EBF088` | 32 | 27 | 113 |
-| `0x8060`-`0x81FF` | q_daiji_data | `+0x90` | `0x02EBF080` | 416 | 109 | 114, and 49-53 on five rows |
+| `0x8000`-`0x803F` | m_daiji_data | `+0x88` | `0x02EBF090` | 64 | 47 | 112, and 0 on 16 Reserve rows |
+| `0x8040`-`0x805F` | g_daiji_data | `+0x8C` | `0x02EBF088` | 32 | 27 | 113, and 0 on 4 Reserve rows |
+| `0x8060`-`0x81FF` | q_daiji_data | `+0x90` | `0x02EBF080` | 416 | 109 | 114, and 49-53 on five rows; 0 on 307 Reserve rows |
 
 The fourth sub-table the class counts, s_daiji_data (entry `+0x94`, `0x02EBF078`), has no rows. The other 329 rows are
 named Reserve. The five q_daiji rows with their own icon frame are Dawn Shard, Manufacted Nethicite, Sword of Kings,

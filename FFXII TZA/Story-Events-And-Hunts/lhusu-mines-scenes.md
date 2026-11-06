@@ -30,8 +30,8 @@ them with `eventread` (`0x0E7`, `0x003529E0`) and `eventread_e8` (`0x0E8`, `0x00
 ### What the scenes give
 
 - No scene row lists an item or a party change.
-- `lus_a0100`, loaded in Shaft Entry: the purest magicite is diverted, and "Halim Ondore IV, the Marquis of Bhujerba"
-  is said to be helping the Resistance.
+- `lus_a0100`, loaded in Shaft Entry: the purest magicite is diverted, and the Marquis is said to be helping the
+  Resistance ("Halim Ondore IV, the Marquis of Bhujerba.").
 - `lus_g0100`, loaded in Site 2 (field `933`), is followed by `lus_g0101`: "It's nethicite. Manufacted nethicite."
   "All at the hands of the Draklor Laboratory."
 - `lus_g0101`, loaded in Site 2 and in the chase maps, is followed by story counter 660, after the Ba'Gamnan battle

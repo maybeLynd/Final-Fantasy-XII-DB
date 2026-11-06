@@ -24,6 +24,12 @@ read their files whole:
 - the first boot frame `0x0022A0B0` runs `0x0036FFF0` (`./PS2Data/add_motion/SkeletonMapping.bin`) and
   `0x0037CCC0` (`./PS2Data/add_motion/HighModelReplace.bin`).
 
+`0x001BE3E0` builds the registry only while `0x01F81250` is 0: it allocates `0x28` bytes (`0x00210EC0`) and stores the
+result there, 0 when the allocation fails, in which case `0x001BDC40` is not run (`0x001BE3ED`-`0x001BE414`). `0x001BDC40`
+clears the list pointers `+0x00`, `+0x08` and `+0x10`, gives `+0x18` the vtable `0x00902720` through `0x001EDF00`, which
+drops the name it is handed (`0x001BDC73`), sets the table selector `+0x20` to 0 (`0x001BDC79`) and then runs
+`0x001BDD20` (`0x001BDC7F`).
+
 ## Layouts
 
 All multi-byte fields are little-endian.
@@ -62,9 +68,9 @@ Record (`0x1C`):
 | `+0x10` | `f32[3]` |  | copied by the parser; the pose code does not read them |
 
 The parser `0x001BE1A0` keeps a 32-byte record per file (`+0x00` name, `+0x14` track count, `+0x18`
-tracks), 16 bytes per track (`+0x00` the u16 at file `+0x02`, `+0x02` records, `+0x04` groups,
-`+0x06` kind, `+0x07` angle, `+0x08` groups), `0x28` bytes per group (the header, then the record
-array at `+0x20`) and the records as they are.
+tracks), 16 bytes per track (`+0x00` the u16 at file `+0x02`, `+0x02` records per group, `+0x04` the
+group count, `+0x06` kind, `+0x07` angle, `+0x08` the group array; `0x001BE260`-`0x001BE2AB`), `0x28` bytes
+per group (the header, then the record array at `+0x20`) and the records as they are.
 
 ### skeletonmapping.bin
 
@@ -125,16 +131,35 @@ the file ends with a -1 where a record would start
 - `0x001BE1A0` trusts every count: nothing is checked against the file size. It allocates
   `track count x 0x10`, `group count x 0x28` and `records per group x 0x1C` bytes, each a 64-bit `mul`
   whose result becomes `0xFFFFFFFFFFFFFFFF` on overflow (`cmovo`, `0x001BE210`, `0x001BE299`, `0x001BE319`).
+- It reads the counts as signed 16-bit values (`0x001BE1FB`, `0x001BE28B`, `0x001BE314`). It zeroes the 32-byte record and
+  each track and group array after allocating it (`0x001BE1E3`-`0x001BE1F7`, `0x001BE231`, `0x001BE2BE`), fills each record
+  array by copying, and returns the record (`0x001BE3CD`). The file comes in its second argument (`0x001BE1B1`); `rcx`
+  is replaced by the size `0x20` before any use (`0x001BE1AC`).
 
 ### Which table a model uses
 
-- `0x002EDF90(record, request, resource)` keeps a state at render record `+0x6C8` (0 unbound, 1 and 2
-  bound, 3 and 4 released). Request 2 on an unbound record runs `0x00863110`; request 0 releases, and 1
-  or 2 restores a released state. Its caller is `0x002E3110`, the part attach of the
-  [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md).
+- `0x002EDF90(index, request, resource)` keeps a state at render record `+0x6C8` (0 unbound, 1 and 2
+  bound, 3 and 4 released). The record is `[0x022C6F28] + index x 0x740` for the signed 16-bit index; an index of -1,
+  a record address of 0 or a record whose `+0x284` is 0 is left as it is (`0x002EDF93`-`0x002EDFBC`). Its caller is
+  `0x002E3110`, the part attach of the [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md).
+- On an unbound record the request becomes the state (`0x002EDFCE`); request 2 then runs `0x00863110` with the record's
+  `+0x6E8` and `+0x6F0` (`0x002EDFD4`-`0x002EDFEA`), so request 1 binds it without a lookup. On a bound record request 0
+  releases, 1 to 3 and 2 to 4 (`0x002EDFEF`-`0x002EE00C`), and request 1 or 2 restores a released state, 3 to 1 and 4
+  to 2 (`0x002EE017`-`0x002EE038`); other requests change nothing.
+- In its mode 4 `0x002E3110` sends request 1 for the entry `[+0xC0]` and 2 for the one `0x90` bytes after it, and in
+  mode 2 request 0 to both, skipping an entry whose dword `+0x00` is -1; the entry's word `+0x00` is the index and its
+  `+0x04` the resource (`0x002E3444`-`0x002E34D2`).
 - `0x00863110` takes the file name of the resource between the last backslash and the first dot into
   a 16-byte buffer and calls `0x001BE430`, which stores the record with that name at `+0x6E8` and the one
   named `<name>_town` at `+0x6F0`.
+- The resource is an id: `0x002E98F0` splits it into a kind and an index, adding `0x33` to a kind 1 index, and
+  `0x002DF980` reads the path from the table `0x0215F000` (`0x00863137`-`0x00863144`). The backslash is searched for back
+  from the path's end (`0x0086315C`-`0x00863167`) and the dot with `strchr` (`0x00863174`); `strncpy` copies the name at
+  its own length into the zeroed buffer, with no test against its 16 bytes (`0x0086317A`-`0x00863194`).
+- `0x001BE430(registry, name, base, town)` compares the name of every record in the registry's list with `name` and
+  with `<name>_town`, built with `0x0017D2E0` and `%s_town` (`0x001BE457`-`0x001BE466`, `0x001BE481`-`0x001BE4FC`). Each
+  match is stored, so the last record of a name wins; a name with no record leaves its field as it was, and a null
+  output is skipped.
 - `0x003714A0`, run for every skeleton while its pose is composed, uses `+0x6F0` when it is set and
   bit `0x8000` of the current field's word in the table at `0x02ADD100` is set (`0x00377C20`); the registry's
   `+0x20` (`0x0017FFB0`) forces the town table with 1 and the base table with 2.
@@ -157,23 +182,47 @@ name that bone. Then for each track:
 - Either way the angles are turned into radians, written to bone `+0x190`–`+0x198` and every bone
   linked through `+0x278`, and rebuilt into the bone's rotation with `0x0046D380` (`0x00371D27`,
   `0x00372087`).
+- `0x0046D380(matrix, x, y, z)` looks each angle, in radians, up in the sine table `0x01F004E0` of 32768 entries: the
+  index is `angle / 2pi x 32768`, truncated and masked with `0x7FFF`, and the cosine is the entry `0x2000` further
+  on, wrapping (`0x0046D39E`-`0x0046D485`).
+- With `sx` for the sine of `x` and `cx` for its cosine, `0x0046D380` writes the rows `(cy cz, cy sz, -sy, 0)`,
+  `(sx sy cz - cx sz, sx sy sz + cx cz, sx cy, 0)`,
+  `(cx sy cz + sx sz, cx sy sz - sx cz, cx cy, 0)` and `(0, 0, 0, 1)` (`0x0046D49F`-`0x0046D550`).
+- Here the matrix is the scratch `0x02CA43D0`; the posing code copies its first three rows to bone `+0xC0`-`+0xEC`
+  and the bone's `+0x1B0`-`+0x1B8` to `+0xF0`-`+0xF8` (`0x00371D2C`-`0x00371E0D`, the same from `0x0037208C`).
 - Switching between the base and town tables saves and restores the affected bones' state through
   the arrays at record `+0x720`.
 
 ### skeletonmapping.bin
 
-`0x0036FFF0` copies each name (32 bytes, `strncpy`) into a `0x30`-byte record at `[0x02AD9E30]` (count
-`0x02AD9E38`) with the value array at `+0x28`. `0x00372820` keeps the last record whose name matches the
+`0x0036FFF0` reads the file whole into a stack buffer of `(size + 1 + 0xF) & ~0xF` bytes, the file size plus 1,
+rounded up to 16 (`lea rax, [rcx + 0xf]`, `and rax, 0xfffffffffffffff0`, `0x00370040`-`0x00370077`). A size of 0
+(`0x001D6EE0` also gives 0 for a null handle) returns at once, before the close,
+and leaves `0x02AD9E30` and `0x02AD9E38` as they are (`0x0037003A`).
+
+It copies each name (32 bytes, `strncpy`) into a `0x30`-byte record at `[0x02AD9E30]` (count
+`0x02AD9E38`, `0x00370086`) with the value array at `+0x28`: it stores n at `+0x20` (`0x003700F6`), allocates n × 4 bytes
+with `0x0019C580` (`0x00370102`) and copies the n values (`0x00370120`-`0x0037013B`). No count is checked against the file
+size.
+
+`0x00372820` keeps the last record whose name matches the
 model at skeleton `+0xB0`. While the render record's add-motion state is 2 and the record has a
 partner skeleton, `0x003703A0` builds the skinning matrix of each mapped bone from the partner's bone
 (`0x0037065D`–`0x0037078C`).
 
 ### highmodelreplace.bin
 
-`0x0037CCC0` counts the records, then fills `0x30`-byte rows at `[0x02ADD940]` (count `0x02ADD938`): model,
+`0x0037CCC0` reads the file whole into a stack buffer the same way (`0x0037CD08`-`0x0037CD3F`); a size of 0 returns 0 at
+once, before the close (`0x0037CD02`).
+
+It counts the records, then fills `0x30`-byte rows at `[0x02ADD940]` (count `0x02ADD938`): model,
 b and c at `+0x00`, the pair count at `+0x0C`, replacements from `+0x10` and progress values from
-`+0x20`. Nothing limits a record to four pairs. `0x0037CB90` looks a model up; its use is described with
-the binding verbs in [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
+`+0x20`. The table is count × `0x30` bytes from `0x0019C580`, zeroed with `0x00861EC0` (`0x0037CD90`-`0x0037CDA4`), and the
+body returns 0 (`0x0037CE59`).
+
+Nothing limits a record to four pairs: a fifth pair's replacement lands on the first progress value at `+0x20`
+and its progress value at `+0x30`, past the row (`0x0037CE1E`, `0x0037CE30`). `0x0037CB90` looks a model up; its use is
+described with the binding verbs in [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
 against the [story progress](../Story-Events-And-Hunts/story-progress.md) word.
 
 ## Modding notes

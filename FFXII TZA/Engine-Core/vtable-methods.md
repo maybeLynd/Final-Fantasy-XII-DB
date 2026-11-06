@@ -19,8 +19,8 @@ slots; `0x0016D6A0`, `ret`, in 1,386; `0x0016D680`, `return this`, in 1,349).
 
 Class names are given twice: `decorated` is the MSVC name as the image spells it
 (`.?AVGiVmax@@`, `.?AVPTTYCallback@Phyre@@`), and `class` is the readable form
-(`GiVmax`, `Phyre::PTTYCallback`) for names without template arguments; the 1,660 template-class
-rows keep only the decorated form, because the image spells their arguments only in that form,
+(`GiVmax`, `Phyre::PTTYCallback`) for names without template arguments; the 21,861 rows of the 1,660
+template classes keep only the decorated form, because the image spells their arguments only in that form,
 so a grouping by class must use the `decorated` column. A function-local class is written with
 its function (`btBvhTriangleMeshShape::performRaycast::MyNodeOverlapCallback`).
 

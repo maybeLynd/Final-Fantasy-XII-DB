@@ -62,6 +62,11 @@ asleep; otherwise it leaves the lock, waits on the event and re-enters. `_Init_t
 sleepers (`WakeAllConditionVariable`), or sets and resets the event. Both decode their function pointer
 from `0x02EAED78` or `0x02EAED80` as `ror64(cookie xor value, cookie & 0x3F)`.
 
+Each passes the decoded pointer to `0x00809958`, which jumps through the check slot `0x008C31C0`, before
+calling it (`0x008093F5`, `0x0080938F`). `_Init_thread_wait` returns true when `SleepConditionVariableCS`
+returns non-zero (`0x0080940D`), or when `WaitForSingleObjectEx(event, ms, FALSE)` returns 0 (`0x0080942D`,
+`0x00809444`). `_Init_thread_header` ignores the result and tests the guard again (`0x00809326`).
+
 ### Setting up the lock
 
 The C initialiser `0x00809124` creates the lock (`__vcrt_InitializeCriticalSectionEx`, spin count 4000),
@@ -69,6 +74,11 @@ looks up `InitializeConditionVariable`, `SleepConditionVariableCS` and `WakeAllC
 `kernel32.dll`, and with all three present initialises the condition variable and stores the encoded
 sleep and wake pointers, clearing `0x02EAED70`. If any is missing it stores a `CreateEventW` handle in
 `0x02EAED70` instead; failure to find `kernel32.dll` or create the event fast-fails with code 7.
+
+It encodes each pointer as `ror64(pointer, 64 - (cookie & 0x3F)) xor cookie` (`0x008091C1`-`0x008091E7`) and
+calls `InitializeConditionVariable` through `0x00809958` (`0x008091B3`-`0x008091BF`). The event is
+`CreateEventW(NULL, 1, 0, NULL)`, a manual-reset event (`0x0080920C`-`0x0080921E`). On both paths it registers
+`0x00809244` with `atexit` (`0x008091EE`-`0x008091F5`) and returns 0 (`0x008091FF`).
 
 ### A first build that never finishes
 
@@ -107,6 +117,12 @@ Many hold Phyre type information:
   descriptors `0x00630180` (`PTypeDefault<unsigned int>`), `0x0062FF50` (`<char>`), `0x006301F0`
   (`<float>`) and `0x00630490` (`<bool>`), and lazily built wrapper descriptors for `Vector4`
   (`0x006B19A0`), `Vector3`, `Quat`, `PMatrix4` and `PMatrix4x3`.
+- The four type-default functions return a descriptor already filled in `.data`: `0x01F2E5A0`
+  (`unsigned int`, `0x006301A7`), `0x01F2E410` (`char`, `0x0062FF77`), `0x01F2E690` (`float`, `0x00630217`) and
+  `0x01F2E3C0` (`bool`, `0x006304B7`).
+- Their guarded blocks, under the guards `0x02CF950C`, `0x02CF94F8`, `0x02CF9518` and `0x02CF94F4`, only register
+  the descriptor's exit teardown with `atexit` (`0x00808B90`): `0x008AFE50` (`0x006301C8`), `0x008AFE00`
+  (`0x0062FF98`), `0x008AFE60` (`0x00630238`) and `0x008AFEC0` (`0x006304D8`).
 - The scalar-conversion tree registrars on [image hardening](image-hardening.md) are 144 more.
 
 The largest holders, `0x005AD8F0` and `0x005E5400`, guard 28 statics each.
@@ -161,7 +177,8 @@ Descriptor pair static (`0x005C3B10`'s `0x02CB5D48`):
 | holders registering teardowns | 526, at 1,541 `atexit` sites |
 | `_Init_thread_wait` call sites | 1, timeout 100 ms |
 
-Holders are counted by `.pdata` function, chained entries folded into their primary.
+Holders are counted by the function list: `.text` is decoded linearly from every listed function entry, and each
+`_Init_thread_header`, `atexit` or `_Init_thread_abort` site counts for the listed function that holds it.
 
 The member lists beside this page, each named `lazy-statics-and-one-time-init-<list>.tsv`:
 
@@ -292,19 +309,28 @@ image-base-relative or disp32 reference outside the two holders names `0x02E5BF8
 ### The largest-channel start value
 
 `0x00712910` (called from `0x007125B0` at `0x00712830`) copies a colour of three floats, raising negative channels
-to 0. When the target at `[r8]` is positive it scales the colour so its weighted sum equals the target
-(`0.2126`, `0.7152`, `0.0722` when `r9b` is set, else `0.29891`, `0.58661`, `0.11448`). When the target is
-negative it finds the largest channel, starting from `0x02EA1718`, and scales so that channel equals minus the
-target.
+to 0, `c[j] = c[j] > 0 ? c[j] : 0` (`0x0071291A`-`0x0071297F`). When the target at `[r8]` is positive it scales the
+colour so its weighted sum equals the target, `c[j] = c[j] × target / w` with `w = kr × c[0] + kg × c[1] + kb × c[2]`,
+unless w is 0 (`0x00712982`-`0x00712A14`); kr, kg and kb are `0.2126`, `0.7152`, `0.0722` when `r9b` is set, else
+`0.29891`, `0.58661`, `0.11448`.
+
+When the target is negative it finds the largest channel m, index i, starting from `0x02EA1718` (a later
+channel replaces it only when greater). Unless m is 0 it scales, `c[j] = c[j] × (target / m × -1.0)`, so that
+channel equals minus the target, and then stores `-target` in `c[i]` exactly (`0x00712A29`-`0x00712B1D`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x02EA1718` | `f32` | 0 (zero-filled tail of `.data`) | `-3.40282e+38` (`0xFF7FFFFF`): the lesser of `-FLT_MAX` (`0x01F3C514` with the sign mask `0x01CEBDA0`) and `FLT_MIN` (`0x01F3C510`), the start of the largest-channel search | `0x00712910` (`0x00712A90`), once behind guard `0x02EA171C` | `0x00712910` (`0x00712A9D`) |
 
-`0x007125B0` turns a colour temperature into an RGB scale, which its callers `0x00710FC0` and `0x007110C0` multiply into a matrix (`0x006F1070`). On its first call,
-while the byte `0x01F3CA50` is 1, it clears the byte (`0x007126CF`), takes the chromaticity `0x00712380` computes for
-6500 K (`0x45CB2000`), makes it an RGB colour with the caller's luminance (`0x006E1530`), and keeps the reciprocals of
-the three channels (`0x00712748`-`0x00712760`). Every call multiplies the requested temperature's colour by them
+`0x007125B0` turns a colour temperature into an RGB scale (r, g, b), which its callers `0x00710FC0` and `0x007110C0`
+multiply into a matrix through `0x006F1070`: `M = M × diag(r, g, b, 1)` (`0x007110A0`, `0x007111A0`). For the requested
+temperature it takes the chromaticity (x, y) from `0x00712380`, forms `X = x × Y / y` and `Z = (1 - x - y) × Y / y`
+with the caller's luminance Y (`0x00712774`-`0x007127B3`), and makes them an RGB colour with `0x006E1530`.
+
+On its first call, while the byte `0x01F3CA50` is 1, it clears the byte (`0x007126CF`), takes the chromaticity
+`0x00712380` computes for 6500 K (`0x45CB2000`), makes it an RGB colour with the caller's luminance (`0x006E1530`), and
+keeps the reciprocals of the three channels, `[0x02EA1708 + 4 × j] = 1.0 / white[j]` (`0x00712748`-`0x00712760`). Every
+call multiplies the requested temperature's colour by them, `c[j] = c[j] × [0x02EA1708 + 4 × j]`
 (`0x007127D0`-`0x007127E0`), so 6500 K comes out with equal channels.
 
 | Global | Type | Start | Meaning | Set by | Read by |

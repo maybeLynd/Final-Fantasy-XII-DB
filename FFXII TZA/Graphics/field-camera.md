@@ -18,20 +18,69 @@ over the leader's shoulder to look at that actor.
 ### Where it runs
 
 A camera record whose mode `+0xF0` is 1 is built by `0x00259990` ([scripted camera](scripted-camera.md)).
-Its `+0xF4` picks one of the 0x860-byte camera controllers at `0x02097D30`. Each frame `0x003D9E20` reads the
-target cursor, and `0x003D9930(controller, view, controller + 0x630)` runs `0x0032AEC0` on the follow camera
-at controller `+0x2B0`.
+Its `+0xF4` picks one of the 0x860-byte camera controllers at `0x02097D30`. `0x00259990(go, n, view)` (from `0x00259820`,
+`0x00259921`) does nothing until the field is loaded (`0x00377DB0`) or while `go` is 0 (`0x002599B8`-`0x002599C3`). Otherwise
+each frame it calls `0x003D9E20`, which reads the target cursor, and `0x003D9930(controller, view, controller + 0x630)`,
+which runs `0x0032AEC0` on the follow camera at controller `+0x2B0` (`0x002599D3`, `0x00259A21`).
 
-While the byte `0x02098DE9` is set, `0x003D9950` runs instead. It publishes controller `+0x00`, the vector
+Once the field is loaded, also when `go` is 0, it then replaces the view's `+0x00` and `+0x04` with `0x02098DE0` and
+`0x02098DE4` while the byte `0x02098DE8` is set, else with `0x0209A6EC` and `0x0209A6F0` (`0x00259A3B`-`0x00259A77`). Two hold
+bytes decide whether `0x003D9930` runs (`0x002599D8`-`0x00259A11`):
+
+- `0x02098DEA`: `setnoupdatebehindcamera` (`0x0236`, `0x0025A5B0`) sets it to 2 unless it is 1, and clears it with 0. At 2
+  it drops to 1 and the camera runs once more; at 1 the camera does not run unless `0x02098DEB` is above 1.
+- `0x02098DEB`: `0x0025A5D0` sets it to 1 and clears it, for `setnoupdatebehindcamera_system` (`0x0506`) and the time stop
+  ([time stop and freeze](../Engine-Core/time-stop-and-freeze.md)). At 1 the camera does not run; above 1
+  it drops by one and the camera runs.
+
+While the byte `0x02098DE9` is set, `0x003D9950` runs instead, and `0x003D9E20` is not called (`0x002599C5`).
+It publishes controller `+0x00`, the vector
 `0x0025A540` stores in both controllers, as the eye (copied to `+0x90`), and the followed transform's
 position at `+0x630`, raised by `+0x64`, as the look point (copied to `+0x70`), through `0x003CC080`
 (`0x003D9950`-`0x003D99AA`). `0x003D99B0` sets a controller up (`0x0032B600`) and `0x003D9B80` resets it
-(`0x0032B790`).
+(`0x0032B790`). `0x003D99B0` runs `0x0032B790` again after `0x0032B600` (`0x003D9AB5`).
+
+`0x0032B600` sets the three orbit blocks `+0x00`, `+0x40` and `+0x80` to the look point (0, 0, 0, 1), heading 0 and
+level 0.483 with that level's pitch and distance (`0x0032B624`-`0x0032B6C1`), runs `0x0032CE40` and `0x0032B790`, and then
+zeroes the state `+0xC0` (`0x0032B6DC`-`0x0032B70D`). It stores `atan2(−0.7, 2.8)` and `atan2(7.6, 8.8)` from `0x01EED478`
+at `0x022C3190` and `0x022C3194`, and 7.6 and −0.7 at `0x022C3184` and `0x022C3188` (`0x0032B713`-`0x0032B776`).
+
+`0x0032B790` sets the state, `[camera + 0xC0] = 0x20000000` (`0x0032B790`), and zeroes the two rates, the wall and
+auto terms, the floor lift `[camera + 0x128] = 0`, both hold counts, `+0x364` and the travelled distance
+(`0x0032B79C`-`0x0032B7AA`, `0x0032B84F`-`0x0032B861`). It sets the divisor `+0x100` and the scale `+0x120` to 1.0 and
+the look height `+0x11C` to 1.3 (`0x3FA66666`; `0x0032B7B1`, `0x0032B7BB`, `0x0032B84F`).
+
+It puts the eye and look pairs `+0x2E0` to `+0x340` and the point `+0x350` at (0, 0, 0, 1), zeroes the framing count
+`+0x320` and the framed actor `+0x360`, and sets `+0x374` to 1 (`0x0032B790`-`0x0032B868`). It leaves the recentre
+deflection `+0x370` as it was.
 
 The followed transform at controller `+0x630` gives the position and the leader's facing, taken as
 `atan2(+0x18, +0x10)` (`0x0032CE40`). The look point is that position raised by `+0x11C`, 1.3
 (`0x0032B1C0`). When the position moves more than `0.1 × [0x01DFE0BC]` in a frame, `0x0032CE40` sets bit
 `0x8000000` of the state word `+0xC0`.
+
+`0x0032B1C0(camera, position)` is the per-frame body. It keeps only the bits under mask `0xE7FE0000` of the state
+`+0xC0` (`0x0032B1CC`), places the orbit block `+0x80` from its heading `+0xB0` and level `+0xBC` (`0x0032DF40`), copies
+`+0xE0`-`+0xEC` to `+0xD0`-`+0xDC`, keeps `0x0026E500(0)` at `+0x2C8`, copies the position to `+0x60` and raises it by
+`+0x11C`, and runs `0x0032CE40` and `0x0032C910` (`0x0032B1FB`-`0x0032B272`).
+
+It then makes one or two passes (`0x0032B280`-`0x0032B302`): the pulled-in branch `0x0032B4D0` while bit `0x4000000` is set,
+else the normal branch `0x0032B390`. A second pass runs only when the first changed that bit, and runs the other branch.
+When the normal branch pulled the camera in and Camera Auto-Rotation is on (`0x0017E260`), the heading `+0x70` becomes
+the heading from the look point to the pulled-in eye `+0x2D0` (`0x003CC130`, `0x0032B2BF`-`0x0032B2F2`).
+
+Last it eases the floor lift and the distance scale (`0x0032DDE0`, `0x0032DE90`, `f = 1 + cos(π + π/4 × (T - n) / T)`
+below), copies the orbit look `+0xA0` to the follow look `+0x2F0` and stores at `+0x130` the horizontal distance
+from the follow eye `+0x2E0` to it, `[camera + 0x130] = √((x2F0 - x2E0)² + (z2F0 - z2E0)²)`, with `x` and `z` the
+words `+0x0` and `+0x8` of each point (`sqrtf` `0x00861F14`; `0x0032B308`-`0x0032B379`).
+
+Each ease first counts its hold down by 1 while the hold is above 0. While the hold `n` is then below the length
+`T`, it moves the value the fraction `f = 1 + cos(π + π/4 × (T - n) / T)` of the way to its rest value
+(`cosf` `0x00861F08`):
+- the lift: `[camera + 0x128] = lift + (0 - lift) × f`, with `n = [camera + 0x12C]` and
+  `T = 20 × [0x01DFE0B4]` (`0x0032DDE6`-`0x0032DE78`);
+- the scale: `[camera + 0x120] = scale + (1 - scale) × f`, with `n = [camera + 0x124]` and
+  `T = 60 × [0x01DFE0B4]`; it also clears the bytes `+0x40` and `+0x80` (`0x0032DE96`-`0x0032DF31`).
 
 ### The followed transform
 
@@ -129,7 +178,9 @@ first.
 ### The orbit
 
 The camera is a heading `+0x70` (radians, wrapped to 0 to 2π) and a height level `+0x7C` (0 to 1).
-`0x0032DF40(heading, level, look, out)` turns the level into a pitch and a distance:
+`0x0032DF40(heading, level, look, out)` turns the level into a pitch and a distance. It copies the look point to
+`out +0x20`, stores the heading at `+0x30`, the level at `+0x3C`, the pitch at `+0x34` and the distance at
+`+0x38`, and clears the byte `out +0x00` (`0x0032DF46`-`0x0032DFF1`):
 
 ```python
 x = 2.8 + 6 × level
@@ -144,10 +195,26 @@ a scale argument `k`: `eye = look + k x [+0x38] x (sin h cos p, -sin p, cos h co
 `0x003CC480`). It then sets `eye.y = min(eye.y + lift, look.y - [camera +0x11C] + 9.0)`, at most 9.0 above
 the followed position.
 
+The slot is block `n` of the camera, `camera + 64 × n` (`0x0032CD41`-`0x0032CD50`); `0x0032BCC0` passes 2, the orbit block
+`+0x80`. The eye is written to slot `+0x10` with w 1.0 (`0x0032CD98`-`0x0032CDD6`) and copied to `0x01EED450`, whose address
+`0x0032CD20` returns. A first `0x003CC2F0` call, from the vector at `0x01EED460`, writes only a stack copy that the function
+does not read again (`0x0032CD5E`-`0x0032CD74`).
+
 Each frame `0x0032B9C0` adds the input rates to heading and level, divided by `+0x100`: 1.0 when idle, the
 frame-rate float `0x00229E70()` while input moves the camera (`0x0032C910`). It also adds the wall turn
 `+0x104`, the wall lift `+0x108` and the auto-rotation `+0x10C`. `0x0032BA70` is the same without the
 wall and auto terms.
+
+`0x0032B9C0` first forms the heading
+`h = [camera + 0x70] + [camera + 0xF8] / [camera + 0x100] + [camera + 0x104] + [camera + 0x10C]`
+(`0x0032B9C0`-`0x0032B9E5`). It wraps the heading into 0 to 2π, `h = h - 2π` while `h > 2π` and `h = h + 2π` while
+`h < 0`, stores it at `+0x70` and clears the byte `+0x40` (`0x0032B9ED`-`0x0032BA27`).
+
+The level is `l = [camera + 0x7C] + [camera + 0xFC] / [camera + 0x100] + [camera + 0x108]`
+(`0x0032BA2B`-`0x0032BA40`). It clamps the level to 0 to 1, `l = l < 0 ? 0 : l > 1 ? 1 : l` (`maxss xmm2, xmm0`,
+`minss xmm1, xmm2`, `0x0032BA4C`-`0x0032BA50`), and stores it at `+0x7C` (`0x0032BA54`). While bit `0x200` or `0x800` of
+`+0xC0` is set (a vertical stick deflection this frame, `0x0032D620`) it also keeps the new level,
+`[camera + 0x114] = l` when `[camera + 0xC0] & 0xA00` is non-zero (`0x0032BA59`-`0x0032BA65`).
 
 ### Stick, mouse and recentre
 
@@ -156,20 +223,43 @@ wall and auto terms.
 
 - `0x0032D3D0` turns the horizontal axis into the heading rate `+0xF8`. Past the dead zone the rate is
   `0.4 × 2π / (30 × [0x01DFE0B4])` per frame times the deflection beyond it, over `128 − 50`, eased
-  as `(2 × old + new) / 3`.
-- A deflection toward a side whose wall probe is hit counts as zero.
-- With no stick input and camera input enabled (`+0x374`, 1 after `0x0032B790`; `0x02098354` for the first controller, which `tutorial_set_behindcameraenable` sets), a mouse movement of 7 or
-  more (`0x001E0CE0`, negated by Camera X-Axis Inverted) drives the same rate, times Mouse Sensitivity
-  Left/Right (`0x0017E420`) and 0.2.
-- `0x0032D620` does the same for the level rate `+0xFC` from the vertical axis, `0x001E0D30` and
-  `0x0017E430`, at `0.8 / (30 × [0x01DFE0B4])` per frame.
+  as `(2 × old + new) / 3`; while `0x001EDE70` is set during a recentre (state bits `0x40300000`) it eases as
+  `(5 × old + new / 2) / 6` instead (`0x0032D4AA`-`0x0032D4E3`).
+- A deflection sets bit `0x100` of `+0xC0` when it stays positive past the dead zone, else bit `0x400`
+  (`0x0032D512`-`0x0032D52A`).
+- A deflection toward a side whose wall probe is hit counts as zero, but it is still input: the function returns 1
+  (`0x0032D454`-`0x0032D46E`, `0x0032D534`).
+- With no stick input and camera input enabled (`+0x374`, 1 after `0x0032B790`; `0x02098354` for the first controller,
+  which `tutorial_set_behindcameraenable` sets), a mouse movement of 7 or more (`0x001E0CE0`, negated by Camera X-Axis
+  Inverted) drives the same rate, times Mouse Sensitivity Left/Right (`0x0017E420`) and 0.2, applied to the eased value;
+  the mouse ignores the wall probes (`0x0032D53E`-`0x0032D5A6`).
+- `0x0032D620` does the same for the level rate `+0xFC` from the vertical axis, `0x001E0D30` and `0x0017E430`. The stick
+  gives `0.8 / (30 × [0x01DFE0B4])` per frame with the sign turned, so a positive deflection lowers the level; it is
+  blocked toward a hit above (`0x22`) or below (`0x88`) and sets bit `0x200` or `0x800` (`0x0032D692`-`0x0032D734`).
+- The level's mouse term, not negated, uses the heading's `0.4 × 2π / (30 × [0x01DFE0B4])` and the same sensitivity
+  factor (`0x0032D73F`-`0x0032D7A5`).
 - With no input, both rates are multiplied by `[0x022C3180]` each frame: 0.5, or √0.5 when `0x001EDE70` is
   set (`0x0032AE70`). They stop at once when Camera Auto-Rotation (`0x0017E260`) is off and no recentre is
   running.
 - Bit `0x4` of the pad word `0x0036FF80()` starts a recentre (`0x0032DC00`) toward the heading
   `3π/2 − facing`, behind the leader. The swing is converted into a stick deflection `+0x370`;
-  `0x0032D820` feeds it through `0x0032D3D0` each frame until the heading arrives.
+  `0x0032D820` feeds it through `0x0032D3D0` each frame until the heading arrives. Each press adds 1 to `+0x364`
+  (`0x0032C983`).
+- `0x0032DC00(camera, heading, again)` turns the current heading `+0x30` and the target into −π to π and keeps the
+  target at `+0x36C`. A first call (`again` 0) sets bit `0x200000` and zeroes `+0x118`, and its deflection is a sixth
+  of the swing.
+- In `0x0032DC00`, with `h` the wrapped heading and `d = target - h`, bit `0x40000000` names the way round. It is set
+  when `0 <= d <= π`, `d >= 2π` or `-2π < d < -π`, with `d = d + 2π` when `h > target`, and cleared otherwise,
+  with `d = d - 2π` when `target > h` (`0x0032DC79`-`0x0032DD5B`).
+- Bit `0x100000` is set while the swing exceeds π/40, `abs(d) > 0.0785398` (`0x0032DD13`-`0x0032DD5B`), and `+0x370`
+  holds the size only: `[camera + 0x370] = (int)((128 - z) × a / R + z)`, with `z` the dead zone `+0xF4`,
+  `a = abs(d)` (`abs(d) / 6` on a first call) and `R = 0.4 × 2π / (30 × [0x01DFE0B4])`, the heading rate at full
+  deflection (`0x0032DD65`-`0x0032DDCA`).
 - During a recentre `0x0032DB10` eases the level to 0.483 over `30 × [0x01DFE0B4]` frames.
+- Any stick or mouse input sets the divisor `+0x100` to `0x00229E70()` and bit `0x20000000`, and ends a running recentre
+  by clearing `0x100000`, `0x200000` and `0x40000000` (`0x0032C9B8`-`0x0032C9D4`); with no input the divisor is 1.0. The
+  recentre steps run only on frames with no input on their axis, and once both are done bit `0x40000000` is cleared
+  too (`0x0032C9DA`-`0x0032CA48`).
 
 ### Camera Auto-Rotation
 
@@ -188,34 +278,77 @@ heights come from the followed transform's `+0x64` and `+0x6C`. `0x0032CF50` cas
 field's collision part (`0x0026E500(0)`, kept at `+0x2C8`) through `0x003D97E0` and sets bit `0x1`, `0x2`,
 `0x4` or `0x8` of `+0xC0` (`0x01EED488`) for each hit.
 
+`0x0032C3E0(transform, eye, position, matrix, segments, y)` sets the matrix's translation to the position and starts the
+segments at local z 0.5: the sides at x `∓s` and height `h / 2`, the upper one at height `h`, the lower one at 0.5,
+with `h` the transform's `+0x6C` and `s` = `+0x64 × (1 − 0.5 × (y − [0x022C3188]) / ([0x022C3184] − [0x022C3188]))`
+(`0x0032C408`-`0x0032C501`). It then moves the translation to the eye and ends the side segments at x `∓0.5`, z 1.0
+(`0x0032C506`-`0x0032C55D`).
+
+In `0x0032CF50` a hit is a non-negative answer, kept as a word at segment `+0x50`, and each cast passes mask 4
+(`0x0032CF9B`-`0x0032CFC7`). The bits follow the segment order: `0x1` the `−s` side, `0x2` the upper, `0x4` the `+s` side
+and `0x8` the lower segment.
+
 - `0x0032C180` turns the heading when one side is hit (state bits `0x11` one way, `0x44` the other) at
   `0.12 × 2π / (30 × [0x01DFE0B4])` per frame, eased into `+0x104`; otherwise `+0x104` decays by 0.9
-  a frame.
+  a frame. The turn is eased as `(4 × old + new) / 5` and sets bit `0x4000` (`0x11`) or `0x1000` (`0x44`) of `+0xC0`;
+  with both sides hit it turns neither way, and the decay stops at 0 below 0.00001 (`0x0032C1A7`-`0x0032C1F7`,
+  `0x0032C207`-`0x0032C2AE`).
 - `0x0032C2B0` lowers the level for a hit above (`0x22`) and raises it for a hit below (`0x88`) at
   `1.2 / (30 × [0x01DFE0B4])` per frame, eased into `+0x108`; otherwise `+0x108` halves each frame.
+  A hit above wins over one below; the lift is eased as `(4 × old + new) / 5` and sets bit `0x8000` or `0x2000`, and
+  the halving stops at 0 below 0.00001, `x = x × 0.5` then `x = 0` when `abs(x) < 0.00001` (`0x0032C2E6`-`0x0032C3D0`).
 - Both act only while Camera Auto-Rotation is on, the leader has moved since the last camera input
-  (bit `0x10000000` set, `0x20000000` clear) and the camera is not pulled in.
+  (bit `0x10000000` set, `0x20000000` clear) and the camera is not pulled in, with bits `0x4000000` and `0x40000`
+  clear. With Auto-Rotation off `0x0032C180` zeroes `+0x104`, and `0x0032C2B0` zeroes the wall turn `+0x104` too, not its
+  own `+0x108`, which halves, `[camera + 0x108] = [camera + 0x108] × 0.5` (`0x0032C1BE`, `0x0032C2E0`-`0x0032C2F6`).
 
 ### Floors and props under the eye
 
 `0x0032BB00(camera, eye, look)` returns how far to lift the eye, the largest of: the value the body-record
 query `0x0046DB50` returns for the eye; within 1.2 of the look point, `√(1.44 − d²)` for the horizontal
 distance `d`; and the amount that puts the eye 0.27 above the floor triangle under it (`0x002321D0`,
-`0x00231890`). A lift at least as large as the
-current one `+0x128` replaces it and holds for `20 × [0x01DFE0B4]` frames; then `0x0032DDE0` eases it back
-to 0.
+`0x00231890`). A lift at least as large as the current one `+0x128` replaces it and sets the hold `+0x12C` to
+`20 × [0x01DFE0B4]` frames.
+
+The lift is not held flat. From the first call of `0x0032DDE0` after that, the hold counts down and the lift eases
+toward 0 by a fraction that grows from near 0 to `1 − √2/2` (0.2929) as the hold runs out, and stays at `1 − √2/2`
+each call once the hold is 0.
+
+`0x0032BB00` itself returns the current lift when that is larger, and sets the hold `+0x12C` when it returns the new
+one, `[camera + 0x12C] = (int)([0x01DFE0B4] × 60 / 60 × 20)` (`0x0032BC3D`-`0x0032BC83`); its caller `0x0032BCC0` stores the result at `+0x128` (`0x0032BD2D`, `0x0032BE55`). The 1.2 test
+uses the full distance to the look point and the root the horizontal one (`0x0032BB8B`-`0x0032BBEE`).
 
 ### Pulling in
 
-`0x0032BCC0` tests the full-distance eye with the wall contact `0x00232490` and a ray (`0x00231690`); a contact,
-or a ray shorter than 0.27, widens the next sweep's polygon mask from 4 to `0xFFFF`. It then sweeps a 0.27
-sphere from the look point to the lifted eye (`0x00230C00`). With no hit the eye stands; a hit puts the eye
-at the hit point and sets `0x4040000`.
+`0x0032BCC0(camera, out)` places the eye at full distance with no lift and stores the lift `0x0032BB00` gives for it at
+`+0x128` (`0x0032BD08`-`0x0032BD2D`). It tests the eye placed with that lift and the distance scale `+0x120` with the wall
+contact `0x00232490`, which sets bit `0x20000` on a contact, and the full-distance eye with a ray (`0x00231690`); a
+contact, or a ray shorter than 0.27, widens the polygon mask of the sweep that follows from 4 to `0xFFFF`
+(`0x0032BD38`-`0x0032BDCA`).
 
-Next frame `0x0032B4D0` takes the pulled-in branch: `0x0032BEB0` sweeps again and, on a hit, shrinks the
-distance scale `+0x120` to the hit's share of the full distance, up to two retries. The scale holds for
-`60 × [0x01DFE0B4]` frames, then `0x0032DE90` eases it back toward 1. When a sweep is clear, bit
-`0x4000000` is cleared and the normal branch `0x0032B390` runs again.
+It then sweeps a 0.27 sphere from the look point to the lifted eye (`0x00230C00`). A hit puts the eye at the hit point,
+sets `0x4040000` and returns 0 (`0x0032BE1B`-`0x0032BE2D`). With no hit the eye stands where the orbit puts it: the lift
+`0x0032BB00` gives for the sweep's output block is stored at `+0x128` and the eye is placed again with it, and
+`0x0032BCC0` returns 1 (`0x0032BE31`-`0x0032BE7B`).
+
+The normal branch `0x0032B390` runs Camera Auto-Rotation (`0x0032C650`); then, unless pulled in, the probes (`0x0032D2E0`,
+`0x0032CF50`), clearing bit `0x40000` when no probe hit (`0x0032B3BE`-`0x0032B3CC`); the wall turn `0x0032C180`; the wall lift
+`0x0032C2B0`, or, when the wall turn set bit `0x1000` or `0x4000` (`[camera + 0xC0] & 0x5000`, `0x0032B3DA`), a
+halving of `+0x108` that stops at 0 below 0.00001, `x = x × 0.5` and then `x = 0` when `abs(x) < 0.00001`
+(`0x0032B3F0`-`0x0032B423`).
+
+It then adds the rates (`0x0032B9C0`), places the orbit (`0x0032DF40`) and runs `0x0032BCC0`. Its eye goes to `+0x2E0`, and
+a pulled-in eye also to `+0x2D0`, with byte `+0x80` cleared (`0x0032B42D`-`0x0032B4B6`).
+
+In the same call (see `0x0032B1C0` above) `0x0032B4D0` takes the pulled-in branch. It zeroes the wall turn `+0x104` and
+the auto-rotation `+0x10C`, sets the orbit look `+0xA0` to the look point and, when bit `0x10000000` is set and Camera
+Auto-Rotation is on, turns the heading toward the pulled-in eye `+0x2D0` (`0x003CC130`; `0x0032B4D8`-`0x0032B553`). It then
+adds the rates without the wall and auto terms (`0x0032BA70`) and places the orbit (`0x0032DF40`).
+
+`0x0032BEB0` sweeps again and, on a hit, shrinks the distance scale `+0x120` to the hit's share of the full distance, up
+to two retries; its eye goes to `+0x2E0`, and a hit eye also to `+0x2D0` (`0x0032B57D`-`0x0032B5E2`). The scale holds for
+`60 × [0x01DFE0B4]` frames, then `0x0032DE90` eases it back toward 1. When a sweep is clear, bit `0x4000000` is cleared
+(`0x0032B59E`) and the normal branch `0x0032B390` runs again, in the same call when the pulled-in branch ran first.
 
 ### Framing a target
 
@@ -223,17 +356,29 @@ distance scale `+0x120` to the hit's share of the full distance, up to two retri
 into `0x02B4E4A0` and raises `0x02B4E4A5`. `0x0032B900` then fetches the point of interest (`0x0032D250`):
 
 1. the point `0x00290A90` returns from the UI manager `[0x0209BE80]`;
-2. otherwise the actor's position (`0x003588B0`, `0x002E7F70`).
+2. otherwise the actor's position (`0x003588B0`, `0x002E7F70`); with no actor the point keeps its last value (`0x0032D289`).
+   Either way only x, y and z of `+0x350` are written (`0x0032D298`-`0x0032D2BA`).
 
 `0x0032CA70` frames it when the pitch from the point to the leader's look point is at most 80° (1.396). The
 eye goes 3.0 out from the leader on the line away from the point, turned by 0.25 rad, and passes the same
 wall, ray and sweep tests; the look point is the point of interest. When it declines, bit `0x80000` stops
-further tries until the cursor closes (`0x0032B900`).
+further tries until the cursor closes (`0x0032B900`). A sweep hit moves the framing eye `+0x300` to the hit point
+(`0x0032CC29`); the framing look `+0x310` gets the point of interest and `0x0032CA70` returns 1, or 0 when it declines
+(`0x0032CAC0`, `0x0032CC30`-`0x0032CC6D`).
+
+`0x0032B900` keeps the framed actor at `+0x360`: while `0x02B4E4A6` is set it takes `0x02B4E4A0` when the cursor's actor
+changed (`0x02B4E4A4`) or `+0x360` is 0, and otherwise keeps it; with `0x02B4E4A6` clear it stores 0
+(`0x0032B90F`-`0x0032B936`). It tries only while the cursor is open (`0x02B4E4A5`; closed, it clears bit `0x80000`,
+`0x0032B994`), bit `0x80000` is clear and `+0x360` is set; it returns what `0x0032CA70` returned, or 0, and keeps that at
+`0x022C318C` (`0x0032B93C`-`0x0032B9A5`).
 
 `0x0032AEC0` counts `+0x320` up while framing and down otherwise, capped at `15 × [0x01DFE0B4]`. `0x0032D000`
 blends the follow eye and look (`+0x2E0`, `+0x2F0`) toward the framing pair (`+0x300`, `+0x310`) by
 `(1 + cos(π t + π)) / 2`, with `t` the count over its cap, going round the shorter way (`0x0032CC90`).
-`0x0032C5E0` records which way round when framing starts or ends.
+
+`0x0032C5E0` records which way round when framing starts or ends. `0x0032D000` blends the eye linearly into `+0x330`; for
+the look it blends the heading, pitch and distance from eye to look of the two pairs (`0x003CC130`) and places the
+published look `+0x340` from the blended eye with them (`0x003CC2F0`, `0x0032D22A`).
 
 ### Publishing
 
@@ -249,6 +394,10 @@ its byte `+0x1C`. `0x00189CE0` hands the request to the render parameters (`0x00
 mode 1 sets the focus ([post-processing](post-processing.md)). `0x00259820` clears the request to mode 0
 each frame before the camera runs.
 
+`0x001825C0` does nothing when `0x00189120` returns null (`0x001825DF`). `0x001894D0` picks the copy `+0x1C ≠ 0` at a stride
+of `0x338` (`0x001894D5`-`0x001894DD`) and copies only the vector's x, y and z, and only for a non-null point
+(`0x001894F6`-`0x00189515`): the null point of `0x00259820` leaves the last vector in place.
+
 ## Layouts
 
 Follow camera (controller + `0x2B0`):
@@ -258,7 +407,7 @@ Follow camera (controller + `0x2B0`):
 | `+0x060` | `f32[4]` | look point | followed position + `0x11C` up |
 | `+0x070` | `f32` | heading | 0 to 2π |
 | `+0x07C` | `f32` | height level | 0 to 1 |
-| `+0x080` | `...` | orbit block | look `+0xA0`, heading `+0xB0`, pitch `+0xB4`, distance `+0xB8` (`0x0032DF40`) |
+| `+0x080` | `...` | orbit block | look `+0xA0`, heading `+0xB0`, pitch `+0xB4`, distance `+0xB8`, level `+0xBC`, byte `+0x80` cleared (`0x0032DF40`) |
 | `+0x0C0` | `u32` | state | probe hits `0x1`-`0x8`, `0x4000000` pulled in, `0x8000000` leader moving |
 | `+0x0F4` | `i32` |  | stick dead zone 50 |
 | `+0x0F8` | `f32` |  | heading rate |

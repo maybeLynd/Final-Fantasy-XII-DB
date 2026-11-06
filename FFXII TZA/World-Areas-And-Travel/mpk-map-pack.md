@@ -293,7 +293,7 @@ section:
   [part 2](mpk-map-pack-ym00-instances-part2.tsv).
 
 `0x003ED190` (tag 25) also sends a light direction to the shadow object through `0x001F1590`, which
-creates the 0xB08-byte shadow object at `0x01F82EA8` on first use (`0x001EF2D0`) and stores the direction
+creates the 0xB08-byte shadow object kept at `0x01F82EA8` on first use (`0x001EF2D0`) and stores the direction
 with `0x001F08A0`. The direction is (0.0001, 1, 0) in field `0x11A` (`0x003148F0`); otherwise the
 vector at `+0x10` of the tag-11 chunk (`0x0209A660`) when it is non-zero; otherwise the three angles at
 `+0x90` to `+0x98` of the tag-25 chunk, light 0 of its first weather record (`0x003ED269`), turned into a
@@ -746,11 +746,27 @@ index, each below its section's tag-33 count), bank 2 nothing, and bank 3 the po
 - bucket = `id / 100`, slot = `id % 100`;
 - a miss when the id reaches `idBound`, the bucket reaches `bucketCount` or the slot reaches the
   bucket's bound;
-- a hit is `section + recordOffset[bucket] + slot * recordSize`.
+- a hit is `section + recordOffset[bucket] + slot * recordSize`;
+- the three bounds are signed compares (`0x003E8246`, `0x003E826D`, `0x003E827E`) and the division `id / 100` truncates
+  toward zero: `b = hi32(id × 0x51EB851F) >> 5`, plus 1 when that is negative (`imul r9d`, `sar edx, 5`,
+  `shr eax, 0x1f`, `add edx, eax`), and `slot = id - 100 × b` (`0x003E8252`-`0x003E8260`, `0x003E8262`-`0x003E8265`);
+- a negative id is therefore not a miss: ids -1 to -99 give bucket 0 and a
+  negative slot, addressing records before the bucket's first, and lower ids a negative bucket, reading
+  `recordOffset` before its table.
+
+`0x003E8230` answers 0 while no table is published (`[0x02B5D080]` null, `0x003E823D`). Its comparisons are signed: the id
+is compared as a signed integer (`0x003E8244`) and `bucketCount` and the bucket's bound are read as `i16` (`0x003E8268`,
+`0x003E8276`), so a negative id is not refused. An id of -1 to -99 gives bucket 0 and a negative slot, and the answer
+lies that many records before the bucket's first record (`0x003E824D`-`0x003E8291`).
 
 `0x003E7EC0` and `0x003E8D50(mode)` walk every bucket's records in the same arithmetic and hand each to
 `0x003E8020` or `0x003E8C50` with the aux table and the weather slot (`0x00265920`); `0x003E8D50` skips
 records whose byte `+0x15` differs from a non-negative mode.
+
+`0x003E8940(section)` first runs `0x003E8D50(-1)` (`0x003E894C`), which walks the table still published at `0x02B5D080`
+(`0x003E8D5F`) and hands every record to `0x003E8C50`, as a negative mode skips no record. It then stores the new section
+(`0x003E8951`) and, when that is non-null with a version other than 1, stores 0 instead (`0x003E895D`-`0x003E8968`). The
+teardown's `0x003E8940(0)` therefore runs that walk over the outgoing table and leaves the pointer 0.
 
 `0x003E8020` keeps the record's state in its first word: bit `0x1` processed (set on first touch, when the
 low nibbles of bytes `+0x13` and `+0x14` are copied into their high nibbles and the high nibble of
@@ -812,6 +828,22 @@ index into a record at `0x022CBAF0 + recordOffset`, dispatches on the record's s
 (`& 0x7F`: 0, 1, 2, other), evaluates the volume through `0x00361810` and starts or updates the voice
 through `0x003638B0`. The emitter record itself is on the map sound list page.
 
+A null list returns `current` at once (`0x003631CA`). An entry's low 15 bits are its index; an index at or above the
+index table's `u16` bound is skipped (`0x00363244`-`0x00363251`), and the entry with bit `0x8000` set is the last one
+walked (`0x00363352`-`0x0036335C`).
+
+With `shape = record[+9] & 0x7F` (`0x0036326A`-`0x0036326E`), shapes 0 and 1 clamp the
+listener's position with `0x00361DE0` and `0x003623C0`, shape 2 with `0x00362230`, whose return value also goes to
+`0x00361810`, and any other shape uses the position as it is (`0x0036326A`-`0x003632CC`). The ellipse, the rectangle and
+the segment chain are written out as expressions in
+[Geometry primitives](../Movement-And-Pathfinding/geometry-primitives.md#the-volume-clamps).
+
+`0x00361810` gets, with `[0x022CBA8C]`, the record's `+0x38`, `+0x54` and `+0x58` for shapes 0 and 1, `+0x38`, 0 and
+4.1415930 for shape 2, and -1.0, 0 and 4.1415930 for the other shapes (`0x003632D1`-`0x00363320`).
+`0x003638B0(record, the two values 0x00361810 wrote, current, &position)` runs for every walked entry (`0x00363344`).
+`current` takes its return only when the volume `0x00361810` returned is exactly 0.0 (`0x00363349`-`0x00363350`), and the
+walk returns `current` (`0x00363367`).
+
 `0x00363B40` builds the per-weather-slot ambient list from the `SPP1` section's `u16 +0x1A` offset
 when it is non-zero, which it is in all 545 shipped lists, else from this header's `+4` list; the
 current slot (`0x00265920`) picks the entry.
@@ -824,11 +856,23 @@ at `block + u16[+4]` (`{u16 size, u16 kind}` chunks, kinds 0 to 3 and 5 to 7 sto
 slots) and remaps a byte of each of the `u16[+0xA]` 0x70-byte records through `0x01EF94E4`. The
 section's own format is on the section-014 page.
 
+The group is compared unsigned, so a negative group returns at once like one above 4 (`0x0037AA9E`-`0x0037AAA2`), and
+the block is read with no null test (`0x0037AABF`). A block with another magic stores nothing but still sets the
+group's ready byte `+0x4C` (`0x0037AAC5`, `0x0037AC69`). The remapped byte is record `+0x21`, and only its values below 6
+change (`0x0037AC16`-`0x0037AC29`); in group 0 each record's `+0x27` also gets bit `0x20` (`0x0037AC3A`-`0x0037AC62`).
+
 ### TIM2 pictures and NPS2 placements
 
 `0x003C63A0(picture)` registers picture 0 as a texture (`0x0024A480(picture, "navi_Load", 2, …, 0x200)`)
 and keeps its width and height (`u16 +0x14` and `+0x16` of the texture header) at `0x02B457F8` and
-`0x02B457FC`. `0x00379870(i)` applies placement `i`:
+`0x02B457FC`.
+
+It first releases the texture it holds at `0x02B457F0` with `0x0024A680(texture, 0)` and zeroes the pointer
+(`0x003C63A9`-`0x003C63BC`); a null picture stops there (`0x003C63CA`), which is how `0x003C63A0(0)` drops the minimap
+texture. The fourth argument of the registration is `0x0035D530()` (`0x003C63CC`-`0x003C63EC`); the new texture goes to
+`0x02B457F0` (`0x003C63F1`) and its header `[texture + 0x20]` is read with no null test (`0x003C63F8`-`0x003C640E`).
+
+`0x00379870(i)` applies placement `i`:
 
 `Nps2Placement` (`0x40` bytes, offsets from the start of the section):
 
@@ -839,13 +883,19 @@ and keeps its width and height (`u16 +0x14` and `+0x16` of the texture header) a
 | `+0x04` | `u8[12]` | pad | zero |
 | `+0x10` | `f32` | x | world position of the picture (`0x00379870` -> `0x003C6360`) |
 | `+0x14` | `f32` | y |  |
-| `+0x18` | `f32` | width | picture extent (`0x00379870` -> `0x003C6380`), read only for version "2" |
+| `+0x18` | `f32` | width | picture extent (`0x00379870` -> `0x003C6380`), read for every version byte other than "1" (`0x003798AE`) |
 | `+0x1C` | `f32` | height |  |
 | `+0x20` | `u8[32]` | pad2 | zero |
 
 `0x00379870` hands `0x003C6380` the placement's width and height cut to whole numbers (`0x003798DA`, `0x003798DE`), and
 `0x003C6380` keeps them as floats at `0x02B45808` and `0x02B4580C` (`0x003C638E`, `0x003C6396`), beside the position
 `0x02B45800` and `0x02B45804` that `0x003C6360` stores.
+
+`0x00379870` reads `0x02ADD030 + 8i` with no bound on `i` (`0x00379874`-`0x00379888`). A null placement gives the position
+(0, 0) and 256 x 256 (`0x003798C4`-`0x003798D2`). The version byte `0x31` ("1") keeps the position and uses 256 x 256
+(`0x00379891`-`0x003798A7`); any other version byte takes the width and height at `+0x18` and `+0x1C`
+(`0x003798AE`-`0x003798B3`). The position goes to `0x003C6360` (`0x003798D5`) and the size to `0x003C6380` by a tail jump
+(`0x003798F0`).
 
 ### WD and MRP, carried but unread
 
@@ -925,9 +975,14 @@ bytes.
      `0x00378120` makes when it binds the pending block pack (`0x00378175`-`0x0037817B`), and nothing
      writes `0x02ADD0E4`.
    - `0x02ADD0DC` is written only by mode 1 (`0x00378AC9`).
-2. Mode 1 drops the minimap texture (`0x003C63A0(0)`), stores the index at `0x02ADD0DC` and tears down
-   with `0x00378230(keep)`, keeping the mode-1 world object only when the same index is loaded again
-   with `0x02ADD0EA` clear.
+   - `0x0032F3D0(0)` always answers 0: it answers 0 when `[0x02B62DAB]` is 1 or `[0x02B62DA8]` is 3 (`0x00408B30`,
+     `0x00408B10`), and otherwise 1 only when `0x005C5230(4)` is non-zero, which it never is (`0x0032F3D8`-`0x0032F41F`).
+     So `0x00378230(1)` runs on every mode-0 call that gets past the first test (`0x00378AE8`-`0x00378AF5`).
+2. Mode 1 drops the minimap texture (`0x003C63A0(0)`, `0x00378AA4`), stores the index at `0x02ADD0DC` and tears down
+   with `0x00378230(releaseWorld)` (`0x00378AC9`, `0x00378ACF`). The argument is 0, keeping the mode-1 world object, only
+   when `0x0032F3D0(0)` answers non-zero, the index equals the previous `0x02ADD0DC` and `0x02ADD0EA` is clear
+   (`0x00378AA9`-`0x00378AC3`). `0x0032F3D0(0)` always answers 0, so mode 1 always passes 1 and the world object is
+   released.
 3. When no load is pending, `0x00377DC0` requests the loose effect bank `PS2Data\efb\<zone>.efb`
    (completions `0x003788F0` in mode 1 to `0x02ADD050`, `0x003789A0` in mode 0 to `0x02ADD098`, bind bits
    `0x20` and `0x40`) and `0x00378030` requests the pack: `0x0032E400(4, index)` sizes it, `0x0036A190` allocates an
@@ -936,13 +991,31 @@ bytes.
 4. Mode 1 names the scene from the pack's path (`0x00379A10(4, index)`, with five alias pairs at
    `0x01EF9490`), which `0x001805D0` receives.
 
+Every call of `0x00378A60` first zeroes `0x02EBF9C8` and `0x02ADD0F4` and sets `0x02ADD118` to 1 (`0x00378A82`-`0x00378A95`),
+so the early return of step 1 still makes those stores. Any non-zero mode takes the mode-1 steps (`0x00378A9D`). Step 3
+tests `0x0032F3D0(0)` again (`0x00378B01`); a non-zero answer, which it never gives, skips both requests through the
+return stub `0x0016D6A0` (`0x00378B0A`-`0x00378B14`). Step 4 runs either way, and `0x00377DC0` gets the argument
+step 2 passed to `0x00378230` as its last argument, 1 in mode 0 (`0x00378B16`-`0x00378B2B`).
+
 The debug verb `mapload` (0x2001, `0x0050D4D0`) requests one pack in mode 1 with field 0. Around
 the pack's allocation `0x0036C1A0` and `0x0036C110` push and pop the current arena number (`0x022D8E1C`,
 stack at `0x022D8DD0`).
 
+`0x00378030(mode, field, index, 4, index)` sizes the pack with its fifth argument (`0x0037804B`-`0x00378059`) and returns
+at once, storing nothing, when the size is 0 or less (`0x00378062`). Otherwise it pushes arena 6 (`0x0036C1D0(6, 5)`,
+`0x00378075`), sets the arena number `0x022D8E1C` to 3 (`0x0036C1A0(3)`, `0x0037807F`), allocates, labels the block `MapNo`
+(`0x0036C660`, `0x0037809B`), pops both (`0x0036C110`, `0x0036C140`, `0x003780A0`-`0x003780A5`) and submits the load.
+
+The completion argument is a 32-bit dword, the low 32 bits of the block ORed with the mode (`0x003780D0`-`0x003780DD`),
+and `0x00378BC0` takes the block back as `arg & 0xFFFFFFFC` and the mode as `arg & 3` (`0x00378BE2`-`0x00378BF0`). After
+the submit `0x00378030` stores `0x00264FD0(field) + 500` at `0x02ADD078` in either mode (`0x003780E8`-`0x003780FA`).
+
 ### The split
 
-`0x00378BC0` first calls `0x0036B970(block, slots, 32)`, which is `0x0036B980`:
+`0x00378BC0` takes the mode from the argument's low two bits (`0x00378BF0`) and the block from the argument
+masked with `0xFFFFFFFC` as a zero-extended 32-bit mask (`0x00378BE2`-`0x00378BED`), which also drops the top
+32 bits, so the walk reads the right block only while it lies below 4 GB. It first calls `0x0036B970(block, slots, 32)`,
+which is `0x0036B980`:
 
 1. A count above 32 returns 0 (`0x0036B9BB`).
 2. The header length plus the sum of every non-zero size plus 0x40 must equal the arena block's own
@@ -992,22 +1065,74 @@ bit `0x8` runs `0x00378120`, which:
    `0x002F6AB0` from a 0x240-byte allocation;
 3. binds the navigation copy (`0x02ADD008`, `0x00384160`) and copies the current environment record to
    `0x02ADD10C`-`0x02ADD114`; the verb `seteventfogcolor` (`0x0120`, `0x00351AA0`) later replaces the four bytes at
-   `0x02ADD114` with its four arguments, each clamped to 0 to 255 (`0x00379950`);
+   `0x02ADD114` with its four arguments, each clamped to 0 to 255, `v < 0 ? 0 : v > 255 ? 255 : v`
+   (`0x00351ADD`-`0x00351B18`, then `0x00379950`);
 4. stores the tag-11 chunk's vector `+0x10` at `0x02B3F560` (`0x003AFD40`) when its `+0x1C` is non-zero, else
    (0, 100.0, 0) and a fourth float from a stack dword nothing in `0x00378120` sets (`0x003781CF`-`0x0037821A`), and
    calls `0x00332130(0)`.
 
-The teardown `0x00378230(releaseWorld)` frees every stored section, unbinds the lights
+In `0x003775D0` bit `0x1` calls `0x002DEE90(-1)` twice, with `0x005C5230()` between them, then `0x003635E0` with the list
+`0x02ADD068`, the bank `0x02ADD080` and the map number `0x02ADD078`, and zeroes `0x02ADD080` (`0x0037760E`-`0x00377651`). With
+bit `0x1` clear it runs `0x003634B0(0, 0x7F)`, the map sound volume fade, instead (`0x00377659`-`0x00377660`).
+
+Bits `0x2`, `0x20000` and `0x40000` are cleared with no other action (`0x003775DA`-`0x003775E4`, `0x0037766B`-`0x00377672`,
+`0x003776C9`-`0x003776D3`). The other bits, among them `0x20`, `0x40` and the picture and placement bits `0x200` to
+`0x10000`, are left as they are. The bind ends by setting the ready word `0x02ADD0D8` to 1 (`0x003776E9`).
+
+`0x00378120` copies `0x02ADCFE0` to `0x02ADCFF8` (`0x00378132`) and zeroes `0x0209A704` and the byte `0x02ADD0E8` (`0x0037814C`,
+`0x00378156`). The mode-0 hand-over of step 2 runs only while `0x02ADCFF0` is non-null, and then also copies `0x02ADD0E4`
+to `0x02ADD0E0` and zeroes `0x02ADCFF0` (`0x0037815D`-`0x00378181`); the mode-1 call has no null test (`0x00378193`).
+
+In step 3 the environment record is the dwords `0x02EBB7F8`, `0x02EBB7FC` and `0x02EBB804` (`0x003781AB`-`0x003781C9`), and
+`0x02ADD108` is set to 0xA (`0x003781D6`). In step 4 the stored vector is the four dwords `+0x10` to `+0x1C`
+(`0x003781E6`), the chunk pointer `[0x0209A660]` is read with no null test (`0x003781E0`), and `0x00332130(0)` is a tail jump
+(`0x00378225`).
+
+The teardown `0x00378230(releaseWorld)` frees the stored sections listed below, unbinds the lights
 (`0x0037AA50(0)`) and the `ACTL` (`0x003E8940(0)`), frees the navigation copy and zeroes `0x02ADD008`
 (`0x003782BB`, `0x003782C2`). Its call `0x00384160(0)` returns at once (`0x00384164`) and leaves `0x02AEDFB0` as it
 was. It also drops the
 pictures and placements and resets the ambient colour; `0x003784A0` frees the block pack's world
 object, the loose effect bank and the two sound sections.
 
+`0x00378230` first zeroes `0x02EBA4DC` and `0x0209A704` (`0x0037824B`, `0x00378253`). With `releaseWorld` set it frees the
+pending mode-1 `YM00` `0x02ADCFE0`, zeroes it and calls `0x001808A0`, which only fetches the map-art context and returns
+(`0x00378259`-`0x00378275`). While `0x02ADCFF8` is set it runs `0x0026EAC0`, then frees that block when `releaseWorld` is set
+or moves it to `0x02ADCFE0` when it is 0, and zeroes `0x02ADCFF8` (`0x0037827A`-`0x003782A8`).
+
+It frees and zeroes the `SP1` block `0x02ADD060`, the `MRP` block `0x02ADD058` and, after `0x003E8940(0)`, the `ACTL` block
+`0x02ADD0B8`, each only when set (`0x003782D3`-`0x0037831F`). It zeroes `0x02EBF9C8` and `0x02ADD0F4`, sets `0x02ADD118` to 1 and
+drops the minimap texture with `0x003C63A0(0)` (`0x00378326`-`0x0037833E`).
+
+It sets the colour `0x0209A390` to four 1.0 (`0x00378354`) and the colour of each of the five light groups to (1.0, 1.0,
+1.0) through `0x002ECE40` (`0x00378360`-`0x00378375`); while `0x02ADD0E9` is 0 it refreshes group 0 with
+`0x003DE920(0, 0x003DE700(0), 0)` (`0x00378377`-`0x0037838E`). The four pictures and four placements are freed when set and
+all eight pointers zeroed (`0x00378393`-`0x003783DE`).
+
+The loose effect bank `0x02ADD088` is freed after `0x0026FF50` and `0x0026F420` (`0x003783E0`-`0x003783FF`) and the lights
+`0x02ADD090` after `0x0037AA50(0)` (`0x00378406`-`0x00378422`). The light handles `0x02ADD120` to `0x02ADD128` and `0x02ADD11C`
+are released through `0x003ABCA0` when non-zero and zeroed (`0x00378429`-`0x0037847E`), and the ready word `0x02ADD0D8` is
+set to 0 (`0x00378484`). It leaves `0x02ADCFF0`, `0x02ADD080`, `0x02ADD068` and `0x02ADCFE8` as they are.
+
+The navigation copy it frees through `0x02ADD008` (`0x003782AF`-`0x003782C9`) is still named by `0x02ADCFE8`, but it is
+never bound a second time. `0x00384160` adds the block's address to each offset in place (`0x0020E600`, then
+`0x0020E620`), so a second bind of one block would move its offsets twice. `0x00378120` is the only reader of
+`0x02ADCFE8` that binds (`0x00378198`-`0x003781A6`), and it runs only for bind bit `0x8` (`0x003776D9`-`0x003776E2`), which
+the same bind clears.
+
+Every pack completion ends in the bind: `0x02ADD0EC` only ever holds bits under `0x7FFFF`, so clearing those
+empties it and `0x003775D0` is called (`0x00378F20`-`0x00378F39`). A completion sets bit `0x8` only for a non-null
+slot 8 (`0x00378D5B`-`0x00378D6D` in mode 1, `0x00378DDD`-`0x00378DEF` in mode 0). No block pack carries slot 8 (the
+shipped data above), so the bind of `0x02ADCFE8` follows only a mode-1 completion, which has written `0x02ADCFE8`
+first (`0x00378CB6`, then `0x00378D4C`).
+
 The effect bank `0x003784A0` frees is the block at `0x02ADD0A0`. When the pointer is non-zero it disposes of the type-2
 effect contexts (`0x0026FF50`), frees the block (`0x003697F0`) and zeroes the pointer. The loose bank's two completions
-publish at `0x02ADD088`, not at `0x02ADD0A0`, and no store that puts a block in `0x02ADD0A0` is located yet. The split also
-zeroes the dword after the map number `0x02ADD078`:
+publish at `0x02ADD088`, not at `0x02ADD0A0`. The only two stores to `0x02ADD0A0` write 0: the clear in `0x00377CC0`
+(`0x00377D48`, `rbx` zeroed at `0x00377CCC`) and this free (`0x003784ED`). No instruction takes its address, by `rip`
+or through the image base, so the pointer is always 0 and the free branch (`0x003784DC`-`0x003784ED`) never runs.
+
+The split also zeroes the dword after the map number `0x02ADD078`:
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -1045,8 +1170,9 @@ The text is five bytes, `none` and its terminator, copied from `0x008C5928` as a
 ### The map colour and the buffer list's header
 
 The section-11 colour `0x0209A3A0`-`0x0209A3AC` is reset to (1.0, 1.0, 1.0, 1.0) by `0x0026E1D0` (`0x0026E23F`, one 16-byte
-store) and set by the map set-up `0x002F6AB0` from the three integers `0x00466140` unpacks from dword 1, each scaled by 1/128
-(`0x002F6E0D`-`0x002F6E53`), with alpha 1.0 (`0x002F6E27`). The body-colour reader `0x00231A90` returns it
+store) and set by the map set-up `0x002F6AB0` from the three integers `0x00466140` unpacks from dword 1,
+each scaled by 1/128, `n * [0x008C5B34]` with the constant 0.0078125 (`0x002F6C42`, `0x002F6E0D`-`0x002F6E53`), with
+alpha 1.0 (`0x002F6E27`). The body-colour reader `0x00231A90` returns it
 when the body's polygon index is negative (a signed test, `0x00231C52`-`0x00231C55`), and the polygon's vertex colour
 otherwise.
 

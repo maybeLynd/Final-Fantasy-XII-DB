@@ -27,7 +27,8 @@ names the area changes that do not autosave.
 Each slot is one file named `FFXII_` plus the slot number as three digits (`0x005837F0`, kind 1,
 through `0x003935C0` and `sprintf("%s%03d")`) in the save directory
 (see the [save file format page](save-file-format.md)). The same formatter names `icon.sys`
-(kind 0) and `static.ico` (kinds 2-4), the two companion files the save transaction deletes; it
+(kind 0) and `static.ico` (kinds 2-4), the two companion files the save transaction queues for deletion
+(a delete that reaches no file, see The storage queue below); it
 returns the name in the controller record at `+0x128` and null when no controller is open
 (`0x02CA99B8` = 0).
 
@@ -98,9 +99,16 @@ with its flag bit `0x1` (`+0xE0`) every row is drawn as status 5:
 | 5 | `0x872` "Unused file." |
 | any other | empty |
 
-Every row then gets a draw mode through `0x00393240` (`0x0057F965`): 0 when byte `+0xEA` is 0 and dword `+4` of the
-row's status record is non-zero, else 1 (`0x0057F947`-`0x0057F957`). It also gets its slot number (`0x00393160`), except slot 0's row in load mode, which hides the
-six number parts listed at `0x01F2CD10` and shows its own part `+0xD0`.
+A row of any status other than 2 then gets a draw mode through `0x00393240` (`0x0057F965`): 0 when byte `+0xEA` is 0
+and dword `+4` of the row's status record is non-zero, else 1 (`0x0057F947`-`0x0057F957`). A status-2 row skips the
+draw mode and `0x0057FA30`: after `0x0057FB00` it jumps straight to the slot number (`0x0057F930`). The status-5 record
+that flag bit `0x1` forces carries `+4` = 1 (`0x0057F93F`), so in save mode those rows get draw mode 0.
+
+Every row also gets its slot number (`0x00393160`), except slot 0's row in load mode, which hides the
+six number parts listed at `0x01F2CD10` and shows its own part `+0xD0`: it clears bit `0x1` of each part's dword
+`+8` (`0x0057F9B2`) and sets that bit on part `+0xD0` (`0x0057F9CC`). The number is drawn by two calls,
+`0x00393160(row, 4, 3, 9, n)` and `0x00393160(row, 1, 3, 9, n)` with `n = min(slot, 199)` (`0x0057F9D9`-`0x0057FA12`).
+`0x0057F8C0` returns 1 on both paths (`0x0057F9C0`, `0x0057FA17`).
 
 `0x0057FB00(row, list, header)` fills a status-2 row from the cached header:
 
@@ -150,17 +158,26 @@ message 1); `0x00583C00` copies them back.
 On an error it moves to state `0xD` with popup 5, "Save failed." (`0x818`).
 
 `0x00580840` is the load and format callback; it does nothing once the screen has set `+0xE0` bit `0x10`.
+It takes the screen as the low 32 bits of its third argument (`0x00580847`) and ignores kinds other than 9 and
+`0xC` (`0x00580861`, `0x005809D6`).
+
+For both kinds it first closes the popup at `+0xD8` (`0x00244F00`) and stores 0 there, sets `+0xCC` of
+`0x02CA99E0` to 4 when that widget exists, and calls `0x00581350(error != 0)` and `0x00254CB0(0)` (`0x0058087F`-`0x005808C3`,
+`0x005809DC`-`0x00580A16`). Every error path raises bit `0x4` in the gauge's flags at `[0x02CA99C8] + 0xC8` when the
+gauge exists (`0x0058091A`, `0x00580A56`).
+
 For the read (kind 9):
 
 | Result | What it does | Next state, popup |
 |---|---|---|
-| 0 | `0x005813E0` | 9, "Load complete." |
-| 8 | restores the image head (`0x00583C00`), stores `{4, 1}`, sets the slot's bit in `+0x568`, hides the pane | `0xE`, popup 10, "Unable to load. Save data is corrupted." (`0x86D`) |
+| 0 | `0x005813E0`, then `0x00247510([+0xC0], 0x10, 4)` (`0x005808D1`-`0x005808E6`) | 9, "Load complete." |
+| 8 | restores the image head (`0x00583C00`), stores `{4, 1}`, sets the slot's bit in `+0x568`, hides the pane; the bit only when the controller `0x02CA99B8` exists and the slot is below 200 (`0x0058095D`-`0x00580983`); the pane, when `+0xC8` is set, gets 0 at its `+0x100` and `0x00247870(pane, 0)` (`0x0058098A`-`0x0058099F`) | `0xE`, popup 10, "Unable to load. Save data is corrupted." (`0x86D`) |
 | any other | restores the image head | `0xD`, popup 6, "Load failed." (`0x81C`) |
 
 A failed load therefore puts back the header and the payload up to the first group bank; the rest of
-the image keeps whatever the read copied into it. For the format (kind `0xC`), success moves to state
-`0xC` and an error to `0xD` with popup 4, "Failed to format memory card (PS2)." (`0x814`).
+the image keeps whatever the read copied into it. For the format (kind `0xC`), success clears `+0xE0` bit `0x1`,
+sets bit `0x8`, runs `0x005813E0` and moves to state `0xC` (`0x00580A1F`-`0x00580A45`), and an error moves to `0xD`
+with popup 4, "Failed to format memory card (PS2)." (`0x814`).
 
 ### The save transaction
 
@@ -169,6 +186,25 @@ the record (`+0xCD` slot, `+0xD0` counter, `+0xC8` = request `+0x18` bit `0x1`, 
 keeps the image's header dword `+0x50` at `+0xD4`, sets the gauge total to `0x1DA`, or `0x17C` for
 the short variant (`0x005817D0`, target minus `0x19`), registers the completion callback `0x00581B70`
 on the storage queue, and runs step 1 (`0x00581DA0`).
+
+In more detail, message 1 sets `0x02CA99B0` to 1 (`0x00581A57`), keeps the request's first two qwords at `+0xC0`
+and `+0xE0` (`0x00581A7F`, `0x00581A8A`), and stores 0 in the index `+0xCE`, the state `+0xCC` and the progress total
+`+0xDC` (`0x00581A9B`, `0x00581ABD`, `0x00581B1B`). It calls `0x00244960([+0xC0], record)`, `0x00247870(record, 0)`,
+`0x00247930(record, 0x64)` and `0x00254CB0(1)` (`0x00581ACA`-`0x00581AEB`). The callback goes in as a kind-1 packet
+`{1, 0x00581B70, low 32 bits of the record}`, queued only when the queue `0x02CA99C0` exists (`0x00581B25`-`0x00581B47`).
+
+Message `0xF` stores 0 in `0x02CA99B0`, calls `0x00254CB0(0)` and then `0x00247510([+0xC0], 0xF, 0xA)`
+(`0x00581A24`-`0x00581A47`); message `0x12` calls `0x00247510([+0xC0], 0x12, 0xA)` (`0x00581A1D`). Both return 0; every
+other message goes to `0x005C5230` (`0x00581A18`).
+
+`0x00581DA0(record, state)` does nothing when `state` equals the current state `+0xCC` (`0x00581DD2`), and for a
+state outside 1-8 it only stores the state (`0x00581DEA`, `0x00581FF4`). Otherwise, after the step and its weight
+(the table below), it hands the new total to the gauge's `0x00581860` (`0x00581FE3`-`0x00581FEF`) and stores the state
+in `+0xCC` (`0x00581FF4`).
+
+Step 7 queues its kind-8 packet only when the queue `0x02CA99C0` exists (`0x00581F47`), named through `0x00583700`
+(`0x00581F3B`) with one descriptor (`0x00581F77`); its weight counts either way. States 5 and 6 run state 4's arm,
+the companion name of kind `+0xCE + 2` (`0x00581E9E`-`0x00581EAB`).
 
 `0x00581DA0(record, state)` performs one step and adds its weight to the progress total `+0xDC`:
 
@@ -191,11 +227,17 @@ The callback `0x00581B70(kind, error, record)` accepts only the kind the current
   (`0x00581C94`-`0x00581CA0`, after the increment at `0x00581C81`).
 - On the last completion, or on any error, it posts message `0x1D` with class `0xF`, the device
   byte from the queue's `+0x39A` and the error code to the controller, and releases the record.
+  The device byte is `0xFF` when no queue exists (`0x00581D00`). The message goes through
+  `0x00247510([+0xC0], 0x1D, message)` (`0x00581D52`) and the release is `0x00244F00(record)` (`0x00581D5A`).
+- On success it first runs `0x005813E0` (`0x00581D19`).
 - On an error it also restores the image's `+0x50` from `+0xD4` and raises bit `0x4` in the gauge's
   flags.
+- A callback of another kind, or in a state outside 1-8, returns with nothing done (`0x00581B97`, `0x00581BB6`).
 
 So a full save runs states 1, 2, 3, 4, 7, 8 and a short save 1, 2, 7, 8: the short variant still
-deletes `icon.sys`, and keeps the old slot file until step 7 overwrites it. Between step 1 and step
+queues the delete of `icon.sys`, and keeps the old slot file until step 7 overwrites it. No queued delete
+removes a file (The storage queue below), so in the full variant too the old slot file stays until step 7
+overwrites it. Between step 1 and step
 8 the file on disk carries a zeroed header; the second dword is 1 only on a finished save. The
 finished file carries the plain CRC at `+0x00`; the finaliser's complement exists only in the image
 between step 7 and step 8.
@@ -218,19 +260,66 @@ packet:
 | 8 | `0x003BB9B0(name, descriptors, count)` | command 2 with up to 5 descriptors of `0x38` bytes, runs `0x003BAEB0` |
 | 9 | `0x003BB440(name, 0, buffer, size)` | the read of `size` bytes |
 | `0xA` | `0x003BB4C0` | copies a `0xB8`-byte record to `0x02B40FF0`, command 6, runs `0x003BA990` |
-| `0xB` | `0x003BB2F0` | command 7, runs `0x003BA5F0` (its states 0, 1 and `0xC` reach `0x00862130`) |
+| `0xB` | `0x003BB2F0` | command 7, runs `0x003BA5F0` (its states 0, 1 and `0xC` reach `0x00862130`); the packet's name is not passed on (below) |
 | `0xC` | `0x003BB380` | the format command |
+
+`0x00582040(queue)` returns 0 and starts nothing when the queue is null, holds no packet (`+0x398` = 0) or its
+front packet has already started (`+0xDC` bit `0x1`) (`0x00582064`-`0x0058207D`). Otherwise it sets that bit
+(`0x005820BD`) and returns 1 for kinds 1 and 2, which finish at once, and for kind 0 and kinds above `0xC`, which
+run no handler (`0x005820B8`). Kinds 3 to `0xC` return 0, the packet still running.
 
 `0x003BB920` and `0x003BB9B0` refuse while the machine is busy (`0x02B40E10` = 1), copy the name to
 `0x02B40EC8`, set command 2 at `0x02B40E1C` and start the worker `0x003BAEB0`. The delete command runs
-`0x00862130`: `_wfopen_s(path, "rb")`, and when that succeeds `fclose` then `_wremove`.
+`0x00862130`: `_wfopen_s(path, "rb")`, and when that succeeds `fclose` then `_wremove`. `0x00862130(device, name)`
+never reads its first argument. It builds the path in a zeroed `0x200`-byte buffer as the save directory
+`0x02EAF6E0` followed by the name, with `"%s%S"` through `0x008629C0` (`0x0086214E`-`0x0086217D`), and returns 0 on
+both paths (`0x008621BC`).
+
+`0x003BB2F0` takes no name: it never reads the packet's name that `0x00582040` passes (`0x005821F1`). It stores command
+7, zeroes the retry count, the result and the index, sets the busy flag to 1 with step 0 in one 8-byte store
+(`0x003BB2F2`-`0x003BB310`) and jumps to `0x003BA5F0` with 0 (`0x003BB2FC`, `0x003BB31B`); it does not test the busy flag.
+
+`0x003BA5F0` moves from step 0 to step 1 (`0x003BA662`). In step 1 it calls `0x00862130(device 0x02B40E20, 0x02B40E3E)` and
+moves to step `0xC` (`0x003BA63E`-`0x003BA651`). In step `0xC` it ends with result 0 when the status it is given is
+0 or -4, and with result 9 otherwise (`0x003BA608`-`0x003BA633`).
+
+The name `0x003BA5F0` gives is the text at `0x02B40E3E`, 22 bytes into the command-8 name `0x02B40E28`. No instruction
+addresses `0x02B40E3E` except that read (`0x003BA645`). `0x02B40E28` is written only by `0x003BB6A0`'s copy of a kind-6
+name (`0x003BB6B9`), a slot file name of nine characters, `FFXII_` and three digits (`0x0057F2F5`, `0x003935E1`), and
+by `0x003BB4C0`'s empty name (`0x003BB50E`).
+
+The text at `0x02B40E3E` therefore stays empty, and the path names the save directory itself. `_wfopen_s` cannot
+open a directory for reading, so `0x00862130` reaches neither `fclose` nor `_wremove` (`0x008621A2`), and the three
+deletes the save transaction queues remove no file.
+
+The two write starters in detail:
+
+- Both refuse for any non-zero busy flag and then return 0 (`0x003BB924`, `0x003BB9B4`). Otherwise they set the busy
+  flag to 1 and the step `0x02B40E14` to 0 in one 8-byte store (`0x003BB996`, `0x003BBA36`), call `0x003BAEB0(0)` and
+  return 1.
+- `0x003BB920` also refuses a zero size (`0x003BB93A`). It copies its name up to the NUL (`0x003BB950`-`0x003BB95C`),
+  stores the buffer at `0x02B40EF0`, the start offset at `0x02B40EFC` and the size at `0x02B40EF8` (descriptor 0's
+  `+0x28`, `+0x34` and `+0x30`) and the count 1 with index 0 (`0x003BB981`).
+- `0x003BB920` zeroes the retry count `0x02B40EC0` and the result `0x02B40E18` (`0x003BB967`, `0x003BB96D`).
+- `0x003BB9B0` never reads its first argument. It copies `min(count, 5)` descriptors of `0x38` bytes, each with its
+  name at `+0x00`, to `0x02B40EC8` (`0x003BB9CC`-`0x003BBA21`; a count of 0 or less copies no descriptor), and
+  zeroes the retry count, the result and the index `0x02B40FE4` (`0x003BBA2F`-`0x003BBA48`).
 
 ### The worker's status poll
 
-`0x003BB790` runs each frame from `0x0032E070` while the machine is busy. It reads the status of the last
-file call, `0x02EAF8E0`, through `0x00862600(unused, a, b)`, which stores 0 at `a`, the status at `b` and
-returns 1. A status from -19 to -11, from -79 to -70 or from -59 to -40 ends the command with result 4,
-and -5 with result 7. Any other status goes to the command's handler:
+`0x003BB790` runs at the end of every pass of the request pump `0x0032E070` while `0x0036FD50()` (the byte
+`0x02AD9E00`) is non-zero (`0x0032E2B4`-`0x0032E2BD`). With the busy flag `0x02B40E10` at 0 it stores 0 in the dwords
+`0x02B40E00` and `0x02B40E04` (`0x003BB90F`, `0x003BB915`) and returns; with a busy value other than 0 or 1 it
+returns at once (`0x003BB7A5`).
+
+While the machine is busy (1) it reads the status of the last file call, `0x02EAF8E0`, through
+`0x00862600(unused, a, b)`, which stores 0 at `a`, the status at `b` and returns 1. `0x003BB790` gives a null `a`
+(`0x003BB7B0`), which `0x00862600` skips. Its tests for an answer of −1 (clear the busy dword, `0x003BB902`) and for
+any answer but 1 (return) therefore never fire (`0x003BB7B7`-`0x003BB7C3`).
+
+A status from -19 to -11, from -79 to -70 or from -59 to -40 ends the command with result 4,
+and -5 with result 7; both clear the busy flag and the step `0x02B40E14` in one 8-byte store (`0x003BB8EA`,
+`0x003BB8D2`). Any other status goes to the command's handler:
 
 | Command (`0x02B40E1C`) | Handler |
 |---|---|
@@ -243,6 +332,12 @@ and -5 with result 7. Any other status goes to the command's handler:
 | 8 | `0x003BA720` |
 | 9 | `0x003BA680`, the save-data check |
 
+The handlers are tried in the order 1, 6, 2, 0, then 3 to 5, 7, 8 and 9, and the command is read again after
+each handler (`0x003BB803`-`0x003BB8B7`). A handler that changes the command is therefore followed in the same pass
+by a later handler for the new one. Commands 3, 4 and 5 store 0 in the step and the result `0x02B40E18` in one
+8-byte store and clear the busy dword (`0x003BB876`, `0x003BB87D`), and `0x003BB790` then returns without trying 7, 8
+or 9.
+
 The result is kept at `0x02B40E18` (`0x003BB420` returns it) and the busy flag at `0x02B40E10` (`0x003BB430`).
 
 The handlers keep their own words beside the command:
@@ -252,8 +347,9 @@ The handlers keep their own words beside the command:
   at `+0x30` and a start offset at `+0x34`. A positive offset is passed to `0x008625D0` before the read or write
   (`0x003BA85B`-`0x003BA860`, `0x003BAB92`-`0x003BAB97`, `0x003BB039`-`0x003BB040`).
 - `0x003BB9B0` copies up to 5 descriptors; the worker walks them with an index against a count (`0x003BB166`-`0x003BB177`).
-- The write waits before it closes the file: it adds the frame time, at least 0.001 (`0x0017D270`, `0x003BB097`-`0x003BB0BB`),
-  until 1.0 has passed while `0x00583920` reports a save write, or 0.1 otherwise (`0x003BB0C7`-`0x003BB0E9`).
+- The write waits before it closes the file: `t = t + max(0.001, (f32)0x0017D270())` adds the frame time, at least
+  0.001, to the time t at `0x02B4112C` (`0x0017D270`, `0x003BB097`-`0x003BB0BB`), until 1.0 has passed while `0x00583920`
+  reports a save write, or 0.1 otherwise: it waits while `t < (0x00583920() ? 1.0 : 0.1)` (`0x003BB0C7`-`0x003BB0E9`).
 - The device check counts its retries and gives up, with the busy flag clear, after the fifth (`0x003BADA0`-`0x003BADBC`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
@@ -349,6 +445,12 @@ state 1. The handler `0x003BA680` lists the files (`0x008621E0(device, 0x02B4055
 moves to state `0xD`; on the next poll a positive count ends the command with result 0, anything else
 with result 9.
 
+The device is the byte `0x02B40E20` (`0x003BA6C6`). The count is the handler's argument, the status `0x02EAF8E0` that
+the poll passes and `0x008621E0` stored. Result 0 is one 8-byte store that zeroes the step and the result
+(`0x003BA69E`), followed by clearing the busy flag (`0x003BA6A5`). Result 9 (`0x003BA6B0`) is followed by an 8-byte
+store that clears the busy flag and the step (`0x003BA6BA`). In state 0 the handler only moves to state 1 and zeroes
+`0x02B40554` and the retry count `0x02B40EC0` (`0x003BA6FD`-`0x003BA70F`); in any other state it returns (`0x003BA696`).
+
 When the machine is idle the widget reads the result: 0 sets `0x01EFAC10` to 1; otherwise it runs
 command 9 once more and then sets `0x01EFAC10` to 1 or 0 from the second result. Either way it calls
 `0x0036FD70` and closes itself.
@@ -367,6 +469,12 @@ capacity):
 - Write (`0x00866AD0(cursor, src, count)`) overwrites inside the vector and appends past its end; no
   file is touched until close. Its wrapper `0x00862620(mode, src, size)` stores `ok ? size : 0` as the
   status for mode 0 and -4 otherwise.
+- `0x00866AD0` returns 0 for a null cursor or source (`0x00866AE0`-`0x00866AEC`) and 1 for any other call
+  (`0x00866B5E`). A byte whose cursor is at or past the end goes to the end: in place while the end is below the
+  capacity `0x01F44D50` (`0x00866B22`-`0x00866B40`), otherwise through `0x00865720(vector, end, src)` (`0x00866B4E`). The
+  cursor moves on by one byte either way (`0x00866B53`).
+- `0x00866A00` returns 0 at once for a null cursor or destination (`0x00866A08`-`0x00866A10`), and 1 for a count of 0
+  (`0x00866A61`).
 - Seek (`0x008625D0(mode, offset, origin)`) calls `0x00866A80` for mode 0, which moves the cursor to
   `offset` from the start (origin 0), the cursor (1) or the end (2) only when the new position is inside
   the vector; the status is set to 0 either way.
@@ -389,6 +497,25 @@ sub-commands `0x8100`-`0x8102`. `0x0057E310` copies the capture image to the wri
 CRC, the 1 and the save counter in its header, names the file for slot 0 (`0x00584610` with slot 0,
 `sprintf("%s%03d")`), hands the descriptor to `0x003BB9B0` and sets the busy flag `0x02CA99E8`.
 
+Before `0x0057E310`, message 1 stores 0 at `+0x98` with 512 and 448 at the words `+0x9C` and `+0x9E` (the dwords at
+`0x01E0C1D8` and `0x01E0C1DC`, written only for a non-null widget), clears bit `0x800` of `+0x40`, and stores 50 at
+the word `+0x44` and 0 at `+0xC8` (`0x0057E5A6`-`0x0057E5E0`). After it, it calls `0x00244960([0x0208EA50], widget)` and
+`0x00247870(widget, 1)` (`0x0057E5F5`, `0x0057E602`).
+
+The sub-commands arrive as message `0xC` (`0x0057E4F2`); after `0x0057E310` the widget stores 0 in its popup
+pointer `+0xC0` (`0x0057E522`), and other sub-commands do nothing. Message 4 returns 0, and messages other than 1,
+2, 4 and `0xC` go to `0x005C5230` (`0x0057E4FF`).
+
+`0x0057E310(widget)` copies `0xACD` blocks of `0x80` bytes and 16 more (`0x0057E347`-`0x0057E3A6`). It takes the CRC
+over the active buffer's `+0x08` for `0xE1F8` bytes (`0x0057E3A9`-`0x0057E3BF`) and raises the save counter `0x02CA99B4`
+only while it is below `0xFFFFFFFF` (`0x0057E3CE`-`0x0057E3DD`). The descriptor it hands over is the 56 bytes at widget
+`+0xD0`: the name from `0x00584610(name, 0x40, 1, 0)` at `+0x00`, the write buffer at `+0x28` and the size
+`0x56690` at `+0x30` (`0x0057E3E0`-`0x0057E42F`).
+
+It also builds `FFXII_000` with `0x003935C0` and `sprintf("%s%03d")` on its stack (`0x0057E43A`-`0x0057E472`), calls
+`0x0036FD80(1)` (`0x0057E479`), and then calls `0x003BB9B0` with that text, the descriptor and a count of 1
+(`0x0057E47E`-`0x0057E490`).
+
 On message 2, once the machine is idle (`0x003BB430()` = 0), the widget looks at the result
 `0x003BB420()`:
 
@@ -398,6 +525,10 @@ On message 2, once the machine is idle (`0x003BB430()` = 0), the widget looks at
   required."
 
 Nothing is shown while the write runs.
+
+While the machine is busy, message 2 returns 0 (`0x0057E536`). With a non-zero result and a popup already open it
+also returns 0 (`0x0057E54D`). Before it opens the popup it stores 1 in the busy flag `0x02CA99E8` (`0x0057E559`); it
+gives `0x00583FD0` the third argument 1 (`0x0057E553`) and keeps the popup at `+0xC0` (`0x0057E56E`).
 
 ### Which area changes autosave
 
@@ -476,7 +607,7 @@ The slot screen is the `0x1C8`-byte widget with procedure `0x0057FE80` that `0x0
 
 ### The storage queue object
 
-The queue is the `0x720`-byte widget at `0x02CA99C0` with procedure `0x005823B0` (The storage queue above).
+The queue is the `0x720`-byte widget kept at `0x02CA99C0` with procedure `0x005823B0` (The storage queue above).
 
 `StorageQueue` (`0x720` bytes, offsets from the start of the record):
 
@@ -501,7 +632,8 @@ The queue is the `0x720`-byte widget at `0x02CA99C0` with procedure `0x005823B0`
 
 ### The progress gauge
 
-The gauge is the `0x110`-byte widget at `0x02CA99C8` with procedure `0x00581490` that counts a save, a load or a format in tenths of the full count.
+The gauge is the `0x110`-byte widget kept at `0x02CA99C8` with procedure `0x00581490` that counts a save, a load or a
+format in tenths of the full count.
 
 `ProgressGauge` (`0x110` bytes, offsets from the start of the record):
 
@@ -530,7 +662,7 @@ The gauge is the `0x110`-byte widget at `0x02CA99C8` with procedure `0x00581490`
 
 ### The card-presence poll
 
-The poll is the `0xD0`-byte widget at `0x02CA99D8` with procedure `0x0057EB30`.
+The poll is the `0xD0`-byte widget kept at `0x02CA99D8` with procedure `0x0057EB30`.
 
 `CardPresencePoll` (`0xD0` bytes, offsets from the start of the record):
 
@@ -543,7 +675,8 @@ The poll is the `0xD0`-byte widget at `0x02CA99D8` with procedure `0x0057EB30`.
 
 ### The backdrop
 
-The backdrop is the `0xD0`-byte widget at `0x02CA99E0` with procedure `0x0057F7D0` that opens screen layer 1 behind the save and load popups.
+The backdrop is the `0xD0`-byte widget kept at `0x02CA99E0` with procedure `0x0057F7D0` that opens screen layer 1 behind
+the save and load popups.
 
 `SaveScreenBackdrop` (`0xD0` bytes, offsets from the start of the record):
 
@@ -687,7 +820,7 @@ it.
 
 - A tool that writes a slot file must also write the zeroed-header then stamped-header sequence
   only if it wants the game's own semantics; the game never reads the companion files `icon.sys`
-  and `static.ico`, it only deletes them.
+  and `static.ico`, it only queues deletes for them, which reach no file (The storage queue).
 - The autosave always targets slot 0, which the save list never offers for a manual save (save mode
   lists slots 1-199); a slot 0 file copied in from outside the game is overwritten at the next area change that autosaves.
 - A read that falls short reports 0 and leaves the destination partly overwritten; a reimplementation

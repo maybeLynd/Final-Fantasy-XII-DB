@@ -41,19 +41,33 @@ its word `+0x00` through the word banks, with the action rows whose `+0x22` is t
 The table is loaded by `0x0031C5D0`, `0x00306340`, the validator `0x00322C50` (the row count only) and the loader
 `0x00236C30`. `0x0031C5D0` reads only `+0x00`.
 
-`0x00306340(member, id)` takes a magick's action row `+0x02`, a technick's `+0x02`, or for a `0xC000` id the word
-`+0x02` of this table, and hands it to `0x003064F0`, which asks `0x003060E0` and `0x00323EC0` whether the member may use
-that action. Its two callers never pass a `0xC000` id:
+`0x00306340(member, id)` takes, by the id's top nibble, a magick's action row `+0x02` (nibble 3, table `0x02EBF0F0`),
+a technick's `+0x02` (nibble 4, `0x02EBF0E8`), or for a `0xC000` id the word
+`+0x02` of this table (`0x02EBF0C8`), and hands it to `0x003064F0` by a tail jump (`0x00306471`); any other nibble
+returns 0 without that test (`0x00306370`).
+
+`0x003064F0(member, action)` takes the member's stats record from `0x00320A40`, null for a member above 39, and
+returns 1 only when there is one, `0x003060E0(action, stats, 0)` returns 0 and `0x00323EC0` passes, and 0 otherwise
+(`0x00306502`-`0x00306550`): that is whether the member may use that action. The two callers of `0x00306340` never pass
+a `0xC000` id:
 
 1. `0x002826F0` and `0x00282A40` hand it the ids of the inventory lists 9 and 8
    ([Party marks](../Menus-And-HUD/party-marks.md)).
-2. The only function that adds an id to a category list is `0x00252E60`, reached from `0x00325F40`. It chooses the
-   list from the id's top nibble through the table at `0x01EED1B0`: nibble 3 to list 9, nibble 4 to list 8
-   (`0x00D1066E`, `0x00D1066F`), and it returns at once for a nibble above 10 (`0x00325F40`).
+2. The only function that adds an id to a category list is `0x00252E60`, reached from `0x00325F40`. `0x00325F40` chooses
+   the list from the id's top nibble through the table at `0x01EED1B0`: nibble 3 to list 9, nibble 4 to list 8
+   (`0x00D1066E`, `0x00D1066F`). After validating the id and testing for a change between 0 and non-zero, it
+   returns without a call for a nibble above 10 (`0x00325FE9`-`0x00325FEC`), so a `0xC000` id is never listed.
    - An id already in the list is not added again
    (`0x00252EE5`); after appending, it calls `0x002CD650` (`0x00252F18`), which sets the save-wide category bit
    (`[0x020927C0] + 0x3244`, `0x00252D40`) of each inventory category whose list is now non-empty
    ([Inventory screen](../Menus-And-HUD/inventory-screen.md)).
+   - `0x00252E60(list, id << 16)` takes the id from the argument's high 16 bits (`0x00252EC1`), and a list number
+     above 11 as list 0 after a call to the empty stub `0x0016D6A0` (`0x00252E7C`-`0x00252EA9`). It appends the id at
+     entry `count` and raises the count `[0x020927C0] + 0x47B8 + 4 × list` (`0x00252EFF`-`0x00252F12`).
+   - It stores nothing and does not call `0x002CD650` when a `0xFFFF` entry comes before the count
+     (`0x00252EE7`-`0x00252EEB`, `0x00252F32`) or the count has reached the list's capacity, the signed word `+2` of
+     its 8-byte record in `0x02092760` (`0x00252EF7`-`0x00252EFD`;
+     [Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md)).
 3. The other writers of the lists, `0x002530E0`, `0x002534C0`, `0x002535D0` and `0x00253240`, only move, remove or clear
    ids.
 

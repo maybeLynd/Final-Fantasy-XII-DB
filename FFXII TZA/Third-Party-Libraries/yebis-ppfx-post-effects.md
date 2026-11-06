@@ -59,7 +59,8 @@ The game's own code never calls it.
 `0x006DF480` formats the message into the `0x800`-byte buffer `0x02EA0BA0` (`__stdio_common_vsprintf`, `0x006DF4CC`) and
 passes it to the callback in `0x02EA0B88` when one is set (`0x006DF4EF`), otherwise to `OutputDebugStringA`
 (`0x006DF4FA`). The only store to `0x02EA0B88` is `0x006DF3A0`, which no instruction calls and no 8-byte pointer in the
-image names, so the messages go to the debugger output.
+image names, so the messages go to the debugger output. On both paths it returns the formatter's result, or -1
+when that result is negative (`0x006DF4D2`-`0x006DF4E0`, `0x006DF4F1`, `0x006DF500`).
 
 Each call site tests two words first:
 
@@ -107,7 +108,15 @@ No instruction or stored pointer in the image refers to these texts:
 ### Start-up
 
 1. The static initialiser `0x00167990` builds the game's allocator object `0x02E5BDE0` with the vtable
-   of `Yebis::YebisPfxMemoryAllocatorD3D11`.
+   of `Yebis::YebisPfxMemoryAllocatorD3D11`: the base constructor `0x006DA860` stores the vtable `0x00D8E1E8`
+   (`0x001679A4`) and the initialiser replaces it with `0x00D86BD8` (`0x001679B0`).
+   - It zeroes the allocation count `+0x08` and the byte count `+0x10` (`0x001679B9`, `0x001679BF`) and stores the
+     head `0x02E5BDF8` in the six tree words `+0x18` to `+0x40` (`0x001679D2`-`0x001679F5`).
+   - It sets up the node pool at `+0x48` (`0x02E5BE28`) with `0x0067FFB0(pool, 0x40, 8, 8, "PMapPair")`
+     (`0x00167A1D`), which stores the name at the pool's `+0x08`, `0x40` at `+0x18`, 8 at `+0x1C` and at `+0x20`,
+     and zero at `+0x00` and `+0x10` (`0x0067FFB8`-`0x0067FFDA`).
+   - It ends by registering the teardown `0x008B6E00` with `atexit` (`0x00808B90`), through a tail jump
+     (`0x00167A2E`).
 2. The renderer's start-up `0x006253D0` creates the integration object (`0x0065E5D0`, kept at
    `0x02D38540`) and marks it ready: `0x0065E580` (call at `0x0062549D`) sets its byte `+8` to 1.
 3. The first frame that runs the pass calls `0x006CBD20` through `0x0065E5A0`; see the next section.
@@ -115,9 +124,13 @@ No instruction or stored pointer in the image refers to these texts:
 ### The integration object
 
 `0x0065E5D0` allocates the 16-byte object once through `0x00210EC0` and builds it with `0x0065E530`, which
-clears its record pointer and ready byte, allocates a `0x78`-byte record and fills it with
-`0x006CBAA0`. That constructor clears the context and shim pointers and stores nine fixed values,
-among them 1000.0 at `+0x10`, 0.1 at `+0x20`, 10000.0 at `+0x6C` and 45.0 at `+0x70`.
+clears its record pointer and ready byte (`0x0065E549`, `0x0065E54C`), allocates a `0x78`-byte record through
+`0x00210EC0` (`0x0065E553`) and fills it with `0x006CBAA0` (`0x0065E565`). When that allocation returns null, the record
+pointer stays 0 (`0x0065E560`, `0x0065E56D`). `0x0065E530` returns the object (`0x0065E570`).
+
+That constructor clears the context and shim pointers at `+0x00` and `+0x08` (`0x006CBAAD`, `0x006CBAA9`) and stores
+nine fixed values: 1000.0 at `+0x10`, 1.0 at `+0x14`, 10.0 at `+0x18`, 1000.0 at `+0x1C`, 0.1 at `+0x20`, the
+byte 1 at `+0x24`, 1.0 at `+0x68`, 10000.0 at `+0x6C` and 45.0 at `+0x70` (`0x006CBAA2`-`0x006CBAE1`).
 
 The frame work `0x00193DA0` reaches the record only through one-line wrappers, each of which loads the
 record pointer from the object's `+0x00` and jumps to the integration function:
@@ -140,11 +153,20 @@ record pointer from the object's `+0x00` and jumps to the integration function:
 
 1. Once (flag `0x01F31F70`), it installs `0x02E5BDE0` as the library's allocator (`0x006DA8F0`) and gives
    the library the licence text `0x00D86C00` (`0x006DAA50`, which copies it to `0x02EA0B58`).
-2. It creates the context (`0x006DA990`, a `0x18`-byte `PPFX::IPfxContext_Dx11`).
-3. It builds a default parameter block (`0x006CBBC0`), fills in the size `0x780` and the flags
-   `0x20001`, and calls `0x006DAA70(context, parameters, 3, 5)`. On failure it logs "Failed to
-   initialize PPFX context." through the game's log `0x005CDAA0` and carries on.
-4. It builds a `Yebis::PfxShimD3D11` object and hands it the context.
+2. It creates the context (`0x006DA990`, a `0x18`-byte `PPFX::IPfxContext_Dx11`), through the jump
+   `0x006DEF20`, and stores it at its first argument's `+0x00` (`0x006CBD6D`, `0x006CBD72`). Only step 1 is
+   behind the flag; this and the steps below run on every call.
+3. It builds a default parameter block (`0x006CBBC0`) and fills in four fields: 16/9 (1.777778,
+   `0x008C5B38`) at `+0x20`, 0 at `+0x38`, the size `0x780` at `+0x48` and 2 at `+0x88`
+   (`0x006CBDD7`-`0x006CBDF3`).
+4. It calls `0x006DAA70(context, record, 3, 5, 0x20001, parameters)` (`0x006CBE0A`): the flags `0x20001` are
+   the fifth argument, and `record` is three 8-byte words, the second argument's `+0x110` and two zeros
+   (`0x006CBD7C`-`0x006CBD8D`). On failure (non-zero, `0x006CBE11`) it logs "Failed to initialize PPFX
+   context." through the game's log `0x005CDAA0` at level 2 and carries on.
+5. It calls `0x006DB4C0(context, 0)` and `0x006DC5C0(context, 0, 5.0)` (`0x009146E4`, `0x006CBE27`-`0x006CBE39`),
+   then builds a `Yebis::PfxShimD3D11` object and hands it the context: `0x20` bytes from `0x00210EC0`,
+   vtable `0x00D899A8`, 0 at `+0x10` and the context at `+0x18`, kept at the first argument's `+0x08`
+   (`0x006CBE3E`-`0x006CBE73`).
 
 `0x006DAA70` is `IPfxBaseContext::Initialize`. It runs the licence verifier once (flag `0x01F3BB28`) and
 keeps the result at `0x02EA0B90`; with a negative result it returns that result and creates nothing.
@@ -153,7 +175,13 @@ Otherwise it allocates the `0xD40`-byte global block (constructor `0x006FF5D0`),
 
 ### Each frame
 
-The frame routine `0x001F3300` first calls `0x00194A30`, which applies a delayed `EnableYebis` change.
+The frame routine `0x001F3300` returns at once while the byte `0x01DFE0C4` is 0 (`0x001F3317`). Otherwise, when the
+context in its second argument has its bit `0x1` bracket open (`0x00609710`, `0x001F3325`), it closes it with
+`0x00600A60(ctx, 3)` (`0x001F3339`) and opens it again with `0x005FEFD0(ctx, 0)` before it returns (`0x001F3429`).
+
+Then it calls `0x00194A30` (`0x001F3346`), which applies a delayed `EnableYebis` change: it stores
+`+0x1F0 - 1` only while `+0x1F0 > 0`, and copies `+0xA1` to `+0xA0` when that store leaves 0
+(`0x00194A41`-`0x00194A55`).
 `0x00194A30` also runs a one-time setup: while the block's byte `+0x19B` is 0, when `0x001DC510()`
 returns non-null and `0x001FDF70` returns 1 for that result, it calls `0x00193A00` and `0x00193A80` on the
 block and sets `+0x19B`.
@@ -175,16 +203,35 @@ parameter block's byte `+0xA0` is set. Only then does it build the post-process 
 whose work is `0x00193DA0`:
 
 1. With no context yet, it creates one (`0x006CBD20`). When the command's byte `+0x99` is set, it
-   calls `0x006CC2F0` on the existing context instead.
+   calls `0x006CC2F0` instead, whether a context exists or not (`0x00193DB8`-`0x00193DC2`). `0x006CC2F0`
+   releases a context through its slot `+0x08` and a shim through its slot 0 with 1, and clears each
+   pointer (`0x006CC2FF`-`0x006CC321`), so step 2 then stops the frame's work.
 2. With no context, it stops.
 3. It passes two blocks of scene values (`0x006CC1F0`, `0x006CC260`).
 4. Glare: with the Glare option on, `0x006CC1E0` hands the command's two glare values to
    `CPostEffect::SetGlareParameters` (`0x00707560`); with it off, 1.0 and 0.0.
-5. `0x006CC170` passes a scale and mode.
+5. `0x006CC170` passes a scale and mode: 2.0 and mode 2 when the command's byte `+0x98` is set
+   (`0x00193E7F`, `0x00193E87`); otherwise 1.0 with mode 1 when the byte `+0x9A` is set and mode -1 when it
+   is clear (`0x00193E8F`-`0x00193EAE`).
 6. Depth of field: with the DepthofField option on, `0x006CC090` passes the enable byte, a 35 mm lens
    (divided by 1000) and the focus values; off, it passes the effect disabled.
 7. `0x006CBEA0` passes the three render targets the command holds and runs
    `CPostEffect::ApplyEffects` (`0x0070BA00`, through `0x006DB660`).
+   - In `0x006CBEA0` a target whose byte `+0x08` is set counts as null (`0x006CBECF`, `0x006CBF3B`, `0x006CBFCC`). The
+     first target's texture and size (`+0x90`, `+0x94`) go to `0x0070D360` through `0x006DD5F0` (`0x006CBF2E`), and
+     the second's to `0x007116A0` through `0x006DD700` (`0x006CBFC7`).
+   - The third target's `+0x28`, or `+0x20` while its byte `+0x09` is set, goes to `0x0070D270` through
+     `0x006DD570` (`0x006CBFDA`-`0x006CC01A`). The shim's `+0x08` and `+0x10` both take the first target
+     (`0x006CBF37`, `0x006CC023`).
+   - After the run `0x006CBEA0` takes the context lock (`0x00615BC0`, `0x006CC03E`), calls the state reset
+     `0x0061C2B0` on the device context at `+0x110` of the object `0x00624670` returns (`0x006CC04C`-`0x006CC058`)
+     and releases the lock (`0x00616700`, `0x006CC066`). It ignores the result of `ApplyEffects`.
+
+After building the command, `0x001F3300` compares its object's `+0x18` with the screen index `0x01F82EC0`
+(`0x001F3351`). When they match and the device byte `+0xD48` of `0x00796E20()` is set, it calls
+`0x00189530(manager, 0)` on the render manager `0x00189120()` (`0x001F33A9`). Otherwise it hands `0x001EE8E0` the
+manager's targets from `0x001867C0`, `0x001867B0` and `0x00186660` (`0x001F33C1`-`0x001F3408`). Whether or not it built the
+command, it then calls `0x00188730(manager)` (`0x001F3415`).
 
 ### The licence check
 
@@ -245,7 +292,8 @@ frees the copy, and then looks up the effect's parameter handles by name (`fPara
 
 ### Bodies outside the member lists
 
-Nine large bodies in the span are in neither member list. Each is called only from inside the span
+Seven of the bodies below are in neither member list; the eighth, `0x00789D50`, is in the function list and no
+instruction calls it directly. Each of the seven is called only from inside the span
 (`0x006E9C20` from `0x007422F0`, `0x007428B0` and `0x0074CA90`; `0x0077FFE0` from `0x00780260`, `0x00780590` and
 `0x007809C0`), and all are effect-pass code:
 
@@ -269,10 +317,11 @@ Nine large bodies in the span are in neither member list. Each is called only fr
   arguments (the resource, subresource 0, type 1, and flag `0x100000`, do-not-wait, when `+0x68` is 2;
   `0x00780002`-`0x00780040`), copies four bytes of it into `+0xA0` to `+0xA3` and unmaps it (slot `+0x78`).
 - `0x00735E40` stages up to eight float vectors at `0x02EA1C50` and uploads them through slots
-  `+0xD0` and `+0x98` of the same effect at `+0x38` (`0x00789E40`, `0x00789D50`).
+  `+0xD0` and `+0x98` of the same effect at `+0x38` (`0x00789E40`, `0x00789D50`). `0x0074F740` runs it twice
+  (`0x0074FDD9`, `0x007502CD`).
 - `0x00789D50` counts the upload (`0x02EA40B8`, `0x02EA40BC`) and forwards it through slot `+0x58` of the `PPFX::CTinyEffect` at the effect's `+0xE0`
   (`0x0078FCF0`); the GPU device's own slots `+0x98` and `+0xD0` (vtable `0x00D9EA30`: `0x00724EA0`, `0x00725090`) only
-  return `0x80004001`. `0x0074F740` runs it twice (`0x0074FDD9`, `0x007502CD`).
+  return `0x80004001`.
 - `0x00741680` runs `0x00740BE0` three times (`0x00741B5C`, `0x00741D2A`, `0x00741F18`).
 - `0x007651F0` returns 0 unless its source at `+0x260` is set and three of its intensities are
   positive; otherwise it builds its pass constants from them.
@@ -297,7 +346,7 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0x048` | `void*` | keptDevice | a device Uninitialize keeps for the next Initialize (`0x007055FC`); Initialize prefers it to `+0x20` (`0x006FFA0A`-`0x006FFA14`) and clears it (`0x006FFA5B`) |
 | `+0x050` | `void*` | ptr050 | no instruction stores a pointer here: the constructor clears it (`0x006FF616`) and Uninitialize releases and clears it (`0x00705A68`-`0x00705A77`) |
 | `+0x058` | `void*` | depthFactorSource | the depth-factor source texture SetDepthFactorSource stores (`0x00711588`, `0x00711615`); the passes test it with `+0x468` before using the depth-factor path (`0x006F91A2`, `0x006F8073`) |
-| `+0x060` | `void*` | outputTarget | the output target `0x0070D340` and `0x0070D360` set (`0x0070D340`, `0x0070D3ED`); ApplyEffects requires it (`0x0070BA5C`); EndPostEffectScene_Process swaps in its own target for the alpha pass and restores it (`0x006FBB20`, `0x006FBD89`) |
+| `+0x060` | `void*` | outputTarget | the output target `0x0070D340` and `0x0070D360` set (`0x0070D340`, `0x0070D3ED`); ApplyEffects requires it while the byte `+0x147` is set (`0x0070BA53`, `0x0070BA5C`); EndPostEffectScene_Process swaps in its own target for the alpha pass and restores it (`0x006FBB20`, `0x006FBD89`) |
 | `+0x068` | `u32` | outputKind | the kind stored with `+0x60` (`0x0070D346`, `0x0070D3E8`); 1 during the alpha pass (`0x006FBB2B`); with 1 the internal process takes format code `0x15` (`0x006F9219`-`0x006F9222`) |
 | `+0x070` | `void*` | auxSource | the texture `0x0070DD30` stores (`0x0070DD30`); passed with `+0x7C`, `+0x80`, `+0x84` and `+0x88` by `0x006F35B0` (`0x006F3660`-`0x006F3674`) and EndPostEffectScene_InternalProcess (`0x006F94AA`-`0x006F94BE`); Initialize clears it (`0x00704C3F`) |
 | `+0x078` | `u8` | auxFlag | cleared by Initialize (`0x00704C3B`) and written by nothing else; UpdateParameters_Base tests it (`0x006F78A9`) |
@@ -552,6 +601,7 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0xC64` | `f32` | autoExposureSet | 1.0 once `0x0070EC90` accepts auto-exposure values (`0x0070ED70`); read by the auto-exposure pass `0x006F4390` |
 | `+0xC68` | `f32` | hdrRangeRatio | `+0x734` / `+0x738` clamped to 0.1..16 when `+0x48E` is set, else 0.1..32 (`0x006FC6D1`-`0x006FC74A`); read by `0x006F4390` (`0x006F488E`) |
 | `+0xC6C` | `i32` | glareMode | the glare mode of SetGlareParameters (`0x007075C4`); the game passes 1 (`0x006CC1E0`); read by the internal process |
+| `+0xC70` | `f32` | glareRemapFactor | SetGlareParameters' fifth argument, refused when not above 0 (`0x0070756D`); 0.001 (`0x3A83126F`) is stored when it is 0.001 or below (`0x007075AB`-`0x007075E1`); read by the internal process (`0x006FAB86`, `0x006FB015`) |
 | `+0xC74` | `i32` | glareActive | 1 from Initialize (`0x00704F0C`), and set by nothing else in the code the game reaches; two library setters no instruction or table references write it too: `0x006DB9C0` jumps to `0x00707600` with the object `0x02EA0B70`, which stores its edx argument, and `0x00707610` (behind `0x006DB9E0`) stores -1 (`0x0070761B`); `0x006FE7A0` reports glare on (1.0) while it is non-zero and the glare luminance `+0x6E4` is above 0, and with -1 only while the word `+0xC78` is not below 0 (`0x006FE7A0`-`0x006FE7DD`); read by the internal process and `0x006FE7F0` |
 | `+0xCC0` | `i32` | paramCC0 | 1 from Initialize (`0x00704F6B`), written by nothing else; read by `0x006FECC0` |
 | `+0xCD0` | `f32` | paramCD0 | 0 from Initialize (`0x007051A1`), written by nothing else; read by the internal process (`0x006FABE9`) |
@@ -737,14 +787,14 @@ One row per body, 732 rows, each inside the span between two functions of
 |---|---|---|
 | `0x006DA880` | allocate through the installed allocator, count it in `0x02EA0B3C` | |
 | `0x006DA8A0` | free, uncount | |
-| `0x006DA8F0` | install an allocator; refused while `0x02EA0B3C` is not 0 | `SetMemoryAllocator()` |
+| `0x006DA8F0` | install an allocator; refused while `0x02EA0B3C` is not 0: then it prints the ERROR line "SetMemoryAllocator(): Call when any pfx interface is not instantiated yet." while `0x01F3BA80` and `0x01F3BA90` are both non-zero and returns `0x80004005` (`0x006DA8FB`, `0x006DA91B`-`0x006DA92C`); otherwise it stores its argument at `0x01F3BA68`, or the built-in allocator `0x01F3BA78` for a null argument, and returns 0 (`0x006DA936`-`0x006DA94B`) | `SetMemoryAllocator()` |
 | `0x006DAA50` | set the licence text | |
-| `0x006DA990` | create the context | `IPfxContext::Instantiate()` |
+| `0x006DA990` | create the context: `0x18` bytes from `0x006DA880` through the installed allocator `[0x01F3BA68]`, tagged `..\src\ppfx.cpp`, line 702 and "IPfxContext::Instantiate()" (`0x006DA9C4`); a block it gets is built by `0x006E0390` (vtable `0x00D8FA10`, 1 at `+0x08`, zero at `+0x10`) and given the vtable `0x00D8F918` (`0x006DA9D9`-`0x006DA9E5`); a failed allocation returns null (`0x006DA9ED`) | `IPfxContext::Instantiate()` |
 | `0x006DAA70` | initialise: licence, global block, post-effect | `IPfxBaseContext::Initialize()` |
-| `0x006DE780` | shut down: uninitialise, clear the block's maps, clear `0x02EA0B70` | `IPfxBaseContext::~IPfxBaseContext()` |
+| `0x006DE780` | shut down: uninitialise, clear the block's maps, clear `0x02EA0B70`. It sets the vtable `0x00D8F8E8` (`0x006DE7AD`); with `[0x02EA0B70]` null it goes straight to the closing banner (`0x006DE7E9`). Otherwise it releases `0x02EA0B78` and `0x02EA0B80` through their slot `+0x08` and clears them (`0x006DE7F2`-`0x006DE81F`), runs `0x00705520(block, 0)`, `CPostEffect::Uninitialize` (`0x006DE82F`), and on a negative result prints an ERROR line with the code and its text from `0x0071B3C0` (`0x006DE859`-`0x006DE873`). Then `0x006FF840` clears the block's maps (`0x006DE8C2`), `0x006DA8A0` frees the block through `[0x01F3BA68]` (`0x006DE8CE`), `0x02EA0B70` is cleared (`0x006DE8D4`) and the object's `+0x10` is zeroed (`0x006E0370`, `0x006DE8E4`). It ends by a tail jump to `0x006E03C0`, which stores the vtable `0x00D8F9E8` (`0x006DE939`). The opening banner, the success line and the closing banner print only while `0x01F3BA80` and `0x02EA0B40` are non-zero, and the closing banner is skipped after a failed Uninitialize (`0x006DE8E9`) | `IPfxBaseContext::~IPfxBaseContext()` |
 | `0x006FF900` | build the effect chain on the GPU device | `CPostEffect::Initialize()` |
-| `0x00707560` | glare parameters | `CPostEffect::SetGlareParameters()` |
-| `0x0070BA00` | run the effects on a frame | `CPostEffect::ApplyEffects()` |
+| `0x00707560` | glare parameters: refuses a fifth argument (GlareRemapFactor) of 0 or below with the ERROR line "GlareRemapFactor must be greater than 0.0." and returns `0x80004005` (`0x0070756D`, `0x007075A1`); otherwise it stores the mode at `+0xC6C` (`0x007075C4`), the two values at `+0x6E4` and `+0x6E0` (`0x007075CB`, `0x007075D3`) and the factor at `+0xC70`, or 0.001 when `factor <= 0.001` (`0x007075AB`, `0x007075DB`, `0x007075E1`), and returns 0 (`0x007075E7`) | `CPostEffect::SetGlareParameters()` |
+| `0x0070BA00` | run the effects on a frame: refused with `0x80004005` while the byte `+0x00` is set ("Cannot be called while BeginPostEffectScene() and EndPostEffectScene()", `0x0070BA0A`, `0x0070BA43`), and while the byte `+0x147` is set with no output target at `+0x60` ("At least SetEffectSource() must be called", `0x0070BA53`-`0x0070BA92`); otherwise it calls `BeginPostEffectScene` (`0x0070B780`, `0x0070BAC2`) with 0, 0, the float `0xFF7FFFFF`, 0 and -1, then `EndPostEffectScene` (`0x0070B990`, `0x0070BACF`) with its own second argument and 0, and returns End's result when it is negative, else 0 (`0x0070BAD9`-`0x0070BADE`) | `CPostEffect::ApplyEffects()` |
 | `0x006DF480` | write a diagnostic line | |
 
 ## State
@@ -803,7 +853,8 @@ loop over the slots stops at 8.
 - `BeginTemporaryFilter` `0x006F2560` (`0x006F25EB`) and `EndPostEffectScene_PreProcess` `0x006F8740` (`0x006F8D78`, its copy to
   `CPostEffect` `+0xCE2`) read the flag, and so do `0x00721B10`, `0x00722110`, `0x007224C0`, `0x007226E0`, `0x00722800`, `0x00722900`
   and `0x00722E80`.
-- The game calls `BeginTiling` itself at `0x005FED6F` (`0x005FECF0`) and `0x0060F9A0` (`0x0060F830`).
+- `BeginTiling` is called only inside the library, by `0x007224C0` (`0x007225E9`) and `0x00722E80` (`0x0072311A`). The
+  game's calls at `0x005FED6F` (`0x005FECF0`) and `0x0060F9A0` (`0x0060F830`) go to the per-draw block builder `0x00602A40`.
 
 ### Device and resource registry
 
@@ -960,7 +1011,9 @@ t = x ^ (x << 11);  x = y;  y = z;  z = w;  w = w ^ (w >> 19) ^ t ^ (t >> 8)
 ```
 
 `0x02EA404C` counts the `SetApertureFilterLevelVisualize` branch of `0x00772410`, which prints "does not work properly"
-only when the count is 0 or a multiple of 100.
+only when the count after the add is 0 or leaves 100 when divided by 200, `c == 0 || c % 200 == 100` with
+`c = [0x02EA404C] + 1` (a signed division, `0x007732E7`-`0x00773314`), and only while `0x01F3BA80` and `0x01F3BA8C` are both
+at least 1 (unsigned compares, `0x00773316`-`0x00773326`).
 
 ### Glare definitions and colours
 

@@ -57,6 +57,9 @@ bits (`xor` then `test al, 0x3F`); the reader's two callers pass the current con
   ticket to the used tail (`0x02EBDB90`), stamps the serial, stores the resolved source plus offset at
   `+0x08`, zeroes `+0x10`, builds the context with `0x0024B3A0` into `+0x18` and parses the effect data
   (`0x003EDAD0`); it returns the id, or 0 when the free list is empty (`0x003B38E6`-`0x003B39BD`).
+- `0x003B38B0` runs under arena 8: it calls `0x0036C1D0(8, 10)` before it looks at the free list (`0x003B38E1`) and
+  `0x0036C140` on both paths (`0x003B38F2`, `0x003B39B8`). It resolves the source and adds the offset before that test
+  (`0x003B38D0`-`0x003B38DA`), and it stores the id's low 16 bits in its template's word `+0x04` (`0x003B3981`-`0x003B3989`).
 - `0x003B3B10(id, n)`, also from `0x00409FE0`, stores the effect number `n` at `+0x30`: the number parsed
   from a `chara\h%d.efx` name, −1 when the number does not parse (`0x0040A1C1`). The registration calls
   it only for a source name containing `chara\h` (`0x0040A184`, `0x0040A19C`); for any other source `+0x30`
@@ -69,9 +72,13 @@ bits (`xor` then `test al, 0x3F`); the reader's two callers pass the current con
   cancels the context (`0x0024F4D0`, `0x0024F410`), recycles every instance handle that names the ticket
   (`0x003B39E0`), moves the ticket back to the free list, keeps the id's slot and top bits and zeroes
   `+0x08`, `+0x10` and `+0x18` (`0x003B3807`-`0x003B3896`).
+- `0x003B37E0` cancels the context only when the ticket's `+0x18` is non-null (`0x003B3812`). The move
+  unlinks the ticket from the in-use list (head `0x02EBDB80`, tail `0x02EBDB90`; next `+0x20`, previous
+  `+0x28`) and pushes it at the free head `0x02EBDB88` (`0x003B382C`-`0x003B3881`).
 
-The 125 character effect files `h0000`-`h0125`, bound to 117 model names, are the files those
-`chara\h` names reach ([effect file list](effect-file-list.md)).
+The 125 character effect files `h0001`-`h0125` ([effect file list](effect-file-list.md)) are the files those
+`chara\h` names reach. `0x0019FFD0` stores them into 144 model-name slots (`0x001A003E`-`0x001A0793`): 82 `m`, 27 `n`, 9
+`g` and 26 `s` names, and 14 of the files serve more than one model.
 
 ### An instance handle's life
 
@@ -104,10 +111,16 @@ arena 8 (`0x0036C1D0(8, 10)`):
 
 Three routines free handles. `0x003B3300(id)`, from the record teardown `0x0041E860`, ends the instance
 (`0x0024EE60`), moves the slot to the free list, keeps the id's slot and top bits and clears `+0x10`.
+It does nothing for a stale id (`0x003B3319`-`0x003B331B`) and ends no instance when `+0x10` is null
+(`0x003B3321`-`0x003B3324`); the slot goes to the free head with `+0x28` = 0 (`0x003B332B`-`0x003B338D`).
+
 `0x003B39E0(ticket id)`, from `0x003B37E0`, does the same list move for every stamped handle whose `+0x18`
 names the ticket, without ending the instance (the ticket's context release ends it). `0x003B2F90`, from
 the field teardown `0x0024E910`, walks the used list, ends every instance, frees every slot and then runs
 `0x0024C460(3)` ([effect element runtime](effect-element-runtime.md#the-effect-teardown)).
+
+`0x003B2F90` frees from the used head `0x02EBDB98` until the list is empty, skips `0x0024EE60` for a slot whose `+0x10`
+is null, and reaches `0x0024C460(3)` by a tail jump, also when the list starts empty (`0x003B2F94`-`0x003B306C`).
 
 ### The per-frame flags
 
@@ -124,6 +137,12 @@ helpers that reach the instance through the handle):
 - the draw gate `0x0024D770(instance, consume)` reads them (`0x0024D87B`-`0x0024D8DE`): an instance whose
   slot has no token is not drawn unless its `+0x36A` bit `0x8` is set (then bit `0x4` is cleared instead); with
   `consume` set the token is cleared; bit `0x4` is copied into the instance's `+0x36A` bit `0x1`.
+- before that arm the gate refuses every instance whose word `+0x364` is non-zero, then sets `+0x36A` bit `0x1`
+  and picks its arm by the kind byte `+0x00` through the jump table `0x0024D920`; kind 3, the low byte of
+  `0x003B3550`'s template word `0x103`, takes this one (`0x0024D799`-`0x0024D7CB`);
+- the arm takes the slot from the low six bits of the instance's dword `+0x04` without comparing the id
+  (`0x0024D87B`-`0x0024D88C`), and passes the instance only when byte `+0x39B`, the last byte of the colour
+  `+0x398` (`0x80` from `0x003B3550`), is non-zero (`0x0024D8D7`-`0x0024D90F`).
 
 `0x003B3B50` clears `+0x368` bit `0x2` of every stamped handle's instance and `0x003B3BA0(list, n)` sets it on
 the instances whose `+0x08` is in the list: the hold a time stop puts on a character's effect
@@ -138,7 +157,8 @@ the instances whose `+0x08` is in the list: the hold a time stop puts on a chara
 - `n` = 0 returns 1 and does nothing;
 - `n` = 1 to 10: `0x003B3480(context, instance)` rebases a borrowing context against a moved source
   (the same repair as above, plus `0x0024D940` for the instance's `+0x390`), then under arena 8
-  `0x0024FE70(instance, n)` runs the signal;
+  `0x0024FE70(instance, n)` runs the signal; `0x003B3480` does nothing for a context whose byte `+0x02`
+  lacks bit `0x4` (`0x003B348A`), and with an instance it makes the instance current (`0x0024ED80`) first;
 - the signal makes the instance current; an instance without a player (`+0x130`) is started when its
   state byte `+0x370` is 2, the value the bind wrote (`0x003A74F0`, `0x0024FEC7`), or given a player when
   the state is 1 or 7 (`0x003A7460`, `0x0024FEF5`, with `+0x378` bit `0x400`), and the state becomes 1;
@@ -146,6 +166,13 @@ the instances whose `+0x08` is in the list: the hold a time stop puts on a chara
   (`0x0024FF23`, `0x00333280`; [effect element runtime](effect-element-runtime.md#timeline-tracks)); `0x003B3C00`
   returns 1 when a sub-entry was opened, 0 when the cue byte is 0, when a player-less instance is in
   a state other than 1, 2 or 7, or when the start produced no player (`0x0024FEE3`, `0x0024FF07`).
+- both starts take the instance's byte `+0x373`. For state 2 the signal sets `0x02092720` to 1 around `0x003A74F0`
+  (an `n` of 0 leaves it as it was) and to 0 after it, and sets the state to 1 whether or not a player came
+  (`0x0024FEAF`-`0x0024FED9`). For states 1 and 7 the player is `[[0x02EBEFB0]]`, and only when it is non-null does
+  the state become 1 and `+0x378` get bit `0x400` (`0x0024FEFA`-`0x0024FF15`);
+- the cue byte is read from the player's emitter record `+0x80`, and the sub-entry is
+  `0x0020E600(dword +0x2C + cue x 4)` of that record, opened with `0x00333280(player, sub-entry, n)`
+  (`0x0024FF1C`-`0x0024FF42`).
 
 So the ten states are the ten cue bytes `+0x0A + 1` to `+0x0A + 10` of the effect's record, and 0 is the
 empty request. Two callers reach it: the dirty walk below, and `0x003B8670`, which looks a record up by
@@ -157,7 +184,9 @@ The script verb `charefftrigger(n)` (`0x325`, one argument; [verb table](../Scri
 has the handler `0x003401D0`: it pops `n` (`0x00267E10`) and calls `0x002E73C0(actor, n)`.
 
 `0x002E73C0` takes the
-actor's presentation context (`+0xC0`), its record index (word `+0x00`, −1 for no record) and the render record
+actor's presentation context (`+0xC0`), its record index (word `+0x00`, −1 for no record; a negative dword
+`+0x00` also means no record, and a null actor or context returns at once, `0x002E73C3`-`0x002E73DD`) and the
+render record
 `[0x022C6F28] + index × 0x740` (the array pointer held at `0x022C6F28`, `0x002E73EA`), and for a record whose `+0x284` is non-zero tail-jumps to
 `0x003E6AA0(record, n)`, which stores `n` in bits `0xF8000000` of `+0x304` and sets `+0x294` bit `0x8000000`
 (`0x003E6AA0`-`0x003E6ABD`). Nothing plays yet.

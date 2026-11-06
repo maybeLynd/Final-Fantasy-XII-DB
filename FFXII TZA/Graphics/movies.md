@@ -71,7 +71,7 @@ The movie player is the singleton `0x01F81218` (getter `0x001B7F20`), `0xBB8` by
 |---|---|---|---|
 | `+0x000` | `i32` |  | movie id; -1 when idle |
 | `+0x004` | `i32` |  | state (0 to 6, below) |
-| `+0x008` | `u8` |  | the result of `0x0067A410`, refreshed every update |
+| `+0x008` | `u8` |  | the result of `0x0067A410`, refreshed by every update outside states 0 and 5 (`0x001B84E6`) |
 | `+0x009` | `u8` |  | a frame has been fetched (`0x0067ABF0`) |
 | `+0x00C` | `f32` |  | sound volume: the Music volume option / 100 |
 | `+0x010` | `f32` |  | fade-out time left, seconds |
@@ -126,7 +126,7 @@ Every value below was checked against the shipped `.mh` and `.webm` files; the `
 | `scene_event_id` | in movies-scenes.tsv, the event id of the scene script when the opening step is in one (28 rows); `-` for a step of a zone script (24 rows) |
 | `story_counter_set` | the story counter values the scene sets, each with its name, separated by `/` (16 rows); `-` on the other 36 rows |
 | `after_frame` | in movies-subtitle-lines.tsv, the movie frame the printing function waits for before it prints the line (`getmovieframe`) |
-| `after_seconds` | that frame divided by 29.97, to two decimal places |
+| `after_seconds` | that frame divided by 29.97, to two decimal places: `after_seconds = after_frame / 29.97`, rounded to 0.01 |
 | `printed_by` | the zone script, the function that prints the line, and the step in that function |
 | what each movie shows | one row per shipped `.webm` in [`movies-contents.tsv`](movies-contents.tsv), 40 rows: the `movie_id`, the `movie` code, the `webm` file, its length in `seconds` (the duration the file states), what it `shows`, written from twelve frames spread evenly over the movie with the seconds of the frames each phrase rests on, and the `first_line` of its subtitles from [`movies-subtitle-lines.tsv`](movies-subtitle-lines.tsv) (`-` for the 26 movies whose opening script prints no line) |
 
@@ -148,11 +148,19 @@ the magic.
 3. sets `+0xBB0` from the Voice language option (`0x002DEBB0`), which makes the decoder pick the
    non-English audio track;
 4. stores the Music volume (`0x002DDC70`, at most 100) divided by 100 at `+0x0C`;
-5. queues `0x001B7F30` as a job on the `AsyncJobManager` (`0x00199F10`, `0x0019A000`).
+5. calls `0x0067A970(+0x678, 1)` (`0x001B8341`-`0x001B835C`) and `0x0017D940(1)`, which raises busy counter 1 of
+   the prefetch manager (`0x001B8366`, `0x001D9F81`) that the close lowers with `0x0017D960(1)`;
+6. queues `0x001B7F30` as a job on the `AsyncJobManager` (`0x00199F10`, `0x0019A000`), through a tail jump
+   (`0x001B83A3`).
 
-The job `0x001B7F30` starts the reading thread (`0x0067A350`), fetches entry `2m`, and opens the WebM. A
+The job `0x001B7F30` starts the reading thread (`0x0067A350`), fetches entry `2m`, and opens the WebM. When
+the thread does not start it sets state 0 and returns without a reset (`0x001B7F6A`, `0x001B80B5`). A
 null entry resets the player (`0x001B7690`): id -1, position and duration 0, state 0. A failed open
-sets state 0 and resets.
+sets state 0 and resets (`0x001B8030`-`0x001B803A`), and so does a path with no backslash (`0x001B7FCE`).
+
+The null-entry reset is an inline copy of `0x001B7690` (`0x001B8070`-`0x001B80B3`): besides the id, position,
+duration and state it clears `+0x09`, tears the playback down (`0x0067A9B0` on `+0x678`) and calls
+`0x0017D960(1)`, `0x002E1CA0(1, 0x15)` and `0x00229AE0(1)`, as `0x001B7690` itself does (`0x001B76A7`-`0x001B76D6`).
 
 ### The picture's geometry
 
@@ -192,14 +200,18 @@ Then, by state:
 | State | Meaning | What the update does |
 |---|---|---|
 | 0 | idle | nothing more |
-| 1 | opening | once `+0x08` is set, fetches a frame (`0x0067ABF0`) into `+0x09`; when one arrives it reads the position and duration and calls `0x0067A440` |
+| 1 | opening | once `+0x08` is set and while `+0x09` is 0, fetches a frame (`0x0067ABF0`) into `+0x09`; when one arrives it reads the position and duration and calls `0x0067A440` (`0x001B8573`-`0x001B85C7`) |
 | 2 | ready | entered through `0x001B7D30` when `+0x08` and `+0x09` are both set |
 | 3 | playing | entered through `0x001B82A0` when `+0x08` is set; keeps fetching frames; moves to state 4 when the position reaches the duration minus `0xE9` |
 | 4 | ending | keeps fetching frames |
 | 5 | closing | resets the player, tears down playback and calls `0x0017D960(1)`, `0x002E1CA0(1, 0x15)`, `0x00229AE0(1)` |
-| 6 | fading out | subtracts `dt` from `+0x10`; while `+0x2D` is set, sets the sound volume to `+0x0C` x `+0x10` x 2 (`0x0067A990`); state 5 when `+0x10` drops below 0 |
+| 6 | fading out | subtracts `dt` from `+0x10`; while `+0x2D` is set, sets the sound volume to `+0x0C` x `+0x10` x 2 (`0x0067A990`); state 5 when `+0x10` drops below 0, with `+0x10` set to 0 first, so that update sets the volume to 0 when `+0x2D` is set and closes the player at once through the state-5 step (`0x001B8445`-`0x001B8489`) |
 
 In states 3 and 4, an update in which `0x0067A410` returns 0 sends the player to state 5 and resets it.
+
+`0x001B82A0` enters state 3 only when `+0x08` is set; it then calls `0x00229AE0(0)`, sets state 3, calls
+`0x0067A440` and `0x0067A970(+0x678, 0)` on the playback, and ends with a tail jump to `0x002E1C20(1, 0x15)`
+(`0x001B82A6`-`0x001B82E4`).
 
 ### Fetching a frame
 
@@ -213,7 +225,8 @@ flags, among them the state `+0x268` and the audio flag `+0x538`.
   (or `+0x80` when `+0xA0` is 0), otherwise it frees it through `+0x58`; then it closes both lock handles
   (`0x005CD700`).
 - `0x0067A970(playback, pause)` resets the playback's run event `+0x4D0` to pause it and sets it to run again
-  (`0x005CD500`, `0x005CD5E0`); `0x001B82A0` runs it with 0 (`0x001B82D2`) and `0x001B82F0` again (`0x001B835C`).
+  (`0x005CD500`, `0x005CD5E0`); `0x001B82A0` runs it with 0 (`0x001B82D2`) and `0x001B82F0` with 1 (`0x001B8341`,
+  `0x001B835C`).
 
 `0x0067ABF0(playback, y, u, v)`, from the update in states 1, 3 and 4, takes one decoded frame into
 the player's three plane textures `+0x108`, `+0x290` and `+0x418`:
@@ -241,8 +254,17 @@ fade time is left, so a running fade finishes first.
 
 `0x0035B740` polls the state through `0x00184860`: in state 1 it calls `0x001B7D30` (through `0x00184880`)
 and returns 1; it returns 2 and 3 for those states and 0 otherwise. `0x0035B7D0` calls `0x001B82A0`
-(through `0x001848C0`), which starts play only when `+0x08` is set. `0x0035B840` starts a movie and
-`0x0035B8D0` stops it.
+(through `0x001848C0`, its tail jump `0x0035B834`), which starts play only when `+0x08` is set. `0x0035B840` starts a
+movie and `0x0035B8D0` stops it.
+
+Each also switches field state ([event scenes](../Scripts-And-Script-Commands/event-scenes.md) lists every call).
+`0x0035B7D0` first switches the field systems off (`0x00358750` and its siblings, `0x002E1CD0(0, 0)`, `0x002E1C40(0, 4)`,
+`0x00368AA0(0, 0)`, `0x0035B7DB`-`0x0035B82B`).
+
+`0x0035B840` sets action row 0 bits `0x1` and `0x100000`, the arena mode 1
+and busy bit `0x10000` before it opens the movie (`0x0035B861`-`0x0035B881`). `0x0035B8D0` stops through `0x001848E0(0)`
+(`0x0035B8D6`), clears busy bit `0x10000`, switches the field systems back on (`0x0035B905`-`0x0035B980`) and sets the
+arena mode back to 0 through its tail jump to `0x0037B450(0)` (`0x0035B98B`).
 
 A script chooses its movie with `moviestandby` (`0x368`): its result step `0x00356460` passes the
 id to `0x0035B840`, the only caller of `0x001848A0`. `movieplay` (`0x36A`, `0x00356D20`) pops an argument

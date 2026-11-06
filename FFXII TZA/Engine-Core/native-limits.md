@@ -14,17 +14,17 @@ sets the limit and what the engine does with one more, and it links to the page 
 Values are exact. A count and its highest index are separate rows where both matter (`action-targets` 32 and
 `action-target-highest` 31; `item-pictures` 512 and `item-picture-highest` 511). A range row gives both ends.
 
-| Area | Rows | Limits a modder meets first |
-|---|---:|---|
-| Combat | 12 | 32 battle units, 64 spawn records and 64 spawn counters per bank, 32 targets per action, 32 noticed units per enemy, 11 combo hits, action ids up to `0x21E` and orders `0x4000`-`0x4166`, the 60,000 deposit bank, the 10,000 gil-toss sum |
-| Items, licences, party | 6 | 99 of an item, 99,999,999 gil, 3 MP bars, 12 gambit slots, licence members 0-39, 64 grants per scenario preset |
-| Menus and input | 14 | 112 pooled widgets, a 32-entry focus stack, 8 message slots, 4 prompt-bar entries, 17 rows per gambit page, row 682 of a 48-pixel list, 11 statuses per party row, `0x4000` text index words, 127-character keymap lines |
-| Scripts, maps and actors | 12 | 128 models bound per map, `s16` variables clamped to -32,767 to 32,768, a 65,536-instruction budget per script call, after which the call ends at the first instruction boundary with an empty stack, 32 binding lanes, 512 manager points, scene slots 1-3 |
-| Resources, files and saves | 18 | 15 memory arenas, 200 save slots, 1,024 outstanding load requests, 32 effect tickets, 512 item pictures, 18 sloc pictures, 31-character section names, a 1 MiB save image, the 2 GB quest buffer bound |
-| Movement | 5 | 128 route steps, 128 cells per collision sub-step, 4 placed party units, the wrapping cell occupancy byte |
-| Rendering | 8 | 6 directional lights per character, 32 light groups, 16 event lights, 64-entry effect actor tables, presentation command ids `0x00`-`0x48`, 5,000 render commands |
-| Audio | 10 | 96 sound-effect blocks, 256 single banks, 2 music tracks, 92 driver sounds, 8 driver music objects, 32 sound registrations, 2-16 streams |
-| Engine libraries | 3 | `0x800` thread-pool jobs, 512 records per draw command buffer, 10,000 to 1,000,000 memory cache entries |
+| Area | Pages in | Rows | Limits a modder meets first |
+|---|---|---:|---|
+| Actors and combat | 04, 05, 07, 08, 09, 13 | 30 | 32 battle units, 512 actor manager points, 64 spawn records and 64 spawn counters per bank, 32 targets per action, 32 noticed units per enemy, 11 combo hits, action ids up to `0x21E` and orders `0x4000`-`0x4166`, the 60,000 deposit bank, the 10,000 gil-toss sum |
+| Items, licences, party | 11, 12 | 10 | 99 of an item, 99,999,999 gil, 3 MP bars, 12 gambit slots, licence members 0-39, 64 grants per scenario preset |
+| Menus and input | 15, 16 | 44 | 112 pooled widgets, a 32-entry focus stack, 8 message slots, 17 rows per gambit page, row 682 of a 48-pixel list, 11 statuses per party row, `0x4000` text index words, 127-character keymap lines |
+| Scripts, maps and engine core | 00, 01, 03 | 24 | 128 models bound per map, `s16` variables clamped to -32,767 to 32,768 (`v < -32767 ? -32767 : v > 32768 ? 32768 : v`, then the low word stored, `0x0026D530`), a 65,536-instruction budget per script call, after which the call ends at the first instruction boundary with an empty stack, 32 binding lanes, scene slots 1-3 |
+| Resources, files and saves | 02, 19 | 38 | 15 memory arenas, 200 save slots, 1,024 outstanding load requests, 32 effect tickets, 512 item pictures, 18 sloc pictures, 4 prompt-bar entries, 31-character section names, a 1 MiB save image, the 2 GB quest buffer bound |
+| Movement | 06 | 10 | 128 route steps, 128 cells per collision sub-step, 4 placed party units, the wrapping cell occupancy byte |
+| Rendering | 17 | 43 | 6 directional lights per character, 32 light groups, 16 event lights, 64-entry effect actor tables, presentation command ids `0x00`-`0x48`, 5,000 render commands reserved before the list first doubles (`n ? 2 * n : 1` entries for `n` held, `0x001AB5F0`, `0x001AB5FD`) |
+| Audio | 18 | 16 | 96 sound-effect blocks, 256 single banks, 2 music tracks, 92 driver sounds, 8 driver music objects, 32 sound registrations, 2-16 streams |
+| Engine libraries | 22, 23, 24 | 14 | `0x800` thread-pool jobs, 512 records per draw command buffer, 10,000 to 1,000,000 memory cache entries |
 
 The engine handles one past the limit in five ways, and the `past_it` column says which:
 
@@ -42,7 +42,7 @@ The engine handles one past the limit in five ways, and the `past_it` column say
 | `limit` | the row's name |
 | `bounds` | what the limit bounds |
 | `value` | the exact value; a range gives both ends |
-| `kind` | `count`, `highest index`, `range`, `value` (a cap on a stored value), `sum`, `bytes`, `characters`, `texels` or `address` |
+| `kind` | `count`, `highest index`, `range`, `value` (a cap on a stored value), `sum`, `bytes`, `characters` or `address` |
 | `set_by` | the instruction, function, table or field that fixes the limit |
 | `past_it` | what the engine does with one more, or with a value past the end |
 | `page` | the page that explains the mechanism, by its path in the database |

@@ -33,25 +33,32 @@ An action whose row has bit `0x2000` of the word `+0x2C` set passes (`0x00323F4D
 
 ### The test
 
-Every member record carries 46 bytes of owned-square bits at `+0x194`, bit *n* for node *n*. `0x00323BB0(record,
+Every member record carries 46 bytes of owned-square bits at `+0x194`, bit value `1 << (n % 8)` of byte `n / 8`
+for node *n*. `0x00323BB0(record,
 kind, id)` builds the requirement mask for the id and passes when any byte of it shares a bit with the owned bits
 (`0x00323C10`-`0x00323C42`). Actions use kind 1 (`0x00323FE3`-`0x00323FFD`) and equipment kind 0 (`0x00323CE5`-`0x00323CF7`).
+`0x00323BB0` answers 1 or 0 (`0x00323C42`, `0x00323C2D`), and builds its mask with `0x002F8FA0(kind, id, mask)`
+(`0x00323BFC`).
 
 `0x002F8FA0(kind, id, mask)` builds the mask by walking every node of the license node table `0x02EBF038`
 ([License Board](license-board.md)): a node whose category gives the asked kind and whose list of eight ids holds
-the id sets its bit (`0x002F8FE5`-`0x002F908D`). So the same ability on several squares sets several bits, and owning
-any one of them licenses it.
+the id sets its bit, bit value `1 << (n % 8)` of mask byte `n / 8` for node `n` (`0x002F8FE5`-`0x002F908D`). So the
+same ability on several squares sets several bits, and owning any one of them licenses it.
+
+The kind is the node's category byte `+0x05` through `0x00323890`, and the ids are the eight words from `+0x08`
+(`0x002F9045`-`0x002F9070`). The builder returns the number of nodes that hold the id (`0x002F9089`, `0x002F90A8`). With
+no node table bound at `0x02EBF038` it clears 0 bytes, walks no node and returns 0 (`0x002F8FCB`-`0x002F8FFF`).
 
 The two sides size the mask differently:
 
 - `0x00323BB0` holds the mask in 46 bytes on its stack, zeroed at `0x00323BD4`-`0x00323BF5`, and compares 46 bytes
   (`0x00323C27`: `cmp rax, 0x2E`).
 - `0x002F8FA0` clears `(count + 7) / 8` bytes, `count` being the node table's row count `[0x02EBF038] + 4`, before
-  setting bits (`0x002F8FD3`-`0x002F8FE0`), and sets bit n for any node n below `count`.
+  setting bits (`0x002F8FD3`-`0x002F8FE0`), and sets the bit of any node below `count`.
 
 The shipped node table has 361 rows in every language's `battle_pack.bin`, so the builder clears exactly 46 bytes
-and sets bits 0-360; nothing is written past the 46 bytes, and bits 361-367 stay 0. `0x00323BB0` is the builder's only
-caller.
+and sets only the bits of nodes 0-360; nothing is written past the 46 bytes, and the bits of nodes 361-367 stay 0.
+`0x00323BB0` is the builder's only caller.
 
 `0x00323890` turns a node's category byte into its kind, through `0x003241D0` and two jump tables
 (`0x00323894`-`0x003238DB`, `0x003241D0`-`0x00324233`):
@@ -62,7 +69,7 @@ caller.
 | 9-14, 19, 20 | `1` | actions: magicks, technicks, Quickenings, Espers |
 | 15-18 | `2` | augments ([Augments](../Damage-And-Battle-Formulas/augments.md)) |
 | 30 | `3` | Second Board |
-| any other | no kind | - |
+| any other | `-1`, no kind (`0x003238DB`) | - |
 
 ### Quickenings
 
@@ -88,7 +95,9 @@ non-party record and an invalid node (`0x00323930`-`0x00323953`). With `set`:
 6. The stats are rebuilt with `0x0030FED0(record, 0x97)` (`0x00323B7F`-`0x00323B87`).
 
 Setting or clearing node 229, Brawler, also refreshes the unit's held model and cancels its current action
-(`0x00323A30`-`0x00323A48`, `0x00324470`).
+(`0x00323A30`-`0x00323A48`, `0x00324470`). `0x00324470` removes the unit with `0x00300E40(unit, 0)` when it has no stats
+record `+0x698`, or when its status words `+0x3C | +0x64` hold any bit of `0x80000003` outside a town (`0x00313F60`
+answers 0), unless unit flag bit `0x2` is set (`0x00324495`-`0x003244C1`).
 
 ### Why a square is refused
 
@@ -130,14 +139,30 @@ Script verb `0x5D6` `resetJobs(member)` calls `0x00328BD0` for main characters 0
 
 1. It removes all the member's equipment (`0x0031A260`).
 2. `0x00328990` walks each of the member's two boards, the bytes `+0x1C3` and `+0x1C4`. It clears every owned square
-   the member did not start with and adds its cost back to the LP, clamped to 0-99,999 (`0x00328990`, `0x003289F0`-`0x00328AF2`).
-3. It then refreshes the menu state (`0x00559760`), and when the member is the current summoner it dismisses the Esper
-   (`0x003137F0`, `0x003138D0(1)`, `0x00313550(0)`) (`0x00328C3A`-`0x00328C59`).
+   the member did not start with and adds its cost back to the LP, clamped to 0-99,999 (`0x00328990`,
+   `0x003289F0`-`0x00328AF2`).
+   - `0x00328990(record, row, board)` takes the board byte sign-extended (`0x00328C16`, `0x00328C28`) and returns -1 with
+     nothing changed for a board above 11 as an unsigned number, so an empty board `0xFF` is not walked
+     (`0x003289A4`-`0x003289A8`, `0x00328B07`); otherwise it returns 0.
+   - Each square's node goes through the class-`0x20` query `0x0031C5D0`, and a node the query refuses (a `0xFFFF`
+     cell among them) is passed over (`0x00328A24`-`0x00328A3C`). The square counts as owned when bit value
+     `1 << (node & 7)` of the record's byte `+0x194 + node / 8` is set (`0x00328A3E`-`0x00328A59`).
+   - The member started with it when bit value `1 << row` of the node's startMask `+0x07` is set
+     (`0x00328A5B`-`0x00328A68`); the cost added back is the node's lpCost `+0x04` (`0x00328A7E`-`0x00328A83`). A negative
+     sum stores 0 in the LP `+0x190` (`0x00328AE4`).
+3. It then calls `0x00559760(member)` (`0x00328C3C`), and when the member is the current summoner it dismisses the Esper
+   (`0x003137F0`, `0x003138D0(1)`, `0x00313550(0)`) (`0x00328C3A`-`0x00328C59`):
+   - `0x00559760` finds the member's record through `0x00282E10`, which compares the word `+0x60` of the nine record
+     pointers at `[0x0209AC30] + 0xAC8`, skips null pointers and reads `[0x0209AC30]` without a null test (a null
+     `[0x0209AC30]` faults at `0x00282E24`). With no match `0x00559760` returns and writes nothing (`0x00559771`).
+   - With a match it stores 0 in the bank-8 entries `w + 0x4D` and `3 × w + 0x53` to `3 × w + 0x55`, w being the
+     matched word `+0x60` (`0x002527B0(8, index, 0)`, `0x00559786`, `0x005597A3`): the dwords at `[0x020927C0] + 0x90`. The
+     last three are the member's Quickening order the [license board](../Menus-And-HUD/license-board-screen.md) shows.
 4. It rebuilds the stats with `0x0030FED0(record, 0x97)` (`0x00328C5E`-`0x00328C66`), reloads its gambit preset
    and banks (`0x00327CB0`, `0x00326030`, `0x00327DE0`), clears the record's bytes `+0x68`-`+0x87`, the MP bars and the
-   Mist charges, and sets both boards and the byte `+0x1C5` back to empty (`0x00328CA3`-`0x00328D5D`). For Vaan and
-   Penelo, rows 0 and 5, it also raises the gambit block's slot count `+0xBA` by one, at most 12
-   (`0x00328CB4`-`0x00328CF5`).
+   Mist charges, and sets both boards and the byte `+0x1C5` back to empty (`0x00328CA3`-`0x00328D5D`).
+5. For Vaan and Penelo, rows 0 and 5, it also raises the gambit block's slot count `+0xBA` by one, at most 12
+   (`0x00328CB4`-`0x00328CF5`), when the record's kind byte `+5` is 0 (`0x00328CDC`).
 
 ## Layouts
 
@@ -148,7 +173,7 @@ Script verb `0x5D6` `resetJobs(member)` calls `0x00328BD0` for main characters 0
 | `+0x04` | `u8` | lpCost | LP the square costs (`0x003239C3`, `0x0031E093`) |
 | `+0x05` | `u8` | category | 1-30; gives the requirement kind (`0x002F9049` through `0x00323890`) |
 | `+0x06` | `u8` | rule | 0 ordinary, 2 Quickening, 3 Esper; picks the refusal rule (`0x00323DF0`) |
-| `+0x07` | `u8` | startMask | bit n: party row n starts owning it (`0x0023AE68`, `0x0031E0E9`) |
+| `+0x07` | `u8` | startMask | bit value `1 << n`: party row n starts owning it (`0x0023AE68`, `0x0031E0E9`) |
 | `+0x08` | `u16[8]` | ids | the ids the square grants, at most four on a shipped node, `0xFFFF` for no id (`0x002F9060`) |
 
 ## Shipped data

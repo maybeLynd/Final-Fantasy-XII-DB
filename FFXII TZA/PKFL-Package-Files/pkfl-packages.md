@@ -207,6 +207,21 @@ read queue rounds the offset down to a `0x800` boundary
 ([file requests](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md)). A size of 0
 loads nothing.
 
+`0x003E9EF0(record, table)` takes the offset from `0x0032F320` with the manager slot in record byte `+5`, the slot in
+byte `+0` and `table` (`0x003E9EF0`-`0x003E9F0A`). For table 0 (`.vpcjp`) or 1 (`.vpc`) it files the kind word `+0xC`
+or `+0xE`, the index word `+0x10`, the buffer `+0x20` or `+0x28` and the size `+0x14` or `+0x18`
+(`0x003E9F0F`-`0x003E9F59`), with completion `0x003E9D30` for table 0 and `0x003E9E10` otherwise (`0x003E9F1F`-`0x003E9F31`).
+It then sets the record's byte `+4` to 2 unless it is 5 (`0x003E9F5E`-`0x003E9F64`).
+
+`0x003DF440(g, id, k)` pushes arena 5 after taking the size (`0x003DF45A`-`0x003DF468`) and pops it on every path
+(`0x003DF541`). For a size above 0 it takes the offset (`0x003DF483`), turns `g` and `id` into the kind and index with
+`0x0032F170` (`0x003DF49A`), and allocates with `0x0036A100`, or, when that gives null, with `0x0036A190` in arena 6
+(`0x003DF4A9`-`0x003DF4C3`).
+
+It stores the kind, `index + 2`, the block, `id`, the size and the offset in the slot
+record (`0x003DF4E3`-`0x003DF50F`). While `0x00267310(g)` is non-zero it parks the record in state 1 and reads nothing
+(`0x003DF513`-`0x003DF526`); otherwise `0x003DF550` files the read (`0x003DF52F`).
+
 ### The script steps that reach a slot
 
 The manager slot is always the running script's, so a script reads only its own packages.
@@ -215,17 +230,30 @@ The manager slot is always the running script's, so a script reads only its own 
 |---|---|---:|
 | `motionread` `0x0A2` | `0x003492A0` -> `0x003DDA20` arms record `0x02B581A0 + (16g + k) x 0x1C` and sets `1 << k` in `0x02B58A60[g]` (`0x003DDA5D`); the sweep `0x003DD4C0` reads the size and offset | 1,511 |
 | `eventsoundread` `0x151` | `0x00344660` -> `0x003DF3E0` -> `0x003DEC90`, then `0x003DF440` reads the size and offset | 459 |
-| `voiceread` `0x085`, `voiceread_20a` `0x20A` | `0x0034EE40`, `0x0034E8B0` -> `0x003EA0D0` frees slot `k` (`0x003EA0F0`) and loads it from both tables (`0x003EA139`, `0x003EA14B`) | 389, 171 |
+| `voiceread` `0x085`, `voiceread_20a` `0x20A` | `0x0034EE40`, `0x0034E8B0` -> `0x003EA0D0` frees slot `k` (`0x003EA0F0`) and loads it from both tables (`0x003EA139`, `0x003EA14B`); a slot the free leaves in state 2, 4 or 5 is not loaded and the call answers 0 (`0x003EA10B`, `0x003EA11B`). Each table load `0x003E9F80` reads the size with `0x0032F360` (`0x003EA009`) and, while `0x00267310(manager)` is non-zero, parks the slot in state 1 without a read (`0x003EA095`-`0x003EA0A1`); otherwise `0x003E9EF0` reads the offset and files the read (`0x003EA0AD`) | 389, 171 |
 
 A `.mot` slot plays through a motion cue word: the top byte less 0x10 is the slot and the low 24 bits the entry.
 `motionplay` `0x0A5` (`0x0034B2C0`) pushes a blend of 0.0 and runs `motionplay_bb` `0x0BB` (`0x0034AB50`), which splits
 the word (`0x0034AB96`-`0x0034AB9C`) and refuses a slot above 15 (`0x0034ABAB`). `puppetmotionplay` `0x41E` and `0x41F` do
 the same in `0x00347B00` (`0x00347B57`-`0x00347B7D`).
 
+Both also refuse while `0x00267310` gives a non-zero byte for the calling actor's manager slot, its byte `+0x15`
+(`0x0034AB8E`-`0x0034ABA9`, `0x00347B70`-`0x00347B7B`), and take `g` from the running script's record `+0x28`
+(`0x0034ABB0`, `0x00347B82`). `0x0034AB50` pops its last argument as an integer and converts it to a float
+(`0x0034AB72`-`0x0034AB7B`), plays its own actor and calls `0x003DD8D0` (`0x0034ABC2`). `0x00347B00` pops a float
+(`0x00267DB0`, `0x00347B30`), plays the actor `0x003EB720` gives for a popped id, does nothing when that is null
+(`0x00347B63`-`0x00347B6E`), and calls `0x003DD980` (`0x00347B95`).
+
 `0x003DD8D0` and `0x003DD980` play only a record in state 4 (`0x003DD905`, `0x003DD9B5`), as motion
 `(16g + k) << 16 | entry` (`0x003DD949`-`0x003DD954`). `0x00427320` takes the block back from `0x003DD740` with `g` from
 bits `0xF00000` and `k` from bits `0xF0000` (`0x00427518`-`0x00427528`). In every shipped cue word the entry is below the
 slot's `@FMC` count.
+
+`0x003DD8D0` hands `0x002E9560(actor)` to `0x002E4F40` (`0x003DD90E`-`0x003DD919`), sets bit `0x1` of actor byte `+0xD`
+and stores `k` at `+0xF5` (`0x003DD91E`-`0x003DD925`), calls `0x002E8170(actor, [r + 0xD] >> 7)` with `r` the record
+`0x00263F40(actor)` returns (`0x003DD92C`-`0x003DD93B`), and posts with `0x002EB080(actor, motion, 0, float)` (`0x003DD958`).
+`0x003DD980` hands `0x002E95B0(actor)` to `0x002E4FA0` (`0x003DD9BE`-`0x003DD9C9`), calls `0x002E81D0(actor, 0)` (`0x003DD9D3`)
+and posts with `0x002EB0D0(0, actor, motion, 0, float)` (`0x003DD9F9`).
 
 Each folder's scripts make 15,954 motion cue calls (`motionplay` 7,554, `motionplay_bb` 7,881, `puppetmotionplay`
 514 and `puppetmotionplay_41f` 5), 4,943 voice cue calls and 2,877 sound
@@ -267,9 +295,11 @@ verbs with the same arguments. The four directory tables are reached only by the
 - Build a package as the shipped ones are: `PKFL`, the slot count, the pairs, zeros to `0x800`, each payload at the
   next `0x800` boundary and zeros to the boundary after the last. All 10,314 shipped packages rebuild byte for byte
   this way.
-- A `.snd` slot 0-7 keeps the two-part container: count, part sizes, the header rounded up to 0x40, each non-empty
-  part behind 0x40 zero bytes. `0x0036B970` refuses one whose header and parts do not add up to the block size
-  (`0x0036BA16`-`0x0036BA45`).
+- A `.snd` slot 0-7 keeps the two-part container: count, part sizes, the header of `(count + 1) × 4` bytes
+  rounded up to 0x40, `h = (4 × (count + 1) + 0x3F) & ~0x3F`, each non-empty part behind 0x40 zero bytes.
+  `0x0036B970` refuses one whose header and parts do not add up to the block size: it needs
+  `h + Σ (size ? size + 0x40 : 0) == [block + 0x18]`, the block 0x40 bytes before the container
+  (`0x0036BA16`-`0x0036BA45`, `0x0036BA48`).
 - A `VSP1` set rebuilds byte for byte from its banks with the cue table padded to 0x40, each bank at the next 0x10
   boundary, and a cue without a bank at the next offset with size 0.
 - A cue's bank offset and size must each fit 24 bits and the bank must start with `sabf`: `0x003E9C10` reads

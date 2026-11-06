@@ -105,16 +105,17 @@ What each record field does to a unit is on [Stats](../Damage-And-Battle-Formula
 
 | Bits of `+0x07` | Meaning | Readers |
 |---|---|---|
-| 7-5 | the slot: 0 main hand, 1 off hand (shields and ammunition), 2 head, 3 body, 4 accessory | the slot test `0x00317930` (`0x00317A18`), Optimise `0x002F7A10` (`0x002F7A87`), the shop classifier `0x002FABD0` (`0x002FAC9D`) |
-| 4 | needs no license | the license test skips the item (`0x00323CDF`) |
-| 2 | reaches flying targets | `0x00390CF6` for weapon actions, formula slot 12 (`0x0038895B`) |
-| 1 | cannot be sold | copied to the query record `+0x54` bit `0x1` (`0x0031CA3C`-`0x0031CA47`), which the shop turns into price bit `0x80000000` (`0x0057DED0`) |
-| 0, 3 | not set on any row | - |
+| mask `0xE0` | the slot, `(+0x07 & 0xE0) >> 5`: 0 main hand, 1 off hand (shields and ammunition), 2 head, 3 body, 4 accessory | the slot test `0x00317930` (`0x00317A18`), Optimise `0x002F7A10` (`0x002F7A87`), the shop classifier `0x002FABD0` (`0x002FAC9D`) |
+| `0x10` | needs no license | the license test skips the item (`0x00323CDF`) |
+| `0x4` | reaches flying targets | `0x00390CF6` for weapon actions, formula slot 12 (`0x0038895B`) |
+| `0x2` | cannot be sold | copied to the query record `+0x54` bit `0x1` (`0x0031CA3C`-`0x0031CA47`), which the shop turns into price bit `0x80000000` (`0x0057DED0`) |
+| `0x1`, `0x8` | not set on any row | - |
 
 ### The class byte and the group
 
 `0x0031E9F0` maps the class `+0x09` through the 27 bytes at `0x0031EA74` and the jump table at `0x0031EA50` to a
-category 1-9, and `0x0031E9A0` folds the category into the group (`0x0031E9A0`-`0x0031E9DD`). The group decides what
+category 1-9, or 0 for a class above 26 (`0x0031EA4A`), and `0x0031E9A0` folds the category into the group, 0 for
+category 0 (`0x0031E9A0`-`0x0031E9DD`). The group decides what
 `+0x18`, `+0x19` and `+0x1A` mean in the stats rebuild `0x002FEF30` (`0x002FF451`), the augment rebuild `0x0030FED0`
 (`0x003100E5`) and the query filler `0x0031C5D0` (`0x0031CA54`):
 
@@ -139,7 +140,9 @@ off hand is empty, so they fall back to the weapon's own fields.
 
 ### Pairing
 
-The off-hand item's class must equal the main-hand item's `+0x11` (`0x002F7EC0` at `0x002F7F70`-`0x002F7F76`). The
+The off-hand item's class must equal the main-hand item's `+0x11` (`0x002F7EC0` at `0x002F7F70`-`0x002F7F76`).
+`0x002F7EC0(off, main)` answers 1 at once when either word is empty, `0xFFFF` (`0x002F7ED5`-`0x002F7EED`), and 0 with no
+equipment table bound (`0x002F7EEF`-`0x002F7EF9`, `0x002F7F87`). The
 shipped rows use 18, a shield, on one-handed weapons, 23-26 on the four ammunition weapons, and -1 elsewhere, so
 two-handed weapons take nothing in the off hand.
 

@@ -32,9 +32,12 @@ usual, and LP, gil, licences and equipment work as in a normal game.
 ### What New Game- changes
 
 Kills give no EXP at all, and the reward line shows 0 EXP. LP and gil are still paid.
+
 The party starts at the levels a normal game gives. A member who joins later still gets the usual join catch-up
-level: the average of the two highest-level main characters plus the member's own bonus (for example Basch +2;
-see [Party members](../Party/party-members.md)).
+level: the average of the two highest-level main characters (`sum / n`) plus the member's own bonus
+(`level = max(sum / n, 1) + row[+0x2E]`, through `0x0030C470`), for the `n` (at most 2) other active main characters
+found and `sum` their levels `+0x1C2`, with `sum / n` taken as 0 when `n == 0` (`0x003175C5`-`0x0031760F` in `0x00317480`;
+for example Basch +2; see [Party members](../Party/party-members.md)).
 
 In the save list, a New Game- file's row shows a red "New Game−" badge at its top left, above the slot number. A
 New Game+ file gets no badge: the file records the mode, but nothing in the game reads it back for display.
@@ -123,8 +126,9 @@ The join catch-up `0x00317480` reads no mode bit, so a joiner's level is set as 
 
 - The block is part of the save image (`0x02EBF190` = `0x002EF640() + 0x4E68C`, `0x00238A84`-`0x00238A92`). Its flag dword
   is image `+0x4E690`. The save capture `0x00229B40` also copies the block head to image `+0x2200` (`0x00229B7B`-`0x00229BE2`).
-- The save finaliser `0x00583D60` copies the bits into the header byte `+0x57`: `0x1` from `0x00236760`, `0x4` from
-  `0x00236780`, `0x2` from `0x00236740` (`0x00583F5A`-`0x00583F7D`).
+- The save finaliser `0x00583D60` sets the bits in the header byte `+0x57` with `or`: `0x1` from `0x00236760`, `0x4`
+  from `0x00236780`, `0x2` from `0x00236740` (`0x00583F5A`-`0x00583F7D`). It never clears one of them, so a bit already
+  set in the destination's `+0x57` is left set.
 - The save list's row filler `0x0057FB00` hides the row's part `+0xD8` (`0x0057FBA1`-`0x0057FBB3`) and shows it again
   when header bit `0x4` is set (`0x0057FBFC`-`0x0057FC0E`).
 - The row is record 8 of `save_load.mrp`, and part `+0xD8` is its item 27: a 198 × 30 sprite at row x 36, y 0, cut
@@ -132,11 +136,19 @@ The join catch-up `0x00317480` reads no mode bit, so a joiner's level is set as 
   (弱くてニューゲーム in the Japanese files).
 - No instruction in the executable tests header bit `0x2`: every test of byte `+0x57` reads bit `0x1` (`0x0057FB2A`,
   `0x0057FC12`, `0x00580C9E`, `0x00584241`, `0x00584410`) or bit `0x4` (`0x0057FBFC`).
-- On load, `0x00394130` runs `0x00233C10` (`0x00394222`). That function touches only bit `0x1000` of the flag dword
+- On load, `0x00394130` runs `0x00233C10` (`0x00394222`). With the block bound and its magic in place, that function
+  touches only bit `0x1000` of the flag dword
   (`0x00233C65`-`0x00233CA6`), so bits `0x2000` and `0x4000` stay as saved.
+- With a wrong magic `0x00233C10` runs the battle reset `0x00237DF0` instead (`0x00233C59`), and with an empty pointer
+  it binds the block and runs that reset twice (`0x00233C3F`, `0x00233C48`). The reset's block clear `0x002370C0`
+  (through `0x0023AF50`, `0x00237DF6`, `0x0023AF56`) zeroes the whole flag dword, these bits included.
 - The title's `fsttl_initialize` (`0x00511EA0`) runs `0x00394460`, whose battle reset `0x00237DF0` (`0x00394486`) reaches
   the block clear `0x002370C0` through `0x0023AF50`. On the title the running game has no mode until a save is loaded
   or a new game starts.
+- Before that reset `0x00394460` runs `0x00229AD0`, clears byte `+0xDE6` of `[0x0209AC30]` and runs `0x002B9FD0`,
+  `0x002501E0` and `0x002DDE60` (`0x00394464`-`0x00394481`). After it, it creates the widget `0x00394070` with
+  `0x00244F50(0xD8, 0x00394070, 0)` when `0x02AEE4C0` is empty (`0x0039448B`-`0x003944A4`) and ends with a jump to
+  `0x001D6C60` (`0x003944AD`).
 
 ### Where the scripts offer the two questions
 

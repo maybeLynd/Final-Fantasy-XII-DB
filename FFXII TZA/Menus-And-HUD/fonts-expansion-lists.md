@@ -8,9 +8,11 @@ addresses: "0x001B4C00, 0x001B6030, 0x001FDB90, 0x001FDB50, 0x00674A00, 0x001B63
 ## What it lists
 
 [`fonts-expansion-lists.tsv`](fonts-expansion-lists.tsv) holds one line for each value of the 14 `.fex` files: 127,031 values in 127,070 lines,
-because each of the 39 lists that hold no value has one line of its own. The reader `0x001B4C00` (through `0x001B6030`)
-adds each list for its key with `0x001FDB90` and writes value i with `0x001FDB50`; `0x001E9860` then draws glyph
-`list[index]` for text whose key has a list, as [Fonts](fonts.md) describes. The lines keep the file order.
+because each of the 39 lists that hold no value has one line of its own. The reader `0x001B4C00` (through `0x001B6030`,
+which runs it only while the font manager `[0x01F81200]` exists, `0x001B604A`-`0x001B606D`)
+adds each list for its key with `0x001FDB90` and writes value i with `0x001FDB50`; `0x001E9860` then returns the record
+of glyph `list[index]` for text whose key has a list (`0x001E9880`-`0x001E988B`), as [Fonts](fonts.md) describes. The
+lines keep the file order.
 
 [Font files](fonts-files.md) says which `.fex` files are requested and how the table rebuilds every `.fex` byte
 for byte.
@@ -19,6 +21,15 @@ for byte.
 
 A list's key is `0x00674A00` of a name (`0x001B6350`): for a `fontex_expand` or `fontex_subtitle` list a path
 `event\<folder>\<name>` or `plan_map\<folder>\<name>`, and for a `fontmonster` list `handbook_monster<NNN>.txt`.
+
+`0x001B6350(manager, id, kind, name, value)`, called only from `0x0017FA90` (`0x0017FAC4`), files a request for such a
+font on the font manager. It takes a record from the pool at the manager's `+0x190` (`0x001BA860`), stores 1 at
+`+0x00`, 0 at `+0x08`, the id at `+0x04`, the kind byte at `+0x10`, the name's hash at `+0x14` and the value at
+`+0x18` (`0x001B63A4`-`0x001B63D2`), and appends the record to the pending vector at `+0x250` (`0x001B63D5`-`0x001B63EC`),
+through `0x001AB570` when the vector is full (`0x001B640C`-`0x001B6414`).
+
+A request whose id and kind match a pending record is dropped before a record is taken: `0x001B6350` then only calls
+the empty stub `0x0016D6A0` (`0x001B6380`-`0x001B638D`, `0x001B63F1`-`0x001B6407`).
 
 The `path` column gives the path that hashes to the key among 1,281 candidates: every `<folder>\<name>` pair of
 folder names under `plan_master/<lang>/event/` and `plan_master/<lang>/plan_map/` of the nine language trees, 346 of

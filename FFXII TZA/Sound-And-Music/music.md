@@ -19,8 +19,12 @@ addresses: "0x00261F90, 0x003EAA70, 0x00361010, 0x0030D9A0, 0x003614E0, 0x002DEE
 The zone setup `0x0025D9E0` calls `0x00261F90` (`0x0025DB8E`) for the zone being entered:
 
 1. It returns when the zone's `+0x28` is not 0 or its done bit, `+0x10` bit `0x40`, is set (`0x00261F96`-`0x00261FA7`).
-2. It chooses music only when `+0x17` bit `0x80` is set (`0x00262000`).
-3. It always sets the done bit on the way out (`0x002620D5`), so the music is chosen once per zone.
+2. It runs `0x0037B4A0` (`0x00261FB2`). With `+0x17` bit `0x4` clear it sets `+0x10` bit `0x20` and calls
+   `0x0037C910(1)` (`0x00261FB7`-`0x00261FC6`); with the bit set it runs `0x0035A490`, then `0x002E4000(0, 1)` and
+   `0x002E3E20(0, 1)` while byte `0x02099DA0` is 0, then `0x0035AD40` (`0x00261FD5`-`0x00261FFB`). Its test of `+0x28`
+   against 4 there (`0x00261FD0`) never holds, because `+0x28` is 0 on this path.
+3. It chooses music only when `+0x17` bit `0x80` is set (`0x00262000`).
+4. It always sets the done bit on the way out (`0x002620D5`), so the music is chosen once per zone.
 
 ### Which track
 
@@ -41,7 +45,7 @@ The table, its story ladder and the boss-music bit are on [Music table](music-ta
 |---|---|
 | a music change is already pending, `0x022CBA58` | nothing; answers 0 |
 | the track is already playing, `0x0215EF44` (`0x002DEC00`) | answers 2, and `0x002DEE50(current, 0x78, 0x7F)` fades it back to full volume (`0x002620BB`) |
-| otherwise | schedules the change as a task with the track, the length and the volume, marks busy bit `0x40` (`0x003601B0(6)`) and answers 1 |
+| otherwise | schedules the change as a task with the track, the length and the volume, marks busy bit `0x40` (`0x003601B0(6)`) and answers 1; when `0x002F16B0` gives no task it leaves `0x022CBA58` 0 and answers 0 (`0x003615DB`-`0x003615FD`) |
 
 `0x002DEE50(track, length, volume)` stores the volume at `0x0215EF4D` and passes the fade to the music controller through
 `0x001DBCA0`; a negative track with nothing playing does nothing.
@@ -60,10 +64,21 @@ When no track is chosen and one is playing, `0x002DEE50(current, 0x78)` and `0x0
   track playing it crossfades to the new one (`0x002DEC30`); with no track playing, it sets the volume (`0x002DEE30`) and
   starts the track. When the task's release flag is set it then schedules the old track's end (`0x00361170`).
 - With `0x022CBA60` set, `0x00361340` fades the current track out (`0x002DEE50`, `0x00361170`), waits until no track is
-  current, then loads, sets the volume and starts the new one the same way.
+  current, then loads, sets the volume and starts the new one the same way. When no track is current,
+  `0x003614E0` first runs `0x00360D70`, which empties every ready slot and marks the others for release, and gives the
+  task a length of 0 (`0x00361530`-`0x00361539`).
 
 The start is fresh (`0x002DED30`) when the top byte of the task word is 0, and from the track's resume point
 (`0x002DEDB0`) otherwise; `0x003614C0` passes 0, so area music always starts fresh.
+
+`0x003614E0(track, length, a3, a4, a5)` builds the task word `+0x28` as
+`(a5 << 24) | ((a4 & 0xFF) << 16) | (track & 0xFFFF)` (`0x00361599`-`0x003615C5`): the track in the low 16 bits, the
+low byte of `a4` under mask `0xFF0000` and the low byte of `a5` in the top byte.
+
+It keeps `length` at `+0x30` and `a3` at `+0x38`,
+zeroes `+0x00` and the word `+0x1C`, and stores the end routine `0x00361460` at `+0x08`, the step routine at `+0x10`
+and the task length at `+0x04`: 8 for `0x00361340`, 5 for `0x00360EE0` (`0x0036154C`-`0x003615D7`). `0x003614C0` passes its
+own third argument as `a3`, `0x7F` as `a4` and 0 as `a5` (`0x003614C4`-`0x003614CA`).
 
 `0x00361170(track, length, release)` marks the track's slot as fading and schedules `0x00361080` after `length / [0x01F3DA18] + 1` passes (`0x00361186`-`0x00361194`), that is after `length`
 sixtieths of a second.
@@ -89,7 +104,7 @@ The script music verbs load tracks into four slots at `0x022CB9F0` (layout below
 
 The slots open one block, `0x022CB9F0`-`0x022CBA63`, which `0x00360C70` sets up at boot (called from `0x00266D10` at
 `0x00266DD3`). It gives each slot its index and state 0 (`0x00360C90`-`0x00360C9F`), then clears the rest of the block
-(`0x00360CAE`-`0x00360CBE`): the pointer to the track flag file at `0x022CBA50`, two bytes a track with bit `0x1` the boss-music
+(`0x00360CAE`-`0x00360CBE`): the pointer to the track flag file at `0x022CBA50`, two bytes per track with bit `0x1` the boss-music
 bit, read by `0x00361010` and stored by the file's load completion `0x00360B40` (`0x00360B42`;
 [Music table](music-table.md)); the pending music change `0x022CBA58`; and the fade-out flag `0x022CBA60`.
 
@@ -130,8 +145,8 @@ While an event manager's skip mask is set (`0x00267310`), the music verbs play n
    set, and otherwise the current track `0x0215EF44` (`0x002DEBE0(-1)`, `0x003549FA`-`0x003549FD`).
 
 The record is three words that `0x00360960(track, section, resume)` stores (`0x00360960`-`0x00360971`). The skip-end stage
-reads the track and the resume flag (`0x003608D4`, `0x003608E7`, `0x003608F9`, `0x0036090F`), but no reader of the second word
-has been found yet:
+reads the track and the resume flag (`0x003608D4`, `0x003608E7`, `0x003608F9`, `0x0036090F`); no instruction reads the second
+word:
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

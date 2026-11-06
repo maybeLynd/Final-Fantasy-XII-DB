@@ -48,6 +48,15 @@ the board file: width + 1 by height + 1 (`0x0055B484`-`0x0055B4A2`). The extra c
 tile byte per square with `table[(rand() & 3) + 4 x ((col + row) & 1)]` (`0x0055B4E0`-`0x0055B517`), the table being
 `00 02 04 06 01 03 05 07`, so even and odd squares draw from different sets of variants.
 
+`0x0055B3F0` builds only while the cells pointer `+0x128` is 0 (`0x0055B429`-`0x0055B430`). In the preview view
+(`+0x570` bit `0x400`) it keeps the board `+0x558` as it is instead of calling `0x003236B0` (`0x0055B436`-`0x0055B440`).
+A board of `0xFF` gets a 16-bit zero over the width and height `+0x559`/`+0x55A` and no tile bytes (`0x0055B45C`).
+
+Any other board is read from its slot `0x02EBF1A0 + 8 × board` with no null test (`0x0055B481`-`0x0055B484`), so an
+empty slot reads address 4 and faults. The tile bytes are allocated in arena 3 by `0x002497B0` (`0x0055B4AA`;
+`0x0036C1D0(3, 0xC)`, `0x0036A100`), stored at `+0x128` and zeroed (`0x0055B4BE`) with no null test, so a full arena 3
+makes the zeroing write at address 0 and fault.
+
 `0x0055B560` allocates the squares, 0x38 bytes each (`0x0055B63C`), and runs the fill `0x0055BFF0`. For each square inside
 the board it reads the board cell, then the license node's record (`0x0035D330(0x19, node)`, `0x0055C0FA`-`0x0055C15C`) and
 the member's answer for the node (`0x00323600`, which calls `0x00323D10`; [Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md)). The script verb
@@ -68,10 +77,11 @@ The member's answer for the node sets the purchase flags through the table at `0
 
 | Answer | Flags |
 |---|---|
-| 0, can be obtained | bit `0x4000` when the cost is at most the member's LP (`0x0055C492`), and bit `0x8000` |
-| 1, owned | bits `0x1000` and `0x2000`, state 5 (`0x0055C472`) |
-| `2` | bit `0x8000` unless bit `0x1000` |
+| 0, can be obtained | bit `0x4000` when the cost is at most the member's LP (`0x0055C492`), then bit `0x8000` as for answer 2 |
+| 1, owned | bits `0x1000` and `0x2000`, state 5 and state shown 5 (`0x0055C472`-`0x0055C47F`) |
+| `2` | bit `0x8000` (`0x0055C4A6`-`0x0055C4C2`); the test of bit `0x1000` there always passes, because the fill cleared the four flags at `0x0055C136` |
 | `3`, `4`, `5`, `8` | the square is emptied (`0x0055C4CA`) |
+| `6`, `7`, `9` | no flag: answers 6 and 7 take the table's empty arm and 9 is past its end (`0x0055C45F`-`0x0055C463`, `0x0055C482`) |
 
 `0x0055E090` then turns bit `0x8000` into bit `0x1000` on each square next to an owned one. So bit `0x2000` means owned, bit `0x1000`
 obtainable now, bit `0x4000` affordable and bit `0x8000` obtainable later. The state nibble, mask `0xF0`, takes four values:
@@ -106,6 +116,16 @@ After a purchase, `0x0055DD70` sets the collect bit, runs the fill and gives eac
 square fades out. A square past the 32nd keeps its old look until a later fill lists it or, without the collect bit, copies
 its state (`0x0055B380`-`0x0055B3A6`). `0x0055F010` runs the transitions
 every frame.
+
+Before the transitions, `0x0055DD70` gives the bought square, the cursor's `+0xC8`, state 4 with its new state as
+the pending one, phase 2 and a countdown of 0 (`0x0055DD8E`-`0x0055DDBF`). For each listed square it then copies the
+state into the state shown (`0x0055DE2C`-`0x0055DE3E`), and a square in state 1 or 5 stops there (`0x0055DE09`).
+
+A square in state 4 has its state set back to the state shown before that copy, with state 4 pending, phase 2 and
+a countdown of `0x2E` (`0x0055DE0D`, `0x0055DE46`-`0x0055DE6C`). A square in state 0 is set back the same way, with
+phase 2, state 0 pending and a countdown of 0, and its fade starts: `+0x26` 0, `+0x27` 0, `+0x28` 1 and `+0x29` 1
+(`0x0055DE15`-`0x0055DE1F`). Any other state value gets state 0, that value pending, phase 2 and a countdown of 0
+(`0x0055DE05`-`0x0055DE07`). The sweep returns the fill's result (`0x0055DD97`, `0x0055DE8B`).
 
 ### Preview
 
@@ -180,8 +200,17 @@ Obtaining the Second Board ends with the chooser opening for the member's second
 
 ### Detail panel and member switch
 
-- `0x0055A180(view, square)` fills the four detail panes (`+0x140`) through `0x00559E30`, or closes the panel when it is
-  open (`0x0055A1F0`). `0x005597C0` closes the panes (`0x00244F00`) and `0x00559800(view, v)` hides or shows them.
+- `0x0055A180(view, square)` fills the four detail panes (`+0x140`) through `0x00559E30`, or, when the panel is open
+  (`+0x570` bit `0x2`), refills only the current pane for the cursor square through `0x0055A1F0(view, 0)`
+  (`0x0055A186`-`0x0055A199`). `0x005597C0` closes the panes (`0x00244F00`) and `0x00559800(view, v)` hides or shows them.
+- `0x0055A1F0(view, v)` fills pane `+0x55D` for the cursor square, `[+0x120] + 0x38 x (col + row x width)` from
+  `+0x550`, `+0x551` and `+0x559`, with the member `+0x160` at the pane's `+0xD8`, through `0x00559E30`, and opens
+  it under `0x0208EA28` (`0x00246AD0`); it closes the other three panes (`0x00244DD0`) and skips an absent one
+  (`0x0055A230`-`0x0055A30D`). It calls `0x00282DF0(member)` and does not use the result (`0x0055A28A`).
+- On that pane `0x0055A1F0` sets `+0x40` bit `0x400000`; for a square with a node, bit `0x800000` when the square's
+  `+0x18` bit `0x1000` is clear; and bit `0x8000` as `v & 1`. It gives `0x00247680` the style byte `+0xA3` = 12 + c,
+  c being the category word `+0x30` less 1 when above 0 for a square whose `+0x0E` is not `0xFFFF`, else 0
+  (`0x0055A297`-`0x0055A2F9`).
 - `0x00559E30(pane)` shows the square's name and LP cost (`0x0029FF60`), its kind icon (`0x12` for category `0x1E`) and up
   to eight contents from the node record `0x0035D330(0x19, node)` `+0x26`, by its list type `+0x23`: class 1 records
   for type 0, class `0x14` records for type 1 (with the icon of the class 1 record each names), and class `0x1D`
@@ -222,7 +251,8 @@ Obtaining the Second Board ends with the chooser opening for the member's second
 
 `0x00560910` lists the members with `0x00561100`: the roster slot of each one `0x00282FA0` accepts and its portrait
 (`0x002526F0(8, id + 0x4D, 1)`). `0x00560610` draws a member's board in miniature, one cell per square of the board table
-`[0x02EBF1A0 + board]` coloured `0x002DD7E0(0xDB + value)`, and `0x0055FA50` frees the six cell arrays at `+0x150`.
+`[0x02EBF1A0 + 8 x board]` (`0x00560769`-`0x00560782`) coloured `0x002DD7E0(0xDB + value)`, and
+`0x0055FA50` frees the six cell arrays at `+0x150`.
 
 ## Layouts
 
@@ -295,7 +325,7 @@ beside this page. A field reached by no instruction in that table says so.
 | `+0x0E0` | `u8[32]` | block0E0 | `0x00561BE0` fills it with `0x00202C70` and hands it to `0x0039ADE0` (`0x00561C30`-`0x00561C77`) |
 | `+0x100` | `u8[32]` | block100 | `0x00559540` fills it the same way (`0x00559570`-`0x005595C3`) |
 | `+0x120` | `void*` | squares | the square array, `0x38` bytes a square, allocated and zeroed by `0x0055B560` (`0x0055B620`-`0x0055B63C`), freed on destroy (`0x0055CDAA`-`0x0055CDAF`; LicenseSquare above) |
-| `+0x128` | `void*` | cells | the board's cell bytes, width x height, allocated by `0x0055B3F0` from the licd file (`0x0055B4AA`-`0x0055B4B7`) and freed before a rebuild and on destroy (`0x0055DC57`, `0x0055CD97`) |
+| `+0x128` | `void*` | cells | the view's tile-variant bytes, one per square of the `+0x559` x `+0x55A` view (the licd width and height plus one), allocated by `0x0055B3F0` (`0x0055B4AA`-`0x0055B4B7`) and filled from the table 00 02 04 06 01 03 05 07 (`0x0055B4E0`-`0x0055B517`); `0x0055BFF0` copies each into its square's tile `+0x24` (`0x0055C151`, `0x0055C15C`); freed before a rebuild and on destroy (`0x0055DC57`, `0x0055CD97`) |
 | `+0x130` | `void*` | owner | the board screen that built the view: the creation record's first qword (`0x0055CE95`-`0x0055CE98`); the rebuild writes the member slot into its `+0xD0` (`0x0055DC15`), the destroy clears its `+0xC8` (`0x0055CDCB`-`0x0055CDD2`), the take-square arm reads it (`0x0055D55C`-`0x0055D6CF`) |
 | `+0x138` | `void*` | preview | the widget `0x00561830` builds when it is 0 (`0x00561845`-`0x0056188F`) and `0x00561800` closes and clears (`0x00561809`-`0x0056181A`); the rebuild closes it first (`0x0055DC7B`-`0x0055DC8C`) |
 | `+0x140` | `void*[4]` | panes | the four detail panes (Detail panel and member switch): taken by address and walked by `0x005597C0`, `0x00559800`, `0x00559860`, `0x0055A180` and `0x0055A1F0` (`0x005597CA`, `0x00559811`, `0x00559884`, `0x0055A1A3`, `0x0055A214`); `0x0055FB20` reads the pane `+0x55D` names (`0x0055FB59`) |
@@ -376,7 +406,7 @@ beside this page. A field reached by no instruction in that table says so.
 | `+0x569` | `u8` | repeatDelay | the step delay of a scripted move: `0x002D6680`'s result (`0x00560187`); the mover loads it into `+0x56A` after a step (`0x0055AA63`, `0x0055AA92`, `0x0055AAF1`) |
 | `+0x56A` | `u16` | repeatCount | the countdown to the next step: `+0x569` (`0x0055AAF1`), `0x18` (`0x0055AA9B`-`0x0055AAA9`) or `0x20` (`0x0055AAEC`-`0x0055AAF1`); decremented while above 0 (`0x0055AABD`-`0x0055AACC`) |
 | `+0x56C` | `u32` | effectNode | the node the effect plays for (`0x0055F76A`, `0x0056017C`) |
-| `+0x570` | `u32` | flags | bit `0x1` set by the purchase `0x0055DD70` (`0x0055DD7F`) and cleared by the sweep (`0x0055B3D6`); bit `0x2` set once the panel has been filled (`0x00561280`); bit `0x4` set at build and when a refresh is served (`0x0055CF2E`, `0x0055F573`), cleared at stage start (`0x0055F453`); bit `0x8` makes `0x0055FAE0` answer 2; bit `0x20` a pending refresh, served and cleared at stage 0 (`0x0055F53C`-`0x0055F550`); bits `0xC0` set at a rebuild and a purchase (`0x0055DC22`, `0x0055F46D`); bit `0x200` set when the Second Board square is bought (`0x0055F4A2`); bit `0x400` from the creation record's `+0x10C` bit `0x4` (`0x0055CEB2`-`0x0055CEC6`): a scripted open, which keeps the child `+0x578` and skips the member read (`0x0055B436`, `0x0055DC9B`); bit `0x800` the cursor goes to the centre (`0x0055E7AF`) |
+| `+0x570` | `u32` | flags | bit `0x1` set by the purchase `0x0055DD70` (`0x0055DD7F`) and cleared by the sweep (`0x0055B3D6`); bit `0x2` the panel is open: `0x00561280`(0) fills it with `0x0055A1F0` and sets the bit when it is clear (`0x0056129D`-`0x005612AE`), `0x00561280`(non-zero) runs `0x00559800` and clears it when it is set (`0x005612BB`-`0x005612CC`); bit `0x4` set at build and when a refresh is served (`0x0055CF2E`, `0x0055F573`), cleared at stage start (`0x0055F453`); bit `0x8` makes `0x0055FAE0` answer 2; bit `0x20` a pending refresh, served and cleared at stage 0 (`0x0055F53C`-`0x0055F550`); bits `0xC0` set at a rebuild and a purchase (`0x0055DC22`, `0x0055F46D`); bit `0x200` set when the Second Board square is bought (`0x0055F4A2`); bit `0x400` from the creation record's `+0x10C` bit `0x4` (`0x0055CEB2`-`0x0055CEC6`): a scripted open, which keeps the child `+0x578` and skips the member read (`0x0055B436`, `0x0055DC9B`); bit `0x800` the cursor goes to the centre (`0x0055E7AF`) |
 | `+0x574` | `u8[4]` | gap574 | reached by no instruction in the table |
 | `+0x578` | `void*` | child578 | the `0xC8`-byte widget `0x00561E90` builds when it is 0 (`0x00561EA5`-`0x00561EEF`); the rebuild closes and clears it unless `+0x570` bit `0x400` (`0x0055DC9B`-`0x0055DCDA`) |
 

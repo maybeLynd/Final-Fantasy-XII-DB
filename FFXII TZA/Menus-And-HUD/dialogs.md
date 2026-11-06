@@ -31,6 +31,12 @@ pass fixed flags as the record's `+0x20`, kept at `+0x630` (`0x0057C4E4`-`0x0057
 Message 1 copies the caption into a `0x400`-byte buffer at `+0x1B0`, measures it, keeps the window at least `0x60`
 wide, and clears eight option rows at `+0x5B0`-`+0x62C` (`0x0057C4BF`-`0x0057C682`).
 
+`0x0057C380(record, open)` builds the `0x640`-byte window with `0x00244F50` and returns it from the root's `+0x328`
+(`0x0057C3A6`-`0x0057C3C4`). Message 1 ends by opening the window when `open` is non-zero (`0x0057C872`-`0x0057C880`):
+`0x0057CD40` puts it under its `+0xD0` (`0x00246AD0`) and builds the `0x4000` backdrop. The yes-or-no question and the
+notice give 1 (`0x002CE067`, `0x002CE6A7`); the sort picker gives 0 and calls `0x0057CD40` itself after it has set the
+window's `+0x634` and the list's row (`0x002D4650`, `0x005669CD`).
+
 ### The flag bits
 
 | Bit | Effect |
@@ -119,6 +125,10 @@ two items' query records (`0x0035D330(1, id << 16)`,
 | By Strength | `2` | `0x002D0100` | `+0x5C`, then `+0x60`, highest first, then `0x002CFDA0` |
 | By Quantity | any | `0x002D0200` | the count `+0x24` highest first, then `0x002CFFE0` |
 
+By Strength on a tab other than `0` to `3` sorts nothing and returns -1 (`0x00565D5A`-`0x00565D5F`), as a list of
+fewer than two items does (`0x00565D30`-`0x00565D33`). A sort number other than the three returns 0 unsorted
+(`0x00565D3E`-`0x00565D41`, `0x00565D9E`), and every sort returns 0.
+
 `0x002CFDA0` orders by `+0x38`, then `+0x30`, then the id, and `0x002D01A0` by `+0x30`, then the id, all lowest first.
 
 `0x002D0070` and `0x002CFE40` are `0x002CFFE0` and `0x002CFDA0` for rows that carry the item id in the word `+8`
@@ -153,6 +163,27 @@ labels `0x1B58`-`0x1B5B`, which are empty, and 8-11 reuse the four labels above.
 | `+0x04` | `u8` | kind | posted to the parent on a pick |
 | `+0x05` | `u8` | flag | - |
 
+The messages `0x0056F810` serves:
+
+- 1 keeps the message's `+0x08` as the parent at `+0xC0` and its `+0x10` at `+0x170`, clears `+0xC8` and the list
+  `+0x168`, sets the picked record `+0xCC` to `0xFF`, builds the rows with `0x0056F5F0`, clears bit `0x800` of `+0x40`
+  and gives the list priority `0x63` (`0x00247930`) (`0x0056F83C`-`0x0056F87C`).
+- 14 sets bit `0x1` of `+0xC8`, refreshes the badges (`0x0056FAD0`), shows the help line of the cursor's row
+  (`0x00291D80`), posts `0xE` with 3 to the parent (`0x00247510`) and takes the focus (`0x002470D0`)
+  (`0x0056F889`-`0x0056F8F9`).
+- 10 runs the row list `+0x168` when there is one (`0x002D3900`, `0x0056F906`-`0x0056F916`).
+- 12 with `0x8000` shows the help line of the row it names while bit `0x1` of `+0xC8` is set
+  (`0x0056F9C2`-`0x0056F9E5`). With `0x8002` it posts `0x8002` with 3 to the parent and calls `0x002CC9C0(0xC8)`
+  (`0x0056F943`-`0x0056F95D`). Any other sub-code returns 0.
+- 12 with `0x8001` is the pick: the row's record number goes to `+0xCC`, a number of 4 or more reads record 0, and a
+  kind of `0xFF` posts nothing and returns 1 (`0x0056F96A`-`0x0056F99F`).
+- 15 clears the help line (`0x00291D80(0, 0)`), clears bit `0x1` of `+0xC8` and posts `0xF` with 3
+  (`0x0056F9F2`-`0x0056FA07`, `0x0056FA59`-`0x0056FA66`).
+- 18 saves the cursor row's record number in bank 6 (`0x002527B0(6, 3, record)`) and posts `0x12` with 3
+  (`0x0056FA09`-`0x0056FA66`).
+
+Every other id goes to `0x005C5230`, which returns 0, and every handled message returns 0 apart from that pick.
+
 ### The license board's description box
 
 `0x00556F90` shows text only and answers messages 1 and 2; its message-18 arm returns 0, as its default does. Its one installer `0x00556EC0` is called only from the
@@ -160,6 +191,21 @@ license board chooser `0x00557DB0` (`0x00557E76`, `0x00557EE5`). The chooser wri
 cursor step (`0x00558549`). Message 2 writes the board's name, `menu_command.bin` `0x3ED` plus the board ("White Mage"
 for board 0), as the header, and its description, `menu_message.bin` `0x838` plus the board, split into three lines
 at `+0xD0` by `0x002B5730`.
+
+Message 2 does nothing while `+0x3D1` equals `+0x3D2`, the board last written, and stores the board in `+0x3D2`
+after writing it (`0x00556FC8`-`0x00556FD5`, `0x00557074`). The header's `+0x20` takes `0x0020E620(0)`
+(`0x00557001`-`0x00557006`), and each of the three lines is cleared to `0x100` zero bytes before `0x002B5730` copies
+into it (`0x00557030`-`0x0055705A`). Both arms return 0.
+
+Message 1 builds the box (`0x00557087`-`0x005571AA`). It takes its rect from `0x002432B0` with layout 2 of
+`[[0x0209AC30] + 0x98]` into `+0x98`-`+0x9E`, installs the descriptor `0x00D23030` (`0x00247570`), keeps the creation
+block's first qword at `+0xC8` and its byte `+0x08` at `+0x3D0`, and makes `0x00556F50` the row callback `+0x120` of
+the list `[[[+0x60] + 0x28] + 0x18]`, kept at `+0xC0`, with the box at the list's `+0xD8`.
+
+It then clears the list's `+0xE0` bit `0x200000`, calls `0x002D45C0(list, 0)`, clears bit `0x8000000` and restarts
+the pulse (`0x002445C0`). A `+0x3D0` of `0xFF` becomes 0; `+0x3D1` takes it and `+0x3D2` becomes `0xFF`, so the next
+message 2 writes. Last it clears bit `0x1` of `[[+0x60] + 0x18] + 0x08`, gives the box priority `0x5F`
+(`0x00247930`) and puts it in the second draw pass (`0x00247730(box, 1)`).
 
 ## State
 

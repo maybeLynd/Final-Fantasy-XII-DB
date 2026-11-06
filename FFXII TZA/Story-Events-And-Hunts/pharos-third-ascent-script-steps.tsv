@@ -48,17 +48,17 @@ dgl_g01	setup	event	4	0x09F85	62	-	case	gte(0x2af8)	-	-	-	-	-	resolved	01 ../Scr
 dgl_g01	setup	event	5	0x09F85	63	シナリオフラグ = gte(0x2af8)	entrydeny	-	-	-	-	-	-		01 verb-table.tsv
 dgl_g01	setup	event	6	0x09F88	64	シナリオフラグ = gte(0x2af8)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 dgl_g01	setup	event	7	0x09F8B	65	-	case	lt(0x155e)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-dgl_g01	setup	event	8	0x09F8B	66	シナリオフラグ = lt(0x155e)	stopenvsoundall	-	the map's ambient sounds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-dgl_g01	setup	event	9	0x09F91	67	シナリオフラグ = lt(0x155e)	setcharseplayall	0	argument 1: whether characters' animation sounds play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-dgl_g01	setup	event	10	0x09F94	68	シナリオフラグ = lt(0x155e)	entrydeny	-	-	-	-	-	-		01 verb-table.tsv
-dgl_g01	setup	event	11	0x09F9A	69	シナリオフラグ = lt(0x155e)	store	file_var_s0_1 = 1	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-dgl_g01	setup	event	12	0x09FA0	70	シナリオフラグ = lt(0x155e)	store	g_btl_ガブラス大灯台 = 1	variable g_btl_ガブラス大灯台 (global u_char@0x0a2b)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-dgl_g01	setup	event	13	0x09FA6	71	シナリオフラグ = lt(0x155e)	store	g_btl_シド大灯台 = 0	variable g_btl_シド大灯台 (global u_char@0x0a2a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-dgl_g01	setup	event	14	0x09FAC	72	シナリオフラグ = lt(0x155e)	store	g_btl_ファムフリート = 0	variable g_btl_ファムフリート (global u_char@0x0a1e)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-dgl_g01	setup	event	15	0x09FB2	73	シナリオフラグ = lt(0x155e)	store	scratch1_var_7 = 0	variable scratch1_var_7 (scratch1 u_char@0xc0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-dgl_g01	setup	event	16	0x09FB8	74	シナリオフラグ = lt(0x155e)	store	scratch1_var_3 = 0	variable scratch1_var_3 (scratch1 short@0x0a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-dgl_g01	setup	event	17	0x09FBE	75	シナリオフラグ = lt(0x155e)	store	scratch1_var_4 = 0	variable scratch1_var_4 (scratch1 short@0x0c)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-dgl_g01	setup	event	18	0x09FC1	76	シナリオフラグ = lt(0x155e)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+dgl_g01	setup	event	8	0x09F8B	66	シナリオフラグ = lt(0x155e); not (シナリオフラグ = 0)	stopenvsoundall	-	the map's ambient sounds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+dgl_g01	setup	event	9	0x09F91	67	シナリオフラグ = lt(0x155e); not (シナリオフラグ = 0)	setcharseplayall	0	argument 1: whether characters' animation sounds play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+dgl_g01	setup	event	10	0x09F94	68	シナリオフラグ = lt(0x155e); not (シナリオフラグ = 0)	entrydeny	-	-	-	-	-	-		01 verb-table.tsv
+dgl_g01	setup	event	11	0x09F9A	69	シナリオフラグ = lt(0x155e); not (シナリオフラグ = 0)	store	file_var_s0_1 = 1	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+dgl_g01	setup	event	12	0x09FA0	70	シナリオフラグ = lt(0x155e); not (シナリオフラグ = 0)	store	g_btl_ガブラス大灯台 = 1	variable g_btl_ガブラス大灯台 (global u_char@0x0a2b)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+dgl_g01	setup	event	13	0x09FA6	71	シナリオフラグ = lt(0x155e); not (シナリオフラグ = 0)	store	g_btl_シド大灯台 = 0	variable g_btl_シド大灯台 (global u_char@0x0a2a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+dgl_g01	setup	event	14	0x09FAC	72	シナリオフラグ = lt(0x155e); not (シナリオフラグ = 0)	store	g_btl_ファムフリート = 0	variable g_btl_ファムフリート (global u_char@0x0a1e)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+dgl_g01	setup	event	15	0x09FB2	73	シナリオフラグ = lt(0x155e); not (シナリオフラグ = 0)	store	scratch1_var_7 = 0	variable scratch1_var_7 (scratch1 u_char@0xc0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+dgl_g01	setup	event	16	0x09FB8	74	シナリオフラグ = lt(0x155e); not (シナリオフラグ = 0)	store	scratch1_var_3 = 0	variable scratch1_var_3 (scratch1 short@0x0a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+dgl_g01	setup	event	17	0x09FBE	75	シナリオフラグ = lt(0x155e); not (シナリオフラグ = 0)	store	scratch1_var_4 = 0	variable scratch1_var_4 (scratch1 short@0x0c)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+dgl_g01	setup	event	18	0x09FC1	76	シナリオフラグ = lt(0x155e); not (シナリオフラグ = 0)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 dgl_g01	setup	event	19	0x09FC4	77	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 dgl_g01	setup	event	20	0x09FC4	78	シナリオフラグ is none of 0, gte(0x2af8), lt(0x155e)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 dgl_g01	setup	event	21	0x09FDC	80	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -10066,7 +10066,7 @@ dgl_g0100	レダス左剣	途中再生準備	7	0x22A93	12244	-	return	0	-	-	-	-	
 dgl_g0100	レダス左剣	ガブラスデバッグ用準備	1	0x22A97	12249	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 dgl_g0100	レダス左剣	ガブラスデバッグ用準備	2	0x22A98	12250	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 dgl_g0100	モーションカメラ	init	1	0x22A99	12259	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-dgl_g0100	モーションカメラ	キャラ準備	1	0x22A9D	12264	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+dgl_g0100	モーションカメラ	キャラ準備	1	0x22A9D	12264	the run began at the top of the function or entered at the top through the goto at line 12331 in 配置c20 (JMP at 0x22B46)	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 dgl_g0100	モーションカメラ	配置c8	1	0x22AA4	12269	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 dgl_g0100	モーションカメラ	配置c9	1	0x22AC0	12274	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 dgl_g0100	モーションカメラ	配置c10	1	0x22ACD	12279	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -10519,7 +10519,7 @@ dgl_g0101	監督	シドの野望	131	0x04A7A	460	unreachable in the listing; reg
 dgl_g0101	監督	シドの野望	132	0x04A80	461	unreachable in the listing; regY == 2	goto	local_jmp_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 dgl_g0101	監督	シドの野望	133	0x04A86	462	unreachable in the listing; regY == 3	goto	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 dgl_g0101	監督	シドの野望	134	0x04A89	463	unreachable in the listing	goto	local_jmp_5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-dgl_g0101	監督	シドの野望	135	0x04A8C	464	unreachable in the listing	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+dgl_g0101	監督	シドの野望	135	0x04A8C	464	the run entered at line 466, the label that shares this step's instruction 0x04A8C, through the goto at line 330 (JMP at 0x04784)	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 dgl_g0101	監督	シドの野望	136	0x04A8C	466	loop while true	label	local_jmp_5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 dgl_g0101	監督	シドの野望	137	0x04A8F	467	loop while true	voiceread	4	argument 1: the voice slot to load, 0 to 63	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 dgl_g0101	監督	シドの野望	138	0x04A95	468	loop while true	eventsoundread	0	event sound slot 0 (sub-file 0 of `dgl_g0101.snd`)	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md

@@ -61,10 +61,14 @@ In order:
 ### Window and run setup
 
 `0x0079E520` creates the window through `0x0079B300`, which registers the class `PhyreFrameworkClass` and
-calls `CreateWindowExW`, fills the render-interface parameter block at `0x01F403A8` from the window and
-the settings, points the application's `+0xD10` at it, and calls the run setup `0x0079F150`. It then
-lowers the main thread's priority by one step (`SetThreadPriority(-1)`); on a failed run setup it runs
-the application shutdown `0x0079EDD0`.
+calls `CreateWindowExW`; a negative result from `0x0079B300` returns 9 at once (`0x0079E544`-`0x0079E548`).
+Otherwise it fills the render-interface parameter block at `0x01F403A8` from the window and
+the settings, points the application's `+0xD10` at it, and calls the run setup `0x0079F150`.
+
+It then lowers the main thread's priority by one step (`SetThreadPriority(-1)`, `0x0079E600`) and runs
+`0x007A3D70` on the window's `+0x48` with ScreenMode, the settings' `+0x08` (`0x0079E606`-`0x0079E614`); on a
+failed run setup it runs the application shutdown `0x0079EDD0` (`0x0079E624`). It returns the run setup's
+result (`0x0079E62E`).
 
 The run setup `0x0079F150` resets the timing fields, initialises the Phyre render interface, the render
 thread and DirectInput (`0x00797910`), then calls application slot 2 (`0x0079F591`, logged on failure as
@@ -100,19 +104,27 @@ count `+0x30`, capacity `+0x34`, grown to twice the capacity or 16).
 | `KeyDown` | `0x00797EE0` | `Echo` | `0x00796210` |
 | `KeyUp` | `0x00797F20` | `Quit` | `0x00798A30` |
 
-`Timestep` (`0x00799980`) reads one float with `%f` (`0x0071F970`, `vsscanf`) into the fixed step `+0x6C`.
+`Timestep` (`0x00799980`) reads one float with `%f` (`0x0071F970`, `vsscanf`) into the fixed step `+0x6C`,
+whatever its value (`0x007999AC`).
 A value of 0 or less returns to real time: it sets the offset `+0x50` to the time since engine start
-(`0x02CB60E8`) less the total `+0x40`, so the total carries on from where the fixed steps left it.
+(`0x02CB60E8`) less the total `+0x40`, so the total carries on from where the fixed steps left it
+(`clock - [0x02CB60E8] - total`, `0x007999B3`-`0x007999CF`). The handler returns 0 (`0x007999D4`).
 Because neither option is ever set, none of these commands runs.
 
 ### The update thread
 
 The game runs on the update thread, not on the thread that pumps window messages. The thread object
-is the static `0x02EACF10` (`0x007A4190`); its body `0x007A4310` spins with `Sleep(0)` until the window is
+is the static `0x02EACF10` (`0x007A4190`). `0x007A4250` sets its run word `+0x50` to 1 (`0x007A42A7`) and creates
+the thread through `0x005CD1E0` (`0x007A42AE`) with a stack of `0x100000` bytes (`0x007A428C`), the routine
+`0x007A4230`, a jump to the body `0x007A4310`, and the object as its argument (`0x007A4299`); it then sets the
+object's `+0x48` to 1 and clears `+0x28` (`0x007A42B8`, `0x007A42BC`).
+
+`0x007A4240` hands the window over: it stores it at `+0x20` and sets `+0x28` to 1 (`0x007A4240`, `0x007A4244`).
+The body `0x007A4310` spins with `Sleep(0)` until `+0x28` is set, that is until the window is
 handed to it, then loops while its run word `+0x50` is non-zero, calling the window's two slots:
 
 - slot 0, `0x007A3110`: returns 9 when the quit byte `+0x69` is set; otherwise `SteamAPI_RunCallbacks`
-  and the input poll `0x007A2440` on the application's input object `+0xDF8`;
+  and the input poll `0x007A2440` on the application's input object `+0xDF8`, then returns 0 (`0x007A3140`);
 - slot 1, `0x007A0340`: moves a drawing-area size parked by the window procedure into the `+0x48` queue as
   request 0 (`0x007A3BD0`, `0x007A0372`, under the lock at `+0x20`), runs the screen-mode state step
   `0x007A3FC0(+0x48, ScreenMode)` (`0x007A0395`), returns 9 on the quit byte, and otherwise jumps through the application's `+0xD18` (`0x007A03C4`). `0x00793E8C`
@@ -120,19 +132,21 @@ handed to it, then loops while its run word `+0x50` is non-zero, calling the win
   - In the state step the current state's slots `+0x30` and `+0x38` run; a result n other than -1 leaves the
     old state, makes entry n current, logs `[Screen Mode]=======Change State %d` and enters it.
 
-A non-zero result sets the thread's byte `+0x29` and the loop goes on. When the run word is cleared
+Slot 1 runs only when slot 0 returns 0 (`0x007A4340`). A non-zero result from either slot sets the
+thread's byte `+0x29` (`0x007A4350`) and the loop goes on. When the run word is cleared
 the thread posts `WM_CLOSE` with `wParam` 3 to the window (`0x007A436D`) and runs the game's
 `0x0035E700`, which signals the two objects at `0x022CA610` and `0x022CA618` and waits for `0x022CA630` to
-reach zero.
+reach zero; the body then returns 0 (`0x007A4378`).
 
 ### The per-frame update `0x0079C140`
 
 Inherited unchanged by `GameApplication` (slot 28 holds the same address in both vtables). Each call:
 
 1. When a screen-mode change is pending (`+0x20`), copies the size and frame rate from the settings.
-2. Time (`0x0079D920`): with a fixed step at `+0x6C` the delta `+0x48` is the step and the total `+0x40`
-   grows by it; otherwise the total is the performance-counter time since engine start (`0x02CB60E8`)
-   less `+0x50`, and the delta is the change in the total.
+2. Time (`0x0079D920`): with a fixed step above 0 at `+0x6C` (`0x0079D92E`) the delta `+0x48` is the step
+   and the total `+0x40` grows by it; otherwise the total is the performance-counter time since engine
+   start (`0x02CB60E8`) less `+0x50`, and the delta is the change in the total. Both paths also store the
+   total as a float at `+0xE0` (`0x0079D952`, `0x0079D988`).
 3. Returns 9 when the quit byte `+0x69` is set. On the first frame (`+0x64` = 0) clears the delta and
    calls slot 9, resize (`0x0079C1F1`). Counts the frame at `+0x64`.
 4. Calls slot 30 when a log stream is open, polls the input devices (`0x0079D010`, `0x0079C260`) unless a
@@ -229,8 +243,11 @@ callers in [phyre-engine-helpers.tsv](phyre-engine-helpers.tsv).
   posts 1 through `0x0017E030` (called from `0x002280B0`).
 - 4: the same through `0x0079B160`, and sets `0x02EA5245`, the restart request. The game posts 4 through
   `0x0017E050` after a display change that needs a restart ([config screen](../Menus-And-HUD/config-screen.md)).
-- 3: posted by the update thread as it exits; `0x0079B190` runs the application shutdown `0x0079EDD0`,
-  releases the device context and destroys the window, whose `WM_DESTROY` posts `WM_QUIT`.
+- 3: posted by the update thread as it exits; `0x0079B190` runs the application shutdown `0x0079EDD0`
+  (`0x0079B1A0`) and logs `PWindowWin32Base::onClose: An error occurred closing the window on Win32.`
+  when it returns non-zero (`0x0079B1A9`-`0x0079B1B5`). It then releases the device context at its
+  argument's `+0x10` (`ReleaseDC`, `0x0079B1C5`) and destroys the window `0x02EA5248` (`DestroyWindow`,
+  `0x0079B1D7`), whose `WM_DESTROY` posts `WM_QUIT`.
 - any other value, including 0 from the window's own close: ignored while the bytes `0x02B40E00` and `0x02CA99B0` are both set;
   otherwise quits at once in full-screen mode, and in the other modes shows an OK/Cancel box from the
   string resources and quits on OK. A Steam state check on the callback object (`0x00865510`) can take
@@ -239,6 +256,9 @@ callers in [phyre-engine-helpers.tsv](phyre-engine-helpers.tsv).
 The application shutdown `0x0079EDD0` stops the update thread (`0x007A42E0`), releases the viewports,
 calls slot 5 (`0x0079EF47`, `exitScene`) and slot 6 (`0x0079EF75`, `exitApplication`), then tears down
 the settings block, the renderer, the arenas and the input layer (`0x00799860`, `PInput::Terminate`).
+To stop the thread, `0x007A42E0` clears its run word `+0x50` (`0x007A42EA`), waits for it through
+`0x005CD330` (`0x007A42F9`), which calls `WaitForSingleObject` with no time limit (`0x005CD346`), calls
+`0x005C5230`, which returns 0, on the thread part `+0x30` (`0x007A4301`) and clears `+0x48` (`0x007A4306`).
 
 When the message loop ends, `0x007980A0` unregisters the Steam callbacks, calls `CoUninitialize`, runs
 the module shutdown `0x005A0840` (`0x007986D5`), closes the mutex and frees the argument strings. With
@@ -474,7 +494,10 @@ game.
 ### Update-thread object bytes
 
 `0x007A4190` builds the update-thread object `0x02EACF10` on first use: `0x005CC900` zeroes `+0x00`-`+0x17` and
-`+0x30`-`+0x47`, and the bytes after each are cleared by hand.
+`+0x30`-`+0x47`, and the bytes after each are cleared by hand. A guard word, `0x02EACF68`, makes the
+building run once (`0x007A41BA`-`0x007A41D5`, `0x007A4214`); it registers `0x008B8620`, a jump to `0x0016D6A0`,
+which returns at once, as the exit teardown (`0x007A4207`), and every call returns `0x02EACF10` (`0x007A4219`,
+`0x007A421E`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

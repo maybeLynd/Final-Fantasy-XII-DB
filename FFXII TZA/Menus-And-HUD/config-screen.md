@@ -108,9 +108,9 @@ The painter `0x0023F8B0(screen, row widget, -, row)` reads the layout kind of th
   for commands 7, `0x0F`, `0x16`, `0x1F`, `0x22` and `0x23` and 0 for any other; part 1 is then placed after that
   entry's text width (`0x0029FE20`);
 - any other kind: the part at `0x00914C98` shows unless the kind is `0x0C`, and part 2 takes the label (`0x002F9860`)
-  unless it is `0xFFFF`. Part 2 is recoloured by `0x00393240(part, 1)` while the row's lock bit is set, and with 0
-  otherwise: bit `0x1E` for command 4, `0x1F` for 5, `0x23` for 6, `0x22` for 8, `0x20` for 9, `0x21` for 10
-  (`0x00254DD0`).
+  unless it is `0xFFFF`. Part 2 is recoloured by `0x00393240(part, 1)` while the row's lock flag is set, and with 0
+  otherwise: flag `0x1E` for command 4, `0x1F` for 5, `0x23` for 6, `0x22` for 8, `0x20` for 9, `0x21` for 10
+  (`0x00254DD0`; the flags of Restore Defaults, Max. LP and Max. Gil below).
 
 ### Restore Defaults, Max. LP and Max. Gil
 
@@ -134,9 +134,16 @@ The painter `0x0023F8B0(screen, row widget, -, row)` reads the layout kind of th
 
 ### Graphics Settings rows
 
-The rows are the table at `0x00914710`, 24 records `{ordinal, kind, class, label, help}`; rows 0, 2, 3, 11, 14 and 17 are
-headings. A press runs `0x0017DB90(row, value, direction)`, which calls the settings dispatcher `0x001D1660` through
-`0x001CD040` and reads the value back with `0x0017E070`.
+The rows are the table at `0x00914710`, 24 records `{ordinal, kind, class, label, help}`; rows 0, 2, 3, 11, 14 and 17
+are headings. A press runs `0x0017DB90(row, value, direction)`, which calls the settings dispatcher `0x001D1660` through
+`0x001CD040` and reads the value back with `0x0017E070`. Rows 5 and 6 do not reach the dispatcher. Resolution runs
+`0x001DC940(display, direction == 0)` on the display object `0x001DDAB0()` and then `0x001DC730` when `[0x01F82D20] + 8` is 0
+(`0x0017DC1E`, `0x0017DC3C`), and neither while `0x001DDAB0()` returns 0 (`0x0017DC08`).
+
+Screen Mode steps the passed value through 0, 1, 2, up by one for direction 0 and down by one otherwise, wrapping at
+both ends, and returns it without the read-back (`0x0017DC46`-`0x0017DC69`). A heading dispatches nothing and reads back
+-1. While the console object `0x001D50D0()` is 0 no row dispatches or steps and every row reads back through `0x0017E070`
+(`0x0017DBB9`).
 
 | Row | Label | Values | Setting | Runs at once |
 |---:|---|---|---|---|
@@ -291,7 +298,7 @@ Each of the 24 slots at `+0x4D8` of the Graphics Settings screen (next) is `0x18
 
 ### The Graphics Settings screen
 
-Graphics Settings is the `0x730`-byte widget at `0x0208E6C0` with procedure `0x0023BD40` (The screens above).
+Graphics Settings is the `0x730`-byte widget kept at `0x0208E6C0` with procedure `0x0023BD40` (The screens above).
 
 `GraphicsSettingsScreen` (`0x730` bytes, offsets from the start of the record):
 
@@ -333,7 +340,7 @@ Each of the 41 slots at `+0xD0` of the Controls screen (next) is `0x18` bytes.
 
 ### The Controls screen
 
-Controls is the `0x4C0`-byte widget at `0x0208E6D0` with procedure `0x0023CE10` (The screens above).
+Controls is the `0x4C0`-byte widget kept at `0x0208E6D0` with procedure `0x0023CE10` (The screens above).
 
 `ControlsScreen` (`0x4C0` bytes, offsets from the start of the record):
 
@@ -366,7 +373,7 @@ Each of the 42 slots at `+0xE0` of the Config screen (next) is `0x18` bytes.
 
 ### The Config screen
 
-Config is the `0x4D8`-byte widget at `0x0208E6D8` with procedure `0x0023FBE0` (The screens above).
+Config is the `0x4D8`-byte widget kept at `0x0208E6D8` with procedure `0x0023FBE0` (The screens above).
 
 `ConfigScreen` (`0x4D8` bytes, offsets from the start of the record):
 
@@ -397,6 +404,7 @@ is 0 and keeps the widget there; leaving clears it. All three are 0 in the file.
 | `0x0208E6D8` | `void*` | 0 | the open Config screen: the `0x4D8`-byte widget with procedure `0x0023FBE0`, which stores itself on message 1 | `0x0023FBE0`: itself (`0x0023FC51`); 0 when it goes, after opening Graphics Settings or Controls for a waiting row command `0x20` or `0x21` (`0x00240284`, `0x0024026B`), or after `0x002E1CA0(1, 0x15)` for origin 1 (`0x00240252`) | the openers `0x00240680` (`0x002406B8`) and `0x002406F0` (`0x00240703`) and the two screens that reopen Config, `0x0023BD40` (`0x0023C510`) and `0x0023CE10` (`0x0023D438`), which create it only while it is 0; the row widgets `0x0023D6B0` (`0x0023D794`), `0x0023D890` (`0x0023D8BA`) and `0x0023DD10` (`0x0023DD3A`), which step only while Config's `+0xD0` bit `0x1` is clear |
 
 No other instruction reaches these three.
+
 ## Modding notes
 
 - Config's rows and their order are the row lists of `0x01E0BF60`; the mode lists at `0x01E0B670`, `0x01E0B7D0` and

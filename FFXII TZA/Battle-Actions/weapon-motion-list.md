@@ -15,10 +15,12 @@ animation set.
 
 ### How the set is chosen
 
-`0x003202F0(stats, &set)` gives a unit its animation set (`0x003202F0`-`0x00320443`):
+`0x003202F0(stats, &set)` gives a unit its animation set (`0x003202F0`-`0x00320443`). It first sets `set` to −1, and a
+null record keeps it and returns −1 (`0x003202FA`, `0x0032030B`); each rule below returns 0:
 
 1. An enemy record (stats `+0x05` = 1) whose definition row byte `+0x13` is not `0xFF` takes that byte
-   (`0x0032031F`-`0x0032033C`).
+   (`0x0032031F`-`0x0032033C`). The row is `[unit + 0xE60]` of the battle unit `0x0031B860` finds for the record;
+   a record with no unit goes on to the next rule (`0x00320327`).
 2. A record whose main hand `+0x50` is `0x1000`, Unarmed, with no off-hand item (`+0x52` = `0xFFFF`) and Brawler (augment 9)
    in either augment layer (`+0x69` or `+0x79` bit `0x2`) takes row 22 (`0x0032034B`-`0x00320384`).
 3. Otherwise `0x003203B0(main hand)` takes the row of the main-hand item's motion class `+0x26` when the id is not
@@ -27,12 +29,22 @@ animation set.
 
 Its callers:
 
-- `0x00320170` gives the motion lane of a unit's model ([Actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md)).
+- `0x00320170` gives the motion lane of a unit's model
+  ([Actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md)). It calls `0x003202F0` with the stats record
+  `[unit + 0x698]` of the unit behind the id (`0x003588B0`, `0x00263E30`), and with 0, which gives −1, when battle
+  flag `0x02089340` bit `0x10` is clear or there is no actor or unit (`0x0032018F`-`0x003201F2`).
+- `0x00320170` sends an actor that is one of the four `0x00263750` roster actors to `0x00320230(slot, &set)`
+  instead (`0x003201B0`-`0x0032021C`).
 - `0x00320230` does the same for the member in a seat of slot map 4. It answers 22 itself for the seat `0x00327200`
-  returns while `0x00303EC0` holds, and uses the Chocobo's record `[0x02EBF190]` + `0x2E58` for seat 3.
+  returns (`0x00304650` jumps to it) while `0x00303EC0` holds, and in that state uses the Chocobo's record
+  `[0x02EBF190]` + `0x2E58` for seat 3 (`0x00320240`-`0x00320285`).
+- Otherwise `0x00320230` takes the member byte at `[0x02EBF190]` + `0x5A90` + seat × 2 and its record
+  `[0x02EBF190]` + 8 + member × `0x1C8`; a seat that `0x00322C50(0x17, seat, 0)` refuses, or a member above
+  `0x27`, goes to `0x003202F0` with 0, which gives −1 (`0x0032028A`-`0x003202E2`).
 - `0x00325A20` and `0x00325AD0`, the two action caches of [Action phases](action-phases.md), call it only for a unit
   that is not a party unit; a party unit (stats `+0x05` = 0) gets the byte of row 1 there, set 1
-  (`0x00325A50`-`0x00325A5A`, `0x00325AD0`).
+  (`0x00325A50`-`0x00325A5A`, `0x00325AD0`). A unit whose stats record `+0x698` is null is not a party unit there:
+  it goes to `0x003202F0` with 0, which gives −1 (`0x00325A43`, `0x00325AEB`).
 
 ### Where the values come from
 
@@ -64,7 +76,7 @@ and stored once by the loader (`0x00236C74`); none of them reads the count.
 |---|---|
 | `motion_class` | the row, a weapon motion class |
 | `animation_set` | the row's byte |
-| `weapons`, `first_weapons` | how many main-hand rows have the class, and the first three by name; the 13 main-hand rows named Reserve are not counted (ten of class 1, rows 179 and 180 of class 13, row 186 of class 18) |
+| `weapons`, `first_weapons` | how many main-hand rows have the class, and every one of them by name, in row order; the 13 main-hand rows named Reserve are not counted (ten of class 1, rows 179 and 180 of class 13, row 186 of class 18) |
 | `explanation` | a one-line summary |
 
 ## Related

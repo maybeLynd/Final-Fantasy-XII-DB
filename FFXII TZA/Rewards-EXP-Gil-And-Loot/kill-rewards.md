@@ -78,10 +78,17 @@ of a `+0x140` word are the periodic tick's HP-drain arms at `0x00386DF5`, `0x003
 
 `0x00315820(species)` ignores species of `0x200` and above. It keeps one
 byte per species at `[0x020927C0] + 0x3404 + species`, where the stored value is the count plus one
-(0 and 1 both mean no defeats counted), saturating at `0xFF`. The species is counted only when `0x00315D50(species)`
+(0 and 1 both mean no defeats counted), saturating at `0xFF`.
+
+The species is counted only when `0x00315D50(species)`
 returns -1. That happens unless the species is in the list in `menuhandbook.bin` (three 16-bit hops
-from `+0x08`, then a count at `+2` and up to eleven species words at `+4`). For a listed species,
-`0x00315D50` returns the word at `0x01EED130 + index*2`.
+from `+0x08`, then a count at `+2` and up to eleven species words at `+4`) at a position whose word in
+`0x01EED130` is not -1. For a listed species,
+`0x00315D50` returns the word at `0x01EED130 + index*2`, sign-extended (`0x00315DAD`-`0x00315DB7`).
+
+Of the eleven words only positions 1 (167) and 10 (170) hold a value other than -1, so a species at any other
+position of the list is counted. With no file at `[0x022C2550]`, a zero hop or a species not in the list,
+`0x00315D50` returns -1 (`0x00315D5D`-`0x00315DBC`).
 
 ### The achievements
 

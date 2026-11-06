@@ -21,16 +21,33 @@ values compiled into the game.
 
 ### The block and its defaults
 
-The settings live in one C++ static object at `0x02CB7FD0`. Its initializer `0x00162410` runs the
-constructor `0x005DC720` on it and registers the destructor `0x008AB7C0` with `atexit`. The
-constructor writes the object out to `+0x1020`: `0x005DC580` fills `+0x000` to `+0x0C7`,
-`0x005DC430` fills `+0x0D0` to `+0x187`, the constructor itself fills `+0x42C` to `+0x4A8`.
-The destructor loads the block's address and jumps to `0x005DDDB0`, which frees the callback
-vector at `+0x1010` (below) and the arrays at `+0x4A0` and `+0x478`.
+The settings live in one C++ static object at `0x02CB7FD0`. Its initializer `0x00162410` runs the constructor `0x005DC720`
+on it and registers the destructor `0x008AB7C0` with `atexit`. The constructor writes the object out to `+0x1020`:
+`0x005DC580` fills `+0x000` to `+0x0C7`, `0x005DC430` fills `+0x0D0` to `+0x187`, the constructor itself fills `+0x42C` to
+`+0x4A8`.
+
+Its own stores are the word `+0x42C` = 0 (both bytes, `+0x42C` and `+0x42D`), `+0x438` to `+0x447` = 0, `+0x448` =
+1.0, `+0x450` = 0, `+0x454` = -0.5, `+0x458` = 0.5, `+0x460` = 0.5, the byte `+0x464` = 1 and `+0x468` = 7.0
+(`0x005DC756`-`0x005DC7A4`). It then zeroes `+0x478`, `+0x480`, the word `+0x488`, `+0x490`, `+0x498`, `+0x4A0` and
+`+0x4A8` (`0x005DC7AE`-`0x005DC7D5`), sets up the lock at `+0x4B0` (`0x005CC8A0`, `0x005DC7E3`), zeroes the slot index
+`+0x4D8` (`0x005DC7E8`) and the three pointers of the callback vector at `+0x1010`, `+0x1018` and `+0x1020`
+(`0x005DC85D`-`0x005DC86B`), and returns the block.
+
+The destructor loads the block's address and jumps to `0x005DDDB0`, which frees the callback vector at `+0x1010` (below)
+and the arrays at `+0x4A0` and `+0x478`. The vector is freed only when its begin pointer is non-null: `0x001A5A80` gets
+the begin pointer and the capacity in 8-byte entries, and the three pointers are zeroed (`0x005DDDD8`-`0x005DDDF8`). Each
+array is a count word with its pointer 8 bytes on (`+0x4A0` with `+0x4A8`, `+0x478` with `+0x480`).
+
+While bit `0x80000000` of the count is clear, the pointer and the count without that bit go to `0x005F01B0`
+(`0x005DDE18`), which runs `0x00616420` on each `0x50`-byte element (after `0x0062B7B0` when `0x00625EC0` answers non-zero),
+or to `0x005F03A0` (`0x005DDE47`), which frees the pointer at `+8` of each `0x18`-byte entry when it is non-null and its
+bit `0x1` is clear; both then free the array with `_aligned_free` (`0x00584730`). Either way the pointer and the count
+are then zeroed (`0x005DDE1E`-`0x005DDE25`, `0x005DDE4D`-`0x005DDE54`).
 
 The constructor then runs the first two again on the block images inside the two snapshot slots at `+0x4E0` and
 `+0xA78` (a slot is `0x598` bytes and carries the block image at its `+0x110`, so the copies sit
 at `+0x5F0` and `+0xB88`), so that the first frame's comparison has something to compare against.
+It also writes its own `+0x42C` to `+0x468` values into each image at the same offsets (`0x005DC818`-`0x005DC849`).
 The defaults are immediates in those three bodies; the table
 [graphics-settings.tsv](graphics-settings.tsv) carries every one.
 
@@ -41,18 +58,29 @@ current value beside the label.
 
 ### The scene-config loaders
 
-`0x001C7940` (an area's scene config) and `0x001C3D50` (a cutscene's) read settings out of a
-string-keyed map. `0x001FF740(map, "key")` finds the entry, `0x00200BE0` tests its type tag for 6
-("absent"), `0x00200B50` reads it as a float (tag 2 `cvtpd2ps`, tag 1 `cvtdq2ps`, else 0) or
-`0x00200B80` as an integer, and the value is stored. `0x00200BA0` reads it as a string: the string object at
+`0x001C7940` (an area's scene config) and `0x001C3D50` (a cutscene's) read settings out of a string-keyed map.
+`0x001FF740(map, "key")` finds the entry, `0x00200BE0` tests its type tag for 6 ("absent"), `0x00200B50` reads it as a float
+(tag 2 `cvtpd2ps`, tag 1 `cvtdq2ps`, else 0) or `0x00200B80` as an integer, and the value is stored. `0x001FF740` copies
+the key into an EASTL string, passes it to `0x001FF6B0` (`0x001FF81D`), frees the copy and returns `0x001FF6B0`'s answer.
+
+`0x001FF6B0` first turns a value whose tag is not 3 (a map) into an empty map (`0x002001F0`, `0x001FF6CF`-`0x001FF713`); then
+`0x001FF4F0` returns the value of the entry with that key, and for a key the map lacks it inserts an entry whose value
+has tag 6 (`0x001FF5E1`, `0x001FFD40` at `0x001FF647`) and returns that. A key that is asked for and missing therefore
+becomes an absent entry of the map.
+
+`0x00200BA0` reads it as a string: the string object at
 `+8` for tag 0, otherwise `0x01F83130`, an empty string that the initialiser `0x0015D2F0` builds at start-up
 on the shared byte `0x02EBA2E0` ([EASTL strings](../Third-Party-Libraries/eastl-strings-and-containers.md)).
 
-The area loader inlines a two-level lookup:
-the given map, then the global defaults at `0x01F813C8` when the tag is 6. The cutscene loader
-calls `0x001C51D0(map, "key")` (its only caller), a three-level chain: the given map, then the
-`Common` section of the current scene map (`0x01F813D8 + 0x01F813F8 × 0x10` when `0x01F81418` is set,
-else `0x01DF6E50`'s), then `0x01F81328`, then `0x01F813C8`.
+The area loader inlines a two-level lookup: the given map, then the global defaults at `0x01F813C8` when the tag is 6.
+The cutscene loader calls `0x001C51D0(map, "key")` (its only caller), a four-level chain: the given map, then the
+`Common` section of the current scene map (`0x01F813D8 + 0x01F813F8 × 0x10` when `0x01F81418` is set, else `0x01DF6E50`'s),
+then `0x01F81328`, then `0x01F813C8`. Each level is a `0x001FF740` lookup whose tag `0x00200BE0` tests for 6 (`0x001C51E0`,
+`0x001C5248`, `0x001C5263`).
+
+The first level whose entry is not absent is looked up once more and returned (`0x001C52B3`, `0x001C529E`), and `0x01F813C8`
+is returned without a test (`0x001C5288`). With `0x01F81418` set, the scene map `0x01F813D8 + 0x01F813F8 × 0x10` is used only
+while it is not absent itself; otherwise the chain takes `0x01DF6E50`'s document, as in mode 0 (`0x001C5213`-`0x001C522C`).
 
 `0x001C3D50(mode)` keeps the mode in `0x01F81418` and picks the document whose cut section it reads.
 - In mode 0 that is `0x01DF6E50`.
@@ -87,6 +115,17 @@ as `value == 1` at `+0x42C` through the integer reader (`0x001C8F2B`); `mMapShad
   restores it, around the work those two bracket) and the four `mMapShadow*Fade*` at `+0x438`
   to `+0x444`.
 
+`0x001846F0(n)` and `0x001846B0` open and close the monster viewer ([clan
+primer](../Menus-And-HUD/clan-primer.md#the-monster-viewer)); their only call sites are `0x0057025A` and `0x00570355`. Both first
+run `0x001E0580`, which clears `0x01F82D31` and `0x01F82D32` (`0x001846F8`, `0x001846B4`). `0x001846F0` saves `mCubemapIntensity`
+(`+0x168`, `0x02CB8138`) in `0x01F7F53C` (`0x00184708`), stores 0 there (`0x00184710`), posts a
+`MonsterGallerySoftParticleEnable` command with byte 0 through `0x0018CCF0([0x01F7F5E8], 0)` (`0x00184718`-`0x00184722`) and
+tail-jumps to `0x001EB7B0(viewer, n)` on the viewer `0x001EBA40()` (`0x00184727`-`0x00184736`).
+
+`0x001846B0` runs `0x001EB940` on the viewer (`0x001846B9`-`0x001846C1`), restores `+0x168` from `0x01F7F53C`
+(`0x001846C6`-`0x001846CE`) and tail-jumps to `0x0018CCF0([0x01F7F5E8], 1)`, the same command with byte 1
+(`0x001846D6`-`0x001846E4`).
+
 The same loaders write everything else somewhere other than the block, among others:
 
 - into the post-process parameter object (`0x4A8` bytes, allocated on first use by `0x00193D50`
@@ -96,7 +135,9 @@ The same loaders write everything else somewhere other than the block, among oth
   `+0xA0`, `+0xA1`, `+0x1F0`) and the motion blur at `+0x334` to `+0x33C`;
 - into the same object, the depth of field: `EnableDof`, `mDofApertureFnumber` and
   `mDofFocusDistance` at `+0x110` to `+0x120` through `0x00194250`; a cutscene with a `PresetDof`
-  entry reads the pair from its `Common` section instead;
+  entry reads the pair from its `Common` section instead; `0x00194250(object, enable, focus, aperture, a, b)`
+  stores `+0x11C` = a, `+0x120` = b, `+0x114` = focus, `+0x118` = aperture and the byte `+0x110` = enable
+  (`0x0019425C`-`0x0019427C`), with no test;
 - into the shadow object (`0xB08` bytes, constructor `0x001EF2D0`, allocated on first use by
   `0x001F0850` into `0x01F82EA8` and cached again at `0x01F812C8` by `0x0015CC00`): `ShadowBias` at
   `+0x898`, `ShadowValueR/G/B` at `+0xEC` to `+0xF4`, `mCascadePartition*` at `+0x870`,
@@ -122,13 +163,23 @@ The same loaders write everything else somewhere other than the block, among oth
 Several area keys land in the map-art context `[0x01F81168]` (getter `0x001A9930`) through its own
 setters. The three `m2dBgNpcAnimRotation` keys, authored in degrees, are converted with
 `v / 180 × π`: `…Speed` by `0x001A9AA0` to `+0x480`, `…Limit` by `0x001A9A70` to `+0x484`,
-`…SpeedMargin` by `0x001A9AD0` to `+0x488`. A setter that changes its field calls `0x001A7770`, which
-resets every entry of the map at `+0x498`: angle `+0x30` = 0, limit `+0x28` = `+0x484`, speed
-`+0x24` = `+0x480` plus a `rand()` offset inside ±`+0x488`.
+`…SpeedMargin` by `0x001A9AD0` to `+0x488`. A setter that changes its field calls `0x001A7770`, which resets every entry
+of the map at `+0x498`: angle `+0x30` = 0, limit `+0x28` = `+0x484`, speed `+0x24` = `+0x480` plus a `rand()` offset
+inside ±`+0x488`. The load `0x001A5B30` also calls it (`0x001A69C4`).
 
-The map-art update `0x001A9ED0` then moves each angle by speed × frame time and reverses the speed
-when the angle reaches the limit on either side, but only while both `+0x480` and `+0x484` are
-non-zero. The draw-list build `0x002F5550` reads a model's angle through `0x001802E0` (`0x001A7410`:
+With an empty map it returns at once (`0x001A7790`-`0x001A7793`). The offset is `2 × +0x488 × rand() / 32767 - +0x488`
+(`0x001A77E4`-`0x001A7811`, 32767.0 at `0x008F6834`), and `rand()` is drawn only while `+0x488` is non-zero
+(`0x001A77DD`-`0x001A77E2`); with `+0x488` = 0 the speed is `+0x480` itself.
+
+The map-art update `0x001A9ED0` then moves each angle by speed × frame time and reverses the speed when the angle goes
+past the limit on either side, but only while both `+0x480` and `+0x484` are non-zero (`0x001A9FDC`-`0x001A9FFF`) and the
+map has an entry (`0x001AA013`). The new angle is speed × dt + angle in double precision, dt being the double second
+argument (`0x001AA030`-`0x001AA04D`). The speed's sign flips when the angle is above `+0x28` while the speed is positive,
+or below minus `+0x28` while it is 0 or negative (`0x001AA052`-`0x001AA072`); an angle equal to the limit keeps its speed.
+
+Before the sway the update runs the map-art load check and the pass over the views' byte `+0x251` that [map
+art](../World-Areas-And-Travel/map-art.md#the-context) describes. The draw-list build `0x002F5550` reads a model's angle
+through `0x001802E0` (`0x001A7410`:
 the entry with that model's index, 0 without one) and multiplies the model's placement by a
 rotation of that angle (`0x00202F00`). The 2D background figures therefore sway back and forth,
 each at its own speed.
@@ -146,17 +197,26 @@ The three per-slot shadow sets are stored by slot index and applied for the curr
 
 After each of these the setter (or `0x001AA3B0` after the cascade loop and after each light)
 calls `0x001A7E40(ctx, slot - 1)`, slot being `0x00265920()`: the developer menu's weather-slot override
-`0x0017D490` when positive, else the area's slot byte `+0x1060` plus 1. `0x001A7E40` copies that
-slot's map and character values to the shadow object's `+0x140` and `+0x144`, its cascade row to
-`+0x870` to `+0x878`, and, while `+0x398` is set, its direction through `0x001F08A0` to the shadow
-object's `+0xFC` to `+0x104` (normalised) and the block's `+0x450` to `+0x458`.
+`0x0017D490` when positive, else the area's slot byte `+0x1060` plus 1. `0x001A7E40` copies that slot's map and character
+values to the shadow object's `+0x140` and `+0x144`, its cascade row to `+0x870` to `+0x878`, and, while `+0x398` is
+set, its direction through `0x001F08A0` to the shadow object's `+0xFC` to `+0x104` (normalised) and the block's `+0x450`
+to `+0x458`.
+
+It takes the shadow object from `0x001F0850()` (`0x001A7E5A`), which builds it on first use, writes `+0x144` before
+`+0x140` (`0x001A7E6D`, `0x001A7E7A`), passes the direction as a stack copy of its three floats with the third argument 1
+(`0x001A7E9D`-`0x001A7EC5`), and uses the slot index without a bound (`0x001A7E54`).
 
 The map-art constructor `0x001A2130` registers `0x001A97F0` as a callback of the block (`0x0060B720`
 appends it to the vector at `+0x1010`). The callback writes `mapIrrCubeMapFactor` (`+0x0B8`) =
 the context's `+0x2DC` while `EnableIBL` (`+0x2E4`) is set and `0x001AC720(0x001AD440(), 0)` returns
-an object, else 0. It writes `rtWidth` / `rtHeight` (`+0x0C0` / `+0x0C4`) from the render
-manager's target (`0x001867B0`, its `+0x28` and `+0x2C` as floats), and `m_mapFadeHeight` (`+0x448`)
-= the context's `+0x32C` while `+0x328` is set, else 1.0.
+an object, else 0. It writes `rtWidth` / `rtHeight` (`+0x0C0` / `+0x0C4`) from the render manager's target
+(`0x001867B0`, its `+0x28` and `+0x2C` as floats), and `m_mapFadeHeight` (`+0x448`) = the context's `+0x32C` while
+`+0x328` is set, else 1.0.
+
+`0x001867B0` runs on the render manager `0x00189120()` and returns its target entry (`0x001A9834`-`0x001A983C`); the callback
+takes the entry's first pointer while the entry's byte `+0x08` is clear and reads `+0x28` and `+0x2C` of what it
+points to as unsigned 32-bit integers (`0x001A9841`-`0x001A985F`); with the byte set it reads them through a null pointer
+(`0x001A984C`-`0x001A9854`).
 
 The character render-object manager's constructor `0x001BC9D0` registers `0x001BD9D0` the same way (`0x001BCC6C`). It
 writes the block's `+0x184` (`0x02CB8154`): 0 while byte `+0x118` of `0x001EBA40()` is set, otherwise `0x01DFE194`
@@ -261,7 +321,7 @@ One row per 4-byte field of the render settings block that feeds a shader consta
 |---|---|
 | `block_off` | the field's offset in the render settings block, `+0x000` to `+0x468`; `address` is `0x02CB7FD0` plus this offset on all 276 rows |
 | `cbuffer_off` | the byte offset, `0x184` to `0x5E0`, of the variable in `SceneWideParameterConstantBuffer` that `0x00604750` writes from this field (`shader_constant` names it) |
-| `default` | the value a constructor stores, as a decimal: `0x005DC580` for `+0x000` to `+0x0C4`, `0x005DC430` for `+0x0D0` to `+0x180`, `0x005DC720` for `+0x42C` to `+0x468`; 105 rows have one, and `-` marks the 171 fields no constructor stores |
+| `default` | the value a constructor stores, as a decimal: `0x005DC580` for `+0x000` to `+0x0C4`, `0x005DC430` for `+0x0D0` to `+0x184`, `0x005DC720` for `+0x42C` to `+0x468`; `+0x17C`, `+0x184` and `+0x42D` hold 0 from `0x005DC43E`, from the high half of the 8-byte store at `0x005DC569` and from the high byte of the word store at `0x005DC756`; 108 rows have one, and `-` marks the 168 fields no constructor stores |
 | `menu_ids` | the developer-console command ids whose arm writes the field, separated by commas (91 ids on 86 rows, ids 28 to 168; see [debug menu commands](debug-menu-commands.md)); `-` on the 190 fields no console row reaches |
 | `menu_labels` | the console labels of those ids, separated by semicolons; id 28, `Use PS2 lighting`, writes several fields, and on some of its rows its label is not the first |
 
@@ -293,7 +353,7 @@ Event scripts set depth of field through two request slots (0 and 1) that `0x002
 
 | Call | Handler | Request |
 |---|---|---|
-| `0x5C1` | `0x003513F0` → `0x00214B80` → `0x00214B90(kind, focus, aperture, slot)` | a full request; kind 0 replaces focus and aperture with `mDofFocusDistance` and `mDofApertureFnumber` from the map's file `0x01F81328` (`0x001C5530`, falling back to `0x01F813C8`); the enable word becomes 1 |
+| `0x5C1` | `0x003513F0` → `0x00214B80` → `0x00214B90(kind, focus, aperture, slot)` | a full request; kind 0 replaces focus and aperture with `mDofFocusDistance` and `mDofApertureFnumber` from the map's file `0x01F81328` (`0x001C5530`, falling back to `0x01F813C8`); the enable word becomes 1. Kind 0 reads both keys with `0x00200B50` (`0x00214BC4`, `0x00214BE2`), so a key absent from both files gives 0.0; any other kind keeps the focus and aperture it is given. `0x00214B90` stores the enable word `0x01FD3AE8` + slot × 4 = 1, the kind, focus and aperture at `0x01FD3AC8`, `0x01FD3ACC` and `0x01FD3AD0` plus slot × `0xC`, and the full-request byte `0x01FD3AE0` + slot = 1 (`0x00214BF2`-`0x00214C20`) |
 | `0x5BA` | `0x0034D870` → `0x00214B40(enable)` | an enable-only request for slot 0 |
 | `0x5C0` | `0x0034DAF0` → `0x00214B50(enable, slot)` | an enable-only request for the given slot |
 
@@ -325,11 +385,24 @@ For a pending request of slot i it posts a command on the ordered command list `
   (`0x001F1DF0`) whose execute `0x001F38B0` calls `0x00194250` with the enable, focus and aperture, the
   object's current `+0x11C` and 35.0.
 
-`0x001CC920` and `0x001CC800` also write the values into the running cutscene's data, but only for
-slot 0 and only while an event slot is marked with queued events (`0x01DFE40C` below 5, its count at
-`0x01F832B0` non-zero). They look up the section named by the cut name `0x01F81358` ("Cut N") in the
-current scene map `0x01F813A8 + [0x01F813F8] × 0x10` (`0x001FF6B0`) and set `EnableDof` (`0x00202820`),
-`mDofFocusDistance` and `mDofApertureFnumber` (`0x002027B0`).
+The object `0x001F38B0` passes is the post-process parameter object `0x00193D50()`, fetched once for `+0x11C` and
+once as the target (`0x001F38BE`, `0x001F38CB`). The enable is the command's byte `+0x18`, the focus its `+0x1C` and
+the aperture its `+0x20`, the three that `0x001F1DF0` stores (`0x001F38DB`-`0x001F38F5`).
+
+`0x001CC920` and `0x001CC800` also write the values into the running cutscene's data, but only for slot 0 and only while
+an event slot is marked with queued events (`0x01DFE40C` below 5, its count at `0x01F832B0` non-zero). They look up the
+section named by the cut name `0x01F81358` ("Cut N") in the current scene map `0x01F813A8 + [0x01F813F8] × 0x10`
+(`0x001FF6B0`) and set `EnableDof` (`0x00202820`), `mDofFocusDistance` and `mDofApertureFnumber` (`0x002027B0`). Any i other
+than 0 returns at once (`0x001CC800`, `0x001CC924`).
+
+`0x01DFE40C` is compared with 4 as an unsigned number, so the unmarked -1 also returns (`0x001CC824`, `0x001CC92F`), and the
+count must be above 0 (`0x001CC834`-`0x001CC838`, `0x001CC93B`-`0x001CC93F`).
+
+`0x001CC920` writes only `EnableDof`, tail-jumping to `0x00202820` (`0x001CC98B`); `0x001CC800` looks the section up once
+per key and also writes the two floats (`0x001CC889`-`0x001CC8F7`). `EnableDof` becomes the integer 1 or 0 (`setne` at
+`0x001CC861` and `0x001CC95F`; `0x00202820` gives the value tag 1), and the focus and aperture are widened
+to doubles, `cvtss2sd xmm6, xmm6` at `0x001CC89E` and `cvtss2sd xmm6, xmm7` at `0x001CC8D9` (`0x002027B0` gives the
+value tag 2).
 
 ### The crossfade hold
 
@@ -468,7 +541,7 @@ The block's `+0x1010` is the vector of callbacks `0x0060B720` appends to, `0x001
 |---|---|
 | block fields with a shader constant | 276, in [graphics-settings.tsv](graphics-settings.tsv) |
 | fields with a scene-config key | 30 in the block (21 below `+0x190`), 13 in the second run |
-| constructor defaults | 105 fields; `mMapAmbientColor` 1, 1, 1; `chrFresnelSpecularIntensity` 3.9; `mCubemapIntensity` 0.6; `mDebugWaterSpecFactor` 3.59; `+0x0C0` / `+0x0C4` 1920 and 1080 |
+| constructor defaults | 108 fields; `mMapAmbientColor` 1, 1, 1; `chrFresnelSpecularIntensity` 3.9; `mCubemapIntensity` 0.6; `mDebugWaterSpecFactor` 3.59; `+0x0C0` / `+0x0C4` 1920 and 1080 |
 | shadow matrices | 8 of 64 bytes, block stride 64, object stride `0xD8` |
 | developer-menu arms on the block | 86 addresses, 84 below `+0x190` |
 
@@ -529,6 +602,12 @@ and the string's address is taken only at `0x001C3C80` and `0x001C3EA6`.
   through the loaders, event scripts through the request slots (above), and `JsonData/CutScenes/<name>.json` through `0x001C5750`, whose one caller
   is the event-slot setter `0x0020AC30` (from the area load `0x0032FCA0`), and only for a slot whose
   path contains `sum_`, the summon scenes.
+- `0x001C5750(name)` builds the path as the 19 bytes `JsonData/CutScenes/` (`0x001C5802`-`0x001C581C`) followed by the
+  name it is given (`0x001A52A0`, `0x001C582A`); the caller has already appended `.json` (`0x001B31E0`, `0x0020AD61`).
+  It parses the file into a local document (`0x001FE8B0`; `0x00200BF0` at `0x001C5841`; freed by `0x001FEA00`).
+- `0x001C5750` reads `mDofApertureFnumber` and `mDofFocusDistance` of the document's `Common` section with no
+  absence test, so a missing key gives 0.0, and calls `0x00194250([0x01F81300], 1, focus, aperture, w, 35.0)`
+  (`0x001C58C7`), w being `+0x11C` of `0x00193D50()` (`0x001C584B`).
 
 ## Related
 

@@ -16,10 +16,13 @@ stopped, and disappears when it ends or when the party leaves the area.
    script reads one into a script effect slot ([effects on actors and scripts](effects-on-actors-and-scripts.md)).
 2. **Loading.** A battle effect is read into one of the 48 battle effect slots, and other effects into the queue of
    loaded files, where a file can be shared ([effect file loading](effect-file-loading.md)).
-3. **Instance.** `0x0024B270` makes the `0x3B0`-byte effect instance in its kind's list, with its emitters and their
-   elements ([effect element runtime](effect-element-runtime.md#instances-emitters-and-elements)).
+3. **Instance.** `0x0024B270` makes the `0x3B0`-byte effect instance in its kind's list, with an empty emitter list
+   (`0x003A8900`). Its emitters and their elements come later, through `0x003A8AE0`, from the events of its timeline
+   tracks and the spawn slots of its elements
+   ([effect element runtime](effect-element-runtime.md#instances-emitters-and-elements)).
 4. **Start.** In state 2 or 8 the step starts the instance (`0x003A74F0`) and moves it to state 1
-   ([effect element runtime](effect-element-runtime.md#starting-and-ending-an-instance)).
+   ([effect element runtime](effect-element-runtime.md#starting-and-ending-an-instance)). `0x003A74F0` also runs from
+   state 4 (step 8) and from the signal `0x0024FE70` (`0x0024FEC7`).
 5. **Update.** Each simulation step updates the instance: the emitter step, births, the base update, the cull, and
    child emitters ([effect element runtime](effect-element-runtime.md#the-update-pass)).
 6. **Draw.** Each frame draws the instance in its display layer's pass
@@ -27,15 +30,27 @@ stopped, and disappears when it ends or when the party leaves the area.
 7. **Hold.** While a time stop holds the instance's owner, bit `0x2` of `+0x368` limits each step to two calls, and
    the instance stands still ([effect element runtime](effect-element-runtime.md#the-effect-teardown),
    [time stop and freeze](../Engine-Core/time-stop-and-freeze.md)).
-8. **Restart.** An instance in state 6 moves to 4 when its update ends and starts again
+8. **Restart.** An instance in state 4 starts again (`0x003A74F0`, `0x0024BDB3`) and goes to state 5 (`0x0024BDB8`). One in
+   state 6 runs its update (`0x0024BE11`–`0x0024BE28`) and also goes to state 5: when the update returns 0 it is ended
+   first (`0x003A7300`, `0x0024BE31`), and the 4 stored at `0x0024BE36` is overwritten by the 5 at `0x0024BE3D` ([effect
+   element runtime](effect-element-runtime.md#starting-and-ending-an-instance)).
+   - State 5 puts the instance back in state 1 and lowers the count in bits `0xF0` of `+0x378`, 0 wrapping to `0xF`;
+     it stays in state 5 while `0x001EDDA0` answers non-zero and the count is 0 (`0x0024BDBD`–`0x0024BE08`).
+9. **End.** In state 1, an update that returns 0 ends the instance (`0x003A7300`, `0x0024BC23`): `0x003A7300` frees its
+   players (`0x003A7360`) and hands each non-zero handle at `+0x110`–`+0x11C` to `0x002FCB60` through the one-jump
+   `0x002FC340`, clearing it (`0x003A730A`–`0x003A733A`)
    ([effect element runtime](effect-element-runtime.md#starting-and-ending-an-instance)).
-9. **End.** In state 1, an update that returns 0 ends the instance (`0x003A7300`)
-   ([effect element runtime](effect-element-runtime.md#starting-and-ending-an-instance)).
+   - With bit `0x1` of `+0x368` clear the instance then goes to state 8 and starts again on its next step (`0x0024BC32`,
+     `0x0024BCBF`–`0x0024BCD6`).
+   - With the bit set, a kind-3 instance goes to state 7 and a kind other than 2, 3 and 7 to state 3
+     (`0x0024BC41`–`0x0024BC59`). A kind-2 or kind-7 instance goes to state 3 when the high nibble of `+0x16` of its
+     `0x600` record `+0x373` is 0 or equals the low nibble of `+0x378`, else to state 7 (`0x0024BC6A`–`0x0024BCB4`).
 10. **Release.** A released element goes back on its emitter's free list `+0x120`
     ([effect element runtime](effect-element-runtime.md#the-cull-the-release-and-the-spawn-slots)). An instance its
     owner lets go is queued on the instance free list `0x02092170` and freed on a later frame
     ([effect element runtime](effect-element-runtime.md#the-free-list)).
-11. **Group and file release.** `0x0024C550` frees a group's contexts and instances, and a loaded file is released
+11. **Group and file release.** `0x0024C550` frees a group's contexts and instances, after clearing the owner table of
+    kinds 1 and 5 to 9 (`0x0024C569`–`0x0024C594`), and a loaded file is released
     unless it is kept ([effect element runtime](effect-element-runtime.md#emptying-a-group),
     [effect file loading](effect-file-loading.md#filing-sharing-and-releasing-a-loaded-file)).
 12. **Reuse.** A slot that is used again gets a new id, so a handle kept from before names nothing
@@ -49,6 +64,9 @@ stopped, and disappears when it ends or when the party leaves the area.
   disposed, and every loaded file that is not kept is released
   ([effect element runtime](effect-element-runtime.md#the-effect-teardown),
   [changing areas](../World-Areas-And-Travel/changing-areas.md)).
+- **The rest of the teardown.** `0x0024E910` also sets the group mask `0x02092160` to `0x3FF`, releases the time-stop hold
+  of the model effects and the numbered requests (`0x003B3B50`, `0x003B1130`), and ends in the motion blur and cut-in
+  clears (`0x0024E96B`–`0x0024EA0B`; [effect element runtime](effect-element-runtime.md#the-effect-teardown)).
 - **A loaded file kept by its flag** (`+0x20` bit `0x1`) survives the teardown
   ([effect file loading](effect-file-loading.md#filing-sharing-and-releasing-a-loaded-file)).
 - **A time stop's end** releases every held instance, so all of them move again at once

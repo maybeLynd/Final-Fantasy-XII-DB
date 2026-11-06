@@ -27,22 +27,36 @@ slots from map 3 (an empty slot reads `0xFF`), `0x00320800` collects up to nine 
 from the whole map, and `0x00263750(slot)` returns the live actor of roster slot 0 to 3 from the
 pointer array at `0x0209A1F0`.
 
+Both collectors take an output array and a limit, read the low byte of each two-byte seat of map 3
+(`+0x5A7E`), write the kept selectors packed in slot order, stop once the limit is reached
+(`0x0031B540`, `0x00320830`), and return how many they wrote. `0x0031B510` reads slots 0 to 3 and skips
+`0xFF` (`0x0031B562`); `0x00320800` reads slots 0 to 8 and keeps 0 to 6 and 26 to 254, skipping guests
+and `0xFF` (`0x00320852` to `0x0032085C`). Each slot index also passes `0x00322C50(0x17, slot)`, which
+accepts 0 to 8 (`0x00322FAF`), so it refuses no slot.
+
 ### Changing the battle party
 
 | Verb | Id | begin | poll | What the begin does |
 |---|---|---|---|---|
 | `addpartymember(sel)` | `0x0353` | `0x0034C030` | `0x0034C370` | stores the selector; the poll raises busy bit `0x80000` and adds a main character to the reserve (`0x003172E0`) |
-| `removepartymember(sel)` | `0x0354` | `0x0034C030` | `0x0034CDF0` | the poll removes the main character (`0x00328B20`) and then raises bit `0x80000` |
-| `setbattlemember(a, b, c)` | `0x0355` | `0x0034D4E0` | `0x003506A0` | hides the four roster actors, raises bit `0x80000`, pops three selectors; when every non-negative one is an available main character (`0x00359C00` through `0x0035A050`) the roster is reconciled by `0x00328DB0`; when the leader (`0x003271D0`) is not among them the first non-negative selector becomes leader (`0x00327850`), whatever the reconcile did |
-| `removebattlemember(sel)` | `0x0358` | `0x00350160` | `0x003506A0` | only while the roster holds more than one: the member's slot is swapped with the first empty reserve slot (`0x003286E0`, `0x00321100`); no empty reserve slot, no change |
-| `setbattlememberone(sel)` | `0x0359` | `0x00350CD0` | `0x003506A0` | for a main character in roster slots 0 to 3: every non-guest in slots 0 to 2 other than it is swapped into the first empty reserve slot (`0x003287A0`); slot 3 and guests stay; one outside the roster has the same done around the roster's first member |
-| `setbattlememberlock(sel, on)` | `0x035A` | `0x00351A40` | `0x003506A0` | bit `0x1` of the member's stats record (`0x00328FB0`), the pin `setbattlemember` honours |
-| `addguestbattlemember(sel)` | `0x035B` | `0x00352190` | `0x003506A0` | hides the roster, raises bit `0x80000`, and places a guest absent from map 0 in the highest empty roster slot from 3 down to 1 (`0x003170E0`, `0x00326110`), activating it with `0x00316DF0` |
-| `removeguestbattlemember(sel)` | `0x035C` | `0x00352AF0` | `0x003506A0` | removes a guest (`0x003288F0`) |
+| `removepartymember(sel)` | `0x0354` | `0x0034C030` | `0x0034CDF0` | the poll removes the main character (`0x00328B20`) and then raises bit `0x80000`; a selector above 6, or one absent from map 0's nine slots, is left in place (`0x00328B2A`, `0x00328B59`) and the bit is still raised (`0x0034CE3B`) |
+| `setbattlemember(a, b, c)` | `0x0355` | `0x0034D4E0` | `0x003506A0` | hides the four roster actors, raises bit `0x80000`, pops three selectors; when every non-negative one is an available main character (`0x00359C00` through `0x0035A050`) the roster is reconciled by `0x00328DB0`; when the leader (`0x003271D0`) is not among them the first non-negative selector becomes leader (`0x00327850`), whatever the reconcile did; that selector is not kind-checked, so a guest, which fails the availability test, still becomes leader (`0x0034D5BE`); with all three negative the leader stays (`0x0034D5B9`) |
+| `removebattlemember(sel)` | `0x0358` | `0x00350160` | `0x003506A0` | only while the roster holds more than one (`0x003501A5`): the member's slot is swapped with the first empty reserve slot (`0x003286E0`, `0x00321100`); no empty reserve slot, no change (`0x00328730`); a selector above 6, or one absent from map 0's slots 0 to 3, also changes nothing (`0x003286E7`, `0x00328715`) |
+| `setbattlememberone(sel)` | `0x0359` | `0x00350CD0` | `0x003506A0` | for a main character in roster slots 0 to 3: every non-guest in slots 0 to 2 other than it is swapped into the first empty reserve slot (`0x003287A0`); slot 3 and guests stay, and a member stays when no empty reserve slot is left (`0x003288A4`); one outside the roster has the same done around the roster's first member; with an empty roster nothing is done (`0x00350D4B`); `0x003287A0` changes nothing for a selector above 6, which covers a guest as the roster's first member, or for one absent from map 0's slots 0 to 3 (`0x003287AC`, `0x003287E5`) |
+| `setbattlememberlock(sel, on)` | `0x035A` | `0x00351A40` | `0x003506A0` | bit `0x1` of the member's stats record (`0x00328FB0`), the pin `setbattlemember` honours: set for a non-zero `on` (`0x00328FD5`), cleared for 0 (`0x00328FDE`); a selector without a battle unit (`0x002367A0`), or whose unit has a null record at `+0x698`, is left alone (`0x00328FC3`, `0x00328FCF`) |
+| `addguestbattlemember(sel)` | `0x035B` | `0x00352190` | `0x003506A0` | hides the roster, raises bit `0x80000`, and places a guest absent from map 0 in the highest empty roster slot from 3 down to 1 (`0x003170E0`, `0x00326110`), activating it with `0x00316DF0`; a guest already in map 0 changes nothing (`0x00317108`), and with no empty slot among 3 to 1 nothing is placed (`0x00317159`) |
+| `removeguestbattlemember(sel)` | `0x035C` | `0x00352AF0` | `0x003506A0` | removes a guest (`0x003288F0`): its map 0 seat becomes `0xFFFF` in the snapshot, its record is deactivated by `0x00323540`, and `0x003261D0(0)` applies the change (`0x0032895E` to `0x00328983`); a guest absent from map 0 changes nothing (`0x00328925`) |
 
-Each begin raises busy bit `0x80000` (`0x003601B0(0x13)`) before it touches the party, and the three that
-rebuild the roster first hide the four roster actors with `0x002ECD50(actor, 0)`. Guest and main
-selectors are checked by `0x00322350`: a verb for one kind silently ignores the other.
+Each begin except the shared add/remove begin `0x0034C030` raises busy bit `0x80000` (`0x003601B0(0x13)`)
+before it touches the party, and the three that rebuild the roster first hide the four roster actors
+with `0x002ECD50(actor, 0)`, called through the jump `0x0026DC40`. `0x0034C030` only stores state 0
+(`0x0034C039`) and the popped selector (`0x0034C048`); for those two verbs the poll raises the bit,
+before the add (`0x0034C3B1`) and after the remove (`0x0034CE3B`).
+
+Guest and main selectors are checked by `0x00322350`: a verb for one kind silently ignores the other.
+The add and remove polls leave that check to `0x003172E0` and `0x00328B20`, which act only on a selector
+of 6 or below (`0x003172ED`, `0x00328B27`); `setbattlemember` uses the main-character mask instead and
+does not check the leader it sets.
 
 The guest activation `0x00316DF0` also grants goods. For a record of type 0 to 6 it adds each of
 its five equipment words to the inventory and equips it (`0x00300B80`, `0x0030C410`); unless the
@@ -66,9 +80,12 @@ not need `partyallread`: the read-in the shared poll waits on is started by the 
 The shared poll `0x003506A0` asks `0x003596B0` whether the party read-in is still pending: the
 read-in task's end test `0x0037CB50` reports done when no task exists (`0x02EBF400` null) or its slot
 cursor `0x02EBF3FE` has left the roster (past 3 going up, below 0 going down). While pending the
-verb keeps waiting; when done the poll clears bit `0x80000` and returns 0. The two per-verb polls
-`0x0034C370` and `0x0034CDF0` do the add or remove on their first visit (states 0 and 1), then wait
-the same way in state 2.
+verb keeps waiting; when done the poll clears bit `0x80000` and returns 0.
+
+The two per-verb polls `0x0034C370` and `0x0034CDF0` do the add or remove on their first visit (states
+0 and 1, returning 1), then wait the same way in state 2: they return 1 while `0x003596B0` reports
+pending and, once it reports done, clear bit `0x80000` and return 0 (`0x0034C398`, `0x0034CE18`). A
+state other than 0 to 2 returns 1 without acting (`0x0034C388`, `0x0034CE08`).
 
 `partyallread` (`0x03EB`, begin `0x0034CCD0`) raises bit `0x80000` and starts the read-in task
 (`0x0037C980`); `partyallread2` (`0x046F`, `0x0034D8B0` → `0x0037CA00`) runs it in reverse slot order.
@@ -85,15 +102,22 @@ Seven verbs share one shape: pop a value, collect the members with `0x0031B670` 
 splits them on whether the record's byte `+4` lies in 7 to 25: selector 1 takes the guests,
 selector 0 everyone else. The object handed to the setter is the unit's `+0x10`, the actor record.
 
+`0x0031B670` and `0x0031B680` set the group (0 or 1) and jump into `0x0031B5A0`, which writes the kept
+actor records packed into the caller's array, stops once the caller's limit (4 in every verb here)
+is reached (`0x0031B5D2`), and returns how many it wrote. A selector that `0x002367A0` resolves to no
+unit, or a unit whose `+0x698` record is null, is skipped (`0x0031B606`, `0x0031B617`). The slot index
+passes `0x00322C50(0x17, slot)`, which accepts 0 to 8, so the `0xFF` fallback at `0x0031B5E9` is never
+taken for slots 0 to 3. Each kept unit lands in exactly one group (`0x0031B629` to `0x0031B62F`).
+
 | Verb | Id | Handler | Setter | What it writes |
 |---|---|---|---|---|
-| `partyusemapid(v)` | `0x040D` | `0x0033FD60` | `0x0026AD60`, then `0x00265020` and `0x002E5DF0` | actor byte `+0x08` bits `0x2` and `0x4` as an exclusive pair (bit `0x2` for non-zero), then re-places the actor at its own position |
+| `partyusemapid(v)` | `0x040D` | `0x0033FD60` | `0x0026AD60`, then `0x00265020` and `0x002E5DF0` | actor byte `+0x08` bits `0x2` and `0x4` as an exclusive pair (bit `0x2` for non-zero), then re-places the actor at its own position; `0x00265020` reads that position from the three floats at `[actor + 0xB8]` for an actor of class 1 or 3 (`0x00265025` to `0x00265041`) and gives `0, 0, 0` for any other class (`0x00265052`), and `0x002E5DF0` takes those three floats as the new position (`0x0033FE06`, `0x0033FE61`) |
 | `partyusecharhit(v)` | `0x040E` | `0x00340700` | `0x0026A430` | actor byte `+0x08` bit `0x8` and byte `+0x09` bit `0x40` to `v != 0` |
 | `partysetlod(v)` | `0x040F` | `0x00341190` | `0x002EC680` | presentation byte `+0x13` = `v`, then the refresh `0x002E8CE0` |
-| `partyshowshadow(v)` | `0x0410` | `0x00341B90` | `0x002ECD80` | presentation byte `+0x151` bit `0x8` = `v & 1`, then `0x002E8FD0`; skipped for a lifecycle byte of 1 or a class other than 3 |
+| `partyshowshadow(v)` | `0x0410` | `0x00341B90` | `0x002ECD80` | presentation byte `+0x151` bit `0x8` = `v & 1`, then `0x002E8FD0`; skipped for a lifecycle byte of 1 or a class other than 3 (actor byte `+0x18` equal to 1 at `0x002ECD80`; actor byte `+0x03` masked with `0xE0` other than `0x60` at `0x002ECD86` to `0x002ECD8E`) and for an actor with no presentation at `+0xC0` (`0x002ECD9A`); the bit is written at `0x002ECD9C` to `0x002ECDA9`, and `0x002E8FD0` is a tail jump with the actor (`0x002ECDAF`) |
 | `partyshowshadow_411()` | `0x0411` | `0x00342360` | pushes 1 and jumps into `0x0410` | |
 | `partyhideshadow()` | `0x0412` | `0x00342830` | pushes 0 and jumps into `0x0410` | |
-| `setpartyprojectionshadow(v)` | `0x0413` | `0x00342B30` | `0x002E8730` | in the `0x740`-byte render record at `[0x022C6F28] + index × 0x740` with `+0x284` set: `+0x304` bits `0x1000` and `0x2000` become `01` for on and `00` for off, and `+0x290` bit `0x400000` is set either way |
+| `setpartyprojectionshadow(v)` | `0x0413` | `0x00342B30` | `0x002E8730` | in the `0x740`-byte render record at `[0x022C6F28] + index × 0x740` with `+0x284` set: `+0x304` bits `0x1000` and `0x2000` become `01` for on and `00` for off, and `+0x290` bit `0x400000` is set either way; on (`v` non-zero) clears bit `0x2000` and sets bit `0x1000` (`0x002E8780`, `0x002E878A`), off clears both (`0x002E87DB`), and `+0x290` gets its bit at `0x002E8794` or `0x002E87E5`; the index is the presentation's word `+0`, and a null actor, an actor with no presentation at `+0xC0`, a presentation whose first dword is −1, an index of −1 or a `+0x284` of 0 leaves both words unchanged (`0x002E8734` to `0x002E877E`, `0x002E879F` to `0x002E87D9`) |
 
 ### The standard-motion verbs
 
@@ -104,36 +128,67 @@ calls `0x003580C0(actor, stack)`. The three siblings differ in two constants: th
 forms (`0x053F` `0x0034F890`, `0x0541` `0x003507B0`) push the flag 0, and the `_540` forms (`0x0540`
 `0x00350050`, `0x0541`) pop a float first and push it instead of `−1.0`.
 
-`0x003580C0` pops the flag, the float and the motion in that order, resolves the actor's
-presentation (`0x002E97B0`) and its model entry, and when the entry is loaded (`0x002E4C30`) or no
-selector is set, runs `0x002EAC90(actor)` and then `0x003DDBB0(actor, slot, motion, float)` for flag 0
-or `0x003DDB40` for flag 1, the two standard-motion starts.
+`0x003580C0` first calls `0x00263A30` on the actor's byte `+0x15` and word `+0`, a lookup that stores
+nothing and whose result is dropped (`0x003580EF` overwrites it). It pops the flag, the float and the
+motion in that order, resolves the actor's presentation (`0x002E97B0`) and its model entry
+(presentation `+8`), and returns at once when either is null (`0x00358113`, `0x00358120`).
+
+The slot is the presentation's motion lane, byte `+0x12` (`0x002E9C00`, `0x00358175`). When the entry
+is loaded (`0x002E4C30` above 0 for a lane of 0 or more, `0x00358166`) or no selector is set (a negative
+lane, accepted only when `0x002ED6F0` on the entry's `+0x14` id returns 0 lanes, `0x00358155`), it runs
+`0x002EAC90(actor)` and then `0x003DDBB0(actor, slot, motion, float)` for flag 0 or `0x003DDB40` for flag
+1, the two standard-motion starts; `0x003DDB40` takes any non-zero flag (`0x00358183`). Otherwise
+nothing is started.
 
 `party_motionsync_and_relax` (`0x0573`, begin `0x00342910`, poll `0x00342EC0`) marks the four roster
 slots in the scratch block and, per visit, for each present slot not yet done asks `0x002673D0` and
 `0x002E7330`; while both answer 0 the verb stays busy, otherwise it plays the idle motion
 (`0x002EB430`) and marks the slot done.
 
+The marks are scratch bytes `+4` to `+7`, one per roster slot. The begin writes 0 for a slot whose
+actor `0x00263750` returns and `0xFF` for an empty one (`0x0034293A`, `0x0034293F`), so a slot empty at
+the begin is never waited on. Each poll visit resolves the actor again (`0x00342EE6`) and skips a slot
+whose byte is not 0 (`0x00342EEB`) or whose actor is now null (`0x00342EF6`); it writes 1 for done
+(`0x00342F16`) and returns 1 while any visited slot answered 0 to both, otherwise 0 (`0x00342F1B`,
+`0x00342F30`).
+
 `partystdmotiondispose` (`0x014B`, a jump into `0x0037C3C0`) releases the standard motion of the four
-roster actors: `0x002E6BB0(actor, 1)` stops the render record's motion (`0x00427280`), drops the
-actor's motion lane (presentation byte `+0x12`) from its binding's count and group words
-(`0x002EB890`), queues it for unload when nothing holds it (`0x002E3F00`), sets the lane byte to
-`0xFF`, and resets the render record's `+0x42C` and `+0x430` and clears its `+0x284` bit `0x40000`.
+roster actors: for each roster slot 0 to 3 whose actor `0x00263750` returns, `0x002E6BB0(actor, 1)`
+enters the shared body `0x002E6BD0` with a third argument of 0. The sibling entry `0x002E6BC0` gives 1
+instead, and a second argument of 0 queues nothing (`0x002E6C75`).
+
+The body returns at once for a null actor (`0x002E6BD3`) and then works on the presentation at actor
+`+0xC0`:
+
+1. When the presentation is set and its first dword is not −1, it stops the render record's motion
+   (`0x00427280`, `0x002E6C2E`) when the presentation's word `+0` index is not −1 and the `0x740`-byte
+   render record at `[0x022C6F28] + index × 0x740` has a non-zero `+0x284`; either way it then stores
+   0 in actor `+0xEC` (`0x002E6C33`).
+2. With no presentation, or a negative motion lane (presentation byte `+0x12`, `0x002E6C58`), it
+   returns there.
+3. Otherwise it drops one count from the lane and one from lane 0 in the actor's binding
+   (presentation dword `+4`) with `0x002EB890` (`0x002E6C63`, `0x002E6C6D`), which decrements each lane's
+   count word and writes no group word, and queues the lane for unload when nothing holds it
+   (`0x002E3F00`, `0x002E6C94`); with a third argument of 1, not a lane that
+   `0x002E9C60(presentation +0x8, lane)` reports held (`0x002E6C79` to `0x002E6C8D`).
+4. It sets the lane byte to `0xFF` (`0x002E6CAC`) and, for a render record found as in step 1 (index
+   not −1, `+0x284` non-zero), stores `0x0020E620(0)`, the encoded null address, in `+0x42C` and
+   `+0x430` (`0x002E6CDA`, `0x002E6D0D`) and clears its `+0x284` bit `0x40000` (`0x002E6D3A`).
 
 ### Queries and captures
 
 | Verb | Id | Handler | Result |
 |---|---|---|---|
-| `getpartymember(&a … &f)` | `0x0352` | `0x0034B4B0` | writes up to six non-guest selectors from the whole map (`0x00320800`) into six references, `−1` beyond the count; the word it returns is whatever the last store left in the register |
+| `getpartymember(&a … &f)` | `0x0352` | `0x0034B4B0` | writes up to six non-guest selectors from the whole map (`0x00320800`, limit 6) into six references, `−1` beyond the count (`0x0034B534`); the word it returns is whatever the last store left in the register: the sixth value, the one written to `f` (`0x0034B575`), which `0x0026B4E0` (`0x0034B57B`) makes the verb's int result. The references are popped last first and decoded by `0x002650B0` (`0x0034B4E0` to `0x0034B4FF`); the six dword stores are unchecked (`0x0034B53F` to `0x0034B579`), so a class 6 or 7 reference, decoded against base 0 (`0x0026516C`), writes to its bare 24-bit offset and faults below `0x10000` |
 | `getbattlemember(&a … &d)` | `0x0357` | `0x0034F5A0` | the four roster selectors (`0x0031B510`) into four references, `−1` beyond the count; returns the count |
 | `isbattlemember(sel)` | `0x035D` | `0x00353780` | `0x003596D0`: whether the selector is in the roster's four slots |
 | `ispartymember(sel)` | `0x035E` | `0x00353CB0` | a guest is looked up in the roster, a main character among all nine non-guest slots (`0x00359740`) |
 | `isguestbattlemember(sel)` | `0x035F` | `0x00353460` | `0x00322350` |
-| `checkbattlemember(a, b, c)` | `0x0360` | `0x0034E7D0` | 1 when every non-negative selector is an available main character and the combined mask (`0x0035A050` over `0x00359BA0 \| request`) fits the slots the guests leave, else 0 |
+| `checkbattlemember(a, b, c)` | `0x0360` | `0x0034E7D0` | 1 when every non-negative selector is an available main character, one in the non-guest mask `0x00359C00` (`0x0034E83E`), and the main characters of the roster mask `0x00359BA0` and the request together (`0x0035A050` keeps bits `0x7F`) number at most 3, else 0 (`0x0034E860` to `0x0034E881`); guests already in the roster do not count against the 3; the bound becomes 4 minus the requested guests when the request names a guest (`0x0034E81D`, `0x0034E82B`), but a requested guest is never in `0x00359C00`, so such a request returns 0 |
 | `getpartymembermask` / `getbattlemembermask` | `0x0361` / `0x0362` | `0x003542C0` / `0x003546F0` | `0x00359C00` (all non-guests) / `0x00359BA0` (the roster) as bit masks |
 | `getbattlemembertotal`, `…onlytotal`, `getguestmemberonlytotal` | `0x03B4`, `0x03CC`, `0x03CE` | `0x00341E60`, `0x003426F0`, `0x003430C0` | `0x003599A0` counted over both collector groups, group 0 only, or group 1 only; the `_543` to `_545` forms (`0x0543` to `0x0545`) take a flag and return the raw collector counts when it is 0 |
 | `capturebattlemember(sel)` / `capturebattlemembeructop` | `0x03B3` / `0x03F0` | `0x003408E0` / `0x00340E00` | push `0, 0` or `1, 0` and run `0x00357570` |
-| `captureguestmember(i)` | `0x03CD` | `0x003410C0` | captures the `i`-th guest of group 1 through `0x00262F50` and cancels its action ([party during scenes](party-during-scenes.md)) |
+| `captureguestmember(i)` | `0x03CD` | `0x003410C0` | captures the `i`-th guest of group 1 through `0x00262F50` and cancels its action ([party during scenes](party-during-scenes.md)): `0x00262F50(target, guest)` (`0x0034110A`) binds them, and only a non-zero return leads to the cancel `0x0035AE10(guest, 1)` (`0x0034111B`); an `i` at or above the group's count (`0x003410F8`) or an empty entry (`0x00341102`) does nothing. The bound test is signed, so a negative `i` takes the 8-byte stack slot `i` entries before the collector's array (`0x003410FA`), for −1 to −4 the home slots where `0x0031B5A0` saved its caller's registers (`0x0031B5A0` to `0x0031B5AF`), and hands it to `0x00262F50` as the guest when it is non-zero |
 
 `partycommoneffectplay(v)` (`0x043E`, `0x00350B90`) hands the value to `0x00268690` and returns its
 result.
@@ -164,8 +219,9 @@ motion frame  push motion, float, flag; 0x003580C0 pops flag, float, motion
 ## Operations
 
 A party change: one begin, then one poll per frame until the read-in task finishes. An appearance
-verb: two collector walks and up to eight setter calls. A motion verb: four action cancels and
-four synthetic calls.
+verb: two collector walks over the same four slots of map 1 and up to four setter calls in all,
+since each kept unit falls in exactly one group (`0x0031B629` to `0x0031B62F`). A motion verb: four
+action cancels and four synthetic calls.
 
 ## State
 

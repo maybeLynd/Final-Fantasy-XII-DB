@@ -29,18 +29,25 @@ streaming sound bank and `0x007A4B30` calls `0x007B1E10` for a streaming music b
    invalid streamCount", and builds one `0xA0`-byte `AudioStream` per stream (`0x007E2BC0`) at `+0xB0`.
 5. It adds the bank to the streaming-bank list. `0x007E2CE0` destroys the streams and the bank.
 
+`0x007E2C50` runs the `Bank` base constructor `0x007D07C0` and writes the vtables `0x01CB84E8` at `+0x00`, `0x01CB8548` at
+`+0x08` and `0x01CB8568` at `+0x50`, the job object (`0x007E2C5D`-`0x007E2C82`). It sets up the critical section at
+`+0x58` (`InitializeCriticalSection`, `0x007E2C86`), zeroes `+0x80`, the buffer `+0x88`, the size `+0x90`, the byte
+`+0x94`, `+0x98`, `+0xA0`, the owner `+0xA8` and the 16 stream pointers from `+0xB0` (`0x007E2C8C`-`0x007E2CC7`), and
+returns the bank (`0x007E2CCA`).
+
 ### A stream's read states
 
 Each stream has its own lock at `+0x08` and a read state at `+0x30`:
 
 | State | Set by | Means |
 |---:|---|---|
-| `1` | `0x007E4F10` | stopped: material and owner cleared |
+| `1` | `0x007E4F10`; `0x007E4F70` for each stream of a bank (`0x007E4FEF`) | stopped: material and owner cleared |
 | `2` | `0x007E4310` | a material has been requested |
 | `3`, `4` | `0x007E3450` | reading the material's chunk header, then its header |
 | `5` | `0x007E4410` | marked unused by its owner |
-| `6` | `0x007E3450`, `0x007E4310`, `0x007E4DB0` | ready: the ring buffer holds data |
-| `8` | | idle with its material still loaded |
+| `6` | `0x007E3450`, `0x007E4310`, `0x007E4DB0`, `0x007E48D0` | ready: the ring buffer holds data |
+| `7` | `0x007E3450` (`0x007E3C72`) | from 6, once a fill finds `writePos - readPos + buffered` at `ringSize` or more, or, for a material with no loop region, `+0x6C` at `+0x70` or more (`0x007E3A70`-`0x007E3AA2`, `0x007E3C59`) |
+| `8` | `0x007E3450` (`0x007E3CAC`) | idle with its material still loaded: from 5 it empties the ring and clears the start time (`0x007E3C92`-`0x007E3CA5`) |
 
 `0x007E3450` advances a requested stream: in state 2 it empties the ring (`0x007E46D0`) and reads the `mtrl` chunk
 header; it then reads the material's header, and once the data is in it sets state 6 and seeks to the start time the
@@ -52,6 +59,12 @@ bank.
 - `0x007E4310(stream, material, seconds)` requests a material. When the stream already holds that material and is idle
   (state 8) it only seeks there and sets state 6; otherwise, once the bank is ready (`+0x80` = 4), it stores the
   material at `+0x34`, the start time at `+0x88` and sets state 2.
+- `0x007E4310` holds the stream's lock `+0x08` throughout (`0x007E4342`, `0x007E43E5`). A material below 0, or not below
+  the count of the `mtrl` chunk of the bank's header (bank slot 7, `0x007E4363`; `0x007CF8B0`, `0x007E4366`-`0x007E4383`),
+  or a bank that is not ready (`0x007E43BE`) returns -1 and changes nothing; a request returns 0 (`0x007E4333`,
+  `0x007E43EB`).
+- In the idle case `0x007E4310` seeks (`0x007E48D0`) only when `seconds` is above 0 (`0x007E4393`), and it sets state 6
+  either way (`0x007E43A7`).
 - `0x007E3040(bank, material)` finds a stream that holds a material and has no owner; in a sound bank whose header byte
   `+0x05` has bit `0x1` set, every material shares stream 0. `0x007E3270` gives a free stream: one with no material, or else
   one in state 8.
@@ -88,12 +101,19 @@ no seek offset, and warns that seeking "will cause timing overlap when streaming
 
 ### Releasing a bank
 
-A streaming bank is released on the job worker: `0x007E5040`, unless the bank is already released (`+0x1C`) or its job is
-still queued (`0x007B7070`), queues the bank's job object `+0x50` (`0x007B6C50`) and stops the bank's sounds and music
-(`0x007D0A70`). `0x007E4260` answers that the bank has finished once it is released, its use count `+0x18` is 0 or less
-and its job is done. `0x007B6C50` puts a job in the 48-entry ring `0x02EAD8B0` with a fresh non-zero id and wakes the
+A streaming bank is released on the job worker: `0x007E5040`, unless the bank is already released (`+0x1C`) or its
+job is still queued (`0x007B7070`), queues the bank's job object `+0x50` (`0x007B6C50`) and stops the bank's sounds and
+music (`0x007D0A70`). `0x007E4260` answers that the bank has finished once it is released, its use count `+0x18` is 0
+or less and its job is done.
+
+`0x007B6C50` puts a job in the 48-entry ring `0x02EAD8B0` with a fresh non-zero id and wakes the
 worker (`0x007B6D40`); with the ring full it gives id 0 and returns -1. `0x007B7070(id)` answers whether that job is
 running or queued.
+
+`0x007B6C50(id, job)` holds the lock `0x02EAD828` throughout (`0x007B6C60`, `0x007B6D29`). The ring is full when
+`posted - taken >= 48` (`0x007B6C6D`-`0x007B6C80`). Each slot is 16 bytes, the id at `+0` and the job at `+8`
+(`0x007B6CD5`, `0x007B6CDF`). It writes the id to its first argument (`0x007B6C99`; 0 at `0x007B6C84` when full), signals
+the event only while a worker waits (`0x007B6CEA`-`0x007B6CF2`) and returns 0 (`0x007B6D20`).
 
 ## Layouts
 
@@ -117,6 +137,12 @@ The read stream, `StreamingBank::AudioStream`, `0xA0` bytes, built by `0x007E2BC
 | `+0x90` | `StreamingBank*` | bank | the bank it belongs to |
 | `+0x98` | `void*` | owner | the voice reading it, or 0 |
 
+`0x007E2BC0(stream, bank)` writes the vtable `0x01CB84D8` at `+0x00` (`0x007E2BD4`), sets up the lock
+(`InitializeCriticalSection`, `0x007E2BDE`) and stores the bank at `+0x90` (`0x007E2BE6`). It sets the read state 0,
+the material -1, both marks -1 and the loop byte 1 (`0x007E2BF2`, `0x007E2C25`, `0x007E2C2C`, `0x007E2C34`), zeroes
+`+0x38`-`+0x5F`, `+0x68`-`+0x83`, the byte `+0x85` and the owner `+0x98` (`0x007E2BF5`-`0x007E2C1B`, `0x007E2C34`), and
+returns the stream; `startTime` `+0x88` is not written.
+
 ## State
 
 ### The streaming-bank list
@@ -137,8 +163,9 @@ finished bank out (`0x007B2880`, from `0x007B2A12`).
 
 `0x007B6C50` and the worker `0x007B6D40` share the ring `0x02EAD8B0` under the lock `0x02EAD828`. They count jobs posted and
 taken in two words and use the slot `count mod 48` (`0x007B6C9B`-`0x007B6CDF`, `0x007B6D99`-`0x007B6DCB`); when the taken
-count `0x02EAD894` and the posted count `0x02EAD898` have both reached 48, the worker reduces each to its remainder
-mod 48 (`0x007B6DD2`-`0x007B6E21`); while either is below 48 it leaves both as they are (`0x007B6DD6`, `0x007B6DDC`).
+count `0x02EAD894` and the posted count `0x02EAD898` have both reached 48, `taken >= 48 && posted >= 48`, the worker
+reduces each to its remainder mod 48, `taken % 48` and `posted % 48` (`0x007B6DD2`-`0x007B6E21`); while either is below
+48 it leaves both as they are (`0x007B6DD6`, `0x007B6DDC`).
 
 The worker sleeps on a
 manual-reset event guarded by the lock `0x02EAD850`: it registers as a waiter, waits until a post has raised the

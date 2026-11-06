@@ -27,7 +27,8 @@ stops on that byte (`cmp byte ptr [node+0x19], 0`); the EASTL runtime has no mem
 A tree object is 16 bytes: a pointer to its head node and an element count. `0x00714800` makes the
 head: it allocates `0x30` bytes through `0x00210EC0` (which forwards to `malloc`), points the head's
 left, parent and right links at the head itself, and writes `0x0101` at `+0x18`, so the head's colour
-is 1 (black) and its nil byte is 1 (`0x00714848`).
+is 1 (black) and its nil byte is 1 (`0x00714848`). When `0x00210EC0` returns null it calls
+`_invalid_parameter_noinfo_noreturn` (slot `0x008C2DA8`, `0x00714826`); otherwise it returns the head.
 
 Once the tree has elements, the head's parent link is the root, its left link the smallest node and
 its right link the largest. Real nodes have nil byte 0.
@@ -37,8 +38,14 @@ its right link the largest. Real nodes have nil byte 0.
 `0x0070D360` is a lookup over the tree at `+0xC8` of its object. It starts at the root (`[head+8]`),
 compares the 64-bit key at node `+0x20` without sign (`0x0070D380`), goes left and remembers the node
 when the node's key is not below the search key, and goes right otherwise, until it reaches a node
-whose nil byte is set. It returns the qword at `+0x28` of the remembered node when that node's key
-equals the search key, and 0 otherwise.
+whose nil byte is set. It takes the qword at `+0x28` of the remembered node when that node's key
+equals the search key, and 0 otherwise (`0x0070D399`-`0x0070D3AE`).
+
+`0x0070D360` does not return that qword. When the qword is 0 it calls `0x006F1F60` with the object, the
+key, its own third, fourth and fifth arguments, 0 and the address of a local (`0x0070D3BC`-`0x0070D3D6`);
+a negative result is returned as it is (`0x0070D3DD`), and otherwise the qword `0x006F1F60` left in the
+local is used (`0x0070D3DF`). It stores the qword at `+0x60` of its object and the dword of its sixth
+argument at `+0x68` (`0x0070D3E4`-`0x0070D3ED`), and returns 0 (`0x0070D3EB`).
 
 ### Insert
 
@@ -57,6 +64,10 @@ failure it first destroys the node's value at `+0x20` (`0x0071E528`, `call 0x007
   head), it calls the clear routine `0x00714B60`. Otherwise it steps through the range, finding each
   successor inline (down the right child and then left, or up while the node is a right child), and
   erases each node with `0x00714DC0`.
+- A range whose start equals its end erases nothing (`0x00714D23`). `0x00714CE0` stores the iterator it
+  returns through its second argument and returns that argument: after the clear, the head's left
+  link, which the clear has pointed at the head (`0x00714D0C`-`0x00714D15`); after the loop, the end of
+  the range (`0x00714DB1`).
 - `0x00714DC0` unlinks one node and rebalances with the rotations `0x00714B00` and `0x0071F240`.
 - `0x00714B60` clears the tree: from the root it walks the left links, destroys each node's right
   subtree with `0x00714980` and frees the node through `0x00210EB0`. It then points the head's three
@@ -89,6 +100,12 @@ One row per routine, 22 rows.
 - A is cleared by `0x006FF840`, which erases each map's whole range (`0x00714CE0`, `0x00715110`,
   `0x007151F0`) and frees its head. All three use the one insert `0x00712F60` and the one node erase
   `0x00714DC0`.
+- `0x006FF840` first calls `CPostEffect::Uninitialize` `0x00705520` with 0 (`0x006FF859`). It then erases
+  and frees `+0xC8` (`0x006FF878`, `0x006FF885`), `+0xB8` (`0x006FF8A4`, `0x006FF8B1`) and `+0xA8`
+  (`0x006FF8D0`), whose head it frees by a tail jump to `0x00210EB0` (`0x006FF8E7`).
+- `0x006FF5D0` zeroes each map's head pointer and count, then stores the head that `0x00714800`,
+  `0x007147A0` or `0x00714740` returns (`0x006FF639`-`0x006FF648`, `0x006FF657`-`0x006FF666`,
+  `0x006FF675`-`0x006FF684`).
 - B is the parsed licence of the post-effect library. `0x006DFF40` calls the checker `0x0071CD10`, which
   calls `0x0071D170`. That routine parses the text into the map (`0x0071CE10`, inserting through
   `0x0071EA80` and `0x0071E500`) and looks fields up by name: `FeatureId` (`0x00D9B190`), `BeginYear`
@@ -98,6 +115,14 @@ One row per routine, 22 rows.
 - C is built by the dynamic initialiser `0x00169270` (head from `0x00799B20`, `0x28` bytes) and its
   destructor `0x008B7940` is registered with `atexit` (`0x00808B90`). Only those two routines refer to
   `0x02EA5550` and `0x02EA5558`.
+- `0x00169270` calls the return-this stub `0x0016D680` with `0x02EA5550` (`0x0016927B`), zeroes `0x02EA5550`
+  and `0x02EA5558` (`0x00169289`, `0x00169290`), stores the head from `0x00799B20` at `0x02EA5550`
+  (`0x001692A3`) and registers `0x008B7940` by a tail jump to `0x00808B90` (`0x001692AE`). `0x00799B20` calls
+  `_invalid_parameter_noinfo_noreturn` (slot `0x008C2DA8`) when the allocation returns null
+  (`0x00799B46`).
+- `0x008B7940` erases the whole range with `0x0079B930` (`0x008B795F`), calls the empty stub `0x0016D6A0`
+  with `0x02EA5550` and the addresses of the head's three links (`0x008B7975`-`0x008B7995`) and frees the
+  head by a tail jump to `0x00210EB0` (`0x008B79A2`).
 
 ### Strings
 
@@ -123,7 +148,24 @@ Its parser reports errors through `_Xregex_error` (slot `0x008C2430`, 31 call si
 The game code that uses it is `0x0020A800`, called from `0x0020AC30`. It compiles the pattern
 `(.*)(\\plan_master\\([a-zA-Z]+)\\event\\)(.*)` (`0x00905958`) and matches its string argument
 against it (`0x00203790`), so it tests whether a path has the form `…\plan_master\<name>\event\…`. The
-regex routines that only this use reaches are listed in [`msvc-containers-stl-regex-char.tsv`](msvc-containers-stl-regex-char.tsv).
+regex routines that only this use reaches are listed in
+[`msvc-containers-stl-regex-char.tsv`](msvc-containers-stl-regex-char.tsv).
+
+`0x0020A800` gets a locale from `std::locale::_Init` (import `0x008C2448`, `0x0020A83A`) and takes its
+`collate<char>` and `ctype<char>` facets through `0x00203E60` and `0x001AA6C0` (`0x0020A849`, `0x0020A858`).
+It sets up the parser over the pattern from `0x00905958` to its end `0x00905985` (`0x0020A862`-`0x0020A8D9`),
+reads the first token with the lexer step `0x00209530` (`0x0020A8E4`) and compiles the pattern with
+`0x00206AD0` (`0x0020A8EE`), taking a reference on the compiled result (`lock inc` of its `+0x2C`,
+`0x0020A8FB`).
+
+It frees the parser's buffer of 4-byte entries through `0x00209AD0` (`0x0020A944`-`0x0020A95C`), finds the
+argument's terminating zero (`0x0020A96D`-`0x0020A987`) and calls `0x00203790` with the argument's start
+and end, 0, the regex, `0x10` and 1 (`0x0020A989`-`0x0020A9A5`). It then drops its reference on the
+compiled result; when the count falls from 1 it walks the chain through `+0x10`, calling each
+object's slot 0 with 1 (`0x0020A9B7`-`0x0020A9E5`).
+
+It releases the locale, calling slot 0 with 1 on the object its slot `+0x10` returns
+(`0x0020A9F8`-`0x0020AA0B`), and returns the byte `0x00203790` returned (`0x0020AA0F`).
 
 `0x0020A800` reaches the regex traits' `std::collate<char>` through `0x00203E60` (`0x0020A849`), the library's `use_facet`.
 1. Under the lock `_Lockit` it keeps the cached facet in a local.

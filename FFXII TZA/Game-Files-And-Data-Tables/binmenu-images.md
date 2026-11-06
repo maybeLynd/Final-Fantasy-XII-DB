@@ -99,15 +99,24 @@ and 6).
   bit `0x2` of `[0x0209AC30] + 0xD3C` and sets `+0xB2D` to `0xFF`. A member whose record has bit `0x2` of byte 0
   sets bit `0x2` and stores its character id (record `+0x60`) at `+0xB2D`.
 - `0x002CEAE0` then requests kind 7, id `+0xB2D + 0x10` into `+0x3C0` through `0x00249180`, so guest ids 7 to 16
-  load `face_guest07` to `face_guest16`.
+  load `face_guest07` to `face_guest16`. It requests only while bit `0x2` of `+0xD3C` is set (`0x002CEAEB`); with
+  the bit clear it returns at once and leaves `+0x3C0` as it was.
 - On message `0x10` the menu task `0x00280DE0` calls `0x002CE980`. When the bit and the buffer are set, it finds
   `partytop_8_c` by name (`0x0024A5A0`) and copies `h` rows of `w` bytes from the buffer into the picture's
   pixels at `(x, y)`, stepping the picture width. It re-uploads the picture through `0x00181580`, frees the
   buffer (`0x003697F0`) and clears `+0x3C0`.
+- `0x002CE980` does not test what `0x0024A5A0` returns: with no `partytop_8_c` entry the read of the picture
+  header `[0 + 0x20]` at `0x002CE9D1` faults. The re-upload passes the name, the pixels (the header plus its u16
+  `+0x0C`), the width `+0x14`, the height `+0x16` and the image type byte `+0x13` (`0x002CEA6F`-`0x002CEA93`).
 - The shipped sub-image `0x0003` is a 400 x 102 party-panel frame, so whenever a guest is in the party
   `0x002CE980` copies 40,800 bytes from the 12,288-byte `face_guest` buffer, reading 28,512 bytes past it,
-  and lays the 128 x 96 portrait out in 400-byte rows at (550, 800). When the sub-image lookup fails it
-  falls back to 64 x 48, the size of a `face_guest` picture.
+  and lays the 128 x 96 portrait out in 400-byte rows at (550, 800).
+- The body holds a fallback to 64 x 48, the size of a `face_guest` picture, at byte offset `49 x width - 64`
+  of the pixels (`0x002CEA26`), taken only when the sub-image record address is 0 (`0x002CE9FB`). That address
+  is the picture header plus `0x30` plus two u16 offsets, never 0 for a header the reads before it reached,
+  so the fallback never runs.
+- The sub-image lookup has no failure test: the page and entry indices of code `0x0003` are read with no bound
+  (`0x002CE9D5`, `0x002CE9E6`).
 
 ### The small face
 
@@ -116,33 +125,73 @@ and 6).
 - `0x0035C430(g)` returns when the `mini_face_c` slot `[0x0209AC30] + 0x358` is null or `g` is below 7. Otherwise it
   copies `h` rows of `w` bytes from `0x022CA470 + (g - 7) x w x h` into the sub-image and re-uploads the picture.
 - `g` is the character id `0x0035BB50` returns; `0x00298250` and `0x00276D30` call it. No upper bound is checked.
+- `0x0035C430` reads the picture header `[slot + 0x20]` (`0x0035C459`) and the buffer `[0x022CA470]` with no null
+  test. A null header faults at `0x0035C46C`; while `0x022CA470` is still null the copy reads from address
+  `(g - 7) x w x h`, below `0x10000` for `g` 7 to 14 with the shipped 64 x 128 record, and faults. The
+  re-upload passes the slot, the pixels, the width, the height and the image type byte `+0x13` (`0x0035C541`).
 
 ### The area icon
 
 - The menu object of `0x003C9A30` takes the first of bits `0x1` to `0x40` set in the area flags `0x022C314C`
   (table `0x00D11710`). When that differs from the icon in use and some bit is set, it stores the bit number `k`
   at `+0xC1`.
-- `0x003C9950` frees any previous buffer at `+0xD0` and requests kind 7, id `0x0E + k`, into it.
+- `0x003C9950` frees any previous buffer at `+0xD0` and requests kind 7, id `0x0E + k`, into it. It opens a menu
+  set (`0x00249580`), files the request through `0x00249210` (`0x003C999B`), closes the set (`0x00249410`), stores the
+  request's buffer (its `+8`) at `+0xD0` and sets bit `0x8` of `+0xC4` (`0x003C99AF`).
+- No null return is tested there. With all twelve menu sets in use `0x00249580` returns 0 (`0x002495A0`), and for
+  a file with a size `0x00249210` then adds to the count at address `0x18` (`0x002492F8`); with all 48 request
+  entries in use `0x00249210` stores through a null entry (`0x0024928D`). Each of these faults.
 - `0x003C9E50` copies `2h` rows of `w` bytes into `battle_4_c` from the sub-image's top-left corner, writing `w` to
-  `0x01EFE384` and `2h` to `0x01EFE388`. It re-uploads the picture and frees the buffer.
+  `0x01EFE384` and `2h` to `0x01EFE388`. It re-uploads the picture and frees the buffer. It returns at once while
+  `+0xD0` is null (`0x003C9E65`), does not test what `0x0024A5A0` returns (a miss faults on the header read at
+  `0x003C9E8B`), and clears `+0xD0` after the free (`0x003C9F6D`).
 - The flags are set by `0x0031A910` and cleared by `0x0031A8C0`; their callers are the handlers of the verbs
   `set_field_effect` (`0x4F5`, `0x00344610`) and `clear_field_effect` (`0x4F6`, `0x00344980`) and `0x002FDDA0`
   ([verb table](../Scripts-And-Script-Commands/verb-table.md)).
 - `0x0031A7B0`, asked by the command check `0x002FFCF0`
   ([command availability](../Battle-Actions/command-availability.md)), refuses a command whose command-record byte
   `+0x1E` is 0, 1, 2 or 3 while bit `0x4`, `0x8`, `0x10` or `0x20` is set, with codes `0x16` to `0x19`.
+- `0x0031A7B0` first returns 4 when `0x00322C50(0x14, id, 1)` rejects the id (`0x0031A7D5`), and 0 for a stats record
+  whose kind byte `+0x05` is 1 (`0x0031A7EA`) or a row kind above 3; a null stats record goes on to the kind test.
+  The row is 0 when the action table slot `0x02EBF138` is 0 or `0x0020E600` resolves its `+0x0C` to null
+  (`0x0031A837`), and the kind read at `0x0031A839` then faults.
 
 ### The destination pictures and the palette
 
 `0x00280750` registers ten named pictures at `[0x0209AC30] + 0x338` to `+0x380` (`battle_4_c` first,
-`mini_face_c` fifth, `partytop_8_c` seventh) and requests `tex2pack_ys.bin`. `0x00280670` binds the pack's
-pictures to them in order through `0x0024A1D0`. For format `0x13`, `0x0024A1D0` registers the index plane and one
-256-colour palette per 256 CLUT colours under the picture's name ([TIM2 images](tim2-images.md)).
+`mini_face_c` fifth, `partytop_8_c` seventh) and requests `tex2pack_ys.bin`. It returns at once while the pack
+buffer `+0x3D8` is set (`0x0028077F`), registers (`0x0024A4E0(name, 2)`) only the slots that are still null
+(`0x00280807`), stores the request's buffer at `+0x3D8` (`0x0028086D`), and clears bit `0x80` of `+0x38` in the
+entries of `party_grd_2` and `icons_c` when `0x0024A5A0` finds them (`0x00280895`, `0x002808AD`).
+
+`0x00280670` binds the pack's pictures to them in order through `0x0024A1D0`. It does nothing while `+0x3D8` is
+null (`0x00280683`), skips a null slot (`0x002806A7`), and gives slot `i` the pack entry at the buffer plus the
+u32 at buffer `+ 4i`. It stores entry 10 at `+0x388` only while that is null (`0x002806D3`), then releases the
+textures `0x0209AC38` and `0x0209AC40` when set (`0x00183720`) and zeroes them (`0x0028070C`, `0x00280728`).
+
+For format `0x13`, `0x0024A1D0` registers the index plane and one 256-colour palette per 256 CLUT colours under
+the picture's name ([TIM2 images](tim2-images.md)).
 
 `0x00181580(name, pixels, width, height, imageType)` refreshes the named texture from the edited index plane:
 image type 5 copies the bytes as they are (`0x00180C80`), type 4 splits each byte into two 4-bit indices, low
 nibble first (`0x00180A70`). All three destinations are type 5, so each byte of a `bin_menu` image is an
 8-bit index into the destination picture's CLUT.
+
+`0x00181580` looks the name up in the texture manager `[0x01F811E8]` (`0x001B11D0`). A name that resolves to no
+texture, or an image type other than 4 and 5, does no work: the body calls the no-op `0x0016D6A0` and returns
+(`0x001815EF`).
+
+Both copiers map the texture (`0x0017EBD0`) and write nothing when the map fails (`0x00180D57`, `0x00180B4E`). Each
+rounds the width and the height up to a power of two in 16 bits, `x = w - 1`, then `x |= x >> 1`, `x |= x >> 2`,
+`x |= x >> 4`, `x |= x >> 8` and `p = x + 1` (`0x00180CBF`-`0x00180D2D` in the first), except that a size one below
+its power stays as it is, `p - w == 1 ? w : p` (`0x00180D3A`, `0x00180B31`); when either rounded size differs, it
+first zeroes the mapped buffer (`memset` `0x00861EC0`, `0x00180DB9`, `0x00180BAD`). With a null mapped pointer it
+skips the copy.
+
+`0x00180C80` copies `height` rows of `width` bytes at the mapped pitch (`0x00679570`). `0x00180A70` reads `width / 2`
+bytes per row and writes each byte's low nibble, then its high nibble (`0x00180BE0`-`0x00180BF9`). Both then commit
+(`0x0062C360`) and, when that returns 0, store the buffer slot at `+0x0C` and 0 at `+0x08` (`0x00180E09`,
+`0x00180C3C`).
 
 ## Modding notes
 

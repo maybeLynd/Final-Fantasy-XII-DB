@@ -98,13 +98,18 @@ Every part names every source. A cell that would be longer than 1,000 characters
 
 That table has one line per entry: `id` and `name` of the row, `part` (the label, or `used_for` and the label for a key item's use) and `entry`. A treasure chest part counts chests, and one entry can hold several. `-` means that none of these tables names a source. The starting inventory table adds nothing ([Starting inventory](../Party/starting-inventory.md)).
 
-Six weapons have no source for the player, and their cells start `no source for the player`. Joyeuse, Chirijiraden, Flimsy Blade and the two Nightmare rows are the main-hand weapons of guests in the party table ([Party table](../Party/party-table.md), word `+0x0A`): Larsa (row 13), Reddas (rows 14 and 16), Basch (row 9) and Vossler (`0x10A6` row 11, `0x10A9` row 12). No party table row wears the Hero's Blade.
+Six weapons have no source for the player. Their cells start `no source for the player:` for the five a guest
+wears and `no source:` for the Hero's Blade, which nobody wears. Joyeuse, Chirijiraden, Flimsy Blade and the two Nightmare rows are the main-hand weapons of guests in the party table ([Party table](../Party/party-table.md), word `+0x0A`): Larsa (row 13), Reddas (rows 14 and 16), Basch (row 9) and Vossler (`0x10A6` row 11, `0x10A9` row 12). No party table row wears the Hero's Blade.
 
 None of the six is in a shop, bazaar good, treasure chest, enemy slot, reward package, hunt reward or script give. Scenario sets give or equip them ([Scenario presets](../Party/scenario-presets.md)), but a new game asks for set 0, `naf_b04` for set 1, and the developer script `evt_t0505` for sets 0, 2, 3, 11-13, 15, 17, 18, 20 and 22-49.
 
 ### The licence it needs
 
 `licence` names the licence squares whose node lists the equipment id among its grants ([`license-list.tsv`](license-list.tsv), `grant_ids`), by name and node. Owning any one of them lets a character equip it. The equip test `0x00317B70` calls `0x00317930`, which asks `0x00323C60` (`0x00317ADE`); that builds the node mask with `0x002F8FA0` ([Licenses](licenses.md), "The test"). `no licence needed` marks a row whose `+0x07` bit `0x10` is set, which `0x00323C60` passes without the board (`0x00323CDF`).
+
+`0x00317B70(row, id, slot, flags)` runs `0x00317930` on the party record of row `row`, `[0x02EBF190] + 8 + row × 0x1C8`,
+with its slot words `+0x50` as the loadout and with the free-copy test when `flags` bit `0x1` is clear
+(`0x00317B7D`-`0x00317BAB`). A row above `0x27` is refused, 0 (`0x00317B78`, `0x00317BB5`).
 
 ## Columns
 

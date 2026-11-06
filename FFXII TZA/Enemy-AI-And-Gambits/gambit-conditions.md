@@ -70,11 +70,16 @@ The HP and MP a condition compares are previewed by `0x00308C20`. It starts from
 (`+0x4C`) and, when the deciding character is a party record and the line's action row has bit `0x1000` (HP) or
 bit `0x8000` (MP) of word `+0x2C`, adds the previewed result of every action already committed against the unit
 (the mask `+0xEA4`, each attacker's action `+0x714`, `0x00308B90`). The sum is clamped to 0 and the maximum
-(`0x00308C86`-`0x00308D7D`).
+(`0x00308C86`-`0x00308D7D`). The action row is the `0x02EBF138` row of the action id (`0x00308C26`-`0x00308C80`).
 
-The maximum is max HP `+0x24`, doubled under Bubble, or under Disease the current HP and at least 1. For MP it
-is max MP `+0x28`, or 0 when augment 39 (Emptiness) is in either layer ([Augments](../Damage-And-Battle-Formulas/augments.md)). A
-unit with max MP 0 or augment 39 (Emptiness) never passes an MP percentage test (`0x00302F37`-`0x00302F59`).
+The maximum is max HP `+0x24`, doubled under Bubble (bit `0x10000000`), or under Disease (bit `0x10000`,
+tested first, so it wins over Bubble) the current HP and at least 1, both bits of `+0x64 | +0x3C`
+(`0x00308C9C`-`0x00308CBD`). For MP it is max MP `+0x28`, or 0 when augment 39 (Emptiness) is in either layer
+([Augments](../Damage-And-Battle-Formulas/augments.md)). MP and max MP are signed 16-bit reads (`0x00308CC5`, `0x00308CD1`).
+
+A unit with max MP 0 or augment 39 (Emptiness) never passes an MP percentage test: `(i16)r[+0x28] == 0` fails it,
+as do `(i8)r[+0x6C] < 0` and `(i8)r[+0x7C] < 0` (bit `0x80`, augment 39, of either layer), with `r = [unit + 0x698]`
+(`0x00302F37`-`0x00302F59`; `cmp byte ptr [rax + 0x6c], r13b` with `r13 = 0`).
 
 ### Units the action would not change
 

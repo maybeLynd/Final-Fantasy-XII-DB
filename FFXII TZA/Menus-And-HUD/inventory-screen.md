@@ -85,7 +85,7 @@ to the shared procedure `0x005651E0`. The pane of a category lives at `[0x0209AC
 | 12 `0x8002` | cancel: clears the help (`0x00293110(0, 0)`) and gives the focus back |
 | 12 `0x8004` | `0x00564650` ends a move |
 | 18 | frees the rows and clears its slot |
-| `0x11E` | `0x00565720` rebuilds the rows |
+| `0x11E` | the sort bar's notice: when its `+0x10`, the answer of `0x00565CD0`, is not negative, `0x00565720` rebuilds the rows on the id at word `+8` of the row `+8` points to (`0x0056538A`-`0x005653A0`) |
 | `0x1A` | slides a row aside while an item is held |
 
 ### A pane's tabs
@@ -110,13 +110,41 @@ for kinds 0 to 37 hold at most 9 tabs (kind 32, `0x00D23C70`).
 ### Rows
 
 `0x00565720(pane, id)` frees the old rows and builds the tab's rows with `0x0057CF20`, the builder of the shop lists
-([Shop screens](shop-screens.md)). It then puts the cursor back on the remembered item: the row whose id is the one
+([Shop screens](shop-screens.md)). It gives `0x0057CF20` the pane's kind, byte `+0x17F`, as it is, and the category,
+word `+6` of the selected tab's entry in the tab list `+0xE8` (`0x0056574C`-`0x00565780`).
+
+It stores the id as the kept id of every tab slot, with -1 in the slots' words `+2` and `+4`
+(`0x005657A7`-`0x005657D1`). It then puts the cursor back on the remembered item: the row whose id is the one
 kept for the tab, scrolled into view (`0x002D1820`, `0x002D47C0`). `0x00565A00` does the same inside `0x005655F0`, the row
 builder that the shop tabs and the Inventory's tab switch share.
 
-The row painters `0x00563560` and `0x005637D0` draw a row: the icon frame `+0x0A` (no icon for `-1`), the name `+0x00`, and
-numbers through `0x0029FF60`: `0x00563560` writes `+0x0E` less `+0x0C` and `+0x0E`, `0x005637D0` only `+0x0E`. The held row
-is drawn in colour 6. An empty tab shows text `0x7D8`.
+`0x00565720` runs only from the `0x11E` arm of `0x005651E0` (`0x005653A0`). The sort bar `0x00566680` alone sends `0x11E`
+(`0x005667E4`, `0x00566838`), after a sort, with the held row's address as a signed 32-bit value at `+8` (`0x005667C5`)
+and the answer of `0x00565CD0` at `+0x10` (`0x00566810`): 0 once it sorted, -1 for a list of fewer than two items
+(`0x00565D30`-`0x00565D33`, `0x00565D5F`). It sends it to the pane `0x005665B0` opened it on, its `+0xC0` (`0x005668C2`).
+
+`0x005665B0` is called only by `0x00564E10` (`0x00564EE2`), the input step of the panes `0x00564B90` makes for categories
+`0x405`-`0x40F` with the handlers `0x005636F0`, `0x00563930`, `0x00563B10` and `0x00563D20` (`0x00564BE9`-`0x00564C25`). Those
+hand `0x11E` to `0x005651E0` (`0x00563721`, `0x00563953`, `0x00563B41`, `0x00563D43`), and their kinds are 0 to 7, the slots
+`0x00D233A0` gives, which `0x0057CF20` takes as they are. `0x00564E10` runs from `0x00564C80`, the panes' tick
+(`0x00565218`, `0x00564CAC`), and from `0x00565190` (`0x005651D7`), which `0x00565E00` calls (`0x00566280`).
+
+A shop pane, kind 32 or 19, never gets `0x11E`: `0x0056DD50` makes it with the handler `0x0056E140`
+(`0x0056DD66`-`0x0056DD79`), which hands every message id above 20 to `0x005C5230`, and that returns 0
+(`0x0056E14B`-`0x0056E150`, `0x0056E3AB`-`0x0056E3B3`). Its rows come only through `0x005655F0`, which maps the kind
+through `0x0057D5E0`.
+
+The row painters `0x00563560` and `0x005637D0` draw a row: the icon frame `+0x0A` (no icon for `-1`), the name
+`+0x00`, and numbers through `0x0029FF60`. `0x005636F0`, the handler of the Weapons, Armor, Accessories and Ammunition
+panes (categories `0x405`-`0x408`, `0x00564C0A`), installs `0x00563560` (`0x0056373B`); `0x00563930`, the handler of Items
+and Loot (`0x409` and `0x40E`, `0x00564C13`), installs `0x005637D0` (`0x0056396B`).
+
+`0x00563560` writes `+0x0E` less `+0x0C` and `+0x0E` (`0x00563670`-`0x005636B6`) and runs `0x003FCAD0(element, row, 5,
+10)` (`0x005636C9`). On these equipment rows `0x0057DED0` stores the record's channel 0, the copies owned less the
+copies worn, at `+0x0C` and channel 1, the copies owned, at `+0x0E` (`0x0057DF7F`-`0x0057DF85`,
+`0x0057DFA4`-`0x0057DFB0`), so the two numbers are the copies worn and the copies owned. `0x005637D0` writes only
+`+0x0E` (`0x005638D4`-`0x005638EB`), the count owned of the item and loot rows. The held row is drawn in colour 6. An
+empty tab shows text `0x7D8`.
 
 `0x00564430(id)` returns the widest name of a category's items (`0x00292B70`, `0x002B3050`): one list for each category,
 two for Abilities.
@@ -176,11 +204,22 @@ goods the box closes and stays empty.
 
 `0x00564C80(pane)` runs every frame: while an item is held, `0x00564D30`; otherwise `0x00564E10(pane, 0)`.
 
+It first zeroes `+0xFD` of the list `[pane + 0xD8]`; the item is held while bit `0x100` of `+0x180` (the byte
+`+0x181`) is set. An answer `0x8001` from either ends in `0x00564650`. An answer `0x8002` clears bit `0x200000` of
+the list's `+0xE0` and bit `0x80000` of its `+0xE4`, sets bit `0x100000` of `+0xE4` and ends in
+`0x002D4840(list, +0x178, +0x17A, 0)`. Any other answer is returned (`0x00564C86`-`0x00564D21`).
+
 - `0x00564E10` switches tabs on the buttons of `0x02F97368 & 0xCA0` (`0x00563EC0` one way, `0x00564300` the other), keeps the new tab's cursor (`0x002527B0(8, ...)`), rebuilds its rows (`0x005655F0`, `0x005674B0`) and
   plays sound 10. The extra button (bit `0x8000` of `0x02F9736A`) opens the sort bar (`0x005665B0`, sound 4), or plays sound 5
   on an empty tab ([Dialogs](dialogs.md)).
 - `0x005641F0(pane, row)` picks the row's item up: it stores the row at `+0x17C` and `+0x17A`, turns the list into move
   mode (`+0xE4` bits `0x4`, `0x20000` and `0x40000`) and hides the tab arrows (`0x005670F0`).
+- `0x005641F0` picks nothing up and answers 1 while the pane's rows `+0xE0` are null, or, after setting the list's
+  `+0xFD` to `0xFF`, while `0x00368240()` answers 2 (`0x005641FA`-`0x00564220`). Otherwise it sets the list's word `+0xE0`
+  to the row, calls `0x005670F0([strip + 0xC0], 0)` only when the strip `+0xC8` is set, calls `0x00295D50(0)` and
+  answers 0 (`0x00564230`-`0x00564283`, `0x005642DF`).
+- It keeps at `+0x178` the list's cursor, `+0xF2 x +0xEC + +0xEE + +0xED`, sets `0x022CBE36` to 4 (`0x00368A60(4)`),
+  clears the bounce flag (`0x00368830(0)`) and sets the held byte `+0x181` to 1 (`0x00564288`-`0x005642E1`).
 
 ### Moving an item
 
@@ -193,13 +232,24 @@ goods the box closes and stays empty.
 4. any other frame runs the list (`0x002D3900`).
 
 `0x00565BD0` stores the new place in the tab's list (`0x002530E0(list 0x00D23960[tab], item, item at the target)`), shifts
-the rows between the two places by one and puts the held row at the target, then redraws (`0x002D1AC0`). While an item
+the rows between the two places by one and puts the held row at the target, then sends the list's owner `+0xC8`
+message 12 `0x8000` with the list's cursor (`0x002D1AC0`, `0x00247510`), so the pane shows the help of the item under
+the cursor. While an item
 is held, message `0x1A` slides each row between the two places by 4 a frame.
+
+The tab is `0x00564380()`, the list is the word at `0x00D23960 + tab x 4`, and the two items are the words `+8` of the
+32-byte rows at the two places (`0x00565C18`-`0x00565C34`).
 
 `0x00564650` ends the move: it clears the
 row offsets, leaves move mode, restores the tab strip (`0x00567690`), shows the key-guide entries again
-(`0x00295D50(1)`, `0x00564741`), resets `+0x17C` to `-1` and clears `+0x178` and `+0x181`, zeroes `0x022CBE36`
+(`0x00295D50(1)`, `0x00564741`), resets `+0x17C` to `-1` and clears `+0x178`, `+0x17A` and `+0x181`, zeroes `0x022CBE36`
 (`0x00368A60`) and re-allows the list bounce (`0x00368830(1)`, `0x00564773`; [Menu lists](menu-lists.md)).
+
+Each of the list's `+0xE8` rows gets its dword `+0x10` and word `+0x14` zeroed (`0x00564680`-`0x005646A8`). The list's
+dword `+0xE0` gets bit `0x200000` and then its low word -1, its `+0x114` is zeroed and its `+0xE4` loses bits
+`0x40000`, `0x20000`, `0x4`, `0x80000` and `0x100000` (`0x005646AA`-`0x00564710`). The tab is the signed field under
+mask `0x03E00000` of `+0x180`, and `0x00567690` gets the entry at `pane + 0xF0 + 8 x tab` (`0x0056471A`-`0x00564739`).
+The dword store at `+0x178` is what clears `+0x17A` (`0x00564756`).
 
 ### The tab strip
 
@@ -208,6 +258,17 @@ The tab strip at `+0xC8` of a screen is shared with the shop, equipment and gamb
 
 - `0x005674B0(strip, current)` lays the tab buttons (`+0xC8`, count byte `+0x150`) out from `+0x148`, brightens the
   current one to `0x80` and the others to `0x40` (`0x002D04F0`), and moves the marker to it (`0x00566B70`, 100 ms);
+- `0x005674B0` does nothing for a null strip (`0x005674B3`). The rectangle `+0x148` gives x, y, the button width w
+  (`+0x14C`) and the height (`+0x14E`). With bit `0x10000000` of `+0x150` clear the first button sits at
+  x - w x (count - 1), moved right by n x (w - byte `+0x152`) when the nibble n under mask `0x0F000000` is not 0;
+  with that bit set it sits at x (`0x005674C3`-`0x00567532`);
+- each button `[strip + 0xC8 + 8 x i]` is w wide, or byte `+0x152` wide when bit `0x1` of its `+0xD8` is set, gets
+  `+0x98` = its x, `+0x9A` = y, `+0x9C` = its width and `+0x9E` = the height, and is shown (`0x00247870(button, 1)`);
+  the next button starts at x + width (`0x00567570`-`0x00567605`);
+- the current button is the one whose word `+0xD4` equals the signed byte `+7` of `current`; it gets
+  `0x002D04F0(button, 0x80, 1, 1, 100)` and `0x00566B70([strip + 0xC0], i, x, 1, 100)`, the others `0x40`. With a null
+  `current` no button is coloured and the marker does not move (`0x00567588`-`0x00567630`);
+- the call ends in `0x00566FE0(strip, w)`, also with no buttons (`0x0056766C`-`0x00567677`);
 - `0x00567690(strip, current)` only recolours them; `0x005670F0` and `0x00566FE0` show the two arrows when there are at least
   two tabs, the latter also offsetting the strip by its width;
 - `0x00566B70(marker, tab, x, curve, ms)` starts the marker's move to `x` over `ms x 60 / 1000` frames.

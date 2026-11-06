@@ -30,7 +30,7 @@ cases are VIF1 commands with VIF1's field layout:
 | `0x01` | STCYCL | low byte to CYCLE `0x02088E40`, next byte to WL `0x02088E3C` |
 | `0x02` | OFFSET | `data & 0x3FF` to `0x02088E34`, clears bit `0x40` of the status word `0x02088E38`, copies BASE to TOPS `0x02064E28` |
 | `0x03` | BASE | `data & 0x3FF` to `0x02088E30` |
-| `0x14`, `0x15` | MSCAL, MSCALF | runs `0x0022C8D0`, then the program installed at the largest address not above the requested one |
+| `0x14`, `0x15` | MSCAL, MSCALF | runs `0x0022C8D0`, then the program installed at the largest address not above the requested one, called with the callback and the context (`0x0022CB1E`); when the installed list is empty or holds no address at or below the requested one, the search keeps its start value 0 and the table entry for address 0 is called (`0x0022CADD`, `0x0022CAE5`); the test of the result against `0x10000` (`0x0022CB07`) never matches, since the list holds 16-bit addresses |
 | `0x4A` | MPG | the next 8 bytes are an x64 function pointer, stored at `0x02068E30 + imm16 × 8`; the address is appended to the list `0x02088E50` (count `0x02088E44`) |
 | `0x50`, `0x51` | DIRECT, DIRECTHL | calls the callback with the data pointer, the context and the flag, then skips `count × 16` bytes |
 | `0x60` to `0x7F` | UNPACK | `0x0022BFF0` with the format from the bits under mask `0xF000000`, the unsigned flag bit `0x4000`, the add-TOPS flag bit `0x8000`, NUM from the bits under mask `0xFF0000` and the address from the low ten bits; the mask flag bit `0x10000000` has no effect |
@@ -56,7 +56,8 @@ it before every packet list, so programs live only for the list that installed t
 |---|---|---|
 | `0x02064E30` to `0x02068E2F` | `0x4000` | VU memory, 1,024 cells of 16 bytes |
 | `0x02068E30` to `0x02088E2F` | `0x20000` | the installed-program table, one x64 pointer per VU address |
-| `0x02088E30` to `0x02088E53` | — | BASE, OFFSET, status, WL, CYCLE, installed count, installed list |
+| `0x02088E30` to `0x02088E47` | — | BASE, OFFSET, status, WL, CYCLE, installed count |
+| `0x02088E50` onwards | 4 per entry, the first `0x02088E50` to `0x02088E53` | the installed list: one VU address per MPG since the last clear, stored at `0x02088E50 + count × 4` with no bound check (`0x0022CA53`-`0x0022CA60`); the next global the image addresses is the visited list `0x02088FE0` of the [collision walk](../Movement-And-Pathfinding/collision-mesh-movement.md), 100 entries on |
 | `0x02064E1C`, `0x02064E28` | u16 each | TOP and TOPS |
 | `0x02064B00` to `0x02064E2F` | — | the microprograms' own working words: 16-bit cell indices (`0x02064B0C`, `0x02064DB0`, `0x02064DB4`, `0x02064DB8`, `0x02064DD0`) and float scratch |
 | `0x02064DEC` | u16 | the sticky status flags: `0x0022CC40` sets `0x40` (zero) and `0x0022CC30` sets `0x80` (sign); they are its only writers, and 40 microprograms call them at 116 sites each |
@@ -87,12 +88,14 @@ V4-32, so neither arm runs on shipped content.
 
 ### Microprograms and the three ways a packet is built
 
-A microprogram is an x64 function that reads and writes VU memory through the 16-bit index words
-above and hands each finished GS packet to the callback. `0x004EF860` is the leaf most of them end
-in: it writes `word[0x02064DB8] + 0x8000` into the cell at `0x02064DB0`, copies twelve bytes of the
-cell at `0x02064DD0` beside it (staged at `0x02064C60`), sets `0x02064DB4` to `0x02064B0C + 0x2A8`, or
-`+ 0x168` when `0x02064B0C` differs from `0x02064DB0 - 0x168`, calls the callback with the cell's
-address, then sets `0x02064DB0` to `0x02064B0C + 0x02064DB4` and `0x02064DB4` one past it.
+A microprogram is an x64 function that reads and writes VU memory through the 16-bit index words above and hands each
+finished GS packet to the callback.
+
+`0x004EF860(callback, context)` is the leaf most of them end in: it writes `word[0x02064DB8] + 0x8000` (the 16-bit sum,
+zero-extended to 32 bits, `0x004EF89C`-`0x004EF8B6`) into the cell at `0x02064DB0`, resets `0x02064DB8` to the word `0x02064B0C`
+(`0x004EF8C0`), copies twelve bytes of the cell at `0x02064DD0` beside it (staged at `0x02064C60`), sets `0x02064DB4` to
+`0x02064B0C + 0x2A8`, or `+ 0x168` when `0x02064B0C` differs from `0x02064DB0 - 0x168`, calls `callback(cell address,
+context, 0)` (`0x004EF90A`-`0x004EF910`), then sets `0x02064DB0` to `0x02064B0C + 0x02064DB4` and `0x02064DB4` one past it.
 
 The image installs 57 distinct programs at 141 call sites ([ps2-vif1-vu1-emulation-programs.tsv]
 ([`ps2-vif1-vu1-emulation-programs.tsv`](ps2-vif1-vu1-emulation-programs.tsv)), resolved from the `lea` that loads each site's program
@@ -100,22 +103,38 @@ argument). Three routes build the packets that carry them:
 
 - **77 boot templates.** `0x0037DF90` makes 28 calls and `0x0037E0F0` 49, each `lea rcx, object;
   call builder` with a distinct zero-initialised object at `0x02ADEF40` to `0x02AED330` (76 distinct
-  builders; `0x004E3110` is called twice). A builder fills its packet with immediate stores.
+  builders; `0x004E3110` is called twice); each hub reaches its last builder by a tail jump
+  (`0x0037E0E3` to `0x004A8860`, `0x0037E33F` to `0x004C3610`). A builder fills its packet with immediate stores.
 - **Template contents.** The decoded command streams are in
   [ps2-vif1-vu1-emulation-templates.tsv](ps2-vif1-vu1-emulation-templates.tsv) and the GIF tags
   they carry in [ps2-vif1-vu1-emulation-gif-tags.tsv](ps2-vif1-vu1-emulation-gif-tags.tsv).
-- **Template headers.** 37 builders start with `0x008631E0(object, program, 0)`, which stamps kind
-  `0x30` at `+3`, appends `{0x4A000000 | addr, program}` to the record table `0x02EAF930` (count
-  `0x02EB37B0`) and stores the record's handle at `+4`; `0x008631D0(object, count)` stamps the plain
-  kind `0x10` header. The templates install 35 programs.
+- **Template headers.** 37 builders start with `0x008631E0(object, program, 0)`, which stamps the word 1 at `+0` and
+  kind `0x30` at `+3`, appends `{0x4A000000 | addr, program}` to the record table `0x02EAF930` (count `0x02EB37B0`) and
+  stores the record's handle at `+4`: the low 32 bits of the record's address minus `[0x01F83530]` (`0x0020E620`,
+  `0x00863226`-`0x0086322B`; [global state accessors](global-state-accessors.md)). The templates install 35 programs.
+- **Plain headers.** `0x008631D0(object, count)` stamps the plain kind `0x10` header: the count as a word at `+0`, the
+  kind at `+3` and 0 at `+4` (`0x008631D0`-`0x008631D7`).
 - **Per-draw registrars.** `0x003A34D0` (45 sites) and `0x003A33B0` (22) append a `0x28`-byte record
   to the sorted draw list `[0x02F8F2F8]` (count `0x02F8F2C6`) and hold the command for a later
   submit; `0x003A35E0` (27) and `0x003A2F70` (10) submit it at once through `0x0020E630(node, 2)`. All
   four build through `0x001DB840` and together install 44 programs, 22 of them shared with the
   templates.
+- **Registrar arguments.** Each registrar takes a 16-byte node from `0x0020E680` and hands `0x001DB840`
+  the two VIF words, the program and a payload. `0x003A33B0` and `0x003A2F70` hand on a second payload;
+  `0x003A34D0` and `0x003A35E0` give it 0 (`0x003A35A0`, `0x003A362E`). `0x003A35E0` and `0x003A2F70` pass
+  flag and context 0 (`0x003A2FA9`, `0x003A3619`).
+- **Sorted registrars' blend.** `0x003A34D0` and `0x003A33B0` pass flag 1 and, as the context, the blend
+  word `0x01EFAC20[0x02AEE900]` (`0x003A3460`, `0x003A3470`, `0x003A3583`, `0x003A3593`), which the replay
+  stores as `ALPHA_1`.
+- **Sorted records.** `0x003A34D0` and `0x003A33B0` write `+0x00` = 0, `+0x08` = the first argument's low
+  24 bits with `0x02AEE910 << 4` ORed into its top byte, `+0x0C` = 8, `+0x10` = 0 and `+0x20` =
+  (`0x02AEF41C` × 2 | b) × 2, b being 1 when `0x0024E460()` returns non-zero or `0x02AEF418` is non-zero
+  (`0x003A33FE`-`0x003A343E`), and `+0x18` = the node once `0x001DB840` returns (`0x003A34B3`, `0x003A35CB`).
+- **Record count.** The count `0x02F8F2C6` is raised with no bound check (`0x003A33F6`, `0x003A3515`).
 - **Effect elements.** `0x001DB7E0` (callers `0x00540DB0`, `0x00540C70`, the finalisers every effect
-  element type reaches) constructs the same command with no packets, and the element appends its
-  own packet, which carries its own MPG.
+  element type reaches) constructs the same command with no packets and stores it at its
+  argument's `+8` (`0x001DB818`), or stores 0 there when the allocation returns 0 (`0x001DB827`); it
+  does not run the command. The element appends its own packet, which carries its own MPG.
 
 ### Shared subroutines of the microprograms
 
@@ -130,12 +149,22 @@ The programs share 33 subroutines, listed with their callers in
 - the 21 small ones from `0x004B97F0` to `0x004B9E30`, with `0x004CF230` and `0x004CF280`, are lane arithmetic, cell loads
   and the random generator `0x01E02828` (`0x004B97F0`), which returns 1.0 while `0x02064AFC` is 0.
 
-`0x00476C80` is a template read end to end: `0x008631E0` with program `0x004758E0`, BASE 0 and OFFSET 0
-(`0x03000000`, `0x02000000`), a sub-header, STCYCL 4,4 (`0x01000404`), UNPACK V4-32 of 66
-quadwords (`0x6C420000`) whose payload starts with the GS screen centre 2048.0 (`0x45000000`)
-and holds, four times, a vertex block and an A+D GIF tag (NLOOP 5, NREG 1, REGS `0xE`) writing
-CLAMP_1, TEX0_1, ALPHA_1 and TEST_1 to 0 and PRIM to `0x5D`; then the register pairs ST, CLAMP_1,
-RGBAQ, XYZF2 = 0, MSCALF 0 (`0x15000000` at `+0x440`) and FLUSHA (`0x13000000` at `+0x444`).
+`0x00476C80` is a template read end to end. It holds `0x008631E0` with program `0x004758E0`, BASE 0 and OFFSET 0
+(`0x03000000`, `0x02000000`), then a sub-header `0x008631D0(object + 0x10, 0x43)` (`0x00476CAF`: the word `0x43` at
+`+0x10`, kind `0x10` at `+0x13`, 0 at `+0x14`), then STCYCL 4,4 (`0x01000404`) and UNPACK V4-32 of 66 quadwords
+(`0x6C420000`).
+
+The UNPACK payload, `+0x20` to `+0x43F`, starts with the GS screen centre 2048.0 (`0x45000000`) in the quadwords
+(2048.0, 2048.0, 260.0, 228.0) and (0, `0x30000000`, `0x412`, 0). It then holds, four times (`0x00476D01`-`0x00476DFF`,
+from `+0x40` at a stride of `0xF0`), a vertex block and an A+D GIF tag (NLOOP 5, NREG 1, REGS `0xE`) writing CLAMP_1,
+TEX0_1, ALPHA_1 and TEST_1 to 0 and PRIM to `0x5D`.
+
+The vertex block is nine quadwords: (0, 0, `0xFFFFFF`, 0), (0, 0, 256.0, 224.0), (1.0, 1.0, 1.0, 0),
+(1.0, 1.0, 0, 0), (0, 0, 1.0, 1.0) and four quadwords of the integers (128, 128, 128, 128).
+
+The payload ends with the register pairs ST, CLAMP_1, RGBAQ, XYZF2 = 0 as its last four quadwords (`+0x400` to `+0x43F`); then come MSCALF 0
+(`0x15000000` at `+0x440`), FLUSHA (`0x13000000` at `+0x444`) and the zero words at `+0x448` and `+0x44C` (`0x00476E57`,
+`0x00476E62`).
 
 ### Columns of ps2-vif1-vu1-emulation-programs.tsv
 
@@ -183,43 +212,61 @@ One row per GIF tag inside a template payload, 75 rows.
 
 ### The GiVmax render command
 
-`0x001DB840(node, word1, word2, program, payload, size, payload2, size2, flag, ctx)` allocates the
-`0x640`-byte `GiVmax` command (RTTI `.?AVGiVmax@@`, vtable `0x009007E8`) and fills its chunk list
-with pointer and length pairs: `0x01F82D08` for 8 bytes (the two VIF words, rewritten there on
-every call), `0x01DFD038` for 16 bytes (the image constant `0x4A000000`, MPG, with the program
-pointer stored at `0x01DFD040`), then the payloads through `0x001DB340`. Both scratch chunks are
-image-wide and `0x001DB840` is their only writer, so the packet must be consumed inside the call.
+`0x001DB840(node, word1, word2, program, payload, size, payload2, size2, flag, ctx)` allocates the `0x640`-byte `GiVmax`
+command (RTTI `.?AVGiVmax@@`, vtable `0x009007E8`), stores it at `node + 8` (`0x001DB89B`) and fills its chunk list with
+pointer and length pairs: `0x01F82D08` for 8 bytes (the two VIF words, rewritten there on every call), `0x01DFD038` for 16
+bytes (the image constant `0x4A000000`, MPG, with the program pointer stored at `0x01DFD040`), then the payloads through
+`0x001DB340`, the second only when `payload2` is not 0 (`0x001DB9F8`).
+
+Both scratch chunks are image-wide and `0x001DB840` is their only writer, so the packet must be consumed inside the
+call. It also sets `+0x630` to 1 when `0x0024D140` returns non-zero and `+0x634` to the float that call writes
+(`0x001DB8AC`, `0x001DB8BF`), `+8` to `flag` and `+0x10` to `ctx` (`0x001DB8CE`, `0x001DB8D9`), and, after the payloads,
+`+0x638` to `0x002105C0()`, the byte `0x01FD3698` (`0x001DBA12`). When the allocation returns 0 the constructor is skipped
+and these stores go through a null pointer (`0x001DB894`, `0x001DB8AC`).
 
 It is: `0x001DB840` ends by calling `0x001FB840(node)`, which tail-jumps the command's vtable slot 0,
 `0x001DB550`. That runs the packet list at emit time: it zeroes the two output counts, stores the
 flag `0x02EC3ECC == 0` at `+0x639`, resets the installed count, and calls `0x0022C940` once per chunk
 with the callback `0x001DB640`.
 
-The callback's body `0x001DB660` sizes the GS output with `0x0020F310`,
-copies it into a buffer from the allocator at `0x01F82D00`, and appends the pointer to the paged
-list at `+0x228` (count `+0x224`, page size `+0x220` = 1,024) and the callback's flag byte to the
-list at `+0x430` (count `+0x42C`, page size `+0x428` = 1,024). The constructor `0x001DB220` sets all
-three page sizes to 1,024 and allocates the first page of each list (`0x4000`, `0x2000` and
-`0x400` bytes).
+The callback's body `0x001DB660` sizes the GS output with `0x0020F310`, copies it into a buffer from the allocator at
+`0x01F82D00`, and appends the pointer to the paged list at `+0x228` (count `+0x224`, page size `+0x220` = 1,024) and the
+callback's flag byte to the list at `+0x430` (count `+0x42C`, page size `+0x428` = 1,024).
 
-Slot 1, `0x001DB3D0`, replays later, when the frame's render pass list drains the command: device
-slot `+0x58` with the bytes `+0x630` and `+0x634`, `0x00210510` and `0x00210560(0x51001)` when `+8` is
-set, `0x002105B0(+0x638)`, `0x002104D0(+0x639)`, then `0x00210320(copy, device, flag)` for every
-collected copy, then `0x002104E0`, `0x002105B0(0)` and the device slot `+0x58` again with (0, 0.1).
+It appends the flag first (`0x001DB729`) and the pointer second (`0x001DB7AB`), and when the current page of either list
+is not yet allocated it takes one from the allocator at `0x01F7F4C0` (`0x001DB6F7`, `0x001DB76F`); a page number of 64 or
+more stores to address 0 (`0x001DB6D1`, `0x001DB746`). The constructor `0x001DB220` sets all three page sizes to 1,024 and
+allocates the first page of each list (`0x4000`, `0x2000` and `0x400` bytes).
+
+Slot 1, `0x001DB3D0`, replays later, when the frame's render pass list drains the command: device slot `+0x58` with the
+byte `+0x630` and the float `+0x634` (`0x001DB416`), `0x00210510(+0x10)` and `0x00210560(0x51001)` when `+8` is set
+(`0x001DB41D`), `0x002105B0(+0x638)`, `0x002104D0(+0x639)`, then `0x00210320(copy, device, flag)` for every collected copy,
+with the flag byte of the same index, then `0x002104E0`, `0x002105B0(0)` and a tail jump to the device slot `+0x58` with
+(0, 0.1) (`0x001DB4ED`).
+
+`0x00210510` stores its argument as `ALPHA_1` (`0x01FC35D8`) and `0x00210560` as `TEST_1` (`0x01FC35C8`), each setting
+`0x01FC3603`; `0x002105B0` stores `0x01F83560`; `0x002104D0` stores `0x01FD3610` and clears `0x01FC3607`; `0x002104E0` calls the
+device's `TEXFLUSH` slot `+0x128` when `0x01FC3607` is set and then tail-jumps `0x0020ED30`.
 
 ### GIF packets and the GS replay
 
-`0x0020F310` sizes a GIF packet by walking its tags: NLOOP is bits `0x7FFF`, EOP bit `0x8000` ends the
-walk, FLG bits under mask `0xC00000000000000` and NREG bits under mask `0xF000000000000000` (0 means 16). PACKED tags are
-`(NREG × NLOOP + 1) × 16` bytes, REGLIST `NREG × NLOOP` rounded up to even, times 8, plus 16, and
-IMAGE `(NLOOP + 1) × 16`. The gate byte `0x01E027C0` is 1 in the image and has no writer, so the
-sizing and the replay always run.
+`0x0020F310` sizes a GIF packet by walking its tags: NLOOP is bits `0x7FFF`, EOP bit `0x8000` ends the walk, FLG bits
+under mask `0xC00000000000000` and NREG bits under mask `0xF000000000000000` (0 means 16). PACKED tags are `(NREG ×
+NLOOP + 1) × 16` bytes, REGLIST `NREG × NLOOP` rounded up to even, times 8, plus 16, and IMAGE and FLG 3 alike
+`(NLOOP + 1) × 16` (`0x0020F3AB`-`0x0020F3B5`); the result is the sum of the tag sizes, the EOP tag's included
+(`0x0020F3B8`, `0x0020F3C7`).
 
-`0x00210320` walks the same tags for the replay. It stores the device at `0x01FC35F8` and the flag at
-`0x01FD3611`, and for each tag with NLOOP above 0 reads PRE (bit `0x400000000000`), PRIM (mask `0x3FF800000000000`), FLG and
-NREG, and resets Q (`0x01E027B0`) to 1.0. A PACKED tag flushes the batch and applies PRIM through `0x0020FE70` when PRE is set, then
-runs `0x0020F3E0`. A REGLIST tag with NLOOP above 0 ends the walk through the flush. An IMAGE tag
-skips `NLOOP × 16` bytes. EOP ends the walk, and a final `0x0020EC80` flushes.
+The gate byte `0x01E027C0` is 1 in the image and has no writer, so the sizing and the replay always run; with the gate
+at 0 the sizing returns 16 (`0x0020F322`) and the replay returns at once (`0x00210336`).
+
+`0x00210320` walks the same tags for the replay. It stores the device at `0x01FC35F8` and the flag at `0x01FD3611`, and for
+each tag with NLOOP above 0 reads PRE (bit `0x400000000000`), PRIM (mask `0x3FF800000000000`), FLG and NREG, and
+resets Q (`0x01E027B0`) to 1.0. A tag with NLOOP 0 is stepped over as 16 bytes with only its EOP bit read (`0x002103BE`,
+`0x00210426`). A PACKED tag flushes the batch, applies PRIM through `0x0020FE70` and sets `0x01FC3603` when PRE is set
+(`0x0021043B`-`0x00210447`), then runs `0x0020F3E0`; on a REGLIST or IMAGE tag PRE is not applied.
+
+A REGLIST tag with NLOOP above 0 ends the walk through the flush. An IMAGE tag, and a tag with FLG 3, skips `NLOOP ×
+16` bytes (`0x00210478`-`0x00210486`). EOP ends the walk, and a final `0x0020EC80` flushes.
 
 `0x0020F3E0` handles a PACKED tag register by register, flushing the batch first for any descriptor
 other than 1 to 5 or `0xE`. The descriptors with handlers are PRIM, RGBAQ, ST, UV, XYZF2, XYZ2,
@@ -231,17 +278,25 @@ T/Q at `0x01FCB604` and `0x01FCB600`; RGBAQ stores the four colour bytes at `0x0
 byte `0x01F83563` and FOG sets it from its field times 0.0625. The same switch carries the A+D
 register numbers as arms a 4-bit descriptor can never reach.
 
-The A+D handler `0x0020FCA0` flushes the batch before any register other than 1 to 5, then honours
-PRIM, TEX0_1,
-TEX0_2, CLAMP_1, CLAMP_2, TEXA (`0x3B`), FOGCOL (`0x3D`), TEXFLUSH (`0x3F`, device slot
-`+0x128`), ALPHA_1, ALPHA_2 (`0x42`, `0x43`), TEST_1, TEST_2 (`0x47`, `0x48`) and ZBUF_1, ZBUF_2
-(`0x4E`, `0x4F`). Twenty registers in all; FRAME, SCISSOR, XYOFFSET, TEX1, PRMODE, COLCLAMP,
-DTHE, FBA, PABE, DIMX, TEXCLUT, MIPTBP and PRIM's AA1 bit `0x80` are ignored.
+The A+D handler `0x0020FCA0` keeps the data qword at `0x01FC3608` and the register number at `0x01FC3610` (`0x0020FCA7`,
+`0x0020FCB3`), and flushes the batch and sets `0x01FC3603` before any register other than 1 to 5 (`0x0020FCC3`, `0x0020FCD6`).
+
+Its jump table (`0x0020FCF1`) then honours PRIM (a tail jump to `0x0020FE70`), TEX0_1, TEX0_2, CLAMP_1, CLAMP_2, TEXA
+(`0x3B`, stored at `0x01E027B8`), FOGCOL (`0x3D`, its three low bytes to `0x01FC3604` to `0x01FC3606`), TEXFLUSH (`0x3F`, a
+tail jump to device slot `+0x128`), ALPHA_1, ALPHA_2 (`0x42`, `0x43`), TEST_1, TEST_2 (`0x47`, `0x48`) and ZBUF_1,
+ZBUF_2 (`0x4E`, `0x4F`). The numbers 1 to 5 (RGBAQ, ST, UV, XYZF2, XYZ2) and every number above `0x4F` reach no arm,
+so an A+D write of them stores only the two words (`0x0020FCE1`).
+
+Twenty registers in all; FRAME, SCISSOR, XYOFFSET, TEX1, PRMODE, COLCLAMP, DTHE, FBA, PABE, DIMX, TEXCLUT, MIPTBP and
+PRIM's AA1 bit `0x80` are ignored.
 
 PRIM (`0x0020FE70`) stores the type at `0x01F83562` and the IIP, TME, FGE, ABE, FST, CTXT and FIX bits
-at `0x01FC3600`, `0x01F8357C` to `0x01F8357F`, `0x01FC3601` and `0x01FC3602`, then `0x0020FBA0` sets the
+at `0x01FC3600`, `0x01F8357C` to `0x01F8357F`, `0x01FC3601` and `0x01FC3602`, then `0x0020FBA0` clears the fan
+flag `0x01F83561` (`0x0020FBA7`) and sets the
 vertices a primitive needs at `0x01F83570`, the carry at `0x01F8356C` and the index kind at
-`0x01F83578`, and the phase `0x01F83574` and vertex count `0x01F83568` restart at 0:
+`0x01F83578` by the table below; type 7 matches no arm and keeps the three previous values
+(`0x0020FC78`). The phase `0x01F83574` and vertex count `0x01F83568` restart at 0 (`0x0020FEF5`,
+`0x0020FEFB`):
 
 | PRIM type | needs | carry | kind |
 |---|---|---|---|
@@ -262,9 +317,14 @@ the second qword, clamped to the upper bound `0x01FD3664` and then the lower `0x
 `0x01FD3611` set three floats are taken directly.
 
 `0x0020EA50` then builds `(X, Y, Z, 1)`, writes the
-four RGBAQ bytes `0x01FC361C` to `0x01FC361F` as unnormalised floats at `+0x10`, multiplies by the
-matrix at `0x01FD3620` through `0x00202B70`, divides x, y, z and w by w, and copies the UV pair
-selected by the FST bit from `0x01FCB600` to `0x01FCB60C` into `+0x20`.
+four RGBAQ bytes `0x01FC361C` to `0x01FC361F` as unnormalised floats at `+0x10`, red `0x01FC361F` at
+`+0x10` through alpha `0x01FC361C` at `+0x1C` (`0x0020EABF`-`0x0020EACE`), multiplies by the matrix, `v = v × M` with
+`M` at `0x01FD3620` through `0x00202B70` (`0x0020EAD3`), and divides x, y, z and w by w, `x = x / w` to `w = w / w`
+(`0x0020EAD8`-`0x0020EB0C`).
+
+It then copies the UV pair selected by the FST bit from `0x01FCB600` to `0x01FCB60C` into `+0x20`: with FST set U
+`0x01FCB60C` and V `0x01FCB608` (`0x0020EB1A`-`0x0020EB2F`), with it clear S/Q `0x01FCB604` and T/Q `0x01FCB600`
+(`0x0020EB3A`-`0x0020EB4F`).
 
 The vertex counts only when bit `0x800000000000` of its second qword (ADC) is clear and the phase has reached
 the requirement; the phase then drops to the carry and the index arm runs, appending 16-bit
@@ -272,10 +332,14 @@ indices to `0x01FCB610` (count `0x01F83564`) with n the new vertex count: a poin
 or line strip n-2, n-1; a triangle or triangle strip n-3, n-2, n-1; a fan 0, n-2, n-1; a sprite
 duplicates its two corner vertices into four and writes six indices for two triangles.
 
-`0x0020EC80` flushes: when indices are pending it selects state through `0x0020ED30` and submits
-through `0x0020EB60(lastIndex + 1, device)`, then zeroes the index count; when the vertex buffer is
-past 682 it moves the primitive's unfinished trailing vertices to the front (for a fan, after
-vertex 0).
+`0x0020EC80` flushes: when indices are pending it selects state through `0x0020ED30` and submits through
+`0x0020EB60(lastIndex + 1, device)`, lastIndex being the last index written (`0x0020EC9A`) and the device the one at
+`0x01FC35F8`, then zeroes the index count;
+
+when the vertex count `0x01F83568` is 682 or more (`0x0020ECC2`) it moves the primitive's unfinished trailing vertices to
+the front (for a fan, after vertex 0): the last carry `0x01F8356C` vertices, or all of them when there are fewer, become
+the new count (`0x0020ECDE`, `0x0020ED1A`), and a fan with more vertices than the carry keeps vertex 0 and moves carry - 1
+behind it (`0x0020ECEC`-`0x0020ECF3`).
 
 Among the state `0x0020ED30` selects, `0x0020FF10` decodes the GS TEST register of the current context
 (`0x01FC35C8`, or `0x01FC35D0` while `0x01FC3601` is set): ATE bit `0x1`, ATST bits under mask `0xE`, AREF bits under mask `0xFF0`,
@@ -283,12 +347,15 @@ AFAIL bits `0x1000` and `0x2000`, DATE bit `0x4000`, DATM bit `0x8000`, ZTE bit 
 `0x01FD3684`. It hands the device (its vtable `+0x88`) the alpha test with AREF / 255 and the method
 `0x0020F2A0(ATST)`, which maps 1 to 7 onto 7, 4, 6, 3, 2, 1, 5 and anything else onto 0.
 
-`0x0020EB60` looks TEX0_1 or TEX0_2 (by the CTXT bit `0x01FC3601`) up in the 16-byte texture table
-`0x01F83580` by
-`(TEX0 >> 37) & 0x3FFF` when TME is set and the format field is at least `0x300000`, copies the
-vertices and indices into buffers from the device object's slots `+0` and `+0x10`, and draws
-through its slot `+0x28` with the index kind. The device object is the one `0x00210320` stored at
-`0x01FC35F8`, the embedded `PrimitiveRendererD3D11` at `0x02CC1CD0`.
+`0x0020EB60` looks TEX0_1 or TEX0_2 (by the CTXT bit `0x01FC3601`) up in the 16-byte texture table `0x01F83580` by `(TEX0 >>
+37) & 0x3FFF` when TME is set and the format field is at least `0x300000`, copying the entry to `0x01FD3688`
+(`0x0020EBCD`); with TME set and a lower format it zeroes the first eight bytes of `0x01FD3688` instead (`0x0020EBD6`), and
+with TME clear it leaves `0x01FD3688` as it is.
+
+It copies the vertices and indices into buffers from the device object's slots `+0` and `+0x10`, and draws through its
+slot `+0x28` with the index kind, the result of slot `+0x18`, the index count, the result of slot `+8` and the vertex
+count (`0x0020EC67`). The device object is the one `0x00210320` stored at `0x01FC35F8`, the embedded
+`PrimitiveRendererD3D11` at `0x02CC1CD0`.
 
 ## Layouts
 
@@ -384,7 +451,10 @@ Four more words steer the replay:
   `(Cs - Cd) × As + Cd` becomes D3D11's MAX operation. Type `0x02`'s draw `0x004490D0` and `0x004559C0` set it
   around their sprite draws.
 
-`0x01FD3688` is the copy of the texture-table entry `0x0020F250` returns for the current `TEX0`. `0x01F82D0C` is the
+`0x01FD3688` is the copy of the texture-table entry `0x0020F250` returns for the current `TEX0`: for a
+format field (`TEX0 & 0x3F00000`) of `0x300000` or more it copies entry `(TEX0 >> 37) & 0x3FFF` of
+`0x01F83580` there (`0x0020F27F`), otherwise it zeroes the first eight bytes (`0x0020F287`), and on both
+paths it returns `0x01FD3688`; `0x0020EB60` makes the same copy while TME is set. `0x01F82D0C` is the
 second VIF word of the scratch chunk `0x01F82D08`, which `0x001DB840` rewrites on every call.
 
 ### The microprograms' constant vector

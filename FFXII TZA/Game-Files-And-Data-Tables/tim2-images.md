@@ -19,10 +19,15 @@ Standalone TIM2 files sit in the archive under `ps2data/image/ff12/myoshiok/` as
 handbook bundles, `.ebp` scripts and `.mpk` map packs.
 
 A standalone menu picture is requested as a kind-7 resource with a texture entry: `0x002493D0` files the
-request (`0x00249210`), takes an entry from the 64-entry texture table at `0x0208F580` (`0x0024A4E0`, `0x48`
-bytes each) and sets the completion `0x00249670`, which jumps to the binder `0x0024A1D0(entry, file)`. The pack
-binders call `0x0024A1D0` directly on TIM2s inside a pack (`0x00246A10` binds five from the pack at
-`0x0208EA88` by its directory offsets), and `0x0024A480` binds one with a caller-supplied CLUT.
+request (`0x00249210` with a last argument of 1, so the buffer is taken top-down with `0x0036A190`), takes an entry
+from the 64-entry texture table at `0x0208F580` (`0x0024A4E0` with the caller's name and flags, `0x48` bytes each)
+and stores it at request `+0x18` (`0x002493FB`). It sets the completion `0x00249670` at request `+0x10`
+(`0x002493FF`), which jumps to the binder `0x0024A1D0(entry, file)`, and returns the entry.
+
+Nothing tests the entry: with all 64 entries busy it is null, and when the file arrives the binder faults on its
+read of entry `+0x40` (`0x0024A206`). The pack binders call `0x0024A1D0` directly on TIM2s inside a pack (`0x00246A10`
+binds five from the pack at `0x0208EA88` by its directory offsets), and `0x0024A480` binds one with a caller-supplied
+CLUT.
 
 ## Layouts
 
@@ -165,15 +170,23 @@ picture count:
 - PSM `0x13`: the pixels (`0x00181250`) and the CLUT (`0x00181000`) are registered; PSM `0x14`: `0x00181190` and
   `0x00180E70`. Any other PSM registers nothing, and the entry is still marked bound (`+0x38` bit `0x40`).
 - `0x00181250` and `0x00181190` pass the pixels, width, height and both rounded up to a power of two to
-  `0x00184140` (8-bit) or `0x00183EE0` (4-bit), then register the texture under the name (`0x001B21D0`).
+  `0x00184140` (8-bit, `0x001812E3`) or `0x00183EE0` (4-bit, `0x00181223`), then register the texture that call returns
+  under the name with `0x001B21D0` on the sprite batcher `[0x01F811E8]` (`0x001B1C00`), as a tail jump (`0x00181308`,
+  `0x00181248`).
 - `0x00181000` registers one 256-colour palette per 256 CLUT colours (`0x400` bytes apart, `0x001B20B0`);
   `0x00180E70` one 16-colour palette per 16 colours (`0x40` apart). Both reorder when
   `clutType << 8 | imageType` is `0x105`, `0x205`, `0x305`, `0x4104`, `0x4204` or `0x4304`.
 - The reorder swaps bits `0x8` and `0x10` of each colour index within a 256-colour palette. In a 16-colour palette
   it moves colours 8 to 15 outside the palette and leaves those entries unfilled.
 - For PSM `0x14` the binder also keeps a copy of the CLUT at entry `+0x10` with the same bit `0x8` and `0x10`
-  swap; for `0x13` the entry points at the file's CLUT. A CLUT given to `0x0024A480` (entry `+0x28`, count in `+0x38` the bits from `0x40000` up)
-  replaces the file's.
+  swap; for `0x13` the entry points at the file's CLUT. A CLUT given to `0x0024A480` (entry `+0x28`, count in
+  `+0x38` the bits from `0x40000` up) replaces the file's when its colour count is below `0x4000`
+  (`0x0024A4AA`); with a larger count `0x0024A480` stores neither, and the file's CLUT is used.
+- The `0x14` copy is a block of `((colours + 255) >> 8) × 0x400` bytes from `0x0036A190` in arena 3
+  (`0x0036C1D0(3, 12)`, popped by `0x0036C140`), filled with `colours >> 4` groups of 16 (`0x0024A2A0`-`0x0024A32E`).
+  Nothing checks the block: a null one makes the first store write at address 0, which faults, whenever there are
+  16 colours or more (`0x0024A304`).
+- After naming the texture the binder stores `0x00181520(entry)` at entry `+0x44` (`0x0024A25E`-`0x0024A266`).
 
 ### The registry gate
 
@@ -195,14 +208,20 @@ same buffer twice takes two slots. Nothing else in the header is checked.
 `0x02AEE810` holds eight buffer pointers. Slots 1 to 7 are handed out by `0x0039BEC0`; slot 0 and slot 7 are
 also written by the font-pack completion `0x0039C150`.
 
-- Font pack: `0x0039C3F0` requests kind 7, id `0xD5` into `0x02AEE868` with completion `0x0039C150`. That fills
-  an empty slot 0 with the pack's directory entry 0, and an empty slot 7 with entry 6 when entry 6 is not
-  `0xFFFFFFFF` and the language test `0x00254A10` is false. It then calls `0x0039BF50` and sets the ready byte
-  `0x02AEE890`.
+- Font pack: `0x0039C3F0` requests kind 7, id `0xD5` into `0x02AEE868` with completion `0x0039C150`. It returns at once
+  while `0x02AEE868` is set (`0x0039C3FC`); otherwise it sizes the file with `0x0032E400`, allocates that many bytes with
+  `0x003EFCD0` (arena 3, `0x0039C43B`), files the read with `0x0032E620` (`0x0039C45D`) and then stores the buffer at
+  `0x02AEE868` (`0x0039C467`).
+- That completion fills an empty slot 0 with the pack's directory entry 0, and an empty slot 7 with entry 6 when
+  entry 6 is not `0xFFFFFFFF` and the language test `0x00254A10` is false. It then calls `0x0039BF50` and sets the
+  ready byte `0x02AEE890`.
 - `0x0029CAC0(buffer)` (from `0x00330060`) keeps a six-entry `{pointer, count}` table at `0x0209C320`: a buffer
-  already there has its count raised and is not registered again; a new one takes an empty entry with
-  count 1 and goes to `0x0039BEC0`; with six in use nothing happens. `0x0029CB10` lowers the count and, at 0,
-  unregisters the buffer.
+  already there has its count raised and is not registered again (`0x0029CAD0`, `0x0029CB03`); a new one takes the
+  first empty entry with count 1 and goes to `0x0039BEC0` as a tail jump (`0x0029CAF4`-`0x0029CAFE`); with six in use
+  nothing happens (`0x0029CAF3`). The entry is filled before the gate, so a buffer `0x0039BEC0` refuses still holds it.
+- The match compares the empty entries too, so a null buffer raises the count of the first empty one. `0x0029CB10`
+  lowers the count of the buffer's entry (`0x0029CB36`) and, at 0, unregisters the buffer with `0x0039BB60`
+  (`0x0029CB3C`) and empties the entry (`0x0029CB41`); a buffer not in the table changes nothing (`0x0029CB30`).
 - `0x0037F1F0`, on a request record whose type byte is 4, registers the buffer and calls `0x0017FBC0(5)`; `0x0037F860`
   unregisters it with `0x0017FA70(5)`.
 - `0x003BC4E0`, the map-data widget, registers the TIM2 inside the guide file it holds at `+0xF8` (at that
@@ -228,9 +247,13 @@ No other instruction reaches these globals: no other RIP-relative, image-base-re
 names them, and the table's address is taken only by `0x0029CAC0` and `0x0029CB10`.
 
 `0x0039BAD0(buffer)` returns the slot from 1 to 7 whose low 32 bits match, or 0. `0x0039BA30(slot, mode)`
-returns null for an empty slot, else the first picture's block (picture `+0x30`). With mode 0 it returns
-null when that block's flags have a bit of `0x18000` set. With a non-zero mode and `0x00254A10` true it
-returns the first block whose flags have `0x8000` and not `0x10000`, or null.
+returns null for an empty slot (`0x0039BA49`), else the first picture's block (picture `+0x30`). With mode 0 it
+returns null when that block's flags have a bit of `0x18000` set (`0x0039BA63`). A non-zero mode calls `0x00254A10`
+(`0x0039BA80`): while it is false the first picture's block is returned whatever its flags (`0x0039BA87`).
+
+With a non-zero mode and `0x00254A10` true it walks the file's `+0x06` pictures by `totalSize` and returns the first
+block, of a picture whose `headerSize` is above `0x30`, whose flags have `0x8000` and not `0x10000`
+(`0x0039BA95`-`0x0039BAA9`), or null (`0x0039BAB7`).
 
 ### Script glyph sheets (EBP section 6)
 
@@ -258,11 +281,25 @@ three offsets are converted only while flag `0x4000` is clear, which the pass th
 grows by the picture's height, and the walk of a slot stops once the counter exceeds 60 times the dword at
 `0x01E0CDC4` (23 in the executable).
 
-`0x0039BDA0`, called from the screen bodies (`0x00252840`, `0x002528A0`, `0x00252990`, `0x00252A20`, `0x00252A70`)
-once `0x02AEE890` is set, sends the font pack's 32 x 16 picture to block `0x32FC` and then every picture of
-every slot to block `0x2A00`, 640 pixels wide, 4-bit (PSM `0x14`), at `x = 0` and `y` = the same running
-row, `width` x `height` from the picture header. `0x003EFDF0` builds each transfer: GS registers `0x50` to
-`0x53`, the pixels from `picture + headerSize`, then `0x3F`.
+The test follows each picture (`0x0039C08A`-`0x0039C09A`) and the counter is never reset, so once it is over the
+limit each later slot still lays out its first picture and then stops.
+
+`0x0039BDA0`, called from the screen bodies (`0x00252840`, `0x002528A0`, `0x00252990`, `0x00252A20`, `0x00252A70`),
+returns at once while `0x02AEE890` is clear (`0x0039BDB7`). Otherwise it sends the font pack's 32 x 16 picture to
+block `0x32FC` as a 32-bit image (PSM 0) one 64-pixel unit wide at `x = 0`, `y = 0`, with the width and height
+from that picture's header (`0x0039BDBD`-`0x0039BE07`).
+
+It then sends every picture of every slot, with a block or without one, to block `0x2A00`, 640 pixels wide,
+4-bit (PSM `0x14`), at `x = 0` and `y` = the same running row, `width` x `height` from the picture header
+(`0x0039BE40`-`0x0039BE72`). The row grows by every picture's height (`0x0039BE7D`) with no limit, so a slot whose
+layout stopped before its last picture is still sent whole, and every later picture then goes below the row its
+`bandBase` and `bandRow` name.
+
+`0x003EFDF0(block, pixels, buffer width, PSM, x, y, width, height)` builds each transfer in the current packet
+buffer (`0x02EBEFC0` + `0x18` x `[0x02EBEFF0]`): GS registers `0x50` to `0x53` under an A+D tag (`0x003A2090`), the
+pixels from `picture + headerSize` through `0x003A21A0` as `0x003A1F20(width, height, PSM) / 4` quadwords, rounded
+down, plus one (`0x003EFE22`-`0x003EFE4F`, `0x003EFF85`), then `0x3F` under a second tag. It ends by flipping the packet
+buffers with `0x003A1DB0` (`0x003F001A`).
 
 The font pack's picture is kept apart by `0x0039C150`: `0x02AEE858` points at its picture header, `0x10` bytes past the
 TIM2 file at `0x02AEE850` (`0x0039C1D0`), and `0x02AEE860` at its pixels, the header plus its `u16 +0x0C` header size

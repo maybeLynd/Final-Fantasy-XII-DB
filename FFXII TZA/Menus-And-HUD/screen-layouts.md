@@ -63,6 +63,14 @@ The loader `0x001CA600` binds every key by its own code, with no table (1,602 in
 1. It stops at once if `mScrollListHeight` is absent (`0x001CA604`-`0x001CA621`).
 2. For each key it looks the name up (`0x001FF740`), reads it as an integer (`0x00200B80`) or a float (`0x00200B50`), and
    stores it through a pointer slot (`mov rcx, [rbx + slot]` / `mov [rcx], eax`).
+   - `0x001FF740(node, name)` copies the name into a string and calls `0x001FF6B0(node, string)` (`0x001FF761`-`0x001FF81D`).
+     A node that is not an object (tag 3) is first passed to `0x002001F0`, which dispatches on its old tag, and then
+     gets tag 3 and a new `0x38`-byte map from `0x00210EC0` at `+0x08` (`0x001FF6CF`-`0x001FF713`). The lookup then runs
+     in that map: `0x001FF6B0` ends with a jump to `0x001FF4F0(map, string)` (`0x001FF72D`).
+   - `0x001FF4F0` walks the map's tree from `+0x18`, ordering keys by `memcmp` over the shorter length and then by
+     length (`0x001FF540`-`0x001FF5DB`). A missing key is inserted at the place found, with tag 6, payload 0 and a copy
+     of the key, through `0x001FFD40` (`0x001FF5E1`-`0x001FF64C`). Either way it answers the entry's value node at `+0x40`
+     (`0x001FF68E`).
 3. The slots are `[0x01F811E8] + 0x3B00` onwards, filled by `0x001AF470` (`0x001AF477`-`0x001B00E9`), and three more at
    `[0x01F81200] + 0x2F8`-`+0x308`, filled by `0x001B44A0` (`0x001B4551`-`0x001B4574`), for the three float keys.
 
@@ -88,8 +96,8 @@ read converts either and returns 0.0 otherwise (`0x00200B75`).
 
 | | |
 |---|---:|
-| keys read by some screen | 214: 213 at 480 read sites in 124 functions, and `FontShadowAlphaMuti` through the font manager's slot `+0x308` (`0x001B5210`, `0x001B521C`), from the font border filter pass `0x00190260` (`0x00190434`) |
-| keys bound but read by nothing | 12: the ten `mCursor{Right,Down,Left,Up,Open}{X,Y}`, `BattleLogBlackBandH`, `LicenseBlackBandH` |
+| keys read by some screen | 224: 213 at 480 read sites in 124 functions; the ten `mCursor{Right,Down,Left,Up,Open}{X,Y}` through the pointers at `+0x08` and `+0x10` of the hand cursor's kind table `0x01E0C150`, which the hand draw `0x002426F0` reads (`0x00242785`-`0x0024279A`; [Menu sprites](menu-sprites.md)); and `FontShadowAlphaMuti` through the font manager's slot `+0x308` (`0x001B5210`, `0x001B521C`), from the font border filter pass `0x00190260` (`0x00190434`) |
+| keys bound but read by nothing | 2: `BattleLogBlackBandH`, `LicenseBlackBandH` |
 | shipped values outside their schema range | 0, in either file |
 | keys `uisize_sd.json` lacks | 63 of the 226 bound |
 
@@ -100,6 +108,7 @@ read converts either and returns 0.0 otherwise (`0x00200B75`).
 | battle menu ([Battle menu](battle-menu.md)) | 22 |
 | Gambits ([Gambits screen](gambit-screen.md)) | 18 |
 | menus: lists, scrolling, help, button signal | 15 |
+| the hand cursor ([Menu sprites](menu-sprites.md)) | 10 |
 | World Map ([Map screens](map-screens.md)) | 11 |
 | dialogs ([Dialogs](dialogs.md)) | 10 |
 | map overlay, `TrackMap*` | 8 |
@@ -135,7 +144,9 @@ the cell starts at that file's value.
 1. A key missing from the loaded file is inserted as absent (tag 6, `0x001FF5E1`) and stored as 0. Loading
    `uisize_sd.json` would therefore set its 63 missing keys to 0, not leave their built-in values.
 2. The loader never checks a value against the schema's range.
-3. Every reader reads its cell directly by its address; no reader goes through the pointer slots.
+3. No reader goes through the loader's pointer slots. Every reader reads its cell directly by its address, except
+   the hand draw `0x002426F0`, which reads the ten `mCursor` cells through the eight-byte pointers that its kind table
+   `0x01E0C150` holds (`0x01E0C158`-`0x01E0C1C0`), as words (`0x0024278A`, `0x0024279A`).
 4. `EXPLPNumOffsetX` is the one key code writes: `0x0028B24A` overwrites it with `ExpNumOffsetX` or `LpNumOffsetX` before
    its read at `0x0028B5F1`, so its file value never reaches the screen. Its schema row has `disable` set.
 5. The `disable` flag is set on six schema rows (`mNumEffectOffsetX1`, `NumEffectOffsetY1`, `mExpEffectOffsetY`,

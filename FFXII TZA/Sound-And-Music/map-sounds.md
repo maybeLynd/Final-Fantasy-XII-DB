@@ -25,9 +25,12 @@ When the map pack binds its sound, `0x003635E0(list, bank, handle)`:
 2. takes the pack's bank, or `list + [list + 0x0C]` when the pack gives no bank;
 3. opens every `SeSep` record in `[list + 0x08]` bytes through `0x002DF070` ([Sound banks](sound-banks.md)) and calls
    `0x002DEE90(-1)`, which returns at once because the load query answers 0 for a negative id
-   ([Audio manager](audio-manager.md));
-4. frees the pack's bank block (`0x003697F0`);
-5. keeps the handle at `0x022CBA88` and the list at `0x022CBAF8`, and resets the ambience volume to `0x7F`.
+   ([Audio manager](audio-manager.md)); `0x002DEE90(-1)` runs three times, twice before the walk with the return
+   stub `0x005C5230` between them and once after it (`0x00363612`-`0x00363635`);
+4. frees the pack's bank block (`0x003697F0`), only when the pack gave a bank (`0x0036363A`-`0x00363642`);
+5. keeps the handle at `0x022CBA88` and the list at `0x022CBAF8`, and resets the ambience volume to `0x7F`: the volume
+   `0x022CBA94` and the fade's start and end volumes `0x022CBA98` and `0x022CBA99` become `0x7F`, its step `0x022CBA9C` 0
+   and its progress `0x022CBAA0` 1.0 (`0x00363657`-`0x0036368C`).
 
 ### Playing an entry
 
@@ -37,15 +40,30 @@ When the map pack binds its sound, `0x003635E0(list, bank, handle)`:
 | `mapsoundplay_2bb(i, pan, volume)` | `0x2BB` | `0x00346990` | entry `i` through `0x002DEF40` with the given pan and volume |
 
 Both play nothing when no list is bound or `i` is at or past the count, compared unsigned (`0x00346291`, `0x003469D5`).
+`mapsoundplay` reads the skip byte of the calling actor's manager, actor byte `+0x15`, through `0x00267310`
+(`0x00346296`-`0x003462A5`). Each verb writes the play call's result as its value through `0x0026B4E0`, or 0 when it
+plays nothing (`0x0034628A`, `0x003469CE`, `0x003462C9`, `0x00346A01`).
 
 ### Emitters
 
 The pack's `SP1` block holds the map's sound emitters. For each one, `0x003638B0` reads its first word as a list index
 and plays the id at the emitter's position, `+0x20`-`+0x28`, through `0x002DEFA0` (`0x0036397F`-`0x00363996`) when:
 
-- the index is in range and the id is not negative;
+- the emitter's signed byte `+0x1A` is negative and the second argument is above 0 (`0x003638DC`-`0x003638EA`);
+- its handle `+0x04` is 0, or `0x002DEE80(handle)` answers 0, which clears bit `0x1` and the handle first
+  (`0x00363909`-`0x0036391E`);
+- a list is bound (`0x00363982`), the index is in range and the id is not negative;
 - `0x00229EA0` answers 2 and `0x022CBB2E` is set;
 - the emitter's flag byte `+0x08` has bits `0x30` clear, and bit `0x4` clear or bit `0x8` set.
+
+`0x003638B0` first clears bit `0x40` of `+0x08` (`0x003638C7`). It returns a `+0x1A` of 0 or more at once. With a
+second argument of 0 or less it sets bit `0x40` again and returns its fourth argument (`0x003638DC`-`0x003638F1`);
+every other path also returns the fourth argument (`0x003639FF`).
+
+While the handle still plays, with bits `0x30` clear and `0x022CBB2E` set, it sends a changed map sound volume
+`0x022CBA94` to it (`0x002DF150`) and keeps that volume at `+0x19` (`0x00363942`-`0x00363956`). A play passes the position
+with w 1.0 and the emitter itself (`0x003639A2`-`0x003639E5`), then stores the volume at `+0x19`, sets bit `0x1`, and
+keeps the handle at `+0x04` and the third argument's low byte at `+0x18` (`0x003639E2`-`0x003639F1`).
 
 Each update `0x00362850` marks every emitter with bit `0x40`, runs the emitters it reaches through `0x003631B0`, and then
 `0x00363F30(list, area)` stops the handle at `+0x04` of every emitter still marked or with bit `0x10` or `0x20` set (mask
@@ -117,9 +135,11 @@ No other instruction reaches it. The indexed accesses near it are the cutscene s
 
 ### Unbinding
 
-`0x00363750` releases every listed id through `0x002DF050`, except an id from 1,000 to 1,999 that is in the keep list
-(`0x00363774`-`0x003637E4`). It copies the three selections, the keep list and its count, `0x022CBB58`-`0x022CBB77`, over
-`0x022CBB38`-`0x022CBB57` (`0x003637F0`-`0x00363810`) and releases the handle (`0x002DEB40`).
+`0x00363750` first clears `0x022CBA90` (`0x0036375D`). With no list bound at `0x022CBAF8` it only clears that pointer
+(`0x00363764`, `0x0036382A`). Otherwise it releases every listed id through `0x002DF050`, except an id from 1,000 to
+1,999 that is in the keep list (`0x00363774`-`0x003637E4`). It copies the three selections, the keep list and its count,
+`0x022CBB58`-`0x022CBB77`, over `0x022CBB38`-`0x022CBB57` (`0x003637F0`-`0x00363810`) and releases the handle (`0x002DEB40`)
+when `0x022CBA88` is not negative. It then sets `0x022CBA88` to -1 and clears `0x022CBAF8` (`0x00363817`-`0x0036382A`).
 
 ### The previous map's keep list
 
@@ -138,9 +158,10 @@ These are all their accesses. The one indexed access near `0x022CBB48` is `0x003
 
 ### The map sound volume fade
 
-`0x003634B0(frames, volume)` fades the map sound volume `0x022CBA94` to `volume`: it scales `frames` by `0x003691D0`, halves
-it and adds 1; with a positive result n it starts the fade from the current volume with a step of 1 / n
-(`0x003634C3`-`0x0036350F`), otherwise it sets the volume at once (`0x00363522`-`0x00363549`). Each update `0x00362D20` adds the
+`0x003634B0(frames, volume)` fades the map sound volume `0x022CBA94` to `volume`: with
+`n = (i32)(frames × 0x003691D0()) / 2 + 1` (`0x003634BE`-`0x003634DE`), `frames` scaled by `0x003691D0`, truncated, halved
+toward zero and plus 1, a positive n starts the fade from the current volume with a step of `1.0 / n`
+(`0x003634C3`-`0x0036350F`); otherwise it sets the volume at once (`0x00363522`-`0x00363549`). Each update `0x00362D20` adds the
 step to the progress, stops at 1.0, and sets the volume (`0x00362D20`-`0x00362D98`):
 
 ```python
@@ -174,6 +195,8 @@ bytes from `0x02B59360`, indexed `manager x 8 + slot`, and slot `k` reads sub-fi
    manager is skipping (`0x00267310`), and `0x003DF440` parks a slot in state 1 instead of reading during a skip.
 2. When the read is in, `0x003DF2C0` splits the sub-file into its two parts (`0x0036B970`), the list and its `SeSep`
    records, and `0x003DF360` opens the banks (`0x002DF070`), keeps the bank handle at slot `+0x00` and sets state 4.
+   That handle is `0x002DF070`'s answer, the last `0x001DBE60` result, or 0 when it opens no bank (`0x002DF07D`,
+   `0x002DF0DE`, `0x003DF3BF`).
 3. `eventsoundreadsync` `0x152` waits on `0x00345250` while the slot is in state 2, 3 or 4 (`0x003DF0F0`, `0x003DF0A0`).
 
 `eventsoundplay` `0x153` (`0x00345930` -> `0x003DF200`) plays list entry `word & 0xFFFFFF` of slot `(word >> 24) - 4`
@@ -266,6 +289,8 @@ All but one id name a shipped bank under `se600`-`se610`; `600070` has no bank.
 ## Loader behaviour
 
 1. `0x002DF070` rounds the length up to 16 and stops at a record that is not `SeSep` or is longer than what remains.
+   It reads a record's length with bit `0x80000000` cleared (`0x002DF0A9`) and walks only while more than 16 bytes
+   remain (`0x002DF086`, `0x002DF0CE`), so a length of 16 or less opens no bank.
 2. The verbs bound the index unsigned, the emitter and weather readers after a sign test.
 3. The weather pick reads at most three entries, so a table's entries 4-7 change nothing.
 4. Only `slot < count` is tested before the selection is read, so a count of 4 with weather slot 4 reads the keep

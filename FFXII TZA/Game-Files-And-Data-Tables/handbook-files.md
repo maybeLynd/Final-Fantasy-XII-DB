@@ -96,8 +96,11 @@ page `p` is in file `textBundles + pageMap[p]`.
 | `+0x0A` | `u8[2]` | unused | 18 or 0; read by no function: the six tables, manager `+0xC8` to `+0xF0`, are read only by `0x00577550` (`0x005775C1`, `0x00577660`), which walks the records with `0x00575E80`, and neither reads `+0x0A`; nothing fixes its width |
 | `+0x0C` | `rec[count]` |  | 8 bytes each, 16 for the Bestiary |
 
-Families 0-4, 8 bytes per entry, evaluated by `0x00575E80`. A field holding all ones (`0xFF`, `0xFFFF`) is
-skipped; every other field must hold:
+Families 0-4, 8 bytes per entry, evaluated by `0x00575E80`, which answers 1 when every test holds and 0 at the
+first one that fails (`0x00575E9D`, `0x00575EEE`). A field holding all ones (`0xFF`, `0xFFFF`) is skipped; every
+other field must hold. The nibble test is skipped on `nibbleIndex` alone (`0x00575E8C`), so with a real index a
+`nibbleValue` of `0xFF` never matches (`0x00315470` answers 0 to 15), and the story counter is taken as a signed
+16-bit value against `storyMinimum` (`0x00575EE3`-`0x00575EEC`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -114,6 +117,10 @@ Bestiary, 16 bytes per entry:
 |---|---|---|---|
 | `+0x00` | `u16` | slot[7] | threshold of each text slot (`0x00576860`); `0xFF` (mode 0) or `0xFFFF` (modes 1, 2) = empty |
 | `+0x0E` | `u16` | mode | bit `0x2` = mode 2, else bit `0x1` = mode 1, else mode 0 (`0x00576E30`, `0x005768E0`) |
+
+`0x00576860(manager, family, entry, slot)` reads a threshold: 0 for a family other than 5 or no manager, the mode's
+empty value when the table `+0xF0` is missing or `slot` is 7 or more, and otherwise the word at
+`+0x0C + 16 × entry + 2 × slot`, with no bound on the entry (`0x00576863`-`0x005768DA`).
 
 ### hdat: a text bundle
 
@@ -306,52 +313,179 @@ A request names a family, a file number and an entry or page. `0x00575C30` build
 - slot 1 starts with offset 2 (`0x005759E2`), so file number `n` is `menuhandbook_<family>NNN.dat` with `NNN = n`;
 - slot 2 gets `textBundles + 2` once the catalog has loaded (`0x005773D2`), so its file numbers count from the first picture file.
 
+`0x00575C30` files the request in a request group (`0x00249580`, closed with `0x00249410`) as
+`0x00249210(group, 7, id, arena, top)`: slot 0 in arena 3, slots 1 and 2 in arena 2, and slot 2 with `top` = 1, so
+its block comes from `0x0036A190` instead of `0x0036A100` (`0x00575C5B`-`0x00575CAD`). It sets the state to 2, keeps the
+family, file number and entry or page at `+0xD2`, `+0xCC` and `+0xCE` (`0x00575CC7`-`0x00575CE9`) and returns the
+request's buffer (`0x00575CF0`), which stays null when the size table gives no positive size.
+
 `0x00575A50` treats a request for the slot's own file (the same family `+0xD2` and, when the slot byte
 `+0xC8` is 1 or 2, the same file number `+0xCC`; `0x00575A60`-`0x00575A92`) by the slot's state `+0xC9`:
 
 - loaded (1): it only changes the entry or page `+0xCE` and returns 1 (`0x00575B58`-`0x00575B63`);
 - loading (2): the request is dropped, with no write (`0x00575B4B`);
 - loading with the buffer to be freed when it finishes (3): the state goes back to 2 (`0x00575B44`), so the
-  finishing load is kept. The completion message `0x10` of `0x00575870` turns state 2 into 1, and state 3
-  into 0 after freeing the buffer.
+  finishing load is kept.
+
+The slot's procedure `0x00575870` handles four messages:
+
+- `0x10`, the load's completion: state 2 becomes 1, `0x00575710` runs and the owner `+0xC0` gets message `0x10`
+  with the slot number `+0xC8` (`0x005758D3`-`0x0057594E`, `0x00247510`). State 3 frees the buffer (`0x003697F0`),
+  becomes 0 and reports the slot number plus 3, after refiling a queued request when the queue count `+0xD3` is
+  above 0 (`0x005758F1`-`0x0057594E`). Any other state ignores it.
+- `1`, creation: the slot number and owner from the creation record, state 0, `+0xCA` = 0 (2 for slot 1,
+  `0x005759E2`), `+0xD0` = `0xFFFF`, and `+0xEC`, `+0xD3`, `+0xF0` and `+0xF8` cleared; it then registers with the
+  manager `[0x02CA9738]` (`0x00244960`, `0x005759F8`).
+- `2`: when bit `0x1` of `+0xEC` is set and the state is 0, it clears the bit and closes the slot (`0x00244F00`,
+  `0x00575982`).
+- `0x12` goes to the owner with the slot number (`0x005758B8`); every other message goes to `0x005C5230`
+  (`0x0057589F`).
 
 Any other request, including one for a different file while a load is pending, frees the slot's buffer and
-loads the new file (`0x00575640` at `0x00575B20`, `0x00575C30` at `0x00575B2B`). The queue at `+0xD3` / `+0xD6` is
-written only by code that no path reaches (`0x00575ACC`-`0x00575B10`), so no request waits.
+loads the new file (`0x00575640` at `0x00575B20`, `0x00575C30` at `0x00575B2B`), keeping the new buffer at `+0xF0`
+(`0x00575B30`). A slot byte above 2 matches no request (`0x00575A85`). `0x00575A50` returns 1 in the loaded case only.
+
+Every such request also stores 0 in the queue count `+0xD3` (`0x00575AB4`), as creation does (`0x005759C9`). The
+queue entries from `+0xD4` and the count's increase are written only by code that no path reaches
+(`0x00575ACC`-`0x00575B10`), so the count stays 0, the completion never refiles and no request waits.
+
+#### A load replaced while it is pending
+
+Of the four calls of `0x00575A50`, the completion's queue call (`0x00575931`) is never reached, and the other three
+come from two requesters. Neither tests whether the slot is busy: the busy test `0x00576DA0` has one caller, the
+content page's page turn inside an entry (`0x005745C1`).
+
+- slot 0: `0x00577880(family)` (`0x005778C8`), which the mid pane `0x0056F2A0` calls (`0x0056F351`) when the player
+  confirms Traveler's Tips or the Bestiary in the Clan Primer. Confirming the other one while the first catalog
+  is still loading sends a different file. Hunts and Sky Pirate's Den call `0x005776D0` instead (`0x0056F2CF`).
+- `0x005776D0` turns a loading slot's state 2 into 3, so that load is kept and freed when it completes
+  (`0x00577714`, `0x00577750`, `0x0057778C`), and sets bit `0x40`, which makes `0x00577880` and `0x005778F0` refuse
+  (`0x00577893`, `0x0057790D`).
+- slots 1 and 2: `0x005778F0(entry)`, through `0x00575D10` (`0x00577969`) and `0x00575DD0` (`0x005779BE`), when an entry
+  page opens (`0x00570280`). The mid pane opens one each time the player confirms an entry in the family index
+  (`0x0056F1B8`; `0x0056F1F6`, `0x0056EC10`).
+- Opening an entry whose text bundle or picture file differs from the one still loading for the previous entry
+  sends a different file to that slot. Traveler's Tips always asks slot 2 for page 0's file, so for it only
+  slot 1 changes file.
+
+Freeing the buffer of a pending load does not cancel its read. The read completes into the freed block, and its
+completion marks the new load done before the new read has finished:
+
+1. `0x00249210` returns its 40-byte request record (`0x00249301`): `+0x00` the group, `+0x08` the buffer
+   (`0x002492DE`), bit `0x1` of `+0x20` busy. It drops the id `0x0032E620` returns (`0x002492F3`), and `0x00575C30`
+   returns only the record's `+0x08` (`0x00575CF0`), which becomes `+0xF0` (`0x00575B30`). The slot keeps the
+   buffer, not the request.
+2. `0x00575640` frees `+0xF0` through `0x003697F0` and `0x00369860` (`0x005756C7`), which work on the heap alone: the
+   in-use bit `0x1` of the block's `+0x14` is cleared (`0x00369B09`), its size comes off the arena counts
+   (`0x00369B18`, `0x00369B34`) and it is merged with free neighbours. The read queue's cancel `0x0032E590` is called
+   only at `0x002FC426`, `0x003B13AF`, `0x003B17BD` and `0x003B199D`.
+3. The read keeps the freed block as its destination. `0x0032E870` files at the tail of the pending list and the
+   pump `0x0032E070` serves the head, so the earlier read completes first and writes the earlier file there.
+4. Its completion `0x002495C0` counts it on the earlier group, whose widget is the slot (`0x00249580` at `0x00575C92`,
+   `0x002495B7`), and calls the slot's first word with message `0x10` (`0x0024960B`-`0x00249632`). That word is
+   `0x00575870`, written at creation (`0x00575848`; `0x00244F50`, `0x00246641`).
+5. The new load has set state 2 (`0x00575CC7`), so `0x00575870` sets state 1, runs `0x00575710` over the new buffer
+   before the new read has written it (`0x005758D3`-`0x005758DA`) and reports the slot ready to its owner `+0xC0`
+   (`0x00575942`-`0x0057594E`). The new read's own message `0x10` then finds state 1 and changes nothing
+   (`0x005758E9`, `0x005759FD`).
 
 ### The unlock tables
 
-With its creation flag set, `0x00576F50` loads the six unlock tables (base + 1) into the manager's
-`+0xC8` to `+0xF0` and `menuquest.dat` (`0x128`) into `+0xF8`. `0x00577550(family)` evaluates them:
+`0x00576F50` first tests whether the text groups 7 and 8 are resident (`0x002F8040`); for each one that is not it sets bit
+`0x10` or `0x20` of the manager's `+0x100` and adds the group to its request group (`0x002491B0`). When the
+bits `0x4`, `0x10` and `0x20` are all clear it returns 0 (`0x00576F83`-`0x00576F8C`).
+
+With its creation flag (bit `0x4`) set, `0x00576F50` loads the six unlock tables (base + 1) into the manager's
+`+0xC8` to `+0xF0` and `menuquest.dat` (`0x128`) into `+0xF8`, each through `0x00249210(group, 7, id, 3, 0)`, and
+sets bit `0x2` (`0x0057706F`). It closes the group (`0x00249410`) and returns 1.
+
+`0x00577550(family)` evaluates them. It answers 0 when the manager is missing or bit `0x2` is set (`0x00577567`), for
+a negative family or one above 7, and when the family's table is missing; otherwise it answers 1:
 
 - families 0-4: each record through `0x00575E80`, the result written as the entry's unlock bit through
   `0x00315910(byte [0x00D23750 + family], entry, result)`;
 - Bestiary: for each entry and slot, slot 7 and every empty slot get their read mark set
-  (`0x00315AD0(6, entry, slot, 1)`); the slot thresholds are not saved.
+  (`0x00315AD0(6, entry, slot, 1)`); the slot thresholds are not saved. The entry's mode comes from `0x005768E0`
+  and each threshold from `0x00576860` (`0x005775EB`, `0x00577608`);
+- family 6 does nothing, and family 7 runs the field-frame sweep `0x00316930` (`0x005775B2`).
 
 `0x00576E30(family, entry, slot)` answers whether a Bestiary slot is open, each time it is asked; other families
-always answer yes. Mode 0 compares the entry's kill count (`0x00315420`) with the threshold, mode 1 the story
-counter, and mode 2 opens when this monster or the monster the threshold names has a kill.
+always answer yes. An empty slot (`0xFF` in mode 0, `0xFFFF` in modes 1 and 2) answers no (`0x00576EB3`,
+`0x00576ED3`, `0x00576EFF`), and so does every slot from the eighth on, for which `0x00576860` returns the empty value.
+
+Mode 0 compares the entry's kill count (`0x00315420`) with the threshold and opens at a count of at least the
+threshold, compared unsigned (`0x00576EC4`). The count −1, which `0x00315420` gives an entry whose save byte
+`+0x3404` is still 0, therefore passes every threshold. Mode 1 compares the story counter: `0x00265270` taken as a
+signed 16-bit value, compared unsigned with the threshold (`0x00576F0C`-`0x00576F11`). Mode 2 opens when this monster
+or the monster the threshold names has a kill: a count above 0 for this one, at least 1 for the other
+(`0x00576EE4`, `0x00576EF0`).
+
+#### The Bestiary kill count
+
+`0x00315420(entry)` reads the count from the save `[0x020927C0]` (`0x002536A0`): an entry of `0x200` or more gives -1
+(`0x0031542C`), a byte `+0x3404` + entry of 0 gives -1 (`0x0031544A`), and any other byte gives the byte less 1
+(`0x00315469`). `0x00315820` stores the count plus one there for each counted defeat (`0x0031588E`).
+
+`0x00576E30` is asked only about a listed entry: by the slot list `0x00576300` (`0x005764A9`), by the read count
+`0x00576920` after the unlock test `0x003154B0` (`0x0057697E`, `0x005769EA`) and by the index row's read test `0x00576D20`
+(`0x00576D5A`, from `0x00570930` at `0x0057095D`). An entry without a rule is listed only once its count is above 0,
+so a count of -1 meets a mode 0 test only for an entry a rule of `menuhandbook.bin` opens.
+
+Every language's path array names the `in` copy of `menuhandbook.bin` (`ch` for KR, CH and CN; the two copies
+hold the same rules). Of the 15 entries a rule opens, the one with mode 0 slots is Rogue Tomato (211), in the us
+`menuhandbook_monster.dat` alone; every other copy in the archive gives it mode 1
+([Clan Primer entries](../Menus-And-HUD/clan-primer-entries.md)). The UK size table gives the `uk` catalog and table
+(kind 7, ids `0x354` and `0x355`) -1, so `0x00249210` files no request for them (`0x0024929F`).
 
 ### Reading the catalog
 
 - `0x005778F0(entry)` opens an entry: `0x00575D10` asks slot 1 for the record's `bundle` with the entry
-  number, then `0x00575DD0` asks slot 2 for the record's `page`.
+  number, then `0x00575DD0` asks slot 2 for the record's `page`, and it returns 1. It returns 0 and asks nothing
+  while the manager is cancelling (`+0x100` bit `0x40`, `0x0057790D`), or when slot 0's family is `0xFF`, its
+  catalog is not loaded, or the entry is negative or not below `entryCount` (`0x00577922`-`0x0057795F`).
+- `0x00575D10(manager, family, entry)` acts only when slot 1 exists, the catalog is loaded and the entry is below
+  `entryCount` (`0x00575D1A`-`0x00575D66`). It clears slot 1's bit `0x100` of the manager's `+0x100` (`0x00575D8B`)
+  and, when slot 1 already holds that bundle (`0x00575A50` answers 1), sends the manager message `0x10` with 1 at
+  once, the message a finished load sends (`0x00575DBA`).
 - `0x00575DD0` bounds the page by `pageCount`, takes `pageMap[page]` as the file number and the page as the
   picture. Its `0xFFFF` test compares the zero-extended word with -1 (`0x00575E26`), so it never matches.
-- `0x005760A0(entry)` fills the detail record: the name, the section, the entry number, the flag, and for the
-  Bestiary the kill count and, from the slot-count byte, each slot's threshold (`0x00576860`).
+- `0x00575DD0` acts only when slot 2 exists and the catalog is loaded (`0x00575DDD`-`0x00575E10`). It clears bit
+  `0x200` of `+0x100` (`0x00575E2C`) and, when slot 2 already holds that file, binds the page at once (`0x00575B80`,
+  `0x00575E5C`) and sends message `0x10` with 2 (`0x00575E72`).
+- `0x005760A0(record, entry)` fills the 32-byte detail record, which it first zeroes: the name `+0x00`, the
+  section `+0x10`, the entry number `+0x12`, the flag `+0x14`, and for the Bestiary the kill count `+0x16` (a
+  count of −1 kept as 0, `0x00576233`) and, from the slot-count byte (`+0x15`), each slot's threshold (`0x00576860`).
+- `0x005760A0` keeps each threshold as one byte from `+0x18`, the low byte of the `u16` (`0x005762B5`). It answers 1,
+  or 0 when the manager or the catalog is missing or the entry is negative or not below `entryCount`
+  (`0x005760D4`-`0x00576122`); a name of -1 leaves `+0x00` at 0.
 - Bestiary text ids `0x4210` to `0x421C` also get a second line, an Esper's name read through `0x0035D330`.
-- `0x00576740(section)` gives a section's caption, its first entry, its entry count and the number of its
+- That line is kept at `+0x08`: `0x0035D330(0x14, 0x106 + t)`, its `+0x18` read by `0x002B58B0`, with `t` = 0, 11,
+  9, 8, 3, 4, 6, 1, 5, 2, 7, 10 and 12 for ids `0x4210` to `0x421C` (the words at `0x00D237A0`, `0x00D23790` and
+  `0x00D237B0` and the 12 at `0x005761BE`; `0x0057619B`-`0x005761FF`).
+- `0x00576030(header)` copies the catalog header: slot 0's family `+0xD2` to `+0x00`, the word `+0x08` shifted
+  right by 4 to `+0x04`, `sectionCount` to `+0x06`, `entryCount` to `+0x08` and `pageCount` to `+0x0A`. It
+  answers 1, or 0 with nothing written while the catalog is not loaded (`0x0057603E`-`0x0057608F`).
+- `0x00576740(record, section)` gives a section's caption, its first entry, its entry count and the number of its
   entries that pass the family's unlock test for that entry (`0x00576CA0`, `0x003154B0`).
+- `0x00576740` writes the caption `+0x00` (from `0x00576A50`), the section `+0x08`, the first entry `+0x0A` (`0xFFFF`
+  when no entry lists it), the count `+0x0C` and the unlocked count `+0x0E`, the family being the low nibble of
+  the catalog's `+0x08`. It answers 1, or 0 when `0x00576A50` answers 0 (`0x0057678B`) or the catalog is not loaded.
 
 ### Section captions
 
 `0x00576A50(section)` returns the caption text. Without a gate, or with a gate that lists no conditions and
 no maps, the caption is the message `caption[section]`. Otherwise it is shown when any condition id passes
 `0x00309EC0`, or any listed map has at least one bit set in its 32-byte bit set (`0x00255120`; for the
-current map the live set, `0x00255060`); when no condition or map passes, the caption reads message `0x3EC` (`0x002F9860`).
+current map the live set, `0x00255060`); when no condition or map passes, the caption reads message `0x3EC`
+(`0x002F9860`).
 A caption of -1 yields no text.
+
+A section has a gate when `gateCount` is above 0 and above the section (`0x00576AF5`-`0x00576B06`). A condition passes
+when `0x00309EC0(id, 0)` answers above 0 (`0x00576B6A`); the current map is `0x003779F0(0x003148F0())`
+(`0x00576B81`-`0x00576B88`). The caption record holds the text at `+0x00` (0 for a caption of -1), the section at
+`+0x08` and the gate's low nibble at `+0x0A`, or `0xFF` without a gate (`0x00576C09`-`0x00576C43`).
+`0x00576A50` answers 1, or 0 with nothing written when the manager is missing, the catalog is not loaded or the
+section is not below `sectionCount` (`0x00576A66`-`0x00576AAB`).
 
 The same two map-bit tests serve the achievement check `0x003160C0`, which needs every map flagged in
 `menuhandbook.bin` to have a revealed tile
@@ -366,6 +500,12 @@ window `first` to `first + count - 1`; `recordAt[entry - first]` gives the recor
 and the first one `0x00576E30` refuses ends the list, so Bestiary lore appears slot by slot as its thresholds
 are met. Each string's text is `entry + textAt`; `0xFFFF` gives an empty line (`0x01CEB638`).
 
+The entry number is slot 1's `+0xCE` and the family slot 0's `+0xD2` (`0xFF` without slot 0). The line record,
+`0x50` bytes zeroed first (`0x00576317`), gets the entry at `+0x00`, the number of lines at `+0x03` (`0x0057650F`), one
+text pointer per line from `+0x08` and the record tail at `+0x48` to `+0x4E`. `0x00576300` answers 1, or 0 when
+the manager is missing, slot 1 holds no loaded bundle or the entry lies outside the window
+(`0x00576323`-`0x0057639E`).
+
 When the entry page shows a line (`0x00574900`), it runs that string's line program (`0x00577A40`). The
 nibbles and bits are the ones the unlock records test:
 
@@ -375,16 +515,28 @@ nibbles and bits are the ones the unlock records test:
 | 1 | set save bit `index` when `value` is 1, else clear it (`0x00315A20`) |
 | 2 | add `value` to save nibble `index`, at most 15 |
 | 3 | subtract `value` from save nibble `index`, at least 0 |
+| 4 to 255 | nothing (`0x00577B2A`) |
 
-For the Bestiary the program runs only while the slot's read mark is clear (`0x00576F30`), and the mark is
-then set (`0x00577A20`). For the other families it runs every time a line is shown, and the entry is marked
-read on its last line.
+`0x00577A40(line)` takes the string of that slot of the open entry (slot 1's `+0xCE`) and answers 1, or 0 when
+slot 1 holds no loaded bundle, the entry lies outside its window or the line is not below the record's `slots`
+(`0x00577A83`-`0x00577AD6`).
+
+For the Bestiary the program runs only while the slot's read mark is clear (`0x00576F30`): `0x00574900` sets the
+mark (`0x00577A20`, `0x0057497C`) and then runs the program (`0x00574996`). For the other families it runs every time a
+line is shown, and the entry is marked read on its last line, the line equal to the line record's `+0x03`
+less 1 (`0x0057494B`-`0x0057495C`).
 
 ### The glyph sheet
 
-When slot 1 finishes loading, `0x00575710` registers the bundle's sheet when `sheet` is not -1
-(`0x0039BEC0`). For `tutorial` it also calls `0x0017FBC0(6)`; for `monster` it registers it as font
-`handbook_monster<NNN>.txt`, `NNN` the bundle number (`0x0017FA90`, `0x0017F790`).
+`0x00575710` runs when a slot finishes loading (`0x005758DA`). For slot 2 it binds the picture (`0x00575B80`,
+`0x00575746`); for slot 0 it does nothing. When slot 1 finishes loading, `0x00575710` registers the bundle's sheet
+when `sheet` is not -1 (`0x0039BEC0`), keeping the sheet's address, formed with a 32-bit addition, at `+0xF8`
+(`0x00575763`-`0x00575765`); a `sheet` of -1 stores 0 there (`0x005757EC`).
+
+With a sheet, for `tutorial` it also calls `0x0017FBC0(6)`; for `monster` it registers it as font
+`handbook_monster<NNN>.txt`, `NNN` the bundle number (`0x0017FA90`, `0x0017F790`): it prints the name from the format at
+`0x00D23770` (`0x0017D2E0`), then calls `0x0017FA90(NNN + 1, 1, name, 7)`, `0x0017FB70(NNN + 1)`,
+`0x0017F790(NNN, sheet)` and `0x0017FBE0()` (`0x00575782`-`0x005757D9`). The other families register the sheet alone.
 
 A text writes a sheet character as two bytes, shown as `{exp:0xN}` in the tables:
 
@@ -405,7 +557,8 @@ sentence. That decodes 753 of the 796.
 
 The other 43 are 25 distinct cells: the same pixels stand in several bundles (由 five times). Each was read from its
 4-bit values. The five sheets are drawn in one face, so a part the character shares with a decoded glyph repeats in
-the same place: the left part of 嫡 is the 女 of 妙, one pixel apart by more than 2, against 32 pixels for the 扌 of 括.
+the same place: the left part of 嫡 matches the 女 of 妙 with one pixel whose 4-bit values differ by more than 2,
+against 32 such pixels for the 扌 of 括.
 The part that tells a character from its look-alike was read stroke by stroke: 由 carries its middle upright above
 the box, and 田 does not.
 
@@ -467,11 +620,17 @@ Of those 242 entries, 48 give their name in their text. No field of the records 
 ### Pictures
 
 `0x00575B80` binds a picture when slot 2's page lies in the file's window and differs from the bound one: it
-registers the TIM2 at `pictureAt[page - first]` as the image label `hb_tex` (`0x0024A440`). It does nothing
-for `tutorial`, so Traveler's Tips shows no picture: the entry page still requests the page's file into
-slot 2 (`0x005778F0` → `0x00575DD0`, which has no family test), so `menuhandbook_tutorial001.dat` loads, but no
-`hb_tex` label is made, and the picture pane `0x00570630` draws nothing because `0x00576C70`, its only source, returns
-slot 2's label `+0xF8`, which stays 0 (`0x0057068E`).
+registers the TIM2 at `pictureAt[page - first]` as the image label `hb_tex` (`0x0024A440`). It needs slot 2 with a
+buffer, and compares the page `+0xCE` with the window and with the bound page `+0xD0` (`0x00575B86`-`0x00575BC9`).
+
+`0x00575B80` first releases the bound label (`0x00575A10`: `0x0024A680` on `+0xF8`, then `+0xF8` = 0 and `+0xD0` =
+`0xFFFF`). It forms the picture's address with a 32-bit addition, registers it as `0x0024A440(picture, "hb_tex", 2)`
+and keeps the label at `+0xF8` and the page at `+0xD0` (`0x00575C0D`-`0x00575C20`).
+
+`0x00575B80` does nothing for `tutorial` (`0x00575BD2`), so Traveler's Tips shows no picture: the entry page still
+requests the page's file into slot 2 (`0x005778F0` → `0x00575DD0`, which has no family test), so
+`menuhandbook_tutorial001.dat` loads, but no `hb_tex` label is made, and the picture pane `0x00570630` draws nothing
+because `0x00576C70`, its only source, returns slot 2's label `+0xF8`, which stays 0 (`0x0057068E`).
 
 The Clan Primer opens only the `tutorial` and `monster` families ([Clan Primer](../Menus-And-HUD/clan-primer.md)), so of the
 other four only the unlock tables load (`0x00576F50`); their catalogs, text bundles and picture bundles, 990 files,

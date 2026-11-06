@@ -16,11 +16,15 @@ scale every time the player talks to a townsperson or opens a door.
 ### Hiding the party
 
 `hideparty` (`0x0147`, `0x003415D0`) and `showparty` (`0x0148`, `0x00342250`) call `0x002ECD50(actor,
-0 or 1)` for party slots 0 to 3 through `0x00263750`; `hideparty_without_uc` (`0x0498`,
-`0x00341CB0`) skips the controlled character. `0x002ECD50` acts only on a class-3 actor that is not a
-captured member (bind state `+0x18` is not 1, `0x002ECD50`-`0x002ECD54`): it writes bit `0x1` of byte
-`+0x10` of the presentation record (`+0xC0`) and refreshes visibility through `0x002E8FD0`. It hides
-the body and leaves the actor and its battle unit in place.
+0 or 1)` for party slots 0 to 3 through `0x00263750`. `0x002ECD50` acts only on a class-3 actor that is
+not a captured member (bind state `+0x18` is not 1, `0x002ECD50`-`0x002ECD54`): it writes bit `0x1` of
+byte `+0x10` of the presentation record (`+0xC0`) and refreshes visibility through `0x002E8FD0`. It
+hides the body and leaves the actor and its battle unit in place.
+
+`hideparty_without_uc` (`0x0498`, `0x00341CB0`) skips the controlled character: it resolves the
+party-focus handle (`0x003590D0`, `0x003588B0`) and, for each slot 0 to 3 whose `0x00263750` actor is
+non-null and is not that actor (`0x00341CDA`, `0x00341CDC`), calls `0x002ECD50(actor, 0)` through its
+thunk `0x0026DC40`. When the handle resolves to null, every non-null slot actor is hidden.
 
 `disposepartywithoutcontrol` (`0x0202`, `0x0034C990` → `0x003B6F30`) clears the party-control byte
 `0x02B40534`, empties the follower list (`0x003B6DE0`), narrows the controlled set to one actor
@@ -43,28 +47,38 @@ every other actor to `0x002ECD50`, all of them for a negative `g`, otherwise onl
 `0x00263BE0` returns equals `g`. The group comes from the class nibble `+0x0E`: 0 gives 1, 1, 2 and 7
 give 0, 3 gives 2, any other value 1.
 
+`0x0035AA50` takes each actor from `0x00358940` without a null test and reaches `0x002ECD50` through
+`0x0026DC40`. `0x00263BE0` returns 1 for a null actor and `0x002647B0` reads byte `+0x12` of it, so a null
+entry faults at `0x002647B0` for a negative `g` (`0x0035AAE0`) or a `g` of 1 (`0x0035AAAD`) and is skipped
+for any other `g` (`0x0035AAA8`).
+
 ### The summon leader and followers
 
 `setupsummonforevent(n)` (`0x0193`, `0x00346FA0`) names a leader: the actor at ordinal `n` of the
 current manager, or for a negative `n` the controlled character (`0x003590D0`, `0x003588B0`).
-`0x003B6F80(leader)` walks managers 0 and 1 (`0x003B7036`) whose byte `+0x10` has bit `0x1` set and collects,
-up to 31, the handles of every actor with byte `+9` bit `0x10` set other than the leader; it clears
-`+9` bits `0x4` and `0x10` on every actor it visits and refreshes it (`0x0026D6D0`).
+`0x003B6F80(leader)` walks managers 0, 1 and 2 (`0x003B7036` loops while the manager index is at most 2)
+whose byte `+0x10` has bit `0x1` set and collects, up to 31, the handles (`0x003589B0`) of every actor
+with byte `+9` bit `0x10` set other than the leader; it clears `+9` bits `0x4` and `0x10` on every
+actor it visits and refreshes it (`0x0026D6D0`).
+
+It reads `+9` of each ordinal's `0x00358940` actor without a null test (`0x003B6FFD`), so a null entry
+faults there. The leader's own handle also comes from `0x003589B0` (`0x003B6FB4`).
 
 It then hands the list to `0x003B6DE0(leader, count, handles)`. That keeps the requested count (at
-most 32) at `0x02EBCC60` and the handles at `0x02EBCBE0`, and resolves each handle (`0x003588B0`). On
-each actor that resolves it clears `+9` bit `0x8` and sets bit `0x4`, so a stale mark cannot drop an
-actor, and stores it in the slot; a handle that resolves to null leaves that slot's previous
-pointer in place.
+most 32, `0x003B6E12`; a negative count becomes 0, `0x003B6E05`-`0x003B6E07`) at `0x02EBCC60` and the
+handles at `0x02EBCBE0`, and resolves each handle (`0x003588B0`). On each actor that resolves it clears
+`+9` bit `0x8` and sets bit `0x4`, so a stale mark cannot drop an actor, and stores it in the slot;
+a handle that resolves to null leaves that slot's previous pointer in place.
 
 A second pass keeps each actor once, marking it with `+9` bit `0x8`, and writes the unique ones to the
 front of the followers at `0x02EBCAC0` with their count at `0x02EBCBC0`; it reads every slot without a
-null check. The leader's handle goes to `0x02EBCC70` and its actor to `0x02EBCC68`. `0x003B6F30` calls
-it with an empty list, which is the follower-list clear above.
+null check (`0x003B6E8A`), so a slot that still holds null faults there. The leader's handle goes to
+`0x02EBCC70` and its actor to `0x02EBCC68`. `0x003B6F30` calls it with an empty list, which is the
+follower-list clear above.
 
 | Verb | Id | Handler | Effect |
 |---|---|---|---|
-| `hidenobattletarget` | `0x0196` | `0x00347D80` → `0x003B7770` | for every actor of the managers among 0 to 2 with `+0x10` bit `0x1` set: in each actor's presentation record (`[actor + 0xC0]`, which `0x002E97B0` returns), the leader gets bit `0x2` of byte `+0x10`; any other actor gets that bit from its own `+9` bit `0x4`, or from bit `0x1` of `+0x14F` of the same record; each actor with a presentation record is refreshed (`0x002E8FD0`, which tests bits `0x1`, `0x2` and `0x8` of that byte) |
+| `hidenobattletarget` | `0x0196` | `0x00347D80` → `0x003B7770` | first resolves the first follower handle (`0x003B7794`) and handle 0 (`0x003B779B`) and discards both results; then for every actor of the managers among 0 to 2 with `+0x10` bit `0x1` set: in each actor's presentation record (`[actor + 0xC0]`, which `0x002E97B0` returns), the leader gets bit `0x2` of byte `+0x10`; any other actor gets that bit from its own `+9` bit `0x4`, or from bit `0x1` of `+0x14F` of the same record; each actor with a presentation record is refreshed (`0x002E8FD0`, which tests bits `0x1`, `0x2` and `0x8` of that byte); the actor from `0x00358940` is not null-tested, so a null entry faults reading `+9` at `0x003B77FC`, unless the leader is null too, in which case it takes the leader path and `0x002E97B0` returns null, so it is skipped (`0x003B77F4`) |
 | `showsummontarget`, `hidesummontarget` | `0x01D8`, `0x01D9` | `0x00342000`, `0x00342320` → `0x003B70B0(1)`, `0x003B70B0(0)` | for each follower, or its capturer (`0x00263F40`), with a presentation record (`0x002E97B0`): sets or clears bit `0x2` of byte `+0x10`, then refreshes visibility (`0x002E8FD0`) |
 | `setrotangzxsummonspace(a)` | `0x0199` | `0x00348660` → `0x003B8030` | pops a float and sets it as the heading (`0x0026B620`) of each follower, or of its capturer when the follower is captured (`0x00263F40`) |
 | `releaseallforsummon` | `0x019B` | `0x00348DA0` → `0x003B7A30` | runs `0x002693D0(…, 1)` on the leader and on every follower, or on its capturer when it is captured (`0x00263F40`) |
@@ -82,10 +96,15 @@ leader (`0x003B73B0`) and for every non-null slot of the requested count: the po
 `+0xA8`), the movement heading (`0x00263CC0`, body `+0xA4`) and the presentation byte `+0x13`
 (`0x002E9BE0`).
 
+A slot or leader whose `0x00359B80` record is null is skipped (`0x003B748C`; `0x003B73B0` returns for a
+null leader at `0x003B73B3` and for a null record at `0x003B73CD`).
+
 `setpossummonspace` (`0x0191`, `0x003482E0` → `0x003B7E20`) clears the party-control byte `0x02B40534`,
 calls `0x0025A5F0(1)` and `0x0036D840(0)`, and takes as origin the position of the first follower
-handle (`0x02EBCBE0`) when the requested count is above 0, otherwise `(0, 0, 0)`. `0x003B7F40(actor,
-origin)` then places each follower and the leader, or their capturers (`0x00263F40`).
+handle (`0x02EBCBE0`) when the requested count is above 0 and that handle resolves to an actor
+(`0x003B7E77`), otherwise `(0, 0, 0)`. `0x003B7F40(actor, origin)` then places each follower and the
+leader, or their capturers (`0x00263F40`); it returns at once for a null actor (`0x003B7F43`), which
+skips a null leader.
 
 `0x003B7F40` sets the position (`0x0026B0C0`) to the actor's own x and z minus the origin's, with a
 height of 0, or of `0x002ECE50(actor, 0x9000505)` when bit `0x1` of `+0x151` in the actor's `+0xC0`
@@ -97,14 +116,18 @@ It then sets presentation `+0x13` to 1 (`0x002EC680`), sets bit `0x20` of `+0x15
 step as `summonplaymotionall`: `0x0017F5B0(1)` when `0x022BE970` is non-zero, then
 `0x002EB030(follower, 0x1049)`.
 
-`0x003B7B00(actor)` restores one snapshot onto the actor's capturer, or the actor itself: movement
-heading (`0x0026A0D0`), heading (`0x0026B620`), position (`0x0026B0C0`), the body `+0x20` floats
+`0x003B7B00(actor)` restores one snapshot, the actor's own (`0x00359B80(actor)`), onto the actor's
+capturer, or the actor itself (`0x00263F40`): movement heading (`0x0026A0D0`), heading (`0x0026B620`),
+the movement heading again (`0x003B7B50`), position (`0x0026B0C0`), the body `+0x20` floats
 (`0x0026B720`), bit `0x20` of `+0x151` cleared (`0x0026ACE0`), presentation `+0x13` from the snapshot
-(`0x002EC680`) and the render scale (`0x002E4A40`).
+(`0x002EC680`) and the render scale (`0x002E4A40`). It returns at once for a null actor (`0x003B7B03`)
+or a null snapshot record (`0x003B7B2C`).
 
 `summongethertarget(d)` (`0x0370`, `0x00340DA0` → `0x003B8140`) pops a float. It first has `0x003B7D80`
 put back the body `+0x20` floats from the snapshot of every non-null slot of the requested count,
-then calls `0x00505240(count, 0x02EBCAC0, d)` over all the followers. `summongethertarget_one(d)`
+onto that slot's capturer or the slot actor itself (`0x00263F40`, `0x003B7DB1`), skipping a slot whose
+snapshot record is null (`0x003B7DC4`), then calls `0x00505240(count, 0x02EBCAC0, d)` over all the
+followers. `summongethertarget_one(d)`
 (`0x0572`, `0x003410A0` → `0x003B8170`) does the same with a count of 1, the first follower only.
 
 `0x00505240` works from the origin `(0, 0, 0)` on each actor, or its capturer. For an actor at the
@@ -118,11 +141,31 @@ keeps the actor's distance and elevation but not its direction; the larger float
 are then added to its x and y.
 
 The reach is that point's distance from the origin (`0x003CC130`). When the largest reach exceeds
-`d`, every actor's position and its body `+0x20` floats are multiplied by `d` divided by that
-reach (`0x0026B0C0`, `0x00265240`, `0x0026B720`), which draws the group in around the origin.
+`d`, every actor's position and its body `+0x20` floats are multiplied by `s = d / reach` (`0x00505431`), which
+applies when that largest reach is non-zero and `s < 1.0` (`0x00505415`-`0x00505439`): each value becomes `v * s`
+(`0x00505456`-`0x00505466`, `0x0050549C`-`0x005054A4`; `0x0026B0C0`, `0x00265240`, `0x0026B720`), which draws the group in
+around the origin.
+
 `0x003CC2F0(origin, a, b, distance, out)` is a shared helper, also used by the camera code: it
 builds a rotation from two angles (`0x003CC480`), rotates `(0, 0, distance)` by it and adds the
-origin.
+origin. Its body has one path, with no branch.
+
+It calls `0x003CC480(b, a, 0, matrix)` (`0x003CC32D`), which fills a 4×4 matrix on the stack from
+`sinf` and `cosf` of the three angles. The matrix's translation row is `(0, 0, 0, 1)` (`0x003CC505`
+to `0x003CC51A`) and its third row is `(sin a × cos b, −sin b, cos a × cos b, 0)` (`0x003CC53B`,
+`0x003CC5A1`, `0x003CC5BC`, `0x003CC534`), so the third angle, given 0, does not reach the result.
+
+The body sets the vector `(0, 0, distance, 1.0)` on the stack (`0x003CC344` to `0x003CC355`) and
+`0x00202B70` multiplies it by the matrix in place, the row vector `v = v × M` (`0x003CC35E`; `0x00217060`), so its
+first three floats are `distance` times that third row. It then writes three floats to `out`: x is origin x +
+distance × sin a × cos b (`0x003CC373`), y is origin y − distance × sin b (`0x003CC382`) and z is origin z +
+distance × cos a × cos b (`0x003CC38C`); `out + 0xC` is not written. With `a` given 0 at `0x00505393`,
+the point is origin + `(0, −distance × sin b, distance × cos b)`.
+
+Neither pointer is checked: an `origin` below `0x10000` (null included) faults at its first read
+(`0x003CC369`), and such an `out` faults at its first write (`0x003CC373`). The body ends with the
+stack-cookie check `0x00808C40` (`0x003CC399`), which on a mismatch jumps to the failure report at
+`0x00809654`.
 
 | Verb | Id | Handler | Effect |
 |---|---|---|---|
@@ -138,21 +181,41 @@ so `capturepc(−1)` means "the character the player controls"; a slot at or abo
 the town test `0x00377C20` and drops the result. The actor is `0x00263750(slot)`; `0x00262F50(owner, pc)` binds
 them and on success the verb returns 1 and cancels the member's battle action (`0x0035AE10`).
 
-`0x00262F90(owner, pc)` binds only when the member's manager is active, neither record is already
-bound (`+0x18` is 0) and the two differ: the member gets `+0x18` = 1 with the owner's manager at
-`+0x19` and id at `+0x1A`, the owner gets `+0x18` = 2 with the member's; `0x002E4A40(owner)`
-re-applies the render scale; the owner copies the member's body pointers (`+0xC0` and `+0xB8`);
-`0x002681E0` refreshes both.
+The verb writes its result through `0x0026B4E0`:
 
-`0x002ECCF0(owner, 1)` then sets presentation `+0x11` bit `0x80`.
+- When the party-focus handle (`0x022C7FE0`, read by `0x003590D0`) is 0 or resolves to null
+  (`0x00264092`, `0x00352FE0`), the slot keeps its out-of-range value. `0x00264050` points `0x02099D70` at
+  the slot array `0x02098E10` for the lookup and restores it (`0x0026406B`, `0x0026409B`, `0x002640AA`).
+- `0x00263750` returns null for any slot outside 0 to 3 (an unsigned compare, so a `+0x12` byte of
+  `0xFF` also gives null); the verb then returns 0 without a bind (`0x00352FF3`, `0x0035302D`).
+- A refused bind returns 0 (`0x00353005`); the 1 and the cancel follow only a successful bind
+  (`0x0035300C`, then the tail jump to `0x0035AE10(pc, 1)` at `0x00353028`).
+
+`0x00262F90(owner, pc)` binds only when the member is non-null (`0x00262FA0`), the member's manager is
+active, neither record is already bound (`+0x18` is 0) and the two differ; otherwise it returns 0.
+It reads the owner's `+0x18` without a null test (`0x00262FD0`), so a null owner faults there. On a
+bind the member gets `+0x18` = 1 with the owner's manager at `+0x19` and id at `+0x1A`, the owner
+gets `+0x18` = 2 with the member's; `0x002E4A40(owner)` re-applies the render scale; the owner copies
+the member's body pointers (`+0xC0` and `+0xB8`); `0x002681E0` refreshes both; it returns 1.
+
+`0x002ECCF0(owner, 1)` then sets presentation `+0x11` bit `0x80`: `0x00262F50` calls it only after a
+bind that returned 1 (`0x00262F66`), and `0x002ECCF0` writes only when the owner and its `+0xC0` record
+are non-null and the record's first dword is not -1 (`0x002ECCF3`-`0x002ECD04`). `0x00262F50` returns the
+bind's result.
+
 `capturepc_not_cancelbattlecommand` (`0x0582`) and the by-id form `capturepcbyentryid`
 (`0x02A2`, `0x0034C3D0`, which resolves a handle through `0x003588B0`) skip or keep the cancel.
+`0x0034C3D0` pops the handle (`0x00267E10`), returns at once when it resolves to null (`0x0034C3F2`) and
+after a successful `0x00262F50` bind cancels the member's battle action (`0x0035AE10(pc, 1)`,
+`0x0034C40B`); it calls neither the town test nor `0x0026B4E0`, so it writes no verb result.
 
 `captureactor` (`0x0366`, `0x00354E10`) captures by name. It reads the issuer's own entry name
 (`0x00263A30(manager, ordinal)`: payload plus its `+0x4C` dword plus the first int of the entry's
 `+0x40` record,
 `"NOACTOR"` when there is no entry) and has `0x00358800(0, name)` search manager 0's ordinal window for
-an entry with the same name, returning its actor from the table at manager `+8`.
+an entry with the same name (a byte-for-byte compare, `0x00358850`-`0x00358861`), returning the first
+match's actor from the table at manager `+8`. It returns null when no entry matches (`0x0035886D`),
+or when that table is null or the ordinal is not below its count (`0x0035888A`-`0x0035889B`).
 
 When one is found and it is not the issuer, `0x00262F50(issuer, found)` binds them, so a scene's
 actor takes over the zone actor of the same name. The bind is also gated on `0x0053DD10(name)`, which
@@ -160,10 +223,27 @@ is `mov eax, 1; ret` and always passes. `captureactor_367(name)` (`0x0367`, `0x0
 string operand resolved through `0x002650B0`.
 
 `releasepc` (`0x0058`, a jump into `0x002693D0(owner, 1)`; `releasepc_404` passes a popped flag)
-undoes it. For a capturer, `0x002693D0` resolves the member, clears its steering byte, re-applies
-the owner's render value, rebuilds the member's four body pointers with `0x00266AD0` from its class
-rather than restoring a saved copy, resets its locomotion, and with the flag runs `0x002EB430` (the
-idle motion); then both records get `+0x18` = `0xFFFF0000` and a refresh.
+undoes it. `0x002693D0(record, flag)` acts on the record's bind state `+0x18` (`0x002693DF`-`0x002693EF`):
+
+- For a capturer (2) whose partner's manager is active (`+0x10` bit `0x1`, `0x0026940F`), `0x002693D0`
+  resolves the member (`0x00358940`, not null-tested, so a null member faults in `0x0026AE90` at
+  `0x0026AE96`) and sets its steering mode to 0 (`0x0026AE90`, `0x0026942B`).
+- For a class-3 member it then clears its steering byte, `+0x28` of `[[member + 0xB8] + 0xF0]`
+  (`0x00269453`), runs `0x002EBE50(member, 0, 0)` and `0x002E8EE0(member)` when that request's `+0x65` is
+  non-zero (`0x00269462`), and hands the old byte to `0x002E6300` (`0x00269489`).
+- It re-applies the owner's render value (`0x002E9560`, `0x002E4F40`), rebuilds the member's four body
+  pointers with `0x00266AD0` from its sequence (`+0x03` bits `0x1F`) rather than restoring a saved
+  copy, resets its locomotion (steering and movement modes 0, `0x0026AE90`, `0x0026C120`), refreshes the
+  owner's lane index (`0x002EAC90`), and with the flag runs `0x002EB430` (the idle motion) on the owner
+  (`0x002694D1`).
+- It re-applies the owner's render scale (`0x002E4A40`), refreshes the member (`0x002681E0`) and
+  releases the member by calling itself on it (`0x002694EB`), which takes the captured path below;
+  then the owner gets the same reset, so both records get `+0x18` = `0xFFFF0000` and a refresh.
+- For a captured record (1), or a capturer whose partner's manager is inactive, `0x00266AD0` rebuilds
+  the record's own four body pointers, `+0x18` becomes `0xFFFF0000`, `0x002681E0` refreshes it and
+  the render value is re-applied (`0x002694F5`-`0x0026951A`). Called on a captured member directly,
+  this leaves its capturer at `+0x18` = 2.
+- Any other `+0x18` value returns at once (`0x002693EF`).
 
 `releasepc_battlemember` (`0x057D`, a jump into `0x00269530`) releases every roster member a scene
 actor holds: for each of the four roster actors whose `+0x18` is 1 it resolves the owner from
@@ -231,8 +311,9 @@ word.
 - `capturepc(−1)` always takes the character the player controls; a script that needs a specific
   member passes its slot.
 - `hideparty` hides bodies only; the actors keep running and can still be captured.
-- `releasepc` rebuilds the body pointers from the record's class, so a capturer that swapped them
-  is not restored to a saved state but to the class default.
+- `releasepc` rebuilds the body pointers from the record's sequence (`+0x03` bits `0x1F`, read by
+  `0x00266AD0` at `0x00266AD3`), so a capturer that swapped them is not restored to a saved state but to
+  that sequence's default (`0x002694F8`).
 
 ## Related
 

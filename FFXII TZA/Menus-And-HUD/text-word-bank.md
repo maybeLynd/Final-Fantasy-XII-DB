@@ -16,9 +16,14 @@ each bank are on [Battle and menu text tables](../Game-Files-And-Data-Tables/bat
 
 - `0x003214B0(word)` gives the row of bank `(word >> 11) & 0x1F` and row `word & 0x7FF`, and `0x002B58B0(row, k)` its
   string `k`.
-- The interface reads names this way: the gambit screen (`0x00567B60`, `0x0056A890`, `0x0056BC70`), the licence screens
-  (`0x00558CE0`, `0x005618E0`), the battle menu title `0x0027D480`, the party list `0x002986E0` and the battle log's names
-  (`0x00536280`).
+- The interface reads names with `0x002B58B0` on a row of these banks: the gambit screen (`0x00567B60`, `0x0056A890`,
+  `0x0056BC70`), the licence screens (`0x00558CE0`, `0x005618E0`), the battle menu title `0x0027D480`, the party list
+  `0x002986E0` and the battle log's names (`0x00536280`).
+- All but the battle log take the row from the name pointer `+0x18` of the query record that `0x0035D330(class, row)`
+  fills (`0x00567BB8`-`0x00567BC3`, `0x0056A98E`, `0x0056BD78`, `0x00558DEA`-`0x00558DF5`, `0x00561A7A`, `0x0027D4BD`-`0x0027D4C8`,
+  `0x00298920`). The query's class arms split the word against `0x02EBF170` themselves, as the class 21 arm does
+  (`0x0031DC58`-`0x0031DC9D`).
+- `0x00536280` splits the word itself (`0x00536292`-`0x005362BF`). `0x003214B0` has one caller, at `0x0057617B`.
 - The formatter `0x002B49F0` inserts a word row into a message template: as a plain string (`0F 31`), or by count
   with its plural or article (`0F 6C`, `0F 6D`, `0F 6E`; [Text codes](text-codes.md)).
 
@@ -41,6 +46,15 @@ their strings 1 and 2 empty (row 19: `FFTA also used Matius per PDIC`); `de` ban
 
 In a plural template `{word}` (byte `09`) stands for the whole name and `{word:HHHH}` (byte `08` and two bytes) for
 its first `n` bytes, `n` the two bytes as a little-endian number `& 0x7FFF` (`0x002B4550`, `0x002B4623`-`0x002B46A2`).
+
+`0x002B4550(capacity, out, row)` takes the name as the string after the row's two leading zero bytes and the template
+as the next string; a row that does not start with two zero bytes is both its own name and its template
+(`0x002B457A`-`0x002B45B0`). An `n` larger than the name's length copies the whole name (`0x002B466F`-`0x002B4685`). Any
+other code is copied as it stands, by the length `0x002B1FB0` measures (`0x002B45E3`, `0x002B45FB`-`0x002B461B`).
+
+When a copy or the closing zero would not fit in the capacity, the output is the empty string
+(`0x002B4600`-`0x002B4603`, `0x002B4635`-`0x002B4638`, `0x002B4690`-`0x002B4693`, `0x002B46BE`-`0x002B46C8`); a null row leaves it
+empty too (`0x002B456B`-`0x002B4574`). Its one call passes a capacity of `0x80` (`0x002B4C62`).
 
 | Row | `us` | `es` | `it` |
 |---|---|---|---|

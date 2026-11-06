@@ -64,7 +64,13 @@ Every entry starts with the same `0x30`-byte header the section search compares.
 
 ### The model row
 
-`0x00504F00` fills a `0x260`-byte render model instance of the root's `+0xDA0` table. It copies the 32-byte model name to
+`0x00504F00` fills a `0x260`-byte render model instance of the root's `+0xDA0` table. It stores the container at
+`+0x30`, the skeleton entry `0x0041F340` passes (root `+0xD98`) at `+0x38`, the render record's `+0x18` at `+0x40`
+(`0x00504F2D`-`0x00504F41`) and the low byte of its tenth argument at `+0xBB` (`0x00505052`). It finds the model's bank
+entry with `0x00409F50(container, id)` (`0x00504F47`), runs `0x00504940` after the offsets (`0x00505026`) and sets bits
+`0x3` of the flags `+0x08` (`0x0050512D`).
+
+It copies the 32-byte model name to
 `+0x0C`, binds the container section at `+0x1F0` and the `@FEF` section at `+0x228` (`0x00504E70`), and
 stores each entry's offset from the container, or −1 when the entry is absent (`0x00409A30`):
 
@@ -118,8 +124,21 @@ payload version that may answer, `DD` the slot in the default table and `FF` the
 - `0x004FE2F0(payload, id)` reads an integer. Mode 1 (`0x2…`) reads dword `FF` with the same fallbacks,
   defaults from `0x01F266B0`. Mode 3 (`0x6…`) reads byte `SS & 3` of dword `FF` of section 9. The id
   `0x40000000` returns payload byte `+0x01`. Any other mode returns −1.
-- `0x003E6150(record, id)` returns 0 for a model without `@FCP`; otherwise it calls the float getter and multiplies the result by the record's scale `+0x26C`
-  for a fixed list of section 1 and section 9 ids, or divides by it for `0x9001E1F`.
+- Mode 3 also returns default dword `DD` of `0x01F266B0` for no payload (`0x004FE37E`), for `VV` above the
+  version byte (`0x004FE38D`) and for an absent section 9 (`0x004FE397`). The id `0x40000000` is tested
+  before the mode (`0x004FE2F6`), and its byte is read with no test for a null payload (`0x004FE2FE`).
+- `0x003E6150(id, property)` takes a render id and a property id. It returns 0 for a model without `@FCP`
+  (`0x002EDBD0` of the id gives no payload, `0x003E616A`).
+- Otherwise it calls the float getter (`0x003E61AA`) and multiplies the result, `v * [record + 0x26C]` (`0x003E62E1`),
+  by the scale `+0x26C` of the id's render record for a fixed list of section 1 and section 9 ids, or
+  divides by it for `0x9001E1F`, `v / [record + 0x26C]` (`0x003E62F4`), with `v = 0x004FE270(payload, property)`.
+  The render record is `[0x022C6F28] + 0x740 * id` (`0x003E618A`-`0x003E6191`).
+- The ids it multiplies (`0x003E61AF`-`0x003E62E1`): `0x1002143` and `0x1002244` of section 1; of section 9
+  `0x9000000`, `0x9000101`, `0x9000202`, `0x9000505`, `0x9000606`, `0x9000707`, `0x9000808`, `0x9000B0C`,
+  `0x9000C0D`, `0x9000D0E`, `0x9000E0F`, `0x9000F10` and `0x9042A2E`.
+- Also of section 9: `0x9001011`, `0x9001112`, `0x9001213`, `0x9001314`, `0x9001415`, `0x9001516`, `0x9001617`,
+  `0x9001718`, `0x9001819`, `0x900191A`, `0x9001A1B`, `0x9001B1C`, `0x9001C1D` and `0x9001D1E`. Every other id
+  is returned as the getter gives it.
 
 Small readers take values straight from the record's `@FCP` payload `+0x400`, scaling sizes by the
 record's per-axis scale (`+0x260`–`+0x268` × `+0x160`–`+0x168` × `+0x26C`):
@@ -150,11 +169,35 @@ record +0x00  u32  mask 0xFFF the node's key, mask 0xFFF000 its parent (0xFFF = 
 record +0x04  u32  flags; the u16 pool indices follow at +0x08 (+0x0A when bit 0x40000000 is set)
 ```
 
-With flag bits `0x200100` both set, `0x00409300` takes one pool dword for each of bits `0x800000`, `0x1000000` and `0x2000000` as
-the node's translation x, y and z, and one pool float for each of bits `0x4000000`, `0x8000000` and `0x10000000` as three angles
-in radians that `0x0046D560` turns into the rotation; otherwise the node starts at the identity. Bit `0x200000`
-makes `0x004094D0` copy sixteen pool dwords as a 4×4 matrix to node `+0x150`. Bits `0x80000000` and `0x400000` each skip
-one index. `0x00409250` returns the key from bits `0xFFF`, or the u16 at `+0x08` when bit `0x40000000` is set.
+With flag bits `0x200100` both set, `0x00409300(entry, record, out)` sets `out` `+0x30`-`+0x38` to 0 and `+0x3C` to
+1.0 (`0x0040936A`-`0x0040938F`), steps past one index for bit `0x80000000`, the sixteen matrix indices and one index
+for bit `0x400000`, then takes one pool dword for each of bits `0x800000`, `0x1000000` and `0x2000000` as the
+node's translation x, y and z (`0x00409392`-`0x004093D4`).
+
+It takes one pool float for each of bits `0x4000000`, `0x8000000` and `0x10000000` as three angles in radians, 0.0
+for a clear bit, that `0x0046D560` turns into the rotation (`0x004093D7`-`0x0040941B`); otherwise the node starts at the
+identity (`0x00409428`).
+
+The pool is the entry plus its `+0x34`, added in 32 bits (`0x00409347`), and the indices start at record `+0x08`, or
+`+0x0A` with bit `0x40000000` (`0x00409340`-`0x00409352`). All of this is for a kind-2 entry. For kind 0 `0x00409300`
+builds the rotation from the record floats `+0x34`, `+0x38` and `+0x3C` (`0x0046D380`) and the translation from
+`+0x28`-`+0x30` (`0x0046D920`), for kind 1 from `+0x94`-`+0x9C` and `+0x88`-`+0x90` (`0x0046D380`, `0x0046D8E0`), and
+for any other kind it writes nothing (`0x0040931F`-`0x00409336`, `0x0040942F`-`0x004094A6`).
+
+Bit `0x200000` makes `0x004094D0` copy sixteen pool dwords as a 4×4 matrix to node `+0x150`, starting after the
+index for bit `0x80000000` (`0x004094F5`-`0x0040958D`), and the identity goes there without it (`0x0046D110`,
+`0x00409593`). Bits `0x80000000` and `0x400000` each skip one index. `0x00409250` returns the key from bits `0xFFF`,
+or the u16 at `+0x08` when bit `0x40000000` is set.
+
+`0x0046D560(m, x, y, z)` takes each sine from the 32,768-entry table `0x01F004E0` at
+`trunc(a / 2π × 32768) & 0x7FFF` (2π the float `0x01CEBC78`, 32768 the float `0x00D10820`) and each cosine at
+`(0x2000 − trunc(a / 2π × −32768)) & 0x7FFF` (`0x00D10828`), a quarter turn on (`0x0046D57E`-`0x0046D665`). It writes
+the rows `+0x00`, `+0x10` and `+0x20`, each with a fourth float of 0 (`0x0046D699`, `0x0046D6D1`, `0x0046D728`), and
+leaves `+0x30` to `+0x3F` as they are.
+
+With s and c the sine and cosine of x, y and z, row 0 is `(cy·cz, cy·sz, −sy)`, row 1
+`(sx·sy·cz − cx·sz, sx·sy·sz + cx·cz, sx·cy)` and row 2 `(cx·sy·cz + sx·sz, cx·sy·sz − sx·cz, cx·cy)`
+(`0x0046D67F`-`0x0046D71C`).
 
 `0x00409240(entry)` gives the node count (word `+0x30` for a kind-2 entry, dword `+0x0C` otherwise),
 `0x00409270(entry, n)` the address of node `n`'s record (`+0x40` table entry `>> 12`, 0 past the count
@@ -302,24 +345,63 @@ not name is given by its offsets, as hex bytes.
 
 - `0x00504E70(sub, bank, root, tag, name)` looks the tag up in the given bank entry and, when that fails,
   searches the bank for an entry with the tag and name (`0x00409FA0`).
+- The first lookup matches the name too: `sub +0x10` gets the offset `0x00409A30(entry, tag, name)` and
+  word `sub +0x00` the entry's id word (`0x00504EA3`, `0x00504EAE`); a null entry gives the offset −1
+  (`0x00504E90`). On −1 the index `0x00409FA0(root, tag, name)` goes to word `+0x00` (`0x00504EC9`), and the
+  offset is looked up again in the entry `0x00409F50(root, index)` gives (`0x00504EDE`).
 - `0x00504940` stores the container pointer at `+0x1F8` and the `@FEF` section at `+0x230`.
+- The container is `0x004096C0` of the bank entry for word `+0x1F0` with the offset `+0x200`
+  (`0x0050496E`), and it is copied to `+0x48` (`0x005049C9`). The `@FEF` section is `0x004096C0` of the same
+  entry when its first word equals word `+0x228`, else of the entry `0x00409F50` gives for `+0x228`
+  (`0x00504981`, `0x00504991`), with the offset `+0x238` (`0x005049A7`).
 - `0x00504F00` walks the `@FOR` records for the requested key: a match is stored at `+0xB8`; otherwise
   the first record's key, or 0. The option number is kept at `+0xB9` when it is below `@FOR +0x33`,
   else 0. `+0xB3` gets the LOD distance count plus one, and the row's flags `|= 3`.
+- The `@FOR` entry is the low 32 bits of the container pointer `+0x1F8` plus the offset `+0x208`, summed in 32
+  bits, and absent for an offset of -1 (`0x00505036`-`0x00505063`). A key of `0xFF` counts as no match, and a first
+  record's key of `0xFF` gives 0 (`0x005050A2`-`0x005050C8`).
+- A negative option number also gives 0 (`0x005050EA`), and without a `@FOR` entry `+0xB3` is 1 and `+0xB9` 0
+  (`0x005050D6`, `0x0050510F`-`0x00505127`).
 
 ### @FCP
 
-- `0x002EDBD0(record)` looks `@FCP` up by tag and the record's 32-byte name at `+0x3C` and stores the
-  payload (`+0x30`) at record `+0x400`, or 0 when absent; `0x003E55F0` returns it. Nothing is checked
-  or converted on load, and every later read goes through the getters.
+- `0x002EDBD0(id)` takes a render id: -1 returns 0 (`0x002EDBD4`-`0x002EDBE0`), and the record is
+  `[0x022C6F28]` + id × `0x740` (`0x002EDBE6`-`0x002EDBF1`). A null record, a record whose `+0x284` is 0 and a record whose
+  word `+0x408` is `0xFFFF` return 0 and store nothing (`0x002EDBF8`-`0x002EDC1F`).
+- Otherwise it takes the container `0x00409F50` returns for word `+0x408` (`0x002EDC21`-`0x002EDC33`), looks
+  `@FCP` up in it by tag and the record's 32-byte name at `+0x3C` (`0x002EDC44`), and stores the
+  payload (`+0x30`) at record `+0x400`, or 0 when absent; it then jumps to `0x003E55F0`, which returns
+  it (`0x002EDC71`). Nothing is checked or converted on load, and every later read goes through the getters.
+- The bank is the descriptor at `+0xD90` of the root that record `+0x10` names (`0x0020E600`,
+  `0x002EDC21`-`0x002EDC2C`), and the lookup gives `0x00409660` the tag `0x50434640`, `@FCP` (`0x002EDC3C`).
 - `0x003E5AD0(record, id)` returns the bone for a special id: ids below `0x20` from section 1's table,
   `0x104`–`0x106` from `+0x3A`–`+0x3E`, `0xFFFF` otherwise.
+  It also gives `0xFFFF` for a record with no `@FCP` (`+0x400` = 0, `0x003E5AD7`-`0x003E5ADA`).
+- `0x003E5AD0`'s id compare is signed (`0x003E5AEA jge`), so a negative id reads below section 1's table, and section
+  1's offset is not tested for 0, so an absent section 1 reads the table at payload `+0x14C`. The section address
+  is formed in 32 bits (`0x003E5AE1 add eax, r8d`, then `movsxd`), so it is right only for a payload address below
+  `0x80000000`.
 - `0x0041E5B0(record, state, event)` scans the six-byte event map, stopping at a byte whose low seven
   bits are `0x7F`, and returns the index of the byte whose low seven bits equal the event, or −1.
   Bytes with the high bit set match only when state is 0, and are tried first.
+- A record without `@FCP` returns −1 at once (`0x003E55F0` gives 0, `0x0041E5CF`). The event compared is
+  `event & 0xFFF` (`0x0041E5D4`), so only an event whose low 12 bits are below `0x7F` can match.
 - `0x004292B0` plays a motion id of `0x1000` or more through it when the record has its own motion
   entries (`+0x2F8` set): the index picks `@FMC` entry `[+0x2FA] + index` of the model's own
   container, keeping the id's top four bits. An id with no match plays nothing and returns −1.
+- Its arguments are `(record, source, direct)`: the id is word `+0x3B4` of `source`, the record itself
+  from `0x0042AC65` and `[arg + 8]` from `0x0042E215`. "Set" means word `+0x2F8` is not `0xFFFF`
+  (`0x004292C4`). An id of `0x104A` is first rewritten to `0x103D` in `source` (`0x004292F7`-`0x004292FC`),
+  and the state is the signed low two bits of `source` byte `+0x40B` (`0x00429315`-`0x0042931B`).
+- A match calls `0x00423B10(record, data, (id & 0xF000) | ([+0x2FA] + index))`, with the data
+  `0x004096F0` gives for the entry of word `+0x2F8` in the root's descriptor `+0xD90`
+  (`0x0042933A`-`0x0042936E`), and returns its result.
+- No match runs `0x00422C20(record)` (`0x00429378`), which releases the presentation entries `+0xC4` and
+  `+0xC8` (`0x00422C50`, `0x00422C7E`) and clears `+0x68`, `+0xD8`, `+0xE0`, `+0xF0`, `+0xF8` and `+0x23C`
+  (`0x00422C8D`-`0x00422CC1`).
+- Without own entries, or for an id below `0x1000`, a `direct` of 0 returns −1 (`0x00429398`); otherwise
+  it calls `0x00423B10(record, address, id)` with the address `0x0020E600` decodes from `source` `+0x390`
+  and returns its result (`0x004293B5`).
 
 - `0x0041F340` copies section 8 (head plus `count × 0x1D0` bytes, `0x003E6D10`, `0x003E6CF0`) into the
   record's block at `+0x2FC`, offset `+0x300`, writes the record index at the copy's `+0x08` and
@@ -352,6 +434,13 @@ section 2 length: `count` nodes of `0x290` bytes, then `count + [+0x38]` u16 slo
   at the identity;
 - fills the `[+0x38]` extra slots with `0x7FFF`;
 - copies section 2 after the core (`0x003729BD`) and runs `0x003713C0`, which hands it to `0x003E1C50`.
+- `0x003713C0` first re-encodes the bone array `+0x84` from the block handle `+0x80` (`0x003AB7F0`,
+  `0x003713EC`). With a resource word `+0x16` of `0xFFFF` it stops there (`0x003713F6`). Otherwise it
+  re-resolves the skeleton resource `+0xA0` (`0x004096C0` of the entry `0x00409F50` gives for `+0x16` in the
+  descriptor `+0x18`, offset `+0x1C`, `0x00371424`) and clears `+0x94` (`0x00371435`).
+- When `+0xA0` is not null and the section 2 offset `+0x90` is above 0 (`0x00371443`, `0x0037144C`), it
+  points `+0x94` at the copy, `[+0x84] + [+0x90]` (`0x00371469`), and calls `0x003E1C50` on it
+  (`0x00371487`).
 
 The binder also accepts kind 0, records of `0x4C` bytes from `+0x30` with the parent at `+0x20`; no
 shipped file uses it.
@@ -370,6 +459,12 @@ shipped file uses it.
 ### @FDM
 
 `0x005048A0(record, key)` returns the position of the key in the key table, or −1.
+
+It returns −1 for a null record (`0x005048AB`), a row index word `+0x64` of `0xFFFF` (`0x005048C7`), no model
+row (`0x004780B0` of the root's `+0xDA0` table, `0x005048E3`), no `@FDM` (offset `+0x20C` of −1, `0x005048EE`)
+and a key table offset `+0x32` of 0 (`0x00504901`). The entry is `low32([+0x1F8] + [+0x20C])` of the row
+(`0x005048F6`). Otherwise it compares the key with the table's keys in order
+and returns the first match's position (`0x00504916`-`0x00504922`); a count of 0 or less gives −1 (`0x00504914`).
 
 ### The draw builder
 
@@ -437,10 +532,22 @@ with `0x00504450`: a `{0x10000000, 0}` record, then the flip `0x003A1DB0`. `0x00
   - For such a new pair it also files the caller's `0x50`-byte animation entry on that palette through `0x003CCC20` (`0x00504E3C`; one of
   128 slots at `[0x02B47798]`, linked into the palette's record by its priority byte `+2`) and keeps the returned
   handle at `+0x194 + 4n` (`0x00504E41`).
-- `0x005044D0(row, index)` returns the page in use: data offset + `row[+0xBA]` × palette bytes.
-- `0x00504D20(row, page)` sets `+0xBA`. `0x00428CD0` sets it on a render record, its partner and their
-  children; the status step `0x00470780` passes 3 (`0x0047082A`, `0x0047091B`, `0x00470A43`), other callers 0
-  or 2.
+  - It returns at once for a row without `@FCT` (offset `+0x21C` of −1, `0x00504D5A`) or a `sub` of 16 or
+    more (`0x00504D80`). The palette resource is made only while slot `index` is −1:
+    `0x003CCB60(0, 0, colours)`, with a null source and destination (`0x00504DB3`), then
+    `0x003CD7C0(handle, 1)`, which sets the record's bit `0x40` (`0x00504DC5`).
+  - A handle of 0 is kept as −1 and ends the call (`0x00504DD3`, `0x00504DEB`). A free map byte is one of
+    `0xFF` (`0x00504E16`), and the handle goes into the entry's `+0x04` before `0x003CCC20` (`0x00504E38`).
+- `0x005044D0(row, index)` returns the page in use: data offset + `row[+0xBA]` × palette bytes, added to the `@FCT`
+  section (the low 32 bits of `+0x1F8` plus `+0x21C`, summed in 32 bits), with the page byte signed
+  (`0x005044E1`-`0x0050450D`). It returns 0 for a row without `@FCT` (`+0x21C` of −1) or an index not below the
+  palette count `+0x0C` (`0x005044D9`, `0x005044ED`).
+- `0x00504D20(row, page)` sets `+0xBA`. `0x00428CD0` sets it on a render record, its first child `+0x08` and the
+  rest of that child's tree (`0x0042EF90`). The status step `0x00470780` passes 3 (`0x0047082A`, `0x004708CE`,
+  `0x0047091B`, `0x00470A43`), as do the Stone install in `0x0046FD00` (`0x0046FDD4`) and Stone's step `0x00470AA0`
+  (`0x00470AFE`); `0x00470230` and `0x00470B70` give it 2 in their flash frames (`0x00470330`, `0x00470CEB`).
+- The type `0xD0` effect body `0x00465CD0` passes its byte `+0x235` while its flag word `+0x232` has bit `0x400`
+  (`0x00465F0C`-`0x00465F4A`); the other callers give it 0.
 
 ### Palette animation
 

@@ -74,7 +74,8 @@ VIF codes FLUSH (`0x11`) and DIRECT (`0x50`) with the record count. `0x0036D400`
 `{0x10000000, 0}` after it, or over it when the buffer already holds `0x200` records
 (`0x0036F372`–`0x0036F39C`). Then:
 
-1. it stores `buffer & 0x3FF0` (`0x0036F3A6`) and the record count (`0x0036F3AC`) into the word;
+1. it stores `buffer & 0x3FF0` (`0x0036F3A6`) and the record count (`0x0036F3AC`) into the word, the count one
+   more when it wrote the `cnt` record after the last record (`0x0036F38E`-`0x0036F391`);
 2. it loads the word three times and compares the values as cursors, looping until they fit
    (`0x0036F3B2`–`0x0036F3E9`); all three loads return the count it just stored, so the loop ends on its first pass;
 3. it stores `0x100` (`0x0036F3EB`).
@@ -86,11 +87,19 @@ the staging pointer (`xor 0x400`, `0x003A2DCB`), so two staging buffers alternat
 apart, and stores the address, the count, and after its guard loop `0x100` (`0x003A2E16`). It is
 called from `0x0044D80C`, `0x004537CE` and `0x00460F08`.
 
+The address `0x003A2D80` stores is that of the buffer it has just filled, read before the flip, `& 0x3FF0`
+(`0x003A2DB4`, `0x003A2DC5`, `0x003A2DD5`); the count is `bytes / 16` (`0x003A2DDB`).
+
 `0x003A2E30(source, bytes, pointer, bytes2)` does the same copy and appends two records by hand: a
 `ref` record (`+3` = `0x30`, `u16` count `bytes2 / 16`, `+4` the pointer as a 32-bit image address
 through `0x0020E620`) and a `cnt` record (`+3` = `0x10`, `+0xC` = `0x0404`, `+0xF` = 1), then
 publishes count + 2 (`0x003A2F59`). Its only route is the guard stub `0x0045BAD0`
 (`cmp byte [rcx], 0` / `jne 0x0045BAE0`), called from `0x002F4020` at `0x002F42C2`.
+
+The `ref` record's second qword is 0 (`0x003A2EA6`). The `cnt` record has the `u16` count 0, `+4` =
+`0x0020E620(0)`, which is `0 - [0x01F83530]`, and 0 at `+8` (`0x003A2EB6`-`0x003A2ECF`). The stores into the word come
+after the fence: the address of the buffer just filled, read before the `0x400` flip, `& 0x3FF0`, then count + 2
+(`0x003A2EDC`-`0x003A2F06`).
 
 The guard loops of `0x003A2D80` and `0x003A2E30` first wait for a non-zero word (`0x003A2DE1`–`0x003A2DE9`,
 `0x003A2F10`–`0x003A2F18`). `0x003A2D80` stores `bytes / 16` as the count, so a call with fewer than 16
@@ -111,7 +120,7 @@ Each is the hoisted form `mov eax, [0x02EAF6D8]; and eax, 0x100; test eax, eax; 
 draw `0x003749F0` (`0x00374ACE` or `0x00374AD7`) and in `0x00376220`. After the fence it stores nine values with no branch between them
 (`0x0036F30D`–`0x0036F352`): the low dword of the address `0x022D9B50`, `0x7FFF0`, 0, the address twice,
 `(word & ~4) | 8`, `word & ~0x30`, `0x14D`, and 0. No instruction in the image tests bits `0x4`, `0x8`, `0x10`,
-5 or the value `0x14D`; the burst ends with the word at 0.
+`0x20` or the value `0x14D`; the burst ends with the word at 0.
 
 ### The settle-spin and the clear
 
@@ -146,11 +155,17 @@ The vertical-sync set-up `0x0035E820` registers `0x0035EC90` as handler 0 with `
 the thread body `0x00369100` (created by `0x00368DD0` under the name `TkSyncvThread%d`) waits on its
 semaphore `[0x022CFEEC + 4n]` (`0x00369128`), calls handler n of the table `0x022CFF10` (`0x0036913A`) and then,
 unless `0x0017D3E0` reports the debug byte `+0xD07` of `[0x001D50D0()]` set, releases the next semaphore
-`[0x022CFEF0 + 4n]` (`0x0036914D`), without end.
+`[0x022CFEF0 + 4n]` (`0x0036914D`), without end. A null handler is skipped (`0x00369135`), and `0x0017D3E0`
+answers 0 when `0x001D50D0()` is null (`0x0017D3EC`).
 
 `0x0035EC90` counts vertical syncs in `0x022CA5F0`. When the count reaches `0x022CA5F4` and its mode
 test passes it sets `0x022CA600` (`0x0035ECFE`); while `0x022CA600` is set it calls the pending callback
 and clears `0x022CA5C8` (`0x0035ED12`–`0x0035ED20`).
+
+The compare is signed (`0x0035ECBE`-`0x0035ECC0`); on a sync below the target the handler goes straight to the input
+poll, so it neither sets the flag nor calls the callback. The mode is `0x022CA608` when that is non-zero, else
+`0x022CA604` (`0x0035ECC2`-`0x0035ECD4`). With `0x022CA600` set and no callback stored, nothing is called and
+`0x022CA5C8` stays 0 (`0x0035ED19`). The handler itself never resets the count or clears `0x022CA600`.
 
 On every call `0x0035EC90` also increments the tick counter `0x022CA5E0`
 (and `0x022CA5E8` while `0x022CA5FC` is 0), polls the input channels through `0x0035FCA0` (`0x0035ED2B`), and ends by
@@ -167,18 +182,28 @@ thread, so a settle-spin on the frame thread can see the word change between its
 The vertical-sync set-up and the Tk threads use a thin layer over the Windows calls:
 
 - `0x008636E0(desc, name, arg)` makes a `crossThreadImpl` thread object of 0x28 bytes (`0x00863430`, the name
-  "UnknownThread" when no name is given), files its id under the name in `0x02EB37B8`, and `0x00863610(thread, arg)` stores
+  "UnknownThread" when no name is given), files the name in the map `0x02EB37B8` under the thread's id
+  (`0x001AE550`, `0x001A5760`), and `0x00863610(thread, arg)` stores
   the argument and starts it (`ResumeThread`; `0x0035E92A`, `0x00368D53`);
+- the object holds the vtable `0x01CCFA88`, the handle `+0x08`, the id `+0x10`, the entry `desc +0x08` at
+  `+0x18` and the argument at `+0x20` (`0x00863726`-`0x00863776`). `0x00863430` creates the thread suspended
+  (`CreateThread` with flags 4, `0x0086348B`), and `0x00863610` returns 0 whatever `ResumeThread` answers
+  (`0x00863646`);
 - `0x00863520(value, p)` calls `SetThreadPriority(value, (32 - p) / 2)` with its first argument unchanged
   (`0x00863532`); every caller but `0x00368EE7` passes a thread holder, not a handle (below);
 - `0x00863540(desc)` makes a semaphore from the descriptor's counts (`0x008632E0`, `CreateSemaphoreW`; `0x0035E8A7`);
-  `0x00863800` releases it by one, `0x00863690(sem, ms)` waits on it (`WaitForSingleObject`), and `0x00863590` closes and
-  frees it (`0x0035E74B`);
+  `0x00863800` releases it by one, and `0x00863590` closes and frees it (`0x0035E74B`);
+- `0x00863690(sem, ms)` waits on a semaphore (`WaitForSingleObject`, `0x008636C6`), and `0x00863650(sem)` waits with no
+  time-out (`WaitForSingleObject(sem, -1)`, `0x00863676`-`0x0086367C`); both return 0 for a null semaphore and 1 after
+  the wait (`0x00863666`-`0x00863682`, `0x008636AC`-`0x008636D1`);
 - `0x008635F0(ms)` sleeps (`0x0035E735`, `0x0035EAB3`).
 
 `0x008636E0` returns the address of an 8-byte holder it takes from `0x00210EC0` (`malloc`, through `0x0085E730`;
 `0x00863703`), which points at the thread object, and `0x00863540` returns the 8-byte semaphore object it takes the
-same way (`0x00863552`). The callers keep every thread holder and three of the semaphores as 32-bit values and widen
+same way (`0x00863552`). That object points at a second 8-byte block, which `0x008632E0` takes and in which it keeps
+the handle (`0x00863301`-`0x00863326`); when its own block cannot be had, `0x00863540` returns 0 (`0x00863572`).
+
+The callers keep every thread holder and three of the semaphores as 32-bit values and widen
 them again with `movsxd`:
 
 | Address | Kept as | Widened at |
@@ -215,6 +240,44 @@ The capture draws `0x003749F0` and `0x00376050` wait while bit `0x100` is set wi
 word (`0x00374C70`–`0x00374C7A`, `0x003761E0`–`0x003761EA`), then `or` `0x10000` and immediately `and`
 `0xFFFEFEFF` (`0x00374CEC`/`0x00374CF6`, `0x003761EC`/`0x003761F6`), so the capture bit is up for one
 instruction and the `and` also drops bit `0x100`.
+
+`0x00376050(record)` returns 1 without touching the word when the record's byte `+0x1D` differs from
+`0x00358320()` (`0x0037609A`). Otherwise, after `0x001E0580`, `0x002D7FA0` and `0x00182AD0` (`0x003760A4`-`0x0037610B`), the
+record's byte `+0x1F` picks the wait: 2 uses the loop at `0x003761E0`, 3 the loop at `0x003761B0` and 4 the loop at
+`0x00376170`, each after its fence test; any other value returns 0 with the word untouched (`0x00376139`). The
+transfer call before each loop is `0x0016D6A0`, which is `ret 0`, so it moves nothing. The three paths return 0.
+
+No record takes those three paths. Of the 47 calls to `0x00375900`, only the one in `0x0024B7B0` files a kind `0x0C`
+record (`0x0024B92A`, `0x0024B949`), and it sets `+0x1F` to 1 (`0x0024B93C`). So `0x00376050` returns 0 at `0x00376139`:
+its loops at `0x00376170`, `0x003761B0` and `0x003761E0`-`0x003761EA` never run, and the `or` and `and` they share at
+`0x003761EC`/`0x003761F6` never raise the capture bit ([Screen fades](screen-fades.md)).
+
+### The Tk thread set-ups
+
+`0x00368DD0` (above) also zeroes handler 0 of the table `0x022CFF10` (`0x00368DF9`) before it makes the two semaphores,
+and builds the name with `0x0019C5D0(name, 0x18, "TkSyncvThread%d", 0)` (`__stdio_common_vsprintf`, `0x00368E7F`).
+
+`0x00368C80` starts the TkBG thread the same way from a descriptor at `0x022D7F20`: the entry `0x00368C10` at `+0x08`,
+`0x022D3F20` at `+0x10`, the stack size `0x4000`, `0x02EAF6D0` at `+0x20`, the priority `0x24` and 0 at `+0x34`
+(`0x00368CD3`-`0x00368D1B`).
+
+Before that `0x00368C80` makes the semaphore `[0x022D7F68]` from the descriptor `0x022D7F78` with a maximum
+of `0x10000` and an initial count of 0, and zeroes the job slot `0x022D7F70`, `0x022D7F8C` and `0x022D7FB4`
+(`0x00368C9B`-`0x00368CC5`). The name is `TkBGThread%d` formatted with 0 (`0x0019C5D0`, `0x00368D29`); the index byte
+`0x022D7FB9`, set to 0, is the thread's argument (`0x00368D22`-`0x00368D53`). It keeps the holder's low dword at
+`0x022CFEF4` (`0x00368D5F`).
+
+The thread body `0x00368C10(&n)` loops without end: it waits on `[0x022D7F68 + 8n]` with no time-out (`0x00863650`,
+`0x00368C38`), calls the job `[0x022D7F70 + 8n]` when it is set (`0x00368C4A`), clears the job slot, and calls
+`0x00863520` with the widened holder `[0x022CFEF4 + 4n]` and `0x24` (`0x00368C4C`-`0x00368C61`).
+
+`0x00368F70` starts the TkPowerOff thread only when bit `0x4` of `0x003692C0()`, the dword `0x022D7FCC`, is set
+(`0x00368F8E`); otherwise it returns at once. It makes the semaphore from a stack descriptor with a maximum of 1
+and an initial count of 0 (`0x00368FAC`, `0x00368FB5`). Its stack thread descriptor holds the entry `0x00368AE0`,
+`0x022CFF20` at `+0x10`, the stack size `0x4000`, `0x02EAF6D0` at `+0x20` and the priority 1 (`0x00368FC4`-`0x00368FEE`).
+
+It starts the thread under the name `TkPowerOff` with the semaphore as its argument (`0x00369000`, `0x0036900B`), and
+stores what `0x005C5230(0x00368AD0, semaphore)` returns, 0, at `0x022CFF18` (`0x00369027`).
 
 ## Layouts
 

@@ -67,7 +67,8 @@ before anything else, then jumps to the runtime start-up `0x00808D78`.
 
 1. If the cookie still holds the on-disk value (`0x00809BAF`), it builds a new one: the system time
    (`GetSystemTimeAsFileTime`) xor the thread id xor the process id xor
-   `(counter.high << 32) xor counter` from `QueryPerformanceCounter` xor the address of a stack local,
+   `(counter.low << 32) xor counter` from `QueryPerformanceCounter` (`0x00809BE8`-`0x00809BF3`) xor the
+   address of a stack local,
    masked to 48 bits; a result equal to the on-disk value becomes `0x00002B992DDFA233`. It is stored at
    `0x00809C1C`, the cookie's only writer.
 2. In both cases the complement of the cookie is stored at `0x01F44838` (`0x00809C2B`).
@@ -83,6 +84,9 @@ first on the second path (`0x00808C58`).
 `0xC0000409` exception record and calls `0x00809620`, which first calls `SetUnhandledExceptionFilter(NULL)`
 (`0x0080962B`), then `UnhandledExceptionFilter`, then `TerminateProcess(GetCurrentProcess(), 0xC0000409)`.
 Either way the game's own crash filter never runs.
+
+Before that call `__report_gsfailure` also copies the cookie and its complement `0x01F44838` into two slots of
+its own frame (`0x008096F3`-`0x0080970F`), which it does not read again.
 
 ### Range-check failures
 
@@ -107,7 +111,9 @@ belong to one structure, Phyre serialization's scalar-conversion tree:
   `PUInt32`, `PInt64`, `PUInt64`, `PUInt128`, `float` and `double`, each returned by its own accessor
   in `0x0062FF50`–`0x00630490`. Each of the 144 ordered pairs occurs once.
 - `0x0059D2D0` stores the routine `0x0059A030` returns, and stores `0x0016D6A0` itself when there is no routine
-  (`0x0059D3BD`), so an unsupported pair converts nothing.
+  (`0x0059D3BD`), so an unsupported pair converts nothing. It asks for (file type, run-time type) when its byte
+  argument is non-zero, which both its callers give (`0x0059AF0D`, `0x0059BA0D`), and for (run-time type, file type)
+  when it is 0 (`0x0059D39C`-`0x0059D3B2`).
 
 The 144 nodes share 68 routines. Every routine takes `(source base, destination base, desc, context)`,
 where `desc` holds the element count, the source stride, the destination stride and a byte that swaps
@@ -117,7 +123,10 @@ pairing follows from the arithmetic:
 - every conversion to an 8-bit integer is the one byte copy `0x00595C00` (20 pairs), to a 16-bit integer
   `0x00593980` (14), to a 32-bit integer `0x005939F0` (10);
 - `0x00594EB0` converts `double` to `float` (`cvtpd2ps`) and `0x00594350` `float` to `double`
-  (`cvtps2pd`);
+  (`cvtps2pd`). Both add `[[context + 0x10] + 0x48]` to the source base and `[[context + 8] + 8]` to the
+  destination base, swapped when the byte `desc + 0xC` is set (`0x00594363`-`0x00594396`,
+  `0x00594EC3`-`0x00594EF6`). After the passes of four they convert the last `count % 4` elements one at a
+  time (`0x005943FC`-`0x00594419`, `0x00594F6E`-`0x00594F8C`);
 - float to integer routines truncate (`cvttss2si`, `cvttsd2si`, 18 routines); integer to float routines
   use `cvtsi2ss`, `cvtsi2sd`, `cvtdq2ps` or `cvtdq2pd` (18 routines); 30 routines move integers only.
 
@@ -207,7 +216,8 @@ Event record `0x02D3E880`, `0x28` bytes:
 | `.gfids` | 12 dwords, 48 bytes, referenced by nothing |
 | `VC_FEATURE` | 1,296 objects; 1,265 `/GS`, 89 `/sdl`, 49 guard-aware |
 
-Function counts follow the image's `.pdata` entries, each chained entry folded into its primary.
+Function counts follow the function list: `.text` is decoded linearly from every listed function entry, and each call,
+jump or RIP-relative read counts for the listed function that holds it. Body sizes are the function list's sizes.
 
 The member lists beside this page:
 

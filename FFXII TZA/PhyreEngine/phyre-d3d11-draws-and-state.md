@@ -15,10 +15,14 @@ is drawn as a strip, which gives a different shape from a fan with more than thr
 
 ### The render context
 
-All functions here take PhyreEngine's render context, the static object `0x005FD050` returns, and
-reach Direct3D through two of its fields: the device at `+0x108` and the immediate device context at
-`+0x110`. Each draw first translates the engine's primitive type, then sets the topology, binds an
+The draw and dispatch calls, `0x00618740` and `0x0061E340` take PhyreEngine's render context, the static object
+`0x005FD050` returns, and reach Direct3D through two of its fields: the device at `+0x108` and the immediate device
+context at `+0x110`. Each draw first translates the engine's primitive type, then sets the topology, binds an
 index buffer where it needs one and calls the context.
+
+The shader creators fetch the render context themselves with `0x005FD050` (`0x0061DFFA`, `0x0061DCB8`, `0x0061DD78`,
+`0x0061DBF8`). The vertex-buffer helpers `0x0061C8A0` and `0x006187A0` take the immediate device context itself:
+`0x006C9222` loads `+0x110` for the call at `0x006C9229`.
 
 ### Draw and dispatch calls
 
@@ -34,6 +38,8 @@ index buffer where it needs one and calls the context.
 | `0x00621FA0` | argument buffer | `DispatchIndirect` (`+0x150`) |
 
 The draws return 1, or 0 when the primitive type has no topology; the two dispatches return 0.
+`0x00622350` and `0x00622450` test their counts before the type, so a count of 0 returns 1 for any type
+(`0x00622368`, `0x0062246B`-`0x00622472`).
 The mesh-segment draw `0x005FDEA0` shows the choice between them: one branch dispatches one group per
 64 elements, rounded up; the others draw non-indexed without an index block and indexed with one. The render-thread executor `0x0060A410` and `0x00670790`, `0x00670810` and `0x0079B850`
 also call them.
@@ -61,11 +67,30 @@ offset is the block's `m_offsetInIndexBuffer` (`+0x68`). The buffer is entry *n*
 array of `0x48`-byte buffer records at `+0x18`, used only when bit `0x1` of `+0x6C` is set; otherwise a
 null buffer is bound.
 
+The array's count is the `u32` at `+0x18` with bit `0x80000000` cleared. A single record sits in the block at
+`+0x20`, and more are reached through the pointer at `+0x20` (`0x00622554`-`0x0062256C`). Entry *n* is taken with no
+bound test. With bit `0x1` set and an empty array the record address is *n* × `0x48` from 0, below `0x10000` for
+any *n* below 911, so the read faults (`0x00622572`-`0x00622586`; the same at `0x00622662`, `0x00622769`).
+
+`DrawIndexed` gets start index 0 and base vertex 0 (`0x0062259A`-`0x006225AC`). `DrawIndexedInstanced` gets the
+instance count and 0 for the start index, base vertex and start instance (`0x00622790`-`0x006227AC`).
+`DrawIndexedInstancedIndirect` reads its arguments from offset 0 of the argument buffer's `+0x08`, after the
+`0x0061ED00` copy (`0x0062268A`-`0x006226B0`).
+
 ### Indirect arguments
 
 An argument buffer record keeps a source resource at `+0x10` and the resource the GPU reads at
 `+0x08`. When its byte `+0x20` is set, the draw first calls `0x0061ED00`, which copies `+0x10` into
 `+0x08` with the context's `CopyResource` (`+0x178`), and clears the byte.
+
+The caller clears the byte once `0x0061ED00` returns (`0x00621FC2`, `0x00622428`, `0x0062269F`). `0x0061ED00` holds the
+render lock `0x02CC03D8` around the copy: it takes it with `0x00615BC0` and releases it with `0x005CD7D0`
+(`0x0061ED17`, `0x0061ED5A`). Before the release it reads the lock's count at `+0x24` (`0x00225690`) and, when that is
+1, calls `0x005FD050` and drops the result (`0x0061ED48`-`0x0061ED4D`).
+
+`0x006223D0` translates the type before the copy, so a type with no topology returns 0 with the byte still set
+(`0x006223E9`). `DrawInstancedIndirect` and `DispatchIndirect` read the arguments from offset 0 of `+0x08`
+(`0x0062242F`, `0x00621FC9`).
 
 ### Blend and depth-stencil state
 
@@ -75,10 +100,23 @@ The context keeps the pending state descriptions in its own body, with dirty bit
 
 - `0x00627F10` (opcode `0x1B`) turns blending on or off, translates the source and destination factors
   with `0x0061BF40`, and sets the alpha factors to `SRC_ALPHA` and `INV_SRC_ALPHA`.
+- `0x00627F10` takes the block's byte `+0x08` as the enable and its `+0x0C` and `+0x10` as the two factors
+  (`0x006075B2`-`0x006075C2`), translating them whether blending is on or off. It also clears
+  `IndependentBlendEnable` (`+0xA24`, `0x00627F1A`), keeps the blend operations and write mask, sets dirty bit
+  `0x2` (`0x00627F67`) and returns 0.
 - `0x00628570` (opcode `0x21`) enables depth and stores the compare function from `0x0061C010`, or
   `ALWAYS` (8) when its flag is clear.
+- `0x00628570` takes the block's byte `+0x08` as the flag and `+0x0C` as the function (`0x00607687`-`0x00607693`). Both
+  paths write `DepthEnable` (`+0x9EC`) as 1 (`0x00628576`), keep `DepthWriteMask` (`+0x9F0`), set dirty bit `0x4`
+  (`0x0062858F`, `0x006285A4`) and return 0.
 - `0x0062A920` fills the stencil half: enable, read and write masks, and for both faces three
   `0x0061C150` operations and a `0x0061C010` function.
+- `0x0062A920` is the handler of opcode `0x2A` (`0x0060777E`). From the block it takes the byte `+0x08` as
+  `StencilEnable`, the bytes `+0x14` and `+0x24` as the read and write masks, `+0x0C` and `+0x18`-`+0x20` as the
+  front function and fail, depth-fail and pass operations, and `+0x28` and `+0x34`-`+0x3C` as the back ones.
+- The handler also passes the block's `+0x10`, `+0x2C`, `+0x30` and `+0x40` as the fourth, eleventh, twelfth and
+  sixteenth arguments (`0x00607785`, `0x006077B2`, `0x006077AA`, `0x0060777E`); `0x0062A920` ignores those four. It sets
+  dirty bit `0x4` (`0x0062A9C2`) and returns 0.
 
 ### Material parameters
 
@@ -92,6 +130,12 @@ in:
   returning 5 for any other;
 - `0x0065CC90` only type `0x43`, `0x0065CB90` only `0x4D` and `0x0065CC10` only `0x4E`, returning 5 for any other
   (`0x0065CCAE`, `0x0065CBA0`, `0x0065CC20`).
+- `0x0060E7A0` and `0x001B81B0` copy the record's size in bytes from the value to the buffer at the offset with
+  `memcpy` (`0x00861EBA`; `0x0060E7F6`, `0x001B8265`) and return 0. A value that ends exactly at the buffer's size
+  passes the bound (`0x0060E7D7`, `0x001B8239`).
+- `0x001B81B0` tests the type before the value, so a null value of another type returns 5 (`0x001B81D1`-`0x001B81EB`).
+  When the value's `+0x08` and `+0x10` are both non-zero it first calls `0x005C5230`, which returns 0, so the
+  copy follows (`0x001B8205`-`0x001B821E`).
 
 Each returns 1 for a null value and 3 when the offset is below 4 or the value would run past the
 buffer's size. `0x005FD5F0` returns true for a record of type `0x12`–`0x16`, `0x42`–`0x44`,
@@ -118,9 +162,15 @@ default usage and bind flag 4 (constant buffer), passes the name `PShaderProgram
 ### Bind caches
 
 `0x006238E0` updates three caches of bound pointers in its object, 8, 128 and 16 slots wide (at
-`+0x490`, `+0x000` and `+0x408`), each followed by the function that binds them. `0x0062C9A0`, `0x0062CA70` and `0x0062CB40` update one cache each: they skip
-the leading and trailing entries that already match, copy the changed run and call the bind function
-for that run only, so an unchanged binding costs no Direct3D call.
+`+0x490`, `+0x000` and `+0x408`), each followed by the function that binds them. `0x0062C9A0`, `0x0062CA70` and
+`0x0062CB40` update one cache each: they skip the leading and trailing entries that already match, copy the changed
+run and call the bind function for that run only, so an unchanged binding costs no Direct3D call.
+
+`0x0062C9A0(bound constant buffers, context, first pending entry, first slot, count)` is the constant-buffer one,
+called from `0x00623920`. It copies the changed run from the pending array into the bound one with `memcpy`
+(`0x0062CA31`). It then calls the function stored `0x40` past the bound array (the cache's `+0x4D0`) with the context,
+the run's first slot, its length and the run's place in the bound array (`0x0062CA36`-`0x0062CA49`). When every entry
+matches the length is 0 and it makes no call (`0x0062CA22`).
 
 ### Data blocks and their buffer rings
 
@@ -141,10 +191,53 @@ marks a bound block.
    buffer with `CopyResource`. A record written through the copy is queued instead: its `TAsyncUpdate`
    record goes into the set for the current frame slot (`0x0062EB90`; `0x006747D0` for index blocks).
 
-The queue is the `0xE0`-byte object at `0x01F7F5B8`, four `0x38`-byte sets (`0x0062EA20`, each set
-built by `0x0062EB20`). The game's `0x00185A50` posts an opcode `0x2F` render block (`0x005FEA50`) whose
+`0x00671B30(block, n, out)` reads record *n* of the ring. The ring's count is the `u32` at `+0x20` with bit
+`0x80000000` cleared; a single record sits in the block at `+0x28`, and more are reached through the pointer at
+`+0x28` (`0x00671B5C`-`0x00671B76`). *n* has no bound test. With an empty ring the record address is *n* × `0x48` from
+0, below `0x10000` for any *n* below 911, so the read faults (`0x00671B86`).
+
+The CPU-write test is bit `0x10000` of the description's `CPUAccessFlags` (`0x00671B95`). The staging buffer comes from
+the device's `CreateBuffer` (`+0x18`) with that description changed to usage 3 (staging), no bind flags, CPU access
+`0x30000` (read and write) and no misc flags, stored at the record's `+0x18` (`0x00671BD2`-`0x00671C15`). A failed
+creation returns 9 (`0x00671C1A`).
+
+`Map` (`+0x70`) runs on the immediate context with type 2 (`WRITE`) under the render lock, taken with `0x00615BC0`
+and released with `0x00616700` (`0x00671C25`-`0x00671C9C`). A failed map or a null data pointer returns 9 after the
+release (`0x00671C7C`-`0x00671CA1`). The main-memory copy is allocated by `0x0017D260(ByteWidth, 1)` and stored at `+0x40`
+with no null test (`0x00671D1E`-`0x00671D23`).
+
+On success `0x00671B30` writes the data pointer plus the block's `+0x70` to `out` and the block's `u32` `+0x78` to
+`out + 8`, and returns 0 (`0x00671D49`-`0x00671D59`).
+
+`0x00674610(block, n)` reads record *n* the same way and returns 0 on every path (`0x006747B1`). A record with no
+buffer at `+0x00` returns at once (`0x0067466B`). The staged path needs no CPU write access and a staging buffer at
+`+0x18`. It runs `Unmap` (`+0x78`) and `CopyResource` (`+0x178`; destination the buffer, source the staging
+buffer) on the immediate context under the render lock (`0x006746D1`-`0x0067476D`).
+
+A record without CPU write access and with no staging buffer is queued like one written through the copy
+(`0x006746CB`). Queueing stores the block at the record's `+0x30` and *n* at `+0x38`, and gives `0x0062EB90` the
+queue, the record's `+0x28` and the slot `0x01F7F590` (`0x00674790`-`0x006747AC`).
+
+The queue is a `0xE0`-byte heap object whose address `0x01F7F5B8` holds, four `0x38`-byte sets (`0x0062EA20`,
+each set built by `0x0062EB20`). The game's `0x00185A50` posts an opcode `0x2F` render block (`0x005FEA50`) whose
 function `0x00186610` jumps to `0x0062EBC0` on the queue, and then advances the slot `0x01F7F590` modulo 4.
 `0x0062EBC0` calls slot 0 of every record in one slot's set and empties the set.
+
+`0x005A08E0` allocates the queue's `0xE0` bytes (`0x005A0901`), builds them with `0x0062EA20` and stores their address
+in `0x01F7F5B8` (`0x005A0919`). A teardown calls `0x0062EAF0` on it, frees it and zeroes
+the pointer (`0x005A08A3`-`0x005A08BA`). `0x00674610` and `0x00186610` load the pointer with no null test (`0x006747A5`,
+`0x00186613`); while it is 0 the set address is below `0x10000` and the first read of it faults (`0x00199DC9`,
+`0x0062EBD8`).
+
+`0x0062EBC0(queue, slot)` takes the set at queue + slot × `0x38` with no bound on the slot (`0x0062EBD1`); `0x00186610`
+passes the dword at `+0x10` of its argument. It walks the set in order from `+0x10` up to the head at `+0x08`
+(`0x0016D6D0` gives the next node), calling slot 0 of each node's record (`+0x20`) with the record alone
+(`0x0062EBE5`-`0x0062EBEC`).
+
+Only after the walk does `0x0062EBC0` free every `0x28`-byte node, from the root at `+0x18`, through slot `+0x18` of
+the allocator at `+0x30`, with `0x00220390` for the subtree at each node's `+0x00` (`0x0062EBFE`-`0x0062EC30`). It then
+points `+0x10` and the head at the head, zeroes `+0x18`, the byte `+0x20` and the count `+0x28`, and returns 0
+(`0x0062EC45`-`0x0062EC59`).
 
 `0x006BA720` gives the bytes per element of a data type code (`0x0C`, the text index type, is 2):
 
@@ -165,7 +258,13 @@ function `0x00186610` jumps to `0x0062EBC0` on the queue, and then advances the 
 
 - `0x0061C8A0(context, n, buffers, strides, offsets)` binds `n` vertex buffers from slot 0 and binds
   null buffers to the slots from `n` up to the count left by the previous call, kept in `0x02CED880`.
-- `0x006187A0` unbinds all of those slots and sets the count to 0.
+  Its `context` is the immediate device context, whose `IASetVertexBuffers` (`+0x90`) it calls (`0x0061C8C9`).
+- The second `0x0061C8A0` call runs only when `n` is below the kept count, compared unsigned (`0x0061C8DA`). It
+  passes the zeroed `0x02CED890` as the buffers and `0x02CED990` as both strides and offsets (`0x0061C8FF`); then
+  `n` becomes the kept count (`0x0061C905`).
+- `0x006187A0` unbinds all of those slots and sets the count to 0. It takes the same immediate device context,
+  binds from slot 0 with the same two arrays (`0x006187CD`), and makes no call when the count is already 0
+  (`0x006187AE`).
 - `0x00618740` unbinds the compute stage's unordered-access views once (byte `0x01F2DE88`):
   `CSSetUnorderedAccessViews` (`+0x220`) from slot 0 with null views, 8 slots, or 1 when the feature
   level at context `+0x168` is below `0xB000`. The scene begin `0x006CA7B0` and `0x006CA8D0` call it.
@@ -192,14 +291,52 @@ with `0x0061E0B0`: one `D3D11_INPUT_ELEMENT_DESC` per named input of the `0x20`-
 `+0x18`, offset 0, and per-instance data with step rate 1 when byte `+0x10` of the input's stream
 (`+0x08`) is set. `CreateInputLayout` (`+0x58`) stores the layout at `+0x88`; 9 on failure.
 
+`0x0061E0B0(inputs, program)` returns 0 at once when `+0x10` of the input array (the program's `+0x88`) already
+holds a layout (`0x0061E0D8`). An input is named when its pointer at `+0x00` with bit `0x1` cleared is non-zero;
+that pointer is the semantic name (`0x0061E110`-`0x0061E11C`). Per-instance data sets both the input slot class and
+the step rate to 1 (`0x0061E133`-`0x0061E168`). With no named input it makes no device call, leaves the layout at 0
+and returns 0 (`0x0061E186`, `0x0061E1D2`), so the next creation call runs it again.
+
+`CreateInputLayout` gets the program's bytecode (`+0x20`, size `+0x18` with bit `0x80000000` cleared), and a
+success that leaves the layout null also returns 9 (`0x0061E1C1`-`0x0061E1CB`). The descriptions fill a stack array
+with room for 32 (`rsp+0x40` up to the cookie at `rsp+0x440`); the loop writes one per named input with no limit.
+
 The profile word is tested for the two refusals alone; any other value goes to the device call with the code
 unchanged (`0x0061E018`-`0x0061E092`). A refused profile leaves the stage's shader at 0, so the test and the log line
 run again each time the pass is bound (`0x0061DFF4`-`0x0061E04F`), and `0x00629AA0` sets no shader for that stage.
 
-When a creation returns 9, `0x00629AA0`, which creates and sets the stages in the order vertex, geometry, pixel, compute,
-stops there (`0x00629AF0`, `0x00629B50`, `0x00629BAD`, `0x00629C0A`): that stage and the ones after it keep the shaders
-the previous pass set. Its two callers do not test the result and go on to the pass state and the parameters
-(`0x00608EC9`-`0x00608EE5`, `0x0060905B`-`0x00609066`).
+Before the profile test each creator reads the device from `0x005FD050`; a null device returns 0 at once, with no
+shader, constant buffer or input layout (`0x0061E009`, `0x0061DCC7`, `0x0061DD87`, `0x0061DC07`). The device call gets the
+bytecode at `+0x20`, its size from the `u32` at `+0x18` with bit `0x80000000` cleared (`0x0061E081`), a null class
+linkage and the shader's slot as the output.
+
+A shader already created, a refused profile and a created one all go on to `0x0061F650`. The pixel, geometry and
+compute creators return its result (tail jumps `0x0061DD1F`, `0x0061DDDF`, `0x0061DC5F`); the vertex creator returns it
+when non-zero and otherwise the result of `0x0061E0B0` (`0x0061E057`-`0x0061E067`).
+
+When a creation returns 9, `0x00629AA0`, which creates and sets the stages in the order vertex, geometry, pixel,
+compute, stops there (`0x00629AF0`, `0x00629B50`, `0x00629BAD`, `0x00629C0A`): that stage and the ones after it keep the
+shaders the previous pass set. Its two callers do not test the result and go on to the pass state and the
+parameters (`0x00608EC9`-`0x00608EE5`, `0x0060905B`-`0x00609066`).
+
+`0x00629AA0(shader pass, holder)`, where the holder is the tracker + `0x08` and its `+0x00` the render context, first
+stores the shader pass's vertex, pixel, geometry and compute programs at holder `+0x30`, `+0x38`, `+0x40` and `+0x48`
+and the shader pass at `+0x28` (`0x00629ACD`-`0x00629ADD`). It stops the same way on any non-zero result of a creator,
+such as 5 from a failed constant buffer (`0x0061F650`), and returns that result; otherwise it returns 0 (`0x00629C54`).
+
+Each stage is set through its one-entry cache with no class instances: `VSSetShader` (`0x00616EC8`, context slot
+`+0x58`), `GSSetShader` (`0x00616EF4`, `+0xB8`), `PSSetShader` (`0x00616EB8`, `+0x48`) and `CSSetShader` (`0x00616E84`,
+`+0x228`). A stage with no program, or whose program's slot is 0 after a refused profile, gets a null shader when
+its cache holds one (`0x00629AE1`-`0x00629B3B` for the vertex stage).
+
+The kept shaders last until both callers run `0x00623180` (`0x00608EF3`, `0x00609085`), which sets the slot of each
+program the holder names. A stage after the failure keeps the previous pass's shader only when the new shader pass
+has no program for it. A program after the failure is set with its slot, 0 unless an earlier bind created its
+shader (`0x0061DFF4`).
+
+The failed stage is set with its slot too. After a failed constant buffer or input layout the slot holds the
+shader already created, or 0 after a refused profile; after a failed device call it holds whatever that call left
+there.
 
 ### Switching passes
 
@@ -220,11 +357,27 @@ four parameter blocks at `+0x38`–`+0x50`:
    runs `0x00629CB0`, which calls `0x00629E50` when a vertex shader is bound.
 5. `0x00623180` applies the shaders, and the pass becomes current.
 
+`0x00629C70(shader pass, holder)` gives `0x0061DE20` the state at `+0x30` and the mask −1 (`0x00629C7A`-`0x00629C87`). It
+returns the non-zero result of `0x0061DE20`, or else the result of `0x0061D260` (`0x00629C8C`-`0x00629C96`).
+
 To drop the current pass, `0x005DE1D0` calls `0x0060B750`, which unbinds all four of its blocks and
 clears the shader pass (`0x00627140`), and then clears the tracker's pass.
 
-`0x005C5230`, called before each block in step 2 and when the shader pass changes, returns 0 and does
-nothing.
+`0x005C5230`, called before each block in step 2, once more after block 3 (`0x0060B958`) and when the shader pass
+changes, returns 0 and does nothing.
+
+At the bytes `0x00608DD0` also does the following:
+
+- With no current pass (`0x00608E0E`) it skips step 2 and the clearing in step 3 and goes straight to `0x00629AA0`.
+  With one, it calls `0x0060B860(old shader pass, tracker + 0x08, old pass, mask)` (`0x00608E8F`).
+- Whenever it binds a new shader pass it copies the pass's `+0x20` and `+0x30` to the tracker's `+0x18` and
+  `+0x28` and the shader pass to `+0x20` (`0x00608E10`-`0x00608E24`, `0x00608EAF`-`0x00608EBF`).
+- The same pass again marks no block, so steps 2 and 4 do nothing and only `0x00623180` does work.
+- `0x0060B860` and `0x0060EC80` stop at the first callee that returns non-zero. `0x00627160`, `0x00629970`, `0x00629CD0`,
+  `0x00629CB0` and `0x005C5230` all return 0 (`0x006272A5`, `0x00629A85`, `0x00629E38`, `0x00629CC2`, `0x005C5230`), so every
+  marked block is handled and both return 0.
+- `0x0060EC80` handles each marked block in the order block 0 to 3, value parameters before resource parameters
+  (`0x0060ECA9`-`0x0060ED66`), and `0x00608DD0` drops the results of all its callees.
 
 `0x0061D260`
 sets the rasterizer state at `+0x168` (`RSSetState`, `+0x158`; the one at `+0x170` instead when the
@@ -233,6 +386,11 @@ context's word `+0x9C4` is 2), the blend state at `+0x180` with a zero blend fac
 `+0x188` (`+0x120`). `0x0061D180` applies only the states selected by bits `0x1`, `0x2` and `0x4` of its mask, and
 `0x0061D320` all three without the alternative rasterizer state. `0x00629680(state, value)` stores a
 byte at `+0x20` of a pass state and sets dirty bit `0x1`.
+
+`0x00629C70` calls `0x0061D260(state, holder)` only when `0x0061DE20` returns 0 (`0x00629C8E`). `0x0061D260` reads the render
+context from the pointer its second argument holds (`0x0061D283`) and sets each state only when its pointer is
+non-zero (`0x0061D289`, `0x0061D2BD`, `0x0061D2EA`). A null `+0x168` skips `RSSetState` even when `+0x170` is set, and a
+null `+0x170` falls back to `+0x168` (`0x0061D29B`). It returns 0 (`0x0061D304`).
 
 ### The stage caches
 
@@ -308,12 +466,49 @@ The other three caches keep their changed range in the same two words: vertex `0
 (`0x00623252`-`0x00623271`), pixel `0x02CEED78` and `0x02CEED7C` (`0x00622FD1`-`0x00622FF0`), geometry `0x02CEF728` and
 `0x02CEF72C` (`0x006230B5`-`0x006230D4`). Each takes the lowest and highest slot it has set.
 
+`0x00623180(shader pass, holder, pass)` reads only the holder. It calls each path with the stage program `0x00629AA0`
+last stored there and the holder, in the order vertex (`+0x30`), geometry (`+0x40`), pixel (`+0x38`) and compute
+(`+0x48`), skipping a null program (`0x0062318A`-`0x006231D5`). Each path returns 1; `0x00623180` drops the results and
+returns 0 (`0x006231DA`).
+
+The upload is `UpdateSubresource(buffer +0x00, 0, null, copy +0x10, size, size)`, the size being the `u32` at
+`+0x08` with bit `0x80000000` cleared (`0x0062321F`-`0x00623247`). A null buffer skips the upload, and the null is still
+stored in the pending slot (`0x0062321D`, `0x0062327A`). The slot indexes the 8-entry pending array with no bound test,
+so a slot of 8 stores over the range words at `+0x9A8`.
+
+Each path sets the program's shader (vertex `+0x90`, the others `+0x78`) through the cache `0x00629AA0` uses, calling
+the setter only when it differs (`0x00623282`-`0x006232A9`), and passes the immediate context to `0x006238E0`. The pixel
+path binds its UAVs before its constant buffer (`0x00622F81`).
+
+The compute UAV unbind of the vertex and geometry paths runs only while `0x01F2DE88` is 0 and then sets it to 1:
+`CSSetUnorderedAccessViews` (`+0x220`) from slot 0, 8 slots or 1 below level `0xB000`, with the views of the array
+`0x02CED840` and the initial counts at `0x00D50168` (`0x006232BA`-`0x00623301`, `0x0062311A`-`0x00623161`). The four code
+references to `0x02CED840` (`0x0061877D`, `0x0062291A`, `0x0062312A`, `0x006232CA`) each pass its address as the view list.
+
+The compute path works in this order: `0x0061E6B0` on the six caches with the immediate context
+(`0x00622DC4`-`0x00622E12`), `OMSetRenderTargets` (`+0x108`) with no targets and no depth view (`0x00622E25`), the
+constant buffer, `CSSetUnorderedAccessViews` from slot 0 with the shader's `+0x30` and the initial counts at
+`0x00D50168` (`0x00622ED1`), the stores to `0x01F2DE88` and `+0x6D4` (`0x00622ED7`, `0x00622EDE`), then the shader and
+`0x006238E0` (`0x00622F11`).
+
 The vertex and geometry paths then unbind the compute UAVs once (`0x01F2DE88`). The pixel path first
 binds the shader's UAVs (`+0x30`) after the render targets with `0x0061E340`: up to 8 views from the
 slot after the last render target (`+0x6D0`), through `OMSetRenderTargetsAndUnorderedAccessViews`
 (`+0x110`) with the targets at `+0x648` and depth view `+0x688`, skipped when nothing changed. The
 compute path empties the shader views of all six caches (`0x0061E6B0`), unbinds the render targets,
 sets the compute UAVs from `+0x30` (8 slots, 1 below level 11.0) and clears `0x01F2DE88` and `+0x6D4`.
+
+The pixel path calls `0x0061E340(context, views, count, initial counts)` with the shader's `+0x30`, 8 (0 below level
+`0xB000`) and the eight −1 initial counts at `0x00D55120` (`0x00622F57`-`0x00622F81`). It caps the count at 8
+(`0x0061E35F`). For each of the 8 slots from the start slot `+0x6D0` it takes the view at that slot's own index in
+the array, or null at or past the count (`0x0061E365`-`0x0061E3F8`).
+
+The call is skipped only when the count equals the one kept at `+0x6D4`, the 8 views equal those kept at `+0x690`
+to `+0x6C8` and each initial count is −1 (`0x0061E3FC`-`0x0061E49C`). Otherwise it stores the 8 views at `+0x690`
+and passes the start slot as the render-target count, with a null target array when it is 0 (`0x0061E506`).
+
+The start slot is also the first view slot, and the view count is the count minus the start slot (`0x0061E4F1`).
+It then keeps the count at `+0x6D4` (`0x0061E524`) and returns 0 (`0x0061E52F`).
 
 ### Full-screen quads
 
@@ -344,8 +539,11 @@ Render context (`0x005FD050`), fields used here:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
+| `+0x00` | `u32` | DepthEnable | set to 1 by `0x00628570` (context `+0x9EC`) |
 | `+0x08` | `u32` | DepthFunc | compare function (context `+0x9F4`) |
 | `+0x0C` | `u32` | StencilEnable | (context `+0x9F8`) |
+| `+0x10` | `u8` | StencilReadMask | (context `+0x9FC`) |
+| `+0x11` | `u8` | StencilWriteMask | (context `+0x9FD`) |
 | `+0x14` | `u32[4]` | FrontFace | fail, depth-fail and pass operations, function (context `+0xA00`) |
 | `+0x24` | `u32[4]` | BackFace | the same for back faces (context `+0xA10`) |
 
@@ -353,6 +551,7 @@ Render context (`0x005FD050`), fields used here:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
+| `+0x04` | `u32` | IndependentBlendEnable | cleared by `0x00627F10` (context `+0xA24`) |
 | `+0x08` | `u32` | BlendEnable | render target 0 (context `+0xA28`) |
 | `+0x0C` | `u32` | SrcBlend | (context `+0xA2C`) |
 | `+0x10` | `u32` | DestBlend | (context `+0xA30`) |
@@ -440,7 +639,7 @@ Compare functions (`0x0061C010`) and stencil operations (`0x0061C150`):
 | `0x02CEDA20`, `0x02CEE3D0`, `0x02CEED80`, `0x02CEF730` | vertex, pixel, geometry and compute stage caches |
 | `0x02CF00E0`, `0x02CF0A90` | hull and domain stage caches, emptied by the compute path |
 | `0x01F2DE98`, `0x01F2DEA8`, `0x01F2DEB8`, `0x01F2DEC8` | the shader last set on each of the four stages |
-| `0x01F2DED8`, `0x01F2DEE8` | the hull and domain shader last set; only the state reset `0x0061C2B0` (called by `0x006CBEA0`, `0x006CC058`) names them: it clears each and, when it was non-zero, calls its setter with null (`0x01F2DED0` = `0x00616E24`, context slot `0x1E0`, `HSSetShader`; `0x01F2DEE0` = `0x00616E54`, slot `0x200`, `DSSetShader`; `0x0061C43C`, `0x0061C45D`) |
+| `0x01F2DED8`, `0x01F2DEE8` | the hull and domain shader last set; only the state reset `0x0061C2B0` (called by `0x006CBEA0` at `0x006CC058`) names them: it clears each and, when it was non-zero, calls its setter with null (`0x01F2DED0` = `0x00616E24`, context slot `0x1E0`, `HSSetShader`; `0x01F2DEE0` = `0x00616E54`, slot `0x200`, `DSSetShader`; `0x0061C43C`, `0x0061C45D`) |
 | `0x01F2DF08` | the input layout last set; `0x00629E50`, `0x0061E760`, `0x006227D0`, `0x006C8CA0` and `0x006CA8D0` call `IASetInputLayout` (`0x01F2DF00` = `0x00616EDC`, slot `0x88`) only when it differs (`0x0061E934`-`0x0061E93F`), and `0x0061C2B0` clears it (`0x0061C4B7`) |
 | `0x02CF6ABC` | set once the missing 2D view message (`0x00D54E60`) is logged (`0x0062A1F3`, `0x0062A212`) |
 | `0x02CF6ABD` | the same for the 3D form (`0x00D54E90`; `0x0062A289`, `0x0062A2A8`) |

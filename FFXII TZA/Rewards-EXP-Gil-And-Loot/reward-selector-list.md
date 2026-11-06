@@ -22,7 +22,7 @@ named package is described by its own row of [Reward package list](reward-packag
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16[3]` | first | the ids the class-15 handler `0x002FD640` grants, each tested for `0xFFFF` on its own |
+| `+0x00` | `u16[3]` | first | the ids the class-15 handler `0x002FD640` grants, each tested for `0xFFFF` on its own; it acts only on a relative give on channel 1 (`0x002FD64F`-`0x002FD65C`), grants each id through `0x003008A0(id, give's count, 0, 1, flags)`, and returns 0. Nothing guards the row: when the slot `0x02EBF068` is null or its decoded row base is 0, the row address is 0 (`0x002FD66E`-`0x002FD6AA`) and the first id read, `0x002FD6C0` or `0x002FD704`, faults, because the first 64 KB of a Windows x64 process are never mapped |
 | `+0x06` | `u16[3]` | second | granted instead when the give's flag bit `0x2` is set: the sixth id whenever the fifth is not `0xFFFF` |
 
 `0x0031C5D0`'s class-15 arm copies the first triple to the query record and its class-31 arm the second

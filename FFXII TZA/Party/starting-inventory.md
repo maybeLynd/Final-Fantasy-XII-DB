@@ -20,7 +20,10 @@ nothing; the items a new party holds come from the first-join lists of the
 2. for each row, while the row number is below the table's count, it calls `0x00300BA0(+0x00, +0x02, 0)`, which is
    `0x003008A0(id, count, 1, 1, 0)`, the inventory change of
    [Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md);
-3. `0x003008A0` returns -1 at once for id `0xFFFF` (`0x003008C0`-`0x003008C5`).
+3. `0x003008A0` returns -1 at once for id `0xFFFF` (`0x003008C0`-`0x003008C5`);
+4. row `i` is at `0x0020E600(table +0x0C) + i × table +0x08` (`0x0023AF89`-`0x0023AFB3`); with no table bound at
+   `0x02EBF048` the loop ends at once and nothing is added (`0x0023AF77`-`0x0023AF83`). The reader returns 1
+   (`0x0023B00B`).
 
 `0x0023AF50` runs at the start of `0x00237DF0`, which then builds the forty member records with `0x0023AC80`;
 `0x00237DF0` is called by `0x00233C10`, `0x00238A80`, `0x00239960` and `0x00394460`. The last is the title asset's factory,

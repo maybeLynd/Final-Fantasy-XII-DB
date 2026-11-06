@@ -24,7 +24,9 @@ the rest of the GS model.
 `0x0036D280` seeds the GS globals: width `0x022D8EAC` = `0x200`, `0x022D8EB0` = `0x200`, height
 `0x022D8EB4` = `0x1C0`, frame index `0x022D8EA8` = 0, the clear colour `0x022D8ED8` = 0 with its switch
 `0x022D8EDC` = 1, and `0x022D8EE0` = 1. Those stores at `0x0036D286`, `0x0036D2A3`, `0x0036D2AD` and
-`0x0036D290` are the only stores that name the three dimension words and the frame index.
+`0x0036D290` are the only stores that name the three dimension words and the frame index. One 8-byte
+store also zeroes `0x022D8EBC` and `0x022D8EC0` (`0x0036D296`). It then calls `0x0016D6A0`, a bare `ret`, twice
+and tail-jumps to `0x0036D2F0` (`0x0036D2E6`).
 
 `0x0036D2F0` then computes the pages per surface, `(width × height) >> 11` = 112 GS pages of 2,048
 words, into `0x022D8EB8` (`0x0036D393`), fills the two 0x28-byte display records at `0x022D8E50` and
@@ -133,7 +135,10 @@ is bound (`0x0026E9B0`). These are its only two non-zero stores; the reset `0x00
 The draw's pass bit `0x1` block calls `0x0036F430` and `0x0036F450`, which call `0x0026E290` with 0 and 1.
 While a map is bound and its `+0x120` is non-zero, `0x0026E290` runs `0x002F7380(map, [0x0209A668])` when
 the dirty word is set and then clears it (`0x0026E2C4`, `0x0026E2C9`), and then calls the map's
-`+0x130` handler with the pass. That handler is `0x002F4520`, installed by the map set-up
+`+0x130` handler with the pass when the handler is set (`0x0026E2D3`-`0x0026E2E4`); with no map or a `+0x120`
+of 0 it returns at once (`0x0026E2A6`, `0x0026E2AF`).
+
+That handler is `0x002F4520`, installed by the map set-up
 `0x002F6AB0` (`0x002F6B43`); it starts by setting `+0x00` of every slot record to 0 and `+0x20` to
 `0xFF` (`0x002F45F0`–`0x002F4617`).
 
@@ -187,6 +192,18 @@ it to `0x008620B0`, a body that returns at once; nothing is printed.
 and TRXDIR again (`0x00244355`–`0x0024439C`). It reads the frame index and the height to place the
 transfer. The GS replay honours none of these four registers.
 
+`0x00244200(widget)` first copies the frame into id `0x333C` with `0x0039D0C0(0, 0x333C, 0x200, 0x1C0, 0, 1, 0)`
+(`0x0024427B`), then opens one A+D GIF tag of seven registers with the end-of-packet bit (`0x00248EB0`,
+`0x002442A2`-`0x002442B9`) and closes it with `0x00248E10` (`0x002443AA`). The values:
+
+- BITBLTBUF: source base `([0x022D8EA8] x [0x022D8EB4] x [0x022D8EAC]) >> 6`, source and destination width
+  `[0x022D8EAC] >> 6` and destination base `0x333C` (`0x0024422E`-`0x00244278`);
+- both TRXREG: 16 rows of `[0x022D8EAC]` pixels, and both TRXDIR 2 (`0x0024430F`, `0x0024432B`, `0x00244375`,
+  `0x00244393`);
+- the first TRXPOS: source row `max(y, 0)` to row 0, with `y` the widget's `s16` `+0x52` (`0x0024428B`-`0x002442EF`);
+- the second TRXPOS: source row `min(y + h - 16, [0x022D8EB4] - 16)`, with `h` the `s16` `+0x56`, to row 16
+  (`0x0024421E`-`0x00244244`, `0x00244280`-`0x00244295`, `0x00244343`-`0x00244352`).
+
 `0x002443D0(widget, node)`, also called from `0x002D2DB0` (`0x002D2F30`), sets node `+0x38` bit `0x100`, clears bits `0x3E00`,
 and stores at node `+0x30` a TEX0 word: the constant `0x40010333C` (base `0x333C`, format 1, TCC set) with the
 buffer width `0x022D8EAC` / 64, TW the highest set bit of 2 x width - 1 (9 for the shipped `0x200`) and TH 5, from
@@ -220,12 +237,17 @@ mode of 0 to 3 chosen from `a` and `b` (`0x00376320`), and records a changed tar
 512 × 448; `0x003749F0`, `0x00376220` and `0x003A2BD0` are the others.
 
 A texture word in the GS TEX0 layout comes from `0x002D8050(word, width, height, format)`. It keeps the
-base in bits `0x3FFF`, which the caller sets, and writes the buffer width in 64-pixel units rounded up
-(1 becomes 2) in bits `0xFC000`, the format in bits `0x3F00000`, the power-of-two exponents of the width and
-height in the bits under mask `0x3FC000000`, and bit `0x400000000`; bits `0x800000000` and `0x1000000000` are cleared.
+base in bits `0x3FFF`, which the caller sets, and writes the other fields, with e(n) the exponent below:
 
-The exponent is
-`0x002D8150(n)`, the smallest e with 2^e ≥ n, at most 10. The effect-texture placer `0x002D83B0` builds
+- the buffer width in 64-pixel units rounded up (1 becomes 2), `(w == 1 ? 2 : w) & 0x3F`, in bits `0xFC000`,
+  where `w = width / 64 + (width % 64 != 0)` (`0x002D805F`-`0x002D80DC`);
+- the format in bits `0x3F00000`, `(format & 0x3F) << 20` (`0x002D80DF`-`0x002D80F2`);
+- the power-of-two exponents of the width and height in the bits under mask `0x3FC000000`, and bit `0x400000000`:
+  `(e(width) & 0xF) << 26` and `((e(height) & 0xF) | 0x10) << 30` (`0x002D80F5`-`0x002D8134`);
+- bits `0x800000000` and `0x1000000000` are cleared, by the mask `0xFFFFFFE43FFFFFFF` (`0x002D8120`, `0x002D812E`).
+
+The exponent is `0x002D8150(n)`, the smallest e with 2^e ≥ n for n up to 1024, and 11 for a larger n
+(`0x002D81A0`-`0x002D81AE`). The effect-texture placer `0x002D83B0` builds
 its words this way. The way back is `0x002D7F20(e)`: 2^e for e up to 10, 0 above. The screen-effect
 upload `0x00375B90` (kind 4) reads the width and height out of its word `+0x30` with it and passes
 them, with the base and the format, to `0x003A22A0`.
@@ -402,7 +424,7 @@ identity with `0x00203170` (`0x00276494`-`0x002764A5`, four 16-byte stores), the
 | `0x0209ABA4` | `+0x14` | `f32` | the matrix's y scale: `scale` | `0x00203170`, 1.0 (`0x00203181`, 16 bytes over `+0x10` to `+0x1F`); `0x00276430` (`0x002764D6`) | `0x00217060` (`0x002170A1`) |
 | `0x0209ABC0` | `+0x30` | `f32` | the x offset: `2048 - [0x01E0C1D8] / 2 + x` | `0x00203170`, 0 (`0x00203197`, 16 bytes over `+0x30` to `+0x3F`); `0x00276430` (`0x0027651E`) | `0x00217060` (`0x002170AD`) |
 | `0x0209ABC4` | `+0x34` | `f32` | the y offset: `2048 - [0x01E0C1DC] / 2 + y` | `0x00203170`, 0 (`0x00203197`); `0x00276430` (`0x00276539`) | `0x00217060` (`0x002170D8`) |
-| `0x0209ABD0` | `+0x40` | `f32` | the rectangle's word `+0x08` | `0x00276430` (`0x00276608`) | `0x00274CB0` (`0x00274DDD`), scaled and truncated to an integer |
+| `0x0209ABD0` | `+0x40` | `f32` | the rectangle's word `+0x08` | `0x00276430` (`0x00276608`) | `0x00274CB0` (`0x00274DDD`), scaled and truncated to an integer: `(i32)([0x0209ABD0] × 16.0)`, the factor 16.0 at `0x01CEBC84` (`0x00274DD2`-`0x00274DFA`) |
 | `0x0209ABD4` | `+0x44` | `f32` | the rectangle's word `+0x0C` | `0x00276430` (`0x002765FB`) | `0x00274CB0` (`0x00274DFE`), the same |
 | `0x0209ABD8` | `+0x48` | `f32` | the rectangle's word `+0x00` | `0x00276430` (`0x00276624`) | `0x00274CB0` (`0x00274DE5`), the same |
 | `0x0209ABDC` | `+0x4C` | `f32` | the rectangle's word `+0x04` | `0x00276430` (`0x00276614`) | `0x00274CB0` (`0x00274E1A`), the same |

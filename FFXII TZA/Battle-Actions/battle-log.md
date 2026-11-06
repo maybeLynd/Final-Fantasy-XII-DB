@@ -118,8 +118,12 @@ and the index `0x02EBB54C` 0 (`0x004696A0`-`0x004697BB`).
 ### The visibility filter
 
 `0x00469570(event, source, target)` returns 1 at once when byte `+3` of the event's row has bit `0x80`
-(`0x004695F9`). Otherwise it returns `0x002FA3B0` for the source's actor, or for the target's when the
-source has no unit, and 1 when neither has one. `0x002FA3B0(actor)` is true when the actor is less than
+(`0x004695F9`); the test is skipped when the table at `0x02EBF018` or its row does not resolve (`0x00469595`-`0x004695C6`).
+Otherwise it returns `0x002FA3B0` for the source's actor (the unit's `+0x10`), or for the target's when the
+source has no unit or that unit has no actor, and 1 when neither has one (`0x00469603`-`0x00469685`). Each unit it finds
+through `0x0031B860` is kept at `[0x02EBF188]` (`0x00469610`, `0x0046962A`, `0x00469651`, `0x0046966B`).
+
+`0x002FA3B0(actor)` returns 0 for a null actor (`0x002FA3CB`); otherwise it is true when the actor is less than
 24.0 (`0x008F3128`) units from the party leader, measured with height zeroed (`0x003A1920`); with no leader
 it uses the leader position last stored at `0x01EEBB00` (`0x002FA3E2`-`0x002FA451`).
 

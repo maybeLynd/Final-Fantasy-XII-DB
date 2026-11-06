@@ -42,6 +42,13 @@ Each loot id has a sold tally, one byte in the inventory at `+0x57C8 + loot`, ke
 ([Inventory](inventory.md)). A sale through `0x00310870` takes the loot from the inventory, adds the gil (`0x003108AB`-`0x003108BD`), adds the
 quantity to the tally (`0x003108D1`-`0x003108E8`) and then runs the refresh `0x0030B270` (`0x003108ED`), its only caller.
 
+`0x00310870(id, quantity, price, flags)` removes the loot with `0x003008A0(id, -quantity, 0, 1, flags)`, sets the gil
+to the old gil plus `price`, floored at 0, `new = max(old + price, 0)` (`0x003108A6`-`0x003108BD`), and adds the
+quantity to the tally with
+`0x003008A0(id, quantity, 0, 3, 0)` (`0x003108D1`-`0x003108E8`). With `flags` bit `0x1` it also posts the gain
+notification `0x00469E80(new - old)` (`0x003108C2`-`0x003108CC`); the shop's transaction function gives it `flags` 0
+(`0x0056D457`), so no notification is posted. The sale returns 1 (`0x003108F7`).
+
 The refresh checks every good (`0x0030B270`-`0x0030B468`):
 
 1. A good already unlocked once, flag byte bit `0x1`, is skipped unless it can come back (`0x0030B33F`-`0x0030B34C`).
@@ -51,6 +58,14 @@ The refresh checks every good (`0x0030B270`-`0x0030B468`):
    with count 0, so it compares item 0's tally, always 0, with 0 and passes; an id of `0xFFFF` would read as -1
    and fail.
 5. When all three are met, flag bits `0x1` and `0x2` are set (`0x0030B461`).
+
+The tallies are read through the loot class's query handler `+0x50` with mode 3, inline for the first two loots
+and through `0x0030ADC0` for the third (`0x0030B385`-`0x0030B3CC`, `0x0030B44E`-`0x0030B454`). An id whose class nibble is
+`0xF` reads -1, like `0xFFFF`, and an index at or above its class's count, or a class with no handler, reads 0
+(`0x0030B37A`-`0x0030B3D2`). The tallies are compared as signed values (`0x0030B3DA`, `0x0030B44C`, `0x0030B45F`).
+
+With no goods table bound at `0x02EBF058` the refresh checks nothing. It returns 1 (`0x0030B279`-`0x0030B295`,
+`0x0030B496`).
 
 The flag bytes are one per good at `+0x59C8` of the party block. The shop menu lists every good whose bit `0x2` is
 set (mode 2 of `0x002FA920`, [Shops](shops.md)).
@@ -63,6 +78,11 @@ good through `0x003008A0`, which hands out its
 items (`0x002FEEDB`, `0x002FD780`), takes the price from the gil, floored at 0, through `0x00253690` and `0x00254EE0` (`0x002FEEE0`-`0x002FEEF3`; [Gil](../Rewards-EXP-Gil-And-Loot/gil.md)), and calls
 `0x0030B180` (`0x002FEF0A`).
 
+`0x002FEEB0` adds the good with `0x003008A0(id, quantity, 0, 1, flags)` and sets the gil to the old gil less `price`,
+floored at 0 (`0x002FEECF`-`0x002FEEF3`). With `flags` bit `0x1` it then calls the gain notification
+`0x00469E80(new - old)`, an amount of 0 or less, which posts nothing (`0x002FEEF8`-`0x002FEF02`); the shop's transaction
+function gives it `flags` 0 (`0x0056D457`). The purchase returns 1 (`0x002FEF14`).
+
 For a bazaar id, `0x0030B180` clears flag bit `0x2`, so the good leaves the list, and sets the
 tally of each of its three loots back to 0 (`0x0030B203`-`0x0030B256`). A good that can come back therefore needs its
 loots sold again from zero; any other good stays unlocked once and does not return. Both the sale and the purchase
@@ -72,8 +92,10 @@ are called only by the shop's transaction function `0x0056D370` (`0x0056D478`, `
 
 The seven goods with flag bit `0x2`, all named Forgotten Grimoire, have no loot to sell. Script verbs `0x2F7`
 `sethoridashi` and `0x2F6` `clearhoridashi` set or clear their offer bit through `0x0032AB50` and `0x0030B570`
-(`0x0034C710`, `0x0034C2C0`), which writes it only for a good with that flag (`0x0030B5F6`-`0x0030B619`). The third
-verb, `0x2F5` `ishoridashi`, cannot read it: its handler `0x0034BD90` calls `0x005C5230`, which returns 0.
+(`0x0034C710`, `0x0034C2C0`), which writes it only for a bazaar id, class `0xD000`, that `0x00322C50(1, id)` accepts and
+whose good has that flag (`0x0030B57A`-`0x0030B5B2`, `0x0030B5F6`-`0x0030B619`). It stores bit `0x2` as `set & 1` and
+keeps the other bits (`0x0030B603`-`0x0030B619`). The third verb, `0x2F5` `ishoridashi`, cannot read it: its handler
+`0x0034BD90` calls `0x005C5230`, which returns 0.
 
 The `us` zone scripts call `sethoridashi` 135 times and never `clearhoridashi`. Each call offers one good once and sets a bit of script global byte `0x0CDA` (or, for good 99, bit `0x2` of `0x0405`) so it is not offered again. The counts are script global bytes `0x0CD0`-`0x0CD4`, each stopped at 255:
 

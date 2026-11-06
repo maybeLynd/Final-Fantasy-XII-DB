@@ -20,14 +20,14 @@ trigger line can be given its six coordinates by a script.
 
 `0x002368D0`, run when battle storage is set up:
 
-1. zeroes `0x02089340` and `0x02089300`, writes the slot count `0x0208E6A0` = 32, frees a previous pool
-   (`0x003844F0`) and allocates the pool `0x0208E688` as `32 * 0xF50` bytes under the name `BtlWork`
-   (`0x00384510`) and zeroes it;
+1. stores infinity at `0x02F973B8` and zeroes `0x02089300` (`0x002368F0`, `0x002368F8`), writes the slot count `0x0208E6A0`
+   = 32, frees a previous pool (`0x003844F0`) and allocates the pool `0x0208E688` as `32 * 0xF50` bytes under the name
+   `BtlWork` (`0x00384510`) and zeroes it;
 2. allocates the two `0x9400`-byte spawn-keep banks `0x0208E690` (`btlKeepCharWork1`) and `0x0208E698`
-   (`btlKeepCharWork2`), runs `0x00383A20`, frees a previous `0x0208E680` (`0x00384500`), registers the
-   static task `0x00238850` (`0x003843F0(0x13, ...)`) and runs `0x0030CF40` and `0x002EA5F0`;
-3. zeroes the twelve qwords at `0x02EBF1A0`, sets `0x0208D455` to `0xFFFF`, `0x0208936C` to 300,
-   `0x0208935C` to 5.0 and `0x02F973B8` to infinity, and requests the twelve job boards
+   (`btlKeepCharWork2`) and zeroes both, runs `0x00383A20`, frees a previous `0x0208E680` (`0x00384500`) and nulls it
+   (`0x002369B4`), registers the static task `0x00238850` (`0x003843F0(0x13, ...)`) and runs `0x0030CF40` and `0x002EA5F0`;
+3. sets `0x0208935C` to 5.0, zeroes `0x02089340` (`0x002369FB`) and the twelve qwords at `0x02EBF1A0`, sets `0x0208D455` to
+   `0xFFFF` and `0x0208936C` to 300, and requests the twelve job boards
    (`0x00238260(0..11)`).
 
 `0x02089300` is the battle system's up flag. Boot runs `0x002368D0` once (`0x0022A41A`), and `0x00236A40`
@@ -67,11 +67,13 @@ whether or not `0x00234480` found a slot; the branch gives the record:
 - `0x00234A00(unit, 1)` (unit `+0x20` = 1) when the back-pointer `+0x30` is set, which is how the walk
   notices a silent allocation failure;
 - for a class-3 actor, bits `0x100` and `0x2000` of `+0x1C` cleared; `+0x0E` = `(old & 0xF1) | 1`;
-- `0x00238FA0(record, 0x0031C4C0())` when byte `+0x12` is below 4;
+- `0x00238FA0(record, 0x0031C4C0(row))`, with the row byte `+0x12` (`0x00265AD2`-`0x00265AE5`), when byte `+0x12` is
+  below 4;
 - the `0x00359B80` object's `+0x40`-`+0x63` and byte `+0x65` cleared.
 
-The number bound is stored at the slot's `+0x1E8`. Records of the other four managers never get a
-unit.
+The number bound is stored at the slot's `+0x1E8` (`0x00265B3B`). Records of the other four managers never get a
+unit: the walk tests the slot's `+0x28` for every record (`0x00265A70`) and stores 0 at `+0x1E8` for them, as it
+does for a slot with no records (`0x00265B4D`).
 
 ### The handle
 
@@ -97,6 +99,10 @@ resolves to an actor with a unit; `0x00273780(handle)` is true for a non-zero ha
 `0x00273A00(handle)` when it is 5. `0x00358960(slot, ordinal)` returns the class bits `+0x03 >> 5` of a
 record of the slot `0x00263FF0` gives, and reads address 3 when the ordinal is out of range.
 
+`0x00358960` takes the record from the list at `+0x08` of what `0x00263FF0` returns, entry `ordinal` after the count
+dword (`0x0035896E`-`0x00358981`). A null list, a negative ordinal and an ordinal at or past the count all leave the
+record 0, so the read at `0x00358986` is of address 3.
+
 Three more read the unit behind a handle, through `0x003588B0` and, while `0x02089340` bit `0x10` is set, `0x00263E30`:
 
 - `0x003229A0(handle)` returns bit `0x1` of the unit's `+0xE9C`, which `0x002392D0` copies from bit `0x4000` of its flag argument
@@ -115,12 +121,18 @@ the actor and returns. Otherwise:
 1. it runs `0x00300140(unit, 1)` and `0x00319140(unit, 2)`; with bit `0x2` of its second argument
    `0x00319140` calls `0x003BBC80(actor)`, which zeroes the first two qwords of every entry of the
    64-entry table at `[0x02B457D0]` (stride `0x50`) whose first qword is the unit's actor;
+   with a null `[0x02B457D0]` it does nothing, and it returns 1 when it cleared an entry and 0 otherwise
+   (`0x003BBC90`, `0x003BBCAF`, `0x003BBCC3`);
 2. for an enemy (stats kind 1) with flag bit `0x10` set, unless a terminal status is present outside a
-   town (`0x00377C20`), it copies the unit's position `+0xE0`-`+0xEF` into the spawn record's `+0x60`
+   town (`0x00377C20`), and with a spawn record at `+0x6A0` (`0x00234288`), it copies the unit's position
+   `+0xE0`-`+0xEF` into the spawn record's `+0x60`
    and the yaw `+0x160` into `+0x74`, and sets the spawn record's flag bit `0x4`
    ([spawn placement](../Enemy-Spawning/enemy-spawning.md));
 3. it zeroes the whole slot and clears bit `0x1`; the test before the clear (`unit >= base`, else
    `unit < base + 32 * 0xEA7900`, and `0xEA7900` is `0xF50 * 0xF50`) cannot fail for any pointer.
+
+The town test of step 2 is `0x00313F60`, a jump to `0x00377C20` (`0x00234275`), and a null stats record skips the step
+(`0x0023425B`).
 
 ### The actor class
 
@@ -131,7 +143,7 @@ nibble (`0x00263C20`). The class decides what code accepts the actor:
 |---|---|---|
 | 1 or 3 | `+0x03 >> 5` is 1 or 3 | `0x00265020` reads the position from the movement context `[actor + 0xB8]` and returns zeros otherwise |
 | 3 | `(+0x03 & 0xE0) == 0x60` | the movement code: the field runtime's steering (`0x0025DF00`), the frozen pass (`0x0025E400`), the unit bind's `+0x1C` clear (`0x00265A20`) |
-| 2 | `(+0x03 & 0xE0) == 0x40` | the `setline` verb `0x00351610`, which writes its six floats into the movement context at `+0x00`, `+0x04`, `+0x08`, `+0x10`, `+0x14` and `+0x18` |
+| 2 | `(+0x03 & 0xE0) == 0x40` | the `setline` verb `0x00351610`, which writes its six floats into the movement context at `+0x00`, `+0x04`, `+0x08`, `+0x10`, `+0x14` and `+0x18`; it pops all six for every class, the first popped to `+0x18` and the last to `+0x00`, and stores them only for class 2 (`0x0035163F`-`0x003516AA`), through `[actor + 0xB8]` (`0x00351688`) |
 
 ### The refresh from the unit
 
@@ -154,9 +166,9 @@ The writers:
 | Function | Writes |
 |---|---|
 | `0x00269F30(actor, v)` | `+0x0F` = `v` for a non-null actor |
-| `0x00269FE0(actor, n)` | for class 3, `+0x1C` bits `0x100` and `0x2000` set when `n` is 4 (each followed by `0x00268EA0` when `+0x0B` bit `0x8` is set) and cleared otherwise; then nibble = `n & 0xF`. The verb `setfreetargettype` (`0x0265`, `0x003528C0`) calls it on the calling actor with a popped `n` |
+| `0x00269FE0(actor, n)` | nothing for a null actor (`0x00269FE3`); for class 3, `+0x1C` bits `0x100` and `0x2000` set when `n` is 4 (each followed by `0x00268EA0` when `+0x0B` bit `0x8` is set) and cleared otherwise; then nibble = `n & 0xF`. The verb `setfreetargettype` (`0x0265`, `0x003528C0`) calls it on the calling actor with a popped `n` |
 | `0x002659A0(actor)` | `+0x1C` bits `0x100` and `0x2000` cleared, nibble 5, `+0xF4` = 0 |
-| `0x00267CC0(actor)` | `+0x1C` bit `0x8` cleared, bits `0x100` and `0x2000` set (with `0x00268EA0` as above), nibble 4, `+0xF4` = 2 |
+| `0x00267CC0(actor)` | `+0x1C` bit `0x8` cleared, bits `0x100` and `0x2000` set (with `0x00268EA0` as above), and for class 3 set a second time with their `0x00268EA0` calls (`0x00267CF4`-`0x00267D23`), nibble 4 (`and 0xF4` then `or 4`, `0x00267D28`-`0x00267D2C`), `+0xF4` = 2 |
 | `0x0026AD00(actor, on)` | `+0x13` bit `0x80` = `on != 0` |
 
 `0x00263AC0(actor)` reads `+0x0F` back: 0 for a null actor, 1 instead of 2 when the actor is the party
@@ -179,14 +191,14 @@ the roster (`0x00263750`) for `getequipitemid_468`.
 |---|---|---|---|
 | `isdead`, `isdead_15f(ordinal)` | `0x015E`, `0x015F` | `0x003597B0` | 1 when `0x00234D40` gives 2, else 0 |
 | `isdead2`, `isdead2_49f(ordinal)` | `0x049E`, `0x049F` | `0x003597D0` | `0x00234D40` itself |
-| `playerstatus(bit)`, `getcharbattlestatus(bit)` | `0x00A9`, `0x0499` | `0x0035A1C0` | 1 when status bit `bit` is set in `+0x3C` or `+0x64` (`0x00320CA0`) |
+| `playerstatus(bit)`, `getcharbattlestatus(bit)` | `0x00A9`, `0x0499` | `0x0035A1C0` | 1 when status bit `bit` is set in `+0x3C` or `+0x64` (`0x00320CA0`); 0 when `0x00320CA0` fails (`0x0035A1DB`); `bt` takes `bit` modulo 32, so the bit value tested is `1 << (bit & 31)` (`0x0035A1E1`) |
 | `getcharbattlestatus_49a(member, bit)` | `0x049A` | `0x0035A1C0` | the same for a member |
-| `getbtlwork(i)` | `0x0110` | `0x0035A060` | unit byte `+0xEC0 + i`, sign-extended (`movsx`), for `i` below 16 (`0x0031C1A0`), else 0 |
+| `getbtlwork(i)` | `0x0110` | `0x0035A060` | unit byte `+0xEC0 + i`, sign-extended (`movsx`), for `i` below 16 (`0x0031C1A0`), else 0; the test is unsigned, so a negative `i` gives 0 (`0x0031C1C2`), and so do a null actor and an actor without a unit (`0x0031C1B3`, `0x0031C1BD`, `0x0035A077`) |
 | `getequipitemid(slot)` | `0x0351` | `0x0035A0C0` | the equipment word for `slot` (below), -1 for `0xFFFF` |
 | `getequipitemid_468(member, slot)` | `0x0468` | `0x0035A0C0` | the same for roster member `member` |
 | `getmpratio_1f7(member, percent)` | `0x01F7` | `0x004737A0` | MP for a percent of 0 or less, else `percent` of the capacity (`0x003206E0`) |
-| `setcharbattlestatus(status, v)` | `0x01F0`, `0x01FC` with a member | `0x004737D0` | adds status `status` (`0x00318A90` mode 1, `0x0030EAE0`) |
-| `clearcharbattlestatus(status, v)` | `0x01F1`, `0x01FD` with a member | `0x00473690` | removes it (`0x00318A90` mode 0, `0x0030E990`) |
+| `setcharbattlestatus(status, v)` | `0x01F0`, `0x01FC` with a member | `0x004737D0` | adds status `status` (`0x00318A90` mode 1, `0x0030EAE0`); -1 for a null actor (`0x004737E2`); `v`, popped first (`0x00346E78`), reaches `0x00318A90` as its fourth argument, which it never reads (`0x00318B18` sets `r9` to -1), so `v` has no effect |
+| `clearcharbattlestatus(status, v)` | `0x01F1`, `0x01FD` with a member | `0x00473690` | removes it (`0x00318A90` mode 0, `0x0030E990`); -1 for a null actor (`0x004736A2`); `v` has no effect in the same way (`0x003472B8`) |
 | `isfusion_spattack(v)` | `0x02A1` | `0x0030C3C0` | 1 for `v` from 18 to 33, else 0 |
 | `btlAtelIsMimicName` | `0x3062` | `0x00237430` | bit `0x20` of the spawn record's byte `+0` (unit `+0x6A0`), 0 without one |
 
@@ -201,17 +213,34 @@ routine as `(stats, 0, status, -1, -1, 0x13)`. `0x003206E0(handle, which, percen
 and capacity `+0x24` for `which` = 0 and MP `i16 +0x4C` and capacity `i16 +0x28` for 1; a percent of
 100 returns the capacity and any other positive percent `percent * capacity / 100`, truncated.
 
+`0x00318A90` tests the bit value `1 << (status & 31)` against `0x80000003` (`0x00318AD2`-`0x00318AD9`), so 32, 33 and
+63 are refused as well, and the routine receives the status's low byte (`0x00318B10`). Any mode other than 0 adds
+(`0x00318B14`), and a call made returns 0 (`0x00318B23`). `0x003206E0` returns -1 for a `which` other than 0 and 1
+(`0x00320726`) and the current value for a percent of 0 or less (`0x0032073C`-`0x00320740`); its product is 64-bit
+and the division signed (`0x00320752`-`0x00320774`).
+
 `0x0031BDC0(words, slot)` reads the stats record's equipment words `+0x50` (`0x0031BD80`): slots 0-4
 give the word itself and slots above 8 give `0xFFFF`. Slots 5, 7 and 8 give word 0 when
 `0x00322560` reports that word 0's row in the equipment table `[0x02EBF0F8]` has byte `+0x26` equal
 to `0x11`, and word 1 otherwise; slot 6 gives the other one. `0x0035A0C0` passes slots 1-5 through
 and turns any other value into 0.
 
+A negative slot gives `0xFFFF` as well, since `0x0031BDD3` compares unsigned, and `0x0035A0C0` turns it into 0 the
+same way (`0x0035A0CC`). `0x0035A0C0` returns -1 for a null actor (`0x0035A0C7`) and for a `0xFFFF` word
+(`0x0035A10F`-`0x0035A116`); `0x0031BD80` gives `0xFFFF` for an actor without a unit or a stats record
+(`0x0031BD88`-`0x0031BDB3`).
+
 `0x00359EA0(index, focusFirst, includeHidden)` picks a party actor: it lists the members of
 `0x0031B670` (up to four) followed by those of `0x0031B680`, drops members whose model is hidden
-(`0x002E9600`: class 3 and context `+0x10` bit `0x8`) unless `includeHidden` is set, moves the party
+(`0x002E9600` gives 0: it gives 1 only for class 3 with context `+0x10` bit `0x8` set) unless `includeHidden`
+is set, moves the party
 focus record (`0x00264050(0)`) to the front when `focusFirst` is set and it is among the first four,
 and returns entry `index`, or null past the end.
+
+Without `includeHidden` the walk keeps an entry only when it is non-null and `0x002E9600` gives non-zero
+(`0x00359F40`-`0x00359F5B`), and zero-fills the slots it freed (`0x00359F8B`). The focus record is `0x00264050(0, -1)`
+(`0x00359F9A`-`0x00359F9F`), sought in the first four slots (`0x00359FB0`-`0x00359FBE`). The index test is signed
+(`0x0035A010`), so a negative index is not refused and reads the stack before the list (`0x0035A025`).
 
 `0x00359CA0` takes the same arguments and gives the same pick, except that it filters the two lists apart and looks
 for the party focus only among the members of `0x0031B670`, so a focus member from `0x0031B680` keeps its place;
@@ -249,50 +278,53 @@ Globals:
 
 ### The flag word
 
-Every immediate-mask write and test on `+0x00` and `+0x04` in the access table [`battle-unit-fields.tsv`](battle-unit-fields.tsv)
-by bit, plus the unit reset `0x00236A60`'s register mask
-`0xFFFF7FFDFFE7FFFD` (`0x00236A9C`-`0x00236AB1`), which clears bits `0x2`, `0x80000`, `0x100000`, `0x200000000` and `0x800000000000`:
+Every immediate-mask write and test on `+0x00` and `+0x04` in the access table
+[`battle-unit-fields.tsv`](battle-unit-fields.tsv) by bit, plus the unit reset `0x00236A60`'s register mask
+`0xFFFF7FFDFFE7FFFD` (`0x00236A9C`-`0x00236AB1`), which clears bits `0x2`, `0x80000`, `0x100000`, `0x200000000` and
+`0x800000000000`. The reset also clears `+0x00` with `0xFFFFB0E3` (`0x00236AA6`) and `+0x04` with `0xFFEFFFBB`
+(`0x00236A95`). Each bit value is a bit of the qword at `+0x00`, so values from `0x100000000` up are bits of the dword
+at `+0x04`:
 
-| Bit | Set by | Cleared by | Tested by |
+| Bit value | Set by | Cleared by | Tested by |
 |---|---|---|---|
-| 0 | `0x00234480` | `0x00234200` | `0x00234480` |
-| 1 | `0x0023A570`, `0x00300E40` | `0x00236A60` | `0x00233F70`, `0x003125E0`, `0x00319F50`, `0x003243F0`, `0x00324470` and one more |
-| 2 | `0x0023A570` | `0x00236A60` | `0x00233AD0`, `0x0023A570`, `0x0031A300`, `0x0031C000`, `0x00324380` and three more |
-| 3 | `0x00233AD0` | `0x00236A60` | `0x00233AD0`, `0x00317E60`, `0x00319090`, `0x00319490`, `0x0031ACC0` and three more |
-| 4 | `0x00233F70` | `0x00236A60` | 27 functions, among them `0x00233EA0`, `0x00234200`, `0x002350C0`, `0x00237D80` |
-| 5 | `0x00308610` | `0x0030EFF0`, `0x00310780` | |
-| 6 | `0x00324470`, `0x003266C0` | `0x00324450` | `0x00324450` |
-| 8 | `0x00313500` | `0x00233EA0`, `0x00236A60`, `0x00301140`, `0x00306760`, `0x00313F70` | |
-| 9 | `0x00319F50` | `0x00233EA0`, `0x00236A60`, `0x00301140`, `0x00306760`, `0x003082F0` | |
-| 10 | `0x00319F50` | `0x00236A60`, `0x00301140` | |
-| 11 | | `0x00236A60` | |
-| 12 | `0x00304850` | | |
-| 13 | | `0x00304850` | |
-| 14 | | `0x00236A60` | |
-| 15 | `0x00239170` | `0x00239170` | |
-| 18 | `0x00236300` | `0x00236300`, `0x00325BB0` | |
-| 19 | `0x00325260` | `0x00236A60` | |
-| 20 | `0x003057D0` | `0x00236A60` | |
-| 21 | `0x00239840` | `0x00234480`, `0x00300E40` | `0x00308D90` |
-| 22 | `0x00312FA0` | | |
-| 23 | | `0x00301140`, `0x0030F2D0` | `0x003081E0`, `0x00312FA0`, `0x00313F20`, `0x003176E0` |
-| 24 | `0x00301140`, `0x00313500` | `0x003083A0`, `0x003250F0` | |
-| 25 | `0x00313500` | `0x003083A0` | |
-| 26 | `0x002354F0`, `0x002355A0`, `0x00235720`, `0x00238FA0`, `0x00239410`, `0x00300310` | `0x00233AD0`, `0x002393E0`, `0x0023A570`, `0x00300E40`, `0x0030F690`, `0x003266C0` | |
-| 28 | | `0x0030EFF0`, `0x00310780` | |
-| 29 | `0x0030CE10` (`0x0030CF16`, when `0x00306BD0` returns non-zero) | `0x0030CE10` (`0x0030CF00`) | `0x0030CE10` (`0x0030CF1D`) |
-| 30 | `0x00301140` | `0x00310DB0` | |
-| 33 | | `0x00236A60` | |
-| 34 | `0x00319F50` | `0x00236A60`, `0x00300E40`, `0x00300FC0`, `0x00301140` | `0x00233F70`, `0x003125E0` |
-| 37 | | `0x00238B40` | `0x0030B7F0`, `0x0046AB10` |
-| 38 | `0x00313500` | `0x00233EA0`, `0x00236A60`, `0x003082F0` | `0x00319F50` |
-| 39 | `0x00304850` | `0x00304850`, `0x003105D0` | |
-| 41 | `0x00311F50` | `0x00301140`, `0x00307D10`, `0x0030F2D0` | `0x00307D10` |
-| 42 | `0x00311F50` | `0x00301140`, `0x00307D10`, `0x0030F2D0` | `0x00307D10` |
-| 47 | | `0x00236A60` | |
-| 48 | | `0x00301140`, `0x00307D10`, `0x0030F2D0` | |
-| 52 | | `0x00236A60` | |
-| 53 | `0x002FEF30`, `0x00300140`, `0x00300E40`, `0x00301140`, `0x0030AF30` | `0x00304850`, `0x003105D0` | `0x00307300` |
+| `0x1` | `0x00234480` | `0x00234200` | `0x00234480` |
+| `0x2` | `0x0023A570`, `0x00300E40` | `0x00236A60` | `0x00233F70`, `0x003125E0`, `0x00319F50`, `0x003243F0`, `0x00324470` and one more |
+| `0x4` | `0x0023A570` | `0x00236A60` | `0x00233AD0`, `0x0023A570`, `0x0031A300`, `0x0031C000`, `0x00324380` and three more |
+| `0x8` | `0x00233AD0` | `0x00236A60` | `0x00233AD0`, `0x00317E60`, `0x00319090`, `0x00319490`, `0x0031ACC0` and three more |
+| `0x10` | `0x00233F70` | `0x00236A60` | 27 functions, among them `0x00233EA0`, `0x00234200`, `0x002350C0`, `0x00237D80` |
+| `0x20` | `0x00308610` | `0x0030EFF0`, `0x00310780` | |
+| `0x40` | `0x00324470`, `0x003266C0` | `0x00324450` | `0x00324450` |
+| `0x100` | `0x00313500` | `0x00233EA0`, `0x00236A60`, `0x00301140`, `0x00306760`, `0x00313F70` | |
+| `0x200` | `0x00319F50` | `0x00233EA0`, `0x00236A60`, `0x00301140`, `0x00306760`, `0x003082F0` | |
+| `0x400` | `0x00319F50` | `0x00236A60`, `0x00301140` | |
+| `0x800` | | `0x00236A60` | |
+| `0x1000` | `0x00304850` | | |
+| `0x2000` | | `0x00304850` | |
+| `0x4000` | | `0x00236A60` | |
+| `0x8000` | `0x00239170` | `0x00239170` | |
+| `0x40000` | `0x00236300` | `0x00236300`, `0x00325BB0` | |
+| `0x80000` | `0x00325260` | `0x00236A60` | |
+| `0x100000` | `0x003057D0` | `0x00236A60` | |
+| `0x200000` | `0x00239840` | `0x00234480`, `0x00300E40` | `0x00308D90` |
+| `0x400000` | `0x00312FA0` | | |
+| `0x800000` | | `0x00301140`, `0x0030F2D0` | `0x003081E0`, `0x00312FA0`, `0x00313F20`, `0x003176E0` |
+| `0x1000000` | `0x00301140`, `0x00313500` | `0x003083A0`, `0x003250F0` | |
+| `0x2000000` | `0x00313500` | `0x003083A0` | |
+| `0x4000000` | `0x002354F0`, `0x002355A0`, `0x00235720`, `0x00238FA0`, `0x00239410`, `0x00300310` | `0x00233AD0`, `0x002393E0`, `0x0023A570`, `0x00300E40`, `0x0030F690`, `0x003266C0` | |
+| `0x10000000` | | `0x0030EFF0`, `0x00310780` | |
+| `0x20000000` | `0x0030CE10` (`0x0030CF16`, when `0x00306BD0` returns non-zero) | `0x0030CE10` (`0x0030CF00`) | `0x0030CE10` (`0x0030CF1D`) |
+| `0x40000000` | `0x00301140` | `0x00310DB0` | |
+| `0x200000000` | | `0x00236A60` | |
+| `0x400000000` | `0x00319F50` | `0x00236A60`, `0x00300E40`, `0x00300FC0`, `0x00301140` | `0x00233F70`, `0x003125E0` |
+| `0x2000000000` | | `0x00238B40` | `0x0030B7F0`, `0x0046AB10` |
+| `0x4000000000` | `0x00313500` | `0x00233EA0`, `0x00236A60`, `0x003082F0` | `0x00319F50` |
+| `0x8000000000` | `0x00304850` | `0x00304850`, `0x003105D0` | |
+| `0x20000000000` | `0x00311F50` | `0x00301140`, `0x00307D10`, `0x0030F2D0` | `0x00307D10` |
+| `0x40000000000` | `0x00311F50` | `0x00301140`, `0x00307D10`, `0x0030F2D0` | `0x00307D10` |
+| `0x800000000000` | | `0x00236A60` | |
+| `0x1000000000000` | | `0x00301140`, `0x00307D10`, `0x0030F2D0` | |
+| `0x10000000000000` | | `0x00236A60` | |
+| `0x20000000000000` | `0x002FEF30`, `0x00300140`, `0x00300E40`, `0x00301140`, `0x0030AF30` | `0x00304850`, `0x003105D0` | `0x00307300` |
 
 Other writers that apply a mask held in a register are not in the table: among them the
 `hideenemy` and `showenemy` verbs on bit `0x800` and the command issuer on bit `0x4000`.

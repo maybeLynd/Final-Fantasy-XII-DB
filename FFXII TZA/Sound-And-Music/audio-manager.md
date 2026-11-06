@@ -30,6 +30,12 @@ every caller. Its builder `0x002105E0` creates one controller per bank family:
 The pool counts are immediate operands of the five builders. The bank families and their files are on
 [Sound banks](sound-banks.md).
 
+`0x002105E0` first sets `+0x28` to the `AudioCallback` vtable `0x00906A18` (`0x002105FD`) and `+0x34`, a four-byte `Lay`
+handle, to -1 (`0x007A59F0`, `0x00210605`). It allocates each controller through `0x00210EC0`, `0xB8` bytes for music,
+line and battle voice and `0xE0` for block and six-digit, and stores 0 for an allocation that fails (`0x0021061D`,
+`0x0021063D`, `0x0021065E`, `0x0021067F`, `0x002106A0`). It builds them in the order music, block, six-digit, battle voice,
+line, then sets `+0x30` to -1 and zeroes `+0x38` and `+0x3C` with one 8-byte store (`0x002106AF`, `0x002106B6`).
+
 ### Controllers and the live list
 
 Every controller starts from the base `0x00212710`, which installs the `AudioController` vtable `0x00906CD0` and an empty
@@ -74,6 +80,15 @@ the same vector-and-sets shape:
 | `+0x1D0` | `MemoryStreamingReader` | `0x28` | 32 | `0x00220D40`, under the lock at `+0x350` |
 | `+0x268` | `MusicStreamingReader` | `0x218` | 5 | `0x00220C70`, under the lock at `+0x378` |
 
+`0x0021E570(obj, banks, sounds)` also sets the vtable `0x00908830` (`0x0021E5A4`), builds four lock records at `+0x300`,
+`+0x328`, `+0x350` and `+0x378` (`0x005CC8A0`) and creates each one (`0x005CD0A0`, `0x0021E6A7`-`0x0021E6BF`). It leaves an
+empty tree at `+0x3A0`, its anchor at `+0x3A8` pointing at itself, the count `+0x3C8` at 0 and its allocator at
+`+0x3D0` holding the vtable `0x00902720` (`0x0021E650`-`0x0021E686`), which `0x00220760` empties again (`0x0021E6E5`).
+
+It reserves the bank-object pool for `banks` and the sound-object pool for `sounds` (`0x00220E80`, `0x00220F20`), each
+raised to 1 when it is 0 or below (`0x0021E691`-`0x0021E6A1`), and zeroes the 256 entries of both resume arrays
+(`0x0021E700`-`0x0021E716`).
+
 The resume table of [Music](music.md) follows at `+0x3D8` and `+0x7D8`. Each pool's template code:
 
 | Pool | Build | Insert, erase | Element copies and destroy |
@@ -92,7 +107,7 @@ is the game's handle on one driver `Sound`, kept in the bank's sound list:
 
 1. `0x00221D60` takes a sound object (`0x00220D30`) and appends it to the bank's list. When the pool is empty it first
    sweeps finished sounds from every bank of the block, six-digit and battle-voice controllers (`0x00210A60`) and tries
-   once more.
+   once more. A second miss still appends a `0x18`-byte node holding 0 and returns 0 (`0x00221DAC`-`0x00221DE4`).
 2. `0x00221E60`, `0x00221ED0` and `0x00221F40` find a bank's sound by slot `+0x14`, handle `+0x18` or id `+0x24`.
    `0x00221E00` sweeps, then returns the sound for a slot or takes a new one.
 3. `0x00222050` sweeps the bank's list and the pending list at `0x01FD4140`; `0x00222280` returns each sound in state 0 or 2
@@ -168,6 +183,11 @@ A load is tracked by an id in the 128-entry table `0x01FD36C0`, eight bytes per 
 `0x002DEE90(id)` is that query through `0x00210AE0`. With -1 it calls `0x00212A10(-1)` once, gets 0 and returns without
 waiting.
 
+`0x00212970` writes the entry's id and count (`0x002129CD`, `0x002129D3`), moves the cursor to the next entry, back to
+`0x01FD36C0` after the last one (`0x002129E7`), and returns the entry's index. With every entry taken it returns -1
+once the walk is back at the cursor (`0x002129C6`); the id counter has already moved on, and `0x002129F0` writes 0 to
+out (`0x00212A02`).
+
 ### The file load thread
 
 The `AudioFileLoadManager` object, `0x158` bytes at `0x01FD36A8`, reads bank files on its own thread:
@@ -184,6 +204,12 @@ The `AudioFileLoadManager` object, `0x158` bytes at `0x01FD36A8`, reads bank fil
 
 The request vector's own code is `0x002123E0`, `0x00211BC0`, `0x00211530`, `0x00211600`, `0x00211480` and `0x002113D0`, and
 `0x002118E0`, `0x00211A60` and `0x00211AC0` tear it down.
+
+`0x00211840` lays the object out in this order (`0x0021185B`-`0x002118C5`): the thread record at `+0x08` zeroed
+(`0x005CC900`), the byte `+0x20` = 0, the vtable `0x00906C80`, a lock record at `+0x30` (`0x005CC8A0`), an empty two-way
+list at `+0x58` (both links point at `+0x58`; its allocator at `+0x68` holds the vtable `0x00902720`, `0x001EDF00`), the
+1,024 records at `+0x70` (`0x002116B0(obj + 0x70, 0x400, 0)`), a second lock record at `+0x130` (`0x005CC8A0`), and
+then `0x00212130(obj)`. It returns the object (`0x002118CB`).
 
 ### Pausing by kind
 
@@ -230,7 +256,7 @@ The sound object, `AudioSeadObjectSound`, `0x30` bytes, in the object manager's 
 | `+0x24` | `i32` | id | the sound id (`0x002257C0`) |
 | `+0x2C` | `i32` | kind | 6 line, 8 battle voice, 9 placed battle voice (`0x002256E0`) |
 
-The manager, `0x40` bytes at `0x01FD36A0`:
+The manager, `0x40` bytes, kept at `0x01FD36A0`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -241,13 +267,17 @@ The manager, `0x40` bytes at `0x01FD36A0`:
 | `+0x20` | `ShoutAudioController*` | battleVoice | |
 | `+0x28` | `void*` | callback | the `AudioCallback` vtable the driver reports to |
 | `+0x30` | `i32` | musicVersion | -1 when built; 0-2 from the Config option ([Music](music.md)) |
-| `+0x38` | `u32` | pauseOn | the last pause switch |
-| `+0x3C` | `u32` | pauseMask | the paused kinds |
+| `+0x34` | `i32` | lay | a four-byte `Lay` handle, -1 when built (`0x007A59F0`, `0x00210605`) |
+| `+0x38` | `u32` | pauseOn | the last pause switch; 0 when built (`0x002106B6`) |
+| `+0x3C` | `u32` | pauseMask | the paused kinds; 0 when built (`0x002106B6`) |
 
 ## State
 
 The pending list at `0x01FD4140` is a two-way list with its own head node: `+0x00` the first node, `+0x08` the last,
-then its allocator at `0x01FD4150`, named "EASTL list" (`0x001601C0`). Each node holds the next node, the previous node
+then its allocator at `0x01FD4150`, which holds the vtable `0x00902720`: `0x001601C0` hands the text "EASTL list" to
+`0x001EDF00` (`0x001601E2`), which stores only the vtable and never reads that text (`0x001EDF00`-`0x001EDF0D`).
+
+Each node holds the next node, the previous node
 and the sound object (`+0x10`), `0x18` bytes. `0x00222080` and `0x002225B0` put each stopped sound at the end
 (`0x002220D4`-`0x00222110`, `0x00222604`-`0x00222640`); `0x00222280`, the sweep, unlinks a node through the list address it
 is given (`0x002222EF`-`0x00222318`).

@@ -49,14 +49,16 @@ scenes](salikawood-scenes.md).
 - Trunkwall Road: talking to `サリカ樹林地図` gives the area map, Salikawood, with system message 93 ("Your location map for
   this area is complete!").
 - Living Chasm holds the gate to the Phon Coast. Below story counter 3050 the Moogle Boss (`親方`) explains it ("As I'm
-  certain you can see, this gate's under repairs, kupo.").
-- Living Chasm: from story counter 3050 the Moogle Boss sends the party after his nine apprentices ("...That is, if my
-  [value] missing apprentices ever come back from the Salikawood!"): the first talk sets the count to 9, sets the four
-  bungalow map icon flags (`0x00BB`, `0x00BC`, `0x00BD`, `0x00BE`) and shows the count gauge in the Salikawood's
-  fields.
+  certain you can see, this gate's under repairs, kupo. You'll have to wait if it's the Phon Coast you're going to!
+  Want to know why we're fixing the gate, kupo?").
+- Living Chasm: from story counter 3050 the Moogle Boss sends the party after his nine apprentices: the gate will take
+  a while longer, he says, unless his missing apprentices come back from the Salikawood, where he thinks they are
+  loafing in the bungalow, and he gives the number still missing.
+- Living Chasm: the first talk sets the count to 9, sets the four bungalow map icon flags (`0x00BB`, `0x00BC`,
+  `0x00BD`, `0x00BE`) and shows the count gauge in the Salikawood's fields.
 - The bungalows: Trunkwall Road (`0x00BE`), Garden of Decay (two, `0x00BB` and `0x00BC`) and Path of Hours (`0x00BD`)
   each have a door (`廃屋入口`). From story counter 3050, talking to it lets the party meet the moogles inside ("Ooh? A
-  visitor, kupo? We're here working on the gate up ahead.").
+  visitor, kupo? We're here working on the gate up ahead. Well, not actually right now. Right now, we're resting.").
 - The bungalows: once the round-up runs, the first talk at a bungalow's door releases its map icon flag and the
   moogles leave, two from each bungalow and three from Path of Hours ("Bye-bye, kupo! Oh, there're still [value] of us
   on break out there!").
@@ -64,29 +66,59 @@ scenes](salikawood-scenes.md).
   us to the gate, kupo?"; Yes jumps to Living Chasm. Below 3050, from 3070, and once a bungalow is emptied, the door
   shows the Forest Bungalow notice that no one is home.
 - Living Chasm: when all nine are back, arriving there or talking to the Moogle Boss plays the gate's opening ("Now
-  that my apprentices are all back, the repairs took no time at all, kupo!") and writes story counter 3070. His next
-  talk gives a reward package with a Sash ("Thanks to you, the repairs to the gate are finished, kupo. Here, a token
-  of our gratitude!").
+  that my apprentices are all back, the repairs took no time at all, kupo! Witness the power of moogles!") and writes
+  story counter 3070. His next talk gives a reward package with a Sash ("Thanks to you, the repairs to the gate are
+  finished, kupo. Here, a token of our gratitude!").
 - Living Chasm: arriving from the Phon Coast sets flag `0x0033`, the location map's exits between the Phon Coast and
   The Salikawood.
-- Path of Hours: the Forest Traveler (`旅人`) waits for the gate ("Trouble is, the gate's broken."). From story counter
-  3070 he speaks by the progress of quest 146: at 30 of the flickering light to the northwest ("If you go through the
-  wood in that direction now, you'll see an eerily flickering light."), at 50 "Turns out it was a creature called the
-  Braegh!".
+- Path of Hours: the Forest Traveler (`旅人`) waits for the gate. Below story counter 3050 he says "Should you head east
+  from this forest, well to the east, you will find an old gate. Beyond that, the Phon Coast. Trouble is, the gate's
+  broken.".
+- Path of Hours: from 3050 below 3070 he says it again, after telling at his first talk that he came to join the
+  hunters of the Phon Coast, and adds that some moogles were fixing the gate and that he has dropped his map of the
+  wood.
+- Path of Hours: from story counter 3070 he speaks by the progress of quest 146, with the messages below: at 30 of the
+  flickering light to the northwest, at 50 of the creature it was.
+
+At progress 30: "If you leave the Salikawood to the northwest, you'll emerge near the place where the city of Nabudis
+stood...until two years ago. If you go through the wood in that direction now, you'll see an eerily flickering light.
+No, I've no idea what it could be..."
+
+At progress 50: "If you leave the Salikawood to the northwest, you'll emerge near the place where the city of Nabudis
+stood...until two years ago. Up until recently, if you went in that direction you'd be sure to see an eerily
+flickering light. Turns out it was a creature called the Braegh!"
+
 - Path of Hours: from story counter 3070, at any other progress of quest 146, the Forest Traveler says "What's this?
   The repairs to the gate are finished? Then I'm off to the Phon Coast...once I find my map."
-- Quietened Trace: the Overseer of the Craftsmoogles' League (`マネージャー`) is lost ("I'm top overseer of the
-  Craftsmoogles' League, kupo."). Until the Grand Bower fight is won (`g_btl_ボムキング` 2) he warns of bombs ("That
-  reminds me, there're bombs on the road ahead! Better stay back, kupo!").
+- Quietened Trace: the Overseer of the Craftsmoogles' League (`マネージャー`) is lost. Below story counter 3050 he
+  introduces himself with the first message below once the Grand Bower fight is won (`g_btl_ボムキング` 2) and with the
+  second before it.
+- Quietened Trace: until the Grand Bower fight is won (`g_btl_ボムキング` 2) he warns of bombs ("I'm lost, kupo...where is
+  everybody, kupo? They didn't leave me behind, did they!? Just my luck... That reminds me, there're bombs on the road
+  ahead! Better stay back, kupo!").
+
+The Overseer once the fight is won: "I'm top overseer of the Craftsmoogles' League, kupo. Yep, the Boss and us are
+fixing the gate between the Salikawood in the Phon Coast, kupo. Once we finish this, we're off to work on restoring
+the old palace at Nabudis. I, er, came here to scout out the road, kupo... Okay, I'll admit it. I'm lost."
+
+The Overseer before it: "I'm top overseer of the Craftsmoogles' League, kupo. Yep, the Boss and us are fixing the gate
+between the Salikawood in the Phon Coast, kupo. After this, it's off to restore Nabudis...or it would be, if those
+bombs didn't keep getting in our way, kupo."
+
 - Quietened Trace: from story counter 3070, at quest 146 progress 30 and 50, the Overseer says "Up ahead, in the
-  northwest of the Salikawood, I was chased by a flickering monster!" and "Did you kill that flickering monster? Not
-  bad, kupo!".
+  northwest of the Salikawood, I was chased by a flickering monster! I thought I was done for, kupo!" and "Did you
+  kill that flickering monster? Not bad, kupo!".
 - Sun-dappled Path: while `g_btl_nm_キャロット` is 1, `監督.main` shows one of four lines of Krjn (`THIRD_カロリーヌ`), chosen by
   a script variable and by whether she has spoken before ("Krjn You have come. And with no unwelcome violence done
   along the way. Good. The mark we hunt is near. Now we fight.").
 - Sun-dappled Path: when the fight ends, `wanted_kansi.main` sets the variable to 2; when `sysIsdead2_49f` of Krjn
-  returns 1 it shows her farewell ("Your skill is much greater than I would have thought.") and removes her and the
-  lesser foes; it then writes 30 to the progress of quest 166 and removes every foe.
+  returns 1 it shows her farewell, the message below, and removes her and the lesser foes; it then writes 30 to the
+  progress of quest 166 and removes every foe.
+
+Krjn's farewell: "We have done it. Your skill is much greater than I would have thought. Little opportunity did you
+give me to shine. I will leave you now. It would please me to see you again in the halls of the clan. I bid you safe
+travels."
+
 - On chocobo, the exit of Quietened Trace to Grand Bower turns the bird back ("The chocobo is nervous and refuses to
   go further. Something ahead must be frightening it."), and so does the exit of Corridor of Ages to Hall of Effulgent
   Light (Necrohol of Nabudis) ("The chocobo refuses to go any further.").
@@ -98,10 +130,10 @@ scenes](salikawood-scenes.md).
   `0x0035` and `0x0034`, the location map's exits to those regions. In Corridor of Ages, once `g_btl_nm_ブライ` is 1,
   `wanted_kansi.main` removes the foes of a group. In Piebald Path, `hunt_kansi.main` gives the Sickle Trophy and
   removes the foes of a group.
-- Piebald Path: while the party holds the Green Bottle, a glow appears in the undergrowth ("Faint Glow The light
-  coming from the undergrowth resonates with the green bottle you hold..."); Yes to "Hold the bottle nearer to the
-  light?" shatters it ("Without warning, the green bottle shatters!"), gives a reward package with a Hastega Mote,
-  takes the Green Bottle and gives the Green-hued Message.
+- Piebald Path: while the party holds the Green Bottle, a glow appears in the undergrowth under the title Faint Glow
+  ("The light coming from the undergrowth resonates with the green bottle you hold... Hold the bottle nearer to the
+  light?"); Yes shatters it ("Without warning, the green bottle shatters!"), gives a reward package with a Hastega
+  Mote, takes the Green Bottle and gives the Green-hued Message.
 - Piebald Path: the same script holds the blue, red and black bottle glows, which it places only in fields 171, 1151
   and 850.
 - The Omen-Spur, Trunkwall Road, Diverging Way, Sun-dappled Path, Garden of Decay, Quietened Trace, Grand Bower,
@@ -141,6 +173,10 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
    `0x00348DF0` (`0x00349884`).
 3. `0x00348DF0` pops eight values. The seventh, the script's second argument, is passed with the current field context
    to `0x00264D60` (`0x00348E6A`-`0x00348E74`), the section 2 lookup, which keeps the low 24 bits of the id.
+4. `0x00348DF0` reads the entry's flag through `0x002673A0`, bit `0x1` of the entry's upper half (`0x00348E85`), and
+   opens the window through `0x002E16B0` only when that flag is clear (`0x00348EE0`-`0x00348EFF`). With the flag set it
+   still makes its six slot calls (`0x00348E91`-`0x00348ECA`) and fills the call record (`0x00348ED7`-`0x00348EDC`) but
+   opens no window ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)).
 
 ### Speakers, places and scenes
 
@@ -156,6 +192,8 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
   passes it to the verb, and `0x00348DF0` hands it to `0x002E16B0`. That actor's name is the second name of each pair its
   `setnpcname` calls name; `0x002E16B0` sets the actor's name flag before the window opens, and `0x00263990` shows the
   second name while that flag is set.
+- `0x00348DF0` makes that `0x002E16B0` call only for a line whose section 2 flag is clear (`0x00348EE0`); for a flagged
+  line it opens no window, so the actor's name flag is not set there.
 - An actor no `setnpcname` or `setshopname` call names keeps the name id `0xFFFF` and the empty text the record set-up
   `0x00266530` writes (`0x0026668B`, `0x0026669B`-`0x002666B4`), so its `{actor-name}` header shows no name; that line reads
   `no name shown`. A system message reads `system message`.
@@ -309,7 +347,7 @@ The steps table [`salikawood-script-steps.tsv`](salikawood-script-steps.tsv) has
 | `step` | the step's number in its function, from 1, in the order the function's bytes run |
 | `at` | where the step's instruction sits: its offset in section 0, the script image, of the shipped `plan_master/us` `.ebp`. For `case`, `default` and `label` it is where their code starts. For `shared template` and `same code` it is where the function or actor starts |
 | `line` | the step's line in the script listing, `-` for the `shared template` and `same code` rows |
-| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets |
+| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. A case whose values meet an earlier case's is followed by `not (x = w)` for each such earlier case `w`, so the cell names only the values the case runs on: `x = lte(78); not (x = lt(78))` runs when x is 78. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. When such a way passes a case that an earlier case overlaps, the item counts only the values that case takes: after `case lt(0x0177)`, a `case lt(0x0182)` that returns gives the item `not (x = lt(0x0182)) or x = lt(0x0177)`, which holds unless 0x0177 <= x < 0x0182. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets, and, for a case whose every value an earlier case already matches, on the case values |
 | `verb` | the verb the step calls, by its name in the [verb table](../Scripts-And-Script-Commands/verb-table.md), written `Actor.verb` for a call on another actor. Otherwise the kind of step: `if`, `else if`, `while`, `for`, `switch`, `case`, `default`, `break`, `goto`, `label`, `return`, `returnT`, `store`, `shared template` or `same code` |
 | `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test. A number with a fraction is the listing's print of a 32-bit float to nine significant digits, here and in `condition`: 1.60000002 is the float nearest to 1.6, and 2.36000005e-06 is 2.36000005 times 10 to the power -6 |
 | `addresses` | what the arguments name in the game: the actor, model, animation and motion file, effect file, event sound, camera shot, message window, request slot or variable |

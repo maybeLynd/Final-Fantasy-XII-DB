@@ -77,13 +77,13 @@ A row's flag word `+0xD8` (`+0x318 + i x 0x160` in the list) drives its effects:
 
 | Bit | Effect |
 |---:|---|
-| `0` | the row takes part in a pick mode; the list's draw hook `+0xB28` may then draw the hand cursor on it (`0x0029A19C`, `0x002426F0`) |
-| `1` | the row is refused in a pick mode; its widget's brightness `+0x5A` becomes `+0x5A >> 1` (`0x0029A247`-`0x0029A24B`) |
-| `2` | the cursor is on the row; its brightness `+0x5A` pulses, `0x00296FB0(32, 128, 0)` (`0x0029A25C`-`0x0029A264`), and a pointer is drawn (`0x0029A1EA`) |
-| `3` | the row is closing |
-| `4` | a status pulse: brightness `+0x5A` and alpha `+0x58` follow the track `0x009162B0` over `+0x110` (`0x0029A223`-`0x0029A23D`), 16 a frame (`0x00299890`) |
-| `5`, `6` | an HP or MP flash, below |
-| `7` | nodes 0-2 fade out over 8 frames, and back in once it clears (`0x00298130`) |
+| `0x1` | the row takes part in a pick mode; the list's draw hook `+0xB28` is then called, and when it answers non-zero the hand cursor is drawn on the row (`0x0029A19C`-`0x0029A1AF`, `0x002426F0`) |
+| `0x2` | the row is refused in a pick mode; its widget's brightness `+0x5A` becomes `+0x5A >> 1` (`0x0029A247`-`0x0029A24B`) |
+| `0x4` | the cursor is on the row; its brightness `+0x5A` pulses, `0x00296FB0(32, 128, 0)` (`0x0029A25C`-`0x0029A264`), and a pointer is drawn (`0x0029A1EA`) |
+| `0x8` | the row is closing |
+| `0x10` | a status pulse: brightness `+0x5A` and alpha `+0x58` follow the track `0x009162B0` over `+0x110` (`0x0029A223`-`0x0029A23D`), 16 a frame (`0x00299890`) |
+| `0x20`, `0x40` | an HP or MP flash, below |
+| `0x80` | nodes 0-2 fade out over 8 frames, and back in once it clears (`0x00298130`) |
 
 `0x00296FB0(amplitude, base, phase)` is `base + amplitude x sin((frame x rate - phase) x pi / 15)`, with the rate 1, or
 one over the speed steps while the game runs at speed (`0x00229DF0`, `0x00229E70`). A row whose shown status has flag
@@ -122,6 +122,13 @@ with `0x003F89C0` and the callbacks `0x0029B7D0` (HP) and `0x0029B810` (MP), and
 `+0x80` (`0x003F8A50`). `0x002962D0` unregisters pairs whose handle no longer resolves (`0x002732E0`, `0x003F8A30`), and
 `0x00296360(record, handle)` does the same for the target window's pair (from `0x002C0870`).
 
+`0x00297C10` scans the five pairs from `0x0209BF40`, `0xC0` bytes apart, the target window's last; a pair is in use while
+either counter's flags `+0x26` have bit `0x2` (`0x00297C1A`-`0x00297C54`). An in-use pair whose `+0xB0` is the record's
+handle `+0x04` is kept as it is; otherwise the first pair with both bits clear is set up (`0x00297C56`-`0x00297CD8`).
+
+Either way the record goes to both counters' `+0x48` (pair `+0x48` and `+0xA0`) and the handle to `+0xB0`, and the
+pair is returned (`0x00297CE2`-`0x00297CF8`); with all five in use it returns 0 and sets nothing (`0x00297C71`).
+
 `0x003F8A30(list, node)` first moves the list head on to the node's next (`+0x28`) when the node is the head, then
 runs `0x003F8BF0(node)` (`0x003F8A42`): it calls the node's callback `+0x38` with 5, links its previous `+0x30` and next
 `+0x28` neighbours to each other, clears both links and the word `+0x26`, and calls the callback again with 6.
@@ -138,9 +145,17 @@ when its handle matches, and sends the HP or MP counter message 1 (`0x003F8980`)
 
 1. A counter at rest starts from the old value (`0x002726C0`); a running one starts from the value it shows
    (`0x00271960`, `0x00272730`).
+   - At rest is `+0x26` bit `0x1` (`0x0029740A`): `0x002726C0(counter, from, to, 0x94, 0xD4, 0xF3)`. A running counter
+     gets `0x00272730(counter, to, 0x94, 0xD4, 0xF3)`, which reads the shown value through `0x00271960` itself
+     (`0x00272754`); the answer of the call at `0x00297414` is not used.
+   - Equal from and to, or a maximum of 0, leave the counter as it is and answer 0: `from == to || max == 0`
+     (`0x002973F8`-`0x00297404`).
 2. The path keeps from and to in 1/16 units and three points between, at `0x94`, `0xD4` and `0xF3` of 256 of the way.
 3. Its length is the change times 100 over the maximum, between 10 and 50 frames (`0x002727C0`, step `0x400` / frames);
    a change of 1 or less puts the counter at rest at once.
+   - The change is measured from the path's start `+0x00 >> 4` to `to` (`0x00297455`-`0x00297466`). At rest it sets
+     `+0x26` bit `0x1` and answers 0 (`0x002974C0`); otherwise it sets the step speed, the step `+0x14` to 0 and the
+     shown value `+0x50` to the start, and answers 1 (`0x00297493`-`0x002974AB`).
 
 Each HUD frame group 2 steps every registered counter (`0x003F8B40`): `0x00272710` advances the step and `0x00271960` gives
 the shown value. The five points are from, the three between, and to, one quarter apart:
@@ -154,6 +169,12 @@ the shown value. The five points are from, the three between, and to, one quarte
   0.5 being the vector at `0x00915870`;
 - over the last quarter it moves in a straight line, `P3 + (P4 - P3) x (u - 3)`, from the third point between to the
   target. The shown value is `int(x) >> 4` (`0x00271960`).
+
+`0x00271960(counter, step)` answers the from value `+0x00 >> 4` for a step of 0 or less and the target `+0x04 >> 4` for
+a step of `0x400` or more (`0x00271979`-`0x0027198F`, `0x00271A8D`). The five points are the record's `+0x00`, `+0x08`,
+`+0x0C`, `+0x10` and `+0x04`, each with a second coordinate of 0, 100, 200, 300 and 400 (`0x00271994`-`0x00271A51`);
+`u` is `step x 16 / 4096` (`0x0027199B`, `0x00271A1D`), and the spline `0x00270260` runs while `u` is below 3.0
+(`0x00271A3C`-`0x00271A6C`).
 
 The row shows the counter's value at `+0x50` while it runs, and the record's value at rest (`0x0029A4CE`, `0x0029A5FD`).
 
@@ -240,13 +261,32 @@ changes. It shows while the record's flag bit `0x200` is set or its action id `+
 Request 3 ([Menus](menus.md)) reaches `0x00290500(1)`, which runs `0x00296BE0(list, 1)`:
 
 1. A list already in pick mode 2 refuses; otherwise the mode `+0xB49` becomes 1 with the handler `0x00297640`.
+   - A null list or mode 2 answers 0; a list already in mode 1 answers 1 and changes nothing (`0x00296BE9`,
+     `0x00296CAE`-`0x00296CBF`). Otherwise it stores the leader index `0x0035BAE0()` at `+0xB48`, the list itself as the
+     context `+0xB30` and the handler at `+0xB20`, and clears `+0xB4A` bit `0x2` (`0x00296CC5`-`0x00296CF4`).
 2. `0x00299BD0` offers each row whose member has a handle, is not KO (flag bit `0x1`), has flag bit `0x40` clear and passes
    `0x002739D0`; the others are refused.
 3. The cursor starts on the leader, or the next offered row (`0x00296D96`, `0x00296DA7`).
+   - The leader's row keeps the cursor when it has bit `0x1` (`ax & 1`, `0x00296D32`); otherwise the search wraps
+     round from the row after it, `i = i + 1 < n ? i + 1 : 0`, and with no offered row the cursor stays on the
+     leader's row.
+   - The search steps at most `n` rows, `n` the row count byte `+0xB42`, testing `[list + 0x318 + 0x160 * i] & 0x1`
+     (`0x00296D2A`-`0x00296D91`). The row gets bit `0x4`; `0x0035BB00` is called for the leader's and the cursor's index
+     and its answer is not used (`0x00296D0C`-`0x00296DB7`).
 4. The header closes, the overlay `0x0029C9D0` opens over the rows, and the list takes the focus (`0x002470D0`).
-
+   - The header `+0xB38` closes with `0x00244DD0` (`0x00296D07`). It clears `+0xB4A` bit `0x1` and sets it again when
+     `0x0029C9D0` answers 0.
+   - It then runs `0x003678F0`, which writes `0x8000`, no position, to the hand cursor's words at
+     `0x022CBE38`, `0x022CBE3A` and `0x022CBE4C`-`0x022CBE52` and its trail words `0x022CBE76`, `0x022CBE7A`, `0x022CBE7E` and
+     `0x022CBE82`, and 0 to the word `0x022CBE3E` and the byte `0x022CBE70` (`0x003678F0`-`0x0036793E`). After the focus it
+     sets `+0xB4A` bit `0x80` and answers 1 (`0x00296DBC`-`0x00296DF5`).
 `0x00296BE0(list, 0)` undoes it: the header reopens, the focus is given up, the overlay closes and every row loses
 bits `0x1`, `0x2`, `0x4` and `0x80`.
+
+It does so only in mode 1; in another mode it answers 1 and changes nothing (`0x00296BFE`-`0x00296C05`). In mode 1 it
+reopens the header through `0x00246AC0`, clears `+0xB4A` bit `0x80`, runs `0x00290630`, sets the mode to 0, gives up the
+focus (`0x002470C0`), closes the overlay at `+0xC0` only when one is there (`0x00273A20`, `0x00244F00`), clears
+`+0xB4A` bit `0x1` and the rows' bits, sets the handler `+0xB20` to 0 and answers 1 (`0x00296C0B`-`0x00296CA3`).
 
 ### The buttons
 
@@ -273,8 +313,9 @@ Up and Down wrap on a new press and stop at the ends on a repeat (`0x002975B0`);
 |---|---|
 | 1, moved | the target window shows the member (`0x0029B440`) and sound 1 plays |
 | 2, confirm | sound `0x15` on an offered row; sound 5 and a refusal on a refused one |
-| 3, cancel | allowed with sound 3 when the current leader can still lead (`0x00299B90`, `0x0035BC30`); else sound 5 |
+| 3, cancel | allowed with sound 3 when the current leader can still lead (`0x00299B90`, `0x0035BC30`); else sound 5. The test is `0x00299B90` on the leader index `[0x022C8060 + 0x14]`: the record has a handle, flag bits `0x1` and `0x40` clear, and `0x002739D0` passes it (`0x002976BC`-`0x002976CC`, `0x00299B94`-`0x00299BC4`); the call to `0x0035BC30` after it only reads bit `0x4` of `0x022C8060`, and its answer is not used (`0x002976CE`) |
 | `6` | sound 5, refused |
+| `0` | allowed, with no sound (`0x002976B2`) |
 | `4`, `5`, `7`, `8` | refused |
 
 An allowed confirm makes the row's member the leader (`0x0035BAA0` with its type), then `0x0035C100(1)`, `0x0035DA80`,
@@ -306,8 +347,15 @@ which runs `0x00297170`:
 1. In mode 1 it refuses. Otherwise `+0xB50` points at the target page, `0x0029AEF0` offers the rows whose member is on
    the page and refuses the others and those whose entry has flag bit `0x2`, the greyed bit, and `0x0029AE50` puts the
    cursor on entry `start`.
+   - A null list or mode 1 answers 0 (`0x00297180`, `0x00297233`-`0x0029723A`). It first sets `+0xB4A` bit `0x2`
+     (`0x00297240`).
 2. The list takes the focus with mode 2 (`0x002470D0`).
+   - A list already in mode 2 is only refreshed; otherwise it takes the focus, sets mode 2 and clears the answer
+     `+0xB43`, and either way answers 1 (`0x0029725E`-`0x0029727D`).
 3. `0x002904D0(0, 0)` ends it: the frame at `+0x180` closes, the focus is given up and the marks are cleared.
+   - The frame closes only when one is there, and then `+0xB4A` bit `0x100` is cleared (`0x0029719B`-`0x002971BC`). The
+     rest happens only in mode 2: the focus is given up (`0x002470C0`), the mode becomes 0, every row loses bits `0x1`,
+     `0x2`, `0x4` and `0x80`, and `+0xB50` is cleared (`0x002971C3`-`0x00297218`). It answers 1.
 
 The menu works the list through small calls:
 
@@ -369,13 +417,15 @@ The status cycle record at the row's `+0xF0`, stepped by `0x00272F80(record, 30,
 |---|---|---|---|
 | `+0x00` | `u32` | mask | statuses to show: the member's status presence word `+0x44`, copied in each frame by `0x00297FE0` (`0x0029802A`) |
 | `+0x04` | `u32` | counted | the mask at the last count: when the mask differs from it and either nothing was counted or the period has moved on, `0x00272F80` stores the mask here, counts again and sets `+0x08` to -1 (`0x0027302D`-`0x0027305C`) |
-| `+0x08` | `i16` | shown | the period being shown, from the frame counter `0x0208F570` (`0x00273012`-`0x0027302A`, stored at `0x00273099`); -1 after a count (`0x00273058`), 0 when nothing counts (`0x00273067`) |
+| `+0x08` | `i16` | shown | the period being shown, from the frame counter `0x0208F570` (`0x00273012`-`0x0027302A`, stored at `0x00273099`); -1 after a count (`0x00273058`), 0 when nothing counts (`0x00273067`). With `n` counted, `p = max(d - 6n + 6, 12)` frames for the second argument `d` (30 here) and `b = ceil(d / p)` blank periods, at least 1, the period is `((0x0208F570 - start) mod ((n + b) x p)) / p`, unsigned, `start` being the fourth argument, taken as 0 after a count (`0x00272FC0`-`0x0027302A`, `0x00273055`) |
 | `+0x0A` | `i16` | count | statuses counted (`0x00275E40`, stored at `0x00273051`); it sets each status's period, `max(36 - 6n, 12)` frames (`0x00272FC0`-`0x00273000`), and 0 shows nothing (`0x00273061`) |
-| `+0x10` | `void*` | status | the status row shown, or 0: the n-th counted status of the mask in the order once the blank periods have passed (`0x002730A3`-`0x0027314B`), 0 during them and when nothing counts (`0x0027306B`); `0x00297FE0` shows its text `0x46B7` plus `+0x98` and its colour from `+0x25` bit `0x1` (`0x0029803B`-`0x002980B8`), and answers 1 when a mark appeared or went (`0x00298020`, `0x0029804C`) |
+| `+0x10` | `void*` | status | the status row shown, or 0: the n-th counted status of the mask in the order once the blank periods have passed (`0x002730A3`-`0x0027314B`), 0 during them and when nothing counts (`0x0027306B`); `0x00297FE0` shows its text `0x46B7` plus `+0x98` and its colour from `+0x25` bit `0x1` (`0x0029803B`-`0x002980B8`), and answers 1 when a mark appeared or went (`0x00298020`, `0x0029804C`). It is written only when the period changes (`0x0027308C`-`0x00273093`). The walk takes the 32 rows of the order `0x00273410(order)`, a row counting when its id `+0x98` has its bit in `+0x04` and it passes the order's test; when the walk ends before the n-th, the first counted row is shown (`0x002730C0`-`0x00273146`) |
 
 ### The gil window
 
-The gil window is the `0xF8`-byte widget at `0x0209C4C8` with procedure `0x002A1FB0`; the script verb `fs_foodwinopen` opens it through `0x002A1D40`, and `gillwinstart` and the shop's trade (`0x0056D4D9`) start its count through `0x002A1DC0`.
+The gil window is the `0xF8`-byte widget kept at `0x0209C4C8` with procedure `0x002A1FB0`; the script verb
+`fs_foodwinopen` opens it through `0x002A1D40`, and `gillwinstart` and the shop's trade (`0x0056D4D9`) start its count
+through `0x002A1DC0`.
 
 `GilWindow` (`0xF8` bytes, offsets from the start of the record):
 
@@ -403,7 +453,8 @@ The gil window is the `0xF8`-byte widget at `0x0209C4C8` with procedure `0x002A1
 
 ### The location panel
 
-The location panel is the `0xF0`-byte widget at `0x0209C300` with procedure `0x0029C530` that `0x00297100` shows instead
+The location panel is the `0xF0`-byte widget kept at `0x0209C300` with procedure `0x0029C530` that `0x00297100` shows
+instead
 of the list (The list and its rows above). On message 1 it decodes record `0x14` of the layout file at
 `[0x0209AC30] + 8` into its `+0x50` (`0x002432B0`, `0x0029C589`-`0x0029C5B5`) and fills three nodes:
 
@@ -471,8 +522,10 @@ the count. `0x0031EB20` sets that entry to -1 on entry (`0x0031EB46`) and change
 `0xC`-`0x10` (`0x0031F402`), so for these two codes it stays -1.
 
 With `arg` not 0, the rebuild opens the leader choice (request 3) by itself when all of these hold
-(`0x0035BEC1`-`0x0035BF2F`): `0x022C8068` is not 0, the leader's record has flag bit `0x40`, some listed member has flag bits `0x2`,
-2 and 6 clear, block bit `0x4` is clear, a listed member has flag bit `0x1`, and `0x02092730` is 0. A refused request clears the
+(`0x0035BEC1`-`0x0035BF2F`): `0x022C8068`, the count of listed members without flag bit `0x40` (`0x0035BDEF`), is not 0;
+the leader's record has flag bit `0x40` (`0x0035BDE2`, `0x0035BE30`); some listed member has flag bits `0x40`, `0x2` and
+`0x4` clear (`0x0035BDF8`-`0x0035BDFD`); block bit `0x4` is clear; a listed member has flag bit `0x1`; and `0x02092730` is
+0. A refused request clears the
 two bits it set (`0x0035BF38`, `0x0035BF3F`). None of this runs when bit `0x8` of `0x022C83E8` is set and `0x00303EC0()`
 answers non-zero; the rebuild then calls `0x002547D0(1)` instead (`0x0035BE98`-`0x0035BEBC`).
 

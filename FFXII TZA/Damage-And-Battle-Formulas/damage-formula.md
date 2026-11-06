@@ -106,6 +106,10 @@ Gil Toss read it ([Weapon formulas](weapon-formulas.md)).
 | `+0x18` | the target unit's byte `+0x55`, or -1 without a unit |
 | `+0x1A-0x29` | the source's 128 augment bits, from both layers `+0x68` and `+0x78` |
 
+A null source record leaves `+0x04` and the augment bits 0, and a null target record leaves `+0x08` and `+0x18` 0,
+not -1: both come from the builder's clears (`0x003847D8`-`0x003847F3`, `0x00384806`, `0x0038485D`). For a target record
+the builder keeps the unit `0x0031B860` finds in `0x02EBF188` (`0x00384870`).
+
 Without a target unit, Reverse (status 12) is removed from `+0x08` and augment 15 (Medicine Reverse) from the merged bits
 (`0x00384896`-`0x0038489D`). When the result's bit `0x20` is set it also removes Reverse, Disease (16) and Reflect
 (23) from `+0x08`, sets a `+0x18` of `0x0D` to 0, and removes augment 15 (Medicine Reverse) (`0x003848A1`-`0x003848B8`).
@@ -135,6 +139,15 @@ otherwise `0x002EDBD0(id)` for the character record that id names (`0x002E7FD0`-
 A magick recipe such as 7 has only slot 2 (`0x00387FD0`): an action with flag bit `0x20000` can be blocked by a
 shield, against the target's magick evade `+0x34` plus the Shield Block augments 88-90 (`0x00387FD0`-`0x0038823B`).
 
+- Slot 2 returns at once when the target record has no unit (`0x0031B860`, kept in `0x02EBF188`), the unit lacks bit
+  `0x800000` of its first dword, `+0x34` is 0, or the action row of `0x02AEDFD4` lacks flag bit `0x20000` of `+0x0C`
+  (`0x00387FE3`-`0x0038805F`).
+- It sets the hit chance `0x02AEDFE0` to 100 (`0x0038806C`). The block chance `0x02AEDFF0` is `+0x34` plus the values of
+  augments 88, 89, 90 and 3 the target holds in either layer, at most 100 (`0x0038807C`-`0x003881FC`); a target under
+  Stop, Sleep or Disable (context `+0x08` bits `0x2018`) gets 0 (`0x00388065`, `0x00388210`).
+- `MT19937 % 100` below the block chance blocks the magick: result kind 11 (result `+0x04` = `0x0B`) and the stop
+  flag `0x02AEDFB8` = 1 (`0x00388216`-`0x0038823B`).
+
 ### The outcome roll
 
 Slot 41 rolls the outcome (`0x003896B0`-`0x00389805`). When the target unit has bit `0x800000` of its first dword:
@@ -150,6 +163,11 @@ Each failed band draws again, and when all three fail `MT19937 % 100` at or abov
 (`0x02AEDFBC`). Without that bit only the hit chance is rolled. With knockback (`0x02AEDFC8`), a landed hit, a
 shield block of kind 3 and a parry of kind 1 set result `+0x18` bit `0x8`; kinds 2, 4 and 5 do not
 (`0x00389734`-`0x00389741`, `0x003897F8`-`0x00389805`).
+
+Every outcome but a landed hit sets the stop flag `0x02AEDFB8` (`0x0038971B`, `0x00389745`, `0x003897E3`), so no later
+slot runs; a miss also sets `0x02AEDFBC` (`0x003897D9`). The slot keeps the target's unit in `0x02EBF188` (`0x003896C5`).
+With a hit chance of 0 the band rolls draw nothing and use r = 0 (`0x003896EF`, `0x0038975E`, `0x003897A5`), so a
+non-zero band then always takes the hit.
 
 ### The knockback value
 
@@ -189,7 +207,7 @@ recipe 7's is `62 92 93 94 95 113 170 175 182`:
 | `98` | `0x0038BE00` | doubles the scale on a critical |
 | `99`, `94`, `95` | `0x0038BE30`, `0x0038B220`, `0x0038B6A0` | elements and weather ([Elements](elements.md)) |
 | `125`, `113` | `0x0038D280` | the finisher: `(attack - defence) * scale` into HP loss or gain |
-| `165` | `0x0038F890` | ×1.2 for augment 49 (Attack Boost), ×2 for augment 50 (Double-Edged) (`0x0038F89B`-`0x0038F8D0`) |
+| `165` | `0x0038F890` | ×1.2 for augment 49 (Attack Boost), ×2 for augment 50 (Double-Edged) (`0x0038F89B`-`0x0038F8D0`), each on the HP loss `0x02AEE004` only when it is not -1; Double-Edged also copies the loss, or -1 when it has no loss, into the user's HP loss `0x02AEE014` (`0x0038F8D0`) |
 | `170`, `171` | `0x0038F970`, `0x0038F9D0` | the status chance: the action's `+0x14`, or the weapon's `+0x1F` |
 | `175`, `176` | `0x0038FB80`, `0x0038FBC0` | roll it; a miss stops the list |
 | `182` | `0x0038FCD0` | add the action's or weapon's statuses |

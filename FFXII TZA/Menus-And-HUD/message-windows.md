@@ -20,15 +20,17 @@ addresses: "0x0215F200, 0x002E16B0, 0x002E09A0, 0x002E08C0, 0x002A2C00, 0x002A61
 
 ### The script's eight slots
 
-A script owns eight message slots, records of `0x68` bytes at `0x0215F200` (layout below). Every setter clamps the
-slot number to 0-7 before use (`0x002E1D10`, `0x002E1F80` and the others below). The verbs fill a slot's settings first and
+A script owns eight message slots, records of `0x68` bytes at `0x0215F200` (layout below). Every setter turns a
+negative slot number into 0, and all but three turn one above 7 into 7 (`0x002E1D10`-`0x002E1D1F`, `0x002E1F80` and the
+others below). `setaskselectignore`, `setmeswinactive` and `setmeswinhidestatus` do nothing for a slot of 8 or more
+(`0x002E20D3`-`0x002E20D6`, `0x002E2160`-`0x002E2163`, `0x002E21E0`-`0x002E21E3`). The verbs fill a slot's settings first and
 then open its window with `0x002E16B0`; the settings apply to the next window opened in that slot.
 
 | Verb | Id | Setter | What it sets |
 |---|---|---|---|
 | `mesopenspeed`, `mesopenspeed_1b` | `0x1A`, `0x1B` | `0x002E1D10` | the run lengths, each the value times 33 ms or a negative value kept: `mesopenspeed` (`0x00350B50`) sets the opening run `+0x30` and writes -1 to the closing run `+0x34`; `mesopenspeed_1b` (`0x003510D0`) sets both |
 | `askpos`, `debug_mesask_43` | `0x13`, `0x2043` | `0x002E1D50` | the choice list's start row `+0x24`, cancel row `+0x28` and cancel switch `+0x39`, with the flag `+0x3B` |
-| `setaskselectignore` | `0x475` | `0x002E20D0` | sets or clears bit n of the hidden-choices mask `+0x18` |
+| `setaskselectignore` | `0x475` | `0x002E20D0` | sets or clears bit value `1 << (n & 31)` of the hidden-choices mask `+0x18` (`0x002E20FE`-`0x002E2110`) |
 | `setmeswinactive` | `0x476` | `0x002E2160` | bit `0x1` of `+0x44`: the next window opens without taking the focus |
 | `setmeswinhidestatus` | `0x3D3` | `0x002E21E0` | on the open window: 2 sets bit `0x100000` of its `+0x40`, any other value clears it (`0x002A31F0`) |
 | `setmesmacro` | `0x1A8` | `0x002E1B70` | entry n of the slot's 32 macros at `0x0215F540 + slot x 0x100`: a kind and a value |
@@ -145,8 +147,13 @@ It also sets `0x022C7F88` to 1 (`0x0035780F`).
 
 `0x002E08C0(slot)` closes a slot's window: it starts the window's closing run (`0x002A2720`), sets state 6, calls
 `0x002F1C50([0x0215F1B6])` when `+0x40` is -1, and writes `0xFE` to `+0x40`. Once the window reports its run over
-(`0x002A28B0`, bit `0x200` of its `+0x40` clear), the drain destroys it with `0x002A2830`, clears the slot and sets state 7
-(`0x002E0A2E`-`0x002E0A64`).
+(`0x002A28B0`, bit `0x200` of its `+0x40` clear), the drain destroys it with `0x002A2830`, clears the slot and sets
+state 7 (`0x002E0A2E`-`0x002E0A64`).
+
+`0x002E08C0` clamps the slot to 0-7 like the setters (`0x002E08C6`-`0x002E0927`); the window is the slot's `+0x00`, the
+state its `+0x08` and the byte `+0x40` the slot's own (`0x002E08D9`-`0x002E08F8`). With a window it answers 1
+(`0x002E090D`). A slot with no window keeps its state: `0x002E08C0` only writes `0xFE` to `+0x40` and answers 0
+(`0x002E08ED`, `0x002E0929`-`0x002E092B`).
 
 `0x002E06F0` closes all eight slots the same way. The script unload `0x0032ED80(n)` calls `0x002E0780(n)`, which closes and
 destroys at once every window whose `+0x3F` is n (`0x0032EEBF`).
@@ -280,8 +287,11 @@ template text `0x467C` with a button from `0x0029DA70`. A signal is replaced whe
 
 Scripts register a picture with `registshape` (`0x17A`): `0x002A7950` takes the first free of the eight `0x20`-byte
 picture slots at `0x0209C510`, loads the picture as the image label `shape` (`0x0024A440`) and returns the slot.
-`0x002A7A40` frees a slot. A window with parts has an array of `0x60`-byte parts at `+0x3F8`, its count at `+0x3F0`
-and a draw order at `+0x400`, made by `0x002A2AD0` with each part hidden, colour `0x80808080` and scale 1.0.
+
+`0x002A7A40` frees a slot. A window with parts points at an array of `0x60`-byte parts from `+0x3F8`, keeps its count
+at `+0x3F0` and points at a draw order from `+0x400`. `0x002A2AD0(window, n)` allocates both through `0x002497B0`, n ×
+`0x60` bytes for the parts (`0x002A2AEB`-`0x002A2AF9`) and n bytes for the order (`0x002A2B03`-`0x002A2B0A`), and stores
+n at `+0x3F0` (`0x002A2B11`); it starts each part hidden, with colour `0x80808080` and scale 1.0.
 
 | Verb | Id | Function | Does to a part |
 |---|---|---|---|
@@ -427,7 +437,7 @@ verbs](../Scripts-And-Script-Commands/reward-verbs.md)), and `0x002A5B90(ids, co
 | `+0x60` | `i32` | shifted | 1 once `0x002E04E0` has moved the slot's rectangle and window; the open and the slot reset `0x002E1450` write 0 |
 | `+0x64` | `u8[4]` | - | no instruction reads or writes them |
 
-`PicturePart`, `0x60` bytes, the array at `+0x3F8` of a window with parts:
+`PicturePart`, `0x60` bytes, an element of the array that `+0x3F8` of a window with parts points at:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -452,7 +462,7 @@ verbs](../Scripts-And-Script-Commands/reward-verbs.md)), and `0x002A5B90(ids, co
 | `+0x48` | `f32[4]` | scaleTween | x start, x change, y start, y change |
 | `+0x58` | `i16[3]` | scaleTime | tick, length, curve |
 
-The window, `0x410` bytes from `0x002A2C00`; the fields listed here are those of the type store's P13 list:
+The window, `0x410` bytes from `0x002A2C00`, holds these fields:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

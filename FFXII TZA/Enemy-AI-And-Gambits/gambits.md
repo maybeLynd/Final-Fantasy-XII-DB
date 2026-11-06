@@ -29,26 +29,33 @@ chooses which one is used.
 `0x00308270` (`0x00305AC1`-`0x00305AC8`). Then:
 
 1. **A pending command.** When unit flag `0x4000` is set it is cleared (`0x00305AEB`); the command's action
-   `+0xBA0` and target `+0xBB8` are committed with `0x0030F760`. Ids `0x4000`-`0x4166` (orders) skip the
-   availability check `0x002FFCF0` (`0x00305AF6`-`0x00305B09`). A successful commit ends the turn.
+   `+0xBA0` and target `+0xBB8` are committed with `0x0030F760(unit, unit + 0xBA0, action, target, 1)`
+   (`0x00305B2F`). Ids `0x4000`-`0x4166` (orders) skip the availability check `0x002FFCF0`
+   (`0x00305AF6`-`0x00305B09`). A successful commit ends the turn.
+   - Any other id that check answers non-zero for is dropped without a commit (`0x00305B10`); a refused or
+     dropped command goes on to step 2 (`0x00305B36`).
 2. **Confuse or Berserk.** When the unit has Confuse (status 5), or is an enemy-table unit with Berserk
-   (27), the order set at `0x01EEC320` is walked instead (`0x00305B66`-`0x00305B90`).
+   (27), the order set at `0x01EEC320` is walked instead (`0x00305B66`-`0x00305B90`). Outside a town the stats
+   record is read here with no null test (`0x00305B66`-`0x00305B70`), so a unit without one faults.
 3. **The unit's own lists.** The set at `+0x6E8` is walked; a party record with Berserk then walks the set
    at `0x01EEC370` (`0x00305BBB`-`0x00305BE5`) and, when that fails, goes on to step 5.
 4. **The gambit list.** For a party record, the walk of the gambit set at `+0x6E0` happens only when bit `0x4`
    of its stats record's first dword is set; otherwise a command set at `+0x6F8` is walked if one is
    queued (`0x00305BE7`-`0x00305C32`). Enemy records walk `+0x6E0` with their subgroup `+0x6B5`
    ([Enemy AI](enemy-ai.md)). The `+0x6E0` walk first clears `+0x6F8` and `+0x748` (`0x00305C3C`-`0x00305C4C`).
+   - A `+0x6F8` walk that does not commit clears `+0x6F8` and `+0x748` (`0x00305C23`-`0x00305C2C`).
 5. **The last set** at `+0x6F0` is walked (`0x00305C61`-`0x00305C71`).
 6. **Nothing matched.** Unless resuming, the unit commits order `0x4021`, a wait, from `0x01EEC298`
    (`0x00305C7E`-`0x00305C9B`, [Battle orders](../Battle-Actions/battle-orders.md)).
 
 With bit `0x8000` of the active field record set, a party record skips steps 2-5 and goes straight to step 6
-(`0x00305B3C`-`0x00305B57`), and every other unit skips step 2 (`0x00305B5D`-`0x00305B64`).
+(`0x00305B3C`-`0x00305B57`), and every other unit skips step 2 (`0x00305B5D`-`0x00305B64`) and the `0x01EEC370` walk of
+step 3 (`0x00305BB2`-`0x00305BB9`).
 
 ### The walk
 
-`0x00305CC0(unit, set, subgroup, resume)` walks one subgroup of an order set (`0x00305CC0`-`0x00305E64`):
+`0x00305CC0(unit, set, subgroup, resume)` walks one subgroup of an order set (`0x00305CC0`-`0x00305E64`); a null
+set returns 0 at once (`0x00305CF2`-`0x00305CF7`):
 
 1. The set's first `0x20` bytes count the orders of each subgroup; the subgroup's first order is after
    the counts of all earlier subgroups (`0x00305D24`-`0x00305D97`). A subgroup with a count of 0 walks
@@ -61,7 +68,8 @@ With bit `0x8000` of the active field record set, a party record skips steps 2-5
 In resume mode, an order with flag `0x80` is skipped, and while the order in flight (`[unit+0x708]`) has
 flag `0x4000` only orders with flag `0x40` are tried (`0x00305D6B`-`0x00305DC0`). Reaching the order the context points at
 returns 1 without trying it (`0x00305DA4`). A resumed commit also calls
-`0x004697C0([unit+0x698], action, previous action, 4)` (`0x00305E31`-`0x00305E5A`).
+`0x004697C0([unit+0x698], action, previous action, 4)` (`0x00305E31`-`0x00305E5A`), where the previous action is
+`+0x714` as the walk began (`0x00305CE5`); a previous action of `0xFFFF` skips the call (`0x00305E3F`).
 
 ### One line's test
 
@@ -153,11 +161,16 @@ not a unit the action would not change, and has the lowest HP % among them, the 
 `0x0030BD00(unit, candidate, mode)` admits a candidate by the relation mode (`0x0030BD27`-`0x0030BE3E`). It first asks
 `0x0030AB40` whether the two are on the same side (`0x0030AB40`-`0x0030AC41`):
 
-- a unit whose actor class nibble is 5, or whose flag byte lacks bit `0x10`, is on neither side
-  (`0x0030AB93`-`0x0030ABB2`);
+- a null unit, a unit whose actor class nibble is 5, or one whose flag byte lacks bit `0x10`, is on neither
+  side, and the answer is 0 (`0x0030AB64`-`0x0030AB70`, `0x0030AB93`-`0x0030ABB2`);
 - a party record, or an actor of class nibble 3, is on the party side, and every other unit on the other
   side (`0x0030ABB8`-`0x0030AC0A`);
-- a deciding unit under Confuse sees the two sides swapped (`0x0030AC14`-`0x0030AC25`).
+- a deciding unit under Confuse sees the two sides swapped (`0x0030AC14`-`0x0030AC25`); `0x0030BD00` passes flags 0
+  (`0x0030BD1A`), so this Confuse test always runs. It reads the deciding unit's stats record with no null
+  test, and no unit reaches it without one:
+  - the flag bit `0x10` it needs first (`0x0030ABA6`) is set only by `0x0023412D`, after `0x00234123` has found
+    `+0x698` non-null;
+  - the reset `0x00236A60` nulls `+0x698` (`0x00236AB4`) only while it clears that bit (`0x00236AA6`).
 
 | Mode | Admits | Gambit word | Site |
 |---:|---|---|---|
@@ -185,6 +198,9 @@ itself. A word from `0x8000` is an index into the weighted table `[0x02EBF160]`:
 gameplay LCG roll `r = LCG % 100` picks the first entry whose running weight sum is above `r`
 (`0x00308F61`-`0x00308F99`). With no such entry the result is `0xFFFF`.
 
+A word from `0x8000` whose index is not below the table's count `+0x00`, which is every such word while
+`[0x02EBF160]` is null, comes back unchanged (`0x00308EDD`-`0x00308EFA`).
+
 Each weighted entry, 4 bytes:
 
 | Offset | Type | Name | Meaning |
@@ -209,16 +225,37 @@ Each party member's twelve gambit lines are stored as a bank of `0x34` bytes in 
 
 A switched-off line is therefore not in the walked list.
 
+The condition id is not range-checked here: the row is the table's word `+8` times `condition - 0x6000` plus the
+value `0x0020E600` gives for the table's `+0xC`, added in 32 bits (`0x00327EC1`-`0x00327ED2`). A null `[0x02EBF0D8]` or
+a 0 from `0x0020E600` leaves the row at 0 (`0x00327EDD`), and the first field read, word `+0x08` at `0x00327EDF`,
+faults. Only the orders built are written, so those past the new count keep what they held.
+
+The count is a byte store (`0x00327F60`). The bank and the selected set are read from `[0x02EBF190]` itself, with `k`
+the stats byte `+0x04` (`0x00327DED`-`0x00327E4B`).
+
 ### The three sets and the presets
 
 `0x00326030(state, k)` resets member `k`'s selected set to 0 and copies the 52-byte gambit block at stats
 `+0x88`-`+0xBB` into all three banks (`0x00326039`-`0x003260D5`).
+
+The stats record is the state's own `+8 + k * 0x1C8` while the low byte of `k` is at most `0x27`
+(`0x00326041`-`0x00326054`). For a larger `k` the source pointer stays 0 and the first copy reads address `0x88`
+(`0x00326057`), which faults; the selected-set store, with `k` sign-extended, comes before it (`0x00326033`-`0x00326039`).
 
 That block is filled from an authored preset by `0x00327CB0(stats, preset)` (`0x00327CB0`-`0x00327DD9`). A preset
 is a row of `0x02EBF0E0`, id `0x5000` + row, with twelve condition words from `+0x00` and twelve action words
 from `+0x20`. The loader copies the pairs into the twelve 4-byte slots from `+0x88` until either word is
 `0xFFFF`, sets a mask bit for each (`+0xB8`) and stores the count (`+0xBA`) (`0x00327D42`-`0x00327D84`). The unit
 definition passes the party table row's word `+0x14` as the preset (`0x0023AEEE`).
+
+The loader returns at once for a null record or one whose kind byte `+5` is not 0 (`0x00327CB3`, `0x00327CCE`). The
+row address is the table's word `+8` times `preset - 0x5000` plus the value `0x0020E600` returns for the table's
+`+0xC`, added in 32 bits (`0x00327D19`-`0x00327D26`). A preset that fails `0x00322C50(0xA, preset, 0)`, a null
+`[0x02EBF0E0]` or a 0 from `0x0020E600` leaves the row at 0, and then no pair is read and the count is 0
+(`0x00327CE8`-`0x00327D2A`, `0x00327D36`-`0x00327D40`).
+
+The slots from the count to 11 are set to `0xFFFFFFFF` and their mask bits cleared (`0x00327D8A`-`0x00327DC0`), and
+the loader ends with `0x00327DE0(stats)` (`0x00327DC5`).
 
 The fresh stats record `0x0023AC80` calls `0x00327CB0`, `0x00326030` and `0x00327DE0` in turn (`0x0023AEF5`-`0x0023AF1D`,
 [Battle unit construction](../Characters-And-Objects/battle-unit-construction.md)). The party-row reset `0x00328BD0`, run
@@ -234,7 +271,7 @@ The gambit bank, `0x34` bytes, three per party member:
 | `+0x00` | `u16[24]` | lines | twelve (condition, action) pairs; `0xFFFF` = empty (`0x00327E6B`-`0x00327E80`) |
 | `+0x30` | `u16` | enabled | bit i set: line i is on (`0x00327E60`-`0x00327E65`) |
 | `+0x32` | `u8` | count | number of line slots the menu shows, 0-12; setgambit_slotmax adds to it (`0x00327930`) |
-| `+0x33` | `u8` | pad33 | read and written by no instruction on its own; nothing fixes its width. It moves only inside the dword copies of `+0x30`-`+0x33`: bank to stats record `0x00234ED0` (`0x00234F30`, `0x00234F88`, `0x00234FE1`, `0x0023503A`, `0x0023509B`), the save image to a bank `0x00235AF0` (`0x00235BF8`), stats record to the three banks `0x00326030` (`0x00326095`, `0x003260CF`, `0x00326109`), `0x00327BE0` and `0x00327C60` to a caller's copy (`0x00327C29`, `0x00327C9D`), a copy back to a bank `0x003282D0` (`0x00328347`), and the gambit screen's copy `0x005691E0` (`0x005695D5`) |
+| `+0x33` | `u8` | pad33 | read and written by no instruction on its own; nothing fixes its width. It moves only inside the dword copies of `+0x30`-`+0x33`: bank to stats record `0x00234ED0` (`0x00234F30`, `0x00234F88`, `0x00234FE1`, `0x0023503A`, `0x0023509B`), the save image to a bank `0x00235AF0` (`0x00235BF8`), stats record to the three banks `0x00326030` (`0x00326095`, `0x003260CF`, `0x00326109`), `0x00327BE0` and `0x00327C40` (its bank lookup starts at `0x00327C60`) to a caller's copy (`0x00327C29`, `0x00327C9D`), a copy back to a bank `0x003282D0` (`0x00328347`), and the gambit screen's copy `0x005691E0` (`0x005695D5`) |
 
 One order of a walked set, 24 bytes from set `+0x20`:
 

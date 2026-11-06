@@ -71,9 +71,9 @@ handle is returned even when no bank owns the id, and is kept in the voice at `+
 
 | Flag bit | Effect |
 |---|---|
-| 3 (`0x08`) | not started while slot 7 of the same bank plays, unless this is slot 7 (`0x00224657`-`0x0022467E`) |
-| 5 (`0x20`) | before starting, every playing block or six-digit sound whose own slot flags have bit `0x40` (`0x40`) is checked: one with the same id fades to the new volume over 4.8 s and the new sound is not started; any other fades out over 4.8 s (`0x0022468A`-`0x002246A4`, `0x00210710`, `0x002238F0`) |
-| 7 (`0x80`) | a voice already playing this slot is reused with the new pan and volume (`0x002246E3`-`0x00224756`) |
+| `0x08` | not started while slot 7 of the same bank plays, unless this is slot 7 (`0x00224657`-`0x0022467E`) |
+| `0x20` | before starting, every playing block or six-digit sound whose own slot flags have bit `0x40` is checked: one with the same id fades to the new volume over 4.8 s and the new sound is not started; any other fades out over 4.8 s (`0x0022468A`-`0x002246A4`, `0x00210710`, `0x002238F0`) |
+| `0x80` | a voice already playing this slot is reused with the new pan and volume (`0x002246E3`-`0x00224756`) |
 
 A six-digit bank's start `0x00223190` reads one flag byte for the whole bank, `+0x44`, and a bank with bit `0x20` starts its
 voice with a 4.8 s fade in.
@@ -82,6 +82,9 @@ voice with a 4.8 s fade in.
 
 `0x002257E0(voice, volume, frames)` clamps the volume to 0-127 (`0x002257EC`-`0x0022580A`) and posts
 `volume / 127` over `frames / 60` seconds to the driver's `Sound::SetVolume` (`0x007BEAF0`).
+A volume below 0 becomes 0 (`0x002257EC`) and one of 127 or more becomes 127 (`0x0022580A`). The result is kept in the
+voice at `+0x1C` (`0x00225811`), and the post goes through `0x007A81F0` with the driver sound at voice `+8` and -1 as
+its last argument (`0x0022580D`, `0x00225827`).
 
 The three Config rows are options commands `0x13`, `0x14` and `0x15` (`0x002408F1`, `0x00240902`, `0x00240913`):
 
@@ -110,6 +113,12 @@ So `0x40` is straight ahead, `0x00` 270 degrees, `0x7F` about 89 degrees, `0xBF`
 `0x80`-`0xFF` is the rear half, run the other way. The output count is always 8 (`0x007AF06A`), so the eight-speaker
 ring is used. A pan change moves at no more than 5.0 per second (`0x007BE510`).
 
+`0x002256F0` reaches the driver sound at voice `+8` in two posts: first command `0x12` with 1 (`0x007A7E00`,
+`0x0022576A`), which turns that 5.0 limit on, then command `0x10` with the pan, the front-back value, 0 and
+`frames / 60` seconds (`0x007A7E90`, `0x0022578E`). It keeps the pan byte in the voice at `+0x20` (`0x002257A2`). Its
+earlier call of `0x0016D6A0` (`0x0022573E`), with 0 when voice `+0x2C` is 3, 5 or 9 and 1 otherwise
+(`0x0022571E`-`0x00225739`), returns at once: that body is a bare `ret` (`0x0016D6A0`).
+
 ### Fades
 
 `0x007A9E50(curve, t)` is the fade shape, with six curves from the jump table at `0x007A9F1C`:
@@ -123,7 +132,7 @@ ring is used. A pan change moves at no more than 5.0 per second (`0x007BE510`).
 | 4 | 2^t - 1 |
 | 5 | 2 - 2^(1-t) |
 
-A curve above 5 gives 0 (`0x007A9E5A`). The ramp setter `0x007CA560` has 97 calls:
+A curve outside 0-5 gives 0: the test at `0x007A9E5A` is unsigned. The ramp setter `0x007CA560` has 97 calls:
 
 1. 75 pass curve 0: every method of the driver's `Sound` in `0x007BE0B0`-`0x007BEF30`, among them volume (`0x007BEBF2`),
    pan, pitch and stop, and the category volume ramps (`0x007AA4F0`-`0x007AA570`). So every volume, pan, pitch and stop
@@ -169,7 +178,9 @@ only caller is the special-attack window `0x002D5EB0` ([Menu screens](../Menus-A
 ### Stopping after a delay
 
 `0x003B3EA0(handle, frames)` starts a fade-out of `frames` (`0x002DF170`) and queues the handle in the first free entry of
-32 at `0x02EBCC80`, with a countdown of `frames` plus a quarter of it, at least 2. `0x003B3D20`, run from `0x0024D540`,
+32 at `0x02EBCC80`, with a countdown of `frames` plus a quarter of `frames`, the quarter at least 2
+(`0x003B3EE6`-`0x003B3EFB`); with all 32 in use the handle is faded but not queued (`0x003B3ECE`). `0x003B3D20`, run from
+`0x0024D540`,
 counts each entry down and stops its handle at 0 (`0x002DF0F0`), closing the queue up. When `0x003E7DE0` answers non-zero
 it instead calls `0x003B3E40`, which stops every queued handle at once and empties the queue.
 

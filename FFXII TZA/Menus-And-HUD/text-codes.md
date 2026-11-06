@@ -35,7 +35,7 @@ selector, is:
 | Code | Bytes | Parser |
 |---|---:|---|
 | `0F !` | 2 | no parser (`0x002AD1E5`) |
-| `0F 40`-`0F 6B`, the icons | 3 | `0x002AEB20`, which always returns 2 |
+| `0F 40`-`0F 6B` but `0F V` and `0F _`, the 42 icons | 3 | `0x002AEB20`, which always returns 2 |
 | most escapes | 4 | `0x003FFAB0`, `0x003FFB90`, `0x003FFC60`, `0x003FFDA0`, `0x003FFEE0` |
 | `0F 1`, `0F l` | 5 | `0x003FFF10`, `0x003FFCE0` |
 | `0F 8`, `0F o` | 4, or 5 when bits `0x7` of the first payload byte are set | `0x003FFB00` |
@@ -61,6 +61,20 @@ when bit `0x1` of the fourth byte is set, a field of one bit per option follows,
 is a length byte (bits `0x7F`) and that many bytes of text, which may hold codes of its own. An option whose bit is set
 in the text context's mask `+0x84` is left out (`0x002AC957`). The list stops on its own `00`, so a list always ends
 its string.
+
+`0x003FFDF0(p, count, second, third, flag20, flag2, mask, options)` reads the token at `p`. It always stores the
+count, and stores bits `0x7F` of the second and third bytes, and bits `0x20` and `0x2` of the fourth byte as 0 or 1,
+only where the caller passes a place for them (`0x003FFDFC`-`0x003FFE45`).
+
+With bit `0x1` set the mask points at the fifth byte and the options start `ceil(count / 7)` bytes after it,
+`options = mask + (count - 1) / 7 + 1` for a count above 0 and `options = mask` for a signed count of 0 or below
+(`0x003FFE5B`-`0x003FFEAD`); with the bit clear the mask is 0 and the options start at the fifth byte
+(`0x003FFE4F`-`0x003FFEAD`).
+
+It then steps over the options, each a length byte (bits `0x7F`) and that many bytes, to the closing `00` and answers
+that byte's offset from `p` (`0x003FFEB0`-`0x003FFED6`). The message window (`0x002A902C`) keeps the count at `+0xA2` and
+the third byte as the cancel row `+0xA5`, a value above the count becoming the count less 1, and turns the bit
+`0x20` answer into bit `0x40000` of `+0xB0` (`0x002A983C`-`0x002A9877`).
 
 ### Control bytes
 
@@ -107,7 +121,7 @@ The four blank control bytes scale with the text size and letter spacing (`0x002
 | `0F 8` | inserts the name for a 16-bit id (`0x002639E0`) |
 | `0F >` | inserts the name of the speaking character (`0x00263990`) |
 | `0F ?` | draws one glyph from three bands of the payload (`0x002AE11A`-`0x002AE177`) |
-| `0F 40`-`0F 6B` | an inline icon: the letter picks the sprite; R, S, Z, `[` and `\` follow the controller type (`0x002AEB20`, `0x009165F0`, `0x00916670`) |
+| `0F 40`-`0F 6B` but `0F V` and `0F _` (below) | an inline icon: the letter picks the sprite; R, S, Z, `[` and `\` follow the controller type (`0x002AEB20`, `0x009165F0`, `0x00916670`) |
 | `0F *` | ruby text: a short text drawn at 0.65 of the size (`0x009166F0`), centred above the next bytes (`0x002AD47C`) |
 | `0F !` | switches to the alternate font record (`0x002AD151`) |
 
@@ -125,8 +139,9 @@ The four blank control bytes scale with the text size and letter spacing (`0x002
 | `0F =` | sets `+0xAE` (`0x002AE1DB`, `0x002A96EA`) |
 | `0F :` | resets the text state without ending the run (`0x002AE1B1`) |
 
-The escapes `,`, `1`, `l`, `m`, `n` and `V` are read and stepped over with no effect. `0F 0` and `0F _` have no arm,
-so the selector is drawn as a character (`0x002ACFC2`).
+The escapes `,`, `1`, `l`, `m`, `n` and `V` are read and stepped over with no effect (`V` at `0x002AE2F0`, in the icon
+range but sent to its own arm by the byte map `0x002AE3FC`). `0F 0` and `0F _` have no arm, so the selector is drawn
+as a character (`0x002ACFC2`).
 
 ### Template escapes
 

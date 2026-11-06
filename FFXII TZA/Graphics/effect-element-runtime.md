@@ -20,9 +20,15 @@ The parsed data lives in an effect context, which is on the
 [resource ownership](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md) page; its
 records are on [effect files](effect-files-efx-efb.md). Running it takes three levels:
 
-- An effect instance, `0x3B0` bytes made by `0x0024B270(template)` from a template. Its byte `+0` is
+- An effect instance, `0x3B0` bytes made by `0x0024B270(template)` from a template. A null template
+  returns 0 (`0x0024B279`); otherwise the block from `0x0036A100(0x3B0)` takes a copy of all `0x3B0`
+  template bytes (`0x0024B286`–`0x0024B308`). Its byte `+0` is
   its kind; it is linked at the head of `0x020910F0[kind]` through `+0x348` / `+0x350`, stamped with
-  `0x00181DD0()` at `+0x3A8`, and made current (`0x0024B270`–`0x0024B385`).
+  `0x00181DD0()` at `+0x3A8` (a 16-bit store), and made current (`0x0024B270`–`0x0024B385`).
+- Making it current there sets `0x02F97348`, `0x02EBEF98` (`+0x120`), `0x02EBEFB0` (`+0x130`) and `0x02EBEF88`
+  (`+0x1B8`), and clears the `+0x120` pair (`0x003A8000`), the player block (`0x003A72A0`) and the emitter
+  block (`0x003A8900`). It leaves `0x02F97340` and the context's table globals to `0x0024ED80`, and returns the
+  instance (`0x0024B391`).
 - An emitter, on the list whose block is the instance's `+0x1B8` (first node at `+8`, next at
   node `+8`). Its `+0x100` is an `0x800` emitter record and its `+0x108` an `0xA00` element
   definition.
@@ -76,6 +82,13 @@ order](../Engine-Core/frame-update-order.md)). It calls `0x0024B9B0(0, kind)` fo
 when a map bank is loaded (`0x00258DC7` → `0x0026F9D0`), then for the kinds 3, 5, 6, 9, 1, 7 and 4 in
 that order (`0x00258DCC`–`0x00258E0C`); the menu frame's `0x00258E40` runs kind 3 alone.
 
+Around those calls `0x00258D70` runs under arena 8 (`0x0036C1D0(8, 10)` at `0x00258D82`, popped by `0x0036C140`
+at `0x00258E16`). Before them it steps the loaded-file queue `0x003B25D0` and the battle effect slots
+`0x002FCF00` ([effect file loading](effect-file-loading.md)), then `0x003CCF20` with 2 divided by `0x01DFE0B4`,
+or by 1 when the frame-mode byte `0x00229EA0()` is 3 (`0x00258D87`–`0x00258DB2`), then `0x003B4840` and `0x003D7DC0`,
+and it sets `0x02F8F320` to 1 (`0x00258DC1`). After them come `0x00374950`, the pop, and `0x003D8190` when the low
+nibble of `0x02096885` is 0 or `0x0209688C` is non-zero (`0x00258E11`–`0x00258E2D`).
+
 `0x0024B9B0`
 refuses kind 8, walks `0x020910F0[kind]` through `+0x348`, skips an instance whose `+0x3A8` differs
 from `0x00181DD0()`, makes each current (`0x0024BB6D`) and updates it through `0x003A7050`
@@ -89,8 +102,10 @@ The instance's state byte `+0x370` picks what `0x0024B9B0` does with it after ma
 - 1 runs `0x003A7EE0` and then the update `0x003A7050`; when the update returns 0 the instance ends
   through `0x003A7300`. On steps where the pass holds the instance, state 1 runs only `0x003A7EE0` and
   `0x003A93F0`.
-- 6 runs like 1 but moves to 4 when the update returns 0, and 4 starts the instance again with
-  `0x003A74F0`.
+- 6 runs `0x0024C060`, then `0x003A7EE0` and the update `0x003A7050` with twice the step's time (`0x0024BE11`-`0x0024BE28`),
+  and goes to 5. When the update returns 0 it ends the instance first (`0x003A7300`, `0x0024BE31`), and the 4 it
+  stores at `0x0024BE36` is overwritten by the 5 at `0x0024BE3D`. 4 starts the instance again with `0x003A74F0`
+  (`0x0024BDB3`) and also goes to 5 (`0x0024BDB8`).
 
 The states that update the instance, and the group draw, first rebuild the effect matrices with
 `0x0024C060`. One step of it is `0x0039D480(view)`, with the view `0x02AEDEF0`, or `0x02AEE9E0` in a kind-4
@@ -227,6 +242,13 @@ adds 2 to the instance's frame stamp, the first dword of its `+0x1B8` block, or 
 the half-rate cadence (`0x003A839E`–`0x003A83BB`). It then calls
 `0x0043EF40(emitter, dt)` for each emitter, with the emitter published at `0x02EBEF80` (`0x003A83E0`).
 
+An emitter whose step returns 0 is released at once; the walk goes on from the next node it read
+before the step (`0x003A83D6`). The emitter is unlinked from the block's list (`0x003A83F4`–`0x003A8422`), its
+pool `+0x110`, when set, is handed to `0x003A92D0` and freed (`0x003A8426`–`0x003A843F`), and its use count is
+lowered: the first entry with its id `+0x1C` and kind `+0x13B` loses one, and when that leaves 0 on a
+pending entry, the later entries move down one place and `0x003A8130(id, kind)` frees the path objects
+(`0x003A8444`–`0x003A84DC`). The emitter itself is then freed (`0x003A84E4`).
+
 ### The emitter step
 
 `0x0043EF40` returns 0 when the emitter has no emitter record (`0x0043EF8B`). Otherwise it updates every
@@ -274,7 +296,11 @@ trigger 1 here (`0x002F317A`–`0x002F3188`).
 
 `0x002F3910(element, emitter, dt)` bounds the type at `0xD1` and jumps to the type's update method
 (`0x002F3910`–`0x002F3939`); type 0's is the base `0x002F2530` itself (`0x002F393C`), and every other
-update except type `0x70`'s calls the base, most of them followed by a type tail. The base (`0x002F2530`):
+update except type `0x70`'s calls the base, most of them followed by a type tail. Type `0x70`'s
+update `0x005C5230` returns 0 at once.
+
+A type above `0xD1`, or one without a main arm, goes to the sub-range dispatcher `0x0043EAB0` (`0x002F3918`,
+`0x002F3A27`), which returns 0 for a type it has no arm for (`0x0043EB35`). The base (`0x002F2530`):
 
 1. While `+0x224` is set and `0x00250000()` is 0, clears it and stops unless the cadence test
    returns non-zero (`0x002F2550`–`0x002F2572`).
@@ -318,8 +344,13 @@ byte is `0xFF` (`0x005002F9`–`0x0050030F`).
 The distance is from the point at `0x02AED5F0` to the position transformed by `0x02AEEA20`, computed
 by `0x002F1D90` (`0x00500324`–`0x00500381`, `0x005003D9`–`0x00500442`).
 
-The release `0x002F31C0(element, emitter)` runs the type's release method (types `0x40`–`0xD1`, then
-the sub-range table `0x0043E9C0` for `0x42`–`0xA3`; anything else has no release method), unlinks the element
+The release `0x002F31C0(element, emitter)` runs the type's release method. Six types have a main arm:
+`0x40` (`0x00464050`), `0x41` (`0x00464B80`), `0x67` (`0x00460120`), `0xA1` (`0x00461250`), `0xD0` (`0x00465120`)
+and `0xD1` (`0x003D90C0`). Every other type, inside or outside `0x40`–`0xD1`, goes to the sub-range table
+`0x0043E9C0` (`0x002F3238`), which has release arms for `0x42`, `0x6A`, `0x6B`, `0x70`–`0x74` and `0xA3` and
+returns for anything else (`0x0043EA18`).
+
+The release then unlinks the element
 from the active list and pushes it on the free list `+0x120` (`0x002F31CA`–`0x002F3297`). A culled
 element is gone, not hidden.
 
@@ -330,20 +361,32 @@ element is gone, not hidden.
 | Tag | Fires |
 |---:|---|
 | 0 | never |
-| 1 | once, when unfired and the whole age has reached the start frame |
-| 2 | on trigger 2 only, not on odd frames in the half-rate cadence: first at the start frame, then whenever the time since the last firing reaches the integer track at the indexed emitter record's `+0x10` |
-| 3 | on trigger 3 only, the element's ending |
-| other | on every call |
+| 1 | once, on any trigger, when unfired (last firing −1) and the whole age has reached the start frame; the whole age becomes the last firing (`0x003A8A4A`–`0x003A8A56`) |
+| 2 | on trigger 2 only, not on odd frames in the half-rate cadence (bit `0x1` of the whole age `+0x40`): first at the start frame, then whenever the time since the last firing reaches the integer track at the indexed emitter record's `+0x10`, sampled at the whole age (`0x004314E0`); each firing stores the whole age as the last firing (`0x003A89DF`–`0x003A8A46`) |
+| 3 | on trigger 3 only, the element's ending; the last firing is left as it is |
+| other | on every call; the last firing is left as it is |
 
-A firing calls `0x003A8AE0(index, definition, 2, time, …, element)` (`0x003A8A6C`–`0x003A8A97`).
+A firing calls `0x003A8AE0(index, definition, 2, time, key, byte, element)` with the key `+0x1C` and the byte
+`+0x1A` of the element's emitter `+0x08` (`0x003A8A6C`–`0x003A8A97`). Tags 1 and 3 give as time the age `+0x3C`
+minus the whole age `+0x40` (`0x003A8A58`–`0x003A8A68`). Tag 2 and the other tags give the time already in the
+register: the age, or, once a tag-1 or tag-3 slot has fired in the same call, that slot's time (`0x003A8A70`).
 
 ### Child emitters
 
 `0x003A8AE0` looks up the emitter record in `[[0x02EBEF90]]` and the definition in `[[0x02EBEF78]]`,
-returning 0 when either is missing or the record's word `+0x2B2` is 0 (`0x003A8AE8`–`0x003A8B42`). It
-reuses a matching emitter (`0x003A8F80`) or makes one (`0x003A9100`, `0x0043F450`), records the parent
-element at `+0x130`, and births as many elements as the record's integer track at `+0` gives at
-the firing time (`0x003A8B5C`–`0x003A8C22`).
+returning 0 when either is missing, the record's word `+0x2B2` is 0 or the definition index is 0
+(`0x003A8AE8`–`0x003A8B42`).
+
+It reuses the emitter that `0x003A8F80(key, byte)` finds for its fifth and sixth arguments, or makes one
+(`0x003A9100`, then `0x0043F450` with the mode, the time, the key, the byte and the parent). When either of
+those returns 0 it returns 0; a new emitter is counted with `0x003A8340(key, +0x13B)` (`0x003A8B5C`–`0x003A8BD1`).
+It records the parent element at `+0x130` and the byte `+0x11` of `[0x02EBA4F0]` as the tag `+0x13A`
+(`0x003A8BD6`–`0x003A8BEB`).
+
+When `0x0043F2B0` returns 1 it births as many elements as the record's integer track at `+0` gives at
+the firing time (`0x003A8BF1`–`0x003A8C22`). While the simulation tick runs (`0x00314960()` non-zero) and the
+cadence test returns 0, it then adds 1.0 to the emitter's age `+0x2C` (`0x003A8C24`–`0x003A8C43`). It returns
+the emitter's byte `+0x19` (`0x003A8C48`).
 
 ### The emitter's own cull and inheritance
 
@@ -358,10 +401,12 @@ record's byte `+0x2C5`:
 
 - bit `0x1` adds the parent's `+0xB0`, `+0xC0` and `+0xD0` vectors to the emitter's `+0x90`, `+0xA0`
   and `+0xB0`;
-- bit `0x2` multiplies `+0xF4` by the parent's `+0x1F8` and adds `+0x1FC` and `+0x200` to `+0xF8` and
-  `+0xFC`; bit `0x4` adds the parent's `+0x110` and `+0xF0` vectors to `+0xC0` and `+0xD0`;
-- bit `0x8` multiplies `+0xE0`–`+0xE8` by the parent's `+0x120`–`+0x128`; bit `0x10` mixes the colour `+0xF0`
-  with the parent's colour `+0x1F0` through `0x0026EE00`.
+- bit `0x2` multiplies `+0xF4` by the parent's `+0x1F8`, `+0xF4 = +0xF4 × parent[+0x1F8]` (`0x00442018`-`0x00442028`),
+  and adds `+0x1FC` and `+0x200` to `+0xF8` and `+0xFC`; bit `0x4` adds the parent's `+0x110` and `+0xF0` vectors to
+  `+0xC0` and `+0xD0`;
+- bit `0x8` multiplies `+0xE0`–`+0xE8` by the parent's `+0x120`–`+0x128`: `+0xE0 = +0xE0 × parent[+0x120]` and
+  the same for `+0xE4`, `+0xE8` (`0x00442106`-`0x00442146`); bit `0x10` mixes the colour `+0xF0` with the parent's colour
+  `+0x1F0` through `0x0026EE00`.
 
 `0x00441EA0(emitter)` returns, for an emitter whose parent element's emitter record has byte `+0x283`
 above 1, that record's word `+0x286`, or the parent's own word `+0x204` when the byte is 7, and 0
@@ -470,10 +515,12 @@ the `0x600` record's sub-entries; a track's event list is at the sub-entry's `+0
 
 When the checks at `0x00332A07`-`0x00332A39` pass, the player step `0x00332750` sets bit `0x4` of the player's `+0x90` on the
 first such step (`0x00332A61`). On later steps it counts the player's `+0xA0` up and returns 0 once the count reaches
-the limit `0x02EC0F90`, so the player is freed (`0x00332A3B`-`0x00332A5C`). `0x02EC0F90` (`i32`, 0 at start, zero-filled
-tail of `.data`) is set by `0x003333D0` (`0x003333E7`), which `0x001EDDC0` calls at `0x001EDE52`, to the frame-time factor
-`0x01DFE0B8` times 30.0 (`0x008F8D80`), truncated and shifted left by 2: 120 in this build. `0x00332750` reads it at
-`0x00332A52`.
+the limit `0x02EC0F90`, so the player is freed (`0x00332A3B`-`0x00332A5C`).
+
+`0x02EC0F90` (`i32`, 0 at start, zero-filled tail of `.data`) is set by `0x003333D0` (`0x003333E7`), which `0x001EDDC0` calls
+at `0x001EDE52`, to the frame-time factor `0x01DFE0B8` times 30.0 (`0x008F8D80`), `(int)([0x01DFE0B8] × 30.0) << 2`,
+truncated and shifted left by 2 (`cvttss2si`, `shl eax, 2`; `0x003333D0`-`0x003333E4`): 120 in this build. `0x00332750`
+reads it at `0x00332A52`.
 
 `0x0046EE30(track, sub-entry, id, byte)` fills a new track and `0x0046EFD0(track, slot)` starts it at
 time 0. `0x0046EFD0` creates the path objects the sub-entry lists (`0x003A8240`, `0x003A8020`), runs every
@@ -547,9 +594,19 @@ track, frames)`: below 2 frames it frees the track at once and every emitter wit
 and `+0x35A`, 1.0 at `+0x35C`, and sets bit `0x2000` of `+0x368` (clearing `0x1000`).
 
 `0x003A7050` counts `+0x35A` down by the whole part of `dt` while bit `0x1000` or `0x2000` is set, keeping the fraction
-left at `+0x35C`. At 0, bit `0x2000` frees through `0x00333740(player, key)` the first track with the
+left, `+0x35A / +0x358`, at `+0x35C`. At 0, bit `0x2000` frees through `0x00333740(player, key)`
+the first track with the
 key and every emitter with it (`0x003A8510`); bit `0x1000` frees through `0x003334B0(player, key)`
 every track and emitter without it (`0x003A8660`).
+
+Each set bit takes its own subtraction (`0x003A708D`, `0x003A713D`). The test is a 16-bit compare with zero
+(`0x003A70A2`, `0x003A7152`), so a count that steps past 0 wraps to a high word and does not fire on that step.
+At 0 the key `+0x37C` goes to every player that is set, and the bit is cleared (`0x003A70DF`, `0x003A718F`).
+
+`0x003A7050(dt)` runs those countdowns first, then the emitter step `0x003A8390(dt)` (`0x003A71D3`). It adds `dt`
+to the float `+0x84` of the `+0x130` block, steps the players, and stores the whole part of `+0x84` in
+`+0x80` (`0x003A71D8`–`0x003A726F`). It returns 1 when a player's step returned non-zero or the first node
+`+8` of the `+0x1B8` block is set, and 0 otherwise (`0x003A7275`–`0x003A728D`).
 
 ### Moving the owner actor
 
@@ -605,7 +662,12 @@ and five more the sub-range `0x42`–`0xAB`, which each main table reaches throu
 Decoded from the jump tables: 47 types have main birth, update and setup arms, 46 a draw arm and 6 a
 release arm; 18 types have sub-range arms (9 with a release). 65 types have an arm somewhere, with
 248 distinct handlers; the per-type list is on [effect element types](effect-element-types.md).
-`0x005004C0` runs once per definition, from the `0xA00` record handler.
+
+`0x005004C0(definition, value)` runs once per definition at load, from the `0xA00` record handlers
+`0x003A99F0` (`0x003A9A49`) and `0x003A9A70` (`0x003A9AAD`), with the chunk's bias `0x02EBB738` plus the
+definition's low 32 bits as `value`. The relocation walk `0x003A9BA0` runs it again for every stored
+definition each time a moved source is repaired, with the rebased definition and the 32-bit delta
+(`0x003A9BD9`). The switch hands `edx` to the arm unchanged (`0x005004C0`-`0x005006AC`).
 
 The setup arm also fixes what a definition draws. From a started `0x600` record to its pictures:
 
@@ -641,8 +703,10 @@ The setup arm also fixes what a definition draws. From a started `0x600` record 
   - Birth `0x00524800` allocates definition `+0x1A0` drops and copies the definition's `+0x1A4` and `+0x1C0` onwards
     to the element. Each step `0x00524C20` moves the drops with `0x00543E80(element + 0x230, emitter position)`
     (`0x00524CEF`-`0x00524CF6`).
-  - A drop restarts once its y is at or below definition `+0x1A4` plus the emitter's y (`0x005441C0`-`0x005441CD`). It
-    restarts at definition `+0x1C0` plus the emitter's y plus a random fraction of `+0x1C4` (`0x005442B4`-`0x005442CC`).
+  - A drop restarts once its y is at or below definition `+0x1A4` plus the emitter's y (`0x005441C0`-`0x005441CD`),
+    `y <= [definition + 0x1A4] + emitter.y`. It restarts at definition `+0x1C0` plus the emitter's y plus a random
+    fraction of `+0x1C4`: `y = [definition + 0x1C0] + emitter.y + r × [definition + 0x1C4]`, with `r` the value
+    `0x003D8E50(1.0)` returns (`0x005441F4`, `0x005442B4`-`0x005442CC`).
   - y is the height: [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md) sets a point's y to the
     ground height plus its height above the ground (`0x0033A97C`-`0x0033A990`).
   - In `ozm0101.efb` the three elements restart their drops 6.0 to 8.0, 5.0 to 6.0 and 12.0 to 15.0 above the
@@ -728,8 +792,15 @@ pages name other words of it: the effect program's flags `0x020968C8`
 ([effect files](effect-files-efx-efb.md)).
 
 The scale is `0x02096810`-`0x0209681C`. `0x0024FCF0` copies the instance's
-`+0x320` into it and multiplies it by `+0x39C` (`0x003A2B20`, `0x0024FD0B`-`0x0024FD29`). It then sets w to 1.0
-(`0x0024FD3B`), as `0x0024C060` also does (`0x0024C212`). The rows give the words this page owns:
+`+0x320` into it and multiplies it by `+0x39C`, `[0x02096810 + 4i] = [instance + 0x320 + 4i] × [instance + 0x39C]`
+(`0x003A2B20`, `0x0024FD0B`-`0x0024FD29`). It then sets w to 1.0 (`0x0024FD3B`), as `0x0024C060` also does (`0x0024C212`).
+
+`0x003A2B20(vector, s)` multiplies all four lanes in place, `vector[i] = vector[i] × s` for lanes 0 to 3, with `s`
+broadcast by `shufps xmm0, xmm0, 0` (`0x003A2B43`; `mulps` at `0x003A2B47`, stored at `0x003A2B51`), and leaves copies
+in the
+PS2 register state: `v0` (`0x022D8F30`) takes the bits of `s` sign-extended to 64 bits (`0x003A2B29`-`0x003A2B2E`),
+`vf21` (`0x022D92F0`) the 16 bytes of `v0` (`0x003A2B35`-`0x003A2B3C`) and `vf20` (`0x022D92E0`) the product
+(`0x003A2B4A`). The rows give the words this page owns:
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

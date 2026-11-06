@@ -51,6 +51,18 @@ sets the step `+0x3A` to 1 and the kind `+0x3C` from the request's byte `+0x0C`:
 | 1, picture | `0x00328480(unit, frame)`, from the result reactions `0x00307300` (frames 0, 2, 4 and 5) and the auto-attack start `0x00312FA0` (frame 3) | the frame `+0x3F`, the atlas `battle_4_p`, two colours from the byte pairs at `0x00D22780` |
 | 2, status word | `0x003284D0(unit, status)` ([Gaining and losing statuses](../Status-Effects-And-KO/status-changes.md)) | step 3, the status's name (`0x002B58B0` of the record's `+0x18`) laid out by `0x002B3050`, palette 4, and the colour by the record's `+0x25`: bit `0x2` colour 1, bit `0x4` `0x12`, bit `0x8` `0xB6`, bit `0x10` `0xF3`, else grey `0x80808080` |
 
+Where `0x00506700` takes each field from:
+
+- a number's amount is the request's `+0x08` (`0x00506834`), the absolute value `0x003283D0` stores there
+  (`0x0032840C`-`0x00328418`), and its colour slot the request's byte `+0x0D` (`0x00506874`, `0x00506888`);
+- a picture's frame is the request's byte `+0x08`, and its two colours go to `+0x0C` and `+0x10`
+  (`0x005067EA`-`0x0050682F`);
+- a status word reads the record `0x0035D330(0x1A, status)`, the status from the request's `+0x08` (`0x00506760`), keeps
+  the status's low byte at `+0x3F`, stores 0 at `+0x44`, and `0x002B3050` lays the name out into `+0x40` and `+0x42`
+  (`0x00506779`-`0x005067E0`);
+- the atlas or the name is stored at `+0x30` (`0x005067FD`, `0x00506869`, `0x00506790`);
+- a request of any other kind gets only the fields every kind gets (`0x0050675A`).
+
 ### Number colours
 
 `0x003283D0` picks the colour slot from `0x01EED300[(isHeal x 2 | b) + side]`, where `side` is 4 when the unit's
@@ -66,7 +78,9 @@ names an entry of the menu colour table through `0x00D227A8`:
 
 ### Ageing
 
-`0x003BBA60` runs once per 60 fps tick from the subsystem pump ([Subsystem update flags](../Engine-Core/subsystem-update-flags.md)).
+`0x003BBA60` runs once per 60 fps tick from the subsystem pump
+([Subsystem update flags](../Engine-Core/subsystem-update-flags.md)).
+With no ring `[0x02B457D0]` it does nothing, the alpha included (`0x003BBA64`-`0x003BBA6E`).
 While bit `0x2` of the update word `0x01EFE31C` is set (`0x003BBF90`, from `0x002547C0`), it steps each live popup with
 `0x00505500` and frees it when that returns 1:
 
@@ -76,6 +90,8 @@ While bit `0x2` of the update word `0x01EFE31C` is set (`0x003BBF90`, from `0x00
 
 The same call moves the layer's alpha `0x01EFE320` by 0.2 toward 1.0 while bit `0x2` of `0x01EFE31D` is set and toward 0
 otherwise.
+A live popup is one whose owner `+0x00` is set, and freeing it stores 0 in the owner and in the handle `+0x08`
+(`0x003BBA93`, `0x003BBAAE`-`0x003BBAB4`). The alpha is kept between 0 and 1.0 (`0x003BBAF9`-`0x003BBB21`).
 
 ### Drawing
 
@@ -83,6 +99,11 @@ otherwise.
 the newest popup: status words through `0x0028A090` into the screen-space list (`0x003F1520`, `0x003F1530`), numbers and
 pictures through `0x00505560`, which jumps on the kind `+0x3C` to `0x00505E00` (0, a number) or `0x00505570` (1, a
 picture). It ends with `0x0028EE10`.
+
+`0x003BBB60` also draws nothing when there is no ring (`0x003BBB7F`). Its walk visits all 64 slots, from the one before
+`0x02B443C0` back to `0x02B443C0`, and skips a slot with no owner (`0x003BBBC6`-`0x003BBBFC`, `0x003BBC3C`). Each status word
+writes into the next of 64 `0x130`-byte entries on the stack, advanced by what `0x0028A090` returns
+(`0x003BBC04`-`0x003BBC2B`), and the layer's alpha goes to `0x0028A090`, `0x00505560` and `0x0028EE10`.
 
 ### Numbers on screen
 

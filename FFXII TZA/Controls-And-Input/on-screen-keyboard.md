@@ -27,7 +27,10 @@ Three frame handlers call it while the keyboard is closed and call `0x0027E9E0` 
 (`0x0022BCFA`-`0x0022BD03`). Each first asks `0x002878A0`, which returns the open flag `0x0209AC50`.
 
 `0x0027E9E0` creates the keyboard only when `0x0209AC18` is empty: it starts a task of `0xC0` bytes running
-`0x002878E0`, stores it in `0x0209AC18`, and sets `0x0209AC50` and `0x0209AC14` to 1 (`0x0027E9F3`-`0x0027EA3A`). The only
+`0x002878E0` (`0x00244F50`, `0x0027EA1F`), stores it in `0x0209AC18`, and sets `0x0209AC50` and `0x0209AC14` to 1
+(`0x0027E9F3`-`0x0027EA3A`). It then gives the task the default animation descriptor `0x00915198` at `+0x48`
+(`0x00247570(task, 0)`, `0x0027EA44`) and opens it under the root `[0x0208EA40]` (`0x00246AD0`, `0x0027EA57`). With
+`0x0209AC18` already set it returns at once (`0x0027EA0C`). The only
 reference to `0x002878E0` in the image is the `lea` at `0x0027EA18`.
 
 On each update (`0x00287A07`, `0x00287AC8`) the task closes itself (`0x00244F00`) when `0x0017DE60` reports F9 again
@@ -48,6 +51,11 @@ On each update (`0x00287A07`, `0x00287AC8`) the task closes itself (`0x00244F00`
 `0x00287C20` rebuilds the seven panels of an open keyboard and does nothing when `0x0209AC18` is empty
 (`0x00287C24`). The Config screen's binding row calls it after every change (`0x0023C660`, `0x0023C787`, `0x0023C8FF`),
 and so does restoring the defaults (`0x0023E18A`), so a remap shows at once.
+
+It picks the layout set from `0x001E0B90` (8 for French, 7 for German, 9 otherwise, `0x00287C3C`-`0x00287C55`) and the
+language set from `0x00285F60` on `0x0017E270` (`0x00287C5A`-`0x00287C61`), writes the mouse labels with
+`0x002875D0(task, layout set, language set)` (`0x00287C74`) and then calls the seven panel builders `0x00286010` to
+`0x002870D0`, in panel order, with the same three arguments (`0x00287C85`-`0x00287CEB`).
 
 ### The seven panels
 
@@ -85,9 +93,20 @@ Each update colours the picture in two passes:
 
 1. `0x00289040` lights every cell whose key is held (`0x001E0E70` on the cell's index, `0x002890C7`) and gives the
    others the base colour.
+   - It walks the picture's cells, counted by bits `0x3FFFC` of the picture's `+0x50` (`(+0x50 >> 2) & 0xFFFF`,
+     `0x00289085`, `0x0028916D`-`0x00289179`); a cell's index is the word `+0x0A` of its data (`0x002890C3`).
+   - A held cell gets colour entry 1 and bit `0x1` set in its flag word (`0x002890D4`-`0x002890D8`); any other cell gets
+     colour entry 10, the base colour, and that bit cleared (`0x002890DE`-`0x002890E2`). The entry's 16 colour bytes
+     `+0x28`-`+0x37` are copied to the cell's sprite (`0x002890F6`-`0x0028916A`).
+   - The colour entries are the pointer list at `+0x10` of the block `0x002AB860` returns, `[0x0209CC40]` + `0x1098`.
 2. `0x002891A0` gives every key bound in any profile to a panel's control that panel's colour, unless it is held
    (`0x00287D10`, indexes below `0x68` only). `0x00289830` does the same for the movement keys of an active
    movement-key block (`0x001E0DC0`), in the colour of panel 3.
+   - `0x00287D10(picture, slots, colour entry, count, group)` reads all three profiles for every panel, also for
+     panels 1, 2 and 7, which list only the first (`0x00287D50`-`0x00287E35`); panel n's keys take colour entry n + 1.
+   - `0x002891A0` calls it for panels 1 to 5, then panel 7's Start and its group 2 slots, then panel 6, and then calls
+     `0x00289830` with entry 4 (`0x00289281`-`0x00289365`), so a key bound to controls of two panels shows the colour of
+     the later call.
 
 `0x001E0E70` sends codes 1 and 3 to the mouse device (`0x0079E6D0`) and any other code to the keyboard
 (`0x0079E6A0`).

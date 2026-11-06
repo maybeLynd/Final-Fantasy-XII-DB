@@ -35,15 +35,18 @@ kept at `+0x5AA4`; [Party leader](party-leader.md) turns it into the leader, the
 `0x0031B9F0(seat, map)` returns the low byte of a seat (`0x0031B9F0`-`0x0031BAB7`):
 
 1. The seat must pass the class-23 id check, 0 to 8 (`0x0031BA04`-`0x0031BA0F`;
-   [Item and ability ids](../Engine-Core/item-and-ability-ids.md)).
-2. The map picks the offset; any map above 4 returns `0xFF` (`0x0031BA1E`-`0x0031BA34`).
+   [Item and ability ids](../Engine-Core/item-and-ability-ids.md)); a seat that fails it returns `0xFF`
+   (`0x0031BA11`).
+2. The map picks the offset; any map above 4 returns `0xFF` (`0x0031BA1E`-`0x0031BA34`), and so does a negative map.
+3. Otherwise it returns the byte at `[0x02EBF190]` + the map's offset + 2 × seat (`0x0031BA36`-`0x0031BAAA`).
 
 These turn the selector into a record or a unit:
 
 - `0x00320AB0(seat, map)` returns the member's stats record, `[0x02EBF190] + 8 + selector * 0x1C8`, or 0 for a
   selector above 39 ([Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md); `0x00320AB4`-`0x00320AD9`);
 - `0x0031B810(seat)` reads map 1 directly and returns the battle unit with that selector (`0x0031B81C`-`0x0031B851`,
-  `0x002367A0`);
+  `0x002367A0`); a seat that `0x00322C50(0x17, seat, 0)` refuses is looked up as selector `0xFF` instead
+  (`0x0031B822`-`0x0031B835`);
 - `0x0031FE70` and `0x00320040` take the map first and pass the stats record on to `0x00329220`
   (`0x0031FE7A`-`0x0031FEBA`, `0x0032004A`-`0x0032008D`);
 - `0x0030A6E0` reads map 1 for a mask of the fighting members by kind, main character, guest, Esper or chocobo,
@@ -56,12 +59,19 @@ joins or leaves ([Party members](party-members.md)).
 
 `0x00329CC0` fills map 0 from the nine bytes at `0x01EED260`, `00` then eight `FF` (`0x00329CF0`-`0x00329DAE`):
 
-1. A selector is seated and its record activated with `0x00316DF0` (`0x00329D53`-`0x00329D9E`).
+1. A selector is seated and its record activated with `0x00316DF0` (`0x00329D53`-`0x00329D9E`), when
+   `0x00322C50(2, selector)` accepts it as a row of the party definitions and it is at most `0x27`; otherwise the
+   seat is left as it was (`0x00329D53`-`0x00329D8B`).
 2. An empty byte empties the seat, deactivating the record that was there with `0x00323540`
-   (`0x00329D0D`-`0x00329D51`).
+   (`0x00329D0D`-`0x00329D51`). A seat whose selector is above `0x27` holds no record and is left as it was
+   (`0x00329D2C`-`0x00329D32`).
 3. The first byte becomes the leader selector `+0x5AA4`, and `0x00326500` asks for the default controlled member
    (`0x00329DBB`-`0x00329DC8`).
 4. Maps 1-4 become copies of map 0 (`0x00329DE3`-`0x00329E27`).
+
+Each seat index first passes `0x00322C50(0x17, seat)`, which accepts 0 to 8, so no seat is skipped
+(`0x00329CF4`-`0x00329D07`, `0x00329D13`-`0x00329D23`). The fill starts with a call of `0x003148F0`, the current area index,
+whose result it does not use (`0x00329CD5`), and the leader selector is stored as a dword (`0x00329DC2`).
 
 ### Rebuilding the copies
 

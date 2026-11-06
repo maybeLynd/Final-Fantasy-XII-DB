@@ -35,8 +35,8 @@ them with `eventread` (`0x0E7`, `0x003529E0`) and `eventread_e8` (`0x0E8`, `0x00
   warrens to be the Henne Magicite Mines, in Bancour south of the Ozmone Plain.
 - `vic_a0300`, loaded in Fane of the Path, gives Lente's Tear and is followed by story counter 1950, after the
   sisters, and by the jump to Road of Verdant Praise, field `768`: "Lente's Tear is a permission. Pass through the
-  Wood and leave." A sister asks to live freely and leave the Wood, and the scene ends with "Good-bye, sister." Its
-  first entry is the choice list "View scene from:" (Beginning, Cut 11, Cut 20, Cancel).
+  Wood and leave. To other places go." A sister asks to live freely and leave the Wood, and the scene ends with
+  "Good-bye, sister." Its first entry is the choice list "View scene from:" (Beginning, Cut 11, Cut 20, Cancel).
 
 ### How the synopsis is taken
 

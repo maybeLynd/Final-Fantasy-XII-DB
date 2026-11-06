@@ -22,6 +22,10 @@ cleared a bit would freeze that part of the interface while the rest kept moving
 the bits under mask `0xEF` as byte tests and the bits under mask `0xFF00` as dword tests; bit `0x10` (`0x0010`) is tested
 nowhere. Bit `0x2` is tested twice, so sixteen tests gate sixteen groups over fifteen distinct bits.
 
+The dword before it, `0x01E0C460`, is the `UISize.json` cell `mHelpMessageFontCount`. `0x001AF470` stores its address
+in a layout slot (`0x001AF5C0`), and the loader writes the cell through that slot as a dword (`0x001CA985`-`0x001CA993`,
+[screen layouts](../Menus-And-HUD/screen-layouts.md)), so the store ends at `0x01E0C463` and never reaches this word.
+
 ### Where the pump runs
 
 `0x002507C0(first)` is the pump's only caller. The field frame calls it with 1 once per pass when
@@ -48,19 +52,19 @@ condition the pump adds, and the sub-object or field the handler receives.
 |---|---|---|---|---|
 | 1 | `0x0001` | byte | | `0x00289970(manager + 0x5380)` |
 | 2 | `0x0002` | byte | `0x001EDE80()` non-zero | `0x003F8B40(manager + 0x80)` |
-| 3 | `0x0004` | byte | | `0x002917E0(manager, [+0x10F6C], [+0x10F70], [+0x10F72])` only with `+0x10F68` bit `0x8`; then, under the enable bit alone, with `[+0x10F00]` set `0x0028C4C0` and `+0x10F00 = 0x0028D1C0([+0x10F00])`, else `+0x10EF0` = 0 |
-| 4 | `0x0008` | byte | `[+0x10F30]` set | `0x003F6BB0`, then `+0x10F30 = 0x003F7050([+0x10F30])` |
+| 3 | `0x0004` | byte | | `0x002917E0(manager, [+0x10F6C], [+0x10F70], [+0x10F72])` only with `+0x10F68` bit `0x8`; then, under the enable bit alone, with `[+0x10F00]` set `0x0028C4C0([+0x10F00])` (`0x0028E328`) and `+0x10F00 = 0x0028D1C0([+0x10F00])` (through the jump `0x0028C4B0`, `0x0028E334`), which frees every ring whose state `+0xD54` is 5 (`0x0028D1E0`, unlinked from the `+0xD70` next and `+0xD68` previous chain and released through `0x0028FA50` at `0x0028D23A`) and returns the first remaining ring, or 0 when every ring went (`0x0028D251`), else `+0x10EF0` = 0 |
+| 4 | `0x0008` | byte | `[+0x10F30]` set | `0x003F6BB0([+0x10F30])` (`0x0028E369`), then `+0x10F30 = 0x003F7050([+0x10F30])` (`0x0028E375`), which frees every mark whose state `+0x2F0` is 4 (`0x003F7070`, unlinked from the `+0x300` next and `+0x308` previous chain and released through `0x0028FA50` at `0x003F70CA`) and returns the first remaining mark, or 0 when every mark went (`0x003F70E1`) |
 | 5 | `0x0020` | byte | `[+0x10F78]` set | `0x003F9F40(manager + 0x57E0)` |
-| 6 | `0x0002` | byte | the pump argument's bit `0x1` | `0x00291B90(manager)`, `0x003F6100([+0x10F10])`, and with `[+0x10F20]` set `0x003F24D0()` rebuilds `+0x10F20` and `0x003F24A0` runs on the new object |
-| 7 | `0x1000` | dword | | `+0x10F68` bit `0x2` = bit `0x1` of `0x0030C300()` |
+| 6 | `0x0002` | byte | the pump argument's bit `0x1` | `0x00291B90(manager)`, which frees every line of the `+0x10F10` list whose state `+0x850` is 5 (`0x00291BC0`, released through `0x00273B40` with the pool `[+0x10FC0]` at `0x00291C3F`) and moves `+0x10F10` past a freed head (`0x00291BE1`), `0x003F6100([+0x10F10])`, and with `[+0x10F20]` set `0x003F24D0([+0x10F20])` (`0x0028E3D8`-`0x0028E3E4`) rebuilds `+0x10F20`: it frees every mark whose state `+0x9C0` is 5 or 0 (`0x003F24FE`-`0x003F2507`, released through `0x0028FA50` at `0x003F2557`) and returns the first remaining mark, or 0 when every mark went (`0x003F256E`), and `0x003F24A0` runs on the new object |
+| 7 | `0x1000` | dword | | `+0x10F68` bit `0x2` = bit `0x1` of `0x0030C300()` (through the jump `0x00273900`, `0x0028E410`-`0x0028E427`); `0x0030C300` stores the members of the nine party slots (`0x00320AB0(i, 1)`) whose status words `+0x64` or `+0x3C` carry no bit of `0x80000003`, or that are in a town (`0x00377C20`), into the roster array `0x022C1740` in slot order (`0x0030C34A`-`0x0030C360`), then returns 1 when one of them carries bit `0x40000000`, Libra (`0x0030C38A`, `0x0030C3B3`), else 0 (`0x0030C398`) |
 | 8 | `0x0040` | byte | | `0x003F80D0(manager + 0xA0D0)` |
 | 9 | `0x0080` | byte | | `0x00296860(manager + 0x7FB0, 6)` |
 | 10 | `0x2000` | dword | | `0x00290CF0(manager)` |
 | 11 | `0x4000` | dword | | `0x00290EB0(manager)` |
 | 12 | `0x0100` | dword | `+0x10F68` bit `0x100` | `0x003F8EC0(manager + 0xA0)` |
-| 13 | `0x0200` | dword | `[+0x10F40]` set | `+0x10F40 = 0x003F31B0([+0x10F40], 0x00290DF0)` |
+| 13 | `0x0200` | dword | `[+0x10F40]` set | `+0x10F40 = 0x003F31B0([+0x10F40], 0x00290DF0)`, which steps every mark (`0x003F30D0`, `0x003F31E7`), unlinks each mark whose `+0x50` has bit `0x2` from the `+0x70` next and `+0x78` previous chain and hands it to the callback `0x00290DF0`, which frees it (`0x003F31EC`-`0x003F322D`), and returns the first remaining mark, or 0 when every mark went (`0x003F3246`) |
 | 14 | `0x0400` | dword | | `0x003FA790(manager + 0x57E0)` |
-| 15 | `0x8000` | dword | `[+0x10F80]` set | `0x002C6180()` |
+| 15 | `0x8000` | dword | `[+0x10F80]` set | `0x002C6180([+0x10F80])` (`0x0028E536`-`0x0028E542`), the part that draws marks over units ([HUD](../Menus-And-HUD/hud.md)) |
 | 16 | `0x0800` | dword | | `0x0028C870(manager + 0x7EA0)`, the pump's last act |
 
 The order is not the bit order: bit `0x1000` runs seventh, bits `0x2000` and `0x4000` before bit `0x100`, and bit `0x800` last.
@@ -68,7 +72,8 @@ Bit `0x2` gates two groups at two points of the frame, the second only when the 
 bit `0x1`.
 
 The argument is the 16-bit word `0x01E0C2B0`. `0x00253970`, the interface start-up, stores
-`0xF`. `0x00226280`, the world-lock apply that runs at the end of every field frame, stores through
+`0xF` there (`0x002539E5`) and the same `0xF` in the HUD draw word `0x01E0C2AC` (`0x002539D9`). `0x00226280`, the
+world-lock apply that runs at the end of every field frame, stores through
 `0x002547C0` the value `0xF` when the AND of the lock table's first words has bit `0x1000000000`, else `0xE`,
 with bits `0x4` and `0x8` cleared when that AND lacks bit `0x2000000000`. So a lock record that clears bit `0x1000000000` skips group 6 for
 every frame it is held, while the other fifteen groups keep running.
@@ -86,7 +91,7 @@ Script verbs call `0x0036D840`: `setmenuhptargetshowstatus` (`0x2A7`, `0x0034D70
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x01E0C464` | `u32` |  | the enable word; `0xFFFFFFFF` in the image; readers: the sixteen tests in `0x0028E290`; never written |
+| `0x01E0C464` | `u32` |  | the enable word; `0xFFFFFFFF` in the image; readers: the sixteen tests in `0x0028E290`; never written. |
 | `0x01E0C2B0` | `u16` |  | the pump argument; bit `0x1` enables group 6; writers `0x00226280` and `0x0036D840` through `0x002547C0`, and `0x00253970` |
 | `0x0209BE80` | `void*` |  | the UI manager object |
 

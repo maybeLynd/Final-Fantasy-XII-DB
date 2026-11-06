@@ -38,6 +38,13 @@ formatter `0x002B49F0`: through the untyped entry `0x002B4090` when `0x00254A10`
 the typed entry `0x002B40C0` (`0x0053696D`). `0x005369C0` builds the log line and `0x0035B990` posts it
 ([Battle log](../Battle-Actions/battle-log.md)).
 
+`0x002B40C0(size, out, template, ...)` clears sixteen `0x10`-byte argument slots (`0x002B40EE`-`0x002B40FB`) and has
+`0x002B4810` type them from the template (`0x002B4108`). It fills slot i, for every slot up to the last typed one, with
+its i-th variadic argument: the low 32 bits for a slot of type 1 and all eight bytes otherwise, an untyped slot
+below the last typed one included (`0x002B410D`-`0x002B41AD`). It then calls `0x002B49F0(size, out, template, slots, 1)`
+(`0x002B41AF`-`0x002B41C9`). The untyped entry `0x002B4090` hands `0x002B49F0` its variadic arguments in place, with 0
+(`0x002B409E`-`0x002B40AB`).
+
 `0x00254A10` returns 1 for the locale ids 0, 7, 8, 10 and 11 and 0 for ids 1 to 6 and 9. Only the typed path acts on
 the escapes `0F 6C`, `0F 6D` and `0F 6E`, which the `us`, `de`, `es`, `fr` and `it` templates use for counts, plurals
 and articles ([Text codes](text-codes.md)).
@@ -159,8 +166,9 @@ Strings per table. Every table not listed here has the same count in all nine tr
 | `target_data.bin` | 0 | 0 | 1,090 | 0 |
 | all 32 tables | 5,699 | 5,825 | 7,420 | 5,825 |
 
-Strings 100 and 101 of `battle_message.bin`, `Added ... to inventory.`, exist only in the `us`, `de`, `es`, `fr` and `it`
-tables.
+Strings 100 and 101 of `battle_message.bin`, in `us` both
+`Added {color:8091}{count:818080}{plural:8081}{color:8080} to inventory.`, exist only in the `us`, `de`, `es`, `fr`
+and `it` tables.
 
 | Table | Group | Strings in each tree |
 |---|---:|---:|

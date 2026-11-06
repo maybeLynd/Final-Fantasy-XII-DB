@@ -189,6 +189,8 @@ verb `questresultwindow` (`0x37C`).
   above the cap, 0 for a negative current, the current itself when the change would go below 0,
   `99,999,999 - current` when the sum would pass the cap, else the change. Raising the cap means
   patching these too.
+- When the change would take the total below 0, the change `0x002524C0` tests against the cap is the current, so a
+  current of 50,000,000 or more gives `99,999,999 - current` instead of the current (`0x002524DC`-`0x002524F8`).
 - Writing `[0x02092758] + 8` directly skips both the clamp and the gained/spent totals. Write through
   `0x00254EE0`, or `0x003004B0` for a relative change.
 - The Plunderer and Spendthrift thresholds are in `menuhandbook.bin`, the record reached through the

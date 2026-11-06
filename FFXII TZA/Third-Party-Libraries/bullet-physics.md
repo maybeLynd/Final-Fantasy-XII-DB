@@ -51,11 +51,32 @@ PhyreEngine wraps Bullet in its `PPhysics` classes; the Bullet-backed ones are n
    `0x00698C80`.
 2. `0x00698C80` returns at once unless the first byte of the physics manager is set. Otherwise, for
    each `PPhysicsWorld` instance, it builds the Bullet world (`0x006A0310`) and walks the world's body
-   lists (`0x0069EF20`).
+   lists (`0x0069EF20`). With a count `+0x70` of 0 it calls neither (`0x00698CA5`). It drops the results of
+   both calls and returns 0 on every path (`0x00698CCF`, `0x00698CDC`, `0x00698CE9`).
 3. `0x0069EF20` calls `0x0069F070` for every rigid body in every list and links each body to its list.
 4. `0x0069F070` removes the body from a Bullet world it is already in (world slot `+0xA0`), builds the
    Bullet body when it has no Bullet body (`0x0069FB10`), builds the world if it is still missing, and puts a
    body that was in a world back into it (`0x006A65A0`).
+
+In `0x0069EF20(world)` the lists chain from the world's `+0x48` through their first qword, and each list's bodies
+from its `+0x08` through theirs (`0x0069EF2F`-`0x0069EF40`). After each `0x0069F070` call it stores the world at `+0x10`
+of the list that the body's `+0xC8` already names, when there is one (`0x0069EF5B`-`0x0069EF67`). A non-zero result
+is returned at once, before `+0xC8` changes (`0x0069EF6D`); otherwise `+0xC8` becomes the current list
+(`0x0069EF6F`). After a list's last body the list's `+0x10` becomes the world (`0x0069EF7E`), and after the last list
+the function returns 0 (`0x0069EF8A`).
+
+`0x0069F070(world, body)` runs these steps in order:
+
+1. When the world's Bullet world `+0x60` and the body's Bullet body `+0x118` are both set, it removes the body
+   from that world through slot `+0xA0`, whatever `+0xE9` holds (`0x0069F08E`-`0x0069F0A5`).
+2. When `+0xE9` is set, it also removes the body from the Bullet world of its list (`+0xC8` → `+0x10` →
+   `+0x60`, each link tested for null) and clears `+0xE9` (`0x0069F0B7`-`0x0069F0EA`).
+3. With no Bullet body at entry it calls `0x0069FB10` and returns a non-zero result at once
+   (`0x0069F0F1`-`0x0069F100`).
+4. When the world's `+0x60` is null it calls `0x006A0310`, returns a non-zero result at once, and returns 0 when
+   `+0x60` is still null afterwards (`0x0069F102`-`0x0069F11A`).
+5. Only when `+0xE9` was set at entry does it call `0x006A65A0` with the body, 1 and the byte `+0xE9` as it is
+   then (`0x0069F11C`-`0x0069F12E`). It returns 0 (`0x0069F133`).
 
 `0x0069FB10` is the only caller of the `btRigidBody` constructor and `0x006A0310` the only caller of the
 `btDiscreteDynamicsWorld` constructor.
@@ -67,6 +88,11 @@ the enable flag, and the qwords at `+0x18`, `+0x20` and `+0x28` are the collisio
 collision dispatcher and constraint solver a world needs. Its constructor `0x00691240` clears the enable
 byte and sets `+0x08` to `0x10`; it does not write the three slots, which keep the static object's
 zero fill.
+
+The constructor also zeroes `+0x04`, the qword `+0x10` and the fields `+0x48` to `+0x67` (`0x0069126A`-`0x00691295`,
+with `0x005CC900` zeroing `+0x48` to `+0x5F`). It zeroes the bytes `+0x60`, `+0x70` and `+0x80`, the qwords `+0x68`
+and `+0x78` (`0x00874D60`), `+0x88` and `+0x90`, and the word `+0x98` (`0x0069129A`-`0x006912C9`), and returns the object
+(`0x006912D0`).
 
 Only three functions obtain the manager (`0x00698C80`, `0x006A0310` and the script-callback function
 `0x00698720`, which reads only its `+0x10`), and none of them writes it. Apart from the getter, its
@@ -83,12 +109,25 @@ No other instruction names them, so the array is never filled.
 
 ### Building the world
 
+`0x006A0310` returns 0 at once when the `PPhysicsWorld` already has a Bullet world `+0x60` or a broadphase `+0x68`
+(`0x006A032A`-`0x006A033A`). It returns `0x15` when the manager's `+0x20`, `+0x28` or `+0x18` is null
+(`0x006A0348`-`0x006A0363`, `0x006A0527`).
+
 When its inputs exist, `0x006A0310` builds a `btAxisSweep3` broadphase of 16,384 handles over the
 world's box (`0x00838600` with `0x4000`), hands a new `btGhostPairCallback` to the broadphase's pair
 cache, creates the `btDiscreteDynamicsWorld` from the manager's dispatcher, solver and configuration,
 stores `0x0069E970` in the world's callback slot `+0x90`, and sets gravity from the `PPhysicsWorld`
 (world slot `+0x80`, `0x00858560`). When the manager's `+0x08` is not 0, it copies that value into the
 `PPhysicsWorld`'s `+0xB8` and sizes two tables with it (`0x006A5450` on `+0x98`, `0x006A54E0` on `+0xA8`).
+
+The broadphase call is `0x00838600(broadphase, min, max, 0x4000, 0, 0)` with the minimum corner from `+0x14` and the
+maximum from `+0x24` (`0x006A0382`-`0x006A03F5`), and the result is stored at `+0x68` (`0x006A03FB`). The ghost callback
+is an 8-byte object with vtable `0x00D7AB70` stored at `+0x70` (`0x006A0422`-`0x006A042C`) and handed to the pair cache
+through broadphase slot `+0x48` and cache slot `+0x70` (`0x006A043C`, `0x006A0449`).
+
+The world is stored at `+0x60` (`0x006A0492`) and gets its byte `+0x51` cleared (`0x006A049F`) and 0 at `+0xA0`
+(`0x006A04B5`). The gravity vector is `+0x00` to `+0x08` with a fourth component of 0 (`0x006A04C0`-`0x006A04E0`).
+Every path past these steps returns 0 (`0x006A052E`).
 
 A failed broadphase allocation (`0x0085E680`) or ghost-callback allocation (`0x00210EC0`) returns `0xE`.
 A failed world allocation does not: when `0x0017D260` returns 0 (`je` at `0x006A046D`), the function
@@ -142,7 +181,9 @@ but an inertia computed for mass 0, which is zero.
 | other | unchanged | unchanged; returns 9 |
 
 The activation write goes through `0x0083A3A0`, which refuses to overwrite states 4 and 5. When the
-body's group byte `+0xE0` is 15, it becomes 1 for types 0 and 2 and 0 for type 1.
+body's group byte `+0xE0` is 15, it becomes 1 for types 0 and 2 and 0 for type 1. With no Bullet body
+(`+0x118` null) the function skips the flags and the activation state (`0x006A234C`, `0x006A236D`, `0x006A23A9`)
+but still applies the group rule, and it returns 0 for types 0 to 2 (`0x006A2397`, `0x006A23DA`).
 
 `0x006A4A60` re-inserts a body. When the body's `+0xE9` is set, it removes it from the Bullet world
 of its list (`+0xC8` → `+0x10` → `+0x60`, world slot `+0xA0`). It copies the linear velocity `+0x68`
@@ -153,6 +194,11 @@ re-applies child scales.
 Only when `+0xE9` was set does it re-add the body (slot `+0x130`) with group `1 << +0xE0` and the mask
 the world keeps for that group (a 16-bit table at its `+0x78`), and wake it (`0x0083A030`). A new body from `0x0069FB10` has `+0xE9` clear, so `0x006A4A60` gives it only its velocities and
 transform.
+
+The wake is `0x0083A030(body, 0)` (`0x006A4DF0`-`0x006A4DF2`, `0x006A4E05`-`0x006A4E07`). Unless its second argument is set
+(`0x0083A030`), it leaves a static or kinematic body (`+0xE8` bit `0x1` or `0x2`) as it is (`0x0083A034`). For any
+other body it sets the activation state `+0xF4` to 1 unless the state is 4 or 5 (`0x0083A03D`-`0x0083A04B`), and it
+clears the dword `+0xF8` (`0x0083A055`).
 
 ### Bullet bodies outside the member list
 
@@ -166,9 +212,11 @@ Three Bullet functions are not in [`bullet-physics-members.tsv`](bullet-physics-
   pulls each velocity shorter than its damping value toward zero by 0.005, or zeroes it when it is
   no longer than 0.005.
 - `0x008324B0` is the `btCompoundShape` destructor body that the deleting destructor `0x00832530` calls.
-  It frees the dynamic AABB tree at `+0x60` (`0x00840FC0`, then the aligned free `0x0085E710`), frees the
-  child array at `+0x28` when the byte `+0x30` says the shape owns it, and leaves the
-  `btCollisionShape` vtable in place.
+  It writes the `btCompoundShape` vtable `0x01CCD7A8` (`0x008324CE`), frees the dynamic AABB tree at `+0x60`
+  when there is one (`0x00840FC0`, then the aligned free `0x0085E710`), and frees the child array at `+0x28`
+  when it is set and the byte `+0x30` says the shape owns it (`0x008324F3`-`0x008324FB`).
+- `0x008324B0` then sets `+0x30` to 1 and zeroes `+0x28` and the qword at `+0x1C` (`0x00832505`-`0x0083250D`),
+  and leaves the `btCollisionShape` vtable in place: it writes `0x01CCD3C8` last (`0x00832518`).
 - `0x006A3E20` converts a 3x3 rotation, rows 16 bytes apart, to a quaternion `x, y, z, w`: from the
   trace when it is positive, otherwise from the largest diagonal element. The linker placed it at
   `0x006A3E20`, outside both Bullet ranges; its only callers are Bullet's `0x0083B050` (`0x0083B3DC`),
@@ -218,7 +266,9 @@ The construction info `0x0069FB10` fills, as `0x008542B0` reads it:
 | `+0x98` | `f32` | additionalAngularDampingFactor | 0.01 |
 
 `PPhysicsWorld`'s default instance (`0x0068B9E0`): gravity (0, -9.8, 0) at `+0x00`, 1.0 at `+0x10`, and
-the broadphase box from (-5000, -5000, -5000) at `+0x14` to (5000, 5000, 5000) at `+0x24`.
+the broadphase box from (-5000, -5000, -5000) at `+0x14` to (5000, 5000, 5000) at `+0x24`. It also
+zeroes `+0x34` to `+0x5F` (`0x0068BA24`-`0x0068BA37`) and leaves `+0x0C`, `+0x20` and `+0x30` as they are.
+With a null instance pointer it writes nothing (`0x0068B9E3`), and it returns 1 on both paths (`0x0068BA3B`).
 
 ## Shipped data
 
@@ -252,7 +302,7 @@ run only inside a world, which the game never builds (above).
 | `0x02EAF394` | `i32` | 0 | the count of pair-add requests: `0x00848170` adds 1 before the filter test (the callback at the cache's `+0x28`, or the two proxies' group and mask words `+0x08`/`+0x0A`) and the jump to the insert `0x008485E0` | `0x00848170` (`0x0084817F`, `inc`) | only that increment |
 | `0x02EAF398` | `i32` | 0 | the count of pair lookups: `0x00848270` adds 1 on entry | `0x00848270` (`0x00848275`, `inc`) | only that increment |
 | `0x02EAF39C` | `i32` | 0 | the count of overlapping pairs, which the game only lowers: by 1 for each pair `0x00848880` removes after the callback's test (`0x008488C0`, removal through `+0x10`), and for each pair the sweep-and-prune pass `0x00838D80` finds no longer overlapping on the three 16-bit axes (`0x00838F60`-`0x00838F89`) | `0x00848880` (`0x008488DA`, `dec`); `0x00838D80` (`0x00838FAE`, `dec`) | only those decrements |
-| `0x02EAF3C0` | `u8` | 0 | the no-deactivation switch: the world step `0x008588A0` sets it, when the world has a debug drawer (`0x00858938`), to bit `0x10` (`0x10`) of the drawer's debug mode (`0x0085894F`-`0x00858955`); while it is non-zero `0x00858C80` puts no body to sleep | `0x008588A0` (`0x00858957`) | `0x00858C80` (`0x00858DA7`) |
+| `0x02EAF3C0` | `u8` | 0 | the no-deactivation switch: the world step `0x008588A0` sets it, when the world has a debug drawer (`0x00858938`), to bit `0x10` of the drawer's debug mode (`0x0085894F`-`0x00858955`); while it is non-zero `0x00858C80` puts no body to sleep | `0x008588A0` (`0x00858957`) | `0x00858C80` (`0x00858DA7`) |
 | `0x02EAF3CC` | `i32` | 0 | the count of split-impulse recoveries: each of the two contact passes `0x0085A900` and `0x0085AC50` adds 1 for a contact row whose penetration term `+0xA8` is not 0 | `0x0085A900` (`0x0085A91F`, `inc`); `0x0085AC50` (`0x0085AC6B`, `inc`) | only those increments |
 
 No other instruction reaches these six globals.

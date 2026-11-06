@@ -290,9 +290,14 @@ The table arrives with the battle data resource:
    `+0x3C` (`0x00236D7B`-`0x00236D85`).
 4. `0x00237FC0` binds `0x02EBF138` to that section through `0x003845F0` (`0x00237FD5`-`0x00237FDE`), which
    stores the section pointer and rebases the header's offsets at `+0x0C`, `+0x10`, `+0x18` and
-   `+0x1C` by the section address (`0x003845F4`-`0x00384640`).
-5. It then walks every row once and files each row with both `+0x38` and `+0x39` set into the
-   command grid at `0x0208D308` (`0x00238033`-`0x00238132`).
+   `+0x1C` by the section address (`0x003845F4`-`0x00384640`). The header's `+0x14` is 0 in the `us`
+   action_data, so the sub-directory walk `0x003845F0` gives a non-zero `+0x14` (`0x00384644`-`0x003846C7`) does
+   not run for it.
+5. It then walks every row twice (`0x00238033`-`0x00238132`). The first walk takes the largest `+0x38` and `+0x39`
+   other than `0xFF` (`0x00237FF0`-`0x00238055`); the second files each row with both `+0x38` and `+0x39` set (not
+   `0xFF`) into the command grid at `0x0208D308` (`0x002380C0`-`0x0023813F`).
+   - When every row has `0xFF` at `+0x38`, or every row has `0xFF` at `+0x39`, no grid is allocated, `0x0208D308`
+     keeps the 0 stored at `0x00238059` and the second walk does not run (`0x00238073`-`0x0023807D`).
 
 ## Modding notes
 

@@ -289,29 +289,29 @@ order_id	handler	operation	value	name
 0x411F	0x002FDDA0	set unit byte +0x6B5	9	
 0x4120	0x002FDDA0	set unit byte +0x6B5	10	
 0x4121	0x002FDDA0	set unit byte +0x6B5	11	
-0x4122	0x002FE660	set bit param of the register	register kind 10 of the target unit (+0xB90)	
-0x4123	0x002FE660	clear bit param of the register	register kind 10 of the target unit (+0xB90)	
+0x4122	0x002FE660	set bit value 1 << (param & 31) of the register, param = record +0x02	register kind 10 of the target unit (+0xB90)	
+0x4123	0x002FE660	clear bit value 1 << (param & 31) of the register, param = record +0x02	register kind 10 of the target unit (+0xB90)	
 0x4124	0x002FDA60	move to the goal the order record gives (0x00312730); ends when 0x0033A120 reports it reached	goal refreshed every frame (0x00319110); a failed navigation step waits	
 0x4125	0x002FDA60	move to the goal the order record gives (0x00312730); ends when 0x0033A120 reports it reached	goal set once (0x003291B0); a failed navigation step (0x00325BB0 = 0) ends the order with -1	
-0x4126	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal resolved once	
-0x4127	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
+0x4126	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing resolved once	
+0x4127	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
 0x4128	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
-0x4129	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x412A	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x412B	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x412C	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x412D	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x412E	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x412F	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x4130	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x4131	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x4132	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x4133	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x4134	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x4135	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x4136	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x4137	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x4138	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
+0x4129	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
+0x412A	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
+0x412B	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
+0x412C	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
+0x412D	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
+0x412E	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
+0x412F	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
+0x4130	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
+0x4131	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
+0x4132	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
+0x4133	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
+0x4134	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
+0x4135	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
+0x4136	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
+0x4137	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
+0x4138	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
 0x4139	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 0x1	
 0x413A	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 0x2	
 0x413B	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 0x4	
@@ -330,19 +330,19 @@ order_id	handler	operation	value	name
 0x4148	0x002FDDA0	clear a bit of the global battle flags 0x022C314C (0x0031A8C0)	bit 0x80	
 0x4149	0x002FE660	set the register to param	register kind = record +0x06 >> 12, index = low byte of +0x06 (0x00321190 / 0x00329E60)	
 0x414A	0x002FDA60	move to the goal the order record gives (0x00312730); ends when 0x0033A120 reports it reached	goal refreshed every frame (0x00319110); a failed navigation step waits	
-0x414B	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x414C	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal resolved once	
+0x414B	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing re-resolved every frame	
+0x414C	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing resolved once	
 0x414D	0x002FE840	calls 0x00313400(unit), or 0x00313480() when unit bit 0x800000 is set; ends when unit bits under mask 0xC000000000000 are clear		
 0x414E	0x002FDA60	move to the goal the order record gives (0x00312730); ends when 0x0033A120 reports it reached	goal refreshed every frame (0x00319110); a failed navigation step waits; keeps the target handle +0x710 as the movement target	
 0x414F	0x002FE8D0	calls 0x002E73C0(actor, param)	param = record +0x02	
-0x4150	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal resolved once	
-0x4151	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal resolved once	
-0x4152	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal resolved once	
-0x4153	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal resolved once	
-0x4154	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal resolved once	
+0x4150	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing resolved once	
+0x4151	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing resolved once	
+0x4152	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing resolved once	
+0x4153	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing resolved once	
+0x4154	0x002FDC30	turn in place to the facing 0x00312B40 derives from the order record (goal kind 2 at movement block +0x160, the unit's own position as both points); ends when 0x0033A120 reports the yaw within 0.001 of the facing	facing resolved once	
 0x4155	0x002FE660	add param to the register	register kind = record +0x06 >> 12, index = low byte of +0x06 (0x00321190 / 0x00329E60)	
-0x4156	0x002FE660	set bit param of the register	register kind = record +0x06 >> 12, index = low byte of +0x06 (0x00321190 / 0x00329E60)	
-0x4157	0x002FE660	clear bit param of the register	register kind = record +0x06 >> 12, index = low byte of +0x06 (0x00321190 / 0x00329E60)	
+0x4156	0x002FE660	set bit value 1 << (param & 31) of the register, param = record +0x02	register kind = record +0x06 >> 12, index = low byte of +0x06 (0x00321190 / 0x00329E60)	
+0x4157	0x002FE660	clear bit value 1 << (param & 31) of the register, param = record +0x02	register kind = record +0x06 >> 12, index = low byte of +0x06 (0x00321190 / 0x00329E60)	
 0x4158	0x002FDDA0	add param to the stats i16 at +0x08, clamped to +-99, then rebuild (0x0030FED0)	param = record +0x02	
 0x4159	0x002FDDA0	add param to the stats i16 at +0x0A, clamped to +-99, then rebuild (0x0030FED0)	param = record +0x02	
 0x415A	0x002FDDA0	add param to the stats i16 at +0x0C, clamped to +-99, then rebuild (0x0030FED0)	param = record +0x02	

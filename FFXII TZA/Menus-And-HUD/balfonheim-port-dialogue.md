@@ -14,7 +14,10 @@ addresses: "0x00348DF0, 0x0034ADA0, 0x00264D60, 0x00264D90, 0x00355A00, 0x003571
 A row's key is the script, the section and the text id, the entry number in that section:
 
 - `mes` (`0x00348DF0`), which the verbs `ames`, `amese`, `amest` and `ames_1fe` reach, and `aask_1ff` (`0x0034ADA0`) look the text id up in the section 2 of the script that issues them through `0x00264D60`, which keeps the low 24 bits of the id. The field-sign and gauge-label verbs read section 2 the same way.
-- `fieldsign` (`0x00355A00`) and `fieldsignmesbyid` (`0x00357120`) read a section 3 caption through `0x00264D90` and give it to the actor as its name text ([NPC names](../Characters-And-Objects/npc-names.md)).
+- `fieldsign` (`0x00355A00`) and `fieldsignmesbyid` (`0x00357120`) read a section 3 caption through `0x00264D90` and
+  give it to the actor as its name text ([NPC names](../Characters-And-Objects/npc-names.md)).
+- `fieldsign` changes nothing when `0x002642C0` finds no sign record (`0x00355A2E`), and gives the actor the empty
+  string at `0x02F8F2A0` instead of a caption when the record's word `+0x0A` is negative (`0x00355A90`-`0x00355AD0`).
 - The `lines` column of [`balfonheim-port-scripts.tsv`](../Story-Events-And-Hunts/balfonheim-port-scripts.tsv), the table of [Balfonheim Port scripts](../Story-Events-And-Hunts/balfonheim-port-scripts.md), names section 2 rows by the same key: 226 of its rows name 769 of the 835 section 2 rows here. The `quoted_lines` column of its steps table quotes 769 of them, in 838 steps.
 
 ### The scripts
@@ -88,6 +91,7 @@ Examples, by script, section and id:
 | `us` to `ch` | the string in that language tree, decoded with the tree's font |
 | `missing` | the languages whose tree has no string at this key (no such script, or a shorter section), comma-separated; empty when all nine have one |
 | `same_bytes` | the groups of languages whose string bytes are identical, each group's languages joined by `=` and the groups by `;`; only groups of two or more, and the languages in `missing` take no part |
+| `shown_when` | when the game shows the line, in game terms: what starts the function that prints it (a talk, a touch, a scene's start, a request from another function with that function's own start, a slot change), then the tests the printing step runs under, each with its line in the script's decompiled listing; several printing steps are joined with "or". A value the scripts save is named by its label in [saved-value-stores.tsv](../World-Areas-And-Travel/saved-value-stores.tsv), whose rows give each store of it with its own condition. `-` on a caption (section 3): a caption is not shown by a message verb; the field sign verbs give it to an actor as its name text |
 
 An empty cell under a language not in `missing` is an empty string.
 

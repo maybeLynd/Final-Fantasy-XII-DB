@@ -72,6 +72,10 @@ A recipient gets 0 unless all of these hold:
 - its type id `+0x04` is outside `0x1B`-`0x27`;
 - it is not out of play.
 
+The enemy must be a non-null unit whose stats record `+0x698` is non-null and of kind 1, or the result is 0
+(`0x002F8C11`-`0x002F8C2E`); `0x002F90C0` makes the same test (`0x002F9104`-`0x002F9119`). With no recipient (a null first
+argument) the four tests above are skipped (`0x002F8BCF`).
+
 The type id is the record's `chr_data` row: 0-6 the main characters, 7-25 guests and story
 variants, `0x1A` the Chocobo and `0x1B`-`0x27` the thirteen Espers (see the stat growth page).
 
@@ -137,6 +141,14 @@ After the loop, `0x0028FB80(enemy id, exp, lp)` posts the amounts, clamped to 99
 (`0x00289D00` on `[0x0209BE80] + 0x5380`, once for EXP and once for LP). It uses EXP and LP computed with no
 recipient (`0x002F8BB0(0, enemy)`, `0x002F90C0(0, enemy)`): divided as above but never doubled, and EXP
 shows as 0 while bit `0x4000` of `[0x02EBF190] + 4` (New Game-) is set (`0x00312505`-`0x00312513`).
+
+The clamps are made by the defeat routine before the call, `exp < 0 ? 0 : min(exp, 999999)` for the EXP and
+`lp < 0 ? 0 : min(lp, 999)` for the LP (`0x003124B4`, `0x003124DE`-`0x00312502`), a negative amount becoming 0;
+`0x0028FB80` posts the values it is given. With no HUD at `[0x0209BE80]` it posts nothing (`0x0028FB8F`-`0x0028FB99`). It
+gives `0x00289D00` a last argument of 0 for the EXP and 1 for the LP (`0x0028FBA7`, `0x0028FBB6`).
+
+With no recipient the EXP is not zeroed by the Stagnation bit either (`0x002F8D24`), and in party control mode 1 it
+is the whole amount, since the `0x00313800` member is not compared (`0x002F8C42`).
 
 ### The level table
 

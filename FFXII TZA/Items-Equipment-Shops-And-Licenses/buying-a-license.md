@@ -21,8 +21,10 @@ next to it light one after another, and a notice may announce a new Esper, a new
    member's answer for the node, which picks the square's state
    ([License Board screen](../Menus-And-HUD/license-board-screen.md#building-the-grid),
    [License Board screen](../Menus-And-HUD/license-board-screen.md#square-states), [License Board](license-board.md)).
-3. **The detail panel.** Confirm on a square opens its panel (`0x0055A1F0`) with the name, the LP cost and up to eight
-   contents ([License Board screen](../Menus-And-HUD/license-board-screen.md#obtaining-a-license),
+3. **The detail panel.** Confirm on a square opens its panel (`0x0055A1F0`): the current one of the four detail
+   panes is filled for the cursor square with the name, the LP cost and up to eight contents and opened, and the
+   other three are closed (`0x0055A23C`-`0x0055A30D`)
+   ([License Board screen](../Menus-And-HUD/license-board-screen.md#obtaining-a-license),
    [License Board screen](../Menus-And-HUD/license-board-screen.md#detail-panel-and-member-switch)).
 4. **The take request.** Confirm again sends take-square to the view: an owned square or one not obtainable yet plays
    sound 5, an obtainable square the member cannot afford shows "Insufficient license points.", and an affordable one
@@ -35,8 +37,10 @@ next to it light one after another, and a notice may announce a new Esper, a new
    that calls the setter `0x00323910` with `flags` 0, so the LP is charged
    ([License Board screen](../Menus-And-HUD/license-board-screen.md#obtaining-a-license),
    [licenses](licenses.md#buying-a-square)).
-7. **The refusal test.** The setter first asks `0x00323D10`, which must answer 0
-   ([licenses](licenses.md#why-a-square-is-refused)).
+   - The record `0x003235C0` gives the setter is `[0x02EBF190] + 8 + row × 0x1C8`, or null for a row above `0x27`,
+     which the setter refuses; its third argument goes through as `set` (`0x003235C0`-`0x003235F0`).
+7. **The refusal test.** After its checks of the record and the node, the setter asks `0x00323D10`, which must
+   answer 0 ([licenses](licenses.md#buying-a-square), [licenses](licenses.md#why-a-square-is-refused)).
 8. **The LP and the bit.** The node's cost is taken from the member's LP, kept between 0 and 99,999, and the owned
    bit is set ([licenses](licenses.md#buying-a-square), [licenses](licenses.md#the-test)).
 9. **Quickenings and Mist.** A Quickening square grants the member's next Quickening, and the MP bars rise with the

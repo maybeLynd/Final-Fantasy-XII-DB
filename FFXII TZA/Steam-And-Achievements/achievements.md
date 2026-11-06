@@ -41,18 +41,24 @@ The updater refuses an index of 30 or more. Then:
    least the target, which is `0x003165C0(index)` or, when that returns 0, the descriptor's parameter (a signed
    compare, `0x00316AF8`-`0x00316B01`). Mode 1 fires only when the amount equals the parameter (`0x00316AA6`). Any
    other mode returns.
-2. With `kind` 2 or 4 it reads the counter (`0x003166F0`). Mode 0 adds the amount, saturating at `0x7FFF`
-   (kind 2) or `0x7FFFFFFF` (kind 4) and clamping a negative sum to 0. Mode 3 sets bit `amount - 0xE2`
-   (`0x00316B73`). Mode 8 returns.
+2. With `kind` 2 or 4, the only non-zero kinds in the table, it reads the counter (`0x003166F0`). Mode 0 adds the
+   amount, `v + a`, saturating at `0x7FFF` (kind 2) or `0x7FFFFFFF` (kind 4) and clamping a negative sum to 0; any
+   other non-zero kind would add with no bound (`0x00316BBB`). Mode 3 sets bit `amount - 0xE2` (`0x00316B73`). Mode 8
+   returns. Any other mode keeps the value read and goes on to step 3 (`0x00316B71`).
+   - For the counter `v` and the amount `a`, kind 2 gives `a >= 0x7FFF - v ? 0x7FFF : v + a < 0 ? 0 : v + a`
+     (`0x00316B87`-`0x00316BA1`), and kind 4 the same with `0x7FFFFFFF` (`0x00316BA5`-`0x00316BB4`).
 3. It calls the evaluator `0x00315E90(index)` and only then the store `0x00316BF0` (`0x00316BC1`, `0x00316BCC`).
    The evaluator therefore sees the value from before this update.
 
 Firing sets bit `index` of the award bits at block `+0x3844` and calls `0x008632B0` with the award-table
-entry.
+entry. Kind 0 fires without testing that bit first, so every qualifying call sets the bit and calls
+`0x008632B0` again (`0x00316ABD`-`0x00316AEA`, `0x00316B11`-`0x00316B47`).
 
 ### The evaluator: `0x00315E90(index)`
 
-It refuses an index of 31 or more and returns when the award bit is already set. Otherwise it dispatches on
+It refuses an index of 31 or more (`0x00315E93`) and returns when the award bit is already set (`0x00315EDF`).
+Index 30 has no award bit to test or set (`0x00315EB0`, `0x00316045`); both callers give 0-29 (`0x00316A39`,
+`0x00316BC1`), so it is never evaluated. A mode above 7 returns (`0x00315F06`). Otherwise it dispatches on
 the mode through the eight-entry table at `0x00316098`:
 
 | Mode | Test (award when true) |
@@ -64,6 +70,16 @@ the mode through the eight-entry table at `0x00316098`:
 | 5 | `0x003160C0()`: every map flagged in `menuhandbook.bin` has a revealed tile |
 | 6 | `0x003161A0()`: every Bestiary entry is unlocked |
 | 7 | the parameter (0-9) indexes the handbook's monster list; that monster's defeat count is above 0 |
+
+A passing test sets bit `index` of block `+0x3844` (`0x00316061`-`0x00316069`) and calls `0x008632B0` with
+award-table dword `index` (`0x00316078`); a failing test returns with nothing stored. Mode 0 compares signed
+(`0x00315F3B`).
+
+Mode 2 takes lo from the low 16 bits of the parameter and hi from the high 16 bits (`0x00315F46`-`0x00315F56`);
+with `lo >= hi` it passes at once (`0x00315F5B`), and otherwise it stops at the first id that answers 0
+(`0x00315F6D`). Mode 3 counts the set bits of `0x003166F0(index)` (`0x00315FA5`-`0x00315FCB`). Mode 7 returns when
+the blob or a hop is missing (`0x0031600C`-`0x0031602D`) or when the signed parameter is not below the list
+count at hop 3 `+2` (`0x00316035`); the monster is the `u16` at hop 3 `+4 + param × 2` (`0x00316037`).
 
 `0x00316760` returns the stored counter, or works out the two counter-less values itself: index 5 is the step
 total (`0x00254E80`, `0x002536D0`, capped at 99,999,999) and index 8 is the mean of level byte `+0xBA` over the
@@ -80,9 +96,24 @@ the re-send's sampler for index 8 reads the records the same way (`0x00316382`).
 requires a non-zero popcount of the 32-byte exploration bitmap at block `+0x224 + 32n` (`0x00255120`); for
 the current map it first tries the live bitmap (`0x00255060`).
 
+It returns 0 without the blob (`0x003160D0`) and at the first flagged map that fails (`0x0031617A`), and 1 when
+every flagged map passes (`0x0031616A`). The current map is `0x003779F0(m)`, with `m` from `0x00264790()`, or from
+`0x003148F0()` when that returns 0 or less (`0x003160EA`-`0x003160FA`). The live test is
+`0x00255060([0x003C4AD0()], 0x20)`; when it returns 0 or less, the saved bitmap still decides
+(`0x0031613A`-`0x00316150`).
+
 `0x003161A0` walks Bestiary ids below the section count (384). An id with a type-0 rule passes when the story
 counter `0x00265270` reaches the rule's value; a type-1 rule tests another monster's defeat count; any other id
 needs its own defeat count (`0x00315420`: save byte `+0x3404 + id`, minus 1) above 0.
+
+It returns 0 without the blob or with a zero hop (`0x003161B0`-`0x003161CA`) and at the first id that fails
+(`0x003162AE`), and 1 when every id passes, a section count of 0 included (`0x003162C5`). An id's rule is the
+first of the `ruleCount` rules whose low 12 bits equal the id (`0x00316230`-`0x0031623B`), and its type is the
+top 4 bits (`0x00316287`).
+
+A rule of type 2 or more falls back to the id's own defeat count, as an id with no rule does (`0x00316291`).
+The type-0 test is signed, `(i16)0x00265270() >= value` (`0x0031629E`-`0x003162A9`), and the type-1 test is
+`0x00315420(value) > 0` (`0x00316293`). An id of `0x200` or more fails (`0x003161F0`).
 
 ### The sweep and the re-send
 
@@ -90,7 +121,8 @@ needs its own defeat count (`0x00315420`: save byte `+0x3404 + id`, minus 1) abo
 from the handbook's arm 7 (`0x005775B2`). It does four things:
 
 1. It calls `0x00283270(1)`, which rebuilds the party status records.
-2. For each monster in the handbook list with a non-negative short in `0x01EED130`, it sets the monster's
+2. For each monster id below `0x200` (`0x00316A16`) in the handbook list with a short other than -1 in `0x01EED130`
+   (`0x003169D4`), it sets the monster's
    defeat count to 1 when it is at most 0 (state byte `+0x3404 + id` 0 or 1, `0x003169E0`-`0x003169FA`; the byte is
    set to 2) and `0x00315DC0(short)` passes: that quest is cleared (`0x0046B1A0`)
    or its scenario byte reaches the handbook's value for it.
@@ -103,9 +135,19 @@ with quest `0xA7` (handbook quest row (167, 100)), and `0x103` (position 10) wit
 (170, 70)). Nothing writes `0x01EED130`; its only readers are `0x00316958` and `0x00315DB0`.
 
 `0x003162E0` keeps twelve samplers of 16 bytes at `0x01EED070` (`{id, -, last sample, step}`; ids 0-8, 11,
-14, 17; step 100 for ids 5 and 17, else 1). When a counter has moved by at least its step, and the last
-sample already met the target, and the Steam entry reads not achieved (`0x00863280`), it calls `0x008632B0`
-again. `0x00316440` does the same for descriptor 13 (entry 19) before every kind-10 action is counted.
+14, 17; step 100 for ids 5 and 17, else 1). When a counter has moved by at least its step (`value - last >= step`,
+`0x003163D7`), and the last sample already met the target, and the Steam entry reads not achieved (`0x00863280`), it
+calls `0x008632B0` again.
+
+Each sampler's value is its stored counter, read at the descriptor's width (`0x0031634B`, `0x00316357`). A kind-0
+id, or a counter that reads -1, takes the step total for id 5 (`0x003163C4`) and the mean level for id 8, or 0
+when fewer than six records qualify (`0x00316378`-`0x003163BB`); any other id stays -1 (`0x00316369`). The target
+is `0x003165C0(id)` with no parameter fallback (`0x003163E1`), so a zero target needs only `last >= 0`. The entry
+is award-table dword `id` (`0x003163EA`). The value replaces the last sample only on the moved path (`0x00316408`).
+
+`0x00316440` does the same for descriptor 13 (entry 19) before every kind-10 action is counted. It tests the
+saved award bit of descriptor 13 (block `+0x3845` bit `0x20`) instead of a sample: when that bit is set and
+`0x00863280(19)` returns 0, it tail-jumps `0x008632B0(19)` (`0x00316449`-`0x0031646D`); otherwise it returns.
 
 ### What feeds each counter
 
@@ -135,6 +177,18 @@ is the scene number, key 1 the event-script number registered for the calling sl
 `0x0032FCA0`). `0x0020CB50` looks the pair up in the seven 12-byte rows `{key1, key2, entry}` at `0x00906290` and
 awards the entry. Row 6 also awards entries 31-37 (`0x0020CC11`-`0x0020CC87`).
 
+The calling slot is the issuer's manager `[0x02099D70] + 0x28` (`0x0034C9B5`); `0x0032F240` gives -1 when that manager's
+byte `0x022C6D18` is 0 (`0x0032F24A`, `0x0032F25C`), and -1 matches no row. `0x00863240` returns at once when no Steam
+manager exists (`[0x01F83450]` null, `0x00863256`). The handler then tail-jumps to `0x0026B750(n)` (`0x0034C9CD`), the
+scene start ([event scenes](../Scripts-And-Script-Commands/event-scenes.md)).
+
+`0x0020CB50` takes the first row whose `key1` and `key2` both match (`0x0020CB74`-`0x0020CB7C`); a pair that
+matches no row returns with nothing done (`0x0020CB89`). It awards inline with the steps of `0x0020CE60` below:
+an entry whose `+0x190` is set is skipped; otherwise `+0x190` becomes 1, `+0x194` is cleared, and slots
+`+0x38` (with the tag at `+0x08`) and `+0x50` are called only when manager `+0x18` is set
+(`0x0020CBBB`-`0x0020CC09`). Row 6's loop over entries 31-37 runs whether or not row 6's own entry was already
+achieved (`0x0020CC0C`), and skips each achieved one (`0x0020CC2C`).
+
 ### From award to Steam
 
 `0x008632B0(entry)` returns at once when no Steam manager exists (`[0x01F83450]` null). Otherwise
@@ -143,6 +197,10 @@ arrived (manager `+0x18`) calls user-stats slot `+0x38` with the tag and tail-ju
 (SetAchievement and StoreStats in the Steamworks interface order). Before that, the award is only marked
 locally. The Steam stats receipt rewrites `+0x190` of entries 1-40 from Steam and awards entry 0 when the
 other forty are achieved.
+
+`0x0020CE60` returns 1 for an entry already achieved (`0x0020CEE2`), 0 when the stats have not arrived
+(`0x0020CED6`), and otherwise the result of slot `+0x50` through its tail jump (`0x0020CED2`); the result of
+slot `+0x38` is not used.
 
 ### Sky Pirate's Den
 
@@ -201,9 +259,14 @@ hop 4          u16, u16, u32 mask, u32 value[popcount(mask)]  # 0x003165C0
 
 `0x003165C0(i)` returns 0 for `i >= 32`, a missing blob or a zero hop, or a clear mask bit; otherwise the value
 at the rank of bit `i` among the set bits. `0x003158B0` loads the file (kind 7, id `0xC8`) into `0x022C2550`.
+`0x003158B0`, called from `0x00253937`, first frees a copy already loaded with `0x003697F0` and clears the pointer
+(`0x003158C5`, `0x003158CA`), then stores the result of `0x00249180(arg, 7, 0xC8, 3, 0, 0)` there unchecked
+(`0x003158F8`, `0x003158FD`).
 
 The hops are summed in 32 bits: `0x003165C0` adds each step with `add eax, edx` and reads the next one with
-`movzx eax, word ptr [rax]` (`0x003165DA`-`0x003165FC`), and `0x00315E90` mode 7 and `0x00316930` do the same.
+`movzx eax, word ptr [rax]` (`0x003165DA`-`0x003165FC`), and `0x00315E90` mode 7, `0x00316930`, the Bestiary test
+`0x003161A0` (`0x003161C6`, `0x0031620A`), the quest test `0x00315DC0` (`0x00315E03`, `0x00315E0C`) and the list lookup
+`0x00315D50` that reads `0x01EED130` (`0x00315D68`-`0x00315D7A`) do the same.
 The chain is therefore correct only while the loaded `menuhandbook.bin` (`[0x022C2550]`) sits below 4 GB.
 
 ## Shipped data
@@ -278,12 +341,12 @@ The event-script names are the kind-8 path entries `key1 x 4`; each of the seven
 |---|---|
 | `0x00316A50(index, amount)` | update a counter or fire a counter-less descriptor |
 | `0x00315E90(index)` | evaluate one descriptor and award it |
-| `0x003166F0(index)` / `0x00316BF0(index, value)` | read / store a counter at its declared width |
+| `0x003166F0(index)` / `0x00316BF0(index, value)` | read / store a counter at its declared width: a sign-extended `i16` for kind 2 and an `i32` for kind 4 at `block + 0x384C + offset` (`0x0031673B`, `0x00316750`, `0x00316C30`, `0x00316C45`); for an index of 30 or more or any other kind the read gives -1 (`0x00316753`) and the store writes nothing (`0x00316C48`) |
 | `0x00316760(index)` | counter value, with the step total and mean level for 5 and 8 |
 | `0x003165C0(index)` | the handbook target |
 | `0x00316930()` | sweep: rare-monster fix-up, evaluate 0-29, re-send |
 | `0x008632B0(entry)` | award a Steam entry |
-| `0x00316810()` | on load (`0x00584398`): reseed the samplers and pull a saturated counter one below its cap (`0x7FFE`, `0x7FFFFFFE`) |
+| `0x00316810()` | on load (`0x00584398`): reseed the samplers and pull a saturated counter one below its cap (`0x7FFE`, `0x7FFFFFFE`); each sampler's `+4` and last sample get `0x00316760(id)` (`0x00316850`, `0x00316853`), and a kind-2 value of `0x7FFF` or more or a kind-4 value of `0x7FFFFFFF` is stored back as `0x7FFE` or `0x7FFFFFFE`, with the last sample set to the same (`0x003168FC`, `0x003168FF`, `0x0031689D`, `0x003168A3`); `0x003162E0` never reads `+4` |
 
 ## State
 
@@ -302,9 +365,13 @@ The award bits are only set: the one other writer of `+0x3844`, `0x00315910` cat
 - A counter target is the handbook copy the language reads (`in` or `ch`); editing the `us` copy changes
   nothing. A descriptor whose mask bit is clear falls back to its `param`, which is 0 for every counter.
 - A counter award lands on the update after the one that crosses the target, or at the next sweep.
-- An award made before Steam's stats arrive is marked locally and then overwritten by the receipt. Counter
-  achievements and entry 19 are sent again by the re-send; a scene, script or evaluator award is not, because
-  its save bit is already set.
+- An award made before Steam's stats arrive is marked locally and then overwritten by the receipt. The re-send
+  sends entry 19 and the counter achievements of descriptors 0-8, 11, 14 and 17 again. Entry 6 (descriptor 18,
+  chain count) has no sampler; as a kind-0 descriptor it fires again at the next chain count of 50 or more, and
+  entry 17 at the next purchase of the urn.
+- An evaluator award is not sent again: no sampler covers it, and the evaluator returns once its save bit is
+  set. A scene or script award has no save bit and no sampler; it is sent again only if its scene or verb runs
+  again, since `0x0020CB50` and `0x0020CE60` test only `+0x190`.
 - Raising the descriptor `param` of a mode-7 entry to 10 makes it use the eleventh list monster `0x103`.
 - `kind` and `offset` place the counter in the save block; overlapping offsets share bytes.
 

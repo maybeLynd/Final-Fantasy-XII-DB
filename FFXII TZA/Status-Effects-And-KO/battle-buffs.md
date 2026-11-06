@@ -18,9 +18,9 @@ when they fall, and last two minutes. The others last until the enemy drops them
 
 A stats record holds two 128-bit sets of augment ids: `+0x78`, which gear and licenses rebuild
 ([Augments](../Damage-And-Battle-Formulas/augments.md)), and `+0x68`, which battle abilities switch on and off. Id *n* is
-bit `n & 7` of byte `n >> 3`. The two layers share the augment ids and their text bank, and every reader below
-tests both, so an id behaves the same whichever layer holds it. The damage formula merges both into one set of
-128 bits ([Damage formula](../Damage-And-Battle-Formulas/damage-formula.md)).
+bit value `1 << (n & 7)` of byte `n >> 3`. The two layers share the augment ids and their text bank, and every
+reader below tests both, so an id behaves the same whichever layer holds it. The damage formula merges both into
+one set of 128 bits ([Damage formula](../Damage-And-Battle-Formulas/damage-formula.md)).
 
 ### The layer write
 
@@ -28,12 +28,15 @@ tests both, so an id behaves the same whichever layer holds it. The damage formu
 
 1. The id must pass the class-29 id check, 0 to 128 (`0x0030E1D7`-`0x0030E1E5`;
    [Item and ability ids](../Engine-Core/item-and-ability-ids.md)).
-2. Modes 0 and 2 clear and set `+0x68`; modes 1 and 3 clear and set `+0x78`. A change to a bit already in the
-   asked state does nothing (`0x0030E1EB`-`0x0030E24E`).
+2. Modes 0 and 2 clear and set `+0x68`; modes 1 and 3 clear and set `+0x78`; any other mode returns at once
+   (`0x0030E1F9`-`0x0030E1FC`). A change to a bit already in the asked state does nothing (`0x0030E1EB`-`0x0030E24E`).
 3. For modes 0 and 2, `0x0030EA40` writes the id's timer, below (`0x0030E251`-`0x0030E264`).
 4. Nothing else happens unless the id's presence in either layer changed (`0x0030E269`-`0x0030E280`).
-5. A result record is built: for a set, `0x00386AE0`, which does something only for id 52; for a clear, an empty
-   one (`0x0030E286`-`0x0030E2DA`).
+5. A result record is built: for a set, `0x00386AE0`, which resets it with `0x003848E0` (`0x00386B07`) and fills
+   it only for id 52; for a clear, an empty one (`0x0030E286`-`0x0030E2DA`).
+   - A record whose `+0x2C` bit `0x1` is set is applied with `0x003112F0(record, 0, stats, 0xFFFF, flags)`
+     (`0x0030E2BE`-`0x0030E2DA`). The clear builder `0x00386A50` clears that bit (`0x00386A66`), and so does
+     `0x00386AE0` for any id but 52 (`0x00386BF0`), so only a set of id 52 can reach `0x003112F0`.
 6. With flags bit `0x2` clear, `0x0046A790` (set) or `0x0046A720` (clear) posts the message of ids 55-57 (`0x0030E2DF`-`0x0030E301`).
 7. Ids 104-113 change the gambit-slot count, below (`0x0030E303`-`0x0030E317`).
 8. Unless flags bit `0x200` is set, the augments are rebuilt (`0x0030E31C`-`0x0030E329`).
@@ -93,7 +96,9 @@ row `+4` × 30 × frame base. Only ids 55, 56 and 57 have a slot, 3, 4 and 5, wi
 minutes at one step per frame.
 
 Each periodic step `0x00385570` walks the ids held in either layer whose row byte `+6` is not `0xFF`
-(`0x003855CD`-`0x00385623`, [Status timers](status-timers.md)) and reads the slot's timer as a signed 16-bit value:
+(`0x003855CD`-`0x00385623`, [Status timers](status-timers.md)), among the ids below the row count `[0x02EBF040] + 4` of
+the augment table (an empty walk without the table, `0x00385585`-`0x003855A3`), and reads the slot's timer as a signed
+16-bit value:
 
 - A timer of 0 or below is left alone (`0x0038562E`-`0x00385631`).
 - A positive one loses 1 into the result's timer words `+0x42`, which the result applier copies back to `+0x17C`
@@ -124,9 +129,16 @@ list](../Battle-Actions/battle-message-list.md)).
 ### Shift's weakness
 
 Setting id 52 builds a result with `0x00386AE0`, which draws one element through `0x00384B10` (`0x00386B0C`-`0x00386BD9`,
-`0x0030E2DA`). `0x00384B10(leaveOut, context)` counts the elements not in `leaveOut`, takes a random draw (`0x00384BA6`)
-modulo that count and picks that element, bit `s` (`0x00384B28`-`0x00384BCA`). It then fills the result's affinity bytes together
-(`0x00384BCD`-`0x00384C0B`):
+`0x0030E2DA`). It first resets the result with `0x003848E0(result, 0, stats)` (`0x00386B07`) and keeps the record's unit
+in `0x02EBF188` (`0x00386B60`-`0x00386B65`). The draw is `0x00384B10(0, context)` (`0x00386BD2`-`0x00386BD9`): with `leaveOut`
+0 each of the eight elements can be drawn, and the one context field the draw reads is the result at `+0x10`
+(`0x00386B49`, `0x00384BCD`-`0x00384C0B`).
+
+`0x00384B10(leaveOut, context)` counts the elements not in `leaveOut`, takes a random draw (`0x00384BA6`)
+modulo that count and picks that element, bit `s` (`0x00384B28`-`0x00384BCA`): `k = rand() % n` (`idiv edi`,
+`0x00384BAD`), where `n` is the count of the eight bits clear in `leaveOut`, or 1 when that count is 0 (`0x00384BA2`),
+and `s = 1 << i` for the clear bit `i` with `k` clear bits below it (`0x00384BB0`-`0x00384BCA`; `s = 0` when every bit
+is set). It then fills the result's affinity bytes together (`0x00384BCD`-`0x00384C0B`):
 
 | Result byte offset | Value | Change on the enemy |
 |---|---|---|
@@ -138,9 +150,19 @@ modulo that count and picks that element, bit `s` (`0x00384B28`-`0x00384BCA`). I
 
 The result applier ORs the set bytes into the enemy record first and clears the clear bytes after
 (`0x0031193C`-`0x00311A7E`, [Action results](../Battle-Actions/action-results.md)), so the holder ends weak to `s`
-only, absorbing every other element, not immune to `s`, its halved elements unchanged. The bytes act on an
-enemy-side target only. The element slots 95 and 99 draw again, leaving out the element that hit, when a holder of
-id 52 is hit on its weakness (`0x0038B7E9`, `0x0038C3B5`; [Elements](../Damage-And-Battle-Formulas/elements.md)).
+only, absorbing every other element, not immune to `s`, its halved elements unchanged (`e = [unit + 0x6A0]`,
+the steps below).
+
+The bytes act on an enemy-side target only (`cmp byte ptr [rax + 5], 1`, `0x00311932`). The element slots 95 and 99
+draw again, leaving out the element that hit, when a holder of id 52 is hit on its weakness (`0x0038B7E9`,
+`0x0038C3B5`; [Elements](../Damage-And-Battle-Formulas/elements.md)).
+
+The applier's steps on the holder's record `e`:
+- weakness: `e[+0x78] = (e[+0x78] OR s) & s = s` (`0x003119A4`, `0x00311A4A`);
+- absorption: `e[+0x79] = (e[+0x79] OR ~s) & ~s = ~s` (`0x0031197C`, `0x00311A20`);
+- immunity: `e[+0x7B] = e[+0x7B] & ~s` (`0x003119F6`);
+- halving: `e[+0x7A]` is left as it was; the applier skips a zero byte (`test cl, cl`, `0x003119BB`, `0x00311A61`),
+  and the result's `+0x12B` and `+0x12F` stay 0 from the clear `0x003848E0` (`0x003848F5`).
 
 ### Gambit slots
 
@@ -148,6 +170,11 @@ A change of ids 104-113 in either layer adds or removes one gambit line on each 
 gambit sets, held between 0 and 12 (`0x003279B0`, `0x003279BB`-`0x00327A0B`;
 [Gambits](../Enemy-AI-And-Gambits/gambits.md)). Their augment text is "Adds an additional gambit slot.", and
 only the gear and license rebuild sets them, in `+0x78`.
+
+`0x0030E130` calls `0x003279B0(stats, 2 * set - 1)`, 1 for a set (modes 2 and 3) and -1 for a clear
+(`0x0030E18C`-`0x0030E195`, `0x0030E30D`). `0x003279B0` adds it to the count byte `+0x32` of the member's three banks
+`3 * type`, `3 * type + 1` and `3 * type + 2` at `[0x02EBF190] + 0x5B10 + 0x34 * bank`, with `type` the stats byte
+`+0x04` (`0x003279D0`-`0x00327A01`). A null stats record or an enemy's changes nothing (`0x003279B6`-`0x003279BF`).
 
 That rebuild is `0x0030FED0`, which the equipment-slot
 setters `0x0031A410`, `0x0031A510` and `0x0031A630` ([Equipment](../Items-Equipment-Shops-And-Licenses/equipment.md)), the

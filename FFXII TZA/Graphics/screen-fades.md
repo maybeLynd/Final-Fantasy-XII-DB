@@ -61,8 +61,13 @@ Fades are one kind of screen effect. The pool holds 32 records of 0x70 bytes at 
   higher priority, and moves the later records down one slot. The handle is
   `0x80000000 | (++counter & 0x0FFFFFFF)` (counter `0x02EC07E8`), the counter starts at 0, and 0x68
   bytes are copied from the descriptor (`0x003759C9`-`0x00375A01`).
+- The filed record's elapsed counter `+0x6C` starts at 0 (`0x003759C2`). After the copy `0x00375900`
+  clears bit `0x1` of `+0x10` (`0x00375A06`), so the tick and the draw take the record, and writes
+  `[rsp + 4] - 0xD` over the qword `+0x08`, with `rsp` as at its entry (`0x0037590A`-`0x00375912`,
+  `0x00375A0A`). It returns the handle (`0x00375A0E`).
 - The pool is kept packed and in draw order. `0x00375470(handle)` removes a record by moving every
-  later record up one slot and clearing the last handle.
+  later record up one slot and clearing the last handle. It walks the records up to the first free
+  one (`0x00375490`-`0x003754A3`), and a handle it does not meet there leaves the pool as it is.
 - A handle's top nibble is its class; class 8 is this pool. `0x0024DE70` (state) and `0x0024CFF0`
   (release) dispatch on it and reach `0x00375AE0` and `0x00375470`.
 
@@ -73,6 +78,37 @@ Fades are one kind of screen effect. The pool holds 32 records of 0x70 bytes at 
 `0x02EC07E0` and whose `+0x10` bit `0x1` is clear; kind 1 goes to `0x003740B0`. The frame bodies call it
 for stages 2, 3, 5 and 6 in the scene draw `0x0022B0B0` and stage 7 after `0x00376470`, so the stage,
 then the priority, sets the order in which fades and other screen effects cover each other.
+
+The draw runs between `0x00862C10(1, stage)` (`0x00375523`) and a tail jump to `0x00862C30` (`0x00375671`),
+and calls `0x0039D570(0)` and `0x0039D3F0` before the walk (`0x00375539`, `0x0037553E`). It waits on bit
+`0x100` of `0x02EAF6D8` before the walk, before each record and after the walk (`0x00375535`, `0x003755B2`,
+`0x00375655`); that word is 0, so each wait falls through. The walk stops at the first record with no
+handle (`0x0037556E`).
+
+Its jump table at `0x00375678` sends kinds 2 to 7 to `0x003745C0`, `0x003749F0`, `0x00375B90`, `0x00375D90`,
+`0x00374280` and `0x00374E30`, and kinds `0x0B` to `0x0D` to `0x00376220`, `0x00376050` and `0x00375280`; kind
+0, kinds 8 to `0x0A` and kinds above `0x0D` draw nothing (`0x003755B4`-`0x003755CB`). A record whose
+handler returns 0 is removed (`0x00375470`, `0x00375636`), and the walk takes the next record from the
+same slot (`0x0037563B`). The draw does not test the result of `0x003740B0` (`0x003755D5`).
+
+The kind `0x0C` draw `0x00376050` points `r14` at record `+0x30` only when byte `+0x1E` is 2, 3 or 4
+(`0x003760A9`-`0x003760DC`); for any other value `r14` stays 0 and the word read at `0x003760F5` would come from
+address 0. No kind `0x0C` record holds another value. A record gets its bytes only from the descriptor that
+`0x00375900` copies into it (`0x003759CC`-`0x00375A01`). `0x00375A20`, `0x00375470` and `0x00375F80` move whole records,
+and the pool's other stores touch bit `0x1` of `+0x10`, the qword `+0x08`, the handle `+0x68` and the counter
+`+0x6C`; the draw handlers write their own packets, not the record.
+
+Of the 47 calls to `0x00375900`, one files kind `0x0C`. `0x0024B7B0`, which the per-frame driver `0x0024D540` calls
+(`0x0024D6C4`) and which acts only in draw 0 with bit `0x40` of `0x020926E4` set (`0x0024B7CD`-`0x0024B7DC`), builds
+it with kind `0x0C` (`0x0024B92A`), the word `0x200` at `+0x1D`, which makes `+0x1D` 0 and `+0x1E` 2
+(`0x0024B936`), `+0x1F` = 1 (`0x0024B93C`) and the qword `0x1C00` at `+0x30` (`0x0024B90D`-`0x0024B918`,
+`0x0024B940`), and files it at `0x0024B949`.
+
+The other calls store kinds 1 to 7, `0x0B` and `0x0D`, and the blur descriptors that `0x003DDF90` files from
+`0x02B58A90` get kind stores of 2 only (`0x003DDCC9`, `0x003DDD6A`, `0x003DE01C`). So in the draw that matches
+`+0x1D` (`0x0037609A`), `0x00376050` always reads the word `+0x30` (`0x003760D4`, `0x003760DC`), `0x1C00`. With
+`+0x1F` = 1 it then returns 0 at `0x00376139`, after `0x002D7FA0(0x1C00)` and `0x00182AD0`, without a capture, and
+the draw removes the record (`0x00375636`).
 
 The class enables are bytes at `0x02EC07E0`, just past the pool, indexed by the record's class byte `+2`. The reset
 `0x00375120` (called from `0x00259180` at `0x002591CD`) sets classes 0 to 3 to 1 with one 4-byte store (`0x0037514F`) and
@@ -85,6 +121,20 @@ live record's class: the pool tick `0x00374950` (`0x0037497A`), `0x00374FD0` (`0
 `0x003740B0` draws one full-screen quad (corners at ±1.0) in the descriptor's colour with alpha
 `colourAlpha × f`, where `f = counter / duration` clamped to 0..1, and `1 − f` for a fade-in. With a
 duration of 0 or a counter past it, a fade-out draws the full colour and a fade-in draws nothing.
+
+The alpha `colourAlpha × f` is truncated to an integer (`0x00374186`). The full colour is the dword
+`+0x20` (`0x00374121`); the fade-in past its duration draws its quad with all four colour bytes 0
+(`0x00374196`), which leaves the screen as it is under blends 0 to 5 of the table below. At a counter
+of 0 a fade-in draws the full colour and a fade-out the four zero bytes (`0x00374117`-`0x0037411F`).
+
+It returns without drawing in two cases. One is the first test of `0x00374060` (below): `0x00254A70`
+answers 0, bit `0x800` of `0x020926E4` is set and the record's handle is not `0x002EF9F0(3)`, layer 3's
+(`0x003740B9`-`0x003740DD`). The other is bit `0x10` of draw 1's pass mask set (`0x003583F0(1)`,
+`0x003740E8`) while the draw byte `0x022C7F98` is 0 (`0x00358320`, `0x003740F1`).
+
+It writes the four corners, the colour as four floats (`+0x40`-`+0x4C`) and the blend word (`+0x50`)
+into the buffer `0x00863B40` returns, and submits it with `0x00863B90(2)` and `0x0039D3F0`
+(`0x0037419A`-`0x00374266`).
 The blend is entry `blend` of eight 8-byte words at `0x01EFAC20`, read as the PS2 GS `ALPHA`
 register:
 
@@ -101,13 +151,20 @@ register:
 ### Timing
 
 The pool tick `0x00374950` (run by `0x00258D70` in the field frame's simulation step, and by the menu
-frames `0x0022B8C0` and `0x0022BC20`) adds to the counter of every enabled record: 2 on its first tick, and 2 per tick while `0x001EDDA0` reports the
-30 fps time base, else 1. The duration is twice the frame count, so a fade lasts `frames`
-thirtieths of a second at either frame rate. The state query `0x00375AE0` answers 3 for a kind-1
-record while the counter is below the duration and 5 once it reaches it.
+frames `0x0022B8C0` and `0x0022BC20`) adds to the counter of every enabled record: 2 on its first tick,
+and 2 per tick while `0x001EDDA0` reports the 30 fps time base, else 1. The duration is twice the
+frame count, so a fade lasts `frames` thirtieths of a second at either frame rate. A record whose
+`+0x10` bit `0x1` is set is passed over like a disabled one, and the walk stops at the first record
+with no handle (`0x00374970`-`0x00374988`).
 
-The tick also asks `0x00374060(record)` about every kind-1 record and removes the record
-(`0x00375470`) when it answers 0. It answers 1 while byte `+0xDEF` of `[0x0209AC30]` is 0 (`0x00254A70`),
+The state query `0x00375AE0` answers 3 for a kind-1
+record while the counter is below the duration and 5 once it reaches it. It answers 3 for kinds 2,
+3, 5, 6 and `0x0D` and 0 for kind 0 (jump table `0x00375B3C`). For the other kinds it goes on to the
+later records, and it answers 0 when no record holds the handle (`0x00375B0F`-`0x00375B1A`).
+
+The tick also asks `0x00374060(record)` about every kind-1 record it counted and removes the record
+(`0x00375470`) when it answers 0, then takes the next record from the same slot (`0x003749C1`).
+It answers 1 while byte `+0xDEF` of `[0x0209AC30]` is 0 (`0x00254A70`),
 bit `0x800` of `0x020926E4` is set and the record is not layer 3's, whose handle `0x002EF9F0(3)`
 returns (`0x002EF9F0(layer)` reads a fade record's first dword, the layer clamped into 0..6).
 Otherwise it answers 0 once the record has `+0x1C` bit `0x2` set and its counter `+0x6C` above
@@ -121,12 +178,13 @@ layers 0–2 and 4–6). The render thread's block `0x19` arm `0x006234A0` asks 
 `0x002EF910`, from the world tick `0x00314020`, asks for the state of every layer with a handle
 (`0x0024DE70`):
 
-- 3: the record is running.
-- 5, fade-out: the record becomes finished and its effect stays in the pool, so the screen stays
-  black or white.
+- 3: the record is running; its state byte `+0x04` is set to 1 (`0x002EF9BC`).
+- 5, fade-out: the record becomes finished, state 2 (`0x002EF977`), and its effect stays in the pool,
+  so the screen stays black or white.
 - 5, fade-in: the effect is released and the record freed. For layers 0, 2, 4, 5 and 6
   (`bt 0x75`, `0x002EF9AF`) it then calls `0x001D6C80`, which runs the map prefetch step `0x001DA290`
   ([prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md)).
+- Any other answer leaves the record as it is (`0x002EF96F`).
 
 `0x002EF840(layer)` frees one layer and `0x002EF890()` all seven; the `mapjump` verb (`0x008D`, poll
 `0x00355350`) calls `0x002EF890`.
@@ -199,6 +257,7 @@ fade-out: when bit 0x10 clear, outLength != 0 and elapsed >= end - outLength - o
 ```
 
 A late first check shortens the fade by the frames already passed, so the fade still ends on time.
+With a null row `0x0037DEA0` returns at once (`0x0037DEB7`), so that movie gets no scheduled fade.
 
 ### The effect fade
 
@@ -241,7 +300,7 @@ Kind-1 descriptor (record `+0x08`; pool record `+0x00`):
 | `+0x01` | `u8` | stage/blend | low nibble stage (default 6), high nibble blend (default 3) |
 | `+0x02` | `u8` | class | 1 |
 | `+0x03` | `u8` | priority | default 0 |
-| `+0x04` | `u8[24]` | zero | zero for this kind (the start's qword clears); copied with the descriptor |
+| `+0x04` | `u8[24]` | zero | zero for this kind (the start's qword clears); copied with the descriptor; in the pool record `0x00375900` then writes the qword `+0x08` (`0x00375A0A`) |
 | `+0x1C` | `u8` | flags | bit `0x1` fade-in |
 | `+0x1D` | `u8[3]` | zero | zero for this kind; copied with the descriptor |
 | `+0x20` | `u32` | colour | RGBA bytes, alpha `0x80` full |
@@ -254,8 +313,10 @@ Pool record only:
 | `+0x68` | `u32` | handle |  |
 | `+0x6C` | `u32` | counter |  |
 
-The pool copies 0x68 bytes, more than the 0x28 a fade record has; the bytes past `+0x28` come
-from the next layer's record and the kind-1 code reads none of them.
+The pool copies 0x68 bytes from the record's `+0x08`, more than the 0x28 of its descriptor. The 0x40 bytes
+past the descriptor are the next layer's whole record and the first 0x10 bytes of the one after; for
+layers 5 and 6 they run past the array's end at `0x022BDEB0`, into the selectors `0x022BDEB0` and `0x022BDEB4`
+and the handle `0x022BDEB8`. The kind-1 code reads none of them.
 
 Movie fade row (registry slot `0x02EBF008`, stride 8):
 
@@ -336,16 +397,18 @@ difference below 0 compares as a large unsigned value.
 
 `fadecolor(r, g, b, a)` (`0x00BA`, `0x00340080`) pops its four arguments and jumps to `0x002EFE10(r, g, b, a)`. That
 stores them in the one-shot colour `0x022BDD58`-`0x022BDD5B` and sets `0x022BDD5C` (`0x002EFE10`-`0x002EFE2A`). The next
-`0x002EFA70` copies the four bytes into the record's descriptor `+0x28`-`+0x2B` and clears `0x022BDD5C`
-(`0x002EFBDE`-`0x002EFC0A`).
+`0x002EFA70` copies the four bytes into the record's `+0x28`-`+0x2B`, the descriptor's colour `+0x20`, and
+clears `0x022BDD5C` (`0x002EFBDE`-`0x002EFC0A`).
 
-The pool's handle words lie `0x70` apart from `0x02EBFA48`, and the last record's is `0x02EC07D8`. Each walk of the pool
-stops at the first record with no handle, so it reads this word only after the 31 records before it.
+The pool's handle words lie `0x70` apart from `0x02EBFA48`, and the last record's is `0x02EC07D8`. Each walk of the
+pool but the state query stops at the first record with no handle, so it reads this word only after the 31 records
+before it. The state query `0x00375AE0` compares the handle of all 32 records (`0x00375AF5`-`0x00375B16`), so it reads
+this word whenever no record before it matched with a kind that answers.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x022BDD59` | `u8` | 0 (zero-filled tail of `.data`) | the one-shot colour's green | `0x002EFE10` (`0x002EFE1D`, from `fadecolor`'s second argument) | `0x002EFA70` (`0x002EFBE9`, into the descriptor `+0x29`) |
-| `0x022BDD5A` | `u8` | 0 (zero-filled tail of `.data`) | the one-shot colour's blue | `0x002EFE10` (`0x002EFE23`, from the third argument) | `0x002EFA70` (`0x002EFBF4`, into the descriptor `+0x2A`) |
+| `0x022BDD59` | `u8` | 0 (zero-filled tail of `.data`) | the one-shot colour's green | `0x002EFE10` (`0x002EFE1D`, from `fadecolor`'s second argument) | `0x002EFA70` (`0x002EFBE9`, into the record's `+0x29`, the descriptor's `+0x21`) |
+| `0x022BDD5A` | `u8` | 0 (zero-filled tail of `.data`) | the one-shot colour's blue | `0x002EFE10` (`0x002EFE23`, from the third argument) | `0x002EFA70` (`0x002EFBF4`, into the record's `+0x2A`, the descriptor's `+0x22`) |
 | `0x022BDD90` | `u32` | 0 (zero-filled tail of `.data`) | layer 1's handle `+0x00`, 0 when the layer is free; the next five rows are layers 2 to 6, each reached as `0x022BDD60` + layer × `0x30` | `0x002EFA20`, 0 (`0x002EFA2F`); `0x002EFA70` (`0x002EFCD7`, the handle `0x00375900` returns); 0 from `0x002EF840` (`0x002EF878`, one layer), `0x002EF890` (`0x002EF8DD`, all seven) and `0x002EF910` (`0x002EF9A2`, a finished fade-in) | `0x002EF840` (`0x002EF86D`); `0x002EF890` (`0x002EF8D0`); `0x002EF910` (`0x002EF95C`, `0x002EF995`); `0x002EF9F0` (`0x002EFA13`, which returns it); `0x002EFA70` (`0x002EFB4C`, `0x002EFCE1`) |
 | `0x022BDDC0` | `u32` | 0 (zero-filled tail of `.data`) | layer 2's handle | `0x002EFA20`, 0 (`0x002EFA35`); the others as for `0x022BDD90` | as for `0x022BDD90` |
 | `0x022BDDF0` | `u32` | 0 (zero-filled tail of `.data`) | layer 3's handle | `0x002EFA20`, 0 (`0x002EFA3B`); the others as for `0x022BDD90` | as for `0x022BDD90` |

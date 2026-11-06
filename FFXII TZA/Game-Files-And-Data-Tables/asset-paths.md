@@ -28,8 +28,11 @@ The columns come from the executable's path arrays, the US size table and the ar
 2. **The entries.** An array is a run of 8-byte pointers to NUL-terminated paths, or 0; id *n* is entry *n*. Six
    kinds (3, 17, 18, 29, 36 and 40) point at runtime slots near `0x0215F000` instead of an array and have no entries.
 3. **Where an array ends.** The arrays sit back to back in `.rdata`, so each one ends where the next array that any
-   language installs begins. Past that point an id is listed only when the size table sizes it, with no path
-   (below).
+   language installs begins, and every language's array of a kind has the length of the shortest of them.
+   - Two arrays would otherwise run on: the IT kind 1 array `0x01E889F0` into the twelve language names at
+     `0x01E88B00`, and the UK kind 9 array `0x01E80FF0` into an array no arm installs ("The other languages' arrays"
+     below).
+   - Past the end an id is listed only when the size table sizes it, with no path (below).
 4. **The size.** `0x002DF960(kind, id)` returns the dword at `kind × 5000 + id` of the language's
    `FileSizeTable_<lang>.fst`; `0xFFFFFFFF` is no file. The size column is the US table's value.
 5. **Shipping.** The path, less its `PS2Data\` prefix and in lower case, is looked up among the 89,414 names of
@@ -166,12 +169,45 @@ lists every model with its files.
 The US kind 1 array `0x01ED7630` names ids 4 to 8 (the `wave0480`-`wave0483` and `wave0000` banks), 24
 (`env99.spp`) and 32 (`planmapname.bin`), and ends at id 34, where the kind 30 array `0x01ED7740` begins. The US
 size table sizes 24 kind 1 ids: 24 and 32, whose files ship; 1 and 2, which the array leaves null; and the 20 ids
-109 to 132, which lie past its end, so the US array names no kind 1 file for them.
+109 to 112 and 117 to 132, which lie past its end, so the US array names no kind 1 file for them.
 
 `0x002ED6F0` gives kind 1 to every bound id whose letter is none of its twelve (`0x002ED840`: index = number, one
 lane); `0x002E98F0` adds `0x33` to that index and the lane loader `0x002E6EB0` adds `0x43` (`0x002E6F99`-`0x002E6FA2`,
 [Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)). The bestiary, the party table and
 the actor manifests name only the twelve letters, so no shipped bound id reaches kind 1.
+
+### The other languages' arrays
+
+[`asset-paths-languages.tsv`](asset-paths-languages.tsv) lists, for every other arm of the language switch, the
+kinds whose array is not the US one, with every entry the decoder lists for them: the path, the size that each
+language of the arm gives it, and whether the archive holds the file. Locale ids 0, 9 and 10 (JP, ASIA and IN)
+take the default arm, and their three size tables agree on every entry of its kinds. The UK arm installs the US
+kind 12 array `0x01EC98D0`, so it has six kinds of its own.
+
+| Arm | Languages | Own kinds | Entries | Name a path | Sized | Sized and shipped | Named, not sized |
+|---:|---|---|---:|---:|---:|---:|---:|
+| 2 | FR | 1, 2, 5, 7, 8, 9, 12 | 5,342 | 5,320 | 3,176 | 3,154 | 2,166 |
+| 3 | DE | 1, 2, 5, 7, 8, 9, 12 | 5,342 | 5,320 | 3,171 | 3,149 | 2,171 |
+| 4 | IT | 1, 2, 5, 7, 8, 9, 12 | 5,342 | 5,320 | 3,175 | 3,153 | 2,167 |
+| 5 | ES | 1, 2, 5, 7, 8, 9, 12 | 5,342 | 5,320 | 3,176 | 3,154 | 2,166 |
+| 6 | UK | 1, 2, 5, 7, 8, 9 | 4,448 | 4,426 | 256 | 234 | 4,192 |
+| 7 | KR | 1, 2, 5, 7, 8, 9, 12, 21, 26, 37 | 7,411 | 7,389 | 4,584 | 4,562 | 2,827 |
+| 8 | CH | 1, 2, 5, 7, 8, 9, 12, 21, 26, 37 | 7,389 | 7,389 | 4,568 | 4,568 | 2,821 |
+| 11 | CN | 1, 2, 5, 7, 8, 9, 12, 21, 26, 37 | 7,411 | 7,389 | 4,590 | 4,568 | 2,821 |
+| 0, 9, 10 | JP, ASIA, IN | 1, 2, 5, 7, 8, 9, 12 | 5,322 | 5,322 | 3,159 | 3,159 | 2,163 |
+
+In every arm, each sized entry whose array names a path is in the archive, and no entry that the size table leaves
+unsized is. The sized entries with no path are the 22 of kind 1 that US has too (ids 1 and 2 and the 20 sized
+ids 109 to 112 and 117 to 132); CH and the default arm leave all 22 unsized. The UK kind 5 and 8 arrays name
+3,440 files under `plan_master\uk` and 3 under `plan_work\uk`; neither the archive nor the UK table has any
+of them.
+
+The executable also holds an array of 896 slots at `0x01E81150` that no arm installs and that no instruction or
+stored pointer names. It follows the UK kind 9 array's 43 slots and one zero qword, and it has the shape of a kind
+12 array: in 196 slots where the US kind 12 array names a `us` event effect it names the `uk` one
+(`effect_finish\uk\event\...`), and its other 700 slots equal the US array's, slot 34 naming
+`uk\event\e0034.efx` in both. Of its 197 `uk` files the archive holds that one. The table lists its 894 paths
+with the arm `not installed`.
 
 ## Columns
 
@@ -180,6 +216,18 @@ the actor manifests name only the twelve letters, so no shipped bound id reaches
 | `kind`, `id` | the resource kind and id, as `0x0032E620` takes them |
 | `path` | the path the kind's array names, as the executable writes it; empty for a null entry or an id past the array's end |
 | `size` | the US size table's value in bytes; empty for `0xFFFFFFFF` |
+| `ships` | 1 when the archive index names the file, 0 otherwise |
+| `archive_size`, `archive_name` | the archive record's size and the name its index gives the file |
+
+### Columns of asset-paths-languages.tsv
+
+| Column | Meaning |
+|---|---|
+| `arm` | the locale ids that take the arm, or `not installed` for the array at `0x01E81150` |
+| `kind`, `id` | the resource kind and id |
+| `array` | the address of the arm's array for the kind |
+| `path` | the path the array names; empty for a null entry or an id past the array's end |
+| `sizes` | each language of the arm with its size table's value in bytes, `-` for `0xFFFFFFFF`; empty for `not installed` |
 | `ships` | 1 when the archive index names the file, 0 otherwise |
 | `archive_size`, `archive_name` | the archive record's size and the name its index gives the file |
 

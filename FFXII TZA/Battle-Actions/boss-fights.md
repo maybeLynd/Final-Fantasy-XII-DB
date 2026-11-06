@@ -26,20 +26,31 @@ A boss or story fight is not marked by one setting. The area's script builds it 
 The script command `btlAtelSetEventFlagGroup(group, mode)` reaches `0x00239710(actor, mode, group)`
 through its handler `0x0050F8C0`. It stores the group number in the unit's byte `+0xE98`, sets bit `0x1` of
 `+0xE99` for mode 1 and bit `0x2` for mode 2 (clearing them otherwise), and calls
-`0x00306E60(unit, 1)` (`0x0023973A`-`0x00239770`).
+`0x00306E60(unit, 1)` (`0x0023973A`-`0x00239770`). It returns -1 when the actor has no battle unit (`0x0031B760`,
+`0x0023972C`) and 0 otherwise (`0x0023977A`).
 
-`0x00306E60(unit, add)` works only for an enemy-side unit (stats `+0x05` = 1) with a group. It takes the
-unit's lane (0-31) from `0x002360D0(unit+0x40, 0x00263D30(actor))`, sets (`add` = 1) or clears (`add` = 0) that bit
-in the group's member mask, and clears it in the group's defeated mask. The group's entry is
+`0x00306E60(unit, add)` works only for a non-null enemy-side unit (stats `+0x05` = 1) with a group. It takes the
+unit's slot from `0x002360D0(unit+0x40, 0x00263D30(actor))`: the slot byte that the actor's lane maps to, any value
+but `0xFF` (`0x002360EF`), and a negative result returns (`0x00306EB0`). It sets (`add` = 1) or clears (`add` = 0)
+that slot's bit in the group's member mask, and clears it in the group's defeated mask.
+
+The bit is `1 << (slot & 31)` shifted in 32 bits and sign-extended (`0x00306ECE`, `0x00306ED4`, `0x00306EE7`), so
+slots 32 and above share the bit of `slot & 31` and slot 31 covers the bits under mask `0xFFFFFFFF80000000`.
+The group's entry is
 `0x02EC13C0 + (group - 1) * 0x18`: the member mask at `+0x00`, the defeated mask at `+0x08` and a pending
-flag at `+0x10` (bit `0x1`).
+flag at `+0x10` (bit `0x1`). The index `group - 1` has no range test against the 64 entries (`0x00306EB2`-`0x00306EC3`).
 
 ### A member is defeated
 
-`0x00306F00(unit)` sets the unit's lane in the defeated mask. When the defeated mask covers the member
-mask, the group is complete, and it:
+`0x00306F00(unit)` sets the unit's slot bit in the defeated mask (`0x00306F78`), past the same gates and slot
+resolution as `0x00306E60`: a null unit, a null stats record or one whose byte `+5` is not 1, a group byte of 0
+or a negative slot returns 0 (`0x00306F09`-`0x00306F55`). When the defeated mask covers the member
+mask, the group is complete, and it returns 1 after the steps below (`0x00306FF2`, `0x0030701C`); otherwise it
+returns 0 (`0x00306F88`). On completion it:
 
-1. calls `0x00307140(1)`: ten `0x002E1C20(0xC)` calls, `0x00359200(1, 2)`, `0x00359330(2, 1, 1)` and
+1. calls `0x00307140(1)`: ten `0x002E1C20(0xC, n)` calls, which set the bit values `0x1`, `0x8`, `0x10`, `0x20`,
+   `0x40`, `0x80`, `0x100`, `0x800`, `0x1000` and `0x100000` (mask `0x1019F9`) of row 12 at `0x0215F1F0`
+   (`0x00307160`-`0x003071BE`), then `0x00359200(1, 2)`, `0x00359330(2, 1, 1)` and
    `0x0026BD20(2, 0)`;
 2. calls `0x00238B70(1)` and `0x00238AE0(1)`, the battle freeze (below);
 3. with bit `0x1` of `+0xE99` (mode 1), clears unit bit `0x800000000000`, sets the group's pending flag and posts event
@@ -50,7 +61,8 @@ mask, the group is complete, and it:
 The frame orchestrator calls `0x00307030` (`0x00234717`). When `0x00233D20()` allows it, every pending group
 has its flag cleared and its number passed to `0x0026ADC0(3, group)`, which stores it in word 3 of the
 array that actor manager 0 points to at `+0x58` (`0x02098E68`), when that manager is active (bit `0x1` of
-`0x02098E20`). `0x00307090` clears all 64 entries;
+`0x02098E20`). `0x00307090` zeroes both masks of all 64 entries and clears their pending flag bit `0x1`
+(`and byte ptr [...], 0xFE`, `0x003070A0`-`0x003070CB`), leaving the flag byte's other bits;
 it is called by the area initialisation (`0x0023442D`).
 
 ### Removing enemies

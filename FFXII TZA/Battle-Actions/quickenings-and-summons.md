@@ -119,8 +119,14 @@ owner it runs these steps (`0x003065D6`-`0x00306716`):
 5. The state becomes 7. When manager 3 is idle the state, kind and owner are cleared, bits `0x3` of
    `0x022C2158` are cleared, and `0x00238A60()` and `0x00332190(3)` run.
 
-`0x00306570(unit)` performs the same clear for the owner (or for no owner) when manager 3 is idle; it is
-called from `0x002341D0`, the area initialisation `0x00234397` and the slot release `0x0030CA14`.
+`0x00306570(unit)` performs the same clear when manager 3 is idle (`0x002671F0(3)` returns 0) and the unit is null,
+the owner `0x022C2168` is null, or the unit is the owner: bits `0x3` of `0x022C2158`, the kind and the state (the qword
+at `0x022C215C`) and the owner are cleared, and `0x00238A60()` and `0x00332190(3)` run (`0x00306574`-`0x003065BD`). For any
+other unit, or while manager 3 runs, it returns doing nothing (`0x00306588`, `0x00306596`).
+
+It is called from `0x002341D0`, the area initialisation `0x00234397` and the slot release `0x0030CA14`; the first two give
+it a null unit (`xor ecx, ecx`), and the slot release the unit `0x0031B7E0` finds for the slot's unit id, null when
+it does not resolve.
 
 ### What pauses
 

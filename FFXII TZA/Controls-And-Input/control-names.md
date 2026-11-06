@@ -20,7 +20,11 @@ and `0x00879570` for the channel names, then registers its destructor with `atex
 1. returns `0x11` when the node has no name (`0x00879574`-`0x00879588`);
 2. returns `0x12` when a node with the same name is already in the list (`0x0087958D`-`0x008795CE`, `0x008795E6`);
 3. otherwise puts the node at the front of the list whose head is `0x02EB9D80` for channels, `0x02EB83B8` for keys
-   (`0x008795D0`-`0x008795DA`).
+   (`0x008795D0`-`0x008795DA`), and returns 0 (`0x008795D4`).
+
+Names are compared byte by byte, the node's `+0x08` string against each listed node's (`0x008795A0`-`0x008795C5`).
+`0x00876C80` is the same code over the key list `0x02EB83B8`: `0x11` at `0x00876C90`, `0x12` at `0x00876CF6`, and the
+insert and 0 at `0x00876CE0`-`0x00876CEA`.
 
 For example, `0x0016BDE0` inserts the key node of `Key_Numpad_8` (`0x01F458C8`) and registers `0x008BCF20`, which at exit
 sets the node's type pointer to `0x01CD89D8` and unlinks it from the key list `0x02EB83B8` (`0x008BCF20`-`0x008BCF7A`).

@@ -73,12 +73,12 @@ The readers of `+0x04`:
 | 35, 42-47, 60-68 | `0x002FEF30` | added to Strength, [Stats](stats.md) (`0x002FF581`-`0x002FF77A`) |
 | 19, 22, 24, 26, 69-73, 87, 97-102 | `0x002FEF30` | added to Magick Power, [Stats](stats.md) |
 | 74-85 | `0x002FEF30` | added to max HP, [Stats](stats.md) |
-| 91-93 | `0x002F95D0` | percent taken off a magick's MP cost ([MP](../Status-Effects-And-KO/mp.md)) |
+| 91-93 | `0x002F95D0` | percent taken off an action's MP cost when the user has no augment 32 (`0x002F9674`-`0x002F9682`), for every action but the Quickenings and Esper summons of a record that is not an enemy (`0x002F9646`-`0x002F9667`): `cost = (int)(c - c / 100.0 * p)`, with `c` the action's byte `+0x0A` and `p` the sum of word `+0x04` of the rows 91-93 whose bits `0x8`, `0x10` and `0x20` of the user's bitset byte `+0x73` or `+0x83` are set (`0x002F96E5`-`0x002F97C1`) ([MP](../Status-Effects-And-KO/mp.md)) |
 | 94-96 | `0x002F8410` | percent taken off the charge time ([Action phases](../Battle-Actions/action-phases.md)) |
 | 3, 88-90 | `0x00387FD0`, `0x00389370` | added to the shield-block chance ([Damage formula](damage-formula.md)) |
-| 119-121 | `0x0038DD20` | added to 100 percent of the heal it computes (`0x02AEE054` × `0x02AEE058`), for each of the user's bits 119-121 set in the bitset at its third argument's `+0x1A` (`0x0038DD3A`-`0x0038DE0B`) |
-| 122-124 | `0x0038DF00` | the same, for bits 122-124, into `0x02AEE010` (`0x0038DF1A`-`0x0038DFEB`) |
-| 125-127 | `0x0038E2D0` | added to the action's power `+0x10` for bits 125-127 (`0x0038E335`-`0x0038E3F6`), the percent of the target's max HP it restores; the sum is doubled when the user also has augment 14, Item Boost (`+0x1B` bit `0x40` of the bitset at its third argument's `+0x1A`, `0x0038E40C`-`0x0038E412`), then capped at 100 (`0x0038E414`-`0x0038E421`) |
+| 119-121 | `0x0038DD20` | added to 100 percent of the heal it computes (`0x02AEE054` × `0x02AEE058`), for each of the user's bits 119-121 set in the bitset at its third argument's `+0x1A` (`0x0038DD3A`-`0x0038DE0B`). The heal is an HP gain, `0x02AEE008` (`0x0038DE95`); it is an HP loss, `0x02AEE004`, instead when one or all three of these hold: the context's target type `+0x18` is `0x0D` (Undead), the target has Reverse (context `+0x08` bit `0x1000`), the user has augment 15 (Medicine Reverse, `+0x1B` bit `0x80`) (`0x0038DE21`-`0x0038DECB`). A loss, or a loss an earlier slot left in `0x02AEE004`, marks the target in the user's hit mask through `0x00387B00` (`0x0038DED1`-`0x0038DEDC`) |
+| 122-124 | `0x0038DF00` | the same, for bits 122-124, into `0x02AEE010` (`0x0038DF1A`-`0x0038DFEB`). It tests neither Reverse nor the target's type: with the user's augment 15 (Medicine Reverse, `+0x1B` bit `0x80`) it calls `0x00387B00`, which marks the target in the user's hit mask, and moves the value to the MP loss `0x02AEE00C`, setting `0x02AEE010` to -1 (`0x0038E001`, `0x0038E03A`-`0x0038E053`) |
+| 125-127 | `0x0038E2D0` | added to the action's power `+0x10` for bits 125-127 (`0x0038E335`-`0x0038E3F6`), the percent of the target's max HP it restores; the sum is doubled when the user also has augment 14, Item Boost (`+0x1B` bit `0x40` of the bitset at its third argument's `+0x1A`, `0x0038E40C`-`0x0038E412`), then capped at 100 (`0x0038E414`-`0x0038E421`). The HP gain `0x02AEE008` is that percent of the target's max HP `+0x24`, doubled under Bubble (status 28), or under Disease (status 16) of its current HP `+0x48` (at least 1), divided by 100 and raised to 1 when it comes to 0 (`0x0038E424`-`0x0038E46E`) |
 | 55-57 | `0x00387020` | the default timer, value × 30 × the frame base `0x01DFE0B4`, which `0x0030EA40` and `0x0038FF20` store in the slot `+0x06` names |
 
 ### The functions that read the table
@@ -90,7 +90,8 @@ Fifteen functions load `0x02EBF040`, at 111 instructions: `0x002FEF30`, `0x002F9
 - The first eight pick their rows by number and name only the rows in the table above.
 - `0x0030EA40`, `0x00385570` and `0x0038FF20` take any id. `0x0030EA40` reads `+0x04` through `0x00387020` and `0x0038FF20`
   computes the same product inline (`0x0039005D`-`0x00390088`), both only for a slot `+0x06` below 8; `0x00385570` reads
-  `+0x06` only.
+  `+0x06` only. `0x0030EA40` calls `0x00387020` only when the timer it is given is negative
+  (`0x0030EAA3`-`0x0030EAB3`).
 - `0x0031C5D0` reads `+0x00` and `+0x02`.
 
 No other instruction reaches the table, and no instruction writes it after `battle_pack.bin` is loaded. Every read of
@@ -117,8 +118,10 @@ augment to allow them:
   merge (`0x00384827`) and the timer pass `0x00385570` (`0x003855CD`) walk every id.
 - No instruction reads the Essentials license bit, owned-square byte `+0x197`, by itself.
 
-So the commands are innate to every character, and the row's help text, "Slightly raises max HP." (text id 13062),
-describes a behaviour this census did not locate for augment 114 (Project notes).
+So the commands are innate to every character. The row's help text, "Slightly raises max HP." (text id 13062),
+names an effect the code never applies: the max-HP list of the stats rebuild is rows 74-85 (`0x00D102B0`), its other
+two lists (`0x00D10290`, `0x00D102A0`) hold no 114 either, and no instruction tests augment 114 (above, and Project
+notes).
 
 ### Properties of the shipped rows
 

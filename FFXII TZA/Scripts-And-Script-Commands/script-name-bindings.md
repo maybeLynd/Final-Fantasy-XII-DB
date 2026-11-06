@@ -26,7 +26,8 @@ Smaller values go through `0x002EB7A0`, which turns 0 and 1 into `0x630000`, 8 a
 `0x002ED6F0` splits a bound id into a resource kind and a file index and returns the number of lanes
 the model has (the table under Layouts). `0x002ED950` returns the model's row in a per-letter table for
 the classes `b`, `c`, `g`, `m`, `n`, `s`, `t` and `w` (`[0x021641A8]` to `[0x021641E0]`, a count at `+8`
-and 16-byte rows); any other class, or a number at or past the count, gives null.
+and 16-byte rows, row n at table + 16 × (n + 1), `0x002ED9C7`-`0x002ED9CF`); any other class, a class whose
+table pointer is null (`0x002ED9C0`), or a number at or past the count (compared signed, `0x002ED9C5`), gives null.
 
 ### The handle: one number checked before use
 
@@ -57,12 +58,26 @@ The loops in `0x002EA320` link the middle records and leave the end links to sin
 `0x0215FDA8` (`0x002EA3CB`), and slot 127's previous, `0x02161D60` (`0x002EA404`); for the lane records, record 0's next
 `0x02161DA8` (`0x002EA425`) and record 31's previous `0x02164080` (`0x002EA47D`).
 
-`0x002EA320` (called from `0x00266D10`) also clears the other heads, loads the ten character SE tables through
-`0x002EA530` (`0x002EA34F`; [character SE tables](../Game-Files-And-Data-Tables/character-se-tables-chse.md)),
-fills the lane records, and
-registers the binding callbacks with `0x0041D6C0` (kinds 5, 4, 6, `0xC`, `0x26`) and installs the retire
+The entry loop first zeroes both links
+of every entry, so slot 0's previous and slot 127's next are null. The record loop links records 1 to 30 and gives
+them null unload-queue nodes `+0x10`/`+0x18` (`0x002EA455`, `0x002EA45C`); record 0's previous link, record 31's next
+link and the nodes of records 0 and 31 are not written.
+
+`0x002EA320` (called from `0x00266D10`) also clears the other heads (`0x0215FD88`, `0x0215FD78`, `0x0215FD90`, `0x0215FD80`,
+then `0x0215FD58` and `0x0215FD68`) and the stored callback `0x0215FD98` (`0x002EA32C`), loads the ten character SE tables
+through `0x002EA530` (`0x002EA34F`;
+[character SE tables](../Game-Files-And-Data-Tables/character-se-tables-chse.md)), and fills the entries and
+the lane records.
+
+Each entry gets its slot at `+0x1A`, a count `+0x1C` of 0, `+0x1E` = `0xFFFF` and a stamp of 0
+(`0x002EA361`-`0x002EA377`). Each lane record gets its index at `+0x20`, owner slot `+0x22` = `0xFFFF`, `+0x44` = 0
+and its 32 counts at `+0xE0` zeroed (`0x002EA390`-`0x002EA3B6`). No other field of either is written.
+
+It then registers the binding callbacks with `0x0041D6C0` (kinds 5, 4, 6, `0xC`, `0x26`): kind 5 gets the bare
+`ret 0` stub `0x0016D6A0`, so a kind-5 call does nothing, and kinds 4, 6, `0xC` and `0x26` get `0x002E70C0`,
+`0x002E7090`, `0x002E70A0` and `0x002E7080` (`0x002EA484`-`0x002EA4E2`). It installs the retire
 step `0x002E6D60` as the allocation-pressure callback of memory arenas 6 and 10 (`0x0036C5A0`, arena
-record `+0xA0`).
+record `+0xA0`), and finally sets `0x0215FD46` to 1 (`0x002EA50E`).
 
 ### Find-or-create, holders and the reference count
 
@@ -72,13 +87,26 @@ equals the id. On a miss it allocates one, pushes it on the requested list and s
 same search and creation without pin bit `0x8` and sets holder bit `0x1`. Neither guards its final writes
 against a null allocation: with all 128 entries in use both write through a null pointer.
 
-`0x002E25E0(id)` pops the free head, increments the stamp, keeps only bits `0xC8` of `+0x19`, zeroes
+`0x002E99C0(id)` is that search alone: it returns the first entry on the live list, then on the requested list,
+whose `+0x14` equals the id (`0x002E99D0`, `0x002E99F0`), and null when neither list holds one. It writes nothing.
+
+`0x002E25E0(id)` returns null at once when the free list is empty (`0x002E25EA`). Otherwise it pops the free
+head, increments the stamp, keeps only bits `0xC8` of `+0x19`, zeroes
 `+0x10`, `+0x18`, `+0x1C`, `+0x20`, `+0x26` and `+0x28..+0x2F`, stores the id at `+0x14`, sets
-`+0x1E` to `0xFFFF` and `+0x30..+0x3B` to `0xFFFFFFFF`, and unlinks the entry.
+`+0x1E` to `0xFFFF` and `+0x30..+0x3B` to `0xFFFFFFFF`, and unlinks the entry, zeroing its links `+0x00`
+and `+0x08` (`0x002E2646`, `0x002E264A`). It returns the entry.
 
 The bind `0x002E28E0` and the attach `0x002E3110` add one to the reference count `+0x1C` and clear
 `+0x18` bit `0x4`. `0x002EB810(id)` and `0x002EAF70(entry)` take one away. An entry with pin bit `0x1` or `0x2` set
-(`+0x19 & 3`; `0x002EBD60(id, on)` sets bit `0x1`) has its count clamped to 0 instead of being released.
+(`+0x19 & 3`; `0x002EBD60(id, on)` sets or clears bit `0x1`) has its count clamped to 0 instead of being released.
+`0x002EBD60` takes the first entry with the id on the live list, then on the requested list, and copies bit `0x1`
+of `on` into pin bit `0x1` (`0x002EBDA4`-`0x002EBDAB`), so `on` = 0 clears it; with no entry for the id it stores
+nothing (`0x002EBD9E`, `0x002EBDAE`).
+
+`0x002EB810(id)` itself releases nothing. It takes one from the count of the entry with the id on the live or
+requested list, `+0x1C -= 1` (`0x002EB854`), and clamps a pinned entry at 0, `+0x1C <= 0` with `+0x19 & 3` giving
+`+0x1C = 0` (`0x002EB858`-`0x002EB867`); an unpinned entry stays listed with its count at 0 or below until one of the
+routines below releases it. With no entry for the id it does nothing.
 
 Four routines release an unreferenced entry through the re-lister `0x002EAEB0`:
 
@@ -86,7 +114,9 @@ Four routines release an unreferenced entry through the re-lister `0x002EAEB0`:
   selector's holder bit, a negative one clears the whole holder word. On an entry whose count is 0 or
   less it then clears the selector's bit (for any direction), and re-lists it when the holder word is
   empty and pin bits `0x3` are clear.
-- `0x002E3DC0(id)` re-lists the entry for the id when its count is 0 or less and it is not pinned.
+- `0x002E3DC0(id)` searches the live list, then the requested list, and re-lists the entry for the id (a tail
+  jump to `0x002EAEB0`, `0x002E3E14`) when its count is 0 or less and it is not pinned. A pinned entry at 0 or less
+  has its count set to 0 (`0x002E3E1B`); a positive count, or no entry with the id, leaves everything as it was.
 - `0x002E3E90(id)` does the same, except that it leaves an entry with `+0x19` bit `0x10` set.
 - `0x002EAF70(entry)` drops one reference and re-lists at 0 or less, unless pinned.
 
@@ -95,6 +125,10 @@ only sets `+0x18` bit `0x4` and returns, deferring the release until the load co
 increments the stamp, clears the ready bit, copies the new stamp into the entry's lane record, and
 moves the entry from the live or requested list to the head of the retired list. Every handle given
 out for the entry stops resolving at that moment.
+
+The lane record is the one `+0x1E` names. The re-lister copies the stamp only when `+0x1E` is not negative
+and that record's stamp `+0x5C` equals the entry's old stamp (`0x002EAED8`-`0x002EAEF4`, `0x002EAF10`). When the
+entry heads the live or the requested list, that head moves to the entry's next (`0x002EAF14`-`0x002EAF33`).
 
 ### The per-frame binding update
 
@@ -112,8 +146,15 @@ load handle `+0x10` is non-zero is first unloaded from the render system (`0x004
 `0x0020E600([0x022C6F28 + 0x48830])`) unless `+0x18` bit `0x8` or `+0x19` bit `0x4` is set, then released by
 `0x002E9360`.
 
-An entry whose `+0x10` is 0 is not passed to `0x002E9360`: when the walk reaches the head it nulls
-`0x0215FD88`, so the entry ends up on no list and its slot is lost until `0x002EA320` runs again.
+An entry whose `+0x10` is 0 is not passed to `0x002E9360` and stays linked. The walk nulls `0x0215FD88` only
+when the entry it skips is the head (`0x002E6649`-`0x002E6653`), that is, when the update starts with a
+zero-handle entry as the newest retired entry. That entry and every older zero-handle entry still linked
+behind it then end up on no list, and their slots are lost until `0x002EA320` runs again.
+
+When the head has a non-zero handle, its release moves `0x0215FD88` to its next (`0x002E9419`-`0x002E941D`), so
+after the walk the retired list holds exactly the zero-handle entries, newest at the head. They stay there
+while newer retired entries keep arriving, and the first update that starts with one of them at the head
+drops them all. Such an entry comes from a load the request pump could not file.
 
 `0x002E6D60`, which arenas 6 and 10 call when an allocation in them fails, unloads
 the oldest queued lane record (`0x002E6900(0)`; with a non-zero argument `0x002E6900` runs the whole
@@ -121,37 +162,87 @@ queue), then releases the single oldest retired entry the same way, and runs the
 when there was no retired entry. While the oldest retired entry has `+0x10` = 0 and is not alone on the list,
 `0x002E6D60` picks it on every call and makes no progress.
 
-`0x002E9360(entry)` queues all 32 lanes of the entry's lane record for unload (`0x002EAFA0`, unloaded
-later by `0x002E6900`) when that record's stamp `+0x5C` matches, releases the three sub-resources at `+0x30`, `+0x34`, `+0x38` through `0x003A0F80`,
-frees `+0x10` through `0x00369800` when non-zero, calls `0x0017F040` with the id, unlinks the entry from
+`0x002E6D60` returns 0 on every path (`0x002E6E1E`). Its early return for a non-zero `0x002E6900(0)` result
+(`0x002E6D6D`) is never taken, because `0x002E6900` returns 0 on every path (`0x002E6A70`).
+
+`0x002E9360(entry)` returns at once for a null entry (`0x002E9363`). It queues all 32 lanes of the entry's lane
+record for unload (`0x002EAFA0`, unloaded later by `0x002E6900`) when `+0x1E` is not negative and that record's
+stamp `+0x5C` matches (`0x002E9389`, `0x002E93A0`), releases the three sub-resources at `+0x30`, `+0x34`,
+`+0x38` through `0x003A0F80`, frees `+0x10` through `0x00369800` when non-zero and then zeroes it
+(`0x002E93F7`), and calls `0x0017F040` with the id.
+
+It then unlinks the entry from
 whichever list holds it (moving the free or retired head past it), pushes it on the free list,
 increments the stamp, zeroes `+0x26`, `+0x18` and the id `+0x14`. It does not reset `+0x1E`; the
 next allocation does.
 
 ### Loading an entry
 
-The request pump `0x002E6700` takes every entry on the requested list. It splits the id with
+The request pump `0x002E6700` takes every entry on the requested list. For each it pushes arena 6
+(`0x0036C1D0(6, 5)`, `0x002E673F`) and tag 5 (`0x0036C1A0(5)`, `0x002E6749`). It splits the id with
 `0x002ED6F0` (adding `0x33` to the index for kind 1), asks `0x0032E400(kind, index)` for the file's
-size: `0x002DF960`'s size rounded up to a multiple of 64 (the per-kind override table at
-`0x022C51F0` it consults first is only ever zeroed, by `0x0032EA90`, among the static references to
-it). It then sets `+0x19` bit `0x4` and zeroes `+0x10`.
+size: `0x002DF960`'s size rounded up to a multiple of 64 when it is positive (`0x0032E43B`-`0x0032E448`). It then
+sets `+0x19` bit `0x4` and zeroes `+0x10`.
+
+`0x0032E400` returns a size of 0 or less from `0x002DF960` as it is, and −1 for kind `0xFF` before any lookup
+(`0x0032E404`, `0x0032E438`). The per-kind override table at `0x022C51F0` it consults first (for a non-null
+pointer and an index below `0x400` it returns that table's dword unrounded, `0x0032E41A`-`0x0032E428`) is only
+ever zeroed, by `0x0032EA90`, among the static references to it.
 
 A positive size gets a buffer from `0x0036B160`, whose handle goes to `+0x10`; when
 that succeeds it clears bit `0x4`, files the load with `0x002EAD50`, and for an entry with pin bit `0x8`
-calls `0x0036C5D0(handle, 1)`. The entry then moves to the live list and pin bit `0x8` is cleared.
+calls `0x0036C5D0(handle, 1)`. On every path it then pops the tag and the arena (`0x0036C110`, `0x0036C140`,
+`0x002E67BA`). The entry then moves to the live list and pin bit `0x8` is cleared.
 
-`0x002EAD50` files `0x0032E620(kind, index, buffer, size, record)` with the completion callback
-`0x002E4D20` and the entry as its argument. On completion `0x002E4D20` registers the model with the
-render system (`0x0041E580`) unless a release is already pending (`+0x18` bit `0x4`), in which case it
-sets `+0x18` bit `0x8`. It then asks `0x002EA6E0` whether sub-resources follow: when no sub-resource follows, it sets the
+A size of 0 or less (`0x002E678B`) or a failed buffer (`0x002E6799`) files nothing: the entry still moves to
+the live list, with `+0x10` = 0 and `+0x19` bit `0x4` set, so no completion runs for it and the re-lister
+retires it on its first call. For a size of 0 or less the pump also finds the entry again by its id
+(`0x002E6800`), takes one from its reference count `+0x1C` (`0x002E6835`) and, when the count is then 0 or
+less and pin bits `0x3` are set, sets it to 0 (`0x002E6840`-`0x002E6846`).
+
+The unlinking leaves the requested head `0x0215FD78` alone; after the last entry, or at once for an empty
+list (`0x002E6715`), the pump stores 0 there (`0x002E686E`).
+
+`0x002EAD50(entry, id)` takes the buffer's address from `0x0036A000(+0x10)` (`0x002EAD65`), which holds the
+block in place, and calls `0x0017F000(id)` (`0x002EADB5`). It splits the id and sizes the file again
+(`0x002EADCC`, `0x002EADEA`), then files `0x0032E620(kind, index, buffer, size, record)` (`0x002EAE08`) with the
+completion callback `0x002E4D20` and the entry as its argument. The record holds the entry's low 32 bits
+(`0x002EAD9A`), and `0x002E4D20` sign-extends its 32-bit argument (`0x002E4D3E`); the table at `0x0215FDA0` lies
+below `0x80000000`, so that gives back the entry's address.
+
+On completion `0x002E4D20` calls `0x0032F3D0(2)` (`0x002E4D46`) and does not use its result (`0x002E4D4E` zeroes `eax`
+before any read of it; for kind 2 it is always 0, since `0x005C5230` returns 0), stores the id at `0x021641FC` (`0x002E4D5E`),
+labels the loaded block (`0x0036B130`, then `0x0036C660` with the name `0x00409090` gives and the id,
+`0x002E4D68`-`0x002E4D82`) and releases the hold with `0x0036D170(+0x10)` (`0x002E4D89`). It then registers the
+model with the render system (`0x0041E580`) unless a release is already pending (`+0x18` bit `0x4`), in
+which case it sets `+0x18` bit `0x8`.
+
+It then asks `0x002EA6E0` whether sub-resources follow, passing three zero values for the slots
+(`0x002E4DB9`): when no sub-resource follows, it sets the
 ready bit `+0x18` bit `0x2` and, if a release was deferred, re-lists the entry at once.
 
-`0x002EA6E0` files a task with step function `0x002E60F0` when the model has a row in `0x002ED950` and
-no release is pending. `0x002E60F0` reads the row's three signed words at `+0`, `+2`, `+4`. A negative
+`0x002EA6E0(entry, count, values)` files a task with step function `0x002E60F0` when the model has a row in
+`0x002ED950` and no release is pending; otherwise it returns 0 at once (`0x002EA6FC`, `0x002EA709`). It takes
+the task from `0x002F16B0` (`0x002EA70B`) and copies the values into `+0x30` onward (`0x002EA720`-`0x002EA72F`)
+before testing it. With all 32 tasks taken it returns 0 with the slots already written (`0x002EA734`);
+otherwise it files the task with the entry at task `+0x28` and returns 1 (`0x002EA736`-`0x002EA758`).
+
+`0x002E60F0` reads the row's three signed words at `+0`, `+2`, `+4`, with no null test of
+the row (`0x002E6157`). A negative
 word stores `0xFFFFFFFF` in its slot. Otherwise the word w becomes a class-`0x20` file index (0 → 0,
-1 → 1, 2 → 3, below 500 → w − `0xC0`, otherwise w − `0x188`), whose size comes from `0x0032E400` and
-whose load goes into slot `+0x30`, `+0x34` or `+0x38`. When all three are done it sets the ready bit
-and re-lists the entry if a release was deferred.
+1 → 1, 2 → 3, below 500 → w − `0xC0`, otherwise w − `0x188`), whose size comes from `0x0032E400`; a size not
+above 0 skips the slot and leaves it as it was (`0x002E61B2`).
+
+For a positive size the load goes into slot `+0x30`, `+0x34` or `+0x38`: a buffer from `0x0036B160` (between
+`0x0036C1D0(6, 5)` and `0x0036C140`) is read with `0x0032E620`, and the slot holds the buffer handle while the task
+waits, one step at a time, until `0x0032E4D0` answers 0 (`0x002E6290`). The task then calls `0x0036D200` on the handle
+(`0x002E61D6`). A handle of 0 stores `0xFFFFFFFF` (`0x002E622D`); any other is registered with `0x003A1650`, whose
+block handle replaces it in the slot.
+
+A failed registration (−1) moves on to the next slot; otherwise the task waits until `0x003A1290` answers 2
+(`0x002E61FE`). When all three are done it sets the ready bit
+and re-lists the entry if a release was deferred (`0x002E629E`-`0x002E62AB`). Its step state is then 9, which
+every later step leaves as it is (`0x002E62C9`).
 
 `0x002E4C20(entry)` is the ready test every wait uses: `+0x18 & 2`, and 0 for a null entry.
 
@@ -160,22 +251,36 @@ and re-lists the entry if a release was deferred.
 A model can own up to 32 extra files (lanes); the lane count comes from `0x002ED6F0`. With i the index
 `0x002ED6F0` gives, lane n is file `i + 1 + n` of the same kind, or `i + 0x43 + n` for kind 1
 (`0x002E9920`). For class `m` (`0x6D`) lane 0 is file `i + 1`, lanes 1 to 15 are all file `i + 2`,
-and lane 16 and above are file `i + 1 + n − 14`.
+and lane 16 and above are file `i + 1 + n − 14`. `0x002E9920(id, n)` returns `0x0032E400`'s size for that
+file (a tail jump, `0x002E9988`, `0x002E99A8`), and 0 for a model whose lane count is below 1 (`0x002E9957`); it does
+not bound n by the lane count.
 
 The lane records are 32 × `0x120` bytes at `0x02161DA0` on their own lists: free `0x0215FD70`, idle
 `0x0215FD68`, pending `0x0215FD80`, and the unload queue `0x0215FD90` (linked through the second node at
-`+0x10`/`+0x18`). `0x002E2660(entry)` pops a free record, zeroes its masks, handles and counts, and
+`+0x10`/`+0x18`). `0x002E2660(entry)` pops a free record, zeroes the masks `+0x24` to `+0x43`, the five group
+words `+0x48..+0x5B`, the 32 handles at `+0x60`, the 32 counts at `+0xE0` and both list links, and
 cross-links it: record `+0x22` = the entry's slot, entry `+0x1E` = the record's index `+0x20`,
 record `+0x5C` = the entry's stamp. Every lane access checks `+0x5C` against the entry's stamp first.
+
+`0x002E2660` leaves the mask `+0x44`, the unload-queue node `+0x10`/`+0x18` and the new free head's previous link
+as they were (`0x002E9470` zeroes `+0x44` when it frees a record). With the free list empty it returns null and
+writes nothing (`0x002E266D`); otherwise it returns the record.
 
 `0x002E9C30(entry)` returns the entry's lane record when the entry has one and its stamp matches,
 null otherwise; the model loader `0x002EE430` uses it.
 
 `0x002EB5E0(entry, lane, delta, group)` picks the lane with `0x002EB9D0`, creates the lane record if the
-entry has no lane record, and requests lane 0 and the chosen lane through `0x002EB690`. `0x002EB9D0(entry, n)`
+entry has no lane record, and requests lane 0 and the chosen lane through `0x002EB690`. It returns the lane
+record. It returns 0 and requests nothing for a null entry, when `0x002EB9D0` gives −1, when no free record is
+left (`0x002E2660` returns null, `0x002EB623`), or when `+0x1E` names a record whose stamp no longer matches: that
+stale index gets no new record (`0x002EB611`, `0x002EB647`).
+
+`0x002EB9D0(entry, n)` returns −1 for a null entry (`0x002EB9E1`). Otherwise it
 sets lane n in the entry's `+0x28`; when the lane's file has a positive size (`0x002E9920`) it also
-sets `+0x2C` and returns n, otherwise −1. A lane already in `+0x28` gives n only when it is in
-`+0x2C`. A negative n tries lanes from 1 upwards below the lane count (at most 32) the same way.
+sets `+0x2C` and returns n, otherwise −1, with the lane left in `+0x28` (`0x002EBA09`). A lane already in
+`+0x28` gives n only when it is in `+0x2C`. A negative n tries lanes from 1 upwards below the lane count
+(at most 32) the same way: the count comes from `0x002ED6F0` (`0x002EBA4C`), the first lane that qualifies is
+returned, and a count of 1 or less, or a walk in which no lane qualifies, gives −1 (`0x002EBAB9`).
 
 `0x002EB690(record, lane, delta, group)` adds delta to the lane's count `+0xE0 + lane × 2`, clears the
 lane's bit in `+0x2C`, sets it in group word `+0x48 + group × 4`, and, when the lane is in none of
@@ -185,9 +290,25 @@ lane's bit in `+0x2C`, sets it in group word `+0x48 + group × 4`, and, when the
 `0x002E6EB0` loads each lane in `+0x28` whose handle `+0x60 + lane × 4` is still 0: a buffer from
 `0x0036B160`, `0x0036C5D0(handle, 1)` when the lane is in `+0x44`, and `0x0032E620` with completion
 callback `0x002E4E50` and tag `record index << 16 | lane`. It clears the lane from `+0x28` and, when the
-load was filed, from `+0x44` and into `+0x34`. `0x002E4E50` moves the lane from `+0x34` to `+0x24`,
-registers it with `0x0041E580`, and drops one count (`0x002EB890`) when the lane was queued for unload
-meanwhile; for an owner that no longer resolves it queues the lane for unload instead.
+load was filed, from `+0x44` and into `+0x34`. Each lane with a zero handle is handled between
+`0x0036C1D0(6, 5)` with `0x0036C1A0(5)` and `0x0036C140` with `0x0036C110`.
+
+A lane in `+0x28` whose handle is already non-zero files nothing: it moves from `+0x28` into `+0x34` and keeps
+its `+0x44` bit (`0x002E6EF6`). A lane whose size from `0x002E9920` is not above 0, or whose buffer is 0, only
+leaves `+0x28` (`0x002E6F45`, `0x002E6F57`). The owner is the entry in slot `+0x22` when its stamp equals `+0x5C`;
+its id is read with no null test (`0x002E6F35`), so with a negative owner slot or a stale stamp the read is at
+address `0x14` and faults.
+
+`0x002E4E50` moves the lane from `+0x34` to `+0x24` (`0x002E4EBE`, `0x002E4EC5`). For an owner that no longer resolves
+(owner slot negative or stamp different) it queues the lane for unload instead (`0x002EAFA0`, `0x002E4F15`). With a
+resolving owner and a non-zero handle it calls `0x0036B130(handle)`, whose result it does not use, and
+`0x0036D170(handle)`, registers the handle with `0x0041E580` on `0x0020E600([0x022C6F28 + 0x48830])`, and drops one count
+(`0x002EB890`) when the lane was queued for unload meanwhile (`+0x2C`). A zero handle registers nothing.
+
+`0x002EB890(id, lane)` takes one from the lane's count, `[+0xE0 + 2 * lane] -= 1` (`0x002EB8FC`). At 0 or less,
+`[+0xE0 + 2 * lane] <= 0` (`0x002EB903`), a held lane (`+0x38`/`+0x3C`, `bt` at `0x002EB913`) is clamped to 0
+(`0x002EB91B`) and any other keeps its count; it queues nothing. A negative lane, an id on neither
+list, or an entry whose lane record is missing or stale leaves everything as it was.
 
 A lane is held while its count is positive, while it is in any of the five group words
 `+0x48..+0x5B`, or while it is in the hold mask `+0x38` (the readers `0x002E3F00`, `0x002E4000` and
@@ -195,39 +316,80 @@ A lane is held while its count is positive, while it is in any of the five group
 
 `0x002ECAB0(id, lane, on)`
 sets or clears the lane in `+0x38`, and `0x002ECA30(entry, lane, on)` does the same in `+0x40`, a mask
-only `0x002E9C60` reads and `0x002E6570` clears in all 32 records. Both act only on a lane already in
-`+0x24`, `+0x28` or `+0x34`, so a hold set before the lane is requested is dropped; with lane 0
-present, lane 0 follows the other bits (set while any other bit is set, otherwise the whole mask is
-cleared). `0x002ECBA0` sets the lane and lane 0 in `+0x44` when its third argument is 1.
+only `0x002E9C60` reads and `0x002E6570` clears in all 32 records. `0x002ECAB0` takes the first entry with the id
+on the live list, then on the requested list, and stores nothing when neither holds one (`0x002ECADA`,
+`0x002ECAEE`); `0x002ECA30` stores nothing for a null entry (`0x002ECA36`).
+
+Both then store nothing when the entry has no lane record (`+0x1E` negative), when the record's stamp
+`+0x5C` differs from the entry's, or for a negative lane (`0x002ECA3F`-`0x002ECA5E`, `0x002ECAFB`-`0x002ECB1A`).
+Both act only on a lane already in
+`+0x24`, `+0x28` or `+0x34` (`0x002ECA78`, `0x002ECB35`), so a hold set before the lane is requested is dropped;
+with lane 0 present, lane 0 follows the other bits (set while any other bit is set, otherwise the whole mask
+is cleared).
+
+`0x002ECBA0(entry, lane, x)` sets the lane and lane 0 in `+0x44` when its third argument is 1
+(`0x002ECBC8`-`0x002ECBD4`), with no test that the lane is present. It stores nothing for a negative lane, an entry
+without a lane record or a stamp mismatch (`0x002ECBA2`, `0x002ECBAB`, `0x002ECBC6`). It does not test the entry for
+null: after the lane test it reads `[entry + 0x1E]` (`0x002ECBA4`), so a null entry with a lane of 0 or more
+faults.
 
 `0x002EAFA0(record, lane)` queues a lane for unload: when the lane is not already in `+0x2C` and is in
 `+0x24`, `+0x28` or `+0x34`, it sets `+0x2C`, and a loaded lane (`+0x24`) puts the record on the
-unload queue. `0x002E6900` unloads each queued lane that is loaded (`0x0041E490`, then `0x00369800`),
+unload queue, at its head: a record already queued is taken out and pushed again (`0x002EAFDD`-`0x002EB01F`).
+
+`0x002E6900` starts at the queue's tail, the record queued longest ago, and works towards the head (`0x002E6942`,
+`0x002E69F7`); with argument 0 it stops after the tail record. It unloads each queued lane that is loaded and
+whose handle `+0x60 + lane × 4` is non-zero (`0x002E696F`) (`0x0041E490`, then `0x00369800`), zeroes the handle,
 clears it from `+0x24` and `+0x2C`, takes the record off the queue, and returns it to the free list
 (`0x002E9470`) once neither `+0x28` nor `+0x24` has a lane left.
+
+A queued lane that is not loaded keeps its `+0x2C`
+bit while the record leaves the queue. The function returns 0.
 
 After that pass, every record still
 queued whose owner slot `+0x22` is negative goes to `0x002E6A80` (`0x002E6A4E`), even for `0x002E6900(0)`:
 it unloads each queued, loaded lane (`0x002E6E30`), takes the record off the queue and frees it under
-the same test. `0x002E9470` resets the owner's `+0x1E` to `0xFFFF` when the
-stamps still match.
+the same test. When that record is the queue's head, the head `0x0215FD90` is set to 0 (`0x002E6A5A`-`0x002E6A61`) and
+`0x002E6A80` relinks nothing, so the queue's other records are no longer reachable from the head.
 
-`0x002E3F00(id, lane)` queues the lane, and then lane 0, when its count is 0 or less and it is not in
-`+0x38`/`+0x3C`; a held lane has its count clamped to 0. `0x002E4000(group, direction)` walks the idle
-records, clears the group bit (positive direction) or the whole group word (negative), and queues
-every lane whose count is 0 or less and that no group word and no hold mask keeps. It does not bound
-the group: a group of 5 or more indexes past `+0x58`.
+`0x002E9470` resets the owner's `+0x1E` to `0xFFFF` when the
+stamps still match. It also sets the record's owner slot `+0x22` to `0xFFFF` and `+0x44` to 0, takes the record
+off the unload queue, moves the idle, pending and free heads past it, unlinks it and pushes it on the free list
+`0x0215FD70` (`0x002E94A7`-`0x002E954A`). A null record leaves everything as it was.
+
+`0x002E3F00(id, lane)` finds the entry on the live list, then the requested list, and queues the lane
+(`0x002EAFA0`), and then lane 0, when its count is 0 or less and it is not in
+`+0x38`/`+0x3C`; a held lane has its count clamped to 0 (`0x002E3FA4`, `0x002E3FED`). A negative lane (`0x002E3F4F`), an
+id on neither list, or an entry without a lane record whose stamp matches leaves everything as it was. It does
+not bound the lane: a lane of 32 or more reads its count past the 32 counts and tests hold bit `lane & 31`.
+
+`0x002E4000(group, direction)` walks the idle records (`0x0215FD68`) and handles their 32 lanes in turn. A
+positive direction clears each lane's bit of the group word `+0x48 + group × 4` before that lane is tested
+(`0x002E405D`), so it clears the whole group word as a negative direction does (`0x002E4064`); with direction 0
+only a lane whose count is 0 or less loses its bit (`0x002E4084`). That clear comes before the lane's test in
+every direction, so only the other four group words can keep the lane.
+
+`0x002E4000` queues
+every lane whose count is 0 or less and that no group word and no hold mask keeps: it sets `+0x2C` when the lane
+is not there yet and is in `+0x24`, `+0x28` or `+0x34`, and a loaded lane moves the record to the head of the
+unload queue (`0x002E40BA`-`0x002E410B`). It does not bound
+the group: a group of 5 or more indexes past `+0x58`, and a negative group indexes before `+0x48`.
 
 ### setuptreasure: placing a chest
 
 `setuptreasure` (verb `0x2BE`) has begin `0x00354400`, poll `0x00354A40` and result `0x00355210`.
 
-The begin hides the actor (`0x0026A320(actor, 0)` clears `+0x0C` bit `0x80`), pops the spot reference into
-`args[2]`, and takes the chest model from the current map header: `0x0026E060` reads the word at
-`+0x88` of the header `[0x02098E10]` when `0x02098E20` bit `0x1` is set, the header's first word exceeds 10
-and the signed word is not negative, with `[0x02099D70]` switched to `0x02098E10` for the call. Because
-`word | 0x3000000` is above `0xFFFFFF`, `0x002E9A60` takes the chest model from the calling script's
-name table at that index (`0x00263F80`). Otherwise the model is −1.
+The begin hides the actor (`0x0026A320(actor, 0)` clears `+0x0C` bit `0x80`), pops the spot reference into `args[2]`,
+and takes the chest model from the current map header into `args[1]` (`0x0035443A`): `0x0026E060` reads the word at
+`+0x88` of the header `[0x02098E10]` when `0x02098E20` bit `0x1` is set, the header pointer is non-null (`0x0026E08E`), the
+header's first word exceeds 10 and the signed word is not negative, with `[0x02099D70]` switched to `0x02098E10` for the
+call and restored on every path before it returns (`0x0026E077`, `0x0026E0B7`). Otherwise the model is −1.
+
+Because `word | 0x3000000` is above `0xFFFFFF`, `0x002E9A60` takes the chest model from a name table at that index
+(`0x00263F80`). The table is the one at `+0x100` of `0x02098E10`, the zone's actor manager 0, which `[0x02099D70]` points at
+during the call, whichever script runs the verb: `0x002E9A60` reads it through `0x002640C0` (`0x002E9A70`), which returns
+that switched `[0x02099D70]`. With no table there the model is the word itself, and an index at or
+past the table's count gives 0 (`0x00263F90`-`0x00263F9D`).
 
 It then resolves the chest record with `0x002650B0` and rolls for the chest with `0x002FAED0`: no chest
 when the opened flag `0x0032AA60(record[+9])` is set (bit `record[+9]` of the 256-bit set at `+0x14B4`
@@ -239,11 +401,17 @@ A flag byte of `0xFF` tests bit
 `0x002FB430`. No chest sets the model to −1. A model of −1 leaves `args[0]` at 0; any other model is
 found or created with `0x002EAE20` and its handle stored in `args[0]`.
 
-The poll ends at once when `args[0]` is 0. Otherwise, a handle that no longer resolves is re-created
-from the model id in `args[1]` and stored back, and the poll waits (raising the loading flag
-`0x022C253D` through `0x00314D40(1)`) until the entry is ready.
+The poll `0x00354A40` ends at once when `args[0]` is 0 (`0x00354A5F`). Otherwise, a handle that no longer
+resolves is re-created from the model id in `args[1]` with `0x002EAE20` and stored back, and that call
+waits without raising the loading flag (`0x00354A72`-`0x00354A81`). After that the poll waits (raising the
+loading flag `0x022C253D` through `0x00314D40(1)`, `0x00354AA1`) until the entry is ready, and a ready entry
+ends it (`0x00354A9D`).
 
-The result resolves `args[0]`; when that fails it returns with the actor still hidden. Otherwise it
+The result resolves `args[0]`; when that fails it returns with the actor still hidden. On that path
+it first calls `0x0026E060`, the map-header chest-model read of the begin, and drops the value it
+returns (`0x00355242`, `0x003552DE`).
+
+With a resolved entry it
 resolves the chest record again, shows the actor (`0x0026A320(actor, 1)`), decodes the spot with `0x002FAF60`,
 places the actor at the position (`0x0026AF80`), sets its facing and its movement heading to the same
 angle (`0x0026B620`, `0x0026A0D0`), sets its separation weight to −1.0 (`0x0026DAC0`), binds the model
@@ -293,9 +461,13 @@ to 1.0 and calls `0x002E8E20`. It sets `+0xF0` = `0x1001`, `+0xF5` = `0xFF`, `+0
 
 The presentation context carries the main binding at `+0x00` and attach slots of `0x30` bytes:
 `+0x30`, `+0x60`, `+0x90` and two at `+0xC0` and `+0xF0`. Each slot holds a render index, the bound
-id, the entry pointer and a flags byte at `+0x10`. `0x002EBC90(actor, which, on)` sets the high
-nibble of a slot's flags byte (`which` 0 the context itself, 1 `+0x60`, 2 `+0x30`, 3 `+0x90`, 4 and
-5 the two last slots).
+id, the entry pointer and a flags byte at `+0x10`.
+
+`0x002EBC90(actor, which, on)` sets the high
+nibble of a slot's flags byte to the low four bits of `on` and keeps its low nibble (`0x002EBD2D`-`0x002EBD35`)
+(`which` 0 the context itself, 1 `+0x60`, 2 `+0x30`, 3 `+0x90`, 4 and
+5 the two last slots; any other `which`, negative or above 5, also takes the context itself, `0x002EBCCF`).
+It stores nothing for a null actor or an actor without a context (`0x002EBCA7`-`0x002EBCBA`, `0x002EBD22`).
 
 `0x002E3110(actor, kind, n, entry, link)` attaches an entry: kind 0 → `+0x30`, 1 → `+0x60`, 2 and 4 →
 `+0x90`, 3 → `+0xC0 + n × 0x30` (n unbounded here). It returns without doing anything when the actor
@@ -308,7 +480,11 @@ takes a reference, creates the render record with
 and 4 force link `0x7FFF`) and calls `0x002EE050(slot, 1.0, 1.0, 1.0)`. Kind 2 clears render `+0x304` bit `0x40` and kind
 4 sets it (when `0x01FD49EC` is set).
 
-`0x002E3C20(actor, kind, n)` detaches a slot (`0x002E3A60`) and refreshes the actor's visibility.
+`0x002E3C20(actor, kind, n)` detaches a slot (`0x002E3A60`) and refreshes the actor's visibility. It picks the
+slot as the attach does: kind 0 → `+0x30`, 1 → `+0x60`, 2 and 4 → `+0x90`, 3 → `+0xC0 + n × 0x30` (n
+unbounded); a null actor or context passes a null slot, which `0x002E3A60` ignores. For kinds 2, 3 and 4 a detach
+that found a render record (`0x002E3A60` returns 1) is followed by `0x002E42D0(actor)` (`0x002E3C9B`). Any other kind
+detaches nothing. Every path ends in the refresh, a tail jump to `0x002E8FD0(actor)` (`0x002E3CA8`, `0x002E3CEF`).
 
 ### The bind verbs
 
@@ -341,35 +517,100 @@ Every begin that creates a binding does nothing when the script manager's byte a
 `bindp2_d4`, `bindh`, `bindc` and `puppetbind` then clear the active byte in their arguments so the
 poll and result skip. `bindp2_d4` also skips an actor whose `+0x18` is non-zero.
 
-`bindp2_d4(model, b, c)` (`0x0033F330`) pops c, b and the model, stores b and c in context `+0x14C`
-and `+0x14D` (`0x0026D610`, actors of kind `0x60` only), and finds or creates the model's entry with
-holder bit = manager; with actor `+0x18` non-zero it still raises the loading flag. Its poll
-`0x003409F0` runs a state word at `args + 0xA`: state 0 waits for the
-entry; when it is ready it looks up a body replacement with `0x0037CB90(model, b, c)`.
+`bindp2_d4(model, b, c)` (`0x0033F330`) pops c, b and the model and sets the state word `args + 0xA` to 0
+(`0x0033F34D`). It calls `0x002E97B0(actor)`, the context getter, and leaves its result unused (`0x0033F382`).
+With actor `+0x18` non-zero it clears the active byte `args + 8` and still raises the loading flag: it
+tests a null entry, which `0x002E4C20` reports as not ready (`0x0033F3A0`, `0x0033F3E1`-`0x0033F3F0`).
+
+Otherwise it sets the active byte to 1, calls `0x0025AB30(actor)` (`0x0033F3B3`), stores b and c in context
+`+0x14C` and `+0x14D` (`0x0026D610`, actors of kind `0x60` only), and finds or creates the model's entry with
+holder bit = manager. It keeps the bound id at `args + 0` and the entry's handle at `args + 4` (`0x0033F3C6`,
+`0x0033F3DE`) and raises the loading flag when the entry is not ready (`0x0033F3E4`-`0x0033F3F0`).
+
+Its poll `0x003409F0` runs a state word at `args + 0xA` and returns 0 at once while the active byte
+`args + 8` is 0 (`0x00340A0F`). State 0 waits for the entry, raising the loading flag and returning 1 on
+each wait; a handle that no longer resolves is re-created from `args + 0` with holder bit = manager and
+stored back (`0x00340A2D`-`0x00340A4A`).
+
+When the entry is ready it looks up a body replacement with
+`0x0037CB90(model, b, c)`, b and c read back as signed bytes from context `+0x14C` and `+0x14D` (`0x002657E0`,
+`0x00263FC0`, `0x00340A69`-`0x00340A7F`; 1 and 0 for an actor not of kind `0x60` or without a context).
 
 `0x0037CB90` takes the first row of the replacement table `[0x02ADD940]` that matches (count
-`[0x02ADD938]`, rows of `0x30` bytes: model, b, c with −1 matching anything, a pair count at `+0xC`,
-up to four values at `+0x10` and thresholds at `+0x20`) and returns the last value whose threshold is
-at or below the story-progress word (`0x00265270`), or −1; it returns −1 while `0x01E02800` is 0 or the
-table pointer is null.
+`[0x02ADD938]`, rows of `0x30` bytes: model, b, c, a pair count at `+0xC`, four value slots at `+0x10`
+and four threshold slots at `+0x20`). The model must be equal (`0x0037CC00`); b and c each match when
+equal or when the row holds −1, which matches anything (`0x0037CC05`-`0x0037CC1A`).
 
-No replacement: state 1, and the
-result binds the model. A replacement: the poll binds the model itself, finds or creates the
-replacement's entry with holder bit `0x1`, and waits in state 2; when it is ready, state 3 and the
-result attaches it at `+0x90` (kind 4).
+It returns the last value, in pair order, whose threshold is at or below the story-progress word
+(`0x00265270`, its low 16 bits compared signed with the threshold, `0x0037CC74`), or −1. A matching row
+with a signed pair count of 0 or less gives −1 (`0x0037CC5A`), and later rows are not tried. The loop
+runs the whole count with no cap at four (`0x0037CC89`), so a fifth pair reads its value from `+0x20`
+and its threshold from the next row. It returns −1 while the byte `0x01E02800` is 0 or the table
+pointer is null (`0x0037CBAD`, `0x0037CBBB`).
+
+No replacement: state 1, the poll returns 0, and the
+result binds the model: `0x002EBC90(actor, 0, 1)`, the bind `0x002E28E0` with the entry `args + 4` resolves
+to, then `0x002EAC90` (`0x00342662`-`0x00342683`, `0x003426C1`). A replacement: the poll binds the model itself
+with the same three calls (`0x00340AA7`-`0x00340ACA`), sets state 2, finds or creates the replacement's entry
+with holder bit `0x1` (`0x002EB540(replacement, 0)`) and stores its handle at `args + 4` (`0x00340AEB`).
+
+When that entry is already ready the poll sets state 3 and returns 0 in the same call
+(`0x00340AFB`-`0x00340B0C`). Otherwise it waits in state 2, where a handle that no longer resolves is not
+re-created and the wait goes on (`0x00340B14`-`0x00340B27`); when it is ready, state 3 and the
+result attaches it at `+0x90` (kind 4): `0x002EBC90(actor, 3, 1)`, `0x002E3110(actor, 4, 0, entry, 0)` and
+`0x002EAC90` (`0x0034268B`-`0x003426C1`).
+
+The result binds nothing when the active byte is 0 or the state is
+neither 1 nor 3 (`0x00342655`, `0x00342689`). A poll entered with a state other than 0 or 2 returns the dword
+at `[rsp + 0x40]`, a stack slot it never writes (`0x00340B3B`).
+
+`bindh` and `bindc` reach the same poll through `0x00342330`, a jump to `0x003409F0`, and their begins
+(`0x00344F00`, `0x00343B00`) start it at state 0 with the bound id at `args + 0`. A `bindh` or `bindc` model
+that has a replacement row is therefore bound as the actor's main model by the poll, and `args + 4` then
+holds the replacement's handle, which their results attach.
 
 `unkCall_5cb`'s poll `0x003418B0` stops at state 1 once the entry is ready, so its result always
-binds the model alone. `bindh(model)` finds or creates the entry and its result attaches it as kind
-2 with `0x002EBC90(actor, 3, 1)`. `bindc(n, model, link)` clamps n to 0..1, and its result attaches the
-entry as kind 3 in slot n with `0x002EBC90(actor, n + 4, 1)` and the given link. `bindhoff`'s result
-detaches kind 2 and, when the actor's model has a replacement that is already ready, attaches it as
-kind 4.
+binds the model alone. It has the same inactive exit, state-0 waits and re-creation of a stale handle
+(`0x003418C5`, `0x003418DF`-`0x003418FC`), and the same state-2 wait (`0x00341932`), though neither it nor its
+begin `0x0033F330` stores state 2; a state other than 0 or 2 returns the dword at `[rsp + 0x40]` (`0x00341965`).
+
+`bindh(model)` (`0x00344F00`) zeroes the state word `args + 0xA` on both of its paths (`0x00344F28`),
+stores the bound id in `args[0]` and finds or creates the entry with holder bit = manager
+(`0x002EB540`, `0x00344F55`), keeping its handle in `args[1]`. Its result `0x00345A60` attaches it as kind
+2 with `0x002EBC90(actor, 3, 1)` (`0x00345A89`) and `0x002E3110(actor, 2, 0, entry, 0)` (`0x00345AAB`).
+
+`bindc(n, model, link)` clamps n to 0..1, `n < 0 ? 0 : n > 1 ? 1 : n` (`0x00343B47`-`0x00343B5D`), and its result
+`0x00344550` attaches the entry as kind 3 in slot n with `0x002EBC90(actor, n + 4, 1)` (`0x0034457E`) and the given
+link (`0x003445A2`).
+
+Both results skip when the active byte is clear or the bound id in `args[0]` is negative
+(`0x00345A77`, `0x00344567`), and attach the entry that the handle in `args[1]` names. The shared poll
+`0x003409F0` also looks the bindh or bindc model up with `0x0037CB90`: for a replacement it binds that
+model as the actor's main model (`0x00340AC2`) and stores the replacement's handle in `args[1]`
+(`0x00340AEB`), so the result attaches the replacement.
+
+`bindhoff`'s result `0x003460F0` detaches kind 2 (`0x002E3C20(actor, 2, 0)`, `0x00346112`) on every path,
+and stops there when the actor has no presentation context or context `+0x00` is −1 (`0x0034611A`,
+`0x0034611F`). Otherwise it looks up `0x0037CB90(id at context +0x04, 0x002657E0(actor), 0x00263FC0(actor))`
+(`0x00346140`) and, for a replacement, finds or creates its entry with holder bit = manager
+(`0x002EB540`, `0x0034614F`).
+
+An entry that is not ready keeps the manager's holder bit and is not attached (`0x00346166`). When the
+actor's model has a replacement that is already ready, the result calls `0x002EBC90(actor, 3, 1)` and
+attaches it as kind 4 with `0x002E3110(actor, 4, 0, entry, 0)` (`0x00346174`, `0x0034618E`).
 
 `puppetbind(d, model, x, y)` (`0x00343A30`) finds or creates the model with `0x002EAE20` and keeps the
 manager byte; its poll waits for the entry, re-creating it if the handle went stale; its result
-calls `0x003EB190(d, entry, manager, x, y)`, which replaces puppet slot d (below 32) in the table at
-`0x02B5EA20`. `puppetbind_41c(d, model, x)` passes y = 0 and `puppetbind_41d(d, model)` passes
-x = 1, y = 0.
+`0x003463F0` calls `0x003EB190(d, entry, manager, x, y)` (`0x00346437`), which replaces puppet slot d
+(below 32) in the table at `0x02B5EA20`. `puppetbind_41c(d, model, x)` passes y = 0 and
+`puppetbind_41d(d, model)` passes x = 1, y = 0.
+
+`0x003EB190` returns at once when d is above 31 compared unsigned, so a negative d changes nothing
+either (`0x003EB193`). Otherwise it releases a puppet already in the slot with `0x003EB470` and clears
+the slot (`0x003EB1C9`, `0x003EB1CE`), then stores `0x003EB250(entry, manager, x, y)` there, the bind that
+takes the first record of the free list at `0x02B5EB70` (`0x003EB1E2`, `0x003EB1F1`). `0x003EB250` returns
+null when that list is empty, and for a null entry it returns the first free record without
+unlinking or binding it (`0x003EB260`, `0x003EB45C`).
 
 `modelread(model)` finds or creates the entry with holder bit = manager and raises the loading flag
 when the entry is not ready. `modelreadsync(model)` stores the handle of the model's entry (0 when
@@ -380,23 +621,43 @@ once for a handle of 0 or one that no longer resolves.
 `[actor + 0xC0] + 0x12` (`0x002E9C00`, −1 without a context), and tests it on the main entry with
 `0x002E4C30` (the lane's `+0x24` bit; 1 for a negative lane; −1 without a matching lane record). A
 loaded lane ends the poll after `0x002EAC90` (and `0x002EB380` when actor `+0x0D` bit `0x80` is set).
-Otherwise it claims the lane with `0x002EB9D0`, raises the loading flag and waits; it ends at once
-when the claim fails or the context has no main entry.
+Otherwise it claims the lane with `0x002EB9D0`, raises the loading flag and waits (`0x0034B953`); it ends
+at once when the claim fails (`0x0034B94C`) or the context has no main entry (`0x0034B907`).
+
+The poll first calls `0x00263A30(manager, word [actor + 0x00])`, which returns a pointer into the
+manager's script image (the string `NOACTOR` at `0x00915708` when the manager, its script or the
+actor's record is missing), and drops it (`0x0034B8F6`). An actor with
+no presentation context ends the poll before the lane is read (`0x0034B8FE`). Its ending paths call
+`0x0053DD10`, which always returns 1 (`0x0034B961`), so the call to the `ret 0` stub `0x0016D6A0` at
+`0x0034B96D` never runs and the poll returns 1, a wait, only after a claim.
 
 `stdmotioneventsync` (`0x0473`) waits for a marker in the actor's motion. Its begin `0x002ECFD0`
 (through `0x003479E0`) clears bits `0x1` and `0x2` of the render record's `+0x419` (`0x0042F210` for each);
 its poll `0x00347DD0` ends when either bit is set again (`0x002ECF60`, `0x0042F1C0`). The motion sets
 them through its authored command id 4, subtypes 11 and 10 (`0x00417AD0`).
 
+`0x002ECFD0` reads the render index at context `+0x00` and clears nothing for a null actor, an actor without
+a context or an index of −1 (`0x002ECFD7`, `0x002ECFE3`, `0x002ECFEF`); otherwise it calls `0x0042F210(index, 0)`
+and `0x0042F210(index, 1)` with the index's low 16 bits (`0x002ED000`-`0x002ED00F`).
+
 `debug_bindp(model)` (`0x0050D660`) finds or creates the model with `0x002EAE20` (holder bit `0x1`), stores
 the entry pointer itself rather than a handle, claims a free lane (`0x002EB9D0(entry, −1)`), requests
 it with `0x002EB490` and stores it with `0x002EC6B0`. Its poll `0x0050D710` waits for the entry to be
-ready and the lane loaded; its result `0x0050D810` binds the stored pointer and calls
-`0x002EB330(actor, 0x1001)`.
+ready and the lane loaded.
 
-`charcachedispose` calls `0x002E3E20(manager, 0)` and `0x002E4000(manager, 0)` and sets `0x0215FD46`;
+Its result `0x0050D810` binds the stored pointer and calls `0x002EB330(actor, 0x1001)`, and tests no
+flag. In order it sets the context's flags nibble with `0x002EBC90(actor, 0, 1)` (`0x0050D829`), binds
+the stored pointer (`0x002E28E0`, `0x0050D835`), refreshes the lane index with `0x002EAC90` (`0x0050D83D`)
+and calls `0x002EB330(actor, 0x1001)` as a tail jump (`0x0050D854`). `0x002EB330` sets actor `+0x0D` bit
+`0x1`, `+0xF5` = `0xFF`, `+0xEC` = 0 and `+0xF0` = `0x1001`, and calls
+`0x002EB0D0(actor, context, 0x1001, 0, −1.0)` unless `+0x18` is 1.
+
+`charcachedispose` calls `0x002E3E20(manager, 0)` and `0x002E4000(manager, 0)` and sets `0x0215FD46` (its
+begin `0x00340450` ends with a jump to `0x002EC500`, which stores 1 there, `0x0034047B`);
 `charcachedisposeall` calls both with −1, which clears the whole holder word of every live entry and
-the manager's group word in every idle lane record.
+the manager's group word in every idle lane record. Both begins first zero the dword at `args + 0`
+(`0x00340456`, `0x00340EC6`); their shared poll `0x00340800` adds one to it and returns 1 while it is 1 or
+less, so the first poll returns 1 and the second returns 0.
 
 `lock_charmotion_once` (`0x011C`) keeps an area's models through its next release, once. Its handler `0x0034D350` is
 `mov ecx, 1` and a jump to `0x0026AF70`, a seven-byte store that the function list does not hold. Three release paths

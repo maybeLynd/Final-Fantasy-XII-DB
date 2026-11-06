@@ -60,6 +60,7 @@ action's target list, at action state `+0xC8` (the action state, [battle unit fi
    chosen target is computed (`0x0031AC90`; the user's facing `+0x160` when the two positions coincide
    in X and Z) (`0x0030D2D2`-`0x0030D2E7`). The row's byte `+0x07` is kept as a width and, times
    2 pi / 360 (`0x01CEBC78`, `0x00902438`), as an angle (`0x0030D2EC`-`0x0030D308`).
+
 ### Candidates
 
 Every slot from 0 to `0x00236850()` whose unit has bit `0x10` of its first byte set (`0x00321170`) is a
@@ -110,6 +111,12 @@ clear and `a` has status bit `0x20` (Confuse) in `+0x64 | +0x3C`, the answer is 
 (`0x0030ABB8`-`0x0030AC25`). The gatherer passes 1 to the side predicates, so Confuse never changes
 an area's side.
 
+The Confuse test reads `a`'s stats record `+0x698` with no null test (`0x0030AC14`) when bit `0x1` of `flags` is
+clear. No `a` reaches it without a record: the flag bit `0x10` tested first (`0x0030ABA6`) is set only by `0x0023412D`,
+after `0x00234123` has found `+0x698` non-null, and the reset `0x00236A60` nulls `+0x698` (`0x00236AB4`) only while it
+clears that bit (`0x00236AA6`). With the bit set the test is skipped and the answer is the side
+answer alone (`0x0030AC0C`-`0x0030AC12`).
+
 ### Eligibility
 
 `0x002FFEF0(candidate, user, mode)` asks `0x0030AB40(candidate, user, 0)` - here
@@ -119,10 +126,10 @@ else 0. It returns 1 when `0x002FFF50(candidate, hostile, mode)` returns an empt
 
 | Bit | When |
 |---|---|
-| `0x01` | the unit is null or lacks bit `0x10` of its first byte |
+| `0x01` | the unit is null or lacks bit `0x10` of its first byte; the mask is then 1 alone, with every later test skipped (`0x002FFF67`-`0x002FFF73`, `0x00300042`) |
 | `0x02` | no stats record, or status bits `0x1`, `0x2` or `0x80000000` (KO, Stone, X-Zone) set while `0x00377C20()` returns 0 |
 | `0x04` | `0x003125E0(unit)` returns non-zero: for an active unit, when its flag word has bit `0x200`, `0x400` or `0x800`, the word at `+0x04` has bit `0x4`, bit `0x2` is set while the unit has no stats record or is KO, Stone or X-Zone (without the map waiver), or, for an enemy-side unit, bit `0x8` or `0x10` of the dword at `[unit+0x6A0]` is set |
-| `0x08` | `0x0030B950(unit, hostile)` returns non-zero: any of bits `0xE00` of `0x02089340` (`0x0030B770`), or `0x0030B7F0` - unit flag bit `0x100`, unit flag bit `0x40000000` when `hostile`, a party-side unit of type id `0x1A`, or `0x0017D470()` in state 1 or 2 |
+| `0x08` | `0x0030B950(unit, hostile)` returns non-zero: any of bits `0xE00` of `0x02089340` (`0x0030B770` bits `0x4`, `0x8` and `0x10`; its bits `0x1` and `0x2` are masked out by `0xFFFC`, `0x0030B975`), or `0x0030B7F0` - unit flag bit `0x100`, unit flag bit `0x40000000` when `hostile`, a party-side unit of type id `0x1A` - tested through the 16-bit mask `0xFFF7` (`0x0030B97F`), so the unit answer `0x8` (`+4` bit `0x20`) does not count, and neither does `0x0017D470()` in state 1 or 2, whose bits `0x10000` and `0x20000` (`0x0030B8A6`, `0x0030B8C0`) lie above the tested word |
 | `0x10` | enemy side (stats `+0x05` = 1), `mode` is not 1, and status bit `0x1000000` (Invisible) set |
 | `0x20` | enemy side, `mode` is not 3, and bit `0x20` of the byte at `[unit+0x6A0]` |
 | `0x40` | enemy side and bit `0x40` of the byte at `[unit+0x6A0]` |

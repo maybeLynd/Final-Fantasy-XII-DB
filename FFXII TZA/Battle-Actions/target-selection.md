@@ -59,13 +59,13 @@ returns -1 to leave the candidate out, 0 to list it greyed, and 1-4 to list it:
    returns -1 (`0x00322B8B`-`0x00322B9C`).
 2. `0x003230E0` must pass, else -1 (`0x00322B43`-`0x00322B4A`).
 3. If the candidate has status bit `0x1`, `0x2` or `0x80000000` and `0x00377C20()` is 0: it goes to step 5 when the
-   action row's word `+0x2C` has bit `0x40` (`0x40`) and the candidate has bit `0x1` (KO), or bit `0x80` (`0x80`)
+   action row's word `+0x2C` has bit `0x40` and the candidate has bit `0x1` (KO), or bit `0x80`
    and the candidate has bit `0x2` (Stone); otherwise it returns 0 (`0x00322B4C`-`0x00322B86`).
 4. A living candidate that is a battle unit must pass `0x00322490` (else -1, `0x00322BAF`); with
    `frustum` set it must also pass `0x00322360` and `0x00322630` must return 0 (`0x00322BB8`-`0x00322BD3`).
-5. The result: with flag word `+0x0C` bit `0x40`, `0x4` for the user itself and 1 for others; with bit `0x20`,
-   `0x0031C500(user, candidate, action)` non-zero gives 3 for others and 2 for the user, zero gives 4 for
-   the user and 1 for others; otherwise 1 (`0x00322BD5`-`0x00322C26`).
+5. The result: with flag word `+0x0C` bit `0x40`, 2 for the user itself and 1 for others (`0x00322BDD`-`0x00322BEB`);
+   with bit `0x20`, `0x0031C500(user, candidate, action)` non-zero gives 3 for others and 2 for the user, zero gives
+   4 for the user and 1 for others; otherwise 1 (`0x00322BD5`-`0x00322C26`).
 
 The builder sets entry flag bit `0x2` (greyed) for a 0, and remembers a 2 (the last one), a 3 (the
 first, if no 2) or a 4 (as the default entry `+0x44`); a remembered 2 or 3 gets entry flag bit `0x1` and
@@ -93,13 +93,18 @@ squared; `comiss`/`setbe` at `0x00322535`).
 
 ### Actor-manager lists
 
-`0x0046B870` (code `0x1B`) and `0x0046B690` (code `0x1C`) walk the records of actor managers 0-2
-(`0x00263FF0(i)` with bit `0x1` of `+0x10`; records `+0x1DE` to `+0x1DE + +0x1D6`). A record is considered
+`0x0046B870` (code `0x1B`) and `0x0046B690` (code `0x1C`) first clear bit `0x2` of byte `+0x09` of every record of
+the active actor managers 0-3 (`0x0046B6A6`-`0x0046B6E9`). They then walk the records of actor managers 0-2
+(`0x00263FF0(i)` with bit `0x1` of `+0x10`; records `+0x1DE` to `+0x1DE + +0x1D6`), zero each record's byte
+`+0x0A` (`0x0046B740`) and build the manager's list at `+0x1F0` with its count at `+0x1F8`; an inactive manager
+gets the count 0 (`0x0046B7D7`, `0x0046B837`). A record is considered
 when all of these hold:
 
 - `0x002647B0` returns 0 (byte `+0x12` above 3), and byte `+0x18` is not 1;
 - byte `+0x0E` has bits `0x40` and `0x80`, and its class nibble (`+0x0E & 0xF`) is neither 4 nor 6;
-- `0x00263BE0` returns 0 or 2 (2 for nibble 3, 0 for nibbles 1, 2 and 7);
+- `0x00263BE0` returns 0 or 2 (2 for nibble 3, 0 for nibbles 1, 2 and 7); for any other answer, with the bits of
+  the item above set and a class other than 6, `0x001FDDC0(record)` reads the record's dword `+0x1C` and the result
+  is dropped (`0x0046B785`-`0x0046B790`);
 - `0x002E9FE0` and `0x002EA6A0` return non-zero.
 
 | List | Keeps | Marks the others in record `+0x0A` |
@@ -107,8 +112,12 @@ when all of these hold:
 | `0x1B` (`0x0046B870`) | `0x00263BE0` = 0 | bit `0x8` |
 | `0x1C` (`0x0046B690`) | `0x00263BE0` = 2 | bit `0x10` |
 
-A kept record is listed only when `0x00322490` passes (otherwise `+0x0A` bit `0x4`). Both also set record
-`+0x0A` bit `0x1` when `0x00317D80` returns 0.
+A record that meets every condition above but that the list does not keep gets the mark; one that fails a
+condition keeps `+0x0A` = 0 (`0x0046B7C3`). A kept record is listed only when `0x00322490` passes (otherwise
+`+0x0A` bit `0x4`), and every kept record, listed or not, gets record `+0x0A` bit `0x1` when `0x00317D80`
+returns 0 (`0x0046B7E0`-`0x0046B7FE`). A listed record's entry is the dword
+`((word +0x16 & 0x7FF) << 20) | (i << 16) | record index`, and the count is the number listed
+(`0x0046B806`-`0x0046B831`).
 
 `0x0046B4C0` (code `0x1A`) calls `0x0046BAC0(i, 1)` for managers 0-2, which applies the 24-unit test
 through `0x00322480`, a jump to `0x00322490` (out of range: `+0x0A` bit `0x2`). For all three codes the builder
@@ -118,9 +127,11 @@ considered).
 
 ### While the action runs
 
-`0x002FFB60(unit)` (385 bytes) returns a cancel reason. Reason 1 is returned for action `0x414E` while
-unit bit `0x100000000` is set (and that bit is cleared). The other reasons are tested only with unit bits `0x1000000` and
-22 clear and either the action id above `0x21E` or the action phase `+0x6B4` below 9, in this order:
+`0x002FFB60(unit)` (385 bytes) returns a cancel reason. While unit bit `0x100000000` is set it clears that bit,
+whatever the action, and returns reason 1 for action `0x414E` (`0x002FFB77`-`0x002FFBA0`). The other reasons are
+tested only with unit bits `0x1000000` and `0x400000` clear and either the action id above `0x21E` or the action
+phase `+0x6B4` below 9, in this order; a failed gate, or no reason applying, returns 0 (`0x002FFBB3`-`0x002FFBDE`,
+`0x002FFCD4`):
 
 | Reason | When |
 |---:|---|
@@ -132,8 +143,10 @@ unit bit `0x100000000` is set (and that bit is cleared). The other reasons are t
 | `6` | (action id below `0x21F`) `0x002FFCF0` refuses the action |
 | `7` | bit `0x2000` of the word at `[+0x708]+4` is clear and `0x0030AF30` times the action out |
 
-`0x002FFA60(action, target)` returns 1 when the target has none of status bits `0x1`, `0x2`, `0x80000000` (or
-`0x00377C20()` is non-zero), or when the action row's `+0x2C` has bit `0x40` or bit `0x80` (`0x002FFA87`-`0x002FFB43`).
+`0x002FFA60(action, target)` returns 0 for an action id above `0x21E` (`0x002FFA6E`-`0x002FFA73`). Otherwise it
+returns 1 when the target has a stats record with none of status bits `0x1`, `0x2`, `0x80000000` (or
+`0x00377C20()` is non-zero), or when the action row's `+0x2C` has bit `0x40` or bit `0x80`; a target without a
+stats record goes straight to the row test (`0x002FFA87`-`0x002FFB43`).
 
 `0x0030AF30` compares the counter `+0x75C` with `30 * (int)(30.0 * [0x01DFE0B8])` for an action id below
 `0x21F`, 10 times that factor above it, and 60 times it when the word at `[+0x708]+4` is negative. On a

@@ -184,7 +184,8 @@ Icon1.ico (33,688 bytes; PS2 icon model, not a Windows icon):
 
 `0x00473E80(index)`, whose one caller is `0x0034E340`, returns for an index above 3 and otherwise takes
 the name from the four-entry table at `0x01F26568`: `warning.tga`, `SQEX Logo size_FFX.tga`,
-`rating_01.tga`, `thankyou.tga`.
+`rating_01.tga`, `thankyou.tga`. The test is signed (`0x00473EA3`), so a negative index is not refused and
+reads its name pointer from `0x01F26568 + 8 × index`, before the table (`0x00473F6D`-`0x00473F86`).
 
 It maps the language from `0x00229E40` to a folder (1 `us`, 2 `fr`, 3 `de`, 4 `it`, 5 `es`, 10 `in`;
 any other language gets an empty folder), formats `/GameData/titleimage/<folder>/<name>` with
@@ -192,12 +193,33 @@ any other language gets an empty folder), formats `/GameData/titleimage/<folder>
 again with folder `in`. Only `in/` ships, so every language reads the `in/` images, and indexes 2
 and 3 name files that ship nowhere.
 
-The path goes to `0x00183180` → `0x001D8D60`, the decoder. It opens a stream on the path, returns
-without a texture when the open fails, reads the 18-byte header, creates a texture of the header's
-width and height (`0x00184380`), reads `width × height × 3` bytes straight after the header, and hands
-them to `0x001EE820` with its flip flag fixed at 0 (`0x001D8E9E`). `0x001EE820` writes each pixel as
-bytes 2, 1, 0 and `0xFF`, row 0 first. Nothing reads the image type, depth or descriptor, so a
-compressed, 32-bit or bottom-up TGA loads wrong.
+The path goes to `0x00183180` → `0x001D8D60(picture, path)`, the decoder, with the screen picture object
+`[0x01F82CE0]` (`0x001D8D30`). In order:
+
+1. It releases the picture's old texture `+0x28` (`0x00183720`) and clears the pointer
+   (`0x001D8D94`-`0x001D8DA2`), and while the picture still plays (byte `+0x00` non-zero) it runs
+   `0x001D8FF0`, the stop that verb `0x5A4` also reaches (`0x001D8DAA`-`0x001D8DB2`).
+2. It opens a stream on the path and returns without a texture when the open fails (`0x0059D920` and
+   `0x0059FAC0` both answer 0, `0x001D8DCD`-`0x001D8DE2`), reads the 18-byte header, and creates a texture of the
+   header's width and height (`0x00184380`).
+3. When the texture is not created it closes the stream and returns with `+0x28` null
+   (`0x001D8E1C`-`0x001D8E2B`).
+4. Otherwise it reads `width × height × 3` bytes straight after the header into a block from `0x00210EC0`
+   (the size from the width and height read as signed 16-bit words, `0x001D8E30`-`0x001D8E5C`), closes the
+   stream, maps the texture (`0x0017EBD0`), and hands them to `0x001EE820` with its flip flag fixed at 0
+   (`0x001D8E9E`).
+5. It commits the texture (`0x0062C360`); when that returns 0 it stores `[0x01F7F5A0] % m`, the counter modulo the
+   low 31 bits of the texture's `+0x30` (1 when they are 0), at `+0x0C` and 0 at `+0x08`
+   (`0x001D8EC2`-`0x001D8EF9`). Here `m = [+0x30] & 0x7FFFFFFF`, or 1 when that is 0 (`cmovne`,
+   `0x001D8EC9`-`0x001D8ED3`), and the unsigned `div ecx` (`0x001D8EDE`) runs before the commit call.
+   It then frees the block (`0x00210EB0`).
+
+- **Pixels.** `0x001EE820(dest, pitch, source, sourceRow, width, height, flip)` writes each pixel as bytes 2,
+  1, 0 and `0xFF`, row 0 first, moving the destination on by the mapped pitch and the source by `sourceRow`
+  per row (`0x001EE880`-`0x001EE8BA`).
+- **Flip.** A non-zero flip flag starts at row `height − 1` and moves back one pitch per row
+  (`0x001EE838`-`0x001EE847`, `0x001EE8B3`-`0x001EE8B6`). Nothing reads the image type, depth or descriptor, so a
+  compressed, 32-bit or bottom-up TGA loads wrong.
 
 Scripts ask for an image with verb `0x5A2`, whose native `0x0034E340` passes its argument on to
 `0x00473E80`. Of the four, the player only ever sees the SQUARE ENIX logo:
@@ -217,13 +239,20 @@ rights holder's permission, or knowingly downloading such a copy, is illegal.
 
 ### Per-map render options: opt.csv
 
-`0x001A9050`, called from the map-art set-up `0x001A2130`, opens `./PS2Data/opt.csv` through the stream
-helper `0x001D6F20`, reads it whole and walks it a line at a time:
+`0x001A9050`, called from the map-art set-up `0x001A2130`, first empties the tree at `+0x3E0` of the map-art
+object (`0x001A5810`, `0x001A9079`). It opens `./PS2Data/opt.csv` through the stream helper `0x001D6F20` and
+returns when that gives no stream (`0x001A9095`). It reads the file whole into a block of its size plus 2 with
+a 0 after the last byte (`0x001A90B6`-`0x001A90E9`), frees the block and stops when its first byte is 0
+(`0x001A90F7`), and otherwise walks it a line at a time, freeing the block at the end (`0x00210EB0`,
+`0x001A927F`):
 
 - a line ends at the next CR, and the next line starts two bytes later; a file without CR yields no
   rows;
+- the walk stops at the first line with no CR before the end of the file and drops that line (`0x001A914F`,
+  `0x001A9165`), and it stops when the byte two past a CR is 0 (`0x001A9266`);
 - the first line is skipped as the header, and only lines with exactly five fields are kept;
-- the map name is hashed with `0x00674A00` (start 5381, multiply by 33, add each byte, keep 31 bits);
+- the map name is hashed with `0x00674A00` (start 5381, multiply by 33, add each byte as a signed value,
+  `0x00674A17`, keep 31 bits);
 - each of the other four fields becomes 1 when it starts with `Y` or `y`, and the four bytes go into a
   tree node keyed by the hash (tree at `+0x3E0` of the map-art object).
 
@@ -272,10 +301,25 @@ rows do:
 `common` into them (`0x02F96B40`, `0x02F96340`, `0x02F95B40`, `0x02F95340`) with `0x0024F240`, then reads
 `softparticle_bg.csv` with `0x0024EF90`.
 
+The same body first clears the `0x1670` bytes from `0x020910A0` (`0x0024C983`), sets the five 16-bit effect masks
+`0x0209215E` to `0x02092166` to `0x3FF` and `0x020926F4` to `0x4003C` (`0x0024C98A`-`0x0024CB18`), and selects arena 8 with
+`0x0036C1D0(8, 10)` (`0x0024CB25`) before the tables. After `0x0024EF90` it pops the arena (`0x0036C140`, `0x0024CBCB`) and
+sets `0x02092700` to -1 (`0x0024CBD0`) ([startup constants](../Engine-Core/startup-constants.md)).
+
+- `0x0024F240(path, table)` opens the file through `0x001D6F20` and returns when that gives no stream
+  (`0x0024F26C`). It reads the file whole into a block of its size plus 2 from `0x0036A100`, ending it with a
+  0, and returns after freeing the block (`0x003697F0`, `0x0024F397`) when the first byte is 0 (`0x0024F2B8`) or
+  once the walk is done.
 - `0x0024F240` scans each CR-terminated line with `"%c%d.efx,%s"`. With three matches, the entry for
   the effect number gets byte 0 = (the rest does not start with `N`); when it is set, `"Yes,%d"` gives
   the factor at `+2`, or 10 without a number. The header line fails the scan. The effect number is not
-  bounded against the table's 512 entries.
+  bounded against the table's 512 entries, and it is read as signed, so a negative one writes before the
+  table (`0x0024F32A`, `0x0024F332`).
+- The scan is `sscanf` (`0x0018A330`, `0x0024F31B`): the letter `%c` is compared with nothing, and the rest
+  goes into a 32-byte stack buffer with no width limit (`0x0024F2FD`). With byte 0 clear the factor word is
+  left as it was (`0x0024F33E`), and the factor is stored as 16 bits (`0x0024F365`).
+- The walk stops at the first line with no CR before the end of the file and drops that line (`0x0024F2E6`,
+  `0x0024F2F4`), and it stops when the byte two past a CR is 0 (`0x0024F381`).
 - `0x0024EF90` keeps lines with exactly five fields, copies the map name, reads GroupId with `"%d,"`,
   and, when that succeeds, writes the next 4-byte entry of `0x02F8F340`: GroupId, UseSoftParticle not
   `N`, factor with `"%d"`. Each time the map name differs from the previous row's, it appends a
@@ -289,7 +333,7 @@ rows of `softparticle_bg.csv`, each in file order with the values the readers ke
 map and zones it joins to, whether the game reads it and what it changes. What the rows do:
 
 - With the Soft Particles option on, a soft effect fades out where it comes close to the scenery or a
-  character behind it, instead of cutting a hard edge into them. The fade spans the factor divided by 100 in
+  character behind it, instead of cutting a hard edge into them. The fade spans `factor / 100` in
   depth: 0.1 for the shipped 10, up to 5 for the five map rows with 500.
 - Effects drawn as a `GiSprite` (`0x008647C0`) or a VU program packet (`0x001DB840`) take the answer of
   `0x0024D140` and pass it to the primitive renderer's slot `+0x58` (`0x006CAD90`, called at `0x008646D3` and
@@ -299,9 +343,10 @@ map and zones it joins to, whether the game reads it and what it changes. What t
   well (`0x006C982E`-`0x006C98B6`; slot `+0x60`, `0x006CADB0`, stores the option), and uploads
   `softParticleEnabled` and `softParticleFactor` to the pixel-shader constants (`$Globals` `+0x28` and
   `+0x38`).
-- The three pixel shaders that read them (`0x01F33068`, `0x01F346B8`, `0x01F39544`) take both depths as 100 /
-  (1000 - 999.9 x d), the scene's from the depth texture, and multiply the effect's alpha by their
-  difference over the factor, capped at 1. A pixel more than 0.5 behind the scene keeps its alpha.
+- The three pixel shaders that read them (`0x01F33068`, `0x01F346B8`, `0x01F39544`) take both depths as
+  `100 / (1000 - 999.9 * d)`, the scene's from the depth texture, and multiply the effect's alpha by their
+  difference over the factor, capped at 1, `diff / factor > 1 ? 1 : diff / factor`. A pixel more than 0.5
+  behind the scene keeps its alpha.
 - Magic effects are soft but for 29 of the 362, 21 of them Quickening and Concurrence cinematics (ids 120 to
   153); 146 of the 147 listed common-bank effects are soft, all but `c0141`; no event effect is, all 218
   rows being No. Four character effects are soft: those of the Bomb and the Pineapple (`h0003`), the King
@@ -361,13 +406,30 @@ one). `TrackingMapScreenRateX`/`Y` and `TrackingMapScreenSuperWideMul`/`Plus`, w
 `init.json` has the key, they store new tracking values in `0x01F813C8` and write the whole document
 back to `JsonData/init.json` through an output file stream (`0x00202930`).
 
+- `0x001C7360(x, y)` looks up `TrackingMapScreenRateX` and tests its tag (`0x001FF740`, `0x00200BE0`) twice, the
+  first result unused, and returns when the key is absent (`0x001C73BC`). It then stores `x` and `y` as doubles
+  in `TrackingMapScreenRateX` and `TrackingMapScreenRateY` (`0x001FEE10`, `0x001C73E1`, `0x001C7406`); only the
+  first key is tested.
+- `0x001C7520(mul, plus)` does the same with `TrackingMapScreenSuperWideMul`, which it tests (`0x001C757C`), and
+  `TrackingMapScreenSuperWidePlus` (`0x001C75A1`, `0x001C75C6`).
+- Both build the path string `JsonData/init.json` (18 bytes through `memmove`, `0x001C74AA`, `0x001C766A`) and
+  call `0x00202930(0x01F813C8, path, 1, 0)` (`0x001C74CE`, `0x001C768E`).
+- `0x00202930(document, path, a, b)` opens the file for output (`0x0019B990`, mode 2) and, when that fails, sets
+  the stream's fail bit and writes nothing (`0x00202A35`-`0x00202A64`). Otherwise it writes the document with
+  `0x00201460(document, stream, a, b)` (`0x00202A76`) and closes the file (`0x0019B8C0`, `0x00202A80`), setting
+  the fail bit when the close fails (`0x00202A85`-`0x00202AA2`).
+
 ### Map, cutscene, font-colour and layout documents
 
 - Maps: `0x001C61F0` (from `0x00214C30`) runs while `0x01DF6E48` (1 as shipped, written only by the
-  developer menu) or `0x01F81282` is set. `0x001C53F0` takes the map-art object's `<area>\<map>` string,
-  keeps the text after the first backslash and appends `.json`. When that name differs from the last
-  one (`0x01F81388`), `JsonData/Maps/<map>.json` is parsed into `0x01F81328`; the area scene-config
-  loader `0x001C7940` then applies it.
+  developer menu) or `0x01F81282` is set. `0x001C53F0` takes the map-art object's `<area>\<map>` string
+  (the text at `+0x241` of the object `0x001A9930` returns), keeps the text after the first backslash, or
+  the whole string when it has no backslash (`0x001C54B1`), and appends `.json` (`0x001B31E0`, `0x001C551C`).
+- When that name differs from the last one (`0x01F81388`), it becomes the last name and
+  `JsonData/Maps/<map>.json` is parsed into `0x01F81328` (`0x001C627B`-`0x001C62A1`); the area scene-config
+  loader `0x001C7940` then applies it. `0x001C7940` also runs on the document as it is when the name is the
+  same (`0x001C626A`, `0x001C62DA`). A name that is `.json` alone, from an empty map name, loads and applies
+  nothing (`0x001C622B`-`0x001C6244`).
 - Cutscenes: `0x001C5930`, entered by a tail jump from `0x001EC600`, parses
   `JsonData/CutScenes/<name>.json` into `0x01F813A8 + slot × 0x10` and `<name>_2ndScreen.json` into
   `0x01F813D8 + slot × 0x10`, the slot being `0x01DF6E4C`. `0x001C5750`, reached from
@@ -383,6 +445,10 @@ back to `JsonData/init.json` through an output file stream (`0x00202930`).
 - `0x001C76E0` then reads `mClutIndex`, selects that entry (`0x24` bytes at manager `+0xF68`), stores
   `mShadowRed/Green/Blue/Alpha` and `mFontRed/Green/Blue/Alpha` as integers at `+0x04` to `+0x20`,
   and clears the document. Nothing fetches `mClutComment`.
+- When the document has no `mClutIndex` (the lookup gives the tag-6 entry, `0x00200BE0`), `0x001C76E0` returns at once
+  and leaves the document as it is (`0x001C76FA`-`0x001C7701`). The entry comes from `0x001E94E0(0x001B5FA0(), index)`
+  (`0x001C7733`), which takes entry 0 for an index above 27 (`0x001E94F6`, `0x001E9560`); the clear is the tail jump to
+  `0x00202880` (`0x001C783B`).
 - Layouts: `0x001C6C00` (from `0x001B1580`) loads `UISize.json` or `UISize_sd.json`
   ([Screen layouts](../Menus-And-HUD/screen-layouts.md)).
 - `0x001C2F50` (from `0x0017D6E0`) parses `/Tools/AutoTest/MapIndex.json` for a `MapIndex` value; no such
@@ -420,7 +486,8 @@ The map and cutscene loaders keep their document names in static EASTL strings (
 `+0x10` capacity end), which start-up initialisers build empty and `atexit` destructors free:
 
 - `0x01F81288`, the map document name (initialiser `0x0015C9E0`, destructor `0x008A6B90`): `0x001C53F0` empties it
-  (`0x001C5429`) and rebuilds it through `0x001A5760` (`0x001C544E`).
+  (`0x001C5429`) and rebuilds it through `0x001A5760` (`0x001C544E`): first the whole `<area>\<map>` string
+  (`0x001C5458`), then the part it keeps, cut out with `0x001A9E50` (`0x001C54C6`, `0x001C54DB`).
 - `0x01F81388`, the last map name (initialiser `0x0015C8D0`, destructor `0x008A6B30`): `0x001C61F0` compares the new name
   with it (`0x001C624A`, `memcmp` at `0x001C6263`) and, when they differ, assigns it through `0x001A5760` (`0x001C6274`).
 - `0x01F812A8`, the cutscene document name (initialiser `0x0015C7C0`, destructor `0x008A6AD0`): `0x001C5930` reads its
@@ -443,8 +510,14 @@ The strings' addresses are taken only at the sites above.
 
 `0x00582790` asks `0x00249210` for kind 7 id `0x2C` (`icon.sys`) and kind 7 id `0x2D` (`icon1.ico`),
 storing the data pointers at `+0x110` and `+0x118` of the save object (`0x00582814`, `0x0058282F`).
+
+It asks only while byte `+0xC1` of the save object is 0 (`0x005827DD`), takes the two from arenas 3 and 2,
+bottom-up (`0x005827F6`, `0x0058281B`), and then stores `0x00393600(2)` at `+0x120` (`0x0058283D`); both requests go into
+the screen's request group, with no completion of their own.
+
 `0x00249210` sizes the file from the [file size table](file-size-tables-fst.md) (`0x0032E400`),
-allocates a buffer and queues the read (`0x0032E620`).
+allocates a buffer and queues the read (`0x0032E620`); for a size below 1 it does neither and the data pointer
+stays null (`0x0024929F`).
 
 Every kind-7 array that `0x002DF9A0` installs holds the pair at ids 44 and 45. The KR, CH and CN arrays
 (languages 7, 8 and 11; `0x01E0E530`, `0x01E5A3D0`, `0x01EABBA0`) name the `ch` copies, the others the `in`
@@ -502,6 +575,15 @@ file's SHA-256.
 `movie_finish\<lang>\<NAME>.md` path. The player keeps the text between the last backslash and the
 last dot, formats `"%s%s.webm"` with the prefix `/GameData/D3D11/ArtData/video/` (`0x01DF6E28`), and
 opens it with `0x0067A480` on the player object at its `+0x678`. A null path entry stops the movie.
+
+- Before the path it starts the reading thread (`0x0067A350`) and, when that fails, sets the state `+0x04`
+  to 0 and returns (`0x001B7F6A`, `0x001B80B5`).
+- The name is found with `strrchr` for `\` and `.` (`0x001B7FB4`, `0x001B7FC5`) and copied with `strncpy` into
+  a zeroed 32-byte buffer, the count being the last dot less the character after the backslash
+  (`0x001B7FD0`-`0x001B7FF7`). With no dot after the last backslash that count wraps around and `strncpy`
+  writes past the buffer.
+- A path with no backslash resets the player with `0x001B7690` (`0x001B7FCE`, `0x001B803A`), and a failed open
+  sets the state to 0 and resets it the same way (`0x001B8030`-`0x001B803A`).
 
 The first 98 ids of kind 28 hold 45 `.md` paths at even ids, each followed by its `.mh` path, and
 four empty pairs. 40 of the 45 base names have a `.webm`; `dlb`, `opd`, `se1`, `se2` and `bd2` have

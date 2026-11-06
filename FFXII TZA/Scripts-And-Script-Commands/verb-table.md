@@ -93,12 +93,15 @@ The poll-only rows are the waits on something an earlier verb started: `movesync
 `moveblurfadesync` (`0x03BD`) also counts as poll only: its begin and result are the stub and its
 poll `0x00345100` is live.
 
-The stub rows hold only the `ret` at `0x0016D6A0` and the poll `0x005C5230`, which returns 0, so a
-stubbed verb completes on its first call: `disposesummon`, `changetonormalparty`, `hddinstall`,
-`networkhddinstall`, `hddmount`, `atrac3cancel`, `btlAtelRemoveAllEquip` and the debug verb
-`0x20D3` have a stub begin with that poll; `atrac3standbysync` and `atrac3playsync` have that poll
+The 24 stub rows hold only the `ret` at `0x0016D6A0` and the poll `0x005C5230`, which returns 0, so a
+stubbed verb completes on its first call: `hddmount`, `atrac3cancel`, `btlAtelRemoveAllEquip` and the debug
+verb `0x20D3` have a stub begin with that poll; `atrac3standbysync` and `atrac3playsync` have that poll
 alone; `atrac3play`, `unkCall_5c7`, `btlAtelSetUnique`, `btlAtelChangeAllBtlCharaFlag_DontMoveDebug`,
 the tag and setup verbs `0x3054` to `0x305A` and seven debug verbs have a stub result.
+
+`disposesummon`, `changetonormalparty`, `hddinstall` and `networkhddinstall` have the same stub begin and
+poll, but a live result, so they are poll and result rows: `0x0034FB20` (calls `0x00314D40(1)`, then jumps to
+`0x003B6F60`), `0x00350F30`, and `0x003447F0` for both install verbs (jumps to `0x00408EC0` with 1).
 
 Two placeholder names have a known meaning: `unkCall_5be` (`0x05BE`, start `0x00355940`) returns the
 after-load flag `0x0209AC10` through `0x00286000`, and `unkCall_5bf` (`0x05BF`, start `0x00355E80`)
@@ -119,7 +122,7 @@ its first word is the render index, -1 when the actor has no model.
 | `0x002EC860(actor, on)` | `motionloop` `0x003B` | bit `0x8` of the binding's byte `+0x11` |
 | `0x002EC940(actor, v)`, `0x002EC960(binding, v)` | `motionlooppreset` `0x04B4`, `puppetmotionlooppreset` `0x04E6` | the binding's `+0x2A` |
 | `0x002ECC60`, `0x002EC970`, `0x002EC8B0` | `motionstartframe` `0x00F5`, `motionloopframe` `0x00F4` | the binding's `+0x14`, `+0x18` and `+0x1C` from a frame number; a positive frame passes through `0x003DA190`, which returns its argument |
-| `0x002EC890(binding, on)` | `puppetmotionloop` `0x042C` (`0x0034C900`) | the bit `0x8` of the puppet binding's byte `+0x11`, the bit `0x002EC860` sets for `motionloop`; the binding is `0x003EB720(id)`: record `id` (0 to 31) of `0x02B5EA20` plus `0x10`, when that record's byte `+0x40` is set |
+| `0x002EC890(binding, on)` | `puppetmotionloop` `0x042C` (`0x0034C900`) | the bit `0x8` of the puppet binding's byte `+0x11`, the bit `0x002EC860` sets for `motionloop`; the binding is `0x003EB720(id)`: the record that entry `id` (0 to 31) of the pointer table `0x02B5EA20` points to, plus `0x10`, when the entry is set and that record's byte `+0x40` is set |
 | `0x002EC9C0(binding, f)`, `0x002EC900(binding, f)`, `0x002ECCB0(binding, f)` | `puppetmotionloopframe` `0x0422` (`0x00348580`), `puppetmotionstartframe` `0x0423` (`0x00348A90`) | the puppet binding's `+0x18` from the first frame and `+0x1C` from the second, the second raised to at least the first when it is 0 or more; and `+0x14` from a frame raised to at least 0. A positive frame passes through `0x003DA190` as for `motionloopframe` |
 | `0x002ECDC0(actor, on)`, `0x002ECE00(actor, on)` | `shows_3a` `0x003A`; `showw_39` `0x0039`, `hidew` `0x0035` | for a kind-`0x60` actor that is not a captured member (bind state `+0x18` is not 1; [party during scenes](party-during-scenes.md)): bit `0x1` of the binding's `+0x70` or `+0x40`, then the visibility refresh `0x002E8FD0`; with no binding (`+0xC0` null) both write byte `+0x10` of address 0 instead (`0x002ECDEF`, `0x002ECE2F`) |
 | `0x003EB470(bind)` | `puppetbind` `0x041B`, `puppetbindoff` `0x041A`, `debug_modelinfobindoff` `0x20A8` | releases a puppet bind: the model (`0x002ED470`), the user count `+0x1C` of the bound record (`0x002EB870`), the binding reset (`0x00265F90`), and the record goes back to the free list `0x02B5EB70` |
@@ -194,7 +197,19 @@ No located caller passes slot 0, so slot 0 stays clear.
 `0x02B59D08` (`0x003DF8BD`), the live word at `0x02B59D10` (`0x003DF8D4`) and the first argument at `0x02B59D14`
 (`0x003DF8C9`). It sets all four to 0 when no slot is live (`0x003DF852`-`0x003DF866`). `0x003DF7B0` (`0x003DF7EA`-`0x003DF7FE`)
 and `0x003DF670` (`0x003DF6BD`-`0x003DF6D0`) do the same when they hide the sign because the mask `0x02B59D18` is non-zero.
-`0x003DF5B0` sets `0x02B59D10` to 1 (`0x003DF5B2`).
+`0x003DF5B0` sets `0x02B59D10` to 1 (`0x003DF5B2`) and clears the mask `0x02B59D18` (`0x003DF664`).
+
+No instruction reads the copy: every reference to `0x02B59D00`-`0x02B59D17` is one of these stores, no instruction
+reaches it through a base register or the image base, and the file holds no pointer to it.
+
+The mask's bit `0x1` belongs to `0x003DF670`, which the frame update runs after `0x003DEB30`
+([frame update order](../Engine-Core/frame-update-order.md)). It clears the bit (`0x003DF691`) when the
+party-focus actor (`0x003590D0`, resolved by `0x003588B0`) passes `0x002EA6A0`, and sets it (`0x003DF69A`) otherwise.
+
+`0x002EA6A0` answers 1 for an actor whose byte `+0x04` is 1 and whose binding `+0xC0` has a render index other than
+-1 and a non-null pointer `+0x08` to a record with bit `0x2` in its byte `+0x18`. While the mask is non-zero,
+`0x003DF670` hides the sign (`0x0029CAB0(0, 0, 0, 0)`, `0x003DF6AC`-`0x003DF6B6`); when it is 0, it jumps to `0x003DF810`
+(`0x003DF6A7`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

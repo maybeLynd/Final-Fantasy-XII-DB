@@ -31,14 +31,21 @@ enemies of the same kind are told apart by a letter after the name.
    `0x00272CE0`, the display name ([HUD](hud.md)).
 6. **The letter.** When the name is the `+0xF8` text and the ordinal is not 0, `0x00272CE0` adds a letter: entry
    `0x21 + (ordinal - 1) mod 26` of the font sheet's text (`0x002B58F0`)
-   ([battle unit construction](../Characters-And-Objects/battle-unit-construction.md)).
+   ([battle unit construction](../Characters-And-Objects/battle-unit-construction.md)). It goes in as the blank `0x06`, a
+   space (`0x01` if `0x00254A10` is true, else `0x04`) and the letter, one byte, or two for a code outside
+   `0x20`-`0xFF` (`0x002B5969`-`0x002B59D3`).
 7. **The target list.** The battle menu's target-list painter `0x0027E530` draws the unit's name through `0x00272CB0`
-   and, when `0x00272C80` gives a number, that number after it
-   ([battle menu](battle-menu.md#row-painters), [NPC names](../Characters-And-Objects/npc-names.md#names-in-battle-messages)).
+   and, when `0x00272C80` gives an ordinal above 0, that ordinal's letter after it, written by `0x0024ABE0` as in step 6
+   (`0x0027E657`-`0x0027E6FA`) ([battle menu](battle-menu.md#row-painters),
+   [NPC names](../Characters-And-Objects/npc-names.md#names-in-battle-messages)).
 8. **The battle log.** The line builder `0x005369C0` names the source and the target through `0x00536310` and
-   `0x00536280`, with a byte from the actor (`0x00263A10`) as a second argument
-   ([battle log](../Battle-Actions/battle-log.md#building-the-line)).
-9. **The log's name.** For a unit whose actor has a name id of 0 or more, the name is that pair's second name; for
+   `0x00536280` ([battle log](../Battle-Actions/battle-log.md#building-the-line)).
+   - `0x00536280` takes the name id and the `flag` byte `0x00536310` fills (`0x00536CB6`, `0x00536D2C`).
+   - The low byte of the actor's ordinal (`0x00263A10`, 0 while a name id is set or for a stats record with byte
+     `+0x05` = 0) is stored beside each name in the line record (`0x00536CF9`, `0x00536D70`).
+9. **The log's name.** For a party member (stats byte `+0x05` = 0) it is word `+0x30` of its party table row,
+   whatever its actor holds (`0x00536345`-`0x00536388`). For any other unit whose actor has a name id of 0 or more, the
+   name is that pair's second name; for
    any other unit, the definition row's word `+0x08`, rendered through the word banks
    ([NPC names](../Characters-And-Objects/npc-names.md#names-in-battle-messages)).
 10. **Names inside message text.** The escape `0F 8` inserts the name for a 16-bit id (`0x002639E0`) and `0F >` the

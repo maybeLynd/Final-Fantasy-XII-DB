@@ -69,6 +69,25 @@ The two banners are unreferenced constants, ` inflate 1.2.11 Copyright 1995-2017
 - The deflate side, from `0x0087AF40`, which is `compress2`; it hands `deflateInit_` the
   `0x58`-byte stream size (`0x0087AF7B`).
 
+`0x0080C5C0(dest, destLength, source, sourceLength)` takes both lengths through pointers. A destination length of 0
+makes it inflate into a one-byte stack buffer (`0x0080C5F1`, `0x0080C5F3`); otherwise it sets `*destLength` to 0
+first (`0x0080C5ED`). It starts the stream with `0x0080E040` (version "1.2.11" at `0x01CC73A4`, size `0x58`,
+`0x0080C622`) and returns that result when it is not 0 (`0x0080C629`). Then it calls `0x0080C750` with flush 0 until
+the result is not 0 (`0x0080C67F`, `0x0080C688`), refilling the input and output counts from what is left.
+
+Afterwards `0x0080C5C0` sets `*sourceLength -= left + availIn` (`0x0080C6A1`, `0x0080C6A3`), stores the output total
+in `*destLength` for a real destination (`0x0080C6B0`) and ends the stream with `0x0080DF00` (`0x0080C6CB`). It
+returns 0 for result 1, -3 for result 2, -3 for result -5 when `left + availOut != 0` (`0x0080C6D0`-`0x0080C6ED`;
+`left` becomes 1 for the stack buffer once output was produced, `0x0080C6B5`-`0x0080C6C3`), and the result itself
+otherwise (`0x0080C6EF`).
+
+`0x0087AF40(dest, destLength, source, sourceLength, level)` sets `*destLength` to 0 (`0x0087AF63`) and starts the
+stream with `0x0087C9F0(stream, level, "1.2.11", 0x58)` (`0x0087AF91`), returning a non-zero result as it is
+(`0x0087AF98`). It calls `0x0087BD60` until the result is not 0 (`0x0087AFE7`, `0x0087AFF0`), with flush 4 once the
+whole source is handed over and 0 before (`0x0087AFD7`-`0x0087AFE3`). It stores the output total in `*destLength`
+(`0x0087B005`), ends the stream with `0x0087C6C0` (`0x0087B008`) and returns 0 for result 1, else the result
+(`0x0087B00D`).
+
 The checksum is zlib's table-driven CRC-32: `crc32` (`0x0080E5F0`) jumps to `crc32_z` (`0x0080E910`),
 which returns 0 for a null buffer and otherwise jumps to `crc32_little` (`0x0080E600`). That body
 reads the table at `0x01CC7E70` (`00000000`, `77073096`, ...). Its callers are zlib functions of the
@@ -88,7 +107,9 @@ The JSON library is identified by its namespace in three RTTI type names,
 This copy keeps its strings and containers in EASTL:
 
 - `0x001FF740`, the lookup by C string, builds an EASTL string (allocator name "EASTL basic_string")
-  from the key and calls the string lookup `0x001FF6B0`.
+  from the key and calls the string lookup `0x001FF6B0`. `0x001FF6B0` first makes a value whose tag is not 3 an
+  empty "EASTL map" (`0x001FF6CF`-`0x001FF713`), and `0x001FF4F0` inserts an entry with tag 6 for a key the map lacks
+  (`0x001FF5E1`, `0x001FFD40`), so the lookup always returns a value; `0x001FF740` frees its string and returns it.
 - The value parser `0x00200E60` reads one character and builds an object as an "EASTL map" on `{`
   and an array as an "EASTL vector" on `[`.
 
@@ -104,7 +125,8 @@ state bytes at `+0x70`, the target stream buffer and the character:
 - a `/` inside a string, not preceded by a backslash, is written as the two characters `\/`, from
   the static string `0x01FD4058` that the start-up initialiser `0x0015FEF0` fills;
 - an unescaped backslash inside a string sets the escaped byte for the next character; every other
-  character clears it. Every character but a replaced `/` is written unchanged (`sputc`).
+  character clears it. Every character but a replaced `/` is written unchanged (`sputc`). The filter
+  returns what `sputc` returns (`0x00216641`), and 0 after a replaced `/` (`0x0021661E`, `0x00216649`).
 
 Every call into JsonBox from outside it comes from the game's JSON readers
 (`0x001C2F50` to `0x001CCB20`), a few static initialisers and unwind code. What the game reads with it
@@ -142,6 +164,11 @@ The ImGui context is the static object `0x02EA58C0`:
 2. `0x00169600` registers `0x008B7D40` at exit for the font atlas `0x02EA54F0`.
 3. At exit `0x008B7DA0` frees the context's buffers (`0x00793140`), and `0x008B7D40` clears the atlas
    (`0x00795FC0`), both through the free function the context holds.
+
+Besides the two constructor calls, `0x00791E70` writes only the context's own fields, and every store is 0 but
+two: -1 at `+0xE7C` (`0x00791FB8`) and 2 at `+0x38D4` (`0x00792062`). The zero stores include the byte `+0x00`
+(`0x00791F88`) and three `memset` ranges through `0x00861EC0`: `0x24E0` bytes from `+0xFA8` (`0x00791F4B`), `0x400`
+from `+0x34B0` (`0x00792032`) and `0x1E0` from `+0x38D8` (`0x00792072`). It returns the context (`0x00792077`).
 
 The pointer `0x01F40380` holds the context's address. Only ImGui's own functions (`0x00793140`,
 `0x00795F10`, `0x00795FC0`, `0x007960E0`, `0x00796E70`, `0x00797360`) and the exit stubs `0x008B7B30` and

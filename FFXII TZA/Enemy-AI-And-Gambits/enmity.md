@@ -33,8 +33,9 @@ The table lives in the enemy's spawn record at unit `+0x6A0`, from `+0x19` (`0x0
 
 The row id is a party member's type byte (stats `+0x04`). An id counts only when
 `0x00322C50(2, id, 1)` accepts it, that is when it is below the 40 rows of the party table `0x02EBF130`
-(`0x00322C9A`, `0x0032302A`-`0x0032303B`). The readers return -1 for an invalid id or a missing table
-(`0x003215C0`-`0x0032161D`).
+(`0x00322C9A`, `0x0032302A`-`0x0032303B`). The readers return -1 for an invalid id or a missing table, and
+`0x003215C0(unit, id)` for a null unit too; otherwise it returns the entry `+0x1A` + *id* (`0x003215C0`-`0x0032161D`,
+`0x0032160D`).
 
 ### Writing an entry
 
@@ -42,7 +43,10 @@ The row id is a party member's type byte (stats `+0x04`). An id counts only when
 
 1. It does nothing unless the enemy is an enemy-table unit (stats `+0x05` = 1, `0x003218D0`) that is not KO,
    Stone or X-Zone, unless bit `0x8000` of the active field record waives that (`0x003218A6`-`0x003218BA`).
-2. The new value is `old + value` for mode 0 or `value` for mode 1 (`0x00321914`-`0x0032191A`).
+   A null enemy, one without a table or stats record, or an id `0x00322C50` rejects also changes nothing
+   (`0x00321853`, `0x00321890`, `0x003218A0`, `0x003218F9`-`0x00321900`).
+2. The new value is `old + value` for mode 0 or `value` for mode 1, as for any mode other than 0
+   (`0x00321914`-`0x0032191A`).
 3. A new value of 0 or less becomes 1 when the old value was above 0 (`0x0032191D`-`0x00321923`).
 4. When the value rises and no entry of the enemy is above 1 (`0x00321770`), it gets 10 more
    (`0x00321927`-`0x0032193A`).
@@ -69,10 +73,12 @@ It is called from `Battle_ProcessActionTarget` (`0x0030760A`) and from the speci
 
 ### Spreading
 
-`0x003219D0(id, value, target, mode)` walks every unit slot (`0x003219F4`-`0x00321AD5`) and writes `value` into
-an enemy's entry for `id` when all of these hold:
+`0x003219D0(id, value, target, mode)` walks every unit slot (`0x003219F4`-`0x00321AD5`) and changes an enemy's entry
+for `id` through `0x00321850(enemy, id, value, mode)`, by that function's rules: mode 0 adds `value` and mode 1
+writes it (`0x00321ABA`-`0x00321AC7`). It does so when all of these hold:
 
 - the unit is an enemy-table unit other than the target (`0x00321A33`-`0x00321A40`);
+- it has a table and `0x00322C50` accepts `id` (`0x00321A46`-`0x00321A71`);
 - its entry for `id` is already above 0 (`0x00321A73`-`0x00321A7B`);
 - with a target, the target's actor (`+0x10`) is in the enemy's AI candidate list, the 16-byte entries
   from unit `+0xBC8` counted by `+0xBC4` (`0x00321A82`-`0x00321AB8`).
@@ -95,6 +101,9 @@ enemy-table unit with a table (`0x0032154D`-`0x00321574`):
 
 `0x01DFE0B8` is the frame base, 1.0 as shipped ([Action phases](../Battle-Actions/action-phases.md)).
 `0x00321D30` writes all 40 ids through `0x00321850` (`0x00321D90`-`0x00321DA6`), so the floor of 1 holds.
+It changes nothing for a null enemy, one without a table or stats record, or one that is KO, Stone or X-Zone
+without the field record's waiver (`0x00321D33`-`0x00321D8E`). Each id goes as `0x00321850(enemy, id, value, mode)`
+(`0x00321D90`-`0x00321D9C`).
 
 ### Resets and orders
 
@@ -117,9 +126,12 @@ Two more callers change the table:
 
 The enemy AI's target selector `AiOrder_EvaluateTargetSelector` reads the enmity of a candidate party
 member (`0x003215C0`, at `0x00302153`) and compares the candidate with the highest enmity toward any active
-party member (`0x00321630`, at `0x00302573`-`0x0030258C`). `0x00321630` walks the same active party list and
-returns -1 when the enemy has no table. The relation test `0x0030BD00` asks `0x00321840` whether an enemy
-holds any grudge above 0 (`0x0030BDA0`).
+party member (`0x00321630`, at `0x00302573`-`0x0030258C`).
+
+`0x00321630` walks the same active party list (`0x0030A880(buffer, 1)`, `0x0032166A`) and returns the highest entry for
+a member's type byte, an id `0x00322C50` rejects counting as -1 (`0x00321680`-`0x003216BE`). It returns -1 when the
+enemy is null or has no table (`0x0032163E`, `0x0032165B`), and when the list is empty (`0x00321674`). The relation test
+`0x0030BD00` asks `0x00321840` whether an enemy holds any grudge above 0 (`0x0030BDA0`).
 
 ## Modding notes
 

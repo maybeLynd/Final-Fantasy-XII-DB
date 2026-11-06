@@ -16,7 +16,8 @@ Some values in those files are left over from the tool that wrote them and chang
 
 ### The shader assets
 
-The executable names 18 `.phyre` assets for the post-process chain, text and video:
+The executable names 18 `.phyre` assets by full path: the post-process chain, text, video, the colour-buffer
+copy, the anisotropic lighting texture and the map textures:
 
 | Path | Use |
 |---|---|
@@ -47,16 +48,34 @@ cutscene, keyed `Common` and `Cut 1` to `Cut N`. Every key is looked up by name 
 key, and the cutscene loader `0x001C3D50` goes through `0x001C51D0`.
 [Graphics settings](../Engine-Core/graphics-settings.md) lists where each key lands.
 
-312 distinct key strings are passed at the call sites of these lookups; the
-three largest readers are `0x001C7940`, `0x001CA600` and `0x001C3D50`.
+`0x001FF6B0(value, key)` first turns a value whose tag `+0x00` is not 3 into an empty map: it calls
+`0x002001F0` on it, stores 3, and keeps a new 0x38-byte map from `0x00210EC0` (constructor `0x001FE510`) at
+`+0x08`, or 0 when that allocation fails (`0x001FF6CF`-`0x001FF713`). It then tail-jumps to the find
+`0x001FF4F0` with the map and the key (`0x001FF72D`). A key the map lacks gets a new entry of tag 6
+(`0x001FF5E1`, `0x001FF647`), so the lookup always returns a value and a missing key becomes an absent entry.
+
+446 distinct key strings are passed as literals at 754 of the 779 call and tail-jump sites of six lookups:
+`0x001FF740`, `0x001FF6B0`, `0x001C51D0`, `0x001C52C0`, `0x001C5530` and `0x001C5570`. 439 of the keys reach `0x001FF740`
+directly. `0x001C5530(document, key)` repeats the lookup in the document at `0x01F813C8` when the first answer is an
+absent entry (tag 6, tested by `0x00200BE0`); `0x001C5570(n, key)` reads the key from the section `PresetDof <n>`.
+
+Of the other 25 sites, 11 pass a composed name and 14 pass on a name their caller gave. 443 of the 446 literal
+keys are keys of shipped documents; no document holds `ChangedFileName`, `MapIndex` or `shit`. The three largest
+readers are `0x001CA600` (226 keys), `0x001C7940` (157) and `0x001C3D50` (104).
+
+The four composed forms add 486 names: the nine `mCascadePartition<column>_<row>`, and the `Cut <n>` (61),
+`PresetDof <n>` (32) and `MonsterId<n>` (384) names the shipped documents hold. Three cascade names are also
+passed as literals, by `0x001C3D50` through `0x001C52C0`. Every key, literal or composed, is one row of
+[`render-parameters-and-shader-assets-keys.tsv`](render-parameters-and-shader-assets-keys.tsv) with its lookups,
+readers and sites.
 
 ### The cascade keys are composed
 
 `0x001C7940` never spells `mCascadePartition0_1` and its kin. At `0x001C9190` it formats
 `"mCascadePartition%d_%d"` (`0x008FB2D8`) for columns 0 to 2 and rows 1 to 3, reads each value (with
 the defaults as fallback) and stores it through `0x001A9B00(map-art context, row - 1, column, v)`.
-`0x001A9B00` refuses an index of 3 or more and writes `+0x350 + (row x 3 + column) x 4` of the object
-`0x001A9930` returns: a 3 x 3 float matrix. No code looks up `mCascadeNumber`, which the files also carry;
+`0x001A9B00` refuses an index of 3 or more and writes `+0x350 + ((row - 1) x 3 + column) x 4`
+of the object `0x001A9930` returns: a 3 x 3 float matrix. No code looks up `mCascadeNumber`, which the files also carry;
 the loop is fixed at three.
 
 ### Authored keys that nothing reads
@@ -83,6 +102,21 @@ directly or through the cascade template. The other 43 are:
 | empty documents | 26 zero-byte files, all `sum_` cutscenes; 29 more hold only `{}`: 28 cutscenes such as `byu_z9900` and the root `0.json` |
 | documents strict JSON rejects | `maps/bhm0201` (line 44) and `cutscenes/evt_t0005` (line 227) miss a comma between two members; `uisize/uisize` (line 232) and `uisize/uisize_sd` (line 165) end an object with a trailing comma |
 | authored names, sections set aside | 218: 175 read, 43 never read |
+| key names the executable looks up | 929 rows in [`render-parameters-and-shader-assets-keys.tsv`](render-parameters-and-shader-assets-keys.tsv): 446 literal (3 of them also composed), 486 composed |
+
+### Columns of render-parameters-and-shader-assets-keys.tsv
+
+| Column | Holds |
+|---|---|
+| `key` | the key name; the rows are sorted by it in character-code order |
+| `form` | `literal` (443 rows), `composed` (483) or `literal and composed` (3); the 446 literal keys are the rows whose form starts with `literal` |
+| `template` | the format a composed name is made from: `mCascadePartition%d_%d`, `Cut %d`, `PresetDof %d` or `MonsterId%d`; empty on the 443 `literal` rows |
+| `lookups` | the lookups the sites call or jump to, of `0x001FF740`, `0x001FF6B0`, `0x001C51D0`, `0x001C52C0`, `0x001C5530` and `0x001C5570`, separated by `, ` |
+| `readers` | the start of each function that holds a site, separated by `, `; a chained fragment counts under its root function |
+| `sites` | the number of sites |
+| `site_addresses` | the call or jmp instruction of each site, separated by `, ` |
+| `in_shipped_document` | `yes` when at least one of the 830 `jsondata` documents holds the name as a key, `no` otherwise |
+| `shipped_documents` | how many of the 830 documents hold the name |
 
 ## Modding notes
 

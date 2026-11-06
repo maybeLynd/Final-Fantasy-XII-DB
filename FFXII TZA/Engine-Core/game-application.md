@@ -28,8 +28,10 @@ their vtable slot 1 while `0x01F2CDF0` is clear) and registers the destructor `0
 `atexit`.
 
 The deleting destructor, slot 0 (`0x0017CC70`), re-installs the vtable, runs the base
-destructor `0x00793250` and, with flag bit `0x1` set, frees: through the guarded indirect call with the size `0x1140` when bit
-`0x4` is set, else `0x00584730(this)`.
+destructor `0x00793250` and, with flag bit `0x1` set, frees the object with `0x00584730(this)` when bit `0x4` is clear
+(`0x0017CC9F`-`0x0017CCA8`). When bit `0x4` is set it passes the size `0x1140` to `0x0016D6A0`, which is `ret 0`
+(`0x0017CCB0`-`0x0017CCB8`), so the storage is kept. With bit `0x1` clear nothing is freed (`0x0017CC99`-`0x0017CC9D`);
+every path returns the object (`0x0017CCBE`).
 
 The base is `Phyre::PFramework::PApplication`: `0x00793250` writes its vtable `0x01CB2508` into
 `[this]`, and the RTTI chain names `PApplication` at displacement 0 and `Phyre::PBase` and
@@ -48,12 +50,12 @@ the archive mount and the latch are game code overriding middleware entry points
 | 4 | `0x0017CCD0` | the frame tick (below) |
 | 5 | `0x0017CDE0` | a thunk to the empty stub: an explicitly empty override |
 | 6 | `0x0017CDC0` | shutdown: `0x0017D670` (`0x0019A120`, `0x001A11F0`, `0x001DC4E0`, `0x001993B0` on the input manager, `0x0022A090`, `0x0017DAC0(1)`) then the base's slot 6 `0x0079BF70` |
-| 7 | `0x0017CE50` | input: with a dialog open (`0x00228480`) it hands the input manager `0x00198790()` to `0x001967D0` and returns 0 without reading the latch; otherwise, latched, it calls the handler `0x00194AF0()` when one is set |
+| 7 | `0x0017CE50` | input: with a dialog open (`0x00228480`) it hands the input manager `0x00198790()` to `0x001967D0` and returns 0 without reading the latch (`0x0017CE59`-`0x0017CE76`); otherwise, latched and with a handler `0x00194AF0()` set, it passes the handler and the application to `0x0016D6A0`, which is `ret 0`, so the handler itself is not called (`0x0017CE77`-`0x0017CE95`), and it returns 0 through `0x005C5230` (`0x0017CEA2`) |
 | 8 | `0x0017D090` | render: 0 while unlatched, else `0x00187950` on the render manager `0x00189120()` |
-| 9 | `0x0017D0C0` | resize: copies the viewport size `+0xD24`/`+0xD28` into the render manager's `+0xAD8`/`+0xADC`, then the base's `0x007A05D0` |
+| 9 | `0x0017D0C0` | resize: when the render manager `0x00189120()` exists (`0x0017D0C9`-`0x0017D0D1`), copies the viewport size `+0xD24`/`+0xD28` into the render manager's `+0xAD8`/`+0xADC` (`0x0017D0EE`, `0x0017D0F9`), then, on both paths, the base's `0x007A05D0` (tail jump, `0x0017D10C`) |
 | 10 | `0x0017D120` | sets the render manager's byte `+0` to 1 |
 | 14 | `0x0017D160` | the base's `0x007A0B40`: stores the argument byte at `+0x27` |
-| 15, 25 | `0x0017D1A0`, `0x0017D1E0` | forward a byte to the input manager (`0x001989D0`, `0x00198E70`) |
+| 15, 25 | `0x0017D1A0`, `0x0017D1E0` | forward a byte to the input manager (`0x001989D0`, `0x00198E70`), each only when `0x00198790()` returns a manager (`0x0017D1B5`, `0x0017D1F1`); `0x0017D1A0` then returns 0 through `0x005C5230` on both paths (`0x0017D1DA`), and `0x0017D1E0` tail-jumps to `0x00198E70` (`0x0017D203`) or returns 0 without a manager (`0x0017D208`) |
 | 16 | `0x0017D210` | `0x00227D40(byte)` |
 | 21, 22 | `0x0017CFD0`, `0x0017D170` | read and write the pause byte at `0x01F810F0` (`0x00199780`, `0x001997E0`); `0x0017E4E0` reads it for the frame and the console draw `0x001D7A20` tests it |
 | 23, 24 | `0x0017CDF0`, `0x0017CE20` | the base's `0x0079D560` and `0x0079D5B0` times the time scale `0x0017E440()` |
@@ -95,39 +97,56 @@ boot turns the Sticky Keys shortcut off and the shutdown's `0x0017DAC0(1)` turns
 Slot 3, `0x0017CF30`, configures the device (`0x0018D850` with `0x00193D50()`, `0x00182EB0()`, `0x00182E80()`
 and the device byte `+0xD48` of `0x00796E20()`), ensures the two `AsyncJobManager` instances
 (`0x0019A0A0`: `0x01F810F8` and `0x01F81100`, `0x158` bytes each, flags 0 and 1), and queues a job node
-`{0x0017D150, this}` on the first (`0x00199F10`, `0x0019A000`).
+`{0x0017D150, this}` on the first (`0x00199F10`, `0x0019A000`). `0x0019A0A0` tests each pointer on its own
+(`0x0019A0B1`, `0x0019A0E4`): a null one gets `0x00584740(0x158)` and, on a non-null block, `0x001999D0(obj, flag)`, and
+the constructor's result is stored, 0 when the allocation fails (`0x0019A0DD`, `0x0019A112`).
 
 That job runs `0x0017D000(app)`: the
-manager-init burst `0x0017D4C0`, the `0x80`-byte object at `0x01F7E340` (`0x0018A840`), the render
+manager-init burst `0x0017D4C0` with slot 2's arguments (`+0x1138`, `+0x1130`; `0x0017D012`-`0x0017D01F`), the
+`0x80`-byte object at `0x01F7E340` (`0x0018A840` on the block from `0x00210EC0(0x80)`, and 0 in `0x01F7E340` when the
+allocation fails, `0x0017D024`-`0x0017D041`), the render
 manager (`0x00189000(app + 0xE8, app + 0x90, +0xD24, +0xD28, [0x01FD4A9C])`, `0xDD8` bytes at `0x01F7F598`),
-and then the latch: `+0x113C = 1`. Nothing clears it afterwards.
+and then the latch: `+0x113C = 1` (`0x0017D074`). Nothing clears it afterwards.
 
-`0x0017D4C0(b, a)` builds the managers in order: `0x001DB500`, the pause flag (`0x00199790`), four small
-objects at `0x01F7F4C0` (`0x20`), `0x01F7F4C8` (`0xC0`), `0x01F7F4D0` (`0x10`) and `0x01F7F4D8` (`0xA0`), the
-`AsyncLoadManager` (`0x001A11B0`), `0x00198750`, `0x0019EF40`, `0x001B6BC0`, `0x001B29F0`, the movie player
-(`0x001B7EE0`, then `0x001B7850`), the `SaveloadManager` (`0x001C18A0`, `0x001C1710`, `0x001C1940`), `0x001B5F10`,
-`0x001D6990`, `0x001D8150`, `0x001D89D0`, `0x001831A0`, and the startup constants `0x0022A0B0(b, a)`
-([startup constants](startup-constants.md)).
+`0x0017D4C0(b, a)` builds the managers in order: `0x001DB500`, the pause flag (`0x00199790`), four small objects at
+`0x01F7F4C0` (`0x20`, `0x001A14E0`), `0x01F7F4C8` (`0xC0`, `0x001A16E0`), `0x01F7F4D0` (`0x10`, `0x001A17D0`) and `0x01F7F4D8`
+(`0xA0`, `0x001B24D0`), the `AsyncLoadManager` (`0x001A11B0`), `0x00198750`, `0x0019EF40`, `0x001B6BC0` and `0x001B29F0`.
 
-After the constants come `0x001B1BA0`, `0x001B1580`, `0x0022A4B0`, the screen fade
+It then builds the movie player (`0x001B7EE0`, then `0x001B7850` on `0x001B7F20()`), the `SaveloadManager` (`0x001C18A0`,
+`0x001C1710` on `0x001C18E0()`, `0x001C1940`), `0x001B5F10`, `0x001D6990`, `0x001D8150`, `0x001D89D0`, `0x001831A0`, and the startup
+constants `0x0022A0B0(b, a)` ([startup constants](startup-constants.md)).
+
+After the constants come `0x001B1BA0`, `0x001B1580` on `0x001B1C00()`, `0x0022A4B0`, the screen fade
 (`0x001D8CD0`), a `0x10`-byte object at `0x01F7F4E0` (`0x001D5600`), `0x001AD3E0`, the procedural-texture
-context (`0x001C0D40`), `0x001D62D0`, `0x00194AB0`, `0x00194AA0(0x00194AF0())` and `0x001DB1E0`.
+context (`0x001C0D40`), `0x001D62D0`, `0x00194AB0`, `0x00194AA0(0x00194AF0())` and `0x001DB1E0` (a tail jump, `0x0017D63E`).
+
+Each of the five objects comes from `0x00210EC0` of its size, and its constructor runs only on a non-null block;
+when the allocation fails 0 is stored in its global (`0x0017D4ED`-`0x0017D4F9`, `0x0017D510`-`0x0017D51C`,
+`0x0017D533`-`0x0017D53F`, `0x0017D556`-`0x0017D562`, `0x0017D5FA`-`0x0017D607`).
 
 ### What the burst builds
 
 | Global | Size | Ensure | Constructor | What the constructor lays down |
 |---|---|---|---|---|
-| `0x01F810F8`, `0x01F81100` | `0x158` | `0x0019A0A0` | `0x001999D0(obj, flag)` | `AsyncJobManager`: a job list at `+0x50`, a pool of 128 sixteen-byte job nodes at `+0x90`, the flag at `+0x150`; `0x00199F60` then starts its worker |
+| `0x01F810F8`, `0x01F81100` | `0x158` | `0x0019A0A0` | `0x001999D0(obj, flag)` | `AsyncJobManager`: a job list at `+0x50`, a pool of 128 sixteen-byte job nodes at `+0x90`, the flag at `+0x150`; `0x00199F60` then starts its worker. In order (`0x001999F2`-`0x00199A62`): the 24-byte thread record at `+0x08` zeroed (`0x005CC900`; handle, entry and argument once `0x005CD1E0` starts it), the running byte `+0x20` = 0, the vtable `0x008F3C68` (RTTI `AsyncJobManager`), a lock record at `+0x28` (`0x005CC8A0`), the job list made empty (both links at `+0x50` and `+0x58` point at `+0x50`, its allocator `+0x60` named `"EASTL list"` by `0x001EDF00`), a second lock record at `+0x68` (`0x005CC8A0`), the pool `0x001997F0(obj + 0x90, 128, 0)`, the flag, then `0x00199F60(obj)`; it returns the object (`0x00199A68`) |
 | `0x01F81150` | `0x120` | `0x0019CDE0` (early set-up) | `0x0019C7C0` | the loaded-asset registry `0x0019CE20` returns: a lock at `+0x00`, a map at `+0x28` and a pool of 6,144 records at `+0x60` (`0x0019C630`) |
-| `0x01F81158` | `0x188` | `0x0019EF40` | `0x0019DA30` | `AssetListManager`: a pool of 192 lists of `0x130` bytes at `+0x08` (`0x0019D5B0`) and a pool of 3,072 entries of `0x118` bytes at `+0xC8` (`0x0019D740`) |
-| `0x01F81240` | `0x238` | `0x001BBFC0` | `0x001B9370` | the model asset cache: three maps, a list and a pool of 384 records of `0x2A8` bytes at `+0xE8` (`0x001B8E90`) |
+| `0x01F81158` | `0x188` | `0x0019EF40` | `0x0019DA30` | `AssetListManager`: a pool of 192 lists of `0x130` bytes at `+0x08` (`0x0019D5B0`) and a pool of 3,072 entries of `0x118` bytes at `+0xC8` (`0x0019D740`). The constructor stores the vtable `0x008F4430` (RTTI `AssetListManager`, `0x0019DA4D`), passes the flag 1 to both pools (`0x0019DA54`, `0x0019DA69`), so each creates the lock at its `+0x90`, and returns the manager (`0x0019DA77`) |
+| `0x01F81240` | `0x238` | `0x001BBFC0` | `0x001B9370` | the model asset cache: three maps, a list and a pool of 384 records of `0x2A8` bytes at `+0xE8` (`0x001B8E90`). In order (`0x001B938B`-`0x001B9503`): a map at `+0xB0` made empty (both anchor links `+0xB8` and `+0xC0` pointing at `+0xB8`, `+0xC8`, the byte `+0xD0` and the count `+0xD8` zero, its allocator `+0xE0` named `"EASTL map"` by `0x001EDF00`), the pool `0x001B8E90(cache + 0xE8, 384, 0)` (flag 0, so the pool has no lock), the list at `+0x1A8` (both links pointing at `+0x1A8`, allocator `+0x1B8` named `"EASTL list"`), the maps at `+0x1C0` and `+0x1F8` made empty the same way (allocators `+0x1F0` and `+0x228`), `0x00220760` emptying the map `+0xB0` again, zeroes in the qwords `+0x00`, `+0x08`, `+0x10`, `+0x18`, `+0x20` and the byte `+0xA8` (`0x001B94CF`-`0x001B94E6`), the 128 bytes `+0x28` to `+0xA7` zero-filled (`0x00861EC0`, `0x001B94F5`), then `0x001BB190(cache)`, which loads `anisolighting.dds.phyre` for `+0x00` ([render parameters](../Graphics/render-parameters-and-shader-assets.md)); it returns the cache (`0x001B9503`). The ensure `0x001BBFC0`, called by the render manager's installer `0x00186CD0` (`0x00186D0A`), returns at once while `0x01F81240` is set (`0x001BBFD5`); otherwise it takes `0x00210EC0(0x238)`, runs `0x001B9370` only on a non-null block and stores the result, 0 when the allocation fails (`0x001BBFF4`) |
 | `0x01F7F4D8` | `0xA0` | `0x0017D4C0` itself | `0x001B24D0` | 32 words of 10,000 at `+0x00`, `+0x80` pointing at `+0x00` and `+0x88` at `+0x40`; `0x00862BF0` to `0x00862C40` read its `+0x90` and `+0x94` |
 | `0x01F7F598` | `0xDD8` | `0x00189000` | `0x00184F20` | the render manager (below) |
 
-`0x00199F60` names the worker thread `"AsyncJobManager Thread"`, or `"AsyncJobManager No Read No
-Write Thread"` when the flag is non-zero, starts it (`0x005CD1E0`) and sets `+0x154` and `+0x20`. The destructor body `0x00199C30` (deleting wrapper `0x00199D50`, which
-frees `0x158` bytes) clears `+0x154`, waits for the thread to exit (`0x005CD330`:
-`WaitForSingleObject`, `GetExitCodeThread`), and releases the pools and the job list.
+`0x00199F60` names the worker thread `"AsyncJobManager Thread"`, or `"AsyncJobManager No Read No Write Thread"` when the
+flag is non-zero, starts it (`0x005CD1E0`) and sets `+0x154` and `+0x20`.
+
+In order: it empties the job list `+0x50` (`0x002218D0`), creates the locks `+0x28` and `+0x68` (`0x005CD0A0`,
+`0x00199F69`-`0x00199F7F`), fills a thread block (`0x005CC8C0`) with the entry `0x0019A190`, the stack size `0x10000`, the
+priority selector 2 (with which `0x005CD1E0` calls `SetThreadPriority` with -1) and the name (`0x00199F84`-`0x00199FC3`),
+hands the block and `0x7C` to the return stub `0x0016D6A0` (`0x00199FCD`), stores the manager as the thread's argument
+(`0x00199FD7`), sets `+0x154` to 1 (`0x00199FE0`), starts the thread on the record `+0x08` (`0x00199FE7`) and sets `+0x20`
+to 1 (`0x00199FEC`).
+
+The destructor body `0x00199C30` (deleting wrapper `0x00199D50`, which frees `0x158` bytes) clears `+0x154`, waits for the
+thread to exit (`0x005CD330`: `WaitForSingleObject`, `GetExitCodeThread`), and releases the pools and the job list.
 
 The pools share one template (`0x001997F0` for the job nodes, `0x0019D5B0`, `0x0019D740`,
 `0x001B8E90`): a vector of N records, a set at `+0x20` filled with the address of every record, a
@@ -138,10 +157,15 @@ The loops `0x0019CE30`, `0x0019CEF0`, `0x0019D100`, `0x0019D1D0` and `0x0019D420
 the same for the `0x118`-byte entries. The template's destructors (`0x00199A80`, `0x0019C870`, `0x0019DAD0`, `0x001B3AF0`,
 `0x001E74F0`) are described on [object construction and destruction](../Compiler-And-C-Runtime/object-construction-and-destruction.md).
 
-An asset list is 256 bytes copied as a block, a vector of entry pointers at `+0x100`, a word at
-`+0x120` and a ready byte at `+0x128`. `0x0019EB00(manager, list)` holds when the ready byte is set and
-every entry has its byte `+2` set. The map-art update `0x001A9ED0`, the model asset cache `0x001BC190`,
-the procedural-texture context `0x001C0DD0` and `0x001BB120` ask it before they use a list.
+An asset list is 256 bytes copied as a block, a vector of entry pointers at `+0x100`, a word at `+0x120` and a ready
+byte at `+0x128`. `0x0019EB00(manager, list)` holds when the ready byte is set and every entry has its byte `+2` set: it
+returns 1 (`0x0019EB53`) after checking the entries from the first, re-reading the vector's end each time
+(`0x0019EB30`-`0x0019EB51`), and 0 for a null list (`0x0019EB03`), a clear ready byte (`0x0019EB0C`) or at the first entry
+whose byte `+2` is 0 (`0x0019EB3B`); a ready list without entries holds (`0x0019EB25`), and the body ignores the manager
+argument.
+
+The map-art update `0x001A9ED0`, the model asset cache `0x001BC190`, the procedural-texture context `0x001C0DD0` and
+`0x001BB120` ask it before they use a list.
 
 In the model asset cache, `0x001B9A10` finds or inserts a node by a 32-bit key in a map (its caller
 `0x001BAA30` uses it 16 times), `0x001BA910` empties a map of `0x58`-byte nodes, and `0x001BBF40`, from
@@ -174,6 +198,25 @@ third at `+0x690` (`0x00184CE0`), the viewport size at `+0xAD8` / `+0xADC`, the 
 at `+0xC38`, 5.0 at `+0xD14`, the boot argument byte `[0x01FD4A9C]` at `+0xDB8`, then `0x00186CD0`. Its
 height query `0x00186820` answers 2,160 while `+0xDB8` is set or `+0xC30` is 3, else `+0xADC`.
 
+In full, in order: `0x00184F20` zeroes the word `+0x00` and the byte `+0x02` (`0x00184F43`, `0x00184F48`), stores its second
+argument (`app + 0xE8`) at `+0x08` and its third (`app + 0x90`) at `+0x10` (`0x00184F4C`, `0x00184F50`), zeroes `+0x18`
+and the word `+0x1C`, builds the blocks at `+0x20` and `+0x358` with the array helper `0x00808FE4` (constructor
+`0x00184CE0`, destructor `0x001850B0`) and the third directly.
+
+It then constructs two `Phyre::PWorldMatrixFlyController` objects at `+0x9C8` and `+0xA50` (`0x0062DD10`, vtable
+`0x00D562A8`), stores the width (fourth argument) at `+0xAD8` and the height (fifth) at `+0xADC` and zeroes `+0xAE0`. It
+builds the four 32-byte EASTL vectors at `+0xC38` with `0x00808FE4` (constructor `0x00184CB0`, destructor `0x00185070`),
+zeroes `+0xCD0`, the byte `+0xCD4` and the capture state `+0xCD8`, sets the byte `+0xD10` to 1 and `+0xD14` to 5.0,
+zeroes the bytes `+0xD18` and `+0xD5C`, the qword `+0xDA0` and the state `+0xDAC`, stores the sixth argument byte at
+`+0xDB8`.
+
+It then zeroes the word `+0xDB9`, the qword `+0xDBC`, the word `+0xDC4`, the dword `+0xDC8` and the byte `+0xDCC`
+(`0x00184FE7`-`0x0018504C`), calls `0x00186CD0(manager)` and returns the manager (`0x0018505C`).
+
+The ring step `0x00186230` first advances the index `+0xCB8` to (index + 1) & 3, then calls each 16-byte entry
+{function, argument} of that slot's vector, from its begin `+0xC38 + 32 × index` to its end `+0xC40 + 32 × index`,
+as function(argument) in order, and empties the slot by setting its end to its begin (`0x0018623F`-`0x0018629A`).
+
 ### The frame tick
 
 Slot 4, `0x0017CCD0`, returns 0 through the stub while the latch is clear. Otherwise it takes the
@@ -189,8 +232,9 @@ vector `0x01F7F5E8` is destroyed through its vtable slot 0 and the vector emptie
 pump runs in mode 0 and `0x01FD4A88` is cleared; with it set and `0x01FD4A88` clear the pump runs in
 mode 1. A pump result of 0 returns 9; anything else returns 0.
 
-`0x0017D6E0(dt, mode)` is the pump. It clears `0x01F7F4B8`, runs the render manager's deferred
-callback ring (`0x00186230`: one of four slots at `+0xC38`, index `+0xCB8`) while `0x01FD4A68` is clear,
+`0x0017D6E0(dt, mode)` is the pump. It clears `0x01F7F4B8` (a dword store, `0x0017D706`), runs the render manager's
+deferred callback ring (`0x00186230`: one of four slots at `+0xC38`, index `+0xCB8`; reached through the thunk
+`0x00185C20` on `0x00189120()`, `0x0017D70E`-`0x0017D716`) while `0x01FD4A68` is clear,
 and then loops over passes:
 
 1. `0x0022CB90()`; when the pacing predicate `0x001E05F0` holds and this is not the second pass,
@@ -201,7 +245,8 @@ and then loops over passes:
 2. the pause byte's getter `0x001997D0` is called and its result handed to the return stub
    `0x0016D6A0`, a compiled-out hook; `0x01F7F4B0 = dt`; `0x001A1460(0x01F7F4C0)`; `0x001DB600()`; the render manager's `0x00189CE0` and `0x00189570`;
 3. the recycle queue `0x001BDAC0` (`0x01F81248`), the `AsyncLoadManager` `0x001A1310` (`0x01F81160`), the
-   `AsyncJobManager` through its vtable (`0x0019A170()`), the map-art context `0x001A9ED0(ctx, dt)`
+   first `AsyncJobManager` `0x0019A170()` (`0x01F810F8`), only handed to the return stub `0x0016D6A0`
+   (`0x0017D795`-`0x0017D79D`), so no function of the manager runs here, the map-art context `0x001A9ED0(ctx, dt)`
    (`0x01F81168`), the procedural-texture context `0x001C0DD0` (`0x01F81258`), the model asset cache
    `0x001BC190` (`0x01F81240`), `0x001CC600()`;
 4. the movie player `0x001B8400(player, dt)` (`0x01F81218`: `+4` is the status
@@ -220,12 +265,22 @@ and then loops over passes:
    `0x001A14D0(0x01F7F4C0)`, both bytes cleared), `0x01F7F4B8` is set, `dt` becomes 0 and the next pass
    starts.
 
-`0x001E03F0` keeps the pacing balance `0x01F82D28`. With `0x01FD4A68` clear it adds the real time since
-its last call (`0x005CC930` minus `0x02CB60E8`, kept in `0x01DFDDF8`; nothing on the first call) minus n
-frame periods, n = `[0x01F3DA18]` (`0x00184950`). The period is 1/60 s when `0x0017FE30()` (`0x0079CFA0` on
-`0x001DDAB0()`) is a multiple of 10, else 0.0166833 s. The balance is clamped to plus or minus 4 × n
-periods, or 300 × n while the movie player is in state 3, playing (`0x001B7D20`;
-[movies](../Graphics/movies.md)).
+`0x001E03F0` keeps the pacing balance `0x01F82D28`. With `0x01FD4A68` clear it adds the real time since its last call
+(`0x005CC930` minus `0x02CB60E8`, kept in `0x01DFDDF8`; nothing on the first call) minus n frame periods, n = `[0x01F3DA18]`
+(`0x00184950`). The period is 1/60 s when `0x0017FE30()` (`0x0079CFA0` on `0x001DDAB0()`) is a multiple of 10, else 0.0166833
+s. The balance is clamped to plus or minus 4 × n periods, or 300 × n while the movie player is in state 3, playing
+(`0x001B7D20`; [movies](../Graphics/movies.md)).
+
+With `0x01FD4A68` set it returns at once and leaves `0x01DFDDF8` as it is (`0x001E03FB`). A call that finds `0x01DFDDF8`
+holding the largest double, the first call and the first after the predicate `0x001E05F0` has reset it, neither adds nor
+clamps, `[0x01DFDDF8] == 0x7FEFFFFFFFFFFFFF` (`0x001E0485`-`0x001E0497`). Every call with `0x01FD4A68` clear stores the
+current time in `0x01DFDDF8`, `[0x01DFDDF8] = t` with `t = 0x005CC930() - [0x02CB60E8]` (`0x001E0475`, `0x001E048D`, `0x001E04DD`).
+
+The sum is stored first, `b = [0x01F82D28] + (t - [0x01DFDDF8]) - n × period` (`0x001E0499`-`0x001E04B4`); the clamp
+then tests the upper bound, `b > L` (`0x001E04B0`), and the lower, `b < -L` (`0x001E04BE`-`0x001E04C9`), with
+`L = (playing ? 300 : 4) × n × period` (`0x001E045A`-`0x001E0471`), and stores the bound that was passed (`0x001E04CB`).
+
+The movie player is `0x001B7F20()`, `[0x01F81218]`, and `0x001B7D20` compares its `+0x04` with 3 (`0x001E044B`-`0x001E0453`).
 
 The procedural-texture context's update `0x001C0DD0` does its work once: when its asset list `[ctx]`
 is ready (`0x0019EB00`) it indexes it with `0x001BF2E0` and sets `ctx + 8`. For each asset name (from byte
@@ -244,9 +299,40 @@ strings; its sibling `0x001C3420` joins a C string to a string), and moves `0x01
 before setting `0x01F81280` to `0x002F1A20() != 0` and `0x0022A550() != 0`. `0x001C53B0` and `0x001C53D0`
 report the rising and the falling edge of that byte.
 
-Each pumped object is a lazily built singleton: a global pointer, an ensure function that
-allocates a fixed size and constructs on first use, and a getter. The screen fade `0x01F82CE0` is a
-`0x38`-byte record built disabled (`+0` = 0, `+0x10` = 3) ([screen fade](../Graphics/screen-fades.md)).
+Each pumped object is a lazily built singleton: a global pointer, an ensure function that allocates a fixed size and
+constructs on first use, and a getter.
+
+The ensure functions `0x00189000` (the render manager), `0x0018A620` (the camera pair, constructor `0x0018A380`), `0x0018A7D0`
+(the three running bytes, zeroed) and `0x00199790` (the pause byte, zeroed) return at once while their pointer is set
+(`0x0018902A`, `0x0018A634`, `0x0018A7DB`, `0x00199794`); otherwise they allocate with `0x00210EC0`, construct or zero only a
+non-null block, and store the result, 0 when the allocation fails (`0x00189067`, `0x0018A656`, `0x0018A807`, `0x001997C1`).
+`0x0018A620` and `0x0018A7D0` return the pointer (`0x0018A62D`, `0x0018A7D4`).
+
+The screen fade `0x01F82CE0` is a `0x38`-byte record built disabled (`+0` = 0, `+0x10` = 3) ([screen
+fade](../Graphics/screen-fades.md)).
+
+The movie player's ensure `0x001B7EE0` (`0xBB8` bytes, constructor `0x001B6D90`), the model asset cache's `0x001BBFC0`
+(`0x238`, `0x001B9370`), the `SaveloadManager`'s `0x001C18A0` (`0xA78`, `0x001C0E20`) and the `AsyncLoadManager`'s
+`0x001A11B0` (`0x140228` bytes from `0x00584740`, `0x0019F620`) return at once while their pointer is set (`0x001B7EF5`,
+`0x001BBFD5`, `0x001C18B5`, `0x001A11C5`); otherwise they allocate (`0x00210EC0` for the first three), run the constructor
+only on a non-null block and store its result, 0 when the allocation fails (`0x001B7F14`, `0x001BBFF4`, `0x001C18D4`,
+`0x001A11E4`).
+
+The recycle queue's `0x001BDA50` (`0x108`, `0x001BC9D0`) and the map-art context's `0x001A98B0` first hand the test that
+their pointer is null to the return stub `0x0016D6A0` (`0x001BDA6D`, `0x001A98CD`) and then follow the same rule
+(`0x001BDA79`, `0x001A98D9`; stores `0x001BDA9A`, `0x001A9922`). `0x001A98B0` also builds the `0xA0`-byte object kept at
+`0x01F81170` (`0x00584740`, `0x00633040`) before the `0x520`-byte context (`0x001A2130`) and stores it, 0 on a failed
+allocation, without a test of its own (`0x001A98FC`).
+
+The procedural-texture context's `0x001C0D40` hands the same test to `0x0016D6A0` (`0x001C0D59`) but does not branch on it:
+each call allocates `0x1B8` bytes, runs `0x001BE730` on a non-null block and stores the result, or 0 (`0x001C0D7B`,
+`0x001C0D84`); it is called from `0x0017D4C0` (`0x0017D613`).
+
+The screen fade's ensure `0x001D8CD0` returns at once while `0x01F82CE0` is set (`0x001D8CDC`); otherwise it takes
+`0x00210EC0(0x38)` and on a non-null block writes the byte `+0` = 0, the qword at `+0x04` = 0 (bytes `+0x04` to
+`+0x0B`), `+0x0C` = 0, `+0x10` = 3, the qword `+0x28` = 0 and `+0x30` = 0 (`0x001D8CF4`-`0x001D8D08`), leaving `+0x14` to
+`+0x27` and `+0x34` unwritten, then stores and returns the pointer (`0x001D8D0B`); a failed allocation stores and
+returns 0 (`0x001D8D1A`).
 
 Its update `0x001D9080` draws first: inside a `"ScreenImage"` scope `0x001D8BB0` emits a quad over the screen
 (corners from `0x001D8B20`) with colour 255, 255, 255 and the level `+0x1C` as alpha.
@@ -262,10 +348,20 @@ The render pass list `0x00187950` services two captures through the render manag
 
 1. `0x00186010`, when `+0xCD8` is 1, runs `0x00188730`, sets `+0xCD8` to 2, allocates width (`+0xCF0`) ×
    height × 3 bytes at `+0xCF8` (the height is `0x00186820`'s answer) and reads the frame into it
-   (`0x00600070`, the device's slot 2, `0x00610330`);
+   (`0x00600070`, the device's slot 2, `0x00610330`); in any other state it returns at once (`0x00186020`);
 2. `0x00187550`, when `+0xCD8` is 2, clears it, writes `/capture.tga` (an 18-byte header for an
    uncompressed 24-bit image, then the rows from the last to the first), frees the buffer and
-   clears `+0xCD4`.
+   clears `+0xCD4`; in any other state it returns at once (`0x0018756F`).
+
+Before its allocation `0x00186010` stores -1 in `+0x20` of `[0x01F7F5E0]` (`0x0018B4E0()`, `0x0018603A`-`0x00186046`) and takes
+the height inline by `0x00186820`'s rule (`0x0018604D`-`0x0018605F`); it zero-fills the buffer (`0x00861EC0`, `0x001860A7`) and
+hands the render manager's `+0x08` to `0x00600070`, to its slot 2 and to `0x00610330` (`0x001860AC`-`0x001860CA`). `0x00187550`
+opens the file with `fopen(..., "wb")` (`0x00187597`); when it does not open, nothing is written and the buffer is still
+freed (`0x001875A3` to `0x001876A4`).
+
+The header (`0x001875A9`-`0x00187613`) has image type 2, the width `+0xCF0`, the height by the same rule and 24 bits per
+pixel; each row is one `fwrite` of width × 3 bytes (`0x00187640`-`0x00187682`), then `fclose` (`0x00187694`); after the free
+(`0x00210EB0`) it nulls `+0xCF8` (`0x001876B5`).
 
 Only the constructor (0), `0x00186010` (2) and `0x00187550` (0) store to `+0xCD8`; `0x00186010` and `0x00188730`
 (`0x00188748`) read it.
@@ -280,10 +376,18 @@ With the boot byte `+0xDB8` set, `0x00187860` also runs a 3840 × 2160 capture, 
 | 4 | 0 | writes the grab with `0x001876E0` |
 | 6 | 7 | no action |
 | 7 | 7 | grabs on the first call (`0x01F7F5AC` = 1), then on each call writes the last grab and grabs again |
+| 0 | 0 | no action (jump table `0x0018792C` entry 0 to the return `0x001878DF`) |
+| 2, 5, any value above 7 or below 0 | 0 | no action; the state is reset to 0 (table entries 2 and 5, and the unsigned `ja` at `0x0018787C`, to `0x001878D5`) |
 
-`0x001876E0` writes `/Capture 4K/capture%03d.tga` (counter `0x01F7F5A4`), or in state 7
-`/Capture 4K/capture_series%03d_%04d.tga` (series `0x01F7F5A8`, frame `0x01F7F5AC`): an 18-byte header
-and 2,160 rows of `0x2D00` bytes from `+0xDB0`, last row first.
+`0x001876E0` writes `/Capture 4K/capture%03d.tga` (counter `0x01F7F5A4`), or in state 7 `/Capture
+4K/capture_series%03d_%04d.tga` (series `0x01F7F5A8`, frame `0x01F7F5AC`): an 18-byte header and 2,160 rows of `0x2D00`
+bytes from `+0xDB0`, last row first. It formats the name with `0x0017D2E0` into a zeroed 256-byte buffer and increments
+the number it printed, the frame `0x01F7F5AC` in state 7 (`0x0018773B`) or the counter `0x01F7F5A4` (`0x0018775A`), before it
+opens the file with `fopen(name, "wb")` (`0x00187771`); when the file does not open nothing is written (`0x0018777D`), and
+the number has still advanced.
+
+The header has image type 2, 3,840 × 2,160 (`0xF00`, `0x870`) and 24 bits per pixel (`0x00187783`-`0x001877D7`); each row
+is one `fwrite` (`0x001877F0`-`0x00187818`), and `fclose` ends the file (`0x0018781D`).
 
 ### The loading page
 
@@ -312,6 +416,24 @@ at `0x01F82CD8`, `0x40` bytes built by `0x001D89D0` in the init burst with a fad
 
 A load shorter than 5 s therefore never shows the icon.
 
+`0x001D8AB0(page, dt)` first runs `0x001D8700` (`0x001D8AC1`) and stops when the shown byte is then clear (`0x001D8AC6`).
+`0x001D8700` does nothing while the armed byte is clear (`0x001D870D`); the pass that finds the start time 0 stores the
+time as a float and returns (`0x001D872B`); a later pass compares the time since the stamp with the delay `+0x38`
+(`0x001D874C`) and, at or past it, writes the word 1 at `+0x1C` (shown 1, armed 0, `0x001D8752`), 0 in the fade timer
+`+0x20` and 0 in the fading-out byte `+0x24` (`0x001D8758`, `0x001D875F`).
+
+After `0x001D8690` the update does not test the shown byte again, so the pass that ends a fade-out still advances and
+draws. It converts `dt` (a double) to a float, adds it to the timer (`0x001D8AE8`) and, widened again, to the f64 clock
+(`0x001D8AF1`), stores the angle at `+0x18` (`0x001D8AFE`) and hands it to `0x001D7A20` with the layout object `[0x01F82CD0]`
+(`0x001D8210`) as the receiver (`0x001D8B03`-`0x001D8B0E`).
+
+`0x001D89D0` hands the test that `0x01F82CD8` is null to the return stub `0x0016D6A0` (`0x001D89E4`) and stores nothing
+while the pointer is set (`0x001D89F0`). Otherwise it takes `0x00210EC0(0x40)`; on a non-null block it writes the
+vtable `0x00900390` (RTTI `LoadingPage`), zeroes `+0x08`, `+0x10`, `+0x18`, the word `+0x1C`, `+0x20`, the byte
+`+0x24` and `+0x28`, stores 0.033 at `+0x2C`, 8 at `+0x30`, 0.264 at `+0x34` and 5.0 at `+0x38`
+(`0x001D8A04`-`0x001D8A3A`), and stores and returns the pointer (`0x001D8A41`); a failed allocation stores and returns
+0 (`0x001D8A4E`).
+
 ## Layouts
 
 ### The statics at 0x01F7F490
@@ -327,9 +449,9 @@ These cells sit in the static block at `0x01F7F490`; each row names the cell's o
 | `+0x78` | `u32` | nextRenderKey | 0x01F7F508: the key the next render record takes: each presentation set-up stores its model entry's id (entry +0x14) here just before 0x0042FB80 creates the render record (0x002E2980, 0x002E334D, 0x002EE2B3, 0x003EB2DE; the monster viewer's loader stores 0x02164210 at 0x002EE55F) and restores it after (0x002E299D, 0x002E3360, 0x002EE2C5, 0x002EE57E, 0x003EB2EF); the record's initialiser 0x00420480 copies it, when not 0, into the render record's key +0x6B0 (0x00420636-0x00420640) |
 | `+0x7C` | `u8` | opaquePosted | 0x01F7F50C: once-per-frame latch of the RenderOpaqueObj command: 0x0017F070, called by MainLoop_Draw (0x0022B38F), posts the command on the render command vector (0x0018C580) only while this is 0 and the vector exists, and sets it to 1 (0x0017F074-0x0017F09A); 0x0017F270 (0x0022B331) clears it with +0x7D |
 | `+0x7D` | `u8` | mapOpaquePosted | 0x01F7F50D: the same latch for the RenderMapOpaqueObj command, posted by 0x001809A0 (0x001809A4-0x001809CA; Map art); while it is set, +0x7E is 0 and the map-art context's +0x419 is 0, the map command's draw 0x001F3570 draws the characters' opaque objects before the map's (0x001F3586-0x001F35D0) and RenderOpaqueObj's draw 0x001F36B0 leaves them out (0x001F36B9-0x001F36D7) |
-| `+0x7E` | `u8` | charsWithOpaque | 0x01F7F50E: 1 when the effect group draw 0x0024D370 runs with the open layer [0x01F7F4D8] + 0x94 at 2 and 0x003AA2E0 answers non-zero (0x0024D448-0x0024D45E, through 0x00183060); MainLoop_Draw clears it on a pass whose first argument is not 1 (0x0022B10D-0x0022B14D). While it is set both opaque draws leave the characters to RenderOpaqueObj (0x0017FE50 at 0x001F3586 and 0x001F36B9) |
+| `+0x7E` | `u8` | charsWithOpaque | 0x01F7F50E: set to 1 by the effect group draw 0x0024D370 when the open layer [0x01F7F4D8] + 0x94 (read by 0x00862BF0) is 2 (0x0024D451-0x0024D45E, through 0x00183060, which stores 1 when its argument is not 0, 0x00183060-0x00183062); a group whose +0x36A has bit 0x1 reaches that test only when 0x003AA2E0(0), called at 0x0024D448, answers non-zero (0x0024D419-0x0024D44F), and a group without the bit reaches it at once (0x0024D420); MainLoop_Draw clears it on a pass whose first argument is not 1 (0x0022B10D-0x0022B14D). While it is set both opaque draws leave the characters to RenderOpaqueObj (0x0017FE50 at 0x001F3586 and 0x001F36B9) |
 | `+0xAC` | `f32` | parkedCubemapIntensity | 0x01F7F53C: mCubemapIntensity parked while the Bestiary's monster viewer is open: 0x001846F0 (0x0057025A) copies 0x02CB8138 here and zeroes 0x02CB8138 (0x001846FD-0x00184710); 0x001846B0 copies it back (0x001846C6-0x001846CE) |
-| `+0xC0` | `f32[16]` | flareMatrix | 0x01F7F550: the lens-flare pass's corner matrix: 0x0017ED50 multiplies each row of the matrix it is given by the render manager's matrix +0x6C8 (0x0017E7E0 at 0x0017EDE4-0x0017EE20) and stores the four rows here (0x0017EE41-0x0017EF01), returning this address (0x0017EE3A); its only caller 0x00376470 transforms the flare's corners by it (0x00202D70 at 0x00376843-0x00376850; Lens flares) |
+| `+0xC0` | `f32[16]` | flareMatrix | 0x01F7F550: the lens-flare pass's corner matrix: 0x0017ED50 multiplies each row of the matrix it is given by the render manager's matrix +0x6C8 (0x0017E7E0 at 0x0017EDE4-0x0017EE20, `out[j] = in[0] * M[0][j] + in[1] * M[1][j] + in[2] * M[2][j] + in[3] * M[3][j]` for each row `in` and `M` at +0x6C8, 0x0017E7E4-0x0017E853) and stores the four rows here (0x0017EE41-0x0017EF01), returning this address (0x0017EE3A); its only caller 0x00376470 transforms the flare's corners by it (0x00202D70 at 0x00376843-0x00376850; Lens flares) |
 
 ### The main loop cells at 0x02064AA0
 
@@ -342,14 +464,15 @@ These cells sit in the static block at `0x02064AA0`, the main loop cells of [Fra
 | `+0x34` | `f32` | bootOne | 0x02064AD4: 1.0, stored once at boot (0x0022A190); read by no function |
 | `+0x44` | `u32` | drawSkipped | 0x02064AE4: 1 when MainLoop_Draw returned at once on the skip request 0x01FD4A70, clearing the request (0x0022B196-0x0022B1A4); the field frame clears it before each draw (0x0022A824, r12d = 0 from 0x0022A78B). While it is set the next draw runs 0x00182370 in place of the GS register batch (0x0022B1C0-0x0022B1D2) |
 | `+0x48` | `u32` | monsterShown | 0x02064AE8: 1 while the Bestiary's monster viewer shows a monster in the full menu frame (0x00181DD0 at 0x0022BA5D, set at 0x0022BA66); on the first frame without one 0x0022B8C0 clears it and runs 0x00314370(1) and 0x0036F510 (0x0022BA9A-0x0022BAB2) |
-| `+0x4C` | `u32` | endOfPassCallback | 0x02064AEC: the end-of-pass callback word: 0x0022A580 tests it as a dword after the state handler and, when it is set, clears it (0x0022A731-0x0022A73F); no instruction stores a non-zero value |
+| `+0x4C` | `u32` | endOfPassCallback | 0x02064AEC: the end-of-pass callback word: 0x0022A580 tests it as a dword after the state handler and, when it is set, calls the compiled-out hook 0x0016D6A0 (a bare ret, 0x0022A73A) and clears it (0x0022A731-0x0022A73F); nothing is called through the word; no instruction stores a non-zero value |
 | `+0x54` | `u8[3]` | vuClipFlags | 0x02064AF4: the emulated VU1 clip flags, four 6-bit judgements: each clip step in the VU1 programs shifts the word left by 6, clears its top byte +0x57 and sets the bits 0x3F from comparing x, y and z with +w and -w (0x00476506-0x0047650D, 0x00476635-0x004766BC); the programs read its low word (0x00476622, 0x004766C3) |
 | `+0x57` | `u8` | vuClipTop | 0x02064AF7: the top byte of the clip word at +0x54, cleared after every 6-bit shift so the flags keep 24 bits (0x0047650D, 0x00476641) |
 | `+0x5C` | `u32` | vuRandomOn | 0x02064AFC: the switch of the emulated VU1 random generator: while it is 0, 0x004B97F0 and 0x004B9C50 return 1.0 without stepping the seed 0x01E02828 (0x004B97F0-0x004B9801, 0x004B9C50-0x004B9C68); VU1 programs set it (0x0047C6B4 and 0x004884F3 store 1; 0x00482B24 and 0x004EC23A store a register) and read it (0x0047C8EE, 0x0048347D, 0x004D47C7, 0x004EC8FE) |
 
 ### The device-check pane
 
-The pane is the `0xD0`-byte widget at `0x02CA99D0` with procedure `0x0057E8D0` that the save and load screen `0x00582860` builds.
+The pane is the `0xD0`-byte widget kept at `0x02CA99D0` with procedure `0x0057E8D0` that the save and load screen
+`0x00582860` builds.
 
 `DeviceCheckPane` (`0xD0` bytes, offsets from the start of the record):
 
@@ -393,7 +516,7 @@ Globals:
 |---|---|---|---|
 | `0x01F7E340` | `void*` |  | `0x80`-byte object built by the init job |
 | `0x01F7F4B0` | `f64` |  | the frame delta published by the pump |
-| `0x01F7F4B8` | `u8` | second pass flag |  |
+| `0x01F7F4B8` | `u32` | second pass flag (0x0017D706, 0x0017D846; 0x0017D980) |  |
 | `0x01F7F4C0` | `...` |  | the small objects of the init burst; with `0x01F7F4C8` and `0x01F7F4D0` and `0x01F7F4D8` and `0x01F7F4E0` |
 | `0x01F7F4C8` | `...` |  | the small objects of the init burst; with `0x01F7F4C0` and `0x01F7F4D0` and `0x01F7F4D8` and `0x01F7F4E0` |
 | `0x01F7F4D0` | `...` |  | the small objects of the init burst; with `0x01F7F4C0` and `0x01F7F4C8` and `0x01F7F4D8` and `0x01F7F4E0` |
@@ -429,7 +552,7 @@ Globals:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `void*` | vtable | `LoadingPage` |
+| `+0x00` | `void*` | vtable | `LoadingPage` (`0x00900390`, one slot: the deleting destructor `0x001D8660`) |
 | `+0x08` | `f32` | start | time the arming was stamped, 0 while idle |
 | `+0x10` | `f64` | clock | seconds shown |
 | `+0x18` | `f32` | angle | clock × π |
@@ -438,6 +561,8 @@ Globals:
 | `+0x20` | `f32` | fadeTimer | seconds into the fade |
 | `+0x24` | `u8` | fadingOut | the fade runs out |
 | `+0x28` | `i32` | alpha | 0 to 255 |
+| `+0x2C` | `f32` | one eighth of fadeTime | 0.033 (`0x3D072B02`), stored once by `0x001D89D0` (`0x001D8A25`); read by no function. The object is reached only through `0x01F82CD8`, which only `0x001D89D0` (its tests and stores) and the getter `0x001D8A60` name; the getter's callers hand it to `0x001D8AB0`, `0x001D8770`, `0x001D8A90` and `0x001D8790` or read `+0x28` (`0x001D7CB8`), and the fields those read are `+0x08`, `+0x10`, `+0x1C`, `+0x1D`, `+0x20`, `+0x24`, `+0x28`, `+0x34` and `+0x38`; the vtable's one slot `0x001D8660` only rewrites the vtable and frees the block |
+| `+0x30` | `i32` | the count 8 | 8, stored once by `0x001D89D0` (`0x001D8A2C`); read by no function, by the same census as `+0x2C` |
 | `+0x34` | `f32` | fadeTime | 0.264 |
 | `+0x38` | `f32` | delay | 5.0 |
 
@@ -569,13 +694,18 @@ No other instruction has the displacement `0x113C` or `0x113D`.
     `0x001E05E0()` and, when that is 0, `0x001832F0()`, before `0x00375B80(0)`; set, it goes to `0x00375B80(0)` at once.
   - The field frame `0x0022A770` runs `0x002506D0` only while the byte is set (`0x0022A8CA`,
     [frame update order](frame-update-order.md)).
-  - The UI tick `0x00250540` tests it at `0x00250570`-`0x00250577`. While the byte is set (paused) it runs only the short
-    block `0x00250579`-`0x002505C4`: the `0x00184950()` add into `0x0208F570` when the pump's flag `0x02064AA0` is clear,
-    `0x002481A0`, `0x00248030` and `0x00244970` on `0x0208EA48`, `0x00248190`, `0x002481C0`, `0x00250CA0`, then the tail `0x003676B0(1)`.
+  - The UI tick `0x00250540` first runs `0x00184960` with 1 or 2 (by `0x001EDE70()` and `0x00181DD0()`,
+    `0x00250546`-`0x0025056B`) and then tests it at `0x00250570`-`0x00250577`. While the byte is set (paused) it runs only
+    the short block `0x00250579`-`0x002505C4`: the `0x00184950()` add into `0x0208F570` when the pump's flag `0x02064AA0` is
+    clear, `0x002481A0`, `0x00248030` and `0x00244970` on `0x0208EA48`, `0x00248190`, `0x002481C0`, `0x00250CA0`, then the tail
+    `0x003676B0(1)`.
   - While it is clear the tick continues at `0x002505C9`: it adds 1 or 2 (by `0x001EDE70()` and `0x00181DD0()`,
-    `0x00250546`-`0x00250565`) to `0x0208F570`, zeroes `0x020927DC` (`0x002505D0`), tail-jumps to `0x002508E0` when `0x00229EA0()` is 5
-    (`0x002505EA`), and otherwise runs the full tick from `0x002505EF` (`0x003C9FD0(3)`, `0x00254CC0`, `0x002481A0`, the `0x0208EA20`
-    loop with `0x00248030`, to `0x002508D0`).
+    `0x00250546`-`0x00250565`) to `0x0208F570`, zeroes `0x020927DC` (`0x002505D0`), tail-jumps to `0x002508E0` when
+    `0x00229EA0()` is 5 (`0x002505EA`), and otherwise runs the full tick from `0x002505EF`.
+  - The full tick is `0x003C9FD0(3)`, `0x00254CC0` of that 1 or 2, `0x002481A0`, `0x00248030` on each of the three
+    objects `0x0208EA20`-`0x0208EA30` whose `+0x18` is non-null and on `0x0208EA40` and `0x0208EA48`, `0x00248190`,
+    `0x002481C0`, `0x00244970` on the same objects, `0x00250CA0`, and the tail `0x00367200` of the 1 or 2 (`0x002506BE`),
+    which ends the body; `0x002508D0` is a `ret` inside `0x002507C0`, not part of this tick.
   - Both paths of `0x00250540` call `0x002481A0`, the parity flip of `0x0208ED5C` ([widgets](../Menus-And-HUD/widgets.md)).
   - Two console drawers read it through `0x001997D0` and `0x00199780` directly: `0x001D7A20` draws nothing while it is set
     (`0x001D7A56`-`0x001D7A65` to `0x001D7DA2`), and the second-picture drawer `0x001D72F0` returns without drawing

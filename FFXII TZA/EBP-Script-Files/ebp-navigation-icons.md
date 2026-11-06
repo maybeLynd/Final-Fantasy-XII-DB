@@ -76,6 +76,10 @@ free runs only when `0x005C5230(5)` returns non-zero (`0x003318A2`-`0x003318A9`)
   only when the icon is not negative, an object was found, and `0x0032A8A0(gate)` passes
   (`0x003DFC81`-`0x003DFC9C`).
 
+`0x003DFBE0` first zeroes the three qwords at `out` (`0x003DFC01`-`0x003DFC0B`) and calls the resolver before
+any test (`0x003DFC0F`). When `i` is not below the count it returns 0 with `out + 0x10` still null
+(`0x003DFC49`-`0x003DFC4F`).
+
 `0x003DFB50` and `0x003DFBB0`, which read the same layout from a sloc block passed to them, are the
 location map's accessors; they never read `0x02B59D58`.
 
@@ -90,6 +94,11 @@ location map's accessors; they never read `0x02B59D58`.
 | 3, 5, 8 | `0x00264CA0` | entry `i` of list 2, 3 or 4 (`0x00264E40`) |
 | 6 | `0x00264CA0` → `0x003DFAC0` | an older-layout table that `0x003DFAC0` looks for in section 16 at the offset in its `+0x08`; in an `FF12POS3` section that word is `size`, so the lookup reads past the records ([Position entries](ebp-position-entries.md)) |
 | 4, 7, 9 | no resolver | nothing, so `0x003DFBE0` refuses every entry |
+
+`0x003DFDD0(kind, i, out)` zeroes `out` and `out + 8` (`0x003DFDDF`, `0x003DFDE5`) and stores the object at
+`out`. For kinds 1 and 2 it also stores `object + 0x10` at `out + 8` when the object is non-null
+(`0x003DFE0D`-`0x003DFE16`). It returns 1 when the object at `out` is non-null (`0x003DFE24`-`0x003DFE2C`).
+Kinds 4 and 7 jump straight to that test, and kind 9 and kind 0 lie outside the table (`0x003DFDE9`).
 
 The lists are the per-class tables of manager 0's bound script image, found through its header
 `+0x70` (`0x00264AE0`). `0x002649B0(class, i)` returns `table + 0x10 + i * 0x20`, or null when `i` is
@@ -109,6 +118,24 @@ lacks the bit numbered by `0x00377860()`.
 4. takes the icon number from the low byte of `+0x08` and the position from the first and third
    words of the resolved object, not from the entry's own coordinates.
 
+`0x00400550` returns at once when its second argument is non-zero (`0x00400552`), and passes each call's
+returned index to the next as the first index (`0x00400585`, `0x0040059F`, `0x004005B9`). The count is the dword at
+`list + 0`, and icon `n` fills the 32 bytes at `list + 0x10 + n * 0x20` (`0x00400D0B`-`0x00400D47`):
+
+| Offset | Value |
+|---|---|
+| `+0x00` | the dword with bit `0x10000` and bit `0x40000` set and bit `0x20000` cleared; its low byte is 5 for kinds 5 and 8, 6 for kind 3 and 7 for kind 4 (`0x00400D86`-`0x00400DA7`) |
+| `+0x01` | the icon byte (`0x00400DE6`) |
+| `+0x04` | the running index (`0x00400D8D`) |
+| `+0x08`, `+0x0C` | the position (`0x00400DF5`, `0x00400E00`) |
+| `+0x10` | 0 (`0x00400D94`) |
+
+The stores at `+0x00`, `+0x04` and `+0x10` come before the gate and icon tests, so a refused entry writes
+them into the next free slot without counting it (`0x00400DB7`-`0x00400DDB`, `0x00400E43`). A non-zero sixth
+argument sets x = `[0x003C8060() + 0x10] + entry.s16[2]` and z = `[0x003C8060() + 0x14] + entry.s16[3]`
+instead (`0x00400E05`-`0x00400E3E`); `0x00400550` passes 0 in every call (`0x00400568`, `0x0040057E`, `0x00400598`,
+`0x004005B2`).
+
 So kinds 6 and 9 never reach the minimap, and kind 4 entries resolve to nothing. How the
 minimap draws the list is on [map screens](../Menus-And-HUD/map-screens.md).
 
@@ -118,6 +145,10 @@ minimap draws the list is on [map screens](../Menus-And-HUD/map-screens.md).
 When the entry exists it sets the actor's byte `+0x0F` to the icon's low byte with bit `0x40` set and
 copies the low bytes of `from` x and y to `+0x21` and `+0x22`. When the object exists it pushes
 the object's four words and runs `setpos2_20d` (`0x00350C30`), placing the actor at the object.
+
+It ignores the value `0x003DFBE0` returns and reads the entry and the object straight from the output
+(`0x00352476`, `0x00352497`), so a story gate that fails or a negative icon does not stop either step. The four
+words are pushed as floats through `0x00267F60` (`0x003524A1`-`0x003524CF`).
 
 ## Modding notes
 

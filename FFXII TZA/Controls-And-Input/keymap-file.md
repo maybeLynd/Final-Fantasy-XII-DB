@@ -26,8 +26,18 @@ addresses: "0x00197EE0, 0x00195060, 0x00198000, 0x00196550, 0x001965E0, 0x00198B
 
 `0x00197EE0` builds the path once into `0x01F80D90`: the Documents folder (`SHGetFolderPathW` with folder 5), then
 `\My Games\`, `FINAL FANTASY XII THE ZODIAC AGE\`, the Steam account id from `0x001F3ED0`, and `keymap.ini`, creating
-each folder that is missing: `0x001F3EA0` calls `_wmkdir` when `_waccess` fails, once per folder (`0x00197F22`-`0x00197F98`).
-The reader and the writer both use that one path.
+each folder that is missing: `0x001F3EA0` calls `_wmkdir` when `_waccess` fails, once per folder
+(`0x00197F22`-`0x00197F98`). The reader and the writer both use that one path.
+
+When `SHGetFolderPathW` fails it returns before any of this and writes nothing to `0x01F80D90`
+(`0x00197F0F`-`0x00197F17`). It also makes the Documents folder itself, then each of the three folders after it is
+appended (`0x00197F22`, `0x00197F49`, `0x00197F70`, `0x00197F98`), and joins `keymap.ini` with a backslash
+(`0x00197F9D`-`0x00197FB8`).
+
+Before it reads the file, `InputManager_Initialize` sets up the input manager it is given: the vtable `0x008F3640`,
+`+0x39` = 1 (the poll on) and `+0x38` = 0 in one 16-bit store of `0x100` (`0x0019506D`), and zeroes `+0x08`-`+0x09`,
+`+0x0C`-`+0x15`, `+0x18`-`+0x37`, `+0x3A` and `+0x3B` (`0x00195079`-`0x001950AE`). Whichever way it ends, it returns
+the manager (`0x001950DF`, `0x001950F0`).
 
 `InputManager_Initialize` (`0x00195060`, from `0x0019877E`) reads the file once, at start-up (`0x001950A9`-`0x001950EB`):
 
@@ -129,6 +139,8 @@ Only profiles 1-3 are ever read back (`0x001965E0`, `0x00196550`, `0x00198B60`).
 - `0x00196550` looks at all 84 slots of the three profiles: a non-zero code that appears twice, or a code in the list
   of 35 reserved codes at `0x01DF13E0`, fails the file.
 - `0x001965E0` looks at profile 1 only: every one of its 28 codes must be 1-152, and profiles 2 and 3 may hold any code.
+  It counts profile 1's leading codes of 1-152 and runs that same count three times (`0x001965E5`,
+  `0x00196600`-`0x00196671`); it returns 1, a failure, when the count is below 28 (`0x00196663`-`0x0019667B`).
 
 The reserved codes are 2, 81, 82, 84, 85, 88, 89, 90, 119, 122, 123, 125 and 130-152.
 

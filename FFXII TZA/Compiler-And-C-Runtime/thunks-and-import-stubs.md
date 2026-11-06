@@ -19,7 +19,8 @@ The import directory (`0x01DEAB00`) describes 30 DLLs and 538 imported names. Th
 addresses into the import address table, `0x008C2000` to `0x008C31C0` (`.idata$5`), one qword per name
 and a zero qword after each DLL's run. Code reaches an import in one of three ways:
 
-- `call qword ptr [slot]`: 3,543 sites. 530 of the 538 slots are called or jumped through this way.
+- `call qword ptr [slot]`: 3,543 sites, naming 417 of the 538 slots. With the jumps below, 530 slots are called or
+  jumped through.
 - `jmp qword ptr [slot]` at the end of a function: 139 tail jumps; the other 120 of the 259
   `FF 25` jumps are the stubs below.
 - `call stub`, where the stub is a function whose whole body is `jmp qword ptr [slot]`: 3,348 call
@@ -172,6 +173,10 @@ A chain can also change a register on the way. `0x00291D40` is `jmp 0x0028E8B0`,
 `[0x0209BE80]`, adds `0x8FA0` and jumps to `0x002BE020`. Its six callers therefore reach `0x002BE020` with a
 different `rcx` from the one they passed, while the four call sites that name `0x002BE020` directly
 pass their own.
+
+`0x002BE020` works on the object in `rcx`: when the pointer at `+0x1048` is non-null it calls `0x00244F00` with
+that pointer and then zeroes `+0x1048` and `+0x10D0` (`0x002BE029`-`0x002BE043`); a null pointer returns at once
+(`0x002BE033`).
 
 ## Layouts
 

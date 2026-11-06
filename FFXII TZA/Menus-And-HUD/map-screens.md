@@ -50,10 +50,20 @@ The overlay and the location map each have a container of 0x179E0 bytes, at `0x0
 `0x002B7590`) and `0x0209E5F0` (`0x002B9D30`, procedure `0x002BA700`). Each holds two 0xBC08-byte pages in place, at `+0x1B0`
 and `+0xBDC0`, and flips between them:
 
-1. The first call creates the container with no page (`0x002B638F`-`0x002B63D7`).
+1. The first call creates the container with no page (`0x002B638F`-`0x002B63D7`). `0x002B6350(a, b)` keeps a at
+   `+0x179DA` and returns the address of the page slot that bit `0x4` does not name (`0x002B63AF`-`0x002B63D7`).
 2. A container message `0x20` sets its open request, bit `0x80` of `+0x179D2`.
 3. The next frame's step builds a page in the other slot (`0x00245000`, `0x002B6474`), flips bit `0x4`, attaches the page
    and sends it `0x21` (`0x002B6526`-`0x002B6541`).
+4. That build is `0x002B6350` again, which the step calls with the container's word `+0x179D0` and byte `+0x179D8`
+   while bit `0x200` is clear, clearing the request on a non-null answer (`0x002B77DB`-`0x002B77FD`). It answers 0 while
+   the other slot still holds a page (`0x00273A20`, `0x002B640E`-`0x002B6415`).
+5. The page has the procedure `0x002B7B80` and a create record of 0, a and the low 32 bits of the container + `0x190`,
+   sign-extended (`0x002B63DC`-`0x002B63F1`, `0x002B6427`). Its `+0xBBF0` is the container, which then gets message
+   `0x29` (`0x002B6483`-`0x002B64B0`).
+6. The page's `+0xBBEE` takes `[0x01E0C1DC]` (`0x1C0`), `+0xBBE0` takes b and `+0xBBE2` the container's old
+   `+0x179DA`, which then takes a (`0x002B64B9`-`0x002B6513`). `0x00244960` attaches the page (`0x002B651B`), and the call
+   returns it.
 
 A page posts messages to every ancestor up to the root through `0x00275440`, which follows the parent link `+0x10`
 that `0x00244960` sets; its container acts on `0x2B` when it has opened and `0x1F` when it is cancelled. The page procedures `0x002B7B80` and `0x002BAF80` answer
@@ -82,13 +92,19 @@ which the overlay waits for. It is created from `0x00253A30` and the HUD-on step
 
 ### The map-data widget
 
-`0x003BC450(world, location, owner)` creates the widget `0x02B457E0` once (`0x003BC463`), and `0x003BC2D0` loads:
+`0x003BC450(world, location, owner)` creates the widget `0x02B457E0` once (`0x003BC463`) and answers 1; when a widget
+already exists it creates no second one and answers 0 (`0x003BC4C5`). On creation `0x003BC2D0` loads:
 
 | File (kind 7) | When |
 |---|---|
 | `menumap_world.bin` (`0xA2`) | `world` is set: only the World Map (`0x003BC440`, `0x005505E4`) |
 | `menumap_location.bin` (`0xA3`) | `location` is set: all three creators |
 | `menumap_common.bin` (`0xA4`) | always |
+
+`0x003BC2D0` files the three in heap 2 in one request set (`0x00249580`, closed by a tail jump to `0x00249410` at
+`0x003BC3D1`). In the same set it asks for text groups 6 (`menu_mapname`) and `0x17` (`menu01`) when
+`0x002F8040` finds them missing (`0x002491B0`), setting bits `0x1` and `0x2` of the widget's `+0xD0`
+(`0x003BC37A`-`0x003BC3B3`).
 
 The location container (`0x002BA15C`) and the field-time container (`0x003CB4CC`) pass `(0, 1)`. `0x003C1DF0` then picks the
 last entry of the guide table in `menumap_common.bin` whose story counter and story gate pass (`0x003BD950`) and loads
@@ -213,11 +229,11 @@ The story gate `0x0032A8A0` ([Story flags](../Story-Events-And-Hunts/story-flags
 
 | Element | Shown when |
 |---|---|
-| area point (`0x003C18A0`) | its gate (word `+0xE`) passes and the area is current, visited or its map is owned (`0x003BCBA0`) |
+| area point (`0x003C18A0`) | its gate (word `+0xE`) passes and the area is current, visited or its map is owned, or one of two more bits of its state is set (`0x003BCBA0`). The gate passes when it is `0xFFFF`; with no bit of `0xFC0` in the point's dword `+0x10` it is the story gate `0x0032A8A0`, otherwise the encoded-id query `0x00309EC0(gate, 0)`, and a failed query still passes when the area is current or visited, state bits `0x401` (`0x003C18BF`-`0x003C1915`). The point then shows when `0x003BCBA0`'s state is non-zero (`0x003C195F`-`0x003C1965`): bit `0x1` the current area, `0x400` visited, `0x2` the encoded-id query passing for a point gated by it and the map owned (`0x002543F0`) for any other, `0x8000` bit `0x800` of the map-data widget's `+0xD0`, and `0x1000` an icon `0x14` (with `0x17` and `0x18`) in the area's sloc block, which also makes an empty state `0x2800` unless that `+0xD0` bit is set or the widget's `+0xCA` is 6 (`0x003BCBC3`-`0x003BCC77`). While `0x02B457D8` is set the gate is skipped, and a point whose area `+0xC` equals `0x0037ED70()` shows (`0x003C1918`-`0x003C193E`); with the widget's `+0xCA` at 6, a `0x0037ED80()` of 1 shows it (`0x003C1945`-`0x003C195D`) |
 | link point (`0x003C0F70`) | its gate `+0x16` passes, and its map is owned, or its gate `+0x12` is `0xFFFF` or set |
 | label (`0x003C2320`) | revealed; otherwise "???" (`0x3EC`, `0x003C25B1`) |
 | location (`0x003C12B0`) | its kind's gate passes and its map is owned, or one of its points can be drawn |
-| World Map destination (`0x003C08B0`) | its gates pass and the story counter (`0x00265270`) is below its word `+8` |
+| World Map destination (`0x003C08B0`) | its area entry's region byte `+0xA` is non-zero and the story counter (`0x00265270`) is below its word `+8`, where `0xFFFF` never hides (`0x003C08DD`-`0x003C0930`); then it shows when it is the current area, when the screen mode's own test passes (mode 0 every area, 2 the area gate `+0x14` through `0x003C0B70`, 3 the area's bit at `+0x270`, 4 its map owned through `0x003C0BE0`, 6 `0x003C0A00`), or when one of its persistence groups passes `0x003C0D70(g, 1)` (`0x003C0936`-`0x003C09E4`) |
 | icon of a sub-location (`0x003DFB50`, `0x003FFF40`, `0x00400CF0`) | its word `+0xA` is 0, or its gate passes; 1 never shows |
 
 `0x003BCBA0` builds the state an area point reads: the current area (`0x003C1070`), a visit byte at
@@ -262,9 +278,10 @@ The parts of that draw:
 - `0x00400870(rows, n)` (`0x004007B6`) builds each triangle's three vertices from the row's index pairs: x and y from the
   float pairs at `0x02B5F2D0`, four ints from the floats at `0x02B5F2A0` and the pair at `0x02B5F820`; it submits them three
   at a time (`0x00181350`).
-- `0x004010A0` (the jamming pass) takes two phases from the frame counter `0x0208F570`, modulo 60 and modulo 30, as angles
-  through `0x00861F0E`, then fills the vertex scratch `0x02B5FD70` with `0x004019F0` (`0x00401353`) and submits it with
-  `0x004009C0` (`0x00401478`).
+- `0x004010A0` (the jamming pass) takes two phases from the frame counter `f` at `0x0208F570`, `sinf((f % 60) × π / 60)`
+  and `sinf((f % 30) × π / 30)`, modulo 60 and modulo 30 as angles through `0x00861F0E` (`sinf`; `0x00401139`-`0x004011A9`),
+  beside a third angle `f × π / 15` of the whole counter (`0x004010C3`-`0x00401130`). It then fills the vertex scratch
+  `0x02B5FD70` with `0x004019F0` (`0x00401353`) and submits it with `0x004009C0` (`0x00401478`).
 - `0x004019F0(points, n, m, q, ..., scaleX, scaleY, picture)` sets a block up from `m` and `q` (`0x00202D70`) and writes
   two scratch vertices per `0x30`-byte point at `0x02B5FD70 + 0x30 x [0x02B62D70]`, counting it up: x - 640 and x + 640
   (`0x008C5A98`) with the point's `+0x24`, transformed by the block (`0x00202B70`, `0x00202CA0`).
@@ -282,6 +299,20 @@ script's image (header `+0x70`, `0x00264AE0`), and gets a 6-byte style for each 
 - for an entry, `0x00264920` refills them from record `+0x1D` of the image's table at header `+0x8C` (`0x00264870`):
   the story-flag gate `0x0032A8A0` of its words 0, 1, a mode word (4 on a chocobo, `0x00303EC0`; 3 while `0x003135C0`
   answers; else 2) and 6, then its word 5.
+
+The ring draws the lines of its entries with `0x003C7B30`, twice: with the colour pair at `0x01EFE370` for the entries
+whose byte 2 is 1 (`0x003C3642`-`0x003C3668`), and with the pair at `0x00D11640` for those whose byte 2 is 0
+(`0x003C372B`-`0x003C374E`). Each call draws an entry only when its byte 0 is set (`0x003C7D2E`) and its byte 2 equals the
+call's last argument (`0x003C7D39`-`0x003C7D40`).
+
+`0x003C7B30` takes a pair's first colour `a` from bytes 0-3 and its second `b` from bytes 4-7, each byte scaled
+`(byte x word) >> 7` by the record's word `+0x5A` (bytes 0-2 and 4-6) or `+0x58` (bytes 3 and 7)
+(`0x003C7B7E`-`0x003C7BF4`), and gives both vertices of a line the colour `(a + (b - a) x t) x 0.5`
+(`0x003C7C22`-`0x003C7CB6`, `0x003C7E00`-`0x003C7E0C`).
+
+`t` is `(f % 60) / 30` of the frame counter `0x0208F570`, folded to `2 - t` above 1.0 (`0x003C351A`-`0x003C357A`), and both
+calls take it (`0x003C365B`, `0x003C3741`). So the lines pulse between the two colours of their pair every 60 frames: the
+ring colours at `0x01EFE370` and `0x01EFE374`, or the fixed bytes `ff 20 00 80` and `ff c0 40 80` at `0x00D11640`.
 
 The minimap's other small state:
 
@@ -445,7 +476,7 @@ A marker, `0x70` bytes, 24 in a page's list at `+0xB140`:
 
 ### The location sprite pane
 
-The pane is the `0xC8`-byte widget at `0x0209E5F8` with procedure `0x002BC9C0`.
+The pane is the `0xC8`-byte widget kept at `0x0209E5F8` with procedure `0x002BC9C0`.
 
 `LocationSpritePane` (`0xC8` bytes, offsets from the start of the record):
 
@@ -456,7 +487,7 @@ The pane is the `0xC8`-byte widget at `0x0209E5F8` with procedure `0x002BC9C0`.
 
 ### The location caption pane
 
-The caption pane is the `0xD0`-byte widget at `0x02B62D78` with procedure `0x00403380` (above).
+The caption pane is the `0xD0`-byte widget kept at `0x02B62D78` with procedure `0x00403380` (above).
 
 `LocationCaptionPane` (`0xD0` bytes, offsets from the start of the record):
 
@@ -471,7 +502,7 @@ The caption pane is the `0xD0`-byte widget at `0x02B62D78` with procedure `0x004
 
 ### The minimap widget's fields
 
-The minimap is the `0xC8`-byte widget at `0x02B476B0` with procedure `0x003C5910` (The minimap above).
+The minimap is the `0xC8`-byte widget kept at `0x02B476B0` with procedure `0x003C5910` (The minimap above).
 
 `MinimapWidget` (`0xC8` bytes, offsets from the start of the record):
 
@@ -482,7 +513,8 @@ The minimap is the `0xC8`-byte widget at `0x02B476B0` with procedure `0x003C5910
 
 ### The World Map host's fields
 
-The World Map host is the `0x188`-byte widget at `0x02CA8F38` with procedure `0x00552250`; its `+0xC0`-`+0x15B` is the mesh object of [World Map mesh](../Game-Files-And-Data-Tables/world-map-mesh-mg.md).
+The World Map host is the `0x188`-byte widget kept at `0x02CA8F38` with procedure `0x00552250`; its `+0xC0`-`+0x15B` is
+the mesh object of [World Map mesh](../Game-Files-And-Data-Tables/world-map-mesh-mg.md).
 
 `WorldMapHost` (`0x188` bytes, offsets from the start of the record):
 
@@ -636,6 +668,7 @@ argument (`0x005521F2`).
 | `0x02CA96D0` | `i32` | 0 | a copy of the World Map line scale `0x01F2CAF4` (16 in the file, `WorldMapLineScale` in [screen layouts](screen-layouts.tsv)): each draw scales a segment's direction to this length (`0x00202FE0`) | `0x00563430` (`0x00563507`) | `0x005621A0` (`0x005625C9`); `0x00562A30` (`0x00562C54`) |
 
 Nothing reaches these five globals beyond the listed instructions.
+
 ## Modding notes
 
 - An area's map item is listed in `menumap_area.bin`; owning it reveals the area's points without visiting them.

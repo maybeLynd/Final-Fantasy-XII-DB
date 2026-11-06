@@ -20,6 +20,10 @@ calls `0x003DFE60(0, section)`: the section is stored as field root 0 at `0x02B5
 would go to root 1 (`0x00332110`) in the same way; no shipped container has a slot 17. `0x003DFA50`
 releases the roots.
 
+`0x003DFA50` passes each non-null root, `0x02B59D48` and `0x02B59D50`, to `0x00331880` and nulls it
+(`0x003DFA70`-`0x003DFA7D`), then does the same for the navigation-icon block `0x02B59D58`
+(`0x003DFA8A`-`0x003DFA9B`).
+
 ## Layouts
 
 All multi-byte fields are little-endian.
@@ -64,7 +68,21 @@ Measured over all 10,036 EBP2 containers in the nine language trees.
 | `+0x20` to `+0x2C` | zero in every record |
 | box extents, smaller side | 6.0 (11,394), 12.0 (11,367), 4.0 (4,770), 8.0 (4,374), 10.0 (3,168), 7.0 (1,440) |
 | heading | non-zero in 18,621 records, 18,153 of them a whole number of degrees; -2.861 to 5.760 rad |
-| section slack after `size` | 96 to 176 bytes; zero except in the nine copies of `slm_a01.ebp` |
+| section slack after `size` | 96 to 176 bytes; zero except in the nine copies of `slm_a01.ebp`, whose 176 bytes hold the dwords `0x730` and 1 at `size + 0x34` and `size + 0x38` (`0x730` is the section offset of `size + 0x60`) and the four floats 135.0104522705078, -0.20425499975681305, 138.69577026367188 and 0.5508739948272705 at `size + 0x60` |
+
+[`ebp-position-entries-records.tsv`](ebp-position-entries-records.tsv) lists every record of the 517 tables, 25,687
+rows, read from the `us` tree; every figure above reproduces from the same read over all nine trees.
+
+| Column | Holds |
+|---|---|
+| `script` | the zone script, its path under the language folder of `ps2data/plan_master` |
+| `languages` | the language trees whose section 16 is byte-identical to the `us` one (all nine in every row) |
+| `record`, `record_offset` | the entry number from 0 and its offset from the section start, `0x10 + 0x30 × record` |
+| `type`, `type_name` | the byte at `+0x00` and its meaning: 0 point, 1 box, 2 ellipse |
+| `extent_x`, `extent_z` | the floats at `+0x04` and `+0x08` |
+| `w0C` | the float at `+0x0C` |
+| `x`, `y`, `z` | the position, `+0x10` to `+0x18` |
+| `heading` | `+0x1C`, in radians |
 
 ## Loader behaviour
 
@@ -83,15 +101,19 @@ the root is null. Then:
 - below `'3'` it reads 16-byte records at `+0x10 + index × 0x10` into output `+0x10` to `+0x1C` with
   the type byte 0 (`0x003DFD69` to `0x003DFD9A`).
 
+Both branches test the index against `count` `+0x0C` with a signed compare (`0x003DFD33`, `0x003DFD69`),
+so a negative index is not refused, and both return 1 after the copy (`0x003DFD40`, `0x003DFD9A`). The class
+indexes `0x02B59D48` without a bound check (`0x003DFD0A`).
+
 Nothing reads `size`, the first seven magic bytes or the trailing zero dwords.
 
 ### Readers
 
 | Reader | What it takes |
 |---|---|
-| `0x00320940(index, out)` | x, y and z of class-0 record `index`; -1 when absent |
+| `0x00320940(index, out)` | x, y and z of class-0 record `index`, from the record's `+0x10` (`0x00320980`-`0x0032099D`), returning 0; -1 when absent, that is when `0x003DFD00(0, index, rec)` returns 0 (`0x00320961`-`0x0032096A`) |
 | `0x003209C0(index, out)` | the whole record; spawn candidates (`0x00234AF0`) and region placement |
-| `0x00236450` | spawn placement: type 0 the point; type 1 a random offset within half of each extent; type 2 a random x, then z bounded by the ellipse; `0x00319390` rotates the offset by the heading and adds it to x and z |
+| `0x00236450` | spawn placement: type 0 the point; type 1 a random offset within half of each extent; type 2 a random x, then z bounded by the ellipse; `0x00319390` rotates the offset by the heading and adds it to x and z, leaving y 0 for types 1 and 2 because `out` is zeroed first and `0x00319390` writes only x and z (`0x00236475`-`0x00236479`, `0x00236634`); a failed record fetch, or a type byte other than 0, 1 and 2, returns 0 (`0x00236486`, `0x002364DB`) |
 | `0x00312DF0` via `0x00312730` | orders `0x4000` to `0x401F` wander within a radius of entry `order - 0x3FFF` |
 | `0x00301AD0` (`0x00302C93`) | the AI distance condition, entry operand + 1 |
 | `0x002350C0` | range retirement mode 2: entry `+0x51` of the spawn record |
@@ -100,6 +122,12 @@ Nothing reads `size`, the first seven magic bytes or the trailing zero dwords.
 | `setentrypos` (`0x00354FB0`) | pushes the entry's x, y, z and heading and runs `0x00350510` |
 | `btlAtelGetPositionDataX`, `Y`, `Z` (`0x0050F960`, `0x0050F9B0`, `0x0050FA00`) | one coordinate to a script |
 | `debug_positioninfo` (`0x0050EBA0`) | the accessor with a class from its argument |
+
+`0x00312DF0(point, index, radius, ctx, out)` takes the point from entry `index` through `0x00320940` when
+`point` is null, and returns -1 when that fails (`0x00312EA3`-`0x00312EB7`). It copies the point's y to
+`out + 4`, then tries up to nine spots. Each sets x = `point.x + (rand % (2r + 1)) - r` and
+z = `point.z + (rand % (2r + 1)) - r`, with `rand` from `0x00328370`. It returns 0 at the first spot that
+`0x00317DE0(ctx, out, r != 0)` accepts (`0x00312E40`-`0x00312E9F`), and -2 after the ninth (`0x00312EBC`).
 
 ### The older-layout reader
 

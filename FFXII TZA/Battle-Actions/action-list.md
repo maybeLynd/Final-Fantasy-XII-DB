@@ -40,6 +40,22 @@ Each line is read from the shipped `battle_pack.bin` in these steps:
    [Action definition row](action-definition-row.md); `+0x2C` bits `0x1000` and `0x8000` take their names from
    [Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md) (`0x0030846A`, `0x003084B3`).
 
+`0x00305F10` shows the name of the row in the low word of `0x022C2190`: it splits the name word `+0x34` into the bank
+`w >> 11` and the entry `w & 0x7FF` (`0x00305F9B`, `0x00305FCE`), and hands the text, or a null text when `0x02EBF138`,
+its rows or `0x02EBF170` are missing (`0x00305F45`-`0x00305F67`), to `0x002B58B0(text, 0)`.
+
+That result goes to `0x002902D0` with `[0x022C2180]`, or with `0xC8` for rows `0xE2`-`0xF1` (`0x00305F2C`-`0x00305F42`,
+`0x00305FF5`), and `0x00305F10` returns 0.
+
+`0x003093D0(id)` returns the `linked_id` of an item row: it checks `id` with `0x00322C50(0x14, id, 0)`, takes the row
+at the table base plus `id` times the stride at table `+8`, and returns its `+0x22` when the kind `+0x1E` is 3. It
+returns `0xFFFF` when the check fails, the table is missing or the kind is any other (`0x003093E2`-`0x00309435`).
+
+`0x00320D70` reads `range_near_tenths` and `range_middle_tenths` as `[row + 0x02 + i] / 10.0`, the bytes `+0x02`
+and `+0x03` divided by 10.0 for its fourth argument `i` (`divss xmm0, [0x008F8180]`, `0x00320DE6`-`0x00320DF5`), or an
+equipment parameter when bit `0x4000000` of `+0x0C` is set (`0x00320D74`); [Action range](action-range.md) has the
+rule.
+
 ### Properties of the shipped rows
 
 - The table's header gives 543 rows of 60 bytes, one TSV line each.

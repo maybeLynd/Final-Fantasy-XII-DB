@@ -71,18 +71,25 @@ scenes](bhujerba-scenes.md).
   value after Escape the Leviathan, then 1100, the value after the return to Bhujerba. When `event_global_flag[3]` is
   2, the same function loads and plays `pas_z0000` (event 214, [Aerodrome airship
   scenes](aerodrome-airship-scenes.md)).
-- Aerodrome: below story counter 6100 the counter (`乗船カウンタートーク`) sells passage ("Good day, sir. This counter serves
-  travelers wishing to book passage to Rabanastre."). The departure (`発着イベント監視`) sets flag `0x005E`, loads `pas_z0000`
-  and jumps aboard the Skyferry, to the Sky Saloon, field 125, or the Observation Parlour, field 124, or to another
-  aerodrome.
+- Aerodrome: below story counter 6100 the counter (`乗船カウンタートーク`) sells passage with the message below.
+- Aerodrome: the departure (`発着イベント監視`) sets flag `0x005E`, loads `pas_z0000` and jumps aboard the Skyferry, to the
+  Sky Saloon, field 125, or the Observation Parlour, field 124, or to another aerodrome.
+
+The passage counter at the aerodrome: "Good day, sir. This counter serves travelers wishing to book passage to
+Rabanastre. We have ships fitted with shops and amenities, or if you prefer to sleep during your journey, ships with
+only private cabins. Whichever you choose, the price is the same. We will show you aboard as soon as you've purchased
+your ticket. Passage is [value] gil. How would you like to travel?"
+
 - Travica Way (field 803): at story counter 546 `常駐監督.main` loads and plays scene `byu_a0100` (event 271), adds Lamont
-  as a guest and writes 550, the value after the runaway escapes. Below 680 five ways are closed ("Sorry, but this way
-  is closed, on the authority of the Marquis."), and the estate gate (`オンドール通行禁止レクト`) answers "Beyond this point is
-  the property of His Excellency the Marquis."
+  as a guest and writes 550, the value after the runaway escapes.
+- Travica Way: below 680 five ways are closed ("Sorry, but this way is closed, on the authority of the Marquis. Why?
+  Wouldn't you like to know."), and the estate gate (`オンドール通行禁止レクト`) answers "Beyond this point is the property of His
+  Excellency the Marquis. I am so sorry, but I must ask you to leave, bhadra."
 - Travica Way: at story counter 730, `NPC01` at the estate says "Haa, we've been expecting you. His Excellency the
-  Marquis awaits." and, after "I'm ready.", "His Excellency the Marquis is otherwise occupied until sunset.", and
-  takes the party to field 864 (`byu_y01`); at 1100 "His Excellency has given orders that you are to be granted an
-  audience." leads there too.
+  Marquis awaits." and, after "I'm ready.", "His Excellency the Marquis is otherwise occupied until sunset. Please, I
+  will show you to a place where you may wait in comfort.", and takes the party to field 864 (`byu_y01`).
+- Travica Way: at 1100 "His Excellency has given orders that you are to be granted an audience. You are prepared?"
+  leads to field 864 too.
 - Travica Way: this `NPC01` is copy 12 of the shared actor, and the offer needs byte 12 of the file variable
   `file_var_s60_1` not to be 2; at 2 the talk is only "Ridiculous, bhadra! That man is long since dead. Spread such
   rumors and you are likely to be taken in for disturbing the peace!"
@@ -96,14 +103,17 @@ scenes](bhujerba-scenes.md).
   Khus Skygrounds (field 809) has the sign of Kweli's Last Stand.
 - Travica Way and Lhusu Square: the Cartographers' Guild moogle (`NPC01`) sells the map of Bhujerba or of the Lhusu
   Mines ("Select a map to purchase:").
-- Every town field: a bottle of spirits (`魂レクト`, "The label says") gives Bhujerban Madhu ("Take it."), and in each
-  field a townsperson buys it for 1000 gil ("Sell it to me, bhadra! I'll give you [value] gil!" in Travica Way).
+- Every town field: a bottle of spirits (`魂レクト`, "The label says 'Bhujerban Madhu.'") gives Bhujerban Madhu ("Take
+  it."), and in each field a townsperson buys it for 1000 gil ("Haa? Bhujerban Madhu! I heard supplies were low. I
+  suppose that's a thing of the past! Sell it to me, bhadra! I'll give you [value] gil!" in Travica Way).
 - Cloudborne Row (field 804) leads to Travica Way, Miners' End, The Cloudborne (field 820) and The Staras Residence
   (field 819); Miners' End (field 805) to Travica Way, Cloudborne Row, Lhusu Square (field 806) and Kaff Terrace
   (field 810); Khus Skygrounds and the Aerodrome lead to Travica Way.
-- Miners' End: below story counter 680 two ways are closed ("Sorry, sir, but this way is temporarily closed."). Miclio
-  (`幽霊小僧`) speaks of his bill ("Yes, I speak of Diabolos."), and a townsperson's lines include "If you had not killed
-  the raksas, we would be waiting here still, bhadra! Our thanks!"
+- Miners' End: below story counter 680 two ways are closed ("Sorry, sir, but this way is temporarily closed. Go back
+  the way you came. That's right."), and a townsperson's lines include "If you had not killed the raksas, we would be
+  waiting here still, bhadra! Our thanks!"
+- Miners' End: Miclio (`幽霊小僧`) speaks of his bill ("Ah, you have seen my bill? So long has it been since someone came
+  to me... I posted that bill many years ago now it seems! Haa... Yes, I speak of Diabolos. Will you hear more?").
 - Lhusu Square (field 806) holds the crystal. Below story counter 580 the field loads scene `byu_a0480` (event 705);
   touching the mine entrance (`突入イベントレクト`) plays it, writes 580, the start of the mystery of the Lhusu Mines, and
   jumps to Shaft Entry (Lhusu Mines), field 357.
@@ -117,19 +127,27 @@ scenes](bhujerba-scenes.md).
   words." follows. At 100 on the gauge, "You. Boy. You will come with us.": `オレバッシュ監督.main` writes 710 and jumps to
   The Cloudborne, field 820; below 100 the gauge falls.
 - Lhusu Square: the talk of Basch, Balthier and Fran in the square includes "Spread the rumor that I still live, and
-  the Resistance here in Bhujerba will come out of their hiding places to ascertain the truth." and "Look to where
-  people gather."
+  the Resistance here in Bhujerba will come out of their hiding places to ascertain the truth. If we can contact their
+  organization, we can use them to get to the Marquis. We'll rescue Penelo from his estate, and see where he stands."
+- Lhusu Square: the same talk includes "Look to where people gather. There you will find the richest soil in which to
+  plant seeds of doubt."
 - Khus Skygrounds: Pilika (`NPC01`) gives the Merchant's Armband and asks for her diary ("I've left my dearest diary
-  at work!"); in Clio's Technicks (field 817) `日記レクト` gives Pilika's Diary ("Pilika's diary is lying here.").
-  Returned, it brings a Bangle for "Read it." and a Jade Collar for "I've done nothing."
+  at work! Can you go to Clio's Technicks for me and pick it up? Pretty please, kupo? The second floor is only open to
+  staff, so you'll want to wear that armband I gave you to get in! Thanks a bunch, kupo!").
+- Clio's Technicks (field 817): `日記レクト` gives Pilika's Diary ("Pilika's diary is lying here."). Returned, it brings a
+  Bangle for "Read it." and a Jade Collar for "I've done nothing."
 - The Staras Residence (field 819): from story counter 1982 and clan rank 5, `NPC01`'s talk ("Oh, bhadra, both my
-  children are missing!") gives the Site 3 Key, with the miner's lines (`エキストラ作業員`): "This is the key to the gate in
-  Site 2 of the mines. Open the gate, and you will have access to the depths beyond."
+  children are missing! My son and my daughter, too! And they took with them the key to the magicite mines... Have you
+  not heard the rumors of raksas—such as have never been seen!—lurking in the mines? My heart is bursting with worry,
+  bhadra. I am of a mind to contact the clans and see if they might aid me...") gives the Site 3 Key.
+- The Staras Residence: with the key come the miner's lines (`エキストラ作業員`): "This is the key to the gate in Site 2 of
+  the mines. Open the gate, and you will have access to the depths beyond. Good luck, bhadra..."
 - The Cloudborne (field 820): at story counter 710, after the rumour, `配置監督.main` loads and plays scene `byu_a1880`
   (event 265) and jumps to field 914 (`byu_x01`); at 720 it plays the scene again and writes 730, the value after
   Marquis Ondore.
 - The Cloudborne: the notice board (`掲示板`) lists the marks ("Which bill would you like to read?"), and Ondore's
-  attendant says "His Excellency the Marquis will meet with you shortly, bhadra."
+  attendant says "His Excellency the Marquis will meet with you shortly, bhadra. Please, make what preparations you
+  must and go to the estate. You will find it at the northern end of Travica Way."
 - Field 862 (`byu_z01`): at story counter 460 `常駐監督.main` loads and plays scene `byu_z0100` (event 270), writes 490,
   the value after the captive Penelo, then 520, and jumps to the Aerodrome, field 791.
 - Field 864 (`byu_y01`): at story counter 730 `常駐監督.main` plays scene `byu_y0100` (event 273), writes 800, the value
@@ -174,6 +192,10 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
    `0x00348DF0` (`0x00349884`).
 3. `0x00348DF0` pops eight values. The seventh, the script's second argument, is passed with the current field context
    to `0x00264D60` (`0x00348E6A`-`0x00348E74`), the section 2 lookup, which keeps the low 24 bits of the id.
+4. `0x00348DF0` reads the entry's flag through `0x002673A0`, bit `0x1` of the entry's upper half (`0x00348E85`), and
+   opens the window through `0x002E16B0` only when that flag is clear (`0x00348EE0`-`0x00348EFF`). With the flag set it
+   still makes its six slot calls (`0x00348E91`-`0x00348ECA`) and fills the call record (`0x00348ED7`-`0x00348EDC`) but
+   opens no window ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)).
 
 ### Speakers, places and scenes
 
@@ -189,6 +211,8 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
   passes it to the verb, and `0x00348DF0` hands it to `0x002E16B0`. That actor's name is the second name of each pair its
   `setnpcname` calls name; `0x002E16B0` sets the actor's name flag before the window opens, and `0x00263990` shows the
   second name while that flag is set.
+- `0x00348DF0` makes that `0x002E16B0` call only for a line whose section 2 flag is clear (`0x00348EE0`); for a flagged
+  line it opens no window, so the actor's name flag is not set there.
 - An actor no `setnpcname` or `setshopname` call names keeps the name id `0xFFFF` and the empty text the record set-up
   `0x00266530` writes (`0x0026668B`, `0x0026669B`-`0x002666B4`), so its `{actor-name}` header shows no name; that line reads
   `no name shown`. A system message reads `system message`.
@@ -354,7 +378,7 @@ The steps table [`bhujerba-script-steps.tsv`](bhujerba-script-steps.tsv) has one
 | `step` | the step's number in its function, from 1, in the order the function's bytes run |
 | `at` | where the step's instruction sits: its offset in section 0, the script image, of the shipped `plan_master/us` `.ebp`. For `case`, `default` and `label` it is where their code starts. For `shared template` and `same code` it is where the function or actor starts |
 | `line` | the step's line in the script listing, `-` for the `shared template` and `same code` rows |
-| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets |
+| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. A case whose values meet an earlier case's is followed by `not (x = w)` for each such earlier case `w`, so the cell names only the values the case runs on: `x = lte(78); not (x = lt(78))` runs when x is 78. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. When such a way passes a case that an earlier case overlaps, the item counts only the values that case takes: after `case lt(0x0177)`, a `case lt(0x0182)` that returns gives the item `not (x = lt(0x0182)) or x = lt(0x0177)`, which holds unless 0x0177 <= x < 0x0182. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets, and, for a case whose every value an earlier case already matches, on the case values |
 | `verb` | the verb the step calls, by its name in the [verb table](../Scripts-And-Script-Commands/verb-table.md), written `Actor.verb` for a call on another actor. Otherwise the kind of step: `if`, `else if`, `while`, `for`, `switch`, `case`, `default`, `break`, `goto`, `label`, `return`, `returnT`, `store`, `shared template` or `same code` |
 | `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test. A number with a fraction is the listing's print of a 32-bit float to nine significant digits, here and in `condition`: 1.60000002 is the float nearest to 1.6, and 2.36000005e-06 is 2.36000005 times 10 to the power -6 |
 | `addresses` | what the arguments name in the game: the actor, model, animation and motion file, effect file, event sound, camera shot, message window, request slot or variable |

@@ -74,33 +74,41 @@ scenes](rabanastre-scenes.md).
 - North End: below story counter 100 the door to Lowtown (`mapダウンタウン扉`) answers "All traffic with Lowtown is suspended
   until the new consul reaches the palace."; from 100 it leads to North Sprawl (Lowtown), field 701. A door leads to
   Yamoora's Gambits, field 300, and the exits to Muthru Bazaar, field 290, and East End, field 291.
-- North End: holding the Clan Primer, the clan watch (`クラン守護者１`) asks "Ah, you've got your Primer, so you have." and,
-  on "Okay, let me in.", lets the party into The Clan Hall, field 302; without it he says "Hah! You don't even have
-  one!" Once he has let the party in, the hall's door (`mapクラン本部`) leads there too; until then it reads "The door is
-  firmly shut."
+- North End: holding the Clan Primer, the clan watch (`クラン守護者１`) asks "Ah, you've got your Primer, so you have. Well?
+  What're you standin' about out here for? In with ya! Can't quite recall your face. Are you new? Might want to pay
+  special heed to what the folks inside have to say. Well, are you goin' in or not?" and, on "Okay, let me in.", lets
+  the party into The Clan Hall, field 302.
+- North End: without the Clan Primer the clan watch says "You want in? Out with it, then! Hah! You don't even have
+  one! You'll no' be gettin' in without, boy. Off with ya!" Once he has let the party in, the hall's door (`mapクラン本部`)
+  leads there too; until then it reads "The door is firmly shut."
 - North End and East End: the shop signs (`ショップFSレクト01`) give the shops' slogans, such as "A mind without instruction
   can no more bear fruit than can a field without cultivation." (Yamoora's Gambits). One North End sign reads "???
   (You're not sure what this sign is for.)" until the party has joined Clan Centurio, then "??? (This is a sign for
   Clan Centurio, but only clan members would know it as such.)"
 - North End: the cockatrice Renn (`コカトリス`) asks "Tell me: has Chit returned home?"; on one branch of "Yes, actually."
-  it gives the Deathbringer ("Oh, and take this. A small token of my gratitude for everything you've done."), on the
-  other it answers "Lies! I would smell her scent on you had you seen her." The clan watch offers advice on catching
-  cockatrices.
-- Ktjn (`カトリーヌ`) talks with the party in Muthru Bazaar ("H-Hello. I am called Ktjn."); `g_iw_カトリーヌ結果` then decides
-  where she stays. Her gift of thanks is the Hunting Crossbow in the North End, the Firefly in East End, the Fuzzy
-  Miter in Migelo's Sundries or the Runeblade in The Clan Hall; as `カトリーヌ５` in the North End, Muthru Bazaar, East End
-  and the Aerodrome she gives an Ether and three Hi-Potions.
+  it gives the Deathbringer ("Why, yes! I can smell her pungent plumage on you even now! If you'll pardon me, I'm
+  going to make for home at once. Do visit me in Giza, will you? Oh, and take this. A small token of my gratitude for
+  everything you've done. Farewell!").
+- North End: on the other branch Renn answers "Lies! I would smell her scent on you had you seen her. Never
+  underestimate a cockatrice's olfactory faculties!" The clan watch offers advice on catching cockatrices.
+- Ktjn (`カトリーヌ`) talks with the party in Muthru Bazaar ("H-Hello. I am called Ktjn. I left my home and came to
+  Rabanastre only quite recently. I have yet to learn my way around. I had been hoping to find someone I might speak
+  with. Should you like to talk again, it would please me greatly."); `g_iw_カトリーヌ結果` then decides where she stays.
+- Ktjn's gift of thanks is the Hunting Crossbow in the North End, the Firefly in East End, the Fuzzy Miter in Migelo's
+  Sundries or the Runeblade in The Clan Hall; as `カトリーヌ５` in the North End, Muthru Bazaar, East End and the Aerodrome
+  she gives an Ether and three Hi-Potions.
 - Across the town the townsfolk's lines change with the story counter, from "We're on heightened watch until the
-  Consul's inauguration ceremony is complete." to "Our Emperor is dead, and Lord Vayne rules as autocrat in his
-  stead."
+  Consul's inauguration ceremony is complete. Parts of the city are off limits for the duration." to "Our Emperor is
+  dead, and Lord Vayne rules as autocrat in his stead. How terrible! If I'd known this was going to happen, I would
+  never have moved to this city! O cruel fate!"
 - Muthru Bazaar (field 290): at story counter 33, `常駐監督.init` loads scene `rbn_a0200` (event 100), and `main` has
   `ヴァン登場イベント` play it, write 35, the value after Vaan the pickpocket, and jump to East End, field 291.
 - Muthru Bazaar: at story counter 1570, `常駐監督.main` loads and plays scene `rbn_a0382` (event 726) and writes 1580, the
   start of the hidden Garif. Flag `0x0078`, a map icon in Muthru Bazaar, is set once the party has joined Clan
   Centurio and released before.
-- From story counter 341 the Moogling (`モグシー`) stands in Muthru Bazaar, East End, Eastgate, Southgate and Westgate
-  ("The Moogling lets you teleport to several select locations across Rabanastre."); `mogxiMapJumpDirector.mogjump`
-  takes the party to East End, Muthru Bazaar, Eastgate, Southgate or Westgate (fields 291, 290, 305, 306 and 307).
+- From story counter 341 the Moogling (`モグシー`), a free teleport service, stands in Muthru Bazaar, East End, Eastgate,
+  Southgate and Westgate; `mogxiMapJumpDirector.mogjump` takes the party to East End, Muthru Bazaar, Eastgate,
+  Southgate or Westgate (fields 291, 290, 305, 306 and 307).
 - East End (field 291): at story counter 35, `常駐監督.main` plays scene `rbn_a0300` (event 101), shows "World Map has
   been added to the Party Menu." and writes 38, the value after Penelo appears, and 40, the value after the Map
   command tutorial. At 40 the field loads scene `rbn_a0380` (event 709).
@@ -109,7 +117,7 @@ scenes](rabanastre-scenes.md).
 - East End: below story counter 45 the doors of The Sandsea, Yugri's Magicks, Panamis's Protectives, Amal's Weaponry
   and Batahn's Technicks answer "I really should go see Migelo first."; from 45 they lead to fields 304, 298, 296, 295
   and 299. Below 100 the door to Lowtown answers "No traffic in or out of Lowtown until the Lord Consul's assumed his
-  post."; from 100 it leads to North Sprawl (Lowtown), field 701.
+  post. No exceptions."; from 100 it leads to North Sprawl (Lowtown), field 701.
 - East End: at story counter 390, arriving by entrance 1 or by the Moogling has `常駐監督.main` play scene `rbn_a0381`
   (event 711) at once; otherwise the field loads it and touching `制御レクト` plays it. Either way the story counter
   becomes 400, the value after Vaan and Basch.
@@ -120,9 +128,18 @@ scenes](rabanastre-scenes.md).
   shut."; from 100 they open onto Eastgate, field 305, Southgate, field 306, and Westgate, field 307, whose gates lead
   back. While `g_iw_ラバナスタ通行止め状態` is not 0, two guards turn the party back ("South gate's closed, boy. Move along
   now.", "Gate's closed until the Consul's appointment ceremony is over.").
-- Southern Plaza: from story counter 50 a bangaa merchant asks "Could you take him something for me?" and gives the
-  Small Package; the merchant waiting in Eastgate asks "Did a bangaa merchant happen to give you an item to deliver?"
-  and takes it ("Well, what do you know! My thanks, boy.").
+- Southern Plaza: from story counter 50 a bangaa merchant asks "I made it in from the Estersand just before they
+  closed the gates, but my friend was stopped before he could get through. Could you take him something for me?" and
+  gives the Small Package.
+- Eastgate: the merchant waiting there asks "My companion and I arrived together, but they singled out my goods for
+  inspection. I've been held up here all day! You came from the city, yes? Did a bangaa merchant happen to give you an
+  item to deliver?" and takes the package with the thanks below.
+
+The Eastgate merchant's thanks: "Well, what do you know! My thanks, boy. Helped me out of a tight spot, you have.
+Heading into the desert, are you? Best watch yourself out there. Get into any fights, just be sure to keep well
+healed, hear me? Mind your wounds or the next blow you take could be your last. Had myself caught by the tail a time
+or two out there, let me tell you."
+
 - Southern Plaza: the Cartographers' Guild moogle (`地図屋`) asks "Would you like to buy a map, kupo?" and sells the maps
   of Dalmasca Estersand, Dalmasca Westersand and Giza Plains, each followed by "Your location map for this area is
   complete!"; when the party holds all of them it answers "What a shame, kupo! You already own all of the maps I have
@@ -142,28 +159,61 @@ scenes](rabanastre-scenes.md).
   Clan Centurio!") and later gives one reward package for each clan rank above the last one rewarded, twelve in all.
   `常駐監督.main` sets flag `0x0139` and releases `0x0138`, map icons in North End.
 - The Clan Hall: when the Yiazmat hunt is won, Montblanc has the moogles gather ("Have you really done it? Have you
-  defeated Yiazmat?" ... "You will always be welcome in the halls of Clan Centurio!"). Ma'kenroh (`マッケンロウ`) tells
-  where the marks are found, for example "Hunting the Rogue Tomato? Hrgm... Find it in the Dalmasca Estersand."
+  defeated Yiazmat? Kupo...? I...I don't know what to say, kupo. I'm happy, but I... I'm speechless. ........." ...
+  "Yiazmat is gone, but that does not mean the end of the clan, kupo. You will always be welcome in the halls of Clan
+  Centurio!").
+- The Clan Hall: Ma'kenroh (`マッケンロウ`) tells where the marks are found, for example "Hunting the Rogue Tomato? Hrgm...
+  Find it in the Dalmasca Estersand. Leave by the east gate, head to the northeast. Now, go."
 - The Sandsea (field 304): at story counter 45 or below, `常駐監督.init` loads scene `rbn_a1601` (event 119), and `main`
-  plays it; Tomaj explains hunts ("So, here's how it works."), gives the Clan Primer, the Orrachea Armlet and the Writ
-  of Transit ("Clan Primer has been added to the Party Menu.", "Licenses has been added to the Party Menu."), and the
-  director writes 65, the start of the first hunt.
+  plays it.
+- The Sandsea: in the scene Tomaj explains hunts, in the message below, gives the Clan Primer, the Orrachea Armlet and
+  the Writ of Transit ("Clan Primer has been added to the Party Menu.", "Licenses has been added to the Party Menu."),
+  and the director writes 65, the start of the first hunt.
+
+Tomaj in The Sandsea: "So, here's how it works. People post bills here on the notice board when they have a monster
+they need taken care of. Headhunters track people, right? Well, hunters track monsters. The monster you're hunting is
+called your mark."
+
 - The Sandsea: at story counter 400, `読み込み監督０１.init` loads scene `rbn_a1600` (event 109) and `main` places a touch
   area; touching it has `常駐監督.最速の飛空艇` play the scene, write 420, the value after the fastest airship, and add Balthier
-  and Fran to the party ("Ba'Gamnan's note can only be referring to the Lhusu Mines in Bhujerba.").
+  and Fran to the party, with Balthier's message below.
+
+Balthier in The Sandsea: "Ba'Gamnan's note can only be referring to the Lhusu Mines in Bhujerba. We'll leave at once.
+When you're ready, meet me in the aerodrome. I should imagine it's still by the west gate... We weren't in Nalbina all
+that long. Do be quick. I'd like to save your girl and be rid of this headache as soon as possible."
+
 - The Sandsea: once the Rogue Tomato fight is won (`g_btl_nm_パック` 2), Tomaj pays the bounty, closes the hunt and tells
-  of "a bangaa standing watch in front of a building in the North End"; unless flag `0x0139` is set, he sets `0x0138`,
-  a map icon in North End, and releases `0x0139`.
-- The Sandsea: Gatsly (`依頼人`) petitions the Thextera hunt ("You saw my bill? My bill to hunt Thextera?") and closes it
-  when it is won ("You did it! You brought down Thextera!"); the Marilith's petitioner closes that hunt and takes the
-  Serpentwyne Must ("Ah, you've brought it!"). Above story counter 80 the notice board asks "Which bill would you like
-  to read?"
-- Eastgate (field 305) holds the crystal. Below story counter 78 the gate guard (`門番兵士`) asks "Foodstuffs for the
-  banquet wasn't it? Well, do you need to pass?"; on "Yeah, open the gate." he answers "I don't see any foodstuffs on
-  you." and lets the party back to the Southern Plaza, field 292.
-- Eastgate: at story counter 78, `読み込み監督０１.init` loads scene `rbn_a1701` (event 118); talking to Kytes ("Ah, Vaan! I
-  guess I'm not the only one who got locked out of the city!") has `常駐監督.EV東門のいざこざ` play it, take the Galbana Lilies,
-  write 80 and 85, the value after the invitation to the parade, and jump to field 910 (`rbn_y01`).
+  of a bangaa standing watch in front of a building in the North End; unless flag `0x0139` is set, he sets `0x0138`, a
+  map icon in North End, and releases `0x0139`.
+- The Sandsea: Gatsly (`依頼人`) petitions the Thextera hunt and closes it when it is won, with the two messages below.
+- The Sandsea: the Marilith's petitioner closes that hunt and takes the Serpentwyne Must ("Ah, you've brought it! This
+  is serpentwyne must from the Marilith, no mistake! Now I'll finally be able to deliver on that order of serpentwyne.
+  Migel—er, my customer should be most pleased, most pleased indeed! Very good. In exchange for the serpentwyne must,
+  here is your bounty. You've earned it!").
+- The Sandsea: above story counter 80 the notice board asks "Which bill would you like to read?"
+
+Gatsly asks: "You saw my bill? My bill to hunt Thextera? If you're lookin' for Gatsly, you found him. I own a shop
+over in the Bazaar, but times have been tough. So I put in an order for some new goods, hoping to stir up some
+business. Put up everything I own as collateral against that shipment. Trouble is, this beastie in the Westersand's
+been attacking the caravans. As it happens, my goods are supposed to be arriving by way of the Westersand, too. If
+this Thextera were to attack, what of my goods? Please, you must kill Thextera for me! Accept the hunt, and I'll tell
+you where to find it."
+
+Gatsly when the hunt is won: "You did it! You brought down Thextera! Thank you! Thank you so much! You've saved me and
+my wife. This isn't much, but I want you to take it for helping us out."
+
+- Eastgate (field 305) holds the crystal. Below story counter 78 the gate guard (`門番兵士`) asks "The watch inside
+  notified me. Foodstuffs for the banquet wasn't it? Well, do you need to pass?"; on "Yeah, open the gate." he answers
+  "I don't see any foodstuffs on you. Still have work to do, eh? Well, be about your business. Go on now." and lets
+  the party back to the Southern Plaza, field 292.
+- Eastgate: at story counter 78, `読み込み監督０１.init` loads scene `rbn_a1701` (event 118); talking to Kytes, in the message
+  below, has `常駐監督.EV東門のいざこざ` play it, take the Galbana Lilies, write 80 and 85, the value after the invitation to the
+  parade, and jump to field 910 (`rbn_y01`).
+
+Kytes at Eastgate: "Ah, Vaan! I guess I'm not the only one who got locked out of the city! I told Penelo about the
+mark you were going after, and I guess I got her worrying. So the two of us headed out here to find you. As soon as I
+stepped out, the guards closed the gates and things got crazy. I haven't been able to find her since."
+
 - Eastgate, Southgate and Westgate: at story counter 343, `常駐監督` of the gate the party arrives at loads and plays
   scene `rbn_a1700` (event 108), writes 350, the value after the return to Rabanastre, restores the party, removes
   Basch as a guest and Balthier and Fran from the party and sets the fighting party to Vaan.
@@ -171,34 +221,58 @@ scenes](rabanastre-scenes.md).
   `0x001D` in Westgate: the location map's exits between Rabanastre and Dalmasca Estersand, Giza Plains and Dalmasca
   Westersand. Eastgate's exit leads to The Stepping (Dalmasca Estersand), field 227; Westgate's lead to Galtea Downs
   (Dalmasca Westersand), field 345, and to the Aerodrome, field 788.
-- Eastgate, Southgate and Westgate: Gurdy (`NPC01`) hires out chocobos ("Only [value] gil should you wish to hire
-  one."); a hired chocobo sets flag `0x0073`, riding a chocobo, and the party jumps to The Stepping (Dalmasca
-  Estersand), field 227, from Eastgate and to Galtea Downs (Dalmasca Westersand), field 345, from Westgate.
+- Eastgate, Southgate and Westgate: Gurdy (`NPC01`) hires out chocobos ("Well, hello there! You are no stranger to the
+  yellow birds just behind me, I'm sure. Yes, my friend, I speak of the chocobos, kupo! These noble birds make for
+  excellent steeds. Fleet of foot and sturdy of limb, arduous journeys fly by atop a chocobo, kupo! Only [value] gil
+  should you wish to hire one.").
+- Eastgate, Southgate and Westgate: a hired chocobo sets flag `0x0073`, riding a chocobo, and the party jumps to The
+  Stepping (Dalmasca Estersand), field 227, from Eastgate and to Galtea Downs (Dalmasca Westersand), field 345, from
+  Westgate.
 - Southgate (field 306) holds the crystal. Its exit leads to Throne Road (Giza Plains): while `mp_sav初回` is 0, to
   field 236 below story counter 1475 and to field 253 from it; otherwise to field 253 when
   `(getplayloophour() - mp_sav補正時間) % 3` is 0 and to field 236 when it is not. From 100 the door to Lowtown leads to
   South Sprawl (Lowtown), field 702.
 - Westgate (field 307) holds the crystal. Up to story counter 290 a guard bars the aerodrome ("Archadian citizens and
-  their guests only inside the aerodrome today.") and `Map_Director.init` releases flag `0x0074`; from 291 it sets it.
-  From 420 below 460 Fran stands in Westgate ("Balthier is waiting inside. If you've made ready, we can leave at
-  once.").
+  their guests only inside the aerodrome today. Sorry, but I'll have to ask you to leave.") and `Map_Director.init`
+  releases flag `0x0074`; from 291 it sets it.
+- Westgate: from 420 below 460 Fran stands there ("Balthier is waiting inside. If you've made ready, we can leave at
+  once. He feels responsible for what has happened to your friend. Do not think he is in the habit of doing favors.").
 - Westgate: from story counter 1210, for a clan rank of at least 4, Sorbet (`モグシー`) petitions the White Mousse hunt
-  ("You've come about the bill I posted? Thank you, kupo!"). When it is won she takes the Broken Key and, from story
-  counter 1540, gives the Sluice Gate Key in the same talk.
-- Westgate: Rimzat (`リムザ`) asks for help ("I have been sent from Archadia to study the sandstorms of the Dalmasca
-  Westersand") and sends the party to Cotze in the Southern Plaza, who sends it to Northon. At the last stage Cotze
-  and Northon join Rimzat, the Wind Globe is taken and the Windvane given ("There. This should let you make your way
-  through the storm.").
-- Aerodrome (field 788): below story counter 6100 the counters sell passage to Archades, Nalbina and Bhujerba ("This
-  counter serves travelers wishing to book passage to Archades."); boarding plays `pas_z0000` (event 214). The flight
-  ends in the Sky Saloon (Skyferry), field 125, when a draw of 100 falls below 4, 8, 16, 32 or 64 by the stage of
-  quest 153, else in the Observation Parlour (Skyferry), field 124, or the destination aerodrome.
-- Aerodrome: Balthier (`バルフレア`) asks "You ready to leave?" and, after "I'm really ready.", `常駐監督.ムービー再生` plays the
-  Strahl's departure with its subtitles ("This is the Strahl." ... "I'm coming, Penelo."), writes 460, the value after
-  the Strahl takes off, and jumps to field 862 (`byu_z01`, Bhujerba).
-- Aerodrome: the private airship desk ("We handle all private airship arrivals and departures from this desk.") boards
-  the Strahl and loads `str_z0000` (event 211, [Strahl scene](strahl-scenes.md)); Nono (`ノノ`) tends the ship ("I'm
-  gathering the parts I need to make repairs as quickly as I can").
+  ("You've come about the bill I posted? Thank you, kupo! I'm in a sticky situation, kupo. That wobbly, white
+  confection got the better of me! I'd prefer not to go into the details until you've officially agreed to the hunt.
+  It's all rather personal, you understand. Well, will you accept my hunt, kupo?").
+- Westgate: when the White Mousse hunt is won Sorbet takes the Broken Key and, from story counter 1540, gives the
+  Sluice Gate Key in the same talk.
+- Westgate: Rimzat (`リムザ`) asks for help with the message below and sends the party to Cotze in the Southern Plaza,
+  who sends it to Northon.
+- Westgate: at the last stage Cotze and Northon join Rimzat, the Wind Globe is taken and the Windvane given ("There.
+  This should let you make your way through the storm. Now you just need to decide whether that's really what you want
+  to be doin'.").
+
+Rimzat at Westgate: "Hha! I have been waiting for some time. You see, I am in need of assistance. Please, hear my
+words. I have been sent from Archadia to study the sandstorms of the Dalmasca Westersand, but the storms' violence
+makes such study...impossible. There is a place in the desert, at the end of a long trail that winds through the
+north. Mayhap you know it. That is the site of my study. But before the wrath of such a storm, I can do nothing. This
+is why I seek help. Will you help me?"
+
+- Aerodrome (field 788): below story counter 6100 the counters sell passage to Archades, Nalbina and Bhujerba;
+  boarding plays `pas_z0000` (event 214).
+- Aerodrome: the flight ends in the Sky Saloon (Skyferry), field 125, when a draw of 100 falls below 4, 8, 16, 32 or
+  64 by the stage of quest 153, else in the Observation Parlour (Skyferry), field 124, or the destination aerodrome.
+
+The Archades passage counter at the aerodrome: "Good day, sir. This counter serves travelers wishing to book passage
+to Archades. We have ships fitted with shops and amenities, or if you prefer to sleep during your journey, ships with
+only private cabins. Whichever you choose, the price is the same. We will show you aboard as soon as you've purchased
+your ticket. Passage is [value] gil. How would you like to travel?"
+
+- Aerodrome: Balthier (`バルフレア`) asks "Bhujerba's on the sky continent of Dorstonis, and the magicite mine we're
+  looking for is in Bhujerba. If we're going to save the girl, we start there. You ready to leave?" and, after "I'm
+  really ready.", `常駐監督.ムービー再生` plays the Strahl's departure with its subtitles ("This is the Strahl." ... "I'm
+  coming, Penelo."), writes 460, the value after the Strahl takes off, and jumps to field 862 (`byu_z01`, Bhujerba).
+- Aerodrome: the private airship desk boards the Strahl and loads `str_z0000` (event 211, [Strahl
+  scene](strahl-scenes.md)); Nono (`ノノ`) tends the ship ("Terrible news, kupo! When the Imperial fleet exploded over
+  the Westersand, the Strahl was damaged! I'm gathering the parts I need to make repairs as quickly as I can, but it
+  may take some time, kupo.").
 - Field 860 (`rbn_x01`): from story counter 1 to 800, `常駐監督.main` plays scene `rbn_x0100` (event 106), writes 830, the
   value after Vayne's scheme, and jumps to the Bridge (Dreadnought Leviathan), field 871.
 - Field 910 (`rbn_y01`): from story counter 25 to 90, `常駐監督.main` plays scene `rbn_y0100` (event 104), writes 95, the
@@ -240,6 +314,10 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
    `0x00348DF0` (`0x00349884`).
 3. `0x00348DF0` pops eight values. The seventh, the script's second argument, is passed with the current field context
    to `0x00264D60` (`0x00348E6A`-`0x00348E74`), the section 2 lookup, which keeps the low 24 bits of the id.
+4. `0x00348DF0` reads the entry's flag through `0x002673A0`, bit `0x1` of the entry's upper half (`0x00348E85`), and
+   opens the window through `0x002E16B0` only when that flag is clear (`0x00348EE0`-`0x00348EFF`). With the flag set it
+   still makes its six slot calls (`0x00348E91`-`0x00348ECA`) and fills the call record (`0x00348ED7`-`0x00348EDC`) but
+   opens no window ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)).
 
 ### Speakers, places and scenes
 
@@ -255,6 +333,8 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
   passes it to the verb, and `0x00348DF0` hands it to `0x002E16B0`. That actor's name is the second name of each pair its
   `setnpcname` calls name; `0x002E16B0` sets the actor's name flag before the window opens, and `0x00263990` shows the
   second name while that flag is set.
+- `0x00348DF0` makes that `0x002E16B0` call only for a line whose section 2 flag is clear (`0x00348EE0`); for a flagged
+  line it opens no window, so the actor's name flag is not set there.
 - An actor no `setnpcname` or `setshopname` call names keeps the name id `0xFFFF` and the empty text the record set-up
   `0x00266530` writes (`0x0026668B`, `0x0026669B`-`0x002666B4`), so its `{actor-name}` header shows no name; that line reads
   `no name shown`. A system message reads `system message`.
@@ -421,7 +501,7 @@ The steps table [`rabanastre-script-steps.tsv`](rabanastre-script-steps.tsv) has
 | `step` | the step's number in its function, from 1, in the order the function's bytes run |
 | `at` | where the step's instruction sits: its offset in section 0, the script image, of the shipped `plan_master/us` `.ebp`. For `case`, `default` and `label` it is where their code starts. For `shared template` and `same code` it is where the function or actor starts |
 | `line` | the step's line in the script listing, `-` for the `shared template` and `same code` rows |
-| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets |
+| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. A case whose values meet an earlier case's is followed by `not (x = w)` for each such earlier case `w`, so the cell names only the values the case runs on: `x = lte(78); not (x = lt(78))` runs when x is 78. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. When such a way passes a case that an earlier case overlaps, the item counts only the values that case takes: after `case lt(0x0177)`, a `case lt(0x0182)` that returns gives the item `not (x = lt(0x0182)) or x = lt(0x0177)`, which holds unless 0x0177 <= x < 0x0182. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets, and, for a case whose every value an earlier case already matches, on the case values |
 | `verb` | the verb the step calls, by its name in the [verb table](../Scripts-And-Script-Commands/verb-table.md), written `Actor.verb` for a call on another actor. Otherwise the kind of step: `if`, `else if`, `while`, `for`, `switch`, `case`, `default`, `break`, `goto`, `label`, `return`, `returnT`, `store`, `shared template` or `same code` |
 | `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test. A number with a fraction is the listing's print of a 32-bit float to nine significant digits, here and in `condition`: 1.60000002 is the float nearest to 1.6, and 2.36000005e-06 is 2.36000005 times 10 to the power -6 |
 | `addresses` | what the arguments name in the game: the actor, model, animation and motion file, effect file, event sound, camera shot, message window, request slot or variable |

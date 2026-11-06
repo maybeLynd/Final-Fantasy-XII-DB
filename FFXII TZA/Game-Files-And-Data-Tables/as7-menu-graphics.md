@@ -22,10 +22,16 @@ The files are resource kind 7, in the `in` and `ch` locale folders only:
   `Item_Clut.bin`, then the eight sheets) through `0x0032E620`, sizing each with `0x0024AB90` (a jump to `0x0032E400`) and
   allocating it from heap 2 (`0x00249810`). Request `i` fills the 16-byte slot `0x0209BEA0 + 16 × i` (status, then
   buffer at `+8`).
+- An item slot's status is `0x0032E620`'s answer, and the read's completion `0x00291C60(i)` sets it to 0
+  (`0x00291C6D`).
 - Silhouettes: the field HUD root `0x00253780` calls `0x002C8EE0`, which requests ids `0x74` (`monotone_chr.bin`) and
   `0x75` (`Char_Silhouette.as7`) into the slots at `0x0209E638`. `0x002CEB40` copies them into its widget, so the
   container's buffer sits at widget `+0xD8`. Each slot holds the request id at `+0`, which the delivery
   callback `0x002C9040(i)` clears to 0, and the buffer at `+8`.
+- For `monotone_chr.bin` `0x002C8EE0` allocates `0x880` bytes more than the file's size and, before filing the read
+  of the file's size, copies `0x440` bytes from the `clutpack_ys.bin` entry whose address `[0x0209AC30] + 0x390`
+  holds to buffer `+0x1DC0` (`0x002C8F3A`, `0x002C8F57`-`0x002C8FEF`, `0x002C8FCF`). Neither pointer is checked, so a
+  null one faults.
 
 ## Layouts
 
@@ -106,13 +112,30 @@ returns 0 when all pages decoded and 1 when one fails. Nothing bounds the output
 `0x00248500(stream, blob)` reads the mode and `b`, takes the output length from the blob (mode 0) or the stream
 (mode 3), and returns 0 for any other mode. It writes at `[0x02090788] + [0x02091090]`, advancing the cursor, until the
 count of decoded bytes reaches the length: an exact finish returns 1, an overshoot returns 0. A length of 0 returns
-1 with nothing written.
+1 with nothing written. A token is copied whole before the count is compared, so an overshooting token's bytes are
+written past the length (`0x00248664`-`0x0024866A`).
 
 ### Item pictures
 
-`0x00291D90`, the item-graphic object's procedure, copies the ten slots into the object (`+0xC8 + 16 × i`, buffer at
-`+0xD0 + 16 × i`), sets the bits under mask `0x3FF` of its word `+0x168`, and registers the `itemgra_c.tm2` buffer as the atlas
-`itemgra_c` through `0x0024A440`. `0x00292050(i)` returns slot `i`'s buffer when its bit is set.
+`0x00291D90(object, message)`, the item-graphic object's procedure, copies the ten slots into the object
+(`+0xC8 + 16 × i`, buffer at `+0xD0 + 16 × i`), sets the bits under mask `0x3FF` of its word `+0x168`, and
+registers the `itemgra_c.tm2` buffer as the atlas `itemgra_c` through `0x0024A440`. `0x00292050(i)` returns slot `i`'s
+buffer when its bit is set. It takes the object
+from `[0x0209AC30] + 0x300` and returns 0 when that is null or the bit is clear (`0x00292061`, `0x00292073`).
+
+`0x00291D90` keeps a state in bits `0xF0000` of its dword `+0x168` and returns 0 for every message:
+
+- message 1 stores the object at `[0x0209AC30] + 0x300` (`0x00291F96`), makes the dword `0x10000` (state 1), zeroes the
+  ten slot copies and attaches the object (`0x00247950(object, 0)`); message `0x12` sets `[0x0209AC30] + 0x300` to 0
+  (`0x00291DD2`); any other message but 2 goes to `0x005C5230`, which returns 0;
+- on message 2, state 1 becomes 2 (`0x00291F78`). In state 2 it copies the slots in order up to the first whose
+  status is not yet 0 (`0x00291EE7`). It registers the atlas into `+0xC0` with `0x0024A440(buffer, "itemgra_c", 2)`
+  when slot 0's status is 0, `+0xC0` is 0 and the buffer is non-null (`0x00291F03`-`0x00291F32`);
+- only when all ten statuses are 0 does it set the bits under `0x3FF` and make the state 4 (`0x00291F41`-`0x00291F6C`);
+- state 5 becomes 6 and goes on into state 6 (`0x00291E1E`). State 6 waits while any of the ten requests is pending
+  (`0x0032E4D0`, `0x00291E4A`), then releases the atlas (`0x0024A680(+0xC0, 0)`) and zeroes `+0xC0`, the ten slot
+  copies, the slot bits and byte `+0x16B`, and copies bits `0xF00000` into the state (`0x00291EA6`-`0x00291EBB`);
+- state 7 sends a close request (`0x00244F00`, `0x00291E14`); every other state does nothing.
 
 The list item procedure `0x00292390` takes a graphic id from message `0x0C` (payload word `+2`) and decodes on its next
 update (message 2):
@@ -127,7 +150,7 @@ update (message 2):
 The id is signed. On the update the procedure does nothing for an id with bit `0x8000` set (`0x0029269A`-`0x0029269D`).
 For any other id it takes slot `(id >> 6) + 2` through `0x00292050`, which shifts 1 left by the slot with a 32-bit shift,
 keeps the low 16 bits and tests them against the object's word `+0x168` (`0x00292063`-`0x0029206D`); the shift counts the
-slot modulo 32.
+slot modulo 32: the bits tested are `(1 << (slot & 31)) & 0xFFFF & [object + 0x168]`.
 
 `0x00291D90` sets the bits under mask `0x3FF`, one per slot, so sheets 0 to 7 answer and ids 0 to 511 (512 pictures,
 highest 511) decode. An id whose slot modulo 32 is 10 to 31 finds no container: ids 512 to 1919, and the same band in
@@ -148,11 +171,68 @@ The toggle and the last sheet are shared by every item picture, so the atlas hol
 once: a third decode overwrites the older one, and both are drawn with the palette of the last sheet
 decoded, so two items from different sheets on screen together show one in the wrong colours.
 
+Message `0x0C` comes from the description box builder `0x00293170` ([Inventory screen](../Menus-And-HUD/inventory-screen.md)
+lists its callers and the kind each passes). The builder keeps the box at `[[0x0209AC30] + 0x2F8] + 0xC0`
+(`0x00293286`), the one store of the box pointer, and of the code that reads that word back only `0x0029329F` sends
+message `0x0C`, through `0x00247510`. A new box sends it to itself on message 1, forwarding the line and entry
+pointers the builder passed at creation (`0x00292ACF`-`0x00292AD9`, `0x00293238`-`0x00293266`).
+
+Ten other places in the code store message number `0x0C` and call a procedure through a pointer. Each puts a
+number from `0x8001` to `0x8102` at payload `+8`, where the box reads the line's address (`0x0023C37F`, `0x0023D1CD`,
+`0x0023D326`, `0x00241ABA`, `0x00241BA6`, `0x00277DF5`, `0x00277E68`, `0x00278E0A`, `0x0027E436`, `0x00551ADD`).
+
+The id is the equipment row. The builder has the line composed by `0x00292B70`, which calls the kind's filler from
+the 16-entry table `0x01E0C490` (`0x00292D08`-`0x00292D3B`). Only the fillers of kinds 1 to 5 (weapons, ammunition,
+shields, head and body pieces, accessories) set byte `+0` to 1, and each stores the item id minus `0x1000` as
+word `+2` (`0x00295985`-`0x00295991`, `0x002953ED`-`0x002953F8`, `0x00294BDF`-`0x00294BFF`, `0x0029406F`-`0x0029408F`,
+`0x0029337E`-`0x0029339E`). No table and no field of the equipment row takes part.
+
+Every other kind leaves byte `+0` at 0. The fillers of kinds 6 to 10 and 12 write 0 there (`0x002948B7`,
+`0x00295811`, `0x00293E60`, `0x00293F82`, `0x00294AF2`, `0x00295762`), those of kinds 14 and 15 leave the cleared buffer,
+and kinds 0, 11 and 13 have no filler, so `0x00292B70` returns 0 and no message is sent (`0x00292D16`). With byte
+`+0` clear the procedure stores -1 as the id (`0x0029254B`-`0x0029257A`) and shows no picture.
+
+In all nine `battle_pack.bin` the equipment table (directory entry `+0x38`) has 557 rows, so the ids run from 0
+to 556: 64 on each of sheets 0 to 7 and 45 above 511. The party can hold rows 0 to 419 only, the 420 equipment
+counts of [Item and ability ids](../Engine-Core/item-and-ability-ids.md), which fill sheets 0 to 5 and
+pages 0 to 35 of sheet 6. The 267 shop lists hold 694 equipment rows among their 2,512, 248 distinct ids from 1
+to 415.
+
+The party table's starting equipment goes past row 419 (91 equipment words, 66 distinct ids). On sheet 7 are the
+weapon 468 and off hand 469 of Lamont (row 10), the off hand 469 of Larsa (row 13), 485 of Reddas (rows 14 and
+16) and 459 of Shemhazai (row 34); above 511 are the body pieces 544 to 556 of the thirteen Esper rows 27 to 39
+([Party table](../Party/party-table.md)).
+
+A member's worn pieces reach the box through the Equip screen: `0x0027F210` copies the current member's five
+equipment words into the menu block's `+0xD48 + 32 × k`, and `0x003FF920(slot)` sends that slot's word when the
+slot cursor moves (`0x003FF77A`) or the member changes (`0x003FF545`). That screen's member steps pass over records
+with flag bit `0x2` (guests) or a member id of 6 or more: the member-record panel sets `+0xD3C` bit `0x10`
+unless the screen is Status (`0x002CC07E`-`0x002CC097`, `0x002C24BF`-`0x002C24CE`).
+
+For an id from 448 to 511 the procedure decodes a page of `item_gra07`: 1,536 zero bytes at the box's `+0x2C8`,
+the first 24 of the picture's 96 rows. The copy still takes 6,144 bytes, so rows 24 to 95 show the buffer's
+bytes 1,536 to 6,143: 0 in a box that has decoded nothing yet, since `0x002465F0` clears all `0x102D0` bytes when
+`0x00244F50` builds it (`0x00246626`), and otherwise the rest of the last picture that box decoded.
+
+The palette moves to `Item_Clut + 7 × 1,024`, the first byte past the 7,168-byte buffer, so the colours are the
+1,024 bytes that follow it, the zero bytes taking the first 4. Nothing in the code fixes them: `0x00291C80`
+allocates the size the file-size table gives, 7,168 for kind 7 id `0x99` (`0x00291CD2`-`0x00291CE0`), and
+`0x00249810` hands that size unchanged to `0x0036A190` (`0x00249816`, `0x00249822`).
+
 ### Silhouettes
 
 `0x002CEE00(index, flags)` stores the index at widget `+0x10D`; an index above 5 clears the decode bit. The Gambits
 screen passes the member's word `+0x60` when it reloads the centre pane (`0x0056A044`) and -1 when it closes
 (`0x00567A52`).
+
+The widget is `[0x0209AC30] + 0x308`, and with a null one `0x002CEE00` does nothing (`0x002CEE11`). It stores the flags
+at `+0x10C` (`0x002CEE13`). The compare with 5 is unsigned (`0x002CEE24`), so -1 also clears the decode bit, bit `0x2`
+of `+0x10C` (`0x002CEE45`).
+
+An index of 0 to 5 sets dword `+0xC4` of the widget at `[0x0209AC30] + 0x310` to 1 and
+one of 6 or more sets it to 0, each only when that widget exists (`0x002CEE26`-`0x002CEE39`, `0x002CEE4F`-`0x002CEE67`);
+a negative index leaves it. Every call with a widget then stores the UI tick counter `0x0208F570` at `+0x104` and 6
+at `+0x100` (`0x002CEE71`-`0x002CEE7E`).
 
 `0x002CEFD0` maps the index through `{0, 1, 3, 2, 4, 5}` to a group `g`, allocates two 264,192-byte buffers from heap
 2 on first use, decodes pages `516 × g` (258 pages) into the first and the next 258 into the second, and registers

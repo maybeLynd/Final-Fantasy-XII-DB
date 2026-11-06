@@ -59,6 +59,15 @@ Each line is read from the shipped files in these steps:
 7. every one-byte text code through the glyph table of the shipped `us` font `font00.dat`
    ([Fonts](../Menus-And-HUD/fonts.md)).
 
+`0x003FFB00(code, out)` is given the code's `0x38` byte (`0x002B52DB`) and returns 3 or 4, the bytes it reads from
+there. When bits `0x7` of the first payload byte are clear, the id is the signed byte that starts record
+`p1 & 0x7F` of `0x0039BA00`, `p1` being the second payload byte, and it returns 3 (`0x003FFB47`-`0x003FFB59`).
+
+Otherwise the id is `(p1 & 0x7F) << 8` ORed with `p2 & 0x7F`, `p2` being the third payload byte, with `0x8000` for
+bit `0x40` of the first payload byte and `0x80` for its bit `0x20` (`0x003FFB0F`-`0x003FFB3F`, `0x003FFB5E`-`0x003FFB72`);
+bit `0x80` of the first byte is dropped, and it returns 4. The text interpreter reads the id as a signed 16-bit
+word (`0x002ADDA0`).
+
 The record text inserts two names this way, id 46 "Tomaj" (hunt 128) and id 726 "Burrogh" (hunt 144), and both
 strings of each pair are the same, so the flag changes nothing in these texts.
 
@@ -93,7 +102,7 @@ strings of each pair are the same, so the flag changes nothing in these texts.
 | `done_from` | the lowest progress byte at which the row is marked done | `0x0037EE10`, `0x00577C30` |
 | `part_1`-`part_5` | the text of each part; `0x02` line breaks become spaces | `0x0037E8D0`, `0x00578450` |
 | `part_2`, `part_3`, `part_4` | parts 2 to 4, which all 45 hunts have: part 2 opens with `Hunt accepted.` on 42 hunts and tells where the mark is; part 3 tells of the mark's defeat and where to report or take the reward on 42 hunts, all but Paradise Risen (the gil snapper sealed in the urn), Battle on the Big Bridge and A Dark Rumor; part 4 is the report, opening with `Hunt reported` on 40 hunts and `Reward received` on 3 | `0x0037E8D0`, `0x00578450` |
-| `explanation` | a one-line summary: the name, the petitioner, the progress of each part and of the done mark | |
+| `explanation` | a one-line summary: the name, the petitioner, the progress of each part and of the done mark; for hunt 165, also the Site 3 and Site 11 Keys its scripts give and the locked gates they open | |
 | `mark` | the mark: its bestiary rows with the Clan Primer entry, the maps whose scripts place it with the level, the Trial Mode rows, and the map zone the hunt map marks with its location word and field id, or, for a hunt with no step labelled with the mark, the zone its one step marks or that no step marks one ("The mark" above) | `0x0037EB90`, `0x003BC160` |
 | `reward` | the reward package with what it gives, its selector, and the maps whose scripts grant it ("The reward" above) | `0x00344C60`, `0x00290130` |
 | `posted` | where the bill is posted and the story progress, clan rank and earlier hunts its talk tests ("When a bill is posted" above) | the scripts' `getclanrank`, `isquestorder`, `isquestclear` and story progress tests |

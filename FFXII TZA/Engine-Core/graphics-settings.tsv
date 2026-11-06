@@ -53,7 +53,7 @@ block_off	address	shader_constant	cbuffer_off	config_key	default	menu_ids	menu_l
 +0x0D8	0x02CB80A8	chrFresnelSpecularClampValue	0x240	chrFresnelSpecularClampValue	-0.8	97	Fresnel Specular Clamp Value
 +0x0DC	0x02CB80AC	chrFresnelSpecularSkinIntensity	0x244	chrFresnelSpecularSkinIntensity	2	98	Fresnel Specular Skin Intensity
 +0x0E0	0x02CB80B0	hChrCmrLghtXMdifir	0x248	-	0	63	Hair Camera Light Direction X Bias
-+0x0E4	0x02CB80B4	hChrCmrLghtYMdifir	0x24C	-	0.001	64	Hair Camera Light Direction Y Bias
++0x0E4	0x02CB80B4	hChrCmrLghtYMdifir	0x24C	-	0.000999	64	Hair Camera Light Direction Y Bias
 +0x0E8	0x02CB80B8	hChrCmrLghtZMdifir	0x250	-	0	65	Hair Camera Light Direction Z Bias
 +0x0EC	0x02CB80BC	hChrSpculrPwrMdifir	0x254	-	0.45	66	Hair Specular Power Modifier
 +0x0F0	0x02CB80C0	hChrSpculrPwryCmrDistncFctr	0x258	-	0.03	67	Hair Specular Power Eye-Camera Distance Factor
@@ -91,9 +91,9 @@ block_off	address	shader_constant	cbuffer_off	config_key	default	menu_ids	menu_l
 +0x170	0x02CB8140	chrCubeMapFactor	0x2D8	-	0.8	107	Cube map factor
 +0x174	0x02CB8144	chrIrrCubeMapIntensity	0x2DC	-	2.2	113	IBL Diffuse intensity
 +0x178	0x02CB8148	drawNormal	0x2E0	-	0	30	Display normal only
-+0x17C	0x02CB814C	chrDebugTextureDensity	0x2E4	-	-	32	Display texture density
++0x17C	0x02CB814C	chrDebugTextureDensity	0x2E4	-	0	32	Display texture density
 +0x180	0x02CB8150	chrUseVertexColor	0x2E8	-	1	31	Use vertex color
-+0x184	0x02CB8154	chrIrrCubeMapFactor	0x588	-	-	-	-
++0x184	0x02CB8154	chrIrrCubeMapFactor	0x588	-	0	-	-
 +0x190	0x02CB8160	mShadowCascadeProjection0	0x2F0	-	-	-	-
 +0x194	0x02CB8164	mShadowCascadeProjection0[4]	0x300	-	-	-	-
 +0x198	0x02CB8168	mShadowCascadeProjection0[8]	0x310	-	-	-	-
@@ -261,7 +261,7 @@ block_off	address	shader_constant	cbuffer_off	config_key	default	menu_ids	menu_l
 +0x424	0x02CB83F4	m_iMapPCFBlurForLoopStart	0x5A8	-	-	-	-
 +0x428	0x02CB83F8	m_iMapPCFBlurForLoopEnd	0x5AC	-	-	-	-
 +0x42C	0x02CB83FC	mMapEnableHeightFade	0x5B8	mMapEnableShadowFade	0	-	-
-+0x42D	0x02CB83FD	mChrEnableHeightFade	0x5BC	-	-	-	-
++0x42D	0x02CB83FD	mChrEnableHeightFade	0x5BC	-	0	-	-
 +0x430	0x02CB8400	mMapShadowValueLerpMin	0x5C0	-	-	-	-
 +0x434	0x02CB8404	mChrShadowValueLerpMin	0x5C4	-	-	-	-
 +0x438	0x02CB8408	mShadowFadeSpeed	0x5D0	mMapShadowFadeSpeed	0	-	-

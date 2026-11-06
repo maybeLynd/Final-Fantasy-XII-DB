@@ -19,8 +19,12 @@ addresses: "0x0017DE10, 0x00253C70, 0x00252B60, 0x00252C80, 0x00366870, 0x01E0C2
 
 `0x0017DE10` answers whether the R2 binding is held. It reads the stored word directly: `0x00197710(manager, 0, 0, 9)`
 returns slot 9 of the first profile, `[Keyboard1]`, from `0x01F80F90` (`0x0017DE2A`-`0x0017DE32`, `0x0019775A`-`0x0019776F`),
-not from the published copy, which has L2 and R2 cleared ([keymap.ini](keymap-file.md)). The code is tested on the current input device (`0x0079E6A0`). It is a
-level, not a press; the press is made by the latch below.
+not from the published copy, which has L2 and R2 cleared ([keymap.ini](keymap-file.md)). The code is tested on the
+first keyboard slot of the input mapper `[0x00796E20() + 0xDF8]` (`0x0017DE16`-`0x0017DE1B`, `0x0079E6A0`), the pointer at
+mapper `+0x118`, whose key byte `+0x30` + code - 28 it reads.
+
+`0x0079E6A0` answers 0 with no keyboard there or for a code below 28 or above 283 (`0x0079E6A0`-`0x0079E6CB`), so a
+mouse or pad code bound to R2 never fires. It is a level, not a press; the press is made by the latch below.
 
 ### The latch
 
@@ -44,8 +48,10 @@ does not flip the toggle.
 `0x00252B60(toggle, force)` decides what reaches the flag (`0x00252B60`-`0x00252C7F`):
 
 1. With input snapshot bit `0x2000000` set it does nothing (`0x00252B7A`-`0x00252B86`).
-2. When the combined action availability mask `0x002E0FA0` has bit `0x40`, bit `0x200` or bit `0x400` set, or `0x00237260` answers non-zero, the
-   toggle becomes 0 with `force` 1 (`0x00252B8C`-`0x00252BB3`). Bit `0x200` also sets the quiet bit through `0x00366950`.
+2. When the combined action availability mask `0x002E0FA0` has bit `0x40`, bit `0x200` or bit `0x400` set, or
+   `0x00237260` answers non-zero, the toggle becomes 0 with `force` 1 (`0x00252B8C`-`0x00252BB3`). Bit `0x200` also sets
+   the quiet bit through `0x00366950` when bit `0x40` is clear (`0x00252B90`-`0x00252B9B`); `0x00237260` is asked only
+   when bits `0x40`, `0x200` and `0x400` are all clear (`0x00252BA2`-`0x00252BAF`).
 3. A `0x020927CC` of 1 does the same (`0x00252BB6`-`0x00252BC1`).
 4. The battle mode register `0x0035C6F0` can replace the toggle, in the next two steps.
 5. With bit `0x4` or `0x8` of the register set, the toggle becomes input snapshot bit `0x200`, or 0 when availability bit `0x400` is set
@@ -60,9 +66,13 @@ does not flip the toggle.
 ### The flag
 
 `0x00252C80(value, force)` writes the force fight mode flag `0x01E0C2B8` (`0x00252C80`-`0x00252D05`). A value of 1 clears the
-flag (force fight mode off, the party fleeing), which is Escape Mode on. A value of 0 sets it back to 1, or to 0 when the area's force-fight feature is off
-(`0x003BA2E0`). Without `force` it writes only when the flag would change, and not at all while `0x003603B0` or
-`0x003603C0` answers non-zero.
+flag (force fight mode off, the party fleeing), which is Escape Mode on. A value of 0 sets it back to 1, or to 0 when
+the area's force-fight feature is off (`0x003BA2E0`).
+
+Without `force` it writes a value of 1 only while the flag is non-zero and a value of 0 only while the flag is 0
+(`0x00252CBA`-`0x00252CCE`), and not at all while `0x003603B0` or `0x003603C0` answers non-zero: a flag at 1 stays 1 under a
+value of 0 even while the feature is off, and a flag at 0 is written 1 and then the feature value. It returns 1 when
+it writes and 0 when it does not (`0x00252CB6`, `0x00252CEA`-`0x00252CEF`).
 
 The flag has one other writer. `0x00254EA0(v)` is the body of the script verb `0x334` `setforcefightmode` (handler
 `0x003444D0`, call `0x003444E2`): it writes 1 when `v` is non-zero and `0x003BA2E0` answers non-zero (`0x00254EB1`), and 0
@@ -74,7 +84,9 @@ The arming state is the word `0x022CBE1A`. Both steps return at once when the ba
 (`0x00366874`-`0x0036687B`, `0x003667E4`-`0x003667EB`).
 
 1. `0x00366870` counts frames in `0x022CBE18`. On the first frame, bit `0x1` clear, it restarts the count and starts a
-   repeating sound, block slot `0x52`, and sets bit `0x10` (`0x0036688D`-`0x003668E0`).
+   repeating sound, block slot `0x52`, and sets bit `0x10` (`0x0036688D`-`0x003668E0`). With bit `0x10` already set, or
+   when `0x003A1180(0x52)` returns -1, it starts no sound; a sound it starts plays through
+   `0x002DF220(handle, 0x40, 0x7F)`, its handle in `0x022CBE1C` (`0x00366892`-`0x003668C2`).
 2. When the count reaches `0x022CBE08` it pins the count there and sets the armed bit, bit `0x4`, and on that frame only
    also bit `0x8` (`0x00366902`-`0x00366918`).
 3. Every frame it clears bits `0x2` and `0x40` and sets bit `0x1` (`0x0036691C`-`0x00366928`).
@@ -114,7 +126,7 @@ to `0x01E0C2B8`.
 
 ### The escape widget's fields
 
-The escape widget is the `0xE0`-byte widget at `0x022CBE20` with procedure `0x00366B80` (State below).
+The escape widget is the `0xE0`-byte widget kept at `0x022CBE20` with procedure `0x00366B80` (State below).
 
 `EscapeWidget` (`0xE0` bytes, offsets from the start of the record):
 
@@ -122,7 +134,7 @@ The escape widget is the `0xE0`-byte widget at `0x022CBE20` with procedure `0x00
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x00366B80` |
 | `+0xC0` | `void*` | atlas | the image label battle_4_c (the name at `0x009152B0` through `0x01E0C1E8`), looked up with `0x0024A5A0` on construction (`0x003670DC`-`0x003670E1`); no function reads it back |
-| `+0xC8` | `void*` | latch | the address of the latch words `0x022CBE18` that `0x00366740` passes as the construct message's second argument (`0x00367096`-`0x0036709A`). The draw fills the gauge from the count word `+0x00` against the delay `0x022CBE08` (`0x00366C5B`-`0x00366C6A`, `0x00366CE6`-`0x00366D0D`); the update reads the arming word `+0x02`: bit `0x80` runs the disarm `0x003667E0` (`0x00366F0E`-`0x00366F1B`), bit `0x8` or 5 starts the pulse and is cleared (`0x00366F40`-`0x00366F8C`), bit `0x4` keeps the pulse running (`0x00366F9C`-`0x00366FAC`), bits `0x1` and `0x2` fade the picture in and out (`0x00366FE6`-`0x0036701D`) |
+| `+0xC8` | `void*` | latch | the address of the latch words `0x022CBE18` that `0x00366740` passes as the construct message's second argument (`0x00367096`-`0x0036709A`). The draw fills the gauge from the count word `+0x00` against the delay `0x022CBE08` (`0x00366C5B`-`0x00366C6A`, `0x00366CE6`-`0x00366D0D`); the update reads the arming word `+0x02`: bit `0x80` runs the disarm `0x003667E0` (`0x00366F0E`-`0x00366F1B`), bit `0x8` or `0x20` starts the pulse and is cleared (test cl, `0x28` at `0x00366F51`; `0x00366F40`-`0x00366F8C`), bit `0x4` keeps the pulse running (`0x00366F9C`-`0x00366FAC`), bits `0x1` and `0x2` fade the picture in and out (`0x00366FE6`-`0x0036701D`) |
 | `+0xD0` | `i16` | alpha | the picture's alpha, 0 to 128: set to 128 when a pulse starts with bit `0x20` (`0x00366F5B`); rises by 128 / [`0x022CBE0C`] per update while arming bit `0x1` is set and falls to 0 while bit `0x2` is set, when no pulse runs (`0x00366FE6`-`0x00367037`); while a pulse runs the draw sets it to 96 + 32 sin(pi x frames since `+0xD4` / 30) (`0x00366BEC`-`0x00366C29`). The draw draws nothing while it is 0 (`0x00366BD0`) and scales each node's alpha `+0x58` by it (`0x00366DDC`-`0x00366E10`) |
 | `+0xD2` | `i16` | brightness | the picture's brightness scale: 255 when a pulse starts with bit `0x8` and without bit `0x20` (`0x00366F71`-`0x00366F80`), 128 with bit `0x20` (`0x00366F5B`); each update takes 128 / [`0x022CBE14`] from it down to 128 (`0x00366FB4`-`0x00366FD0`). The draw multiplies the draw record's brightness `+0x5A` by it over 128 (`0x00366D6F`-`0x00366D86`) |
 | `+0xD4` | `u32` | pulseStart | the frame counter `0x0208F570` when the pulse started (`0x00366F90`-`0x00366F96`); the draw's pulse takes the frames since then (`0x00366BEC`-`0x00366BF5`) |
@@ -150,8 +162,10 @@ No other instruction reaches these four.
 - The flag is the opposite of the toggle: Escape Mode on is the force fight mode flag at 0, the fleeing state of
   [Force fight mode](../Engine-Core/force-fight-mode.md).
 - A script that forces a fight sets the flag through `setforcefightmode` (`0x00254EA0`); the next frame's applier
-  writes it again only when the toggle changes, or when an availability bit forces it.
-- The one-second delay is `0x022CBE08`, set from the frame-time base when the sound object is built.
+  leaves that 1 while it passes 0, writes 0 over it while it passes 1 (Escape Mode armed, `0x00252CBE`), and writes
+  whatever it passes when an availability bit forces it.
+- The one-second delay is `0x022CBE08`, set from the frame-time base when the escape widget `0x00366B80` is built
+  (`0x003670B7`).
 
 ## Related
 

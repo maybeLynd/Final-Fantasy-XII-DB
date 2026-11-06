@@ -12,8 +12,15 @@ addresses: "0x00409250, 0x00422380, 0x003E5AD0, 0x003A4290, 0x00426770"
 them are present, and the special-id bones of its `@FCP` block.
 
 The two points are the weapon's blade and grip. A held weapon is a child record of the character that holds it, and
-the anchor query finds a point on a child by key (`0x00426770`; [Effect anchors and targets](effect-anchors-and-targets.md),
-point kinds 4 and 5, and the fallback to a child's `n_grip`):
+the anchor query finds a point on a child by key (`0x00426770`;
+[Effect anchors and targets](effect-anchors-and-targets.md), point kinds 4 and 5, and the fallback to a child's
+`n_grip`).
+
+`0x00426770` asks `0x00421E20` for the point on the record itself, whose index is its word `+0x00` (`0x00426776`,
+`0x004267B7`), then on its first child `+0x08` (`0x004267FC`), then through `0x0042EF90` with the body `0x0042DA00` on
+that child's children `+0x08` and next siblings `+0x0A`, each with its descendants (`0x00426829`, `0x00426844`).
+Each hit replaces the stored result (`0x004267C1`, `0x00426806`, `0x0042DA1F`), so the last record in that order with
+the point gives it; with no hit it returns null (`0x0042684E`-`0x00426853`). The two points:
 
 | Point | Key | Point id (`0x00422380`) |
 |---|---|---|
@@ -30,7 +37,8 @@ Each row is read from the model's `.cm` with the layouts of [Model files](model-
 1. **The node keys.** Node *n* of the `.cm`'s `@FTR` skeleton has the key `0x00409250` returns: bits `0xFFF` of the node
    record's first dword, or the `u16` at record `+0x08` when the record's flag bit `0x40000000` is set.
 2. **The special-id bones.** `0x003E5AD0` reads section 1's `u16[32]` at `+0x14C` for special ids 0-31, and the
-   `@FCP` block's `+0x3A`, `+0x3C` and `+0x3E` for ids `0x104`-`0x106`; `0xFFFF` means no bone.
+   `@FCP` block's `+0x3A`, `+0x3C` and `+0x3E` for ids `0x104`-`0x106`; `0xFFFF` means no bone. It also returns
+   `0xFFFF` for any other id, and for a model record with no `@FCP` block (`+0x400` = 0, `0x003E5AD7`-`0x003E5ADA`).
 3. **The equipment,** the rows of [Equipment list](../Items-Equipment-Shops-And-Licenses/equipment-list.md) whose
    `model_id` names the model, by their category and name.
 

@@ -45,7 +45,7 @@ check `0x002FFB60` (`0x002FFC7C`, its reason 6). In order:
 1. Code 2 when the unit lacks bit `0x10` of its first byte or a stats record, when it has status bit `0x1`, `0x2` or
    `0x80000000` and `0x00377C20()` is 0, or when it is on the enemy side and the byte at `[unit+0x6A0]` has any of
    bits `0x8`, `0x10`, `0x20` or `0x40` (`0x30` or `0x48`).
-2. Code 4 when `0x00322C50(0x14, id)` rejects the id.
+2. Code 4 when `0x00322C50(0x14, id, 1)` rejects the id (returns 0, `0x002FFD75`-`0x002FFD94`).
 3. Code `0x24` for a party-side unit without Confuse or Berserk (status `0x08000020`) while
    `0x00253B90()` is 1 (FLEEING, `0x01E0C2B8` = 0), unless the id is `0x113` (Dismiss) or `0x95` (Dismount).
 4. Code `0x2C` for ids `0x106`-`0x112` (the summons) while `0x0030D9A0()` is 1 - bit `0x1` of
@@ -62,9 +62,16 @@ check `0x002FFB60` (`0x002FFC7C`, its reason 6). In order:
    `0x18` or `0x19` when the row's kind `+0x1E` is 0, 1, 2 or 3 and bit `0x4`, `0x8`, `0x10` or `0x20` of the battle flags
    `0x022C314C` is set. Those bits are set and cleared by the battle orders `0x413B`-`0x413E` /
    `0x4143`-`0x4146` ([Battle orders](battle-orders.md)).
-7. **Ownership and license:** `0x00306480(id, stats)` returns `0x0F` when `0x003060E0` returns non-zero,
-   `0x10` when the license check `0x00323EC0` returns 0, else 0.
+7. **Ownership and license:** `0x00306480(id, stats, flag)` returns `0x2C` for a null stats record
+   (`0x00306490`-`0x00306495`), `0x0F` when `0x003060E0(id, stats, flag)` returns non-zero,
+   `0x10` when the license check `0x00323EC0` returns 0, else 0. It hands its own third argument on unchanged
+   (`0x003064A6`): 0 from the calls at `0x002FFE9D`, `0x00317BEC`, `0x00317D1D` and `0x0031F941`, 1 from `0x0031FA2B`.
 8. **Cost:** `0x00303BD0(unit, id)`.
+
+In step 6, `0x0031A7B0` itself first returns 4 when `0x00322C50(0x14, id, 1)` rejects the id (`0x0031A7D5`), and 0 for a
+stats record whose kind byte `+0x05` is 1 (`0x0031A7EA`) or a row kind above 3; a null stats record goes on to the
+kind test. The row is 0 when the action table slot `0x02EBF138` is 0 or `0x0020E600` resolves its `+0x0C` to null
+(`0x0031A837`), and the kind read at `0x0031A839` then faults.
 
 ### Action kinds
 
@@ -75,18 +82,26 @@ Byte `+0x1E` of an action row is its kind; the names come from the members of ea
 
 ### Ownership
 
-`0x003060E0(id, stats, 0)` checks ownership for the party side only; enemies pass. Kind 0 and 255
+`0x003060E0(id, stats, flag)` returns 4 when `0x00322C50(0x14, id, 1)` rejects the id (`0x0030610D`-`0x00306116`). It
+checks ownership for the party side only; enemies and a null stats record pass (`0x00306120`-`0x0030612F`). Kind 0 and 255
 pass. Kinds 1,
 2, 5 and 6: a guest (type id `0x07`-`0x19`) or Esper (`0x1B`-`0x27`) passes when the row's ability id
 `+0x22` is one of the ten `i16` at `+0x58` of its record in the table at `0x02EBF130`; anyone else when
 `0x0030B0E0(+0x22)` (the owned count for that id class, through the handler table at `0x01EEBD10`) is above
-0. Kind 3: `0x003037A0` (below). Kind 9: only an Esper passes. Kind 4 and kinds 7, 8 and 10 return 5.
+0.
+
+Kind 3 with `flag` 0: `0x003037A0` (below), for the unit `0x0031B860` finds for the stats record (`0x003061EE`-`0x003061FC`).
+Kind 3 with `flag` non-zero: a row `+0x22` of `0xFFFF` passes, and any other passes when `0x00309B60(+0x22, 0)` is
+above 0, else `0x0F` (`0x003061B1`-`0x003061CF`). Kind 9: only an Esper passes. Kind 4 and every kind from 7 to 254
+other than 9 return 5, among them the shipped kinds 7, 8 and 10 (`0x003061A3`, `0x003062F4`-`0x00306300`).
+
 `0x00306480` turns any non-zero result into `0x0F`. `0x003093B0(row)` returns a kind-3 row's `+0x22`, and `0xFFFF`
 for any other kind or a null row; the battle menu `0x0031EB20` asks it (`0x0031F090`).
 
 ### License
 
-`0x00323EC0(stats, id)` passes (returns non-zero) for anyone other than a main party
+`0x00323EC0(stats, id)` returns 0 when `0x00322C50(0x14, id, 0)` rejects the id (`0x00323ED2`-`0x00323EE9`). It passes
+(returns non-zero) for a null stats record and for anyone other than a main party
 member (stats `+0x05` = 0 and type id below 7), and for rows with bit `0x2000` of `+0x2C`. For the
 Quickenings (`0xD0`-`0xE1`) a main party member passes when the Quickening's index in the character's
 record (`0x0030A330`) is below `0x00324020(stats)`; for any other row the License Board check
@@ -94,7 +109,8 @@ record (`0x0030A330`) is below `0x00324020(stats)`; for any other row the Licens
 
 ### Cost
 
-`0x00303BD0(unit, id)` checks the costs in this order:
+`0x00303BD0(unit, id)` returns 0 for a null unit (`0x00303BE3`); otherwise it checks the costs in this order and
+returns the first code that applies, or 0 when no test refuses (`0x00303CAC`):
 
 | Code | Test |
 |---:|---|

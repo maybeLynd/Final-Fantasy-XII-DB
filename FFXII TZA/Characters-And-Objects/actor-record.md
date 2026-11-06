@@ -31,7 +31,10 @@ record count at `+0x20` ([actor managers](actor-managers.md)):
    receives each, and each record's byte `+0x03` becomes `(class << 5) | sequence`; the slot's
    per-class counts at `+0x1D0` (four `u16`) are added up and their running offsets written to
    `+0x1D8`;
-4. `0x00266530(slot, block, i)` initialises every record.
+4. `0x00266530(slot, block, i)` initialises every record, for `i` from 0 to the count `+0x20` less one
+   (`0x00267B63`-`0x00267B82`), and the block is returned (`0x00267B89`). The per-class counts are added to the
+   words already at `+0x1D0` (`0x00267AD4`), and the byte `+0x03` keeps the sequence's low five bits
+   (`0x00267AE8`-`0x00267B13`).
 
 `0x0046BA50(m)` returns `[slot + 0x1F0]` of manager `m` (`0x00263FF0`) when the slot's `+0x10` bit `0x1` is set, and
 otherwise an empty table at `0x02CA6050`, whose count it zeroes; render and effect code walks records through it
@@ -54,15 +57,20 @@ descriptor table at `0x01E0C328` has eight entries of `{u8 class, u8 sub, u16 si
 `0x00266AD0(record)` plants the pointers from the sequence in `+0x03 & 0x1F`: `+0xB8` = the movement
 context, `+0xC0` = the secondary context, `+0xA0` = the request entry pool, `+0xA8` = `+0xA0` plus
 `0xC8`, or `0xA0` when the descriptor's `sub` is 1. The request entries are 20 bytes each and the
-wait slots 40, so the wait slots end exactly at the record's size on every row.
+wait slots 40, so the wait slots end exactly at the record's size on every row. A "no context" cell
+is a stored null (`0x00266AFE`, `0x00266B05`, `0x00266B1F`, `0x00266B40`). A sequence above 7 returns before
+any store (`0x00266ADC`-`0x00266ADF`), leaving all four pointers as they were.
 
 ### The class byte
 
 The bits under mask `0xE0` of `+0x03` are the class and bits `0x1F` the sequence. The movement code accepts class 3
 (`+0x03 & 0xE0 == 0x60`); the position read `0x00265020` accepts classes 1 and 3; the `setline` verb
-writes class 2 ([battle units](battle-units.md)). `0x00266BD0` seeds the flag dword `+0x1C` by
+writes class 2 ([battle units](battle-units.md)).
+
+`0x00266BD0` seeds the flag dword `+0x1C` by
 sequence: 0 for sequence 0, `0x38` for 1 and 2, `0x40` for 3 and 4, `0x30004` for 5 and 6, `0x34C85`
-for 7, and sets `+0x14` bit `0x80` (battle-unit eligible) for sequences 5 and 7. A separate nibble, bits
+for 7, and sets `+0x14` bit `0x80` (battle-unit eligible) for sequences 5 and 7; a sequence above 7 writes
+neither (`0x00266BDE`). A separate nibble, bits
 `0xF` of `+0x0E`, is what `0x00263C20` returns as the actor class nibble.
 
 ### The initialiser
@@ -116,21 +124,30 @@ for 7, and sets `+0x14` bit `0x80` (battle-unit eligible) for sequences 5 and 7.
 
 ### The request entry lists
 
-The pool at `+0xA0` holds the record's 20-byte [request entries](../Scripts-And-Script-Commands/script-requests.md#the-entry-pool), linked by index: `0x003DB580` chains
-them (`+0x00` next, `+0x01` previous, `+0x04` = `0x80000000`, `+0x10` = 0), sets the counts `+0x88`
+The pool at `+0xA0` holds the record's 20-byte
+[request entries](../Scripts-And-Script-Commands/script-requests.md#the-entry-pool), linked by index: `0x003DB580`
+chains them (`+0x00` next, `+0x01` previous, `+0x04` = `0x80000000`, `+0x10` = 0), sets the counts `+0x88`
 (channels) and `+0x89` (entries), the free-list head `+0x60` = 0 and the detached head `+0x61` =
-`0xFF`, the channel heads `+0x94` and tails `+0x8C` to `0xFF`, and clears the masks `+0x06` and
-`+0x24`. `0x003DB550(record, index)` returns `[+0xA0] + index * 0x14`, null for `0xFF`.
+`0xFF`, the channel heads `+0x94` and tails `+0x8C` to `0xFF`, and clears the masks `+0x06`,
+`+0x24` and `+0x26` (one dword store at `+0x24`, `0x003DB59B`) and the flags byte `+0x63` (`0x003DB626`).
 
-- `0x003DBF60(record, id, class)` walks every channel whose bit in `+0x06` is set, from its head,
-  returning the first entry whose `+0x04` word equals `id` or whose `+0x12 >> 1` equals `class`
-  (either filter may be -1), bounded by the entry count; `0xFF` when no entry matches.
+The `+0x10` store is a word, clearing the mode and the run state (`0x003DB5C7`). `0x003DB550(record, index)` returns
+`[+0xA0] + index * 0x14`, null for `0xFF`.
+
+- `0x003DBF60(record, id, class)` walks every channel whose bit in `+0x06` is set, from channel 0 upward
+  (`0x003DC016`) and on each from its head, returning the first entry whose `+0x04` word equals `id` or whose
+  `+0x12 >> 1` equals `class` (a negative filter is skipped, `0x003DBFDA`, `0x003DBFE8`), bounded by the entry count;
+  `0xFF` when no entry matches or the channel count is 0 (`0x003DBF77`).
 - `0x003DB640(record, channel)` tests bit `channel` of `+0x06`.
-- `0x003DB2A0(record, index)` removes an entry. An entry in state 4 (`+0x10`) or with a negative
+- `0x003DB2A0(record, index)` removes an entry. An entry in mode 4 (`+0x10`) or with a negative
   channel byte `+0x02` is on the detached list at `+0x61`, otherwise on its channel's list at
-  `+0x94[channel]`. The remover:
+  `+0x94[channel]`. It returns bit `0x1` of the entry's flags `+0x12` (`0x003DB2EF`); an index of `0xFF` returns
+  1 at once (`0x003DB2B0`), and a null record reads the flags byte at address `0x12` (`0x003DB2EA`), which faults.
+- It removes only that list's head: an empty list (`0xFF`, `0x003DB320`) removes nothing, and a non-head index is
+  left in place when it is the tail and otherwise never leaves the loop at `0x003DB326`-`0x003DB33F`. The remover:
   1. unlinks it (`0x003DC1B0`);
-  2. on a channel list, notifies the end of a mode-3 request whose `+0x06` is not `0x8000`
+  2. on the detached list, only moves `+0x61` to the entry's next (`0x003DB35E`); on a channel list, notifies the
+     end of a mode-3 request whose `+0x06` is not `0x8000`
      (`0x003DC0D0`), notifies by class (`0x00263050`) when `+0x12` is 2 or more, fixes the head and tail,
      and clears bit `channel` of `+0x06`, `+0x24` and `+0x26` when the channel empties;
   3. pushes the entry on the free list (`0x003DB650`), sets `+0x63` bit `0x2` and makes it the head.
@@ -214,17 +231,23 @@ write nothing):
 
 A manager's teardown `0x002628B0` runs in two phases.
 
-1. `0x0025B070(slot)` is the semantic cleanup, run for every slot but 4. For the class-1 and
+1. `0x0025B070(slot)` is the semantic cleanup, run for every slot but 4: its only call, `0x00262D34`, is
+   skipped when the slot is 4 (`0x00262D2C`-`0x00262D2F`). For the class-1 and
    class-3 records (the ranges
    `+0x1DA`/`+0x1D2` and `+0x1DE`/`+0x1D6`) it ends the movement context's `+0x74` or `+0x220` job
    (`0x0024CFF0`) and zeroes it.
-2. For the class-3 range it also runs `0x002693D0(record, 1)`, the per-`+0x04` teardown (`0x002E3AF0`,
-   `0x003DE5F0` or `0x002E3D00` for 1, 2 or 3) and sets the `+0x04` word to `0xFF00`; then for every
-   record with `+0x14` bit `0x80` and a unit at `+0x30` it releases the unit (`0x00234200`) and runs
-   `0x002EB780`.
-3. The owning release: the block at `[slot + 0x08]` is freed with `0x003697F0`, the pointer nulled,
+2. The job is `+0x74` of the context `[record + 0xB8]` for a record whose byte `+0x03` says class 1 and `+0x220`
+   for class 3; a job of 0 is skipped and a null record passed over (`0x0025B0A5`-`0x0025B114`,
+   `0x0025B136`-`0x0025B1A6`).
+3. For the class-3 range it also runs `0x002693D0(record, 1)`, the per-`+0x04` teardown (`0x002E3AF0`,
+   `0x003DE5F0` or `0x002E3D00` for 1, 2 or 3) and sets the `+0x04` word to `0xFF00`, whatever that word held
+   (`0x0025B1A9`-`0x0025B1E5`).
+4. Then for every record, ordinals 0 to the count `+0x20` less one, it releases the unit with
+   `0x00234200([slot + 0x28], record)` when `+0x14` bit `0x80` is set and a unit is at `+0x30`, and runs
+   `0x002EB780(record)` for every record, with or without a unit (`0x0025B200`-`0x0025B237`).
+5. The owning release: the block at `[slot + 0x08]` is freed with `0x003697F0`, the pointer nulled,
    the slot's `+0x10` bit `0x1` and `+0x200` bit `0x4` cleared and `+0x13` zeroed (`0x00262D96`-`0x00262DB3`).
-4. The slot's `+0x00`, `+0x30`, `+0xE8`, `+0x1E0` and `+0x1FC` are zeroed and `+0x17` bit `0x8` is
+6. The slot's `+0x00`, `+0x30`, `+0xE8`, `+0x1E0` and `+0x1FC` are zeroed and `+0x17` bit `0x8` is
    cleared; the live-slot totals `0x02099DB4`/`0x02099DB8` and the flag `0x02099DA1` are recomputed over
    slots 0-2; the slot's `+0x108` callback is called once with the slot and then nulled.
 
@@ -241,7 +264,7 @@ and on slot 0 state that belongs to the field. Among its calls, in order:
 | `0x003EC690` | slot 0 | releases the trap marker resource `0x02B5EC94` (`0x002EBD60(id, 0)`, `0x002E3DC0`) and zeroes it ([traps](../World-Areas-And-Travel/traps.md)) |
 | `0x003DC710` | slots 0 and 3 | each of the 16 entries of `0x14` bytes at `0x02B57F74` with state byte `+0x02` = 3, byte `+0x03` = 0 and word `+0x00` = 0 gets `+0x10` added to its dword `+0x04` (`byte +0x0F \| 0x10` when bits `0xFFFF0` come out 0), state 4, and `0x02B58170` = 1 |
 | `0x003605A0(slot)` | a bound slot | the slot's eight skip entries at `0x022CB730 + slot * 0x80` (byte `+0` = index, `+1` = slot, `+2` and qword `+8` = 0) and its armed and executed masks `0x022CB9C0` and `0x022CB9D8` ([cutscenes](../Scripts-And-Script-Commands/event-scenes.md)) |
-| `0x003E9970(slot)` | a bound slot | stops (`0x003E98B0(i)`) each of the 64 voice slots at `0x02B5D0B0` whose byte `+0x05` is the slot ([voices](../Sound-And-Music/voices.md)) |
+| `0x003E9970(slot)` | a bound slot | stops (`0x003E98B0(i)`) each of the 64 voice slots at `0x02B5D0B0` whose byte `+0x05` is the slot ([voices](../Sound-And-Music/voices.md)); before the test every voice slot takes its table for the language into `+0x30` (`+0x20` or `+0x28` by `0x002DEBB0`, `0x003E9990`-`0x003E999D`) |
 | `0x003B6C20` | a bound slot | the summon group's requested count `0x02EBCC60`, its 32 handles at `0x02EBCBE0`, the unique count `0x02EBCBC0`, the leader handle `0x02EBCC70`, the 32 bytes at `0x02EBCA80` and `0x02EBCA90` (two 16-byte zero stores, `0x003B6C58` and `0x003B6C60`; `0x003B6ED0` clears them too, `0x003B6F12` and `0x003B6F24`) and the dword `0x02EBCAA0` |
 | `0x003DEE10(slot)` | a bound slot, twice | the slot's eight event-sound entries at `0x02B59360 + (slot * 8 + i) * 0x38`, below |
 | `0x0036DE70(slot)` | a bound slot | each of the 32 script effect slots at `0x022D94B0` whose byte `+0x08` is the slot and whose word `+0x04` has a bit other than bit `0x4` gets word `+0x04` = 4 and, when `0x003B24C0` returns 0 for its handle `+0x00`, `0x003B18E0(handle)` ([native commands](../Scripts-And-Script-Commands/native-commands.md)) |
@@ -250,15 +273,15 @@ and on slot 0 state that belongs to the field. Among its calls, in order:
 | `0x002E2300(0)` | a bound slot | jumps to the `ret` stub `0x0016D6A0` |
 | `0x00368AA0(3, 1)` | slot 0 | clears bit `0x8` of `0x02EC0B39` (`0x00368AA0(bit, on)` clears the bit for a non-zero `on` and sets it otherwise; the movie verbs and `setflickerfreemode` also call it) |
 | direct stores | slot 0 | `0x02099DA4` and `0x02099DA5`, the pair `set_force_char_nearfade` writes, = 0 |
-| `0x003EBD70` | slot 0 | `0x02B5EC60` = 0, frees the block `0x02B5EC68` and zeroes `0x02B5EC70`-`0x02B5EC8F` |
+| `0x003EBD70` | slot 0 | `0x02B5EC60` = 0, frees the block `0x02B5EC68` and zeroes `0x02B5EC70`-`0x02B5EC8F`; the free (`0x003697F0`) and the null store to `0x02B5EC68` run only when that pointer is set (`0x003EBD86`-`0x003EBD90`) |
 | `0x003604D0` | slot 0, when `0x003603C0()` is non-zero | every slot's skip entries and masks, as `0x003605A0` does for one, and `0x022CB9BC` = 0 |
 | `0x0025A280(2, 0)` | slot 0 | dword `0x020973F0 + 2 * 0x110 + 4` = 0 and, when it was not 0, dword `0x02098570 + 4` = 0 |
 | `0x002E63D0` | slot 0 | the keep bit `0x10` of `+0x19` in all 128 binding entries ([script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)) |
-| `0x003EA200` | slot 0 | with the expanded voice memory `0x02B5E0B0` held: stops each voice slot whose byte `+0x07` is 12 and whose state byte `+0x04` is 2, 3 or 4 (`0x0032E520(0)` first for 2 and 4), runs `0x0036D160(0xC)` and frees the block |
+| `0x003EA200` | slot 0 | with the expanded voice memory `0x02B5E0B0` held: stops each voice slot whose byte `+0x07` is 12 and whose state byte `+0x04` is 2, 3 or 4 (`0x0032E520(0)` first for 2 and 4), runs `0x0036D160(0xC)` and frees the block; every voice slot first takes its table for the language into `+0x30` (`0x003EA225`-`0x003EA235`), the pointer `0x02B5E0B0` is zeroed after the free (`0x003EA287`), and with it null nothing runs (`0x003EA20C`) |
 | `0x003E9100` | slot 0 | `0x00408200` when `0x02B5D090` is set, then `0x02B5D090` = 0 |
 | `0x002E1630` | slot 0 | returns -1 when `0x00290180()` is 0, 1 when it is 2 and 0 otherwise; a non-zero value triggers a checked indirect call |
 | `0x0036A280` | slot 0 | writes 0-14 into the 15 bytes at `0x022D89A8` |
-| `0x002E06F0` | slot 0 | the 8 records of `0x68` bytes at `0x0215F200`: a live one (qword `+0x00` set) runs `0x002A2720`, gets dword `+0x08` = 6, and `0x002F1C50` when its byte `+0x40` is -1; every byte `+0x40` becomes `0xFE` |
+| `0x002E06F0` | slot 0 | the 8 records of `0x68` bytes at `0x0215F200`: a live one (qword `+0x00` set) runs `0x002A2720` with that qword, gets dword `+0x08` = 6, and `0x002F1C50` with the byte at `0x0215F1B6` when its byte `+0x40` is -1 (`0x002E072D`-`0x002E0746`); every byte `+0x40` becomes `0xFE` (`0x002E074D`) |
 | `0x0035AB50(0)` | slots 1-3 | slot 0's model list, below |
 
 Each event-sound entry is handled by its state byte `+0x10`: 1 frees its two blocks `+0x08` and
@@ -268,16 +291,39 @@ entry gets state 0 and its bit cleared in `0x02B59C20[slot]`. `0x003DEC90(slot, 
 `eventsounddispose` verb (`0x0154`) runs, does the same for one entry, except that it hands an
 entry in state 1 to `0x003DEFC0`.
 
+Every wait runs `0x0032E520(0)` and `0x0035EA30(0)`; state 2 first pumps the entry's handle `+0x04`
+(`0x00379E30`) and state 4 first calls `0x002DEE90(-1)`, and both of them also run `0x003DEB30`
+(`0x003DEE9C`-`0x003DEED1`). State 5 releases the dword ids the block `+0x08` counts at `+0x04`, from `+0x20`,
+and the words it counts at `+0x10`, from `+0x12` (`0x003DEEDC`-`0x003DEF24`). A block is freed with `0x003697F0`
+and nulled only when it is set, and the bit is `1 << i` (`0x003DEF79`-`0x003DEF82`).
+
+An entry in any other state, 0 included, keeps its state and its bit (`0x003DEED6`). `0x003DEC90` returns at
+once for an index above 7 (`0x003DEC9E`), and leaves an entry in state 1 to `0x003DEFC0(entry, slot, i)` without
+freeing or clearing anything itself (`0x003DEDE8`-`0x003DEDF0`).
+
 `0x0035AB50(slot)`, with that slot made current, walks the list of `{name, mask}` pairs the payload's
 dword `+0x80` names: for each name that resolves to a binding entry it clears the entry's `+0x19`
 bit `0x1` and, for each bit `i` from 1 to 31 set in the mask, releases the hold on lane `i` and then on
 lane 0 (`0x002ECAB0(id, i, 0)`, `0x002ECAB0(id, 0, 0)`).
 
+It makes the slot current with `0x0026A480(0x00263FF0(slot))` (`0x0035AB64`-`0x0035AB6F`) and ends by making the
+slot `0x002640C0()` gave on entry current again (`0x0035AB5A`, tail jump `0x0026A480` at `0x0035AC5A`). The list sits at
+the payload `[slot + 0]` plus the low 32 bits of `0x0020E600([payload + 0x80])`: a count dword, then the pairs
+(`0x0035AB80`-`0x0035AB9F`); a null payload, a null answer or a count of 0 or less walks nothing
+(`0x0035AB7A`, `0x0035AB8E`, `0x0035ABA7`).
+
+The id is `0x002E9A60(name)`; an id of 0, or one with no binding entry `0x002E99C0(0x002EB7A0(id))`, is passed
+over (`0x0035ABD4`, `0x0035ABE7`), and the lane releases run only for an id above 0 (`0x0035AC08`).
+
 The teardown always passes slot 0 to `0x0035AB50`, after the
 keep and hold clears the [area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md)
 page describes. Slot 0's own unload `0x0025AFC0` runs the same tail and then `0x002ECBE0(0)` and
 `0x002EBDE0(0)`, which call `0x0036C5D0(handle, 0)` on the 32 handles at `+0x60` of every node of the
-list `0x0215FD68` and on the handle `+0x10` of every node of the list `0x0215FD58`.
+list `0x0215FD68` and on the handle `+0x10` of every node of the list `0x0215FD58`, passing over a handle of 0
+(`0x002ECC22`, `0x002EBDFB`).
+
+Both follow each node's next pointer `+0x08` (`0x002ECC37`, `0x002EBE06`) and pass their own argument on as the
+second one (`0x002ECC26`, `0x002EBDFF`).
 
 ## Layouts
 

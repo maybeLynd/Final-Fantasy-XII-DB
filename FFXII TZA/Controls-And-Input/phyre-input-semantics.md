@@ -29,6 +29,10 @@ refuses a null name (`0x11`) or a duplicate (`0x12`) and otherwise pushes the ob
 shape [static initialisation and teardown](../Compiler-And-C-Runtime/static-initialisation-and-teardown.md)
 describes (`0x008760A0`: `0x008760AE`, `0x00876116`, `0x00876100`-`0x0087610A`).
 
+The three inserts `0x008760A0`, `0x00876490` and `0x008768A0` are the same code on their own heads. The duplicate test
+compares the name byte for byte with that of every object on the list (`0x008760D0`-`0x008760FE`); the push stores the
+old head at the object's `+0x10`, makes the object the head and returns 0 (`0x00876100`-`0x0087610A`).
+
 | Class | Objects | vtable | Head | Insert | Named-semantic descriptor |
 |---|---|---|---|---|---|
 | `PInputTypeSemantic` | 25, `0x01F44D90`-`0x01F44FD0`, no code | `0x01CD7F68` | `0x02EB8260` | `0x008760A0` | `0x02EB8270` |
@@ -115,17 +119,26 @@ with no default instance has slot 10 construct it (`0x0063C990`).
 
 The semantic pointers are filled by name when the reflection loader builds a source from data, through the
 descriptor's `+0x48` resolver. Slot 2 copies a source: it creates a new object of the same class with
-`0x0063A990` (`PCluster::create`), copies `+0x30`, `+0x38`, `+0x18`, `+0x1C` and `+0x20`, and runs the copy's slot 1
-(`0x00873100`-`0x0087315C`).
+`0x0063A990` (`PCluster::create`), copies `+0x30`, `+0x38` where the class has it, `+0x18`, `+0x1C` and `+0x20`,
+and runs the copy's slot 1 (`0x00873100`-`0x0087315C`).
+
+The pad-button slot 2 `0x00873100` calls `0x0063A990(cluster, 1, 0x02EB54F0, 0)` for one `PInputSourceJoypadButton` in
+the cluster it is given as its second argument (`0x0087310A`-`0x00873121`), takes the object 8 bytes before the
+pointer returned (`0x0087312B`), copies `+0x1C` as a byte and the others whole, and returns the copy (`0x0087315F`).
+
+The key slot 2 `0x00873170` is the same code with the key descriptor `0x02EB53F0` (`0x0087317D`), and so are the
+mouse-delta copies `0x00873610` and `0x00873680` with `0x02EB57F0` and `0x02EB58F0`. The pad-axis copy `0x00873090` and the
+mouse-button copy `0x008735A0` copy `+0x30` alone besides `+0x18`, `+0x1C` and `+0x20` (`0x008730CA`-`0x008730DE`,
+`0x008735DA`-`0x008735EE`).
 
 ### Slot 1: from semantics to codes
 
-Slot 1 of each semantic class stores the code of each semantic at `+0x28` (and `+0x2C` for the second), replacing a
-semantic outside the class's band with an `Empty` object first.
+Slot 1 of each source class that holds semantics stores the code of each semantic at `+0x28` (and `+0x2C` for the
+second), replacing a semantic outside the class's band with an `Empty` object first.
 
 | Slot 1 | Class | Out-of-band test | Replacement |
 |---|---|---|---|
-| `0x00873FE0` | `PInputSourceJoypadButton` | code above 26 (`0x0087401C`, `0x00874025`) | pad-button `Empty` `0x01F45148` (`0x00874015`) |
+| `0x00873FE0` | `PInputSourceJoypadButton` | code above 26, a signed test (`0x0087401C`, `0x00874025`); a null semantic is not replaced: it stays null and its code is stored as 0 (`0x00874000`, `0x00874013`, `0x0087403F`, `0x00874061`) | pad-button `Empty` `0x01F45148` (`0x00874015`) |
 | `0x00874080` | `PInputSourceKey` | code below 28, a null semantic counting as 0 (`0x008740BC`, `0x008740C5`) | key `Empty` `0x01F456C8` (`0x008740B5`) |
 | `0x00874120` | `PInputSourceMouseButton` | null, or a code outside 11-13 (`0x00874138`-`0x0087413E`) | mouse-button `Empty` `0x01F462E8` (`0x00874140`) |
 | `0x00874170` | `PInputSourceMouseDeltaX` and `Y` | `+0x30` as for the mouse button (`0x00874188`); `+0x38` null, or the `+0x30` code outside 11-13 (`0x0087419B`-`0x008741B2`) | `0x01F462E8` for `+0x30`, `0x01F456C8` for `+0x38` (`0x008741B4`) |
@@ -155,8 +168,13 @@ the devices:
    `0x0079E2C0` (`0x0079CFE3`).
 2. `0x0079E2C0(mapper, action)` runs `0x0079DA10` on each of the action's sources (`0x0079E31B`) and keeps the value of
    largest magnitude (`0x0079E329`-`0x0079E344`).
+   - The sources are the pointer array at the action's `+0x18`, counted by its `+0x10` under mask `0x7FFFFFFF`; a
+     null action or a count of 0 returns 0.0 (`0x0079E2D8`-`0x0079E2E9`), and `0x0079CFB0` never passes a null action
+     (`0x0079CFD6`).
+   - The kept value starts at 0.0 and is replaced only by a strictly larger magnitude (`jbe` at `0x0079E342`), so
+     the first of two equal magnitudes wins; the value returned keeps its sign (`0x0079E344`, `0x0079E365`).
 3. `0x0079DA10(mapper, source)` picks the device by comparing the source's `+0x10` with the 25 type objects, in the
-   order of the table below, and multiplies the result by `m_scale` (`0x0079E291`).
+   order of the table below, and multiplies the result by `m_scale`: `result × m_scale` (`mulss`, `0x0079E291`).
 
 The sign is 1.0 (`0x01CEBBA8`), or -1.0 (`0x01CEBC9C`) when `m_invert` is set (`0x0079DA1D`-`0x0079DA5E`). A negative
 semantic flips the sign (`xorps` with `0x01CEBDA0`).

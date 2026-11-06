@@ -22,8 +22,13 @@ Each class has a `0x58`-byte descriptor in the table at `0x01EEBCC0`, fifteen ro
 
 A descriptor holds three region offsets into the party block (`+0x00`, `+0x18`, `+0x28`), the length of the first
 region in words (`+0x10`), the id count (`+0x3C`), a change handler (`+0x48`) and a query handler (`+0x50`). The
-rebaser `0x0030B6A0` turns the offsets into pointers at `+0x08`, `+0x20` and `+0x30` whenever the party block is
-bound (`0x0030B6C0`-`0x0030B6ED`; [Party data](../Party/party-data.md)).
+rebaser `0x0030B6A0` turns the offsets into pointers at `+0x08`, `+0x20` and `+0x30` whenever the party block is bound
+(`0x0030B6C0`-`0x0030B6ED`; [Party data](../Party/party-data.md)): each non-zero offset becomes the low 32 bits of
+offset plus block address, and a zero offset leaves its pointer as it was.
+
+It also writes each class's running id base at `+0x40` (`0x0030B6F1`-`0x0030B6F5`), zeroes the `0x200` bytes at `+0x57C8`,
+the whole loot sold tally (`0x0030B702`-`0x0030B737`), and masks the `0x80` bytes at `+0x59C8` with `0xF8`
+(`0x0030B739`-`0x0030B75B`).
 
 | Nibble | Ids | Class | Storage |
 |---|---|---|---|
@@ -47,7 +52,7 @@ Rows 5, 7 and 11 are empty, and nibble F is refused.
 An item, equipment or loot count word is `owned | equipped << 10`: the bits under mask `0x3FF` count the copies owned and the bits under mask `0xFC00`
 the copies being worn. The packed handler `0x002FD150` builds it (`0x002FD30B`-`0x002FD31A`, `0x002FD28C`-`0x002FD298`), and
 its query `0x002FD8D0` answers four kinds: 0 owned minus worn, 1 owned, 2 worn, 3 the region-two byte
-(`0x002FD906`-`0x002FD95B`). The bit handler `0x002FD420` keeps bit `index & 15` of word `index >> 4`.
+(`0x002FD906`-`0x002FD95B`). The bit handler `0x002FD420` keeps bit value `1 << (index & 15)` of word `index >> 4`.
 
 ### Changing the inventory
 
@@ -76,7 +81,7 @@ Neither handler has a channel 4: the packed handler returns 0 without writing
 (`0x002FD1B5`-`0x002FD1B9`), and the bit handler sets or clears the bit as for any channel. The bit handler
 ignores the channel: a result below 1 clears the bit and 1 or more sets it (`0x002FD49D`-`0x002FD4E5`). The bundle and
 gil classes act only on a relative channel-1 change and call `0x003008A0` again for each nested grant
-(`0x002FD53F`-`0x002FD8B4`). A package selector, `0xAxxx`, gives its second triple when `flags` bit `0x1` is set and its
+(`0x002FD53F`-`0x002FD8B4`). A package selector, `0xAxxx`, gives its second triple when `flags` bit `0x2` is set and its
 first otherwise (`0x002FD6BA`).
 
 Most callers use three wrappers. `0x00300B80(id, delta, flags)` is a relative channel-1 change, for adding and
@@ -184,11 +189,14 @@ The list functions:
 
 ### Writes that bypass the change function
 
-- The clear-all `0x003047F0` stores 0 in every count and bit word (`0x0030482A`) and ends by tail-jumping to
-  `0x00253480` (`0x0030483D`), which empties all twelve inventory lists (above; `0x00253240(i, 1)`: every id `0xFFFF`,
-  the count at `[0x020927C0] + 0x47B8 + 4i` = 0) and clears every bit of `[0x020927C0] + 0x3244` but bit `0x1` and bit `0x1`
-  of `+0x3245`; the party block reset `0x002370E5` and
-  the scenario presets `0x00239B22` call it.
+- The clear-all `0x003047F0` stores 0 in the first region of each of the fifteen class descriptors whose pointer
+  `+0x08` is set, `+0x10` words from that pointer (`0x00304801`-`0x0030483B`, `0x0030482A`): the item, equipment and
+  loot count words and the magick, technick, gambit, key item and Quickening bit words. The other two regions, the
+  items' ever-owned bits `+0x57C0` and the loot's sold tallies `+0x57C8`, are not written.
+- `0x003047F0` ends by tail-jumping to `0x00253480` (`0x0030483D`), which empties all twelve inventory lists (above;
+  `0x00253240(i, 1)`: every id `0xFFFF`, the count at `[0x020927C0] + 0x47B8 + 4i` = 0) and clears every bit of
+  `[0x020927C0] + 0x3244` but bit `0x1` and bit `0x1` of `+0x3245`; the party block reset `0x002370E5` and the
+  scenario presets `0x00239B22` call it.
   - `0x0035C560` calls `0x00253480` directly (`0x0035C584`), right after the HUD reset `0x0028F8B0`
     ([HUD](../Menus-And-HUD/hud.md)).
 - The rebaser clears every loot sold tally (`0x0030B702`-`0x0030B737`).

@@ -22,8 +22,11 @@ evaluates it as an integer and `0x004309C0(record, x)` as a float; `x` is the in
 sampled at, usually a time or frame.
 
 The evaluators' callers are presentation code: the effect
-element runtime and types (`0x002F2530`, `0x00441B30`, `0x00442600`), the character rig (`0x003A4290`,
-`0x003A56F0`), the character render records (`0x00422870`) and the model oscillators (`0x0040AA20`)
+element runtime and types (`0x002F2530`, `0x00441B30`, `0x00442600`) and the character rig (`0x003A4290`,
+`0x003A56F0`, through the float RGB form `0x00430B90` at `0x003A4303` and `0x003A575E`).
+
+The draws below also have direct callers in presentation code: the character render records (`0x00422870`) call
+`0x003A6E60` (`0x00422919`) and the model oscillators (`0x0040AA20`) call `0x003D8E50` (`0x0040AA78`, `0x0040AA92`)
 ([effect element runtime](../Graphics/effect-element-runtime.md),
 [character render records](../Graphics/character-render-records.md)).
 
@@ -58,10 +61,20 @@ in `[1, a]` for positive `a`.
 ### The random draw
 
 `0x003A6E60(n)` is `f` for integers. It steps the presentation generator `0x01EF93E8` (enabled by
-`0x022D9138`) for a sample in `[1.0, 2.0)`, multiplies it by `n`, subtracts `n × [0x01EF93FC]` (1.0) and
-truncates toward zero, then steps the generator once more. With the generator disabled the sample is
-1.0 and every draw is 0. The float operators use `0x003D8E50`, the float draw on the same generator. The
-generator and its other users are on the [RNG page](../Random-Numbers/random-number-generators.md).
+`0x022D9138`) five times for a sample `s` in `[1.0, 2.0)` (`0x003A6E7B`-`0x003A6F12`), multiplies it by `n`, `s × n`,
+subtracts `n × [0x01EF93FC]` (1.0) and truncates toward zero, `(int)(s × n - n × 1.0)` (`0x003A6F2D`-`0x003A6F41`,
+`0x003A6FA9`), then steps the generator twice more (`0x003A6F52`-`0x003A6F8C`). It does not test `n`, so
+`0x003A6E60(0)` steps the generator seven times as well. With the generator disabled the sample is 1.0 and every
+draw is 0.
+
+Each call also writes the scratch dwords `0x022D91A0`, `0x022D92E0`-`0x022D92EF` and `0x022D92F0`: `0x022D91A0` =
+sample × `n` (`0x003A6F39`), `0x022D92E0` = sample × `n` − `n` × 1.0 (`0x003A6F45`), then the four dwords
+`0x022D92E0`-`0x022D92EF` truncated to integers in place, `cvttps2dq xmm1, xmm0` (`0x003A6FA9`) stored back by
+`movups` (`0x003A6FAD`), and `0x022D92F0` = the generator's new state read as a float, or 1.0 with the generator
+disabled (`0x003A6FA1`).
+
+The float operators use `0x003D8E50`, the float draw on the same generator. The generator and its other users are
+on the [RNG page](../Random-Numbers/random-number-generators.md).
 
 ### Curves
 
@@ -85,8 +98,19 @@ mode bits `0x3` (A) or `0xC` (B) of `+0x0E`:
 ```python
 a = x0 - 2*x1 + x2,  b = x1 - x0                                 0x0039B6E6-0x0039B720
 t = (sqrt(b*b - (x0 + x1 - 2*x) * a) - b) / a;  t = 2.0 if a == 0  0x0039B725-0x0039B769
+t = (2*x - x0 - x1) / (x2 - x0)  if t == 2.0                       0x00431260-0x0043128C, 0x004306F0-0x0043071C
 y(t) = (1-t)^2/2 * y0 + ((1-t)*t + 0.5) * y1 + t^2/2 * y2         0x0039B64B-0x0039B6C7
 ```
+
+`0x0039B6E0(x, points, out)` stores 2.0 when `a` is 0 (`0x0039B72C`), and both curve readers replace a returned 2.0
+with the straight-line solution of the third line (`0x00431260`-`0x0043128C`, `0x004306F0`-`0x0043071C`); the square root
+is the C runtime `sqrtf` (`0x0039B752`). `0x0039B630(t, points, out)` applies the `y(t)` weights to the first three
+floats of each of the three points, 16 bytes apart, and writes three floats (`0x0039B692`, `0x0039B6AE`, `0x0039B6CF`).
+The readers put `x` and `y` first in each point and keep the second result, `y` (`0x0043072C`, `0x0043129C`).
+
+The float form `0x00430540` reads each pair's `y` as an `f32` (`0x00430603`, `0x004306C6`). In linear mode it computes
+`y0 + (y1 − y0) × (x − x0) / (x1 − x0)` in floats, taking the two `x` differences as integers first
+(`0x00430773`-`0x00430793`).
 
 In linear mode an `x` below the first pair's `x` interpolates from stack values no pair has set,
 so the result is garbage.
@@ -102,17 +126,40 @@ the mode byte `+0x40`:
 - = 2: each component combines its own channel-0 value with the first record's channel-1 operand `b`
   and one shared draw `d = f(b)`, under the first record's operator (`0x00431430`): operator 1 adds
   `d`, 2 subtracts it, 4 gives `a × (d + 1)`, 3 gives `a − b + 2d`, and 5 draws afresh per
-  component;
+  component, `a + f(b − a)`, or `a` when `b` equals `a` (`0x004314A6`-`0x004314B3`);
+- in mode 2 operators 0 and 6-15 give `a`, and with `b` = 0 every operator gives `a` except 5
+  (`0x00431438`-`0x0043146E`, `0x00431492`-`0x004314A4`);
 - alpha is always the fourth record's own expression.
 
-With bit `0x4` of `+0x40` clear, the four values are clamped to 255 each (against `0x022D8F40`) and
-packed as `r | g << 8 | b << 16 | a << 24`; there is no lower clamp, so a negative value keeps its low
-byte. With bit `0x4` set they are converted by `0x00430370` instead.
+With bit `0x4` of `+0x40` clear, the four values are clamped to 255 each, `v > 255 ? 255 : v` (against
+`0x022D8F40`), and packed as `r | g << 8 | b << 16 | a << 24`; there is no lower clamp, so a negative value keeps
+its low byte. With bit `0x4` set they are converted by `0x00430370` instead (`0x004300BE`-`0x004300D4`), which reads them as
+hue, saturation, value and alpha and packs the same four bytes:
+
+- saturation and value are capped at 255 and divided by 255.0, `s = min(S, 255) / 255.0` and
+  `v = min(V, 255) / 255.0` (`0x0043037A`-`0x004303D3`); a saturation of 0 gives grey, the value in each of r, g
+  and b (`0x004303CB`-`0x004303E1`);
+- otherwise a hue of 360 or more becomes 0, `h >= 360.0 ? 0.0 : h` (`0x004303E6`-`0x004303F0`), and the hue divided
+  by 60.0, `h / 60.0` (`0x004303F4`), is split by `floorf` into a sector `i` and a fraction `f`
+  (`0x004303F4`-`0x00430423`);
+- with `p = v(1 − s)`, `q = v(1 − s·f)` and `t = v(1 − s(1 − f))`, sectors 1 to 5 give (r, g, b) =
+  (q, v, p), (p, v, t), (p, q, v), (t, p, v) and (v, p, q); any other sector, 0 or a negative one, gives
+  (v, t, p) (`0x00430406`-`0x00430499`);
+- r, g and b are multiplied by 255.0 and truncated, and their low bytes are stored, `(int)(c * 255.0) & 0xFF`
+  for each `c` (`0x004304AD`-`0x004304D7`);
+- alpha is the fourth value capped at 255 with no lower clamp, `a > 255 ? 255 : a` (`0x004304A2`,
+  `0x004304DA`-`0x004304E7`).
 
 `0x00430B90(out, record, x)` is the float RGB form, alpha always 1.0, with the mode byte `+0x30`:
 bits `0xC` of 0 give black and of 1 white; otherwise bits `0x3` and the bytes `+0x31` and `+0x32` choose
 which components have their own curves and which share one, and whether the spread is applied
-per component (`0x004307C0`) or as one shared factor (`0x004308D0`).
+per component (`0x004307C0`) or as one shared draw (`0x004308D0`).
+
+`0x004308D0(record, a, b, d)` combines `a` with a draw `d` that its caller made once (`0x00430DA3`-`0x00430DB5` in
+`0x00430B90`), under the record's operator, as `0x00431430` does in integers: operator 1 gives `a + d`, 2 `a − d`,
+3 `a − b + 2d`, 4 `a + a × d`, and 5 draws afresh, `a + f(b − a)` with `0x003D8E50`, or `a` when `b` equals `a`
+(`0x0043090B`-`0x004309A3`). Operators 0 and 6-15 give `a`, and with `b` = 0 every operator gives `a` except 5
+(`0x004308D4`-`0x004308FE`).
 
 ## Layouts
 
@@ -129,7 +176,7 @@ Expression record (`0x10`):
 | `+0x0E` | `u16` |  | mask `0x3` A curve mode, mask `0xC` B curve mode, bits `0xF0` operator |
 
 ```
-curve pair   s32 x, s32 y
+curve pair   s32 x, s32 y (f32 y when the float form 0x00430540 reads it)
 ```
 
 The fields are listed access by access in
@@ -138,8 +185,9 @@ The fields are listed access by access in
 
 ## Operations
 
-Per evaluation: up to two operand reads or curve walks (linear in the pair count), and one or two
-generator steps per random draw.
+Per evaluation: up to two operand reads or curve walks (linear in the pair count), and seven
+generator steps per random draw while the generator is enabled, five before the sample and two after:
+`0x003A6E60` on every call, `0x003D8E50` unless its amplitude is 0 (`0x003D8E5D`-`0x003D8E6B`).
 
 ## State
 

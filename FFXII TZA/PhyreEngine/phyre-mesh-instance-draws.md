@@ -111,12 +111,24 @@ dynamicInstance)` adds up what one segment's draw needs. `flags` is the variant 
 `table` is `(n + 1) × 8 + 0x10` bytes rounded up to 16, where `n` is the variant entry's count at
 `+0x28`, plus the resource parameters (`0x005FD5F0`) among the parameter buffer's definitions
 (`+0x10` count, `+0x18` data) and among the variant entry's (`+0x18`, `+0x20`), plus 2 with a
-dynamic object. `total` includes `table`.
+dynamic object. `total` includes `table`. All three counts have bit `0x80000000` masked (`0x005EB431`,
+`0x005EB436`, `0x005EB46A`).
 
-`0x00600B30(renderer, total, blocks)` returns false when `total` bytes from the renderer's parameter
-ring (`+0x28` start, `+0x30` end, `+0x38` cursor) or `blocks` × `0x80` bytes from its render-block
-ring (`+0x50`, `+0x58`, `+0x60`) would pass the ring's limit (`+0x40`, `+0x68`). `blocks` is the
-variant entry's `+0x08` count. On false, `0x0060B980` first calls the renderer's slot 2, `0x00600D20` for
+`0x005EB370` zeroes `total` and `dynamic` first (`0x005EB3B2`, `0x005EB3B4`), so `dynamic` stays 0 without a
+dynamic object. It stores `table` last (`0x005EB4CD`) and adds it to `total` (`0x005EB4D1`).
+
+`0x00600B30(renderer, total, blocks)` tests the renderer's parameter ring (`+0x28` start, `+0x30` end,
+`+0x38` cursor, `+0x40` limit) for `total` bytes and its render-block ring (`+0x50`, `+0x58`, `+0x60`,
+limit `+0x68`) for `blocks` × `0x80` bytes, and stores nothing. `blocks` is the variant entry's `+0x08`
+count. It returns false when either ring fails, and true otherwise:
+
+- A request that fits before the ring's end fails when the cursor is at or before the limit and
+  cursor + size passes it (`0x00600BB7`-`0x00600BBF`, `0x00600BC9`-`0x00600BD1`).
+- A request that has to wrap to the start, or is larger than the whole ring, fails whenever the cursor
+  is at or before the limit (`0x00600B72`, `0x00600BA8`). With the limit behind the cursor it passes,
+  whatever start + size is, so the wrapped block can run past the limit.
+
+On false, `0x0060B980` first calls the renderer's slot 2, `0x00600D20` for
 `PRenderer`, which posts the pending blocks to the render thread and moves both limits on
 (`0x0060FA10`).
 
@@ -126,17 +138,24 @@ variant entry's `+0x08` count. On false, `0x0060B980` first calls the renderer's
 
 | `out` | Flag | Source |
 |---|---|---|
-| `[0]` | `0x1` | the renderer's per-camera block `+0xA0`, built on first use by `0x00604750` from `+0x98`, the camera `+0xA8` and `+0x20` |
+| `[0]` | `0x1` | the renderer's per-camera block `+0xA0`, built on first use by `0x00604750` from `+0x98`, the camera `+0xA8` and `+0x20`; null, with nothing built, while `+0x98` or the camera is null (`0x005FED2F`, `0x005FED3F`) |
 | `[1]` | `0x2` | `0x00602A40(renderer, parameterBuffer)` |
 | `[2]` | `0x4` | `0x00602EA0(renderer, draw)` |
-| `[3]` | `0x8` | the per-instance block from `0x00600F30`, then passed to `0x0060A010` (after `0x00609D80` for a dynamic mesh instance) |
-| `[4]` | no flag | for a dynamic mesh instance whose slot 1 reports a size: a preprocess ring block of that size, filled by its slot 2 |
+| `[3]` | `0x8` | the per-instance block from `0x00600F30`, then passed to `0x0060A010` (after `0x00609D80` for a dynamic mesh instance); null when `0x00600F30` returns null, and then neither is called (`0x005FEDC4`, `0x005FEE18`) |
+| `[4]` | no flag | for a dynamic mesh instance whose slot 1 reports a size: a preprocess ring block of that size (`0x006B64F0`), filled by its slot 2, which is called even when the ring returns null (`0x005FEE51`); null otherwise (`0x005FEE55`) |
+
+A slot whose flag is clear is left as it is. For a dynamic mesh instance, `0x00609D80` also receives
+`out` + `0x28` and `out` + `0x30` and writes them: the first when `0x00670E00` returns non-zero and the
+segment's 16-byte record has a non-zero `+0x08` (`0x00609E34`), the second when that record's `+0x0C` is
+non-zero (`0x00609F93`). Its result is `0x0060A010`'s fifth argument (`0x005FEE08`), 0 without a dynamic
+mesh instance.
 
 For each parameter it walks, `0x00602EA0` reads the type byte `+0x03` (`0x00603356`) and handles types `0x30` and
 `0x31`. Any other type prints the type-id message at `0x00D4B3C8` (`0x005CDAA0`) once,
 setting the byte `0x02CE9D9C` (`0x00603382`-`0x00603396`), and the walk goes on to the next parameter (`0x00603717`).
 
-A non-zero result from `0x0060A010` is returned. `0x0060B980` then reserves `table` bytes from the
+A non-zero result from `0x0060A010` is returned before `out[3]` and `out[4]` are written (`0x005FEE16`);
+every other path returns 0 (`0x005FEE59`). `0x0060B980` then reserves `table` bytes from the
 parameter ring and passes everything to `0x0060C020`, which writes the segment's render blocks.
 
 ### The per-instance shader parameters
@@ -212,7 +231,8 @@ and `0xD9`–`0xDC` a record with a null texture.
 `0x00670920(segment, &block, type)` walks the segment's vertex data blocks (`0x88` bytes; count `+0x30`,
 array `+0x38`) and, in each, its `0x18`-byte stream records (count `+0x08`, array `+0x10`), and
 returns the first stream whose `m_renderDataType` (`+0x08`) is `type`, with its block in `block`; null
-when no stream matches.
+when no stream matches. It sets `block` to null on entry (`0x00670934`), so `block` is null too when no
+stream matches, and both counts have bit `0x80000000` masked (`0x0067094A`, `0x00670976`).
 
 The data types are static objects named before `main`: `Vertex` `0x02D3AB18`
 (`0x00165E10`), `Normal` `0x02D3AB30` (`0x00165B70`), `ST` `0x02D3AB48` (`0x00165BA0`) and `Color` `0x02D3AB78`
@@ -221,7 +241,8 @@ stream of a type, the test `SKINNING_ENABLED` uses.
 
 `0x00600BE0(list, type)` returns the first `0x18`-byte record of a list (count `+0x28`, array `+0x30`)
 whose `+0x00` is `type`, or null for a null type; `0x006718B0` uses it to decide which of a segment's
-stream groups get a data block of their own.
+stream groups get a data block of their own. It also returns null when no record matches
+(`0x00600C0E`), and masks bit `0x80000000` of the count (`0x00600BEC`).
 
 ### The variant usage counter
 
@@ -230,6 +251,10 @@ After choosing a variant entry, `0x0060B980` and `0x006007B0` increment a counte
 (key at node `+0x18`) and returns the address of `u32` number `(entry − technique +0x10) / 0x40` of
 the node's array at `+0x28`. `0x02CB6360` is zero in the image and no instruction writes it, so the
 counter never runs.
+
+The walk in `0x00606C60` starts at the tree's `+0x18` and ends on reaching the tree object itself
+(`0x00606C67`, `0x00606C8F`); a node whose key is above the technique leads to its `+0x00`, one below to
+its `+0x08`. With no node for the technique it returns null (`0x00606C94`, `0x00606C9E`).
 
 ### The preprocess ring buffer
 
@@ -250,9 +275,17 @@ teardown with `atexit` (`0x006B648E`).
    (`0x006B6690`), it moves the oldest position past every block whose busy word is 0, sleeps 1 ms and
    tries again, logging `Trying to make space in PPreprocessRingBuffer, waiting on
    PPreprocessRingBufferBlock %p (size %d) to be not busy` every 1024 waits.
-3. A block that would run past the end is turned into a filler up to the end and the write position
+3. Each move stops at the first block whose busy word is not 0, or at the write position
+   (`0x006B6582`-`0x006B659B`, `0x006B65F0`-`0x006B6609`).
+4. A block that would run past the end is turned into a filler up to the end and the write position
    wraps to the start; otherwise the header gets the next block's address, busy 0 and the requested
    size, and the write position moves on.
+5. The filler's size word holds the bytes to the end and its next address is the start
+   (`0x006B6632`-`0x006B663A`); the body then repeats the overlap test from the start (`0x006B6661`). A
+   block that ends exactly at the end makes the start both its next address and the write position
+   (`0x006B6646`-`0x006B664F`).
+6. The block is recorded as the last one (`+0x50`, `0x006B6667`), the lock is released and the
+   block's header is returned (`0x006B6674`).
 
 `0x006B64F0` calls it and sets the block's busy word to 1; the user clears it when done. `0x006B6690`
 reports an overlap when the oldest block lies ahead of the write position within `size` bytes, or
@@ -262,6 +295,11 @@ allocator `0x00684860` uses the same test.
 At shutdown, `0x0079EDD0` calls `0x007A12B0`, which closes the lock and, until the oldest position
 reaches the write position, advances it past free blocks (`0x006B64C0`), sleeping 1 ms between tries;
 then it clears the ring's positions and capacity, so later requests return null.
+
+The lock is closed by `0x005CD6D0`, which acts only when the lock's first byte is set (`0x005CD6D6`).
+`0x006B64C0` returns 0 on every path (`0x006B64EA`), so only reaching the write position ends the wait,
+and a block left busy keeps it waiting. The clearing also zeroes the start and end
+(`0x007A12FA`-`0x007A130A`).
 
 ## Layouts
 

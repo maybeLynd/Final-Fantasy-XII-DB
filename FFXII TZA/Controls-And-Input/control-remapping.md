@@ -76,7 +76,11 @@ Inside a row (`0x0023C5C0`):
    (`0x0023C729`). A pad button is never captured.
 4. The row calls `0x001E1050(row, profile, code, swap 0)` (`0x0023C74A`).
 
-`0x001E1050` maps the row, calls the assigner `0x00198A00` (`0x001E10AA`) and publishes on success (`0x001E10D0`):
+`0x001E1050` maps the row, calls the assigner `0x00198A00` (`0x001E10AA`) and publishes on success (`0x001E10D0`). The map
+`0x001E0650(row)` gives the group in bits `0xFF0000` and the slot in the low byte (`0x001E108B`, `0x001E109A`), and the
+swap argument is passed as 1 for any non-zero value (`0x001E1084`-`0x001E1088`). The assigner's 1 comes back as 1, its
+2 and 3 both as 2, and its 0 as 0 after `0x00195DF0(0x00198790())` (`0x001E10B4`-`0x001E10D5`). With no input manager,
+`0x00198790()` null, it assigns nothing and returns 0 (`0x001E107A`-`0x001E107D`):
 
 | Result | Meaning | What the row does |
 |---:|---|---|
@@ -147,8 +151,10 @@ The 35 codes at `0x01DF13E0` are refused at assignment (`0x00198AC0`) and at loa
 `0x00195DF0` runs after every binding, at start-up and after a restore. For each profile:
 
 1. Group 0 goes to the record's buttons, with L2 and R2 stored as 0.
-2. Group 1 becomes four stick entries of mode 2 at `+0x40`-`+0x7F`.
-3. Circle and Cross are exchanged when `0x001DFA70` is false, that is when the Config setting `+0x64` is not 0.
+2. Group 1 becomes four stick entries of mode 2 at `+0x40`-`+0x7F`, each `2`, `4` and a pair of the codes
+   (`0x00195E97`-`0x00195EFA`).
+3. Circle and Cross are exchanged when `0x001DFA70` is false, that is when the Config setting `+0x64` is not 0;
+   `0x001DFA70` reads the settings object `[0x01F82D20]` (`0x00195E42`, `0x00195F03`-`0x00195F24`).
 4. The record is copied to the master copy `0x01F80130`.
 5. The manager's rebuild flag `+0x3B` is set (`0x00195FE0`), so the next poll copies the master into the records.
 

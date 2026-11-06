@@ -177,6 +177,11 @@ record from the renderer's list at `+0xE70`, fills it with `{id, 0x20 * n + id, 
 first dword of the object at `[0x01F81200]`) and files it under the key `(2 << 32) | id` in the tree at
 `+0xF30`, adding the key when it is missing (`0x001E78D0`).
 
+`0x0017FC00` reads `n` with no null test of `[0x01F81200]` (`0x001B5FC5`, `0x001FDF70`). `0x001E7F90` does not test the
+record it takes: `0x001BA860` returns null when the list's count `+0x48` is 0 (`0x001BA887`), and the first store
+at `0x001E7FD2` then faults. A key already in the tree keeps its node, whose record pointer `+0x28` is replaced
+by the new record (`0x001E805E`).
+
 `0x00364380` ORs `1 << (slot - 1)` into the ready word (`0x00364393`) and returns at once when the state pointer is
 null. `0x003657E0(slot)` reads that bit. `0x00365810` does not request a face whose buffer is already set.
 
@@ -197,11 +202,41 @@ completion `0x003643A0`. That completion stores the font block pointer and calls
 table's address at `+0x10 + 8n` and the end of its records at `+0x90 + 8n`, stepping by each table's `next`
 offset.
 
+`0x003658F0` does nothing while `0x022CBE00` is null or the fontpack pointer `+0x000` is already set (`0x0036591E`,
+`0x00365924`). Otherwise it takes the size from the size table (`0x0032E400(7, 0xD2)`), allocates it (`0x004745D0`),
+stores the buffer at `+0x000` and files the kind-7 request (`0x0032E620`, `0x00365967`) with no check of the size.
+
+`0x003643A0` returns at once while `0x022CBE00` is null (`0x003643AE`) and reads the fontpack pointer `+0x000` with no
+null test (`0x003643B7`). Beside the font block pointer it stores the palette block pointer at `+0x190`, calls
+`0x00366080`, sets bits `0x40000000` and `0x80000000` of `+0x240` (`0x003643D2`) and binds faces 0, 2, 3 and 4. For
+each it fills the sheet slot only while that is null, and sets the face's ready bit and registers its font id
+(`0xB`, `0xD`, `0xE`, `0xF`, through `0x0017FC00`) either way (`0x003643E5`-`0x0036449E`).
+
+`0x00366080` also stores the font block's `value`, rounded up to even and doubled, `(value + (value & 1)) * 2`, at
+`+0x244` (`0x0036608E`-`0x0036609F`). It stores table 0 whatever `tableCount` holds and checks no count: with more
+than 16 tables the table pointers run on into the ends at `+0x90`, and the ends into the sheets at `+0x110`.
+
 ### The staff-roll task
 
 `0x0053EB90` requests slots 7 to 12 with mode 1 (`0x0053EC9A`) and the logo picture `sf_logo_c.tm2` (kind 7,
 `0x47`). On later updates it returns until `0x003657E0` reports all six slots ready (`0x0053EBF3`). `0x0053ED10`
-starts it (through `0x00511540`). The drawing task `0x0053E0B0` passes each line to `0x003649A0`: when the line asks
+starts it (through `0x00511540`).
+
+On its message 1 `0x0053EB90` also stores itself in the task pointer `0x02CA8A78` (`0x0053EC58`), calls `0x0016D6A0`, a
+bare `ret 0` that does no work (`0x0053EC5F`), and requests text groups 25 and 26 through `0x002FA560` when they are
+not resident (`0x0053EC64`-`0x0053EC8B`). It requests the logo only while `0x02CA8A88` is 0: through `0x002493D0` on a
+request group from `0x00249580`, storing the picture in `0x02CA8A88` and closing the group (`0x0053ECA6`-`0x0053ECEE`).
+It ends with `0x00247950(task, 0)` (`0x0053ECF3`-`0x0053ECF8`).
+
+`0x00249580` returns 0 when its twelve records at `0x02090790` are all taken (`0x002495A0`), and `0x0053EB90` passes that
+to `0x002493D0` and `0x00249410` without a test; `0x00249410` sets bit `0x2` of the dword at the group's address
+(`0x00249425`), which faults for 0.
+
+A later update also returns until text groups 25 and 26 are resident (`0x0053EC07`-`0x0053EC25`) and until message 16
+has set its `+0xC0` to 1 (`0x0053EBCF`, `0x0053EC2B`). Then it clears `0x02CA8A78` and releases itself (`0x0053EC3A`,
+`0x0053EC41`). Other messages go to `0x005C5230` (`0x0053EBCA`).
+
+The drawing task `0x0053E0B0` passes each line to `0x003649A0`: when the line asks
 for a shadow, first with its face index plus 1 (the shadow face) at an offset, then with the face index.
 
 ### Finding and drawing a cell
@@ -213,11 +248,15 @@ for a shadow, first with its face index plus 1 (the shadow face) at an offset, t
   `[0x022CBE00] + 0x228` to the tail `+0x230` and, when the entry held texels, clears it (key `0xFF0000`, texel and
   record pointers null) (`0x0036422B`-`0x00364272`).
 - It then scans face `n`'s table for the code and returns null when it is absent (`0x003642A1`), so that character
-  is skipped and the recycled entry stays empty.
+  is skipped and the recycled entry stays as the first step left it: empty when it held texels, while an entry
+  whose texel pointer was already null keeps its key and record (`0x00364260`). The table pointer
+  `[+0x10 + 8n]` is read with no null test (`0x00364280`), so a face with no table faults there.
 - It rounds `cellW` and `cellH` each with `r = v <= 8 ? 8 : v <= 16 ? 16 : v <= 32 ? 32 : v <= 64 ? 64 : 128`
   (`0x003642D0`-`0x00364342`).
 - The entry gets the record, the rounded size and `sheet + sheetOffset`, or a null texel pointer when face
-  `n` has no sheet. No offset is checked against the sheet's size.
+  `n` has no sheet. No offset is checked against the sheet's size. It also gets the code at `+0x10`, the face
+  at `+0x12` and 1 at `+0x13` (`0x003642AF`-`0x003642CB`), and `0x00364210` returns the entry (`0x0036435D`,
+  `0x00364371`).
 
 For a cell with texels, `0x003649A0` builds a GS upload of `roundW x roundH` texels in pixel format `0x14`
 (4 bits per texel, `0x00474650` at `0x00364BFF`); `0x003A1F20` sizes such a transfer as `width x height / 8` words,

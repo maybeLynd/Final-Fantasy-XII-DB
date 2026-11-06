@@ -38,8 +38,11 @@ nothing:
 | `8` | `Magi::Music` | `0x007B77E0` | slot 22 |
 | `9` | `Magi::Instrument` | `0x007B7FD0` | slot 22 |
 
-`0x007A9160` turns a kind 7 handle into the driver handle its `Lay` source plays (source slot 4) and passes a kind 8
-handle through; the music calls below use it, so they accept either. The handle helpers `0x007A4380` (-1), `0x007A5F10`
+`0x007A9160` turns a kind 7 handle into the driver handle its `Lay` source plays (source slot 4), found under the lock
+`0x007BC2A0` gives (`0x007BC2B0`), and passes a kind 8 handle through. Any other kind, and a kind 7 handle that finds no
+source, gives 0 (`0x007A91A4`, `0x007A91C8`). The music calls below use it, so they accept either.
+
+The handle helpers `0x007A4380` (-1), `0x007A5F10`
 (0), `0x007A46E0`, `0x007A4C40`, `0x007A4C70`, `0x007A47A0`, `0x007A9060` and `0x007A9080` build or copy a handle value, and
 `0x007A59E0`, `0x007A59F0`, `0x007A5B20`, `0x007A5B00` and `0x007A5660` do the same for the four-byte `Lay` handles.
 
@@ -66,6 +69,12 @@ that (`0x007A4ECC`, `0x007A4ED7`), the voice count is the three start-up counts 
 `0x00210760` fills (`0x400`, `0x40`), and the music and instrument counts are constants of their builders. `0x007B6AA0`
 links a fresh list's nodes into its free chain.
 
+`0x007DF790(pool, size, count, d, align)` works under the pool's lock. With `a = max(align, 8)` it keeps the block
+size `(max(size, 8) + a - 1) / a * a` at `+0x40` and the count at `+0x44` (`0x007DF7BB`-`0x007DF7E8`). It allocates
+`block * count + a - 1` bytes through `0x007AD550` with `d` (`0x007DF7FD`) and keeps the allocation at `+0x28`; when
+that gives 0 it answers -1 (`0x007DF80B`). Otherwise it stores the start `(p + a - 1) / a * a` at `+0x30` and
+`+0x38`, points each block's first qword at the next block, 0 in the last, and answers 0 (`0x007DF810`-`0x007DF85F`).
+
 The instrument pool is never built in the shipped game. The driver start `0x007A4D50` calls the instrument builder
 `0x007B8170` only when start-up block `+0x28` is not 0 (`0x007A519B`-`0x007A51A0`), and `0x00210760` stores 0 there: its
 8-byte store at `0x00210831` writes `0x20` to `+0x24` and 0 to `+0x28`. So the instrument pool and list stay empty, the
@@ -81,7 +90,13 @@ Banks and sounds are also kept in hash tables of 257 buckets (`0x007E27B0`): ban
 bucket.
 
 - `0x007B2200(id)` finds the bank whose number is the id's high 16 bits, in bucket `(id >> 16) % 257`
-  (`0x007B2251`); a bank with a sound table must also hold the id's low 16 bits as a sound number.
+  (`0x007B2251`). It takes the first bank in the bucket whose slot 4 answers 1, whose slot 2 answers 0 and whose
+  slot 7 record holds that number in its word `+0x0A` (`0x007B2283`-`0x007B22BF`), moves it to the front of the
+  bucket (`0x007E27F0`) and returns it; with no such bank it returns 0 (`0x007B2441`).
+- A bank whose header byte `+0x05` has bit `0x1` set, a music bank only from version byte `+0x04` 2, also needs
+  the number `u16 +0x08` of its first sound or music to equal the id's low 16 bits (`0x007B22EC`-`0x007B231A`,
+  `0x007B237E`-`0x007B23B2`). Other banks match on the high 16 bits alone, and a bank whose content type `+0x48` is
+  neither 1 nor 2 never matches (`0x007B235D`).
 - `0x007B4540(id)` finds a playing sound by its sound number and its bank's number; `0x007B7860(id)` does the same for a
   music.
 - `0x007A4CA0(out, id)` gives the handle of the playing sound or music with that id, by the bank's content type
@@ -92,12 +107,15 @@ bucket.
 
 `0x007A48C0` (from the game's bank loaders `0x00222F20`, `0x00223DA0` and `0x00224C40`) calls `0x007B1660`:
 
-1. It checks the data's tag: `sabf` (`0x007CFF90`) makes a sound bank; `mabf` (`0x007D07A0`) goes to `0x007B18A0`, which
-   makes a music bank the same way.
-2. It takes a bank block and a node in the least-filled bank list, and writes a kind 1 handle.
+1. It zeroes the handle (`0x007B1684`) and checks the data's tag: `sabf` (`0x007CFF90`) makes a sound bank; `mabf`
+   (`0x007D07A0`) goes to `0x007B18A0`, which makes a music bank the same way; any other data answers -1 (`0x007B16BE`).
+2. It takes a bank block (`0x007DF750`), answering -1 when no block is free (`0x007B16FC`), and a node in the
+   least-filled bank list, and writes a kind 1 handle.
 3. It builds an `OnMemoryBank` (`0x007E29C0`, over the `Bank` base `0x007D07C0`) and runs its slot 8 with the data and
    the content type, 1 or 2.
-4. It adds the bank to the hash table. On failure it gives back the node and the block.
+4. It adds the bank to the hash table and answers 0 (`0x007B184A`, `0x007B185C`). It stores the bank in its node only
+   when the node's slot is in the list and live (`0x007B1822`-`0x007B183A`). On failure, a negative answer from slot 8,
+   it gives back the node and the block, zeroes the handle and answers -1 (`0x007B17E2`-`0x007B1813`).
 
 `0x007A4AC0` and `0x007A4B30` do the same for a streaming sound bank (`0x007B1AB0`) and a streaming music bank
 (`0x007B1E10`), described on [Sound streaming](sound-streaming.md). `0x007A88F0(bank, nowait)` releases a bank through
@@ -110,10 +128,14 @@ takes one away, both atomically; `0x007D0810` puts back the base vtables when a 
 
 ### Creating a sound or a music
 
-`0x007A87C0(bank, out, id, ...)` (from `0x00221C70`, `0x007A4A10` and the `Lay` tick `0x007F0820`) looks the bank up and
-calls `0x007D0940` for a sound bank or `0x007D08F0` for a music bank; `0x007A86E0` takes only a music bank. `0x007A4A10(out,
-id)` first finds the bank by number and asks for the sound with bit `0x40000000` set, meaning a sound number rather than an
-index (`0x007A4A7C`).
+`0x007A87C0(bank, out, id, ...)` (from `0x00221C70`, `0x007A4A10` and the `Lay` tick `0x007F0820`) looks the bank up under
+the bank lock (`0x007B24F0`, `0x007B2470`) and calls `0x007D0940` for a sound bank or `0x007D08F0` for a music bank, by the
+content type `+0x48`. It copies the handle that call gives into `out` and answers its result; a handle that finds
+no bank, or a content type other than 1 and 2, answers -1 and leaves `out` as it was (`0x007A8810`-`0x007A88C4`).
+`0x007A86E0` takes only a music bank.
+
+`0x007A4A10(out, id)` first finds the bank by number and asks for the sound with bit `0x40000000` set, meaning a
+sound number rather than an index (`0x007A4A7C`).
 
 1. `0x007B2CB0` takes a `0x540` block and a node in the sound list; with no block it prints "sound heap empty. could
    not create sound", with no node "using list full. could not create sound".
@@ -122,11 +144,20 @@ index (`0x007A4A7C`).
 3. It records the object in its node and, unless the object is waiting for its bank (slot 38), adds it to the sound
    hash table.
 
-`0x007B72B0` does the same for a music through `0x007B7460`. That checks the music number against the bank's count
-("music number is out of range"), resolves a number with bit `0x40000000` set through `0x007A8EA0`, and adds the music's track
-need to `0x02EADBB0`: `0x007B7960` counts it from the music's sections and mode transitions in an in-memory bank, and a
-streaming bank gives its stream count `+0x94`. Over the budget `0x02EADBB4`, 32, it prints "track count exceeded
-numMusicTracks" and goes on.
+`0x007B72B0(out, bank, number, ...)` makes a music through `0x007B7460`, with its own pool and list. It zeroes `out`,
+takes a block from the music pool `0x02EADBC0` and a node in the music list `0x02EADC10`, and writes a kind 8 handle
+with the next serial `0x02EADBB8` (`0x007B72C6`-`0x007B735E`); with no free block it answers -1 (`0x007B7300`).
+
+`0x007B7460` checks the music number against the bank's count ("music number is out of range"), resolves a number
+with bit `0x40000000` set through `0x007A8EA0`, and adds the music's track need to `0x02EADBB0`: `0x007B7960` counts it
+from the music's sections and mode transitions in an in-memory bank, and a streaming bank gives its stream count
+`+0x94`. Over the budget `0x02EADBB4`, 32, it prints "track count exceeded numMusicTracks" and goes on.
+
+When `0x007B7460` answers a negative value, `0x007B72B0` takes the node out, gives back the block, puts `0x02EADBB0`
+back to its value before the call and answers -1, leaving the handle in `out` (`0x007B73C2`-`0x007B73F8`). Otherwise
+it stores the music in its node when the node's slot is in the list and live, and answers 0
+(`0x007B7403`-`0x007B7433`). Neither `0x007B72B0` nor `0x007B7460` calls the hash-table add `0x007E2880`, which the sound
+path calls at `0x007B2F1D`.
 
 ### Reading a sound's header
 
@@ -185,7 +216,7 @@ its own slot:
 
 | Query | Sound, music, instrument (slot) | `Lay` source (slot) |
 |---|---|---|
-| `0x007A7010` | the state, slot 21 (`0x007BD9A0`), as 0, 1, 2 or 3 (3 for state 4) | slot 2 |
+| `0x007A7010` | the state, slot 21 (`0x007BD9A0`), as 0, 1, 2 or 3 (3 for state 4, 2 for every state other than 0, 1 and 4); 0 for a zero handle, a handle of another kind or one that finds nothing (`0x007A701F`, `0x007A7108`, `0x007A71A0`-`0x007A71D2`) | slot 2: 0, 1 and 3 as they are, 2 for every other state, 0 when the handle finds no source (`0x007A7074`-`0x007A70EA`) |
 | `0x007A67D0` | slot 28, three values (`0x007BD6F0`) | slot 26 |
 | `0x007A71F0` | the switch value (`0x007BD9D0`; `0x007CEF00` for an instrument) | slot 24 |
 | `0x007A7350` | slot 26 (`0x007BDBB0`) | slot 18 |

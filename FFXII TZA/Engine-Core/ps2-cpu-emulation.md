@@ -28,37 +28,46 @@ again. Each general-purpose register is a 16-byte cell, as on the Emotion Engine
 register is four floats.
 
 The translation keeps the MIPS register conventions, which is what identifies the block. Register
-0 at `0x022D8F10` is `$zero`: 45 functions read it 444 times and nothing writes it, and loop exits
+0 at `0x022D8F10` is `$zero`: 46 functions read it 437 times and nothing writes it, and loop exits
 compare the counter against it (`0x0024AD00` ends its vertex loop on `t0 == $zero` at `0x0024AF0A`).
 
-The caller-saved temporaries `t0` to `t7` carry almost all the traffic; the argument registers
-`a0`/`a1` and the return registers `v0`/`v1` are next; the callee-saved `s` registers, `a2`,
-`a3`, `k0`, `k1`, `gp`, `sp`, `fp` and `ra` have no reference at all (one dword inside `s3`'s
-cell, `0x022D904C`, is read once by `0x0051D310`, which uses the scratch dwords below the same way).
+The caller-saved temporaries `t0` to `t7` carry 5,888 of the table's 6,706 reads and writes, and `$zero`, `v0`,
+`v1`, `a0` and `a1` most of the rest; the callee-saved `s` registers, `a2`, `a3`, `k0`, `k1`, `gp`, `sp`, `fp` and
+`ra` have no reference at all, except one dword inside `s3`'s cell: `0x022D904C`, which nothing writes, is read once,
+by `0x0051D310` at `0x0051D930`, which stores the value to the scratch dword `0x022D914C` at `0x0051D9BE`.
 
-| register | address | functions | writes | reads |
-|---|---|---|---|---|
-| `$zero` | `0x022D8F10` | 45 | 0 | 444 |
-| `at` | `0x022D8F20` | 1 (`0x00362230`) | 1 | 1 |
-| `v0` | `0x022D8F30` | 29 | 108 | 50 |
-| `v1` | `0x022D8F40` | 10 | 24 | 19 |
-| `a0`, `a1` | `0x022D8F50`, `0x022D8F60` | 9 each | 15 each | 15 each |
-| `t0` | `0x022D8F90` | 64 | 653 | 478 |
-| `t1` | `0x022D8FA0` | 46 | 929 | 334 |
-| `t2` | `0x022D8FB0` | 41 | 321 | 592 |
-| `t3` | `0x022D8FC0` | 27 | 166 | 179 |
-| `t4` | `0x022D8FD0` | 20 | 195 | 142 |
-| `t5` | `0x022D8FE0` | 13 | 76 | 58 |
-| `t6`, `t7` | `0x022D8FF0`, `0x022D9000` | 7 each | 144, 56 | 71, 28 |
-| `t8`, `t9` | `0x022D9090`, `0x022D90A0` | 3 each | 7 each | 9 each |
+| register | address | functions | writes | reads | address loads (`lea`) |
+|---|---|---|---|---|---|
+| `$zero` | `0x022D8F10` | 46 | 0 | 437 | 11 |
+| `at` | `0x022D8F20` | 1 (`0x00362230`) | 1 | 1 | 0 |
+| `v0` | `0x022D8F30` | 32 | 202 | 49 | 14 |
+| `v1` | `0x022D8F40` | 12 | 29 | 19 | 1 |
+| `a0`, `a1` | `0x022D8F50`, `0x022D8F60` | 9 each | 15 each | 15 each | 0 |
+| `t0` | `0x022D8F90` | 67 | 888 | 486 | 21 |
+| `t1` | `0x022D8FA0` | 48 | 2,183 | 327 | 15 |
+| `t2` | `0x022D8FB0` | 42 | 391 | 568 | 1 |
+| `t3` | `0x022D8FC0` | 27 | 208 | 154 | 1 |
+| `t4` | `0x022D8FD0` | 20 | 205 | 113 | 0 |
+| `t5` | `0x022D8FE0` | 13 | 78 | 46 | 0 |
+| `t6`, `t7` | `0x022D8FF0`, `0x022D9000` | 7 each | 120, 51 | 51, 19 | 0 |
+| `t8`, `t9` | `0x022D9090`, `0x022D90A0` | 3 each | 5 each | 5 each | 0 |
 
-`HI` at `0x022D9110` and `LO` at `0x022D9120` are written by ten functions at fifteen sites each: the
+Each instruction counts once for every register whose bytes it loads or stores, whether through a rip-relative
+operand, an operand relative to the image base (the four-lane loops of `0x00399600` and `0x005080A0`), or a register
+holding the cell's address (the lane loops at `0x0026F2C0` and `0x004301B4`, and the callees `0x003CCA70`, `0x00501820`,
+`0x00506A40`, `0x0036D930` and `0x0036D8E0`); a read-modify-write counts as a write and a read, and `lea` only as an
+address load.
+
+The 49 qword loads at `0x022D8F1C` in `0x003D2B60` (the first at `0x003D2C70`) count for `$zero` alone: they also load
+the first dword of `at`, but only `eax`, word 3 of `$zero`, is read before `rax` is loaded again.
+
+`HI` at `0x022D9110` and `LO` at `0x022D9120` are written by ten functions at 57 sites each: the
 multiply in `0x0026EE00` (`0x0026F0E6`, `0x0026F0EC`) and the family `0x00506A40`, `0x00506B40`, `0x00507120`,
 `0x00507490`, `0x005080A0`, `0x00508C90`, `0x00509BB0`, `0x0050A100` and `0x00545650`.
 
-A halfword multiply forms the eight signed products of the matching 16-bit halfwords of its two 16-byte
-operands and keeps them in `LO` and `HI`, one 32-bit word each. `0x00506A40` shows the order
-(`0x00506A70`-`0x00506B2E`), and `0x0026EE00` uses the same one (`0x0026F0E0`-`0x0026F1D2`):
+A halfword multiply forms the eight signed products `p[i] = a[i] * b[i]`, i = 0..7, of the matching 16-bit
+halfwords of its two 16-byte operands `a` and `b` and keeps them in `LO` and `HI`, one 32-bit word each. `0x00506A40`
+shows the order (`0x00506A70`-`0x00506B2E`), and `0x0026EE00` uses the same one (`0x0026F0E0`-`0x0026F1D2`):
 
 | Word | `LO` (`0x022D9120`) | `HI` (`0x022D9110`) |
 |---|---|---|
@@ -70,12 +79,13 @@ operands and keeps them in `LO` and `HI`, one 32-bit word each. `0x00506A40` sho
 `0x0026EE00` then copies the low halfwords of words 1 and 3 of `LO` and `HI` into halfwords 1, 3, 5 and 7 of
 `v0` (`0x0026F24F`-`0x0026F280`). No instruction reads word 2 of either register (see Project notes).
 
-The vector unit's registers follow. `0x022D9130` is the 24-bit `CLIP` flag: `0x0025A8E0` shifts it
-left by six and sets one bit per comparison of x, y and z against `+|w|` and `-|w|` (`0x0025A8EE`
-to `0x0025A96A`), which is the `VCLIP` instruction, and two more translated bodies do the same inline
-(`0x003623C0` at `0x00362611` to `0x00362662`, `0x00521450` at `0x00521966` to `0x00521A86`). All three mirror
-the new word to `0x022D9478`, and the only readers are those three and `0x0025C830` (`0x0025CEFA`),
-which tests the bits after calling `0x0025A8E0` four times.
+The vector unit's registers follow. `0x022D9130` is the 24-bit `CLIP` flag: `0x0025A8E0` shifts it left by six and sets
+one bit per comparison of x, y and z against `+|w|` and `-|w|` (`0x0025A8EE` to `0x0025A96A`), then zeroes its top byte
+`0x022D9133` (`0x0025A970`), keeping four 6-bit generations, which is the `VCLIP` instruction, and two more translated
+bodies do the same inline (`0x003623C0` at `0x00362611` to `0x00362662`, `0x00521450` at `0x00521966` to `0x00521A86`).
+
+All three mirror the new word to `0x022D9478`, and the only readers are those three and `0x0025C830` (`0x0025CEFA`), which
+tests the bits after calling `0x0025A8E0` four times.
 
 `0x0025C830` is the box test of class-1 trigger records that files the `touch` and `touchon`
 script requests ([script requests](../Scripts-And-Script-Commands/script-requests.md)).
@@ -91,7 +101,7 @@ is `ACC`, the accumulator the multiply-add forms read: 83 functions write it, 54
 loads.
 
 `0x022D91B0` to `0x022D939F` are the vector registers `vf01` to `vf31`, 16 bytes apart, so register n
-sits at `0x022D91A0 + 16n`; `vf00` is the constant `(0, 0, 0, 1)` at `0x01EF93F0`, read by 132
+sits at `0x022D91A0 + 16n`; `vf00` is the constant `(0, 0, 0, 1)` at `0x01EF93F0`, read by 129
 functions and written only by the start-up `0x0036D990`, the clear `0x0036D9E0` and the re-assert
 `0x0036DD80`.
 
@@ -172,12 +182,13 @@ one column of all four rows per pass. The result is `b × a`, not `a × b`, and 
 
 ### Two translated bodies read as examples
 
-`0x0024AD00(out, matrix, verts, count)` (callers `0x00249080`, `0x00249110`, `0x003C6420`) is a vertex
-projection. It loads the matrix into `vf20` to `vf23`, the count into `t0`, and for each vertex:
-`vf24 = vert`; `ACC = x·vf20 + y·vf21 + z·vf22`; `w' = vf23.w·w + ACC.w`; `Q = vf00.w / w'`;
-`vf25 = (vf23·w + ACC) · Q`; `vf26 = int(vf25 · 16)`, stored to `out`. The 16 is the Graphics
-Synthesizer's 12.4 fixed-point vertex format. The loop decrements `t0` and ends when it equals
-`$zero`.
+`0x0024AD00(out, matrix, verts, count)` (callers `0x00249080`, `0x00249110`, `0x003C6420`) is a vertex projection. It loads
+the matrix into `vf20` to `vf23`, the count into `t0`, the vertex pointer into `t1` and `out` into `t2`
+(`0x0024AD45`-`0x0024AD5A`), advances `t1` and `t2` by 16 bytes per vertex (`0x0024AD98`, `0x0024AF11`), and for each vertex:
+`vf24 = vert`; `ACC = x·vf20 + y·vf21 + z·vf22`; `w' = vf23.w·w + ACC.w`; `Q = vf00.w / w'`; `vf25 = (vf23·w + ACC) ·
+Q`; `vf26 = int(vf25 · 16)`, stored to `out`. The 16 is the Graphics Synthesizer's 12.4 fixed-point vertex format.
+
+The loop decrements `t0` and ends when it equals `$zero`.
 
 `0x0026EE00(out, a, b)` saves `v0`, reads `$zero` as a 16-byte operand at `0x0026EE34`, forms signed
 16-bit lane products through `t0` to `t3` with each product split into `LO` and `HI`, writes the
@@ -210,7 +221,7 @@ read by nothing.
 | `0x022D91A0` | `f32[4]` | ACC |  |
 | `0x022D91B0` | `f32[31][4]` |  | vf01..vf31 at `0x022D91A0` + 16n |
 | `0x022D93A0` | `...` |  | `0x022D93A0` to `0x022D942F`, cleared by `0x0036D9E0`, otherwise unreferenced |
-| `0x022D9470` | `u8` |  | flag byte: `0x80` by `0x0036DD90`, `0x40` by `0x0036DDA0`; never read |
+| `0x022D9470` | `u8` |  | flag byte: or `0x80` by `0x0036DD90`, or `0x40` by `0x0036DDA0`; nothing else reads it |
 | `0x01EF93F0` | `f32[4]` | vf00 | = (0, 0, 0, 1); image constant copied by `0x0036DD80` |
 | `0x02EC0800` | `...` |  | saved register values, 16 B each |
 | `0x02EC0A00` | `...` |  | the saved addresses |
@@ -219,18 +230,18 @@ read by nothing.
 
 | Fact | Value |
 |---|---|
-| functions referencing the block or `vf00` | 273 (251 the block, 22 only `vf00`), in [ps2-cpu-emulation-functions.tsv](ps2-cpu-emulation-functions.tsv) |
-| of those, using general-purpose registers | 99 (27 only those) |
+| functions referencing the block or `vf00` | 274 (252 the block, 22 only `vf00`), in [ps2-cpu-emulation-functions.tsv](ps2-cpu-emulation-functions.tsv) |
+| of those, using general-purpose registers | 104 (32 only those) |
 | using vector registers, `ACC`, `Q` or `CLIP` | 217 (145 only those); 72 use both sets |
-| heaviest bodies by bank references | `0x003D2B60` 1,625; `0x003CD840` 749; `0x00413C80` 474; `0x0040B780` 433; `0x00411650` 428; `0x00533B20` 405; `0x00548A00` 402 |
-| `vf00` writers / readers | 3 / 132 |
+| heaviest bodies by bank references | `0x003D2B60` 2,001; `0x003CD840` 1,533; `0x00413C80` 474; `0x0040B780` 433; `0x00411650` 428; `0x00533B20` 405; `0x00548A00` 402 |
+| `vf00` writers / readers | 3 / 129 |
 | `Q` writers | 55 functions, 85 sites |
 | `ACC` writers / readers | 83 / 46 functions |
 | save / restore pairs | 9; registers `v0` ×6, `t0` ×3, `v1` once |
 
 The table lists every function with the register groups it touches (`depth`, `GPR`, `HILO`,
-`CLIP`, `Q`, `ACC`, `rows`, `misc`, `tail`, `vf00`) and its write, read and address-only
-reference counts.
+`CLIP`, `Q`, `ACC`, `rows`, `rows_tail`, `misc`, `tail`, `vf00`) and its write, read and address-only
+reference counts. `rows_tail` is `0x022D93A0` to `0x022D942F`, past `vf31`, which only `0x0036D9E0` clears.
 
 ## Operations
 
@@ -336,9 +347,17 @@ rows count an access the way the table above does:
   second vector unit, with its own data memory at `0x02064E30`.
 - [Random number generators](../Random-Numbers/random-number-generators.md): the stream
   word at `0x022D9138`.
-- [`ps2-cpu-emulation-register-bank-accesses.tsv`](ps2-cpu-emulation-register-bank-accesses.tsv): the one censused
-  access to the register bank `0x022D8F10` through a register holding its address, a read by `0x003CCA70` (1 row).
-- [`ps2-cpu-emulation-saved-pointer-accesses.tsv`](ps2-cpu-emulation-saved-pointer-accesses.tsv): the one censused
-  access to the saved addresses `0x02EC0A00`, a write by `0x0036D930` (1 row).
-- [`ps2-cpu-emulation-saved-value-accesses.tsv`](ps2-cpu-emulation-saved-value-accesses.tsv): the one censused
-  access to the saved register values `0x02EC0800`, 16 bytes each, a write by `0x0036D930` (1 row).
+- [`ps2-cpu-emulation-register-bank-accesses.tsv`](ps2-cpu-emulation-register-bank-accesses.tsv): every access to
+  the register block through a register holding a register's address (`$zero` at `0x022D8F10` among them): the lane
+  loops in `0x0026EE00`, `0x0042FDB0` and `0x00506B40` and the callees `0x003CCA70`, `0x00501820`, `0x00506A40`, `0x0025A8E0`,
+  `0x0036D930` and `0x0036D8E0`, each with the addresses it receives (60 rows).
+- [`ps2-cpu-emulation-saved-pointer-accesses.tsv`](ps2-cpu-emulation-saved-pointer-accesses.tsv): the two
+  accesses to the saved addresses `0x02EC0A00`, the write by the save `0x0036D930` and the read by the restore
+  `0x0036D8E0`, relative to the image base (`0x0036D8FE`) (2 rows).
+- [`ps2-cpu-emulation-saved-value-accesses.tsv`](ps2-cpu-emulation-saved-value-accesses.tsv): the two
+  accesses to the saved register values `0x02EC0800`, 16 bytes each, the write by `0x0036D930` and the read by
+  `0x0036D8E0` (`0x0036D906`) (2 rows).
+  - The other addresses into the stack's range, in `0x00374930`, `0x00375470`, `0x00375900` and `0x00375F80`, are loop
+    end bounds (`0x02EC0848`, `0x02EC08B8`) for the 32 records of 0x70 bytes at `0x02EBF9E0` before it, which those
+    loops read at `+0x68`. Their other access, the three dwords `0x02EC07F0` to `0x02EC07FB` that `0x00375F80`
+    clears, ends before `0x02EC0800`.

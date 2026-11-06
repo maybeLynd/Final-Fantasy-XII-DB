@@ -50,17 +50,27 @@ The framework start-up calls it once (`0x00798603`, [application framework](phyr
 by the byte `0x02CACCA0`, it:
 
 1. allocates a `0xE0`-byte object (`0x0062EA20`) into `0x01F7F5B8` and creates the synchronisation object
-   at `0x02D3E880` (`0x00677450`);
+   at `0x02D3E880` (`0x00677450`); `0x00210EC0` allocates (`0x005A0901`), and a null result is stored without running
+   the constructor `0x0062EA20` (`0x005A090E`). The stub `0x005C5230` is called between the two (`0x005A0920`), and
+   its 0 lets the set-up go on;
 2. registers the core reflected types: a run of calls, ten of whose results go to the name intern
    `0x006388C0`;
 3. walks the list from `0x02CACC90`, calling each module's init with the module object; a non-zero result
    is returned at once, so the modules after it never start;
 4. registers more core types (`0x00686C40`), calibrates the timers (`0x005CC980`) and stores the start time
-   in `0x02CB60E8`;
+   in `0x02CB60E8`; a non-zero result from `0x00686C40` or `0x005CC980` is returned at once (`0x005A0A54`,
+   `0x005A0A61`), and the start time is the clock `0x005CC930`'s reading (`0x005A0A63`, `0x005A0A68`);
 5. stores `0x40000`, `0x8000` and `0x800` in `0x01F2EB34`, `0x01F2EB38` and `0x01F2EB3C` (`0x006AA380`,
    `0x006AA360`, `0x006AA350`), starts the object from `0x006AA280` (its slot 2), builds the type lists
    and the per-kind index (`0x00637F20`, `0x00637A70`, `0x00638AE0`, whose entries `0x00634350` allocates);
-6. registers the shutdown walk `0x005A0840` with `atexit` and sets `0x02CACCA0`.
+6. returns a non-zero result of that slot 2 (`0x005A0A9C`) or of `0x00638AE0` (`0x005A0ABC`) at once; between
+   `0x00637F20` and `0x00637A70` it passes the result of `0x006372A0` to the name intern `0x006388C0` (`0x005A0AA5`,
+   `0x005A0AAD`);
+7. registers the shutdown walk `0x005A0840` with `atexit` and sets `0x02CACCA0` (`0x005A0AC7`, `0x005A0ACC`), then
+   returns 0.
+
+When `0x02CACCA0` is already set it returns 0 at once (`0x005A08F6`). A set-up that returns early leaves the byte
+clear and registers no shutdown.
 
 In list order the inits run: DeveloperExtensions, Hierarchy, Game, Inputs, Text, LOD, DynamicGeometry,
 Physics, Scripting, Geometry, PostProcessing, Rendering, Animation, Scene, Serialization.
@@ -80,15 +90,22 @@ is started by the walk alone.
 1. It walks the list calling each module's shutdown and ignores the results.
 2. It ends the 5 ms timer period (`0x005CCB90`, `timeEndPeriod(5)`, the counterpart of the `timeBeginPeriod(5)` in
    `0x005CC980`) and stops the `0x006AA280` object (its slot 3).
-3. It runs the deferred-destruction reaper `0x00638C90` and closes the synchronisation object (`0x00677520`).
-4. It destroys the `0xE0`-byte object's four `0x38`-byte entries (`0x0062EAF0`, through the vector destructor
-   iterator `0x00809054` with `0x0062EA60`), frees the object and clears `0x02CACCA0`.
+3. It runs the deferred-destruction reaper `0x00638C90`, calls the bare `ret 0` stub `0x0016D6A0` (`0x005A088A`), and
+   closes the synchronisation object (`0x00677520`).
+4. When `0x01F7F5B8` holds the `0xE0`-byte object, it destroys the object's four `0x38`-byte entries (`0x0062EAF0`,
+   through the vector destructor iterator `0x00809054` with `0x0062EA60`) and frees the object (`0x00809950`,
+   `0x005A08B0`); with `0x01F7F5B8` null it skips both (`0x005A089E`). It then stores 0 in `0x01F7F5B8` and clears
+   `0x02CACCA0` (`0x005A08BA`, `0x005A08C5`).
 
 The start-up calls it directly when the message loop ends; the `atexit` call that follows finds the byte clear
 and does nothing.
 
 At process exit each module's `atexit` destructor writes the base vtable back and unlinks the object.
-Slot 0, `0x005A0CB0`, does the same and frees the object when bit `0x1` of its flag argument is set.
+Slot 0, `0x005A0CB0`, does the same: it writes `0x00D26BC0` into the object (`0x005A0CC0`), walks from `0x02CACC90` to the
+link that holds the object, and only when it finds it there stores the object's `+0x08` in that link and clears the
+object's own `+0x08` (`0x005A0CCA`-`0x005A0CF4`); an object not on the list stays as it is. It frees the object's
+`0x20` bytes (`0x00809950`, `0x005A0D06`) when bit `0x1` of its flag argument is set, and returns the object
+(`0x005A0D0B`).
 
 ### What each module holds
 
@@ -104,20 +121,24 @@ the init registers.
 | `PRendering` | shaders and shader passes, D3D11 textures (2D, 3D, cube), render targets, constant and structured buffers, materials, lights, shadow casters, mesh instances, context switches, the renderer | 22 types, then the render set-up (`0x0062D0D0`, `0x005FD2A0`) |
 | `PPostProcessing` | atmospherics, cel shading, deferred lighting, depth of field, FXAA, glow, low-resolution particles, MLAA, motion blur, SSAO, screen-space reflection, each with a D3D11 class | 26 types |
 | `PGeometry` | meshes and mesh segments, vertex streams, index and data blocks, skin bone remaps, skeleton joint bounds, material sets | 4 types and 40 helper calls |
-| `PScripting` | `PScript`, `PScheduler`, the asynchronous process batches | registers four script library openers by name through `0x006844C0`: `math`, `bit32`, `string`, `coroutine` |
+| `PScripting` | `PScript`, `PScheduler`, the asynchronous process batches | calls five member registrars (`0x006822E0`, `0x00681F30`, `0x006827C0`, `0x00681C50`, `0x00681D80`; `0x00685AC4`-`0x00685AD8`), then registers four script library openers by name through `0x006844C0`: `math`, `bit32`, `string`, `coroutine` (`0x00685ADD`-`0x00685B24`); returns 0 (`0x00685B29`) |
 | `PPhysics` | box, capsule, cylinder, mesh, plane and sphere shapes, each with a Bullet class; a character camera | 21 types |
 | `PDynamicGeometry` | modifier networks, morph weights, render streams | 1 type and 30 helper calls |
-| `PLOD` | LOD groups and levels, blend and metric types | 2 types |
+| `PLOD` | LOD groups and levels, blend and metric types | 2 types, from the getters `0x006D94E0` and `0x006D98D0`, then calls `0x006C5FF0` and `0x006C5A50` and returns 0 (`0x006C487E`-`0x006C48A2`) |
 | `PText` | `PBitmapFont`, `PBitmapFontCharInfo` | two calls |
 | `PInputs` | input actions, input sources (pad axes and buttons, keys, mouse, motion, touch, vision tracker), input semantics ([Phyre input semantics](../Controls-And-Input/phyre-input-semantics.md)) | 6 types and 34 helper calls |
 | `PGame` | `PGameConfig` | one call, `0x00879D60` |
-| `PHierarchy` | `POctree`, `POctreeWorld` | creates the `POctreeChildren` allocator at `0x02EBA2A0` |
+| `PHierarchy` | `POctree`, `POctreeWorld` | calls four registrars, `0x008786F0`, `0x008780F0`, `0x00878980` and `0x00878630` (`0x0087AE0D`-`0x0087AE1C`), each registering one type with `0x006388C0` (`0x0087870B`, `0x0087810B`, `0x0087899B`, `0x00878644`); sets up `0x02EBA2A8`, creates the `POctreeChildren` allocator at `0x02EBA2A0` and returns 0 (`0x0087AE71`) |
 | `PDeveloperExtensions` | the module class only | nothing: init and shutdown are both `0x005C5230` |
 
 The `PHierarchy` init `0x0087AE00` also sets up the static at `0x02EBA2A8` (`0x0087A8C0`), an object of three
 arrays at `+0x00`, `+0x10` and `+0x20`. The module shutdown `0x0087AE80` frees the first and last and
 the `POctreeChildren` pool; the static's `atexit` destructor `0x0087A830`, registered by `0x0016D5A0`
 through `0x008C1570`, frees each of the three that the object owns (bit `0x80000000` of its count clear).
+
+`0x0087AE00` allocates the `0x28`-byte `POctreeChildren` allocator with `0x00584740` (`0x0087AE37`) and builds it with
+`0x0067FFB0(allocator, 0x288, 10, 8, "POctreeChildren")` (`0x0087AE46`-`0x0087AE64`); a null allocation is stored at
+`0x02EBA2A0` without the build (`0x0087AE44`, `0x0087AE6A`).
 
 The pool shutdowns `0x00879270` and `0x008792A0`, and the renderer's `0x00610630`, empty a pool with
 `0x006803D0` and then trim it with `0x00680210`, which returns every element on the free list to its
@@ -259,9 +280,10 @@ makes the object the head, and its exit destructor reads it to unlink the object
 also reaches every link through the node:
 
 - the init walk `0x005A08E0` (`0x005A0A44`) and the shutdown walk `0x005A0840` (`0x005A0869`) follow each link;
-- each registrar's search reads a link only past a node whose key is below `0xFF`, which no module has
-  (`0x0016033D`, `0x0016039D`, `0x001610FD`, `0x00162B8D`, `0x0016543D`, `0x00165EBD`, `0x0016622D`, `0x00166C4D`, `0x0016782D`,
-  `0x0016788D`, `0x006CCC4C`, `0x0016AB5D`, `0x0016AEDD`, `0x0016D5CD`, `0x0016D62D`);
+- each registrar's search reads a link only past a node whose key is below `0xFF`, `(u32)[node + 0x18] < 0xFF`
+  (`cmp dword ptr [rcx + 0x18], 0xff` then `jae`), which no module has (`0x0016033D`, `0x0016039D`, `0x001610FD`,
+  `0x00162B8D`, `0x0016543D`, `0x00165EBD`, `0x0016622D`, `0x00166C4D`, `0x0016782D`, `0x0016788D`, `0x006CCC4C`, `0x0016AB5D`,
+  `0x0016AEDD`, `0x0016D5CD`, `0x0016D62D`);
 - each exit destructor's search reads the links of the nodes before its own (`0x008A8D0E`, `0x008A8DEE`, `0x008AAD6E`,
   `0x008AE6FE`, `0x008B0B6E`, `0x008B1A8E`, `0x008B269E`, `0x008B3E5E`, `0x008B6A6E`, `0x008B6ACE`, `0x008B6F2E`, `0x008B98BE`,
   `0x008BA28E`, `0x008C15AE`, `0x008C160E`);
@@ -302,6 +324,7 @@ result (`0x006CCD53`); `0x006CCC10` leaves no entry 0.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
+| `0x02E5BE50` | `void*` | 0 | entry 0: `0x02E5BEA8`, `RenderText_AlphaBlend`, built by `0x00167A40` | `0x006CCC10` (`0x006CCC72`); `0x006CCCE0` (`0x006CCD53`) | `0x006CCCE0` (`0x006CCCF1`) |
 | `0x02E5BE58` | `void*` | 0 | entry 1: `0x02E5BEC8`, `RenderText_AlphaTest`, built by `0x00167A70` | `0x006CCC10` (`0x006CCC80`); `0x006CCCE0` (`0x006CCD53`) | `0x006CCCE0` (`0x006CCCF1`) |
 | `0x02E5BE60` | `void*` | 0 | entry 2: `0x02E5BEE8`, `RenderText_HardEdges`, built by `0x00167AA0` | `0x006CCC10` (`0x006CCC8E`); `0x006CCCE0` (`0x006CCD53`) | `0x006CCCE0` (`0x006CCCF1`) |
 | `0x02E5BE68` | `void*` | 0 | entry 3: `0x02E5BF08`, `RenderText_SoftEdges`, built by `0x00167B60` | `0x006CCC10` (`0x006CCC9C`); `0x006CCCE0` (`0x006CCD53`) | `0x006CCCE0` (`0x006CCCF1`) |
@@ -373,7 +396,9 @@ The engine set-up `0x005A08E0` calls `0x005CC980` (`0x005A0A5A`) before it start
 resolution with `timeBeginPeriod(5)`, takes `timeGetTime`, reads the performance-counter frequency into `0x02CB6120`
 and its reciprocal into `0x02CB6128`, and takes the counter's first reading. It returns `0x17`, which stops the
 set-up, only when both `timeBeginPeriod` and `QueryPerformanceFrequency` failed (`0x005CCA06`, `0x005CCA8D`).
-`0x005CC930`, the engine's clock, divides each counter reading by `0x02CB6120`.
+
+`0x005CC930`, the engine's clock, divides each counter reading by `0x02CB6120`, `t = (f64)counter / (f64)[0x02CB6120]`,
+both read as unsigned 64-bit values (`0x005CC939`-`0x005CC975`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

@@ -67,7 +67,9 @@ The command lists are `{flag, id}` pairs; each list's row count is an immediate 
 
 `0x00311B20` sets bit `0x800` of `[0x02EBF190] + 4` when it issues Attack (`0x96`) to every living member in party
 slots 0-3, its fifth argument not 0 (`0x00311BC8`-`0x00311BD7`), and clears it when it issues Attack to one target
-(`0x00311C8C`); for any other action it leaves the bit as it is (`0x00311BC6`).
+(`0x00311C8C`); for any other action it leaves the bit as it is (`0x00311BC6`). A living member here is a party-slot
+unit with a stats record and without the statuses `0x80000003` (KO, Stone, X-Zone) outside a town
+(`0x00311BF5`-`0x00311C3C`). A call that returns -1 at its start (below) leaves the bit as it is.
 
 Mist is listed only while `0x003135C0` is 0, and Dismiss only while it is 1 ([Command availability](../Battle-Actions/command-availability.md)),
 so the top list shows one of the two. Each row is checked with `0x00318CD0`, which leaves it out, greys it with a reason,
@@ -129,11 +131,16 @@ code starts from an empty list: count `+0x40` = 0 and default entry `+0x44` = -1
 | `0x0027CE70` | the action lists, kinds 4-8, 10-15 and 20 | the action rows |
 | `0x0027BC10` | kind 9, list `0x18` | the name of a class 1 row, or Remove (`menu_command.bin` `0x404`) for the id -1, with byte `+0x15EF` set to 6 for the row equal to `+0x1538` |
 | `0x0027D5C0` | target list `0xF` | the name of the row's id through `0x0031C5D0` |
-| `0x0027E530` | the other target lists | the unit's name (`0x00272CB0`) and, when `0x00272C80` gives a number, that number after it |
+| `0x0027E530` | the other target lists | nothing while the page's `+0x1528` bit `0x8000` is set (`0x0027E54B`); otherwise the unit's name (`0x00272CB0`) and, when `0x00272C80` gives an ordinal above 0, that ordinal's letter after it, the letter `0x0024ABE0` writes, as over the unit's head (`0x0027E657`-`0x0027E686`, [Enemy names on screen](enemy-names-on-screen.md)). With the language test `0x00254A10` false the letter text starts past its blank `0x06` and stands at the name's width plus half of `0x0039C100()` less `0x0039C120(ordinal)`, plus 4 (`0x0027E693`-`0x0027E6F0`); with it true the letter ends 11 short of the width `+0x9C` of the widget `[page + 0x1510]` (`0x0027E6FA`-`0x0027E750`). Both draw through `0x002D8690` (`0x0027E765`) |
 
-A row whose greyed flag is set is drawn at alpha `0x40`. An empty list draws one row with alpha `96 + 32 x sin(t x pi / 30)`
-of the frame counter: "No Available Targets" (`menu_message.bin` `0x7D1`) for a target list, and `0x7D2`, empty in the
-shipped text, for the others (`0x0027D24A`-`0x0027D25E`, `0x0027BC1A`-`0x0027BC29`).
+A row whose greyed flag is set is drawn at half brightness: its colour scale `+0x5A` becomes `0x40`
+(`0x0027E60C`-`0x0027E61B`, `0x0027D2BA`-`0x0027D2D3`), and `0x0027E530` restores it after the row (`0x0027E782`).
+
+An empty list draws one row whose colour byte `+0x90` is `96 + 32 x sin(t x pi / 30)`, with `+0x91` and `+0x92` at
+`0x30` and the alpha `+0x93` at `0x80`, t being the frame counter `0x0208F570`, and the text "No Available Targets"
+(`menu_message.bin` `0x7D1`) for a target list, and `0x7D2`, empty in the
+shipped text, for the others (`0x0027D24A`-`0x0027D25E`, `0x0027BC1A`-`0x0027BC29`; the colour at `0x0027E566`-`0x0027E5DD`,
+`0x0027D263`-`0x0027D2B2`, `0x0027BC33`-`0x0027BC91`).
 
 ### Names and help
 
@@ -285,8 +292,11 @@ A new list of the same panel is rebuilt in place and pushed on the stack; a targ
 pops the stack and closes the menu when it is empty (`0x002787AF`).
 
 The action is issued through `0x00311CD0(actor, target, action, 0)` (`0x00278766`), or `0x00311B20` for a party-position
-target (`0x0027869B`), which both reach `0x00311CF0` once ([Action phases](../Battle-Actions/action-phases.md)). The
-menu never asks for the whole party (fan-out 0 at all six call sites). Dismiss asks "Dismiss {name}?"
+target (`0x0027869B`), which both reach `0x00311CF0` once ([Action phases](../Battle-Actions/action-phases.md)).
+`0x00311B20` returns -1 without reaching it when the acting handle resolves to no unit, or when a non-zero target
+handle resolves to no unit for an action other than `0x414E` (`0x0031B7E0`, `0x00311B3E`-`0x00311B74`).
+
+The menu never asks for the whole party (fan-out 0 at all six call sites). Dismiss asks "Dismiss {name}?"
 (`menu_message.bin` `0x7D0`, `0x0027AA70`) and on Yes issues action `0x113` on the Esper (`0x0027AB01`).
 
 ### The help line
@@ -459,6 +469,19 @@ the unit's byte `+0x17` bit `0x2` and the HUD's bit are set. The step is `min(HP
 (`0x002C8398`-`0x002C83A1`); it picks the frame `0x00916F08[step]` and a colour between the kind's `Min` and `Max` keys
 (`0x002C5F90`).
 
+`0x002C8310` itself, from its one call (`0x002C7892`):
+
+- draws nothing when its third argument is 0 or when `0x003F0040` gives it no sprite (`0x002C8310`-`0x002C8314`,
+  `0x002C833F`-`0x002C834A`);
+- takes the step as 0 when the maximum is 0 and counts an HP below 0 as 0 (`0x002C838C`-`0x002C8394`);
+- reads frame `0x00916F08[step]` past the base frame of the sheet `0x0035D3D0` returns (`0x002C83A8`-`0x002C83D8`) and hands
+  the sprite, that frame, the third argument and the step's colour `0x002C5F90(kind, step)` to `0x002C69A0`
+  (`0x002C83E1`-`0x002C8422`);
+- stores the four bytes of `0x002C5F90(kind, 0)` at the sprite's `+0x90`, `+0x94` and `+0x98`, and the fourth times
+  the third argument, shifted right 7, at `+0x9C`, with 1 at `+0x80` (`0x002C8427`-`0x002C8488`);
+- submits the sprite with `0x003F1290`: to its fifth argument when the eighth is 1, otherwise to its fourth after
+  `0x00202B10` moves the position at `+0x10` by the ninth and sets `+0x1C` to 1.0 (`0x002C8480`-`0x002C84BD`).
+
 | Kind | Layout keys |
 |---:|---|
 | 0, party | `HpGaugeSide{Min,Max}_{R,G,B,A}` (`0x01E0CEF8`-`0x01E0CF14`) |
@@ -506,7 +529,7 @@ The list widget (`0x2DC0` bytes, procedure `0x002778C0`) keeps four `0x20`-byte 
 
 ### The boss gauge manager
 
-The manager is the `0xF0`-byte widget at `0x02B62D88` with procedure `0x00406A60` (The boss gauge above).
+The manager is the `0xF0`-byte widget kept at `0x02B62D88` with procedure `0x00406A60` (The boss gauge above).
 
 `BossGaugeManager` (`0xF0` bytes, offsets from the start of the record):
 

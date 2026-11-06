@@ -2111,7 +2111,7 @@ naf_a02	常駐監督	main	12	0x024DE	271	-	suspendbattle	-	the battle in progres
 naf_a02	常駐監督	main	13	0x024E4	272	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a02	常駐監督	main	14	0x024EB	273	-	switch	EV_ナルビナ上層マップ進行	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	常駐監督	main	15	0x024EE	275	-	case	lte(20)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	常駐監督	main	16	0x024F1	276	EV_ナルビナ上層マップ進行 = lte(20)	releasemapjumpgroupflag	252	flags released: 0x00FC: Set or tested in Inner Ward (Nalbina Fortress)	-	-	-	-	resolved	this page's How a call is read
+naf_a02	常駐監督	main	16	0x024F1	276	EV_ナルビナ上層マップ進行 = lte(20)	releasemapjumpgroupflag	252	flags released: 0x00FC: A gate of the map lines of the zone script image's +0x8C table, read by 0x00264920. While it is set: the minimap draws the line (0x003C35DA), in naf_a02; the field draws the line's markers (0x003F9BC5), in naf_a02	-	-	-	-	resolved	this page's How a call is read
 naf_a02	常駐監督	main	17	0x024F7	277	EV_ナルビナ上層マップ進行 = lte(20)	motionread	1	motion 1 of `naf_a02.mot` (bytes 0x9000, length 0x170B0)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 naf_a02	常駐監督	main	18	0x024FD	278	EV_ナルビナ上層マップ進行 = lte(20)	motionreadsync	1	motion 1	-	-	waits while motion 1 is read	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 naf_a02	常駐監督	main	19	0x02506	279	EV_ナルビナ上層マップ進行 = lte(20)	eventread_e8	0, 247	scenes: naf_a0201, event 247	-	-	-	-	resolved	this page's How a call is read
@@ -2150,7 +2150,7 @@ naf_a02	常駐監督	main	51	0x025E7	311	EV_ナルビナ上層マップ進行 = 
 naf_a02	常駐監督	main	52	0x025EB	312	EV_ナルビナ上層マップ進行 = lte(20)	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a02	常駐監督	main	53	0x025F1	313	EV_ナルビナ上層マップ進行 = lte(20)	fadeout	5	the screen fade, out	-	5 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 naf_a02	常駐監督	main	54	0x025F4	314	EV_ナルビナ上層マップ進行 = lte(20)	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a02	常駐監督	main	55	0x025FA	315	EV_ナルビナ上層マップ進行 = lte(20)	setmapjumpgroupflag	252	flags set: 0x00FC: Set or tested in Inner Ward (Nalbina Fortress)	-	-	-	-	resolved	this page's How a call is read
+naf_a02	常駐監督	main	55	0x025FA	315	EV_ナルビナ上層マップ進行 = lte(20)	setmapjumpgroupflag	252	flags set: 0x00FC: A gate of the map lines of the zone script image's +0x8C table, read by 0x00264920. While it is set: the minimap draws the line (0x003C35DA), in naf_a02; the field draws the line's markers (0x003F9BC5), in naf_a02	-	-	-	-	resolved	this page's How a call is read
 naf_a02	常駐監督	main	56	0x02600	316	EV_ナルビナ上層マップ進行 = lte(20)	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a02	常駐監督	main	57	0x0260C	317	EV_ナルビナ上層マップ進行 = lte(20)	sysReqew	3, イベント帝国兵::バインドオフ	actor `イベント帝国兵`	-	-	files イベント帝国兵::バインドオフ on channel 3; waits until it ends	イベント帝国兵.バインドオフ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a02	常駐監督	main	58	0x02610	318	EV_ナルビナ上層マップ進行 = lte(20)	sysReqall	3, reqArr4	actor `PC00`	-	-	files each pair of PC00::リクエストキャンセル on channel 3; does not wait	PC00.リクエストキャンセル	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -2312,7 +2312,7 @@ naf_a02	監督補佐	△チュートリアル02	2	0x02A03	518	-	sysReq	4, BASH::
 naf_a02	監督補佐	△チュートリアル02	3	0x02A0D	519	-	sysReqew	1, 元読み込み監督::△メッセージ02	actor `元読み込み監督`	-	-	files 元読み込み監督::△メッセージ02 on channel 1; waits until it ends	元読み込み監督.△メッセージ02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a02	監督補佐	△チュートリアル02	4	0x02A17	520	-	sysReq	4, BASH::パクオフ	actor `BASH`	-	-	files BASH::パクオフ on channel 4; does not wait	BASH.パクオフ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a02	監督補佐	△チュートリアル02	5	0x02A18	521	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	監督補佐	ターゲット監視	1	0x02A1C	526	-	setmapjumpgroupflag	84	flags set: 0x0054: Set or tested in Inner Ward (Nalbina Fortress)	-	-	-	-	resolved	this page's How a call is read
+naf_a02	監督補佐	ターゲット監視	1	0x02A1C	526	-	setmapjumpgroupflag	84	"flags set: 0x0054: While clear, the HUD draw 0x0028EAB0 draws no HUD when 0x002E1030 also answers non-zero: 0x00254560(4) answers true while the flag is clear (0x0025461D-0x00254629), and the draw then runs only its ""Gaussian Filter"" and ""display UI 2"" steps and returns (0x0028EADE-0x0028EB2B, 0x0028EDF0)"	-	-	-	-	resolved	this page's How a call is read
 naf_a02	監督補佐	ターゲット監視	2	0x02A22	527	-	tutorial_sync_targetinfolinearrive_3a4	29	-	-	-	-	-		01 verb-table.tsv
 naf_a02	監督補佐	ターゲット監視	3	0x02A28	528	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a02	監督補佐	ターゲット監視	4	0x02A2E	529	-	settutorial00timestop	1	-	-	-	-	-		01 verb-table.tsv
@@ -2335,7 +2335,7 @@ naf_a02	監督補佐	ターゲット監視	20	0x02AAE	545	-	wait	5	-	-	5 frames	
 naf_a02	監督補佐	ターゲット監視	21	0x02AB4	546	-	config_sethpgaugedisplay	1	-	-	-	-	-		01 verb-table.tsv
 naf_a02	監督補佐	ターゲット監視	22	0x02ABA	547	-	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a02	監督補佐	ターゲット監視	23	0x02AC0	548	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
-naf_a02	監督補佐	ターゲット監視	24	0x02AC6	549	-	releasemapjumpgroupflag	84	flags released: 0x0054: Set or tested in Inner Ward (Nalbina Fortress)	-	-	-	-	resolved	this page's How a call is read
+naf_a02	監督補佐	ターゲット監視	24	0x02AC6	549	-	releasemapjumpgroupflag	84	"flags released: 0x0054: While clear, the HUD draw 0x0028EAB0 draws no HUD when 0x002E1030 also answers non-zero: 0x00254560(4) answers true while the flag is clear (0x0025461D-0x00254629), and the draw then runs only its ""Gaussian Filter"" and ""display UI 2"" steps and returns (0x0028EADE-0x0028EB2B, 0x0028EDF0)"	-	-	-	-	resolved	this page's How a call is read
 naf_a02	監督補佐	ターゲット監視	25	0x02AC9	550	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	LOOP	init	1	0x02ACA	559	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	LOOP	LOOP_ON	1	0x02AD4	564	-	sysReq	1, ヘルプメッセージ02::メスクローズループ	actor `ヘルプメッセージ02`	-	-	files ヘルプメッセージ02::メスクローズループ on channel 1; does not wait	ヘルプメッセージ02.メスクローズループ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -2419,11 +2419,11 @@ naf_a02	死亡監視	監視開始	8	0x02CBA	768	loop while true	wait	1	-	-	1 fra
 naf_a02	パーティメニュー抑制	init	1	0x02CC0	778	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	パーティメニュー抑制	コンフィグ禁止	1	0x02CC7	783	-	setpartymenustatus	8, 1	-	-	-	-	-		01 verb-table.tsv
 naf_a02	パーティメニュー抑制	コンフィグ禁止	2	0x02CD0	784	-	setpartymenustatus	9, 1	-	-	-	-	-		01 verb-table.tsv
-naf_a02	パーティメニュー抑制	コンフィグ禁止	3	0x02CD6	785	-	setmapjumpgroupflag	84	flags set: 0x0054: Set or tested in Inner Ward (Nalbina Fortress)	-	-	-	-	resolved	this page's How a call is read
+naf_a02	パーティメニュー抑制	コンフィグ禁止	3	0x02CD6	785	-	setmapjumpgroupflag	84	"flags set: 0x0054: While clear, the HUD draw 0x0028EAB0 draws no HUD when 0x002E1030 also answers non-zero: 0x00254560(4) answers true while the flag is clear (0x0025461D-0x00254629), and the draw then runs only its ""Gaussian Filter"" and ""display UI 2"" steps and returns (0x0028EADE-0x0028EB2B, 0x0028EDF0)"	-	-	-	-	resolved	this page's How a call is read
 naf_a02	パーティメニュー抑制	コンフィグ禁止	4	0x02CD9	786	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	パーティメニュー抑制	コンフィグ開放	1	0x02CE0	791	-	setpartymenustatus	8, 0	-	-	-	-	-		01 verb-table.tsv
 naf_a02	パーティメニュー抑制	コンフィグ開放	2	0x02CE9	792	-	setpartymenustatus	9, 0	-	-	-	-	-		01 verb-table.tsv
-naf_a02	パーティメニュー抑制	コンフィグ開放	3	0x02CEF	793	-	releasemapjumpgroupflag	84	flags released: 0x0054: Set or tested in Inner Ward (Nalbina Fortress)	-	-	-	-	resolved	this page's How a call is read
+naf_a02	パーティメニュー抑制	コンフィグ開放	3	0x02CEF	793	-	releasemapjumpgroupflag	84	"flags released: 0x0054: While clear, the HUD draw 0x0028EAB0 draws no HUD when 0x002E1030 also answers non-zero: 0x00254560(4) answers true while the flag is clear (0x0025461D-0x00254629), and the draw then runs only its ""Gaussian Filter"" and ""display UI 2"" steps and returns (0x0028EADE-0x0028EB2B, 0x0028EDF0)"	-	-	-	-	resolved	this page's How a call is read
 naf_a02	パーティメニュー抑制	コンフィグ開放	4	0x02CF2	794	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	元読み込み監督	init	1	0x02CF3	803	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	元読み込み監督	△メッセージ	1	0x02CFD	808	-	mesopenspeed_1b	0, 6, 6	message window slot 0: the opening run +0x30 and the closing run +0x34	-	both runs 6 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
@@ -2703,11 +2703,11 @@ naf_a02	レモラ通行制限レクト	touchoff	1	0x034B7	1252	-	return	-	-	-	-	
 naf_a02	レモラ通行制限レクト	レモラ登場	1	0x034B8	1257	-	rectenable	-	-	-	-	-	-		01 verb-table.tsv
 naf_a02	レモラ通行制限レクト	レモラ登場	2	0x034BE	1258	-	reqenable	3	sets bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a02	レモラ通行制限レクト	レモラ登場	3	0x034C4	1259	-	reqenable	4	sets bit `0x10` of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a02	レモラ通行制限レクト	レモラ登場	4	0x034CA	1260	-	releasemapjumpgroupflag	252	flags released: 0x00FC: Set or tested in Inner Ward (Nalbina Fortress)	-	-	-	-	resolved	this page's How a call is read
+naf_a02	レモラ通行制限レクト	レモラ登場	4	0x034CA	1260	-	releasemapjumpgroupflag	252	flags released: 0x00FC: A gate of the map lines of the zone script image's +0x8C table, read by 0x00264920. While it is set: the minimap draws the line (0x003C35DA), in naf_a02; the field draws the line's markers (0x003F9BC5), in naf_a02	-	-	-	-	resolved	this page's How a call is read
 naf_a02	レモラ通行制限レクト	レモラ登場	5	0x034D6	1261	-	sysReqew	2, 上層への扉::階段移動不可	actor `上層への扉`	-	-	files 上層への扉::階段移動不可 on channel 2; waits until it ends	上層への扉.階段移動不可	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a02	レモラ通行制限レクト	レモラ登場	6	0x034DA	1262	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	レモラ通行制限レクト	レモラ死亡	1	0x034DB	1267	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a02	レモラ通行制限レクト	レモラ死亡	2	0x034E1	1268	-	setmapjumpgroupflag	252	flags set: 0x00FC: Set or tested in Inner Ward (Nalbina Fortress)	-	-	-	-	resolved	this page's How a call is read
+naf_a02	レモラ通行制限レクト	レモラ死亡	2	0x034E1	1268	-	setmapjumpgroupflag	252	flags set: 0x00FC: A gate of the map lines of the zone script image's +0x8C table, read by 0x00264920. While it is set: the minimap draws the line (0x003C35DA), in naf_a02; the field draws the line's markers (0x003F9BC5), in naf_a02	-	-	-	-	resolved	this page's How a call is read
 naf_a02	レモラ通行制限レクト	レモラ死亡	3	0x034E7	1269	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	レモラ通行制限レクト	レモラ死亡	4	0x034E8	1270	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	マップ表示説明レクト	init	1	0x034E9	1279	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

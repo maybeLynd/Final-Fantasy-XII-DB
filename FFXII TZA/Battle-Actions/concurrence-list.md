@@ -37,15 +37,31 @@ each level, since a member learns the slots in order with the Quickening licence
 
 ### The choice
 
-`0x0030DB70(0, …)`, called from `0x002D5EB0` (`0x002D630D`, `0x002D6543`), reads the last action `0x022C2190`. Unless it is already a Concurrence,
+`0x0030DB70(entry, f)` is called from `0x002D5EB0` twice (`0x002D630D`, `0x002D6543`). At `0x002D6543` the entry is null
+(`xor ecx, ecx`), and the call reads the last action `0x022C2190`. Unless it is already a Concurrence,
 `0xE2`-`0xF1`, it asks `0x002F8D60(0x022C2192)` (`0x0030DC55`):
 
 1. `0x002F8D60` walks the rows from the last to the first (`0x002F8D60`-`0x002F8E49`).
 2. A row matches when each of the three counts is at least the row's byte `+0x01`, `+0x02` and `+0x03`.
 3. The first match returns its byte `+0x00`, the Concurrence's action row; no match returns -1.
 
-A valid action row is stored as row − `0xD0` at `0x022C2178`; -1 leaves `0x022C2178` at -1. While `0x01EEBAF0` is not
-negative, `0x002F8D60` returns the word it selects from `0x022BE930` instead ([Debug menu](../Engine-Core/debug-menu.md)).
+An action row that `0x00322C50(0x14, row, 0)` accepts and that is not `0xFFFF` is stored as row − `0xD0` at
+`0x022C2178`; any other answer, and a last action that is already a Concurrence, stores -1 there
+(`0x0030DC5A`-`0x0030DC83`, `0x0030DC98`). The call also stores `f` at `0x022C2184` (`0x0030DC8B`) and returns 0. While
+`0x01EEBAF0` is not negative, `0x002F8D60` returns the word it selects from `0x022BE930` instead
+([Debug menu](../Engine-Core/debug-menu.md)).
+
+At `0x002D630D` the entry is the pointer at `+0x2D0 + i * 0x158` of the object `0x002D5EB0` works on, which
+`0x002D62FB` reads before the call, and `f` is that object's `+0x740` (`0x002D62EC`-`0x002D6305`). The entry's
+dword `+0` is a unit id and its word `+4` an action id:
+
+- a unit id that `0x0031B7E0` does not resolve returns 1 (`0x0030DB97`);
+- action ids `0xF2`, `0xF3` and `0xF4` hand 1, 2 or 3 times the unit's max MP (stats `+0x28`) to
+  `0x00300BC0(stats, amount, 0x10)`, which adds it to the stats `+0x06` pool (`0x00300C10`-`0x00300C6A`), and return 1
+  (`0x0030DBA5`-`0x0030DC24`);
+- any other action that `0x002FFCF0(id, unit)` refuses returns 1 (`0x0030DBBE`-`0x0030DBC5`);
+- an available one stores the unit id at `0x022C218C`, id − `0xD0` (-1 for `0xFFFF`) at `0x022C2178` and `f` at
+  `0x022C2184`, and returns 0 (`0x0030DBC7`-`0x0030DBF3`, `0x0030DC8B`-`0x0030DC98`).
 
 ### Where the values come from
 

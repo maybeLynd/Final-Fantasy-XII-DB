@@ -40,7 +40,8 @@ which tail-jumps to the return stub `0x0016D6A0` (`0x001E0A03`) and so does noth
 2. It updates every device (`0x007999E0`, `0x0019702D`), which lists them again after a pad arrives
    ([Controllers](controllers.md)).
 3. With `+0x3B` set it copies the published profiles back into the records, rebuilds the movement-key blocks and
-   clears the flag (`0x0019703B`-`0x00197073`).
+   clears the flag (`0x0019703B`-`0x00197073`): it calls `0x00196680`, then `0x00196C40` when mode bit `0x4` is set,
+   `0x00196EE0` when bit `0x1` is set and `0x00196DF0` when bit `0x2` is set (`0x00197040`-`0x0019706E`).
 4. It starts the 18-byte frame: a button mask of `0xFFFF`, four stick bytes of `0x80` and twelve zero bytes
    (`0x00197085`-`0x001970A9`).
 5. It runs the translator `0x00197160` over the five records at `0x01DF1480` (`0x001970B0`), then over the three at
@@ -101,10 +102,23 @@ The two extra blocks turn movement keys into direction buttons. Mode bit `0x2` m
 
 Each poll writes one 36-byte frame into a 16-frame ring at `+0x44` of the channel record `0x022CAE90` (`0x0035F420`):
 
-1. The sixteen per-button bytes are the frame's stick and pressure bytes in the order of `0x01EF9238`.
-2. `0x0035FAC0` makes the held mask from the frame's mask. Up with Down (`0x50`) and Left with Right (`0xA0`) cancel each
+1. The sixteen per-button bytes are the frame's stick and pressure bytes in the order of `0x01EF9238`. The frame is
+   ring slot `byte 0 & 0xF` (`0x0035F487`-`0x0035F4A0`). The mask word it reads at `0x022CB642` has every bit set,
+   because `0x00862660` stores `0xFFFFFFFF` at `0x022CB640` first (`0x0035F44A`-`0x0035F456`): frame word `+0x02` becomes
+   `0xFFFF`.
+   - So every byte is copied from the manager's frame `0x022CB680` (`0x0035F4D0`-`0x0035F4E8`), and the stores of `0x80`
+     and 0 for a clear bit never run (`0x0035F4F0`-`0x0035F4F8`).
+   - After the three steps, `0x0035F420` calls the return stub `0x0016D6A0` and the vibration step `0x0035F590`
+     ([Vibration](vibration.md); `0x0035F537`, `0x0035F548`), and stores the device state in byte 0 of the frame last
+     (`0x0035F572`).
+2. `0x0035FAC0` makes the held mask from the frame's mask: a button is held when its bit is clear
+   (`0x0035FB50`-`0x0035FB5A`). Up with Down (`0x50`) and Left with Right (`0xA0`) cancel each
    other (`0x0035FB6D`-`0x0035FB7E`). It writes held, pressed and released for set 0, the buttons, and held for set 1
    (`0x0035FB92`-`0x0035FBBD`).
+   - Set 0's held word is frame `+0x04`, pressed `+0x0C` and released `+0x10`, against the held word of the frame
+     before (`0x0035FB66`, `0x0035FB92`-`0x0035FBB4`); set 1's held word is `+0x06` (`0x0035FBBD`). With bit `0x2` of
+     channel byte `+0x09` set it writes only set 1's word (`0x0035FB88`-`0x0035FB8D`); otherwise it also runs the
+     repeats of set 0, `0x0035FBD0` (`0x0035FBB8`).
 3. `0x0035F760` snaps a stick inside a radius of `0x20` to the centre (`0x0035F7BD`, `0x0035F83F`). A left stick past `0x68`
    adds the Up, Right, Down or Left bit to set 1 (`0x0035F8AE`), which is the buttons plus the left stick as directions.
 
@@ -127,6 +141,16 @@ Every frame `0x0035F420` writes holds state 1, so once channel 0 has been polled
 `0x0035FBD0` makes the repeat mask of each set from eight button groups. A change fires at once and waits 12 polls
 (`0x0035FC5D`); a group still held fires again every 5 polls (`0x0035FC35`, `0x0035FC52`). The two counts are stored at
 `0x0035F312`. Left and Right keep counting through a change of direction (`0x0035FC3C`).
+
+The eight group masks are the words at channel `+0x34`-`+0x43`, and each group's count is the signed byte at
+channel `+0x24` + set + 2 × group (`0x0035FC09`-`0x0035FC18`); the two counts are channel bytes `+0x04` (12) and
+`+0x05` (5). An unchanged group counts down and, at 0, fires its held bits and starts again from 5
+(`0x0035FC2F`-`0x0035FC35`, `0x0035FC62`).
+
+A changed group fires its new held bits at once, so a release fires nothing (`0x0035FC5D`-`0x0035FC62`). A group with
+Left or Right (mask bits `0xA0`) that stays held through the change keeps counting, and the count that ends then
+fires the group's bits of the poll before (`0x0035FC3C`-`0x0035FC57`). The repeat mask goes to word `+0x08` + 2 × set
+of the newest frame (`0x0035FC87`).
 
 ### The button words
 
@@ -330,7 +354,8 @@ The cursor's setters:
 
 ### The target cursor's fields
 
-The field's target cursor is the `0xD8`-byte widget at `0x02B47730` with procedure `0x003C8B70` (The field target cycle above).
+The field's target cursor is the `0xD8`-byte widget kept at `0x02B47730` with procedure `0x003C8B70` (The field target
+cycle above).
 
 `FieldTargetCursor` (`0xD8` bytes, offsets from the start of the record):
 
@@ -448,11 +473,12 @@ take a channel number, and their two callers ask for channel 0 (`0x001EC17B`, `0
 No other instruction reaches these two globals or `0x02F97399`, `0x02F9739A`, `0x02F973AC` and `0x02F973B0` above. The
 addresses taken near them are those of `0x002498B0`, `0x00249860` and `0x00249880` above and `0x02F97350`, the 16-byte copy
 `0x003600C0` fills (`0x00249BFF`).
+
 ### The field target cursor and L2
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x01EFE378` | `i32` | 1 | 1 while the pad's L2 (held mask set 0, bit `0x8`) drives the target cursor's `+0xC0` bit `0x2`, which it sets while held and the next call clears; 0 once the keyboard's L2 (`0x0017DDC0`) has taken over, which toggles the bit on each new press (`0x003C912C`-`0x003C91C1`) | `0x003C8B70`: 0 on the keyboard key (`0x003C9158`), 1 on the pad button (`0x003C9183`) | `0x003C8B70` (`0x003C912C`, `0x003C918E`) |
+| `0x01EFE378` | `i32` | 1 | 1 while the pad's L2 (held mask set 0, bit `0x100`, `0x003C9163`-`0x003C9168`) drives the target cursor's `+0xC0` bit `0x4`, which it sets while held (`0x003C917C`) and the next call clears (`0x003C9134`); 0 once the keyboard's L2 (`0x0017DDC0`) has taken over, which toggles the bit on each new press (`0x003C912C`-`0x003C91C1`) | `0x003C8B70`: 0 on the keyboard key (`0x003C9158`), 1 on the pad button (`0x003C9183`) | `0x003C8B70` (`0x003C912C`, `0x003C918E`) |
 | `0x02B47738` | `u8` | 0 | whether the keyboard's L2 was held at the last call, so that only a new press toggles the bit | `0x003C8B70` (`0x003C91C1`) | `0x003C8B70` (`0x003C914A`) |
 
 The toggle and the set are skipped while bit `0x40000` of `0x002E0FA0()` is set (`0x003C9171`-`0x003C917A`, `0x003C919A`-`0x003C91A3`).
@@ -476,9 +502,9 @@ at the sites listed.
 
 ### Where a game frame reads the history
 
-Each poll advances byte `+0x00` of the channel record, the ring slot of the newest frame, by 1 modulo 16
-(`0x0035FCE0`-`0x0035FCEE`, `0x0035FDEA`-`0x0035FDF5`). Once per game frame `0x0035FF90` catches the read position `+0x01` up
-to it:
+Each poll advances byte `+0x00` of the channel record, the ring slot of the newest frame, `+0x00 = (+0x00 + 1) & 0xF`
+(by 1 modulo 16: `inc al`, `and al, 0xf`; `0x0035FCE0`-`0x0035FCEE`, `0x0035FDEA`-`0x0035FDF5`). Once per game frame
+`0x0035FF90` catches the read position `+0x01` up to it:
 
 1. With `0x01FD4A84` set it stores the number of polls since the last game frame at `+0x08`: `+0x00` less `+0x01`,
    taken 16 lower first when `+0x01` is the larger (both bytes zero-extended, `0x00360030`).
@@ -490,9 +516,9 @@ to it:
 When `0x00408B00()` answers 1 it does this for both channels through `rdi` = `0x022CAE98` + channel × `0x294`
 (`0x0035FFC0`-`0x00360007`); otherwise for channel 0 only, by the addresses.
 
-The history readers take a channel and a step `k` of 0 or less and read slot `+0x01` + `k` modulo 16. `0x002498B0`
-and `0x0036FDF0` walk `k` from 1 - `+0x08` to 0, so they OR exactly the polls the game frame has caught up with
-(`0x0024992D`-`0x002499A4`, `0x0036FE55`-`0x0036FEB8`).
+The history readers take a channel and a step `k <= 0` and read slot `+0x01` + `k` modulo 16, `(+0x01 + k) & 0xF`
+(`0x0035EE6F`-`0x0035EE94` in `0x0035EE50`). `0x002498B0` and `0x0036FDF0` walk `k` from 1 - `+0x08` to 0, so they OR exactly
+the polls the game frame has caught up with (`0x0024992D`-`0x002499A4`, `0x0036FE55`-`0x0036FEB8`).
 
 `0x0036FDF0` keeps a second copy of set 0's words for each channel. It ORs the polls' repeat, pressed and released
 words (frame `+0x08`, `+0x0C`, `+0x10`) into the globals below, then passes each through the channel's button map,
@@ -510,9 +536,10 @@ through `0x02AD9E20`.
 | `0x02AD9E2C` | `u16` | 0 | channel 0's released word of set 0, the same way | `0x0036FDF0`: 0 with channel 1's word (`0x0036FE28`), the ORs (`0x0036FEAC`); `0x0036FD90`, 0 (`0x0036FDB9`) | `0x0036FDF0` (`0x0036FEF7`), into `0x02AD9E10` |
 
 `0x0036FD90(channel)` clears the channel's three ORed words and its mapped words at `0x02AD9E08`-`0x02AD9E10`. It sign-extends
-the channel and doubles it, and the result must be below 4 as an unsigned 64-bit compare, so only channels 0 and 1
-pass; any other value ends in the range-check failure (`0x0036FD9A`, `0x0036FDDE`). The field tick `0x00314020` calls
-`0x0036FD90(0)` when `0x00228480()` answers 0 (`0x003142B0`-`0x003142B6`).
+the channel and doubles it, `rax = channel + channel` (`0x0036FD94`-`0x0036FD97`), and the result must be below 4 as an
+unsigned 64-bit compare (`cmp rax, 4`, `jae`), so only channels 0 and 1 pass; any other value ends in the
+range-check failure (`0x0036FD9A`, `0x0036FDDE`). The field tick `0x00314020` calls `0x0036FD90(0)` when `0x00228480()`
+answers 0 (`0x003142B0`-`0x003142B6`).
 
 No other instruction reaches `0x02AD9E24`-`0x02AD9E2F`, and the two record bytes are reached only through the record
 addresses at the sites listed.

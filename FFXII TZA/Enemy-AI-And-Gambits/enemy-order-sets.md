@@ -27,9 +27,13 @@ An enemy definition names its sets by four words: `+0x50` is the list the unit s
 ### The weighted actions
 
 An action word from `0x8000` is an index into `[0x02EBF160]`, `battle_pack.bin` directory entry `+0x2C`: a `u16`
-count (826), then `count + 1` offsets from the section, each pair bounding a run of 4-byte entries (`u16` action,
-`u8` weight, `u8` pad). Every shipped run's weights sum to 100. `0x00308EC0` draws `r = LCG % 100` and takes the
-first entry whose running sum is above `r` (`0x00308F61`-`0x00308F99`).
+count (826) and a `u16` 0, then from `+4` `count + 1` 32-bit offsets from the section (`0x00308F2F` reads entry `i`
+at `+4 + 4i`), each pair bounding a run of 4-byte entries (`u16` action, `u8` weight, `u8` pad). Every shipped
+run's weights sum to 100.
+
+`0x00308EC0` draws `r = LCG % 100` and takes the first entry whose running sum is above `r` (`0x00308F61`-`0x00308F99`).
+A word whose index is not below the count comes back unchanged (`0x00308EF0`-`0x00308EFA`), and a run with no such
+entry gives `0xFFFF` (`0x00308FA4`).
 
 ### What a test can check
 
@@ -126,15 +130,29 @@ it (`0x003211A4`-`0x003211B8`) and `0x00329E60` writes it:
 | 9 | battle word `i` of the sixteen at `0x0208D334`, zeroed when an area starts | `0x00321253` |
 | 10 | the unit's own register `+0xB90` (index 0) | `0x0032126F` |
 
+`0x00321190(kind, unit, index, &value)` returns 0 with the value. Kinds 1-3 give their word sign-extended
+(`0x003211C2`, `0x003211D7`, `0x003211EC`) and kind 9 its word zero-extended (`0x0032125C`). Kind 9 with an index above
+15, and kind 10 with a null unit or an index other than 0, give 0 (`0x00321253`-`0x00321290`). Any other kind gives 0
+and returns -1 (`0x0032119B`, `0x0032129B`-`0x003212A0`).
+
 The orders that write a register (`0x002FE660`) take it from the order's own test-1 relation word, except
 `0x4122` and `0x4123`, which write the `+0xB90` of the unit in the deciding unit's `+0x710`:
 
 | Order | Writes |
 |---|---|
-| `0x4122`, `0x4156` | sets bit `parameter` |
-| `0x4123`, `0x4157` | clears bit `parameter` |
-| `0x4149` | sets the register to `parameter` |
-| `0x4155` | adds `parameter` |
+| `0x4122`, `0x4156` | sets bit value `1 << (parameter & 31)` (`bts`, `0x002FE732`) |
+| `0x4123`, `0x4157` | clears bit value `1 << (parameter & 31)` (`btr`, `0x002FE73D`) |
+| `0x4149` | sets the register to `parameter` (`0x002FE71A`) |
+| `0x4155` | adds `parameter` (`0x002FE723`) |
+
+`0x002FE660(unit)` acts only while the unit's phase byte `+0x6B4` is 0, and returns 1 at once in a later phase
+(`0x002FE69D`). For `0x4122` and `0x4123` the register is kind 10, index 0, of the unit `0x0031B7E0` finds for the
+deciding unit's handle `+0x710` (`0x002FE6C4`-`0x002FE6D7`). It reads the register with `0x00321190` and returns -1,
+writing nothing, when that returns -1 (`0x002FE6EE`).
+
+It then changes the value as the table above says, with `parameter` the order's `(s16)` word `+0x02` (`0x002FE68D`),
+writes it back with `0x00329E60`, sets the phase to 2 and returns 1 (`0x002FE74E`-`0x002FE757`). The orders
+`0x4124`-`0x4154` that are not in the table return -1 after the read (`0x002FE6F8`, `0x002FE75E`).
 
 ## Columns
 

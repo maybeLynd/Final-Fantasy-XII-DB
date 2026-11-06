@@ -90,8 +90,11 @@ Two script commands set an enemy's two masks:
   can be set this way.
   - The handler's first pop (`0x00267E10`) is the word pushed last, the second argument, and it is `0x002390B0`'s
     first word.
+  - For an actor without a battle unit (`0x0031B760` gives 0) `0x002390B0` returns at once and clears nothing
+    (`0x002390CA`).
 - **`btlAtelSetStatus(table)`**: the handler `0x005103B0` resolves its argument to 8 bytes of script data and
-  jumps to `0x002394C0`, which reads 32 two-bit codes, one per status (`0x00239504`-`0x00239527`):
+  jumps to `0x002394C0`, which returns at once for an actor without a battle unit (`0x002394D9`), zeroes
+  `+0xE90` (`0x002394FC`) and reads 32 two-bit codes, one per status (`0x00239504`-`0x00239527`):
 
 | Code | Effect |
 |---:|---|
@@ -100,7 +103,9 @@ Two script commands set an enemy's two masks:
 | `1` | the same, when bit `0x1` of a shared gameplay LCG draw is set (`0x00239547`-`0x0023954F`) |
 | `0` | nothing |
 
-"Fresh" means bits `0x1` and `0x4` of the spawn record's first dword are clear (`0x002394DF`-`0x002394F9`). After the
+"Fresh" means bits `0x1` and `0x4` of the spawn record's first dword are clear (`0x002394DF`-`0x002394F9`); the
+spawn record pointer `+0x6A0` is read with no null test, so a null one faults at `0x002394F7`. Codes 1 and 2 add
+the status with `0x0030EAE0(record +0x698, 0, status, -1, -1, 0x297)` (`0x00239556`-`0x00239577`). After the
 stats rebuild, `0x0030FED0` turns every bit of `+0xE90` into an immunity with `0x0030E360(..., mode 5)`,
 which sets it in `+0x38` (`0x003103B2`-`0x00310413`). The stats rebuild clears `+0x38` first, so the loop puts
 the immunities back on every rebuild.
@@ -129,7 +134,10 @@ Last, the rebuild limits three values without going through the HP write (`0x003
 
 The values only go down. Then `0x0030E060` sets the charge count `+0x4E` to `+0x06 / +0x28` when `+0x37` is
 not 0, and to 0 otherwise (`0x0030E0AF`-`0x0030E0C3`, `0x0031059C`); it does nothing when max MP `+0x28` is 0 or less
-(`0x0030E093`). When the rebuild's flags have `0x400` without `0x10` and the record has a battle unit (`0x0031B860`),
+(`0x0030E093`). With the rebuild's flags bit `0x2` clear, a changed count also goes to `0x0016D6A0`, a bare `ret`
+(`0x0030E0C6`-`0x0030E0D5`). The new count is stored in `+0x4E` on every path past `0x0030E093` (`0x0030E111`).
+
+When the rebuild's flags have `0x400` without `0x10` and the record has a battle unit (`0x0031B860`),
 a changed count is posted as a hit or heal reaction with the difference (`0x003283D0`, `0x0030E102`;
 [HP and KO](hp-and-ko.md)), which `0x003283D0` posts as a battle number through `0x003BBD00` (`0x00328462`,
 [Battle numbers](../Menus-And-HUD/battle-numbers.md)).
@@ -157,8 +165,9 @@ Saboteur (18) is bit `0x4` of the layer bytes `+0x6A` and `+0x7A` and of the con
 fixed-position reader is the hit-rate slot 21 of the calculator, `0x00388F20`, which tests it in the merged context
 (`+0x1C` bit `0x4`, `0x00388F2A`) and sets the hit chance `0x02AEDFE0` to 100 when it is set (`0x00388F37`); otherwise
 the chance is the action row's `+0x12` less the target's Vitality plus the user's Magick Power
-(`0x00388F8C`-`0x00388FA1`). The recipes whose lists hold slot 21 are 3, 8, 9, 10, 12, 14, 15, 68 and 72
-([Formula slots](formula-slots.md)).
+(`[0x02AEDFE0] = row[+0x12] - target[+0x2C] + user[+0x2B]`, `0x00388F8C`-`0x00388FA1`; [Formula slots](formula-slots.md)).
+
+The recipes whose lists hold slot 21 are 3, 8, 9, 10, 12, 14, 15, 68 and 72.
 
 Five functions test an augment by a computed id, and this is what each does with 18:
 

@@ -24,16 +24,19 @@ tearing a unit down runs `0x00300FC0(unit, 1)` (`0x00300E59`). It does (`0x00300
 
 1. **A summoned Esper** (a party record of type `0x1B`-`0x27`) with argument 0 has its action cancelled
    (`0x003105D0`) and is dismissed (`0x003138D0(0)`), and nothing else happens (`0x00300FD3`-`0x00301005`).
-2. **Anyone else** loses its target relations (`0x00310780`), has unit flag bits `0x2`, `0x80000`, `0x100000` and `0x200000000` and bit `0x400000000` cleared,
-   and stops moving (`0x0030100D`-`0x00301043`). Then `0x003219D0(type, 0, null, 1)` sets every living enemy's
+2. **Anyone else** loses its target relations (`0x00310780`), has unit flag bits `0x2`, `0x80000`, `0x100000` and
+   `0x200000000` and bit `0x400000000` cleared, stops aiming at another actor (`0x002ED180` with its handle `+8`,
+   which runs `0x00512EE0` on the aim block `+0x650` of its render record when that record is in use, `0x00301015`),
+   and stops moving (`0x0030100D`-`0x00301043`).
+3. Then `0x003219D0(type, 0, null, 1)` sets every living enemy's
    grudge against its party type to 1 where it was above 0 (`0x00301048`-`0x0030105E`;
    [Enmity](../Enemy-AI-And-Gambits/enmity.md)).
-3. Then the KO-time wipe tests run, below. On a wipe it sets battle flag `0x400` or `0x200`, runs the survivors'
+4. Then the KO-time wipe tests run, below. On a wipe it sets battle flag `0x400` or `0x200`, runs the survivors'
    pass `0x003001D0`, arms the request and recomputes party control with `0x0023B040`
    ([Party leader](../Party/party-leader.md)) (`0x00301063`-`0x003010C0`).
-4. Otherwise a fallen summoner sets battle flag `0x800` (`0x002373C0`, `0x003010C5`-`0x003010CE`), and a fallen
+5. Otherwise a fallen summoner sets battle flag `0x800` (`0x002373C0`, `0x003010C5`-`0x003010CE`), and a fallen
    controlled character sets `0x100` and arms request `0x17` (`0x003010D8`-`0x003010F1`).
-5. With argument 0, in summon mode, when the fallen unit is the summoner, the Esper is dismissed and party
+6. With argument 0, in summon mode, when the fallen unit is the summoner, the Esper is dismissed and party
    control recomputed (`0x003010F6`-`0x00301123`).
 
 The survivors' pass collects the up to four active members still standing and calls `0x002ECEC0` on each
@@ -85,7 +88,11 @@ posts `0x0B` when `0x002371B0` is 1, else `0x18` when `0x00237140` is 1, through
 `0x0035C7B0(0x0B)` has one other caller, for a wipe that lands outside the field frame: `0x0027EFA0`, run from the
 main loop through `0x00254E50` (`0x0022AC73`, `0x00254E61`). It posts Game Over when `0x002805D0` allows it: Game Over is
 armed (`0x022C83E8` bit `0x2`, `0x0035C740`), the screen object's `+0xD4` is 0, and the mode `0x02092730` is 6, 10,
-`0x0F`, `0x11`, `0x12` or `0x13`, or 2 with its `+0xC4` state past `0x42`. It then also runs `0x00252B40(0x0B)`.
+`0x0F`, `0x11`, `0x12` or `0x13`, or 2 with its `+0xC4` state past `0x42`. It then also runs `0x00252B40(0x0B)`. It
+calls `0x0035C7B0(0x0B, 0)` (`0x0027EFC8`), so `0x0035C7B0` skips its `0x002E1B10` write (`0x0035C815`).
+
+`0x0035C7A0(0x0B)` also has a caller outside the field frame: `0x00237D60`, the begin of the script verb `callgameover`
+(`0x04D8`, through `0x0033F640`), which calls it (`0x00237D70`) unless `0x0035C700` answers non-zero, and returns 1.
 
 Later in the same frame the field frame keeps three latches current (`0x0023471C`-`0x0023483F`): `0x200` from
 `0x00237260`, arming `0x18` when it rises; `0x100` while the party leader is missing or down, arming `0x17` when it
@@ -120,14 +127,19 @@ effect `0x78` on itself and keeps its handle in `+0x74`, unless it is an enemy w
 ### Hiding the body
 
 `0x003125E0(unit)` builds the hide mask, and the model is shown only while it is 0 (`0x003125E0`-`0x003126DD`,
-`0x00312700`). For an active unit:
+`0x00312700`). For an active unit, one with flag bit `0x10` (`0x003125F1`):
 
 | Mask bit | Condition |
 |---|---|
-| `0x10` | KO, Stone or X-Zone without the field's bit `0x8000`, and torn down (flag bit `0x2`) |
+| `0x10` | KO, Stone or X-Zone without the field's bit `0x8000`, or no stats record, and torn down (flag bit `0x2`) (`0x00312652`-`0x0031267C`) |
 | `0x20` | bit `0x400000000` |
 | `0x02`, `0x04`, `0x08` | flag bits `0x800`, `0x400`, `0x200` |
 | `0x40`, `0x80` | an enemy whose spawn record has bit `0x10` or bit `0x8` |
+
+A unit without flag bit `0x10` gets mask 1 (`0x00312642`), except mask 0 when it has flag bit `0x8` and a stats
+record and is not down (`0x003125F5`-`0x0031261D`), or at party control level 2, a chocobo ride (`0x0030D9A0`, [Party
+control modes](../Engine-Core/party-control-modes.md)), when it is the rider, the unit `0x0031B8C0` gives
+for the rider's seat `0x00327200` (`0x00312623`-`0x0031263C`).
 
 The unit frame refreshes it every frame (`0x00234034`, `0x00234112`, `0x00234133`). The switch is on or off; there is
 no fade.
@@ -138,12 +150,16 @@ target and builds its target line through `0x00290320` only when it returns 1 (`
 ### The fallen unit's frame
 
 `0x00233F70` runs a different frame for an active unit with KO, Stone or X-Zone that is not torn down
-(`0x00234039`-`0x00234112`):
+(`0x00234039`-`0x00234112`), and for a unit with flag bit `0x10` that has no `+0x698` record (`0x00233FD6`):
 
-- an enemy whose class row byte `+0x18 & 0x0E` is 4 only keeps its position up to date;
+- a unit with flag bit `0x2` set runs only `0x00312700` (`0x00234039`-`0x0023403C`, `0x00234130`);
+- an enemy whose class row byte `+0x18 & 0x0E` is 4 only keeps its position up to date: with flag bit `0x2`
+  clear, a `+0x698` record whose byte `+5` is 1 and that class row (`[+0xE68]`, `0x00234042`-`0x00234065`) it runs
+  `0x00236300`, `0x0033A240(unit + 0x80)`, `0x0023A070` and `0x00312700`;
 - anyone else sets battle flag 2 (unless a group completion is pending), stops moving, runs the drop below, and is
-  torn down with `0x00300E40(unit, 0)` once bits `0x200000000` and `0x400000000` are both set and the presentation test on its slot
-  `0x0030CA50` allows it: `0x00322310` non-zero, or `0x003228E0` zero (`0x002340BC`-`0x00234100`).
+  torn down with `0x00300E40(unit, 0)` once bits `0x200000000` and `0x400000000` are both set and the presentation
+  test on its slot `0x0030CA50` allows it: `0x00322310` non-zero, or `0x003228E0` zero (`0x002340BC`-`0x00234100`); it ends
+  with `0x00312700` either way (`0x00234112`, `0x00234133`).
 
 The drop `0x003057D0` runs while the unit is down, has bit `0x80000` and not bit `0x100000`, and its actor passes `0x00264490`. Each
 frame it lowers the body's height offset by an amount that grows by 0.02 per frame (`+0x19C`), stops at 0, and
@@ -151,29 +167,55 @@ then sets bit `0x100000` (`0x003057E5`-`0x00305896`).
 
 ### Tearing down
 
-`0x00300E40(unit, keep)` runs the defeat cleanup with argument 1, cancels the action and clears the issued command,
+`0x00300E40(unit, keep)` runs the defeat cleanup with argument 1 (`0x00300FC0`), cancels the action (`0x003105D0`) and
+zeroes `+0x6F8` (8 bytes), `+0x748` and `+0x770`. It clears the issued command (flag bit `0x4000`) unless that
+bit is set with word `+0xBA0` holding `0x113` or `0x95` (`0x00300E7B`-`0x00300EAA`), clears bit `0x400` of
+`+0x788` and bit `0x2` of `+0x6B0`, zeroes `+0x750` (8 bytes) and `+0x74C`,
 sets bit `0x20000000000000` and removes the unit's effect `+0x74` (`0x00300E54`-`0x00300ED5`). Then:
 
-- **A party member** keeps its unit. With no attackers left (`+0xEA0` 0) it also runs `0x00322050` and `0x00301310`
-  and clears bit `0x4000000`. Then bits `0x400000000`, `0x80000`, `0x100000` and `0x200000000` are cleared and **bit `0x2` is set**, and visibility is refreshed,
+- **A party member** (a stats record `+0x698` of kind 0) keeps its unit. With no attackers left (`+0xEA0` 0) it
+  also runs `0x00322050` and `0x00301310`
+  and clears bit `0x4000000`. Then bits `0x400000000`, `0x80000`, `0x100000` and `0x200000000` are cleared and
+  **bit `0x2` is set**, the effect handle `+0x74` becomes -1 (`0x00300F2E`), and visibility is refreshed,
   so the hide mask's `0x10` keeps the model hidden (`0x00300EEE`-`0x00300F45`).
-- **Anyone else** loses its definition (`0x0023A570(unit, 0xFFFF)`) and its actor (`0x0025AB30`, `0x002697E0`), unless a
-  spawn group holds it (`0x00300F5D`-`0x00300FA4`).
+- **Anyone else** (a null stats record or another kind, `0x00300EE4`, `0x00300EEC`) first has its spawn record
+  cleared by `0x00237080` when `keep` is 0 (`0x00300F5D`-`0x00300F68`). It loses its definition
+  (`0x0023A570(unit, 0xFFFF)`) and has flag bit `0x200000` cleared (`0x00300F7A`).
+- It also loses its actor (`0x0025AB30`, `0x002697E0`), unless a spawn group holds it: `0x00236760()` is non-zero (bit
+  `0x1000` of the party block's flag dword `[0x02EBF190]+4`) and `+0xE99` has bit `0x2`, group mode 2
+  (`0x00300F80`-`0x00300FA4`).
+
+Both arms zero dword `+0x30` before returning (`0x00300F4A`, `0x00300FA9`).
 
 ### Standing up again
 
 Removing the last of KO, Stone and X-Zone runs `0x00301140(unit)` (`0x0030E811`;
-[Gaining and losing statuses](status-changes.md)). With none of the three left (`0x00301146`-`0x003012F6`):
+[Gaining and losing statuses](status-changes.md)). It reads the stats record `+0x698` with no null test
+(`0x00301146`-`0x00301150`), so a unit without one faults there, and with any of the three still set it returns at
+once (`0x0030115C`). With none of the three left (`0x00301146`-`0x003012F6`):
 
 1. A body that is hidden, and not already placed (flag bit `0x4000000`), is placed with `0x00311F70` (`0x0030116B`-`0x00301185`).
    The hidden test is `0x002E9600(actor)` returning 0; it returns bit `0x8` of byte `+0x10` of `[actor+0xC0]`
    for an actor whose byte `+3` has `0x60` in its top three bits, and 0 otherwise (`0x002E9600`-`0x002E9623`).
-2. The actor is refreshed from the definition, the action cancelled and the issued command cleared.
-3. Revive effect `0x7B` starts on the unit (`0x003011F5`-`0x00301216`), and the re-plan set is installed
+2. The actor is refreshed from the definition (`0x00238BF0`) and the action cancelled (`0x003105D0`); `+0x6F8`,
+   `+0x748` and `+0x770` are zeroed, and the issued command (flag bit `0x4000`) is cleared unless it holds
+   `0x113` or `0x95` (`0x0030118A`-`0x003011DD`).
+   - Then bit `0x400` of `+0x788` and bit `0x2` of `+0x6B0` are cleared, `+0x750` and `+0x74C` zeroed, and
+     flag bit `0x20000000000000` set (`0x003011E0`-`0x0030120B`).
+3. Revive effect `0x7B` starts on the unit, `0x002EACD0` with the unit id `+8`, 1, the address of `+8` and
+   `0x7B` (`0x003011F5`-`0x00301216`), then `0x002E8060(actor)` runs (`0x0030121F`), and the re-plan set is installed
    ([Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md)).
-4. The stand-up clip, event `0x200D`, plays (`0x0030127A`-`0x00301282`); it clears bit `0x1000000` when it lands (`0x0032517C`).
-5. Unit flag bits `0x400000000`, `0x700`, `0x2`, `0x180000` and `0x200000000` are cleared, bits `0x1000000` and `0x40000000` set, the old effect removed, and visibility
-   refreshed, so the model is shown.
+   - With the install, flag bits `0x800000`, `0x20000000000`, `0x40000000000` and `0x1000000000000` are cleared
+     and `+0xDCC` zeroed, and the weapon is sheathed at once with `0x002ECF10(actor, 0, 0)` (`0x00301224`-`0x00301272`).
+4. The stand-up clip, event `0x200D`, plays (`0x0030127A`-`0x00301282`); it clears bit `0x1000000` when it lands
+   (`0x0032517C`).
+5. Unit flag bits `0x400000000`, `0x700`, `0x2`, `0x180000` and `0x200000000` are cleared, bits `0x1000000` and
+   `0x40000000` set, the old effect removed, and visibility refreshed, so the model is shown.
+   - The old effect is `+0x74`, removed by `0x00319E30` and then set to -1 (`0x0030129E`-`0x003012B3`).
+   - `+0xDD0` = `0x0032A150()` - 5 x trunc(`[0x01DFE0B8]` x -30.0), 150 ticks ahead while `[0x01DFE0B8]` holds its
+     image value 1.0 (`0x003012BA`-`0x003012DB`).
+   - Visibility is `0x0026DC60(actor, 0x003125E0(unit) = 0)` (`0x003012E1`-`0x003012F1`), and last `+0x30` = 0
+     (`0x003012F6`).
 
 `0x00311F70` asks `0x00336E40` for a point and moves and turns the actor to it (`0x00311FCE`-`0x003120D5`). Without a
 reference unit, `0x00336E40` returns the unit's own position when `0x022C7D10` is 0; otherwise the anchor
@@ -183,8 +225,9 @@ records the anchor from the actor of the character under control (`0x0033CA15`-`
 
 ## Modding notes
 
-- Game Over is posted only through `0x0035C7B0`, from the field frame and from `0x0027EFA0`; refusing `0x0B` there
-  keeps the game running, but the KO-time arming has already locked input.
+- Game Over is posted only through `0x0035C7B0`, from the field frame, from the verb `callgameover`
+  (`0x00237D60` through `0x0035C7A0`) and from `0x0027EFA0`; refusing `0x0B` there keeps the game running, but
+  the KO-time arming has already locked input.
 - A party member's body is never removed, only hidden; a revive shows it again.
 
 ## Related

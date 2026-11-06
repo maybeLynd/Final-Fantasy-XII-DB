@@ -178,7 +178,8 @@ Offsets are from the start of the LGT2 section and written in hexadecimal.
 
 `0x0037AA90(section, group)`:
 
-1. returns at once for a group above 4 (`0x0037AA9E`);
+1. returns at once for a group above 4 (`0x0037AA9E`), and for a negative one too, as the compare is unsigned
+   (`0x0037AAA2`); the section's magic is read with no null test (`0x0037AABF`);
 2. on a magic mismatch jumps straight to setting the group's ready byte `+0x4C` (`0x0037AAC5` →
    `0x0037AC69`);
 3. otherwise resets the group with `0x0037B230` (pointers `+0x00` to `+0x38` zeroed, `+0x40` to `+0x48`
@@ -197,11 +198,18 @@ Offsets are from the start of the LGT2 section and written in hexadecimal.
 `0x01EF94E0` is 1 in the image and is set only by `0x0037AA80`, the debug verb `debug_lightdatamustinit`
 (`0x0050D340`). Every pointer refers into the loaded file, and steps 4 to 7 rewrite that file in memory.
 
-On the container route the finaliser resets the group (`0x0032F1D4`) and clears its ready byte
-(`0x003DE920(group, 0)` → `0x0037ACA0`) before the bind, sets it again after (`0x003DE920(group, 1)` →
-`0x0037ACD0`, which sets `+0x4C` only when `+0x00` is non-null), and stores the first cut id plus 1 at
-manager record `+0x1FC` (`0x0037B290`). A section with a bad magic therefore leaves a ready group with
-no chunks, which lights nothing.
+On the container route the finaliser, for a manager above 0 (`0x0032F1BB`), resets the group (`0x0032F1D4`) and
+clears its ready byte (`0x003DE920(group, 0)` → `0x0037ACA0`, which also clears bit `1 << group` of `0x02B59350`,
+`0x003DE953`) before the bind, sets it again after (`0x003DE920(group, 1)` →
+`0x0037ACD0`, which sets `+0x4C` only when `+0x00` is non-null, and sets bit `1 << group` of `0x02B59350`, `0x003DE938`),
+and stores the first cut id plus 1 at manager record `+0x1FC` (`0x0037B290`).
+
+That id is word `+0x10` of the cuts chunk `+0x18`; when that pointer is null or the chunk's `+0x04` is 0,
+`0x0037B290` returns -1 and 0 is stored (`0x0037B2A9`, `0x0037B2AF`). A section with a bad magic therefore leaves a ready
+group with no chunks, which lights nothing.
+
+When the manager's slot `0x022C6E20` is null (`0x0032F1F2`), the finaliser stops after the reset and the cleared ready
+byte: it binds nothing, leaves the group not ready and leaves `+0x1FC` as it was.
 
 ### Which records are lit
 
@@ -245,6 +253,11 @@ four type-5 curves (`0x003CC5F0`) and clamps each result to -1..1 into `+0x30` t
 `0x0037A450` advances a kind-2 clock `+0x1C` by `0x01DFE0BC` and, past the duration `+0x18`, wraps it to
 0 (state bit `0x4`) or holds it at the duration.
 
+`0x0037A450` walks every record of the five groups whose section pointer `+0x00` is set (`0x02EBF420` to
+`0x02EBF5B0` in steps of `0x50`, `0x0037A464`, `0x0037A4E3`) and skips a record with state bit `0x1` or without bit
+`0x2` (`0x0037A488`, `0x0037A490`). Only the clock step tests the kind (`0x0037A492`); the duration test and the
+wrap or hold run on every animated record (`0x0037A4AD`-`0x0037A4CA`).
+
 ### Script and map control
 
 | Caller | Effect |
@@ -252,13 +265,24 @@ four type-5 curves (`0x003CC5F0`) and clamps each result to -1..1 into `+0x30` t
 | `setlightcutstatus` (`0x00351210`), `setlightcutstatus_21c` (`0x00351D90`) | `0x003DEA00`: a cut's status on (`0x0037A9B0`) or off (`0x0037A910`) |
 | `setlightallcutstatus` (`0x00351850`) | `0x003DEA10`: every cut on (`0x0037AA00`) or off (`0x0037A960`) |
 | `setlightcutanimestatus` (`0x00352130`), `setlightcutanimestatus_21e` (`0x00352780`) | `0x003DE9A0(group, cut, status)`: state bit `0x2` set on every record of the cut's range (`0x0037A880`) or cleared (`0x0037A7F0`); the group is the caller's actor manager `+0x28` |
-| `0x003E8440`, `0x003E8690`, `0x003E8A10`, `0x003E8A70`, `0x003E8C50` | by id through types 6 and 3: off and on (`0x0037B0F0`, `0x0037B190`), animation start and stop (`0x0037A1D0`, `0x0037A130`), loop on and off (`0x0037A3B0`, `0x0037A310`), clock reset (`0x0037A270`, `0x0037A500`), finished test (`0x0037B030`) |
+| `0x003E8440`, `0x003E8690`, `0x003E8A10`, `0x003E8A70`, `0x003E8C50` | by id through types 6 and 3: off and on (`0x0037B0F0`, `0x0037B190`), animation start and stop (`0x0037A1D0`, `0x0037A130`), loop on and off (`0x0037A3B0`, `0x0037A310`), clock reset (`0x0037A270`, `0x0037A500`), the still-running test (`0x0037B030`: 1 while an on kind 2 record's clock is below its duration, `0x0037B0BE`) |
 
 Animation start and stop by id go through `0x003E8A40(id, start)`, which calls `0x0037A1D0(0, id)` when
 `start` is non-zero and `0x0037A130(0, id)` otherwise; `0x003E8440`, `0x003E85B0`, `0x003E8690` and
 `0x003E8C50` call it. Both look the id up in the type-6 table, map it through the type-3 table and set
 or clear state bit `0x2` of that one record in group 0. An id missing from the type-6 table selects
 entry 0 of the type-3 table.
+
+The other by-id routines use the same lookup. `0x0037B0F0` sets state bit `0x1`, turning the light off
+(`0x0037B171`), and `0x0037B190` clears it (`0x0037B211`); a type-3 index at or past the table's count changes
+nothing (`0x0037B15C`, `0x0037B1FC`). `0x0037B030(group, id)` returns 1 only while the record is on, is of kind 2
+and its clock `+0x1C` is below the duration `+0x18` (`0x0037B0A5`-`0x0037B0BE`), and 0 otherwise. For an id
+without bit `0x4000`, `0x003E8440` resets the clock (`0x0037A270`) and starts the animation (`0x0037A1D0`) when
+it returns 0 (`0x003E84D3`-`0x003E851B`).
+
+`0x0037A880` and `0x0037A7F0` act on every type-2 entry that carries the cut id, not only the first: the walk
+goes on after a match (`0x0037A8F1`, `0x0037A861`). Both return at once when the group has no cuts chunk
+(`0x0037A8A0`, `0x0037A810`).
 
 ## Modding notes
 

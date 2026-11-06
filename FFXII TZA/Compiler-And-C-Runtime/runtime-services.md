@@ -60,12 +60,28 @@ Its two `WideCharToMultiByte` calls are the only ones in the image.
 2. starts a thread at `0x005CCAB0` and waits for it: that thread creates the file and calls
    `MiniDumpWriteDump` with type `0x1B27` and the exception information, then logs
    `Minidump file saved to %s`;
-3. returns 1.
+3. in that thread, opens the name at `+0x10` of the thread's argument block with
+   `CreateFileA(name, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0x80, NULL)` (`0x005CCAE8`); a failed create
+   ends the thread with 0, with no dump and no log line (`0x005CCAF7`);
+4. otherwise passes the argument block itself as the exception information (`0x005CCB32`), closes the file,
+   logs the line through `0x005CDAA0` with level 2 whether or not the dump succeeded (`0x005CCB59`), and ends
+   the thread with 1 when `MiniDumpWriteDump` succeeded, else 0 (`0x005CCB6F`);
+5. returns 1.
+
+`0x005CCBF0` returns the result of `0x005CCD00` unchanged: after the call (`0x005CCCD3`) only the cookie check
+`0x00808C40` runs, which leaves `rax` alone. It reads the path with `GetModuleFileNameA(NULL, path, 260)`
+(`0x005CCC51`) and `0x0019C5D0` formats the name into a second 260-byte buffer with
+`%s.%04u%02u%02u_%02u%02u%02u.dmp` (`0x005CCCC3`); `0x00861EC0` zeroes both buffers first (`0x005CCC3F`,
+`0x005CCC67`).
 
 So the filter returns 1 (`EXCEPTION_EXECUTE_HANDLER`) and the `__try` in `WinMain` takes the
 exception. Threads started through the trampoline `0x005CCBA0` get the same arrangement: the
 trampoline calls `fn(arg)` from its context `+8` and `+0x10` directly under a debugger, and
 otherwise inside a `__try` (`0x005CCBC3`-`0x005CCBCC`) with the same filter `0x008A5AD0`.
+
+The trampoline returns the result of `fn(arg)` as the thread's exit code on both arms (`0x005CCBBF`,
+`0x005CCBC6`, `0x005CCBE2`). When the filter takes a fault, the `__except` block at `0x005CCBCE` calls `0x00861ECC`
+(`_CxxThrowException`) with two null arguments (`0x005CCBD2`).
 
 ### The unhandled-exception filter
 
@@ -82,6 +98,21 @@ instruction writes:
    `MessageBoxW(NULL, text, L"error", MB_ICONERROR)`;
 4. returns 1.
 
+The record `0x0079AD50` fills is `{thread id, exception pointers, 1}` (`0x0079AD66`-`0x0079AD72`), with the
+thread id from `GetCurrentThreadId` (`0x0079AD59`). A zero `0x01F40128` returns 1 with no dump and no box
+(`0x0079AD77`). The pid it passes is `GetProcessId(GetCurrentProcess())` (`0x0079AD98`).
+
+`0x0079B1E0` builds the name with `0x0017D2E0` from the format `%s_%d_%d_%d_%d_%d_%d.dmp` and the string `Dump`
+(`0x0079B270`), and opens it with `CreateFileA(name, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL)`
+(`0x0079B298`). On failure it calls `ShowCursor(1)` before the box (`0x0079B2AA`) and returns the invalid handle
+-1 (`0x0079B2C9`). `0x0079AD50` does not test the handle: it still calls `MiniDumpWriteDump` and `CloseHandle`
+with it (`0x0079ADCA`, `0x0079ADD2`) and goes on to the message box.
+
+Before the message `0x0079AD50` calls `SysFreeString(NULL)` (`0x0079ADDA`). It builds the `BSTR` with
+`SysAllocStringLen` from the characters after the first word of the string `0x0019A510` returns, with that
+word as the length; a null string leaves the box text null (`0x0079ADF4`-`0x0079AE06`). The `BSTR` is freed
+with `SysFreeString` after the box (`0x0079AE2F`).
+
 Both dump types include `MiniDumpWithFullMemory` (`0x2`): `0x1826` adds handle data, unloaded
 modules, full memory information and thread information; `0x1B27` adds data segments, process
 thread data and private read-write memory to those.
@@ -93,17 +124,33 @@ thread data and private read-write memory to those.
 1. copies the start function and argument into the thread record and calls `CreateThread` with
    the trampoline `0x005CCBA0` and the requested stack size; on failure it formats the error with
    `FormatMessageA`, frees it and returns 9;
+   - the record goes to the thread as its parameter, the creation flags are 0 and the handle lands in the
+     record's `+0x00` (`0x005CD201`-`0x005CD22E`);
+   - a null handle is the failure: `FormatMessageA` gets the flags `0x1300` and the `GetLastError` code
+     (`0x005CD236`-`0x005CD262`), `LocalFree` runs only when it made a text (`0x005CD268`, `0x005CD274`), and 9 is
+     returned (`0x005CD27A`);
 2. calls `SetThreadAffinityMask` with the requested mask;
 3. names the thread for a debugger by raising exception `0x406D1388` with the requested name, or
    `PhyreEngineThread` when no name is given, inside a `__try` (`0x005CD2C8`-`0x005CD2E0`) whose filter
-   `0x0089BEF0` continues execution;
+   `0x0089BEF0` continues execution; the exception carries the new thread's id, and no exception is
+   raised when `CreateThread` reported the id 0 (`0x005CD2A8`-`0x005CD2B1`);
 4. sets the priority: mode 0 gives 1, mode 2 gives -1, mode 3 the requested value; any other
-   mode leaves it.
+   mode leaves it. It then returns 0 (`0x005CD319`).
 
 `0x00863430` creates the thread of a `crossThreadImpl` object: `CreateThread` with the start
 `0x00863500` (suspended unless its fourth argument is 1), `SetThreadPriority(handle, (0x20 - p) / 2)`,
 and the same naming exception under a `__try` whose filter is the constant 1. `0x00863500` calls
 the object's slot 1 and passes its result to `ExitThread`.
+
+`0x00863430` returns at once when the handle at object `+0x08` is non-null and the byte at `+0x14` is 0
+(`0x0086344B`-`0x00863456`). Otherwise it clears `+0x14` (`0x0086345C`) and calls
+`CreateThread(NULL, stackSize, 0x00863500, object, flags, object + 0x10)`, with the stack size from its second
+argument and flags 4 or 0 (`0x0086348B`). It stores the handle at `+0x08` (`0x00863494`) and uses it without a
+test.
+
+The priority `(0x20 - p) / 2` rounds toward zero (`0x0086349F`-`0x008634A2`). The naming record is
+`{0x1000, name, [object + 0x10], 0}`, with the name from its sixth argument (`0x008634B4`), raised with
+`RaiseException(0x406D1388, 0, 3, record)` (`0x008634AC`-`0x008634DC`).
 
 `SetThreadAffinityMask` is called from six functions: `0x005CD1E0` and five more (`0x007A4D50`,
 `0x007A5B50`, `0x007B6F70`, `0x007DE120`, `0x007DE8D0`), four of which log `[sead]` messages; `0x007DE120`
@@ -118,8 +165,9 @@ The game's own threads are made by the start-up step `0x00368ED0`, which keeps `
   one is set, clears it and lowers its priority to `0x24`, without end. `0x00368F30(n)`, for `0x0046DD50`, answers
   whether job n, or any job for a negative n, is pending.
 - `0x00368F70` creates, when `0x003692C0` reports bit `0x4`, a thread with the start `0x00368AE0` and stores the stub
-  call `0x005C5230(0x00368AD0, ...)` at `0x022CFF18`; `0x00368AD0` releases the semaphore it is given (`0x00863800`). `0x00368AE0` waits on its semaphore and calls `0x00368B00`, whose
-  calls all reach `0x005C5230`, which returns 0, so its last polling loop never ends.
+  call `0x005C5230(0x00368AD0, ...)` at `0x022CFF18`; `0x00368AD0` releases the semaphore it is given (`0x00863800`).
+  `0x00368AE0` waits on its semaphore and calls `0x00368B00`, whose calls all reach `0x005C5230`, which returns 0, so its
+  last polling loop never ends.
 - `0x003691B0(n)` releases the semaphore `[0x022CFEEC + 4 x n]` (`0x00863800`) for `0x0035E760`, `0x0035EA40` and
   `0x0035EB70`.
 
@@ -184,7 +232,8 @@ text and leaves the lock untaken.
 `0x02EA0B88` with the buffer when it is non-null, else `OutputDebugStringA` (`0x006DF4FA`). It tests
 no level or flag. The only write to `0x02EA0B88` is the 8-byte setter `0x006DF3A0`, which no
 instruction calls and no data pointer names, so the shipped game always reaches
-`OutputDebugStringA`.
+`OutputDebugStringA`. On both paths it returns the formatter's result, or -1 when that result is
+negative (`0x006DF4D2`-`0x006DF4E0`, `0x006DF4F1`, `0x006DF500`).
 
 `0x006DF480` has 801 direct sites (800 calls and one tail jump) in 160 functions between
 `0x006DA8F0` and `0x00790160`. 791 of the sites load a literal string in the eight instructions
@@ -198,6 +247,21 @@ before the call, and 761 of those strings carry the post-effect library's tags, 
 `QueryPerformanceCounter` start sample. It returns `0x17` only when both `timeBeginPeriod` and
 `QueryPerformanceFrequency` fail. `0x005CC930` returns the current counter divided by the
 frequency, in seconds.
+
+`0x005CC980` keeps whether `timeBeginPeriod` returned 0 in the byte `0x02CB60F0` (`0x005CC991`), the `timeGetTime`
+sample in `0x02CB60F4` (`0x005CC9B8`), and whether `QueryPerformanceFrequency` returned 1 in the byte `0x02CB60F1`
+(`0x005CC9ED`); the return value tests those two bytes (`0x005CCA06`, `0x005CCA8D`). It sets `0x02CB6120` and
+`0x02CB6118` to 1 before the two queries (`0x005CC9AD`, `0x005CC9BE`), so a failed frequency query leaves a
+frequency of 1. The reciprocal is `1.0 / frequency` (`0x005CC9F4`), and the counter sample goes to `0x02CB6118`
+(`0x005CCA00`).
+
+From that sample it stores the start time in seconds, `counter * reciprocal`, in the double `0x02CB6108`
+(`0x005CCA24`), the dword `(int64)(seconds * 1000.0 / 2^32)` in `0x02CB60F8` (`0x005CCA2C`-`0x005CCA44`), and the
+double `0x02CB60F8 * 2^32 + sample` in `0x02CB6100`, with the `timeGetTime` sample (`0x005CCA4C`-`0x005CCA68`). It
+stores `0.0` in the 8-byte slots `0x02CB6110`, `0x02CB6130` and `0x02CB6138` (`0x005CCA73`-`0x005CCA83`).
+
+`0x005CC930` reads `QueryPerformanceCounter` into a local and returns `counter / frequency` as a double, both
+converted as unsigned 64-bit values, with the frequency from `0x02CB6120` (`0x005CC939`-`0x005CC975`).
 
 ### Text conversion
 

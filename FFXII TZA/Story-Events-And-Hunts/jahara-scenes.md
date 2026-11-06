@@ -25,7 +25,8 @@ them with `eventread` (`0x0E7`, `0x003529E0`) and `eventread_e8` (`0x0E8`, `0x00
   written by the zone functions on [Jahara scripts](jahara-scripts.md).
 - `glf_z0100` is loaded on field `858` (`glf_z01`), which the Elderknoll function `常駐イベント.促し` jumps to after
   writing 1640; the field then jumps back to Lull of the Land.
-- `glf_a0200` ends with "Holy Mt Bur-Omisace", and `glf_a0300` holds the account of the nethicite and the
+- `glf_a0200` holds "Holy Mt Bur-Omisace stands at the northern end of the Jagd Ramooda." and ends with "Any
+  self-respecting leading man would do the same.", and `glf_a0300` holds the account of the nethicite and the
   Dynast-King.
 
 ### How the synopsis is taken

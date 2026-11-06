@@ -36,9 +36,11 @@ A change is a request and a later commit:
 1. `0x003594B0(handle)` stores the handle at `0x022C7FE4` and the request kind 1 at `0x022C7FF8` (`0x003594B0`-`0x003594B6`).
 2. `0x00358BC0`, once a frame, commits a pending request (`0x00358BC4`-`0x00358C52`). When the handle differs from the
    leader, the old leader is released (`0x00358B40`) and camera context 0 is re-seated with `0x0025A680`, or
-   `0x0025A690` for request kind 2 or no previous leader.
+   `0x0025A690` for request kind 2 or no previous leader, after `0x00259800(0)` (`0x00358BFC`).
 3. The handle `0x022C7FE4`, re-read after the release, becomes the leader, the kind returns to 0, and the new
-   leader's actor gets its roster-role notice (`0x002681D0`).
+   leader's actor gets its roster-role notice (`0x002681D0`) when the handle resolves to one (`0x00358C49`). A
+   request for the current leader skips the release and the camera calls of step 2 and still does this
+   (`0x00358BE4`).
 
 The commit runs from the main-loop frames `0x0022A770`, `0x0022B8C0` and `0x0022BC20`, which call it through the thunk
 `0x00358BB0` (`0x0022AE3C`, `0x0022BAF9`, `0x0022BD49`; [Frame update order](../Engine-Core/frame-update-order.md)).
@@ -86,6 +88,12 @@ picks depends on the party control mode (`0x00326516`-`0x00326542`):
 When that member has no battle unit with a stats record, it takes the first of fighting seats 0-3 that has one,
 and otherwise the actor in roster slot 0 (`0x00326571`-`0x003265D9`).
 
+Before the pick it runs `0x00311E20` and `0x00326620` (`0x0032650C`, `0x00326511`). `0x00326620` acts in mode 0 only:
+when the selector `+0x5AA4` is `0xFF` or not among seats 0-3 of slot map 1 (`+0x5A5A`), it sets the selector to
+the row of the first unit `0x0030A880(list, 3)` returns and runs `0x00326500` again (`0x00326626`-`0x003266A9`). In mode
+1 a member picked from the selector or the seats also goes through `0x00317400(unit)` (`0x003265FE`-`0x0032660B`), and
+`0x00311E20` runs again before the request (`0x003265DB`).
+
 ### The roster
 
 The four active actors are pointers at `0x0209A1F0`; `0x00263750(slot)` returns one for slots 0-3 and no actor above
@@ -104,22 +112,29 @@ leader, when the unit is the leader, or when the leader is an enemy-table record
 by its slot byte. So every follower follows the controlled character, and nobody has to be told when the leader
 changes.
 
+Its second argument `out` takes the result. With an entry it copies the slot's three vectors from `+0x30` and
+returns 1 (`0x00339B27`-`0x00339B53`). Otherwise it returns 0 and writes the unit's own position (`0x002646C0` on its
+actor `+0x10`) to `out + 0x00` and `out + 0x10`, and to `out + 0x20` the larger of the actor's two `0x00265090`
+radii plus 0.1 (`0x00339AC3`-`0x00339B22`, `0x00339B62`-`0x00339BDB`). With no unit or actor the position is zero and
+`out + 0x20` is 0.1.
+
 ### When control is taken away
 
 `0x0023B040` recomputes the control lock once a frame (`0x0023B050`-`0x0023B1FA`). Battle flag `0x02089340` bit `0x40` raises
 every lock bit, and nothing waives it (`0x0023B050`-`0x0023B063`).
 
-The rest comes from the leader's state, and is skipped when the party control mode is chocobo (`0x00303EC0`) or the area's
-town bit is set (`0x00377C20`, through its thunk `0x00313F60`; `0x0023B065`-`0x0023B079`). The lock is raised when the
+The rest comes from the leader's state, and is skipped when the party control mode is chocobo (`0x00303EC0`) or
+the area's town bit is set (`0x00377C20`, through its thunk `0x00313F60`; `0x0023B065`-`0x0023B079`), or when there is
+no leader unit (`0x003272A0`, `0x0023B08F`); a skipped derivation publishes the start value. The lock is raised when the
 leader is down, when a party wipe is latched
 (battle flags `0x600`), on several of the leader's action and status states (`0x0023B0CA`-`0x0023B179`), and in
 summon mode when the summoner is down (`0x0023B17C`-`0x0023B1B8`). It is published three ways:
 
 | Lock bit | Published to | Effect |
 |---|---|---|
-| 0 | `0x022C8000` bit `0x1` (`0x00359200`) | the stick's speed is forced to 0 |
-| 2 | `0x022C8005` bit `0x1` (`0x003592C0`) | the controlled actor is not turned to the stick |
-| 1, inverted | `0x0209A2C5` (`0x0026BD40`) | read by the gameplay capability checks |
+| `0x1` | `0x022C8000` bit `0x2` (`0x00359200(on, 1)`, `0x0023B1D2`-`0x0023B1DC`) | the stick's speed is forced to 0 |
+| `0x4` | `0x022C8005` bit `0x2` (`0x003592C0(1, on)`, `0x0023B1C0`-`0x0023B1CD`) | the controlled actor is not turned to the stick |
+| `0x2`, inverted | `0x0209A2C5` (`0x0026BD40`, `0x0023B1E1`-`0x0023B1FA`) | read by the gameplay capability checks |
 
 The full list of contributions, and the gameplay checks that read `0x0209A2C5`, are on
 [Action availability](../Controls-And-Input/action-availability.md).
@@ -141,15 +156,22 @@ The stick filter reads one dword and four bytes, and each source of a lock owns 
 | `0x022C8007` | nobody | no setter: it is read with the others, and only the reset `0x003590E0` clears it (`0x00359115`-`0x00359122`) |
 
 Any bit of `0x022C8000` stops the stick. Of the OR of the four bytes, bit `0x1` stops the move, bit `0x2` the turn to the
-stick and bit `0x4` the desired heading (`0x00358DFB`-`0x00358E99`). A setter that leaves a lock standing stops the
-leader's actor at once with `0x0026D6D0` (`0x00359221`-`0x00359242`, `0x0035927D`-`0x003592AD`). The event lock also
+stick and bit `0x4` the desired heading (`0x00358DFB`-`0x00358E99`). A setter stops the leader's actor at once
+with `0x0026D6D0`: `0x00359200` whenever the dword it leaves is non-zero (`0x00359221`-`0x00359242`), the byte setters
+`0x00359250`, `0x003592C0` and `0x00359330` only when the OR of the four bytes they leave has bit `0x1`
+(`0x0035927D`-`0x003592AD`, `0x003592ED`-`0x0035931D`, `0x00359353`-`0x00359387`); a turn or heading lock alone does not
+stop it.
+
+The event lock also
 clears capability byte `0x0209A2C6` while it stands (`0x003071DC`-`0x003071F2`, `0x0026BD20`).
 
 `0x022C8000`-`0x022C800F` is the movement suppression block: at `+0x0` the dword of lock bits, set and cleared by
-`0x00359200`; at `+0x4` the four lock bytes; at `+0x8` the stick magnitude, capped at 128 and divided by 128, as an
-`f32` (`0x003595DF`); and at `+0xC` the walk toggle (`0x003594E0`; both on
-[Player movement](../Movement-And-Pathfinding/player-movement.md)). The reset `0x003590E0` clears the dword and the
-four bytes (`0x0035910F`, `0x00359115`-`0x00359122`).
+`0x00359200`; at `+0x4` the four lock bytes; at `+0x8` the stick magnitude `m = sqrtf(x * x + y * y)`, capped at
+128 and divided by 128, as an `f32`: `[0x022C8008] = min(128.0, m) * 0.0078125`, with `x` one stick byte less 128
+and `y` 128 less the other (`0x0035957F`, `0x003595A7`; `minss`, then `mulss` by 1/128, `0x003595CA`-`0x003595DF`); and at
+`+0xC` the walk toggle (`0x003594E0`; both on [Player movement](../Movement-And-Pathfinding/player-movement.md)).
+
+The reset `0x003590E0` clears the dword and the four bytes (`0x0035910F`, `0x00359115`-`0x00359122`).
 
 The event lock goes up when the last member of an enemy spawn group falls: the group's death handler `0x00306F00`
 calls `0x00307140(1)` once the defeated mask covers the member mask (`0x00306F95`-`0x00306F9A`;

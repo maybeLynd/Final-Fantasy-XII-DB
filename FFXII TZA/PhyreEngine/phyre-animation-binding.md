@@ -42,6 +42,11 @@ itself, so only these objects carry meaning.
 walks the binding descriptors (`0x38` apart) beside the target records (`0x30` apart), takes only
 descriptors whose `+0x20` type matches its own, and only fills a record whose kind is still 0.
 
+Each slot-1 body is called with the record array (`rdx`), the descriptor array (`r8`) and their count
+(`r9d`). It returns 0; when the count is non-zero and either array is null it returns 1 at once and fills
+no record (`0x005C0858`-`0x005C0861`, `0x005C0B7A`-`0x005C0B83`, `0x005C0CAA`-`0x005C0CB3`, `0x005C0E59`-`0x005C0E62`,
+`0x005C1015`-`0x005C101E`, `0x005C117A`-`0x005C1183`).
+
 | Class | Slot 1 | Descriptor type | Record it writes |
 |---|---|---|---|
 | `PAnimationChannelTargetBindDataMember` | `0x005C0820` | 2 | kind 1: address and size |
@@ -52,13 +57,22 @@ descriptors whose `+0x20` type matches its own, and only fills a record whose ki
 | `PAnimationChannelTargetBindSceneToMeshInstance` (`0x00D31868`) | `0x005C1000` | 1 | kind 1: a matrix-array entry, size `0x40` |
 
 The data-member, method and function binders accept a descriptor only when its `+0x00` (the
-instance class) is the class at the binder's `+0x08` or one reached from it through `+0x78`. The target
-object is the binder's `+0x10`, else the descriptor's `+0x08`, and the binder's `+0x18` (when set) may
-replace it through its vtable slot 2.
+instance class) is the class at the binder's `+0x08` or one reached from it through `+0x78`. The
+data-member and method binders take the target object from the binder's `+0x10`, else the descriptor's
+`+0x08`, and a non-null binder `+0x18` replaces it with the result of its vtable slot 2 when that result
+is non-zero (`0x005C08BC`-`0x005C08FF`, `0x005C0D7B`-`0x005C0D9D`). The function binder takes no target object:
+it writes only the kind 3 and the function at `+0x28` (`0x005C0C43`, `0x005C0C49`).
 
 The method and function binders look the name up (`0x005A7B50`, `0x005A7AB0`) and log
 `Bound method %s does not take a single const Vectormath::Aos::Vector4 * parameter...` (or `function`)
 when the signature differs; they bind anyway.
+
+`0x005A7B50` walks the method list at the class's `+0x90` and `0x005A7AB0` the function list at `+0xA0`,
+then those of the classes reached through `+0x78`, and returns the first entry whose name (`+0x18`)
+equals the target's name, or 0, which skips the descriptor (`0x005C0D39`, `0x005C0C02`). The signature is
+what slot 4 of the entry's `+0x28` object returns (`0x005C0D47`, `0x005C0C10`). The function binder wants its
+first word equal to `0x006B19A0() | 1` and its second word 0 (`0x005C0C1A`-`0x005C0C2D`); the method binder
+tests the words at `+0x08` and `+0x10` the same way (`0x005C0D51`-`0x005C0D65`).
 
 ### Resolving a data-member path
 
@@ -79,9 +93,16 @@ The record gets kind 1, the address at `+0x08` and the size at `+0x10`, clamped 
 ### The shader-parameter binder
 
 `0x005C1160` takes the parameter buffer from the binder's `+0x08`, or from the descriptor when its
-`+0x00` is `0x02CB7480` (the descriptor's `+0x08` itself) or `0x02CB6B80` (that object's `+0x08`). It finds
-the parameter by name with `0x0018D240`, takes the offset (`u16 +0x10`) and size (`u16 +0x12` & `0x1FFF`),
-and binds only when the offset is at least 4 and offset + size fits the buffer's first dword.
+`+0x00` is `0x02CB7480` (the descriptor's `+0x08` itself) or `0x02CB6B80` (that object's `+0x08`); any
+other class, or a null buffer, skips the descriptor (`0x005C11E3`-`0x005C120E`). A non-null binder `+0x10`
+then replaces the buffer with the result of its vtable slot 2 when that result is non-zero
+(`0x005C1210`-`0x005C1225`).
+
+It finds the parameter by name with `0x0018D240` in the buffer's `+0x08` (`0x005C1232`-`0x005C1239`), takes
+the offset (`u16 +0x10`) and size (`u16 +0x12` & `0x1FFF`), and binds only when `offset >= 4` and
+`offset + size <= [buffer]`, the buffer's first dword (`0x005C1254`, `0x005C125C`). The record gets kind 1,
+the address `buffer + offset` at `+0x08` and the size at `+0x10`, or `0x10` when `size > 0x10`
+(`0x005C1266`-`0x005C1282`).
 
 ### The scene binders
 
@@ -94,9 +115,17 @@ only a record whose kind is still 0.
 - `0x005C0E00` collects the names and hands them to `0x005C35A0`, which hashes each name up to any `#`
   and finds the matching node under the binder's `+0x08`. A found node gives kind 1, the address
   node `+0x20` and size `0x40`.
-- `0x005C1000` compares each name with the name table at `+0x48` (count `+0x30`) of the object at
-  `[binder+0x08]+0x00`. A match at index `i` gives kind 1, the address `[binder+0x08]+0x18` + `i` ×
-  `0x40` and size `0x40`.
+- A descriptor `0x005C0E00` does not accept, or a record already bound, gives a null name (`0x005C0EB7`,
+  `0x005C0EE5`), which `0x005C35A0` leaves out of its search (`0x005C3663`). The results go to an array of the
+  same count cleared with `memset` (`0x005C0F29`); the fill loop writes every record whose result is
+  non-null (`0x005C0F90`-`0x005C0FA8`), and `0x0067F580` clears the tree of the search object on the stack
+  before the binder returns (`0x005C0FC0`).
+- `0x005C1000` compares each name with the name table at `+0x48` (count `+0x30`, bit `0x80000000` masked
+  off, `0x005C1044`) of the object at `[binder+0x08]+0x00`, skipping null entries and taking each entry
+  with bit `0x1` masked off (`0x005C10C0`-`0x005C10CD`). A match at index `i` gives kind 1, the address
+  `[[binder+0x08]+0x18] + i * 0x40` (`0x005C1039`, `0x005C10F7`-`0x005C10FE`) and size `0x40`.
+- The name-table scan of `0x005C1000` does not stop at a match, so when several entries match, the last
+  one sets the record (`0x005C1101`-`0x005C111C`). A null target name matches no entry (`0x005C10D4`).
 
 ### Composition
 
@@ -112,8 +141,10 @@ record. Consecutive entries with the same target form a group; a kind-0 target s
    `0x005A7E90(record+0x28, 0, value)`.
 3. At the end of a group with any bit set and a kind-1 target, it writes the matrix at the address.
 
-`0x005A7E90(object, context, ...)` calls slot 2 of the object at `object+0x28` with the context, two
-zeros, and a pointer to its own variadic argument area holding the value pointer.
+`0x005A7E90(object, context, ...)` calls slot 2 of the object at `object+0x28` (`0x005A7EC5`) with the
+context, two zeros, and as fifth argument the address of a local `va_list` (`0x005A7EB7`-`0x005A7EBB`) that
+points at its variadic arguments, the first being the value pointer (`0x005A7EA7`-`0x005A7EAB`). When
+`object+0x28` holds 0 it makes no call (`0x005A7EAF`-`0x005A7EB2`).
 
 ### Matrix arithmetic
 
@@ -306,7 +337,7 @@ Binding descriptor (PAnimationChannelTarget, members registered by `0x005AF3B0`)
 | `+0x08` | `void*` | m_instanceObject | default target object |
 | `+0x10` | `void*` | m_baseObjectType |  |
 | `+0x18` | `void*` | m_baseObject |  |
-| `+0x20` | `u32` | m_type | 2 data member, 3 method, 4 function, 5 shader parameter |
+| `+0x20` | `u32` | m_type | 1 scene node, 2 data member, 3 method, 4 function, 5 shader parameter |
 | `+0x28` | `void*` | m_name | path or name; bit `0x1` of the pointer is masked off |
 | `+0x30` | `u32` | m_index | array index |
 

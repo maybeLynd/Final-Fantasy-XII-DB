@@ -65,7 +65,10 @@ mode and the fitted size:
 - `0x001DD8C0` answers `mode == 1` (Super Wide); its second test `0x005C5230` returns 0. The wrapper
   `0x00182F50` serves it to six callers.
 - `0x001DD120` returns the aspect: `(float)W / (float)H` from `+0x10` / `+0x14` in mode 1, and the
-  constant 16/9 otherwise (`0x001DD126`-`0x001DD164`). `0x00182EE0` wraps it.
+  constant 16/9 otherwise (`0x001DD126`-`0x001DD164`). `0x00182EE0` wraps it. In mode 1 it first calls
+  the same second test `0x005C5230` (`0x001DD12E`) and takes the 16/9 at `0x008C5B38` when that answers
+  non-zero; `0x005C5230` is `xor eax, eax; ret`, so mode 1 always gives the ratio. `W` and `H` are
+  converted as unsigned 32-bit values (`0x001DD137`-`0x001DD148`).
 - `0x00225680` and `0x002256A0` return `+0x10` and `+0x14`; `0x00182440` returns the mode word.
 - `0x001DCE20` writes "Super Wide Mode" (`0x00900960`) for mode 1, else "Normal Mode" (`0x00900970`),
   into the object's `+0x80` through `0x001A1E40` (`0x001DCE26`-`0x001DCE43`); the developer console
@@ -84,9 +87,17 @@ outside the fit and the constructor.
   so 1.0 in Normal Mode and below 1.0 in Super Wide Mode. Its callers multiply horizontal
   positions by it; the full-screen quad `0x001D8B20` spans `±factor` across, keeping a 16:9 quad
   centred on a wider screen.
+- With no display object (`0x001DDAB0` returns 0), `0x0017FFD0` divides the 16/9 at `0x008C5B38` by 0.0,
+  `16/9 ÷ 0`, and returns positive infinity (`0x0017FFF5`, `0x00180025`-`0x00180028`).
 - The viewport: `0x00186B80` in Normal Mode (`0x00182F50` false) sets the viewport width to 16/9 of
   the height it is given and centres it on the given rectangle; in Super Wide Mode it uses the
-  rectangle as given.
+  rectangle as given. The width is `w - (int)(w - h × 16/9)` and the left edge moves right by
+  `(int)(w - h × 16/9) / 2` (`0x00186C48`-`0x00186C87`), both through the viewport setter `0x0060F6B0`.
+- Before that, `0x00186B80` returns at once when the render manager has no device at `+0x08`
+  (`0x00186BA6`). It sets a viewport over the whole target, 3,840 × 2,160 while the boot byte `+0xDB8`
+  is set or `+0xC30` is 3 and `+0xAD8` × `+0xADC` otherwise (`0x00186C01`), posts the clear colour
+  0, 0, 0, 0 (`0x0060D190`, `0x00186C19`), and opens the colour bracket with `0x005FEFD0(device, 1)` and
+  closes it with `0x00600A60(device, 0)` (`0x00186C27`, `0x00186C32`).
 
 - The 16:9 in that viewport comes from `0x00182E50`, which returns `0x001DD110()` when the display
   object exists and the same constant 16/9 when it does not.
@@ -106,7 +117,12 @@ outside the fit and the constructor.
 
 ### The display-mode list
 
-The constructor `0x001DC5C0` first calls `0x001DD170` (`0x001DC636`), which enumerates the adapters into a table
+The constructor `0x001DC5C0` first stores its defaults (`0x001DC5C6`-`0x001DC630`): mode 0, `+0x04` and `+0x08`
+1.0, `+0x0C` and the fitted size 0, one display mode (`+0x20` 1, `+0x24` 0), 60 Hz at `+0x30`, `+0x34` 1,
+`+0x50` 1, zero at `+0x28`, `+0x38`, `+0x40`, `+0x48`, `+0x4C`, `+0x58`, `+0x5C` and `+0x78`, the
+settings' `+0x68` (Monitor) at `+0x60` and the settings' `+0x08` (ScreenMode) at `+0x18`.
+
+It then calls `0x001DD170` (`0x001DC636`), which enumerates the adapters into a table
 of `0x140`-byte entries at `+0x78` (count `+0x50`), takes `+0x4C` as the adapter `+0x48`, and stores that
 adapter's DeviceID and LUID halves (entry `+0x104`, `+0x128`, `+0x12C`) as settings 19, 20 and 21 through
 `0x001DF340` (`0x001DD384`, `0x001DD3AC`, `0x001DD3D4`).
@@ -153,6 +169,17 @@ viewport (`0x0061D3D0`, `0x00607D10`), and binds the targets again. It returns `
 looks for the WindowSize setting (`+0x2C` height, `+0x2E` width as 16-bit halves) and selects it;
 when it is missing it writes it into the spare entry and sorts it into place by width, then height.
 The windowed resolution row therefore always offers the current window size.
+
+`0x001DD8E0` returns at once while the display-mode list `+0x28` is null (`0x001DD8EE`). When `+0x34`
+differs from the mode count `+0x20`, it frees the old window list (`0x00210EB0`), sets `+0x34` to the
+count and allocates `(count + 1) × 0x1C` bytes for it (`0x00210EC0`, `0x001DD8FC`-`0x001DD929`). It copies
+`(+0x34 + 1) × 0x1C` bytes from `+0x28` (`memcpy`, `0x00861EBA`, `0x001DD93E`) and zeroes the spare
+entry's width, height and refresh numerator and denominator (`0x001DD951`-`0x001DD980`). The search runs
+over entries 0 to `+0x34`, the spare included, and stores the matching index at `+0x38` (`0x001DDA62`).
+
+With no match it sets `+0x38` to the spare's index `+0x34` (`0x001DD9DD`) and walks entries 0 to `+0x34`
+once, swapping each entry of greater width, or equal width and greater height, with the last entry
+(`0x001DD9F7`-`0x001DDA3F`); the index of the first swap becomes `+0x38` (`0x001DDA48`).
 
 ## Layouts
 

@@ -96,9 +96,11 @@ both pushes return without writing at depth 63.
 The two pops mirror each other. `0x00267E10` pops as an int, truncating a float with `cvttss2si`;
 on an empty stack it returns 0 without a call, and on a tag that is neither 1 nor 2 it calls
 `0x008620C0` and returns 0. `0x00267DB0` pops as a float, widening an int with `cvtdq2ps`; on an empty
-stack it calls `0x008620C0` and returns 0.0, and on a bad tag returns 0.0 silently. `0x008620C0`
-formats "FFXII tried to call exit(), this might be a serious error!" and returns, so every failure
-is silent in play: a script that supplies too few arguments runs on zeros.
+stack it calls `0x008620C0` and returns 0.0, and on a bad tag returns 0.0 silently.
+
+`0x008620C0` loads the address of the message "FFXII tried to call exit(), this might be a serious error!" and
+tail-jumps to the empty stub `0x0016D6A0` (`0x008620C0`-`0x008620C9`), so it does nothing and every failure is silent
+in play: a script that supplies too few arguments runs on zeros.
 
 ### Argument order
 
@@ -108,14 +110,24 @@ pops four references, resolving each through `0x002650B0`, then pops the index, 
 `0x00377AB0(index, out)` and stores `out[0]` through the last reference popped, `out[3]` through
 the first.
 
+Each of those stores is a 4-byte float (`0x0035399B`-`0x003539B9`), whatever the declared width. The
+handler pops with the int pop `0x00267E10`, so a missing reference is 0, which `0x002650B0` resolves for the
+current slot (`0x002640C0`, `0x00353915`) to class 0 offset 0: the save payload's first byte. It calls no result
+writer and returns through the stack-cookie check `0x00808C40` (`0x003539C6`).
+
 ### References and actor handles
 
 `PUSHP` (`0x00268100`) pushes the packed reference
 `((ref & 0xFFFFFF) + index × size) | (ref & 0x7000000) | 0x70000000` (`0x00268155`-`0x0026816C`) for the
 decoded reference `ref` and element `index`, `size` being 2 for the width nibble `ref >> 28` of 2 or
-3, 4 for 4 or 5 and 1 otherwise (`0x00268124`-`0x00268146`), with tag 1 and the real width in the source byte. `0x002650B0(slot, offset)` turns it back into an address
-through the six class bases ([script variables](script-variables.md)); classes 6 and 7 fall to
-base 0. 57 handlers call it; a store through it is a raw dword whatever the declared width.
+3, 4 for 4 or 5 and 1 otherwise (`0x00268124`-`0x00268146`), with tag 1 and the real width in the source byte.
+
+`0x002650B0(slot, x, offset)` turns it back into an address. The reference is its third argument (`0x002650B9`),
+and it ignores the second. It goes
+through the six class bases ([script variables](script-variables.md)) of the class `(offset >> 24) & 7`, by the
+jump table at `0x00265180`; classes 6 and 7 fall to
+base 0 (`0x0026516C`). It has 57 call sites in 29 functions; a store through it is a raw dword whatever the
+declared width.
 
 `PUSHACT` (`0x00261806`) packs an actor as `(word + 0xE of the actor's tag-table entry) << 16 |
 index | 0x4000`, or `0x8000` when the index is past the count of the script image's `+0x80` table,

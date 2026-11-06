@@ -128,7 +128,7 @@ the camera-shot table `[slot + 0xD8]` and side B at `+0x170` against the camera-
 | Operation | Side A | Side B |
 |---|---|---|
 | bind `(slot, record, clock, entry, lookup)` | `0x003DA400`: `+0x0C` = clock, `+0x0A` = record, `+0x00` = the table row's `+0x14` (16-byte rows), `+0x04` = max(lookup, 0), `+0x08` = 1, `+0x10` = 1.0, `+0x14` = 0, then `0x00257230(index, value, entry)` and the reverse lookup `+0x18[lookup]` = entry | `0x003DD230`: the same into `+0x17C`, `+0x17A`, `+0x170`, `+0x174` (a negative lookup is replaced by `0x005C5230()`, which returns 0), `+0x178` = 1, `+0x180` = 1.0, then `0x0037DCF0(index, value, entry)` and `+0x1C[lookup]` = entry |
-| reset all | `0x003DA000(slot)`: lookups `+0x18`, `+0x1A` = -1, each entry's `+0x08` = 0 and `+0x0A` = -1; `0x003DA370` does the same on the current slot and tail-calls `0x00257830` | `0x003DCF60(slot)`: lookups `+0x1C`, `+0x1E` = -1 and the four entries likewise |
+| reset all | `0x003DA000(slot)`: lookups `+0x18`, `+0x1A` = -1, each entry's `+0x08` = 0 and `+0x0A` = -1; `0x003DA370` does the same on the current slot `0x002640C0()`, with no null test, and tail-calls `0x00257830` with its own first argument, a float in `xmm0`, and its second to fourth arguments unchanged (`0x003DA38F`-`0x003DA3F8`) | `0x003DCF60(slot)`: lookups `+0x1C`, `+0x1E` = -1 and the four entries likewise |
 | clear one | `0x003DA4D0(slot, entry)`: word `+0x08` = 0 (`+0x118 + 0x18 x entry`, `0x003DA4E8`), only for an entry of at most 3 and a non-null `+0xD8` (`0x003DA4D0`-`0x003DA4DD`); `camerastop` `0x0053` and `camerastop_54` `0x0054` call it (`0x00350696`, `0x0035030C`) | `0x003DD320(slot, entry)`: word `+0x178 + 0x18 x entry` = 0, only for an entry of at most 3 and a non-null `+0xF0` (`0x003DD320`-`0x003DD338`); `camerashakestop` `0x019D` and `camerashakestop_19e` `0x019E` call it (`0x0034A3A6`, `0x00349EFC`) |
 | republish | `0x003DA570(slot, entry)`: `+0x18[entry +0x04]` = entry | |
 | set rate | `0x003DA2D0(slot, entry, rate)`: writes `+0x120 + entry * 0x18` with no bound or table test | `0x003DD1F0(slot, entry, rate)`: the same at `+0x180 + entry * 0x18` |
@@ -155,14 +155,17 @@ opened with mode bit `0x4` (task `+0x28`).
 ### The step-point bits
 
 Each slot carries two 512-bit arrays, sixteen dwords each: the status bits at `+0x204` and the mark
-bits at `+0x244`. Point `n` is clamped to 0-511 and lives in dword `n >> 5`, bit `n & 31`. The verbs
+bits at `+0x244`. Point `n` is clamped to 0-511 and lives in dword `n >> 5`, under the bit value
+`1 << (n & 31)` (`0x0026B7A7`-`0x0026B7D4`, `0x0026B817`-`0x0026B844`). `0x0026B790`, `0x0026B800` and `0x0026B870` take the
+slot as `0x02098E10 + slot × 0x288` with no bound or live test (`0x0026B796`-`0x0026B7A4`, `0x0026B806`-`0x0026B814`,
+`0x0026B87D`-`0x0026B891`). The verbs
 pass the calling actor's manager (record `+0x15`) as the slot:
 
 | Verb | Id | Handler | Writes |
 |---|---|---|---|
-| `steppoint(n)` | `0x04EE` | `0x00342D80` | mark bit `n` set (`0x0026B790(slot, n, 1)`), after `0x005C5230(slot, n)` |
-| `setsteppointmarkstatus(n, v)` | `0x04F3` | `0x00343570` | mark bit `n` = `v != 0` (`0x0026B790`) |
-| `setsteppointstatus(n, v)` | `0x04EF` | `0x003431B0` | status bit `n` = `v != 0` (`0x0026B800`) |
+| `steppoint(n)` | `0x04EE` | `0x00342D80` | point `n`'s mark bit set (`0x0026B790(slot, n, 1)`), after `0x005C5230(slot, n)` |
+| `setsteppointmarkstatus(n, v)` | `0x04F3` | `0x00343570` | point `n`'s mark bit = `v != 0` (`0x0026B790`: set for a non-zero `v`, cleared for 0, `0x0026B7D9`-`0x0026B7E9`) |
+| `setsteppointstatus(n, v)` | `0x04EF` | `0x003431B0` | point `n`'s status bit = `v != 0` (`0x0026B800`, the same at `+0x204`, `0x0026B849`-`0x0026B859`) |
 | `setsteppointstatusall(v)` | `0x04F0` | `0x00343980` | all sixteen status dwords to all ones for a non-zero `v`, else 0 (`0x0026B870`) |
 
 The bind zeroes the mark bits of the slot it binds and, on slot 0, the status bits of slots 0-3.

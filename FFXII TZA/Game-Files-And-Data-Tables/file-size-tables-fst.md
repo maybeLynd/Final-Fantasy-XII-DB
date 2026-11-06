@@ -99,9 +99,13 @@ global `.ebp`, `3a + 1` its `.mot` and `3a + 2` its `.fpk`. The loader `0x0032FC
 Of the ten empty kinds, six (3, 17, 18, 29, 36, 40) point at runtime slots rather than path arrays.
 Four have arrays the table never sizes: kind 6 (`image\FF12\isowaki\ousi00.bin` and `dummy.bin`
 entries), 27 (`sound\wave\wave0000.wd` onward), 31 (`sound\music\data\music000.bgm` onward) and 35
-(`c:\image\ff12\overlay\in\ff12menuoverlay_00_debug.bin` onward). `0x0024AC30` requests kind 35, index
-`n + 7`, with the `−1` size it reads; the read issuer refuses it and the queue then reports it delivered
-with nothing read. No call site of `0x0032E620` passes kind 6, 27 or 31.
+(`c:\image\ff12\overlay\in\ff12menuoverlay_00_debug.bin` onward).
+
+`0x0024AC30` sizes kind 35, index `n + 7` (`0x0024AC4C`) and, when `0x0037B330()` is 0, requests it with the `−1` size
+it reads (`0x0024AC9F`). The read issuer refuses it, and the queue completes it with the previous read's status and
+nothing read: as delivered when that status is 0 or more, as failed when it is negative. Its callback `0x0024ACF0`
+runs either way, since the failure callback `0x0032E370` calls it for a byte count of −1. No call site of
+`0x0032E620` passes kind 6, 27 or 31.
 
 [`file-size-tables-fst-files-rows.tsv`](file-size-tables-fst-files-rows.tsv) gives each of the twelve files with its
 locale id, SHA-256, sized entries and sized kinds.
@@ -147,33 +151,77 @@ size where it differs.
 
 ### Behind the staged head read
 
-`0x0032EB40` first clears read-layer slot `slot` (`0x0046DE50`: its destination `+0x10`) and gives its request the
-word `slot << 24 | kind << 16 | id` and the delivery callback `0x0032EC20`, which unpacks that word into
-`0x0046E050(slot, kind, id, dest)`. That fills one of two `0xA0`-byte slots at `0x02CA6070`: the kind, the
-destination, and a sector that `0x0046DE80(kind, id)` computes from a sector directory at
+`0x0032EB40` sizes the file the way `0x0032E400` does (`0x0032EB60`-`0x0032EBA3`: −1 for kind `0xFF`, the override
+pointer at `0x022C51F0`, else `0x002DF960` through the jump `0x0046DE70`, and a positive size becomes
+`(size + 0x3F) & 0xFFFFFFC0`, rounded up to a multiple of 64 for a size up to `0x7FFFFFC0`, at `0x0032EB99`-`0x0032EBA3`).
+It then clears read-layer slot `slot` (`0x0046DE50` at `0x0032EBA8`: its destination `+0x10`, for a slot below 2)
+whatever the size, and files a request only when the size is above `0x800` (`0x0032EBAD`). Both of its callers
+give slot 0 (`0x0033048B`, `0x003EA85B`).
+
+It gives its request the word `slot << 24 | kind << 16 | id`, file offset 0 and no cancel callback
+(`0x0032EBB5`-`0x0032EBE7`), and the delivery callback `0x0032EC20`, which unpacks that word into
+`0x0046E050(slot, kind, id, dest)` (`0x0032EC20`-`0x0032EC32`). That fills one of two `0xA0`-byte slots at
+`0x02CA6070`: the kind, the destination, and a sector that `0x0046DE80(kind, id)` computes from a sector directory at
 `0x02EBA508`.
 
-Nothing writes `0x02EBA508`, which is 0 in the image, so the sector is always 0. The read layer's tick
-`0x0046DD50` acts only in its states 1 to 4, and its state `0x02CA6068` is 0 in the image and written only by
-the tick itself (to 0, 3 and 4), so the tick never leaves state 0.
+`0x0046E050` returns at once for a slot of 2 or more (`0x0046E053`). Otherwise it zero-fills the slot's `0xA0` bytes
+(`memset` `0x00861EC0`, `0x0046E095`), then stores the sector at `+0x04` (`0x0046E0A4`), the destination at `+0x10`
+(`0x0046E0A9`), 0 in the byte `+0x98` (`0x0046E0AE`) and the kind at `+0x00` (`0x0046E0C1`).
 
-The expansion the tick would hand to `0x00369050` therefore never runs: `0x00536F30` reads a header (12
-bytes when byte 3 is `d`, else 16; the size in the low 25 bits of `+8`) and by the low two bits of `+4`
-copies the data, expands it with `0x00536DD0`, or with `0x00537030`. In `0x00536DD0` an even control byte b
-copies `b >> 1` literal bytes, and an odd one with the next byte copies `(next >> 4) + 3` bytes from
-`((word >> 1) & 0x7FF) + 1` bytes back.
+Nothing writes `0x02EBA508`, which is 0 in the image, so the sector is always 0: `0x0046DE80` returns 0 for a null
+directory (`0x0046DE9C`-`0x0046DEA1`).
+
+The read layer's tick `0x0046DD50` first calls `0x0016D6A0`, a bare `ret 0` (`0x0046DD54`), and acts only in its
+states 1 to 4. Its state `0x02CA6068` is 0 in the image and written only by the tick itself: 0 at `0x0046DD8C`, 3 at
+`0x0046DE1F`, 4 at `0x0046DDC1`, and at `0x0046DE40` 0 or the 1 it read. So the tick never leaves state 0.
+
+Out of state 0 the tick would not get far. States 1 to 3 first call `0x0053DD10`, which always returns 1 (`mov eax,
+1`): state 1 then keeps 1 (`0x0046DE33`-`0x0046DE40`), and states 2 and 3 return unchanged (`0x0046DDD7`,
+`0x0046DD9E`). Past that test, state 2 would hand `0x02EBA520` and a sector from `0x02EBB520`, `0x02EBB528` and
+`0x02EBB52C` to `0x0016D6A0`, which does nothing, and set 3 (`0x0046DDD9`-`0x0046DE1F`).
+
+State 3 would, when `0x00368F30(0)` returns 0, call `0x00369050(0, 0x00536F30)` and set 4 (`0x0046DDA4`-`0x0046DDC1`);
+state 4 sets 0 when `0x00368F30(0)` returns 0 (`0x0046DD7B`-`0x0046DD8C`). `0x00368F30(0)` is non-zero while the qword
+`0x022D7F70` is set, and `0x00369050` stores its second argument there (`0x00369057`).
+
+The expansion the tick would hand to `0x00369050` therefore never runs. `0x00536F30`'s only reference is that `lea`
+(`0x0046DDB3`), and `0x00536DD0` and `0x00537030` are reached only by its tail jumps (`0x00536F85`, `0x00536F7F`).
+`0x00536F30` reads a header (12 bytes when byte 3 is `d`, else 16; the size in the low 25 bits of `+8`) and by
+the low two bits of `+4` copies the data, expands it with `0x00536DD0`, or with `0x00537030`.
+
+The header is read from the buffer at `[0x02EBB538]`, and the output goes to the buffer at `[0x02EBB530]`. The two bits
+pick: 0 the copy, 1 `0x00536DD0` (`0x00536F85`), 2 `0x00537030` (`0x00536F7F`), and 3 a return with nothing written
+(`0x00536F78`).
+
+The copy ignores the size. With `[0x02EBB528]` non-zero it copies `[0x02EBB528]` less the header bytes from past the
+header, then `[0x02EBB52C]` bytes from `0x02EBA520` (`0x00536F8A`-`0x00536FEF`). With `[0x02EBB528]` 0 it copies
+`[0x02EBB52C]` less the header bytes from `0x02EBA520` past the header (`0x00536FF3`-`0x00537022`).
+
+In `0x00536DD0` an even control byte b copies `b >> 1` literal bytes, and an odd one with the next byte copies
+`(next >> 4) + 3` bytes from `((word >> 1) & 0x7FF) + 1` bytes back. The word is `b | next << 8` (`0x00536E68`);
+the back copy goes byte by byte through the output, so it can repeat bytes it has just written, and a control byte
+of 0 copies nothing. `0x00536DD0` returns its output count, or 0 without reading for a size of 0 or less
+(`0x00536DDB`).
+
+Both expanders take the input byte at position p from `[0x02EBB538] + p` while p is below `[0x02EBB528]`, and from
+`0x02EBA520 + (p − [0x02EBB528])` past it (`0x00536E01`-`0x00536E1F`; `0x00537062`-`0x00537080`).
 
 `0x00536F30` keeps the size in `0x02CA8A70` (`0x00536F55`) and the read position, 12 or 16 past the header's start, in
 `0x02CA8A74` (`0x00536F64`). Each expander reads the size (`0x00536DD2`, `0x00537036`) and the position (`0x00536DEA`,
-`0x00537050`) once, writes until its output count reaches the size, and stores the position back after each byte
-it takes (`0x00536E2B`, `0x00536E74`, `0x00536F10`; `0x00537090`, `0x005370C3`, `0x00537143`).
+`0x00537050`) once. It compares its output count with the size only after each whole token (`0x00536F16`;
+`0x00537150`), so it writes until that count reaches the size or the last token carries it past.
+
+Each expander stores the position back after each control byte (`0x00536E2B`; `0x00537090`), after the second byte of
+a back reference or of a repeat (`0x00536E74`; `0x005370C3`), and once after each run of literal bytes (`0x00536F10`;
+`0x00537143`).
 
 ## Modding notes
 
 - The path comes from the executable's static array for the kind, so only ids that already have a path
   can be sized; adding a file needs a new entry in that array as well. An id past the array's end is
   read past it, since nothing checks the bounds.
-- A path whose size entry is −1 is never read, and its requester is told it was delivered.
+- A path whose size entry is −1 is never read. The queue completes its request with the previous read's
+  status: as delivered when that is 0 or more, as failed when it is negative.
 - The table must stay exactly 820,000 bytes; a shorter file stops the game at boot.
 - JP, ASIA and IN share one table, so an edit for one of them belongs in all three.
 

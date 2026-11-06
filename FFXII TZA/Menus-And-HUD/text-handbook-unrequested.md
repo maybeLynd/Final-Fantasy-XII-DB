@@ -23,10 +23,10 @@ Each bundle carries its own glyph sheet in every language. `0x00575710` register
 the expansion lead byte is written `{exp:0xN}`, 1,842 in all. `{line}` ends a line and `{blank}` is a blank, as in
 the Bestiary text ([Clan Primer text](text-handbook.md)).
 
-| Row | `in` (start) |
+| Row | `in` |
 |---|---|
-| `person` 0, slot 0 | `旧ダルマスカ王国の首都ラバナスタに{exp:0x0}らす少年。１７{exp:0x1}。{line}...` |
-| `world` 0, slot 0 | `バレンディア、オーダリア、ケルオンの３大陸により構成される世界。{exp:0x0}かな自然と季候に...` |
+| `person` 0, slot 0 | `旧ダルマスカ王国の首都ラバナスタに{exp:0x0}らす少年。１７{exp:0x1}。{line}２年前の戦{exp:0x2}で{exp:0x3}一の肉{exp:0x4}である兄を{exp:0x5}くして以後、天{exp:0x6}{exp:0x7}独となる。{line}明るく前{exp:0x8}きな性格で、同じように戦{exp:0x2}によって家族を失った少年少女たちから頼りにされている。{line}空賊にあこがれており、いつの日か飛空艇で大空を自{exp:0x9}に飛び回ることを{exp:0xA}見ている。` |
+| `world` 0, slot 0 | `バレンディア、オーダリア、ケルオンの３大陸により構成される世界。{exp:0x0}かな自然と季候に{exp:0x1}まれている。各地域の気候帯は大気中のミスト{exp:0x2}度と密接な{exp:0x3}{exp:0x4}がある。{line}イヴァリースにはさまざまな種族が生活し、文化{exp:0x5}を形成している。その中でもっとも{exp:0x6}力を持っているのはヒュム族で、世界はヒュム族を中心に動いている。` |
 
 ## Columns
 

@@ -23,12 +23,24 @@ children; `0x0046E6F0` rebuilds it after every acquire (`0x0046E4D0`), release a
   parent index whose entry is gone (`+0x08` and the word `+0x14` set to −1). It then appends, pass
   after pass, every entry with a skeleton (`+0xA0`) that has no parent or whose parent is already listed
   (`0x00537260`), marking it with bit `0x2`.
+- `0x0046E4D0(bank, …)` acquires an entry: it takes a slot with `0x0051FBB0` and returns -1 when that refuses
+  (`0x0046E4F0`-`0x0046E4FE`). Otherwise it clears the entry (`0x003721E0`), builds it with `0x00372820` from its other
+  seven arguments, stores the index at `+0x04`, rebuilds the list (`0x0046E6F0`) and returns the index
+  (`0x0046E50A`-`0x0046E56C`).
 - `0x0046E2B0(bank, index)` releases an entry: it clears it (`0x003721E0`), frees its slot (`0x0051FCF0`)
   and rebuilds the list. The record teardown `0x0041E860` calls it for the record's `+0x18`.
 - `0x0046E590(bank, child, parent, slot)` attaches one skeleton to another through `0x00370180`, which
   stores the parent's index in the child's `+0x08` and, for slot −1, the child's index in the
   parent's `+0x10` (otherwise the slot in the child's word `+0x14`); it then sets `+0x0C` and
   rebuilds the list. Its caller is `0x004218A0`.
+- `0x004218A0(parent, name, child)` ties nothing when either record has no skeleton entry (`+0x18` -1 or
+  `0x002ED570` null; `0x004218CC`-`0x00421940`). It sets the child's word `+0x2F2` to 0 (`0x00421942`); a null name,
+  which `0x004215A0` passes for slot `0x7FFF` (`0x0042183D`), sets the child's `+0x284` bit `0x4000000` and `+0x2F2`
+  to 1 and ties at bone −1, the whole skeleton (`0x0042194E`-`0x00421964`).
+- Any other name takes the bone `0x00372760(parent entry, name)` gives, and a result of −1 ties nothing
+  (`0x00421966`-`0x00421979`). `0x004218A0` then calls `0x0046E590` with the bank of the parent's root, the child
+  entry's `+0x04`, the parent entry's `+0x04` and the bone, and, when the child's `+0x284` bit `0x4000000` is
+  set, `0x003E5D30(child)`, which puts fade channels 0, 1 and 4 back to 1.0 (`0x0042197B`-`0x0042199D`).
 - `0x0046E420(bank, index)` refreshes an entry after its resources change: it re-runs `0x003713C0` on
   the entry and its parent, re-encodes `+0x0C`, and re-runs it on the entry at `+0x10` before
   re-linking that entry's bones (`0x00372F60`). Its callers are `0x003E6F90`, `0x0041D220`, `0x0041D820` and `0x004242B0`.
@@ -122,8 +134,9 @@ listed bone clears bit `0x2` of `+0x280`, takes its parent link back from the no
 `0xFFF` meaning no parent) and sets `+0x276` to −1.
 
 `0x00372610(a, b, c, scale, d)`, called by the final-pose composer `0x00373860`, multiplies `a`, `b` and
-`c` into `0x02AD9E40` (`0x00217150`), scales the four rows of that matrix by the four floats of `scale`, and
-multiplies the result by `d` into `0x02AD9E80`.
+`c` into `0x02AD9E40` (`0x00217150`), `[0x02AD9E40] = (a × b) × c` (`0x0037266C`, `0x00372680`), scales the four rows
+of a copy of that matrix by the four floats of `scale`, row i × `scale[i]` (`0x00202FE0`, `0x00372685`-`0x003726D7`),
+and multiplies the result by `d` into `0x02AD9E80`, `[0x02AD9E80] = t × d` with t that scaled copy (`0x003726EB`).
 
 ## Layouts
 

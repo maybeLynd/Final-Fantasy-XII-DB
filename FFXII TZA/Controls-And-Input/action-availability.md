@@ -24,7 +24,7 @@ row blocks that bit's actions.
 | `0x002E1C20(row, bit)` | sets one bit (`0x002E1C20`-`0x002E1C23` tests the row) |
 | `0x002E1CA0(row, bit)` | clears one bit, with the same test |
 | `0x002E1CD0(clear, row)` | sets the mask `0x139203`, bits `0x1`, `0x2`, `0x200`, `0x1000`, `0x8000`, `0x10000`, `0x20000` and `0x100000`, or clears it (`0x002E1CE3`) |
-| `0x002E1BE0(index, on)` | sets or clears row 1 bit `index` for indexes 0-18 (`0x002E1BFE`, `0x002E1C0B`) |
+| `0x002E1BE0(index, on)` | sets or clears row 1 bit value `1 << index` for indexes 0-18 (`0x002E1BF7`-`0x002E1BFE`, `0x002E1C0B`) |
 | direct `or` and `and` | row 4 (`0x002E245F`, `0x002E2417`, `0x002E06C3`) and row 7 (`0x002E2248`, `0x002E2265`, `0x002E0D2A`), with the mask `0x100203` |
 
 The row test in the first three is signed, so only rows 16 and up are refused. The slot-0 unload, the `param_1 == 0`
@@ -83,8 +83,13 @@ installs, which clears bit `0x1` five times (`0x003C8C97`-`0x003C9085`).
 ### Battle selection
 
 `0x00313A00` rewrites row 2 every field frame (`0x00313A68`-`0x00313AF5`). The bits under mask `0x1019FD` are set while a
-battle unit is selected (`0x02089350`). Bit `0x2` is set then, or while Escape Mode is on (`0x00253B90`). Bit `0x400` follows the
-area's bit `0x8000` (`0x00377C20`). It is called from the field frame (`0x00234624`) and from `0x00313DB0`.
+battle unit is selected (`0x02089350`). Bit `0x2` is set then, or while Escape Mode is on (`0x00253B90`). Bit `0x400`
+follows the area's bit `0x8000` (`0x00377C20`).
+
+It ends with a jump to `0x002E1C40(v, 5)` (`0x00313AF7`-`0x00313B1C`), a fourteenth bit outside the rows: it clears bit
+`0x20` of the HUD hide word `0x0215F1AC` when v is 1, which is when no battle unit is selected and bit `0x40` of
+`0x02089340` is clear (`0x00313A3C`-`0x00313A49`), sets it otherwise, and clears bit `0x20` of `0x0215F1B4`
+([HUD](../Menus-And-HUD/hud.md)). It is called from the field frame (`0x00234624`) and from `0x00313DB0`.
 
 ### The Start button
 
@@ -97,14 +102,14 @@ sets row 7 through `0x002E2240(1)` (`0x002E2248`). On close, `0x00229510` clears
 
 | Bit | Blocks |
 |---:|---|
-| `0` | the main menu with Triangle (`0x00253D6E`) and its requests (`0x002E1AB9`, `0x002E1B31`, `0x002E25C7`) |
-| `4` | the Circle or Cross interact press (`0x0025413F`) and force fight (`0x002736F0`, `0x0027399F`, `0x002C6580`) |
-| `6`, `9` | Escape Mode, forced off (`0x00252B8C`, `0x00252B92`) |
-| `10` | the battle command menu with Square or the confirm button (`0x00253F83`, `0x002541A4`, `0x0035D66D`), changing the leader (`0x0035D98D`), Escape Mode (`0x00252BA2`, `0x00252BE6`), the battle display and the map screens (`0x0028333C`, `0x00400F6F`, `0x00400FAD`, `0x004017B0`) |
-| `11` | the Select and L3 presses (`0x00253E00`, `0x00253F0A`, `0x00253ECD`) |
-| `12`, `16`, `17` | Start's arms (`0x002288C8`, `0x0022887E`, `0x00228893`) |
-| `18` | the target cursor (`0x003C9176`, `0x003C919F`) |
-| `21` | opening the pause menu (`0x002283DA`, `0x002283E7`) and the audio hold (`0x00229B03`) |
+| `0x1` | the main menu with Triangle (`0x00253D6E`) and its requests (`0x002E1AB9`, `0x002E1B31`, `0x002E25C7`) |
+| `0x10` | the Circle or Cross interact press (`0x0025413F`) and force fight (`0x002736F0`, `0x0027399F`, `0x002C6580`) |
+| `0x40`, `0x200` | Escape Mode, forced off (`0x00252B8C`, `0x00252B92`) |
+| `0x400` | the battle command menu with Square or the confirm button (`0x00253F83`, `0x002541A4`, `0x0035D66D`), changing the leader (`0x0035D98D`), Escape Mode (`0x00252BA2`, `0x00252BE6`), the battle display and the map screens (`0x0028333C`, `0x00400F6F`, `0x00400FAD`, `0x004017B0`) |
+| `0x800` | the Select and L3 presses (`0x00253E00`, `0x00253F0A`, `0x00253ECD`) |
+| `0x1000`, `0x10000`, `0x20000` | Start's arms (`0x002288C8`, `0x0022887E`, `0x00228893`) |
+| `0x40000` | the target cursor (`0x003C9176`, `0x003C919F`) |
+| `0x200000` | opening the pause menu (`0x002283DA`, `0x002283E7`) and the audio hold (`0x00229B03`) |
 
 No reader tests bits `0x80`, `0x4000`, `0x8000` or `0x100000`.
 
@@ -160,18 +165,22 @@ same verb sequence.
 
 ### Menu requests
 
-`0x00254500` turns the combined mask into a set of refused menu requests: for each bit of the mask `0x3FFFFF` that is set, it ORs in
-that bit's word of `0x01E0C2C0` (`0x00254500`-`0x0025453C`). The menu router refuses those requests (`0x00254B80`-`0x00254BC5`).
+`0x00254500` turns the combined mask into a set of refused menu requests: for each bit of the mask `0x3FFFFF` that
+is set, it ORs in that bit's word of `0x01E0C2C0` (`0x00254500`-`0x0025453C`). The menu router refuses those requests
+(`0x00254B80`-`0x00254BC5`). It reads the combined mask itself, `0x002E0FA0()` (`0x00254504`), and tests two bits per step
+for 11 steps (`0x0025451D`-`0x0025453C`), the word of bit value `1 << n` being `0x01E0C2C0 + 4n`. Each word holds bit
+`1 << r` for each request *r* it refuses; bits `0x10` and `0x80` and bits `0x800` to `0x200000` have word 0 and
+refuse nothing:
 
-| Bit | Requests refused |
-|---:|---|
-| `0`, `3` | 2, the main menu |
-| `1` | 1, the battle command menu; 3, choosing the leader; 5, cycling targets |
-| `2`, `10` | 3 |
-| `5` | 5 |
-| `6` | 14 |
-| `8` | 1, and 21 |
-| `9` | 5, and 14 |
+| Bit | Word | Requests refused |
+|---:|---:|---|
+| `0x1`, `0x8` | `0x4` | 2, the main menu |
+| `0x2` | `0x2A` | 1, the battle command menu; 3, choosing the leader; 5, cycling targets |
+| `0x4`, `0x400` | `0x8` | 3 |
+| `0x20` | `0x20` | 5 |
+| `0x40` | `0x4000` | 14 |
+| `0x100` | `0x200002` | 1, and 21 |
+| `0x200` | `0x4020` | 5, and 14 |
 
 ## State
 

@@ -33,14 +33,15 @@ in the two-column parts.
 ### The recorder
 
 Each `fsroll` verb pops its arguments and calls the recorder `0x0053F0D0(kind, a, b)`, which works on the roll object
-`[0x02CA8A80]` (created by `0x0053E380`) and returns at once when the object is missing, running (`+0xFC`) or holds
+`[0x02CA8A80]` (the `0x1498`-byte widget with procedure `0x0053E380` that `0x0053ED10` builds for `fsroll_initialize`)
+and returns at once when the object is missing, running (`+0xFC`) or holds
 `0x800` lines (`+0xC8`). It dispatches on the kind through the table `0x0053F3B0`:
 
 | Verb | Begin | Kind | Effect |
 |---|---|---|---|
 | `fsroll_speed(n)` | `0x00511810` | 1 | the speed `+0xFF` = n (`0x0053F138`); the roll object starts at 1 (`0x0053E4D9`). Each frame of the roll moves the scroll `+0xEC` on by n (`0x0053E94F`-`0x0053E960`) |
 | `fsroll_linedisp(n)` | `0x00511830` | 2 | the line mode `+0x102` = n, at least 1 and at most 3; the slot `+0x103` = 0 (`0x0053F14B`-`0x0053F16D`) |
-| `fsroll_layout(a, b)` | `0x00511890` | 3 | the alignment `+0x100` = a and the offset `+0xF4` = b (`0x0053F181`-`0x0053F18E`) |
+| `fsroll_layout(a, b)` | `0x00511890` | 3 | the begin pops b, then a (`0x005118A0`, `0x005118AA`); the alignment byte `+0x100` = a and the offset word `+0xF4` = the low 16 bits of b, and the cursor `+0xF0` gets the 0 in r9d added (`0x0053F181`-`0x0053F18E`) |
 | `fsroll_blank(n)` | `0x00511900` | 4 | moves the cursor `+0xF0` down n times `0x01DFE0B4`; slot 0 (`0x0053F19C`-`0x0053F1AA`) |
 | `fsroll_nameA(v)`, `fsroll_nameB(v)`, `fsroll_nameC(v)` | `0x00511980`, `0x005119A0`, `0x005119F0` | 5, with font 0, 1 or 2 | adds a text line through `0x0053DD20` (below) and moves the cursor by its height (`0x0053F1B9`-`0x0053F1DE`) |
 | `fsroll_data(n)` | `0x00511A40` | 6 | adds cell n of the picture `sf_logo_c`, centred on the screen width `0x01E0C1D8`, and moves the cursor by its height; slot 0 (`0x0053F1EA`-`0x0053F2AB`) |
@@ -54,6 +55,25 @@ A kind outside 1 to 14 does nothing (`0x0053F113` to `0x0053F3A0`). Kinds 1 and 
 closing `add [rbx+0xF0], r9d` adds the 0 that `0x0053F10A` put in r9d.
 
 The roll object starts in line mode 1 (`0x0053E4EE`).
+
+`0x0053ED10`, the begin of `fsroll_initialize` (`0x00511540`), builds the `0xC8`-byte loader `0x0053EB90` while
+`[0x02CA8A78]` is 0 and then the roll while `[0x02CA8A80]` is 0, each with a zero record (`0x0053ED14`-`0x0053ED4F`). On
+message 1 the roll stores itself at `[0x02CA8A80]`, puts the screen size `0x01E0C1D8` and `0x01E0C1DC` at `+0x9C` and
+`+0x9E` and 0 at `+0x98` (`0x0053E4A6`-`0x0053E4CD`).
+
+The word store that sets the speed to 1 also sets the alignment `+0x100` to 0 (`0x0053E4D9`). Message 1 then sets
+`+0x1494` to `0x80`, the cursor `+0xF0` to the screen height and `+0xC0` to the block `0x00249810(2, 0x10000)`, cleared
+to zero (`0x0053E4E2`-`0x0053E51D`). Each font's bytes `+0xCE` and `+0xCF` become 2 and 2, and its float at
+`+0xD0` + 8 x font becomes 1.0 (`0x0053E527`-`0x0053E559`); it ends with `0x00247930(roll, 0x69)` (`0x0053E563`). The
+roll's other messages:
+
+- Message 2: when `0x001EDEC0(+0xB4)` answers non-zero it runs `0x0053E640(roll)` (`0x0053E479`-`0x0053E48F`).
+- Message 4: when `0x002DDC50()` answers non-zero it calls `0x002D8BB0(+0x38, 1)` and `0x00249FD0` with the box x 0, y
+  `0xC`, the screen width and the screen height less `0x18` (`0x0053E400`-`0x0053E443`). It then calls `0x0053E0B0(roll)`
+  (`0x0053E44B`), and `0x002D8BB0(+0x38, 0)` when `0x002DDC50()` again answers non-zero (`0x0053E450`-`0x0053E462`).
+- Message 18: with `+0xC0` set it passes the block to `0x003697F0` and sets `+0xC0` and the line count `+0xC8` to 0;
+  `[0x02CA8A80]` becomes 0 either way (`0x0053E3C7`-`0x0053E3E7`).
+- Any other message goes to the default `0x005C5230` (`0x0053E3B0`-`0x0053E3C2`).
 
 ### A text line
 
@@ -100,7 +120,8 @@ in the bits under mask `0xFFFFFF` of the next dword (`0x0053F26E`-`0x0053F28A`).
 `fsroll_fade(a, b, c, d)` (`0x00511E00`) does not go through the recorder: it jumps to `0x0053EFC0`, which appends a
 20-byte fade record to the roll object's 128 at `+0xA90` (count `+0x1492`) unless the object is missing or running
 (`+0xFC`, `0x0053EFD7`), and moves the cursor `+0xF0` on by a + 3 (`0x0053F0B6`-`0x0053F0B9`). b, c and d are 30 fps frame
-counts, multiplied by `0x01DFE0B4`; a b or d of -1 or less is kept as it is.
+counts, multiplied by `0x01DFE0B4`, `b > -1 ? b × [0x01DFE0B4] : b` and the same for d (`cmp dx, -1` at `0x0053F04C`,
+`cmp r9w, -1` at `0x0053F07E`; `c × [0x01DFE0B4]` at `0x0053F000`); a b or d of -1 or less is kept as it is.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -111,9 +132,11 @@ counts, multiplied by `0x01DFE0B4`; a b or d of -1 or less is kept as it is.
 | `0A`, `0E` | `i16` | fadeOutLeft, fadeOutLength | d (`0x0053F01A`, `0x0053F023`, `0x0053F09C`, `0x0053F0A5`) |
 | `+0x10` | `i16` | jump | a (`0x0053F043`) |
 
-The runner `0x0053E640` starts a fade when the scroll `+0xEC` reaches its place less the screen height `0x01E0C1DC`
-(`0x0053E9B9`-`0x0053E9E9`): the scroll becomes the place less the screen height plus a, at most the roll's end, the
-countdown `+0xF8` the total, and the roll stops scrolling in state 6, phase 1 (`0x0053EA87`-`0x0053EAB9`).
+The runner `0x0053E640` starts a fade when the scroll `+0xEC` reaches its place less the screen height `0x01E0C1DC`,
+`+0xEC >= place - [0x01E0C1DC]` (`0x0053E9B9`-`0x0053E9E9`): the scroll becomes the place less the screen height plus a,
+at most the roll's end, the cursor `+0xF0`: `+0xEC = min(place - [0x01E0C1DC] + a, +0xF0)` (`0x0053EA87`-`0x0053EA9F`).
+The countdown `+0xF8` becomes the total (`0x0053EAA5`-`0x0053EAAA`), and the roll stops scrolling in state 6, phase 1
+(`0x0053EAB2`-`0x0053EAB9`).
 
 Phase 1 raises the text level `+0x1494`, the alpha of the roll's text colour (`0x0053E101`), from 0 to `0x80` over b
 frames; phase 3 holds it for c frames; phase 2 lowers it to 0 over d frames, and a negative d skips it

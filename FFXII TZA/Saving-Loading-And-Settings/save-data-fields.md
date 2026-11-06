@@ -45,14 +45,23 @@ slot file's read and write).
 | `+0x0E000` | 4 | the plain CRC of image `+0x8`-`+0xE1FF` (`0x003BB220`), whose complement the header carries at `+0x00`; computed over the active buffer `0x002EF640()` but stored into the buffer `0x00583D60`'s third argument selects (the staging buffer when it is not 0, as `0x003145E0` passes through `0x005844A0`) | `0x00583D60` | |
 | `+0x0E040` | 512 | group persistent bank A, a copy of `0x02099FF0` | `0x0025D8E0` from `0x00229B40` and `0x00584580` | `0x00269A20` from `0x005843E0` and `0x00584210`; `0x005844A0`; `0x002EF7C0` copies the bank out to `0x021C8B80` |
 | `+0x0E240` | 131088 | spawn-keep image A | `0x00233440` from `0x00229B40` and `0x00584580` | `0x00233550` from `0x005843E0`; `0x002EF740` copies `0x20000` bytes out to `0x021C8D80` |
-| `+0x2E250` | 512 | group persistent bank B | `0x0025D8E0` | `0x00269A20`, `0x00229B40`, `0x005843E0` |
-| `+0x2E450` | 131088 | spawn-keep image B | `0x00233440` | `0x00233550`, `0x00229B40`, `0x005843E0` |
-| `+0x4E460` | 44 | the save-transition metadata record | `0x002EF540`, `0x002EF3C0`, `0x002EF510`, `0x00584580`, `0x003145E0` | `0x002EF410`, `0x005843E0`, `0x00229B40`, `0x00584210` |
+| `+0x2E250` | 512 | group persistent bank B | `0x0025D8E0` from `0x00229B40` (`0x00229CCA`-`0x00229CD1`, when its argument is non-zero; bank A when it is 0) and `0x00584580` (`0x005845CE`-`0x005845D5`, when `0x00236760()` is non-zero; bank A when it is 0) | `0x00269A20` from `0x005843E0` (`0x0058444B`-`0x00584452`); `0x00229B40` writes this bank through `0x0025D8E0` and does not read it |
+| `+0x2E450` | 131088 | spawn-keep image B | `0x00233440` from `0x00229B40` (`0x00229CD6`, `0x00229CF2`, when its argument is non-zero; image A when it is 0) and `0x00584580` (`0x005845DA`-`0x005845E1`, in the same branch as bank B) | `0x00233550` from `0x005843E0` (`0x00584457`-`0x0058445E`, after bank B); `0x00229B40` writes this image through `0x00233440` and does not read it |
+| `+0x4E460` | 44 | the save-transition metadata record | `0x002EF540` (run by `0x00229B40` on the staging buffer's record, `0x00229CF7`-`0x00229CFE`), `0x002EF3C0`, `0x002EF510`, `0x00584580`, `0x003145E0` | `0x002EF410`, `0x005843E0`, `0x00584210`; `0x00229B40` reads no byte of it, since its copies end at payload `+0xE040` and start again at `+0x4E48C` |
 | `+0x4E48C` | 29712 | the party block, `*(0x02EBF190)` ([its field map](../Party/party-data.md)) | bound by `0x00238A80` and `0x00233C10`, cleared whole by `0x002370C0`; its accesses through `0x02EBF190` are on [Party data](../Party/party-data.md) | the same page |
 
 Each spawn-keep image is preceded by its group bank, so pair A and pair B are two `0x20210`-byte
 blocks at `+0xE040` and `+0x2E250`, and `0x005844A0` clears both pairs with one `memset` of `0x40420` bytes
 when its fourth argument is 0 and its fifth is 0.
+
+`0x005844A0` first calls `0x00283270(1)` and the header finaliser `0x00583D60(0, 0, d)`, with `d` its fourth
+argument (`0x005844AA`-`0x005844BE`). With `d` not 0 it neither clears the pairs nor touches the record
+(`0x005844C3`-`0x005844CC`). With `d` 0 and the fifth argument not 0 it runs `0x002EF510` on the record at payload
+`+0x4E460` instead of the clear (`0x005844F0`-`0x005844F7`).
+
+Then, when the first byte of the party block in the active buffer (payload `+0x4E48C`) is not 0, it runs
+`0x00234ED0` and copies the block's first `0x6000` bytes to payload `+0x2000` of the active buffer, `0xC0` passes of
+`0x80` bytes (`0x005844FC`-`0x00584572`); with that byte 0 it returns without the copy (`0x0058450E`).
 
 ## Columns
 
@@ -120,15 +129,21 @@ Its readers are
 
 ### The image-backed state block
 
-`0x00253970` binds `0x020927C0` to image `+0x8200`, payload `+0x8000`, and `0x00253A80` initialises the
+`0x00253970` binds `0x02092758` to the image itself, the header (`0x0025397E`), and `0x020927C0` to image `+0x8200`,
+payload `+0x8000` (`0x00253990`), both from the active buffer `0x002EF640()`, and `0x00253A80` initialises the
 block in four steps:
 
-1. it zeroes all `0x4818` bytes;
+1. it zeroes the `0x58` header bytes at `[0x02092758]` (`0x00253A86`-`0x00253A93`) and all `0x4818` bytes of the
+   block at `[0x020927C0]` (`0x00253A98`-`0x00253AA7`);
 2. it writes six header dwords at `+0x58`-`+0x6C`: `0x20050223` from `0x002EF2A0`, `0x1538` from
    `0x002EF290`, the party block's magic `0x05071901` from `0x00235E90` and its size `0x7410` from
-   `0x00235E80`, then the block magic `0x0131F3EA` and its size `0x4818`;
-3. it runs `0x00253240` for the twelve classes;
+   `0x00235E80`, then the block magic `0x0131F3EA` and its size `0x4818`, into the header of the active buffer
+   `0x002EF640()` (`0x00253AAC`-`0x00253AFB`);
+3. it runs `0x00253240(i, 1)` for the twelve classes, `i` from 0 to 11 (`0x00253B02`-`0x00253B13`), keeps only bit
+   `0x1` of byte `+0x3244` and clears bit `0x1` of byte `+0x3245` (`0x00253B1C`, `0x00253B23`), and installs the
+   in-game options defaults with `0x002DDE60` (`0x00253B2A`, [Game settings](game-settings.md));
 4. it zeroes `+0x30` for 500 bytes, `+0x3244` for `0x80`, `+0x32C4` for 8 and `+0x224` for `0x3020`.
+   It calls the empty `0x0016D6A0` before the last, which is a tail jump to `memset` (`0x00253B36`-`0x00253B84`).
 
 Offsets in this table are block offsets; add `0x8000` for the payload offset.
 
@@ -192,11 +207,22 @@ Struct SpawnKeepImage base=payload+`0xE240` size=`0x20010`:
 | `+0x10010` | `u8[65536]` | bank1 | the 64 entries at [`0x0208E690`]; written on save, not restored |
 
 `0x00233440` zeroes the image first and copies the banks in `0x128` passes of `0x80` bytes; `0x00233550`
-restores bank 2 and the two field ids only.
+restores bank 2 and the two field ids only. `0x00233440` skips a bank whose pointer is null, so its part of the
+image stays zero (`0x00233466`, `0x002334CD`), and stores the two field ids either way (`0x00233529`-`0x0023353A`);
+`0x00233550` skips the copy when the bank 2 pointer is null and still restores the two field ids (`0x0023355A`,
+`0x002335B9`-`0x002335C7`).
 
 Before it reaches the pair, `0x00229B40` copies the header and the payload up to the first group bank
 (`0xE240` bytes: `0x1C4` passes of `0x80` and a `0x40`-byte tail) and the first `0x8000` bytes of the
 party block from the active buffer `0x002EF640()` to the staging buffer `0x002EF620()`.
+
+The party block part goes first (`0x00229BE4`-`0x00229C41`) and the `0xE240` bytes after it (`0x00229C43`-`0x00229CC2`).
+Before both, `0x00229B40` runs `0x00234ED0` (`0x00229B71`) and copies the block's first `0x6000` bytes to payload
+`+0x2000` of the active buffer, `0xC0` passes of `0x80` bytes (`0x00229B7B`-`0x00229BE2`), so the staging copy carries
+that fresh copy. The `0x8000` bytes run `0xBF0` bytes past the `0x7410`-byte block, to image `+0x5668C`.
+
+`0x002EF620` returns the fixed buffer `0x021BA940`, so the null test at `0x00229B57` never ends the capture early. The
+two `0x0016D6A0(0)` calls (`0x00229B6C`, `0x00229D05`) reach a `ret 0` stub.
 
 Which pair is used depends on bit `0x1000` of the party block's flag dword (`0x00236760`, set and
 cleared by `0x0023A390`); `0x00229B40` takes the bit as its argument from its only caller `0x003145E0`
@@ -205,7 +231,12 @@ cleared by `0x0023A390`); `0x00229B40` takes the bit as its argument from its on
 | Bit `0x1000` | Capture (`0x00229B40`, `0x00584580`) | Restore (`0x005843E0`) |
 |---|---|---|
 | clear | bank A at `+0xE040`, image A at `+0xE240`, then the metadata record | the record, bank A, image A |
-| set | bank B at `+0x2E250`, image B at `+0x2E450`, then `0x002EF510` on the record | bank B and image B when the load mode `0x00394450()` is not 3 or the header's `+0x57` bit `0x1` is set; then bit `0x2` of the block's `+0x5B04` is cleared |
+| set | bank B at `+0x2E250`, image B at `+0x2E450`, then `0x002EF510` on the record (`0x00584580`); `0x00229B40` runs `0x002EF540` on the record on this path too, as on the clear path (`0x00229CF7`-`0x00229CFE`) | bank B and image B when the load mode `0x00394450()` is not 3 or the header's `+0x57` bit `0x1` is set; then bit `0x2` of the block's `+0x5B04` is cleared |
+
+`0x00584580` captures into the staging buffer `0x002EF620()` (`0x00584586`) and on both paths stores `0x0208D455`,
+sign-extended, as the record's `+0x00` (`0x005845BB`-`0x005845C2`, `0x005845FC`-`0x00584603`). With bit `0x1000` set it
+also runs `0x002EF7C0` and `0x002EF740` (`0x005845F2`, `0x005845F7`), which copy the active buffer's bank A (`0x200`
+bytes, payload `+0xE040`) and `0x20000` bytes of its image A (payload `+0xE240`) to `0x021C8B80` and `0x021C8D80`.
 
 `0x00584210` imports bank A again on the restore path, and `0x005843E0` ends by copying the record's first
 byte to `0x0208D455`.
@@ -229,8 +260,9 @@ also restores `+0x5AD0` and calls `0x003139D0(+0x20)`; when bit `0x1` of `+0x08`
 
 ### The party block
 
-`0x00238A80` and `0x00233C10` bind `0x02EBF190` to image `+0x4E68C`, payload `+0x4E48C`, and `0x00233C10`
-checks the magic `0x05071901` at `+0x00`. The block's interior is the
+`0x00238A80` and `0x00233C10` bind `0x02EBF190` to image `+0x4E68C`, payload `+0x4E48C`, `0x00233C10` only while the
+pointer is null (`0x00233C20`-`0x00233C33`), and with the pointer set `0x00233C10`
+checks the magic `0x05071901` at `+0x00` (`0x00233C4D`). The block's interior is the
 [party block field map](../Party/party-data.md); what
 the save layer itself does to it:
 
@@ -249,8 +281,9 @@ the save layer itself does to it:
   `+0x90 + k * 0x1C8`. On load, when the saved block differs from the live one, `0x00235AF0` copies it
   back as the member's bank 0 and sets the selected bank to 0 ([save file format](save-file-format.md)).
 - Bits `0x1000` (Trial Mode stash), `0x2000` (New Game+) and `0x4000` (New Game-) of the flag dword at `+0x04`
-  are read by `0x00236760`, `0x00236740` and `0x00236780` and copied into the header's `+0x57` bits `0x1`, `0x2` and
-  `0x4` by `0x00583D60` ([New Game+ and New Game-](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md)).
+  are read by `0x00236760`, `0x00236740` and `0x00236780` and set in the header's `+0x57` bits `0x1`, `0x2` and `0x4` by
+  `0x00583D60` with `or`, which never clears them (`0x00583F63`-`0x00583F7D`; [New Game+ and New
+  Game-](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md)).
 
 ## Related
 

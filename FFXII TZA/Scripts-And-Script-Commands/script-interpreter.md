@@ -86,14 +86,30 @@ float, both refusing silently at depth 63.
 
 `0x00267E10` pops as an int, truncating a float entry;
 `0x00267DB0` pops as a float, widening an int entry. On an empty stack the int pop returns 0
-silently and the float pop returns 0 after calling `0x008620C0`, the leaf that formats
-`FFXII tried to call exit(), this might be a serious error!` and returns; the int pop calls that
-leaf only for a tag that is neither 1 nor 2, and `0x0025D740` calls it for a depth below 2 or a bad
-tag.
+silently and the float pop returns 0 after calling `0x008620C0`, the leaf that loads the address of the message
+`FFXII tried to call exit(), this might be a serious error!` and tail-jumps to the empty stub `0x0016D6A0`, so it
+does nothing (`0x008620C0`-`0x008620C9`).
+
+The int pop calls that
+leaf only for a tag that is neither 1 nor 2, and then returns 0 with the entry already popped
+(`0x00267E1A`-`0x00267E3B`). The float pop returns 0.0 for such a tag without the call, also with the
+entry already popped (`0x00267DCF`, `0x00267DFC`).
 
 `0x00267560` reports whether the top two entries are both ints, which the arithmetic
-opcodes use to choose an integer or a float path, and `0x0025D740` pops two operands and returns
--1, 0 or 1 for the six comparisons.
+opcodes use to choose an integer or a float path. At a depth below 2 it calls `0x008620C0` and
+answers 0 (`0x00267572`-`0x0026757C`).
+
+`0x0025D740` pops two operands and returns -1, 0 or 1 for the six comparisons: 0 when they are equal,
+-1 when the operand pushed first is the smaller, and 1 otherwise. When both top tags are 1
+(`0x0025D7B8`-`0x0025D7C0`) it pops two ints and compares them signed (`0x0025D839`-`0x0025D859`). Otherwise
+it pops two floats, widening an int entry, and compares them with `ucomiss` and `comiss`
+(`0x0025D8B2`-`0x0025D8D6`); a NaN operand gives 1.
+
+`0x0025D740` calls `0x008620C0` for a depth below 2: once on entry (`0x0025D75B`) and again for each pop
+that finds the stack empty (`0x0025D870`, `0x0025D8AD`), and each missing operand counts as 0.0. A tag
+that is neither 1 nor 2 gives 0.0 without the call (`0x0025D78D`, `0x0025D890`). The int path's calls for
+such a tag (`0x0025D7E9`, `0x0025D80C`) are never reached, because that path runs only when both top tags
+are 1.
 
 ### Registers
 
@@ -170,10 +186,11 @@ returns 1, busy: the handler rewinds the PC to the `CALL`, stores it in the wait
 the loop. The next frame re-fetches the same `CALL`; phase 1 skips begin and polls again.
 
 When the poll completes and the family has a result callback, it runs and the phase decides what
-is pushed: 0 or 1 pushes an implicit int 0, 2 the int in `+0xC`, 3 the float in `+0xC`; without a
-result callback an int 0 is pushed whatever the phase; a stack already at depth 63 gets nothing. The phase resets to 0 and the PC advances past the call. `CALLPOPA` then pops that
-value into `A`. `CALLACT` pops the target into `X` only while the phase is 0, so a resumed call
-keeps the target it started with.
+is pushed: 0 or 1 pushes an implicit int 0, 2 the int in `+0xC`, and 3 or more the float in `+0xC`
+(`0x0026227A`-`0x00262355`); without a result callback an int 0 is pushed whatever the phase; a stack
+already at depth 63 gets nothing. The phase resets to 0 and the PC advances past the call.
+`CALLPOPA` then pops that value into `A`. `CALLACT` pops the target into `X` only while the phase
+is 0, so a resumed call keeps the target it started with.
 
 `SYSHALT` and a busy call are the two ways a handler rewinds; 21 sites in the body subtract the
 instruction length to repeat an instruction, against 4 that advance.

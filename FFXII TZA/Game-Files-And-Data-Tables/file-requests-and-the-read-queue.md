@@ -19,12 +19,20 @@ the queue until a slot frees up, which can lengthen a load.
 id `+0x64` = −1, state word `+0x20` = 0 and `+0x28` = 0, and the slots are chained through `+0x10`
 (next) and `+0x18` (previous) into the free list headed at `0x022C51D0`. The pending list's head and
 tail (`0x022C51C0`, `0x022C51C8`) start empty and the request counter `0x01EED498` starts at 1.
-`0x0032EA90` calls it, resets the BGM stream reader (`0x003EB050`) and zero-clears the 256 per-kind size
-override pointers at `0x022C51F0`.
+
+`0x0032EA90` calls it, resets the BGM stream reader (`0x003EB050`), stores 0 in the qword `0x022C51E0` (`0x0032EAA7`) and
+zero-clears the 256 per-kind size override pointers at `0x022C51F0` (`0x0032EAB1`-`0x0032EAD8`, 32 rounds of eight
+qwords). Nothing reads `0x022C51E0`; the only other instruction that names it, `0x0032EAE0`, also stores 0.
 
 `0x0032E990(atTail)` takes the free head and links it into the pending list, at the tail when
-`atTail` is non-zero and at the head otherwise. `0x0032EC40(slot)` unlinks a slot from the pending
-list, pushes it on the free list and sets its id to −1. Neither clears the rest of the slot.
+`atTail` is non-zero and at the head otherwise, and returns it. It does not test the free head for null
+(`0x0032E99D` reads its `+0x10` at once); its one caller, `0x0032E870`, waits for a free slot first. With the
+pending list empty the slot becomes both head and tail whatever `atTail` is (`0x0032E9CC`-`0x0032E9DA`).
+
+`0x0032EC40(slot)` unlinks a slot from the pending list (the head moves to the next slot when the slot has no
+previous one, the tail to the previous slot when it has no next one, `0x0032EC4B`-`0x0032EC6B`), pushes it on the
+free list and sets its id to −1 (`0x0032ECC5`), then jumps to the empty stub `0x0016D6A0` (`0x0032ECCE`). Neither
+clears the rest of the slot.
 
 ### Sizes
 
@@ -37,39 +45,61 @@ and rounds a positive result up to a multiple of 64. The override table's only s
 ### Making a request
 
 `0x0032E620(kind, index, dest, bytes, descriptor)` stores the kind and index in `0x022C51D8` /
-`0x022C51DC` and returns −1 for a negative index.
+`0x022C51DC` and returns −1 for a negative index (`0x0032E64C`).
 
 - When the BGM stream reader is not armed (`0x003EB0D0`: byte `+0x31` of `0x02B5E0E0`), it calls
-  `0x0032E870(kind, index, dest, bytes, descriptor, 1)` for the whole file.
-- When it is armed, it copies the descriptor with `0x80000` in its second dword and, on a non-zero id,
-  makes the request chunked: `+0x22` = 1, part cap `+0x30` = `0x80000`, remaining `+0x34` = bytes,
-  first part `+0x28` = `min(bytes, 0x80000)`, `+0x50` = 0, `+0x00` = 0, and the offset `+0x2C`
-  truncated again to a multiple of `0x800`.
+  `0x0032E870(kind, index, dest, bytes, descriptor, 1)` for the whole file and returns its id (`0x0032E759`).
+- When it is armed, it copies the 40-byte descriptor, or builds a zeroed one for a null descriptor
+  (`0x0032E696`-`0x0032E6AF`), puts `0x80000` in the copy's second dword and 0 in its `+0x20` (`0x0032E6CC`,
+  `0x0032E6D6`), and calls `0x0032E870(kind, index, dest, bytes, copy, 1)` (`0x0032E6DD`).
+- On a non-zero id it then makes the request chunked in the slot `0x022C31C0 + (id & 0x3F) × 0x80`: the
+  16-bit `+0x22` = 1, part cap `+0x30` = `0x80000`, remaining `+0x34` = bytes, first part `+0x28` =
+  `min(bytes, 0x80000)` (a signed compare, `0x0032E718`), `+0x50` = 0, the qword `+0x00` = 0, and the offset
+  `+0x2C` truncated again to a multiple of `0x800`.
+- It returns the id, or 0 with no slot changed when the id is 0 (`0x0032E6E7`, `0x0032E73D`).
 
 `0x0032E780(kind, index, …)` refuses a negative index and otherwise calls `0x0032E870` directly; its
-only caller is the BGM stream reader `0x003EADE0`. `0x0032E7C0(path, dest, bytes, descriptor)` copies the
-path into arena 8 (`0x0036A190`) and requests it as kind `0xFF` with the low 32 bits of the copy's
-address as the index.
+only caller is the BGM stream reader `0x003EADE0`.
 
-`0x0032E870` first stalls while the free list is empty, calling the pump `0x0032E070(0)`, `0x0046DFE0` and
-`0x0035EA30` in a loop. It then takes a slot at the tail of the pending list and fills it:
+`0x0032E7C0(path, dest, bytes, descriptor)`, reached through the jump `0x0032E7B0`, copies the path into arena 8: it
+selects the arena (`0x0036C1D0(8, 5)`, `0x0032E7EE`), takes `strlen + 1` bytes (`0x0036A190`, `0x0032E80E`), copies the
+string with its terminator and restores the arena (`0x0036C140`, `0x0032E82E`). It then requests it as kind `0xFF`
+with the low 32 bits of the copy's address as the index, through `0x0032E870(0xFF, index, dest, bytes, descriptor,
+1)` (`0x0032E84D`), and returns the id.
+
+`0x0032E7C0` does not go through `0x0032E620`, so a path request is never chunked, is never refused for a negative
+index and leaves `0x022C51D8` and `0x022C51DC` as they were.
+
+`0x0032E870(kind, index, dest, bytes, descriptor, atTail)` first stalls while the free list is empty, calling the
+pump `0x0032E070(0)`, `0x0046DFE0` (its answer dropped) and `0x0035EA30(0)` in a loop (`0x0032E8A8`-`0x0032E8C3`). It then
+takes a slot with `0x0032E990(atTail)` (`0x0032E8C9`): at the tail of the pending list when `atTail` is non-zero, at
+the head when it is 0.
+
+`0x0032E620` and `0x0032E7C0` give `atTail` 1 (`0x0032E6B9`, `0x0032E742`, `0x0032E836`); `0x0032E780` gives 0 (`0x0032E795`),
+so a BGM stream reader request goes to the head of the pending list. `0x0032E870` fills the slot:
 
 - `+0x24` index, `+0x21` kind, `+0x28` bytes, `+0x20` state 1;
 - `+0x2C` the descriptor's first dword (the file offset) truncated toward zero to a multiple of
   `0x800` (`cdq`, `and edx, 0x7FF`, `add`, `and 0xFFFFF800`: a non-negative offset is floored);
 - `+0x38` and `+0x70` the destination, `+0x40` and `+0x48` the descriptor's `+0x10` and `+0x18`,
-  `+0x60` its `+0x08`, `+0x50` = 0, and `+0x00`, `+0x22` and `+0x5C` zeroed;
+  `+0x60` its `+0x08`, `+0x50` = 0, and `+0x00`, `+0x5C` and the 16-bit `+0x22` zeroed, which clears both
+  `+0x22` and the part result `+0x23` (`0x0032E969`);
 - the id `+0x64` = counter × 64 + slot index; the counter then advances and wraps from `0xFFFFFF`
   back to 1.
 
-It returns the id. A null descriptor gives offset 0 and no callbacks.
+It returns the id. A null descriptor gives offset 0, callback word 0 and no callbacks (`0x0032E8EB`-`0x0032E8F3`).
 
 `0x0051ED10(kind, index, callback)` loads a whole file into arena 5: it sizes it (`0x0032E400`), takes
-the block top-down (`0x0036A190`) under that arena (`0x0036C1D0(5)`, `0x0036C140`) and files it with a
-descriptor whose callback word is the low 32 bits of `callback` and whose delivery and failure
-callback is `0x0051EDB0`. That stub sign-extends the word (`movsxd rax, ecx`) and jumps to it, so the
-caller's function runs with the destination and the flag the pump passes; it returns the
+the block top-down (`0x0036A190`) under that arena (`0x0036C1D0(5)` with category 9, `0x0051ED57`-`0x0051ED61`;
+`0x0036C140`) and files it with a descriptor whose callback word is the low 32 bits of `callback` and whose
+delivery and failure callback is `0x0051EDB0`. That stub sign-extends the word (`movsxd rax, ecx`) and jumps to it,
+so the caller's function runs with the destination and the flag the pump passes; it returns the
 block.
+
+The descriptor's file offset `+0x00` is 0 and its cancel callback `+0x18` is `0x0016D6A0`, a bare `ret 0`
+(`0x0051ED36`-`0x0051ED4E`). `0x0051ED10` drops `0x0032E620`'s result (`0x0051ED89`) and files whatever `0x0036A190`
+returned: when arena 5 stays full after compaction that is null, so the request goes in with a null destination
+and `0x0051ED10` returns null.
 
 ### The pump
 
@@ -78,30 +108,41 @@ are the main loop's mode bodies (`0x0022A770`, `0x0022AF50`, `0x0022B000`, `0x00
 `0x0022B8C0`, `0x0022BC20`), boot `0x0022A0B0`, the script native `0x0036EEB0` and `0x00379E30`. The pump is
 also run by the stall in `0x0032E870` and by the drain `0x0032E520(0)`.
 
-The pump works on the pending head and keeps going while the head changes; a state that has to wait
-ends the pass:
+The pump works on the pending head: after every step it reads the head again (`0x0032E090`) and goes on, whether
+or not the head changed, so one slot can move from state 1 to state 3 in one pass. A state that has to wait ends
+the pass, and so does a head whose state is outside 1 to 6 (`0x0032E0A4`-`0x0032E0A9`). The states go through the
+jump table at `0x0032E2D0`, where states 3 and 4 share one entry and states 5 and 6 another:
 
 | State | Meaning | What the pass does |
 |---|---|---|
-| 1 | queued | if the BGM stream reader takes this pass (`0x003EADD0` returns 1), end the pass. A zero byte count: delivery callback, state 0, release. Kind `0xFF`: `0x002DF6C0(path, dest, bytes, offset)`, which always returns 0, then `+0x08` = `0x0035E810()` and state 2. Any other kind: `0x0046E030(kind, index, offset, bytes, dest)` → `0x002DF780`, then `+0x08` = `0x0035E810()` and state 2 |
-| 2 | issued | `+0x00` += `0x0035E810()`, `+0x08` = the same value, state 3 |
+| 1 | queued | if the BGM stream reader takes this pass (`0x003EADD0` returns 1), end the pass. A zero byte count: delivery callback, state 0, release. Kind `0xFF`: `0x002DF6C0(path, dest, bytes, offset)`, which always returns 0 (`0x002DF747`, `0x002DF77C`), then `+0x08` = `0x0035E810()` and state 2; a non-zero answer would leave state 1 and read the head again (`0x0032E118`). `0x002DF6C0` reads at once through `0x001D6FB0` and closes the stream (`0x001D6E80`) when `0x001D6B70` (through `0x0017D930`), `0x001D6EF0` and `0x001D6B40(path)` all answer non-zero and the open `0x001D6F20(path, 1)` succeeds; it reads nothing and leaves the read status as it was when that open fails, and otherwise queues `0x001D6D90` ([async load manager](async-load-manager.md#ps2-file-reads)). Any other kind: `0x0046E030(kind, index, offset, bytes, dest)` → `0x002DF780`, then `+0x08` = `0x0035E810()` and state 2 |
+| 2 | issued | `0x0035E810()` twice, the first answer dropped (`0x0032E149`); `+0x00` += the second answer (`0x0032E153`), `+0x08` = the same value, state 3 |
 | 3 | waiting | while the read status `0x0215EFF4` is −1 (`0x0046DFE0` returns 2), end the pass; otherwise state 5 when the status is 0 or more (`0x0046E0E0`), 6 when negative, and continue with that state |
 | 4 | cancelled | while the read is in flight, end the pass; then the cancel callback with `+0x28` = 0 when one is set, state 0, release |
-| 5 | delivered | not chunked: delivery callback and release. Chunked: remaining `+0x34` −= the part; when something is left, the offset `+0x2C` and destination `+0x38` advance by the part and the part callback decides; when nothing is left, delivery callback and release |
-| 6 | failed | not chunked: failure callback and release. Chunked: failure callback and release |
+| 5 | delivered | not chunked: delivery callback and release. Chunked (`+0x22` = 1): with a stored part result 2 at `+0x23` the part callback is asked again at once (`0x0032E1C0`, `0x0032E24D`); otherwise remaining `+0x34` −= the part; when something is left (above 0, `0x0032E1F4`), the offset `+0x2C` and destination `+0x38` advance by the part and the part callback decides; when nothing is left, delivery callback, `+0x23` = 0 and release. A `+0x22` other than 0 or 1 ends the pass (`0x0032E1BA`) |
+| 6 | failed | not chunked: failure callback and release. Chunked: failure callback, `+0x23` = 0 and release (`0x0032E1D3`-`0x0032E1E3`); the stored-2 test of state 5 comes first, but a failed slot always carries 0 at `+0x23`, which every requeue (`0x0032E23C`) and every fill (`0x0032E969`) clears |
 
 In a chunked request a part-callback result of 1 sizes the next part as `min(+0x30, +0x34)`, zeroes
-`+0x00`, truncates the offset to `0x800` again and requeues it in state 1; any other result is stored
-at `+0x23` and ends the pass, and a stored 2 makes the next pass ask again. `0x0032E3B0` returns 1 when
-no part callback is set, and the part callback slot `+0x50` is only ever written as 0 (`0x0032E6FF`,
-`0x0032E959`), so in the shipped game every chunked request runs part after part.
+`+0x00` and `+0x23`, truncates the offset to `0x800` again and requeues it in state 1 (`0x0032E218`-`0x0032E248`);
+any other result is stored at `+0x23` and ends the pass. A stored 2 makes the next pass ask again without
+touching the counts; any other stored value makes the next pass take the part off `+0x34` and advance the offset
+and destination once more before it asks (`0x0032E1ED`-`0x0032E208`).
+
+`0x0032E3B0` returns 1 when no part callback is set (`0x0032E3E0`). Otherwise it calls the callback with the slot
+and returns its result; a result other than 1, 2 or 3 first calls the `exit()` stand-in `0x008620C0`
+(`0x0032E3CF`), which hands the message `FFXII tried to call exit(), this might be a serious error!` to the
+empty stub `0x0016D6A0` and returns.
+
+The part callback slot `+0x50` is only ever written as 0 (`0x0032E6FF`, `0x0032E959`), so in the shipped game every
+chunked request runs part after part.
 
 `0x0035E810` returns the 64-bit tick counter `0x022CA5E0`, which only `0x0035EC90` increments (the callback
 `0x0035E820` registers). Slot `+0x00` therefore sums counter readings; nothing reads it.
 
-After the queue, every pass ends the same way: `0x0046DD50` (the read layer's tick), `0x003E9780`, and
-`0x003BB790` when `0x0036FD50()` is non-zero. When the pending list is empty the pass also steps the
-BGM stream reader (`0x003EADD0`) first.
+After the queue, every pass ends the same way (`0x0032E2A0`-`0x0032E2BD`): `0x0046DD50` (the read layer's tick), the
+empty stub `0x0016D6A0`, `0x003E9780`, `0x0016D6A0` again, and `0x003BB790` when `0x0036FD50()` (the byte `0x02AD9E00`) is
+non-zero. When the pending list is empty the pass also steps the BGM stream reader (`0x003EADD0`) first
+(`0x0032E29B`).
 
 ### Callbacks
 
@@ -122,8 +163,9 @@ The read issuer `0x002DF780` tests the size table, not the request: it compares 
 caller's byte count as it is (`0x0032E92C`). So a request whose table entry is −1 completes with the previous read's
 status, normally as delivered, with nothing written, whatever byte count the caller passed.
 
-`0x0032E400` hands the −1 back to the caller (`0x0032E43B`-`0x0032E448` round only a positive value). The table is read
-whole at start-up (`0x002E0432`-`0x002E0444`) and never written after.
+`0x0032E400` hands the −1 back to the caller (`0x0032E43B`-`0x0032E448` round, `n = (n + 0x3F) & ~0x3F`, only a value
+`n > 0` up to a multiple of 64). The table is read whole at start-up (`0x002E0432`-`0x002E0444`) and never written
+after.
 
 Every requester is in [`file-requests-and-the-read-queue-requesters.tsv`](file-requests-and-the-read-queue-requesters.tsv): the
 51 call sites of `0x0032E620`, the three of `0x0051ED10` and the two of `0x0032E780`, with where each takes its kind,
@@ -136,7 +178,11 @@ index and size, whether it tests the size before filing, and what follows when t
 - `0x0032EB40` requests a file only when its size is above `0x800` bytes.
 - The model binding's `0x002EAD50` is reached only through `0x002E6700`'s positive-size test (`0x002E6789`).
 - Six fixed requests file without a test but name entries every table sizes: `0x00291C80`, `0x002C8EE0`, `0x003658F0`,
-  `0x0039C3F0`, `0x003B53C0`, `0x002FC860`. `debug_fileread` (`0x0050DFE0`) passes the script's values.
+  `0x0039C3F0`, `0x003B53C0`, `0x002FC860`.
+- `debug_fileread` (`0x0050DFE0`) passes the script's values. Of the five values it pops (`0x00267E10`,
+  `0x0050DFFA`-`0x0050E021`) it drops the first and passes the second as the byte count, the third, sign-extended, as
+  the destination, the fourth as the index and the fifth as the kind, with a null descriptor and no test
+  (`0x0050E026`-`0x0050E039`).
 
 The requests that do meet a −1 in a shipped table:
 
@@ -149,11 +195,13 @@ The requests that do meet a −1 in a shipped table:
 | `0x00324510` | kind 26, its own list of 301 at `0x022C27B8` | every table sizes only 166 kind-26 entries | `0x003244F0` counts the request done with its part of `[0x022C27B0]` unwritten |
 | `0x003DC5B0` | the caller's | any | `0x003DC8D0` returns the −1 size and a flag `0x003DC5B0` never tests; the callback `0x003DC340` binds the block unwritten |
 
-The BGM stream reader (`0x0032E780`'s two sites) never files in story play. Only `0x003EB100` arms the record
-`0x02B5E0E0` (`0x003EB139`), and its one caller is the verb `bgmstreamread` (`0x448`, `0x00354690`), which only the developer
-menu `bin/ctrl` calls ([music](../Sound-And-Music/music-table.md)). The reset `0x003EB050` leaves `+0x31` at 0, so `0x003EADE0` returns at once
-(`0x003EADF4`-`0x003EADF8`). Armed, it would file kind `0x24` parts, which every table leaves at −1, and hand the unwritten
-buffer to the sound library (`0x002DF660`), whose `0x0021D770` refuses a byte count of 0 or less (`0x0021D7AD`-`0x0021D7AF`).
+The BGM stream reader (`0x0032E780`'s two sites) never files in story play. Only `0x003EB100` arms the record `0x02B5E0E0`
+(`0x003EB139`), and its one caller is the verb `bgmstreamread` (`0x448`, `0x00354690`), which only the developer menu
+`bin/ctrl` calls ([music](../Sound-And-Music/music.md#the-script-music-stream)). The reset `0x003EB050` leaves `+0x31` at 0, so
+`0x003EADE0` returns at once (`0x003EADF4`-`0x003EADF8`).
+
+Armed, it would file kind `0x24` parts, which every table leaves at −1, and hand the unwritten buffer to the sound
+library (`0x002DF660`), whose `0x0021D770` refuses a byte count of 0 or less (`0x0021D7AD`-`0x0021D7AF`).
 
 In every one of the twelve tables kinds 3, 6, 17, 18, 27, 29, 31, 35, 36 and 40 are −1 throughout, and no entry is 0.
 The UK table leaves kinds 5 and 8 at −1 throughout, so it sizes no zone script.
@@ -161,21 +209,30 @@ The UK table leaves kinds 5 and 8 at −1 throughout, so it sizes no zone script
 ### Waiting, asking and cancelling
 
 - `0x0032E520(0)` drains: it pumps, and while the pending list is non-empty or a read is in flight it
-  waits (`0x0035EA30`) and pumps again. `0x0032E520` with a non-zero argument only answers 1 when the
-  pending list is non-empty or a read is in flight, without pumping.
+  waits (`0x0035EA30(0)`) and pumps again; then it returns 0 (`0x0032E584`). `0x0032E520` with a non-zero argument
+  only answers 1 when the pending list is non-empty or a read is in flight, and 0 otherwise, without pumping
+  (`0x0032E536`-`0x0032E54E`).
 - `0x0032E4D0(id)` answers 1 when the slot `id & 0x3F` still carries that id and a non-zero state; 0 and
-  −1 are refused.
-- `0x0032E590(id)` cancels a request whose slot still carries the id: it clears the delivery callback
-  `+0x40` and frees a kind-`0xFF` path at once; a request in states 2 or 3 goes to state 4 for the
-  pump to finish; state 4 is left alone; any other state runs the cancel callback and is released at
-  once. Its callers are `0x002FC3C0`, `0x003B1310`, `0x003B1710` and `0x003B18E0`.
+  −1 are refused. Every 0 answer except the one for −1 first calls the empty stub `0x0016D6A0` (`0x0032E506`).
+- `0x0032E590(id)` cancels a request whose slot still carries the id; 0, −1 and an id its slot no longer carries
+  are refused (`0x0032E594`-`0x0032E5B7`). It clears the delivery callback `+0x40` and frees a kind-`0xFF` path at
+  once (`0x0032E5BD`, `0x0032E5CB`). Its callers are `0x002FC3C0`, `0x003B1310`, `0x003B1710` and `0x003B18E0`.
+- By state, `0x0032E590` sends a request in states 2 or 3 to state 4 for the pump to finish (`0x0032E603`); state
+  4 is left alone; any other state runs the cancel callback and is released at once (`0x0032E5E3`, `0x0032E5F4`).
 - `0x00379E30(h)`, run by the slot handlers `0x003DEC90` (`0x003DED09`, its state 2) and `0x003DEE10` (`0x003DEEB9`), pumps
   (`0x0032E040`, then `0x0035EA30(0)`) while `0x00379E60(h)` holds. For `h` other than 0 that is: the dword `+0x28` of
   record `h & 0xF` of the sixteen `0x70`-byte records at `0x02ADD170` still equals `h`; for 0, the qword `0x02ADD870`
   is non-zero. `0x00379D60` clears the records, numbers each `+0x28` as `0x10 + i`, and clears `0x02ADD870`.
 
-`0x0035EA30(n)` is `0x0035EB70(n, 0)`: off the thread `0x00368C70` names it spins until the tick counter
-has advanced by `max(n, 1)`; on that thread it only updates the frame bookkeeping and does not wait.
+`0x0035EA30(n)` is `0x0035EB70(n, 0)` ([frame update order](../Engine-Core/frame-update-order.md)). That
+compares `GetCurrentThread()` (`0x00862090`) with `0x00368C70()`, the `GetCurrentThread()` value the start-up step
+`0x00368ED0` (called once, from `0x0022A3B9`) stores at `0x022D7FB0` (`0x00368EE1`). `GetCurrentThread` returns the same
+pseudo-handle on every thread, so once that value is stored the two match on every thread (`0x0035EB83`-`0x0035EB93`).
+
+On that path, unless `0x0017D3E0()` is non-zero, it releases the semaphore `[0x022CFEEC]` and waits on `[0x022CFEF0]`
+(`0x003691B0(0)`, `0x00369190(0)`, `0x0035EBD6`-`0x0035EBE8`), then updates the frame bookkeeping (`0x0035EBED`-`0x0035EC71`).
+Only while `0x022D7FB0` still holds its zero start value does it spin until the tick counter `0x022CA5E0` has advanced by
+`max(n, 1)` (`0x0035EB95`-`0x0035EBBA`).
 
 ### The BGM stream reader
 
@@ -185,9 +242,12 @@ submits, and 0 when inactive, while waiting (states 2 and 8 test its request wit
 tests `0x002DEE90`) and when it finishes. The pump's state 1 gives up the pass when it returns 1, so the
 reader's request goes first.
 
-Only `0x003EB100` arms the reader (kind `0x24`, index = its argument, `+0x30` = 1, `+0x31` = 1, and only
-when its buffer `+0x08` exists); its only caller is `bgmstreamread` (`0x0448`, `0x00354690`). `0x003EB010`
-releases it (`0x003EAD10`, then frees `+0x08`; callers `usebgmstream` `0x003557C0` and `0x002628B0`),
+Only `0x003EB100` arms the reader, and only when its buffer `+0x08` exists (`0x003EB100`-`0x003EB108`): kind `0x24`
+at `+0x1C`, index = its argument at `+0x20`, `+0x00` = −1, the qword `+0x14` = 0, `+0x24` = 0, `+0x2C` = 0,
+and `+0x30` = 1 with `+0x31` = 1 in one 16-bit store (`0x003EB10C`-`0x003EB139`). Its only caller is
+`bgmstreamread` (`0x0448`, `0x00354690`).
+
+`0x003EB010` releases it (`0x003EAD10`, then frees `+0x08`; callers `usebgmstream` `0x003557C0` and `0x002628B0`),
 `0x003EB050` resets it at init (from `0x0032EA90`), and `0x003EB0D0` is the query (callers `0x0032E620`,
 `bgmstreamplaysync` `0x003550F0` and `getbgmstreamstatus` `0x00355FB0`).
 
@@ -216,8 +276,11 @@ way whatever the bits say.
 
 `0x0032E620` has 51 call sites in 38 functions. 38 pass a fixed kind: an immediate, a constant folded
 through a register, one of a closed set (`0x002FC96F`: `0xB` or `0x26`; `0x0032FCA0`: 5, 8, 1 or `0x25`),
-or a kind from `0x002ED6F0`'s class table, none of them `0xFF`. Nine pass a caller's parameter and three
-a signed word of a record (a word of −1 sign-extends to −1, which the builder refuses first).
+or a kind from `0x002ED6F0`'s class table, none of them `0xFF`. Nine pass a caller's parameter.
+
+Three pass a word of a record, which the site's only caller writes just before it calls: `0x003DD4C0` stores 1,
+8 or 5 from `0x0032F170` (`0x003DD609`), `0x003DF440` 8 or 5, as its slot is at most 3 (`0x003DF46F`, `0x003DF4EA`), and
+`0x003E9F80` `0x25` for entry 0 or 8 (`0x003E9FED`-`0x003EA005`, `0x003EA06B`).
 `debug_fileread` (`0x2007`, `0x0050DFE0`) passes a kind popped from the script.
 
 ## Layouts
@@ -282,10 +345,13 @@ The fields are listed access by access in
 ## Shipped data
 
 [`file-requests-and-the-read-queue-constant-requests.tsv`](file-requests-and-the-read-queue-constant-requests.tsv)
-lists 238 call sites of the request and size entries (`0x0032E620` 65, `0x0032E400` 86, `0x00249210` 52,
-`0x002493D0` 21, `0x00249180` 11, `0x0032E3F0` 2, `0x00249350` 1) with the kind, id and file name where they
-are constant. 203 sites carry a constant kind: 121 of kind 7, 34 of kind 9, 18 path requests
-(`0xFF`), 8 of kind 5 and 22 over eleven other kinds. No decompiled script in any locale calls
+has 238 rows for the 182 call sites of the request and size entries, with the kind, id and file name where
+they are constant. By entry the rows are `0x0032E620` 65 (51 sites), `0x0032E400` 86 (71), `0x00249210` 52 (25),
+`0x002493D0` 21, `0x00249180` 11, `0x0032E3F0` 2 and `0x00249350` 1, one row per site. The exception is the 10 sites
+inside the request wrappers: each has one row per caller site (`via_caller_site`), 66 rows in all.
+
+203 rows carry a constant kind: 121 of kind 7, 34 of kind 9, 18 path requests (`0xFF`), 8 of kind 5 and
+22 over twelve other kinds. No decompiled script in any locale calls
 `debug_fileread`.
 
 ## Operations

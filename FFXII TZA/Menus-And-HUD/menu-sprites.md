@@ -19,7 +19,14 @@ addresses: "0x002467A0, 0x00280750, 0x0024B0C0, 0x002D8BB0, 0x002DB080, 0x002426
 ### The atlases
 
 `0x002467A0` (from `0x00253780`, `0x002538DE`) registers five atlas names with `0x0024A4E0` and requests kind 7 `0xD6` through
-`0x00249180`. Its completion `0x00246A10` binds entries 0 to 4 of `texpack_ys.bin` to them
+`0x00249180`. It returns at once while the pack pointer `0x0208EA88` is set (`0x002467B1`) and registers only the cells
+that are still null, each with `0x0024A4E0(name, 2)` (`0x002467B7`-`0x0024685A`). The request passes its argument on with
+kind 7, id `0xD6`, 3, 1 and the completion `0x00246A10` (`0x00246887`), and the pack buffer `0x00249180` returns goes to
+`0x0208EA88` (`0x0024688C`).
+
+Its completion `0x00246A10` binds entries 0 to 4 of `texpack_ys.bin` to them, each through `0x0024A1D0` at the pack
+start plus the entry's directory offset. It does nothing while `0x0208EA88` is null (`0x00246A1E`) and skips a null
+cell (`0x00246A2E`-`0x00246AA5`)
 ([PS2 data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md)):
 
 | Cell | Atlas | Entry |
@@ -32,7 +39,11 @@ addresses: "0x002467A0, 0x00280750, 0x0024B0C0, 0x002D8BB0, 0x002DB080, 0x002426
 
 `0x00280750` (reached from `0x002808D0`) registers ten more at `[0x0209AC30] + 0x338` to `+0x380`, in this order:
 `battle_4_c`, `targetline_p`, `s_font_c`, `battle_4_p`, `mini_face_c`, `partytop_4_c`, `partytop_8_c`, `party_grd_2`,
-`icons_c` and `extra_c`, and requests kind 7 `0xD7` (`0x00280861`). The getters `0x0035D460` and `0x0035D3D0` return
+`icons_c` and `extra_c`, and requests kind 7 `0xD7` (`0x00280861`). It returns at once while the pack buffer
+`+0x3D8` is set (`0x0028077F`), registers only the slots that are still null (`0x00280807`), and clears bit `0x80`
+of `+0x38` in the entries of `party_grd_2` and `icons_c` (`0x00280895`, `0x002808AD`).
+
+The getters `0x0035D460` and `0x0035D3D0` return
 `battle_4_c` and `battle_4_p`; `0x0039BB00(n)` returns `cursol_4_p` for 1, `battle_4_c` for 2 and `buttonicon` otherwise
 (`0x002441F0`).
 
@@ -54,9 +65,13 @@ to the texture descriptor as the palette number (`0x002DB8C5`-`0x002DB8D3`).
 
 ### Drawing
 
-`0x002D8BB0(widget, open)` brackets a group of draws: the first open sets the clip to the whole screen through `0x00249FD0(0)`, and
-the last close sets it to the widget's clip box `+0x48` when `+0x5C` bit `0x20000` is set. Three forwarders reach the sprite draw
-`0x002DB080(widget, atlas, source, destination, record, 0, scale)`:
+`0x002D8BB0(widget, open)` brackets a group of draws: the first open sets the clip to the whole screen through
+`0x00249FD0(0)`, and the last close sets it to the widget's clip box `+0x48` when `+0x5C` bit `0x20000` is set.
+The depth is the byte `+0x5D`: `open` 1 adds 1 and only a count that was 0 sets the clip (`0x002D8BB0`-`0x002D8BC5`);
+any other `open` takes 1 off and only a count that reaches 0 sets the clip, to `0x00249FD0(0)`, the whole screen, when
+bit `0x20000` is clear (`0x002D8BCA`-`0x002D8BF9`). The other opens and closes do nothing more.
+
+Three forwarders reach the sprite draw `0x002DB080(widget, atlas, source, destination, record, 0, scale)`:
 
 | Forwarder | Destination | Record |
 |---|---|---|
@@ -93,6 +108,17 @@ word for the record:
 
 It is called by the battle party slot `0x0029A0A0` (`0x0029A1AF`), the Gambits screen `0x005691E0` (`0x00569775`), `0x00367940`
 and `0x00367AA0`. The keys are in [Screen layouts](screen-layouts.md).
+
+How it draws:
+
+- The atlas is `[0x0208EA90]` (`0x00242702`). The source box is the sprite record's x, y and the two 12-bit sizes of its
+  dword `+0x04` (`0x00242748`-`0x00242780`); the destination is `x` and `y` plus the two keys' words, at the same size
+  (`0x00242785`-`0x002427CA`), and it writes the palette byte to `+0x5C` (`0x002427E3`-`0x00242809`).
+- Each `0x18`-byte row holds a float at `+0x00`, which goes to the draw record's rotation `+0x04` and is 0 in all
+  five rows, the flip at `+0x04` and the two key pointers at `+0x08` and `+0x10`; the record's corner colours are 0
+  (`0x0024274E`, `0x002427C4`-`0x002427DE`). The kind indexes the table with no range check (`0x0024273B`).
+- It opens the draw with `0x002D8BB0(widget, 1)`, draws through `0x002D8D10` with scale 1.0 and closes with
+  `0x002D8BB0(widget, 0)` (`0x0024280C`-`0x00242847`).
 
 ### Arrows, triangles and marks
 
@@ -140,10 +166,13 @@ pulse `0x00244500` first.
 | 8 to 79 | `a/2 + a/2 x curve2(72, 80 - e)`, falling to half |
 | 80 to 83 | `a/2` |
 | 84 to 155 | `a/2 + a/2 x curve1(72, e - 84)`, rising to full |
-| 156 | `a`, and the cycle restarts |
+| 156 or more | `a`, and the cycle restarts: the first call at 156 frames or later stores the frame counter in `0x0208ED54` (`0x0024456C`-`0x00244583`) |
 
 The curves are those of [Widgets](widgets.md). With the pulse off the alpha stays `a`. The Party Menu (`0x00281ED0`)
 and its member lists (`0x00284EC0`, `0x00285B20`) switch it.
+`a` is the low byte of the argument, `e` an unsigned difference, and `a/2` rounds down; the curve's share is
+truncated: `h = (a & 0xFF) >> 1` and `alpha = h + (int)(curve * h)`, with `e = [0x0208F570] - [0x0208ED54]`
+(`0x00244506`-`0x00244554`).
 
 ## Layouts
 

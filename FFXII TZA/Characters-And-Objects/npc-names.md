@@ -50,10 +50,18 @@ Entry `2 * id` is pair `id`'s first name and entry `2 * id + 1` its second.
 
 `0x002639E0(id)` does the same from a bare id and `0x0026DEA0(id, flag)` from an explicit pair. The
 callers that put the name on screen are `0x00272CB0` (the name for an actor handle resolved by
-`0x003588B0`, or the empty string `0x01CEB638`), `0x00272CE0` (copies it into a caller's buffer and, when `0x00263A10` returns non-zero, appends the
-32-character text `0x0024ABE0` builds) and the field interaction pass
+`0x003588B0`, or the empty string `0x01CEB638`), `0x00272CE0` and the field interaction pass
 `0x00268D10`, which passes the name to `0x003DF760(..., 3, ...)` for an actor whose `+0x1C` bit `0x2000` is
-set.
+set and whose name's first byte is not 0 (`0x00268E58`).
+
+`0x00272CE0(buffer, handle)` copies the name into a caller's buffer. It writes the empty string when the handle
+does not resolve (`0x003588B0`, `0x00272D0B`) or the name is null (`0x00272DA6`). When the 16-bit word `0x00263A10`
+returns is non-zero, it builds the text for that word with `0x0024ABE0` in a 32-byte buffer (`0x00272D3C`-`0x00272D48`;
+the ordinal's letter, [Enemy names on screen](../Menus-And-HUD/enemy-names-on-screen.md)) and appends it after the name
+(`0x00272D6E`-`0x00272D9D`).
+
+`0x00268D10` does so on every run in which the talk candidate's record resolves, whether or not it files the talk
+(`0x00268E3A`-`0x00268E7F`).
 
 ### Who sets the flag
 
@@ -71,13 +79,24 @@ negative one is stored as it is. Two script verbs reach it:
 | Verb | Id | Handler | What it does |
 |---|---|---|---|
 | `setnpcname(id)` | `0x38A` | `0x0034B9A0` | pops the integer (`0x00267E10`); a negative id is stored only when `0x003EABE0(id)` returns a non-null entry |
-| `setshopname(shop)` | `0x4A9` | `0x0034C170` | pops the shop index, maps it to the shop record's first `u16` through `0x002FAE40` (the table at `[0x02EBF158]`; an index at or above the record count gives 0, pair 0), pushes it back (`0x00267F90`) and then stores it like `setnpcname` |
+| `setshopname(shop)` | `0x4A9` | `0x0034C170` | pops the shop index, maps it to the shop record's first `u16` through `0x002FAE40` (the table at `[0x02EBF158]`; an index at or above the record count gives 0, pair 0; the count is the table's word `+0x06`, and 0 with no table; the test is signed (`0x002FAE62`-`0x002FAE64`), so a negative index reads the word at the index times the stride `+0x04` before the first record, whose offset is at `+0x08` (`0x002FAE78`-`0x002FAEA4`), or the word at address 0 with no table), pushes it back (`0x00267F90`) and then stores it like `setnpcname` |
 
 The accessors have no lower bound. For `setnpcname(-1)`, `0x003EABE0` computes index `2 * -1 + 1 = -1`
 and reads the dword before the entry array, the dictionary's own `count` (`+0x08`), so -1 is accepted
 whenever the dictionary is loaded with a non-zero count; -2 reads the magic at `+0x00` and is always
 accepted; lower ids read the memory before the block. A negative id makes the actor show its literal
 text at `+0xF8`.
+
+Three script verbs store that literal text on the verb's target actor with `0x00269F20(actor, text, 0)`, which writes
+the text pointer at `+0xF8` and 0 at `+0x100` (`0x00269F20`-`0x00269F27`; [EBP text
+sections](../EBP-Script-Files/ebp-text-sections.md)).
+
+`fieldsignmes` (`0x178`, `0x00356B70`) takes the row of section 2 of the issuing script that the popped text id names,
+through `0x00264D60` (`0x00356B9A`); `fieldsignmesbyid` (`0x179`, `0x00357120`) takes the row of section 3, through
+`0x00264D90` (`0x0035714A`); `fieldsign` (`0x176`, `0x00355A00`) looks the popped sign id up with `0x002642C0`, changes
+nothing when it finds no sign record (`0x00355A2E`), and otherwise takes the section 3 row that the record's word
+`+0x0A` names (`0x00355A90`-`0x00355AAD`), or the empty string at `0x02F8F2A0` when that word is negative
+(`0x00355AC3`-`0x00355AD0`).
 
 ### Ids past the dictionary
 
@@ -110,8 +129,10 @@ unit from their stats records, in three steps:
 
 1. `0x00536310(stats, &fromDictionary)` picks a name reference. A null record gives `0xFFFF`, and a
    kind-0 record (byte `+0x05`) gives word `+0x30` of the party table row its byte `+0x04` names.
+   It sets `fromDictionary` to 0 first (`0x00536325`).
 2. For any other kind it finds the owning unit (`0x0031B860`, which scans the unit pool for the unit
-   whose `+0x698` is the record). When that unit's actor has a name id of 0 or more (`0x00267410`
+   whose `+0x698` is the record) and keeps it at `[0x02EBF188]` (`0x005363AA`). When that unit and its
+   actor `+0x10` exist and the actor has a name id of 0 or more (`0x00267410`
    tests `+0x102 >= 0`), it returns the id (`0x00263B40`) with `fromDictionary` = 1; otherwise word
    `+0x08` of the unit's definition row `+0xE60`, or 0 with no unit.
 3. `0x00536280(ref, fromDictionary)` turns the reference into text. From the dictionary it calls
@@ -119,6 +140,14 @@ unit from their stats records, in three steps:
    whatever the actor's name flag holds. Otherwise `0xFFFF` gives the empty string `0x01CEB638`, and
    any other reference is split into a bank (`ref >> 11`) and an entry (`ref & 0x7FF`) of the text
    banks at `[0x02EBF170]` and rendered by `0x002B58B0`.
+
+The party table rows of step 1 start at the offset at `[0x02EBF130] + 0x0C` (`0x0020E600`), at the stride in word
+`+0x08` (`0x00536356`-`0x00536388`); with no table at `[0x02EBF130]` the step reads the word at address `0x30`. The
+fallback of step 2 looks the unit up a second time (`0x005363DF`-`0x005363F0`).
+
+With no banks bound at `[0x02EBF170]`, `0x00536280` hands `0x002B58B0` a null row and the name is null
+(`0x005362D7`-`0x005362E1`, `0x002B58B5`). The bank and the entry are offsets resolved through `0x0020E600`
+(`0x005362AC`-`0x005362BF`).
 
 `0x00272C80(handle)` returns `0x00263A10` of the actor a handle resolves to (`0x003588B0`), and -1 when it
 does not resolve.

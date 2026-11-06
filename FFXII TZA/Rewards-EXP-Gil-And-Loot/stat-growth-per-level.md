@@ -41,6 +41,12 @@ never lowers a level: when the target is not above the current level it returns 
 3. On the last step only: the derived stats are rebuilt (`0x0030FED0(record, 0)`), and the notices
    below are posted unless flags bit `0x2` is set.
 
+The `chr_data` row is the table's word `+8` times the type id plus the value `0x0020E600` gives for the table's
+`+0xC`, added in 32 bits (`0x0030C70B`-`0x0030C71D`), so the upper half of that pointer is dropped. Nothing guards
+it: when `[0x02EBF130]` is null or `0x0020E600` gives 0 the row is 0 (`0x0030C721`), HP and MP still grow, and the
+Strength read at `0x0030C757` faults. A step that starts at level 99 or above changes nothing, the last-step work
+included (`0x0030C6D3`).
+
 The notices, for a party record:
 
 - message 4 carrying the record and the new level, through `0x0046A690` and `0x0046AB10`;
@@ -48,6 +54,10 @@ The notices, for a party record:
   (`[unit+0x698]` byte `+0x05` = 0): the HUD popup `0x002905D0(unit id, from level, new level)`
   (`[0x0209BE80] + 0x7FB0`), a call to `0x002EACD0(unit id)`, and sound 7 (`0x003A1180` / `0x002DF220`, then
   `0x00329210(1)`).
+- the popup is reached through the jump `0x0035D8C0` (`0x0030C815`) with the level the walk started from and the new
+  level byte; `0x002EACD0` takes `(unit id, 1, unit + 8, 0x71)` (`0x0030C81A`-`0x0030C82C`); the sound step asks
+  `0x003A1180(7)` for a handle, stops when it is -1 (`0x0030C83E`), and otherwise plays `0x002DF220(handle, 0x40, 0x7F)`
+  and hands its result to `0x00329210(1, result)` (`0x0030C840`-`0x0030C857`).
 
 ### HP and MP growth
 
@@ -101,8 +111,21 @@ needed for that level, capped at 99,999,999 (`0x0030C573`-`0x0030C586`). The sum
 `0x0030C470(Esper record, summoner's level, 0)` (`0x003069EE` in `0x00306760`), so an Esper is rebuilt from
 level 0 to the summoner's level every time it is summoned.
 
-The EXP formula pays the Esper type ids `0x1B`-`0x27` nothing ([EXP, LP and level-ups](exp-lp-and-level-ups.md)), so kills do not raise an
-Esper's level. A character's starting gil (`row.u16[+0x3E]`) is added once, on its
+An enemy record (kind byte `+5` = 1) skips the row copy and stores the third argument at `+0x88` (`0x0030C4B1`); a
+record of any other kind keeps only the level byte 0 and returns (`0x0030C4AB`). For a party record the row read is
+unguarded: when `[0x02EBF130]` is null (`0x0030C4C7`) or `0x0020E600` returns 0 (`0x0030C4D4`), the row base is 0 and
+`0x0030C4F9` reads the word at address `0x16`, which faults, because the first 64 KB of a Windows x64 process are
+never mapped.
+
+After the EXP total it removes the statuses in `0x0208D320 | 0x0208D324` when that is non-zero (`0x0030F690`,
+`0x0030C58C`-`0x0030C59D`) and reconciles HP and MP (`0x0030F340`, `0x0030F5A0`). It then sets the starting MP `+0x4C`:
+`+0x28` times row byte `+0x47` / 100 for a party record, `+0x28` for an enemy, 0 for either when layer byte `+0x6C`
+or `+0x7C` is negative (`0x0030C5B2`-`0x0030C5F9`). Last it rebuilds the derived state with `0x0030FED0(record, 0)`
+(`0x0030C602`; [battle unit construction](../Characters-And-Objects/battle-unit-construction.md)).
+
+The EXP formula pays the Esper type ids `0x1B`-`0x27` nothing: `0x002F8BB0` returns 0 when `(u8)(type - 0x1B) <= 0x0C`
+for the record's type id `+0x04` (`0x002F8BF2`-`0x002F8BFA`; [EXP, LP and level-ups](exp-lp-and-level-ups.md)), so kills
+do not raise an Esper's level. A character's starting gil (`row.u16[+0x3E]`) is added once, on its
 first activation (see [Gil](gil.md)).
 
 **Who calls the level walk:**

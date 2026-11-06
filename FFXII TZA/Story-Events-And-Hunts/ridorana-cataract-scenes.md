@@ -26,11 +26,11 @@ them with `eventread` (`0x0E7`, `0x003529E0`) and `eventread_e8` (`0x0E8`, `0x00
 
 - No scene row lists an item, a party change, a story counter value or a flag.
 - `rwf_a0100`, loaded in Footfalls of the Past below story counter 5,200: "A tower on distant shore. And about its
-  peak, a piercing Mist. And in that Mist, the Sun-cryst waits." Vaan is told that if something untoward should
-  happen, "you're taking the Strahl." Its first entry is the choice list "View scene again?" (Yes, No), and its last
-  the word "Skip".
+  peak, a piercing Mist. And in that Mist, the Sun-cryst waits." Vaan is told "If something untoward should happen to
+  me, you're taking the Strahl." Its first entry is the choice list "View scene again?" (Yes, No), and its last the
+  word "Skip".
 - `rwf_c0102`, loaded in They Who Thirst Not by `Read_Event_RWF_C01.sakiyomi_init`, reads the words engraved on the
-  wall, signed "In blood, Raithwall", and the party learn that "The Dynast-King took his sword from the Occuria. It
+  wall, signed "In blood, Raithwall.", and the party learn that "The Dynast-King took his sword from the Occuria. It
   was here he claimed the nethicite." It begins with two choice lists, "From Cut 01" or "From Cut 12 (door opens)",
   and "View scene again?" (Yes, No).
 - `rwf_c0100` and `rwf_c0101` (They Who Thirst Not) and `rwf_d0100` and `rwf_d0101` (Colosseum) open the boss fights

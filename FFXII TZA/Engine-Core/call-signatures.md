@@ -31,10 +31,14 @@ does not count it. The stack arguments are in [`call-signatures-stack-args.tsv`]
 1,668 functions read one. `0x0085DDE0` reads positions 7, 8 and 9 (`0x0085DDF8 mov r15, [rsp+0xA0]` under a 0x58-byte
 frame); `0x0073F920` reads every position from 5 to 45.
 
-Fifty-nine functions also read their own stack through a pointer that a loop advances: `0x001263AD` walks `rsp`
-itself up its local array, 16 bytes a pass, until an index reaches a count it is given. Those reads are in the
-`loop_reads` column, each with the pointer's offset on the first pass and its change per pass; how far they reach
-is set by the loop's exit test.
+Fifty-nine functions also read their own stack through a pointer that a loop advances: `0x001263AD` walks `rsp` itself
+up its local array, 16 bytes a pass. It copies nine 16-byte rows into the array, reads the first at `0x00126499`, and
+loops until its output pointer `rdi` (the fifth argument), advanced each pass by the stride in its sixth argument
+(`0x0012652C`), reaches the end `rdi + 8 * stride` set at `0x00126488` (`0x0012652F cmp rdi, rcx`): eight passes for a
+non-zero stride, after which `0x00126534 pop rsp` loads the stack pointer saved just above the array.
+
+Those reads are in the `loop_reads` column, each with the pointer's offset on the first pass and its change per pass;
+how far they reach is set by the loop's exit test.
 
 ### What a call receives
 
@@ -57,10 +61,14 @@ function's incoming value on every path to the site, so the callee receives that
 | `call_passthrough` | argument registers the body neither reads nor writes before some call or tail call, which that callee receives unchanged |
 | `insns` | instructions in the body |
 
-`home_spill` is a store of the incoming register into its own slot. A store of an argument register elsewhere does
-not count: `0x0030FE60` zeroes `ecx` and writes it to a table through `rax`, and `0x00311CD0` stores `r9d` at
-`[rsp+0x20]` after `sub rsp, 0x38`, which is the fifth argument of its own call to `0x00311B20`. Neither is a home
-spill. 1,333 functions have one, among them `0x0018D680`, which then reads its arguments' bytes back from the slots.
+`home_spill` is a store of the incoming register into its own slot. A store of an argument register elsewhere does not
+count: `0x0030FE60` zeroes `ecx` and writes it through `rax` as a dword every 8 bytes over three 0x200-byte tables (from
+`0x022BE984`, `0x022BEB94` and `0x022BEDA4`) and as a word 4 bytes before each table (`0x0030FE7B`, `0x0030FE9B`, `0x0030FEBB`),
+and `0x00311CD0` stores `r9d` at `[rsp+0x20]` after `sub rsp, 0x38`, which is the fifth argument of its own call to
+`0x00311B20`.
+
+Neither is a home spill. 1,333 functions have one, among them `0x0018D680`, which then reads its arguments' bytes back
+from the slots.
 
 [`call-signatures-stack-args.tsv`](call-signatures-stack-args.tsv), one row per function:
 

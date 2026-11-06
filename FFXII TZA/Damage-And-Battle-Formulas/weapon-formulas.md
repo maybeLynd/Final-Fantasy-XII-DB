@@ -112,10 +112,14 @@ damage = (attack - defence) * share
 
 ### Unarmed
 
-Slot 72 checks Brawler (augment 9; context `+0x1B` bit `0x1`).
+Slot 72 checks Brawler (augment 9; context `+0x1B` bit `0x2`, `0x0038A6B1`).
 With that augment and nothing in the off hand (word `+0x52` is `0x1000` or not an item), the attack is
 half of `Lv + Str` plus a 12.5 % variance (`0x0038A6B1`-`0x0038A77B`). Otherwise it is Attack Power plus the
 variance (`0x0038A785`-`0x0038A7EE`).
+
+The Brawler variance is drawn on `Lv + Str` as the other one is on Attack Power, and the half is taken of the sum,
+`(Lv + Str + variance) * 0.5` (`0x0038A70D`-`0x0038A773`). An off-hand word that is not an item is one at or above
+`0x1000` plus the equipment table's row count `+0x04` (`0x0038A6D3`-`0x0038A6ED`).
 
 ### Bows and crossbows in strong wind
 
@@ -134,6 +138,9 @@ Recipes 25, 26 and 27 start their committed list with slot 29 (`0x00389140`); th
 have slot 28, the empty `0x0016D6A0`. Slot 29 sets result `+0x18` bit `0x1` when byte `+0x1C` of the main-hand
 row is above `MT19937 % 100` (`0x003891B3`-`0x003891D9`). Slot 98 (`0x0038BE00`) then doubles the scale when that
 bit is set (`0x0038BE04`-`0x0038BE1A`).
+
+A main-hand word at or above `0x1000` plus the equipment table's row count `+0x04` gives slot 29 a chance of 0, so
+no critical, though the roll is still drawn (`0x0038916A`-`0x00389176`, `0x003891B7`).
 
 ### Numerology
 
@@ -165,6 +172,8 @@ damage = 10*d if d >= 990, 3*d if d >= 500, 2*d if d >= 100, else d      0x0038E
 
 It stores `total % 1000` in result `+0x13C` (`0x0038ECBC`), which `0x00385BA0` moves into `+0x5B00`
 (`0x00385BD7`-`0x00385BEA`). Without a stored preview it deals the record's last value again (`0x0038ED17`).
+The damage goes to the HP loss `0x02AEE004` and into the dword `+0x00` of the user's 64-byte record
+(`0x0038ECD5`-`0x0038ECD7`, `0x0038ECFF`-`0x0038ED01`), the value a later use without a stored preview deals again.
 
 ### Knot of Rust and Dark Matter
 
@@ -190,7 +199,8 @@ its committed list:
    (`0x00388E51`-`0x00388E57`). For every other target slot 18 copies the stored sum into result `+0x08`
    (`0x00388E5C`-`0x00388E62`).
 3. Slot 147 deals the record's value divided by the user's target count `+0x77C`, and fails when there
-   are no targets or the share is 0 (`0x0038EDB4`-`0x0038EDFF`).
+   are no targets or the share is 0 (`0x0038EDB4`-`0x0038EDFF`). A user without a battle unit fails too (`0x0038EDB2`);
+   failing sets only `0x02AEDFBC` (`0x0038EDFF`), and the share goes to the HP loss `0x02AEE004` (`0x0038EDDF`).
 
 ## Modding notes
 

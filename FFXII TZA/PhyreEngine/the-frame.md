@@ -96,12 +96,28 @@ the GIF tag format and the GS replay are on
 
 `0x003A1D50` (called from `0x0036F4D0`) sets up the two 24-byte buffer records `0x02EBEFC0` and `0x02EBEFD8`
 through `0x004FE420`, each with 512 (`0x200`) 16-byte records in the arena at `[0x01FD4A78]`; `0x02EBEFF0`
-is the index of the buffer being filled. `0x003A1DB0` flips the index and hands the old buffer's start
-and record count to `0x0036F360`.
+is the index of the buffer being filled. It first zeroes both records (`0x004FE3C0`, `0x003A1D5B`, `0x003A1D67`)
+and the index (`0x003A1D6F`); the first record starts at arena record 0 (`0x003A1D85`) and the second at
+record `0x200`, through its tail jump (`0x003A1D9D`).
+
+`0x004FE420(record, count, offset)` first releases the record's block through `0x003EC8A0` while its `+0x14` is 0
+(`0x004FE42F`-`0x004FE43E`); `0x003EC8A0` frees `+0x00` with `0x003697F0` when it is set and zeroes it. It then sets
+`+0x14` to 1 and zeroes `+0x00`, `+0x08` and `+0x10` (`0x004FE446`-`0x004FE454`), and a count of 0 leaves the
+record so (`0x004FE45B`).
+
+With a non-zero count `0x004FE420` points `+0x00` and `+0x08` at `[0x01FD4A78] + offset * 16` and stores the
+count at `+0x10` (`0x004FE463`-`0x004FE485`). When `offset << 5` is above `0x80000` in an unsigned compare, which
+includes every negative offset, it first writes 0 to address 0 (`0x004FE46E`-`0x004FE47E`), a deliberate fault.
+
+`0x003A1DB0` flips the index and hands the old buffer's start and record count to `0x0036F360`.
+The new index is `1 - old` (`0x003A1DC3`-`0x003A1DCA`) and the count is `(write - begin) >> 4` (`0x003A1DEB`).
+After that call it sets the new buffer's write cursor back to its begin and returns that record
+(`0x003A1DF4`-`0x003A1DFA`).
 
 `0x0036F360` does nothing for an empty buffer. Otherwise, when the last record's first dword has bits
 `0x70000000` equal to `0x30000000`, it writes the record `{0x10000000, 0}` after it (over it when the
-buffer is full). It then stores the buffer address & `0x3FF0` (`0x0036F3A6`) and the record count
+buffer is full, `0x200` records or more in a signed compare, `0x0036F386`). It then stores the buffer address
+& `0x3FF0` (`0x0036F3A6`) and the record count, one more when the record went after the last one (`0x0036F391`),
 (`0x0036F3AC`) into the command-state word `0x02EBA3F8`, reloads that word three times per pass of a
 compare loop (`0x0036F3B2`-`0x0036F3E9`), and stores `0x100` to it (`0x0036F3EB`).
 
@@ -113,11 +129,17 @@ the word on
 ### The menu viewport
 
 `0x00184460(x, y, w, h, flag)` maps a rectangle from a reference size (512 × 448, or 1920 × 1080 when
-`0x001B1620()` holds) to the device: y and height scale by device height / reference height; x and
-width by device width / reference width, or, when `0x001DD8C0` reports aspect correction, by device
-height × aspect (from `0x001DD110`, default 1.7777778) / reference width with x centred. It passes the
-result to `0x001B23E0` and `0x001E9F00`. The full-menu state `0x0022B8C0` calls it with `[0x01E0C1D8]` and
-`[0x01E0C1DC]`, which hold `0x200` and `0x1C0`.
+`0x001B1620()` holds) to the device, with `W` and `H` the device width and height and signed integer division:
+
+- y and height scale by device height / reference height, `y = H * y / refH` (`0x001844C6`-`0x001844D7`);
+- x and width by device width / reference width, `x = W * x / refW` (`0x0018457B`-`0x00184590`);
+- or, when `0x001DD8C0` reports aspect correction, by device height × aspect (from `0x001DD110`, default 1.7777778)
+  over the reference width, `x = (int)(H * x * aspect / refW)` (`0x0018451D`-`0x00184575`);
+- in that case with x centred, `x = (int)((W - H * aspect) * 0.5 + x)` (`0x001845C5`-`0x001845EF`).
+
+It passes the result and `flag` to `0x001B23E0` (`0x00184613`), and the result and `flag != 0` to `0x001E9F00`
+(`0x00184636`). The full-menu state `0x0022B8C0` calls it with `[0x01E0C1D8]` and `[0x01E0C1DC]`, which hold `0x200` and
+`0x1C0`.
 
 ### The camera snapshot
 
@@ -149,7 +171,7 @@ Command buffer record (`0x02EBEFC0`, `0x02EBEFD8`), `0x18` bytes:
 | `+0x00` | `void*` | begin |  |
 | `+0x08` | `void*` | write | advanced by `0x10` per record |
 | `+0x10` | `u32` | capacity | `0x200` records |
-| `+0x14` | `u32` | ready | set by `0x004FE420` |
+| `+0x14` | `u32` | ready | set to 1 by `0x004FE420`, which frees `+0x00` first while it is 0 (`0x003EC8A0`) |
 
 Command record, `0x10` bytes:
 

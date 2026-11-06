@@ -35,7 +35,7 @@ its `menu_command.bin` id:
 | Status `0x4B4`, Equip `0x4B6` | `0x002C2280` (`0x002822A9`) | `0x002C2320` | |
 | Licenses `0x4B5` | `0x005601B0` (`0x002823C5`) | `0x00560910` | [License Board screen](license-board-screen.md) |
 | World Map `0x4B7` | `0x0028E790` (`0x002823B8`) | `0x00552250` | [Map screens](map-screens.md) |
-| Inventory `0x4B8` | `0x00565DD0` (`0x00282127`) | `0x00565E00` | [Widgets](widgets.md) |
+| Inventory `0x4B8` | `0x00565DD0` (`0x00282127`) | `0x00565E00` | [Inventory screen](inventory-screen.md) |
 | Gambits `0x4B9` | `0x00568B30` (`0x00282264`) | `0x005691E0` | [Gambits screen](gambit-screen.md) |
 | Clan Primer `0x4BC` | `0x00574CB0` (`0x0028239B`) | `0x00574E80` | [Clan Primer](clan-primer.md) |
 | Config `0x4BE` | `0x00240680` (`0x0028217D`) | `0x0023FBE0` | [Config screen](config-screen.md) |
@@ -410,7 +410,9 @@ many screens, for example the list item `0x00292390` (11 owners) and the layout 
 ### Resources
 
 A procedure's layout comes from `mrppack_ys.bin`: `0x00280980` relocates its 23 units into `[0x0209AC30] + 8 x unit`
-(`0x00280980`-`0x002809DE`), and `0x002432B0` reads a record of a unit. The table gives layouts as unit and record. Files are
+(`0x00280980`-`0x002809DE`), and `0x002432B0` reads a record of a unit. It fills and relocates only a unit whose slot is
+still null (`0x002809A8`), fills nothing while `layoutPack` (`+0x3D0`) is null (`0x00280993`), and on both paths ends by
+jumping to `0x00280AD0` (`0x002809EE`). The table gives layouts as unit and record. Files are
 named from the resource path table `0x01EC73A0`, and images by the label the code passes to `0x0024A5A0`.
 
 Some screens also load text groups ([Battle and menu text tables](../Game-Files-And-Data-Tables/battle-text-tables.md)).
@@ -435,7 +437,8 @@ No other instruction reaches either.
 
 ### The Parameter Settings screen
 
-The Parameter Settings screen is the `0xC8`-byte widget at `0x0208E6C8` with procedure `0x00240AD0` (above). On message 1
+The Parameter Settings screen is the `0xC8`-byte widget kept at `0x0208E6C8` with procedure `0x00240AD0` (above). On
+message 1
 it decodes record `0x10` of the layout file at `[0x0209AC30] + 0x60` into its `+0x50` (`0x002432B0`,
 `0x00240C41`-`0x00240C59`); its two rows are painted by `0x00240A60` ([Config screen](config-screen.md)).
 
@@ -448,7 +451,7 @@ it decodes record `0x10` of the layout file at `[0x0209AC30] + 0x60` into its `+
 
 ### The leader choice window
 
-The party leader choice is the `0xC8`-byte widget at `0x022CA428` with procedure `0x0035D6B0`.
+The party leader choice is the `0xC8`-byte widget kept at `0x022CA428` with procedure `0x0035D6B0`.
 
 `LeaderChoiceWindow` (`0xC8` bytes, offsets from the start of the record):
 
@@ -563,9 +566,9 @@ menu screens share.
 | `+0xB2B` | `u8` | reserveCount | the number of records 4-8 with a member: cleared and counted by `0x00283270` (`0x002832AB`, `0x002833AF`); read with activeCount (`0x002CC30F`, `0x005694A9`, `0x0056AC0B`) |
 | `+0xB2C` | `u8` | mainCount | the number of members with an id of 5 or less and record flag bit `0x2` clear, the six main characters: cleared and counted by `0x00283270` (`0x0028329D`, `0x002833C5`-`0x002833D2`); read by `0x002CC2A0`, `0x002CDAE0`, `0x003FD6B0`, `0x003FD860`, `0x0055F780`, `0x0055F830`, `0x005636F0` and `0x00563B10` |
 | `+0xB2D` | `u8` | guestId | the member id of a guest in the party (record flag bit `0x2`), or `0xFF`: `0x00283270` (`0x002832C7`, `0x002833FB`-`0x00283400`); `0x002CEAE0` loads the guest's portrait face_guest id + `0x10` into guestPortrait (`0x002CEAF4`) |
-| `+0xB2E` | `u8[526]` | partyMarks | the party-mark bitmap of Party marks: one byte per equipment, technick or magick id, bit n for member n; `0x002826F0` and `0x00282A40` build it and `0x00282F10` reads it (`0x00282868`-`0x002829B5`, `0x00282BA7`-`0x00282CF9`, `0x00282F66`); the highest index, `0x20D` for magick `0x3051`, ends at `+0xD3C` |
+| `+0xB2E` | `u8[526]` | partyMarks | the party-mark bitmap of Party marks: one byte per equipment, technick or magick id, bit value 1 << n for member n; `0x002826F0` and `0x00282A40` build it and `0x00282F10` reads it (`0x00282868`-`0x002829B5`, `0x00282BA7`-`0x00282CF9`, `0x00282F66`); the highest index, `0x20D` for magick `0x3051`, ends at `+0xD3C` |
 | `+0xD3C` | `u32` | partyFlags | the party's menu conditions, rebuilt by `0x00283270` (the table below) |
-| `+0xD40` | `u8[32]` | weaponSlot | the Weapon slot row of the current member, a MenuEquipSlotRow below: `0x0027F210` fills the five rows from the member's equipment words `+0x98`-`+0xA8` (record `+0x9A` + 4 x k) each time currentMember changes (`0x0027F240`-`0x0027F2BA`, through `0x00285F20` and the member steps) |
+| `+0xD40` | `u8[32]` | weaponSlot | the Weapon slot row of the current member, a MenuEquipSlotRow below: `0x0027F210` fills the five rows from the member's equipment words at record `+0x9A` + 4 x k, k 0-4 (the loop offset runs from `+0x98` to `+0xA8`), each time currentMember changes (`0x0027F240`-`0x0027F2BA`, through `0x00285F20` and the member steps); the member is [`+0xAC8` + 8 x currentMember] (`0x0027F247`-`0x0027F24F`). It clears each row, stores the id, and for an id other than `0xFFFF` fills name, icon and class from the query record `0x0035D330`(1, id << 16) (`0x0027F25E`-`0x0027F2A6`), so an empty slot's row is 0 apart from its id |
 | `+0xD60` | `u8[32]` | offHandSlot | the Off-hand slot row; its id `+0xD68` and class `+0xD6B` decide whether a weapon needs ammunition (`0x0027F086`, `0x0027F0B0`) (Equipment) |
 | `+0xD80` | `u8[32]` | helmSlot | the Helm slot row |
 | `+0xDA0` | `u8[32]` | armorSlot | the Armor slot row |
@@ -618,33 +621,33 @@ The layout units of `layoutUnits` and the functions that read them:
 
 | Bits | Meaning |
 |---|---|
-| 0-7 | the controller's state: 0 when it opens (`0x00280453`); its step runs state 1 (`0x00280357`), which ends in 2 (`0x002803CC`), and state 2 (`0x002802C8`); `0x0027F2E0` writes 2, or 1 when bit `0x200` is set and bit `0x400` clear (`0x0027F31E`-`0x0027F33B`) |
-| 8 | a field change is requested: set with `requestedField` by `0x00285EC0` (`0x00285EC7`), and with field 0 by the controller's state 1 (`0x002803A3`-`0x002803B3`); cleared by the controller when it closes (`0x0028024E`) |
-| 9, 10 | set together by `0x00285E60` (`0x00285E6B`, `0x00285E7C`); cleared by the controller's state 1 after it resets the save image (`0x00280380`-`0x00280395`), and bit `0x200` makes the controller's close restore the world (`0x002801E4`-`0x00280246`) |
-| 11 | bit `0x8000` of the request that opened the controller (`0x00280481`-`0x0028049B`); `0x0027F2E0` closes slot 0 over 1 frame instead of 200 while it is set, then clears it (`0x0027F2F2`-`0x0027F301`, `0x0027F349`) |
-| 12 | set by the event-skip task when it opens (`0x00228295`) |
-| 13 | set or cleared by `0x00285EA0(on)` (`0x00285EAA`-`0x00285EB6`), cleared by the event-skip task when it opens (`0x002282A3`) |
-| 14 | passed to `0x00244630` when the event-skip task ends (`0x002281FB`-`0x00228204`); none of the writers above sets it |
+| `0xFF` | the controller's state: 0 when it opens (`0x00280453`); its step runs state 1 (`0x00280357`), which ends in 2 (`0x002803CC`), and state 2 (`0x002802C8`); `0x0027F2E0` writes 2, or 1 when bit `0x200` is set and bit `0x400` clear (`0x0027F31E`-`0x0027F33B`) |
+| `0x100` | a field change is requested: set with `requestedField` by `0x00285EC0` (`0x00285EC7`), and with field 0 by the controller's state 1 (`0x002803A3`-`0x002803B3`); cleared by the controller when it closes (`0x0028024E`) |
+| `0x200`, `0x400` | set together by `0x00285E60` (`0x00285E6B`, `0x00285E7C`); cleared by the controller's state 1 after it resets the save image (`0x00280380`-`0x00280395`), and bit `0x200` makes the controller's close restore the world (`0x002801E4`-`0x00280246`) |
+| `0x800` | bit `0x8000` of the request that opened the controller (`0x00280481`-`0x0028049B`); `0x0027F2E0` closes slot 0 over 1 frame instead of 200 while it is set, then clears it (`0x0027F2F2`-`0x0027F301`, `0x0027F349`) |
+| `0x1000` | set by the event-skip task when it opens (`0x00228295`) |
+| `0x2000` | set or cleared by `0x00285EA0(on)` (`0x00285EAA`-`0x00285EB6`), cleared by the event-skip task when it opens (`0x002282A3`) |
+| `0x4000` | passed to `0x00244630` when the event-skip task ends (`0x002281FB`-`0x00228204`); none of the writers above sets it |
 
 `partyFlags` (`+0xD3C`), rebuilt by `0x00283270` each time it rebuilds the party records:
 
 | Bit | Set when | Read by |
 |---:|---|---|
-| 0 | some member's gambit set has more than 10 slots (byte `+0x32` of the copy `0x00327BE0` makes, `0x00283406`-`0x00283423`; [Gambits screen](gambit-screen.md)) | the gambit editor (`0x00569482`) |
-| 1 | a guest is in the party (record flag bit `0x2`, `0x002833E0`-`0x002833ED`) | the guest portrait (`0x002CE998`, `0x002CEAEB`) |
-| 2 | the party is riding a chocobo (`0x00303EE0`, `0x002832DC`-`0x002832F8`) | the member list, which refuses party changes with "You cannot change party members while mounted" (`0x0BE1`, `0x00285DEB`-`0x00285DF5`; `0x00284CD4`) |
-| 3 | an Esper is summoned (`0x003135E0`, `0x002832FE`-`0x0028331A`) | the member list ("You cannot remove a summoner with an active Esper from the party", `0x0BE2`, `0x00285DFC`-`0x00285E06`; `0x00284CDC`), `0x002830A0` (`0x002830AB`) and `0x002CF710` (`0x002CF717`) |
-| 4 | a member pick shows only the six main characters: the License Board pick sets it when it opens and clears it when it leaves (`0x00560A4E`, `0x005609CB`), the member-record panel sets it from its creation record (`0x002CC07E`-`0x002CC097`), and the name panel saves, clears and restores it (`0x002C153A`-`0x002C1581`) | the member steps (`0x0027ED47`, `0x0027EDEA`, `0x0027F3A2`-`0x0027F3C7`, `0x0027F486`) and the panels `0x002CBC50`, `0x002CC2A0`, `0x002CC660` (`0x002CBCDF`, `0x002CC31F`, `0x002CC392`, `0x002CC6FF`), which skip guests and members past id 5 |
-| 5 | bit `0x400` of the combined action availability mask `0x002E0FA0()`, set in towns ([Action availability](../Controls-And-Input/action-availability.md); `0x0028332E`-`0x00283348`) | no instruction tests it |
+| `0x1` | some member's gambit set has more than 10 slots (byte `+0x32` of the copy `0x00327BE0` makes, `0x00283406`-`0x00283423`; [Gambits screen](gambit-screen.md)) | the gambit editor (`0x00569482`) |
+| `0x2` | a guest is in the party (record flag bit `0x2`, `0x002833E0`-`0x002833ED`) | the guest portrait (`0x002CE998`, `0x002CEAEB`) |
+| `0x4` | the party is riding a chocobo (`0x00303EE0`, `0x002832DC`-`0x002832F8`) | the member list, which refuses party changes with "You cannot change party members while mounted" (`0x0BE1`, `0x00285DEB`-`0x00285DF5`; `0x00284CD4`) |
+| `0x8` | an Esper is summoned (`0x003135E0`, `0x002832FE`-`0x0028331A`) | the member list ("You cannot remove a summoner with an active Esper from the party", `0x0BE2`, `0x00285DFC`-`0x00285E06`; `0x00284CDC`), `0x002830A0` (`0x002830AB`) and `0x002CF710` (`0x002CF717`) |
+| `0x10` | a member pick shows only the six main characters: the License Board pick sets it when it opens and clears it when it leaves (`0x00560A4E`, `0x005609CB`), the member-record panel sets it from its creation record (`0x002CC07E`-`0x002CC097`), and the name panel saves, clears and restores it (`0x002C153A`-`0x002C1581`) | the member steps (`0x0027ED47`, `0x0027EDEA`, `0x0027F3A2`-`0x0027F3C7`, `0x0027F486`) and the panels `0x002CBC50`, `0x002CC2A0`, `0x002CC660` (`0x002CBCDF`, `0x002CC31F`, `0x002CC392`, `0x002CC6FF`), which skip guests and members past id 5 |
+| `0x20` | bit `0x400` of the combined action availability mask `0x002E0FA0()`, set in towns ([Action availability](../Controls-And-Input/action-availability.md); `0x0028332E`-`0x00283348`) | no instruction tests it |
 
 `stepFlash` (`+0xDE9`), which step arrow flashes for 4 frames:
 
 | Bit | Set by | Taken by |
 |---:|---|---|
-| 0 | a step to the next member (`0x0027F3FF`, `0x0027F4F1`) | the member-record panel's child `0x002CABF0`, its `+0xEA` (`0x002CADAC`-`0x002CADE3`) |
-| 1 | a step to the previous member (`0x0027ED71`, `0x0027EE2C`) | `0x002CABF0`, its `+0xE8` |
-| 2 | a step to the next tab (`0x00564300`: `0x00564344`, `0x00564366`) or gambit page (`0x0056AD50`: `0x0056AD80`) | the gambit icon `0x00566C10`, its `+0xE4` (`0x00566D72`-`0x00566DA9`) |
-| 3 | a step to the previous tab (`0x00563EC0`: `0x00563EFD`) or gambit page (`0x0056AAC0`: `0x0056AAE1`) | `0x00566C10`, its `+0xE2` |
+| `0x1` | a step to the next member (`0x0027F3FF`, `0x0027F4F1`) | the member-record panel's child `0x002CABF0`, its `+0xEA` (`0x002CADAC`-`0x002CADE3`) |
+| `0x2` | a step to the previous member (`0x0027ED71`, `0x0027EE2C`) | `0x002CABF0`, its `+0xE8` |
+| `0x4` | a step to the next tab (`0x00564300`: `0x00564344`, `0x00564366`) or gambit page (`0x0056AD50`: `0x0056AD80`) | the gambit icon `0x00566C10`, its `+0xE4` (`0x00566D72`-`0x00566DA9`) |
+| `0x8` | a step to the previous tab (`0x00563EC0`: `0x00563EFD`) or gambit page (`0x0056AAC0`: `0x0056AAE1`) | `0x00566C10`, its `+0xE2` |
 
 The equipment rows that `0x0027F210` fills, five from `+0xD40` 32 bytes apart (Weapon, Off-hand, Helm, Armor,
 Accessory), and the description window at `+0x2F8`:

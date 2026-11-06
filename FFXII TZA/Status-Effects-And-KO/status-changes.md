@@ -53,9 +53,13 @@ and flags through (`0x0030EAE4`-`0x0030EAFC`). `0x0030E990` is used by:
 
 With flags bit `0x1` clear, two gates run on the target and source units (`0x0030E420`-`0x0030E45A`):
 
-- `0x0030B9B0` refuses any change when the battle-wide mask or the target's own mask has a low bit set;
+- `0x0030B9B0` refuses any change when the battle-wide mask or the target's own mask has a low bit set, any
+  bit of its low 16 bits `0xFFFF` (`0x0030B9F3`, `0x0030B9F8`); the target's mask takes the hostile flag 1 only
+  when both units are non-null and `0x0030AB40(target, source, 0)` gives a class above 1 (`0x0030B9C2`-`0x0030B9E0`);
 - when adding, `0x0030B8E0` refuses KO, Stone and X-Zone (the mask `0x80000003`) when either mask has a high bit
-  set.
+  set (`0x0030B920`-`0x0030B92E`); only the target's can, as `0x0030B770` leaves its high 16 bits 0 (`0x0030B785`). The
+  target's mask takes the hostile flag 1 only when both units are non-null and `0x0030AB40(target, source, 0)` gives
+  a class above 1 (`0x0030B8ED`-`0x0030B909`).
 
 | Mask bit | Set when | Site |
 |---|---|---|
@@ -113,6 +117,9 @@ When presence changed, in this order (`0x0030E5D1`-`0x0030E828`):
    only for Bubble (28) on a unit with HP sets current HP to `(HP + 1) / 2`, half rounded up
    (`0x00386A94`-`0x00386AB0`). The record is applied by `0x003112F0` when it is live, `+0x2C` bit `0x1`
    (`0x0030E610`-`0x0030E638`).
+   - `0x00386A70` first resets the record with `0x003848E0` (`0x00386A8F`). For Bubble on a unit with HP it sets `+0x2C`
+     bits `0x100` and `0x8` and stores the half as the absolute HP `+0x24` (`0x00386A9F`-`0x00386AB0`); for any other
+     status, or HP 0, it clears `+0x2C` bit `0x1`, so the record is not applied (`0x00386AC3`).
 2. **Cancelled statuses.** When adding, each status in the new one's cancel mask, row `+0x0C` of the status
    table `[0x02EBF118]`, is removed with `0x0030E360(target, source, i, 0, 0, flags | 0x200, mode 0)`
    (`0x0030E63D`-`0x0030E6D7`; [Statuses](statuses.md)).
@@ -144,10 +151,19 @@ target has a battle unit; without one the function goes straight to the rebuild 
 | every other status | `0x0030E816` | nothing | nothing |
 
 The two `+0xE9A` bits decide whether a Poison kill or a Stone from Petrify pays the party
-([Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)). For Confuse and Berserk, `cancel` is 1, so `0x00300140`
-cancels the action in flight with `0x003105D0`, except when the unit is changing stance, carries an action at
-phase 9 or later, or is dismissing (`0x113`); those give 0 and keep it (`0x0030E770`-`0x0030E79F`). Events go through `0x003299B0` (`0x0030E766`, `0x0030E86D`). What the defeat cleanup and the
-recovery do is on [KO and Game Over](ko-and-game-over.md).
+([Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)).
+
+For Confuse and Berserk, `cancel` is 1, so `0x00300140` cancels the action in flight with `0x003105D0`, except when
+the unit is changing stance, carries an action at phase 9 or later, or is dismissing (`0x113`); those give 0 and
+keep it (`0x0030E770`-`0x0030E79F`).
+
+With either `cancel`, `0x00300140` then zeroes the unit's `+0x6F8` (8 bytes), `+0x748`, `+0x74C`, `+0x750` (8 bytes)
+and `+0x770`, clears bit `0x400` of `+0x788` and bit `0x2` of the command word `+0x6B0`, and sets unit flag bit
+`0x20000000000000`, bit `0x200000` of the dword `+0x4` (`0x00300152`-`0x003001BA`). It clears unit flag bit `0x4000`
+too, except while that bit is set and `+0xBA0` is `0x113` or `0x95` (`0x0030016A`-`0x00300198`).
+
+Events go through `0x003299B0` (`0x0030E766`, `0x0030E86D`). What the defeat cleanup and the recovery do is on [KO and
+Game Over](ko-and-game-over.md).
 
 On a party wipe the defeat cleanup sets battle flag `0x400` or `0x200`, arms the request and recomputes party
 control with `0x0023B040` (`0x00301063`-`0x003010C0`; [Party leader](../Party/party-leader.md)).

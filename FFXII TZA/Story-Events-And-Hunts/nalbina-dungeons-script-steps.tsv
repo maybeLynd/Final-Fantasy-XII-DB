@@ -29766,7 +29766,7 @@ nal_c0101	セリフ	BALFLAIR_できるだけ	15	0x02F05	2109	-	label	local_jmp_3
 nal_c0101	セリフ	BALFLAIR_できるだけ	16	0x02F08	2110	regY == 0	goto	local_jmp_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nal_c0101	セリフ	BALFLAIR_できるだけ	17	0x02F0E	2111	not (regY == 0); regY == 1	goto	local_jmp_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nal_c0101	セリフ	BALFLAIR_できるだけ	18	0x02F11	2112	not (regY == 0); not (regY == 1)	goto	local_jmp_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-nal_c0101	セリフ	ret	1	0x02F14	2117	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+nal_c0101	セリフ	ret	1	0x02F14	2117	the run began at the top of the function or entered at the top through the goto at line 2102 in BALFLAIR_できるだけ (JMP at 0x02ED8) or entered at the top through the goto at line 2108 in BALFLAIR_できるだけ (JMP at 0x02F02)	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nal_c0101	帝国兵・ID無し01	init	1	0x02F15	2126	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nal_c0101	帝国兵・ID無し01	set	1	0x02F19	2131	-	bindp2	0x03000002	model n2 (section 12 entry 2, bound id 0x6E0002)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 nal_c0101	帝国兵・ID無し01	set	2	0x02F1F	2132	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

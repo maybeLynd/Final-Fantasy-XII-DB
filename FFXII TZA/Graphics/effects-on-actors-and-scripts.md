@@ -16,10 +16,10 @@ and play effects of their own.
 
 `0x003B02A0(owner, targets, count, number, kind)` plays effect `number` as an instance of kind 5, 6 or 9
 and refuses any other kind. Unless the request kind below is 1, it also refuses when
-`0x002FC9B0()` plus `0x003B0B70()` exceeds 23. It makes the instance (`0x0024B270`) with state 2 and
-the number in `+0x373`, stores the owner at `+0x08`, and appends each target whose render record is
-live and passes `0x002E9FE0` to the target array `+0x10`. Numbers 100 to 103 and `0x94` are kind-3
-requests in the table below.
+`0x002FC9B0()` plus `0x003B0B70()` exceeds 23, `0x002FC9B0() + 0x003B0B70() >= 0x18` (`0x003B0377`-`0x003B0388`). It makes
+the instance (`0x0024B270`) with state 2 and the number in `+0x373`, stores the owner at `+0x08`, and appends each
+target whose render record is live and passes `0x002E9FE0` to the target array `+0x10`. Numbers 100 to 103 and
+`0x94` are kind-3 requests in the table below.
 
 The requests sit in 36 entries of `0x18` bytes at `0x02EBEC00`, packed from the start:
 
@@ -62,7 +62,9 @@ entry, it clears bit `0x1` of the last entry's `+0x13`, `0x02EBEF5B` (`0x003B0A9
 Event scripts reach the loaded-file queue through 32 slots of `0x18` bytes at `0x022D94B0`: the
 queue id `+0x00`, a state word `+0x04` (0 free, 1 reading, 2 read, 3 playing, 4 cancelled), the
 reading manager `+0x08` and the signal bytes `+0x10` ([native commands](../Scripts-And-Script-Commands/native-commands.md)).
-Every slot number is clamped to 0 to 31.
+Every slot number is clamped to 0 to 31, `slot < 0 ? 0 : slot > 31 ? 31 : slot`, at the start of each slot
+function (`0x0036E32C`-`0x0036E33D` in `0x0036E320`; `0x0036E540`, `0x0036E5A0`, `0x0036E5E0`, `0x0036E8B0`, `0x0036DDC0`,
+`0x0036DF80`, `0x0036E460`).
 
 - Read: `effectread(id)` (`0x00DB`), `locationeffectread(id)` (`0x0127`) and `questeffectread(id)`
   (`0x01DA`) push slot 0 and the kind 0, 1 or 2; their two-argument forms (`0x00E0`, `0x0128`,
@@ -85,9 +87,12 @@ Every slot number is clamped to 0 to 31.
   set (`0x003B24C0`), releases the entry (`0x003B18E0`). `effectcancelall` (`0x00E5`,
   handler `0x00350FA0` `jmp 0x0036DE20`) runs `0x003B1710` over the queue and sets every slot to state 4.
 - Triggers: `effecttriggersync` (`0x0274`, `0x0275`) waits while `0x0036E5E0(slot, n)` holds: for a
-  playing slot, `0x0024FDA0` makes the instance current and asks `0x003333F0` whether one of the 16
-  entries of its `+0x130` block has byte `+0x11` equal to `n`, or else `0x003A8FC0(n)`.
-  `effecttriggercancel` (`0x01DC`, slot 0) and `effecttriggercancel_1dd(slot, n)` (`0x01DD`) run
+  playing slot, `0x0024FDA0` makes the instance current (`0x0024ED80`) and hands `0x003333F0` the first qword
+  of its `+0x130` block, a timeline player (`0x0024FDF6`, `0x0024FE25`).
+- `0x003333F0` asks whether one of that player's 16 track pointers, at player + 8 x k for k from 0 to 15,
+  has byte `+0x11` equal to `n` (`0x00333400`-`0x00333415`), or else `0x003A8FC0(n)` (`0x0033341A`). The
+  player and its tracks are in [Effect element runtime](effect-element-runtime.md).
+- `effecttriggercancel` (`0x01DC`, slot 0) and `effecttriggercancel_1dd(slot, n)` (`0x01DD`) run
   `0x0036DF80`, which passes a non-free slot's id to `0x003B27A0`.
 - `effectsignal(slot, v)` (`0x0241`, `0x0036E460`) passes `v` to `0x0024F3C0`, which, for `v` = 1,
   adds 1 to the bits under mask `0xF0` of the instance's word `+0x378`.

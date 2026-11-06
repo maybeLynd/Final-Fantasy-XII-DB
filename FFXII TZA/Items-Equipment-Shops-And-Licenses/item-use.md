@@ -33,6 +33,11 @@ not 0 (`0x0030EF60`-`0x0030EF77`). Otherwise:
    (`0x0030EFBB`-`0x0030EFD8`), through `0x00253690` and `0x00254EE0` ([Gil](../Rewards-EXP-Gil-And-Loot/gil.md)). Only actions paid in gil have one: `0x00309060` returns 0 for an enemy record, for an
    action id above `0x21E` and for rows of kind 5 or 6 ([MP gain and cost](../Status-Effects-And-KO/mp.md)).
 
+`0x0030EF20` works out the action index it gives `0x00309060` from the row: `(row - first row) / row size` of the
+action table `[0x02EBF138]` (`0x0030EF2F`-`0x0030EF5E`). A null `row` gives the item `0xFFFF` (`0x0030EF7E`-`0x0030EF81`,
+`0x0030EF8F`). The cost is stored at `+0xE58` even when it is 0, and the gil is then left as it is
+(`0x0030EFC0`-`0x0030EFCA`).
+
 ### Keeping it spent
 
 `0x00305640(unit, row, flag)` runs when the action goes off. For a party unit it clears both reservations,
@@ -40,6 +45,11 @@ not 0 (`0x0030EF60`-`0x0030EF77`). Otherwise:
 then charges the MP and Mist costs, with `0x10` plus `flag` as the change reason (`0x003056E3`-`0x003056F4`), and takes a
 second gil amount, unit `+0xE54`, floored at 0 (`0x00305712`-`0x0030572B`). That amount is set when the action's
 result is worked out (`0x00303954`, `0x00303B2E`) and cleared by the unit reset (`0x00236AE5`).
+
+For a party record it then feeds the achievement counters through `0x00253770` (`0x00305730`-`0x003057A5`,
+[Achievements](../Steam-And-Achievements/achievements.md)): counter 0, 1 or 2 by 1 for row kind `+0x1E`
+0, 1 or 2, and for kind 10 counter 13 by the row index, after `0x00316440`. Other kinds feed no counter
+(`0x0030575A`).
 
 It is called from four places:
 
@@ -50,8 +60,9 @@ It is called from four places:
   (`0x003192B7`-`0x003192BC`);
 - the handler of script verb `0x29D` `spattackplay`, with `flag` 1 (`0x003132B7`).
 
-A fourth pair of calls, a prepare at `0x003073AB` and a consume at `0x003073B9`, runs only when the fifth argument of
-`0x00307300` is 1 (`0x00307388`), and its only caller passes 0 (`0x00319354`-`0x00319362`).
+The effect applier's call never runs: `0x00307300` has one caller, which passes 0 as the fifth argument
+(`0x00319354`-`0x00319362`), so its prepare `0x0030EF20` at `0x003073AB` and its consume at `0x003073B9` are skipped
+(`0x00307388`).
 
 ### Giving it back
 

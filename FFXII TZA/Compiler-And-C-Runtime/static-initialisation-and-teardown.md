@@ -32,6 +32,16 @@ The PE entry point is `0x00808EE4`. Everything before the game's `WinMain` happe
 `0x007A3770` is `WinMain`: it calls `IsDebuggerPresent` and then the game's main routine `0x007980A0` on
 both arms. When `WinMain` returns, the start-up routine calls the runtime's `exit` (`0x00808E9C`).
 
+`WinMain` gets its show mode from `__scrt_get_show_window_mode` `0x00809AB4` (`0x00808E6E`) and its command line
+from `_get_narrow_winmain_command_line` (`0x00808E76`). `exit` is reached because `__scrt_is_managed_app`
+`0x00809AF0` returns 0 (`0x00808E91`): the CLR directory entry of the image's own header is zero (`0x00809B35`). The
+other arm calls `_cexit` and `__scrt_uninitialize_crt` and returns the code (`0x00808EA6`-`0x00808EB4`).
+
+The start-up routine has three more paths. A failed `0x0080893C` fast-fails with code 7 (`0x00808D90`). A
+start-up state other than 0 and 1 skips both tables (`0x00808DC1`, `0x00808E0D`). A fault in
+`0x00808DA3`-`0x00808EB8` goes to the filter `0x008A5B94`, which returns `_seh_filter_exe(code, pointers)`
+(`0x008A5BA5`), and the handler at `0x00808EB8` calls `_exit` with the exception code (`0x00808EC5`).
+
 ### The C table
 
 `_initterm_e` walks `0x008C5680`–`0x008C56A0`. The first and last qwords are null; the three entries
@@ -44,6 +54,16 @@ between are runtime set-up:
 - `0x00809124` creates the lock and the condition variable or event behind thread-safe local statics,
   and registers `0x00809244` to delete them; see
   [lazy statics](lazy-statics-and-one-time-init.md).
+
+In order, `0x00808C90` calls `_set_app_type(2)` (`0x00808C9B`) and `_set_fmode(0x4000)` (`0x00808CA7`), sets the
+word from `__p__commode` to 0 (`0x00808CBE`), and calls `0x00808988(1)` (`0x00808CC0`), `atexit(0x00809CD4)`
+(`0x00808CD5`), `_configure_narrow_argv(1)` (`0x00808CE1`), `InitializeSListHead(0x02EAF310)` through `0x00809C40`
+(`0x00808CEA`), `_configthreadlocale(0)` (`0x00808D15`) and, as `0x0061ECF0` returns 1,
+`_initialize_narrow_environment` (`0x00808D23`). It returns 0 (`0x00808D2D`).
+
+A zero result from `0x00808988` or a non-zero one from `_configure_narrow_argv` fast-fails with code 7
+(`0x00808D35`, `0x00808D40`). `__setusermatherr(0x005C5230)` runs only when `0x00809C6C` returns 1, which needs the
+dword `0x01F44870` to be 0 (`0x00809C6E`, `0x00808CFF`); the file holds 1 there.
 
 ### The C++ table
 
@@ -69,7 +89,7 @@ Every entry, grouped by the first function it calls:
 | 25 | `0x008760A0` | a `PInputTypeSemantic` (`Key`, `JoypadButton`, `JoypadAxis`, `MouseButton`, …; [Phyre input semantics](../Controls-And-Input/phyre-input-semantics.md)) |
 | 10 | `0x00876490` | a `PInputAxisSemantic` (`XAxis_0`, `YAxis_0`, …; [Phyre input semantics](../Controls-And-Input/phyre-input-semantics.md)) |
 | 60 | `0x005DC6F0` | a named render-pass record (`VideoScreen`, `MapShadowRender`, `OpaqueDepth`, …), linked through `0x005FDCB0` |
-| 56 | `0x005FDCB0` | another record added directly to that render-pass list |
+| 56 | `0x005FDCB0` | another record added directly to that render-pass list: `0x005FDCB0(record)` returns `0x11` for a null name (`0x005FDCBD`) and `0x12` when a record on the list has the same name, compared byte for byte (`0x005FDCF0`-`0x005FDD05`, `0x005FDD26`); otherwise it stores the old head `[0x02CBF998]` at record `+0x08`, makes the record the head and returns 0 (`0x005FDD10`-`0x005FDD1A`) |
 | 64 | `0x001EDF00` | an EASTL allocator (`eastl::allocator_memory_log`) with its name, such as `EASTL basic_string` |
 | 69 | `0x006E0220` | one float constant converted to half precision and stored; no teardown |
 | 35 | `0x00616210` | a named texture-format record (`L8`, `A8`, `LA8`, `RG8`, …) |
@@ -85,6 +105,13 @@ The registry inserts share one shape: the routine refuses an object whose name p
 a singly linked list headed by a global (`0x00879570` uses `0x02EB9D80`, `0x00876C80` `0x02EB83B8`, `0x008768A0`
 `0x02EB8348`, and the render-pass insert `0x005FDCB0` uses `0x02CBF998`).
 
+After the push, `0x00879570` and `0x00876C80` return 0 (`0x008795D4`, `0x00876CE4`); both compare the names byte for byte
+(`0x008795A0`-`0x008795C5`, `0x00876CB0`-`0x00876CD5`).
+
+`0x008768A0` reads the name pointer at the object's `+0x08` (`0x008768A4`), compares the name byte for byte with that
+of every object on the list (`0x008768D0`-`0x008768FE`) and, when it is new, stores the old head at the object's
+`+0x10`, makes the object the head and returns 0 (`0x00876900`-`0x0087690A`).
+
 1,084 entries register a teardown, each exactly one; 88 register no teardown. None of them takes a
 thread-safe local-static guard.
 
@@ -95,9 +122,14 @@ Every registration in the image goes through `atexit` (`0x00808B90`), which call
 
 - `0x00808C90` calls `0x00808988` with 1 (an executable), which fills the module's two exit tables
   `0x02EAED08` and `0x02EAED20` with the encoded value -1 instead of initialising them.
+- `0x00808988` stores the encoded -1 as `cookie xor -1` (`0x008089DB`-`0x008089F0`) and returns 1 on that path
+  (`0x008089EB`). A type above 1 fast-fails with code 5 (`0x0080899A`, `0x00808A46`). Type 0, when `0x00809960`
+  returns 1 (the dword `0x01F47590` is non-zero), calls `_initialize_onexit_table` on both tables instead and
+  returns 1 only when both calls return 0 (`0x008089A9`-`0x008089CF`).
 - `_onexit` decodes the first qword of `0x02EAED08` (`ror64(cookie xor value, cookie & 0x3F)`, cookie
   `0x01F44830`); it is -1, so it hands the function to the runtime's `_crt_atexit` (`0x00808B68`), and the
-  `_register_onexit_function` path at `0x00808B79` is never taken.
+  `_register_onexit_function` path at `0x00808B79` is never taken. It returns the function when that call
+  returns 0, and null otherwise (`0x00808B7E`-`0x00808B82`).
 
 All teardowns therefore sit in the runtime's own process table, which its `exit` runs last-registered
 first.
@@ -291,9 +323,17 @@ global. They come in 23 sets of the same three values:
 | `0x0001` | 2^-24 | `0x00D5003C` (`0x33800000`) | the smallest positive half, a subnormal |
 
 `0x3A7FFFD5` is just below 2^-10; `0x006E0220` adds `0x1000` to the mantissa before it shifts it right by 13, so the
-result rounds up to `0x1400`. No instruction reads any of the 69 globals: no RIP-relative, image-base-relative or
-disp32 reference other than its initialiser's store, and the loop-bound `lea` at `0x0072F206` for `0x02EA1A40`, names
-one.
+result rounds up to `0x1400`: with e = -11 and `m = (0x7FFFD5 + 0x1000) >> 13`, which is `0x400`, the half is
+`((e + 15 + (m >> 10)) << 10) | (m & 0x3FF)` (`0x006E029A`-`0x006E02D0`). No instruction reads any of the 69 globals:
+no RIP-relative, image-base-relative or disp32 reference other than its initialiser's store, and the loop-bound
+`lea` at `0x0072F206` for `0x02EA1A40`, names one.
+
+`0x006E0220` has four more paths. A zero input of either sign gives `0x0000` (`0x006E0223`-`0x006E022A`), and so
+does an exponent `e` below -24, without the sign (`0x006E0254`-`0x006E0257`). An exponent from -24 to -15 gives the
+subnormal `((0x800000 >> (-14 - e)) + 0x1000 + (mantissa >> (-15 - e))) >> 13` (`0x006E025E`-`0x006E0283`). An
+exponent above 15, infinities and NaNs included, gives `0x7BFF`, the largest finite half
+(`0x006E028B`-`0x006E0294`). The subnormal and the other results carry the sign, bit `0x8000` of `bits >> 16`
+(`0x006E0249`-`0x006E0250`, `0x006E0286`, `0x006E0290`, `0x006E02D0`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -360,7 +400,7 @@ and stores 0 in the buffer and, with one 8-byte store, in both dwords.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02EAF614` | `u32` | 0 (zero-filled tail of `.data`) | `+0x214` of `0x02EAF400`; the 8-byte store that zeroes it also zeroes `0x02EAF618` | `0x008B90A0` (`0x008B90F0`), 0 | no instruction names it |
+| `0x02EAF614` | `u32` | 0 (zero-filled tail of `.data`) | `+0x214` of `0x02EAF400`; the 8-byte store that zeroes it also zeroes `0x02EAF618` | `0x008B90A0` (`0x008B90F0`), 0 | no instruction reads it |
 
 ## Modding notes
 
@@ -377,7 +417,9 @@ and stores 0 in the buffer and, with one 8-byte store, in both dwords.
 ## Related
 
 - [Phyre input semantics](../Controls-And-Input/phyre-input-semantics.md): the semantic objects the input registrars
-  `0x008760A0`, `0x00876490` and `0x008768A0` build.
+  `0x008760A0`, `0x00876490` and `0x008768A0` link into their lists. Each object, with its vtable, name and code, is
+  already in the image's data (`0x01F45148` holds the vtable `0x01CD8448`); its initialiser only passes its address to
+  the insert and registers its teardown (`0x0016B5C0`-`0x0016B5DB`).
 - [Image hardening](image-hardening.md): the cookie set up before the tables run, and the `ret 0`
   teardowns.
 - [Lazy statics and one-time initialisation](lazy-statics-and-one-time-init.md): the statics built on

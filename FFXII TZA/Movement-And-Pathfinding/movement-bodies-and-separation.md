@@ -29,13 +29,15 @@ The loop leaves the two end links to single stores: body 0's previous, the word 
 
 `0x003DA8A0()` pops the free head and returns null when it is `0xFFFF`; it links the body at the
 head of the active list, zeroes `+0x30`-`+0xDF`, sets `+0x82` = `0xFFFF`, `+0x88` = 0, runs
-`0x00380B80` on the placement, sets `+8` = 1.0, `+6` = 0, `+0x10`-`+0x27` = 0, `+0xE8` = 0, runs
-`0x003DA830` on `+0xF0` (overwritten by the shape writer below), and zeroes `+0x100`-`+0x10B`,
-`+0x110`/`+0x114` and `+0x118`.
+`0x00380B80` on the placement, sets `+8` = 1.0, `+6` = 0, `+0x10`-`+0x27` = 0, `+0xE8`-`+0xEF` = 0 (one qword,
+`0x003DA9C6`), runs `0x003DA830` on `+0xF0` (`{0.00001, 0.00001, 0, 0}`, `0x003DA832`-`0x003DA83B`, overwritten by
+the shape writer below), and zeroes `+0x100`-`+0x10B`, `+0x110`/`+0x114` and `+0x118` with the owner byte
+`+0x119` (one word, `0x003DA995`).
 
-`0x003DAD00(body)` unlinks it from the active list, pushes it on the free list, writes `{0, -1.0, 0,
--1.0}` at `+0xF0` and clears `+7`; the -1.0 at `+0xF4` is what makes a freed body fail the
-resolver's positive-radii test if it is ever handed to it.
+`0x003DAD00(body)` returns at once for a null body (`0x003DAD03`); otherwise it unlinks it from the active list,
+pushes it on the free list, writes -1.0 to both radii `+0xF0` and `+0xF4` (`0x003DADA4`, `0x003DADAE`), leaving
+`+0xF8` and `+0xFC` as they were, and clears `+7`; the -1.0 radii are what make a freed body fail the resolver's
+positive-radii test if it is ever handed to it.
 Until the first release the n-th body allocated in an area is index `n - 1`.
 
 ### Attachment
@@ -64,9 +66,9 @@ the controller's `+0x151` bits `0x1` and `0x80`.
 
 `0x00268380(record)`: for a class-3 actor the radii pair comes from the movement context's `+0x50`
 (`0x003DA710`); for any other class the two radii handed on are uninitialised stack values, so a
-class-1 body's `+0xF0`/`+0xF4` hold whatever the stack held. The height is the movement context's `+0x68` for class 1 or `+0xC0 * +0x24` for
-class 3; the heading `+0x38` for class 1 or `+0xA8` for class 3, else 0; the base is the secondary
-context's `+0x140 + +0x144`; the three percentages are the movement context's bytes
+class-1 body's `+0xF0`/`+0xF4` hold whatever the stack held. The height is the movement context's `+0x68` for
+class 1 or `+0xC0 * +0x24` for class 3, else 0; the heading `+0x38` for class 1 or `+0xA8` for class 3, else 0;
+the base is the secondary context's `+0x140 + +0x144`; the three percentages are the movement context's bytes
 `+0x104`-`+0x106` for class 3, else `{37, 50, 37}`.
 
 `0x006C0520` writes `{radiusA, radiusB, heading,
@@ -117,10 +119,22 @@ authored base and a scaled copy:
 
 `0x002E8E20(record)`, called by the scale setters `0x0026B720` and `0x002E5FD0` (identical; verbs
 `setscale`, `setscale_164`, `debug_setscale`), hands the scale to the render record (`0x002EE050`)
-and re-applies the three bases. `0x0026B2E0(record, a, b)` sets the body base and scaled radii
-(`0x003DA860`), sets the margin `+0xFC` to the mean of the two scaled radii (at least 0.01), and while
-`+0xDE` or `+0xDF` is set copies the body radii into the talk or touch ellipse, with that ellipse's
-own margin (`0x003DA890`); `0x0026B2D0` (verb `setradius`) passes one radius for both.
+and re-applies the three bases: the body base through `0x0026B2E0`, the talk base through `0x0026BBC0` only while
+`+0xDE` is clear, and the touch base through `0x0026BF60` only while `+0xDF` is clear (`0x002E8E6D`-`0x002E8EC2`). It
+does nothing for a null record, a null controller or a controller dword `+0` of -1 (`0x002E8E23`-`0x002E8E44`).
+
+`0x0026B720` reaches it through a tail jump to `0x002E5FD0` (`0x0026B728`), which stores the scale and jumps to it
+(`0x002E5FF0`); the presentation set-up `0x002E28E0` (`0x002E2BB8`) and `0x002E6B10` (`0x002E6B46`) call it too.
+
+`0x0026B2E0(record, a, b)` sets the body base and scaled radii (`0x003DA860`), sets the margin `+0xFC` to the mean
+of the two scaled radii (at least 0.01), `max(0.01, (a × s0 + b × s1) × 0.5)` with the scales `s0` and `s1` at
+the body's `+0x20` and `+0x28` (`0x0026B357`-`0x0026B397`), and while `+0xDE` or `+0xDF` is set copies the body radii
+into the talk or touch ellipse, with that ellipse's own margin (`0x003DA890`); `0x0026B2D0` (verb `setradius`) passes
+one radius for both.
+
+For a class-1 object `0x0026B2E0` writes `a` and `b` unscaled to the touch pair `+0x30`/`+0x34` and sets no margin
+(`0x0026B3AF`-`0x0026B3D8`); another class gets no context write. It ends by re-sizing the body for every class
+(`0x00268380`, `0x0026B448`).
 
 `0x0026BBC0(record, a, b)` sets the talk ellipse and clears `+0xDE`; `0x0026BF60` sets the touch ellipse
 and clears `+0xDF`. For a class-1 object the same setters write the context's `+0x40` and `+0x30`
@@ -142,7 +156,8 @@ and re-sizes; `0x0026BC70` (verb `fieldsign`) writes the angle of the touch and 
 
 The offset: `0x0026B170(record, x, y, z)` stores it, sets actor byte `+0x0D` bit `0x20` when it is non-zero
 (clears it for zero) and, when `+0x107` bit `0x2` is set and the offset changed, re-places the actor at its
-position (`0x0026B0C0`). `0x0026B230(record, bits)` writes `+0x107` bits `0x1` and `0x2` and re-places the
+position (`0x0026B0C0`); an actor of a class other than 3 is left alone (`0x0026B17B`).
+`0x0026B230(record, bits)` writes `+0x107` bits `0x1` and `0x2` and re-places the
 actor when bit `0x2` changes; the verb `setposoffset` runs both.
 
 `0x0026BA70` (verb `settalkradiusoffset`)
@@ -151,7 +166,8 @@ stores the offset, sets bit `0x1` and clears bit `0x2`, re-placing when bit `0x2
 
 The interaction point is what `0x00265390(record, &x, &y, &z)` returns: a class-1 object's `+0x10`
 triple; for class 3 the position raised by the controller's `+0x140 + +0x144`, plus the offset when
-`+0x107` bit `0x1` is set.
+`+0x107` bit `0x1` is set. Without a controller the class-3 point is not raised (`0x002653CF`), and any
+other class gets 0, 0 and 0 (`0x002653AC`-`0x002653B3`).
 
 The talk test `0x0025BAD0` builds the same point, refuses a focus actor outside
 the height band (`+0xC8` above, `+0xCC` below, both times the scale's y) unless `+0xDD` (the lower edge also less the focus actor's own height), needs the
@@ -162,7 +178,8 @@ the half-angle (`0x003A1BB0`). The touch test `0x0025C230` uses the touch and ta
 ### Heights, walk speed and the margin
 
 These verbs write the rest of the context. Each setter tests the class first: a class-3 actor's
-context or a class-1 object's is written, any other actor is left alone.
+context or a class-1 object's is written, any other actor's context is left alone (`0x00269E60` still
+re-sizes its body, `0x00269EBA`).
 
 | Verb | Id | Handler | Setter | What it writes |
 |---|---|---|---|---|
@@ -170,8 +187,8 @@ context or a class-1 object's is written, any other actor is left alone.
 | `setunderheight(v)` | `0x00A8` | `0x0034D6D0` | `0x0026ABD0` | class 3 only: `+0xC4` and `+0xCC` = `v` |
 | `settalkheight(h)` | `0x018D` | `0x0034CAC0` | `0x0026BA00(h)`, then `0x0026B9D0(h * 0.25)` | the talk height (above), then the talk depth = `h / 4` |
 | `settalkunderheight(v)` | `0x018E` | `0x0034CE60` | `0x0026B9D0` | the talk depth: class 3 `+0xCC`, class 1 `+0x6C` |
-| `getdefaultheight()` | `0x02B0` | `0x003503D0` | `0x00263810` | a float result (`0x0026B4C0`): for class 3 the model's parameter `0x09001D1E` (`0x002E9630`, 0 without a render record), for class 1 `+0x68`, else 0 |
-| `getdefaultradiusw()` | `0x02B1` | `0x00350910` | `0x00263860` | a float result (`0x0026B4C0`): for class 3 the model's parameter `0x01002143`, or `0x01002D4F` in a town (`0x00377C20`, `0x002E9660`, 0 without a render record); for other classes the unset dword in its argument home slot `[rsp+8]`, so an undefined value |
+| `getdefaultheight()` | `0x02B0` | `0x003503D0` | `0x00263810` | a float result (`0x0026B4C0`): for class 3 the model's parameter `0x09001D1E` times the render record's scale `+0x26C` (`0x002E9630`, `0x003E6150`; 0 without a render record), for class 1 `+0x68`, else 0 |
+| `getdefaultradiusw()` | `0x02B1` | `0x00350910` | `0x00263860` | a float result (`0x0026B4C0`): for class 3 the model's parameter `0x01002143`, or `0x01002D4F` in a town (`0x00377C20`, `0x002E9660`, 0 without a render record), `0x01002143` times the render record's scale `+0x26C` and `0x01002D4F` as the getter gives it (`0x003E6150`); for other classes the unset dword in its argument home slot `[rsp+8]`, so an undefined value |
 | `getdefaultradiusd()` | `0x02B2` | `0x00350910` | `0x00263860` | the same handler, so the same value as `getdefaultradiusw` |
 | `setwalkspeed(v)` | `0x020E` | `0x00352530` | `0x0026A560` | class 3 only: `+0xE0` = `v` |
 | `setwalkthresholdspeed(v)` | `0x0247` | `0x0034CEA0` | `0x0026BE00` | class 3 only: `+0xE4` = `v`, then the render record's copy (`0x002E86B0`) |
@@ -181,7 +198,7 @@ context or a class-1 object's is written, any other actor is left alone.
 `0x00263810` also holds a branch that returns `+0xC0 * +0x24` for class 3, but the class-3 test in
 front of it jumps to `0x002E9630` first (`0x0026381B`), so the branch never runs. The parameter it
 reads is the one the presentation set-up hands to `0x00269E60`, so `getdefaultheight` answers the
-model's authored height whatever `setheight` stored since.
+model's authored height, times the scale `+0x26C` (`0x003E62E1`), whatever `setheight` stored since.
 
 The presentation set-up `0x002E28E0` gives `+0xE0` the model's parameter `0x09000606` and `+0xE4`
 the parameter `0x09000707` times `[0x01DFE0BC]`, both 0 without a render record, and then runs
@@ -189,7 +206,10 @@ the parameter `0x09000707` times `[0x01DFE0BC]`, both 0 without a render record,
 its value as given, without the `[0x01DFE0BC]` factor.
 
 `0x002E86B0(actor, v)` writes the render record's `+0x420` (`[0x022C6F28] + id * 0x740`, only when its
-`+0x284` is non-zero). The locomotion selectors `0x004256E0` and `0x004255B0` compare the render
+`+0x284` is non-zero); a null actor, a null controller, or a controller whose dword `+0` or word `+0` (the
+id) is -1 gets no write (`0x002E86B3`-`0x002E86CD`).
+
+The locomotion selectors `0x004256E0` and `0x004255B0` compare the render
 record's `+0x23C` with it: at or above it `0x004255B0` picks state 2 and `0x004256E0` state 2 or a
 direction state 9 to 11; below it, down to the lower bound `0x003E58B0`, both pick state 1 or a
 direction state 3 to 5. `0x0041F730` starts `+0x420` at 0.013333.
@@ -198,22 +218,32 @@ Both thresholds are `@FCP` section 9 words ([model files](../Graphics/model-file
 property ids `09 00 DD FF`):
 
 - The walk threshold `0x003E58B0(record)` is section 9's float `+0x34`, or `+0x30` while the record's `+0x284` bit `0x40000` is
-  set (`0x003E58CF`-`0x003E58F9`), times the three scales `+0x260`, `+0x160` and `+0x26C`; 0.013333 (`0x00D117B8`) for a
-  record with no `@FCP` payload or no section 9.
+  set (`0x003E58CF`-`0x003E58F9`), times the three scales, `+0x260 * +0x160 * +0x26C * f` with `f` that float;
+  0.013333 (`0x00D117B8`) for a record with no `@FCP` payload or no section 9.
+- `0x003E58B0` forms the section's address in 32 bits (`0x003E58C8 add eax, edx`, then `movsxd`), so it is right
+  only while the payload's address plus that offset is below `0x80000000`; a zero sum also gives 0.013333
+  (`0x003E58CD`).
 - The run threshold `+0x420` has three writers, all through `0x002E86B0`. The presentation set-up hands the actor's
-  `+0xE4` (`0x00263640`, `0x002E2CF6`): property `0x09000707`, section 9 float slot 7, which `0x003E6150` multiplies by the
-  scale `+0x26C`, then times `[0x01DFE0BC]` = 1.0 (`0x002E2CCE`-`0x002E2CEE`). The verb `setwalkthresholdspeed` hands its
-  value (`0x0026BE00`). The unit set-up `0x00239E10` hands the unit's float `+0x184` (`0x0023A006`-`0x0023A012`).
+  `+0xE4` (`0x00263640`, `0x002E2CF6`): property `0x09000707`, section 9 float slot 7, `slot7 * +0x26C * [0x01DFE0BC]`:
+  `0x003E6150` multiplies it by the scale, `+0x26C * slot7`, then times `[0x01DFE0BC]` = 1.0 (`0x002E2CCE`-`0x002E2CEE`).
+- The other two writers of `+0x420`: the verb `setwalkthresholdspeed` hands its value (`0x0026BE00`), and the unit
+  set-up `0x00239E10` hands the unit's float `+0x184` (`0x0023A006`-`0x0023A012`).
 - `0x00239E10` fills `+0x184` from one of two properties (`0x00239E33`-`0x00239E5F`, `0x00239EB5`-`0x00239ECC`):
   - `0x003204D0(unit, 9)`, property `0x09000707`, when the unit's row `+0x698` byte `+5` is 1 and byte `+0x13` of its
     `+0xE60` block is not `0xFF`;
   - `0x003204D0(unit, 2)`, property `0x09000101`, otherwise.
-  `0x003204E0` takes both through `0x002ECE50` and multiplies them by the actor's scale, the third output of `0x00265240`
-  (`0x00320545`-`0x0032057A`; [action range](../Battle-Actions/action-range.md)).
-- `+0xE0`, the speed the move verbs push, is property `0x09000606`, section 9 float slot 6, scaled by `+0x26C` the
-  same way (`0x002E2CA1`-`0x002E2CB3`).
+  `0x003204E0` takes both through `0x002ECE50` and multiplies them by the actor's scale, the third output of
+  `0x00265240` (`0x00320545`-`0x0032057A`; [action range](../Battle-Actions/action-range.md)), and then by
+  `[0x01DFE0BC]` (`0x003205AD`-`0x003205B9`), `p * scale * [0x01DFE0BC]`, where `p` is already the slot times `+0x26C`
+  (`0x002ECE50` jumps to `0x003E6150`, `0x002ECE69`).
+- `+0xE0`, the speed the move verbs push, is property `0x09000606`, section 9 float slot 6, `slot6 * +0x26C`:
+  `0x003E6150` scales it the same way, `+0x26C * slot6`, and it is stored without the `[0x01DFE0BC]` factor
+  (`0x002E2CA1`-`0x002E2CB3`).
 
-`0x003E6150` returns 0 for a model without `@FCP`. A model with `@FCP` but no section 9 gets the default table
+`0x003E6150(id, property)` returns 0 for a model without `@FCP`, and also when `0x002EDBD0` gives no payload for an
+id of -1, a record whose `+0x284` is 0 or a record whose word `+0x408` is -1 (`0x003E615F`-`0x003E616A`,
+`0x002EDBD4`-`0x002EDC1F`).
+A model with `@FCP` but no section 9 gets the default table
 `0x01F265B0`: slot 6 is 0.0666667 and slots 1 and 7 are 0.13333.
 
 `0x002640E0(actor)` reads `+0xE0` back (0 for any class but 3). The move verbs push it as the speed
@@ -228,12 +258,15 @@ third index is negative: `0x0026BDD0` stores its three coordinates at a class-1 
 
 ### The placement record
 
-The body's `+0x30` is the actor's field placement. `0x00380D30(placement, candidate)` resolves the
-field (`0x0026E500(0)`) and the candidate's cell (`0x00233050`, `0x00233110`); when the cell `+0x52` is
-valid it stores the field's blocked-class mask (`0x00232090`) at `+0x5E` and, unless the placement's
-class byte `+0x50` is in it, copies the candidate's four floats, stores the ground height
-(`0x00231890`) at `+0x7C` and into the position's y unless flag `+0x60` bit `0x1` holds; a blocked class
-sets the cell to -2.
+The body's `+0x30` is the actor's field placement. `0x00380D30(placement, candidate)` resolves the field
+(`0x0026E500(0)`) and returns at once without one (`0x00380D52`); every path with a field ends in `0x003808A0`
+(`0x00380DDD`).
+
+With a field it resolves the candidate's cell (`0x00233050`, `0x00233110`); when the cell `+0x52` is valid it stores
+the field's blocked-class mask (`0x00232090`) at `+0x5E` and, unless the mask holds bit value `1 << class` for the
+placement's class byte `+0x50` (`bt ecx, eax`, so the class is taken modulo 32, `0x00380D8D`), copies the
+candidate's four floats, stores the ground height (`0x00231890`) at `+0x7C` and into the position's y unless flag
+`+0x60` bit `0x1` holds; a blocked class sets the cell to -2.
 
 `0x003808A0(placement, field)` then returns at once with `+0x54` = `0xFFFF`
 when the cell is negative (the -2 included), so a blocked placement keeps its stale attribute
@@ -242,12 +275,20 @@ words.
 Otherwise it reads the cell record (`[field + 0x10] + cell *
 32`, attribute dword `+0xC`) through the mask table `0x0209A2D0` (`0x00232020`): bits `0x3E000` to `+0x56`,
 bits `0x78` to `+0x58`, `0x00231F80`'s bits to `+0x5A`, attribute bit `0x1000` to flag bit `0x4`; `0x00231A90`; the
-second cell `+0x54`'s height to `+0x90` with flag bit `0x8` when above the ground height; and its tail
+second cell `+0x54`'s height to `+0x90` with flag bit `0x8` when above the ground height. Flag bits `0x4` and
+`0x8` are cleared first (`0x00380913`), and a negative second cell skips the height (`0x0038093D`), leaving `+0x90`
+as it was and bit `0x8` clear.
+
+Its tail
 steps `+0x80`/`+0x84` toward `+0x64`/`+0x68` by at most 0.25 per step, re-resolving the cell
 (`0x00233050`, `0x00232760`) until within 0.01.
 
-`0x003DB1B0(body)` runs the placement on `body + 0x30` and returns whether the cell is valid; the
-movement step reaches it through `0x002E5C90`. In body terms the fields are `+0x30` position, `+0x70`
+`0x003DB1B0(body, candidate)` runs the placement `0x00380D30` on `body + 0x30` with the candidate and returns
+whether the cell is valid: 0 when the cell `+0x82` is negative, else 1, and 1 for a null body
+(`0x003DB1C2`-`0x003DB1D9`). The movement step reaches it through `0x002E5C90` (`0x002E5D4C`, `0x002E5DDD`), which does
+not read the result.
+
+In body terms the fields are `+0x30` position, `+0x70`
 displacement, `+0x80` cell class, `+0x82` cell (-2 refused), `+0x84` second cell, `+0x86`/`+0x88`/
 `+0x8A` the attribute words, `+0x8E` the blocked mask, `+0x90` flags, `+0xAC` ground height, `+0xC0`
 second height, `+0xC8` requested speed.
@@ -260,7 +301,8 @@ the ground tint `+0x60` (`0x00231C5B`-`0x00231D7D`). The push `+0x70`: `0x00380C
 
 ### Registering every frame
 
-The movement step's driver (`0x002E5030`) calls `0x003DB020(body, x, z, 0, &radii)` when `0x002EA7F0`
+The movement step's driver (`0x002E5030`) calls `0x003DB020(body, x, z, &radii)`, the radii being the
+body's `+0xF0` (`0x002E5136`), when `0x002EA7F0`
 passes ([movement step](heading-speed-to-position-delta.md)). It sets `+7`, active this tick, and
 when the two-globals gate `0x003B7730` holds computes the body's sector bits with
 `0x0046AD20(body + 0x120, x, z, max(radii))` and ORs the body's own bit into the 128-bit mask of every
@@ -268,12 +310,16 @@ sector set (`0x02B57CE0`, sixteen bytes per sector).
 
 `0x0046AD20` is not a grid. It keeps a running mean of every registered position (`0x02CA6040`/
 `0x02CA6048` sums, `0x02CA604C` count) and a centre at `0x02CA6034`/`0x02CA603C`; the body's offset from the
-centre gives a distance `d` and a sector `floor(angle / 2pi * 32)` of 32 around it. With `d > r`
+centre gives a distance `d` and a sector `floor(angle / 2pi * 32)` of 32 around it. With `d > r` and `r > 0`
 the body occupies its sector widened by `floor(atan2(r, sqrt(d^2 - r^2)) / pi * 16) + 1` sectors
-each side; with `d <= r` all 32.
+each side; with `d > r` and `r` = 0 its own sector alone (`0x0046AEAC`); with `d <= r` all 32.
+
+The angle is `atan2(dz, dx)` brought into `[0, 2pi)` (`0x0046AE24`-`0x0046AE7C`), `d` is `sqrt(|dx^2 + dz^2|)`
+(`0x0046ADE9`), and the sector is held at 31 at most (`0x0046AE9A`).
 
 The result is `+0x120` the bits, `+0x124` the sector, `+0x128`
-`d - r` (0 when `d <= r`) and `+0x12C` `d + r`; a negative radius clears all four. The sums and
+`d - r` (0 when `d <= r`) and `+0x12C` `d + r`; a negative radius clears all four. With `d <= r` the
+sector `+0x124` is not written and keeps its last value (`0x0046AE10` jumps past `0x0046AF4A`). The sums and
 the count are updated even when the record pointer is null.
 
 The driver's tail `0x002E6330` also appends the body's placement to a frame list (head `0x02B57CC8`,
@@ -302,6 +348,10 @@ bodies per byte processed and is not reset between the two qwords, so trailing z
 qword 0 shift the body pointer for every candidate of qword 1 (a first qword of `0x00..00FF` leaves
 it at body 8, and candidate 64 is resolved against body 8).
 
+A zero qword is skipped whole without moving the body pointer (`0x003DAB9A`), so with qword 0 zero, candidate 64
+is resolved against body 0. The walk never reads its `dMin` and `dMax` arguments: no instruction of `0x003DAB50`
+reads `xmm0` or `xmm1`.
+
 Its pair-bit index advances once per
 bit stepped inside a non-zero byte, so remembered bits past byte 0 are written at the wrong
 indices (candidate 9 alone is resolved against body 9 but remembered at index 1).
@@ -323,13 +373,22 @@ height]` must overlap, and `0x003DA5A0` must return a negative separation: the h
 minus each body's ellipse extent along the joining line (`0x003DA730`: the offset rotated by the
 body's heading, `(x^2 + z^2) / (x^2 / a^2 + z^2 / b^2)`) and the margins `+0xFC`.
 
+The rotation is by the negated heading (`0x003DA743`), `0x003DA730` returns 0 for a zero offset (`0x003DA7BF`,
+`0x003DA805`), and the extent is the square root of its absolute value (`0x003A1D30`, called at `0x003DA5E3` and
+`0x003DA5F9`). The distance is `sqrt(dx^2 + dz^2)` of the second position less the first (`0x003DA646`-`0x003DA65A`);
+when its first argument is non-null, `0x003DA5A0` writes `dx`, `dy`, `dz` and then the distance into it
+(`0x003DA62D`-`0x003DA663`).
+
 The weights `+8` (both negated when both negative, both 1 when both zero) go through `0x00314E10`,
 which returns A's share `w = wB / (wA + wB)`, or 0 when the sum is 0 (a cancelling pair such as 1
 and -1, which the negative rules then decide), overridden by the masks `+0x110 | +0x114`: each
 body's low byte is masked by the complement of the union's mask `0xFF00`, and with either masked byte
 non-zero an overlap with the union's mask `0xFF0000` returns 0, and unequal values give 0 when A's is
-larger, else 1; with both masked bytes zero the ratio stands. A negative `wA` gives 0, a negative
-`wB` 1.
+larger, else 1; with both masked bytes zero, or both equal (`0x00314E8A`), the ratio stands.
+
+A negative `wA` gives 0, a negative `wB` 1. These two tests run after the mask choice and override it, `wB`'s
+last, so two negative weights give 1 (`0x00314E96`-`0x00314EA3`); only the `0xFF0000` overlap returns 0 at once,
+before them (`0x00314E83`).
 
 Then A receives `w * separation` and B `(1 - w) * separation` along the joining
 direction, added to `+0x100` (x) and `+0x108` (z), each body's `+0xE8` holding the squared length
@@ -350,6 +409,11 @@ controller's `+0x151` bit `0x4`, stores the ground height (`0x003DADE0`) at the 
 (`0x002E5610`), adds the measure to `+0xB8` and sets bit `0x4`; when clear it zeroes the accumulators
 (`0x003DA9F0`: `+0x100`-`+0x108`, `+0xE8`, `+0xEC`, `+0xED`, `+0xEE`) and `+0xEF`.
 
+It returns at once, with nothing written, while the lifecycle byte `+0x18` is 1 (`0x002E519E`). Past the bit `0x4`
+clear, an actor without a controller or of a class other than 3 goes straight to the `+0x0C` bit `0x10` clear
+below (`0x002E51D9`, `0x002E51E9`, `0x002E5353`), and a class-3 actor without a body skips the ground height and the
+push and goes on to the measure (`0x002E5215`).
+
 The re-run's
 `0x002E5380` adds the accumulators into the candidate delta and then zeroes them itself, so a push
 moves the actor on its next candidate position and is gone the tick after. `0x0025D540(record)`
@@ -358,10 +422,17 @@ clears the same accumulators (`0x003DA9F0`) and `+0xEF` outside the tick unless 
 
 The step then measures
 the frame's displacement (planar unless record byte `+0x08` bit `0x4`), zeroes it when record byte
-`+0x0D` has bit `0x4` or `0x10` (clearing both), caps it by `0x002E8000` for the focus actor when positive
-and `+0x0C` bit `0x10` is clear, stores it at the context's `+0xEC`, hands it to the render record
-(`0x00420A10`) and the unit (`0x00329A80`), runs `0x002E4A40` and `0x002E6000(record, 0)`, and clears
-`+0x0C` bit `0x10`.
+`+0x0D` has bit `0x4` or `0x10` (clearing both), raises it to at least `0x002E8000(record)` for the focus actor
+when positive and `+0x0C` bit `0x10` is clear, stores it at the context's `+0xEC`, hands it to the render record
+(`0x00420A10`, only for a controller whose dword `+0` and word `+0` are not -1 and a record whose `+0x284` is
+non-zero, `0x002E52F9`-`0x002E5327`) and the unit (`0x00329A80`), runs `0x002E4A40` and `0x002E6000(record, 0)`,
+and clears `+0x0C` bit `0x10`.
+
+The same steps in bytes, with `d` the displacement and the focus actor `0x00264010(-1)`:
+- `if (record[+0x0D] & 0x14) { d = 0; record[+0x0D] = record[+0x0D] & 0xEB; }` (`0x002E52A9`-`0x002E52B9`);
+- else, when `d > 0`, `(record[+0x0C] & 0x10) == 0` and `record == 0x00264010(-1)`:
+  `d = max(0x002E8000(record), d)` (`maxss xmm0, xmm6`, `0x002E52BE`-`0x002E52DA`);
+- `context[+0xEC] = d` (`0x002E52E2`) and, on the way out, `record[+0x0C] = record[+0x0C] & 0xEF` (`0x002E5353`).
 
 ### The mask word
 
@@ -384,7 +455,6 @@ the body's mask word `+0x110` (`0x002E9BB0`, `0x002EC5B0`) and, for a negative `
 | `+0x018` | `u64[2]` | pairBits | the pair bitmap the walk `0x003DAB50` remembers, one bit per walk step (`0x003DAB91`, `0x003DAC0B`), tested at `0x003DABD8` and rewritten at `0x003DABE8` / `0x003DABFF` |
 | `+0x030` | `f32[4]` | position | start of the placement (placement `+0x00`); `{0, 0, 0, 1.0}` at allocation (`0x00380B80`) |
 | `+0x040` | `f32[4]` | orientation | the heading's direction pair, `+0x44` = 0, `+0x4C` = 1.0; `{0, 0, 1.0, 1.0}` at allocation (`0x00380B80`) |
-| `+0x050` | `f32[4]` | placement20 | four 1.0 at allocation (`0x00380B80`) |
 | `+0x060` | `f32[4]` | groundTint | vertex colours of the type-2 polygon underfoot, blended by `0x00231A90`; `0x0209A3A0` without one; four 1.0 (white) at allocation (`0x00380B80`) |
 | `+0x070` | `f32[4]` | displacement | the cell solver's push of the last move |
 | `+0x080` | `u8` | cellClass | the kind the floor overrides test (`0x00230A40`); its word is -1 at allocation (`0x00380B80`) |
@@ -408,8 +478,8 @@ the body's mask word `+0x110` (`0x002E9BB0`, `0x002EC5B0`) and, for a negative `
 | `+0x0EC` | `u8` | pushed | a pair pushed this body this tick |
 | `+0x0ED` | `u8` | contacts | counted by the pair resolver for each pair that moves the body |
 | `+0x0EE` | `u8` | soleMover | 1 when the body took a pair's whole push, cleared when a push was split |
-| `+0x0EF` | `u8` | pushSummary | set by `0x002E5380` from `+0xEC`, `+0xE8` and `+0xEE`; cleared with the accumulators |
-| `+0x0F0` | `f32` | radiusA | ellipse radius |
+| `+0x0EF` | `u8` | pushSummary | set by `0x002E5380` from `+0xEC`, `+0xE8` and `+0xEE`, with a non-zero mode only: 1 when `+0xEC` is non-zero, `+0xE8` is exactly 0.0 and `+0xEE` is non-zero, else 0 (`0x002E53AB`-`0x002E53D8`); cleared with the accumulators, though `0x003DA9F0` itself does not write it |
+| `+0x0F0` | `f32` | radiusA | ellipse radius; -1.0 on a freed body (`0x003DADA4`) |
 | `+0x0F4` | `f32` | radiusB | ellipse radius; -1.0 on a freed body |
 | `+0x0F8` | `f32` | heading | the ellipse's angle |
 | `+0x0FC` | `f32` | margin | added to the separation |

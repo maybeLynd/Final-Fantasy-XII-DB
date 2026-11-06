@@ -27,7 +27,8 @@ that moves only 0 to 1 (`pre_z0000` line 242) and then to 2 (`bhm_d01` line 307,
 
 Map scripts often test the counter once in `init` and keep the answer in a file variable. Giving a test of a file
 variable the counter bounds of that value's stores (three passes to a fixed point) gives: raises or keeps 194,
-lowers 33, unguarded 1,530, may lower 2. With reachability, the story writes are:
+lowers 33, unguarded 1,530, may lower 2. With reachability, the 361 writes in story scripts are as below; the other
+1,398, in the `evt_t` developer scripts, are all reached (1,322 unguarded, 43 raise or keep, 33 lower):
 
 | Verdict | Reached | Unreachable |
 |---|---:|---:|
@@ -35,10 +36,11 @@ lowers 33, unguarded 1,530, may lower 2. With reachability, the story writes are
 | unguarded | 128 | 80 |
 | may lower | 2 | 0 |
 
-The 80 unreachable unguarded writes are seven copies of one hunt-board dispatch (`掲示板.talk` of `alc_f04`,
-`byu_a18`, `fon_b01`, `nac_a02`, `var_a14`, and the talks of `rbn_a14` and `rbn_a16`) that follows an unconditional
-jump with no label before it, plus `byu_a18` `配置監督.main` lines 821 and 833. At the bytes, `fon_b01`'s copy starts
-at `0C332` and no jump in the function targets it.
+The 80 unreachable unguarded writes are six copies of one hunt-board dispatch (`掲示板.talk` of `alc_f04`, `byu_a18`,
+`fon_b01`, `nac_a02`, `var_a14`, and the talk of `rbn_a14`) that follows an unconditional jump with no label before
+it, plus `byu_a18` `配置監督.main` lines 821 and 833. The seventh copy, in the talk of `rbn_a16` (lines 1341 to 1377),
+sits under `シナリオフラグ > 80`, so its 13 writes are the 13 unreachable ones that raise or keep the counter. At the bytes,
+`fon_b01`'s copy starts at `0C332` and no jump in the function targets it.
 
 The 128 reached unguarded writes were read by hand: what starts the function, which other variables guard it, and
 which maps lead in. 127 raise or keep the counter. One may lower it: `mrm_e01` main line 551 (2150) runs on the first
@@ -54,17 +56,18 @@ rest on how the maps connect:
     menu `evt_t0081`, which nothing shipped loads.
   - No write above 4300 in another area runs at that counter: `var_z01` stores 5150 only when entered at 5100 or more.
 - `mic_c01` main line 233 stores 340 on every entry into Terminus No. 4, before any test. From counter `0x0155`
-  on, `mic_b02`'s `Map_Director` closes floor group 2, which holds both polygons of its exit to `mic_c02`, so the
-  maps past it are entered only below `0x0155`.
+  on, `mic_b02`'s `Map_Director` closes floor group 2 (`counter >= 0x0155`, the `else` of `init` line 403), which
+  holds both polygons of its exit to `mic_c02`, so the maps past it are entered only below `0x0155`.
 - `mrm_c01` main line 749 (2100), the first entry into the Stilshrine boss room. The link `mrm_b02` to `mrm_d02`
   (line 359) lies in a walkable piece of its own in `mrm_b02`'s collision mesh, which only the arrival from
   `mrm_d02` stands in, so the d-wing is first entered through `mrm_c01`.
 - `rui_c01` main line 210 (3200) and `rui_d01` main line 225 (3150), the first entries into two Sochen Cave Palace
   boss rooms. Before them the party can reach the Feywood and Balfonheim, but no further:
-  - below `0x1040`, `mfr_a04`'s `Map_Director` closes floor group 1 so that no entrance joins the exit into
-    `mfr_b01`, the only way on to the Feywood's inner maps and Giruvegan;
-  - for counters 1 to `0x0FA0`, `var_a01`'s `EventDirector` closes floor group 1 so that only the arrival from
-    `var_a02` joins the exit into the town;
+  - below `0x1040`, `mfr_a04`'s `Map_Director` closes floor group 1 (`counter < 0x1040`: the `main` line 1108
+    switch cases `lt(0x1004)` and `lt(0x1040)`) so that no entrance joins the exit into `mfr_b01`, the only way on
+    to the Feywood's inner maps and Giruvegan;
+  - for counters 1 to `0x0FA0`, `var_a01`'s `EventDirector` closes floor group 1 (`counter && counter <= 0x0FA0`,
+    `init` line 1371) so that only the arrival from `var_a02` joins the exit into the town;
   - the airship into Balfonheim needs a destination stored only at `0x1004` or more, or in Archades.
   - The other writes above 3150 on the maps open before them run only at higher counters: `mfr_a04` touchon line
     1309 at `0x1004` to `0x103F`, and `alc_z01` main line 194 at 2000 or more, while `alc_z01` is entered only at
@@ -78,11 +81,18 @@ teleport arrival entrance at `+0x52` (`gettelepoindex`, `0x00342490`), the save 
 `0x00343010`) and the anchor entrance at `+0x7A` (`getanchorindex`, `0x00343470`, `movsx ebx, word [rdx+0x7a]` at
 `0x0034348E`).
 
+`getanchorindex` reads the zone image through the first pointer of actor manager 0 (`0x00263FF0(0)`, `0x02098E10`) and
+answers 0 when that pointer is null (`0x0034347D`-`0x0034348C`); it writes the answer through `0x0026B4E0` (`0x003434A1`).
+
 The image's `+0x70` word points to five list offsets. Each list holds a count at `+0` and `0x20`-byte entries from
 `+0x10`; `0x00264CA0` maps kind 3 to list 2 and kind 8 to list 4. `getcrystalid(3, 0)` returns entry 0's `u16` at
 `+0x14` of list 2 (`0x00352CB5`). `getanchorid(8, 0)` returns entry 0's `u16` at `+0x16` of list 4 (`0x00353305`).
 `setposbynaviicon` places the actor at the same entry for kinds 3 and 8; kinds 6 and 9 go to the global table
 reader `0x003DFAC0` instead.
+
+`getanchorid` (`0x003532D0`) pops the index and then the kind (`0x003532E8`, `0x003532F2`) and answers the `u16` at
+`+0x16` of the entry `0x00264CA0(kind, index)` returns, or -1 when it returns null (`0x00353303`-`0x0035330B`); it
+writes the answer through `0x0026B4E0` (`0x00353320`).
 
 The census finds 460 calls in 83 zone scripts, all reached:
 
@@ -114,10 +124,13 @@ key's crystal to its own map at that map's `+0x52`. The `default` arm (`pla_a06`
 ### Exits that choose a destination
 
 `mapjump` (`0x008D`) takes (field, entrance, mode). 7,356 calls are parsed, the verb table's `us_calls`. An exit is listed when its function
-reaches two or more (field, entrance) pairs under different conditions; one row per branch. A variable argument is
+reaches two or more (field, entrance) pairs under different conditions; one row per branch.
+
+A variable argument is
 followed to its stores: a script variable within its script, `scratch1` within its script (it is cleared on every
 field change), and `scratch2` (class 5, `0x02099FF0`) within the zone scripts of one persistence group (`0x0026DB30`
-clears it when the group changes).
+clears it when the group changes, `0x0026DC11`, and on an arrival whose transition mode has bit `0x8`, a teleport,
+`0x0026DC2E`).
 
 `nowmap()` is the field the script runs in. Many zone scripts carry one director for a whole area, with a case per
 map, so a line under a `nowmap()` test that excludes the script's own field id runs in another map's copy. 178
@@ -158,7 +171,8 @@ Two examples. The aerodrome desks of `alc_e01`, `byu_b01`, `nac_b01`, `rbn_b01` 
 12 to `byu_b01` (791) entrance 7; 9, 11 and 13 to `var_b01` (797) entrance 7.
 
 The Draklor north elevator (`dor_a01` `北ＥＶ実処理`) reads its floor from `file_var_s6_1`. Below counter `0x0D48`
-floor 67 is `dor_a12` (1019); from `0x0D48` it is `dor_d01` (1054). Floors 66, 68 and 69 split the same way.
+floor 67 is `dor_a12`, from `0x0D48` `dor_d01`: `file_var_s6_2 = counter < 0x0D48 ? 1019 : 1054` (`dor0101` line
+1944). Floors 66, 68 and 69 split the same way.
 
 #### Destinations the call computes
 
@@ -205,12 +219,20 @@ The engine calls that conditions test read as follows:
   calling actor: a trigger rect (class 1) tests its party-slot mask `+0x60`, an actor with a contact box (class 3)
   its contact mask `+0x100` (filled by the touch test `0x0025C230`, `0x0025C6A1`); any other class gives 0. The handler
   passes `0x002677F0` a 0 that it pushes and pops (`0x0033FA5D`-`0x0033FA65`); a non-zero one would test `+0x228`.
+  - `0x002677F0(actor, flag)` reads the controlled character's actor record, `0x003588B0(0x003590D0())`, and gives 0
+    when that record is null (`0x00267815`) or its party-slot byte `+0x12` is outside 0-3 (`0x0026781E`). The bit it
+    tests is the bit value `1 << slot` (`0x00267829`), in the calling actor's block `[actor+0xB8]` (`0x0026783C`,
+    `0x0026787D`); the class is the actor's byte `+0x03` shifted right by 5 (`0x0026782B`-`0x0026782F`).
 - `keyscan(m)` (`0x0015`, `0x0034E260`) is 1 when a button of the mask `m` is held: `m & 0x0036FF70()`, the held word
   after the button map (`0x02AD9E04`, [controls](../Controls-And-Input/controls.md)).
 - `getucstatus()` (`0x014D`, `0x00343690`, `0x00265680`) is 1 while the party is under player control: manager slot 0
   active and every active manager ready, with no text window holding the field (`0x002E0540`,
   [EBP text sections](../EBP-Script-Files/ebp-text-sections.md);
   [player movement](../Movement-And-Pathfinding/player-movement.md)).
+  - `0x00265680` answers 1 only when manager 0 is live (`0x02098E20` bit `0x1`) with `0x02098E21` bit `0x1` and `0x02098E20`
+    bit `0x80` clear, every live manager's byte `+0x17` holds bits `0x1` and `0x2` (`0x002656C0`-`0x002656D2`),
+    `0x002E0540()` is 0 and `0x00265720()` finds bytes `+0x14`, `+0x15` and `+0x16` non-zero on every live manager;
+    any other case gives 0.
 - `get_talk_run_status()` (`0x057C`, `0x003456C0`) returns `0x02099DB4`, the world locks held by running talks (the sum of
   the managers' `+0x1E0` counters); the talk button works only while it is 0
   ([script requests](../Scripts-And-Script-Commands/script-requests.md)).

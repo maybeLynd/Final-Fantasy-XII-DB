@@ -16,9 +16,9 @@ addresses: "0x002826F0, 0x00282A40, 0x00282F10, 0x00282EE0, 0x003FCAD0"
 
 ### The bitmap
 
-The menu root `[0x0209AC30]` keeps one byte per id from `+0xB2E`, with bit n for the party member whose record `+0x60`
-is n (`0x002828A7`). An id becomes its byte index the same way in all three functions that touch it (`0x0028281F`-`0x00282848`,
-`0x00282F10`):
+The menu root `[0x0209AC30]` keeps one byte per id from `+0xB2E`, with bit value `1 << n` for the party member whose
+record `+0x60` is n (`0x002828A7`). An id becomes its byte index the same way in all three functions that touch it
+(`0x0028281F`-`0x00282848`, `0x00282F10`):
 
 | Ids | Index |
 |---|---|
@@ -29,6 +29,9 @@ is n (`0x002828A7`). An id becomes its byte index the same way in all three func
 
 `0x00282F10(id, member)` answers the member's bit. No other function in the image has a memory operand with the
 displacement `0xB2E`.
+`member` is the member's record: it tests bit value `1 << +0x60`, that field read as a byte, in the id's byte and
+answers 1 when it is set and 0 otherwise (`0x00282F4F`-`0x00282F6E`); the three ranges are tested unsigned
+(`0x00282F13`-`0x00282F48`).
 
 ### Building it
 
@@ -59,6 +62,22 @@ So an equipment bit means "cannot wear" and an ability bit means "has it".
 | equipment worn by the member | - | the member's own mark, `0x002C9B30(member, 5) + 1` |
 | magick or technick | clear | 8 |
 | magick or technick | set | the member's own mark |
+
+`0x003FCAD0(list, row, first, last)` works on the mark widgets `[list + 0x10]` from `first` to `last`
+(`0x003FCAE0`-`0x003FCB22`):
+
+- It gives every one frame 7 at `+0x0A`, clears bit `0x1` of `+0x08` and copies frame 7's palette byte, byte `+0x3F`
+  of the mark's group `+0x20`, to `+0x39` (`0x003FCB00`-`0x003FCB1C`). A row whose id `+0x08` is `0xFFFF` stops there
+  (`0x003FCB24`-`0x003FCB2E`).
+- For each of the nine member slots (`0x00282DF0`) that `0x00282FA0` accepts, a member number 0-5 at `+0x60` and record
+  bit `0x2` clear, it sets bit `0x1` of mark `first + slot`, held at `last` (`0x003FCB50`-`0x003FCB81`); the mark index
+  moves on for every slot (`0x003FCBEF`).
+- It asks `0x0035D330(1, id << 16)` for the query record and `0x00282F10` for the bit (`0x003FCB85`-`0x003FCB9D`). Kind 6
+  at the record's `+0x00` is equipment; kinds 8 and 9 are the magicks and technicks, which first get frame 8; other
+  kinds keep frame 7 (`0x003FCBA2`-`0x003FCBBC`).
+- Equipment runs the worn test whether its bit is set or not, over the five words `+0x9A + 4 x k` of the member
+  record (`0x003FCC88`-`0x003FCCBA`); a match gives the member's own mark (`0x003FCBC5`-`0x003FCBE4`). Each frame it writes
+  takes its palette byte from the group's record `frame x 8 + 7` (`0x003FCBB5`, `0x003FCC65`, `0x003FCC74`, `0x003FCBDC`).
 
 `0x002C9B30(n, field)` reads field 0-8 of member n's row of seven `0x10`-byte rows at `0x009170C0`, clamping n to 0-6.
 

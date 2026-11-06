@@ -124,7 +124,7 @@ spc_z0000	技読み込み	技読み込み終了待ち	2	0x0074E	204	-	return	-	-
 spc_z0000	メッセージ監督	init	1	0x0074F	213	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	メッセージ監督	message	1	0x00753	218	-	wait	60	-	-	60 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 spc_z0000	メッセージ監督	message	2	0x00759	219	-	openskillnamewindow_spattack	file_var_s0_4	-	-	-	-	-		01 verb-table.tsv
-spc_z0000	メッセージ監督	messageterm	1	0x0075C	224	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	メッセージ監督	messageterm	1	0x0075C	224	the run began at the top of the function or continued from message, whose step at line 219 runs on from its last instruction 0x00759 into this function's first instruction 0x0075C	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	target00	init	1	0x0075D	233	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	target00	方向固定	1	0x00761	238	-	sysSystem	0x0384	nothing: SYSTEM pops and discards 0x0384	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	target00	方向固定	2	0x00765	239	-	dir	0	this actor, turned to facing 0	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md

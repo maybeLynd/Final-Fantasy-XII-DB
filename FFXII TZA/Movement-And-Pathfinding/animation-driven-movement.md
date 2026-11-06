@@ -21,15 +21,26 @@ gap is, and a swing closes the angle and stops when it is closed.
 
 Authored command `0x1A` ([authored
 commands](../Graphics/authored-presentation-commands.md))
-is handled by `0x00520C10`: when the current render record (`0x00422D50`) has a motion section
+is handled by `0x00520C10`: when the record's presentation entry (`0x00422D50`) has a motion section
 (`+0x370`) it calls `0x003E6340(record, mode)` on its own record argument with the command's word
-`+2` (the gate reads the current record, the request is built on the argument). The builder returns at
+`+2`, and it returns 0 either way (`0x00520C40`). The builder returns at
 once without a list owner (`0x003E6E60` = 0).
+
+`0x00422D50` is called with the same record argument (`0x00520C20`): it answers null when the record's
+`+0xC4` is -1 (`0x00422D56`) and otherwise tail-jumps to `0x0051B9E0` with the pointer at `+0xDA8` of
+`0x0020E600` of the record's `+0x10` and the record's `+0xC4` (`0x00422D6A`-`0x00422D84`), so the gate and
+the request both start from the argument.
 
 Otherwise it asks the unit for a view: `0x0041F2F0(record,
 0x0C, view)` zeroes 64 bytes, stamps `+0x00` with the record's word `+0xCC` and `+0x30` with its
 `+0x110` (both overwritten: the builder zeroes the view again), and hands the view to the battle
 unit's view builder (`0x002ED500` → `0x0031ADB0`) with selector bits `0x4` and `0x8`.
+
+The `+0x00` stamp is the word sign-extended to a dword (`0x0041F31B`). The view builder is reached by
+a tail jump with the record's `+0x108` actor as its first argument (`0x0041F325`-`0x0041F32C`): a null
+actor gets the 64 bytes zeroed again and nothing more (`0x002ED503`-`0x002ED52A`); any other goes through
+`0x0031B4B0`, which hands the unit `0x00263E30(actor)`, the selector and the view on to `0x0031ADB0`
+(`0x0031B4C8`-`0x0031B4DF`).
 
 Bit `0x4` writes the world position of the actor behind the unit's target handle `+0x2C` (`0x00265020`)
 into the view's `+0x10`-`+0x18` while the battle-state word `0x02089340` has bit `0x10`.
@@ -54,7 +65,8 @@ reach point unset the vector points at the world origin and only the turn acts).
 
 The relative heading is the angle from the record's facing frame
 `+0x180` to the target position (`0x00424370`, an `atan2` taken only when both transformed x and z
-are non-zero; a target on a frame axis leaves the result undefined); mode `0x0A` with record byte `+0x2AF` = 3 and a
+are non-zero, `atan2f(x, z)` at `0x00424436`; a target on a frame axis gives 0.0, the zero loaded at
+`0x0042441C`); mode `0x0A` with record byte `+0x2AF` = 3 and a
 non-negative heading takes the long way round (heading minus `2pi`). The request goes to the
 record's list at `+0x550` (`0x003AED70`).
 
@@ -76,6 +88,10 @@ Struct MoveTurnRequest  (`0x20` bytes, on the builder's stack):
 `0x60` bytes at `[0x02B3F530]` once ([arena 6](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md#the-arenas), `0x3000` bytes), clears every entry's active
 byte, and zeroes the serial `0x02B3F538` and the two switches `0x02B3F53C` and `0x02B3F540`. The pool is
 global; each render record owns a list at `+0x550` whose entries are linked through the pool.
+
+The allocation (`0x0036C1D0(6, 6)`, `0x0036A100(0x3000)`, `0x0036C140()`) and the clear of the active
+bytes run only while `[0x02B3F530]` is null (`0x003AF2B4`); the serial and the two switches are zeroed
+on every call (`0x003AF2FD`-`0x003AF30B`).
 
 `0x003AED70(list, request)` refuses, returning 0, while the first switch `0x02B3F53C` is set, the
 list's `+0x28` is non-zero (`0x003AF320` sets it), or the list's `+0x00` is zero; it then takes the
@@ -119,8 +135,15 @@ motion starts on the record (`0x00423B10`, after a successful `0x00424D80`), the
 the resource handle `+0x68` go to the record's `+0xE8`/`+0xD8` with `+0xF0`/`+0x100` zeroed, or,
 when `0x004233D0(record, motion)` finds no slot (-1), to `+0x100`/`+0xF0` with the first pair left
 alone. `0x00423B10` also resolves the bases into `+0xE0`/`+0xF8` (`0x003AB7F0` of the handles) and fills the
-list's `+0x08`/`+0x10` directly; `0x003E6E60`, with a current record (`0x00422D50`), re-derives them
+list's `+0x08`/`+0x10` directly; `0x003E6E60`, with a presentation entry (`0x00422D50`), re-derives them
 from `+0xE0 + +0xE8` and `+0xF8 + +0x100` each time it is asked.
+
+Each re-derived pointer is the low 32 bits of `0x0020E600` of the dword (the base `[0x01F83530]` plus
+the dword) added to the offset in 32 bits and sign-extended (`0x003E6E79`-`0x003E6EAA`); a pointer
+whose `0x0020E600` gives 0 is left as it was. `0x003E6E60` returns the table address formed the same
+way (`0x003E6ECA`-`0x003E6EDB`), or 0 without a presentation entry, when `0x0020E600` of `+0xE0` gives 0
+or when `+0xE8` is -1 (`0x003E6E71`, `0x003E6EBF`-`0x003E6EC8`). That result is the list owner that
+`0x003E6340`, `0x003E68B0`, `0x003E6A70` and `0x003E6EF0` test.
 
 ```
 table[mode]   u32   offset of the profile from the table (a 0 is not tested: the consumer reads the table head as the profile)
@@ -144,8 +167,13 @@ speed curve   u16[moveFrames]
 ### The step, once a frame
 
 The actor update (`0x0025DF00`, below) calls `0x003E6EF0(record, &move, &turn, maxStep)`, which, with a
-list owner, runs `0x003AF220`: `0x003AEF90` over the list, then the clamp: the move is normalised
-(`0x00380800`) and scaled, `w` included, by `min(maxStep, |move|)`. `0x003AEF90` zeroes both outputs, returns at once
+list owner, runs `0x003AF220` on the list `+0x550`: `0x003AEF90` over the list, then the clamp: the move is normalised
+(`0x00380800`) and scaled, `w` included, by `min(maxStep, |move|)`. Without a list owner `0x003E6EF0`
+writes neither output (`0x003E6F18`). `|move|` is the length over x, y and z (`0x003AF24A`-`0x003AF271`),
+and the clamp is skipped when the list's head `+0x18` is null after the walk, `[list + 0x18] == 0`
+(`cmp qword ptr [rbx + 0x18], 0`, `0x003AF23E`).
+
+`0x003AEF90` zeroes both outputs, returns at once
 while the second switch `0x02B3F540` is set or the list's `+0x00` is zero, and for each entry:
 
 1. its profile is the table's entry for the mode (`table + table[mode]`), or for mode `0x16` the
@@ -168,6 +196,8 @@ the request's angle is closed. The last entry written wins `turn` outright; `mov
 
 `0x003E68B0` reports whether the list is enabled and non-empty (`0x003AEF20`); `0x003E6A70` returns bit `0x1`
 when any entry has its turn byte set and bit `0x2` when any has its move byte set (`0x003AEF50`).
+Both answer 0 without a list owner (`0x003E68C1`, `0x003E6A81`), and `0x003AEF50` answers 0 for a list
+whose `+0x00` is zero or whose head `+0x18` is null (`0x003AEF52`-`0x003AEF5D`).
 
 ### The actor update
 
@@ -186,6 +216,16 @@ pass-through vector when the bit is set ([movement step](heading-speed-to-positi
 facing (`0x00265200` + `turn.y` → `0x0026B6A0(actor, angle, 0)`) and `turn.x` to the pitch (`0x002651C0` +
 `turn.x` → `0x0026B520`), instead of the steering modes ([facing and
 steering](facing-and-steering.md)).
+
+`0x0026B6A0` and `0x0026B520` fold the sum with the one-pass facing wrap and write by the actor's class
+(byte `+0x03` shifted right by 5). For class 1 they write the movement context `[+0xB8]` at `+0x38`
+and `+0x48` (`0x0026B706`-`0x0026B712`) or at `+0x54` and `+0x58` (`0x0026B586`-`0x0026B592`); for class 3
+they jump to `0x002E5FB0` or `0x002E5F90` with the third argument the integrator gave them, 0
+(`0x0026B701`, `0x0026B581`; `0x002E579A`, `0x002E57BE`); any other class gets no write (`0x0026B6F9`,
+`0x0026B579`).
+
+`0x002651C0` reads the pitch from the same context: `+0x54` for class 1, `+0xAC` for
+class 3, and 0.0 for any other class (`0x002651C0`-`0x002651F1`).
 
 The second output float is the heading and the first the
 pitch, which is why the dead first axis costs nothing. The integrator returns at once for a
@@ -271,8 +311,11 @@ each entry's counter, armed bytes and two accumulators.
 - The step is proportional to the distance at the command, shaped by the speed curve, clamped per
   frame by the actor's smaller collision radius; it is not root motion, and the bone data does not
   contain it.
-- A command with no target still turns nothing and moves nothing; the target is whatever the unit's
-  target handle names when the command fires.
+- The target is whatever the unit's target handle names when the command fires.
+- With no target, or while battle-state bit `0x10` is clear, the view's target position stays 0
+  (`0x0031AE6D`-`0x0031AEA7`), and the builder tests only that it differs from the record's position
+  (`0x003E6395`-`0x003E63BB`): the character turns toward the world origin (x 0, z 0), and for modes 3, 4
+  and `0x10` also steps away from it. Only a character standing at x 0, z 0 queues nothing.
 - 128 requests exist for the whole scene; a 129th is dropped silently, and the first switch or a
   disabled list refuses requests while the second switch only freezes the step.
 - Only the newest request turns; every older entry's turn byte is cleared at the take.
@@ -280,8 +323,7 @@ each entry's counter, armed bytes and two accumulators.
   pitch.
 - Knockback is the second producer; a port that replays only authored commands loses the slide
   and the turn toward the attacker.
-- Position changes here are part of combat spacing; two machines playing different animations
-  diverge in position.
+- Position changes here are part of combat spacing.
 
 ## Related
 

@@ -38,7 +38,15 @@ Each handler is named by an RVA after the unwind codes:
 | `__C_specific_handler` | stub `0x00861ED8`, slot `0x008C29F0` (`VCRUNTIME140.dll`) | 9 | `__try` / `__except` scopes |
 
 `0x00808F64` calls `__GSHandlerCheckCommon` and then `__CxxFrameHandler3` with the same four arguments,
-so its records carry a `FuncInfo` RVA exactly like the 4,377. The stack cookie itself is on
+so its records carry a `FuncInfo` RVA exactly like the 4,377. `__GSHandlerCheckCommon` (`0x00808BC8`,
+`0x00808F97`) gets the frame, the dispatcher context and `handlerData + 4`, where the GS data follows the
+`FuncInfo` RVA.
+
+The `__CxxFrameHandler3` call (stub `0x00861EB4`, `0x00808FC3`) then happens only when the dword at
+`handlerData + 4` has bit `0x2` during an unwind (`exceptionFlags & 0x66` non-zero) or bit `0x1` while
+dispatching (`0x00808F9C`-`0x00808FB5`); otherwise the handler returns 1, `ExceptionContinueSearch` (`0x00808FA3`).
+
+The stack cookie itself is on
 [image-hardening.md](image-hardening.md).
 
 ### FuncInfo and its three maps
@@ -72,7 +80,7 @@ itself, named directly as an action.
 | `mov rcx,[rdx+disp] ; add rcx,imm ; jmp destructor` | 288 |
 | `push rbp`, a frame from `rdx` (`mov rbp,rdx`), then calls, tests or loops | 346 |
 | `jmp 0x00861EAE` | 86 |
-| other short forms: 53 offset a global (`lea rcx,[rip+g] ; add rcx,imm`), 32 end in `jmp [import slot]` | 94 |
+| other short forms: 53 offset a global (`lea rcx,[rip+g] ; add rcx,imm`), 32 end in `jmp [import slot]` (12 of them after `lea rcx,[rdx+disp] ; add rcx,imm`), 8 are `lea rcx,[rdx+disp] ; add rcx,imm ; jmp destructor`, and one is the `__std_terminate` stub `0x00861EAE` itself | 94 |
 
 [The cleanup funclet table](exception-handling-cleanup-funclets.tsv) lists all 3,820, read from every
 `FuncInfo` unwind map, with the form, the object each points `rcx` at (a local `rdx+N` of the parent's
@@ -91,7 +99,9 @@ bytes. The common tail-jump targets:
   static whose constructor threw. The guards are on
   [lazy-statics-and-one-time-init.md](lazy-statics-and-one-time-init.md).
 - `0x00715C70`, from 352: frees the buffer at `+8` of a post-effect library string unless it is the
-  shared empty value `0x02EA1720`.
+  shared empty value `0x02EA1720` or null (`0x00715C8D`, `0x00715C92`). The block it frees starts at
+  `buffer - 8` (`0x00715C97`) and goes back through `0x006DA8A0` with the library's allocator `[0x01F3BA68]`
+  (`0x00715CA2`); then `+8` is set to null (`0x00715CA8`).
 - `0x00861EAE`, from the 86 single-`jmp` pads `0x008A26E4` to `0x008A5B1F`: the `__std_terminate` stub
   (`jmp [0x008C2A78]`). An exception that reaches one of these ends the process.
 - `0x001A2830`, from 74: frees an EASTL buffer (begin `+0`, capacity end `+0x10`) through slot 3 of
@@ -120,10 +130,14 @@ and returns the address the parent resumes at.
 
 - 63 rethrow: they end in `call 0x00861ECC` (`_CxxThrowException`) with two null arguments.
 - 8 return a resume address. `0x008968C8` calls `basic_ios::setstate` (slot `0x008C26A0`) on the
-  stream and returns `0x00194C5E`, inside its parent `0x00194B00`.
+  stream and returns `0x00194C5E`, inside its parent `0x00194B00`. The stream is the one held at frame `+0x70`
+  (`0x008968D5`), and the arguments are the state `0x4` (`badbit`) and the reraise flag `true` (`0x008968E3`,
+  `0x008968E6`), so the stream rethrows when its exception mask covers `badbit`.
 - `0x00896BE0`, another of the 8, is the catch-all handler of the key-binding writer `0x001993B0`, which
-  writes a `[Keyboard` section through a wide file stream: it prints `Catch exception when writing
-  keymap.ini` (`0x008F39A0`) to standard output and resumes the writer at `0x00199763`.
+  writes a `[Keyboard` section through a wide file stream: it prints
+  `Catch exception when writing keymap.ini` (`0x008F39A0`) to standard output and resumes the writer at
+  `0x00199763` (`0x00896C11`). The text goes to `std::cout` through the inserter `0x00194B00` (`0x00896BFB`),
+  and `std::endl` (`0x00194EB0`, `0x00896C0A`) ends the line.
 - `0x00896993` frees a `std::string` buffer before rethrowing; see
   [msvc-containers.md](msvc-containers.md).
 - Of the 63 in the first group, 22 first free a half-built block through `0x00210EB0`, and 16 release
@@ -185,6 +199,22 @@ Unwind-map entries reach them through 12-byte funclets of the form `lea rcx,[rdx
 `0x008968B0` for `0x001952E0`, `0x00896900` for `0x00195310`, `0x008982F0` for `0x001AAF20` and `0x008982FC` for
 `0x001AAF50`. Their parents are character stream routines. `0x00194B00` calls `sputc`, `sputn`, `_Osfx`
 and `uncaught_exception` from `MSVCP140`, and `0x001DDC40` calls `_Ipfx`, `sgetc` and `snextc`.
+
+`0x00194B00(stream, text)` is the `const char *` inserter, and it also calls `flush` and `setstate`. It
+measures `text` (`0x00194B2E`-`0x00194B47`) and pads with `width - length` fill characters when the width at
+the stream's virtual base `+0x28` is larger (`0x00194B55`-`0x00194B5F`). Its sentry locks the stream buffer
+`+0x48` through slot `+0x08` (`0x00194B7B`) and, while the state `+0x10` is 0, calls `flush` on a tied stream
+`+0x50` that is not the stream itself (`0x00194B9C`).
+
+With a non-zero state it goes straight to `setstate(0x4)` (`0x00194BB9`). Otherwise, unless the adjust field
+`flags & 0x1C0` is `0x40` (left), it writes the fill `+0x58` first with `sputc` (`0x00194BE7`), then the text
+with `sputn` (`0x00194C0D`), then any fill still due (`0x00194C2E`). A `sputc` that returns -1 or a short `sputn`
+gives the state `0x4` (`0x00194C43`, `0x00194C39`). This good-sentry path ends by setting the width to 0
+(`0x00194C53`); the catch resume at `0x00194C5E` comes after that store.
+
+It passes the state to `setstate` (`0x00194C7B`); the catch funclet `0x008968C8` resumes there at `0x00194C5E`.
+On the way out it calls `_Osfx` unless `uncaught_exception` is true (`0x00194C82`-`0x00194C8F`), unlocks the
+buffer through slot `+0x10` (`0x00194CAB`) and returns the stream (`0x00194CAF`).
 
 So the bodies are the destructor of the stream sentry these routines construct at frame `+0x28`.
 They are listed in [the sentry destructor clones table](exception-handling-bk6-sentry-base-destructor-clones.tsv).

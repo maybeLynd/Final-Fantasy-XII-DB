@@ -16,7 +16,8 @@ field name, every asset loads through the plain path.
 
 Every `.phyre` file starts with a cluster header whose marker is `RYHP` and whose size `m_size` is
 84 in every shipped file; the packed namespace follows at byte 84 and is `m_packedNamespaceSize`
-bytes long. `0x0059E070` reads the header through `0x0059A3B0`, then the namespace.
+bytes long. `0x0059E070` reads the header through `0x0059A3B0`, then the namespace; `0x0059A3B0` reads both,
+the namespace through `0x0059A6F0` (`0x0059A5BF`, `0x0059A5D7`), and `0x0059E070` reads neither itself.
 
 The other half is the executable's own registrations: every reflected member is registered by one
 of four constructors (`0x00632960` plain, `0x00632A10` array, `0x00632A70` fixed-size array, `0x00632BE0`
@@ -544,7 +545,7 @@ object `0x02CBC018` (`0x00602AD1`) and the default sampler state `0x02CBC368` (`
 | class records with `w7` bit `0x1` | 0 |
 | `w7` values | 0 (523,918), 8 (66,379), 32 (49,068), 2 (38,322), 12, 34 and 40 (2,184 each), 20 (5) |
 | fixed-size arrays (`w5` non-zero) | 16 pairs, counts 2 to 23 |
-| class names with a registered descriptor of that name | 177 of 177 (`PBase` and `PClassDescriptor` from `0x006318A0` and `0x00631C40`) |
+| class names with a registered descriptor of that name | 177 of 177 (`PBase` and `PClassDescriptor` from `0x006318A0` and `0x00631C40`: `0x006318A0` builds `PBase` at `0x02CF8270` with size 1, alignment 1 and no parent (`0x00631913`-`0x0063194A`); `0x00631C40` builds `PClassDescriptor` at `0x02CF8470` with size `0x100`, alignment `0x10`, the parent and adjustment its initialiser `0x00163E30` gives, `PBase` and `0x30`; both store the name, the default namespace `0x01F2E330` at `+0x70` and the next index from `0x02CF8260`, building that namespace first when its guard `0x02CF94EC` shows it unbuilt (`0x006319E4`, `0x00631DA6`)) |
 | pairs registered statically under that class | 527 of 527 |
 | member records whose `w4` & `0x7FFFFFFF` equals the run-time attribute word | 2,192,621 of 2,192,621 |
 | static member registrations in the executable | 895 (680 plain, 165 array, 29 fixed-size, 21 enum) over 278 descriptors |
@@ -556,7 +557,7 @@ object `0x02CBC018` (`0x00602AD1`) and the default sampler state `0x02CBC368` (`
 
 | File | Rows | What it lists |
 |---|---:|---|
-| [phyre-field-schema-field-schema.tsv](phyre-field-schema-field-schema.tsv) | 897 | registered members: class, member, offset, type, attribute word, registration site |
+| [phyre-field-schema-field-schema.tsv](phyre-field-schema-field-schema.tsv) | 897 | registered members: class, member, offset, type, attribute word, registration site; 895 rows are the static registrations, and two give only the site and caller of the calls the array constructor `0x00632A10` (`0x00632A41`) and the dynamic-member builder `0x00632B30` (`0x00632B89`) make on `0x00632960` |
 | [phyre-field-schema-accessor-fields.tsv](phyre-field-schema-accessor-fields.tsv) | 73 | member offsets and widths read from script-accessor adapters |
 
 ## Loader behaviour
@@ -598,16 +599,30 @@ None of these stops the load.
 
 ### Choosing a copy routine
 
-`0x0059D2D0` gives every file member a routine, walking the parent records first:
+`0x0059D2D0` gives every file member a routine, walking the parent records first. A class whose file record is
+missing or declares no members gets no routine (`0x0059D2F4`, `0x0059D303`):
 
 - no matching run-time member: the empty `0x0016D6A0`, so the bytes are skipped;
-- same type, and the run-time width (the type's size, or 8 for a pointer) equals `w3`: `0x00599390`,
-  or `0x00595E70` for a one-byte member that is not an array;
+- same type, and the run-time width (the type's size, or 8 for a pointer or for a kind-2 counted buffer without
+  attribute bit `0x40`, `0x0059D3D2`-`0x0059D418`) equals `w3`: `0x00599390`,
+  or `0x00595E70` for a one-byte member that is not an array (the record's slot `+0x08` gives 0, `0x0059D46A`);
 - same type with a different width, or a fixed-size array whose count differs while offset and
   attribute word match: skipped;
 - different type: the conversion `0x0059A030` returns, or skipped when there is no conversion. `0x0059A030` runs the 144
   conversion registrars `0x005850F0`-`0x00592770` once (guard byte `0x02CA9D91`), then looks the `(source, destination)`
   pair up in the tree they fill ([Image hardening](../Compiler-And-C-Runtime/image-hardening.md)).
+
+The byte argument of `0x0059D2D0` orders that pair: 0 gives (run-time type, file type), any other value (file type,
+run-time type) (`0x0059D39C`-`0x0059D3B2`). Both callers give 1, which `0x0059E070` sets (`0x0059E1DC`, `0x0059E218`).
+
+`0x00599390` and `0x00595E70` take (source base, destination base, desc, context), where `desc` holds the element
+count, the source stride, the destination stride and a byte at `+0xC`. With that byte clear, the source is read at
+the run-time offset `+0x48` and the destination written at `w2`; with it set, the other way round. Each routine runs
+`desc` count times, stepping the two bases by the two strides.
+
+`0x00595E70` copies one byte each time. `0x00599390` copies `w3` bytes with `memcpy` (`0x00861EBA`), and for a fixed-size
+array `w3` times the larger of `w5` and the run-time count `+0x60` (`0x005993F3`-`0x0059940D`). A fixed-size array whose
+count differs while its offset or attribute word also differs is therefore copied at the larger count.
 
 ### Dynamic classes
 
@@ -616,6 +631,21 @@ For a class record with `w7` bit `0x1` and no registered match, `0x0059AC00` tak
 `PClassDescriptorDynamic` (`0x00632E80`). Its file members become `PClassDataMemberDynamic` records
 through `0x006393A0` and `0x00632B30`. A flagged class still without a descriptor returns `0x13`. No
 shipped file sets the flag.
+
+`0x006393A0(descriptor, name, type, attributes, context)` adds one member and returns its record; `0x0059AC00` gives
+it the file member's `w4` bit `0x2` alone as the attributes and context 0 (`0x0059AE57`, `0x0059AE9B`). It returns 0
+when `0x0063A4C0` refuses the member: a null name, a name `0x00597220` already finds in the class or an ancestor, or a
+member without attribute bit `0x2` whose type gives, through its slot `+0x08`, a class descriptor that is abstract
+(flag bit `0x2`) or is this class or derives from it (`0x0063A4D8`-`0x0063A525`).
+
+Otherwise `0x006393A0` takes the offset from `0x0063C630`, allocates `0x60` bytes (`0x00584740`), returning 0 when that
+fails, and builds the record with `0x00632B30`, giving it the attributes with bit `0x1` set and flag 0.
+
+`0x00632B30` builds the record through `0x00632960` with attribute bit `0x1` cleared (`0x00632B5D`), so `0x00632FB0` keeps
+the given name pointer. It then installs its vtable `0x00D58358`, stores a copy of the name (`0x001C26B0`) at `+0x58`
+and ORs bit `0x1` back into `+0x28`. Unless the name is the pointer held at `0x01F2DF28`, it also points the name
+`+0x20` at the copy with bit `0x1` cleared (`0x00632BB5`-`0x00632BC7`); for that name the copy is made from a null
+pointer, so `+0x58` is 0 (`0x00632B99`-`0x00632BAB`). It returns the record.
 
 ## Modding notes
 

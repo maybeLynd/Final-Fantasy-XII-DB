@@ -15,10 +15,15 @@ ship text that no Clan Primer page opens, listed in [Unrequested handbook text](
 
 ### Who loads and shows it
 
-- The handbook data manager `0x005771F0` loads the open entry's text bundle into its slot 1 (`0x00575D10`).
+- The handbook data manager (procedure `0x005771F0`, kept at `0x02CA9738`) loads the open entry's text bundle into
+  its slot 1: when an entry page opens (`0x00570280`), `0x005778F0(entry)` calls `0x00575D10` (`0x00577969`).
 - `0x00576300` builds the entry's lines from its text slots in order and stops at the first slot `0x00576E30` keeps
   closed, so Bestiary lore appears slot by slot as its thresholds are reached.
-- `0x00574900` draws a line ([Clan Primer](clan-primer.md)).
+- `0x00574900` runs when the entry page shows a line. For the Bestiary, while the line's read mark is clear
+  (`0x00576F30`), it sets the mark and runs the line's program; for the other families it runs the program every
+  time and marks the entry read on its last line (`0x00577A20`, `0x00577A40`). It draws nothing
+  ([Handbook files](../Game-Files-And-Data-Tables/handbook-files.md#entry-text),
+  [Clan Primer](clan-primer.md)).
 
 ### Glyphs of the Japanese, Korean and Chinese text
 
@@ -26,6 +31,10 @@ In the `in`, `kr`, `cn` and `ch` trees each bundle carries a glyph sheet that `0
 loads. A Traveler's Tips sheet becomes font 6 (`0x0017FBC0(6)`). A Bestiary sheet becomes font 7 under the name
 `handbook_monster<NNN>.txt`, `NNN` the bundle number: `0x00575782`-`0x005757B3` print the name with the format string at
 `0x00D23770` and pass it to `0x0017FA90`.
+
+`0x0017FA90` passes its four arguments, here the bundle number plus 1, 1, the name and 7 (`0x0057579B`-`0x005757B3`), to
+`0x001B6350` on the font manager that `0x001B5FB0` returns (`0x0017FAAF`-`0x0017FAC4`), which files a font request keyed by
+the name's hash ([Font expansion lists](fonts-expansion-lists.md)).
 
 The font's expansion list is the list of `fontmonster.fex` whose key is the hash of that name
 ([Font expansion lists](fonts-expansion-lists.md)). This table decodes each such character through the
@@ -45,10 +54,11 @@ slot 0 opens with a heading line and one `{page}`, 624 per language. Slot 0 and 
 | Row | `us` |
 |---|---|
 | `monster` 0, slot 0 | `Plant{line}Cactus{line}` |
-| `monster` 0, slot 1 | `Observations{line}{page}Being a mischievous, mean-{line}spirited beastie, ...` |
-| `tutorial` 8, slot 0 | `... When a foe is a flier, the target info will show a {baseline:8183}{symbol:8194}{baseline:8180}{line}icon. ...` |
+| `monster` 0, slot 1 | `Observations{line}{page}Being a mischievous, mean-{line}spirited beastie, mercifully lack-{line}ing the intelligence to do any real{line}damage.{line}Sproutlings are called cactites.{line}A rare strain is notable for its{line}proclivity to sprout a scarlet{line}blossom; that being seldom seen,{line}of the highest value, and consid-{line}ered a sign of miraculous good{line}fortune by sensitive young lovers{line}with a tolerance for needles.` |
+| `tutorial` 8, slot 0 | `Some of the foes you will encounter are fliers, able to{line}soar through the skies, far above the ground below.{line}{line}When facing a flier, use bows, guns, and other ranged{line}weapons, or magicks such as Fire. There are also some{line}melee weapons, such as poles and spears, that can be{line}used to combat a flying foe.{line}{line}When a foe is a flier, the target info will show a {baseline:8183}{symbol:8194}{baseline:8180}{line}icon. Consider yourself warned!` |
 
-The `in` text of `monster` 0, slot 1 starts `解説{line}{page}乾燥した砂漠`, its second character `燥` the first value
+In the `in` text of `monster` 0, slot 1, the fourth character, `燥`, which follows the two-character heading,
+the `{line}` and `{page}` after it and `乾`, is the two-byte code `18 20`, expansion ordinal 0: the first value
 of the `handbook_monster000.txt` list. `{symbol:8194}` draws the flying-foe
 symbol; values `818A` to `8191` of the same escape are the eight element symbols.
 

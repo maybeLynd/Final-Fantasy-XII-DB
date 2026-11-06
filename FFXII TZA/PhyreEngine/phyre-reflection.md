@@ -20,18 +20,52 @@ Each reflected class has one descriptor, a `Phyre::PClassDescriptor` object of `
 constructor `0x00632D80(descriptor, namespace, name, size, alignment, parent, adjust)` empties the six
 list heads, stores the name pointer at `+0x30`, the instance size at `+0x38`, the alignment at
 `+0x3C`, the namespace at `+0x70`, the parent descriptor at `+0x78` and the adjustment at `+0xF0`,
-and takes the next value of the global counter `0x02CF8260` as its index at `+0xE8`. `0x00632C90` is
-the same without a parent or adjustment.
+and takes the next value of the global counter `0x02CF8260` as its index at `+0xE8` (`0x00632E39`-`0x00632E45`).
+`0x00632C90` is the same without a parent or adjustment.
+
+Both also point the three type-tree links `+0x08`, `+0x10` and `+0x18` at `+0x08`, zero the hash `+0x20` and the
+key `+0x28` (`0x00632D8E`-`0x00632DA1`), zero the hooks `+0x40` and `+0x48`, install the vtable `0x00D581C0`
+(`0x00632DCE`), zero the five words `+0xC0` to `+0xE0`, store `0xFFFFFFFF` at `+0xEC` and return the descriptor.
+`0x00632D80` zeroes `+0xF4` and `+0xF8` with one 8-byte store (`0x00632E62`) and the flags `+0xFC` (`0x00632E69`).
+`0x00632C90` stores 0 in `+0x78` (`0x00632CEC`) and zeroes `+0xF0` to `+0xFF` with two 8-byte stores (`0x00632D63`,
+`0x00632D6A`).
 
 The vtable it installs is replaced by the class's own: `PClassDescriptorAbstract<T>`,
 `PClassDescriptorConcrete<T>` or `PClassDescriptorForType<T>`, all derived from `PClassDescriptor`,
 which derives from `Phyre::PType`.
 
 `PClassDescriptorDynamic` (`0x00632E80`) is a `0x140`-byte form that copies its name and is built at
-load time for a class no code registers. Its attach slot
+load time for a class no code registers.
+
+`0x00632E80(descriptor, namespace, name, parent)` calls `0x00632D80` with the parent's instance size `+0x38` as the
+size, the parent's alignment `+0x3C` and the negated parent size as the adjustment (`0x00632EA6`-`0x00632EC1`). It reads
+the parent without a null test; `0x0059AC00` skips a class whose parent has no descriptor (`0x0059ACD5`), and
+`0x0062FB80` gives `PBase` (`0x02CF8270`).
+
+It installs its vtable `0x00D58380`, zeroes the two words at `+0x100` and the three pairs at `+0x108`, stores the
+parent's size at `+0x104`, copies the name with `0x001C26B0` into `+0x138` (0 for a null name), points `+0x30` at the
+copy with bit `0x1` cleared and sets flag bit `0x1` (`0x00632F18`).
+
+It then computes the offsets (`0x0063E410`), grows the default instance and masks (`0x0063AE50`), clears flag bit
+`0x80000000` (`0x00632F3C`) and builds the default instance and masks (`0x00639A60`, then `0x00639C80`, each given 0),
+using no result of these calls. When the default instance `+0xC0` exists, the class is `PComponent` (`0x02E4E720`) or
+derives from it, and the instance size is at least `0x18`, it stores the descriptor in the default instance's
+class-descriptor field `+0x10`, counted from the layout base `+0xF8` (`0x00632F5A`-`0x00632F8D`). It returns the
+descriptor.
+
+`0x0062FB80` builds one in place with no name under `PBase` in the default namespace (`0x006373D0`) when its address
+argument is non-null (`0x0062FB9E`), and returns 1 either way.
+
+Its attach slot
 `0x00639290` counts accepted members in the two words at `+0x100` and `+0x102`, and when they differ
 first rebuilds the descriptor through `0x0063D550` (empty the six lists, copy the parent's size and
 alignment, recompute the offsets through `0x0063E410`).
+
+`0x0063D550` itself rebuilds when the two words differ or are both 0, and keeps the descriptor when they are equal
+and non-zero (`0x0063D556`-`0x0063D56C`). The rebuild points the six lists `+0x50`, `+0x80`, `+0x90`, `+0xA0`, `+0xB0`
+and `+0x60` at themselves and zeroes both words (`0x0063D572`-`0x0063D5E0`). With a parent `+0x78` it also stores the
+parent's size in `+0x104` and `+0x38`, its alignment in `+0x3C` and `-[parent+0x38]` in `+0xF0`, then calls
+`0x0063E410` (`0x0063D5EF`-`0x0063D60F`); without a parent the rebuild ends after the lists and the two words.
 
 Rebuilt or not, `0x0063D550` then refreshes the name
 pointer `+0x30` from `+0x138` and tail-jumps to `0x0063AE50` (`0x0063D634`), which grows the default instance
@@ -52,24 +86,46 @@ at `+0x58`, and places the record through `0x0063D410` when its owner is dynamic
 A class is registered in two steps:
 
 1. Its descriptor is built. For most classes this runs before `main`: the C runtime's initialiser
-   table holds `0x001603E0`, which calls the Abstract constructor `0x005A7ED0`
-   (`0x00632D80(…, "PAnimatableComponent", 0x108, 8, …, 8)`, flag `+0xFC` bit `0x2`, the three buffers
-   below), installs the Concrete vtable, clears bit `0x2` and registers the teardown `0x008A8E20`.
+   table holds `0x001603E0`, which calls the Abstract constructor `0x005A7ED0` (`0x00632D80`, see below), clears
+   bit `0x2` (`0x001603F0`), installs the Concrete vtable `0x00D29E90` (`0x00160405`) and registers the teardown
+   `0x008A8E20` (`0x00160410`).
    Template classes such as `PArray<T>` are built on first use inside a thread-safe static.
 2. Its members are registered by descriptor slot `+0x60` (for `PAnimatableComponent`, `0x005A25E0`
    jumps to `0x005AD8F0`), each member behind its own thread-safe static, and the function ends in the
    finaliser `0x00639450`.
 
-The finaliser calls `0x00639160`, which looks the name up in the namespace (`0x0063BA10`), reports a
-second class of the same name, and otherwise links the descriptor's `+0x50` node into the namespace's
-class list: at the front, or straight after its parent when the parent belongs to the same namespace.
+For `PAnimatableComponent`, `0x005A7ED0` calls `0x00632D80(…, "PAnimatableComponent", 0x108, 8, …, 8)` on the
+static descriptor `0x02CAD140` (`0x005A7F1A`), the parent `…` being `PComponent` (`0x02E4E720`). It installs the
+Abstract vtable `0x00D29BF0` (`0x005A7F27`), sets flag `+0xFC` bit `0x2` (`0x005A7F2A`), registers the three buffers
+below (`0x0063DC80`, `0x0063DF90`, `0x0063DFA0`) and returns the descriptor (`0x005A7F5F`).
+
+The finaliser calls `0x00639160(namespace, descriptor)` (`0x00639460`), which looks the name `+0x30` up in the
+namespace (`0x0063BA10`, `0x0063917C`). Finding the descriptor itself, it returns at once (`0x00639189`). Finding another
+class of that name, it reports a second class of the same name: it tail-jumps to the log call `0x005CDAA0` on
+channel 2 with the message that a class descriptor of that name already exists in this namespace, and links
+nothing (`0x0063918F`-`0x006391AD`).
+
+Otherwise it links the descriptor's `+0x50` node into the namespace's
+class list: at the front, or straight after its parent when the parent belongs to the same namespace
+(`0x00639208`-`0x00639244`). When the namespace held no class before and is not the default namespace, it then links
+the namespace's own node `+0x00` at the front of the default namespace's child list `+0x28` (`0x0063924C`-`0x00639277`).
+
+Before it links, a namespace in state 2 logs "Adding class '%s' to namespace after initialization" on channel 1
+(`0x006391E0`-`0x006391F2`).
 When the namespace state is 1 or 2 it also computes the layout offsets (`0x0063E410`). The finaliser
-then sets `+0xFC` bit `0x40000000`, the mark that members are registered.
+then sets `+0xFC` bit `0x40000000`, the mark that members are registered (`0x00639465`).
+
+For a dynamic class (bit `0x1` of `+0xFC`) the finaliser then resets the tree node at `+0x08`, its links at
+`+0x08`, `+0x10` and `+0x18` to the node itself and `+0x20` and `+0x28` to 0, and tail-jumps to `0x006388C0`, which
+enters the descriptor in the type tree (`0x00639478`-`0x0063949D`). Any other class returns there (`0x006394A7`).
 
 ### Layout offsets
 
 `0x0063E410` sums `+0xF0` over the class and every ancestor up to the root descriptor `0x02CF8270`
-into `+0xF4`, and stores the class's own non-negative `+0xF0` plus the parent's `+0xF8` in `+0xF8`.
+into `+0xF4`, the root's own `+0xF0` left out (`0x0063E416`-`0x0063E448`), and stores the class's own non-negative
+`+0xF0` plus the parent's `+0xF8` in `+0xF8`, that is `max([+0xF0], 0) + [parent+0xF8]`, with 0 for the parent's
+part when there is no parent (`0x0063E44A`-`0x0063E47F`).
+
 A member's position in an object is its registered offset minus the owning class's `+0xF4`
 (`0x0063C910`, `0x00639C80`, `0x0063CB80`). `PAnimatableComponent` passes 8: its reflected layout starts
 8 bytes into the object, after the vtable pointer. Its member visitor `0x005A2390` is handed
@@ -79,11 +135,16 @@ destructor.
 ### The type tree and the namespace
 
 `0x006388C0` registers a descriptor in the global type tree whose header is `0x01F2E780` (returned by
-`0x00637440`). It hashes the name from `0x7B5`, multiplying by 33 and adding the low five bits of each
-byte, stores the hash at `+0x20` and the name at `+0x28`, and inserts `+0x08` into an ordered tree.
-It returns false when the name is already present. The lookup `0x006311D0` orders by hash first and
-compares the full string on equal hashes, so case-only differences collide in the hash but never
-match.
+`0x00637440`). It hashes the name `+0x30` from `0x7B5`, multiplying by 33 and adding the low five bits of each
+byte (`0x00638920`-`0x0063892A`), stores the hash at `+0x20` and the name at `+0x28` (`0x00638976`, `0x0063897C`), and
+inserts `+0x08` into an ordered tree (`0x0067F700`, `0x00638998`), returning true.
+
+It returns false when the name is already present (`0x006311D0` finds it, `0x0063894A`); when the name `+0x30` is
+null, before the tree is touched (`0x006388D4`-`0x006388E2`); and when `0x006314B0` returns non-zero, after `+0x20` and
+`+0x28` are written (`0x0063898A`).
+
+The lookup `0x006311D0` orders by hash first and compares the full string on equal hashes, so case-only
+differences collide in the hash but never match.
 
 `0x00638F00` takes a descriptor out of the tree again, erasing its node at `+0x08` (the header
 is set up first when it was not); the `PClassDescriptorDynamic` destructor `0x00633590` calls it for a
@@ -92,6 +153,11 @@ descriptor with a name.
 A namespace is a separate structure: the default one is `0x01F2E330` (returned by `0x006373D0`), its
 classes hang off `+0x10`, and child namespaces off `+0x28`. `0x0063BA10` searches a namespace's own
 classes, then each child namespace, with an exact byte comparison.
+
+`0x0063BA10(namespace, name)` returns 0 for a null name (`0x0063BA2D`) and reads the namespace without a null test
+(`0x0063BA33`). It walks the class list through each descriptor's `+0x50` node, skips a class without a name `+0x30`,
+and returns the first descriptor whose name matches. It then calls itself on each child namespace in turn
+(`0x0063BAAA`), so the search reaches every namespace below, and returns the first hit, or 0.
 
 ### Type references by name
 
@@ -126,14 +192,27 @@ new storage when attribute bit `0x1` is set. The constructor stores the type at 
 offset at `+0x48`, sets attribute bit `0x2` for the duration of the call when `flag` is 2, and calls
 descriptor slot `+0x40`.
 
+`0x00632FB0(node, owner, name, attrs)` is given the record's node `+0x08` by `0x00632960` (`0x00632987`). It points both
+links of the node at itself and stores the owner at node `+0x10`, the name at node `+0x18` and the attribute word at
+node `+0x20` (`0x00632FBA`-`0x00632FCF`). With bit `0x1` it allocates `strlen(name) + 1` bytes through `0x0017D260`
+(`0x00633005`), copies the name and its terminator there with `memcpy` (`0x0063301C`) and stores the copy at node
+`+0x18`, or 0 when the allocation fails (`0x00633026`). It returns the node (`0x0063302F`).
+
+The constructor also installs its vtable `0x00D580B0`, empties the annotation list at `+0x38` and clears the helper
+`+0x50`. It hands the slot the record and `context`, restores the attribute word afterwards and returns the record
+whatever the slot answers, so a member the slot refuses stays built but unlinked (`0x006329DD`-`0x006329F4`).
+
 Slot `+0x40` is `0x0062EFD0` in the base, Abstract, Concrete and ForType vtables. It refuses the member with 5 when
 `offset − [+0xF4] + width + [+0xF8]` exceeds the instance size, with `0x15` when it has no name and
 with `0x12` when `0x00597220` finds the name in the class or any ancestor; otherwise it appends the
 member to the list at `+0x80` and returns 0. Slot `+0x48` (`0x0062F080`) unlinks it again.
 
-The width comes from `0x0063C0C0`: the context's pointer width (8 with no context) when attribute bit
-`0x2` is set, or when the member is a dynamic array (kind 2) without bit `0x40`; otherwise the type's
-size at `+0x38`, or the size the context gives a dynamic type.
+The width comes from `0x0063C0C0(record, context)`: the context's pointer width (its slot `+0x08`; 8 with no context)
+when attribute bit `0x2` is set, or when the member is a dynamic array (kind 2) without bit `0x40`
+(`0x0063C128`-`0x0063C137`, `0x0063C172`-`0x0063C187`). Otherwise it is the type's size at `+0x38`, or, with a context,
+the size the context's slot `+0x10` gives the class that the type's own slot `+0x08` returns
+(`0x0063C0E4`-`0x0063C0F9`): a class descriptor returns itself there (`0x0016D680`), a `PType` returns 0 (`0x005C5230`)
+and keeps the size `+0x38`.
 
 ### Member kinds
 
@@ -143,6 +222,18 @@ size at `+0x38`, or the size the context gives a dynamic type.
 | `0x00632A10` | `PClassDataMemberArray` | kind at `+0x5C` (2 a counted buffer such as `PArray<T>::m_els`, 3 a `PArray` member, 4 a `PSharray` member), the element type's alignment at `+0x58` (4 for `PMatrix4`, a 0x40-byte element, at `0x005ED448`; 2 for `PSkinBoneRemap`, two `u16`, at `0x0066A0A7`) |
 | `0x00632A70` | `PClassDataMemberArrayFixedSize` | kind 1 at `+0x5C`, the type's `+0x3C` at `+0x58`, element count at `+0x60` |
 | `0x00632BE0` | `PClassDataMemberEnum` | attribute bit `0x20`, a value at `+0x58` |
+
+The array, fixed-size and enum routes differ at attach time. `0x00632A10` forwards to `0x00632960` with its array kind
+as `flag` and context 0 (`0x00632A28`-`0x00632A41`), so a kind-2 member is checked against the instance size as
+pointer-wide; it then stores the kind and the alignment and installs its vtable `0x00D58100`. `0x00632A70` and
+`0x00632BE0` build the record inline as `0x00632960` would, without the `flag` test, and give the attach slot context 0
+(`0x00632AE9`, `0x00632C54`); `0x00632BE0` ORs `0x20` into the word `0x00632FB0` stores (`0x00632C15`).
+
+`0x00632A70` attaches before it stores the kind, the count and its vtable `0x00D58160` (`0x00632AF2`-`0x00632B0C`), so the
+bound check of `0x0062EFD0` measures one element; `0x00632BE0` installs its vtable `0x00D580D8` and the value after the
+attach. All three return the record whatever the slot answers. Slot `+0x08` of the two array vtables (`0x0016D680`)
+returns the record, and that of the plain, enum and dynamic vtables (`0x005C5230`) returns 0; `0x0059D2D0`, `0x00599390`
+and `0x0063C0C0` read the array kind through it.
 
 A registering function can OR further attribute bits into the record after the call (bit `0x10`,
 `0x08` or `0x40`; `0x00633100` adds `0x4` when it attaches a dynamic-type helper at `+0x50`). The
@@ -161,7 +252,11 @@ A member's list at `+0x38` holds annotations. `0x006B66C0(annotation, key, type,
 `0x30`-byte `Phyre::PAnnotation`, and `0x006B67D0` links it to a member. All 69 static annotations in
 the executable are a `PAnnotationWithValue<unsigned int>` keyed by `0x02CF8570`, the key `0x001641C0`
 names `WriteMask`, with the value `0x7FFFFFFF`, on the `m_count` member of a `PArray<T>` or
-`PSharray<T>` descriptor. `0x006B67F0` finds an annotation by key.
+`PSharray<T>` descriptor.
+
+`0x006B67F0(list, key)` finds an annotation by key: it walks the annotation list it is given from its first node and
+returns the first annotation whose key `+0x18` is the given pointer, or 0 at the end of the list
+(`0x006B67F0`-`0x006B681D`).
 
 ### Default instance and masks
 
@@ -176,7 +271,31 @@ use, when `+0xFC` bit `0x80000000` is clear:
    `0x80000000`.
 2. A class whose slot `+0x50` has no constructor is built by `0x0063CB80` instead, from its parent's
    and its members' default instances.
-3. `0x00639C80` fills `+0xC8` with `0xFF` and `+0xD0` with zero, copies the parent's masks, then
+3. In `0x00639A60` the paths in full: it returns at once when `+0xC0` or `+0xC8` is null or bit `0x80000000` is
+   already set (`0x00639A73`, `0x00639A83`, `0x00639A96`). A dynamic class (bit `0x1`) goes to `0x0063CB80`, given
+   `0x00639A60`'s own second argument, and to nothing else before bit `0x80000000` is set (`0x00639AB6`-`0x00639AC3`).
+4. Every other class gets the two `0xA5` fills (`memset`, `0x00639AD8`, `0x00639AEC`). An abstract class (bit `0x2`)
+   stops there and only has bit `0x80000000` set (`0x00639AF1`). The rest are constructed into `[+0xC8]` through
+   slot `+0x50` (`0x00639B20`); when the slot answers 0, `0x0063CB80(descriptor, 0)` builds the class (`0x00639BA4`).
+5. When the slot constructs and bit `0x8` is clear, the second construction into `[+0xC0]` (`0x00639B3E`) is
+   compared with `memcmp`, the message goes to channel 1 (`0x00639B52`-`0x00639B6A`), and that second object is
+   destroyed through slot `+0x58` at `[+0xC0] + [+0xF8]` (`0x00639B78`). After the copy (`memcpy`, `0x00639B8C`)
+   the object in `+0xC8` is destroyed through slot `+0x58` at `[+0xC8] + [+0xF8]` (`0x00639B9A`).
+6. On both construction paths it walks its own list `+0x80` (`0x00639BA9`-`0x00639C44`). A member is copied when its
+   type is a class (the type's slot `+0x08` answers a descriptor), attribute bit `0x2` is clear and bit `0x40` is
+   set or the kind is 4: the member class's default instance (`0x0063BB10`) goes to
+   `[+0xC0] + [+0xF8] + offset - [owner+0xF4]` with its size `+0x38` (`0x00639C2D`). Bit `0x80000000` is set at
+   `0x00639C55`.
+7. `0x0063CB80(descriptor, context)` first copies the parent's default instance (`0x0063BB10`) to
+   `[+0xC0] + [+0xF8] - [parent+0xF8]`: the parent's size `+0x38`, or the context's slot `+0x10` answer when that
+   is smaller, and only when the parent has a default instance and `size <= [+0x38]` of the class itself
+   (`0x0063CBAA`-`0x0063CBF8`).
+8. It then walks its own list `+0x80`. It skips a member with attribute bit `0x2`, a dynamic array (kind 2)
+   without bit `0x40` and a member whose type is not a class (`0x0063CC55`-`0x0063CC7A`).
+9. Each other member gets the default instance of its class (`0x0063BB10`) at
+   `[+0xC0] + [+0xF8] + offset - [owner+0xF4] - [type+0xF8] + [type+0xF4]`, once, or `[+0x60]` times one after
+   another for a fixed array (kind 1), each copy the width `0x0063C0C0` gives (`0x0063CCA8`-`0x0063CCE5`).
+10. `0x00639C80` fills `+0xC8` with `0xFF` and `+0xD0` with zero, copies the parent's masks, then
    clears every byte a member covers in `+0xC8`, logging an overlap when a byte is already clear.
    For a primitive member it writes the member's `WriteMask` into `+0xD0`, or `0xFF` bytes without
    one; for an inline object it copies that class's masks. It sets bit `0x10000000` when no byte of
@@ -190,11 +309,54 @@ masks of inline object members.
 ### Creating instances
 
 `0x0063A990(cluster, count, descriptor, …)` is `PCluster::create`. A class with `+0xFC` bit `0x8`
-logs "has no default constructor and cannot be allocated" and gets nothing. Otherwise `0x00639510`
+logs "has no default constructor and cannot be allocated" and gets nothing (`0x0063A99A`-`0x0063A9BE`); a count of
+0 gets 0 (`0x0063A9CD`). Otherwise `0x00639510`
 refuses an abstract class (bit `0x2`) and allocates `count × [+0x38]` bytes with alignment `[+0x3C]`,
 and `0x0063C910` initialises each instance in turn: it builds the buffers if needed, then copies the
-whole default instance over it. Without a default instance it constructs through slot `+0x50` and
-copies the default instance of every inline object member, across the class and its ancestors.
+whole default instance over it.
+
+Without a default instance it constructs through slot `+0x50` and
+copies the default instance of every inline object member, across the class and its ancestors. `0x0063A990` hands
+its fourth argument to `0x00639510` as extra bytes (`0x0063A9D6`), steps from the list's `+0x58` by `[+0x38]` per
+object (`0x0063AA10`-`0x0063AA22`) and returns the first object, or 0 when `0x00639510` returns no list (`0x0063A9E9`).
+
+`0x0063C910(descriptor, object)` returns the object. When bit `0x80000000` is clear it first calls slot `+0x60`,
+the member registration, if bit `0x40000000` is clear, then builds the buffers (`0x00639A60`, `0x00639C80`, each
+given 0) (`0x0063C93D`-`0x0063C95C`). With a default instance it copies `[+0x38]` bytes from `+0xC0` to
+`object - [+0xF8]` (`0x0063C961`-`0x0063C974`). Without one it constructs at `object - [+0xF8]` through slot `+0x50`
+and returns 0 when the slot answers 0 (`0x0063C990`-`0x0063C995`, `0x0063CB40`).
+
+After a construction it walks the list `+0x80` of the class and then of each ancestor `+0x78`
+(`0x0063C9C0`-`0x0063CB14`). It takes each member whose type is a class (the type's slot `+0x08` answers a
+descriptor), without attribute bit `0x2` and not a dynamic array (kind 2): one element, or `[+0x60]` elements for
+a fixed array (kind 1) (`0x0063CA28`-`0x0063CA4C`). The first element is at
+`object + offset - [owner+0xF4] + [type+0xF4]`, the next ones `[type+0x38]` apart.
+
+For each element, unless the class that owns the list is dynamic (bit `0x1`), it first destroys the element
+through the type's slot `+0x58` (`0x0063CA84`). It then builds the type's buffers when needed and copies
+`[type+0x38]` bytes of the type's `+0xC0` to `element - [type+0xF8]` (`0x0063CAD2`).
+
+`0x00639510(cluster, bytes, count, descriptor, extra)` returns the new instance list, or 0:
+
+1. A byte size or count of 0 gets 0 (`0x0063953B`, `0x00639543`).
+2. An abstract class logs "is abstract and an instance list cannot be allocated" on channel 1 and gets 0
+   (`0x0063954C`-`0x0063956B`).
+3. When `bytes < count * [+0x38]` it logs "Trying to allocate list of %d '%s' instances in %d bytes when %d bytes
+   are required" on channel 1 and gets 0 (`0x00639570`-`0x00639599`).
+4. It takes a list record from the cluster's pool at `+0x50` (`0x006394B0`, `0x006395A2`) and gets 0 when the pool
+   is out of records (`0x006395B2`). It grows the size to `bytes + extra` (`0x006395B4`) and sets the record up for the
+   descriptor and the cluster (`0x00633120`, `0x006395C6`).
+5. It takes the bytes at alignment `[+0x3C]` from the cluster's block at `+0x48` when they fit (`0x00639750`,
+   `0x006395D7`), and `0x00639780` sets the list up on them (`0x006395E8`).
+6. `0x00639780` allocates the bytes through `0x0017D260` when the block returned 0 (`0x006397DA`-`0x006397E0`), runs
+   `0x0063B3E0` on the list (`0x006397F0`), and stores the storage at `+0x60`, the first
+   object `[+0x60] + [descriptor+0xF8]` at `+0x58`, the count at `+0x70` and `+0x74`, the owned flag `+0x7C` and
+   `bytes - count * [+0x38]` at `+0x78` (`0x006397FC`-`0x00639824`).
+7. `0x00639780` refuses a count above 1 for a class with bit `0x4` (`0x006397BA`-`0x006397C7`) and a failed
+   allocation (`0x006397EB`); the record then goes back to the pool (`0x00631180`, `0x00639625`) and the result is 0.
+8. Otherwise it sets the loaded byte `+0x7D` (`0x006395F1`), appends the list to the cluster's list `+0x38`
+   (`0x006395F5`-`0x00639607`), enters it in the world's per-type table through `0x00639320` when the cluster has a
+   world `+0x78` (`0x0063960B`-`0x00639617`), and returns the list.
 
 ### The cluster's script methods
 
@@ -266,14 +428,25 @@ base destructor:
 1. It installs the `PClassDescriptor` vtable and, when its index at `+0xE8` is the last one handed
    out, decrements `0x02CF8260`.
 2. `0x0063D640` unlinks `+0x50` from its namespace and unlinks an emptied non-default namespace.
-3. It frees the records of `+0x90` and `+0xA0` whose attribute bit `0x1` is set, with their name,
+   Called as `0x0063D640(namespace, descriptor)` (`0x006333E0`), it points the unlinked node `+0x50` at itself
+   (`0x0063D646`-`0x0063D665`).
+3. The namespace counts as emptied when its class list `+0x10` is now empty; when it is also not the default
+   namespace (`0x006373D0`), `0x0063D640` unlinks the namespace's own node `+0x00`, the node `0x00639160` links into
+   the default namespace's child list `+0x28`, and points it at itself (`0x0063D67E`-`0x0063D6A3`). Only the class
+   list is tested, not the child namespaces `+0x28`.
+4. It frees the records of `+0x90` and `+0xA0` whose attribute bit `0x1` is set, with their name,
    then unlinks every remaining node of `+0x80`, `+0x90`, `+0xA0` and `+0xB0` without freeing it.
-4. `0x006B6700` unlinks every node of `+0x60`, and the `PType` vtable is installed last.
+5. `0x006B6700` unlinks every node of `+0x60`, and the `PType` vtable is installed last.
 
-A member's teardown `0x00633240` detaches it through its owner's slot `+0x48`, drains its annotations
-and frees a copied name. The deleting destructors such as `0x005847E0` call `0x00633390` and, when flag
-bit `0x1` is set, free the object with `_aligned_free` (`0x00584730`); with bit `0x4` as well they call
-the empty `0x0016D6A0` and free nothing.
+A member's teardown `0x00633240` installs the `PClassDataMember` vtable `0x00D580B0` (`0x0063325E`), detaches the
+member through its owner's slot `+0x48` when its node `+0x08` is linked (`0x00633265`-`0x00633274`), drains its
+annotations `+0x38` (`0x006B6700`, `0x0063327C`) and, with attribute bit `0x1`, frees the copied name `+0x20`
+(`0x00584730`, `0x00633282`-`0x0063328C`).
+
+The deleting destructors such as `0x005847E0` install their own vtable (`0x00D24540` in `0x005847E0`, `0x00584800`),
+call `0x00633390` and, when flag bit `0x1` is set, free the object with `_aligned_free` (`0x00584730`); with bit
+`0x4` as well they call the empty `0x0016D6A0` and free nothing (in `0x005847E0` with the size `0x100`,
+`0x00584820`-`0x00584828`). Either way they return the object (`0x0058482E`).
 
 ## Layouts
 
@@ -861,7 +1034,17 @@ displacement, read or write, and how the object pointer was traced.
 
 - **Find a class by name.** `0x0063BA10(namespace, name)`; the default namespace is `0x006373D0()`.
 - **Find a type by name.** Hash as in `0x006388C0` and walk the tree at `0x01F2E780` with `0x006311D0`.
-- **Find a member.** `0x00597220(descriptor, name)` searches the class, then its ancestors.
+- **Type-tree lookup.** `0x006311D0(header, key)` takes a key of the hash (`u32` at `+0x00`) and the name pointer
+  (`+0x08`). It starts at the header's `+0x18` and returns 0 for an empty tree (`0x006311E2`). At each descriptor it
+  compares the hash `+0x20` first and, on an equal hash, the name `+0x28` byte for byte (`0x0063120B`-`0x00631245`);
+  a match returns the descriptor, which is the link that reached it less 8 (`0x00631278`-`0x0063127D`).
+- **Type-tree descent.** In `0x006311D0` a result of 1 (`node hash > key hash`, or on equal hashes
+  `key name > node name` at the first differing byte) follows the descriptor's `+0x08` link and -1 follows
+  `+0x10` (`0x0063124C`-`0x00631250`); reaching the header returns 0 (`0x0063126B`-`0x00631270`).
+- **Find a member.** `0x00597220(descriptor, name)` searches the class, then its ancestors. It walks the list `+0x80`
+  of each descriptor up the `+0x78` chain and returns the first member record whose name `+0x20` matches byte for
+  byte, skipping members without a name; it returns 0 for a null descriptor or name (`0x0059722B`, `0x00597233`) and
+  when no member matches.
 - **Create instances.** `0x0063A990(cluster, count, descriptor, …)`; `0x0063C910(descriptor, object)`
   initialises one object from the default instance.
 - **Visit members.** Descriptor slot `+0x00` walks every member of the class and its ancestors.
@@ -964,7 +1147,7 @@ reads the whole word: every load ends in a bit test, a sign test, a bit extracti
 
 No instruction writes or reads bits `0x40` to `0x4000000`. The whole word is written as 0 by the 10 core
 constructors `0x006316C0`-`0x00632780`, `0x00632C90` (`0x00632D6A`, 8 bytes from `+0xF8`) and `0x00632D80` (`0x00632E69`), and
-stored back by the initialisers after they change their bits (43 sites) by the 10 core registrars after their
+stored back by the initialisers after they change their bits (43 sites), by the 10 core registrars after their
 `bts` (10 sites), and once more by `0x00635DC0` (`0x00635E7C`) after it sets and clears bit `0x2`.
 
 ### Array-type descriptor getters

@@ -21,7 +21,7 @@ The factory `0x007B2F70` builds one object per sound played. It reads the sound 
 
 | Class | Object | Select |
 |---:|---|---|
-| `0`, `1` | `Sound` | `0x007BD370`: plays every candidate |
+| `0`, `1` | `Sound` | `0x007BD370`: plays every candidate: for each of the record's `+5` candidates it finds the sequence record that entry word `+4` names and calls the trigger, whatever the trigger returns, then returns 0 (`0x007BD3D7`-`0x007BD486`, `0x007BD4BC`) |
 | `2` | `RandomSound` | `0x007E5160` |
 | `3` | `OrderSound` | `0x007E58D0` |
 | `4` | `CycleSound` | `0x007E6360` |
@@ -31,6 +31,16 @@ The names are the classes' run-time type names. When the bank is a streaming ban
 `VariationSound` instead (`0x007B2FF2`): the bank's readiness answer, `0x007E4300` for a streaming bank, is false, and
 `0x007E56E0` builds it. It keeps only the requested sound number and never selects
 (`0x007E57D0`, `0x007E57C0`).
+
+The factory finds the record by its index or, for an id with bit `0x40000000` set, by the sound number at record
+`+8` that equals the id without that bit (`0x007B302C`-`0x007B308E`). A number that matches no record, an index below 0
+or not below the count (`0x007B3095`-`0x007B30A9`), a class above 5 (`0x007B311D`) or a null block (`0x007B30D3`,
+`0x007B3149`) builds nothing and returns -1 (`0x007B3170`).
+
+Otherwise the factory runs the class's constructor: `0x007BC8D0` for classes 0 and 1 (`0x007B3127`), `0x007E50A0`,
+`0x007E5810`, `0x007E5CD0` or `0x007E6700` for classes 2 to 5 (`0x007B30DB`, `0x007B30EE`, `0x007B3101`, `0x007B3114`), or
+`0x007E56E0` for the `VariationSound` (`0x007B3151`). It then runs the object's slot 40 (`+0x140`) with a block of its
+arguments and returns that slot's result (`0x007B315E`-`0x007B3168`).
 
 ### The records
 
@@ -73,21 +83,32 @@ clock (`0x007A5404`-`0x007A540B`), so the draws differ on every run.
 When a sound plays (`0x007BDFA0`), its start step `0x007BD120` runs the select once (`0x007BD205`). The select calls the
 trigger `0x007BD240(sound, sequence)` for each candidate it chooses:
 
-1. It refuses in states 0, 6 and 7 (`0x007BD252`-`0x007BD260`).
+1. It refuses in states 0, 6 and 7 (`0x007BD252`-`0x007BD260`), returning -1 (`0x007BD365`).
 2. It takes the next slot, counting it before the bind (`0x007BD266`-`0x007BD276`).
-3. It binds a `Sequence` object (`0x007B4EF0`, `0x007BD2A7`) and pushes the sound's settings to it.
-4. It arms the sequence with a start offset and a start delay (`0x007E7300`, `0x007BD311`-`0x007BD333`), which sets its
-   state to 2 and plays nothing.
+3. It binds a `Sequence` object (`0x007B4EF0`, `0x007BD2A7`) into the slot's handle at `+0x400`; a negative result
+   skips the next two steps and is returned, with the slot still counted (`0x007BD2AF`-`0x007BD2B1`).
+4. It pushes the sound's settings to it: `0x007BFE30`, `0x007BFDB0`, `0x007BFD00`, `0x007BFEB0` for indexes 0 and 1,
+   `0x007BFBA0` and `0x007BFC30` (`0x007BD2D8`-`0x007BD30C`).
+5. It arms the sequence with a start offset and a start delay (`0x007E7300`, `0x007BD311`-`0x007BD333`), which sets its
+   state to 2 and plays nothing. The offset is `+0x500` while the sound's state is 1 or 2 and 0 otherwise
+   (`0x007BD311`-`0x007BD32B`); the delay is `+0x51C` (`0x007BD317`). `0x007E7300` returns -1 without arming a sequence
+   that is not in state 1 (`0x007E7307`, `0x007E7309`), and the trigger does not test that result.
+6. On every exit it sets its sequence argument's vtable word to `0x01CB4D48`; after a bind it returns the bind's
+   result (`0x007BD342`-`0x007BD34C`, `0x007BD35B`).
 
 The sequence's own update `0x007E7540` counts the delay down and then starts it (`0x007E759A`-`0x007E75C7`). The delay is
 0, so a sound starts on its sequence's next update.
 
 ### Playing a sequence
 
-Each kind is the `Sound` object (`0x007BC8D0` builds it, `0x007BCE00` tears it down) with its own vtable:
-`RandomSound` `0x007E50A0`, `OrderSound` `0x007E5810`, `CycleSound` `0x007E5CD0` and `SwitchSound` `0x007E6700`;
-`0x007E5DA0`, from the cycling rule, walks the sound's sequences by group (`0x007CF9A0`). A sound keeps its sequences' handles at `+0x400`, their count at
-`+0x4C`. `0x007E6960` builds a `Sequence` and `0x007E71F0` binds it to its record, printing "seq data invalid!" without one.
+Each kind is the `Sound` object (`0x007BC8D0` builds it, `0x007BCE00` tears it down) with its own vtable, which the
+kind's constructor writes after it runs `0x007BC8D0`: `RandomSound` `0x007E50A0` writes `0x01CB87A8`, `OrderSound`
+`0x007E5810` writes `0x01CB8AD8`, `CycleSound` `0x007E5CD0` writes `0x01CB8C70` and `SwitchSound` `0x007E6700` writes
+`0x01CB8E08` (`0x007E50AE`, `0x007E581E`, `0x007E5CDE`, `0x007E670E`).
+
+`0x007E5DA0`, from the cycling rule, walks the sound's sequences by group (`0x007CF9A0`). A sound keeps its sequences'
+handles at `+0x400`, their count at `+0x4C`. `0x007E6960` builds a `Sequence` and `0x007E71F0` binds it to its record,
+printing "seq data invalid!" without one.
 
 When its delay has run out, the sequence starts its track (`0x007E6AA0`):
 

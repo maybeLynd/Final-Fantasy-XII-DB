@@ -17,7 +17,9 @@ is built from the same counter.
 ### Opening the gauge
 
 The verb `initgauge` (`0x0034DC70`) passes its kind to `0x003E9020`, which closes a gauge already open
-(`0x00408200`), stores the default colours at `0x02B5D098`-`0x02B5D0A4` and calls `0x00408300(type)`:
+(`0x00408200`), stores the default colours at `0x02B5D098`-`0x02B5D0A4` and calls `0x00408300(type, b)`, b being its own
+second argument (`0x003E9031`, `0x003E9081`-`0x003E90D5`). It calls `0x00408200` only while the byte `0x02B5D090` is set, and
+then sets that byte to 1 and keeps the kind at `0x02B5D091` (`0x003E902A`-`0x003E9043`):
 
 | `initgauge` kind | type | child |
 |---|---|---|
@@ -31,9 +33,31 @@ window stores itself in `0x02B62D80`, builds the child (0x278 or 0x1F8 bytes) at
 pictures into the list at `+0xD8` (`0x0024A440`). For type 4 it builds no child and reads the layout record
 through a null pointer (`0x00407018`-`0x0040701F`).
 
+`0x00408300(type, b)` passes the record `{0, type, b}` to `0x00244F50(0xE8, 0x00406E80, record)`, and only while
+`0x02B62D80` is 0 (`0x00408313`-`0x00408346`). The window's message 1 takes the type from `+0x08` of the message
+(`0x00406F71`) and stores the window at `0x02B62D80` (`0x00406FB1`).
+
 `0x00407F90(counter)` gives a new counter its defaults: flags `+0xD8` = `0x10`, maximum `+0xE0` = 100, value 0,
 the colours `0x805A5A20`, `0x80276742`, `0x80206266` and `0x800A2A7E` at `+0xF8`-`+0x104`, and the widgets it
 draws with at `+0xC8` and `+0xD0`, which depend on the mode byte `+0xC0`.
+
+What `0x00407F90` stores, in order (`0x00407F96`-`0x00408134`):
+
+- `+0xD8` = `0x10`, the qwords `+0xDC`-`+0x113` cleared, the type word `+0xDC` = 0 and `+0xE0` = 100, the four
+  colours, `+0x114`-`+0x12B` cleared and `+0xD0` = 0 (`0x00407F96`-`0x00408033`).
+- Mode 0: `+0xC8` = `0x00394660(counter, 1)` and, when that is not 0, `+0xD0` = `0x00394690(+0xC8, 2)`; node 1 is
+  skipped below (`0x0040807E`-`0x004080A4`).
+- Mode 1: the window `[0x02B62D80]` gets `+0xC8` bit `0x4`, the timer's stop bit, so a new timer stands until
+  `startgaugetimer`; `+0xC8` = `0x00394660(counter, 2)`, and node 2 is skipped (`0x00408058`-`0x00408075`).
+- Mode 3: `+0xC8` = the counter itself (`0x0040804F`). Other modes leave `+0xC8` as it was, and modes other than 0
+  and 1 skip no node.
+- `0x00394660(w, i)` answers, for `i` below the count `(+0x50 >> 2) & 0xFFFF`, the node's `+0x18` when the node's
+  `+0x08` bits `0x3C` equal 4, and 0 otherwise (`0x00394660`-`0x00394688`). For every node but the skipped one with a
+  non-zero answer, the widget answered gets `0x00247870(widget, 0)` and `+0x40` bit `0x40000` (`0x004080AB`-`0x004080F4`).
+- `+0x44` loses bit `0x100000` and gains bit `0x80000` (`0x004080FB`-`0x00408102`). Unless the mode is 3 it ends with a
+  jump to `0x00394720(counter, 0, 0x42)` (`0x00408109`-`0x0040812A`), which installs entry 0 of the descriptor table
+  `0x00D112E0` through `0x00247570` and sets `+0x7C` = (old `& 0x3FF`) `| 0x42000 | 0xC00 | 0x10800000`
+  (`0x00394737`-`0x00394773`).
 
 ### The verbs
 
@@ -42,7 +66,7 @@ and the body), and every verb that changes the gauge does nothing while the wind
 
 | Verb | Body | Effect |
 |---|---|---|
-| `setgaugecountermax`, `setgaugetimermax`, `setgaugeracemax` | `0x00347F20` → `0x00408830` → `0x004073B0` | sets the maximum `+0xE0` (times 60 for a timer) and the thresholds to a quarter, a half and three quarters of it, `+0xF0` to the maximum |
+| `setgaugecountermax`, `setgaugetimermax`, `setgaugeracemax` | `0x00347F20` → `0x00408830` → `0x004073B0` | sets the maximum `+0xE0` (times 60 for a timer, mode byte `+0xC0` = 1) and the thresholds to a quarter, a half and three quarters of it, `+0xF0` to the maximum; with no counter it does nothing (`0x004073B3`). The maximum is `m = [+0xC0] == 1 ? 60 * v : v` for the argument `v` (`0x004073C3`-`0x004073D0`). The value widget `+0xD0`, when set, gets the maximum at its `+0x1C` (`0x0029F4B0`, `0x004073D6`-`0x004073E2`), and the word `+0xE8` = 0 (`0x004073E9`). The thresholds are the words `+0xEA`, `+0xEC` and `+0xEE`, each a signed divide by 4 toward zero of the maximum times 1, 2 or 3, `m / 4`, `2 * m / 4` and `3 * m / 4`, and `+0xF0` is the maximum's low 16 bits, `m & 0xFFFF` (`0x004073F0`-`0x0040743E`) |
 | `setgaugecounter` | `0x0034EA90` → `0x004085B0` | sets the value of a counter (mode 0) and redraws it |
 | `setgaugetimer` | `0x0034ED90` → `0x004088D0` | sets the value of a timer (mode 1) in seconds, stored times 60 |
 | `changegaugecounterbyratio` | `0x003502C0` → `0x004084C0` → `0x00407290` | moves the value toward the target over a ramp |
@@ -58,13 +82,15 @@ and the body), and every verb that changes the gauge does nothing while the wind
 | `resetgaugetimer` | `0x00351C80` → `0x004083E0` | see below |
 | `gaugepadding0` | `0x00352660` → `0x00408860` | sets the child's `+0xD8` bit `0x2` from bit `0x1` of the argument; with it set and `+0x130` bit `0x1` set, the timer text `0x00407720` writes format `0x4B3E` instead of `0x4B3D` |
 | `getgaugecounter` | `0x00353D70` → `0x00408250` | returns a counter's value `+0xE4` (mode 0), -1 with no counter |
-| `getgaugetimer` | `0x003539E0` → `0x00408280` | returns a timer's value `+0xE4` (mode 1) in seconds, rounded up for a non-zero argument and down for 0, -1 with no timer |
+| `getgaugetimer` | `0x003539E0` → `0x00408280` | returns a timer's value `+0xE4` (mode 1) in seconds, rounded up for a non-zero argument and down for 0, `(+0xE4 + (arg ? 59 : 0)) / 60` as a signed divide toward zero (`add r8d, 0x3b` at `0x004082AC`, `0x004082A8`-`0x004082C3`), -1 with no timer |
 
 ### Value, ramps and thresholds
 
-`0x00408140(counter, v)` stops a running ramp, stores `v` at `+0xE4` and redraws by mode: 0 through `0x00407450`,
+`0x00408140(counter, v)` stops a running ramp (length `+0x118` = 0, `0x00408148`), stores `v` at `+0xE4` and redraws
+by mode: 0 through `0x00407450`,
 1 through `0x00407720`, 3 through `0x00225580` on the value widget, with `v` less the maximum once it passes the
-maximum. A ramp lives at `+0x114`-`+0x128` and is stepped once per frame by `0x004076B0`:
+maximum; modes 2 and 4 and above redraw nothing (`0x00408158`-`0x0040818B`). A ramp lives at `+0x114`-`+0x128` and is
+stepped once per frame by `0x004076B0`:
 
 ```python
 elapsed = elapsed + 1
@@ -72,8 +98,23 @@ value = start + delta * elapsed / length      while elapsed < length
 value = start + delta, length = 0             at the end; 0x004076B0 returns -1 when length is 0
 ```
 
-- `0x00407290(counter, target)` starts a ramp of `|target - value| x [+0x10C] / [+0x110]` frames, at least 1,
-  and only when `+0x110` is not 0.
+`0x004076B0(ramp)` is passed the record: the counter's `+0x114` (`0x00407648`, `0x0040657D`) or `+0x180` at `0x00405A27`. It
+answers -1 at once for length 0 (`0x004076B0`-`0x004076BA`). Before the end it works in float: the progress
+`elapsed / length` goes to `+0x128` and the value is `start + delta x progress`, truncated toward zero
+(`0x004076CB`-`0x004076FE`); at the end the progress is 1.0 (`0x00407711`).
+
+Both branches store the value at `+0x124` and answer it; the counter child copies the answer to `+0xE4` and redraws
+through `0x00407450` (`0x00407650`-`0x00407656`). The end test is signed (`0x004076C6`), so a negative length ends the
+ramp on its first step.
+
+- `0x00407290(counter, target)` starts a ramp of `|target - value| x [+0x10C] / [+0x110]` frames, a 0 becoming 1,
+  and only when `+0x110` is not 0 and the counter is not null, `counter != 0 && [counter + 0x110] != 0`
+  (`0x00407293`-`0x004072A9`).
+- The product (`imul eax, dword ptr [rcx + 0x10c]`) and the divide (`idiv r8d`) of `0x00407290` are signed 32-bit
+  (`0x004072B6`, `0x004072D3`), so a negative rate gives a negative length, which ends the ramp on its first step
+  (`0x004072EE`, `0x004076C6`).
+  - It stores the start `+0x11C` and the current value `+0x124` = value, the delta `+0x120` = target - value, and
+    0 in elapsed `+0x114` and the progress `+0x128` (`0x004072BD`-`0x004072F1`).
 - `0x00407240(counter, target)` starts a ramp of `+0x108` frames, or 1 when that is 0; its only caller is
   the boss gauge's bar (`0x00406552`). `changegaugecounterbyframe` (`0x00408450`) starts the same ramp with its own
   copy of these stores.
@@ -99,6 +140,20 @@ keeping one.
 | `+0x130` bit `0x1` set, `+0xD8` bit `0x2` set | `0x4B3E` | the same |
 
 The hundredths are `(value mod 60) x 100 / 60`.
+
+`0x00407720` works in this order (`0x00407720`-`0x00407991`):
+
+- It first calls `0x00407D10(counter)` and stops when the counter's `+0x50` bit `0x1` is clear
+  (`0x00407732`-`0x0040773B`).
+- The label is node 2 of the frame widget `+0xC8`: `0x00394690(w, i)` answers `+0x60[i]` for `i` below
+  `(+0x50 >> 2) & 0xFFFF`, and 0 otherwise (`0x0040775F`, `0x00394690`-`0x003946AB`).
+- The text is written only when `0x00393220(label)` answers non-zero, which needs a label, its `+0x08` bit `0x1` and
+  bit `0x10000000` of the dword at `[label]` (`0x004077BD`, `0x00407900`, `0x00393220`-`0x00393239`).
+- A format text from `0x002F9860` that starts with `ex` (`0x00364980`) is filled by `0x00365B30` instead of `0x002B4090`
+  (`0x004077E8`-`0x00407822`, `0x00407919`-`0x0040794D`).
+- The label then gets the text `+0x134` at `+0x18` and `0x0020E620(0)`, which is 0 less `[0x01F83530]`, at `+0x20`
+  (`0x00407811`-`0x0040781A`, `0x00407954`-`0x0040795D`). The hours format also copies the counter's `+0xF4` to the
+  label's `+0x24` (`0x00407960`-`0x00407966`).
 
 ### `resetgaugetimer`
 
@@ -183,6 +238,7 @@ scripts](../Story-Events-And-Hunts/trial-mode-scripts.md).
 | `+0x0DC` | `u8` | type | 0 to 4 (`0x00408A20`); 2 and 4 reverse the thresholds |
 | `+0x0E0` | `i32` | max | default 100; frames for a timer |
 | `+0x0E4` | `i32` | current | the value shown |
+| `+0x0E8` | `i16` | wordE8 | set to 0 by `0x004073B0` (`0x004073E9`) |
 | `+0x0EA` | `i16` | cond1 | first threshold |
 | `+0x0EC` | `i16` | cond2 | second threshold |
 | `+0x0EE` | `i16` | cond3 | third threshold |
@@ -196,12 +252,13 @@ scripts](../Story-Events-And-Hunts/trial-mode-scripts.md).
 | `+0x11C` | `i32` | start | ramp start value |
 | `+0x120` | `i32` | delta | ramp distance |
 | `+0x124` | `i32` | now | ramp result |
+| `+0x128` | `f32` | progress | ramp progress, elapsed / length, 1.0 at the end (`0x004076F1`, `0x00407711`); 0 from `0x00407290` |
 | `+0x130` | `u32` | style | bit `0x1` picks the seconds-only timer format (`0x00407720`) |
 | `+0x134` | `char[64]` | text | the formatted timer (`0x00407720`) |
 
 ### The gauge window
 
-The gauge window is the `0xE8`-byte widget at `0x02B62D80` with procedure `0x00406E80` that `0x00408300` creates.
+The gauge window is the `0xE8`-byte widget kept at `0x02B62D80` with procedure `0x00406E80` that `0x00408300` creates.
 
 `ScriptGaugeWindow` (`0xE8` bytes, offsets from the start of the record):
 

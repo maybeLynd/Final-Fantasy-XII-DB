@@ -38,10 +38,12 @@ them with `eventread` (`0x0E7`, `0x003529E0`) and `eventread_e8` (`0x0E8`, `0x00
   read test?", "View scene from:").
 - `dgl_g0101` is followed by story counter 5470, after the last nethicite ([story counter
   values](story-counter-values.md)), and by `dgl_g0103`: Gabranth is dismissed from Larsa's service, and Venat and
-  the Occuria are named ("The Occuria give men power as a master feeds his dog").
-- `dgl_g0103` gives Famfrit on field `668` and is followed by story counter 5500, after the Judge Gabranth battle, and
-  5550, after Cid's ambition, and by `dgl_g0102`: "Behold the manufacted nethicite... Famfrit! To me!" Its first entry
-  is a choice list of cut names that ends "Close debug menu".
+  the Occuria are named ("The Occuria give men power as a master feeds his dog: it is meant to tame us.").
+- `dgl_g0103` gives Famfrit on field `668`. Its five lines, shown by its functions `m001` to `m005`, read "Behold the
+  manufacted nethicite... the fruit of our power and knowledge! See what the Stone of Man is capable of! Witness its
+  power with your own eyes! Famfrit! To me!"
+- `dgl_g0103` is followed by story counter 5500, after the Judge Gabranth battle, and 5550, after Cid's ambition, and
+  by `dgl_g0102`. Its first entry is a choice list of cut names that ends "Close debug menu".
 - `dgl_g0102` is followed by story counter 5600, after the Famfrit battle; 5650, after the Sun-cryst runs wild; and
   6000, after Vaan on the ship; then by the jump to Saccio Lane (Balfonheim Port), field `826`: "The Sun-cryst
   bursts.", and the line "For Nabudis." is followed by "Reddas?" and "Reddas, no!"

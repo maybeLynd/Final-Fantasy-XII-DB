@@ -20,12 +20,18 @@ The file is `ps2data/sound/sead.win.config`, 1,264 bytes, the only `.config` fil
 `0x00210760` builds the path from `PS2Data/sound/sead` (`0x009068E0`) and `.win.config` (`0x00906A38`) at `0x002107A0`. It runs
 once at start-up, reached from `0x0017CEB0` through `0x0017D6B0` and `0x001DBA40`.
 
-1. It opens the file (`0x002107C0`); when that fails it returns without starting the sound engine.
+1. It opens the file (`0x002107C0`); when that fails it returns without starting the sound engine, with the value 1
+   (`0x002107CD`).
 2. It takes the size from the file layer (`0x002107E8`), not from the header, allocates that plus one byte
-   (`0x002107F2`), reads the file and closes it.
+   (`0x002107F2`), ends the buffer with a 0 byte (`0x00210803`), reads the file (`0x00210807`) and closes it
+   (`0x0021080F`).
 3. It fills an initialisation block with the buffer at `+0x38` and calls the engine start `0x007A4D50` (`0x00210889`),
    whose result it does not test.
-4. It frees its buffer (`0x002108F1`).
+4. It builds the object manager with `0x002216B0(0x400, 0x400)` (`0x00210895`; [Audio manager](audio-manager.md)),
+   starts the spatial layer `0x007A5B50` from a second block (`0x002108AD`-`0x002108DE`;
+   [Spatial sound](spatial-sound.md)) and sets the `Lay` handle at its argument's `+0x34` to 0 (`0x007A5B20`,
+   `0x002108E9`).
+5. It frees its buffer (`0x002108F1`) and returns 0 (`0x002108FE`).
 
 ### The engine's copy
 
@@ -35,7 +41,8 @@ once at start-up, reached from `0x0017CEB0` through `0x0017D6B0` and `0x001DBA40
 2. It allocates the header's `+0x0C` bytes and copies that many bytes of the file to the block it keeps at `0x02EAD3E0`
    (`0x007B0FE8`-`0x007B1005`).
 3. It sums the positive category sizes into `0x02EAD3E8` (`0x007B103C`-`0x007B108A`) and builds the external-parameter
-   rows (`0x007B10B4`-`0x007B1145`).
+   rows (`0x007B10B4`-`0x007B1145`); without an `expr` chunk it builds no rows (`0x007B10C0`).
+4. It returns 0 (`0x007B11E5`), and -1 only for the magic mismatch (`0x007B0FB8`).
 
 All 16 later reads of `0x02EAD3E0`, in 15 functions, pass it to a chunk finder, so every chunk is read from the copy.
 
@@ -162,7 +169,8 @@ builds one `0x88`-byte `Driver::Category` per element (`0x007A96F0`; `0x007A9760
 
 `0x007AAA40` allocates `0x88` bytes (`0x007AAB18`-`0x007AAB23`), clears them (`0x007AAB3B`), runs the constructor `0x007A96F0`
 and stores the pointer in the table (`0x007AAB61`); `0x007AA110(category, index, element, ctgl count)` then fills it from
-the element.
+the element. When the allocation `0x007AD460` gives null, the slot gets 0 and `0x007AA110` is still called with it
+(`0x007AAB4D`, `0x007AAB65`).
 
 | Offset | Type | Name | Meaning | Set by |
 |---|---|---|---|---|
@@ -218,16 +226,23 @@ Each ramp is an `AudioParameterRamp` of `0x30` bytes; `0x007AA110` builds the tw
 | `+0x28` | `f32` | riseRate | not written by the builder; the category code starts its ramps only through `0x007CA560` (from `0x007AA4F0`, `0x007AA510`, `0x007AA550`, `0x007AA570`), which reads `+0x28` and `+0x2C` only when `+0x24` is 1 (`0x007CA5D2`), and nothing in the category code writes `+0x24` |
 | `+0x2C` | `f32` | fallRate | not written by the builder; read under the same `+0x24` test |
 
-The volume ramps number `+0x78`, the pitch ramps 2.
+The volume ramps number `+0x78`, the pitch ramps 2. Each array comes from `0x007AD460`, or from `0x00210EC0` with 8
+bytes for a count of 0 (`0x007AA173`, `0x007AA23D`). A null block leaves the array pointer 0 (`0x007AA1E1`, `0x007AA2A1`),
+and the fill loops that follow still run (`0x007AA1EB`, `0x007AA2AA`). `0x007AA110` then gives a category whose `size` is
+above 0 its handle list, `0x007AA010` with the category's `+0x08` and the size (`0x007AA2E3`-`0x007AA2F3`), and returns
+0 (`0x007AA2FD`).
 
-The binding is `0x007AA320(category, element)`, called by `0x007AAA40` (`0x007AABED`) after every category is built. For
-an element whose `i16` size (`+4` of the element data the argument's `+8` points to) is negative it looks up category
-`-size` (`0x007AAA20`: an index below the count `0x02EAD000`, else 0) and keeps it at the category's `+0x58`.
+The binding is `0x007AA320(category, element)`, called by `0x007AAA40` (`0x007AABED`) after every category is built. That
+second walk over the elements calls it only for an element whose size, negated as a 16-bit number, is above 0
+(`0x007AABD1`-`0x007AABDB`). For an element whose `i16` size (`+4` of the element data the argument's `+8` points to)
+is negative it looks up category `-size` (`0x007AAA20`: an index below the count `0x02EAD000`, else 0) and keeps it at
+the category's `+0x58`.
 
 When the capacity `+0x10` of that category is 0, as it is for a category whose own size is below 0, it prints
 "[sead][!!error!!]Category::InitializeRefCategory referenced category is not initialized( or reference is looping )!"
 and returns -1. That ends `0x007AAA40` at once with -1 (`0x007AABF4`), before the master ramps are set, and the start
-takes it as a failure (`0x007A50F0`). Otherwise, and for a size of 0 or more, it returns 0.
+takes it as a failure (`0x007A50F0`). Otherwise, and for a size of 0 or more, it returns 0. When both walks finish,
+`0x007AAA40` sets the master ramps and returns 0 (`0x007AAC09`-`0x007AAC43`, `0x007AAC10`).
 
 ### How a category limits its sounds
 
@@ -338,6 +353,10 @@ The mixer, `Driver::Audio`, `0x20` bytes at `0x02EAD0A8`, built by `0x007AC360`:
 `0x007AC410(mixer, bus)` gives a bus's voice; a bus number below 0 or past the count prints "bus access overrun! use
 master bus" and gives bus 0's. `0x007AC4D0(mixer, port)` gives a master port: 1 is bus 0's voice and 2 the voice at
 mixer `+0x18`. The mixer object, `Driver::Audio`, is built once at `0x02EAD0A8` (`0x007AC360`).
+
+`0x007AC360` returns 0 at once when `0x02EAD0A8` is already set (`0x007AC364`). Otherwise it takes `0x20` bytes from
+`0x007AD460` (`0x007AC378`), writes the fields above, stores the object and returns 0 (`0x007AC3A6`, `0x007AC3AD`); when
+the allocation gives null it stores 0 at `0x02EAD0A8` and returns -1 (`0x007AC3B4`-`0x007AC3BB`).
 
 | Type | Effect class | Builder | Size |
 |---:|---|---|---:|
@@ -551,11 +570,16 @@ When `+0x34` is 0, `+0x38` and `+0x3C` take whatever the builder's stack held (`
 only when `+0x34` is 1 (`0x007B12D8`).
 
 The value is the ramp: `start` when `duration` is 0 gives `target` (`0x007B0F23`-`0x007B0F2E`), else
-`start + curve(elapsed / duration) * (target - start)` (`0x007B0F4A`-`0x007B0F6F`). `0x007B1210(name, value)`, the driver's
-command `0x32`, sets one: the present value becomes `start`, `value` the target, `elapsed` and `duration` 0, `curve` 0
-and `active` 1 (`0x007B12D8`-`0x007B12FA`); with `+0x34` 1 the duration becomes the change over `riseRate` when rising, or
-over `fallRate` when falling, each taken as its absolute value (`0x007B1301`-`0x007B135A`). A name that matches no row
-returns -1 (`0x007B1274`).
+`start + curve(elapsed / duration) * (target - start)` (`0x007B0F4A`-`0x007B0F6F`).
+
+`0x007B1210(name, value)`, the driver's command `0x32`, sets one: the present value becomes `start`, `value` the
+target, `elapsed` and `duration` 0, `curve` 0 and `active` 1 (`0x007B12D8`-`0x007B12FA`); with `+0x34` 1 the duration
+becomes the change over `riseRate` when rising, or over `fallRate` when falling, each taken as its absolute value
+(`0x007B1301`-`0x007B135A`). A name that matches no row returns -1 (`0x007B1274`).
+
+A value above the present one is rising, `(value - present) / |riseRate|`, and any other is falling,
+`(present - value) / |fallRate|`; the duration takes that result only when it is above 0 (`0x007B131B`, `0x007B1354`),
+so an equal value keeps the duration 0. A matched row returns 0 (`0x007B1327`, `0x007B1366`).
 
 ### The HCA mixer switch
 
@@ -577,6 +601,7 @@ fields come from the start block, not from the file.
 | `channels` | widened to 32 bits into parameter `+0x18` (`0x007A4F67`-`0x007A4F6B`), then the HCA mixer's channel count (`0x007ACC7B`-`0x007ACC80`) |
 | `rate` | copied to parameter `+0x14` (`0x007A4F6E`-`0x007A4F71`), then the HCA mixer's rate (`0x007ACC72`-`0x007ACC77`) |
 | `enable` | converted: any value but 0 gives 1 in the byte `+0x1C` (`0x007A4F5F`-`0x007A4F63`); with no `hcam` chunk it is 0 and `+0x14`, `+0x18` are not set (`0x007A4F76`) |
+
 Only with `enable` set does `0x007AC4F0` build the HCA mixer voice (`0x007ACC6B`-`0x007ACC9B`). The engine renders at the
 constant 48,000 (`0x007AC691`).
 

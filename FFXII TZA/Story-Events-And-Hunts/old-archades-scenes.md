@@ -23,8 +23,10 @@ from index `4n` of the event file table ([event scenes](../Scripts-And-Script-Co
 
 - `ald_a0180` is the meeting with Jules, the streetear, who offers his help for a price ("So, wise man, how does
   [value] gil sound?" with the choices Pay up and Decline).
-- In `ald_a0179` Jules praises Vaan for telling his rumour just as he was told, a brawl breaks out ("The moogles are
-  riotin'!"), and Jules gives Balthier word of "the prodigal Bunansa son".
+- In `ald_a0179` Jules praises Vaan for telling his rumour just as he was told, a brawl breaks out ("A brawl, a brawl!
+  The moogles are riotin'!"), and Jules gives Balthier word of the prodigal Bunansa son ("A pirate should know that
+  words are worth gil uncountable. Here's some words for you: The prodigal Bunansa son's come back to the Imperial
+  roost. See? Words of much value, these.").
 - `ald_a0200` is the arrival in Old Archades ("Smells less like a capital... and more like a sewer."); its first
   entry is the replay prompt "View scene again?". After it the loading function writes 3210.
 - None of the scenes gives items or party members.

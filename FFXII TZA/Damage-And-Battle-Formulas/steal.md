@@ -70,8 +70,8 @@ stolen from successfully once.
 ### The Thief's Cuffs test
 
 The roll branches on bit `0x2` of context byte `+0x1C` (`0x003904A5`). Context bytes `+0x1A`-`+0x29` merge the
-user's two augment layers: bit `id & 7` of byte `+0x1A + id / 8` is set when the user's stats record has
-augment `id` in its layer `+0x68` or `+0x78` (`0x00384820`-`0x00384858`). Bit `0x2` of `+0x1C` is therefore
+user's two augment layers: bit value `1 << (id & 7)` of byte `+0x1A + id / 8` is set when the user's stats
+record has augment `id` in its layer `+0x68` or `+0x78` (`0x00384820`-`0x00384858`). Bit `0x2` of `+0x1C` is therefore
 the augment Thievery (17).
 
 Thief's Cuffs are equipment row 354 of `battle_pack.bin` (named in the equipment-name table), and the
@@ -155,6 +155,16 @@ of an item already in the list) and posts one line per entry (`0x0046A940`-`0x00
 |---|---|---|---|
 | First | `0x31` | `0x2E` | `0x2D` |
 | Later | `0x32` | `0x30` | `0x2F` |
+
+`0x0046A870` takes the source, the target record and the result in its second to fourth arguments. It does nothing
+for a null target record (`0x0046A873`). It empties the list and keeps the target's unit in `0x02EBF188`, and stops
+there when the record has no unit, the unit has no stats record or a record that is not an enemy's, or the unit's
+`+0xE60` is null (`0x0046A88D`-`0x0046A8E1`).
+
+The won items are those whose result bytes `+0x32`, `+0x33` and `+0x34` are set: the record's `+0x32`, `+0x34` and
+`+0x36`, in that order (`0x0046A8E7`-`0x0046A90F`). An entry with count 0 that is not gil posts no line (`0x0046A970`,
+`0x0046A993`). Each line goes through `0x0046AB10(source, event, &block)` with the source at block `+0x00`, the target
+record at `+0x08`, the item word at `+0x20` and the count at `+0x24` (`0x0046A916`-`0x0046A9A2`).
 
 ## Layouts
 

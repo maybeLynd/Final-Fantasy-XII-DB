@@ -34,7 +34,7 @@ The row layout, as the class-8 arm copies it (`0x0031CD4C`-`0x0031CD69`):
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16` | price | shop price in gil, query record `+0x28` (`0x0031CD50`) |
-| `+0x02` | `u8` | actionRow | the magick's action row, query record `+0x38` (`0x0031CD65`); `0x00306340` hands it to the test of whether a member holds the magick's license ([Party marks](../Menus-And-HUD/party-marks.md)) |
+| `+0x02` | `u8` | actionRow | the magick's action row, query record `+0x38` (`0x0031CD65`); `0x00306340` hands it to `0x003064F0`, the test of whether a member may use the magick: the ownership test `0x003060E0` and the test of whether the member holds the magick's license, `0x00323EC0`, must both pass (`0x0030651F`, `0x00306535`) ([Party marks](../Menus-And-HUD/party-marks.md)) |
 | `+0x03` | `u8` | iconFrame | query record `+0x2C` (`0x0031CD57`), the icon frame of its list rows |
 | `+0x04` | `u16` | nameWord | the name |
 | `+0x06` | `u8` | sortOrder | query record `+0x30` (`0x0031CD5E`), the key Auto-sort `0x002CFFE0` orders by ([Dialogs](../Menus-And-HUD/dialogs.md)) |

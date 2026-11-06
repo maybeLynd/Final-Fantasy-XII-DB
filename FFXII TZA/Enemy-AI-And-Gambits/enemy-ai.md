@@ -33,8 +33,14 @@ has the whole cascade):
 | `+0x6F0` | the default set `0x01E09350` | `0x0023ABA6`-`0x0023ABB5`, on the party-table path (`0x0023AB7E`) |
 
 An enemy-table unit never walks `+0x6F8`, because that step is for party records (`0x00305BE7`-`0x00305C03`), and
-its `+0x6F0` stays empty from the reset (`0x00236BB6`). Its cascade is the re-plan set, then its own list, then
+its `+0x6F0` stays empty from the reset (`0x00236BB6`); the walk returns 0 at once for that null set
+(`0x00305CF2`-`0x00305CF7`). Its cascade is the re-plan set, then its own list, then
 the wait `0x4021` from `0x01EEC298` (`0x00305C7E`-`0x00305C9B`).
+
+Three cases change that cascade. An issued command (unit flag `0x4000`) is tried before it
+(`0x00305ADF`-`0x00305B36`). Outside a town, Confuse (status `0x20`) or Berserk (status `0x08000000`) walks
+`0x01EEC320` in place of the re-plan set and its own list (`0x00305B5D`-`0x00305B90`). In resume mode the wait is
+not committed (`0x00305C7A`).
 
 ### The built-in sets
 
@@ -117,7 +123,7 @@ non-zero (1 in the image; no instruction writes it), it first calls `0x00324F20`
 |---|---|
 | bit `0x1` of `+0xBC0` set | full rebuild |
 | the unit's slot `+0xEA9 & 7` equals the generation `0x022C2578` | full rebuild |
-| otherwise | the old list is kept, minus inactive units and units with KO, Stone or X-Zone (`0x00324F45`-`0x0032504C`) |
+| otherwise | the old list is kept, minus inactive units and units with KO, Stone or X-Zone (`0x00324F45`-`0x0032504C`): an entry stays when its handle resolves (`0x00263E30`) to a unit with bit `0x10` of its first dword and a stats record, without KO, Stone or X-Zone unless the town flag `0x00313F60()` is set (`0x00324F7F`-`0x00324FB1`). The 0x208-byte list is then cleared and refilled from the 32 battle units of `0x00236820(0)`, stride `0xF50`: unit `i` goes in, as its `+0x10`, when a kept unit's slot `+0xEA9` is `i` (`0x00324FD7`-`0x0032504C`). `0x00324F20` returns 1 here and 0 in the two cases above |
 
 The generation steps by one, modulo 8, each time the field frame `0x00234590` runs (`0x00325060`, `0x002346FE`),
 so with both running every frame a unit rebuilds its list in full one frame in eight. Bit `0x1` is set through
@@ -125,21 +131,47 @@ so with both running every frame a unit rebuilds its list in full one frame in e
 
 ### An order in flight
 
-`0x00308610`, the unit's combat frame, handles the order it is carrying out (`0x0030868B`-`0x003087D2`):
+`0x00308610`, the unit's combat frame, handles the order it is carrying out (`0x0030868B`-`0x003087D2`). Before that,
+when bit `0x20` of `0x02089340` is clear, the unit's status words hold bit `0x10` (Sleep) and `0x003E7DE0()` is 0, it
+calls `0x003299B0(unit, 0x2001, 0)` (`0x00308616`-`0x00308648`); it then returns early when `0x0030DA30(unit)` holds,
+setting bit `0x2` of `0x02089340` when unit bit `0x1000000` is set, or when `0x00307DF0(unit)` is non-zero after
+`0x0033A240(unit + 0x80)`, setting the same bit (`0x0030864D`-`0x00308689`):
 
 1. With no order and unit flag bit `0x20` clear, the unit is cancelled with `0x003105D0`, bit `0x20` is set and its id
-   goes into the 64-entry ring `0x022BE984` (`0x00308695`-`0x003086E5`).
-2. When `0x002FFB60` reports an interrupt reason, the order is cancelled and the perception list re-armed
+   goes into the 64-entry ring `0x022BE984` (`0x00308695`-`0x003086E5`), after `0x00308270(unit)` when unit bit `0x400000`
+   is set (`0x003086A0`-`0x003086AA`). With no order and bit `0x20` set the frame returns (`0x0030869A`).
+2. With an order, bit `0x2` of `0x02089340` is set when `0x00237670(unit id)` is 0 (`0x003086E6`-`0x003086F2`). When
+   `0x002FFB60` reports an interrupt reason, the order is cancelled and the perception list re-armed
    (`0x003086FC`-`0x00308703`, `0x003087BE`-`0x003087D2`).
 3. Otherwise, while the order is an order id or an action before phase 9, its flags lack `0x8000` and the
-   unit is not changing stance, the selection runs again in resume mode (`0x0030870C`-`0x0030874C`). The resumed
-   walk stops at the order in flight, so only an order above it in the list can replace it.
+   unit is not changing stance, the selection runs again in resume mode (`0x0030870C`-`0x0030874C`): unit bits
+   `0x1000000` and `0x400000` clear, `+0x714` above `0x21E` or `+0x6B4` below 9, and the word `+4` of
+   `[+0x708]` not negative. The resumed walk stops at the order in flight, so only an order above it in the
+   list can replace it.
 4. When the action finishes and no combo continues, the order is cancelled and the list re-armed
-   (`0x00308751`-`0x003087D2`).
+   (`0x00308751`-`0x003087D2`). The action is finished when the state step `0x00307BE0` returns non-zero, and a
+   result of 1 also sets bit `0x1` of `+0x718` (`0x00308762`); while it returns 0 the frame returns
+   (`0x0030875B`). With unit bit `0x400000` set the frame ends in a jump to `0x00308270(unit)` instead of the
+   cancel (`0x003087A8`-`0x003087B9`).
 
 `0x003105D0` clears the in-flight order: `+0x714` becomes `0xFFFF`, `+0x708` and `+0x710` 0, the target list is
 reset and the previous command is kept in `+0x730`
-([Action commit](../Battle-Actions/action-commit.md)).
+([Action commit](../Battle-Actions/action-commit.md)). It returns at once for a null unit or one without a
+stats record `+0x698` (`0x003105D3`, `0x003105E9`). Otherwise, in order (`0x00310605`-`0x00310758`):
+
+1. `0x00310780(unit)` runs the release ([Action commit](../Battle-Actions/action-commit.md)); `+0x6B6` = 0; the
+   slots `+0x695` and `+0x696` are freed with `0x0030C970` and set to `0xFF`; `0x00300280(unit)` gives back a
+   reserved item and gil ([Item use](../Items-Equipment-Shops-And-Licenses/item-use.md)).
+2. Unit flag bits `0x3000`, `0x20000000`, `0x80000000` and `0x1000000` are cleared, and `+4` bits `0x8`, `0x80`,
+   `0x4000`, `0x40000`, `0x80000` and `0x200000`; `+0x690` = 0. The call `0x0016D6A0(unit)` between the two flag
+   clears is a bare `ret 0` and does nothing (`0x0031065E`).
+3. The unit's bit `1 << +0xEA9` is cleared in `+0xEA0` of every unit of the `0x00236820` list
+   (`0x00310672`-`0x003106AB`).
+4. `0x00316CF0(unit + 0x778)` resets the target list; `+0x718`-`+0x72F` are copied to `+0x730`-`+0x747`;
+   `+0x700` loses bits `0x3`; the word `+0x6B7`, the byte `+0x6B4` and the dword `+0x75C` are zeroed, and the
+   qwords `+0x760`, `+0x768`, `+0x6D0` and `+0x6D8`.
+5. `0x003291B0(unit + 0x80, 0, 0)` runs; then the dword `+0x1A0`, the qword `+0x1A4` and the dword `+0x6D4` are
+   zeroed, bit `0x20` of `+0x1F0` is cleared, and `0x0033C9B0(unit + 0x80)` resets the locomotion block.
 
 A status change can also end the order. `0x00300140(unit, cancel)` empties the issued command set `+0x6F8` and its
 target `+0x748`, and with `cancel` non-zero first cancels the order with `0x003105D0` (`0x00300149`-`0x0030015C`); adding

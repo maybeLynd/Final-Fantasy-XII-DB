@@ -33,9 +33,14 @@ Only when slot 0, the field, is bound (`0x0026C95D`-`0x0026C95F`) does it handle
 | 13 | `0x02099DD0` | `0x100000`, 1 MiB | `EVTMEM` | `0x0025A990` (`0x0025A9D5`-`0x0025AA21`) |
 | 14 | `0x02099DD8` | `0x19000`, 100 KiB | `SMNMEM` | `0x0025AA30` |
 
-Each maker releases an existing heap first, allocates the block from pool 5, names it (`0x0036C660`) and registers
-it under its heap number with `0x00369D30`. The slot reset `0x002628B0` releases both heaps the same way when slot 0
-is reset (`0x00262DC3`-`0x00262DC5`, `0x00262DD3`-`0x00262E28`).
+Each maker releases an existing heap first, through `0x00369760(heap)`, `0x0036D160(heap)` and `0x003697F0(block)`, and
+sets its pointer to 0 (`0x0025A99E`-`0x0025A9BE`, `0x0025AA3E`-`0x0025AA5E`). It then allocates the block from pool 5
+(`0x0036C1D0(5, 5)`, `0x0036A190`), stores the result in the pointer even when it is null, and pops the pool selection
+(`0x0036C140`). Only a block that is not null is named (`0x0036C660`) and registered under its heap number with
+`0x00369D30(heap, block, size, 0)`, a tail jump (`0x0025A9F2`-`0x0025AA21`, `0x0025AA92`-`0x0025AAC1`).
+
+The slot reset `0x002628B0` releases both heaps the same way when slot 0 is reset (`0x00262DC3`-`0x00262DC5`,
+`0x00262DD3`-`0x00262E28`).
 
 The slot loaders take the payloads of slots 1 and 2 from heap 13 and the payload of slot 3 from heap 14 when those
 heaps exist, and from pool 5 otherwise (`0x0032F8F6`-`0x0032F96B`, `0x0032FE00`-`0x0032FE40`). So a field on the list, or
@@ -44,9 +49,14 @@ a town, loads those slots' actors from the general pool.
 ### The two tests
 
 `0x00377440(id)` reads the list at `0x02ADD0A8`: no list, an empty list or an id not in it all count as absent
-(`0x00377440`-`0x0037747A`). `0x00377480(id)` returns bit `0x8000` of the id's record in the field record table `0x02ADD100`,
-the town bit ([Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)), and 0 for an id outside the table.
-So the summon memory heap is made only for fields that are not towns.
+(`0x00377440`-`0x0037747A`). It compares the id with each `u16` entry from `+0x0A`, up to the `u16` count at `+0x08`,
+and returns 1 for absent (`0x00377475`) and 0 when an entry matches (`0x0037747B`).
+
+`0x00377480(id)` returns bit `0x8000` of the id's record in the field record table `0x02ADD100`,
+the town bit ([Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)), and 0 for an id outside the table
+(the unsigned compare with the count at `+4`, `0x0037748C`) or while the table is not loaded (`0x0037748A`).
+So the summon memory heap is made only for fields that are not towns, and for every field while the table is
+not loaded.
 
 ### The list file
 

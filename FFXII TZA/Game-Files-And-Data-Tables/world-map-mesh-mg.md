@@ -19,9 +19,15 @@ id `0xA8` in the path arrays that `ResourcePath_Init` (`0x002DF9A0`) installs. T
 (`0x01E0E530`, `0x01E5A3D0`, `0x01EABBA0`) name the `ch` copy; the arrays of the other languages (one each
 for languages 1 to 6, and `0x01EDD7E0` for the rest) name the `in` copy.
 
-Two screens request it. The World Map set-up `0x00550540` calls `0x00562F90` on the World Map host
-`0x02CA8F38` (object `+0xC0`), and the license board screen `0x00561390` requests it again for its own use
+Two screens request it. The World Map set-up `0x00550540` calls `0x00562F90` on the World Map host kept at
+`0x02CA8F38` (the host's `+0xC0`, `0x005505C6`), and the license board screen `0x00561390` requests it again for its own use
 (`0x0056162B`).
+
+`0x00550540(record)` returns null at once while `[0x02CA8F38]` is null (`0x00550551`, `0x005505FA`). Otherwise it copies
+the record's words `+0x00`, `+0x08` and `+0x0C` and bits `0x1` and `0x2` of `+0x04` into the host
+(`0x00550557`-`0x005505B0`, [Map screens](../Menus-And-HUD/map-screens.md)). It then opens a request group (`0x00249580`), runs
+`0x00562F90` with it (`0x005505D0`), closes it (`0x00249410`), asks for the map-data widget with the World Map and
+location files and the host as owner (`0x003BC440`, `0x005505E4`) and returns the host.
 
 ## Layouts
 
@@ -74,7 +80,7 @@ Sub-mesh 1 (strips):
 | `+0x00` | `i32[4]` | colour | R, G, B, A |
 | `+0x10` | `f32[4]` | x, y, z, w | position |
 
-An index entry is a `u16`: bit `0x8000` (`0x8000`) starts a new strip, and the bits under mask `0x7FFF` are the vertex index.
+An index entry is a `u16`: bit `0x8000` starts a new strip, and the bits under mask `0x7FFF` are the vertex index.
 
 ## Shipped data
 
@@ -125,15 +131,22 @@ returned buffer pointer at `meshObject + 0x10` (`0x00562FDA`). `0x00249210` clai
 size from the file-size table (`0x0032E400`), allocates a buffer of that size and queues one read of the
 whole file.
 
+The buffer comes from arena 3, bottom-up (`0x00562FC2`, `0x00562FB2`). `0x00562F90` sets no completion on this request,
+so the record keeps the zero `0x00249210` stores at `+0x10` and `0x002495C0` only counts it on the group. A size
+below 1 queues no read and leaves the buffer null, which is then what `+0x10` gets ([Menu resource
+packages](mrp-menu-resource-packages.md)).
+
 The loader then walks the eleven `{name, flag}` entries at `0x00D231C0`:
 
 - entries 0 to 7 (`w_shade_p`, `w_main0` to `w_main3`, `w_icon_p`, `w_line01`, `w_line02`) become named
   images requested as kind 7 id `0xAA + i` through `0x002493D0` (`0x0056301F`, the flag 1 for `w_main0` to
   `w_main3` and 2 for the others), stored at `meshObject + 0x20 + 8 × i`;
 - entries 8 and 9 (`w_win_c`, `map_gra_c`) are skipped;
-- entry 10 is replaced: `+0x70` gets the registered image `cursol_4_p` (`0x0024A5A0`).
+- entry 10, `baseicon`, is not requested: `+0x70` gets the registered image named by the pointer at `0x01E0C220`,
+  `cursol_4_p`, through `0x0024A5A0` (`0x00562FEA`-`0x00562FF6`).
 
-It then requests `w_menu.mrp` (`0xA6`) into `+0x18` and sets `+0x88` to −1.
+The eight images come from arena 2 (`0x0056301B`). It then requests `w_menu.mrp` (`0xA6`) into `+0x18`, also in
+arena 2 through `0x00249350`, whose completion relocates it (`0x00563044`, `0x00563048`), and sets `+0x88` to −1.
 
 MeshObject (World Map host + `0xC0`):
 
@@ -154,7 +167,8 @@ MeshObject (World Map host + `0xC0`):
 ### Binding textures
 
 The World Map host's procedure `0x00552250` calls `0x00563110` in its message `0x10` case (`0x00552362`), the
-message `0x002495C0` posts to a request group's widget once all of its requests have completed.
+message `0x002495C0` posts to a request group's widget once all of its requests have completed, or `0x00249410`
+posts when they have all completed before the group is closed (`0x00249434`).
 
 `0x00563110` stores both sub-mesh pointers (`0x00274780` with 0 and 1), then, for every slot of each sub-mesh,
 compares the slot name byte for byte with the six names at `0x00D23270`: `main0.psd` to `main3.psd`,
@@ -163,7 +177,11 @@ compares the slot name byte for byte with the six names at `0x00D23270`: `main0.
 `0x48`, in-use bit `0x20` at `+0x38`) and returns the entry or 0.
 
 It writes that pointer over the slot's
-first eight bytes (`0x005631CA`). A slot whose name matches nothing keeps its name bytes.
+first eight bytes (`0x005631CA`), 0 when the image is not registered. A slot whose name matches nothing keeps its
+name bytes. A pair without an image name would be passed over (`0x005631C3`); all six have one.
+
+After both sub-meshes it looks up `w_line01` again into `+0x78` (`0x0056325F`-`0x00563273`), zeroes the eight bytes at
+`+0x94` and sets the floats `+0x8C` and `+0x90` to 1.0 (`0x00563277`-`0x0056328C`).
 
 ### Drawing the tiles (sub-mesh 0)
 
@@ -203,16 +221,35 @@ extent to `0x02CA8F80` to `0x02CA8F8C`, then calls `0x00555D10` for each slot (`
 
 - An entry with bit `0x8000` set starts a strip: `0x00556240` re-emits the GS `PRIM` (`0x5C` textured or `0x4C`
   untextured triangle strip, or `0x0A` line strip when bit `0x1` of `0x01F2CAC8` is clear) and `0x00555B90`
-  writes the slot's colour factors.
+  writes the slot's colour factors (`0x00555DEF`-`0x00555E24`). Textured means an image was passed (`0x00555D3B`).
+- On that restart `0x00556240` writes, under one A+D tag, TEST_1 (`0x47`) = widget `+0x80`, ALPHA_1 (`0x42`) =
+  widget `+0x78` and PRMODECONT (`0x1A`) = 1 before the `PRIM` (`0x00556284`-`0x00556319`).
+- It then flushes the sprite batcher (`0x00181330`) and sets the batcher's mirror: TEST_1 from `+0x80` (`0x00181910`),
+  ALPHA_1 from `+0x78` (`0x001816B0`) and entry 4 (`0x00181870`) (`0x0055632B`-`0x0055634A`).
+- Every call of `0x00556240` opens a chunk (`0x00271450`, `0x002714A0`) and reserves `0x20` bytes at its cursor, whose
+  address it returns (`0x0055634F`-`0x0055636E`). There `0x00555B90` writes a GIF tag (NLOOP from its second argument,
+  0 at both calls, EOP, and the three PACKED registers ST, RGBAQ and XYZF2, `0x412`; `0x00555B96`-`0x00555BA6`), then
+  the four factors.
 - After 32 vertices without a restart, it opens a new packet chunk without a new `PRIM`, so the strip
   continues (`0x00555DB2`).
-- The vertex is `vtxOff + 0x20 × (entry & 0x7FFF)`; nothing compares it with `vtxCount`.
+- The vertex is `vtxOff + 0x20 × (entry & 0x7FFF)`; nothing compares it with `vtxCount`. Its `0x20` bytes are
+  copied into the packet (`0x00271290`, `0x00555E48`).
 - Per channel `c` (R, G, B, A), `0x00555B90` stores `f[c] = ((widget[+0x94 + c] × slot[+0x18 + 2c]) >> 7) / 128`,
   the widget's colour bytes times the slot's `s16` colours (`0x00555BB7`-`0x00555CAA`); each vertex colour then
   becomes `(int)(vertex[c] × f[c])` (`0x00555E68`-`0x00555E9A` for R and G, the same for B and A).
-- The position is transformed by the matrix at `0x02CA8F40`. Texture coordinates are not stored: the
-  transformed x and y, less the origin at `0x02CA8F80`/`0x02CA8F84` and divided by the extent at
+- Both calls give `0x00555B90` a fourth argument of 1, which selects that path (`0x00555BAE`). It also stores the
+  factors at `0x022D9230`, the same factors before the division by 128 at `0x022D9240`, and 1/128 four times at
+  `0x022D9250` (`0x00555C49`-`0x00555CA3`).
+- Its path for a fourth argument of 0 (`0x00555CB0`-`0x00555D01`), which neither call takes, stores integers: R, G
+  and B times the widget's `s16 +0x5A`, A times its `s16 +0x58`, each `>> 7`.
+- The position is transformed by the matrix at `0x02CA8F40` (`0x00202B70`, `0x00555E63`). Texture coordinates are not
+  stored: the transformed x and y, less the origin at `0x02CA8F80`/`0x02CA8F84` and divided by the extent at
   `0x02CA8F88`/`0x02CA8F8C`, are the fractions of the image's width and height.
+- Those fractions times the image's width and height, `u = (x - [0x02CA8F80]) / [0x02CA8F88] × w` and
+  `v = (y - [0x02CA8F84]) / [0x02CA8F8C] × h` (`subss`, `divss`, `mulss`, `0x00555EB2`-`0x00555F0E`), are the texture
+  coordinates of the vertex handed to the sprite batcher (`0x00181350`, `0x00555F17`). Here `w` and `h` are the
+  `u16` `+0x14` and `+0x16` of the image's `+0x20` record, 0 with no image (`0x00555D4B`-`0x00555D59`).
+- After the last entry `0x00555D10` flushes the batcher (`0x00181330`, `0x00555F53`); a slot of 0 entries does only that.
 
 Sub-mesh 1's slot names do not matter to this path; the texture is the one the caller passes.
 
@@ -223,6 +260,17 @@ Sub-mesh 1's slot names do not matter to this path; the texture is the one the c
 (`0x005614FC`) with mode 1. On draw, `0x0055A8A0` takes sub-mesh 1 with `0x00274780` (`0x0055A928`), sets the
 widget colour to `0x80000000` (RGB 0, alpha `0x80`) and calls `0x00555400` with no image and a scale of
 1.2 (`0x0055A967`): the same strip mesh, untextured and black.
+
+`0x0055A810(owner, file, mode)` creates the `0xD8`-byte widget only while the owner's `+0xD8 + 8 × mode` is empty,
+stores it there and attaches it to `[0x0208EA28]` (`0x0055A82C`-`0x0055A884`). On message 1 `0x0055A8A0` installs the
+descriptor `0x00D22FE0` (`0x00247570`), keeps the owner at `+0xC0`, the file at `+0xC8` and the mode at `+0xD0`, and
+with mode 1 sets its position to 0, 0, its size to `[0x01E0C1D8]` x `[0x01E0C1DC]` (512 x 448 in the executable) and
+its draw priority to `0x72` (`0x0055A97E`-`0x0055A9DE`).
+
+The draw (message 4) does its work only in mode 1 (`0x0055A90B`-`0x0055A916`): sub-mesh 1 comes from the file at
+`+0xC8`, `0x00555A10` runs first (`0x0055A930`), and the colour goes to the draw record's `+0x90` (widget `+0x38`,
+`0x0055A95D`). Message 18 clears the owner's `+0xD8 + 8 × mode` (`0x0055A8E1`-`0x0055A8F1`); every other message goes
+to `0x005C5230` (`0x0055A8DC`).
 
 ### What the load checks
 

@@ -19,7 +19,7 @@ addresses: "0x0032A8A0, 0x00377970, 0x0032AB60, 0x0032ABF0, 0x0032AD70, 0x0032AA
 ### The banks
 
 Every bank is in the save payload, the bytes from `SaveImage_GetPersistentPayloadBase` (`0x002EF2B0`,
-[Save data](../Saving-Loading-And-Settings/save-data-fields.md)), one bit per id, byte `id >> 3`, bit `id & 7`:
+[Save data](../Saving-Loading-And-Settings/save-data-fields.md)), one bit per id, byte `id >> 3`, bit value `1 << (id & 7)`:
 
 | Bank | Payload offset | Ids | Setter / query | Script verbs | Holds |
 |---|---|---|---|---|---|
@@ -100,8 +100,12 @@ Besides the script verbs:
 
 The new-game reset `0x002EF2D0` clears the first `0x1538` bytes of the payload, which hold every bank, and jumps to
 `0x00379160` (`0x002EF2D4`-`0x002EF2F1`). `0x00379160` sets each id listed in `mapjumpgroupinit.bin` with `0x0032AB60(id, 1)`
-(`0x00379160`-`0x003791B5`). `0x002EF2D0` is called by `0x00266D10` (`0x00266DC4`) and by the save-image reset `0x002EF650`
-(`0x002EF674`). The list is kind 9 file `0x28`, requested by `0x00378540` under the name `MJGPINIT`, kept at `0x02ADD0D0` by its completion `0x00378B90` (`0x003787BD`).
+(`0x00379160`-`0x003791B5`); while the list is not loaded (`0x02ADD0D0` null, `0x0037916D`-`0x00379170`) or its count is 0
+(`0x0037917F`-`0x00379182`) it sets nothing. `0x002EF2D0` is called by `0x00266D10` (`0x00266DC4`) and by the save-image
+reset `0x002EF650` (`0x002EF674`).
+
+The list is kind 9 file `0x28`, requested by `0x00378540` under the name `MJGPINIT`, kept at `0x02ADD0D0` by its
+completion `0x00378B90` (`0x003787BD`).
 
 `mapjumpgroupinit.bin` and `eventmemorylist.bin` (kind 9 file `0x29`, requested under the name `EVTMEM`;
 [Event memory](event-memory.md)) share one shape: an 8-byte magic, a `u16` count at `+0x08` and `u16` ids from

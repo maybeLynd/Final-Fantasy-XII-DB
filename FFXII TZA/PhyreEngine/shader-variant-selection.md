@@ -52,15 +52,18 @@ without linking, and otherwise links the switch at the head and returns 0.
 `0x00606A20(effect, a2, a3, out, record)` is called only from `0x0060BDEF` in `0x0060B980`:
 
 1. When the effect's variant count (`+0x58`, bit `0x80000000` masked off) is 0 it returns −1.
-2. It reserves `0x02E522E0 × 4` bytes on the stack and points a cursor at the start, so the total is the
-   buffer bound, not the key length.
+2. It reserves `0x02E522E0 × 4` bytes on the stack, rounded up to 16, `(4 * n + 15) & ~15` with the stack probe
+   `0x00808F10` (`0x00606A68`-`0x00606A91`), and points a cursor at the start, so the total is the buffer bound, not the
+   key length.
 3. For each non-null entry of the effect's switch array (`+0x50`, count `+0x48`) it calls vtable
    slot 2 with seven arguments: the switch, the effect, `a2`, `a3`, the cursor, `out` and `record`.
    A non-zero return stops the loop.
 4. The key length is how far the cursor moved, in words.
 5. It binary-searches the effect's table at `+0x60` (16-byte entries `{u32 count, words}`; one word is
    stored inline, more through a pointer), ordering first by word count and then word by word, and
-   returns the matching index or −1.
+   returns the matching index or −1. The bounds start at 0 and the variant count less 1, the probe is
+   `mid = (lo + hi) >> 1`, and they move by `lo = max(mid, lo + 1)` and `hi = min(mid, hi - 1)`, not past
+   `mid`, until `lo > hi` (`0x00606AFF`-`0x00606BA4`).
 
 `0x0060B980` turns a non-negative index into a 64-byte entry (`0x0060BDFA`: `index << 6` plus the table at
 `+0x10` of the entry it selected at `0x0060BD84`–`0x0060BDBF`). On −1 the entry stays null and the draw work under
@@ -75,14 +78,16 @@ Every evaluator writes its words at the cursor, advances it by four per word and
 | `NUM_LIGHTS` | `0x006B9120` | a bit-packed light code (below) |
 | `LOD_BLEND` | `0x006B90A0` | 1 when the LOD weight is neither 0.0 nor 1.0 |
 | `INSTANCING_ENABLED` | `0x006B9070` | 1 when `record` is non-null and `record+0x30` is non-null |
-| `SHADER_LOD_LEVEL` | `0x006B93D0` | the level at `[[a2+0x40]]+0x38`, clamped to effect `+0x74` − 1 (0 when that is 0) |
-| `ORTHO_CAMERA` | `0x006B9410` | 1 when the float at `[record]+0x6C` is at least 0.01 |
+| `SHADER_LOD_LEVEL` | `0x006B93D0` | the level at `[[a2+0x40]]+0x38` (0 when `a2+0x40` is null, `0x006B93DA`), clamped to effect `+0x74` − 1 (0 when that is 0) as an unsigned minimum, `level < cap ? level : cap` (`0x006B93E5`-`0x006B93F3`) |
+| `ORTHO_CAMERA` | `0x006B9410` | 1 when the float at `[record]+0x6C` is at least 0.01, `0.01 <= f`, or is a NaN (`comiss`, `setbe` at `0x006B9429`-`0x006B9435`); 0 when `record` or `[record]` is null (`0x006B9417`-`0x006B9427`) |
 | `INDICES_16BIT` | `0x006B93A0` | 1 when the byte `+0x4C` of `[record+0x38]` equals `0x0C` |
 | `SKINNING_ENABLED` | `0x006B9450` | 1 when `a2+0x18` is non-null; with `[record+0x38]` present, also needs its count `+0x08` below `0x79` and `0x00671670` to succeed |
 | `LOW_RES_PARTICLES` | `0x006B9050` (the base's) | 1 when the byte `+0x24` is non-zero, so always 0 |
 
 `LOD_BLEND` emits 0 when `a2+0x40` or `a3+0x20` is null; otherwise it reads the first float of the
-12-byte element `a3+0x30` of the array at `[a2+0x40]` (`+0x20` count, `+0x28` data).
+12-byte element `a3+0x30` of the array at `[a2+0x40]` (`+0x20` count, `+0x28` data). Any index is read: an
+index at or past a non-zero count reads past the data, and with a count of 0 the data pointer is null, so the
+read is at the address `12 * [a3+0x30]` (`0x006B90C7`-`0x006B90DC`). A NaN weight writes 1 (`0x006B90E4`, `0x006B90EF`).
 
 For a `PCamera` (members registered by `0x006784E0`), `+0x6C` is the last float of `m_projectionMatrix`, the 64-byte matrix at
 `+0x30`; an orthographic matrix has 1 there and a perspective one 0.
@@ -95,27 +100,46 @@ keeps a light when the mask at `+0x18` of its light type (`light+0x20`) meets th
 `+0x1C` when that type's mask `+0x18` meets the effect's `+0x04`, else 0, so a shadowless light is
 kept with shadow index 0. Each light becomes `(shadowIndex << 5) | lightTypeIndex`.
 
-When more than one light is kept it sorts them by that code (`0x006B83C0`). The count is the smaller of
-the kept count and the effect's `+0x70`. It zeroes `((10 × count + 35) >> 5) << 2` bytes and packs a
+The count is the smaller of the kept count and the effect's `+0x70`, `kept < [+0x70] ? kept : [+0x70]`
+(`0x006B91F3`-`0x006B91FA`). With a count of 0 it writes one zero word, advances the cursor by 4 and leaves `out` as
+it was (`0x006B9366`-`0x006B9373`). With a count above 1 it sorts all the kept lights by that code (`0x006B83C0` with
+the comparator `0x006B8930`, `0x006B920A`-`0x006B922B`); with a count of 1 it sorts nothing and takes the first kept
+light, even when more were kept.
+
+It zeroes `((10 × count + 35) >> 5) << 2` bytes (`0x00861EC0`, `0x006B9252`) and packs a
 4-bit count followed by 10 bits per light. It also copies the kept light pointers to `out+0x00`
 onward and the count to `out+0x20`; `0x0060B980` reserves four pointer slots there (`0x0060BA9B`–`0x0060BAB7`).
 
 ### Defines for the shader compiler
 
-Slot 3 reads the switch's word back off a cursor. The base `0x006B94C0` appends nothing for 0 and
-otherwise builds `-D<name>=<value>` from `"-D"` (`0x00D81068`), the name at `+0x08` and `"="`
-(`0x01CEBB4C`). `NUM_LIGHTS` overrides it (`0x006B9630`) with `-DLIGHTTYPE_<i>=` and
-`-DSHADOWTYPE_<i>=` per light; `SHADER_LOD_LEVEL` overrides it with `0x006B9A20`. Slot 1 lists the legal
-values: the base `0x006B9B90` returns two one-word arrays, 0 and 1.
+Slot 3 reads the switch's word back off a cursor, moving it on by 4 (`0x006B94E9`-`0x006B94F2`). The base `0x006B94C0`
+appends nothing for 0 and otherwise builds `-D<name>=<value>` from `"-D"` (`0x00D81068`), the name at `+0x08` and
+`"="` (`0x01CEBB4C`), and the word (`0x0067AEA0`, `0x006B9587`). `NUM_LIGHTS` overrides it (`0x006B9630`) with
+`-DLIGHTTYPE_<i>=` and `-DSHADOWTYPE_<i>=` per light; `SHADER_LOD_LEVEL` overrides it with `0x006B9A20`.
+
+The base's output list ends up one entry long. When its count is not 1 the base allocates a new one-entry array,
+freeing the old one unless bit `0x80000000` of the count is set (`0x006B94FF`-`0x006B9549`). It copies the string into
+a new buffer and stores it as the entry, freeing the entry's previous string unless bit `0x1` of that pointer is
+set (`0x006B95B0`-`0x006B95FD`). A failed allocation returns `0xD` (`0x006B95E1`); otherwise it returns 0.
+
+Slot 1 lists the legal values: the base `0x006B9B90` returns two one-word arrays, 0 and 1 (`0x006B9C99`-`0x006B9CAD`),
+reusing arrays of the right size and returning `0xD` when an allocation fails (`0x006B9CC8`, `0x006B9CDD`).
 
 ### Switches built by name
 
-`0x006B89C0(name)` looks the name up in the registry with `_stricmp`. On a miss it prints
+`0x006B89C0(name)` returns 0 for a null name (`0x006B89CD`, `0x006B89FC`) and otherwise looks the name up in the registry
+with `_stricmp`, returning the switch it finds.
+
+On a miss it prints
 `PNamedSemanticDynamic::FindOrCreateDynamic : Performance warning - allocating freelist on demand for '%s'.`,
 takes an object from the `0x28`-byte pool and a name slot from the `0x40`-byte pool (both named
 `PContextSwitch`, declared by `0x00167010` and `0x001672D0`, 256 entries each), copies the name without a
 length check, and constructs a base switch with `0x006B8590`: `+0x18` = 1 (pool-owned), one key word,
 `+0x24` = 1, registered.
+
+An empty free list is grown with `0x00680150` first (`0x006B8A3E`, `0x006B8A77`). With no object it returns 0, and with
+an object but no name slot it returns the object unconstructed (`0x006B8A92`-`0x006B8A9A`). `0x006B8590` stores `+0x20` =
+1 at once (`0x006B85B3`) but adds 1 to the total `0x02E522E0` only when `0x006B8D20` returns 0 (`0x006B85C3`-`0x006B85CA`).
 
 `0x006B89C0` is reached through slot 9 of the
 `PNamedSemanticDescriptorForDynamicType<PContextSwitch>` vtable (`0x00D81010`, slot `0x006B94B0`) and

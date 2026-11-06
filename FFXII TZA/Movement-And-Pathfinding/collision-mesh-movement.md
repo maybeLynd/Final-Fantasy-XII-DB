@@ -52,9 +52,14 @@ flier.
 The record the sweep moves is the body's placement (the body's `+0x30`, [movement
 bodies](movement-bodies-and-separation.md)); its stepped radii `+0x80` and `+0x84` are the
 footprint. `0x0022EF20(placement)` builds the footprint frame at `0x02089280`: `0x00380A60` calls
-`0x00380A70(placement, out, up)` with up `{0, 1, 0, 0}` from `0x00D22740`, which takes the x axis as
+`0x00380A70(placement, out, up)` with up `{0, 1, 0, 1}` from `0x00D22740`, which takes the x axis as
 `(-[+0x10], 0, [+0x18])`, the z axis as the normalised cross product of x and up, x again as up
 cross z, and the position `+0x00` as the translation.
+
+The y row is `up` with its w cleared (`0x00380AB9`-`0x00380ACA`), and rows 0 to 2 get w 0; the translation row takes
+all four floats of the position, w included (`0x00380B51`-`0x00380B6A`). Nothing is tested: a direction pair of `(0,
+0)` gives a zero cross product, a length of 0 and a reciprocal of infinity (`0x00380B0A`), so the z and x rows come
+out NaN.
 
 `0x0022EF20` then zeroes the translation, keeps the rigid inverse (`0x00217610`) at `0x020892C0`, scales
 the frame by the radii (x by `+0x80`, z by `+0x84`, each floored at 0.01) and the inverse by their
@@ -84,6 +89,11 @@ With a valid polygon at `+0x52` it runs the sweep `0x002327D0(part, placement, p
 polygon)`, stores the polygon it returns, stores the ground height (`0x00231890`) at `+0x7C` and into
 the position's y unless flag `+0x60` bit `0x1` (a flier), and normalises `+0x40` (`0x00380800`) when bit
 `0x10` was raised. `0x003808A0` then refreshes the cell attributes.
+
+The collision part is `0x0026E500(0)` (`0x00380C5C`), and the push reset writes all 16 bytes `{0, 0, 0, 1}`
+(`0x00380C64`-`0x00380C71`). The move's length is taken in three dimensions, y included, and a NaN length also ends
+the call (`0x00380C81`-`0x00380CB0`). The polygon test is signed: with `+0x52` negative the sweep, the height and the
+normalisation are skipped and `0x003808A0` still runs (`0x00380CB9`-`0x00380D0D`).
 
 `0x002327D0` cuts the move into sub-steps. With `rMin` and `rMax` the smaller and larger of the two
 radii, a walker uses a sub-step of `0.8 * rMin` and a penetration ellipsoid whose vertical half-axis
@@ -122,6 +132,11 @@ ground plane. An edge counts when the point is on its outer side (the y of `unit
 parameter `t = (w . unit(e)) / |e|` is nearest 0.5, the edge crossed nearest its middle, and -1 when
 no edge counts: the point is inside, seen from above.
 
+It writes its working values into `ctx`: the two vertex pointers at `+0x10` and `+0x18`, `w` at `+0x20`, `unit(e)`
+at `+0x30` with `|e|` at `+0x3C`, and the cross product at `+0x50` (`0x002325AC`-`0x0023268A`), so `ctx` spans at
+least `0x60` bytes and holds the last edge's values on return. An edge replaces the one held only when strictly
+nearer 0.5, so of two equally near the lower edge index wins (`0x002326A2`-`0x002326F0`).
+
 ### Keeping the footprint off closed edges
 
 `0x0022F9B0(part, placement, centre, polygon)` maps the polygon's three vertices through `0x020892C0`
@@ -139,9 +154,21 @@ It returns 1 when it handled any contact. `0x0022F250(centre)` then takes each r
 `centre - vertex` through `0x020892C0` (this time with its height) and, when that is shorter than 1,
 pushes the centre out to 1 along it, mapped back through `0x02089280`.
 
+`0x0022F250` walks the list while its index is below `0x020891E4` (`0x0022F273`, `0x0022F3DF`) and applies each push to
+the centre before it takes the next vertex, so later vertices see the moved centre. The offset gets w 1.0 before
+the mapping (`0x0022F2EC`), and the push goes to the centre's x, y and z only (`0x0022F3AB`-`0x0022F3D4`): unlike the
+edge push-out it adds nothing to `+0x40` and sets no flag. A centre exactly on a vertex has a mapped length of 0,
+whose reciprocal (`0x0022F341`) makes the push NaN.
+
 `0x00232760(part, placement)`, run when the placement's radii step in `0x003808A0`, uses the same
 pieces on the standing position: `0x00233110` finds the polygon, `0x0022EF20` builds the frame,
 `0x0022F9B0` and `0x0022F250` push the position off closed edges and vertices.
+
+It runs one round of each, with no walk and no penetration test: it empties the visited list and seeds it with the
+polygon `+0x52` when that is not negative, empties the vertex list (`0x00232782`-`0x002327A2`), calls `0x0022F9B0(part,
+placement, placement, polygon)` with the position `+0x00` as the centre and ignores its result
+(`0x002327A8`-`0x002327B1`), and tail-jumps to `0x0022F250(placement)` (`0x002327C3`). Its only call site is `0x00380A22` in
+`0x003808A0`.
 
 ### The penetration test
 
@@ -200,6 +227,11 @@ Otherwise it records the cell, builds the cell's rectangle widened by 0.1 on eac
 (`0x00231E40`), and, when the box reaches past that rectangle's near edges in z and x, runs the query
 on the cell (`0x0022F830`) and floods on from the neighbour point.
 
+`0x00231E40(part, out, cell)` writes the rectangle as two points: column `cell % columns` and row `cell / columns`
+(signed, `0x00231E4D`) give the corner `x = column * width - originX`, `z = row * height - originZ`, with half a
+cell height (`height / 2`, rounded toward 0) added to z in an odd column (`0x00231E91`-`0x00231EAA`). `out` gets `{x -
+0.1, 0, z - 0.1, 1}` and `out + 0x10` gets `{x + width + 0.1, 0, z + height + 0.1, 1}` (`0x00231EB0`-`0x00231F10`).
+
 ### The camera's variant
 
 `0x0022DE60(query)` is the same test as `0x0022D7E0` with three differences: the plane distance may be
@@ -221,6 +253,23 @@ selects banks 0-2, or banks 0-1 with the bit `0x4000000` walls when `dynamic` is
 radius above 2.0 adds the flood. `0x003D97E0` ray casts (`0x00230B60`), and on a hit takes the hit's
 normal (`0x00232160`) and moves the hit point 0.1 along it; on a miss the normal is zero.
 
+Without kind bit `0x1` the query takes bank 1 alone (mask 2, `0x002316F8`); `dynamic` goes to the query's `+0x38`
+whatever the kind, so ids from `0x5000` are tested whenever it is non-zero (`0x0023170C`). The push is reset to `{0,
+0, 0, 1}` before the query (`0x00231730`-`0x00231737`); with nothing hit the deepest is -1.0 and the id `0xFFFF`
+(`0x002316D7`-`0x002316F3`, `0x002317F1`-`0x002317FA`).
+
+The flood test reads the placement's radii `+0x80` and `+0x84` with no null test (`0x00231743`-`0x00231767`). The
+flood's half-extents are the larger `|x|` and the larger `|z|` of axis rows 0 and 2 (`0x0023176D`-`0x002317C8`); the
+visited list is emptied and seeded with the centre's cell when that is not negative (`0x0023177D`-`0x002317D7`).
+
+`0x003D97E0(part, hit, normal, aux, start, end, kind)` calls `0x00230B60(part, hit, start, end, kind, 0)`
+(`0x003D97F8`-`0x003D9829`) and returns the id it gives. The normal is taken at `start`, not at the hit point
+(`0x003D983A`), which is where a wall record's contact normal is measured; an id from `0x5000` leaves the normal as
+the caller had it. The move is the normal times `0.1 / |normal|` (`0x003D9861`-`0x003D98E6`).
+
+On a miss (a negative id) the normal is `{0, 0, 0, 1}` and the 16 bytes at `aux` are zeroed
+(`0x003D98F4`-`0x003D9905`); a hit leaves `aux` alone. The follow camera's `0x0032CF50` passes kind 4 (`0x0032CF9B`).
+
 The follow camera (`0x0032AEC0`, reached from the mode-1 camera view `0x00259990`, [scripted
 camera](../Graphics/scripted-camera.md)) is the caller of all three: `0x0032BCC0`,
 `0x0032BEB0` and `0x0032CA70` use `0x00230C00`, `0x0032BCC0` and `0x0032CA70` use `0x00231690`, and `0x0032CF50`
@@ -236,6 +285,12 @@ more than 0.999 from the centre, else zero; a cylinder's (`0x00380EB0`) is the r
 `+-0.999`. The excess is mapped back as a direction through `+0x10` and normalised (`0x00380800`), so a
 point inside the shape gets a zero normal and no push.
 
+The shape is the record's dword `+0x00`: 0 sphere, 1 cylinder, 2 box (`0x00381DBB`-`0x00381DEB`). Any other value
+takes no excess and leaves `out` as the caller passed it, and that is then mapped and normalised like an excess
+(`0x00381DCB`). The map into the frame uses all four floats of `p`, w included (`0x00381DB6`); before the map back the
+excess's w is set to 0 (`0x00381E82`), and `0x00380800` gives a zero vector for a length below `1e-6`
+(`0x0038083F`-`0x0038084C`).
+
 `0x003810B0(record, p)` returns the distance from the shape in world units: the local point scaled by
 `(|l| - 1) / |l|` for a sphere outside it, the radial and vertical parts beyond 1 for a cylinder,
 and, for a box, the offset from the face the box segment test `0x00381450` finds along the excess
@@ -247,19 +302,39 @@ direction. The offset is mapped through `+0x10` as a direction and its length re
   p.x) n.x + (v[0].z - p.z) n.z) / n.y`; with no polygon, or `n.y` at or below 0.001, it is `p.y`.
   `0x00231820` is the same, written into `p.y`.
 - `0x00231900(part, p, typeMask)` is the highest polygon under `p`: of the bank-0 ids of `p`'s cell,
-  the polygons with `n.y` above 0.001, a type (attribute bits `0x7`) whose bit is set in `typeMask`,
-  and `p` inside them seen from above (`0x002324F0` = -1), the one with the highest plane height wins;
-  -1 without a part, a cell or a candidate.
+  the polygons with `n.y` above 0.001, a type (attribute bits `0x7`) whose bit value `1 << type` is set in
+  `typeMask` (`bt`, `0x002319EB`), and `p` inside them seen from above (`0x002324F0` = -1), the one with the
+  highest plane height wins; -1 without a part, a cell or a candidate.
+- Without a part means a null grid pointer `[part]` (`0x00231926`); an empty list also gives -1 (`0x00231978`). The
+  first candidate is taken whatever its height and a later one only when strictly higher, so of equal heights the
+  first in the list wins (`0x00231A14`-`0x00231A1E`).
+- The id test against `0x4000` is signed (`0x002319C9`): an id of `0x8000` or more is read as a polygon at a
+  negative index. The id comes back zero-extended, -1 as `0xFFFF` (`0x00231A36`).
 - `0x0026E350(p)` drops `p` onto the highest type-0 polygon of the bound map (`0x00231900(..., 1)`, then
   `0x00231820`) and returns 0, or -1 when there is no such polygon.
-- `0x0026E3C0(part, p)`, reached from the terrain probe `0x003208C0`, does the same and then raises a
+- `0x0026E350` also returns -1, leaving `p` as it was, when no map is bound (`[0x0209A670]` null, `0x0026E361`) or the
+  map has no collision part (`[0x0209A678]` null, `0x0026E372`); the part it searches is `[0x0209A678]`.
+- `0x0026E3C0(part, p)`, reached from the terrain probe `0x003208C0`, drops `p` the same way and then raises a
   probe point from the floor by 1.0 at a time, up to 30 times, until the wall contact test
   `0x00232490` reports no contact; from there a ray cast (`0x00230B60`) down to the floor point replaces
   the height with the first hit.
+- `0x0026E3C0` searches the part it is given and tests no bound map. It returns the polygon id that `0x00231900`
+  found, zero-extended, not 0, and `0xFFFF` with `p` left as it was when no polygon qualifies (`0x0026E3EB`,
+  `0x0026E490`, `0x0026E4F4`).
+- The first test is at the floor plus 1.0, `probe.y = h + 1.0` with `h` the floor height `0x00231890` stores in
+  `p.y` (`0x0026E40E`-`0x0026E41E`), through `0x00232490(part, probe, 1)` (`0x0026E460`-`0x0026E478`). Each later test
+  raises it again, `probe.y += 1.0` (`addss xmm2, xmm6`, `0x0026E460`).
+- When all 30 raised points report contact (`cmp ebx, 0x1e`, `0x0026E483`), `0x0026E3C0` returns with `p.y` at the floor
+  height and casts no ray. The ray is `0x00230B60(part, hit, probe, floor point, 0xFFFF, 0)`; with `r >= 0` for its
+  result `r` it sets `p.y` to the hit's y (`0x0026E4B8`-`0x0026E4DA`, `0x0026E4DF`-`0x0026E4ED`), so a miss,
+  `r < 0`, also keeps the floor height.
 - `0x00232160(part, out, id, p)` is the normal of a hit: a polygon's 16 bytes (normal and attribute
   word), a wall record's contact normal at `p` (`0x00381D90`); an id from `0x5000` leaves `out`
   alone. `0x00231F20` copies a polygon's 16 bytes the same way; `0x002FB560` uses it to tilt a model to
   the floor.
+- The id tests in `0x00232160` are signed 16-bit (`0x0023216B`, `0x00232176`): `0x4000`-`0x4FFF` tail-jumps to
+  `0x00381D90(wallRecords + (id - 0x4000) * 0x90, out, p)` (`0x0023217C`-`0x00232193`), and an id below `0x4000`,
+  `0x8000`-`0xFFFF` included as negative values, copies the 16 bytes of polygon `id` (`0x00232198`-`0x002321BE`).
 - `0x0022F050(part, polygon, p, out)` gives `p`'s barycentric weights in the polygon, seen from above:
   the areas of the three sub-triangles `p` forms with each edge, over their sum. The marker search
   `0x00231A90` uses them to blend the vertex colour bytes (times 1/128) of the type-2 polygon under a

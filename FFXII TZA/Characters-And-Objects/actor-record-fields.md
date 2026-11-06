@@ -19,7 +19,7 @@ and `+0xC0` of a record it holds:
 | [`actor-record-fields-secondary-context.tsv`](actor-record-fields-secondary-context.tsv) | the secondary context, record `+0x350`, `0x188` bytes | 849 |
 | [`secondary-context-element-accesses.tsv`](secondary-context-element-accesses.tsv) | the `0x30`-byte elements at the start of the secondary context, each access by its offset in the element; every site is also a row of the secondary-context table, and every secondary-context access below `+0x120` has a row here | 594 |
 | [`actor-record-fields-wait-slots.tsv`](actor-record-fields-wait-slots.tsv) | the wait slots behind `+0xA8` | 26 |
-| [`actor-record-fields-resource-entries.tsv`](actor-record-fields-resource-entries.tsv) | the request entries behind `+0xA0` | 88 |
+| [`actor-record-fields-resource-entries.tsv`](actor-record-fields-resource-entries.tsv) | the request entries behind `+0xA0` | 96 |
 
 Every access whose base register the record census traces to a record is a row. The census starts from the handle
 resolver `0x003588B0`, the current-actor getter `0x00358940`, the ordinal resolver `0x003587C0`,
@@ -76,8 +76,12 @@ Each table has one row per access site:
 
 ### The movement context
 
-`0x00266AD0` plants `+0xB8` = record `+0x120` for every sequence but 0. The context's first three
-floats are the actor's world position: `0x00265020(actor, x, y, z)` copies `[+0xB8] + 0`, `+4` and `+8`
+`0x00266AD0` plants `+0xB8` = record `+0x120` for sequences 1 to 7 and null for sequence 0
+(`0x00266AFE`). A sequence above 7 (`+0x03` bits `0x1F`, compared at `0x00266ADC`) returns before any
+store (`0x00266ADF`), leaving `+0xB8` as it was.
+
+The context's first three floats are the actor's world position: `0x00265020(actor, x, y, z)` copies
+`[+0xB8] + 0`, `+4` and `+8`
 for a class-1 or class-3 actor and zeros otherwise. The field runtime's wait resolver reads the
 steering request through `[[+0xB8] + 0xF0]` (its mode at `+0x29`, its speed at `+0x7C`), and the
 manager cleanup `0x0025B070` ends a job it keeps at `+0x74` (class 1) or `+0x220` (class 3). The

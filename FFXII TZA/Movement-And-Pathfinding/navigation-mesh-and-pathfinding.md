@@ -23,11 +23,16 @@ unit standing on a ledge above its goal is as close as one beside it.
 ### The dataset
 
 The mesh is slot four of the area's map pack ([map pack](../World-Areas-And-Travel/mpk-map-pack.md)).
-Area setup hands the copied section to `0x00384160` (`0x003781A6`, `0x003782C9`), which stores its
+Area setup hands the copied section to `0x00384160` (`0x003781A6`, in `0x00378120`), which stores its
 address at `0x02AEDFB0` and rebases the offsets in place: the six header offsets `+0x0C` to `+0x20`,
 the trailer offset `+0x28`, and the grid's own two at `+8` and `+0xC`. `0x00383840` returns the
 pointer, `0x00383C80` whether it is set, `0x00383A20` clears it, and `0x00383740` returns the grid's
 rectangle as four floats.
+
+The teardown `0x00378230` calls `0x00384160` once more with 0 (`0x003782C0`, `0x003782C9`): a null section returns at once
+(`0x00384167`), storing nothing, and leaves `0x02AEDFB0` as it was. `0x00383740` writes its four floats through its four
+pointers and returns 1; with no dataset loaded it writes nothing and returns 0 (`0x0038376B`). Both its callers test
+that result: the obstacle grid's build `0x003924B0` (`0x003924E9`) and the call at `0x002343B5` (`0x002343C9`).
 
 Struct NavDataset base=section:
 
@@ -135,7 +140,8 @@ wiped. A unit chasing a target that moves about inside one region never searches
 entry of 0 costs `0x7FFFFFFF`. Otherwise the portal is tested for the mover class:
 
 - an ungated portal (byte `+4` = `0xFF`), or one whose map id `0x0026E300` answers 0 for, is open when
-  bit `moverClass` of its class mask `+6` is set;
+  bit value `1 << moverClass` of its class mask `+6` is set (`0x003838B4`-`0x003838C9`); a closed portal costs
+  `0x7FFFFFFF` like a missing one (`0x0038389A`, `0x003838E6`);
 - a gated portal asks `0x0026E300(mapId, moverClass)` (via `0x0032A780` at `0x003838D8`, class in `edx`): the class
   indexes the six-entry table at
   `0x00915760` (`{23, 25, 26, 27, -1, 24}`) for a bit; a negative entry returns -1 (closed); with the
@@ -167,10 +173,15 @@ the clearance steps of the search and the follower.
 The mover class is the unit's byte `+0x1F4` ([battle unit fields](../Characters-And-Objects/battle-unit-fields.md)).
 
 The script verb `setmapidfloor(mapId, kind, on)` ends in `0x003792E0(mapId, kind, on)` (`0x0034385C`,
-`0x00343EB7`, `0x003441F2`), which switches on `kind` through six real arms, 0 → bit `0x800000`, 1 → `0x2000000`, 2 → `0x4000000`,
-3 → `0x8000000`, 7 → `0x1000000`, 9 → `0x1000`, the same bits as the class table: `on` non-zero stores the override with the
-bit clear (open, `0x0026E880(mapId, on == 0, bit)`), `on` = 0 stores it set (closed), and a negative
-`on` removes the override (`0x0026E850(mapId, bit, 1)`).
+`0x00343EB7`, `0x003441F2`), which switches on `kind` through six real arms (jump tables `0x003793D8` and `0x00379400`):
+0 → bit `0x800000`, 1 → `0x2000000`, 2 → `0x4000000`, 3 → `0x8000000`, 7 → `0x1000000`, 9 → `0x1000`. The first
+five are the class table's bits for classes 0, 1, 2, 3 and 5. `0x1000` is in no class entry, and the portal test
+`0x0026E300` asks only for `1 << table[class]` (`0x0026E30E`-`0x0026E330`), so a kind-9 override opens or closes no
+portal.
+
+`on` non-zero stores the override with the bit clear (open, `0x0026E880(mapId, on == 0, n, 1)`, a field one bit
+wide at bit position n, 23 for `0x800000`, `0x0037930D`-`0x00379317`), `on` = 0 stores it set (closed), and a
+negative `on` removes the override (`0x0026E850(mapId, n, 1)`).
 
 The `us` scripts call `setmapidfloor` 84,066 times, 82,447 in the story scripts and 1,619 in the
 developer events (each other language tree the same, the developer menus never), every call with a
@@ -196,10 +207,19 @@ divides them as the search does, and applies the same clearance rule. The region
 and the output is that waypoint with the mover's own y. In the goal region nothing is re-aimed and
 the waypoint is the goal.
 
+`0x00383C90` returns before reading a portal when no dataset is loaded or `next[region]` is `0xFF` (`0x00383CC2`,
+`0x00383CE0`). Otherwise the portal is the adjacency entry from the region to `next[region]`; `c1` and `c2` are its
+closest points to the mover and to `waypoint[next]` (`0x00383D7B`, `0x00383D9B`), and the point is
+`c1 + (c2 - c1) * d1 / (d1 + d2)`, half way when both are 0 (`0x00383DBA`).
+
+A portal shorter than `2 * radius` then gives its midpoint; otherwise a point within `radius` of the portal's
+first end is pushed `radius` off that end toward the other (`0x003842E0`), and failing that one within `radius` of
+the second end is pushed off it. The point is stored to `waypoint[region]` (`0x00383ED6`).
+
 The caller is the unit's navigation step `0x00325BB0(unit)` ([battle locomotion](battle-locomotion.md)),
 run from four combat sites (`0x002FDBE9`, `0x002FDD69`, `0x00304D5B`, `0x00308341`):
 
-1. when `0x00325D90()` is 0 it runs `0x0033C9B0` on the locomotion block `+0x80` and returns true;
+1. when `0x00325D90(unit)` is 0 it runs `0x0033C9B0` on the locomotion block `+0x80` and returns true;
 2. it clears unit flag bit `0x40000` and searches, `0x00383620(unit + 0xD0, unit + 0x100, unit + 0x200,
    class, r)`, from the start point at `+0xD0` to the goal at `+0x100` into the path record at
    `+0x200`, with the class byte `+0x1F4` and `r = 1.414 * 0x0030A130(unit)`: the larger of the
@@ -213,7 +233,9 @@ run from four combat sites (`0x002FDBE9`, `0x002FDD69`, `0x00304D5B`, `0x0030834
    from unit flag bit `0x800000`, and bit `0x10` when the action id `+0x714` is below `0x21F` and not `0x96`;
 5. the solver `0x00336CE0(block, block)` runs; bit `0x400` of the flag word zeroes `+0x158` and runs
    `0x00313500`; bit `0x80` zeroes `+0x158`, clears itself and publishes the facing
-   (`0x003003F0(unit, unit + 0x140, [unit + 0x160], 0, 0)`).
+   (`0x003003F0(unit, unit + 0x140, [unit + 0x160], 0, 0)`); the step then returns true
+   (`0x00325D61`-`0x00325D72`). In step 4 a null order record `+0x708` leaves bits `0x1` and `0x2` clear
+   (`0x00325C7C`, `0x00325CA3`).
 
 ### The obstacle grid
 
@@ -247,14 +269,22 @@ every record, every occupancy byte and the 128-slot actor list at `0x02AEE0C0`, 
 | 160-287 | a registry's active entries (`0x0032A6B0` count, `0x0032A6C0` active, `0x0032A6E0` position and radii), at most 128 | the entry's position; the larger of its two radii |
 
 `0x00392200(id, x, z, r)` takes the cells under the square `[x - r, x + r] x [z - r, z + r]`, clamped to
-the grid, tests each cell's rectangle against the circle (`0x004690B0`), and for a hit sets bit
-`id & 7` of byte `id >> 3` in the cell's record and increments the cell's occupancy byte (a `u8`,
+the grid, tests each cell's rectangle against the circle (`0x004690B0`), and for a hit sets bit value
+`1 << (id & 7)` in byte `id >> 3` of the cell's record (`0x003923E3`-`0x00392412`) and increments the cell's
+occupancy byte (`0x0039242B`, a `u8`,
 which wraps at 256). The id space is exactly the record: 128 + 32 + 128 = 288 = 0x24 × 8. The
 registry count is read twice, and only a count that changed between the reads could reach id 288,
 which would land in the next cell's record.
 
 `0x003912E0(x0, z0, x1, z1)` clears the mask scratch and ORs into it the records of every occupied
 cell in the index rectangle, each index clamped piecewise, `i < 0 ? 0 : min(i, count - 1)`.
+It clears `[0x02AEE0B8]` bytes (`0x0039130E`); the x indexes clamp to `cols - 1` with `cols` `0x02AEE060` and the z
+indexes to `rows - 1` with `rows` `0x02AEE064` (`0x00391313`-`0x00391360`), a rectangle whose low index exceeds its high
+one after clamping ORs nothing (`z0 > z1` or `x0 > x1`, `0x00391363`-`0x00391376`), and it returns the mask scratch's
+address `[0x02AEE0B0]` (`0x003913E8`).
+
+For each cell `c = z × cols + x` of the rectangle whose byte at `[0x02AEE0A8] + c` is non-zero it ORs
+`scratch[k] |= [0x02AEE0A0][c × n + k]` for `k < n`, `n = [0x02AEE0B8]` (`0x00391380`-`0x003913D1`).
 
 `0x00391410(p1, p2, r)`, the segment query, returns 0 at once when no dataset is loaded (`0x00383840`
 null). Otherwise it builds the rectangle from the two points widened by `r`, flattens both points
@@ -335,22 +365,34 @@ The distance and the first heading depend on the mode:
 Twelve headings are tried in order, the first heading plus 0, -30, +30, -60, +60 and so on to -180
 degrees, each at the distance along that heading; a second ring adds 1.0 to the distance and 20
 degrees to the first heading. The first point that passes both tests below wins and the call
-returns 1; with no point passing, the base is used and it returns 0. The point is dropped onto the floor and the
-heading is the bearing from the point to the base, so the unit faces the anchor.
+returns 1; with no point passing, the base is used and it returns 0.
+
+The point is dropped onto the floor, `[request + 0x24] = y` with `y` the height `0x0026E350` writes into
+`{point.x, 1.0, point.z, 1.0}`, which stays 1.0 when it finds no polygon below the point (`0x0032A790` jumps to it;
+`0x00337330`-`0x0033736D`), and the heading is the bearing from the point to the base, so the unit faces the anchor.
 
 `0x00336210(point, base, unit, kind)` accepts a point when the dynamic obstruction query
 (`0x003357B0`, flags `0x20`, or `0xA0` for mode 2) finds nothing there for the unit's larger radius,
 the straight walk from the point to the base is not blocked for class 2 (`0x0033D3E0`), the segment
 query (`0x00391410`) finds no shaped obstacle at the point, the point is on the mesh (`0x00384130`), and
 `0x00336390` finds walkable terrain (`0x0026E100`) at the point and at the four corners `+-r` in x and
-z. A unit with no actor is accepted at once.
+z. A null unit or a unit with no actor is accepted at once (`0x00336235`, `0x00336248`).
+
+The segment query runs from the point to itself, widened by the first of `0x00265090`'s two radii rather than the
+larger (`0x0033630D`). Its one caller (`0x003372EF`) passes kind 1, or 2 in mode 2 (`0x003372CC`-`0x003372EC`), which
+select the flags `0x20` and `0xA0`. The body's kind-0 arm (flags `0x4`, refusing only on a result of 1,
+`0x00336278`-`0x00336299`) and the skip of the query for any other kind are not reached from it.
 
 `0x00336AE0(anchor, point)` then asks whether the anchor could walk there: it copies the anchor's body
 placement (`0x00265970`, or the recorded copy when there is no anchor), makes it a kind-1 body with
-radii 0.5, moves its start 0.6 toward the point and, when the point is within 10, sweeps the rest of
+radii 0.5, moves its start 0.6 toward the point and, when the point is within 10 of the moved start
+(a 3-D distance, `0x003A1920`; farther fails, `0x00336C62`-`0x00336C6B`), sweeps the rest of
 the way over the collision mesh (`0x00380C40`, the collision-mesh
-sweep); it passes when the sweep ends within 0.001 of the point. With
-no anchor and nothing recorded, the copy is the stack as it was.
+sweep); it passes when the sweep ends within 0.001 of the point in x and z (`0x004686D0`,
+`0x00336CB1`-`0x00336CBF`).
+
+With no anchor and nothing recorded, the copy is the stack as it was. An anchor unit with no actor
+passes at once (`0x00336B11`).
 
 ### Placing the party
 

@@ -27,6 +27,16 @@ file 0x13, `battle_pack.bin` (`0x00384420`: size from `0x0032E400(2, id)`, no re
 negative, allocation with `0x0036A190`, then `0x0032E620`). On delivery `0x00238850` rebases the pack's
 directory with `0x003846F0(&0x0208E680, pack, 0)` and calls `0x00236C30(1)`.
 
+`0x00384420(id, callback, name, arena, tag, flags)` returns 0 with no request when the size is negative
+(`0x00384457`-`0x0038445B`). Otherwise it pushes the arena (`0x0036C1D0(arena, flags)`, `0x00384466`) and the tag
+(`0x0036C1A0(tag)`, `0x00384472`), allocates the size top-down (`0x0036A190`, `0x00384479`), labels a non-null block with
+the name and the id (`0x0036C660`, `0x00384481`-`0x0038448F`) and pops both (`0x0036C110`, `0x0036C140`).
+
+It then files `0x0032E620(2, id, block, size, descriptor)` (`0x003844C9`) and returns the block. The stack
+descriptor holds 0 at `+0x00`, the block's low 32 bits at `+0x08`, the callback at `+0x10` and 0 at `+0x18`
+(`0x0038449E`-`0x003844BF`). The null test at `0x00384481` skips only the label, so a null block is requested with
+destination 0. `0x003843F0` gives arena 4, tag 6 and flags 4 (`0x003843F4`-`0x00384402`).
+
 The pack starts with a `u16` entry count (71), two zero bytes and 72 offsets: one for each entry and,
 last, the end offset. The directory rebase (`0x00384727` reads the count; the loop to `0x0038478E` runs
 count + 1 times) turns them into addresses. `0x00236C30(1)` then sends 42 of the entries to slots:
@@ -42,7 +52,11 @@ count + 1 times) turns them into addresses. `0x00236C30(1)` then sends 42 of the
 ### Area tables
 
 `0x003EA820(area)` loads the area's `.ard` (kind `0x15`, file `area × 2`). It first unbinds the five
-area-table slots and calls `0x0023A160(category, 0)` for each, so an area without a `.ard` leaves them null.
+area-table slots and calls `0x0023A160(category, 0)` for each, so an area without a `.ard` leaves them null. This
+first unbind runs only when a file is loaded (root `0x02B5E0C0` non-null, `0x003EA883`, `0x003EA98D`), which it frees;
+a size of 1 or more unbinds the five, again after a freed file, before the read is filed (`0x003EA8DA`-`0x003EA90D`).
+With no file
+loaded and a size of 0 or less it unbinds nothing.
 On delivery `0x003EA710` binds the sections through `0x0023A160(category, address)`:
 
 | Category | `.ard` header field | Slot | Binder |
@@ -54,7 +68,8 @@ On delivery `0x003EA710` binds the sections through `0x0023A160(category, addres
 | 4 | `+0x28` (0 = no section) | `0x02EBF140` | `0x003845F0` |
 
 Categories 0–2 are bound from their offsets unconditionally; 3 and 4 are null when the field is 0.
-These five are the only slots that change when the area changes.
+These five are the only slots that change when the area changes. `0x0023A160` jumps to the binder of its category
+(`0x0023A178`-`0x0023A1C1`) and returns without a store for a category outside 0 to 4 (`0x0023A1C6`).
 
 ### Binding a table
 
@@ -64,9 +79,11 @@ then adds the table's own low 32 bits to each of the header fields `+0x0C`, `+0x
 sub-directory `{u16 count; u32 entry[count + 1]}`: the first `count` entries go through `0x003846F0`
 at depth 0 and the last, an end offset, is rebased in place.
 
-`0x003846F0(slot, base, depth)` stores `0x0020E620(base)` and reads the `u16` count `n` at `+0`. For each of
-the `n + 1` dwords after it, it adds `base` when the depth is 0 or the dword is the last; otherwise it
-recurses into that entry with `depth − 1`. The result is a nest of offset tables `depth + 1` deep.
+`0x003846F0(slot, base, depth)` stores `0x0020E620(base)` and reads the `u16` count `n` at `+0`. A null `base`
+stores 0 and returns (`0x0038470E`). For each of
+the `n + 1` dwords after it, from `+0x04`, it adds `base` when the depth is 0 or the dword is the last; otherwise it
+recurses into that entry with `depth − 1`, passing the entry plus `base`, so the call's own store rebases the
+dword too (`0x00384759`-`0x0038476B`). The result is a nest of offset tables `depth + 1` deep.
 
 Nothing marks a table as bound: binding the same table twice adds its base twice.
 
@@ -76,13 +93,33 @@ Nothing marks a table as bound: binding the same table twice adds its base twice
   `+0x39` (ignoring `0xFF`), stores the two extents at `0x0208D300`/`0x0208D301`, allocates an
   `extent38 × extent39` grid of `u16` named `gmbtAct` (`0x00384510`) at `0x0208D308` filled with `0xFF`,
   and writes each row's index at `[+0x38][+0x39]`.
+- Each extent is the largest byte plus one, stored as a byte. `0x00237FC0` first stores 0 at `0x0208D308`
+  (`0x00238059`); when either extent is 0 (no row with a byte other than `0xFF` there, a null slot or no rows) it
+  allocates no grid and the pointer stays 0 (`0x00238073`-`0x0023807D`).
+- Otherwise the grid is `2 × extent38 × extent39` bytes, every byte set to `0xFF` (`0x002380AB`). A row whose
+  `+0x38` or `+0x39` is `0xFF` is left out (`0x00238107`, `0x00238110`); row `r` is stored at element
+  `+0x38 × extent39 + +0x39` (`0x00238116`-`0x00238132`).
+- `0x00384510(size, name, 0)` pushes arena 4 (`0x0036C1D0(4, 4)`, `0x0038452E`) and tag 6 (`0x0036C1A0(6)`,
+  `0x00384538`), allocates the size top-down (`0x0036A190`, `0x0038453F`), labels a non-null block with the name
+  (`0x0036C660`, `0x00384547`-`0x00384555`), pops both (`0x0036C110`, `0x0036C140`) and returns the block.
+- The fills `0x002380AB` and `0x0023896B` do not test that block, so when arena 4 has no room the fill writes at
+  address 0 and faults.
 - **`0x00238880`, targetchip_data (`0x02EBF0D8`).** The same with row bytes `+0x16`/`+0x17`, extents
   at `0x0208D310`/`0x0208D311` and grid `gmbtTgt` at `0x0208D318`, storing `0x6000 + row`.
+- `0x00238880` likewise stores 0 at `0x0208D318` first (`0x00238919`), allocates nothing when either extent is 0
+  (`0x00238933`-`0x0023893D`), sets every byte to `0xFF` (`0x0023896B`), leaves out a row with a `0xFF` byte and
+  stores at element `+0x16 × extent17 + +0x17` (`0x002389C7`-`0x002389F9`).
 - **`0x00238160`, eitm_data (`0x02EBF0F8`).** After binding, it adds the table's `+0x18` (an area after
   the rows) to each row's encoded `+0x28`.
 - **`0x00238660`, shop_data (`0x02EBF158`).** A three-level table with its own header (`+4` `u16` stride,
   `+6` `u16` count, `+8` rows). It adds the base to the slot, to the header's `+8`, to each row's `+4`
   (a sub-table) and that sub-table's `+8`, and to each sub-row's `+4` and its `+8`.
+- The slot gets its low 32 bits plus the entry, zero-extended (`0x00238678`-`0x00238686`), which is the entry while
+  the slot is empty, and the header's `+8` is read at once with no null test (`0x0023868D`). Rows run to the
+  header's `+6` and sub-rows to the sub-table's `+6` (`0x002386CC`, `0x00238778`).
+- The header's `+8`, each sub-table's `+8` and the `+8` of the table each sub-row's `+4` points to are rebased
+  only when not 0 (`0x00238698`, `0x00238739`, `0x002387F8`). Each row's and sub-row's `+4` is rebased even when 0
+  (`0x00238726`, `0x002387E5`).
 - **`0x003847B0`, status_data (`0x02EBF118`).** A tail jump to `0x003845F0`.
 
 ### License boards
@@ -93,6 +130,11 @@ The twelve slots `0x02EBF1A0`–`0x02EBF1F8` hold `board_1.bin` to `board_12.bin
 - `0x00238260(k)` requests board `k` (`0x00384420`, name `BOARD`) when its slot is empty and
   `0x00233E00(k)` allows it; `0x00233E00` says yes when the board is already resident or fewer than six
   of the twelve are.
+- `0x00238260(k)` returns 0 for `k` above 11, an unsigned byte compare (`0x00238304`), the board when slot `k`
+  holds one (`0x00238324`), 0 when `0x00233E00` says no (`0x00238332`), and otherwise what `0x00384420` returns for
+  id `0x47 + k`, the setter `k`, name `BOARD`, arena 3, tag 8 and flags 4 (`0x00238355`-`0x0023837D`).
+- `0x00233E00` also says no for `k` above 11 (`0x00233E03`), and counts the twelve slots six at a time
+  (`0x00233E40`-`0x00233E8B`).
 - A slot fills only when its read completes, through the setters `0x00238390` + `0x30·k`, which free
   any old board (`0x003844F0`) and store the new one; `0x002383C0` is board 2's, slot `0x02EBF1A8`. Each setter
   stores its 32-bit argument sign-extended (`movsxd`, `0x00238396`, `0x002383C6`).
@@ -128,6 +170,14 @@ The license screen reads a board through `0x0055BFF0`, indexing the slots by the
 `0x0055B3F0` fills `[obj + 0x558]` from `0x003236B0(member)`, which returns the member's battle record byte
 `+0x1C5` when the record exists, its byte `+5` is 0 and its byte `+4` is below 7, and `0xFF`
 otherwise. For `0xFF` it sets the board size `+0x559` to 0, so slot −1 is never read.
+
+`0x003236B0` gives `0xFF` for a member above 39 (`0x003236B0`-`0x003236B3`) and takes the record
+`[0x02EBF190] + 8 + member × 0x1C8`. Its record test checks that sum for 0 (`0x003236CD`), so with `0x02EBF190` null
+it reads byte `+5` below `0x10000` and faults.
+
+`0x0055B3F0` makes the call only while `[obj + 0x128]` is 0 and bit `0x400` of `[obj + 0x570]` is clear
+(`0x0055B429`, `0x0055B436`). Its store for `0xFF` is a 16-bit zero over `+0x559` and `+0x55A` (`0x0055B45C`). For
+any other board it reads the slot with no null test (`0x0055B481`-`0x0055B484`).
 
 ### Finding a row
 
@@ -200,6 +250,12 @@ the id's top nibble (5–19), −1 for nibble 15.
   null and by `0x00238A80`.
 - `0x02EBF178` is written only by `0x00324510`, a builder for 301 kind-`0x1A` files that never runs: its
   state `0x022C27A0` is touched only inside it, and nothing stores the state 1 that starts it.
+- `0x00324510` is called from `0x0022AE6F`, `0x0022BAEF` and `0x0022BD3F`, and with its state at 0 it returns at once
+  (`0x00324529`). It stores the buffer `[0x022C27B0]` in `0x02EBF178` once all 301 entries are filed and the in-flight
+  count `0x022C27A8` is 0 (`0x0032468F`-`0x0032469A`, then state 3), and 0 in state 3 when the dword `0x022C27A4` is not 0
+  (`0x0032452F`-`0x00324558`).
+- The rip-relative references to `0x022C27A4` are that test at `0x0032452F` and the qword store of 0 at `0x00324551`
+  on the same path, which covers it.
 - `0x02EBF188` has 93 writes and no read.
 - `0x02EBF0D0` is read once (class 12) and never written. `0x02EBF198` has no reference at all.
 - `0x02EBF200` (`license_board.bin`) is stored once and never read.

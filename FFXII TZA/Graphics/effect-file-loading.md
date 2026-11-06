@@ -79,9 +79,13 @@ file request, `+0x1C` state, `+0x20` flags, `+0x28` buffer. Only one load runs a
   bit `0x8000` to `0x1FF`, `0xC3` to `0x1FE` when `0x002DEBB0` returns 0), requests the file in class
   `0x0C` (`0x0032E400`, `0x0032E620`) with the completion `0x003B22D0`, which sets state 3, and sets
   state 2;
-- state 3 (`0x003B2220`) builds a type-7 context for the id (`0x0024B3A0`), parses the buffer
-  (`0x003EDAD0`), copies the high nibble of the first `0x600` record's `+0x16` into the context's
-  byte `+2`, and sets state 5;
+- state 3 (`0x003B2220`) builds a type-7 context for the id (`0x0024B3A0`); when that fails it returns and the
+  entry stays in state 3 (`0x003B225D`-`0x003B2260`). Otherwise it keeps the context at the entry's `+8`
+  (`0x003B2266`), parses the buffer (`0x003EDAD0`), sets state 5 and clears the load-running flag `0x02EBEBE4`
+  (`0x003B22A3`-`0x003B22AA`);
+  - before that it copies the high nibble of the first `0x600` record's `+0x16` into the context's byte `+2`,
+    the record being the first non-zero of the 256 slots at `+0x40`; with all 256 at 0 it copies nothing
+    (`0x003B2274`-`0x003B22A0`);
 - state 4 waits until the request is gone (`0x0032E4D0`), then removes the entry and closes the gap.
   `0x003B21E0` clears an entry's id and state when its request is already gone.
 
@@ -89,7 +93,10 @@ file request, `+0x1C` state, `+0x20` flags, `+0x28` buffer. Only one load runs a
 puts `n` in the low nibble of its word `+0x378`. `0x003B27A0(id, n)`, for `n` of 0 to 10, makes the
 instance current and passes its `+0x130` block to `0x003339C0` with `n`. `0x003B1560(flag)` clears bit `0x1`
 of `+0x20` in every entry when `flag` is 0, and otherwise passes each entry with the bit to
-`0x003B18E0`; no code calls it.
+`0x003B18E0`.
+
+The one caller of `0x003B1560` is the script verb `effectkeepclear` (`0x02C6`): the handler `0x00340010` passes 1
+through the jump `0x0036E9A0` (`0x00340010`-`0x00340015`), so the verb releases every file kept by its flag.
 
 ### Filing, sharing and releasing a loaded file
 

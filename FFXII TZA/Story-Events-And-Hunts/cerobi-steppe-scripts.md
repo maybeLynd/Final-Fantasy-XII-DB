@@ -42,23 +42,28 @@ title scenes](titles-scenes.md)) and the Strahl scene `str_z0000` ([Strahl scene
 - Old Elanise Road and South Liavell Hills: `監督.main` loads the location title `ttl_z0002` (event 217) on the first
   arrival and sets flag `0x002D` or `0x002E`, the location map's exits to the Tchita Uplands and to Balfonheim Port.
 - The windmills: the Craftsmoogles' League is servicing the ten windmills of the steppe, one moogle (`大工モーグリ`) to each
-  ("The Craftsmoogles' League have been called in to service all ten of the windmills on the Steppe, kupo.").
-  Windmills 1 to 3 stand in North Liavell Hills, 4 and 5 in The Terraced Bank, 6 and 7 in Crossfield, and 8 to 10 in
-  The Northsward (`風車レクト１` to `風車レクト１０`).
-- Talking to a windmill (`風車レクトN.talk`) calls its moogle (`大工モーグリ.風車N挙動`). While the party holds the Yellow
-  Bottle or the Auric Message, the moogle asks "She's running right now...need me to stop her?" or "She's stopped
-  right now...need me to start her up?" and stops (`EV_H_風車N` 10) or starts (0) the windmill; otherwise it only talks.
+  (the moogle of windmill 1: "The Craftsmoogles' League have been called in to service all ten of the windmills on the
+  Steppe, kupo. This is the No. 1 mill."). Windmills 1 to 3 stand in North Liavell Hills, 4 and 5 in The Terraced
+  Bank, 6 and 7 in Crossfield, and 8 to 10 in The Northsward (`風車レクト１` to `風車レクト１０`).
+- Talking to a windmill (`風車レクトN.talk`) calls its moogle (`大工モーグリ.風車N挙動`). While the party holds the Yellow Bottle or
+  the Auric Message, the moogle asks (at windmill 1) "This is the No. 1 mill, kupo. She's running right now...need me
+  to stop her?" or "This is the No. 1 mill, kupo. She's stopped right now...need me to start her up?" and stops
+  (`EV_H_風車N` 10) or starts (0) the windmill; otherwise it only talks.
 - When such a talk leaves windmills 3, 4, 6, 8 and 10 stopped and the other five running, and `EV_H_暗号_黄` is not
   20, the Yellow Bottle shatters ("Without warning, the yellow bottle in your inventory shatters!"): the moogle
   gives a reward package with a Hi-Ether, takes the Yellow Bottle, gives the Auric Message and sets `EV_H_暗号_黄` to
   20.
 - The Wyrm Philosopher (`竜じいさん`) dozes atop windmill No. 10 and wakes when its moogle finds him (`大工モーグリ.風車１０挙動`).
-  While the party holds the Dragon Scale ("A scale found on the corpse of a vyraal.") and not the Ageworn Key, he
-  takes the Dragon Scale and gives the Ageworn Key, "a key said to open the door to a chamber holding a most
-  terrible wyrm".
+  While the party holds the Dragon Scale and not the Ageworn Key, he takes the Dragon Scale and gives the Ageworn Key.
+  The Dragon Scale's description: "A scale found on the corpse of a vyraal. Natural philosophers studying wyrms and
+  their kin are known to pay well for such."
+- The Wyrm Philosopher's thanks as he gives the Ageworn Key: "Thank you! Thank you so much! My life's work is
+  complete! I shall treasure this for the rest of my days. I must give you something by way of thanks... Here, take
+  this. It is a key said to open the door to a chamber holding a most terrible wyrm."
 - The Northsward: the Viera Wayfarer (`賞金首監督.main`) leads the hunt for the vyraal ("The vyraal that attacked me is a
-  great creature with massive wings."); `wanted_kansi.main` removes the foes and gives a Viera Rucksack ("Visit me at
-  the Whitecap in Balfonheim.").
+  great creature with massive wings. It will not be far. Come!"); `wanted_kansi.main` removes the foes and gives a
+  Viera Rucksack ("We are victorious. I would reward you for your courage. Visit me at the Whitecap in Balfonheim. I
+  shall wait for you there.").
 - Crossfield and Feddik River: `hunt_kansi.main` gives the Cruel Trophy and the Adamantine Trophy and removes the foes
   of a group.
 - Journey's Rest holds the crystal. Talking to `system_anchor_actor` requests `ym_shutoraljump.shtjump`, which loads
@@ -101,6 +106,10 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
    `0x00348DF0` (`0x00349884`).
 3. `0x00348DF0` pops eight values. The seventh, the script's second argument, is passed with the current field context
    to `0x00264D60` (`0x00348E6A`-`0x00348E74`), the section 2 lookup, which keeps the low 24 bits of the id.
+4. `0x00348DF0` reads the entry's flag through `0x002673A0`, bit `0x1` of the entry's upper half (`0x00348E85`), and
+   opens the window through `0x002E16B0` only when that flag is clear (`0x00348EE0`-`0x00348EFF`). With the flag set it
+   still makes its six slot calls (`0x00348E91`-`0x00348ECA`) and fills the call record (`0x00348ED7`-`0x00348EDC`) but
+   opens no window ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)).
 
 ### Speakers, places and scenes
 
@@ -116,6 +125,8 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
   passes it to the verb, and `0x00348DF0` hands it to `0x002E16B0`. That actor's name is the second name of each pair its
   `setnpcname` calls name; `0x002E16B0` sets the actor's name flag before the window opens, and `0x00263990` shows the
   second name while that flag is set.
+- `0x00348DF0` makes that `0x002E16B0` call only for a line whose section 2 flag is clear (`0x00348EE0`); for a flagged
+  line it opens no window, so the actor's name flag is not set there.
 - An actor no `setnpcname` or `setshopname` call names keeps the name id `0xFFFF` and the empty text the record set-up
   `0x00266530` writes (`0x0026668B`, `0x0026669B`-`0x002666B4`), so its `{actor-name}` header shows no name; that line reads
   `no name shown`. A system message reads `system message`.
@@ -266,7 +277,7 @@ The steps table [`cerobi-steppe-script-steps.tsv`](cerobi-steppe-script-steps.ts
 | `step` | the step's number in its function, from 1, in the order the function's bytes run |
 | `at` | where the step's instruction sits: its offset in section 0, the script image, of the shipped `plan_master/us` `.ebp`. For `case`, `default` and `label` it is where their code starts. For `shared template` and `same code` it is where the function or actor starts |
 | `line` | the step's line in the script listing, `-` for the `shared template` and `same code` rows |
-| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets |
+| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. A case whose values meet an earlier case's is followed by `not (x = w)` for each such earlier case `w`, so the cell names only the values the case runs on: `x = lte(78); not (x = lt(78))` runs when x is 78. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. When such a way passes a case that an earlier case overlaps, the item counts only the values that case takes: after `case lt(0x0177)`, a `case lt(0x0182)` that returns gives the item `not (x = lt(0x0182)) or x = lt(0x0177)`, which holds unless 0x0177 <= x < 0x0182. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets, and, for a case whose every value an earlier case already matches, on the case values |
 | `verb` | the verb the step calls, by its name in the [verb table](../Scripts-And-Script-Commands/verb-table.md), written `Actor.verb` for a call on another actor. Otherwise the kind of step: `if`, `else if`, `while`, `for`, `switch`, `case`, `default`, `break`, `goto`, `label`, `return`, `returnT`, `store`, `shared template` or `same code` |
 | `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test. A number with a fraction is the listing's print of a 32-bit float to nine significant digits, here and in `condition`: 1.60000002 is the float nearest to 1.6, and 2.36000005e-06 is 2.36000005 times 10 to the power -6 |
 | `addresses` | what the arguments name in the game: the actor, model, animation and motion file, effect file, event sound, camera shot, message window, request slot or variable |

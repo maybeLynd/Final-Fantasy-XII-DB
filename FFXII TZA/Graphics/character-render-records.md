@@ -24,8 +24,29 @@ the root's four bank pointers (`0x0041E550`), builds them (`0x0041E3A0`), initia
 (`0x004269A0`) and stores the root's encoded address in the system tail (`0x00426480`; its first argument,
 `0xA0`, is never read).
 
+`0x003325D0` allocates the record array under arena 6: `0x0036C1D0(6, 6)` before `0x0036A100` and `0x0036C140` after it
+(`0x003325E2`-`0x003325F8`). `0x003323D0` runs `0x004262E0` on the record array, `0x00426560`, the record step `0x00426090`,
+`0x0041E340(root)`, `0x00425E10` on the record array and `0x004288E0`, and ends with a tail jump to `0x00428F80`
+(`0x003323D4`-`0x00332419`).
+
+`0x00332660` refreshes the root (`0x0041E500`), runs `0x00426950` and calls `0x003697C0(6)` only when `0x00369CF0(6)` is
+non-zero (`0x00332684`-`0x0033269F`). It then runs `0x004262E0` on the record array it read on entry and ends with a
+tail jump to `0x0042ED60` (`0x003326A4`-`0x003326B6`).
+
 `0x0041E3A0(root, 10, 10, 5, 5, 0x13, 0x2A00, 0x16000)` points each bank at storage inside the root and
 initialises it. It forwards only three of its counts; the reference container always takes 64 nodes.
+
+In order (`0x0041E3B4`-`0x0041E484`):
+
+1. It zeroes the four bank pointers and runs the bone-trail pool set-up `0x0051C270`
+   ([bone trails](bone-trails.md#the-pool)).
+2. It points the banks at the root and runs `0x00409F80`, which fills the `@FEF` path table with `0x0040A230`
+   ([model effects](model-effects-and-motion-commands.md#the-fef-path-table)) and then resets the first bank's
+   descriptor, the root itself, with a tail jump to `0x0051FB70` (`0x00409F8D`).
+3. It resets the descriptors of the other three banks (`0x0046E4B0`, `0x00478040`, `0x0051BA20`) and forgets the
+   texture slot cache (`0x00521300`).
+4. It runs the four initialisers below, and last allocates that cache with `0x005211F0`
+   ([model files](model-files-cm-ca.md#the-texture-slot-cache)).
 
 | Root field offset | Points at | What it holds | Initialiser |
 |---|---|---|---|
@@ -47,10 +68,28 @@ size, shift, chunk count, chunk table, slot table)`. With shift 5 a chunk holds 
 initialiser allocates `chunks << shift` elements in one block, stores each chunk's encoded base, and
 claims chunk 0 at once (`0x0051F6B0`).
 
+`0x0051F6B0(bank)` returns -1 when the chunks in use, word `+0x22`, have reached the chunk count `+0x24`
+(`0x0051F6CA`). Otherwise it looks from the cursor word `+0x20` for a chunk-table entry (`0x20` bytes at `+0x10`,
+re-resolved with `0x003AB7F0` from `+0x08` when that is set) whose first dword is -1, stepping the cursor past used
+entries and wrapping it at the count, and returns -1 when every entry is used (`0x0051F6F0`-`0x0051F738`).
+
+`0x0051F6B0` writes the chunk's index into that dword, links the entry at the tail of the chunk list (head `+0x18`,
+tail `+0x1C`; entry `+0x04` previous, `+0x08` next), counts it in `+0x22` and returns the index
+(`0x0051F73D`-`0x0051F785`).
+
 - `0x0051FBB0` takes a slot: it refuses when the used count `+0x58` has reached the capacity `+0x54`,
   finds a chunk with a free slot (`0x0051F7A0`, claiming a new chunk when needed), scans that chunk for a
   slot whose first dword is -1, appends it to the active list (head `+0x40`, tail `+0x44`), and keeps
   the high-water mark in the word `+0x26`.
+- `0x0051FBB0(bank)` returns -1 on that refusal (`0x0051FBC5`-`0x0051FBCA`) and when `0x0051F7A0` returns null
+  (`0x0051FBE6`-`0x0051FBE8`). The scan starts at the chunk's cursor `+0x18`, slot `(chunk index << shift) + cursor`,
+  steps the cursor on, back to the chunk's first slot at the chunk size, and looks at no more than one chunk's
+  slots, 16-byte entries at `+0x38`, re-resolved with `0x003AB7F0` from `+0x30` when that is set
+  (`0x0051FC09`-`0x0051FC6F`).
+- It counts the slot in the chunk's `+0x14` and the bank's `+0x58`, writes the slot's index into its first
+  dword, links it after the old tail (the tail entry's `+0x08` next, the slot's `+0x04` previous; the head
+  `+0x40` too when it is -1), raises the word `+0x26` to the used count when it is lower and returns the index
+  (`0x0051FC71`-`0x0051FCD3`).
 - `0x002ED570(bank, index)` returns the element: chunk `index >> shift`, offset `(index & mask) × size`,
   or null for a free slot. `0x0051FF30` and `0x00520010` walk the active list with a callback.
 - Each bank has its own acquire: `0x00409FE0` for render resource entries (it returns an existing entry for the
@@ -69,15 +108,26 @@ record's key as the literal `makeid` (`0x00D12474`) followed by one raw byte, th
 calls `0x004279B0(key, name, …)` with the 32-byte name of the current model container (`0x00409090` on
 `0x003AB7F0()`). It returns the new record's index, or -1.
 
+`0x0042FB80(handle, variant, colour)` hands its first argument to `0x003AB7F0` and returns -1 when no container
+resolves (`0x0042FBDA`-`0x0042FBE2`) or the live count `+0x4880C` is 160 or more (`0x0042FC08`-`0x0042FC12`). The cursor
+byte `+0x48808` is appended as a one-character string, so a cursor of 0 leaves the key `makeid`
+(`0x0042FC14`-`0x0042FC5E`). The variant and the colour are `0x004279B0`'s third and fourth arguments
+(`0x0042FC60`-`0x0042FC70`), and the index is the signed word `+0x00` of the record it returns, -1 when it returns
+null (`0x0042FC75`-`0x0042FC7F`).
+
 `0x004279B0` searches the active list (skipping records with `+0x290` bit `0x2`) and the pending list by key
-(`0x004278E0`), refuses on a match or a full pool, and then:
+(`0x004278E0`), refuses on a match or a full pool by returning null (`0x004279D7`-`0x004279F3`), and then:
 
 1. clears the record at the cursor (`0x0041F730`);
 2. appends it to the pending list (tail `+0x10` / `+0x14`, links at record `+0x02` / `+0x04`);
 3. writes the record's own index into `+0x00`;
-4. runs the initialiser `0x00420480`;
+4. runs the initialiser `0x00420480` with the key, the name, the tail's `+0x30` decoded by `0x0020E600`, the variant
+   and the colour (`0x00427A50`-`0x00427A71`);
 5. sets `+0x290` bit `0x1` and increments the live count;
-6. advances the cursor to the next record whose `+0x284` is 0, wrapping at 160.
+6. advances the cursor to the next record whose `+0x284` is 0, wrapping at 160, or sets it to 0 when the live
+   count has reached 160 (`0x00427A85`-`0x00427ADA`).
+
+It returns the record (`0x00427ADC`).
 
 The initialiser ORs `0x2010F9` into `+0x284`, copies the key to `+0x1C` and the model name to `+0x3C`,
 sets `+0x284` bit `0x4000` for a name starting `c`, `m`, `n` or `s`, stores the context at `+0x10`, finds the
@@ -99,19 +149,38 @@ The promoter takes every pending record in order: it binds the model resources (
 ([character lighting and shadows](character-lighting-and-shadows.md)), runs `0x0042C410` with tail bit `0x1`
 held clear, clears `+0x290` bit `0x1` and moves the record to the end of the active list.
 
+The shadow entry is `0x003B56D0` of the record's index (`0x00428782`-`0x0042878A`). `0x0042C410` gets the record and the
+record array, and tail bit `0x1` goes back to its earlier value after it (`0x00428790`-`0x004287B7`). Each move sets
+tail flag bit `0x20` (`0x00428863`). The promoter reads the next pending index before the work, and at the end
+sets the pending head and tail to -1, also when the list was empty (`0x0042888C`-`0x00428893`).
+
 Removal is in two steps. `0x00429140(record)` is the request:
 
 | Record state | What `0x00429140` does |
 |---|---|
 | null | nothing, returns 0 |
-| `+0x284` bit `0x4` set | marks it: `+0x290` bit `0x2`, `+0x2AE` bit `0x1`, clears `+0x108`..`+0x113`, swaps `+0x284` bit `0x4` for bit `0x40000000`; clears bit `0x2` of its presentation entry's `+0x0C` and bit `0x4` of its skeleton entry |
-| bit `0x4` clear, `+0x290` bit `0x1` set (still pending) | unlinks it from the pending list, decrements the live count and clears it (`0x0041F730`) |
-| otherwise | nothing |
+| `+0x284` bit `0x4` set | marks it: `+0x290` bit `0x2`, `+0x2AE` bit `0x1`, clears `+0x108`..`+0x113`, swaps `+0x284` bit `0x4` for bit `0x40000000`; clears bit `0x2` of its presentation entry's `+0x0C` and bit `0x4` of its skeleton entry, each when it exists, and stores the encoded null (`0x0020E620(0)`) at that skeleton entry's `+0xA0` (`0x0042916F`-`0x004291F3`); returns 1 |
+| bit `0x4` clear, `+0x290` bit `0x1` set (still pending) | unlinks it from the pending list, decrements the live count (resetting the cursor to 0 at a count of 0, `0x0042927D`-`0x00429288`) and clears it (`0x0041F730`); returns 1 |
+| otherwise | nothing, returns 1 (`0x00429296`) |
 
 The active sweep `0x00427C90` then retires every active record with `+0x290` bit `0x2`: it unlinks it,
 decrements the count (resetting the cursor to 0 at a count of 0), runs `0x0042F4C0`, detaches every
 child (`0x00426EC0`), frees the two shadow entries (`0x003B6000`, `0x003AFBE0`) and tears the record down
-(`0x004200A0`, which frees the record's buffers and its CharacterRenderObject, then clears the record).
+(`0x004200A0`, which frees the record's buffers and returns its CharacterRenderObject, then clears the record).
+
+The sweep detaches the first child `+0x08` until that word is -1 (`0x00427D5E`-`0x00427D8B`), frees a shadow entry
+only when its handle, `+0x114` or `+0x118`, is non-zero (`0x00427D8D`-`0x00427DA6`), and sets tail flag bit `0x20`
+for each record it retires (`0x00427DB3`).
+
+`0x004200A0` runs `0x0046C240` on the sound emitter `+0x5F0`, `0x0041E860` on the record, `0x003AEF30` on the
+tween object `+0x550`, `0x003E69A0` (which hands the handles `+0x448` and `+0x44C` to `0x003D8300` when they are
+non-zero) and `0x00512C80` on `+0x650` (`0x004200AD`-`0x004200DC`). It hands the dword `+0x64C` to `0x0024CFF0`, which
+ends a running effect job, when it is non-zero and zeroes it (`0x004200E1`-`0x004200F2`).
+
+`0x004200A0` returns the CharacterRenderObject `+0x6B8` to its manager with `0x0017F100`, which skips a null object,
+and zeroes `+0x6B8` (`0x004200F8`-`0x0042010B`). It frees each of the buffers `+0x6C0`, `+0x6D0`, `+0x6F8`, `+0x700`,
+`+0x708`, `+0x710`, `+0x720` and `+0x728` that is set with `_aligned_free` (`0x0019C570`) and zeroes it, zeroes
+`+0x6E8` and `+0x6F0` (`0x00420104`-`0x004201D5`), and ends with a tail jump to the clear `0x0041F730` (`0x004201E6`).
 
 The clear `0x0041F730` zeroes all `0x740` bytes and writes the defaults: word `+0x00` = -1, links -1,
 fade channels at 1.0 (`0x003E5D00` for channels 0 to 9), colours `+0x210` and `+0x220` at 1.0.
@@ -122,6 +191,11 @@ A record can be attached to another: word `+0x06` is the parent index, `+0x08` t
 `+0x0A` the next sibling. `0x00426EC0` unlinks a child from its parent's chain. Walks that need the
 hierarchy go through `0x00425FB0(root callback, child callback, …)`, which runs the first callback on
 each active record without a parent and the second on its descendants (`0x0042EF90`).
+
+`0x00426EC0(child)` does nothing when the child's `+0x06` is -1 (`0x00426EC7`). Otherwise it replaces the child's
+index in the parent's `+0x08`, or in the `+0x0A` of the sibling before it, with the child's `+0x0A`, and sets the
+child's `+0x06` and `+0x0A` to -1 (`0x00426EFD`-`0x00426F97`). A parent or sibling whose `+0x284` is 0, or a chain
+that ends without reaching the child, leaves the chain as it is, and only the child's two words are cleared.
 
 Many setters broadcast a value the same way: they apply it to the record and its first child, then
 hand a small per-record body and an argument block to `0x0042EF90` for the rest of the tree.
@@ -160,7 +234,8 @@ is below `0x16`, and `+0x2CA` for the child of slot `0x16`. Unless `+0x40B` bit 
 start `0x00424D80` re-places both through `0x0041F010(record, child)`, which `0x004215A0` also calls:
 
 1. it stores a slot below `0x16` at `+0x40C`, and takes the mode from the low two bits of `+0x40B`
-   (0 while `+0x284` bit `0x8000000` is set) into bits `0xC` of `+0x40B`; modes 2 and 3 go straight to step 6;
+   (0 while `+0x284` bit `0x8000000` is set) into the bits under mask `0xC` of `+0x40B` (`0x0041F080`-`0x0041F09A`);
+   modes 2 and 3 go straight to step 6;
 2. in mode 0, when the record's `@FCP` section 3 (`0x003E5CD0`) names a bone for the slot (word table
    at its start), it ties the child to that bone with `0x004211B0`, which links the two skeletons
    with `0x0046E640` when the child's skeleton entry has bit `0x80` of its first byte and sets the child's
@@ -182,9 +257,12 @@ both set the fourth float to 1.0 and clear `+0x284` bit `0x200`. `0x00421010(rec
 first of the `@FCP` bones for special ids `0x104` to `0x106` that is set, or 0 (always 0 below
 `@FCP` version 3).
 
-`0x00422D90` finds the `@FRM` entry (`0x4D524640`) of the record's container and returns its payload;
-`0x00422E40` is `0x00424870(…, 1)`; `0x00424280` wraps an angle in degrees into −180 to 180; `0x0042FCB0`
-counts `0x02CA4EDC` up, for `0x002EAD00`.
+`0x00422D90(file, index)` resolves the block with `0x003AB7F0`, finds its `@FRM` entry (`0x4D524640`, `0x00408F90`) and
+returns the payload at `+0x30` of the address `0x00408F80` gives, cut to 32 bits and sign-extended
+(`0x00422DC5`-`0x00422DCC`), or 0 when the block is null or has no `@FRM` entry (`0x00422DA1`, `0x00422DBE`).
+
+`0x00422E40` is `0x00424870(…, 1)`; `0x00424280` wraps an angle in degrees into −180 to 180; `0x0042FCB0` counts
+`0x02CA4EDC` up, for `0x002EAD00`.
 
 `0x00424870(record, frames, mode)` starts a transition of the current entry `+0xC4` into its motion.
 It runs `0x0041CFC0`, hands the three floats `+0x2B0` to `+0x2B8` to `0x0041D7E0` and sets them to −1,
@@ -208,9 +286,21 @@ reads three floats there.
 
 ### Attaching a record: the pending tie and the slot table
 
-A tie is requested by `0x0042F310` or `0x0042F3B0` (`(child, parent, slot)`; [chocobos](../World-Areas-And-Travel/chocobos-and-airships.md)
-has the actor-level caller). They store the parent's id at the child's `+0x3CE`, the slot at `+0x3CC` and set
-`+0x290` bit `0x80000`. The request service `0x00427DE0` sees the bit (`0x00427F44`-`0x00427F53`) and runs `0x0042F880`. That
+A tie is requested by `0x0042F310` or `0x0042F3B0` (`(child, parent, slot)`;
+[chocobos](../World-Areas-And-Travel/chocobos-and-airships.md) has the actor-level caller). Both return at once when
+either id is -1 (`0x0042F314`, `0x0042F31E`, `0x0042F3B4`, `0x0042F3CF`). An id's record is `[0x022C6F28] + 0x740 × id`, taken
+as null when its `+0x284` is 0; a null parent faults on the read of its `+0x284` (`0x0042F347`, `0x0042F3FD`). A parent
+with `+0x284` bit `0x4` set also gets `+0x284` bit `0x40000000` (`0x0042F34E`-`0x0042F356`, `0x0042F404`-`0x0042F40C`).
+
+`0x0042F3B0` takes three vectors after the slot and hands them to the child record before it tests the child for null:
+the fourth argument to `0x00420CF0`, the fifth to `0x00420F20` and the sixth to `0x00420D50` (`0x0042F41A`-`0x0042F47D`), so a
+null child faults in `0x00420CF0`. `0x00420D50(record, x, y, z)` stores the scales `+0x160`-`+0x168` with 1.0 at `+0x16C`
+and clears `+0x284` bit `0x200`, as the setters `0x00420CF0` and `0x00420F20` above do. `0x0042F310` skips a null child
+(`0x0042F37D`).
+
+They store the parent's id at the child's `+0x3CE`, the slot at `+0x3CC`, set `+0x290` bit `0x80000` and clear
+its bits `0x40000` and `0x100000` (`0x0042F382`-`0x0042F3A0`, `0x0042F487`-`0x0042F4A4`). The
+request service `0x00427DE0` sees the bit (`0x00427F44`-`0x00427F53`) and runs `0x0042F880`. That
 function hands the parent, the slot and the child to `0x004215A0` (`0x0042FA1C`-`0x0042FA29`), which resolves the slot
 against the parent's skeleton entry:
 
@@ -225,6 +315,29 @@ against the parent's skeleton entry:
 A keyed tie goes through `0x004219C0(parent, key, child)` and a named one through `0x004218A0(parent, name, child)`
 (`0x00421841`-`0x00421852`). Afterwards the child's word `+0x06` is the parent's id and `+0x2F0` the slot
 (`0x00421861`-`0x00421868`).
+
+`0x004219C0` ties nothing when either record has no skeleton entry (`0x004219E4`-`0x00421A60`). With key −1 it sets the
+child's `+0x284` bit `0x4000000` and `+0x2F2` to 1 (`+0x2F2` is 0 otherwise) and ties the whole skeleton at slot
+−1 (`0x00421A62`-`0x00421A7E`); another key is looked up with `0x00372800` and retried as `0x1E`, and when both give −1
+it ties nothing (`0x00421A87`-`0x00421AB1`). After `0x0046E640` a child with bit `0x4000000` set gets `0x003E5D30`, fade
+channels 0, 1 and 4 back to 1.0 (`0x00421AC6`-`0x00421AD5`).
+
+`0x0042F880` returns without a tie, so `+0x290` bit `0x80000` stays set for the next pass, when the child's `+0x3CE`
+is -1, the parent record is null or either record's model instance (`0x002ED570` of `+0x18`) is null
+(`0x0042F889`-`0x0042F93E`), and when a piece (kind `0x1C` or above) in slot `0x10A` has a parent whose word `+0x2C8`
+is -1 (`0x0042F956`-`0x0042F97C`). For such a piece whose `+0x2C8` record (`0x003326C0`) has a kind of `0x11` to
+`0x15`, that record takes the parent's place (`0x0042F982`-`0x0042F9CD`).
+
+Before the tie it calls `0x0020E600` with the dword at `[0x022C6F28] + 0x48830` and leaves the result unused
+(`0x0042F944`-`0x0042F951`). A child whose word `+0x06` is not the new parent's id and whose own record is live gets
+`0x004288B0(child, -1)` (`0x0042F9D0`-`0x0042FA01`), and a child with a parent (`+0x06` not -1) gets bit `0x40` of
+`+0x3D1` and `0x0042F4C0` (`0x0042FA06`-`0x0042FA17`).
+
+After `0x004215A0` it sets channel 1 to 0 for a hidden piece ([character fades](character-fades.md),
+`0x0042FA2E`-`0x0042FA3E`). For slot `0x7FFF` it stores `0x00421CD0(parent)` at `+0xB6` of the child's model instance
+(`0x003E55B0`) and runs `0x004780B0` on the parent unit's `+0xDA0` for each of the parent's `+0xC2` words at `+0x90`
+(`0x0042FA43`-`0x0042FAA6`). It ends by storing the parent's id at the child's `+0x06` and the parent's `+0x18` at
+`+0x2C4`, clearing `+0x290` bit `0x80000` and calling `0x00426E40(parent, child)` (`0x0042FAA8`-`0x0042FAC8`).
 
 On a keyed skeleton, slot 15 is the ride (`0x0042177F`-`0x0042180D`); the named path skips this. It sets the parent's `+0x284` bit `0x8000000` and the child's bits `0x4000000` and `0x8000000`,
 and bit `0x40` of `+0x4B7` on both. It runs `0x0041CFC0` on both records' active presentation entries (`0x00422D50`), loads
@@ -298,6 +411,16 @@ that root's model transform (`0x00420A40`). `0x00426090` calls `0x00427DE0(0)` i
 and setters are in
 [the dirty-bit table](character-render-records-dirty-bits.tsv).
 
+`0x00427BD0` takes only active records without a parent (`+0x06` -1) that have `+0x294` bit `0x2000000`
+(`0x00427C00`-`0x00427C11`). It clears the bit and calls `0x00420A40(record, 0)`, then `0x00373030` with the record's
+skeleton entry and `record + 0x180` when that entry exists, and then `0x00428E70(record)` (`0x00427C13`-`0x00427C61`).
+
+`0x00426090` points the bone scratch list at `[0x01FD4A78]` (`0x00370DF0`), stores the tail's `+0x2C` (see the system
+tail), copies `[0x022C6F28]` into `0x02EBB740` with 0 in `0x02EBB748`, and calls the bare `ret` `0x0016D6A0`,
+`0x00427DE0(0)` and `0x0042F030` (`0x00426094`-`0x004260EE`). It then walks the hierarchy with
+`0x00425FB0(0x0042C410, 0x0042C8F0, records)`, points the list back (`0x00370DE0`), runs `0x003B5890` and `0x003AF460`, and
+ends with a tail jump to `0x0017E7D0` (`0x004260F3`-`0x00426120`).
+
 ### Columns of character-render-records-dirty-bits.tsv
 
 One row per bit test in `0x00427DE0`, 57 rows; `pass` is the walk (1 to 5) and `bit` the bit's value in the
@@ -332,7 +455,8 @@ The `0x130` bytes after the records, at `0x022C6F28 + 0x48800`:
 | `+0x43` | `u8` |  | 0: same walk, must be 0 |
 
 `0x004269A0` writes these defaults and `0x0042ED30` puts `+0x18` bits `0x1` and `0x4` and `+0x1C`..`+0x28` back.
-`0x00426090` stores `+0x2C` each step from the party-focus actor (`0x003590D0`, `0x002E9B80`). Every access
+`0x00426090` stores `+0x2C` each step from the party-focus actor (`0x003590D0`, `0x002E9B80`), or `0xFFFF` when
+`0x003590D0` returns 0 (`0x00426099`-`0x004260C3`). Every access
 is in [the tail access table](character-render-records-character-render-system-tail-accesses.tsv).
 
 ### Render events
@@ -348,7 +472,8 @@ or, failing that, the model's `@FCM`, `@FRP` or `@FMN` section (`0x00409FA0`); t
 
 `0x004235C0` returns 1 (allow) unless all of these hold:
 
-- the record has a current entry;
+- the record has a current entry: `+0xC4` is not -1 and `0x0051B9E0`, a jump to `0x0051F240`, finds it in the
+  reference container `+0xDA8` of the root that `+0x10` encodes (`0x004235D9`-`0x00423613`);
 - after normalising (kind 3 to `0x2036`; kind 4 to `0x2035` or `0x2036` by index; kind 5 to `0x203E`)
   both events are of kind 1 or 2, kind 1 needing `+0x284` bit `0x80000000` set and kind 2 needing bit `0x10000000` clear;
 - the pair is not index `0x3D` on both sides;
@@ -357,15 +482,26 @@ or, failing that, the model's `@FCM`, `@FRP` or `@FMN` section (`0x00409FA0`); t
 
 Priorities are signed bytes at `0x01F00410 + (event & 0xFFF)`; the first `0x49` bytes hold values 0 to 4.
 `0x00424230` returns 1 without an entry, otherwise bit `0x1000` of the entry's `+0x2C8` (`0x0041C760`).
+
+The two events `0x004235C0` compares are the candidate, its second argument, and the record's current event
+`+0xCC` (`0x00423605`). The `0x3D` test reads the index of `+0xCC` before normalising and that of the normalised
+candidate (`0x004236F7`-`0x0042370B`), so a current event of kind 3, 4 or 5 with index `0x3D` beside a candidate of
+index `0x3D` allows. The priorities compared are those of the normalised indices, as signed bytes
+(`0x0042372F`-`0x00423770`).
+
 `0x0041FCA0` returns `+0xCE` when `+0xC8` is valid and `0x004235C0(record, +0xCE, +0xCC)` allows, else
-`+0xCC`.
+`+0xCC`. Valid means not -1 (`0x0041FCA6`), and both words are returned sign-extended. The call always
+allows: its third argument is `0x004235C0`'s selector, and `+0xCC` is also the current event it compares, so the
+selectors 0 and 2, the only ones that can refuse, come with a current event of kind 0, which allows
+(`0x0041FCB2`-`0x0041FCC1`, `0x0042370D`-`0x00423727`). `0x0041FCA0` therefore returns `+0xCE` whenever `+0xC8` is not -1.
 
 ### Posting an event
 
 `0x00427320(record, event)` posts an event. Before choosing a source it refreshes the dword `+0x110`
 from the battle view of the record's actor `+0x108` (`0x00420890`: `0x002ED500` with selector `0x80` for
 events `0x2005`, `0x2037` and `0x2039` to `0x203C`, `0x100` for the others; for `0x203A` a first query with
-`0x800` whose bit `0x1000000000` makes it call `0x003B4930`).
+`0x800` into a 64-byte result, whose byte `+0x3C` bit `0x10` makes it call `0x003B4930` before the `0x80` query
+(`0x004208FC`-`0x00420926`).
 
 `0x00423790(record, event, last)` then decides
 whether the event may follow the last posted one, the word `+0x3B4`, with the normalising and priorities of
@@ -433,8 +569,9 @@ Korean and the two Chinese languages, 544 bytes; its 33 records are on
 
 `debug_registskillmotion` (`0x2079`, `0x0050CE70`) and `debug_disposeskillmotion` (`0x207B`,
 `0x0050CFB0`) reach the request and the release; the battle code uses `0x00325A20` (the test), `0x00325B40`
-(the request) and `0x00325A00` (the release). The code at `0x003DC420`, which no instruction reaches, empties the size cache and releases
-the idle entries.
+(the request) and `0x00325A00` (the release). `debug_clearskillmotioncache` (`0x20A4`) runs the code at
+`0x003DC420`: its handler `0x0050DF50` is a tail jump there. That code empties the size cache and releases the idle
+entries.
 
 ## Layouts
 
@@ -502,7 +639,7 @@ The record bytes between the fields the store names, by range; `+0x411` and `+0x
 | `+0x2CC` | `u8[4]` | span02CC | the four bytes between the word +0x2CA and the projected origin +0x2D0 |
 | `+0x38C` | `u8[4]` | span038C | the four bytes between the pending colour's blue +0x388 and the dword +0x390 |
 | `+0x3F5` | `u8[3]` | span03F5 | the three bytes between the state byte +0x3F4 and the word +0x3F8 |
-| `+0x411` | `i8` | randomChoice | the random choice of the presentation-entry selector kind 0x01: 0x00422420 draws 0 to 4 with 0x003A6E60(5) into it when the counter +0x40E is 0 (0x0042243C-0x00422451) and, at 11 times [0x01DFE0B4] with bit 0x4 from 0x0041F2F0(record, 0x20), adds 5 (0x004224A1); it returns the value as the choice (0x00422464, 0x004224AE) |
+| `+0x411` | `i8` | randomChoice | the random choice of the presentation-entry selector kind 0x01: 0x00422420 draws 0 to 4 with 0x003A6E60(5) into it when the counter +0x40E is 0, `+0x411 = 0x003A6E60(5)` (0x0042243C-0x00422451), and, at 11 times [0x01DFE0B4] (`+0x40E == 11 × [0x01DFE0B4]`, 0x0042247A-0x00422484) with bit 0x4 from 0x0041F2F0(record, 0x20), adds 5, `+0x411 += 5` (0x004224A1); it returns the value as the choice (0x00422464, 0x004224AE) |
 | `+0x458` | `u8[40]` | span0458 | the 40 bytes between the stop-frame counter +0x457 and the dword band +0x480-+0x48C |
 | `+0x490` | `u8[12]` | span0490 | the twelve bytes between the dword band +0x480-+0x48C and the level-of-detail view scale +0x49C (reset to 1.0) |
 | `+0x57C` | `u8[4]` | span057C | the four bytes after member +0x28 of the embedded tween object at +0x550, before the parameter tag +0x580 |

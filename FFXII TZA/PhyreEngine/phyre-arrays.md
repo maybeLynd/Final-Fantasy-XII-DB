@@ -24,7 +24,8 @@ PhyreEngine has two array templates, both registered as reflected classes with `
   element size 4) at 8.
 - `PSharray<T>` keeps a single element inside the array: with a count of 1 the element itself is
   stored from `+0x08` (`m_u`); with 0 there is no storage; with 2 or more `+0x08` is the heap pointer.
-  Its size is 8 bytes plus the larger of 8 and the element size, which the class registrations pass
+  Its size is `8 + max(8, element size)` bytes, 8 plus the larger of 8 and the element size, which the class
+  registrations pass
   to `0x00632D80`:
   - `0x10` for `PSharray<PUInt32>` (`0x005EFBA9`) and the six pointer instantiations (`0x005B7B59`,
     `0x005EFEF9`, `0x0066A4F9`, `0x006989C9`, `0x006A8559`, `0x006C65F9`);
@@ -58,11 +59,18 @@ records are made with `new[]`: `0x005C9CF0` replaces one with a new array of `n`
 
 The set-external operation is the one that sets the bit. `0x0062A870` and `0x0060F400` refuse a count with
 bit `0x80000000` already set (5), free owned old storage, store the new pointer and write `count | 0x80000000`.
-`0x00673130` and `0x006AF760` do the same on the array directly. The `PSharray` forms copy a single
-element into the inline slot instead and leave the count at a plain 1, so a one-element `PSharray`
-always owns its element:
+They return 5 for the refused count (`0x0062A89D`, `0x0060F42D`) and 0 otherwise (`0x0062A8DD`, `0x0060F46D`).
 
-- `0x006C7D00` copies one dword for `PSharray<PUInt32>` (`0x006C7D62`-`0x006C7D64`);
+`0x00673130` and `0x006AF760` do the same on the array directly, taking the array, the pointer and the count,
+except that a count with bit `0x80000000` set returns 0, not 5, and leaves the array unchanged (`0x0067314B`,
+`0x006AF77B`). Every other count returns 0 as well (`0x0067317A`, `0x006AF7AA`).
+
+The `PSharray` forms copy a single element into the inline slot instead and leave the count at a plain 1, so a
+one-element `PSharray` always owns its element:
+
+- `0x006C7D00` copies one dword for `PSharray<PUInt32>` (`0x006C7D62`-`0x006C7D64`); it refuses a count with bit
+  `0x80000000` set with 5 (`0x006C7D15`), and any count other than 1 gets the pointer and `count | 0x80000000`
+  (`0x006C7D4F`, `0x006C7D96`, `0x006C7DA0`);
 - `0x006A5950` copies one qword for the six pointer instantiations (`0x006A59B2`-`0x006A59B5`);
 - `0x00672F30` and `0x00673030` copy the `0x48`-byte buffer records and store the record's own
   `TAsyncUpdate` vtable at `+0x28` (`0x00672F92`-`0x00672FD3`, `0x00673092`-`0x006730D3`);
@@ -70,10 +78,24 @@ always owns its element:
 
 ### Strings in arrays
 
-A `PString` is one tagged pointer: bit `0x1` set marks text the string does not own. Copying a string
-array (`0x001C19A0`) clears the tag, measures the text and duplicates it with alignment 2, so every copy
-owns its text. `0x001C2720` frees each untagged string and then the block. `0x0063DCA0` releases a
-`PSharray<PString>`'s old storage: a single inline string, or the whole owned block through `0x001C2720`.
+A `PString` is one tagged pointer: bit `0x1` set marks text the string does not own. Copying a string array
+(`0x001C19A0`) clears the tag, measures the text and duplicates it with alignment 2, so every copy owns its text: a
+block of the length plus one from `0x0017D260(length + 1, 2)`, filled with `memcpy` (`0x00861EBA`, `0x001C1A2C`) from the
+text and its terminator. A null text, or a failed allocation, gives a null copy (`0x001C19F4`, `0x001C1A21`). `0x001C2720`
+frees each untagged string and then the block.
+
+`0x001C2720(block, count)` returns at once for a null block (`0x001C2723`), skips null strings (`0x001C2756`) and
+frees the block last through `0x00584730` (`0x001C2773`).
+
+`0x0063DCA0` releases a `PSharray<PString>`'s old storage: a single inline string, or the whole owned block through
+`0x001C2720`. Its arguments are the array, the new elements, the new count, the old elements and the old count.
+Nothing is freed when the old elements are the new ones (`0x0063DCCE`). An inline old string has its text freed
+when it is non-null with bit `0x1` clear, whatever the array's bit `0x80000000` (`0x0063DCD5`-`0x0063DCE5`); an old
+block goes to `0x001C2720(old elements, old count)` only when bit `0x80000000` of the array's count is clear
+(`0x0063DCED`-`0x0063DCFF`).
+
+It then stores the new count as given (`0x0063DD04`) and writes the new pointer to `+0x08` unless the new
+elements are the inline slot (`0x0063DD06`-`0x0063DD0B`).
 
 `0x006A7800`, published by the `PString` registration `0x006A72B0`, points a string at foreign text: it
 refuses an odd pointer with 5, frees the old text when it was owned and stores the pointer with bit `0x1`
@@ -106,15 +128,25 @@ storage (`0x00673130` for `PArray<unsigned int,4>`, `0x0060F2D0` for `PSharray<P
 
 Every resize body has the same shape, shown by `0x005C8BF0` (`PArray<float>`):
 
-1. When the new count equals the whole count word it returns 0 at once. An array with bit `0x80000000` set never
-   matches, so resizing it always makes an owned copy.
+1. When the new count equals the whole count word it returns 0 at once (`0x005C8C15`-`0x005C8C17`). An array with
+   bit `0x80000000` set never matches, so resizing it always makes an owned copy.
 2. It allocates the new count of elements through `0x0017D260` with the element type's alignment and
    copies the first `min(old, new)` elements; for element types with a default the helper fills the
-   rest (for `PShadowSplit`, `0x006C2320` sets two fields to 10.0).
-3. A failed allocation for a non-zero count returns `0xD` with the array unchanged.
+   rest (for `PShadowSplit`, `0x006C2320` sets two fields to 10.0). `0x005C8BF0` asks for `count * 4` bytes
+   with alignment 4 (`0x005C8C23`-`0x005C8C2C`) and copies with `0x005A5B40` (`0x005C8C47`).
+3. A failed allocation for a non-zero count returns `0xD` with the array unchanged (`0x005C8C8D`-`0x005C8C96`). A
+   new count of 0 allocates nothing (`0x005C8C21`) and goes on to step 4 with a null pointer, so the array ends
+   empty with its owned storage freed.
 4. It frees the old storage when owned, through an element destructor for types that own memory
    (`0x005B7E10` frees the string of each `PAnimationChannelTarget`), and stores the pointer and the
-   new count with bit `0x80000000` clear.
+   new count with bit `0x80000000` clear (`0x005C8C4C`-`0x005C8C6E`), then returns 0 (`0x005C8C70`). Old storage
+   equal to the new block, or null, is never freed (`0x005C8C53`, `0x005C8C63`).
+
+The `PAnimationChannelTarget` resize `0x005C8CA0` gets its new block from `0x005AD2B0`, which asks for
+`count * 0x38` bytes with alignment 8, copies the kept elements with `0x005A5BD0` and defaults the rest with
+`0x005BED40` (`0x005AD2CB`-`0x005AD2FF`). For owned old storage it calls `0x005B7E10` with the old count
+(`0x005C8D07`-`0x005C8D0B`), which frees the text at `+0x28` of each element when that pointer is non-null with bit
+`0x1` clear, then the block (`0x005B7E40`-`0x005B7E63`); a null block returns at once (`0x005B7E13`).
 
 `PSharray` resizes (`0x0060CC60`) use the inline slot for a count of 1 and otherwise behave the same.
 `0x0060C6C0` resizes a `PArray` of `0x18`-byte elements outside the member records: `0x005E3380`
@@ -126,9 +158,28 @@ allocates the new block (alignment 8) and copies the kept elements, and a failed
 - Copy-assign builds owned storage for the source's count and copies into it, then frees the old
   storage when owned: `0x005AA3C0` (`PArray` of 4-byte elements), `0x005DE950` (`PSharray`). The count it
   stores has bit `0x80000000` clear, so the copy owns its elements even when the source did not.
+- `0x005AA3C0` asks `0x0017D260` for `count * 4` bytes with alignment 4 and copies with `0x005A5B40`
+  (`0x005AA3EA`-`0x005AA409`). A source count of 0, or a failed allocation, leaves the new pointer null, and the
+  source's count is stored all the same (`0x005AA434`-`0x005AA43B`), so a failed allocation gives an array with that
+  count and a null `m_els`.
+- `0x005DE950` reads the source's elements from the inline slot for a count of 1, through the pointer for 2 or
+  more, and as null for 0 (`0x005DE976`-`0x005DE987`). `0x005FEE80` gives the new storage: the destination's own
+  `+0x08` for a count of 1, `count * 4` bytes at alignment 4 for 2 or more (`0x005FEEA4`-`0x005FEEB5`), with each
+  element copied as a dword (`0x005FEED0`-`0x005FEEE2`).
+- As in `0x005AA3C0`, a failed allocation in `0x005DE950` stores the source's count with a null pointer (`0x005FEEBD`,
+  `0x005DE9D2`-`0x005DE9DC`). It frees old storage only when it is neither the new storage nor the inline slot
+  (`0x005DE9B4`-`0x005DE9CD`), and writes the pointer only when the new storage is not the inline slot
+  (`0x005DE9D7`). Both copy-assigns return the destination (`0x005AA431`, `0x005DE9D4`).
 - `0x006C5020` is the `PSharray` copy constructor: it zeroes the count before the copy-assign.
 - `0x005C0090` appends one `{qword, dword}` element to the `PArray` at `+0x100` of its object by
-  reallocating with one more element; it returns 0 when the allocation fails, 1 otherwise.
+  reallocating with one more element; it returns 0 when the allocation fails, 1 otherwise. It asks
+  `0x0017D260` for `((count & 0x7FFFFFFF) + 1) * 0x10` bytes with alignment 8 (`0x005C00A2`-`0x005C00BC`); a failed
+  allocation returns 0 with the array unchanged (`0x005C00C9`-`0x005C00DD`).
+- On success `0x005C0090` copies the old 16-byte elements (`0x005C0100`-`0x005C0113`) and writes the qword argument
+  at `+0x0` and the dword argument at `+0x8` of the new last element (`0x005C0127`-`0x005C012C`). It frees owned
+  old storage that is not null (`0x005C013C`-`0x005C014F`), stores the block at `+0x108` and
+  `(count & 0x7FFFFFFF) + 1` at `+0x100` (`0x005C0154`-`0x005C0163`), so the bit `0x80000000` is clear, and
+  returns 1 (`0x005C0169`-`0x005C0172`).
 
 ## Layouts
 

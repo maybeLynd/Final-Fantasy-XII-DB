@@ -21,7 +21,9 @@ builds name the files through their own kind-21 path array (see
 Beside it is `<area>.nmb` (kind `0x1A`, 26).
 
 The area number comes from the map-reference row: `0x00264ED0` returns the `u16` at `+4` of row `n` of
-the table at `[0x02099D88]`.
+the table at `[0x02099D88]`. The rows are 8 bytes each from the offset the table holds at `+0x04`
+(`0x00264EE9`-`0x00264EF0`), with no bounds check on `n`. It returns 0 while `[0x02099D88]` or `[0x02099D90]` is
+null, or when the row's address comes out 0 (`0x00264ED7`, `0x00264EE4`, `0x00264EF4`, `0x00264EFE`).
 
 ## Layouts
 
@@ -157,13 +159,16 @@ Otherwise `0x003EA820(area)`:
    `<area>\area\<area>.fpk`, through `0x0032EB40` (which reads only a file larger than `0x800`; no such
    file ships);
 2. sizes the `.ard` with `0x0032E400(0x15, area × 2)`;
-3. if a file is loaded, frees it, sets `0x02B5E0B8` to −1, clears the motion overrides
-   (`0x003DCF00(0)`) and unbinds the five tables (`0x0023A160(category, 0)`);
-4. with a size of 1 or more, unbinds them again, allocates the size, tags the block
-   `..\..\katano\atelareaload.c` and files the read with completion `0x003EA710`, recording the area in
-   `0x02B5E0B8`.
+3. if a file is loaded (root `0x02B5E0C0` non-null, `0x003EA883`, `0x003EA98D`), frees it (`0x003697F0`), sets the root to
+   0 and `0x02B5E0B8` to −1, clears the motion overrides (`0x003DCF00(0)`) and unbinds the five tables
+   (`0x0023A160(category, 0)`);
+4. with a size of 1 or more, clears the motion overrides and unbinds them again (`0x003EA8DA`-`0x003EA90D`), allocates
+   the size (`0x0036A100`), tags the block `..\..\katano\atelareaload.c` and files the read with completion
+   `0x003EA710`, recording the area in `0x02B5E0B8` (`0x003EA984`);
+5. with a null block from `0x0036A100` instead, files no read and leaves `0x02B5E0B8` as step 3 left it (`0x003EA941`).
 
-A file that is missing or empty leaves every table null.
+A file that is missing or empty leaves every table null. The call runs in arena 4: it pushes it first
+(`0x0036C1D0(4, 5)`, `0x003EA83B`) and pops it with its closing jump to `0x0036C140` (`0x003EA9F7`).
 
 At start-up `0x0032F430` runs `0x003EA6B0` (`0x0032F697`): the loaded area `0x02B5E0B8` becomes -1, the two
 roots `0x02B5E0C0` and `0x02B5E0C8` 0, and both motion-override tables are cleared (`0x003DCF00(0)`,
@@ -171,7 +176,8 @@ roots `0x02B5E0C0` and `0x02B5E0C8` 0, and both motion-override tables are clear
 
 ### Binding the sections
 
-`0x003EA710(file)` binds each section as the file's base plus its directory offset, with no bounds
+`0x003EA710(file)` first labels the block `AREA` with the loaded area `[0x02B5E0B8]` (`0x0036C660`,
+`0x003EA724`-`0x003EA736`). It binds each section as the file's base plus its directory offset, with no bounds
 check and no magic check:
 
 | Directory slot | Category | Binder | Null when the offset is 0 |
@@ -183,8 +189,8 @@ check and no magic check:
 | 5 | 3 → `0x02EBF148` | `0x003845F0` | yes |
 | 6 | 4 → `0x02EBF140` | `0x003845F0` | yes |
 
-It then makes the file root 0 (`0x02B5E0C0`). The binders add the section's address to the offsets
-inside it, so the loaded block is no longer a copy of the file.
+It then records the block as the file root (`0x02B5E0C0` = the file, `0x003EA809`). The binders add the section's
+address to the offsets inside it, so the loaded block is no longer a copy of the file.
 
 ### The second area root (EBP section 19)
 
@@ -207,38 +213,72 @@ Only `+0x2C` and the trailer offset `+0x0C` of this block are read; its `st2e` s
 1. the global table `0x02B58188` (model and motion only), loaded at start-up by `0x003DCBC0` from kind 9,
    file 5 (tagged `PCSkill`, `pc_skillmotion.bin`), laid out like slot 7;
 2. the area's slot 7 (`0x02B58178`), matching model, motion and weapon class;
-3. the table `0x02B58180` installed with the second area root (`0x003DCF10`).
+3. the table `0x02B58180` installed with the second area root (`0x003DCF10`), matching model, motion and weapon
+   class (`0x003DCB16`-`0x003DCB29`).
 
-The first match gives the file index; no match gives −1.
+The first match gives the file index; no match gives −1. `0x003DCA30` writes the kind `0x1E` first (`0x003DCA49`)
+and returns 1 when the global table answers (`0x003DCA9C`) and 0 otherwise (`0x003DCB3B`, `0x003DCB58`, `0x003DCB83`).
+A null table or a count of 0 is passed over (`0x003DCA5A`, `0x003DCA68`, `0x003DCABB`, `0x003DCAC9`, `0x003DCB03`,
+`0x003DCB11`).
+
+Besides requesting the file, `0x003DCBC0` zeroes each of the sixteen skill-motion entries at `0x02B57F70` except its id
+`+0x08`, set to `i | 0x10`, and its index `+0x13`, set to `i` (`0x003DCBE0`-`0x003DCC0F`). It sets the class byte
+`+0x0A` of the sixteen size-cache entries at `0x02B580B0` to `0xFF` (`0x003DCC20`), zeroes `0x02B58174`, sets `0x02B58170`
+to 1 and nulls `0x02B58180`, `0x02B58178` and `0x02B58188` (`0x003DCC31`-`0x003DCC52`).
+
+With a size above 0 it allocates the buffer in arena 4 with tag 3 (`0x0036C1D0(4, 5)`, `0x0036C1A0(3)`,
+`0x0036A190`), labels it and files the read with completion `0x003DC330`, which stores the buffer in `0x02B58188`.
 
 ### Preloading the trailer's models
 
-`0x003EA650(n)` returns root `n`'s trailer (`n` 0 or 1, the `.ard` and the second area root). The task
-`0x0037C3F0`, which `0x0037C910` installs (called from `0x00261F90`, `0x003473A0` and `0x00359800`), walks three
-lists in turn: root 0's trailer, root 1's, and, when it was started with argument 1, an `{id, mask}`
-table at `+0x80` of manager slot 0's loaded data. For each record it:
+`0x003EA650(n)` returns root `n`'s trailer (`n` 0 or 1, the `.ard` and the second area root): the root plus its
+offset `+0x0C` (`0x003EA67E`-`0x003EA688`). It returns 0 for an `n` above 1 as unsigned (`0x003EA657`), a null root
+(`0x003EA66C`) or an offset of 0 (`0x003EA679`).
 
-1. finds or creates the model's name binding (`0x002EAE20`) and marks it (`0x002EBD40`);
-2. waits until the model is loaded (`0x002E4C20`);
-3. requests each lane whose bit is set in the mask (`0x002EB5D0`, `0x002ECA30`) and waits until it is
-   loaded (`0x002E4C30`).
+The task `0x0037C3F0`, which `0x0037C910` installs (called from `0x00261F90`, `0x003473A0` and `0x00359800`), walks three
+lists in turn: root 0's trailer, root 1's, and, when it was started with argument 1, the `{id, mask}` table at the
+offset that `+0x80` of manager slot 0's loaded data holds (`0x0037C461`-`0x0037C481`). For each record it:
 
-When the lists end it calls `0x003601C0(10)` and removes itself.
+1. sets bit `0x400` of the busy mask `0x022CB720` (`0x003601B0(10)`, `0x0037C4CB`);
+2. finds or creates the model's name binding (`0x002EAE20`) and marks it (`0x002EBD40`); a list 2 id first goes
+   through `0x002E9A60` with manager 0 bound (`0x0037C4E9`-`0x0037C515`);
+3. waits until the model is loaded (`0x002E4C20`), then passes on to the next record when the mask is 0
+   (`0x0037C566`-`0x0037C594`);
+4. requests each lane whose bit is set in the mask (`0x002EB5D0`, `0x002ECA30`) and waits until it is
+   loaded (`0x002E4C30`). The lanes go 0 to 31; a lane for which `0x002EB5D0` answers 0 gets no request and no
+   wait (`0x0037C5F7`-`0x0037C5FE`).
 
-`0x0037C910(argument)` clears the task's words and stores the argument. The field set-up `0x00261F90` passes 1
-(`0x00261FC1`), and `0x003473A0` and the entry-read step `0x00359800` give it 0. The task runs as eleven states (jump table
-`0x0037C6F8`), and its state 9 moves to the next list: it zeroes the record index `0x02ADD950` and adds 1 to the list
-index. The walk ends after list 1, or after list 2 when the argument was 1. State 10 then clears `0x02ADD968` and the
-argument (`0x0037C6C3`-`0x0037C6D4`).
+When the lists end it calls `0x003601C0(10)` and removes itself: the state is the task's counter `+0x00`, and
+state 10 equals the length 10 that `0x0037C910` stores, so the runner ends the task after that step (`0x002F1826`).
+
+`0x0037C910(argument)` clears the task's words and stores the argument (`0x0037C918`-`0x0037C932`). It takes a task
+(`0x002F16B0`) into `0x02ADD968` and runs `0x002E63D0` and `0x002E6570`, which clear bit `0x10` of `+0x19` in the
+binding entries and zero the lane records' `+0x40`. With a task it sets the counter `+0x00` to 0, the length
+`+0x04` to 10, the end routine to 0, the step routine to `0x0037C3F0` and the step `+0x1C` to 0
+(`0x0037C95A`-`0x0037C972`); with all 32 tasks taken it installs nothing (`0x0037C958`).
+
+The field set-up `0x00261F90` passes 1 (`0x00261FC1`), and `0x003473A0` and the entry-read step `0x00359800` give it 0.
+
+The task runs as eleven states (jump table `0x0037C6F8`), and one call steps through them until it has to wait or
+the walk ends:
+
+- before each state a null trailer, or for list 2 a null slot 0 data pointer, an offset of 0 or a count of 0, sends
+  it to state 9 (`0x0037C430`-`0x0037C4A5`); a trailer's count is first compared in state 8, so a trailer with count 0
+  still has its first record read;
+- a model or lane that is not loaded yet returns to the runner in state 2 or 6 (`0x0037C55E`, `0x0037C63F`), and a
+  state above 10 returns at once (`0x0037C4B6`);
+- state 8 adds 1 to the record index `0x02ADD950` and goes back to state 0 while it is below the list's count
+  (`0x0037C661`-`0x0037C6B5`);
+- its state 9 moves to the next list: it zeroes the record index `0x02ADD950` and adds 1 to the list
+  index. The walk ends after list 1, or after list 2 when the argument was 1;
+- State 10 then clears `0x02ADD968` and the argument (`0x0037C6C3`-`0x0037C6D4`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02ADD955` | `i8` | 0 (zero-filled tail of `.data`) | the list being walked: 0 root 0's trailer, 1 root 1's, 2 the `{id, mask}` table at `+0x80` of manager slot 0's data | `0x0037C910`, 0 (`0x0037C932`); the task `0x0037C3F0`, 1 more (`0x0037C6A8`) | the task `0x0037C3F0`: `0x0037C430`, `0x0037C4E0`, `0x0037C566`, `0x0037C5AD` and `0x0037C661`, which compare it with 2; `0x0037C493`, as the root number passed to `0x003EA650` (sign-extended); `0x0037C689`, to step it |
+| `0x02ADD955` | `i8` | 0 (zero-filled tail of `.data`) | the list being walked: 0 root 0's trailer, 1 root 1's, 2 the `{id, mask}` table at the offset that `+0x80` of manager slot 0's data holds | `0x0037C910`, 0 (`0x0037C932`); the task `0x0037C3F0`, 1 more (`0x0037C6A8`) | the task `0x0037C3F0`: `0x0037C430`, `0x0037C4E0`, `0x0037C566`, `0x0037C5AD` and `0x0037C661`, which compare it with 2; `0x0037C493`, as the root number passed to `0x003EA650` (sign-extended); `0x0037C689`, to step it |
 | `0x02ADD958` | `void*` | 0 (zero-filled tail of `.data`) | the current record's name binding, the answer of `0x002EAE20` | the task `0x0037C3F0` (`0x0037C536`); `0x0037C910`, 0 (`0x0037C924`) | the task: `0x002E4C20` (`0x0037C550`), `0x002EB5D0` (`0x0037C5D9`), `0x002ECA30` (`0x0037C60B`) and `0x002E4C30` (`0x0037C631`) |
 | `0x02ADD960` | `void*` | 0 (zero-filled tail of `.data`) | the answer of `0x002EB5D0(binding, lane)` for the lane being tried; a non-zero answer sends the lane to `0x002ECA30` | the task (`0x0037C5ED`); `0x0037C910`, 0 (`0x0037C92B`) | the task, from the register it stores (`0x0037C5F4`) |
 | `0x02ADD970` | `u32` | 0 (zero-filled tail of `.data`) | the task's argument: 1 adds the third list | `0x0037C910`, the argument (`0x0037C918`); the task, 0 at its end (`0x0037C6D4`) | the task (`0x0037C695`), which makes the list limit 3 when it is 1 and 2 otherwise |
-
-### Models kept through an area change
 
 When a manager slot is unloaded (slots 1–3 in `0x002628B0`, slot 0 in `0x0025AFC0`, which `0x0032F850` and
 `0x0032FB70` call), the game:
@@ -246,11 +286,28 @@ When a manager slot is unloaded (slots 1–3 in `0x002628B0`, slot 0 in `0x0025A
 1. runs `0x0035A3A0`, which, for each trailer record of both roots whose model is already loaded
    (`0x002E4C20`), sets the binding's keep bit (`+0x19` bit `0x1`) and the hold bits of lane 0 and of
    every lane in the mask (`0x002ECAB0(id, lane, 1)`);
-2. releases the area's models (`0x002E4000`, `0x002E3E20`), which the keep bit and hold bits survive;
+2. releases the area's models (`0x002E4000`, `0x002E3E20`), which the keep bit and hold bits survive; `0x0025AFC0`
+   makes this step only while the byte `0x02099DA0` is 0 (`0x0025AFFB`-`0x0025B017`);
 3. runs `0x0035AC60`, which clears the keep bits and hold bits again.
 
 So a model the trailer names stays loaded across the change instead of being unloaded and read
 again.
+
+In `0x0035A3A0` a record with id 0, or whose binding `0x002E99C0` does not find, is passed over (`0x0035A3EA`,
+`0x0035A3FF`). The holds need a positive id: each set mask bit `i`, 0 to 31, holds lane `i` and then lane 0
+(`0x0035A422`-`0x0035A445`), so a mask of 0 holds no lane. `0x0035AC60` also passes over id 0 (`0x0035ACA7`), clears
+the keep bit of every other record whose binding is found, loaded or not (`0x0035ACB9`-`0x0035ACBE`), and for each
+set mask bit of a positive id releases lane `i` and then lane 0 (`0x002ECAB0(id, i, 0)`, `0x002ECAB0(id, 0, 0)`,
+`0x0035ACE3`, `0x0035ACEF`).
+
+`0x0025AFC0(slot)` points the current manager `0x02099D70` at `0x02098E10 + slot × 0x288` (`0x0025AFE1`) and puts the old
+value back before it returns (`0x0025B055`); for a slot other than 0 it does nothing more (`0x0025AFEA`). For slot 0
+it runs `0x0035A270(0)` and `0x0035A490` before step 1, which set further keep bits and lane holds, and runs
+`0x0035AD40` before step 3.
+
+After step 3 it runs `0x0035AB50(0)`; `0x0035AD40` and `0x0035AB50` clear keep bits and lane holds. It then zeroes
+`0x02099DA0` and `0x02099DA6` (`0x0025B02F`, `0x0025B036`) and ends with `0x002EA870(0)`, `0x002EA690`, `0x002ECBE0(0)` and
+`0x002EBDE0(0)`.
 
 ### The .nmb request
 
@@ -258,6 +315,21 @@ Of the 51 read requests in the executable, the one that passes kind `0x1A` as a 
 `0x00324510`, which would build a buffer from 301 files (`0x0032E620(0x1A, i, …)` for `i` below `0x12D`)
 but never starts: nothing stores the state that begins the build
 ([authored data tables](authored-data-tables.md)).
+
+`0x003DC8D0(model, motion, class, &fromGlobal, &failed)` returns a motion file's size. It sets `failed` to 0
+(`0x003DC8FE`) and looks for the three keys among the sixteen entries at `0x02B580B0` (`0x003DC904`-`0x003DC926`). On a
+hit it writes the entry's byte `+0x0B` to `fromGlobal`, sets `failed` to 1 when the cached size `+0x04` is
+negative, and returns that size (`0x003DC9B8`-`0x003DC9CA`).
+
+On a miss it fills entry `[0x02B58174]` with the keys and size −1 and asks `0x003DCA30`, keeping its answer (1 when
+the global table matched) in `+0x0B` (`0x003DC95F`-`0x003DC969`):
+
+- no file: the entry's class byte becomes `0xFF`, `fromGlobal` gets the answer, `failed` becomes 1, the index
+  stays, and it returns −1 (`0x003DC9DD`-`0x003DC9F1`);
+- a file: `0x0032E400(0x1E, file)` gives the size, stored at `+0x04` (`0x003DC977`-`0x003DC97C`). A negative size sets
+  `failed` to 1 and is returned with `fromGlobal` unwritten and the index unchanged (`0x003DC9E6`); the entry keeps
+  its keys, so a later hit returns that size until a miss refills the entry;
+- a size of 0 or more goes back with `fromGlobal` set from `+0x0B` (`0x003DC983`-`0x003DC987`) and the index advanced.
 
 The cache's next-entry index:
 

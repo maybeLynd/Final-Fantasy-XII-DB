@@ -20,7 +20,21 @@ walks from one part of a map to another.
 probe index is asked for that does not exist yet, `0x001AC810(manager, index)` appends probes up to it, each
 built by `0x001AA840(probe, index, 80.0, 2.0, 60.0, 1, 0)`: position (80, 2, 60) at `+0x20`, radius 0 at
 `+0x2C`, weight 1 at `+0x30`, its index at `+0x38`, enabled byte `+0x40` = 1 and variant 0 at `+0x44`.
-A probe owns a vector of 0x30-byte variants (`0x001AD0C0`), each with a vector of six texture pointers.
+
+Each probe is a 0x48-byte block from `0x00210EC0` (`0x001AC885`), appended to the vector as it comes back, a null
+block included (`0x001AC8D3`-`0x001AC904`). `0x001AC810` then stores `index` at `+0x38` of probe `index` and returns
+that probe, whether or not it appended any (`0x001AC912`-`0x001AC91F`). `0x001AA840` also zeroes the current weight
+`+0x34` and sets the dword `+0x3C` to 1 (`0x001AA8A4`-`0x001AA8B4`).
+
+A probe owns a vector of 0x30-byte variants at `+0x00` (`0x001AD0C0`), whose allocator object at `+0x18` holds the
+vtable `0x00902720` (`0x001EDF00`). A variant has six flag bytes at `+0x00`, which start at 0 (`0x001AAC9A`,
+`0x001AAC9C`), a vector of texture pointers at `+0x08` and a byte at `+0x28`. Variant 0, the one `0x001AA840`
+builds, gets twelve null texture pointers: six from the variant template `0x001AAC50` (`0x001AACB0`-`0x001AACE2`) and
+six more that `0x001AA840` pushes itself (`0x001AA936`-`0x001AA973`); `0x001AA840` then sets its byte `+0x28` to 1
+(`0x001AA975`).
+
+The variants that `0x001ABB30` adds for an `_e<v>` texture get six null pointers each (`0x001ABB9A`-`0x001ABBD5`). The
+registrars and the texture getters below use the slots `2w − 2` and `2w − 1`, 0 to 5 for the weather slots 1 to 3.
 
 `0x001AD3E0`, from the start-up burst `0x0017D4C0`, builds the manager on first use: `0x258` bytes,
 constructed by `0x001AA9E0`, which:
@@ -56,15 +70,33 @@ for `cubemap_` in each name (`0x001A5D3E`). The name is matched against four for
 adding variants as needed. Both registrars also set byte `2w − 2` or `2w − 1` of the probe's first
 variant record. The irradiance map is the texture the shader reads as `IrrCubeMap`.
 
+A negative `p` registers nothing: both registrars return at once (`0x001ABC83`, `0x001ABCE3`). Otherwise they take
+the probe from `0x001AC810(manager, p)` (`0x001ABC9D`, `0x001ABCFD`), store the texture through
+`0x001AD7B0(probe, texture, w, v)` or `0x001AD6E0` with the same arguments (`0x001ABCB3`, `0x001ABD13`) and then set the
+byte (`0x001ABCCF`, `0x001ABD2F`).
+
 ### cubeMapConfigs.txt
 
 After the scan, `0x001A5B30` runs `0x001AC480` on the manager, which calls `0x001AD130(manager, manager +
 0x16C)` with the map name kept there and sets the manager's byte `+0x250`; `0x01DFE191` then records whether
-any probe exists. `0x001AD130`
-files a whole-file read of `/GameData/D3D11/ArtData/map/<map>/cubeMapConfigs.txt` (`0x008F6D08`, through
-`0x001A1220` and `0x001A0BB0`) with the completion `0x001AD450`, which runs `0x001ACF80`. That finds the pending
-request whose name matches the map name at context `+0x241`, parses the text with `0x001AC4B0`, sets the
-manager's byte `+0x130` and frees the text.
+any probe exists.
+
+`0x001AD130` files a whole-file read of `/GameData/D3D11/ArtData/map/<map>/cubeMapConfigs.txt` (`0x008F6D08`,
+through `0x001A1220` and `0x001A0BB0`) with the completion `0x001AD450`, which runs `0x001ACF80` while the manager
+`[0x01F811C8]` exists (`0x001AD457`). That finds the pending request whose name matches the map name at context
+`+0x241`, parses the text with `0x001AC4B0`, sets the manager's byte `+0x130` and frees the text.
+
+`0x001ACF80(manager)` does nothing without a map-art context `0x001A9930()` (`0x001ACFA4`). It walks the pending
+entries of the map at `+0x08` in order (`0x0016D6D0`), passes over an entry whose request has no text yet (request
+`+0x100`, `0x001ACFBF`) and stops at the first whose name (entry `+0x20`) equals the map name
+(`0x001ACFE0`-`0x001ACFF5`). With no such entry, or one without a request, it changes nothing (`0x001ACFB5`,
+`0x001AD00E`).
+
+For the entry it finds, it takes the entry out of the map (`0x0016DA60`) and lowers the map's count `+0x30`
+(`0x001AD014`). It frees the entry's name when its buffer holds more than one byte, and the 0x48-byte entry,
+through the allocators at entry `+0x38` and manager `+0x38` (`0x001AD02C`-`0x001AD064`). It then runs
+`0x001AC4B0(manager, request +0x100)` (`0x001AD078`), sets `+0x130` (`0x001AD07D`), frees the text (`0x00210EB0`,
+`0x001AD090`) and frees the 0x118-byte request (`0x00809950`, `0x001AD09D`).
 
 `0x001AC4B0(manager, text)` reads with `%d` and `%f` (`0x008F6D3C`, `0x008F6D40`), skipping the CR and LF
 after each value:
@@ -72,6 +104,15 @@ after each value:
 1. the probe count; when it exceeds the probes already registered, nothing is read;
 2. per probe, in index order: x, y, z (`+0x20`), the weight (`%d`, `+0x30`, raised to 1 when below 1)
    and the radius (`%f`, `+0x2C`). A failed read stops the parse.
+
+After each value it moves to the first CR or LF and then past every CR and LF after it (`0x001AC4E0`-`0x001AC509`),
+so the rest of a value's line is skipped. The move stops only at a CR or LF, not at the end of the text; all
+451 shipped files end with CR LF, so it always stops inside the text. A count that does not read as one `%d`
+value reads nothing (`0x001AC4D5`). The count is compared unsigned (`0x001AC523`), so a negative count also reads
+nothing, and a count of 0 reads no probe (`0x001AC532`).
+
+Each value goes straight into the probe, so a failed read keeps the values read before it (`0x001AC57D`,
+`0x001AC5C9`, `0x001AC61E`), and the weight is raised to 1 only once it has been read (`0x001AC5FB`-`0x001AC601`).
 
 ### Picking probes for a point
 
@@ -92,6 +133,11 @@ indices `+0x38` and weights `+0x34`. A probe whose byte `+0x40` is clear is retu
 for the current weather slot (`0x00265920`, [weather](../World-Areas-And-Travel/weather.md)) in its variant
 `+0x44`. `0x001AC6F0` returns its radius.
 
+Both return 0 while the manager's `+0xA8` is −1 or above, when `i`, taken unsigned, is not below the size of
+the probe vector the manager keeps at `+0xE8`, or when that variant's texture vector is empty
+(`0x001AC674`-`0x001AC6CE`, `0x001AC724`-`0x001AC77E`). Otherwise they read its slot `2w − 2` or `2w − 1` for the
+weather slot `w` (`0x001AC6D7`, `0x001AC787`); the variant `+0x44` is used without a check.
+
 ### Binding to map materials
 
 `0x001E4000`, called from the map-art load, builds a 0x220-byte record of shader parameter handles for
@@ -100,7 +146,10 @@ every material of every mesh of a map model: 67 lookups by name through `0x0018D
 `cubemapIntensity` and `cubemapFactor`. It marks the model ready (`+0x250`).
 
 `0x001AD670(manager, off)` stores `off` in the manager's byte `+0x244` and runs `0x001E6480` on every map model
-of the map-art context (`0x001A7600`). For each mesh of a ready model, `0x001E6480`:
+of the map-art context (`0x001A7600`). For each instance `i` from 0 to the context's count `+0x20` − 1 it takes
+the object for the current view, slot `2i` or `2i + 1` by the render manager's view byte `+0x1C` (`0x00189120`,
+`0x001AD690`-`0x001AD6AC`), and passes over an instance with no object (`0x001AD6B4`). With a count of 0 it only
+stores the byte (`0x001AD686`). For each mesh of a ready model, `0x001E6480`:
 
 1. takes the centre of the mesh's bounds (`0x006045E0`) and asks `0x001ABF50` for four probes, kept at the
    model's `+0x220` (weights) and `+0x230` (indices);
@@ -113,9 +162,17 @@ of the map-art context (`0x001A7600`). For each mesh of a ready model, `0x001E64
 5. binds `CubeMapN` and `IrrCubeMapN` for each material through `0x001E6040` and writes `CubeMapWeightN`
    into the material's parameter buffer at the handle's offset (`u16 +0x10`), or 0 while `+0x244` is set.
 
-`0x001E6040(model, buffer, handle)` binds a texture with a sampler state built by `0x001E3EB0`, or, when the
-model's byte `+0x218` is set, one of four presets of `[0x01F7E340]` (`0x0018AA00`) chosen by the filter
-mode.
+`0x001E6040(model, buffer, handle, texture)` binds `texture` with a sampler preset of `[0x01F7E340]` and does
+nothing for a null `handle` (`0x001E6043`). It hands the record `0xFF`, preset, texture to
+`0x001945B0(buffer, handle, record)` (`0x001E6060`-`0x001E60F9`).
+
+The preset follows a wrap value: the instance's `m_specialTextureWrapType` (`+0x7C`) when it is below 4, else
+the object's `+0xD0`. 1 gives index 0, 2 gives 2, 3 gives 3 and any other value 1. When the model's byte
+`+0x218` is set, the preset is the qword at `[0x01F7E340] + 8 × index` (`0x0018AA00`, `0x001E6070`-`0x001E60CD`).
+
+Otherwise `0x001E3EB0(model, +0xD4, +0xD0, 1)` picks it from the same index, with no sampler state built: the
+same qword when the object's `+0xD4` is 1, else the qword at `[0x01F7E340] + 0x60 + 8 × index` (`0x0018A9E0` with
+1, `0x001E3EC0`-`0x001E3F62`).
 
 ## Layouts
 
@@ -123,7 +180,7 @@ Probe (`0x001AA840`), pointed to from manager `+0xF0`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `vec` | variants | `0x30` bytes each; `+0x08` vector of six texture pointers |
+| `+0x00` | `vec` | variants | `0x30` bytes each; `+0x08` vector of texture pointers, slots 0-5 used (12 in variant 0) |
 | `+0x20` | `f32` | x | cubeMapConfigs.txt; default 80 |
 | `+0x24` | `f32` | y | default 2 |
 | `+0x28` | `f32` | z | default 60 |
@@ -131,6 +188,7 @@ Probe (`0x001AA840`), pointed to from manager `+0xF0`:
 | `+0x30` | `i32` | weight | at least 1 |
 | `+0x34` | `f32` | current weight | `0x001ABF50` |
 | `+0x38` | `u32` | index |  |
+| `+0x3C` | `u32` |  | value 1: set by `0x001AA840` |
 | `+0x40` | `u8` | enabled | 1 |
 | `+0x44` | `u32` | variant | the _e&lt;v&gt; set in use |
 

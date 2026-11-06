@@ -16,11 +16,13 @@ time as vertices in a batcher that the PC renderer draws. What appears on screen
 ### The batcher object
 
 The installer `0x0017D4C0` calls `0x001B1BA0`, which allocates 0x4300 bytes (`0x00210EC0`), builds them with
-`0x001ADD30` and stores the object at `0x01F811E8`; `0x001B1C00` returns it. The object holds two texture
-registries, 64 vertex batches at `+0x2328` (`0x58` bytes each, built by `0x001ADD30` through the vector
-constructor), the current batch index `+0x3928` (-1 when empty), and from `+0x3930` a block of drawing
-state that mirrors the GS registers. The UI layout values bound from `UISize.json` also live in this
-object, from `+0x3B00` ([screen layouts](../Menus-And-HUD/screen-layouts.md)).
+`0x001ADD30` and stores the object at `0x01F811E8`; `0x001B1C00` returns it. `0x001B1BA0` does this only while
+`0x01F811E8` is null (`0x001B1BC9`), and a failed allocation stores null there (`0x001B1BDD`, `0x001B1BEA`).
+
+The object holds two texture registries, 64 vertex batches at `+0x2328` (`0x58` bytes each, built by
+`0x001ADD30` through the vector constructor), the current batch index `+0x3928` (-1 when empty), and from
+`+0x3930` a block of drawing state that mirrors the GS registers. The UI layout values bound from
+`UISize.json` also live in this object, from `+0x3B00` ([screen layouts](../Menus-And-HUD/screen-layouts.md)).
 
 Each batch is built by `0x001AE010`: it clears the vector at `+0x38` and reserves 1,024 entries of
 `0x30` bytes in it (`0x001B1A20`).
@@ -49,8 +51,11 @@ A batch holds one texture, one clamp region and a vector of 0x30-byte vertices (
 [text drawing](../Menus-And-HUD/text-drawing.md)). Every routine below works on the batch at the current index and
 moves to the next one when its state no longer matches; an index above 63 drops the vertices.
 
-- `0x001B06D0(batcher, vertex)` appends one vertex. When the current batch already has a texture, it opens the
-  next batch untextured first. The vector grows by doubling (`0x001AED50`).
+- `0x001B06D0(batcher, vertex)` appends one vertex. When the current batch already has a texture, or the index
+  is -1 or past 63, it opens the next batch untextured first (`0x001B06FA`, `0x001B0700`): no texture, palette
+  or vertices, region flag `+0x28` 0, and width and height 0 (`0x001B0727`-`0x001B0754`).
+- A full vector goes to `0x001AED50` (`0x001B078F`); the vector grows by doubling (`0x001AED50`), to `count * 2`
+  entries, or 1 when empty (`0x001AEE2B`, `0x001AEE38`).
 - `0x001B0A20(batcher, vertices, count, width, height, name, clut)` names the texture as given, or
   `%s_clut_%d` with a non-zero `clut`, and looks it up in the `+0x28` tree; an empty name uses the texture at
   `+0x100`. A name that is not registered draws nothing.
@@ -65,7 +70,16 @@ moves to the next one when its state no longer matches; an index above 63 drops 
   clamp region but no texture yet, and otherwise open the next batch and carry the clamp region over. They
   store the width and height at batch `+0x2C` and `+0x30` and append `count - 2` triangles.
 - `0x001B22F0` sets the clamp region: the mode words `+0x10` and `+0x14` and the bounds `+0x18` to `+0x24`.
-  An unset region is filled, an equal one is kept, and a different one opens the next batch.
+  An unset region is filled, an equal one is kept, and a different one opens the next batch, with the
+  exception below.
+- Its arguments after the batcher are mode 1, mode 2, min u, max u, min v and max v, stored at `+0x10`,
+  `+0x14`, `+0x18`, `+0x20`, `+0x1C` and `+0x24` (`0x001B233D`-`0x001B234D`); a region is unset while `+0x28`
+  is 0.
+- The equality test reads `+0x10`, `+0x14`, `+0x20`, `+0x24` and `+0x1C`, not min u `+0x18`
+  (`0x001B235A`-`0x001B2372`), so a region that differs only in min u keeps the batch and its old min u. An
+  index of -1 or past 63 also opens the next batch (`0x001B231F`, `0x001B2325`). The batch it opens has no
+  texture, palette or vertices and width and height 0, and takes the region with `+0x28` = 1
+  (`0x001B2374`-`0x001B23C2`).
 
 `0x00181460(vertices, n)` turns a strip into a list: it appends vertices `i`, `i+1`, `i+2` for each of the
 `n - 2` triangles, with no change of winding. `0x00181350(vertices, n)` appends `n` vertices as they are.
@@ -89,36 +103,47 @@ emitters also write into their packets:
 | `0x00181890` | `0x001B22F0` | the clamp region of the current batch |
 | `0x00181390`, `0x001813F0` | `0x001B0A20`, `0x001B0CE0` | a textured strip |
 
-`0x001B2410` copies the name with `sprintf(+0x3938, name)`, so the name is used as a format string. Each
-wrapper fetches the batcher through `0x001B1C00`.
+`0x001B2410` copies the name with `sprintf(+0x3938, name)` (`0x0017D2E0`, `0x001B243E`), so the name is used as a
+format string; a null name leaves an empty string there (`0x001B242B`). Each wrapper fetches the batcher
+through `0x001B1C00`.
 
 ### The flushes
 
 The 2D flush `0x001B03D0` is run by `0x00181330` (25 callers) and the 3D flush `0x001B0190` by `0x00181310`
 (7 callers). Both walk batches 0 to the current index and, for each, take 0x238 bytes from the command arena
 `[0x01F7F4C0]` and build a drawing object: `DynGeoTextureInstance` (`0x001FB870`) for 2D,
-`DynGeo3DInstance` (`0x001FBB40`) for 3D ([Gi render commands](gi-render-commands.md)).
+`DynGeo3DInstance` (`0x001FBB40`) for 3D ([Gi render commands](gi-render-commands.md)). A current index
+below 0 returns at once (`0x001B03FE`, `0x001B01C4`), and a batch past 63 is skipped (`0x001B046B`, `0x001B022D`).
 
 1. Slot `+0x90` gets the vertex count.
-2. A batch with no texture passes the state block to slot `+0x68`; a textured one calls slot `+0x48`, passes
-   its palette to slot `+0x70`, and copies its width and height over `+0x3930` and `+0x3934`.
+2. A batch with no texture passes the state block to slot `+0x68`; a textured one calls slot `+0x48` with
+   its texture, passes its palette to slot `+0x70`, and copies its width and height over `+0x3930` and
+   `+0x3934` (`0x001B04C3`-`0x001B04E2`, `0x001B0285`-`0x001B02A4`).
 3. Slot `+0x78` gets the clamp region with the width and height, and slot `+0x88` the state block.
-4. The vertices go one by one to slot `+0x80`, and a 4 × 4 matrix to slot `+0xA0`.
-5. The object is filed with class key `0x20` (`0x001FB840`, `0x001FB810`); the batch is emptied.
+4. The vertices go one by one to slot `+0x80`, and a 4 × 4 matrix to slot `+0xA0`: the 2D flush passes
+   the matrix before the vertices (`0x001B059C`), the 3D flush after them (`0x001B0357`).
+5. The object is filed with class key `0x20` (`0x001FB840`, `0x001FB810`); the batch is emptied: its vertex
+   end goes back to its start, its texture to null and its width and height to 1, and the 2D flush also
+   nulls its palette (`0x001B05E2`-`0x001B05F8`, `0x001B0376`-`0x001B0388`).
 
 The 2D flush also passes `+0x3AE8` to slot `+0x98`. Its matrix is the identity, except that in Super Wide
 (`0x00182F50`) the first element is `0x00183280()`: the height times `0x001DD110()` divided by the width, which
-keeps the 2D layer at 16:9 ([screen mode and aspect](screen-mode-and-aspect.md)). The 3D flush first copies
-the render manager's matrix `+0x6C8` into `+0x3AA8` and rewrites its depth terms from `+0x750` and
-`+0x754` (`0x001B2000`, `0x00678B50`). Both end with `0x001B0100`, which restores each batch's defaults and sets
-the index to -1.
+keeps the 2D layer at 16:9 ([screen mode and aspect](screen-mode-and-aspect.md)). The identity comes from
+`0x008C5F80`-`0x008C5FD0`; the flush reaches `0x00183280()` through the jump `0x00229DE0` (`0x001B0575`), and
+`0x00183280` takes 16/9 from `0x008C5B38` in place of `0x001DD110()` when `0x001DDAB0()` returns null (`0x001832C4`).
+
+The 3D flush first copies the render manager's matrix `+0x6C8` into `+0x3AA8` and rewrites its depth
+terms from `+0x750` and `+0x754` (`0x001B2000`, `0x00678B50`); the matrix it passes to slot `+0xA0` is the
+identity (`0x001B0319`-`0x001B0357`). Both end with `0x001B0100`, which restores each batch's defaults and sets
+the index to -1 (`0x001B0611`, `0x001B03A1`).
 
 ### Sprite mode and the GS packets
 
 The menu draw `0x002450B0` (and `0x00245110`) brackets the widget tree with `0x002DD4C0` and `0x002DD420`. The first
-closes the current GS command buffer and flips it twice: once directly (`0x003A1DB0`, `0x002DD52F`) and once
-inside `0x002B4710` (`0x002DD534`), which also sets the text painter's byte `+0x1103`. Then it sets
-`0x0215E6D0` to 1.
+closes the current GS command buffer, writing `0x10000000` into the dwords `+0x08` and `+0x0C` at the
+pointer `+0x08` of the buffer record `0x02EBEFC0 + 0x18 * [0x02EBEFF0]` (`0x002DD4CA`-`0x002DD50E`), and flips it
+twice: once directly (`0x003A1DB0`, `0x002DD52F`) and once inside `0x002B4710` (`0x002DD534`), which also sets the
+text painter's byte `+0x1103`. Then it sets `0x0215E6D0` to 1.
 
 The second, `0x002DD420`, also closes the current buffer with the packet word `0x11000000` and flips it
 once (`0x003A1DB0`, `0x002DD476`), then clears both: the painter byte through `0x002B4700` (`0x002DD47B`) and
@@ -134,19 +159,31 @@ A packet writer is three pointers on the caller's stack: the GS command buffer r
 the write cursor ([render command list](render-command-list.md)). The 16-byte records are
 `{value, register}`:
 
-- `0x00248EB0` opens a plain packet with a 0x10-byte header. `0x00248E10(writer, tag)` closes it, optionally
-  with an A+D record `{0x8000, 0xE}`, writing VIF FLUSH and DIRECT with the record count into the header,
-  then flips the buffer (`0x003A1DB0`).
+- `0x00248EB0` opens a plain packet with a 0x10-byte header. `0x00248E10(writer, tag)` closes it, with an A+D
+  record `{0x8000, 0xE}` when `tag` is non-zero (`0x00248E2A`-`0x00248E3D`), writing VIF FLUSH and DIRECT with
+  the record count into the header, then flips the buffer (`0x003A1DB0`).
+- The header's `+0x08` gets FLUSH `0x11000000` only in sprite mode (`0x002DD4B0` non-zero) and 0 outside it,
+  and its `+0x0C` gets DIRECT `0x50000000 | count`, the count of 16-byte records after the header
+  (`0x00248E46`-`0x00248E74`).
 - `0x002DAF30(writer, widget, gouraud)` opens a sprite packet: it copies the widget's first 0x40 bytes (its
   matrix) to `0x022D8F30` and into the packet, writes TEX1_1 (`0x14`) from widget `+0x88`, a record of the
   brightness `s16 +0x5A` three times and the alpha `s16 +0x58`, and a GIF tag.
 - That tag's register list is A+D then four times RGBAQ, UV, XYZF2, with PRIM `0x15C` (Gouraud) or `0x154`,
   a textured, blended triangle strip with UV coordinates. `0x002DD1E0` writes the untextured variant: PRIM
   `0x4C`, four times RGBAQ, XYZF2.
+- Outside sprite mode `0x002DAF30` returns at once (`0x002DAF43`). Otherwise it points the writer at the
+  current GS command buffer record `0x02EBEFC0 + 0x18 * [0x02EBEFF0]`, takes that record's pointer `+0x08` as
+  the header and starts the cursor 0x20 bytes past it (`0x002DAF49`-`0x002DAF6D`), so it opens with seven
+  records after the header.
+- `0x002DD1E0` sets up the writer, returns outside sprite mode and copies the matrix like `0x002DAF30`, then
+  writes the brightness record and its tag with no TEX1_1 record (`0x002DD1E6`-`0x002DD2BA`), so it opens with
+  six records.
 - Both openers also reset the register mirror (`0x00181560`), set its colour to brightness, brightness,
   brightness, alpha (`0x001816F0`) and select entry 3 (`0x00181870`).
-- `0x002DD350(writer, code)` closes a sprite packet with `code | 0x14000000` in the header's last dword and
-  flips the buffer; `0x002DD3C0` closes it with zeroed header words.
+- `0x002DD350(writer, code)` closes a sprite packet: at the cursor it appends a record with a zero first
+  qword, `0x10000000` in its third dword and `code | 0x14000000` in its last, and advances the cursor
+  (`0x002DD356`-`0x002DD376`); it zeroes the header's dwords `+0x08` and `+0x0C` (`0x002DD385`, `0x002DD393`) and
+  flips the buffer (`0x003A1DB0`, `0x002DD3B2`); `0x002DD3C0` closes it with zeroed header words.
 
 ### The quad emitters
 
@@ -176,12 +213,25 @@ bottom right. The text icons (`0x002AEB20`), `0x002AFDC0` and the HUD billboards
 Three more emitters set state around them:
 
 - `0x002DAC70(writer, widget, picture)` binds a picture. It writes A+D with TEX0_1 (`6`) from the picture's
-  `+0x30` with its palette offset from widget `+0x5C` (a 4-bit picture, `+0x38` bits `0x3F00` = `0x14`,
-  adds a TEX2_1 `0x16` record), then TEX1_1, TEST_1 and ALPHA_1, and closes with `0x5D76EC`. It then sets the mirror (`0x001819A0`, `0x00181910`, `0x001816B0`) and runs
-  the 2D flush.
+  `+0x30` with its palette offset from widget `+0x5C` (and, for a 4-bit picture, a TEX2_1 `0x16` record), then
+  TEX1_1, TEST_1 and ALPHA_1, and closes with `0x5D76EC`.
+  - A picture is 4-bit when its `+0x38` bits under mask `0x3F00` are `0x1400`, the pixel format `0x14`
+    (`0x002DAD7B`-`0x002DAD85`).
+  - It then sets the mirror (`0x001819A0`, `0x00181910`, `0x001816B0`) and runs the 2D flush.
 - `0x002DD090(writer, widget)` closes an untextured run: A+D with TEST_1 and ALPHA_1, the close code
-  `0x5D76EB`, an untextured 1 × 1 state (`0x00181930`) and the 2D flush. Either closes an empty packet when
-  no quad was added.
+  `0x5D76EB`, an untextured 1 × 1 state (`0x00181930`) and the 2D flush. `0x002DAC70` closes an empty packet
+  when no quad was added: its test is the seven records `0x002DAF30` opens with (`0x002DACBD`).
+- `0x002DD090` first writes `0x10000000` and `0x6C008000 | count << 16` at header `+0x18` and `+0x1C`, with
+  `count` the records after the 0x20-byte header (`0x002DD0A8`-`0x002DD0CC`). Its empty path, at five records
+  (`0x002DD0D0`), zeroes the header's `+0x08` and `+0x0C` and flips the buffer with no mirror state and no
+  flush.
+- `0x002DD1E0` opens with six records and the cell drawer `0x002DC7F0` never reads its writer argument, so
+  the soft window always takes the full close of `0x002DD090`.
+- The full close sets bit `0x1` of the dword at `cursor - 0x64` (`0x002DD125`), the header's `+0x1C` word at
+  six records, and appends `{0, 0x10000000, 0x6C038100}`, the A+D tag `{0x1000000000000002, 0xE}`, TEST_1
+  from widget `+0x80` and ALPHA_1 from `+0x78` (`0x002DD129`-`0x002DD19C`). After `0x002DD350` (`0x002DD1A1`) it
+  sets the mirror's TEST_1 and ALPHA_1 from the same fields (`0x00181910`, `0x001816B0`) and jumps to the 2D
+  flush `0x00181330` (`0x002DD1D7`).
 - `0x002DBDD0(widget, rect)` draws a flat colour rectangle alone. Its colour is widget `+0x90` scaled by
   brightness and alpha, kept at `+0x94`: `rgb = (byte +0x90..+0x92 x s16 +0x5A) >> 7` and
   `a = (byte +0x93 x s16 +0x58) >> 7` (`0x002DBEB4`-`0x002DBF0E`); it writes TEST_1, ALPHA_1 and RGBAQ, a flat strip of four

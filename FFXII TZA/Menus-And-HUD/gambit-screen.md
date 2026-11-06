@@ -23,6 +23,9 @@ The main menu's Gambits entry (`menu_command.bin` `0x4B9`, `0x0028224D`-`0x00282
 (`0x00568B80`), one for each pane: the centre pane and the two off-screen panes that slide in when the set changes. Each
 pane shows the member's selected set (`0x00327C40`, set index at `[0x02EBF190] + 0x7370 + member x 4`).
 
+`0x00568B30(a, b)` creates nothing while `[0x0209AC30] + 0x160` is non-zero (`0x00568B4A`-`0x00568B52`); otherwise each
+editor is a `0x368`-byte widget from `0x00244F50` whose create record holds 0, a and b (`0x00568B54`-`0x00568B90`).
+
 ### Rows
 
 `0x00567B60` fills the rows:
@@ -66,16 +69,32 @@ in the convention of [Dialogs](dialogs.md). Confirm runs `0x00567D80`:
 
 1. On the header row it flips the character's gambits on or off (`0x00311AF0`, `0x00567DDD`), sound `0x12` or `0x13`.
 2. On a condition or action it opens the condition or action list (`0x0056B350`).
-3. On a switch it picks the line up for moving (`0x005687F0`).
+3. On a switch it picks the line up for moving (`0x005687F0`) when no line is held: bit `0x1` of `+0x340` of the
+   editor that `0x02CA96E0` holds for `+0x35C` is clear (`0x00567E7F`-`0x00567E98`, `0x00567F68`).
 4. On the same switch again it turns the line on or off and saves; an empty line cannot be turned on (sound 5,
    `0x00567ECC`).
-5. On another row's switch it moves the line there (`0x00567F90`) and saves.
+5. On another row's switch it moves the line there (`0x00567F90`) and saves, with sound `0x37` (`0x00567F4A`).
 
 A move is an insertion: the lines between the old and new row shift one place, and the moved line takes the new row.
 While a line is held, `0x00568FE0` slides each line between the two rows by 4 a frame, and the editor's tick `0x005678F0`
 eases the scroll `+0x343` (`0x00248F40`) and pulses the held line through `0x005682C0`: its level `+0x350` swings between
 `0x80` and `0xFF` by `0x20` a frame, and fades by 16 a frame once nothing is held.
 Cancel while a line is picked up returns it; cancel otherwise saves and closes all three editors (`0x005679D0`).
+
+At confirm's step 4 a line turned on plays `0x29` and one turned off `0x5E`; either way it sets or clears bit value
+`1 << (row - 1)` of the mask `+0x124`, saves through `0x00569F90` and keeps the frame counter at `+0x344`
+(`0x00567EE1`-`0x00567F25`).
+
+Before any of its steps, while `0x00368240()`, the hand cursor's byte `0x022CBE62`, answers 1, confirm sets the list's
+sound `+0xFC` to `0xFF` and returns (`0x00567DA5`-`0x00567DBE`). The header row also clears `+0x353` (`0x00567DC7`). On a
+condition or action, confirm first sets `[0x02CA9700] + 0x360` to 1 and opens no list while `0x00264150` answers non-zero
+(the byte `0x0209A2A9`); another column does nothing (`0x00567E0E`-`0x00567E78`).
+
+After step 4, the refused turn-on and step 5, `0x00567F90` runs and `0x005680E0` ends the hold, clearing bit `0x1`
+of `+0x340` and setting `+0x341` to `0xFF` (`0x00567F51`-`0x00567F5C`, `0x005681C4`-`0x005681CD`). `0x00567F90` takes the
+held row `+0x341` as the old row and the list's cursor, `(+0xF2 + +0xF4) x +0xEC + +0xEE + +0xED`, as the new one
+(`0x00567FA0`-`0x00567FD5`). It moves the 32-byte rows from `+0x160`, then copies every line into the set and saves
+through `0x003282C0` as `0x00569F90` does (`0x00567FEB`-`0x005680D7`); with the two rows equal it moves nothing.
 
 ### Clearing a line
 
@@ -176,15 +195,29 @@ The target states come from `0x00327A10(action, condition)`: the condition's tar
 by the action row's `+0x0C` (`8` for Foe, `4` for Ally, `1` or `4` for Self). An accepted entry is written into the
 line (`0x0056A1D0`) and saved, and the list closes after 32 frames.
 
+With bit `0x4` of the list's `+0x5A0` set, `0x0056AC50` takes only the entry whose id equals `+0x59C`; any other
+entry, and every entry while `+0x59C` is `0xFFFF`, answers 0 with no message (`0x0056AC5A`-`0x0056AC7E`). The list
+kind `+0x588` is 1 for conditions (`0x0056AC80`).
+
+A state not in the table answers 0 with no message (`0x0056ACD7`);
+a missing message text shows nothing (`0x0056ACB4`). The message is timed by `+0x580` = 180 and shown through
+`0x00291D80` and `0x00291D70(1)` (`0x0056ACBB`-`0x0056ACD2`). An entry with state 0 goes to `0x0056A1D0` with the list's
+`+0xC8` and `+0xD0`, the kind, -1 and the entry's id, and its answer is returned (`0x0056AD1A`-`0x0056AD3A`).
+
 ### The save
 
 Every edit saves at once. `0x00569F90` copies the rows into the editor's copy of the set and jumps to `0x003282C0`; a move
-ends in the same jump (`0x005680D7`). `0x003282D0(member, set)`:
+ends in the same jump (`0x005680D7`). For each of the set's slot count `+0x126` lines it copies row i + 1's
+condition `+0x190 + 0x20 x i` and action `+0x192 + 0x20 x i` into the copy at `+0xF4` and sets bit value `1 << i`
+of the mask `+0x124` when the row's switch `+0x194 + 0x20 x i` is non-zero, else clears it; the member is the byte
+`+0xF0` (`0x00569F90`-`0x0056A002`). `0x003282C0` jumps to `0x003282D0(member, set)`:
 
 1. picks the member's selected set at `[0x02EBF190] + 0x5B10 + (member x 3 + selected) x 0x34` (`0x0032830A`-`0x00328324`);
+   for a member above `0x27` the set address and the record are 0 (`0x003282E4`-`0x003282E9`, `0x00328300`-`0x00328304`);
 2. copies the 0x34-byte set into it (`0x00328327`-`0x00328347`);
-3. calls `0x00328140`, which rebuilds the member's gambit orders at `0x02089378`, one 24-byte order per line that is on and
-   filled ([Gambits](../Enemy-AI-And-Gambits/gambits.md)).
+3. calls `0x00328140` with the member's record `[0x02EBF190] + 8 + member x 0x1C8` (`0x003282EE`-`0x003282FD`, `0x0032834A`),
+   which rebuilds the member's gambit orders at `0x02089378`, one 24-byte order per line that is on and
+   filled ([Gambits](../Enemy-AI-And-Gambits/gambits.md)), and returns 1 (`0x0032834F`).
 
 These are the only calls to `0x003282C0`, `0x003282D0` and `0x00328140` in the image.
 
@@ -207,7 +240,7 @@ which stores `0x002D6680`'s answer at the editor's `+0x33A` (`0x00567B4C`). The 
 
 ### The member pane
 
-The member-scoped pane is the `0xD0`-byte widget at `0x02CA96D8` with procedure `0x005677A0`.
+The member-scoped pane is the `0xD0`-byte widget kept at `0x02CA96D8` with procedure `0x005677A0`.
 
 `GambitMemberPane` (`0xD0` bytes, offsets from the start of the record):
 
@@ -232,8 +265,9 @@ The member-scoped pane is the `0xD0`-byte widget at `0x02CA96D8` with procedure 
 The three editors keep themselves in `0x02CA96E0` + 8 × slot, slot 0-2 at `+0x35C` (`0x005692CD`-`0x005692EB`), and the
 three pane roles in `0x02CA96F8` (left, the previous set), `0x02CA9700` (centre) and `0x02CA9708` (right, the next set):
 
-- On message 1 the editor whose slot is the member's selected set takes the centre with layout record 6, slot = set +
-  1 modulo 3 the right with record 8, and slot = set + 2 modulo 3 the left with record 7 (`0x005692EF`-`0x005693A6`).
+- On message 1 the editor whose slot is the member's selected set takes the centre with layout record 6 (`0x005692F6`),
+  slot = set + 1 modulo 3 the right with record 8 (`slot == (set + 4) % 3`, `lea ecx, [r9 + 4]` at `0x00569324`),
+  and slot = set + 2 modulo 3 the left with record 7 (`slot == (set + 2) % 3` at `0x00569366`; `0x005692EF`-`0x005693A6`).
 - On L2 the centre and left panes slide right by `0x780` and the right pane jumps left by `0xF00`; on R2 the mirror.
   The roles then rotate (`0x005699F0`-`0x00569BED`).
 
@@ -246,9 +280,10 @@ three pane roles in `0x02CA96F8` (left, the previous set), `0x02CA9700` (centre)
 The character silhouette `0x002CF440`, built by `0x002CF3E0` under the editor, draws the picture loader's two pictures at
 its `+0xF0` and `+0xF8` (`[0x0209AC30] + 0x308`), one above the other:
 
-- On message 1 it scales its four sizes by the whole-number quotient of `SilhouetteWidth` (`0x01E0CF54`, 640 in
-  `UISize.json`) over the upper width, a signed 32-bit divide (`0x002CF660`-`0x002CF66F`), and stores the factor
-  (`0x002CF68A`).
+- On message 1 it scales its four sizes by the whole-number quotient of `SilhouetteWidth`, `[0x01E0CF54] / [0x01E0CF58]`
+  (`0x01E0CF54`, 640 in `UISize.json`, over the upper width, a signed 32-bit divide: `idiv ecx`, `0x002CF660`-`0x002CF66F`),
+  and stores the factor as a float (`0x002CF68A`); each size becomes `(int)(size × factor)` (`mulss`, `cvttss2si`,
+  `0x002CF671`-`0x002CF6D2`).
 - The first open gives 640 / 256 = 2, so the sizes become 512; every later open gives 640 / 512 = 1 and keeps them.
 - On message 4 it draws the upper picture at `SilhouettePosX` (`0x0209E628`) and the widget's `+0xC0` plus
   `SilhouettePosY` (`0x01E0CF6C`), and the lower one below it (`0x002CF4FA`-`0x002CF5C6`); each size is read as its low 16

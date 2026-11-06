@@ -191,8 +191,9 @@ the calling function.
 
 A system message is an entry of the message list, not a line of the script. The steps:
 
-1. The helper calls `setmeswinmesid(0, number)` (`0x47E`, `0x0034A2C0`), which stores the number in word `+0x58` of
-   message slot 0 (`0x002E2120`, [message windows](../Menus-And-HUD/message-windows.md)), then opens the window with
+1. The helper calls `setmeswinmesid(0, number)` (`0x47E`, `0x0034A2C0`), which stores the number in the dword `+0x58` of
+   message slot 0 (`0x002E2120`, [message windows](../Menus-And-HUD/message-windows.md)); `0x002E2120` takes a negative
+   slot as 0 and ignores a slot of 8 or more (`0x002E2120`-`0x002E2129`). It then opens the window with
    `ames_1fe` on a section 2 entry that is an empty string in every carrying script.
 2. The window opener `0x002E16B0` copies the word into the window request (`0x002E17C5`). When it is non-zero
    (`0x002A2D4A`), the window build `0x002A2C00` takes its low byte minus 1 (`0x002A2D62`-`0x002A2D6B`) and calls
@@ -210,6 +211,14 @@ List = count:u32, then 8-byte entries from +4 entry n-1 for message number n:
 | `+0x02` | `u16` |  | first id |
 | `+0x04` | `u16` |  | second id |
 | `+0x07` | `u8` |  | kind: 0 text only; 1 to 5 name the ids through `0x0035D330`; 1 also gives the first id (`0x00300B80`, `0x002A541B`) |
+
+`0x002A5330(n)` reads entry 0 for an index at or above the list's count or below 0 (`0x002A534D`-`0x002A5355`). Kinds 1,
+3 and 5 name the first id only: kind 1 through `0x0035D330(0x11, id << 16)`, kind 3 through `0x0035D330(2, id)` and
+kind 5 through `0x0035D330(0xD, id << 16)`. Kind 2 names the first id with class `0x14` and the second with class 2,
+kind 4 both with class 2 (`0x002A5363`-`0x002A53EC`).
+
+Kind 1 also gives one of the first id, `0x00300B80(id, 1, 0)` (`0x002A540D`-`0x002A541B`). The text and the names go to
+`0x002B4090(0x200, 0x0209C990, text, name1, name2)`, which fills the buffer `0x0209C990` (`0x002A5420`-`0x002A5440`).
 
 The `us` list holds 145 entries. The messages callers pass are of kind 0 or 5, so no message gives an item:
 
@@ -231,7 +240,13 @@ The `us` list holds 145 entries. The messages callers pass are of kind 0 or 5, s
 | 136 | The Strahl can now travel to Bahamut! | 1 |
 | 138 | The way past the colossus is open! | 1 |
 | 142 | You are now a member of Clan Centurio! | 1 |
-| 90 to 126 | "Your location map for this area is complete!" or "The candle reveals hidden areas on your map of the" with the map's name (kind 5) | 25 |
+| 90 to 126 | "Your location map for this area is complete!" or "The candle reveals hidden areas on your map of the [value]!" with the map's name as [value] (kind 5) | 25 |
+
+The table counts the requests that store the message number directly. The 14 requests of the map sellers, in
+`alc_b06`, `ald_a02`, `bul_b02`, `byu_a01`, `byu_a04`, `dst_b01`, `dst_b02`, `fon_b01`, `glf_a01`, `mnt_d01`,
+`rbn_a04`, `sav_b01`, `var_a01` and `vic_a03`, take it from a table of the calling function, beside the map item the
+sale gives. Those numbers are 81 to 89, 92, 95, 98 to 101, 106 and 117, each "Your location map for this area is
+complete!" (kind 5) with the map sold as its first id.
 
 ### How a call is read
 
@@ -254,7 +269,7 @@ The verbs whose effect this page states, with their native bodies ([verb table](
 | `setnpcname` | `0x38A` | `0x0034B9A0` | the name tag ([NPC names](../Characters-And-Objects/npc-names.md)) |
 | `setmapjumpgroupflag`, `releasemapjumpgroupflag`, `ismapjumpgroupflag` | `0x430`-`0x432` | `0x0034EE20`, `0x0034DD90`, `0x0034E0B0` | Primary bank flags |
 | `capturepc`, `releasepc` | `0x057`, `0x058` | `0x00352FA0`, `0x00354110` | takes and hands back a party member's body ([party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md)) |
-| `debug_mc_connect_check`, `debug_mc_write_savedata`, `debug_mc_read_savedata` | `0x20BD`, `0x20B9`, `0x20BA` | `0x0050C860`, `0x0050ED70`, `0x0050EF50` | the memory card verbs of `saveactor` |
+| `debug_mc_connect_check`, `debug_mc_write_savedata`, `debug_mc_read_savedata` | `0x20BD`, `0x20B9`, `0x20BA` | `0x0050C860`, `0x0050ED70`, `0x0050EF50` | the memory card verbs of `saveactor`; the write and the read pop a number, format `BISLPM-66750FF12/FFXIISAVE%03d` with it (`0x0017D2E0`), store 1 at `0x020927C8` (`0x00254CB0`), hand the name to the return-zero stub `0x005C5230` and print `debug_mc_write_savedata:init:result = %d` or `debug_mc_read_savedata:init:result = %d` with the result of the stub, 0, through `0x0017D280` (`0x0050ED89`-`0x0050EDC2`, `0x0050EF69`-`0x0050EFA7`), so neither reads nor writes a file; the read also calls `0x00266D00`, which reaches the `ret 0` stub `0x0016D6A0` through `0x008620C0` |
 
 ### The 81 crystal scripts
 

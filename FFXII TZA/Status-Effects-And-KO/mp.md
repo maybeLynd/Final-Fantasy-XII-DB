@@ -39,6 +39,15 @@ Healing gives no MP, and neither does damage between two units on the same side.
 5. A gain also feeds the Mist charges through `0x00300BC0` ([Augments](../Damage-And-Battle-Formulas/augments.md)), and
    any loss clears the walking progress (`0x00300E04`-`0x00300E25`).
 
+Current and max MP are signed 16-bit reads (`0x00300D69`, `0x00300D83`). The show and the report need the unit
+`0x0031B860` gives for the stats record (`0x00300D02`, `0x00300DA1`-`0x00300DA4`): `0x003283D0(unit, delta, gain, 1)` gets
+`gain` 1 for a positive delta and 0 for a negative one, and for a delta of 0 the flags' bit `0x20`
+(`0x00300D1F`-`0x00300D31`); `0x0028F1F0([unit + 8], old, new, 1)` gets the old and the new MP (`0x00300DC4`-`0x00300DD3`).
+
+The walking progress is cleared only with a unit and when the stored MP is below the old (`0x00300E19`-`0x00300E20`):
+`0x002FA540(unit)` takes `+0x70` with `0x00320450`, which zeroes it (`0x00320492`), and adds 0 back with `0x00329A20`
+(`0x002FA549`-`0x002FA559`).
+
 ### What gives MP for damage
 
 `0x00307300` is the only caller of the two gain functions (`0x00307B0D`-`0x00307B8C`). It runs them when the
@@ -80,7 +89,9 @@ return row[19].factor
 ```
 
 The factor is row byte `+0x03` for a summoned Esper (a party record of type `0x1B`-`0x27`) and byte `+0x02`
-for everyone else (`0x002FB752`-`0x002FB7FE`). A damage of 0 gives 0.
+for everyone else (`0x002FB752`-`0x002FB7FE`). A damage of 0 gives 0, as does a negative one (`0x002FB6DE`-`0x002FB6E4`).
+The thresholds are the rows' 16-bit words `+0x00` (`0x002FB73F`), and the Esper test needs a stats record with byte
+`+0x05` = 0 and type `+0x04` from `0x1B` to `0x27` (`0x002FB752`-`0x002FB76E`).
 
 ### Rich areas
 
@@ -105,6 +116,15 @@ byte `+8` bit `0x4` (`0x002E5290`-`0x002E5337`, `0x00329A80`).
 3. The row's distance `+0x00`, divided by 3 in a rich area, is the walk for one point. A longer distance gives
    1 MP and starts again from 0.
 4. The remaining distance goes back into `+0x70`.
+
+The 64-byte record is `0x0208D480 + 64 * type` for a party record (stats `+0x04`), else `0x0208DE80 + 64 *` byte
+`+0xEA9` of the unit `0x0031B860` gives, which is kept in `0x02EBF188` (`0x002F941E`-`0x002F9471`). Current MP is a signed
+16-bit read against the row's 32-bit limit (`0x002F94FD`-`0x002F9501`); the row's distance is a 32-bit integer made a
+float, divided by 3.0 in a rich area, `d = (float)[row + 0x00] / 3.0` when `0x00320160()` returns 2 or 3
+(`0x002F9563`-`0x002F957E`). Only a distance above it gives the point, `distance > d` (`0x002F9586`-`0x002F9590`).
+
+The distance left is stored at record `+0x18` and added back to `+0x70` by `0x00329A20(unit, distance)`
+(`0x002F95A6`-`0x002F95AE`). On the equal path it is the same value (`0x002F947E`).
 
 `0x00310DB0` writes the point with flags `0x90`, so the gain is neither shown nor reported (`0x003110C8`-`0x003110D7`).
 
@@ -133,6 +153,11 @@ Each augment counts in either layer. The action pays when it runs: `0x00305640` 
 `0x00300CE0`, its Mist charges with `0x00300BC0` and its gil (`0x003056C1`-`0x0030571A`;
 [Action phases](../Battle-Actions/action-phases.md)), the gil through `0x00253690` and `0x00254EE0`
 (`0x0030571A`, `0x0030572B`; [Gil](../Rewards-EXP-Gil-And-Loot/gil.md)).
+
+`0x00305640` passes `0x10` as the flags of both calls, plus 1 when its `flag` is non-zero (`0x003056E3`-`0x00305700`):
+the MP loss is not shown, and with `flag` the eligibility masks are skipped. The Mist argument is
+`-(max MP * 0x00308FF0(unit, id))`, with max MP the signed 16-bit `+0x28` (`0x003056D4`, `0x00305704`-`0x0030570D`), and
+the action id is the row's index in `[0x02EBF138]` (`0x0030565E`-`0x00305693`).
 
 The battle menu's list builder `0x0031EB20` runs the same `0x002F9820` and `0x002F95D0` for each action it lists and
 keeps the adjusted cost in the entry's word `+0x52`, with entry flag 8 for the gil channel and 2 otherwise

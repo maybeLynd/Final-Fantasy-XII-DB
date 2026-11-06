@@ -16,7 +16,14 @@ on or the clan rank rises.
 The shop table is section 39 of `battle_pack.bin`, the section its directory entry at file offset `+0xA0` points
 to. The battle data binder hands it to `0x00238660` (`0x00236F28`-`0x00236F2E`), which stores the section address in
 the registry slot `0x02EBF158` and adds it to every offset in the table: the header's data offset, each shop's
-ladder, each ladder's data, each list and each list's data (`0x00238678`-`0x0023881D`). It has three levels, each
+ladder, each ladder's data, each list and each list's data (`0x00238678`-`0x0023881D`).
+
+The slot store is the slot's low 32 bits plus the section, zero-extended (`0x00238678`-`0x00238686`): the section
+address while the slot is empty. The three data offsets `+0x08` are rebased only when not 0 (`0x00238698`,
+`0x00238739`, `0x002387F8`); each shop's ladder and each ladder row's list are rebased even when 0 (`0x00238726`,
+`0x002387E5`).
+
+It has three levels, each
 with the same 12-byte header, `ShopLevelHeader`:
 
 | Offset | Type | Name | Meaning |
@@ -49,7 +56,10 @@ technick, `0x6xxx` gambit.
 ### Choosing a list
 
 `0x002FAD40(shop)` walks the shop's ladder in order and returns the first entry whose condition passes
-(`0x002FAD56`-`0x002FAE23`):
+(`0x002FAD56`-`0x002FAE23`). The ladder is `0x0020E600(shop +0x04)`: its word `+0x06` counts the entries, its word
+`+0x04` is the row size and its dword `+0x08` the offset of the rows (`0x002FAD56`-`0x002FADBF`). A kind above 3 never
+passes, and a ladder with no entries gives 0 (`0x002FAD73`-`0x002FAD75`, `0x002FAE0F`-`0x002FAE21`). The thresholds are
+compared as signed values (`0x002FADEC`, `0x002FAE0D`, `0x002FAE1F`):
 
 | Kind | Condition | Test |
 |---|---|---|
@@ -82,6 +92,7 @@ output buffer, used to count. Mode 2 lists the bazaar goods on offer instead (`0
 
 | Ids | Category |
 |---|---|
+| the empty id `0xFFFF` | -1 |
 | equipment of the main-hand slot | 0 |
 | equipment of the off-hand, head and body slots, except ammunition | 1 |
 | accessories | 2 |
@@ -90,11 +101,42 @@ output buffer, used to count. Mode 2 lists the bazaar goods on offer instead (`0
 | technicks | 5 |
 | magicks | 6 |
 | loot | 7 |
-| gambits | 9 |
+| gambit presets, `0x5000`-`0x5FFF` | 8 |
+| gambits, the gambit conditions `0x6000`-`0x6FFF` | 9 |
+| class 12 ids, `0x7000`-`0x7FFF`, which no table holds | 10 |
 
-The shop screens `0x0057B500`, `0x0057B6F0`, `0x0057CF20` and `0x0057D620` call it; the first two pass the shop number
-held at byte `+0xC0` of the shop menu (`0x0057B5F4`, `0x0057B715`). `0x003933D0(id)` answers 1 for categories 0-3,
-the equipment; the shop's transaction function `0x0056D370` asks it (`0x0056D630`).
+The answers come from two eight-entry tables the function builds on its stack (`0x002FABE3`-`0x002FAC14`). An id that
+is not equipment takes entry `id >> 12` of the second, 4, -1, 7, 6, 5, 8, 9, 10 (`0x002FAD20`). Equipment takes entry
+`slot` of the first, 0, 1, 1, 1, 2 for slots 0-4 (`0x002FAD1A`), the slot being bits `0xE0` of row byte `+7`
+(`0x002FAC9D`-`0x002FACA1`); an off-hand row of class 23-26, byte `+9`, answers 3 instead (`0x002FACE1`-`0x002FAD13`).
+
+`0xFFFF` gives -1 (`0x002FAC1A`-`0x002FAC1F`). The categories come from two tables built on the stack. By slot,
+`+0x07 >> 5`: 0 for slot 0, 1 for slots 2 and 3, 2 for slot 4, 4 for slot 6 and -1 for slot 7, while slot 1 gives
+3 for classes 23-26 and 1 otherwise (`0x002FAC9D`-`0x002FAD1A`). By class nibble: 4, -1, 7, 6, 5, 8, 9 and 10 for
+nibbles 0-7 (`0x002FAD20`).
+
+Slot 5 reads the stack dword after the slot table, which the function does not write, and a nibble of 8 or more
+reads past the class table into the frame's later slots: the stack cookie copy, the saved `rdi` and the return
+address, and for nibbles `0xE` and `0xF` the caller's home space (`0x002FABF8`-`0x002FAC14`, `0x002FAC34`).
+
+`0x002FABD0` is called by the list builder `0x002FA920` (`0x002FAB59`), by `0x003933D0` (`0x003933D4`) and at `0x003F4206`.
+The shop screens `0x0057B500`, `0x0057B6F0`, `0x0057CF20` and `0x0057D620` call `0x002FA920` or its counting form `0x002FAD30`
+(`0x0057B5F4`, `0x0057B617`, `0x0057B715`, `0x0057B736`, `0x0057CFC4`-`0x0057D07B`, `0x0057D6B4`, `0x0057D6D7`); the first two
+pass the shop number held at byte `+0xC0` of the shop menu (`0x0057B5F4`, `0x0057B715`). `0x003933D0(id)` answers 1 for
+categories 0-3, the equipment; the shop's transaction function `0x0056D370` asks it (`0x0056D630`).
+
+The id `0x0056D630` gives it is word `+8` of the chosen row (`0x0056D5E8`). The list keeps that row at `+0xD0`: the
+row the message's `+0x10` numbers among the tab's rows at `+0xC8` (`0x0056D55D`-`0x0056D56F`), the rows
+`0x0057CF20` builds, which `0x0056E410` hands over (`0x0056E535`-`0x0056E55A`). On the Bazaar tab, help kind `0xB`
+(`+0xE4` under mask `0x3FC0` equal to `0x2C0`), the id goes to `0x0057A480` instead (`0x0056D604`-`0x0056D61E`);
+`0x0056DC30` gives `0xB` only to tab id 0 (`0x0056DC91`), which of the three shop tab lists only the Bazaar's holds
+(`0x00D23C60`).
+
+So `0x002FABD0` gets, through `0x003933D0`, the id of a Buy row, one of the stock ids above, or of a Sell row, from the
+party's lists 0 to 4 and 11 (items, equipment and loot). The 267 lists hold 2,512 ids, all of nibbles 0, 1, 2, 3, 4
+and 6, and the 557 rows of the equipment table carry slots 0 to 4 only, so neither the unwritten slot 5 dword nor
+the reads past the class table are reached from here. Key items, `0x8000`-`0x81FF`, have list 10 of their own,
+which `0x0057CF20` reads only for the Inventory's Key Items, kind 7 (`0x0057D0E9`-`0x0057D103`), never for a shop tab.
 
 ### The shop's name
 
@@ -103,6 +145,9 @@ script verb `0x4A9` `setshopname(n)` gives an actor that name (`0x0034C183`-`0x0
 NPC-name dictionary `npcdic.bin` ([NPC names](../Characters-And-Objects/npc-names.md)); the shop screens read it too
 (`0x0057B98F`, `0x0057C022`). A name id's pair has a second name, shown once its story flag in Bank2048 is set ([Story flags](../Story-Events-And-Hunts/story-flags.md)): shops 10,
 11 and 23 carry one.
+
+For a shop number not below the row count `+0x06` of `[0x02EBF158]`, or with no shop table bound, `0x002FAE40` returns
+0 (`0x002FAE4A`-`0x002FAE66`).
 
 ### Clan rank
 

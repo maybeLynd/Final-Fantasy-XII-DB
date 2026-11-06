@@ -15,29 +15,50 @@ moves.
 ### The world lock
 
 The lock is stop request 6 of the registry. `0x00263230(actor, 1)` takes it when no take is active
-(`0x02099DB4` at 0) and `0x0209A2A8` is set: `0x00226BE0(6, 0, 0, 0, 4, flag)` with the flag
-`0x00377700() != 0`, then the counter at manager `+0x1E0` is raised and summed into `0x02099DB4` and
-the taken actor's battle action is cancelled. The request engine reaches it with flag 1: the talk
+(`0x02099DB4` at 0 or below), `0x0209A2A8` is set and the actor's byte `+0x0C` bit `0x80` is clear:
+`0x00226BE0(6, 0, 0, 0, 4, flag)` with the flag `0x00377700() != 0`. With a take active it skips the request and the
+turn below (`0x0026325A`).
+
+In every case the counter at manager `+0x1E0` is then raised and summed into `0x02099DB4` over the live managers,
+the actor's steering is pushed (`0x002EAB80`) and, for an actor with a battle unit (`+0x30`), its speed is set to 0
+(`0x0026D6F0`) and the taken actor's battle action is cancelled (`0x0035AE10(actor, 1)`).
+
+Any op other than 1 returns at once (`0x00263233`). A null actor passes the `+0x0C` test (`0x00263276`) and faults at
+`0x002632FD` or `0x002633BB`, which read it without a test. The request engine reaches it with flag 1: the talk
 filer passes it for slot 2, so every conversation takes the lock when its script starts
 ([script requests](script-requests.md)).
 
-`0x00263230` also turns the party leader ([Party leader](../Party/party-leader.md)) toward the taken actor: `0x002EC2C0(focus, record
-+0x20)` for a class-1 actor or `0x002EBFA0(focus, manager, ordinal, 0x30B)` for class 3, then
-`0x002EC380(focus, 2, 6.0)`, `0x002EBE50(focus, 1)`, `0x002E8EE0` and `0x002ED040(focus, 1)`. That is the
-turn the player sees at the start of every talk.
+`0x00263230` also turns the party leader ([Party leader](../Party/party-leader.md)) toward the taken actor, when
+the leader (`0x003590D0` → `0x003588B0`, looked up with `0x02099D70` pointed at manager 0) exists and has an armed render
+entry (`0x002E7600`): `0x002EC2C0(focus, [actor + 0xB8] + 0x20)`, the movement context's `+0x20`, for a class-1 actor
+or `0x002EBFA0(focus, manager, ordinal, 0x30B)` for class 3, then `0x002EC380(focus, 2, 6.0)`, `0x002EBE50(focus, 1)`,
+`0x002E8EE0` and `0x002ED040(focus, 1)`. That is the turn the player sees at the start of every talk.
 
-`0x00263050(actor, 1)` is the release: it lowers the
-counter and, at 0, runs the field hold `0x00263480` and `0x00225CD0(6, 4)`.
+For a class-1 actor and a class-3 leader it also sets bit `0x80` of `+0x62` of the leader's steering record
+`[[focus + 0xB8] + 0xF0]` (`0x0026339D`); for an actor of any other class only `0x002ED040(focus, 1)` runs
+(`0x002633A9`).
 
-`0x00377700` returns 1 only when the field byte and the save byte are both clear: the field byte is
-`[0x02ADD100] + 8 + 3 × field + 2`, read only when the table exists and the field index is below
-its count at `+4`, otherwise taken as clear; the save byte is the persistent `+0x1062` bit `0x1`
+`0x00263050(actor, 1)` is the release: it lowers the counter, sums the live managers' counters into `0x02099DB4` and,
+at 0 or below, clears action-availability row 3 (`0x002E1CD0(1, 3)`), sets `0x02099DE5` to 0 and `0x02099DE7` to `0xFF`,
+runs the field hold `0x00263480(actor, 2 or 1)` (2 when the actor's byte `+0x0C` bit `0x80` is set) and
+`0x00225CD0(6, 4)`, the latter only while `0x0209A2A8` is set and that bit is clear (`0x00263128`-`0x00263141`).
+
+It then releases the leader's look (`0x002EBE50(focus, 0, 0)` and `0x002E8EE0` when `0x002E7600` is non-zero, then
+`0x002ED040(focus, 0)`); the steering pop and the other ops are on
+[facing and steering](../Movement-And-Pathfinding/facing-and-steering.md).
+
+`0x00377700` returns 1 only when the field bit and the save bit are both clear: the field bit is bit `0x1` of the
+byte `[0x02ADD100] + 8 + 3 × field + 2` (`0x0037772D`, `0x0037772F`), read only when the table exists and the field index
+is below its count at `+4`, otherwise taken as clear; the save bit is the persistent `+0x1062` bit `0x1`
 (`0x00314A60`, set by `setsaverambattlestatus(0)`).
 
-The field hold `0x00263480(actor, mode)` raises request 5
-for mode 0, 4 for mode 1 and 7 for mode 2 with the actor as a one-entry list, passing
-`0x02099DE7 == 0` as the flag; with the hold bytes `0x02099DE5` and `0x02099DE6` both clear it releases
-5, 4 and 7 instead. The talk filer sets `0x02099DE7` to `0x00377700() == 0` and `0x02099DE5` to 1; the
+The field hold `0x00263480(actor, mode)` runs `0x00263560` first (`0x002634B0`). While `0x02099DE5` or `0x02099DE6` is
+non-zero it raises request 5 for mode 0, 4 for mode 1 and 7 for mode 2 with the actor as a one-entry list (its
+handle from `0x003589B0`; no list for a null actor), and 4 for any other mode too, passing `0x02099DE7 == 0` as the
+flag with fade -1, then runs the apply (`0x0026351D`).
+
+With the hold bytes `0x02099DE5` and `0x02099DE6` both clear it releases 5, 4 and 7 instead, through `0x00225CD0` with
+fade -1 and without the apply. The talk filer sets `0x02099DE7` to `0x00377700() == 0` and `0x02099DE5` to 1; the
 release resets them.
 
 Every request locks every actor of managers 0 to 2 and then releases the configured rows: the

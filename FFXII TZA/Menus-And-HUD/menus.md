@@ -22,8 +22,17 @@ addresses: "0x00254B50, 0x0215F1A0, 0x002E1B10, 0x002E1A60, 0x002E0DA0, 0x002E09
 2. It refuses while the request latch `0x02092734` is 1 (`0x00254B71`).
 3. It refuses when the combined action availability mask has a bit whose word in `0x01E0C2C0` holds the id (`0x00254B80`-`0x00254BC1`);
    that can refuse ids 1, 2, 3, 5, 14 and 21 ([Action availability](../Controls-And-Input/action-availability.md)).
+   The test is `bt` on a register, which takes bit `id & 31` (`0x00254BC1`), so ids 33, 34, 35, 37, 46 and 53 and
+   every other id with the same low five bits are refused by the same words. A refusal returns 0 (`0x00254C40`).
 4. It closes what is open (`0x0017E7D0`, `0x0035DA80`, `0x003C8990`) and dispatches through the byte map `0x00254C70`
    (`0x00254BD6`-`0x00254BF9`). The same three calls are `0x00254FC0`, which `0x0026C3E0` runs (`0x0026C4EC`).
+5. Ids 1 and 4 call `0x0035D660(id)`, 3 calls `0x0035D980(id)`, 5 calls `0x003C87B0(id)` and 24 calls `0x0035D080(id)`,
+   and the router returns the callee's answer; 12 calls `0x0028E970(12)` and returns 1 (`0x00254BFB`-`0x00254C2B`).
+6. Every other id, 0 and every id above 24 included, takes the generic arm (`0x00254C2D`-`0x00254C3E`). It calls
+   `0x0028F970()`, which, unless `[0x0209BE80]` is null or bit `0x2000` of its `+0x10F68` is set, clears bits `0x10`
+   and `0x400` of that dword and the word `+0x10FA0` (`0x0028F97B`-`0x0028F9AF`, [HUD](hud.md)). It then calls
+   `0x00280A00(request, parameter, flag)` with the whole first argument, bit `0x8000` included, and returns that
+   call's answer.
 
 ### The requests
 
@@ -48,9 +57,17 @@ The generic route `0x00280A00` refuses while a menu widget sits at the root's `+
 Otherwise it sets the request word and latch through `0x00252B40(id, 1)` and builds the two widgets `0x0027FB70` and
 `0x00280140`, which open the screen by id.
 
+Both widgets get one create record whose `+0x08` points at `{id, parameter, flag, 0}` and whose `+0x10` holds
+the id sign-extended (`0x00280A32`-`0x00280A8C`). `0x00280A00` then calls
+`0x0028E860`, which runs `0x0028CA30` on the HUD's selection marker `+0x7EA0` (`0x00280A91`), and returns 1
+(`0x00280A96`); a refusal returns 0 and builds nothing (`0x00280AAD`).
+
 ### Ids 2 and 22 with a parameter
 
-`0x002E1A60` turns selector 6's parameter 0, 1 and 2 into `0x40`, `0x41` and `0x42` (`0x002E1A7B`-`0x002E1AA1`):
+`0x002E1A60(selector, parameter)` posts the id `0x002E0DA0` gives (`0x002E1A6F`). It refuses while blocked is set,
+and for id 2 while `0x002E0FA0()` has bit `0x1` (`0x002E1AA6`-`0x002E1ABB`); otherwise it writes pending 1, the id
+and the parameter (`0x002E1ABD`-`0x002E1ACA`). It turns selector 6's parameter 0, 1 and 2 into `0x40`, `0x41`
+and `0x42`, and any other parameter into 0 (`0x002E1A7B`-`0x002E1AA1`):
 
 | Parameter | Opens |
 |---|---|

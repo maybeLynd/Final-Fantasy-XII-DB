@@ -112,9 +112,14 @@ Readers worth naming:
 ### The MP regime and its save override
 
 Bits `0x3000` select the area's MP regime. `0x00377BA0` first asks `0x00314AA0`, which returns bit `0x80` of
-payload byte `+0x1062`; when it is set the function tail-jumps to `0x00314AC0` (`0x00377BB1`), which
-returns bits `0x30` of payload byte `+0x1063`, and the table is never read. Otherwise it reads the word
-and returns `(word >> 12) & 3`. The override replaces the authored value, it does not merge with it.
+payload byte `+0x1062` (`0x00314AB0 shr eax, 7`); when it is set the function tail-jumps to `0x00314AC0`
+(`0x00377BB1`), which returns the bits under mask `0x30` of payload byte `+0x1063` shifted down, `(byte >> 4) & 3`
+(`0x00314AD0`-`0x00314AD3`), and the table is never read.
+
+Otherwise it takes the current area from `0x003148F0`
+(`0x00377BB6`), reads that record's word and returns `(word >> 12) & 3` (`0x00377BE7`-`0x00377BEA`), or 0 when the
+table is missing or the id is not below the count (`0x00377BF4`-`0x00377BFC`). The override replaces the authored
+value, it does not merge with it.
 
 Four consumers read the regime, all through the thunk `0x00320160`:
 
@@ -287,7 +292,7 @@ The name table's header, measured in all nine language copies of `planmapname.bi
 | `0x003779F0` | `(fieldId)` | word bits `0xFFF` | 0-4,094 or -1; nine callers |
 | `0x00377700` | `()` | third byte bit `0x1`, payload `+0x1062` bit `0x1` | 1 when both are clear, else 0; six callers |
 | `0x00377C70` | `()` | third byte bits `0x70` | 0-7; callers `0x00326500`, `0x003266C0`, `0x0031C000` |
-| `0x003148F0` | `()` | payload `+0x1044` | the current or pending field id, negatives clamped to 0 |
+| `0x003148F0` | `()` | payload `+0x1044` | the current or pending field id, negatives clamped to 0, `id < 0 ? 0 : id` |
 
 ## State
 
@@ -296,8 +301,8 @@ The name table's header, measured in all nine language copies of `planmapname.bi
 | `0x02ADD100` | `void*` | the loaded table | `0x00378540` (null), `0x00378B80` (delivery) |
 | payload `+0x1044` | `i32` | current or pending field id | the zone change (see the zone changes page) |
 | payload `+0x1062` bit `0x1` | bit | vetoes the hold flag | the zone change record's flag byte |
-| payload `+0x1062` bit `0x80` | bit | enables the MP regime override | the zone change record's flag byte |
-| payload `+0x1063` bits under mask `0x30` | 2 bits | the overriding MP regime | the zone change record |
+| payload `+0x1062` bit `0x80` | bit | enables the MP regime override | the zone change record's flag byte; the script verb `setmist(v)` (`0x00314BE0`: set for a positive `v`, cleared otherwise) |
+| payload `+0x1063` bits under mask `0x30` | 2 bits | the overriding MP regime, the level the scripts call the mist level | the zone change record; `setmist(v)` stores `v & 3` (`0x00314C1B`-`0x00314C28`) and clears it for `v` at most 0 |
 | `0x02099DE7` | `u8` | the party hold parameter, `0x00377700() == 0` | `0x0026A20B`, `0x00268E29` |
 
 ## Modding notes

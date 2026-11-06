@@ -103,6 +103,18 @@ class descriptor converts a script value into a pointer to an object of that cla
 adapter gives every class the same `(descriptor, value, T **out)` call. The shared targets of
 `0x006B2950` and `0x006B2970` (`0x00683B10`, `0x00683BF0`) load no accessor name.
 
+`0x005BEC00(L)` works on the value at the top of the stack. When `0x00682980` finds an object record it pops
+the value (`0x00811130`, `0x005BEC29`). For a non-null object `+0x08` it returns `object - 8` when the record's
+class `+0x00` is null or reaches the descriptor `0x02CAF0E0` through the `+0x78` links (`0x005BEC2E`-`0x005BEC5C`,
+`0x005BECAB`). A class off that chain raises this error with the two class names `+0x30` (`0x005BEC5E`-`0x005BEC99`):
+`Object pointer obtained from script was of type "%s" when an object of type "%s" was required.`
+
+With no record, or a null object, it reads the type at the top: a nil is popped and 0 returned
+(`0x008119F0`, `0x005BECBA`-`0x005BECD4`). Any other type raises this error (`0x005BECE1`-`0x005BED1C`):
+`Unable to obtain object pointer from script - found another type of data instead (Lua type %d)`.
+Before either error it stores the source location at `0x02E41000`-`0x02E41010`: the file name `0x00D23FF0`, the
+line (`0x6A` or `0x76`) and the function name `0x00D2BBB0`.
+
 The owned-buffer reset adapters (`0x005A4830`, 59 bytes) are slot 11 of the same descriptors: their
 46 bodies appear 138 times, all at slot 11, once each in the `ForType`, `Abstract` and `Concrete`
 descriptor of one class. The instance they reset is a count word, whose bit `0x80000000` when set keeps the

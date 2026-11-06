@@ -85,7 +85,8 @@ Ten font ids belong to the faces whose glyph tables are in `fontpack_fs.bin`
 
 - `font_venus` (11), `font_bookman` (13), `font_iwa_g12` (14) and `font_square` (15) are faces 0, 2, 3 and 4. The
   fontpack binder `0x003643A0` registers ids `0xB`, `0xD`, `0xE` and `0xF` through `0x0017FC00` as it binds those faces'
-  sheets (`0x003643FF`-`0x0036449E`).
+  sheets (`0x003643FF`-`0x0036449E`). It registers each id even when that face's sheet slot was already set and nothing
+  is bound (`0x003643E5`).
 - The six `font_stf_*` fonts (17 to 22) are the [staff roll](staff-roll.md)'s faces 6 to 11: `0x00365810` registers
   id slot + 10 for sheet slots 7 to 12 (`0x003658D1`, `0x003658D4`).
 
@@ -99,7 +100,16 @@ otherwise, so a record whose byte `+0x64` is 0 draws in face 0, `font_venus` (`0
 
 `0x002D8690`, its twin `0x002D87D0` and `0x002DD5D0` clear the record's byte `+0x64` after each draw (`0x002D8796`,
 `0x002D88D6`, `0x002DD66D`); `0x002DD5D0` draws the `ex` text that `0x002D8910` and `0x002D89E0` hand it (`0x002D8994`,
-`0x002D8A6E`). So the face is set by whoever fills `+0x64` just before the draw. The License Board and the menu layouts
+`0x002D8A6E`). `0x002D8910(record, x, y, text, sheet)` first builds that context with `0x003659F0`, giving it the
+record's `+0x70` and x and y (`0x002D8954`-`0x002D8982`); for any other text it builds the context with
+`0x002B3400(context, text, sheet)` and draws it with `0x002DD680` (`0x002D899B`-`0x002D89B3`).
+
+`0x002DD5D0` sets the context's face `+0x60` from `+0x64` as `0x002D8690` does (`0x002DD651`-`0x002DD665`). It also gives
+the context the record's dword `+0x60` at `+0x00`, its byte `+0x5C` at `+0x61` and its byte `+0x66` at `+0x63`
+(`0x00365B20`), and the colour `rgb = (byte +0x90..+0x92 x s16 +0x5A) >> 7`, `a = (byte +0x93 x s16 +0x58) >> 7` at
+`+0x30`, kept at the record's `+0x94` (`0x002DD5DA`-`0x002DD64E`). It reads neither its x nor its y.
+
+So the face is set by whoever fills `+0x64` just before the draw. The License Board and the menu layouts
 set it above 1:
 
 - `0x0055BAC0`, the [Licenses](license-board-screen.md) square drawer, sets it to 3 (`0x0055BE9D`) for a square in
@@ -110,8 +120,21 @@ set it above 1:
   becomes the bits under mask `0xFFC0` of its node (`0x0029FEB0`). The type-5 drawer `0x0029FBD0` (`0x0029FC01`-`0x0029FC11`) and the
   Licenses list pane `0x005599D0` (`0x00559CBA`-`0x00559CCA`) copy them into `+0x64` and draw the node's text with
   `0x002D8910` (`0x0029FDFD`, `0x00559D18`). An item with `+0x12` = n draws in face n - 1.
+- `0x0029FEB0` keeps only the low ten bits of `+0x12` (`0x0029FF08`-`0x0029FF17`). With `+0x2D` bit `0x4` and a text
+  wider at its scale than the node, `0x0029FBD0` overwrites those bits with the scroll offset
+  (`0x0029FDB1`-`0x0029FDBF`), and its next draw copies that offset into `+0x64` (`0x0029FC01`-`0x0029FC11`).
 
 `0x0029FF60` fills such a node's text with the `ex` formatter `0x00365B30` when the field is above 0 (`0x0029FFE5`).
+Its call is `0x0029FF60(node, buffer, size, n, id, p)`. The text id is `id`, or the item's `+0x14` plus 100,000 when
+`id` is 0 and `+0x14` is not -1 (`0x0029FF8F`-`0x0029FF9F`); an id from 100,000 up is read with `0x002F9920` (`0x0029FFB8`).
+The field counts as above 0 when the bits under `0xFFC0` of the node's dword `+0x08`, moved to the top of the
+register, make a positive number (`0x0029FFC9`-`0x0029FFD4`).
+
+With such a field and a buffer of 32 bytes or less, `0x0029CC70` formats instead, with a 32-byte limit
+(`0x0029FFF4`). A field at 0 formats with `0x002B4090` (`0x002A0004`). With no buffer the text goes to the next of the
+eight rotating buffers through `0x0029CC00`, or `0x0029CB80` for a field at 0 (`0x002A000B`-`0x002A0023`). The node keeps
+the text at `+0x18` and `0x0020E620(p)` at `+0x20` (`0x002A0030`-`0x002A0048`).
+
 Over the 4,484 type-5 items of all shipped layout copies, `+0x12` is 0 in 3,182, 1 in 642, 2 in 10, 4 in 330 and
 5 in 320:
 
@@ -129,6 +152,9 @@ holding the 23 calls of `0x002D8650` (among them `0x0027E530`) and the call of `
 
 A text context keeps a font index at `+0xA6`. `0x002B3400` and `0x002B32D0` set it to the place of the context's glyph
 sheet in the sheet table `0x02AEE810`, 1 to 7, or 0 when the sheet is not there (`0x0039BAD0`, `0x002B3420`-`0x002B3425`).
+When the language test `0x00254A10` is false and the index is 7, both also set the context's bit `0x800` and its
+sheet `+0x60` to `0x0039C4A0(1)` (`0x002B342B`-`0x002B3452`, `0x002B331F`-`0x002B3341`); `0x002B3400(context, text, sheet)`
+takes the sheet from its third argument.
 
 A two-byte code whose lead is at least `[0x01E0CDF8]` is drawn with that index; one-byte codes and lower leads with
 index 0 (`0x002B0280`), and in the character mapping `0x002AC2F0` with 7 once the context's bit `0x800` is set
@@ -215,6 +241,17 @@ loads it.
 - When `0x001E9D20` opens the font's batch it copies the atlas into the batch's `+0x08` (`0x001E9E90`-`0x001E9E99`). All
   four batch loops of the flush `0x001E8580` skip a batch whose `+0x08` is 0 (`0x001E86F2`, `0x001E8900`, `0x001E8FB0`,
   `0x001E9190`), and the shared draw body tests each layer's texture again (`0x002142D3`).
+- `0x001E9D20` opens a batch only when the batch's `+0x00` is not already the font id: it then stores the id there,
+  the atlas at `+0x08`, the font's `+0x10` (`0x005C5310`) at `+0x10` and copies the batch's `+0x18` to `+0x20`
+  (`0x001E9E80`-`0x001E9EB5`). A batch already holding the id is used as it stands.
+- Before that it stores the font's expansion list for the record's `+0x08` at `+0x08` (`0x001FDD60`,
+  `0x001E9DCA`-`0x001E9DD5`), and last it copies the record's `+0x00` and `+0x0C` to `+0x18` and `+0x1C`
+  (`0x001E9EB9`-`0x001E9EC6`).
+- With a font bound, both halves equal to `+0x18` and `+0x1C` (`a == [+0x18] && b == [+0x1C]`) and byte
+  `+0x2379` clear, `0x001E9D20` returns at once: `[+0x00] != 0`, the two equalities for its second and third
+  arguments `a` and `b`, and `[+0x2379] == 0` (`0x001E9D2A`-`0x001E9D4A`). A key the display map does not hold clears
+  `+0x00`-`+0x20` like a missing font
+  (`0x001E9D87`-`0x001E9DA4`, `0x001E9ED4`-`0x001E9EEA`).
 - A font id that the font list does not hold draws nothing either: the lookup `0x001B51C0` returns 0, `0x001E9D20` clears
   the current font (`0x001E9DC4`, `0x001E9ED4`), and the emitter adds no vertex while it is 0 (`0x001E80C9`). An id outside
   1 to 31 is cleared the same way (`0x001E9DD9`-`0x001E9DE3`), because each group has 32 batches indexed by font id.

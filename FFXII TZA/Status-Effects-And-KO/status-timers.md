@@ -94,6 +94,11 @@ multiple of 10 × frame base:
 | HP | max HP / 100 (doubled under Bubble, current HP under Disease), or 1 when that is below 100 | `0x00385CDE`-`0x00385D62` |
 | MP | max MP / 50, or 1 when max MP is below 50 or augment 39 is held | `0x00385D78`-`0x00385DDC` |
 
+The HP drain sets the result's `+0x2C` bit `0x100` and stores the loss in `+0x24` (`0x00385D03`-`0x00385D62`). The MP
+drain sets `+0x2C` bit `0x4000` and stores the loss, -(max MP / 50) or -1, in the word `+0x2A`, with max MP the
+signed 16-bit `+0x28` (`0x00385D9D`-`0x00385DDC`); the applier reads that word under bit `0x4000`
+(`0x0031166A`-`0x00311673`). The period is `30 * [0x01DFE0B4] / 3`, an unsigned divide (`0x00385CE3`-`0x00385CFD`).
+
 ### Out-of-combat healing
 
 `0x00386860` heals an enemy-table unit of category 8 that perceives no foe (`0x00386860`-`0x00386A30`;
@@ -104,10 +109,17 @@ whose actor class nibble (`0x00263C20`) is 1, 2 or 7; any other class ends the s
 1. It needs a unit that is not asleep or diseased, below its maximum HP, with no foe in its perception list
    (`0x002F8E70`) and nobody committed against it (`+0xEA8`).
 2. A counter, word `+0x14` of its 64-byte record, rises by one each step; any failed test resets it to 0
-   (`0x00386A27`, `0x00386A2C`).
+   (`0x00386A27`, `0x00386A2C`). The record is `0x0208D480 + 64 * type` for a party record, else `0x0208DE80 + 64 *`
+   the byte `+0xEA9` of the unit `0x0031B860` gives, which is kept in `0x02EBF188` (`0x00386874`-`0x003868BB`).
 3. Every 30 × frame base steps, starting with the counter at 0, it stores a share of its maximum HP as the
    result's HP change: 0 % for the first 10 such points, 1 % up to 30, 2 % up to 50, and 5 % from then on
    (`0x003869A2`-`0x00386A23`). The 0 % points still store, a change of 0 (`0x003869B2`, `0x00386A23`).
+4. The maximum is max HP `+0x24`, doubled under Bubble (`0x00386A03`-`0x00386A0C`): `m = 2 * [+0x24]` when
+   `([+0x64] | [+0x3C]) & 0x10000000`, read at `0x003869EB`. The change is `m * pct / 100`, a signed divide toward
+   zero (`0x00386A0E`-`0x00386A23`).
+5. From the 50th point on the counter is set to 1,500 × frame base before it rises (`0x003869CE`-`0x003869E0`), so it
+   stays between 1,500 and 1,530 × frame base and every later point pays 5 %. A 0 % point leaves bit `0x100` of
+   `+0x2C` as it was (`0x003869B2`, `0x003869E3`).
 
 ### How the stages share the HP change
 
@@ -150,10 +162,14 @@ Each unit's 64-byte record: for a party record (byte `+5` = 0) `0x0208D480 + typ
 `0x0208DE80 + unit[+0xEA9] * 0x40`, thirty-two (`0x00386C21`-`0x00386C51`). Both banks are in the zero-filled tail of
 `.data`.
 
-The first list of an action ([Damage formula](../Damage-And-Battle-Formulas/damage-formula.md)) clears the first
-`0x14` bytes when it resolves the user's current target, keeping `+0x10` and, with unit byte `+0x6B7` set, the high
-nibble of `+0x12` (`0x0038579C`-`0x003857E1`). `0x00386C10` clears the first `0x20` bytes (`0x00386C5B`-`0x00386C66`) when a
-unit is placed by `btlAtelSetUnitFinish` (`0x0023A513`) and from `0x00233AD0` (`0x00233BFC`).
+The first list of an action clears the first `0x14` bytes when it resolves the user's current target, keeping
+`+0x10` and, with unit byte `+0x6B7` set, the high nibble of `+0x12`, and then sets bit `0x1` of `+0x12`
+(`0x0038579C`-`0x003857E1`): `rec[+0x12] = (unit[+0x6B7] != 0 ? rec[+0x12] & 0xF0 : 0) OR 1` on the value read before
+the clear ([Damage formula](../Damage-And-Battle-Formulas/damage-formula.md)); `unit[+0x6B7] != 0` reads the battle unit
+`0x0031B860` returns (`0x003857B5`-`0x003857CD`), and `rec.u16[+0x10]` is put back (`0x003857E1`).
+
+`0x00386C10` clears the first `0x20` bytes (`0x00386C5B`-`0x00386C66`) when a unit is placed by `btlAtelSetUnitFinish`
+(`0x0023A513`) and from `0x00233AD0` (`0x00233BFC`).
 
 `BattleRuntimeUnitRecord` (`0x40` bytes, offsets from the start of the record):
 

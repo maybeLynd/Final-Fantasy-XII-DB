@@ -23,6 +23,12 @@ and 256 KiB of scratch each.
 - otherwise the `PThreadPoolWorkStealing` static `0x02E4E610`, built on first use by
   `0x006BA880(pool, workers, capacity)` with `0x01F2EB30` and `0x01F2EB3C`, and destroyed at exit by
   `0x008B41F0` through `0x006BA940`.
+- `0x006CE5B0` returns the pool held in `0x02E5C930` when that is set (`0x006CE5C9`), else builds the static once under
+  the guard `0x02E5C968` with `0x006AA180(pool, 0, 0)`, so its worker count and capacity are 0 (`0x006CE614`), writes
+  the vtable (`0x006CE620`), stores the static in `0x02E5C930` (`0x006CE640`) and returns it.
+- `0x006BA940` writes the vtable `0x00D81200`, runs the stop `0x006BAED0` a second time (`0x006BA95C`), destroys the two
+  semaphore record pairs with the `ret 0` stub `0x0016D6A0` as each record's destructor (`0x006BA976`, `0x006BA990`) and
+  tail-jumps to the base destructor `0x006AA200` (`0x006BA99E`), which writes `0x00D7C860` and calls `0x006AA600`.
 
 `0x01F2EB30` is 1 in the image. The start-up's `0x007979B0` counts the bits of the process affinity mask
 (or takes `GetSystemInfo`'s processor count when that is 0) and stores the count through `0x006AA370`
@@ -32,8 +38,12 @@ when it is above 1.
 
 The engine start-up `0x005A08E0` stores the scratch size `0x40000` (`0x01F2EB34`), the stack size `0x8000`
 (`0x01F2EB38`) and the job capacity `0x800` (`0x01F2EB3C`), then calls slot 2 of the pool; a non-zero
-result ends the start-up. The engine shutdown `0x005A0840` calls slot 3. `0x006AA280` has no other caller, and no instruction outside it
-reads `0x02E4E600`, `0x02E4E610` or `0x02E5C930`, so nothing else reaches the pool.
+result ends the start-up. The engine shutdown `0x005A0840` calls slot 3.
+
+`0x006AA280` has no other caller (`0x005A0877`, `0x005A0A8E`), and only it names `0x02E4E600` (`0x006AA28F`, `0x006AA2AD`,
+`0x006AA325`). Besides `0x006AA280` (`0x006AA2CF`), `0x02E4E610` is named only by the exit destructor `0x008B41F0`, which
+passes it to `0x006BA940`. `0x02E5C930` is named only by `0x006CE5B0` (`0x006CE5BF`, `0x006CE640`), whose one caller is
+`0x006AA280` (`0x006AA2A8`). No image word points at any of the three, so nothing else reaches the pool.
 
 ### The base class
 
@@ -45,26 +55,60 @@ reads `0x02E4E600`, `0x02E4E610` or `0x02E5C930`, so nothing else reaches the po
 
 1. It allocates the worker array, `0x38` bytes per worker behind a count, each entry constructed by
    `0x006AA1B0`, which zeroes the pool pointer, scratch pointer, thread record, started byte, index
-   word and stop byte.
-2. It allocates job list A (`+0x28`, capacity × 8 bytes, zeroed) and one scratch block of
+   word and stop byte. A worker count of 0 skips the array (`0x006AA3F9`).
+2. `0x006AA1B0` zeroes the thread record's three quadwords through `0x005CC900` (`0x006AA1CF`). Its 32-bit store at
+   `+0x30` (`0x006AA1E0`) also zeroes the worker-count word `+0x32`, and it returns the entry.
+3. It allocates job list A (`+0x28`, capacity × 8 bytes, zeroed) and one scratch block of
    `scratchSize` × workers aligned to `0x80` (`+0x18`), and stores `scratchSize` at `+0x20`.
-3. For each worker it fills the entry (pool, its slice of the scratch block, index, worker count) and
+   A capacity of 0 skips list A (`0x006AA46B`) and a `scratchSize` of 0 skips the scratch block (`0x006AA4A4`);
+   the store at `+0x20` is made either way (`0x006AA4C0`).
+4. For each worker it fills the entry (pool, its slice of the scratch block, index, worker count) and
    creates a thread (`0x005CD1E0`) named `PhyreEngineWorkerThread%d`, with `stackSize` bytes of stack,
    below-normal priority (mode 2) and entry `0x006AA390`, which jumps to slot 0 of the pool with the
    entry.
+5. Worker `i` gets the slice `scratch + i * scratchSize` (`0x006AA4F6`, `0x006AA5BF`), its index in the word `+0x30`
+   and the worker count's low 16 bits in `+0x32` (`0x006AA4FB`, `0x006AA505`). Its started byte is set to 1 right
+   after the create call, before the result is tested (`0x006AA5B2`, `0x006AA5B8`).
 
-Allocation failures return `0xD`; a failed thread start returns its error. The affinity mask it
+Allocation failures return `0xD` (`0x006AA459`); a failed thread start returns its error and leaves the later
+workers unstarted (`0x006AA5BA`); with every thread started it returns 0 (`0x006AA5CF`). The affinity mask it
 computes from `0x02E4E5F0` is passed to `0x0016D6A0`, which only returns, so every worker may run on any
 processor.
+
+The mask is built when the running mask is 0 (`0x006AA559`): for the first worker, and again once the
+one-bit-per-worker mode has handed out every bit. It is `[0x02E4E5F0]` through `0x0016D680`, which returns its
+argument, or all bits when that is 0 (`0x006AA572`), and `and rbx, 0xfffffffffffffffc` clears its bits `0x1` and
+`0x2` (`0x006AA57E`). When the dword `0x02E4E5F8` is 1, each worker takes the lowest set bit,
+`bit = m - (m & (m - 1))`, and keeps `m & (m - 1)` for the next worker (`0x006AA58E`-`0x006AA598`); otherwise each
+worker takes the whole mask.
+
+The thread parameters keep the all-processors mask `-1` that `0x005CC8C0` writes at their `+0x30` (`0x005CC8EE`),
+and `0x005CD1E0` hands that value to `SetThreadAffinityMask` (`0x005CD28B`).
 
 `0x006AA600(pool)` is the base teardown: it waits for each worker's thread to end (`0x005CD330`), clears
 its started byte, frees the worker array, job list A and the scratch block, and nulls their
 pointers. The base destructors `0x006AA200` and `0x006AA230` write the base vtable and call it.
 
+With a null worker array `0x006AA600` skips the per-worker loop and the array's free (`0x006AA627`, `0x006AA667`).
+For each worker it calls `0x005CD330`, which waits on the thread handle without a timeout and copies the exit code
+into a local of `0x006AA600` that nothing reads (`0x005CD346`, `0x005CD354`), then the stub `0x005C5230` on the thread
+record (`0x006AA650`), and clears the started byte whatever the wait found (`0x006AA655`).
+
+The array goes through the vector destructor iterator `0x00809054` with the `ret 0` stub `0x0016D6A0` as each entry's
+destructor (`0x006AA67C`) and is freed from its count header (`0x006AA685`). Job list A and the scratch block are
+freed through `0x00584730`, which skips a null pointer (`0x00584733`), at `0x006AA68F` and `0x006AA698`; the three
+pointers are nulled at `0x006AA69D`-`0x006AA6A5`.
+
 ### The work-stealing pool
 
 `0x006BA880` adds the vtable `0x00D81200`, two pairs of semaphore records and the generation fields to the
-base, with both "waited" bytes at `+0x90` set. Its slots:
+base, with both "waited" bytes at `+0x90` set. It first runs `0x006AA180` with its own worker count and capacity
+(`0x006BA8A0`) and builds the records at `+0x38` and `+0x58` with `0x005DBF90`, which clears each record's created
+byte (`0x006BA8D4`, `0x006BA8F1`, `0x005DBFA1`).
+
+It zeroes the profile pointer `+0x30`, both generation words, list B, the counts `+0x88` and `+0x8C` and both
+range pointers (`0x006BA8B2`, `0x006BA8F6`-`0x006BA91F`), writes `0x101` to the waited bytes (`0x006BA90F`) and returns
+the pool. Its slots:
 
 | Slot | Function | What it does |
 |---|---|---|
@@ -72,7 +116,7 @@ base, with both "waited" bytes at `+0x90` set. Its slots:
 | 1 | `0x006BAA40` | deleting destructor (`0x006BA940` without the free) |
 | 2 | `0x006BAB40` | start |
 | 3 | `0x006BAED0` | stop |
-| 4 | `0x006BB000` | add a job; `0xE` when the list is full |
+| 4 | `0x006BB000` | add a job; returns 0 (`0x006BB05E`), or `0xE` when the list is full (`pending >= capacity`, `0x006BB03D`), after it has already called `0x006BB0A0` and written the generation into the job's `+0x10` (`0x006BB016`, `0x006BB01E`) |
 | 5 | `0x006BAAD0` | add a job; kicks the batch when the list becomes full |
 | 6 | `0x006BADF0` | kick the pending batch |
 | 7 | `0x006BB070` | wait for a job's batch |
@@ -96,7 +140,11 @@ odd. A job is an object whose `+0x10` receives the generation it was added in.
    (`+0x7C`) and job count (`+0x8C`), clears the waited byte of parity *b*, advances the generation,
    splits the list evenly between the workers, worker *i* getting entries `n·i/w` to `n·(i+1)/w` as a
    cursor and end in range array *b*, and releases start semaphore *b* once per worker.
-3. Waiting (`0x006BB070`) kicks first when the job's generation is still the current one, then calls
+3. The kick zeroes the pending count `+0x88` as it advances the generation (`0x006BAE51`, `0x006BAE55`). Each end is
+   `list + (n * (i + 1) / w) * 8`, with a 32-bit product and quotient (`0x006BAE89`, `0x006BAE8D`); each cursor is
+   the previous worker's end, the first one the list itself (`0x006BAE77`). The release is one `ReleaseSemaphore`
+   call with a count of `w` (`0x006BAEB1`, `0x005CD661`).
+4. Waiting (`0x006BB070`) kicks first when the job's generation is still the current one, then calls
    `0x006BB0A0`.
 
 `0x006BB0A0(pool, generation)` acts only when the generation is less than three behind the current one
@@ -105,21 +153,44 @@ byte.
 
 ### The worker loop
 
+Before its loop, `0x006BB110` reads its index, scratch slice and `w` from its own entry (`+0x30`, `+0x08`, `+0x32`) and
+the scratch size from the pool's `+0x20` (`0x006BB139`-`0x006BB152`). It formats `WorkerThread:%d` with its index
+into a 256-byte local buffer that nothing reads afterwards (`0x006BB16E`). Range array *b* is `+0x98` for
+parity 0 and `+0xA0` for parity 1 (`0x006BB1BC`, `0x006BB266`).
+
 `0x006BB110(pool, worker)` alternates between parities 0 and 1:
 
 1. It waits on start semaphore *b*; with the worker's stop byte (`+0x34`) set it returns 0.
 2. It visits every worker's range, starting with its own (index `(k + own) mod w`), and claims entries
    by advancing the range's cursor with a 32-bit interlocked compare-exchange on its low half while the
-   cursor is below the end. A null entry ends that range.
+   cursor is below the end. A null entry ends that range. A failed exchange rereads the cursor and retries
+   while it is below the end (`0x006BB220`-`0x006BB23B`).
 3. For each claimed job it calls the job's slot 1 with its scratch slice, the scratch size and its own
-   index.
-4. It releases done semaphore *b* once.
+   index. After the job returns it goes back to the same range (`0x006BB2E9`).
+4. It releases done semaphore *b* once (count 1, `0x006BB25C`); with `w` 0 it visits no range and goes straight
+   to this release (`0x006BB1C9`).
+5. After parity 1's release it tests the stop byte again, so a worker stopped by then returns 0 without
+   waiting again (`0x006BB28A`-`0x006BB297`); otherwise it starts over at parity 0.
 
 ### Stopping
 
 `0x006BAED0` frees the profile objects, sets every worker's stop byte and releases the start semaphore
 of the current parity once per worker, so each worker wakes and returns. `0x006AA600` then joins the
 threads, and `0x006BAED0` closes the four semaphores and frees job list B and the range arrays.
+
+Before the free it calls the stub `0x005C5230` with `0x01F2ED08` and each worker's profile slot (`0x006BAEFF`). A
+non-empty profile array goes to the first object's slot 0 with flag 3, the vector deleting destructor
+(`0x006BAF23`); an empty one is freed from its header by `0x00210EB0` (`0x006BAF2B`); `+0x30` is nulled either way
+(`0x006BAF30`).
+
+The stop bytes, the release, the closing and the frees run only when the range block `+0x98` that `0x006BAB40`
+allocates is set (`0x006BAF42`, `0x006BAF8D`); `0x006AA600` runs in both cases (`0x006BAF85`). Closing clears each
+record's created byte (`0x006BAF9C`-`0x006BAFBF`). The two range arrays are one block (`0x006BAC76`, `0x006BAC9E`), so
+freeing `+0x98` frees both; `+0x80` and `+0x98` are nulled and `+0xA0` keeps its old pointer (`0x006BAFDB`,
+`0x006BAFE6`).
+
+The exit destructor `0x006BA940` runs `0x006BAED0` again after the shutdown's slot 3; with `+0x30`, `+0x98` and the
+worker array already null, only the stub calls and `0x006AA600` run then, and `0x006AA600` finds every pointer null.
 
 ### The immediate pool
 

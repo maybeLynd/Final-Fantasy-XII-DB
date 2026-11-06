@@ -64,6 +64,17 @@ distance along the segment to the plane through `p` with normal `n`. `0x00382020
 `+0x10`/`+0x18`, the inner shape's radii at `+0x70`/`+0x74` and height at `+0x78`), to find the
 highest record top above a point.
 
+`0x0046DB50(p)` starts from 0.0 and answers 0.0 when `0x003DAE20` returns an empty list (`0x0046DB88`). For each record,
+linked through `+0xA0` (`0x0046DCDF`), it takes `p` minus the record's centre `(+0x00, +0x04 + +0x78 / 2, +0x08)`,
+with w 1.0 (`0x0046DBF7`-`0x0046DC35`), and maps it through the product `0x00202D70` of a turn about y by
+`-atan2f(+0x18, +0x10)` (`0x0046DBEA`, `0x0046DC5B`) followed by a scale of `1 / +0x70`, `2 / +0x78` and `1 / +0x74`
+on x, y and z (`0x0046DC60`-`0x0046DC99`).
+
+When `0x00382020` says the mapped point is inside, so that `p` lies strictly within the record's radii and strictly
+between its base `+0x04` and its top `+0x04 + +0x78`, the record offers `+0x78 + +0x04 - p.y`
+(`0x0046DCC9`-`0x0046DCD3`), and the largest offer is kept (`maxss`, `0x0046DCD8`). The return value is the rise from
+`p` to the highest record top above it, 0.0 when no record holds `p`.
+
 ### Point in shape
 
 `0x00381EB0(shape, p)` maps `p` through the inverse and tests membership strictly: type 0 `|local| <
@@ -84,6 +95,11 @@ caller hands it.
 `0x0022CF50(part, id, p)` is the winding test: for each edge `(v[i], v[next[i]])`
 with `next = {1, 2, 0}` at `0x00908DE8`, `cross(v[next] - v[i], p - v[i]) . n < 0` answers 0; three
 edges that are zero or positive answer 1, so a point on an edge counts as inside.
+
+A NaN product is not below 0 either and also lets the edge pass (`0x0022D082`). The polygon is `[part + 0x10] + 0x20
+id` with `id` sign-extended (`0x0022CF7C`-`0x0022CF92`). The cross product is `0x00202E10(out, a, b)`: `(a.y b.z - a.z
+b.y, a.z b.x - a.x b.z, a.x b.y - a.y b.x)` with w 0, built on the stack and copied to `out` as one 16-byte store
+(`0x00202E65`-`0x00202E7B`).
 
 ### The collision-mesh ray cast
 
@@ -128,6 +144,21 @@ cell height on odd columns (the grid is staggered), `0xFFFF` outside. `0x002330D
 cell plus `k × (stride + 1)`, or the negative answer as it is. `0x002F67C0`, which fades the background NPCs
 listed in a point's cell in or out by their distance from the point, uses it with `k` = 1 (`0x002F67F0`).
 
+`0x00233050(part, p)` reads the grid header `[part]`. `originX` and `originZ` are the ints at `part + 0x38` and
+`part + 0x3C`, added to `p.x` and `p.z` as floats, and either sum below 0 answers `0xFFFF` at once (`0x00233073`,
+`0x0023307B`).
+
+The sums `x` and `z` are truncated to ints (`cvttss2si eax, xmm1`, `0x0023307D`) and divided as integers,
+`col = (int)x / [[part] + 0x10]` (`idiv`, `0x00233086`): the column by the cell width `[[part] + 0x10]`,
+the row by the cell height `[[part] + 0x14]`, the half cell on an odd column being the height halved toward zero,
+`H / 2`, taken off first: `row = ((int)z - (col & 1 ? H / 2 : 0)) / H` with `H` = `[[part] + 0x14]`
+(`0x0023308D`-`0x0023309C`, `0x002330A1`).
+
+The row division also rounds toward zero (`idiv dword ptr [r8 + 0x14]`, `0x002330A1`), so a point in the first half
+cell of an odd column gets row 0, not `0xFFFF`. A column at or past the column count `[[part] + 0x08]`, or a row at
+or past the row count `[[part] + 0x0C]`, answers `0xFFFF` (`0x002330AB`-`0x002330B4`); otherwise the cell is
+`row × column count + column` (`0x002330B6`).
+
 From the start cell it loops:
 the delta, length and best are reset to the whole remaining segment, the callback runs over the
 cell's list and the lists at `cell + k (stride + 1)` for `k = 1, 2` (`0x00908DF8`, `stride` the
@@ -143,9 +174,13 @@ segment by writing the hit point into the caller's end vector through `+0x18`.
 
 `0x002315E0(part, &start, &end)` is the ray cast as a function: it builds the query with this
 callback, kind `0xFFFF` and the stop flag clear, runs the walker and returns the state (0 clear, 1
-marker only, 2 blocked); it answers `0xFFFF` without a mesh part, and it copies its end argument
-to a local first, so only direct walker callers see the end vector overwritten. Its callers are
-`0x0032A4D0` and `0x00318CA0`. The walker's three other call sites, in `0x00230B60` (`0x00230BD8`) and
+marker only, 2 blocked), sign-extended from the word `+0x44` (`0x00231657`).
+
+It answers `0xFFFF` when the part or its grid header `[part]` is null (`0x00231600`-`0x00231609`). It copies both its
+start and its end argument to locals first (`0x0023160B`, `0x00231627`) and points `+0x20` at a third local, so only
+direct walker callers see the start vector advanced to each cell exit (`0x0022F742`) and the end vector overwritten.
+
+Its callers are `0x0032A4D0` and `0x00318CA0`. The walker's three other call sites, in `0x00230B60` (`0x00230BD8`) and
 `0x00230C10` (`0x00230E1D`, `0x00231123`), plant the sphere sweep and the other ray casts of the doors
 page.
 
@@ -155,7 +190,10 @@ The sound-emitter section of the map pack ([map pack](../World-Areas-And-Travel/
 carries volume records, reached as offsets from `[0x022CBAF0]`, and the emitter walk `0x003631B0`
 dispatches on each record's kind byte `+0x09 & 0x7F`: 0 the ellipse clamp, 1 the rectangle clamp,
 2 the segment chain, anything else leaves the point unchanged. All three take `(point, out,
-record)` and write a four-float `out` with `w = 1.0`.
+record)` and write a four-float `out` with `w = 1.0` on every path that computes it.
+
+Two paths copy the point instead: the rectangle with no outcode bit set (`0x003626B2`-`0x003626B9`) and the segment
+chain without segments (`0x00362390`-`0x00362394`) copy all four floats, so `out` keeps the point's own `w` there.
 
 Struct EmitterVolume  base=[`0x022CBAF0`] + offset:
 
@@ -188,9 +226,15 @@ set `out = point`; otherwise `lx` and `lz` are clamped to `[-1, 1]`, `X = lx a`,
 
 The segment chain, `0x00362230`, calls `0x00363FD0(point, start, dir)` for each segment: `t = -((start -
 point) . dir) / |dir|^2` clamped to `[0, 1]`, 0 when `|dir|^2` is not positive, with the squared
-distance `|start - point + t dir|^2` left at `0x022D92D4` (and `0x022D92E4`). The segment with the
+distance `|start - point + t dir|^2` left at `0x022D92D4` (and `0x022D92E4`). It returns `t` in `xmm0`
+(`0x00364172`) and also leaves it at `0x022D92D0` (`0x00364135`). The segment with the
 smallest squared distance wins (the first always, a later one only when strictly nearer) and `out =
 start + t dir`; with no segments `out = point`. It returns the record's `+0x30`.
+
+The count `+0x14` is signed, so a count at or below 0 is the case without segments (`0x00362264`). The winner's `t`
+is also stored at `0x022D8F20` and copied with the 16 bytes there to `0x022D9390`; its start goes to `0x022D92A0`, its
+direction to `0x022D92B0` and the start's x, y and z to the ACC image `0x022D91A0`, and `out` is built at `0x022D92C0`
+with `w` 1.0 from `0x01EF93FC` (`0x003622C8`-`0x0036238A`).
 
 The emitter walk is one reader. The other is the actor-record proximity test `0x0025C830` (run per
 record by `0x0025C170` from the field tick, [field runtime](../Characters-And-Objects/field-runtime.md)):
@@ -206,8 +250,9 @@ With record byte `+0x0D` bit `0x8` the same test uses the capsule separation `0x
 bodies](movement-bodies-and-separation.md)) instead of the rectangles.
 
 `0x0025A8E0(p, rec)`, its only caller that test, is the outcode without the clamp: the CLIP word is
-shifted left 6 and takes bits `0x1`/`0x2` for `p.x` above `e` or below `-e`, bits `0x4`/`0x8` for `p.y`, bits `0x10`/`0x20`
-for `p.z`, with `e = |rec.+0x0C|`, and the word is copied to `0x022D9478`. The history is what lets
+shifted left 6 and takes bits `0x1`/`0x2` for `p.x` above `e` or below `-e`, bits `0x4`/`0x8` for `p.y`, bits
+`0x10`/`0x20` for `p.z`, with `e = |rec.+0x0C|`; its top byte `0x022D9133` is then zeroed, keeping 24 bits
+(`0x0025A970`), and the word is copied to `0x022D9478` (`0x0025A97D`). The history is what lets
 one function clamp a point and the next read the outcome of the clamp before it.
 
 ### The workbench
@@ -260,7 +305,7 @@ Globals:
 | `0x022D9198` | `f32` |  | the VU0 register image: Q |
 | `0x022D91A0` | `f32[4]` |  | the VU0 register image: ACC |
 | `0x022D92A0` | `...` |  | the VU0 register image: vector registers `0x022D92A0` to `0x022D935F` |
-| `0x022D9470` | `u8` |  | the VU0 register image: flag byte |
+| `0x022D9470` | `u32` |  | the VU0 register image: status word, bits `0x40` and `0x80` (`0x0036DDA0`, `0x0036DD90`) |
 | `0x01EF93F0` | `f32[4]` |  | the vf00 image {0, 0, 0, 1} |
 
 ## Shipped data

@@ -17,9 +17,10 @@ reads them, so editing or deleting them changes nothing in play.
 
 The executable holds none of the module names (`\ctrl.`, `/ctrl.`, `btlctrl`, `evctrl`, `mapctrl`,
 `systemctrl`) and none of `.sbn`, `.msb` or `.dbg` as a terminated string, in ASCII or UTF-16. The
-bare strings `sbn` and `msb` occur once each and `dbg` twice, and the `sbn`/`msb`/`dbg` entries at
-`0x00D10994` to `0x00D1099C` are extension strings in the list `bin dbg sbn msb msf fnt cam camera lgt cml
-cmi shk skl vld` at `0x00D10990`.
+strings `sbn` and `msb` occur once each, and the `sbn`/`msb`/`dbg` entries at `0x00D10994` to `0x00D1099C` are
+extension strings in the list `bin dbg sbn msb msf fnt cam camera lgt cml cmi shk skl vld` at `0x00D10990`. `dbg`
+occurs twice more, as the end of the section group name `.rdata$zzzdbg` (`0x01D5280A`) and in `dbghelp.dll`
+(`0x01DEEA14`).
 
 ### The sibling loader stops at its first query
 
@@ -33,8 +34,15 @@ last `\` or `/`. It then copies the extension over the characters after the last
 the end of either, or cuts the name at that `.` when the extension is null, and copies the result
 back over `path`.
 
-`0x003306E0` then sizes the names with `0x0032E400`, 14 calls that all pass kind `0xFF` (`0x00330E47` to
-`0x00330F71`).
+`0x0032F6F0` builds the result in a 272-byte (`0x110`) stack buffer and tests no length (`0x0032F6F6`,
+`0x0032F720`-`0x0032F79E`). The search for the `.` runs backward from the last character over the whole built
+path, folder and directories included, and stops before the first character (`0x0032F7C3`-`0x0032F7D3`); when it
+finds no `.`, the name keeps its extension. A `.` that ends the name leaves it unchanged when an extension is
+given (`0x0032F7E0`).
+
+`0x003306E0` then sizes the names with `0x0032E400` from 14 call sites, all passing kind `0xFF` (`0x00330E47` to
+`0x00330F71`): the one at `0x00330F48` runs once for each of 16 names (`0x00330F2D`-`0x00330F5E`), and the one at
+`0x00330F71` only when the first argument, kept in `r14d` (`0x00330713`), is not 0 (`0x00330F60`).
 
 - `0x0032E400` compares the kind with `0xFF` before any lookup (`0x0032E404`) and returns -1
   (`0x0032E438`).

@@ -66,8 +66,8 @@ changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)).
   the Japanese choice list `もう一度？` (`もう一度` / `やめる`); `grm_d0102` holds "Stand where you are!" and "Now is not the
   time." after "View scene again?" (Yes / No), and 285 follows the fight.
 - `grm_g0101` and `grm_g0100`, loaded in Overflow Cloaca (field 1145) below story counter 27, frame the fight with the
-  rats ("Vaan! Hurry it up or they'll find us!" ... "Time to clean house."; "Wow, Vaan. You got 'em all yourself?" ...
-  "If Migelo finds out we've been down here, he'll tan our hides."); 33 follows.
+  rats ("Vaan! Hurry it up or they'll find us!" ... "One...two...three more. Right. Time to clean house."; "Wow, Vaan.
+  You got 'em all yourself?" ... "If Migelo finds out we've been down here, he'll tan our hides."); 33 follows.
 - No scene gives an item other than the Espers of `grm_f0101`; the party changes only in the loading functions.
 
 ### How the synopsis is taken

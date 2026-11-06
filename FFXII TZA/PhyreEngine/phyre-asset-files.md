@@ -18,14 +18,38 @@ meshes, `<name>.dds.phyre` for textures and `<name>.fx.phyre` for shaders. The `
 name, in order, the files each model, map or font loads.
 
 A load request of kind 1 from such a list reaches `0x0019CB20(manager, path)` through `0x001A07B0`. It
-hashes the path (`0x00674A00`: 5381, × 33 plus each byte, masked to 31 bits) and looks it up in the
-manager's loaded set. A hit raises the entry's reference count and returns the loaded cluster; a miss
-loads the file through `0x00637C50` and records it.
+hashes the path (`0x00674A00`: 5381, × 33 plus each byte as a signed value, `0x00674A17`, masked to 31 bits) and
+looks it up in the manager's loaded set. A hit raises the entry's reference count and returns the loaded
+cluster; a miss loads the file through `0x00637C50` and records it.
+
+The loaded set is a tree whose root is the manager's `+0x40`: the lookup takes the first node whose dword
+key `+0x20` is not below the hash and keeps it only when that key equals the hash (`0x0019CB59`-`0x0019CB92`).
+It runs between `0x005CD4F0(manager)` and `0x005CD820(manager)`. A hit increments the entry's count `+0x04`
+and returns the entry's `+0x08` (`0x0019CBA1`-`0x0019CBB5`).
+
+A miss takes an entry from the manager's pool `+0x60` (`0x001BA860`, `0x0019CBC3`) and sets its byte `+0x00`
+to 1, its `+0x10` to the third argument, which all six callers give as 0, and its count `+0x04` to 1
+(`0x0019CBCB`-`0x0019CBD1`). It loads into the entry with `0x00637C50(entry + 8, path)` (`0x0019CBDF`).
+
+When that returns non-zero or leaves `+0x08` null (`0x0019CBE4`-`0x0019CBED`), it clears the byte `+0x00` and
+the count, gives the entry back to the pool with `0x002124C0` and returns 0 (`0x0019CC20`-`0x0019CC36`).
+Otherwise it stores the entry under the hash in the map at `+0x28` (`0x0020B5F0`, `0x0019CC06`, `0x0019CC0B`),
+again between `0x005CD4F0` and `0x005CD820`, and returns the entry's `+0x08` (`0x0019CC0E`-`0x0019CC1B`).
 
 `0x00637C50` opens the path as a `PStreamReaderFile` (`0x00597970`),
 returns 1 for a null path and 10 when the file does not open, and then calls the cluster reader
 `0x0059E070` repeatedly, one cluster after another, until the stream position reaches the file size.
 Each cluster gets its own `0xA0`-byte container, chained through `+0x98`.
+
+`0x00637C50(out, path)` builds each container with `0x00633070`, points its list at `+0x88` at itself and
+clears `+0x98`, and stores the first one at `out` (`0x00637CA4`-`0x00637CE3`); a failed allocation gives
+`0xD` (`0x00637CF5`, `0x00637DAF`). A new container is made only after a cluster reads without error while
+the stream position `+0x18` has not reached the size `+0x1C`, and goes on the end of the chain
+(`0x00637D29`-`0x00637DA0`); a size of `0xFFFFFFFF` skips that end test (`0x00637D03`, `0x00637D2D`).
+
+Every exit after the open calls `0x0059BD40` on the stream (`0x00637CF0`, `0x00637DB9`) and then `0x00598100`
+(`0x00637DE8`). On an error the first container is destroyed (`0x006336E0`, then `0x00584730`), `out` is
+cleared and the error is returned (`0x00637DBE`-`0x00637DDC`); a full read returns 0 (`0x00637DE1`).
 
 ## Layouts
 
@@ -204,7 +228,7 @@ The members below are the ones the code of this page's classes uses or the refle
 |---|---|---|---|
 | `+0x00` | `u32` | m_planeCount | the plane count: `0x006DA380` hands (count + 3) / 4 Matrix4 records of planes to the visitor (`0x006DA3A0`); m_planeCount (u32), registered by `0x006D9FC0` (`0x00632960` at `0x006DA051`); no shipped .phyre file declares POccluderGeometryObject |
 | `+0x04` | `u32` | m_vertexCount | the vertex count: `0x006DA380` hands that many Point3 records to the visitor (`0x006DA3D4`); m_vertexCount (u32), registered by `0x006D9FC0` (`0x00632960` at `0x006DA0C0`); no shipped .phyre file declares POccluderGeometryObject |
-| `+0x08` | `u32` | m_edgeCount | the edge count: `0x006DA380` hands that many 4-byte entries to the visitor (`0x006DA3FE`); m_edgeCount (u32), registered by `0x006D9FC0` (`0x00632960` at `0x006DA12F`); no shipped .phyre file declares POccluderGeometryObject |
+| `+0x08` | `u32` | m_edgeCount | the edge count: `0x006DA380` hands count × 4 one-byte PUInt8 entries (4 bytes per edge) to the visitor (`0x006DA3FE`, `0x006DA427`); m_edgeCount (u32), registered by `0x006D9FC0` (`0x00632960` at `0x006DA12F`); no shipped .phyre file declares POccluderGeometryObject |
 | `+0x0C` | `u8[4]` | pad0C | alignment bytes between m_edgeCount (`+0x08`) and m_minBounds (16-byte vector at `+0x10`); no registered member covers it (`0x006D9F00` registers the `0x30`-byte class at `0x006D9F50`) |
 | `+0x10` | `f32[4]` | m_minBounds | m_minBounds (f32[4]), registered by `0x006D9FC0` (`0x00632960` at `0x006DA19E`); no shipped .phyre file declares POccluderGeometryObject |
 | `+0x20` | `f32[4]` | m_maxBounds | m_maxBounds (f32[4]), registered by `0x006D9FC0` (`0x00632960` at `0x006DA20D`); no shipped .phyre file declares POccluderGeometryObject |
@@ -373,104 +397,6 @@ Every map scene, `map/<area>/<map>/<map>.dae.phyre` (456 files), decoded object 
   - `pla0103`: one instance named `pPlane1`, seven characters.
   - Six whose number is not below their pack's record count: `dor0104` 747 (747 records), `dor0105` 232 (232 records), `rsn0104` 1292 and 1293 (1,292 records), `rsn0107` 1123 and 1124 (1,123 records).
 
-Each `chr/` and `chr_shadow/` segment joined to the shader variant it draws with, pass by pass:
-
-| table | rows | one row per |
-|---|---:|---|
-| [`phyre-asset-files-mesh-segment-variants-chr.tsv`](phyre-asset-files-mesh-segment-variants-chr.tsv) | 12,908 | mesh segment: its material and the name the file exports it under, the variant the material imports, the render data types of its vertex blocks and of the file's dynamic streams, the variant's render passes, how many of them its streams satisfy, and each pass and type left open |
-| [`phyre-asset-files-mesh-materials-chr.tsv`](phyre-asset-files-mesh-materials-chr.tsv) | 29,538 | `PMaterial`: exported name, variant, and the mesh default-set slots that hold it |
-| [`phyre-asset-files-mesh-dynamic-blocks-chr.tsv`](phyre-asset-files-mesh-dynamic-blocks-chr.tsv) | 24 | dynamic data block with its stream, or dynamic stream, of the three `chr_shadow/` dynamic meshes, with their modifier |
-| [`phyre-asset-files-shader-pass-streams-chr.tsv`](phyre-asset-files-shader-pass-streams-chr.tsv) | 150 | render pass of the ten variants the segments draw with: its shader's stream definitions, in order |
-
-- A segment draws with the material at its `m_materialIndex` in its mesh's default set, and every instance's `m_materialSet` is its own mesh's set. Those materials are named `<name>-Skinned-VertexColor` (12,304 in `chr/`, 585 in `chr_shadow/`) or `<name>-VertexColor` (the 16 of `chr/global/materialsphere` and the three dynamic `chr_shadow/` meshes).
-- Each file also exports a material under the base name, which no mesh's set holds: 16,042 in `chr/` and 588 in `chr_shadow/`. Each of them imports a variant that declares the rigid types `Color`, `Vertex`, `Normal`, `ST`, `Tangent` and `Binormal`, so a skinned mesh's streams match the variant of its `-Skinned-` material and not the one its base material imports.
-- For each pass, `0x00609D80` first gives the pass shader's stream definitions the dynamic mesh's streams of their render data type, then `0x0060A010` the first vertex block stream of each type still open. A definition left open logs `Failed to find data block/vertex stream to satisfy RDT %s for stream %d`, `0x0060A010` returns `0x13`, and `0x0060B980` returns at `0x0060BF33` without drawing that segment or the instance's later ones.
-- The ten variants the segments draw with give 150 passes: the 120 skinned ones define `Color`, `SkinnableVertex`, `SkinnableNormal`, `SkinIndices`, `SkinWeights`, `ST`, `SkinnableTangent` and `SkinnableBinormal`, the 30 of the two rigid variants `Color`, `Vertex`, `Normal`, `ST`, `Tangent` and `Binormal`. All 12,320 `chr/` segments and 585 of the 588 `chr_shadow/` segments satisfy every pass.
-- The other three, `high/n10/n1017/mws/hn1017_33`, `hn1017_43` and `monster/m11/m1134/mws/m1134`, draw with the rigid variant `CB0F9F994888730E82AD01521483E596`. Their modifier `SkinLocalTangent` writes `Vertex`, `Normal` and `Tangent` from five dynamic data blocks, and their vertex blocks carry the eight skinnable types.
-- So no stream of those three has the type `Binormal` that all 15 passes of that variant define: the match returns `0x13` in every pass, the shadow draw at `0x001F5F38` included, and the three meshes are not drawn: a character whose shadow model is one of them casts no shadow.
-
-Every map scene, `map/<area>/<map>/<map>.dae.phyre` (456 files), decoded object by object the same way, with each pointer member followed through the file's pointer fixup table to the object, import or user fixup it names:
-
-| table | rows | one row per |
-|---|---:|---|
-| [`phyre-asset-files-scenes-map.tsv`](phyre-asset-files-scenes-map.tsv) | 456 | scene: its `.ah` lists, the packs that draw it and their tag-30 record counts, the instances matched and the records no instance names, object counts by class, imports by class, the variants and the checks |
-| [`phyre-asset-files-scene-instances-map.tsv`](phyre-asset-files-scene-instances-map.tsv) | 274,258 | `PMeshInstance`: name, the record number the name gives, mesh, materials, flags and numbers, bounds and world matrix |
-| [`phyre-asset-files-scene-meshes-map.tsv`](phyre-asset-files-scene-meshes-map.tsv) | 274,255 | `PMesh`: name, segment run, default materials and the element counts of its arrays |
-| [`phyre-asset-files-scene-segments-map.tsv`](phyre-asset-files-scene-segments-map.tsv) | 274,277 | `PMeshSegment`: mesh, material, vertex block run and index block |
-| [`phyre-asset-files-scene-vertex-blocks-map-1.tsv`](phyre-asset-files-scene-vertex-blocks-map-1.tsv) [`phyre-asset-files-scene-vertex-blocks-map-2.tsv`](phyre-asset-files-scene-vertex-blocks-map-2.tsv) | 1,805,837 | `PDataBlock`: stride, elements, streams, memory type, offset, bytes and stream layout |
-| [`phyre-asset-files-scene-stream-layouts-map.tsv`](phyre-asset-files-scene-stream-layouts-map.tsv) | 2,190 | distinct block stride and stream list, each stream as offset:type:render data type:stream set, with the blocks that have it |
-| [`phyre-asset-files-scene-materials-map.tsv`](phyre-asset-files-scene-materials-map.tsv) | 76,625 | `PMaterial`: name, shader variant, flag, render-pass remap, bound textures, parameter set and sampler set |
-| [`phyre-asset-files-scene-parameter-sets-map.tsv`](phyre-asset-files-scene-parameter-sets-map.tsv) | 21 | distinct set of a material's parameter values, by parameter name |
-| [`phyre-asset-files-scene-sampler-sets-map.tsv`](phyre-asset-files-scene-sampler-sets-map.tsv) | 2 | distinct set of a material's sampler states, by sampler name: minify and magnify filter, wrap S, T and R, LOD bias, anisotropy, border colour, base and max level, flags |
-| [`phyre-asset-files-scene-nodes-map.tsv`](phyre-asset-files-scene-nodes-map.tsv) | 312,172 | `PNode`: name, parent and local matrix |
-| [`phyre-asset-files-scene-cameras-map.tsv`](phyre-asset-files-scene-cameras-map.tsv) | 825 | `PCameraPerspective` or `PCameraOrthographic`: field of view or height, aspect, near and far planes, world matrix |
-| [`phyre-asset-files-scene-skins-map.tsv`](phyre-asset-files-scene-skins-map.tsv) | 32,850 | `PSkinBoneRemap` with the `PSkeletonJointBounds` of the same index |
-| [`phyre-asset-files-scene-pose-matrices-map.tsv`](phyre-asset-files-scene-pose-matrices-map.tsv) | 104,550 | `PMatrix4` |
-| [`phyre-asset-files-scene-stream-bindings-map.tsv`](phyre-asset-files-scene-stream-bindings-map.tsv) | 51,390 | `PMeshInstanceSegmentStreamBinding`: render data type, name, name hash, index, input set |
-| [`phyre-asset-files-scene-imports-map.tsv`](phyre-asset-files-scene-imports-map.tsv) | 22,026 | `PAssetReferenceImport`: id and target class |
-| [`phyre-asset-files-scene-unmatched-instances-map.tsv`](phyre-asset-files-scene-unmatched-instances-map.tsv) | 5,983 | instance that matches no YM00 record, and why |
-| [`phyre-asset-files-scene-procedural-records-map.tsv`](phyre-asset-files-scene-procedural-records-map.tsv) | 10,477 | `proceduralTextureConfigs.txt` record: whether its map's scene imports the texture, the materials that bind it as `TextureSampler`, and the matched instances whose first material does |
-
-- In all 456 scenes the vertex blocks fill the vertex buffer and the index blocks the index buffer as in the character files. 274,272 index blocks have type 12 and five type 8, four bytes per index, with 73,500 to 139,767 indices (`byu0101`, `byu0102`, `byu0105` and two in `gil5001`). Every segment has primitive type 2.
-- Each mesh's segment run, each segment's vertex block run and each block's stream run cover their lists once over. The 274,255 meshes hold 274,277 segments (19 meshes have two and one has four), and the 1,805,837 blocks hold 1,857,389 streams in 2,190 layouts. Three meshes are drawn by two instances.
-- Every material remaps the render pass `Opaque` to `MayaRenderPass`; 76,031 bind a `TextureSampler` texture and 594 bind no texture. The 76,625 materials hold 21 distinct parameter value sets and 2 sampler state sets. Each scene's nodes, 312,172 in all, form one tree under one root.
-- Cameras sit in 212 scenes (221 perspective, 604 orthographic), skin data in 58 (3,000 skinned segments, 32,850 bone remaps, 104,550 pose matrices) and stream bindings in 157; animation objects only in `bds0109` and `gil0102` ([Animation channel binding](phyre-animation-binding.md)).
-- The 22,026 imports are 20,709 textures and 1,317 shader variants. Each scene is named by its own two lists, `<map>_d3d11.ah` and `<map>_d3d11_srm.ah`, and by no other `.ah` list.
-- The 459 pack and scene pairs are 454 packs drawing their own scene and five drawing another map's ([Map art](../World-Areas-And-Travel/map-art.md#naming-the-map)). Of the 274,258 instances, 268,275 carry a number below the record count of the pack that draws their scene and are matched ([matching models to instances](../World-Areas-And-Travel/map-art.md#matching-models-to-instances)); the other 5,983 are matched to no record:
-  - `alc0201` (2,927) and `frs0109` (2,510): no pack draws the scene.
-  - `mic0108`: 539 instances named `mic0108_nodename<N>`, beside its 539 `nodename<N>` instances that match; their ninth character is not a digit.
-  - `pla0103`: one instance named `pPlane1`, seven characters.
-  - Six whose number is not below their pack's record count: `dor0104` 747 (747 records), `dor0105` 232 (232 records), `rsn0104` 1292 and 1293 (1,292 records), `rsn0107` 1123 and 1124 (1,123 records).
-
-Each `chr/` and `chr_shadow/` segment joined to the shader variant it draws with, pass by pass:
-
-| table | rows | one row per |
-|---|---:|---|
-| [`phyre-asset-files-mesh-segment-variants-chr.tsv`](phyre-asset-files-mesh-segment-variants-chr.tsv) | 12,908 | mesh segment: its material and the name the file exports it under, the variant the material imports, the render data types of its vertex blocks and of the file's dynamic streams, the variant's render passes, how many of them its streams satisfy, and each pass and type left open |
-| [`phyre-asset-files-mesh-materials-chr.tsv`](phyre-asset-files-mesh-materials-chr.tsv) | 29,538 | `PMaterial`: exported name, variant, and the mesh default-set slots that hold it |
-| [`phyre-asset-files-mesh-dynamic-blocks-chr.tsv`](phyre-asset-files-mesh-dynamic-blocks-chr.tsv) | 24 | dynamic data block with its stream, or dynamic stream, of the three `chr_shadow/` dynamic meshes, with their modifier |
-| [`phyre-asset-files-shader-pass-streams-chr.tsv`](phyre-asset-files-shader-pass-streams-chr.tsv) | 150 | render pass of the ten variants the segments draw with: its shader's stream definitions, in order |
-
-- A segment draws with the material at its `m_materialIndex` in its mesh's default set, and every instance's `m_materialSet` is its own mesh's set. Those materials are named `<name>-Skinned-VertexColor` (12,304 in `chr/`, 585 in `chr_shadow/`) or `<name>-VertexColor` (the 16 of `chr/global/materialsphere` and the three dynamic `chr_shadow/` meshes).
-- Each file also exports a material under the base name, which no mesh's set holds: 16,042 in `chr/` and 588 in `chr_shadow/`. Each of them imports a variant that declares the rigid types `Color`, `Vertex`, `Normal`, `ST`, `Tangent` and `Binormal`, so a skinned mesh's streams match the variant of its `-Skinned-` material and not the one its base material imports.
-- For each pass, `0x00609D80` first gives the pass shader's stream definitions the dynamic mesh's streams of their render data type, then `0x0060A010` the first vertex block stream of each type still open. A definition left open logs `Failed to find data block/vertex stream to satisfy RDT %s for stream %d`, `0x0060A010` returns `0x13`, and `0x0060B980` returns at `0x0060BF33` without drawing that segment or the instance's later ones.
-- The ten variants the segments draw with give 150 passes: the 120 skinned ones define `Color`, `SkinnableVertex`, `SkinnableNormal`, `SkinIndices`, `SkinWeights`, `ST`, `SkinnableTangent` and `SkinnableBinormal`, the 30 of the two rigid variants `Color`, `Vertex`, `Normal`, `ST`, `Tangent` and `Binormal`. All 12,320 `chr/` segments and 585 of the 588 `chr_shadow/` segments satisfy every pass.
-- The other three, `high/n10/n1017/mws/hn1017_33`, `hn1017_43` and `monster/m11/m1134/mws/m1134`, draw with the rigid variant `CB0F9F994888730E82AD01521483E596`. Their modifier `SkinLocalTangent` writes `Vertex`, `Normal` and `Tangent` from five dynamic data blocks, and their vertex blocks carry the eight skinnable types.
-- So no stream of those three has the type `Binormal` that all 15 passes of that variant define: the match returns `0x13` in every pass, the shadow draw at `0x001F5F38` included, and the three meshes are not drawn: a character whose shadow model is one of them casts no shadow.
-
-Every map scene, `map/<area>/<map>/<map>.dae.phyre` (456 files), decoded object by object the same way, with each pointer member followed through the file's pointer fixup table to the object, import or user fixup it names:
-
-| table | rows | one row per |
-|---|---:|---|
-| [`phyre-asset-files-scenes-map.tsv`](phyre-asset-files-scenes-map.tsv) | 456 | scene: its `.ah` lists, the packs that draw it and their tag-30 record counts, the instances matched and the records no instance names, object counts by class, imports by class, the variants and the checks |
-| [`phyre-asset-files-scene-instances-map.tsv`](phyre-asset-files-scene-instances-map.tsv) | 274,258 | `PMeshInstance`: name, the record number the name gives, mesh, materials, flags and numbers, bounds and world matrix |
-| [`phyre-asset-files-scene-meshes-map.tsv`](phyre-asset-files-scene-meshes-map.tsv) | 274,255 | `PMesh`: name, segment run, default materials and the element counts of its arrays |
-| [`phyre-asset-files-scene-segments-map.tsv`](phyre-asset-files-scene-segments-map.tsv) | 274,277 | `PMeshSegment`: mesh, material, vertex block run and index block |
-| [`phyre-asset-files-scene-vertex-blocks-map-1.tsv`](phyre-asset-files-scene-vertex-blocks-map-1.tsv) [`phyre-asset-files-scene-vertex-blocks-map-2.tsv`](phyre-asset-files-scene-vertex-blocks-map-2.tsv) | 1,805,837 | `PDataBlock`: stride, elements, streams, memory type, offset, bytes and stream layout |
-| [`phyre-asset-files-scene-stream-layouts-map.tsv`](phyre-asset-files-scene-stream-layouts-map.tsv) | 2,190 | distinct block stride and stream list, each stream as offset:type:render data type:stream set, with the blocks that have it |
-| [`phyre-asset-files-scene-materials-map.tsv`](phyre-asset-files-scene-materials-map.tsv) | 76,625 | `PMaterial`: name, shader variant, flag, render-pass remap, bound textures, parameter set and sampler set |
-| [`phyre-asset-files-scene-parameter-sets-map.tsv`](phyre-asset-files-scene-parameter-sets-map.tsv) | 21 | distinct set of a material's parameter values, by parameter name |
-| [`phyre-asset-files-scene-sampler-sets-map.tsv`](phyre-asset-files-scene-sampler-sets-map.tsv) | 2 | distinct set of a material's sampler states, by sampler name: minify and magnify filter, wrap S, T and R, LOD bias, anisotropy, border colour, base and max level, flags |
-| [`phyre-asset-files-scene-nodes-map.tsv`](phyre-asset-files-scene-nodes-map.tsv) | 312,172 | `PNode`: name, parent and local matrix |
-| [`phyre-asset-files-scene-cameras-map.tsv`](phyre-asset-files-scene-cameras-map.tsv) | 825 | `PCameraPerspective` or `PCameraOrthographic`: field of view or height, aspect, near and far planes, world matrix |
-| [`phyre-asset-files-scene-skins-map.tsv`](phyre-asset-files-scene-skins-map.tsv) | 32,850 | `PSkinBoneRemap` with the `PSkeletonJointBounds` of the same index |
-| [`phyre-asset-files-scene-pose-matrices-map.tsv`](phyre-asset-files-scene-pose-matrices-map.tsv) | 104,550 | `PMatrix4` |
-| [`phyre-asset-files-scene-stream-bindings-map.tsv`](phyre-asset-files-scene-stream-bindings-map.tsv) | 51,390 | `PMeshInstanceSegmentStreamBinding`: render data type, name, name hash, index, input set |
-| [`phyre-asset-files-scene-imports-map.tsv`](phyre-asset-files-scene-imports-map.tsv) | 22,026 | `PAssetReferenceImport`: id and target class |
-| [`phyre-asset-files-scene-unmatched-instances-map.tsv`](phyre-asset-files-scene-unmatched-instances-map.tsv) | 5,983 | instance that matches no YM00 record, and why |
-| [`phyre-asset-files-scene-procedural-records-map.tsv`](phyre-asset-files-scene-procedural-records-map.tsv) | 10,477 | `proceduralTextureConfigs.txt` record: whether its map's scene imports the texture, the materials that bind it as `TextureSampler`, and the matched instances whose first material does |
-
-- In all 456 scenes the vertex blocks fill the vertex buffer and the index blocks the index buffer as in the character files. 274,272 index blocks have type 12 and five type 8, four bytes per index, with 73,500 to 139,767 indices (`byu0101`, `byu0102`, `byu0105` and two in `gil5001`). Every segment has primitive type 2.
-- Each mesh's segment run, each segment's vertex block run and each block's stream run cover their lists once over. The 274,255 meshes hold 274,277 segments (19 meshes have two and one has four), and the 1,805,837 blocks hold 1,857,389 streams in 2,190 layouts. Three meshes are drawn by two instances.
-- Every material remaps the render pass `Opaque` to `MayaRenderPass`; 76,031 bind a `TextureSampler` texture and 594 bind no texture. The 76,625 materials hold 21 distinct parameter value sets and 2 sampler state sets. Each scene's nodes, 312,172 in all, form one tree under one root.
-- Cameras sit in 212 scenes (221 perspective, 604 orthographic), skin data in 58 (3,000 skinned segments, 32,850 bone remaps, 104,550 pose matrices) and stream bindings in 157; animation objects only in `bds0109` and `gil0102` ([Animation channel binding](phyre-animation-binding.md)).
-- The 22,026 imports are 20,709 textures and 1,317 shader variants. Each scene is named by its own two lists, `<map>_d3d11.ah` and `<map>_d3d11_srm.ah`, and by no other `.ah` list.
-- The 459 pack and scene pairs are 454 packs drawing their own scene and five drawing another map's ([Map art](../World-Areas-And-Travel/map-art.md#naming-the-map)). Of the 274,258 instances, 268,275 carry a number below the record count of the pack that draws their scene and are matched ([matching models to instances](../World-Areas-And-Travel/map-art.md#matching-models-to-instances)); the other 5,983 are matched to no record:
-  - `alc0201` (2,927) and `frs0109` (2,510): no pack draws the scene.
-  - `mic0108`: 539 instances named `mic0108_nodename<N>`, beside its 539 `nodename<N>` instances that match; their ninth character is not a digit.
-  - `pla0103`: one instance named `pPlane1`, seven characters.
-  - Six whose number is not below their pack's record count: `dor0104` 747 (747 records), `dor0105` 232 (232 records), `rsn0104` 1292 and 1293 (1,292 records), `rsn0107` 1123 and 1124 (1,123 records).
-
 `gamedata/d3d11/artdata/shared/phyremaps.txt` beside it (8,492,839 bytes, 94,682 CRLF lines) holds 47,341 pairs: a
 map texture's path under `/GameData/D3D11/ArtData/map/` and the file under `/GameData/D3D11/ArtData/shared/map/`
 that holds it. The values are exactly the 9,529 files of `shared/map/`. No key is a shipped file, and each key is
@@ -493,11 +419,14 @@ named by at least one of the 914 map asset lists. `0x001A9940` reads it for the 
 ### Preconditions
 
 `0x0059E070` returns `0x15` when the byte `0x02CA9D90` is zero and `0xB` when the stream is not open. The
-byte is set by `0x0059D550`, which registers the cluster-header and instance-list classes; it is slot 1
-of the module vtable `0x00D26C40`, a module that static-initialiser code links into the module list
-(`0x0016035C` stores the vtable), and the engine's start-up `0x005A08E0` calls slot 1 of every listed module before any asset loads.
-Slot 2 of the same vtable, the module's shutdown `0x0059FE20`, clears the byte again at `0x0059FF14`; after
-the shutdown walk `0x0059E070` returns `0x15` again.
+byte is set by `0x0059D550`, which registers the cluster-header and instance-list classes: it calls
+`0x005983E0` and `0x00598C50`, registers the `PClusterHeader` descriptor `0x02CAA0A0` by name with `0x006388C0`
+and its members with `0x00639450`, calls `0x00598DF0`, and then sets the byte (`0x0059D57D`) and returns 0.
+
+`0x0059D550` is slot 1 of the module vtable `0x00D26C40`, a module that static-initialiser code links into
+the module list (`0x0016035C` stores the vtable), and the engine's start-up `0x005A08E0` calls slot 1 of
+every listed module before any asset loads. Slot 2 of the same vtable, the module's shutdown
+`0x0059FE20`, clears the byte again at `0x0059FF14`; after the shutdown walk `0x0059E070` returns `0x15` again.
 
 ### The header check
 
@@ -509,23 +438,43 @@ zeroes the rest and passes platform checking as the constant 1.
    `0x02CAA0A0`) and tests again: still wrong returns 6; right sets the swapped flag, so a big-endian
    file is accepted.
 3. It calls `0x00686D00` (`0x44583131`) and `0x0069E780` (`0x424C4C54`); a different platform, or a physics
-   id that is neither Bullet nor 0, returns 6.
+   id that is neither Bullet nor 0, returns 6. Both compares are skipped when the platform-check
+   argument is 0 (`0x0059A44D`, `0x0059A45C`).
 4. It gives the namespace buffer `m_packedNamespaceSize` bytes (`0xD` when that fails) and returns 6
-   when the buffer is null, which is what a zero-size namespace leaves.
+   when the buffer is null, which is what a zero-size namespace leaves. A buffer whose size word already
+   equals that size is kept (`0x0059A479`); otherwise the new one comes from `0x0017D260(size, 4)` and the old
+   one is released through `0x00584730` unless bit `0x80000000` of its size word is set (`0x0059A484`-`0x0059A4C8`).
 5. With `m_size` 84 it reads the namespace (`0x0059A6F0`: one read, 9 when short, then `0x0059C180` when
    the file was swapped). A shorter header takes the surplus already read as the start of the
    namespace (6 when the surplus is larger than the namespace); a longer one is read on into a
    second buffer (`0xD`, 9).
+6. It writes `m_size` to its sixth argument (`0x0059A4E4`). For an `m_size` other than 84 in a swapped
+   file it first swaps the header back to file order (`0x0059A501`), and a longer header's second buffer
+   (`0x0067B100`) gets all `m_size` bytes, the 84 already read first (`0x0059A52E`-`0x0059A56F`).
+7. After a shorter header, `0x0059A6F0` reads the rest of the namespace and is given
+   `namespace + surplus` (`0x0059A5B1`), which is the address it hands to `0x0059C180` (`0x0059A748`).
+8. `0x0059A6F0` skips its read when the size is 0 or the buffer null, and swaps after a short read too
+   (`0x0059A710`-`0x0059A748`); `0x0059A3B0` returns 0 when the namespace is read in full (`0x0059A5E0`).
 
 `0x0059E070` then requires the byte-order mark and the size identity, or returns 6.
 
 `0x0059C180` swaps the namespace of a big-endian file in place: its eight header words, every word of
 the type-name table (`0x0059A8B0`), the nine words of every class record (`0x0059A780`) and the six
 words of every member record. The string pool is left as it is.
+The `extraSize` block after the pool is left as it is too. The eight header words are swapped first
+(`0x0059C186`-`0x0059C1C4`), so the counts it then reads are in host order, and the type-name table is
+swapped last, by a tail jump (`0x0059C245`).
 
 ### Binding the schema
 
 - `0x0059AAE0` allocates one table entry per type (`0x18` bytes), class (`0x30`) and member (`0x38`).
+  The three tables share one block, each part `(count × size + 0xF) & ~0xF` bytes long
+  (`0x0059AB04`-`0x0059AB30`).
+- A block whose size word already equals the total is reused; otherwise the new one comes from
+  `0x0017D260(total, 0x10)`, `0xD` when that fails (`0x0059ABEC`), and the old one is released through
+  `0x00584730` unless bit `0x80000000` of its size word is set (`0x0059AB3E`-`0x0059AB7C`).
+- `0x0059AAE0` then zero-fills the block (`0x00861EC0`), hands the type, class and member parts with their
+  counts to `0x0059FCA0` for the views at `+0x18`, `+0x28` and `+0x38` (`0x0059ABA2`-`0x0059ABCA`) and returns 0.
 - `0x0059B430` finds each type and class name in the engine's registry (`0x006373D0`, keyed by a hash of
   1973, × 33 plus the low five bits of each byte), sets each class's parent from word 0, and matches
   each member to the runtime class's member of the same name, walking its bases. A class name is
@@ -536,6 +485,13 @@ words of every member record. The string pool is left as it is.
   in the current runtime"`) and do not stop the load.
 - `0x00599500` finds the class bound to `PClusterHeader` (`0x13` when no class is bound), converts the header
   through the file's schema, and checks the platform again (6).
+- That class is the `0x30`-byte table entry whose `+0x10` is the descriptor `0x02CAA0A0` (`0x00599543`). The
+  conversion `0x00599670(entry, source, header, 1)` (`0x0059962A`) reads from a local copy of the 84 bytes
+  (`0x005995E6`-`0x00599619`), or from the second buffer at `+0x08` of its third argument when `m_size` is
+  above 84 (`0x005995E0`), and writes into the header.
+- For a swapped file it swaps an 84-byte header back to file order before the copy (`0x00599592`) and
+  swaps the converted header after it (`0x00599642`). The platform check compares `m_platformID` with
+  `0x00686D00` (`0x00599647`-`0x00599656`); a match returns 0.
 - `0x0059AC00` builds a dynamic class (`0x00632E80`) for each class record with flag `0x01` and no
   runtime class, under its parent; one left unbuilt returns `0x13`.
 
@@ -545,8 +501,27 @@ words of every member record. The string pool is left as it is.
 
 - `0x00686D10` copies the three D3D11 sizes into the load record, and `0x0059E780` reads the list
   headers (`0x00596FC0`), returning 6 for a `m_classID` outside the class table.
+- `0x0059E780` returns the result of `0x00596FC0` when it is not 0 (`0x0059E7CD`). For each list it stores the
+  class entry in the load record's per-list array at `+0x58` (`0x0059E801`). When the entry's runtime
+  descriptor has a non-zero word `+0xE0`, the total its third argument points at first becomes
+  `(t + a - 1) & ~(a - 1)` for a non-zero alignment a, the word `+0xE4` (`0x0059E81F`-`0x0059E830`).
+- The total then grows by `m_count × [+0xE0]` (`0x0059E83C`-`0x0059E843`), and its fourth argument keeps the
+  largest such a (`0x0059E832`-`0x0059E839`). It returns 0 after the last list (`0x0059E852`).
 - `0x0059D6A0` sizes and allocates each list's objects. A list whose class has no runtime counterpart
-  is skipped with a log line, unless its class carries flag `0x04`, which returns 6.
+  is skipped with a log line (`0x005CDAA0`, level 2, the format at `0x00D26D50`, which names the class and
+  says it is skipped, `0x0059D74C`), written in the sizing walk for every such list; when its class carries
+  flag `0x04`, the allocation walk then returns 6 (`0x0059D836`-`0x0059D840`).
+- For a list with runtime descriptor D it takes `o = m_count × s`, s being D's instance size `+0x38`, and
+  `p = ((m_arraysSize + 0x17) & ~7) + h + 8 × m_pointersInArraysCount`, where h is `m_objectsSize - o`
+  for a header class (D `+0xFC` bit `0x4`) and 0 for any other (`0x0059D753`-`0x0059D781`).
+- When D's word `+0xE0` is not 0, p becomes `(p + a - 1) & ~(a - 1)` for a non-zero a, D's word `+0xE4`,
+  and then `p + m_count × [+0xE0]` (`0x0059D784`-`0x0059D7A8`).
+- The block size is built list by list as `t = ((t + b - 1) & ~(b - 1)) + p + o`, b being D's alignment
+  `+0x3C` (`0x0059D7AB`-`0x0059D7BB`); `0x0063DD30(cluster, t, t, m_instanceListCount)` is called only when t
+  is not 0 (`0x0059D7D1`-`0x0059D7E5`).
+- The allocation walk takes each list's record from `0x006394E0(cluster, m_count, D, p)`, `0xD` when that
+  gives null, clears the record's byte `+0x7D` and stores the record in the list's slot of the array at
+  `+0x48`; a skipped list's slot gets null (`0x0059D8AB`-`0x0059D8C2`). It returns 0 (`0x0059D8D6`).
 - `0x0063DD30` allocates the cluster's one block (alignment `0x20`): a `0x20`-byte header, the objects' size
   rounded up to 8 and one `0x80`-byte list record per list. It links the block on the cluster's
   chain at `+0x48` and gives the records to its pool at `+0x50` (`0x00680100`); a second block gets
@@ -562,6 +537,10 @@ words of every member record. The string pool is left as it is.
   class's descriptor slot `+0x00` forwards over every object (`0x0059FDB0(descriptor, objects, count, 1)` at
   `0x0059D674`), the byte-order walk of [reflection](phyre-reflection.md). It returns `0x13` for an out-of-range or
   unbound class and `0x11` when the list has no object area.
+  - The objects handed to `0x0059FDB0` start at `objects + [D+0xF8] - [D+0xF4]` (`0x0059D659`-`0x0059D671`). A
+    class is unbound when its table entry's file record `+0x08` or runtime descriptor `+0x10` is null
+    (`0x0059D5D9`-`0x0059D5ED`). A header class's tail is copied with `0x00861EBA` from the file size
+    `[record+4] & 0x0FFFFFFF` on (`0x0059D631`-`0x0059D64E`). Every other path returns 0 (`0x0059D67E`).
 
 ### User fixups
 
@@ -580,18 +559,35 @@ dump of data under 32 bytes) and the load goes on.
   `0x001615C0`, `0x00167DB0`, `0x001688F0`) clear flag `0x2` and set `0x4` at `+0xFC` (`0x001615C0` sets `0x8` as
   well; the other three clear it) and store a function at descriptor `+0x100` that hands each array to
   the visitor with its element type: through its slot `+0x08`, or through `+0x10` with a second location.
+- Each initialiser first calls a builder on its descriptor, then stores the descriptor's vtable, the
+  function and the flags, and ends with a tail jump to `0x00808B90` that hands over an exit routine:
+  `0x001605C0` builds `0x02CADB40` with `0x005A8400`, vtable `0x00D2B768`, function `0x005BFF30`, exit `0x008A8F20`;
+  `0x001615C0` builds `0x02CB7480` with `0x005D9B30`, vtable `0x00D3BC30`, function `0x005FE350`, exit `0x008AB0B0`.
+- `0x00167DB0` builds `0x02E5E430` with `0x006CFDB0`, vtable `0x00D8B050`, function `0x006D4CF0`, exit `0x008B7150`;
+  `0x001688F0` builds `0x02EA0850` with `0x006D9F00`, vtable `0x00D8DFA8`, function `0x006DA380`, exit `0x008B78B0`.
+  Each exit routine stores another vtable at the descriptor (`0x00D2B298`, `0x00D3ADA8`, `0x00D8AE20`,
+  `0x00D8DE98`) and jumps to `0x00633390`.
 - `0x006D4CF0` serves `PModifierNetworkInfoPacket` (`0x20` bytes), and does nothing when the visitor's
   slot `+0x18` answers true: `+0x04` modifier codes and `+0x08` modifier instances (`0x20` bytes
   each), then `+0x0C` + `+0x0E` two-byte buffer entries.
+- All three go through slot `+0x08` with the types `0x02E5E130`, `0x02E5E230` and `0x02E5E330`, starting at
+  `0x20`, `0x20 × (1 + c)` and `0x20 × (1 + c + i)` from the packet for c codes and i instances; an
+  array whose count is 0 is not handed over (`0x006D4D32`-`0x006D4DB9`).
 - `0x006DA380` serves `POccluderGeometryObject` (`0x30` bytes): `(+0x00 + 3) / 4` `Matrix4`, then
   `+0x04` `Point3`, then `+0x08` × 4 bytes.
+- It does not call the visitor's slot `+0x18` and hands all three through slot `+0x08` whatever the
+  counts: q = `(+0x00 + 3) / 4` records of the type `0x006B08A0` returns at `0x30`, then `+0x04` of the
+  type `0x006B0B20` returns at `0x30 + 64 × q`, then `+0x08 × 4` entries of `PUInt8` (`0x01F2E460`, size 1,
+  from `0x0062FFC0`) at `16 × (3 + 4 × q + n)` for n = `+0x04`, all from the object (`0x006DA39B`-`0x006DA435`).
 - `0x005BFF30` serves `PAnimationClipBinding` (`0x08` bytes), and does nothing when the visitor's slot
   `+0x18` answers true: `(+0x06 + 3) & ~3` two-byte entries at `+0x08` (the type `0x006300A0` returns),
   then `+0x02` + `+0x04` four-byte `PAnimationClipBindingChannelMap` records, both through slot `+0x08`
   (`0x005BFF6B`-`0x005BFFF4`).
 - It then hands, from the next 8-byte boundary, `+0x02` `PAnimationClipBindingDataBlockCache` records
-  through slot `+0x10`; the second location is the end of the two arrays rounded up to the alignment the
-  visitor's `+0x08` object answers for that type (its slot `+0x18`, `0x005BFFF8`-`0x005C0058`).
+  through slot `+0x10`; the second location is `(e + a - 1) & ~(a - 1)`, the end of the two arrays rounded up to
+  the alignment a the visitor's `+0x08` object answers for that type (its slot `+0x18`, `0x005BFFF8`-`0x005C0058`),
+  with e = `8 + 2 × ((+0x06 + 3) & ~3) + 4 × (+0x02 + +0x04)`; both are offsets from the record
+  (`0x005C0008`-`0x005C0049`).
 - `0x005FE350` serves `PParameterBuffer` (`0x20` bytes), and does nothing when slot `+0x18` answers true:
   for each of the `+0x10` (mask `0x7FFFFFFF`) `PShaderParameterDefinition` records at `+0x18`, `0x18` bytes
   each, it hands one parameter to slot `+0x10` at the record's `+0x10` offset into the buffer
@@ -656,13 +652,29 @@ Related).
 - The constructor `0x006753A0(reference, name, a, b)`, called by the descriptor's construct slot
   `0x00674BE0`, sets up the node at `+0x08`, copies the name (`0x001C26B0`), stores `a` and `b` at
   `+0x38` and `+0x40`, clears `+0x48` and registers the object (`0x00677BA0`).
+- It points the node's three links at `+0x08` itself, clears the key's 32-bit hash `+0x20` and name
+  `+0x28`, keeps the copy at `+0x30` and returns the reference (`0x006753C6`-`0x00675409`).
 - For a loaded list, slot `+0x70` (`0x00674B50`) runs `0x00676450`: each reference gets the list's
   cluster at `+0x48`, its name hash (`0x00677350`, seed `0x7B5`) and name in its key, and is inserted
   under the lock `0x02D3E880`. A reference without a name returns `0x15` and a name already
   registered `0x12`, which ends the load.
+- `0x00676450` steps through the list's `+0x70` objects from `+0x58` by the instance size `+0x38` of the
+  descriptor at `+0x50` (`0x00676476`-`0x00676486`). The name is the pointer at `+0x30` with bit `0x1`
+  cleared (`0x006764B4`-`0x006764BF`); the cluster is stored before that test (`0x006764B0`).
+- The key is the hash at `+0x20` and the name at `+0x28`, after the node at `+0x08` is pointed at itself
+  again (`0x006764C8`-`0x006764E7`). On first use, under the guard `0x02D3EC9C`, the registry anchor
+  `0x01F2EA70` gets its six links pointed at itself and the exit routine `0x008B1C00` goes to `0x00808B90`
+  (`0x0067650C`-`0x0067656D`).
+- Under the lock (`0x005CD4F0`, released by `0x005CD820`), `0x006750C0` looks the reference up, a hit giving
+  `0x12`, and `0x0067F700` inserts its node (`0x006764FA`-`0x006765A4`). After the last reference it returns 0
+  (`0x006765D2`).
 - The registry orders keys with `0x00675EF0`: by hash, then, when both names contain `#`, by the text
   after the last `#` (case-sensitive) and then by the part before it (length first, then
   case-insensitive), and otherwise by the whole names case-insensitively.
+- `0x00675EF0` compares the hashes unsigned (`0x00675F05`-`0x00675F1A`), finds the last `#` with `strrchr`
+  (`0x00675F38`, `0x00675F4A`) and compares the suffixes byte by byte (`0x00675F70`-`0x00675F86`). It calls
+  `_strnicmp` for equal-length prefixes and `_stricmp` for whole names with the second key's name first
+  (`0x00675F8D`-`0x00675FB2`, `0x00675FD7`-`0x00675FDF`), so those two return the reverse of a first-key compare.
 
 `0x00676BD0(id)` finds a reference by id. On first use it loads
 `/GameData/D3D11/ArtData/shared/idmaps.txt` into a map of id pairs with `0x00677030` (alternate CRLF

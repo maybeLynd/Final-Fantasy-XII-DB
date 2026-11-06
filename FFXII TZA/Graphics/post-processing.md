@@ -24,7 +24,7 @@ array at `0x01F2D6A0` ([array](post-processing-named-render-pass-array.tsv)):
 | Function | Pass | Pass records | Constants it names | Caller |
 |---|---|---|---|---|
 | `0x0018E4A0` | AO blur and composite | `SAOBlur`, `SAORender`, `SAOBlendCombine` | `ColorBufferSampler`, `gMainTexTexelSize`, `gAoAxis`, `gMainTex`, `gAoTex` | `0x0018F510` |
-| `0x0018F6B0` | bloom | `BrightBlend` | `g_brightPara`, `g_BrightTex` | `0x00187950` |
+| `0x0018F6B0` | brightness, from the Brightness option (`0x0018F6F1`) | `BrightBlend` | `g_brightPara`, `g_BrightTex` | `0x00187950` |
 | `0x0018F8F0` | colour grading | `ColorCorrection` | `apply_MainTex`, `colorR`, `colorG`, `colorB`, `percent`, `gamma`, `resolution` | `0x00187950`, `0x0018EEE0`, `0x001F3090` |
 | `0x0018FE00` | single-step pass | `Opaque`, `Transparent` | `ColorBuffer`, `ColorBufferSampler`, `SingleStepOffset` | `0x001F3090` |
 | `0x00190260` | font border | `FontBorderWidth`, `FontBorderHeight` | `FontBorderSetting`, `FontBorderColor`, `SingleStepOffset` | `0x00212E70` |
@@ -39,6 +39,18 @@ array at `0x01F2D6A0` ([array](post-processing-named-render-pass-array.tsv)):
 The samplers `LinearSampler`, `PointSampler` and `samNearest` are named too. The shaders are the
 `.fx.phyre` assets on [Render parameters and shader assets](render-parameters-and-shader-assets.md).
 
+`0x0018F6B0(block, ctx, texture)` returns 0 at once while the block's byte `+0x1F4` is clear (`0x0018F6DD`).
+Otherwise it reads the Brightness option, the dword `+0x10` of the game settings `[0x01F82D20]`, keeps it as
+a float `v` at `+0x1F8` (`0x0018F6F1`-`0x0018F6F9`) and writes `g_brightPara = (v - 50.0) / 100.0` (`0x008F3130`,
+`0x008F3134`, `0x0018F76A`-`0x0018F772`) under the size test below, returning 3 when it does not fit
+(`0x0018F7BF`). `g_BrightTex` gets a record holding `0xFF` and the texture `[texture]`, null when the byte at
+`texture + 8` is set, through `0x001945B0` (`0x0018F7DD`-`0x0018F80D`).
+
+The pass then calls `0x0060D4F0(ctx, 0, 0)`, `0x0060DB50(ctx, 0)`, `0x0060D190(ctx, 0.0, 0.0, 0.0, 0.0)` and
+`0x005FEFD0(ctx, 0)`, stores the `BrightBlend` record `0x01F2DD40` at `ctx + 0x80` (`0x0018F86A`), submits with
+`0x0060B980` (`0x0018F8AE`) and ends with `0x00600A60(ctx, 0)` (`0x0018F8BD`). The first of these calls to return
+non-zero ends the pass with its value (`0x0018F827`-`0x0018F8C4`); otherwise the pass returns 0.
+
 The copy pass draws a mesh that `0x001EEC80` builds once, from the render-manager installer
 `0x00186CD0`. It loads `./GameData/D3D11/ArtData/shaders/CopyBuffer.fx.phyre` (`0x0019CB20`,
 `0x0063DA50`, `0x0063B010`), creates a `0xA0`-byte cluster at `0x01F82E60` (`0x00633040`), and builds in it
@@ -49,7 +61,12 @@ instance (`0x0060B980`).
 
 ### Writing a constant
 
-`0x0018D240(shader, name)` returns the parameter's descriptor or null. A pass then copies its value
+`0x0018D240(shader, name)` returns the parameter's descriptor or null. It returns null for a null name, and
+otherwise searches the shader's two tables of `0x18`-byte entries in turn: `[+0x40]` entries at `[+0x48]`, then
+`[+0x50]` entries at `[+0x58]` (each count masked with `0x7FFFFFFF`). It compares the name byte by byte with
+the entry's name pointer `+0x08` less its bit `0x1`, and the first match is the descriptor (`0x0018D24B`-`0x0018D310`).
+
+A pass then copies its value
 into the constant block with `memcpy` (`0x00861EBA`) only when the descriptor's offset (`u16 +0x10`)
 plus its size (`u16 +0x12` masked to 13 bits) fits the block's first dword and the offset is at
 least 4 (`0x001929A7` to `0x001929E1`). A constant the shader does not declare is skipped silently.
@@ -62,13 +79,19 @@ not fit returns 3. `0x001EE8E0` uses it for `ColorBufferSampler`, and the passes
 ### Ambient occlusion
 
 `0x0018F510(block, …)` copies the colour buffer first (`0x001EE8E0`) unless the block's `+0x1E9` is set.
+The copy takes `[r]` of the target `r = 0x00186660(0x00189120())`, null when the byte at `r + 8` is set, into
+`[+0x2B0]` (`0x0018F54F`-`0x0018F578`). On every call the AO targets `+0x2D0` and `+0x2D8` are then reset to
+`+0x280` and `+0x288` (`0x0018F57D`-`0x0018F595`), and the function returns 0 on every path (`0x0018F694`).
+
 It runs AO only when the HDAO option (`+0x28` of the game settings, 1 half resolution, 2 full) is
-on and the block's `+0x198` (`EnableAO`) is set:
+on and the block's `+0x198` (`EnableAO`) is set. The option is read from `[0x01F82D20]`, and any value other
+than 1 and 2 leaves AO off (`0x0018F5A3`-`0x0018F5C4`):
 
 - with `+0x344` = 1 it runs HBAO (`0x00190760`), after swapping in the targets `+0x2A0` / `+0x2A8` when
-  HDAO is at half resolution and `+0x1E8` is clear;
+  HDAO is at half resolution and `+0x1E8` is clear; they go into `+0x2D0` / `+0x2D8` (`0x0018F5F7`-`0x0018F60C`);
 - otherwise it runs SAO (`0x00191E90`);
-- either way it then runs the blur and composite `0x0018E4A0`.
+- either way it then runs the blur and composite `0x0018E4A0`, with the same first five arguments and 0 in
+  place of the sixth (`0x0018F66B`-`0x0018F685`).
 
 Both methods keep a character copy and a scene copy of each value in the render-parameter block:
 
@@ -89,7 +112,15 @@ at `0x0019204D` and `0x0019210B`), and HBAO's angle conversion uses `0x008F3120`
 `0x00191DA0` runs when the block's `+0x3E8` and `+0x3E9` are set. With `+0x4A3` set (the PostAA option
 on `SMAA_1x`) it runs SMAA `0x001925D0`; otherwise PhyreEngine's FXAA (`0x0065A630`, see
 [Phyre post-effect classes](../PhyreEngine/phyre-post-effect-classes.md)) and the copy
-`0x001EE8E0`. SMAA takes four constants from the quality integer at `+0x184`:
+`0x001EE8E0`. With either of the two bytes clear it returns without drawing (`0x00191DBF`, `0x00191DCC`).
+
+SMAA is a tail jump (`0x00191E0B`): `0x001925D0` gets the render-parameter block `0x00193D50` returns in place of
+the first argument, the second and third arguments as they came, and the target `0x001867C0(0x00189120())`
+(`0x00191DDB`-`0x00191DF3`). FXAA gets the block's `+0x378`, the second argument, `[+0x290]`, `[arg3]` (null
+when the byte at `arg3 + 8` is set) and 1 (`0x00191E17`-`0x00191E38`). The copy then gets `[[+0x290]]` (null when
+the byte at `[+0x290] + 8` is set), the third argument, a zeroed record and 0 (`0x00191E3D`-`0x00191E70`).
+
+SMAA takes four constants from the quality integer at `+0x184`:
 
 | `+0x184` | `SMAA_THRESHOLD` | `SMAA_MAX_SEARCH_STEPS` | `SMAA_MAX_SEARCH_STEPS_DIAG` | `SMAA_CORNER_ROUNDING` |
 |---|---|---|---|---|
@@ -166,7 +197,9 @@ The cutscene loader `0x001C3D50` reads `mGlareThreshold` and `mGlareLuminance` i
 
 ### The PPFX features the game leaves off
 
-`0x006CBD20` initialises the library once with the flag word `0x20001` (`0x006CBE02`).
+`0x006CBD20` initialises the library with the flag word `0x20001` (`0x006CBE02`) on every call, each of which
+creates a context; only the allocator and licence set-up behind the flag `0x01F31F70` runs once
+(`0x006CBD3F`-`0x006CBD68`).
 `CPostEffect::Initialize` (`0x006FF900`) stores it at `+0x20C` (`0x006FFB8C`) and derives one byte per
 optional feature from it (`0x006FFE56` to `0x00700071`, with `r12` = 1):
 
@@ -191,7 +224,22 @@ anti-aliasing passes above are separate code. Depth of field and glare are not b
 The library's texture utility `CTextureUtil` is a reference-counted singleton (`0x02EA1590`, count
 `0x02EA1598`): `0x007142F0` allocates `0x22360` bytes on first use. `Initialize` acquires it
 (`0x00700972`) and calls its slot 0, `0x007307A0`, which calls `0x0072D820`, which calls
-`TEXSHADERSET::CreateEffect` `0x0072A320` (`0x0072D872`) and abandons the sequence on a non-zero result.
+`TEXSHADERSET::CreateEffect` `0x0072A320` (`0x0072D872`) and abandons the sequence on a negative result.
+
+`0x007142F0` returns the instance `[0x02EA1590]` and sets the count to `count + 1` when the count is above 0
+(`0x00714307`, `0x00714356`). Otherwise it allocates through `0x006DA880` with the allocator `[0x01F3BA68]`, tagged
+`GPUClassUtil.h` line `0x49` (`0x00714314`-`0x00714327`), builds the object with `0x0072F870(object, 0)`
+(`0x0071433B`), stores it at `0x02EA1590` and sets the count to 1 (`0x00714345`-`0x0071434E`); a failed allocation
+stores null and still sets the count to 1.
+
+`0x0072D820`, `TEXSHADERSET::InitializeDevice()` by its log lines (`0x00DA51D0`), skips `CreateEffect` when the
+low byte of its third argument is set (`0x0072D868`). A negative `CreateEffect` result is logged as
+"CreateEffect() failed" and returned (`0x0072D87B`-`0x0072D8B8`); a zero or positive one goes on.
+
+`0x0072D820` then calls `m_pEffect->OnResetDevice()`, slot `0x38` of the object at `this + 0` (`0x0072D8D9`),
+and returns a negative result from it the same way (`0x0072D8E0`); otherwise it calls slot `0x88` of that
+object with `[this + 0xA0]` and the record {1.0, −1.0, 0} (`0x0072D937`-`0x0072D965`). With no object at
+`this + 0` it skips both calls (`0x0072D8D0`). It returns 0 on success (`0x0072D99F`).
 
 `0x0072A320` (13,547 bytes) loads the compiled effect once through `0x0078A120`, returns the loader's
 error unchanged when that fails, and then fetches a handle for each technique and uniform it names. Its body
@@ -267,6 +315,15 @@ stamps an `END` marker (`0x001D6040`), reads back the ring from the frame before
 (`0x001D5650`), stores the measured time as a double at `+0xD70` of the object `0x001D50D0` returns, and
 clears the marker list (`0x001D6170`).
 
+`0x001D62D0` allocates only while `0x01F82C80` is null (`0x001D62F0`), through `0x00210EC0`, and leaves null there
+when the allocation fails (`0x001D6357`). It sets the layout floats `+0x00` = 0.2, `+0x04` = −0.8, `+0x08` =
+0.04, `+0x0C` = 0.8 and `+0x10` = 0.7 (`0x001D6306`-`0x001D6321`): quad 0 starts at `(−0.8, 0.8)` in row 1 and
+`(−0.8, 0.7)` in row 2, with width `1 - 0.2` = 0.8 and height 0.04. It clears the word `+0x14`, the byte
+`+0x16` and `+0x1C` to `+0x2B`, and sets `+0x2C30` to −1 and `+0x2C34` to 0 (`0x001D6328`-`0x001D6341`).
+
+OLD:
+
+
 `0x001D6170` runs `0x001D5970` again while the object's byte `+0x15` is clear. Besides the queries,
 `0x001D5970` lays out two rows of bar quads in the object, six vertices of 16 bytes each, after
 resetting all `0x324` vertices of each row to `(0, 0, 0, 1)`:
@@ -319,7 +376,7 @@ The post-process command, `0xF0` bytes, that `0x0018EEE0` fills each frame and `
 | `+0xE4` | `f32` | cameraAngle | the block's `+0x488` (`0x0018F4D3`), default 0.785398 (π / 4, `0x0018D01B`), the camera's `+0xCC4`; the third float of `0x006CC260` (`0x00193E1B`), which halves it (`0x006CC29A`); `0x00706C20` halves it again and stores its tangent at CPostEffect `+0x5B0` (`0x00706C26`-`0x00706C98`) |
 | `+0xE8` | `u8[8]` | pad0E8 | written and read by no function; nothing fixes its width |
 
-The render-parameter block fields this page uses (`0x4A8` bytes at `0x01F7F5F0`):
+The render-parameter block fields this page uses (`0x4A8` bytes, kept at `0x01F7F5F0`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

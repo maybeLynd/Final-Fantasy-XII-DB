@@ -39,6 +39,27 @@ pack. The event's pack directories, `0x208` bytes each, are read by `0x0032FCA0`
 Both tables of a slot are always loaded (`0x003EA0D0`); the language only chooses which one the verbs use. Kind 37 comes
 from the `in` folder, or the `ch` folder for the Korean and Chinese builds (`0x002DFE74`).
 
+`0x003EA0D0(manager, slot, allocator)` first frees the slot with `0x003E98B0` (`0x003EA0F0`). A slot that the free leaves
+in state 2, 4 or 5 loads nothing, and the call answers 0 (`0x003EA10B`, `0x003EA11B`, `0x003EA163`). Otherwise it frees
+it again and loads the `.vpc`, table 1, then the `.vpcjp`, table 0, through `0x003E9F80` (`0x003EA139`, `0x003EA14B`),
+and answers 1 when either load answered 1 (`0x003EA150`-`0x003EA15A`).
+
+`0x003E9F80(manager, slot, allocator, table)` first stores the language's table at `+0x30` (`0x003E9FB0`-`0x003E9FC0`).
+It answers 0 and loads nothing when the manager's byte `0x022C6D18[m]` is 0 (`0x0032F240`, `0x003E9FCB`) or the size from
+`0x0032F360` is 0 or less (`0x003EA013`). Otherwise it selects arena 12, or 2 while the qword `0x02B5E0B0` is 0, through
+`0x0036C1D0` (`0x003EA015`-`0x003EA031`). It allocates the size with `0x0036A190` when the allocator argument is not 0 and
+with `0x0036A100` when it is 0 (`0x003EA038`-`0x003EA043`); a null block pops the arena (`0x0036C140`) and answers 0
+(`0x003EA04E`-`0x003EA055`).
+
+It then zeroes the block (`memset`, `0x003EA061`) and stores the kind word, 37 for the `.vpcjp` and 8 for the `.vpc`,
+at `+0x0C` or `+0x0E`, the index from `0x0032F170` plus 3, `index + 3`, at `+0x10`, the block at `+0x20` or `+0x28`,
+the size at `+0x14` or `+0x18`, the manager at byte `+0x05` and the arena at byte `+0x07` (`0x003EA066`-`0x003EA08C`).
+It pops the arena (`0x003EA090`).
+
+While the manager's skip byte `0x02099011 + manager × 0x288` is set (`0x00267310`), it parks the slot in state 1 and
+reads nothing (`0x003EA095`-`0x003EA0A1`); otherwise `0x003E9EF0` files the read (`0x003EA0AD`). Both paths answer 1
+(`0x003EA0B2`).
+
 ### The language
 
 `0x002DDE20` answers bit `0x400` of the options record `*0x0215E6E0 + 4`. Clear plays the `.vpc` and set plays the `.vpcjp`
@@ -51,6 +72,17 @@ A script names a line as `slot << 24 | index`. `0x003E9C10` plays it only when t
 its table's count (`0x003E9C10`). It opens a stream on the stream controller (`0x002DF660`) and stores the volume, pan and
 a pending bit in the cue entry.
 
+`0x003E9C10(slot, index, pan, volume, start)` first stores the language's table at `+0x30` (`0x003E9C3E`-`0x003E9C4B`).
+A negative volume becomes 0 and one above `0x7F` becomes `0x7F` (`0x003E9C4F`-`0x003E9C5E`). Ready means state 3 with
+that table non-null, and the index is compared unsigned (`0x003E9C61`-`0x003E9C78`); otherwise it returns with no other
+store. For a ready cue it sets the pending bit `0x80000000` of `+0x08` to `start`: 1 from `0x003E9BF0` and 0 from
+`0x003EA2A0` (`0x003E9C8C`-`0x003E9CA7`).
+
+It opens the stream only when the cue has no load handle, a non-zero size and no stream yet, and its bank at
+`table + offset` starts with `sabf` (`strncmp`, `0x003E9CA3`-`0x003E9CD8`). `0x002DF660` gets the address of the cue's
+`+0x10`, the bank and the size, and its result is stored as the load handle `+0x14` (`0x003E9CDA`-`0x003E9CF1`). Every
+ready cue then gets the volume in bits `0x7F000000` of `+0x08` and the pan in byte `+0x0F` (`0x003E9CF9`-`0x003E9D09`).
+
 | Cue entry field | Holds |
 |---|---|
 | `+0x08` bits under mask `0xFFFFFF` | the bank's offset |
@@ -61,12 +93,18 @@ a pending bit in the cue entry.
 
 ### Starting a line
 
-`0x003E9780` runs at the end of the request pump `0x0032E070` (`0x0032E2AA`). For each ready slot and each cue with a stream:
+`0x003E9780` runs at the end of the request pump `0x0032E070` (`0x0032E2AA`). For each of the 64 slots it first stores
+the table the language chooses (`+0x20` or `+0x28`, by `0x002DEBB0`) at `+0x30`, ready or not
+(`0x003E97B0`-`0x003E97C2`). A slot counts as ready in state 3 with that table non-null; its cues are the table's
+count (`+0x04`, signed, above 0) of 16-byte entries. For each cue with a stream (`+0x10` non-zero, `0x003E97F3`):
 
-1. When its load request is done, the pending bit is set and the main loop is in mode 2 (`0x02064AD3`), it starts the
-   stream with `0x002DF680(stream, pan, volume)` (`0x003E980B`-`0x003E9832`).
-2. When the stream has stopped sounding, it clears the cue (`0x003E985C`-`0x003E9864`).
-
+1. When it has a load handle (`+0x14` non-zero), the load is done (`0x002DEE90(handle)` answers 0), the pending
+   bit is set and the main loop is in mode 2 (`0x00229EA0`: `0x02064AD3`), it starts the stream with
+   `0x002DF680(stream, pan, volume)` (`0x003E980B`-`0x003E9832`). It then clears the pending bit and the load handle
+   and stores −1 in the slot's dword `+0x08` (`0x003E9837`-`0x003E9844`).
+2. With no load handle, when `0x003E9A10(slot, cue)` answers 0 (the stream has stopped sounding, `0x002DF630`), it
+   clears the cue: the pending bit and the qword `+0x10`, the stream id with the load handle
+   (`0x003E985C`-`0x003E9864`). The offset, volume, size and pan stay.
 A line asked for again while it still plays is not restarted: no new stream is opened and the pending bit is dropped
 when the old one ends.
 
@@ -92,6 +130,16 @@ when the old one ends.
 
 The speaker argument of `voiceplay_28b` and `voiceplay_28c` has no effect: `0x003EA180` writes only through slot field
 `+0x38`, which is always 0.
+
+`voiceplay_b5` (`0x00351020`), `voiceplay_28b` (`0x00350BC0`), `voiceplay_28c` (`0x00350880`) and `voicestandby`
+(`0x00351B60`) push the missing arguments (speaker -1, pan `0x40`, volume `0x7F`) and a start flag, 1, or 0 for
+`voicestandby`, and jump to `0x003581B0`. It splits the cue into the slot, `cue >> 24`, and the index, the low 24 bits
+(`0x0035820D`-`0x00358218`). A negative speaker becomes the first word of its second argument (`0x0035821F`), and it
+calls `0x003EA180` with it (`0x0035822E`).
+
+While the skip byte `0x02099011 + manager × 0x288` of the calling actor's manager (byte `+0x15`, `0x00267310`) is set it
+opens nothing (`0x00358233`-`0x0035823F`). Otherwise it calls `0x003E9C10` through `0x003E9BF0` for a start flag of 1 and
+through `0x003EA2A0` for 0 (`0x0035824B`-`0x00358257`).
 
 ### Stopping, pan and volume
 

@@ -65,14 +65,17 @@ Passage scenes](barheim-passage-scenes.md).
 - The Lightworks: up to story counter 316, `イベント常駐監督.main` loads scene `mic_a0100` (event 185), adds Basch to the
   party as a guest, plays the scene and writes 317.
 - The Lightworks: pressing the power relay switch (`電気スイッチ`) the first time requests `古びた装置イベント1`: Vaan's "Huh. Guess
-  it's not working." and Balthier's "Let's have a look. Hm...the fuse is blown."
+  it's not working." and Balthier's "Let's have a look. Hm...the fuse is blown. That would explain why there's no
+  power reaching the switch. If the wiring is any indication, I'd say this is a central power relay of some sort. As
+  it stands, I doubt we'll find much still running down here."
 - The Lightworks: the bangaa `SHOP_NPC_バンガ` gives the Tube Fuse ("Made that tube fuse from parts I found down in these
-  very tunnels.") and writes 319; at 319 the switch offers "Install the tube fuse.", which takes the fuse and writes
-  321, the value that marks the power restored.
+  very tunnels. It's good as any you'll find, and better 'an most, mark my words.") and writes 319; at 319 the switch
+  offers "Install the tube fuse.", which takes the fuse and writes 321, the value that marks the power restored.
 - The Lightworks: the gate switch (`ドアスイッチ`) holds "Nothing happens. The power to the gate has been cut.", and the
   gate (`可動柵ＨＥＬＰメッセージ`) "The gate is far too heavy to force. There must be a switch or lever somewhere to operate it."
-  `イベント常駐監督.錆びた突起物イベント1` requests the bangaa's `バッテリー会話` ("I see you got the gate open." ... "You look fer these
-  switchboards, you oughta be able to make yer way.").
+- The Lightworks: `イベント常駐監督.錆びた突起物イベント1` requests the bangaa's `バッテリー会話`: with the gate open, he says, fierce beasts
+  come out in the dark when the charge drops, the gauge shows the charge left, opening a gate of that size uses up
+  some of it, and the switchboards lead the way through.
 - Great Eastern Passage: the urn `バルハイム地図宝壷` gives the area map, Barheim Passage, with system message 104.
 - Special Op Sector 3: the gate (`可動柵`) holds the same line. Op Sector 37: the rusted switch (`ドアスイッチ`) holds "You
   hear a loud sound from the south. The gate is open." and "Nothing happens. There doesn't seem to be enough power
@@ -100,10 +103,15 @@ Passage scenes](barheim-passage-scenes.md).
   `Boss_Enter_End[1]` is 0.
 - East-West Bypass and The Zeviah Span: `hunt_kansi.main` gives the Bony Trophy and removes the foes of a group. West
   Annex: `wanted_kansi.main` removes the foes of a group.
-- The Zeviah Span: while `EV_H_暗号` is 0 and five further global values are 1, touching `宝レクト` shows Gilgamesh's lines
-  ("Too long has it been, my friends! It is I, Gilgamesh!!!" ... "Yours for the taking, should such rubbish appeal to
-  you!"), gives the Matamune and sets `EV_H_暗号` to 30. Talking to `バルハイムキャンドル` gives the Barheim Candle with system
-  message 119 ("The candle reveals hidden areas on your map of the [value]!").
+- The Zeviah Span: while `EV_H_暗号` is 0 and five further global values are 1, touching `宝レクト` shows Gilgamesh's
+  message below, gives the Matamune and sets `EV_H_暗号` to 30. Talking to `バルハイムキャンドル` gives the Barheim Candle with
+  system message 119 ("The candle reveals hidden areas on your map of the [value]!").
+
+Gilgamesh at the Zeviah Span: "Too long has it been, my friends! It is I, Gilgamesh!!! Ah, but do not worry! I am not
+here to spill your blood today! I came here on a rumor that I might find a treasure of legend sleeping in these
+tunnels. Alas! There was no treasure. A useless stick I found, and nothing more! A waste of precious time! It bears no
+hint of semblance with the sword of legend I seek. Yours for the taking, should such rubbish appeal to you!"
+
 - The Lightworks, Great Eastern Passage, Op Sector 36, Special Op Sector 3, Op Sector 37, Op Sector 29, Great Central
   Passage, The Zeviah Subterrane, Terminus No. 7, East-West Bypass, The Zeviah Span, West Annex, Terminus No. 7
   Adjunct and Special Op Sector 5 hold 3, 7, 3, 3, 5, 3, 4, 9, 2, 5, 12, 13, 1 and 8 treasure chests.
@@ -152,6 +160,10 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
    `0x00348DF0` (`0x00349884`).
 3. `0x00348DF0` pops eight values. The seventh, the script's second argument, is passed with the current field context
    to `0x00264D60` (`0x00348E6A`-`0x00348E74`), the section 2 lookup, which keeps the low 24 bits of the id.
+4. `0x00348DF0` reads the entry's flag through `0x002673A0`, bit `0x1` of the entry's upper half (`0x00348E85`), and
+   opens the window through `0x002E16B0` only when that flag is clear (`0x00348EE0`-`0x00348EFF`). With the flag set it
+   still makes its six slot calls (`0x00348E91`-`0x00348ECA`) and fills the call record (`0x00348ED7`-`0x00348EDC`) but
+   opens no window ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)).
 
 ### Speakers, places and scenes
 
@@ -167,6 +179,8 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
   passes it to the verb, and `0x00348DF0` hands it to `0x002E16B0`. That actor's name is the second name of each pair its
   `setnpcname` calls name; `0x002E16B0` sets the actor's name flag before the window opens, and `0x00263990` shows the
   second name while that flag is set.
+- `0x00348DF0` makes that `0x002E16B0` call only for a line whose section 2 flag is clear (`0x00348EE0`); for a flagged
+  line it opens no window, so the actor's name flag is not set there.
 - An actor no `setnpcname` or `setshopname` call names keeps the name id `0xFFFF` and the empty text the record set-up
   `0x00266530` writes (`0x0026668B`, `0x0026669B`-`0x002666B4`), so its `{actor-name}` header shows no name; that line reads
   `no name shown`. A system message reads `system message`.
@@ -326,7 +340,7 @@ The steps table [`barheim-passage-script-steps.tsv`](barheim-passage-script-step
 | `step` | the step's number in its function, from 1, in the order the function's bytes run |
 | `at` | where the step's instruction sits: its offset in section 0, the script image, of the shipped `plan_master/us` `.ebp`. For `case`, `default` and `label` it is where their code starts. For `shared template` and `same code` it is where the function or actor starts |
 | `line` | the step's line in the script listing, `-` for the `shared template` and `same code` rows |
-| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets |
+| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. A case whose values meet an earlier case's is followed by `not (x = w)` for each such earlier case `w`, so the cell names only the values the case runs on: `x = lte(78); not (x = lt(78))` runs when x is 78. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. When such a way passes a case that an earlier case overlaps, the item counts only the values that case takes: after `case lt(0x0177)`, a `case lt(0x0182)` that returns gives the item `not (x = lt(0x0182)) or x = lt(0x0177)`, which holds unless 0x0177 <= x < 0x0182. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets, and, for a case whose every value an earlier case already matches, on the case values |
 | `verb` | the verb the step calls, by its name in the [verb table](../Scripts-And-Script-Commands/verb-table.md), written `Actor.verb` for a call on another actor. Otherwise the kind of step: `if`, `else if`, `while`, `for`, `switch`, `case`, `default`, `break`, `goto`, `label`, `return`, `returnT`, `store`, `shared template` or `same code` |
 | `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test. A number with a fraction is the listing's print of a 32-bit float to nine significant digits, here and in `condition`: 1.60000002 is the float nearest to 1.6, and 2.36000005e-06 is 2.36000005 times 10 to the power -6 |
 | `addresses` | what the arguments name in the game: the actor, model, animation and motion file, effect file, event sound, camera shot, message window, request slot or variable |

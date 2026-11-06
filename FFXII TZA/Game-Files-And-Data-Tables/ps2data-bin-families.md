@@ -223,6 +223,24 @@ shipped data, and no id of these:
 Outside these sites, the script verb `debug_fileread` (`0x0050DFE0`) requests whatever kind and id its script
 pushes.
 
+The loaders of the kind 9 families, of `fontcolor.bin` and of the two `add_motion` files:
+
+- `0x00259DF0` sizes `behindcamera.bin` (kind 9, id 3) with `0x0032E400`. At 0 or less it zeroes `0x02098DF0` and
+  requests nothing (`0x00259E07`, `0x00259E81`); otherwise it allocates that many bytes under arena 6
+  (`0x0036C1D0(6, 5)`, `0x0036C1A0(3)`, `0x0036A190`) and files the read with the completion `0x00259370` (`0x00259E6E`).
+- `0x00268750` zeroes `0x02099D88`, `0x02099D90` and `0x02099D98` (`0x0026876B`-`0x00268779`) and sizes `map_ref.bin` (kind
+  9, id 4); a negative size stops it (`0x00268782`). It allocates the block the same way into `0x02099D88`, tags it
+  `MapRef` (`0x0036C660`) and files the read with the completion `0x002678A0` (`0x00268809`).
+- It then sizes `test_area_ref.bin` (kind 9, id 2); unless that is negative (`0x0026881D`) it allocates the block
+  with `0x00267930`, stores it at `0x02099D98` (`0x00268829`) and files the read with no descriptor (`0x0026883E`).
+  [Weather](../World-Areas-And-Travel/weather.md) has both files.
+- `0x0029CED0` runs `0x0029DC90`, which requests `key_signal_data.bin` (kind 7, id `0x24`) only while `0x0209C4A0` is
+  null. On every call it then requests `fontcolor.bin` (kind 7, id 5) through `0x00249210` with 3 and 1 and no
+  completion (`0x0029CEF6`), and tail-jumps to `0x002DD810` (`0x0029CF03`).
+- `0x002DD810` zeroes `0x0215E6B8` and `0x0215E6C8` and stores the request record's buffer, its `+0x08`, at `0x0215E6C0`.
+- The two `literal path` loaders, `0x0036FFF0` and `0x0037CCC0`, read `./PS2Data/add_motion/SkeletonMapping.bin` and
+  `HighModelReplace.bin` whole ([Add-motion tables](../Graphics/add-motion-tables.md)).
+
 ### Pack directories
 
 The six `packfiles/*.bin` files share one container: a fixed directory of `u32` offsets from the file
@@ -235,17 +253,21 @@ start, padded with `0xFFFFFFFF`, then the sub-files.
 
 | File | Directory | Used entries | Contents | Binder and destination |
 |---|---|---|---|---|
-| `texpack_ys.bin` | 16 | 5 (4 in `in_sdver`) | TIM2 | `0x00246A10` binds entries 0-4 through `0x0024A1D0` into the five texture objects `0x002467A0` set up |
-| `tex2pack_ys.bin` | 16 | 11 | TIM2 | `0x00280670` binds entries 0-9 into `[0x0209AC30] + 0x338`..`0x380`; entry 10 is stored unbound at `+0x388` |
-| `mrppack_ys.bin` | 32 | 23 (21 in `in_sdver`) | MRP | `0x00280980` stores entries 0-22 at `[0x0209AC30] + 8 × i` and relocates each with `0x002A00F0` |
-| `clutpack_ys.bin` | 16 | 4 | CLT2 | `0x00280AD0` stores entries 0-3 at `[0x0209AC30] + 0x390`..`0x3A8` |
-| `fontpack_fs.bin` | 16 | 7 | font tables | `0x003643A0`: entry 0 (the font block) to `+0x08` (walked by `0x00366080`), 1 (the palette block) to `+0x190`, 2, 4, 5, 6 to `+0x110`, `+0x120`, `+0x128`, `+0x130`, the sheets of faces 0, 2, 3 and 4, whose font ids `0xB`, `0xD`, `0xE`, `0xF` it registers ([header](btm-exfont-bitmaps.md#layouts)); the binder skips entry 3, which repeats entry 2's offset in all six files |
+| `texpack_ys.bin` | 16 | 5 (4 in `in_sdver`) | TIM2 | `0x00246A10` binds entries 0-4 through `0x0024A1D0` into the five texture objects `0x002467A0` set up, each at the pack start plus its directory offset; it does nothing while the pack pointer `0x0208EA88` is null (`0x00246A1E`) and skips a null texture object (`0x00246A2E`-`0x00246AA5`); `0x002467A0` returns at once while `0x0208EA88` is set (`0x002467B1`), sets up only the objects that are still null, and stores the pack buffer `0x00249180` returns at `0x0208EA88` (`0x0024688C`) |
+| `tex2pack_ys.bin` | 16 | 11 | TIM2 | `0x00280670` binds entries 0-9 into `[0x0209AC30] + 0x338`..`0x380`; entry 10 is stored unbound at `+0x388`; it does nothing while the pack buffer `+0x3D8` is null (`0x00280683`), skips a null slot (`0x002806A7`), stores entry 10 only while `+0x388` is null (`0x002806D3`), and then releases and zeroes `0x0209AC38` and `0x0209AC40` when set (`0x00183720`, `0x0028070C`, `0x00280728`) |
+| `mrppack_ys.bin` | 32 | 23 (21 in `in_sdver`) | MRP | `0x00280980` stores entries 0-22 at `[0x0209AC30] + 8 × i` and relocates each with `0x002A00F0`, each the start of the pack at `+0x3D0` plus its directory offset; it does nothing while `+0x3D0` is null (`0x00280993`) and stores and relocates each entry only while its slot is null (`0x002809A8`) |
+| `clutpack_ys.bin` | 16 | 4 | CLT2 | `0x00280AD0` stores entries 0-3 at `[0x0209AC30] + 0x390`..`0x3A8`, each the start of the pack at `+0x3C8` plus its directory offset; it does nothing while `+0x3C8` is null (`0x00280AE1`) and stores each entry only while its slot is null (`0x00280AEF`-`0x00280B56`) |
+| `fontpack_fs.bin` | 16 | 7 | font tables | `0x003643A0`: entry 0 (the font block) to `+0x08` (walked by `0x00366080`), 1 (the palette block) to `+0x190`, 2, 4, 5, 6 to `+0x110`, `+0x120`, `+0x128`, `+0x130`, the sheets of faces 0, 2, 3 and 4, whose font ids `0xB`, `0xD`, `0xE`, `0xF` it registers ([header](btm-exfont-bitmaps.md#layouts)); the binder skips entry 3, which repeats entry 2's offset in all six files; it returns at once while `[0x022CBE00]` is null (`0x003643AE`), fills each sheet slot only while that slot is null, and sets the face's ready bit and registers its id either way (`0x003643E5`-`0x0036449E`) |
 | `fontpack_it.bin` | 16 | 6 | 2 TIM2, 4 tables | `0x0039C150`: entries 0-5 to `0x02AEE810`, `0x02AEE850`, `0x02AEE870`, `0x02AEE878`, `0x02AEE880`, `0x02AEE888`; entries 6 and 7, both `0xFFFFFFFF` in every file, would go to `0x02AEE848` and over `0x02AEE880` |
 
 The font-table destinations are relative to the font object `[0x022CBE00]`. No binder checks an entry
 against `0xFFFFFFFF` except `0x0039C150`'s entry 6, so a directory must keep every entry its binder reads.
+
 `0x002808D0` requests `mrppack_ys.bin` and `clutpack_ys.bin` without a callback; `0x00253780` calls
-`0x00280980`, which ends by calling `0x00280AD0`.
+`0x00280980`, which ends by calling `0x00280AD0`. Each request goes through `0x00249180` with kind 7, 3 and 1, and only
+while its buffer slot is null: `mrppack_ys.bin` into `[0x0209AC30] + 0x3D0` (`0x002808E8`-`0x00280916`) and
+`clutpack_ys.bin` into `+0x3C8` (`0x00280924`-`0x0028095D`). It then tail-jumps to `0x00280750`, the `tex2pack_ys.bin`
+request (`0x0028096C`).
 
 ### Families no path names
 

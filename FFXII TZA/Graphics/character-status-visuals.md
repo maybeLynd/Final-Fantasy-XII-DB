@@ -44,6 +44,11 @@ For each record it reads the unit's status word through `0x00320BB0`: the OR of 
 (`0x00320C10`-`0x00320C37`). `0x00320BB0` also writes whether the stats record's kind byte `+5` is 1 (an enemy) to the record's
 `+0x84`.
 
+`0x00320BB0(slot, &word, &enemy)` takes the unit from `0x00236820`, which gives 0 for a slot outside 0 to
+`[0x0208E6A0]` − 1. It returns 0 and writes neither output when there is no unit, when bit `0x10` of the unit's flag
+word is clear or when its stats record `+0x698` is null (`0x00320BC0`-`0x00320BDC`); the push then uses a zero word
+and stores 0 in `+0x84` (`0x003E768F`-`0x003E769B`). Every other path returns 1 (`0x00320C0B`).
+
 The record keeps the rig of the character's render record at `+0x10` (`0x003E6DA0`); with no rig, nothing else runs for
 that record. When the word differs from the copy at `+8`, the push stores the bits that were set at `+0x140` and the
 bits that were cleared at `+0x144`, then calls one arm per changed bit, cleared bits first. Every arm stores 1 or 0 in
@@ -85,6 +90,10 @@ Block `+0x20` keeps a fourteen-bit mask at `+0`. The add worker `0x0046FFA0` and
 one bit, keep the entry count in the upper seven bits of byte `+7`, and store the lowest set index in byte `+5`, or
 `0xFF` when the mask is empty. Byte `+5` is the wanted look; the order in the table above is the index order.
 
+Both workers take a look index `n` and change the bit value `1 << n`. An add of a bit already set, or a remove of a
+bit already clear, returns at once with nothing changed (`0x0046FFB4`, `0x00470066`), and the lowest set index is looked
+for among bits `0x1` to `0x2000` only (`0x0046FFD4`-`0x0046FFF0`, `0x00470090`-`0x004700AC`).
+
 The update `0x0046FD00(block, render record, display deny, control deny)` runs each tick:
 
 1. It stores the render record at `+0x28` and the hold byte `+0x3A`: the control-deny byte, or 0 while display is
@@ -93,12 +102,19 @@ The update `0x0046FD00(block, render record, display deny, control deny)` runs e
    `+7`.
 3. It calls the step at `+0x18`; with no step, the changing bit is the answer. A step returns 1 only when its look has
    fully left.
-4. Only then, with a non-empty list, it installs the shown look by a switch on `+4`.
+4. Only then, with a non-empty list (an entry count in byte `+7`, `0x0046FD72`) and a shown look of 13 or less, it
+   installs the shown look by a switch on `+4` (`0x0046FD7B`-`0x0046FD9A`).
 5. While display is denied it also zeroes render record byte `+0x5E0` and sets the record mode to 0.
 
 Installing a look clears the changing bit, releases the block's two light handles `+8` and `+0xC`, sets the record
 mode and stores the look's step. Indexes 11 and 12 have no arm in the push; index 12 has a look, the tint with offset
 `(1.5, 2.0, 2.0)`.
+
+The switch entry for index 11 jumps to its end (`0x0046FF20`): nothing is installed and the changing bit stays set.
+Stone and Petrify are installed in the switch itself: the step `0x00470AA0` or `0x00470780`, the phase `+0x20`, the
+frame `+6` and the state `+0x38` zeroed, and mode 3 or 0 (`0x0046FD9C`-`0x0046FE22`); so is Oil
+(`0x0046FE59`-`0x0046FF00`). Blind, the shared look and index 12 go to the tint `0x004703F0`, Berserk to `0x00470660`,
+Doom to `0x00470590` and HP Critical to `0x004704C0`.
 
 `0x003E75A0` resets every block in use of the 32 from `0x02B59D80`, and `0x003E7D50` one block. Each
 reset runs `0x00470000` on the block's `+0x20`, which clears the mask and the bits of byte `+7`
@@ -111,7 +127,17 @@ above bit `0x1`, sets the shown and wanted looks (`+4`, `+5`) to `0xFF` and rele
 every record attached under it, skipping those `0x00426220` rejects. `0x005044D0(instance, n)` uses it to pick entry `n`'s
 parameter block: `table + entry.offset + mode × entry.stride`, with the table at instance `+0x1F8` plus `+0x21C`,
 sixteen-byte entries from table `+0x30`, the stride the word at entry `+2` and the offset the dword at entry `+0xC`.
-Stone sets mode 3, the flash frames of Doom and HP Critical mode 2, every other look mode 0.
+
+Stone and Petrify set mode 3 (Petrify in the states its table below names), the flash frames of Doom
+and HP Critical mode 2, every other look mode 0.
+
+`0x00428CD0` reaches the records through their index words: it takes the record again from its own word `+0`,
+returning at once when that is −1, then takes the first child `+0x08` and hands that child's `+0x08` and `+0x0A`
+chains to `0x0042EF90` with the body `0x0042E4F0` (`0x00428CE9`-`0x00428DB8`). A record without a model instance
+(`0x003E55B0` gives 0 while word `+0x64` is −1) is skipped as well.
+
+`0x005044D0` returns 0 when `+0x21C` is −1 or `n` is not below the dword at table `+0xC` (`0x005044D9`, `0x005044ED`).
+The table address is summed in 32 bits and the mode is read as a signed byte (`0x005044E1`-`0x0050450D`).
 
 ### The tint
 
@@ -119,9 +145,14 @@ Stone sets mode 3, the flash frames of Doom and HP Critical mode 2, every other 
 (`0x003AB960`) from an `0x50`-byte request: type 6 (ambient), priority `0xBF`, byte `+3` = 1 and `+4` = 2, target id the
 block's `+0x10`, byte `+5` = `0x90` and `+7` = `0x80`. Its handle goes to `+8`.
 
-Each frame `0x004700E0` returns at once while the hold byte is set. Otherwise the phase `+0x20` rises by
-`[0x01DFE0BC] × 0.0333` and wraps at 1. The envelope `+0x24` rises by `0.1 × [0x01DFE0BC]` to 1, or falls at that rate while
-the changing bit is set; at zero it releases the light, clears the step and returns 1. With `p` the pulse at the phase
+Each frame `0x004700E0` returns 0 at once while the hold byte is set. Otherwise the phase `+0x20` rises by
+`[0x01DFE0BC] × 0.0333` and goes back to 0 when it reaches 1 (`0x00470133`). The envelope `+0x24` rises by
+`0.1 × [0x01DFE0BC]` to 1, or falls at that rate while
+the changing bit is set; at zero it releases the light, zeroes `+8`, clears the step and returns 1
+(`0x00470166`-`0x00470184`). Every other path returns 0.
+
+`0x0046FBB0(t)` returns entry `t × (count − 1)` of the table, truncated and clamped to 0 to count − 1, with the count
+`0x01F20538` (`0x0046FBB0`-`0x0046FBE6`). With `p` the pulse at the phase
 (`0x0046FBB0`, the table `0x01F20AA0`):
 
 ```python
@@ -139,6 +170,9 @@ Stone's step `0x00470AA0` raises its phase over 30 frames and holds it at 1. Eac
 `+0x5E0` = 2, `+0x5DC` = `1 + 0.3 × pulse(phase / 2)`, `+0x5EC` = 0.4 and mode 3. When the look changes it sets mode
 0, releases both handles and returns 1 in the same frame. It creates no light.
 
+While the hold byte is set Stone's step returns 0 and writes nothing (`0x00470AAD`); leaving also zeroes both
+handles and the step (`0x00470B53`-`0x00470B59`).
+
 Petrify's step `0x00470780` has four states in byte `+0x38`; frame counts below are multiplied by `[0x01DFE0B4]`:
 
 | State | What it does |
@@ -154,7 +188,8 @@ is the byte `+0xEA9` of the object behind render record `+0x108` (`0x00263E50`).
 
 ### Doom, HP Critical and Berserk
 
-Doom's installer `0x00470590` creates the tint's ambient light and installs `0x00470B70`. In the steady state the envelope
+Doom's installer `0x00470590` creates the tint's ambient light and installs `0x00470B70`, zeroing the phase, the
+envelope, the frame `+6` and the state `+0x38` with `+0x39` (`0x004705BA`-`0x004705C5`). In the steady state the envelope
 moves by `0.33 × [0x01DFE0BC]` a frame, the light colour is `envelope × 0.4 × (0.9, -0.2, -0.2)`, the light scale is 1.0
 and the mode 0. Every steady frame that is not leaving, a Doom count different from the one remembered at `+0x39`
 starts a flash; the installer zeroes `+0x39`, so the look starts with one. The flash runs 21 frames:
@@ -166,13 +201,16 @@ frames 3-10    : mode 2, record colour +0x5D0 = (0.84, 0.84, 0.84); otherwise mo
 frames 0-20    : ambient mode 1 with +0x5DC = curve1[f]
 ```
 
-HP Critical's installer `0x004704C0` creates the same light with the step `0x00470230`, which runs the same recipe with the
+HP Critical's installer `0x004704C0` creates the same light with the step `0x00470230`, zeroing the phase and the frame
+`+6` but not the envelope (`0x004704EC`-`0x004704F3`); the step runs the same recipe with the
 colour `curve1[f] × (0.64, 0, -0.32)` on a 30-frame cycle. From frame 21 to the end of the cycle it sets bit `0x2` of
 the light's byte `+7`, which makes the light selector skip it, and clears ambient mode. It checks whether to leave only
 when the cycle wraps, so it always finishes its beat.
 
 Berserk's installer `0x00470660` creates two lights: the tint's ambient into `+8` and Oil's directional request into
-`+0xC`. Its step `0x00470EB0` uses the tint's phase and envelope; with `w = (0.5 + 0.5p) × envelope`:
+`+0xC`, without Oil's vector: request `+0x30` stays zero, and the step aims the light every frame
+(`0x004706E6`-`0x00470744`). The installer zeroes the phase and envelope (`0x0047069B`).
+Its step `0x00470EB0` uses the tint's phase and envelope; with `w = (0.5 + 0.5p) × envelope`:
 
 ```python
 ambient colour = (2w, 0, 0)
@@ -187,8 +225,10 @@ still re-aims the light every frame and does nothing else.
 ### Where the lighting fields go
 
 The per-character light gather `0x003ABD50` copies render record `+0x5EC` to `0x02B3F518` before it calls the light selector
-`0x003ACC10`. The ambient evaluator `0x003ACAA0` multiplies a light's colour by `0x02B3F518` while the enable byte `0x02B3F502`
-is set and the light's byte `+5` is below `0x80`, so the status lights (`0x90`, `0x80`) are never dimmed by it.
+`0x003ACC10`. The ambient evaluator `0x003ACAA0` multiplies a light's red, green, blue and strength by `0x02B3F518`, and
+sets its alpha to `0x02B3F518` itself, while the enable byte `0x02B3F502`
+is set and the light's byte `+5` is below `0x80`, so the status lights (`0x90`, `0x80`) are never dimmed by it
+(`0x003ACB7A`-`0x003ACC00`).
 
 In the selector, an ambient light without bit `0x10` in byte `+5` is changed before it is summed: render record byte `+0x5E0`
 = 2 multiplies it by `+0x5DC`, and 1 blends it toward the record colour `+0x5D0`-`+0x5D8` by `+0x5DC`. A light is skipped
@@ -197,7 +237,9 @@ The lighting itself is on [Character lighting and shadows](character-lighting-an
 
 ### The second block
 
-Block `+0x70` keeps a mask at `+0x10`. Its workers `0x0051DBF0` (add) and `0x0051DDC0` (remove) derive three bytes:
+Block `+0x70` keeps a mask at `+0x10`. Its workers `0x0051DBF0` (add) and `0x0051DDC0` (remove) take an index `n`,
+set or clear the bit value `1 << n`, return at once when it is already set or clear (`0x0051DC06`, `0x0051DDD6`), and
+derive three bytes:
 
 | Byte | Value |
 |---|---|
@@ -211,12 +253,19 @@ and step protocol for each channel: channel A installs `0x0051E0A0` for 2 and `0
 every frame. While display is denied it then writes fade channel 5 = 1.0 (`0x00428940`), the shadow's `+0xC` = 1.0
 (`0x003B6B10`) and the shadow's colour = 0 (`0x003B6B30`), after the steps have run.
 
+`0x0051E3A0` stores the render record at `+0x08` before that return (`0x0051E3C0`). Installing a step clears the
+channel's changing byte and zeroes its phase and envelope (`0x0051E41E`-`0x0051E426`, `0x0051E46F`-`0x0051E477`); a shown
+value without a step above installs nothing.
+
 These steps use a phase stepping by `0.033 × [0x01DFE0BC]` and an envelope moving by `0.1 × [0x01DFE0BC]`:
 
 - Invisible, `0x0051DC90`: fade channel 5 = `1 - (0.6 + 0.2p) × envelope`, or `1 - (0.88 + 0.08p) × envelope` when the
   block's `+0x14` (the record's enemy flag) is set; `0x00428AF0(record, 1, 1, 0x60)` sets `+0x304` bits `0x20000`, `0x40000` and the
-  byte at the bits under mask `0x7F80000`. Leaving restores 1.0 and clears them ([Character fades](character-fades.md)).
-- Index 2, `0x0051E0A0`: fade channel 5 = `1 - envelope`. No status selects it.
+  byte at the bits under mask `0x7F80000`, and raises bit `0x4000000` of `+0x294` (`0x00428B17`).
+- Leaving Invisible restores 1.0 and clears the two bits through `0x00428AF0(record, 0, 0, 0x60)`, which writes `0x60`
+  to the byte again; it clears the step and returns 1 (`0x0051DCF5`-`0x0051DD20`; [Character fades](character-fades.md)).
+- Index 2, `0x0051E0A0`: fade channel 5 = `1 - envelope`. No status selects it. Leaving restores 1.0, clears the step
+  and returns 1 (`0x0051E0D8`-`0x0051E0F3`); it keeps no phase and leaves `+0x304` alone.
 - Slow, `0x0051E170`, while render record `+0x114` holds a shadow: with `s = (0.5 + 0.3p) × envelope`, the shadow's
   colour = `(128s, 32s, 8s)` as integers, and the vector `(1 + 0.1p, 1 - 0.1p, 1 - 0.1p, 1)` goes to `0x001F1600`, which
   stores it at `0x02CB8390`; then `0x0051E510(record, 1)`.

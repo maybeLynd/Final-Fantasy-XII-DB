@@ -35,12 +35,24 @@ that entry.
 2. Its unlocked entries follow in record order, and a locked entry takes no row (`0x005720B9`-`0x005720F6`). The blank
    rows after them (`0x00572103`-`0x00572135`) are added only when fewer entries were listed than `0x00576740` counted as
    unlocked, and both counts use the same test (`0x00576CA0`), so they are never added.
+   - `0x00576CA0(kind, index)` passes a kind it does not handle, a negative one or one above 7
+     (`0x00576CA4`-`0x00576CB7`). Kinds 0 to 5 and 7 ask `0x003154B0` with the category `0x00D23750[kind]`, the same
+     number except kind 5, the Bestiary, which asks category 6 (`0x00576CF5`-`0x00576D08`).
+   - Kind 6, the Hunts, answers 0 with no data manager `[0x02CA9738]`, while bit `0x2` of its `+0x100` is set or
+     with no quest table `+0xF8`, and otherwise the answer of `0x0037F060(1, index, table)` (`0x00576CC1`-`0x00576CEE`).
 3. A Bestiary section's caption reads "???" until part of one of its maps has been explored (`0x00576A50`); the
    regional sections list those maps, the last seven sections no map.
 4. A Bestiary row shows the number of defeats still needed for the next text slot, unless the entry's flag says
    otherwise (`0x00571817`-`0x005718B0`); the `countdown` column gives which rows show it.
 5. For the thirteen Espers the us index row shows the summon's short name, "Belias", in place of the entry's name
    "Belias, the Gigas" (`0x005717E2`-`0x005717F2`).
+   - `0x00571710` shows the countdown only when the row's layout has a countdown cell (byte `+2` not `0xFF`), the
+     entry's flag `+0x14` bit `0x1` is clear, it has slots (`+0x15`) and its count `+0x16` is below the last slot's
+     threshold, one byte per slot from `+0x18` (`0x00571805`-`0x00571848`).
+   - The number, written by `0x0029FF60`, is a threshold less the count: the one after the last threshold the count
+     has reached, the second when the count is below the first, or the only one (`0x0057184A`-`0x005718B0`). The
+     cell's bit `0x1` at `+0x08` is set exactly when it shows (`0x005718B5`-`0x005718C5`).
+   - The short name is the entry's `+0x08`, used when it is set and `0x00254A10` returns 0 (`0x005717DF`-`0x005717F8`).
 
 ### How an entry unlocks
 
@@ -59,11 +71,22 @@ A Bestiary entry is unlocked by a rule of `menuhandbook.bin` (`0x003154B0`), or 
   (`0x00315420`); 367 entries;
 - a type 0 rule, once the story counter reaches the rule's value; 14 entries;
 - a type 1 rule, once the monster of another entry has been defeated: Enkidu (252) opens with Gilgamesh (251).
+- a rule of any other type, or no rule table bound at `0x022C2550`, falls back to the entry's own kill count; an entry
+  number of `0x200` or more is never unlocked (`0x00315533`-`0x00315539`, `0x0031553B`-`0x0031558E`, `0x003155C5`-`0x003155C8`).
+- `0x003154B0` finds the rule as the first of the table's records whose low 12 bits are the entry number
+  (`0x0031556D`-`0x0031557B`); type 0 passes when the story counter (`0x00265270`), as a signed 16-bit value, has reached
+  the rule's value (`0x003155D0`-`0x003155E8`).
 
 Two entries are not counted by defeats at all (`0x00315820` skips them through `0x00315D50`). The field-frame sweep
 `0x00316930` sets each one's count to 1 once its quest passes `0x00315DC0`: Gilgamesh (251) with quest 167, "Battle on
 the Big Bridge", at progress 100, and Shadowseer (259) with quest 170, "God or Devil?", at progress 70, or when the
-quest is cleared.
+quest is cleared. It does so only while the count is at most 0 (save byte 0 or 1, `0x003169E0`-`0x003169FA`), and stores
+2 in the byte (`0x00316A0C`).
+
+`0x00315DC0(quest)` fails for quest -1 and passes for a cleared quest (`0x0046B1A0`) (`0x00315DC8`-`0x00315DDE`). It also
+passes when the handbook table `[0x022C2550]` or one of the two offset hops to its quest list is missing
+(`0x00315DE9`-`0x00315E10`, `0x00315E75`). Otherwise it passes when the quest is in that list and its progress
+(`0x0046B180`) has reached the list's value for it, and fails for a quest not in the list (`0x00315E2C`-`0x00315E6D`).
 
 ### What an entry shows
 
@@ -82,8 +105,29 @@ A Bestiary entry's slots all follow one mode, the mode word of its record in `me
 - Slot 0 is two lines, such as "Plant" and "Cactus"; later slots carry a heading before code `0x03`, mostly
   "Observations" or "Description" for slot 1, and texts such as "Aletap Rumors" or "The Town Crier" for slot 2.
 - The mode 0 test is unsigned, so a count of -1, a monster never counted, passes every slot (`0x00576EBD`-`0x00576EC4`).
-  This shows only for Rogue Tomato (211), which is unlocked by the story counter: both its slots show before its
-  first defeat.
+  It runs only for a listed entry, and an entry without a rule is listed only once its count is above 0, so -1
+  meets it only for an entry a rule opens. Of those 15, 13 use mode 1 and Enkidu (252) mode 2, whose tests are
+  signed (`0x00576EE4`, `0x00576EF0`).
+- Rogue Tomato (211) alone pairs a rule with mode 0: its rule, story counter 78, comes from the `in` copy of
+  `menuhandbook.bin` and its slots, 1 defeat each, from the us `menuhandbook_monster.dat`. The `in`, `ch`, `kr`,
+  `cn`, `de`, `fr`, `it` and `es` copies of that table give it mode 1, story counter 78 for each slot.
+- The story counter reaches 78 in `dst_a01`'s `トマト監視監督.トマト監視`, its one shipping write of 78, after
+  `while (scratch1_var_1 != 2)`. That variable is scratch1 word 3, where `0x00307030` posts a completed mode 1 group
+  (`0x00307063`); the two Rogue Tomato units are groups 1 and 2 (`btlAtelSetEventFlagGroup(1, 1)` and `(2, 1)`).
+- A group completes only in the KO sequence (`0x00306F00` at `0x0030082F`), after the KO that `0x003171C0` counts:
+  both units are unit type 0, mode 1 (`0x002396D6`), so the class-nibble skip does not apply.
+- No other write brings the counter to 78 or more first: every other script write of 78 or more runs only
+  once the counter is 78 or more, or never runs
+  ([story counter values](../Story-Events-And-Hunts/story-counter-values.md)). So the count is at least 1
+  when the entry opens, and both slots open by the count itself.
+- Dalan's House (`slm_a03`) writes 115 and 120 on an entry below 110 (`常駐監督.main` line 186,
+  `EVダラン登場` lines 270-271). Below 100 the only way into Lowtown and the Garamsythe Waterway is the
+  Overflow Cloaca (`grm_g01`), entered from `naf_b04` below 25: Rabanastre's Lowtown doors test for 100
+  (`rbn_a01` line 2492, `rbn_a03` line 4275, `rbn_a18` line 1841), and the other ways in leave `mic_d01` and
+  `rrp_a06`, open from 316 and 190.
+- In `grm_g01` below 27, `story counter < 27` (`case lt(27)`, line 205), `常駐監督.main` closes floor group 1
+  (lines 272-276), which every floor path from the entrance to the exit into North Sprawl crosses, and the rat
+  fight ends by writing 33 and jumping to Muthru Bazaar (lines 321, 327).
 
 The read marks and the new-entry badge are described on [Clan Primer](clan-primer.md).
 

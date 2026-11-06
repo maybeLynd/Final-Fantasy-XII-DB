@@ -19,8 +19,9 @@ addresses: "0x00574CB0, 0x00574E80, 0x0056F810, 0x00571A50, 0x005701B0, 0x005771
 ### Opening
 
 The Party Menu command is `0x4BC`, "Clan Primer" in `menu_command.bin`. The Party Menu's handler `0x00281ED0` closes
-itself and calls the opener `0x00574CB0` (`0x0028239B`), which creates the back panel `0x00574E80` and publishes it at
-`0x02CA9718`. The back panel builds the screen:
+itself and calls the opener `0x00574CB0` (`0x0028239B`), which creates the back panel, a `0x130`-byte widget with
+procedure `0x00574E80`, through `0x00244F50` with a zeroed 24-byte creation record (`0x00574CC3`-`0x00574CE5`). The panel
+publishes itself at `0x02CA9718` (`0x00574ED2`). The back panel builds the screen:
 
 1. id 1 requests the background `HandBack_c.tm2` (kind-7 resource `0xCE`), `Hand_4_c.tm2` (`0xCD`) and
    `Party_Book.mrp` (`0xCC`), and installs the data manager `0x005771F0` (`0x00574FAE`).
@@ -113,6 +114,25 @@ entry row (the read test is `0x00576D20`). The Bestiary keeps its captions on th
 - `0x0056FEA0` closes the entry page and its two panes, and `0x00577A00` records the current pane on the data manager.
 - `0x00574A90(kind)` sets the current-entry pane's title, `0x002F9860([0x00D236A0 + 6 x kind])`.
 
+The entry page's procedure `0x005701B0` serves these messages:
+
+- 1 keeps the creation record's `+0x00` as the parent at `+0xC0`, its byte `+0x08` (the kind) at `+0xE1`, its word
+  `+0x0A` (the entry) at `+0xE2` and its `+0x10` and `+0x18` at `+0xD0` and `+0xD8`, and clears `+0xC8` and
+  `+0x138`-`+0x150` (`0x005701DD`-`0x0057023E`).
+- For the Bestiary (kind 5) message 1 also calls `0x00363B00(2, 0.0)`, `0x001846F0(entry)`, `0x00181D50` and
+  `0x00181D80` (`0x00570245`-`0x00570264`). Every kind then runs `0x00577A00`, `0x0056FEF0` and `0x005778F0(entry)`, and the
+  page opens under its parent (`0x00246AD0`) (`0x00570269`-`0x0057028F`).
+- 12 with `0x8000` passes `0x8000` and the message's value on to the parent (`0x0057036E`-`0x0057037E`). With
+  `0x8002` it closes the page (`0x0056FEA0`), with `0x00181D10`, `0x00181B90` and `0x00181C30` before and `0x00181D30`,
+  `0x00181BD0`, `0x001846B0` and `0x00363B00(0, 0.0)` after, each group while `0x00181DD0` answers non-zero
+  (`0x0057031E`-`0x00570361`). Any other sub-code returns 0 (`0x00570318`).
+- 14 takes the focus (`0x002470D0`) and posts `0xE` with 8 to the parent (`0x005702DF`-`0x005702EC`, `0x005703E9`-`0x005703F6`).
+- 15, for a kind other than 2 and below 5, closes the `+0xD0` of the back panel's title widget `+0x100` when both
+  are there (`0x00244F00`) and clears it, then calls `0x002470C0` and posts `0xF` with 8 (`0x0057038B`-`0x005703E2`).
+- 16 sets bit `0x2` of `+0xC8` for the value 5 and bit `0x4` for 6, any other value no bit, and 19 sets bit
+  `0x1`; each then runs `0x00570080` (`0x005702A1`-`0x005702FB`). 18 posts `0x12` with 8 (`0x005703E4`).
+- 10 returns 0, and every other id goes to `0x005C5230`, which returns 0 (`0x005703FB`, `0x00570403`).
+
 ### The back panel
 
 - `0x0056ECC0(pane, event)` saves the page's place in bank 6 (`0x002527B0(6, 0x18, state)`, `0x00252610(6, [0x00D236A4 + 6 x
@@ -161,8 +181,10 @@ The hunt host `[0x02CA9748]` (`0x00579AF0`) shows two lists, open and cleared:
 
    The other seven picture files are never requested: they hold pages 4 to 29, which the one-page page map cannot
    name, and every picture in them is a "Dummy" placeholder.
-5. A request to a busy slot waits in its queue (`0x00575A50`). Each slot reports to the back panel when its content is
-   ready or freed.
+5. No request waits (`0x00575A50`). One for the file a busy slot is loading files no second read; one for another
+   file frees the slot's buffer and loads that file, while the earlier read still completes into the freed block
+   ([Handbook files](../Game-Files-And-Data-Tables/handbook-files.md)). Each slot reports to the back panel
+   when its content is ready or freed.
 
 The slots are at `+0x108`, `+0x110` and `+0x118` of `[0x02CA9738]`, each with a state byte `+0xC9` (1 ready, 2 and 3
 busy):
@@ -256,6 +278,16 @@ awards with `0x00577550(7)` (`0x005750AF`, `0x00316930`). `0x00572920` lays out 
 5. `0x00477F20` draws a record with `+0x6E0` set only in frame mode 3 (`0x00229EA0`), and every other record only outside
    it, so the model appears only in the menu.
 6. Closing the entry (`0x001846B0`, `0x00570355`) frees the model and restores `0x02CB8138`.
+
+Steps 1 and 6 in the bytes: `0x001846F0(n)` first runs `0x001E0580` (`0x001846F8`), saves `0x02CB8138` in `0x01F7F53C`, posts a
+`MonsterGallerySoftParticleEnable` command with byte 0 (`0x0018CCF0`, `0x00184722`) and tail-jumps to `0x001EB7B0(viewer,
+n)` (`0x00184736`). `0x001EB7B0` stores n at viewer `+0x11C`, releases a shown model through `0x002EEB20` when `+0x130` is
+not -1 (`0x001EB7C5`-`0x001EB7EB`) and continues in `0x001EB9C0`.
+
+`0x001846B0` runs `0x001E0580`, then `0x001EB940` on the viewer (`0x001846C1`), which clears `+0x118`, releases the model
+through `0x002EEB20` when `+0x130` is not -1, and sets the 8 bytes at `+0x130` and the dword `+0x120` to -1 and `+0x26E`
+to 0 (`0x001EB949`-`0x001EB975`). After the restore it posts the `MonsterGallerySoftParticleEnable` command with byte 1
+(`0x0018CCF0`, `0x001846E4`).
 
 The byte `0x01F82E20` marks that the viewer has started the model's motion. `0x001EC060` sets it to 1 (`0x001EC453`) when
 it is clear (`0x001EC434`) and the viewer's `+0x26E` is 0 (`0x001EC43D`), and then calls `0x002EF100(+0x134, +0x224)` (`0x001EC45A`),
@@ -365,7 +397,7 @@ The back panel is the `0x130`-byte widget with procedure `0x00574E80` that publi
 
 ### The data manager's fields
 
-The data manager is the `0x120`-byte widget at `0x02CA9738` with procedure `0x005771F0` (The data manager above).
+The data manager is the `0x120`-byte widget kept at `0x02CA9738` with procedure `0x005771F0` (The data manager above).
 
 `PrimerDataManager` (`0x120` bytes, offsets from the start of the record):
 
@@ -374,11 +406,11 @@ The data manager is the `0x120`-byte widget at `0x02CA9738` with procedure `0x00
 | `+0x000` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x005771F0` |
 | `+0x0C0` | `void*` | listener | the widget the manager reports to through `0x005770A0` (message 16 with a value): the creation record's `+0x08` (`0x0057725A`-`0x0057725E`), replaced by `0x00577A00` (`0x00577A0C`). Values: 1 when nothing was left to load or the load finished (`0x00577180`), 4, 5 and 6 when slot 0, 1 or 2 has its content (`0x005773DD`-`0x0057740A`), 10 when a cancel has finished (`0x00577449`-`0x00577455`), 2 when the manager is destroyed (`0x005774B7`) |
 | `+0x0C8` | `void*` | unlockTable0 | the unlock table of kind 0, kind-7 resource `0x229` ([`0x00D23740`] + 1), bound by `0x00576F50` when `+0x100` bit `0x4` is set (`0x00577010`-`0x00577038`); `0x00577550` reads the table of its kind at `+0xC8` + 8 x kind (`0x00577660`); freed and cleared by `0x005777C0` (`0x00577826`-`0x00577833`); 0 on construction (`0x00577221`) |
-| `+0x0D0` | `void*` | unlockTable1 | the unlock table of kind 1, kind-7 resource `0x295` (`0x00D23742` + 1), bound, read and freed as `+0xC8` (`0x00577038`, `0x00577660`, `0x00577833`); 0 on construction (`0x0057722A`) |
-| `+0x0D8` | `void*` | unlockTable2 | the unlock table of kind 2, kind-7 resource `0x2CD` (`0x00D23744` + 1), bound, read and freed as `+0xC8` (`0x00577038`, `0x00577660`, `0x00577833`); 0 on construction (`0x00577231`) |
-| `+0x0E0` | `void*` | unlockTable3 | the unlock table of kind 3, kind-7 resource `0x2F5` (`0x00D23746` + 1), bound, read and freed as `+0xC8` (`0x00577038`, `0x00577660`, `0x00577833`); 0 on construction (`0x00577238`) |
-| `+0x0E8` | `void*` | unlockTable4 | the unlock table of kind 4, Traveler's Tips, kind-7 resource `0x31D` (`0x00D23748` + 1), bound, read and freed as `+0xC8` (`0x00577038`, `0x00577660`, `0x00577833`); 0 on construction (`0x0057723F`) |
-| `+0x0F0` | `void*` | unlockTable5 | the Bestiary's unlock table, kind 5, kind-7 resource `0x355` (`0x00D2374A` + 1), 16-byte records from `+0x0C`: seven slot values and the mode word `+0x0E` that `0x00576860` and `0x005768E0` read (`0x00576870`, `0x005768EA`); bound, read by `0x00577550` (`0x005775C1`) and freed as `+0xC8`; 0 on construction (`0x00577246`) |
+| `+0x0D0` | `void*` | unlockTable1 | the unlock table of kind 1, kind-7 resource `0x295` ([`0x00D23742`] + 1), bound, read and freed as `+0xC8` (`0x00577038`, `0x00577660`, `0x00577833`); 0 on construction (`0x0057722A`) |
+| `+0x0D8` | `void*` | unlockTable2 | the unlock table of kind 2, kind-7 resource `0x2CD` ([`0x00D23744`] + 1), bound, read and freed as `+0xC8` (`0x00577038`, `0x00577660`, `0x00577833`); 0 on construction (`0x00577231`) |
+| `+0x0E0` | `void*` | unlockTable3 | the unlock table of kind 3, kind-7 resource `0x2F5` ([`0x00D23746`] + 1), bound, read and freed as `+0xC8` (`0x00577038`, `0x00577660`, `0x00577833`); 0 on construction (`0x00577238`) |
+| `+0x0E8` | `void*` | unlockTable4 | the unlock table of kind 4, Traveler's Tips, kind-7 resource `0x31D` ([`0x00D23748`] + 1), bound, read and freed as `+0xC8` (`0x00577038`, `0x00577660`, `0x00577833`); 0 on construction (`0x0057723F`) |
+| `+0x0F0` | `void*` | unlockTable5 | the Bestiary's unlock table, kind 5, kind-7 resource `0x355` ([`0x00D2374A`] + 1), 16-byte records from `+0x0C`: seven slot values and the mode word `+0x0E` that `0x00576860` and `0x005768E0` read (`0x00576870`, `0x005768EA`); bound, read by `0x00577550` (`0x005775C1`) and freed as `+0xC8`; 0 on construction (`0x00577246`) |
 | `+0x0F8` | `void*` | questTable | menuquest.dat, kind-7 resource `0x128`, bound by `0x00576F50` with the six tables (`0x00577041`-`0x0057707B`); the hunt counters `0x00576550`, `0x00576920` and `0x00576CA0` read it (`0x00576623`, `0x00576677`, `0x005769BB`, `0x00576CD6`); freed and cleared by `0x005777C0` (`0x00577847`-`0x00577862`); 0 on construction (`0x00577253`) |
 | `+0x100` | `u32` | flags | bit `0x1`: the opening run has started (message 14 deactivates the manager and sets it, `0x005772FC`-`0x00577306`); loads finishing afterwards are not reported (`0x005772D7`). Bit `0x2`: the tables are loading: set when they are requested (`0x0057706F`), cleared when the batch arrives (`0x005772E3`); `0x00576550`, `0x00576920`, `0x00576CA0` and `0x00577550` answer 0 while it is set (`0x0057661A`, `0x005769B2`, `0x00576CCD`, `0x00577567`). Bit `0x4`: bind the tables, set from a non-zero first byte of the creation record (`0x00577265`-`0x0057727D`); `0x005777C0` frees them and clears it (`0x00577800`-`0x00577840`). Bits `0x10` and `0x20`: glyph sheet 7 or 8 was missing and is loaded and later released by the manager (`0x00576F67`, `0x00576F7C`, `0x005777CF`-`0x005777F9`). Bit `0x8`: release requested by `0x00575F10` (`0x00575F24`); the tick then tears down and closes once the three slots are gone, unless bits `0x2` and `0x4` are both set (`0x00577315`-`0x0057736D`). Bit `0x40`: cancelling, set by `0x005776D0` (`0x005776F5`), which refuses new loads in `0x00577880` (`0x00577893`) and `0x005778F0` (`0x0057790D`); cleared after report 10 (`0x0057745A`). The bits under mask `0x380`: slot 0, 1 or 2 is idle after a cancel (command `0x10` with 3, 4 or 5, `0x00577411`-`0x00577429`; `0x005776D0` clears all three); a load request to the slot clears its bit (`0x005778B2`, `0x00575D8B`, `0x00575E2C`) |
 | `+0x104` | `u8[4]` | gap104 | read and written by no function; nothing fixes its width |

@@ -32,7 +32,8 @@ changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)).
 ### What the scenes give
 
 - `byu_z0100`, loaded in field 862 at story counter 460, holds "You've seen to her feeding, yes?" ... "She makes
-  straight for the Skycity of Bhujerba!" ... "His corpse fetches but half the bounty!"
+  straight for the Skycity of Bhujerba!" ... "As for you! We need Balthier alive! His corpse fetches but half the
+  bounty!"
 - `byu_b0101`, in the Aerodrome at 520, opens with "View scene again?" (Yes / No) and holds "No good. He's not here."
   / "Keep searching!" ... "You're a dead man. Don't forget it."
 - `byu_a0100`, in Travica Way at 546, opens with "View scene again?" (Yes / No) and holds "The Lhusu Mines are just up
@@ -42,7 +43,7 @@ changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)).
 - `byu_a0400`, in Lhusu Square from 658 to 670, opens with "View scene again?" (Yes / No) and holds "I see you've been
   out walking without the company of your cortege..." ... "Larsa Ferrinas Solidor."
 - `byu_a0481`, in Lhusu Square at 680, holds "Marquis Ondore announced my execution 2 years ago." ... "Nothin' to it!
-  I'll just go around town spreading the word." ... "That certainly qualifies as a clamor."
+  I'll just go around town spreading the word. How 'bout this?" ... "That certainly qualifies as a clamor."
 - `byu_a1880`, in The Cloudborne at 710 and 720, holds "This is the one, Havharo. Says he's Captain Basch he does."
   ... "So Basch fon Ronsenburg does yet live." The story counter values 710, 720 and 730 are written with it.
 - `byu_x0100`, in field 914 at 710, holds "So Vaan really is all right." ... "Vayne Solidor, the Consul, is my

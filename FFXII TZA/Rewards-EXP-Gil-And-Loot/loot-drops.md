@@ -22,9 +22,10 @@ sets the *quantities*: the run's counter moves the quantity table up a step each
 kill by the party of the same class and model, so kills 1, 2, 10, 11, 19 and 27 leave it at 0, 0, 8, 9, 17 and 25
 and use quantity rows 0, 0, 0, 1, 2 and 3 ([the chain](kill-chain.md)).
 
-The two extra drops are the **Monograph** drops: they roll only while the party holds the key item the
-enemy names (one of the six Monographs or the Canopic Jar), usually for Arcana, High Arcana, a Pebble
-or the enemy's own loot.
+The two extra drops are the **Monograph** drops; half the enemy definitions have both and the other half neither.
+The first rolls only while the party holds the Monograph the enemy names (one of seven), for a Pebble, Arcana, a
+Knot of Rust or a loot item, usually one the enemy also drops or gives up to Steal or Poach. The second rolls only
+while the party holds the Canopic Jar, for Arcana, High Arcana, Dark Matter, an Ether or a Meteorite.
 
 Collecting a [loot pickup](loot-pickups.md) can also give a **chain bonus**: at chain level 1 and up, a 10 % HP or MP
 restore, and from level 2, Protect or Shell.
@@ -87,11 +88,15 @@ Each roll is its own function:
 
 - `Loot_RollNormalSlotChance(profile, slot)` (`0x003185D0`): returns 0 for a profile outside the table
   or `slot > 4`; otherwise succeeds when `r < row[slot]`, a signed byte, so a chance of 0 or below never
-  drops.
+  drops. A table pointer `0x02EBF0C0` of 0 counts as no rows, so every profile is outside (`0x00318672`).
+- The chance roll draws `r` before the arguments are tested (`0x003185E4`-`0x00318641`), so a call that returns 0
+  for a bad argument still advances the generator.
 - `Loot_RollNormalSlotQuantityBucket(profile, slot)` (`0x003186F0`): sums the four signed weights at
   `row + 6 + slot*4` and returns the index (0-3) of the first one whose running sum exceeds `r`, or 4
   when no sum does (`0x003187E3`-`0x003187FB`); 0 for bad arguments. So the code allows 1 to 5 items; in the
   shipped table every slot's weights sum to 100, so it is 1 to 4.
+- Like the chance roll, `0x003186F0` draws `r` before it tests the profile and the slot (`0x00318704`-`0x00318761`),
+  so a bad argument costs a draw there as well.
 - `Loot_SelectChanceProfileByWeight()` (`0x00318820`): `0x00318960` picks the first row whose signed byte
   `+0x21` is negative or at least `0x022C3164`, or row 0 (`0x003189D6`). The walk sums signed bytes from
   `row + 0x22`, as many as the table has rows (`dword[table+4]` = 4), and returns the first index whose
@@ -228,17 +233,22 @@ The enemy's drop record (`[unit+0xE60]`), the fields the drop roll reads:
 The whole record, with the readers of the fields the drop roll skips, is on
 [battle-unit-construction](../Characters-And-Objects/battle-unit-construction.md).
 
-Over the 1,146 shipped spawn rows the condition is always one of eight key items: `0x8065`-`0x806A`
-and `0x806B` (the Monographs) and `0x806C` (the Canopic Jar); the extra item is Arcana (`0x204C`,
-526 entries), High Arcana (`0x204D`, 49), a Pebble (`0x209D`, 277) or the enemy's own loot
-(`0x209E`-`0x20EF`).
+Of the 1,146 shipped enemy definitions ([Bestiary](../Enemy-Spawning/bestiary.md)), 573 carry both
+extra drops and 573 neither. Extra drop 0's condition is always one of the seven Monographs, `0x8065`-`0x806B`, and
+extra drop 1's always the Canopic Jar, `0x806C`.
+
+Extra drop 0 is a Pebble (`0x209D`, 277 definitions), a loot item (`0x209E`-`0x20EF`, 200, of which 176 are one of
+the definition's own drop, steal or poach items), Arcana (`0x204C`, 57) or a Knot of Rust (`0x003F`, 39). Extra
+drop 1 is Arcana (469), High Arcana (`0x204D`, 60), Dark Matter (`0x003E`, 33), an Ether (`0x0003`, 6) or a
+Meteorite (`0x0019`-`0x001C`, 5).
 
 ## Modding notes
 
 - Drop chances and quantities are the four rows of the `battle_pack.bin` table above; editing a chance
   changes the drop rate linearly. Keep each slot's four quantity weights summing to 100 or less: below
   100, the remainder becomes a fifth bucket that drops five of the item.
-- To change the chain bonus weights, edit `0x01EED3B8` in the executable: that is the copy `0x00311146` reads.
+- To change the chain bonus weights, edit `0x01EED3B8` in the executable: that is the copy `0x00319530` reads
+  (`0x003195BE`), called at `0x00311146`.
 - An enemy's drops are its record's five item words and two extras; enemies have no drop profile of
   their own.
 - Because all of this shares one generator with spawning and AI, any change in the number of rolls

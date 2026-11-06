@@ -21,9 +21,21 @@ next id, `+0x10` source, `+0x18` cached pointer, `+0x20` 32-bit offset.
 
 - `0x0051F240(container, id)` takes the table by the container's mode (`+0x04` low two bits: 1 direct,
   0 through `0x003AB7F0`, anything else returns 0), indexes it by `id & 0xFFFF`, and when node bit `0x2` is
-  set rebuilds `+0x18` as the sign-extended 32-bit sum of the resolved source and the offset.
+  set rebuilds `+0x18` as `(i64)(i32)(0x003AB7F0(source) + offset)`, the sign-extended 32-bit sum of the resolved
+  source and the offset (`0x0051F2A3`-`0x0051F2B7`).
+- `0x0051F240` returns the node's `+0x18` (`0x0051F2BB`) without testing the used bit or the id's high half, and
+  0 when the node address is 0 (`0x0051F291`).
 - `0x0051F080` admits: `0x0051F410` takes the cursor slot, the id is `slot | 0x10000`, and the node joins
   the active list. The high half never changes, so a reused slot gets the same id.
+- `0x0051F080(container, source, offset, flags)` returns a negative result of `0x0051F410` as it is
+  (`0x0051F0A8`). Otherwise it sets node bit `0x1`, and bit `0x2` when `flags` has bit `0x2`
+  (`0x0051F0F3`-`0x0051F0FC`), stores the id at `+0x04`, `source` at `+0x10`, `offset` at `+0x20` and the
+  pointer `(i64)(i32)(0x003AB7F0(source) + offset)` at `+0x18` (`0x0051F0FF`-`0x0051F121`), appends the id
+  (`0x0051F380`) and returns it (`0x0051F12A`).
+- `0x0051F410(container)` returns −10 when the used count `+0x14` has reached the capacity `+0x10`
+  (`0x0051F423`). Otherwise it counts the node in (`0x0051F438`) and returns the cursor `+0x18`, after moving the
+  cursor on to the next node whose state dword is 0, wrapping at the capacity (`0x0051F490`-`0x0051F4B1`), or to
+  0 when the container is now full (`0x0051F441`).
 
 - The container's own list helpers: `0x0051F2F0`, run by the initialiser `0x0051F170`, clears every node
   (state 0, id and links −1, source, pointer and offset 0); `0x0051F380`, run by `0x0051F080`, appends
@@ -34,11 +46,21 @@ next id, `+0x10` source, `+0x18` cached pointer, `+0x20` 32-bit offset.
 - `0x0051BA80(container, id, source, offset, …)` builds a payload on the stack (`0x0041CB90`, `0x0041D220`),
   admits a node when `id` is -1, copies the payload in, rebuilds its pointers (`0x0041CA70`) and writes the
   id into its first dword; if the payload build fails it releases the existing entry and returns -1.
+- With `id` -1 `0x0051BA80` returns -1 before the build when `0x0051F150` is negative (`0x0051BAB3`-`0x0051BABF`) and
+  after it when `0x0051F080` is (`0x0051BAFC`). The release on a failed build is `0x0041CF00` and then `0x0051F190` of the
+  id in the entry's first dword, read before the reset; with `id` -1 a failed build releases nothing
+  (`0x0051BB8F`-`0x0051BBB2`).
 - `0x0051BA40` releases: it resets the entry (`0x0041CF00`) and clears the node (`0x0051F190`) without
-  comparing ids.
+  comparing ids. It finds the entry with `0x0051F240` and does nothing when that returns null (`0x0051BA51`);
+  the node it clears is the one the id in the entry's first dword names, read before the reset (`0x0051BA5B`).
+- `0x0051F190(container, id)` unlinks the node (`0x0051F4C0`), clears it as the initialiser does (state 0, id
+  and links −1, source, pointer and offset 0; `0x0051F1F8`-`0x0051F211`) and lowers the used count `+0x14` to
+  `count - 1`; when that reaches 0 it sets the cursor `+0x18` to 0 (`0x0051F215`-`0x0051F21B`).
 - `0x0051B9F0` rebuilds every active node's cached pointer (`0x0051F620`) and every payload (`0x0041CA70`).
 - `0x0051B970` updates the entries in three walks: entries with `+0x0C` bit `0x1000` set first (`0x0051BBE0`),
   then twice the others (`0x0051BBF0`) with the phase word `0x02CA83F4` at 1 and then 2.
+  Each walk is `0x0051F580(container, callback, container)`, both callbacks jump to the per-entry update
+  `0x0041C410`, and the phase word goes back to 0 at the end (`0x0051B979`-`0x0051B9C0`).
 
 ### How an entry picks its track
 
@@ -46,16 +68,54 @@ An entry plays an authored stream (`+0x368`) made of tracks. It keeps `+0x28` tr
 bytes from `+0x30`; the playing one is `+0x388`. The command handlers are on
 [authored presentation commands](authored-presentation-commands.md).
 
-- `0x0041CD30(entry, state, n)` sets up track `n`: it walks the headers (each header's word `+4` is the
-  distance to the next), writes the state defaults, and makes the track primary (entry `+0x18` /
-  `+0x20`, state flag bit `0x1`, active) when its kind byte is 1 or the stream has one track. Its start
-  cursor `+0x88` is the first command, or the command after a `0xFFFF` marker when the track has one.
+- `0x0041CD30(entry, state, n)` sets up track `n`. It returns at once when the stream `+0x368` is null or `n` is not
+  below the stream's track count, dword `+0x0C` (`0x0041CD3E`-`0x0041CD4F`), and walks the headers from stream `+0x30`
+  (each header's word `+4` is the distance to the next, added in 32 bits; `0x0041CD61`-`0x0041CD69`).
+- The state defaults it writes are `+0x00` and `+0x68` −1, word `+0x04` 0, `+0x08`-`+0x17` 0, dword `+0x18`
+  `0x1E0000`, the float `+0x20` 30.0, `+0x48`, `+0x60`, `+0x70` and `+0x78` 0, the words `+0x50` and `+0x52` −1,
+  `+0x84`-`+0x93` 0, byte `+0x94` `0xFF` with `+0x95`-`+0x97` 0, and `+0x80` = `n` (`0x0041CD75`-`0x0041CDC8`); with
+  entry `+0x0C` bit `0x1000` set the word `+0x96` becomes `0x20` (`0x0041CDCF`-`0x0041CDDD`).
+- It makes the track primary (entry `+0x18` / `+0x20`, state flag bit `0x1`, active byte `+0x95` 1) when its kind
+  byte, header `+0`, is 1 or the stream has one track (`0x0041CDE4`-`0x0041CE01`). `+0x84` is the header's offset in
+  the stream (`0x0041CE1C`).
+- Its start cursor `+0x88` is the first sub-record, header `+6`, or the sub-record after a `0xFFFF` marker when
+  the track has one among its header byte `+3` sub-records; `+0x90` keeps the marker's offset, else −1, and
+  `+0x8C` starts at `+0x88` (`0x0041CE08`-`0x0041CE8A`). Each next sub-record is the word `+2` shifted right by 6 on
+  from it, added in 32 bits (`0x0041CE48`-`0x0041CE58`).
 - `0x0041CFC0(entry)` resets: it keeps a snapshot of an interrupted transition (`+0x380`, `+0x384`, entry
   `+0x2E8` bit `0x4`), rewinds every state's cursor to its start, and leaves only the primary active.
+- `0x0041CFC0` takes the snapshot only when the playing state `+0x388` is set and active (byte `+0x95` = 1) with
+  word `+0x96` bit `0x10`, entry `+0x0C` bit `0x1000` is clear and the state's float `+0x98` is at least 0 and
+  below 0.99 (`0x008F3110`). It then sets `+0x2E8` bit `0x4` and copies the state's `+0x98` and `+0x9C` to
+  `+0x380` and `+0x384` (`0x0041CFC7`-`0x0041D024`), and on every path it clears `+0x388` (`0x0041D030`).
+- For each of the `+0x28` states `0x0041CFC0` clears bits `0x84` of word `+0x96`, sets byte `+0x94` to `0xFF`,
+  copies bit `0x1` of `+0x96` (the primary flag) into the active byte `+0x95` and the start cursor `+0x88` to
+  `+0x8C` (`0x0041D060`-`0x0041D085`).
+- It also writes `+0x00` and `+0x68` −1, word `+0x04` 0, `+0x08`, `+0x10`, `+0x48`, `+0x60`, `+0x70` and
+  `+0x78` 0, `+0x18` `0x1E0000`, the float `+0x20` 30.0 and the words `+0x50` and `+0x52` −1 in each state
+  (`0x0041D08B`-`0x0041D0F6`).
 - `0x0041C9A0(entry, n)` hands out a state other than state 0: one already holding track `n` (wiped), else
-  the first inactive one.
+  the first inactive one. It looks at the states from 1 while below the count `+0x28`
+  (`0x0041C9A6`-`0x0041C9F5`); an inactive state, byte `+0x95` = 0, is returned as it is (`0x0041C9E0`), and with
+  neither it returns null (`0x0041C9F7`).
+- The wipe of `0x0041C9A0` zeroes the state's `0xA0` bytes (`0x00861EC0`, `0x0041CA0A`) and sets `+0x00` and
+  `+0x68` to −1, `+0x18` to `0x1E0000`, the float `+0x20` to 30.0, the words `+0x50` and `+0x52` to −1 and
+  byte `+0x94` to `0xFF` (`0x0041CA0F`-`0x0041CA5C`).
 - Command class `0x01` (`0x00417920`) switches to a track at once (mode 0), only when the current state's
   word is 2 (mode 1), or when entry `+0x0C` bit `0x40` allows (mode 2, otherwise it raises bit `0x80` and waits).
+- `0x00417920(command, state, entry)` takes the track from bits `0xFFF0` of the command's word `+2` and the
+  mode from its bits `0xF`. It does nothing when the current state already plays the track (`+0x80`,
+  `0x00417943`), for modes 3 to 15 (`0x00417967`), or in mode 1 when the current state's word `+0x04` is not 2
+  (`0x00417A08`).
+- In modes 0 and 1 the state from `0x0041C9A0(entry, track)` gets word `+0x96` bit `0x2`, the track at `+0x80`
+  and its start cursor `+0x88` copied to `+0x8C` (`0x00417A0D`-`0x00417A2D`). A current state on track 0 is then
+  left as it is (`0x00417A33`); one whose dword `+0x00` is −1 becomes inactive, byte `+0x95` = 0 (`0x00417A66`);
+  any other loses word `+0x96` bit `0x4` and gets word `+0x04` = 2 (`0x00417A41`-`0x00417A52`).
+- In mode 2 with bit `0x40` the new state gets word `+0x96` bit `0x2` and the track (`0x00417978`-`0x0041798F`),
+  entry `+0x0C` loses bits `0x40` and `0x80` (`0x00417995`), and the current state is reset in place: `+0x00`
+  and `+0x68` −1, `+0x18` `0x1E0000`, `+0x20` 30.0, the words `+0x50` and `+0x52` −1, word `+0x04`, the
+  eight-byte fields `+0x08`, `+0x10`, `+0x48`, `+0x60`, `+0x70`, `+0x78` and byte `+0x95` 0
+  (`0x0041799C`-`0x004179D5`).
 - Command class `0x0B` (`0x00417110`) asks the selector `[0x02CA4668]` (entry kind `+0x2DC`) for a choice
   and plays `table[choice] + addend` through class `0x01`. A record with `+0x284` bit `0x8000000` and a parent
   reads the parent's cached choice (`+0x4B8`..`+0x4BB` for selector kinds 0, 2, `0x0A`, `0x10`) instead.
@@ -78,7 +138,7 @@ The authored command `0x00` also ends with kind `0x2F`'s handler. Every kind not
 | `0x21` | `0x004226C0` | with `d` the angle from `0x00424370` times 57.295776: 0 for `-60 <= d <= 60`, else 1 for `d > 0` and 2 for `d <= 0`; plus 3 when `0x003A6E60(2)` is non-zero (`0x004226FF`-`0x00422742`) |
 | `0x22` | `0x00422760` | 1 when the vertical angle to the point (`0x00424460`) is negative |
 | `0x23` | `0x004227D0` | 0 within ±60°, else 2 or 3 by side |
-| `0x24` | `0x00422870` | the quarter the point lies in (0 ahead, 1 at 45°–135°, 2 at −45° to −135°, 3 behind) in record byte `+0x2AF`, plus 4 on a random half |
+| `0x24` | `0x00422870` | the quarter the point lies in (0 ahead, 1 at 45°–135°, 2 at −45° to −135°, 3 behind) in record byte `+0x2AF`, plus 4 on a random half: with `d` the angle from `0x00424370` times 57.295776, `+0x2AF = -45 <= d <= 45 ? 0 : 45 < d <= 135 ? 1 : -135 <= d < -45 ? 2 : 3`, and the return value is that byte plus 4 when `0x003A6E60(2)` is non-zero (`0x004228AF`-`0x00422929`) |
 | `0x25` | `0x00422940` | from the angle to the record that the look controller's source names (`0x003E2CD0`): 0 between −90° and 0°, 1 at −90° or less, 2 above 90°, 3 between 0° and 90°; 0 without a source |
 | `0x2F` | `0x00422A10` | clears the word `+0x456` and sets byte `+0x2AF` to −1, returning −1 |
 
@@ -87,8 +147,9 @@ takes `atan2` of its y and z.
 
 ### The per-entry update
 
-`0x0041C410(entry)`, from `0x0041D820`, `0x00422EB0` and `0x002EE3E0`, runs an entry only when its record's
-`+0x6E0` is 1 in main-loop state 3 (`0x00229EA0`) or 0 in any other state, the entry's `+0x0C` has
+`0x0041C410(entry)`, from `0x0041D820`, `0x00422EB0`, `0x002EE3E0` and the two walk callbacks `0x0051BBE0` and `0x0051BBF0`
+(`0x0051BBE7`, `0x0051BBF7`), runs an entry only when its record's `+0x6E0` is 1 in main-loop state 3 (`0x00229EA0`) or
+0 in any other state, the entry's `+0x0C` has
 bit `0x2` set and bits `0x40000` and `0x800000` clear, the speed `+0x340` is non-zero, and the status table entry
 `0x003E7D10(+0x6A4, 3)` is 0 or the record's `+0xC0` bit `0x40` is clear. In phase 1 of `0x02CA83F4` it runs
 only records with `+0x284` bit `0x8000000` and no parent, and in phase 2 it skips those.

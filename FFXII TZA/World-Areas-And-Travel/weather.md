@@ -53,7 +53,12 @@ Its two readers are `0x0017D490` and the overlay `0x001CD0E0`, which prints it w
 3. The dword at container `+0x64` is resolved through `0x0020E600` and the signed byte at
    `section + 1 + slot` is returned. The section is a count byte, always 3 in the shipped scripts, then
    one byte per slot: the high-level `option weatherProbability = {a, b, c}`.
-4. When the container is not loaded the answer is 33 for every slot (`0x00265910`).
+4. The section is the container plus the low 32 bits of the resolved value, sign-extended
+   (`0x002658F8`-`0x002658FA`). The count byte is never read, so the clamp of step 1 (`s = slot - 1`, 0 when
+   negative, 2 when above 2: `jns`, `cmovg`, `0x002658B8`-`0x002658C8`) is the only bound on the read
+   `byte [section + 1 + s]` (`0x00265900`).
+5. When the container is not loaded, or its `+0x64` dword is 0 so that `0x0020E600` gives null (`0x002658F6`), the
+   answer is 33 for every slot (`0x00265910`).
 
 ### The roll when a zone starts
 
@@ -73,8 +78,8 @@ zone's setup actor (`0x0025DB31`-`0x0025DB74`), which may already have chosen th
    `0x1F` are instantiated for the slot (see the map section).
 4. `0x00379860(slot)`, `0x00379290()`, `0x003DE920(0, 1)`, `0x00363B40()`.
 5. Bit `0x4` of `+0x10` is set.
-6. `0x003601C0(0xB)` and `0x003601C0(0xC)` run on every pass, latched or not; they clear bits `0x800` and
-   12 of the flag word the world tick page names.
+6. `0x003601C0(0xB)` and `0x003601C0(0xC)` run on every pass, latched or not (`0x002621AD`, and the tail jump at
+   `0x002621BC`); they clear bits `0x800` and `0x1000` of the flag word the world tick page names.
 
 The slot passed in steps 3 and 4 is read fresh each time: the override when positive, else
 `payload[0x1060] + 1` (`0x0026210E`-`0x00262187`).
@@ -82,13 +87,15 @@ The slot passed in steps 3 and 4 is read fresh each time: the override when posi
 `0x0025ACA0` decides whether the current slot `s` is kept:
 
 ```c
+s = (0x0017D490() > 0) ? 0x0017D490()                   // the debug override, 0x0025ACAA-0x0025ACB8
+                     : payload[0x1060] + 1;          // signed byte of 0x002EF2B0(), 0x0025ACBC-0x0025ACC8
 p = 0x002658B0(s);
 if (p == 0)                       keep = false;      // 0x0025ACD4
 else if (p >= 100)                keep = true;       // 0x0025ACD8 cmp edi, 0x64
 else {
     u = MT19937_NextU32();                           // 0x00379CD0 -> 0x00863BF0, 0x0025ACDD
     r = (uint64(u) * 100) >> 32;                     // 0 to 99, 0x0025ACE4-0x0025ACE8
-    keep = (r < p);                                  // 0x0025ACEC
+    keep = (r < uint64(int64(p)));                   // 0x0025ACEC jb: unsigned, so a negative p keeps
 }
 next = keep ? s : 0x0025ABA0(s);
 0x0026D910(next);                                      // tail jump at 0x0025AD06
@@ -97,14 +104,15 @@ next = keep ? s : 0x0025ABA0(s);
 The generator is the gameplay Mersenne Twister (random number generators page), so a weather roll
 moves every later combat roll on that stream. The scaling is a multiply-high, not a modulo.
 
-`0x0025ABA0(s)` picks the slot to move to. Only a non-zero probability makes a slot eligible; the values
+`0x0025ABA0(s)` picks the slot to move to. Only a probability above 0 makes a slot eligible (a signed test, so a
+negative one does not: `0x0025ABDB`, `0x0025ABED`, `0x0025AC37`, `0x0025AC4C`, `0x0025AC68`, `0x0025AC8D`); the values
 are not weighted:
 
 | from | order tried | draws the generator |
 |---|---|---|
 | 1 | 2, then 3, then stay at 1 | no |
 | 3 | 2, then 1, then stay at 3 | no |
-| 2 | `r < 50`: 3, then 1, then stay at 2; `r >= 50`: 1, then 3, then stay at 2 | yes, once, before any probability is read (`0x0025ABB8`) |
+| 2, or any value other than 1 and 3 (only the debug override can give one, `0x0025ABAA`-`0x0025ABB6`) | `r < 50`: 3, then 1, then stay at 2; `r >= 50`: 1, then 3, then stay at 2 | yes, once, before any probability is read (`0x0025ABB8`) |
 
 Three consequences follow. With `{0, 0, 0}` nothing is eligible and the weather never changes. From
 slot 1 or 3 the choice is deterministic and slot 2 wins whenever it is eligible. The draw count per
@@ -125,7 +133,9 @@ roll is 0, 1 or 2 depending on the branch, and a reimplementation must draw the 
 5. `0x00180620(payload[0x1060])` selects the shadow parameter set of the committed slot (the lighting
    pages own it).
 6. The area's `map_ref.bin` row is read for the field `0x003148F0()` and the four globals of the next
-   section are published, when the table is bound.
+   section are published, when the table is bound. While `0x02099D88` or `0x02099D90` is null, or the row or lane
+   address is null, it goes to step 7 (`0x0026D9C6`-`0x0026DA0E`): `0x02099DA8`, `0x02099DAC` and `0x02099DB0` keep their
+   values, and `0x02099DBC` keeps the 0 of step 3.
 7. `payload[0x1061]` is cleared (`0x0026DA92`) on every path, including the bail-out when the table is
    not bound.
 8. The tail jump `0x002E3D40(0, 0, 0, 0)` (`0x0026DAAD`) refreshes the sky.
@@ -205,19 +215,23 @@ itself from the current field (`0x003148F0`), its selector (`0x00264F10`) and th
 (`0x00265920`) through the three wrappers; with a non-zero mode it passes its arguments through. Either
 way it tail-calls `0x0040AAD0(preset, azimuth, elevation)`:
 
-1. The preset and elevation bytes are stored at `0x02CA4391` and `0x02CA4392`, and `0x0040B3B0(preset)`
-   copies row `preset - 1` of the 32-byte table at `0x01EFFA30` to `0x02CA4380`-`0x02CA439C` (preset 0
-   copies nothing).
-2. The sun direction starts as the unit X axis and is rotated about X by `elev + (r1 - 0.15)` and
-   about Y by `(r2 - 0.15) - azimuth * 0.3926991`, where `elev` is 0 for class 0, +0.5235988 (30
-   degrees) for class 1 and -0.5235988 for class 2, each sector is 22.5 degrees, and `r1`, `r2` are
-   two draws of `0x003D8E50(0.3)` from the presentation generator (`0x0046D160`, `0x0046D200`).
-3. `0x0040B430` normalises the vector into `0x02CA43A0` and publishes its tangent with the almost-up
+1. The azimuth and elevation bytes are stored at `0x02CA4391` and `0x02CA4392` (`0x0040AAFA`, `0x0040AB01`), and
+   `0x0040B3B0(preset)` stores the preset byte at `0x02CA4390` (`0x0040B3B0`) and copies row `preset - 1` of the
+   32-byte table at `0x01EFFA30` to `0x02CA4380`-`0x02CA439C` (preset 0 copies nothing).
+2. The sun direction starts as the unit Z axis `{0, 0, 1}`, the 16 bytes at `0x009155F0` (`0x0040AB0C`), and is
+   rotated about X by `elev + (r1 - 0.15)` and about Y by `(r2 - 0.15) - azimuth * 0.3926991`, where `elev` is 0
+   for class 0, +0.5235988 (30 degrees) for class 1 and -0.5235988 for class 2 or 3 (`0x0040AB18`-`0x0040AB32`), and
+   each sector is 22.5 degrees.
+3. `r1` and `r2` are two draws of `0x003D8E50(0.3)` from the presentation generator (`0x0040AB43`, `0x0040AB7F`).
+   `0x0046D160` builds the X rotation (`0x0040AB5E`) and `0x0046D200` the Y rotation (`0x0040ABA8`), and `0x00202B90`
+   applies each to the vector in place (`0x0040AB72`, `0x0040ABBC`).
+4. `0x0040B430` normalises the vector into `0x02CA43A0` and publishes its tangent with the almost-up
    reference `{0, 1, 1e-5}` into `0x02CA43B0`.
 
 `0x0040B430`, called from `0x0040AAD0` (`0x0040ABC6`) and `0x0040DB70` (`0x0040DB97`), builds the tangent from the reference
-and the direction with `0x00202E10` (`0x0040B522`). It scales the result by 1 over its length, or by 0 when the length is
-below the constant at `0x00908E10`, and stores three floats (`0x0040B581`-`0x0040B592`). The model simulation stage
+and the direction with `0x00202E10` (`0x0040B522`). It scales the result by 1 over its length, `v * (1.0 / len)` with
+`len = sqrt(x * x + y * y + z * z)`, or by 0 when the length is below the constant at `0x00908E10`
+(`0x0040B542`-`0x0040B57C`), and stores three floats (`0x0040B581`-`0x0040B592`). The model simulation stage
 `0x0040FF30` reads the tangent as one 16-byte value (`0x0041008A`), copies it to `0x022D91E0` (`0x004100D1`) and takes its
 third float (`0x004100E0`):
 
@@ -315,10 +329,17 @@ the slot the setup script chose. `0x00379290` sets `0x02ADD0E9` to 1 and calls
 rebuild `0x00379630`. `0x0026E8D0(slot)`:
 
 - stores the slot in `0x0209A6E8` and sets the dirty flag `0x0209A708`;
-- recomputes the lighting constants `0x0209A2D0` to `0x0209A370` through `0x003ED0B0`, `0x003ED020`,
-  `0x003ECFD0`, `0x003ED140` and `0x003B6BA0`;
-- `0x003ED7B0(slot - 1)` copies the slot's 0x180-byte environment record of `[0x02EBB7F0]` (`+0x10`,
-  `+0x14`, `+0x1C`) to `0x02EBB7F8`, `0x02EBB7FC` and `0x02EBB804`, which `0x003ECCA0` reads each frame.
+- recomputes the lighting constants `0x0209A2D0` to `0x0209A370` through `0x003ED0B0`, `0x003ED020` and
+  `0x003ECFD0`, from the environment record of slot `[0x0209A6E8]` - 1 in `[0x02EBB7F0]`: `0x0209A2D0` takes
+  `0x003ED0B0()`, the record's `+0x04` dword or -1 while `[0x02EBB7F0]` is 0 (`0x0026E8F1`-`0x0026E8F6`);
+- runs `0x003ED020(i, 0x0209A2F0 + 0x30 × i, 0x0209A300 + 0x30 × i)` for lights 0 to 2 (`0x0026E910`-`0x0026E927`) and
+  `0x003ECFD0(0x0209A370)`, which copies the record's `+0xF0`-`+0xFC` there, or nothing while `[0x02EBB7F0]` is 0
+  (`0x0026E930`);
+- `0x003B6BA0(0x003ED140())` stores the record's `+0x08` scale at `0x01EFE314`, or 1.0 while `[0x02EBB7F0]` is 0
+  (`0x0026E935`-`0x0026E93A`);
+- `0x003ED7B0(slot - 1)`, the tail jump at `0x0026E951`, copies the slot's 0x180-byte environment record of
+  `[0x02EBB7F0]` (`+0x10`, `+0x14`, `+0x1C`) to `0x02EBB7F8`, `0x02EBB7FC` and `0x02EBB804`, which `0x003ECCA0` reads each
+  frame; it copies nothing while `[0x02EBB7F0]` is 0 (`0x003ED7BA`).
 
 The preset rebuild `0x00379630`, for an area without a light set, makes the map's lights from those
 constants:
@@ -620,7 +641,7 @@ stores and sets `0x0209A2D4` to 1.0:
 | `0x0209A360` | `f32[4]` | 0 | light 2 `+0x20` | `0x0026E640`, 0 (`0x0026E719`); `0x003ED020`; `0x0026EB30`, 1.0 in `+0x2C` | `0x00379630` |
 
 `0x00379630` files light requests for the first `0x0209A2D0` lights only, a signed count raised to 0 when negative and
-capped at 3 (`0x003796A7`-`0x003796C4`); `0x0026EB30` steps all three lights.
+capped at 3, `n < 0 ? 0 : n > 3 ? 3 : n` (`0x003796A7`-`0x003796C4`); `0x0026EB30` steps all three lights.
 
 Nothing on this path allocates, and no lock or thread check appears in any body named here. The
 in-image routes to `0x0026D910` are the boot setup, the field runtime pass and the script verb.

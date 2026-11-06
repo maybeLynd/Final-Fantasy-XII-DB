@@ -90,7 +90,9 @@ Either path that gets null from `0x00210EC0` calls `_invalid_parameter_noinfo_no
 The matching release `0x001A5A80(this, p, count)` for 8-byte elements repeats the size test: from 4 KiB it
 requires `p` to be 32-byte aligned, reads the raw pointer from `p - 8`, requires the difference to
 lie between 8 and `0x27`, and frees the raw pointer through `0x00210EB0`; any failed test calls
-`_invalid_parameter_noinfo_noreturn`.
+`_invalid_parameter_noinfo_noreturn`. A count above `0x1FFFFFFFFFFFFFFF` calls it too (`0x001A5A8E`), the raw
+pointer must lie below `p` (`0x001A5ABA`), and below 4 KiB `p` itself goes to `0x00210EB0`
+(`0x001A5AE6`-`0x001A5AED`).
 
 ### The two EASTL allocator classes
 
@@ -109,7 +111,7 @@ six slots:
 `0x0016D6B0` is `mov rcx, rdx` and a jump to `malloc`: the alignment, offset and flags arguments are
 dropped. The containers construct the logging class through `0x001EDF00`, which stores the vtable
 `0x00902720` and returns. The plain vtable `0x008F6500` is loaded at five sites, in `0x001A2130`,
-`0x001A99B0`, `0x001E1670` and `0x00676BD0` and at `0x006CC33D`.
+`0x001A9940`, `0x001E1670` and `0x00676BD0` and at `0x006CC33D`.
 
 The site at `0x001A99D5`, in `0x001A9940`, builds a guarded local static at `0x01F81188`: an EASTL tree
 whose `0x60`-byte nodes hold two `std::string`s at `+0x20` and `+0x40`, with the plain allocator at
@@ -161,10 +163,17 @@ The later arenas take their memory from other arenas, not from the heap:
 
 - `0x0025A990` selects arena 5, takes `0x100000` bytes top-down with `0x0036A190`, labels the block
   `EVTMEM` and registers it as arena 13; `0x0025AA30` does the same with `0x19000` bytes labelled
-  `SMNMEM` for arena 14. Each first releases the block it built before, and skips the registration
-  when the allocation returns null.
+  `SMNMEM` for arena 14.
+- `0x0025A990` and `0x0025AA30` each first release the block they built before (`0x00369760`, `0x0036D160` and `0x003697F0`,
+  then a null pointer: `0x0025A99E`-`0x0025A9BE`, `0x0025AA3E`-`0x0025AA5E`), and skip both the label and the registration
+  when the allocation returns null (`0x0025A9F5`, `0x0025AA95`), though the null result is still stored. The
+  registration is a tail jump to `0x00369D30` (`0x0025AA21`, `0x0025AAC1`).
 - `0x003E9AA0(arena, size)` takes arena 12's block top-down from the arena it is given, or from arena 6
   when the argument is negative. A null result spins forever at `0x003E9AE0`.
+- `0x003E9AA0` first calls `0x003EA200`, which acts only when `0x02B5E0B0` already holds a block (`0x003EA204`). It
+  selects the arena with `0x0036C1D0(arena, 5)`, keeps the new block at `0x02B5E0B0` (`0x003E9ACE`), registers it
+  with `0x00369D30(12, block, size, 0)` (`0x003E9AE2`-`0x003E9AEF`) and pops the selection by a tail jump to
+  `0x0036C140` (`0x003E9AFE`).
 
 ### The machine's memory: the file-cache budget and the working set
 
@@ -172,12 +181,15 @@ The later arenas take their memory from other arenas, not from the heap:
 `GlobalMemoryStatusEx` and sets the budget `0x01F83448` to a third of the physical memory, at least
 `0x2000000` (32 MiB) and capped at `0x100000000` (4 GiB) when the third exceeds `0xFFFFFFFF`. It sets
 `0x01F83441` to 1 when the physical memory is below 1 GiB and to 0 otherwise, and sets `0x01F83440` to 1.
+A budget of exactly `0x2000000` also sets `0x01F83441` to 1 (`0x0020C684`-`0x0020C68C`), which a memory of 1 GiB
+or more cannot give.
 
 `0x0020C6B0` creates the RAM file cache manager once: `0x00210EC0(0x158)`, constructed by
-`0x0020B2E0(manager, budget)` and kept at `0x01F83438`. The constructor stores the budget as the
+`0x0020B2E0(manager, budget)` and kept at `0x01F83438`; a null allocation is stored without the constructor
+(`0x0020C6D9`, `0x0020C6EB`), so a later call tries again. The constructor stores the budget as the
 manager's limit `+0x00` and builds its pool of `0x18`-byte cache entries at `+0x98` with
-`(budget >> 31) × 10,000` entries, at least 10,000 and at most 1,000,000; with a budget of at most
-4 GiB that is 10,000, or 20,000 when the budget is 4 GiB.
+`(budget >> 31) × 10,000` entries, at least 10,000 and at most 1,000,000; with a budget below
+4 GiB that is 10,000, and 20,000 when the budget is 4 GiB.
 
 The cache's own allocator sits on `malloc`: `0x0020B130(manager, size)` returns null when the usage
 `+0x10` is above the limit, and otherwise adds the size to the usage with `lock xadd` and jumps to
@@ -191,7 +203,12 @@ The second reader of `GlobalMemoryStatusEx` is `0x00792F10`, the constructor of
 `ABOVE_NORMAL_PRIORITY_CLASS` (`0x8000`, `0x00792F80`), reads the page size and the physical memory,
 and calls `SetProcessWorkingSetSize` with the current minimum (50 pages when
 `GetProcessWorkingSetSize` fails) and a maximum of the physical memory less 512 pages, less 1
-(`0x00792FD9` to `0x00792FE8`).
+(`0x00792FD9` to `0x00792FE8`). It skips that call when either value is `-1` (`0x00792FEB`-`0x00792FF5`).
+
+Before that the constructor stores its second argument at `+0x08` and the vtable `0x01CB2468` (`0x00792F4A`,
+`0x00792F55`), zeroes `+0x10`, the byte `+0x18` and the dword `+0x1C` (`0x00792F5A`-`0x00792F61`), and sets up
+`+0x20` with `0x005CC8A0` and `+0x48` with `0x007A3810`. It ends with `0x005CD0A0(+0x20)` (`0x00793010`) and returns
+the object (`0x00793016`).
 
 ### The actor record pool
 
@@ -237,6 +254,10 @@ no release function is given), allocates `size + 0x20 + extra + 0xF` bytes with 
 allocator is given) into `+0x08`, sets `+0x10` to `size + 0x10` and zeroes the dword there, and returns whether
 the block is non-null.
 
+The zero store at `block + size + 0x10` comes before that test (`0x006CC645`,
+`0x006CC648`). It also zeroes `+0x14`, `+0x50` and `+0x54` (`0x006CC600`, `0x006CC603`, `0x006CC634`) and sets the
+bytes `+0x20` and `+0x48` to 1 (`0x006CC651`, `0x006CC658`).
+
 Its three calls pass the pair held in the static cells `0x01F2EAA8` (`0x00584740`) and `0x01F2EAB0`
 (`0x00584730`), so the rings come from the 16-byte aligned heap. The
 [movie player](../Third-Party-Libraries/media-decoder-libraries.md) makes them:
@@ -268,6 +289,9 @@ It is built on first use, under the lock `0x02D3E880`, by a guarded one-time ini
   (`0x0067FE20`), then frees an owned name at `+0x30` (bit `0x1` clear) with `0x00584730`. It is reached
   through `0x00674A30`, slot 11 of the three `PAssetReference` class-descriptor vtables `0x00D6BA78`,
   `0x00D6BB00` and `0x00D6BB88`.
+- In `0x00675460` linked means the stored name `+0x28` is set and the node's link `+0x18`, bit `0x1` masked
+  off, is not the node itself (`0x0067547C`-`0x0067549D`). The lock is `0x02D3E880` (`0x005CD4F0`, `0x005CD820`), and
+  the inlined tree-head initialiser also registers `0x008B1C00` with `atexit` (`0x0067551C`-`0x00675523`).
 
 The qword `0x01F2EAA0` between the head and the pair holds 2. Its one reader, `0x00677030`, reads a text
 file into a block two bytes longer than the file, zeroes the two extra bytes, and uses the same
@@ -352,12 +376,12 @@ Imports, call sites of the allocation routines, and the boot blocks, in the exec
 | Import symbols | 538, from 30 DLLs |
 | Heap imports | 8, slots `0x008C2B40` to `0x008C2B78` |
 | Direct `call [malloc]` / `call [free]` | 30 / 37 |
-| `0x00584730` aligned free | 2,596 calls and 1 jump, in 2,308 functions |
+| `0x00584730` aligned free | 2,596 calls and 2 jumps (`jmp` at `0x0069ECD0`, `jbe` at `0x007A1229`), in 2,308 functions |
 | `0x0017D260` aligned allocate | 281 calls and 2 jumps, in 226 functions |
 | `0x00584740` 16-byte allocate | 45 calls, in 29 functions, and the cell `0x01F2EAA8` |
 | `0x00210EC0` new | 257 calls and 1 jump, in 180 functions |
-| `0x00210EB0` delete | 316 calls and 25 jumps, in 239 functions |
-| `0x00809950` sized delete | 502 calls and 6 jumps, in 473 functions |
+| `0x00210EB0` delete | 316 calls and 25 jumps, in 221 functions |
+| `0x00809950` sized delete | 502 calls and 6 jumps, in 469 functions |
 | `0x0085E730` `malloc` stub | 48 calls and 2 jumps |
 | `0x0019C570` `_aligned_free` stub | 17 calls and 1 jump, in 4 functions |
 | `0x001EDF00` EASTL allocator constructor | 583 calls, in 230 functions |

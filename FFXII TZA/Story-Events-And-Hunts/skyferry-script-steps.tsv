@@ -285,7 +285,7 @@ asp_a01	客呼び出し	for_rbn	15	0x066E1	585	global_var_2 == 0; シナリオ�
 asp_a01	客呼び出し	for_rbn	16	0x066EB	586	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	sysReqchg	2, ラバナ_通常_NPC07::talk_step02	actor `ラバナ_通常_NPC07`	-	-	re-points an entry slot: 2, ラバナ_通常_NPC07::talk_step02	ラバナ_通常_NPC07.talk_step02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a01	客呼び出し	for_rbn	17	0x066EC	587	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	客呼び出し	for_rbn	18	0x066EF	588	global_var_2 == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	客呼び出し	for_rbn	19	0x066EF	589	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	客呼び出し	for_rbn	19	0x066EF	589	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4); unreachable in the listing	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	客呼び出し	for_rbn	20	0x06708	591	global_var_2 == 0	if	scratch2_var_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	客呼び出し	for_rbn	21	0x06714	593	global_var_2 == 0; scratch2_var_1 == 1	sysReqchg	2, ラバナ_通常_NPC01::talk_battle02	actor `ラバナ_通常_NPC01`	-	-	re-points an entry slot: 2, ラバナ_通常_NPC01::talk_battle02	ラバナ_通常_NPC01.talk_battle02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a01	客呼び出し	for_rbn	22	0x0671E	594	global_var_2 == 0; scratch2_var_1 == 1	sysReqchg	2, ラバナ_通常_NPC04::talk_battle02	actor `ラバナ_通常_NPC04`	-	-	re-points an entry slot: 2, ラバナ_通常_NPC04::talk_battle02	ラバナ_通常_NPC04.talk_battle02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -392,7 +392,7 @@ asp_a01	客呼び出し	for_nal	15	0x06A2E	720	global_var_2 == 0; シナリオ�
 asp_a01	客呼び出し	for_nal	16	0x06A38	721	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	sysReqchg	2, ナルビ_通常_NPC09::talk_step02	actor `ナルビ_通常_NPC09`	-	-	re-points an entry slot: 2, ナルビ_通常_NPC09::talk_step02	ナルビ_通常_NPC09.talk_step02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a01	客呼び出し	for_nal	17	0x06A39	722	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	客呼び出し	for_nal	18	0x06A3C	723	global_var_2 == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	客呼び出し	for_nal	19	0x06A3C	724	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	客呼び出し	for_nal	19	0x06A3C	724	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4); unreachable in the listing	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	客呼び出し	for_nal	20	0x06A55	726	global_var_2 == 0	if	scratch2_var_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	客呼び出し	for_nal	21	0x06A61	728	global_var_2 == 0; scratch2_var_1 == 1	sysReqchg	2, ナルビ_通常_NPC05::talk_battle02	actor `ナルビ_通常_NPC05`	-	-	re-points an entry slot: 2, ナルビ_通常_NPC05::talk_battle02	ナルビ_通常_NPC05.talk_battle02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a01	客呼び出し	for_nal	22	0x06A6B	729	global_var_2 == 0; scratch2_var_1 == 1	sysReqchg	2, ナルビ_通常_NPC06::talk_battle02	actor `ナルビ_通常_NPC06`	-	-	re-points an entry slot: 2, ナルビ_通常_NPC06::talk_battle02	ナルビ_通常_NPC06.talk_battle02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -502,7 +502,7 @@ asp_a01	客呼び出し	for_byu	15	0x06D86	858	global_var_2 == 0; シナリオ�
 asp_a01	客呼び出し	for_byu	16	0x06D90	859	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	sysReqchg	2, ビュエ_通常_NPC07::talk_step02	actor `ビュエ_通常_NPC07`	-	-	re-points an entry slot: 2, ビュエ_通常_NPC07::talk_step02	ビュエ_通常_NPC07.talk_step02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a01	客呼び出し	for_byu	17	0x06D91	860	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	客呼び出し	for_byu	18	0x06D94	861	global_var_2 == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	客呼び出し	for_byu	19	0x06D94	862	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	客呼び出し	for_byu	19	0x06D94	862	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4); unreachable in the listing	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	客呼び出し	for_byu	20	0x06DAD	864	global_var_2 == 0	if	scratch2_var_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	客呼び出し	for_byu	21	0x06DB9	866	global_var_2 == 0; scratch2_var_1 == 1	sysReqchg	2, ビュエ_通常_NPC03::talk_battle02	actor `ビュエ_通常_NPC03`	-	-	re-points an entry slot: 2, ビュエ_通常_NPC03::talk_battle02	ビュエ_通常_NPC03.talk_battle02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a01	客呼び出し	for_byu	22	0x06DC3	867	global_var_2 == 0; scratch2_var_1 == 1	sysReqchg	2, ビュエ_通常_NPC04::talk_battle02	actor `ビュエ_通常_NPC04`	-	-	re-points an entry slot: 2, ビュエ_通常_NPC04::talk_battle02	ビュエ_通常_NPC04.talk_battle02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -616,7 +616,7 @@ asp_a01	客呼び出し	for_alc	15	0x07119	1000	global_var_2 == 0; シナリオ�
 asp_a01	客呼び出し	for_alc	16	0x07123	1001	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	sysReqchg	2, アルケ_通常_NPC06::talk_step02	actor `アルケ_通常_NPC06`	-	-	re-points an entry slot: 2, アルケ_通常_NPC06::talk_step02	アルケ_通常_NPC06.talk_step02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a01	客呼び出し	for_alc	17	0x07124	1002	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	客呼び出し	for_alc	18	0x07127	1003	global_var_2 == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	客呼び出し	for_alc	19	0x07127	1004	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	客呼び出し	for_alc	19	0x07127	1004	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4); unreachable in the listing	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	客呼び出し	for_alc	20	0x07140	1006	global_var_2 == 0	if	scratch2_var_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	客呼び出し	for_alc	21	0x0714C	1008	global_var_2 == 0; scratch2_var_1 == 1	sysReqchg	2, アルケ_通常_NPC02::talk_battle02	actor `アルケ_通常_NPC02`	-	-	re-points an entry slot: 2, アルケ_通常_NPC02::talk_battle02	アルケ_通常_NPC02.talk_battle02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a01	客呼び出し	for_alc	22	0x07156	1009	global_var_2 == 0; scratch2_var_1 == 1	sysReqchg	2, アルケ_通常_NPC03::talk_battle02	actor `アルケ_通常_NPC03`	-	-	re-points an entry slot: 2, アルケ_通常_NPC03::talk_battle02	アルケ_通常_NPC03.talk_battle02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -735,7 +735,7 @@ asp_a01	客呼び出し	for_var	17	0x074E7	1157	global_var_2 == 0; シナリオ�
 asp_a01	客呼び出し	for_var	18	0x074F1	1158	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	sysReqchg	2, バーフ_通常_NPC11::talk_step02	actor `バーフ_通常_NPC11`	-	-	re-points an entry slot: 2, バーフ_通常_NPC11::talk_step02	バーフ_通常_NPC11.talk_step02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a01	客呼び出し	for_var	19	0x074F2	1159	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	客呼び出し	for_var	20	0x074F5	1160	global_var_2 == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	客呼び出し	for_var	21	0x074F5	1161	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	客呼び出し	for_var	21	0x074F5	1161	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4); unreachable in the listing	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	客呼び出し	for_var	22	0x0750E	1163	global_var_2 == 0	if	scratch2_var_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	客呼び出し	for_var	23	0x0751A	1165	global_var_2 == 0; scratch2_var_1 == 1	sysReqchg	2, バーフ_通常_NPC01::talk_battle02	actor `バーフ_通常_NPC01`	-	-	re-points an entry slot: 2, バーフ_通常_NPC01::talk_battle02	バーフ_通常_NPC01.talk_battle02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a01	客呼び出し	for_var	24	0x07524	1166	global_var_2 == 0; scratch2_var_1 == 1	sysReqchg	2, バーフ_通常_NPC03::talk_battle02	actor `バーフ_通常_NPC03`	-	-	re-points an entry slot: 2, バーフ_通常_NPC03::talk_battle02	バーフ_通常_NPC03.talk_battle02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -9050,7 +9050,7 @@ asp_a02	客呼び出し	for_rbn	12	0x061FC	411	global_var_2 == 0; シナリオ�
 asp_a02	客呼び出し	for_rbn	13	0x06206	412	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	sysReqchg	2, マスター::talk_step02_rbn	actor `マスター`	-	-	re-points an entry slot: 2, マスター::talk_step02_rbn	マスター.talk_step02_rbn	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a02	客呼び出し	for_rbn	14	0x06207	413	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	客呼び出し	for_rbn	15	0x0620A	414	global_var_2 == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	客呼び出し	for_rbn	16	0x0620A	415	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	客呼び出し	for_rbn	16	0x0620A	415	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4); unreachable in the listing	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	客呼び出し	for_rbn	17	0x06225	417	global_var_2 == 0	sysReqchg	2, インフォメーション::talk_step01	actor `インフォメーション`	-	-	re-points an entry slot: 2, インフォメーション::talk_step01	インフォメーション.talk_step01	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a02	客呼び出し	for_rbn	18	0x0622F	418	global_var_2 == 0	sysReqchg	2, ドアガール::talk_step01	actor `ドアガール`	-	-	re-points an entry slot: 2, ドアガール::talk_step01	ドアガール.talk_step01	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a02	客呼び出し	for_rbn	19	0x06237	419	global_var_2 == 0	if	scratch2_var_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -9172,7 +9172,7 @@ asp_a02	客呼び出し	for_nal	12	0x065C2	559	global_var_2 == 0; シナリオ�
 asp_a02	客呼び出し	for_nal	13	0x065CC	560	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	sysReqchg	2, マスター::talk_step02_nac	actor `マスター`	-	-	re-points an entry slot: 2, マスター::talk_step02_nac	マスター.talk_step02_nac	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a02	客呼び出し	for_nal	14	0x065CD	561	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	客呼び出し	for_nal	15	0x065D0	562	global_var_2 == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	客呼び出し	for_nal	16	0x065D0	563	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	客呼び出し	for_nal	16	0x065D0	563	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4); unreachable in the listing	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	客呼び出し	for_nal	17	0x065EB	565	global_var_2 == 0	sysReqchg	2, インフォメーション::talk_step01	actor `インフォメーション`	-	-	re-points an entry slot: 2, インフォメーション::talk_step01	インフォメーション.talk_step01	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a02	客呼び出し	for_nal	18	0x065F5	566	global_var_2 == 0	sysReqchg	2, ドアガール::talk_step01	actor `ドアガール`	-	-	re-points an entry slot: 2, ドアガール::talk_step01	ドアガール.talk_step01	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a02	客呼び出し	for_nal	19	0x065FD	567	global_var_2 == 0	if	scratch2_var_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -9310,7 +9310,7 @@ asp_a02	客呼び出し	for_byu	14	0x06A25	723	global_var_2 == 0; シナリオ�
 asp_a02	客呼び出し	for_byu	15	0x06A2F	724	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	sysReqchg	2, マスター::talk_step02_byu	actor `マスター`	-	-	re-points an entry slot: 2, マスター::talk_step02_byu	マスター.talk_step02_byu	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a02	客呼び出し	for_byu	16	0x06A30	725	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	客呼び出し	for_byu	17	0x06A33	726	global_var_2 == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	客呼び出し	for_byu	18	0x06A33	727	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	客呼び出し	for_byu	18	0x06A33	727	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4); unreachable in the listing	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	客呼び出し	for_byu	19	0x06A4E	729	global_var_2 == 0	sysReqchg	2, インフォメーション::talk_step01	actor `インフォメーション`	-	-	re-points an entry slot: 2, インフォメーション::talk_step01	インフォメーション.talk_step01	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a02	客呼び出し	for_byu	20	0x06A58	730	global_var_2 == 0	sysReqchg	2, ドアガール::talk_step01	actor `ドアガール`	-	-	re-points an entry slot: 2, ドアガール::talk_step01	ドアガール.talk_step01	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a02	客呼び出し	for_byu	21	0x06A60	731	global_var_2 == 0	if	scratch2_var_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -9460,7 +9460,7 @@ asp_a02	客呼び出し	for_alc	12	0x06EEA	899	global_var_2 == 0; シナリオ�
 asp_a02	客呼び出し	for_alc	13	0x06EF4	900	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	sysReqchg	2, マスター::talk_step02_alc	actor `マスター`	-	-	re-points an entry slot: 2, マスター::talk_step02_alc	マスター.talk_step02_alc	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a02	客呼び出し	for_alc	14	0x06EF5	901	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	客呼び出し	for_alc	15	0x06EF8	902	global_var_2 == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	客呼び出し	for_alc	16	0x06EF8	903	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	客呼び出し	for_alc	16	0x06EF8	903	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4); unreachable in the listing	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	客呼び出し	for_alc	17	0x06F13	905	global_var_2 == 0	sysReqchg	2, インフォメーション::talk_step01	actor `インフォメーション`	-	-	re-points an entry slot: 2, インフォメーション::talk_step01	インフォメーション.talk_step01	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a02	客呼び出し	for_alc	18	0x06F1D	906	global_var_2 == 0	sysReqchg	2, ドアガール::talk_step01	actor `ドアガール`	-	-	re-points an entry slot: 2, ドアガール::talk_step01	ドアガール.talk_step01	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a02	客呼び出し	for_alc	19	0x06F25	907	global_var_2 == 0	if	scratch2_var_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -9577,7 +9577,7 @@ asp_a02	客呼び出し	for_var	12	0x07292	1042	global_var_2 == 0; シナリオ�
 asp_a02	客呼び出し	for_var	13	0x0729C	1043	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	sysReqchg	2, マスター::talk_step02_var	actor `マスター`	-	-	re-points an entry slot: 2, マスター::talk_step02_var	マスター.talk_step02_var	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a02	客呼び出し	for_var	14	0x0729D	1044	global_var_2 == 0; シナリオフラグ = gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	客呼び出し	for_var	15	0x072A0	1045	global_var_2 == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	客呼び出し	for_var	16	0x072A0	1046	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	客呼び出し	for_var	16	0x072A0	1046	global_var_2 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4); unreachable in the listing	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	客呼び出し	for_var	17	0x072BB	1048	global_var_2 == 0	sysReqchg	2, インフォメーション::talk_step01	actor `インフォメーション`	-	-	re-points an entry slot: 2, インフォメーション::talk_step01	インフォメーション.talk_step01	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a02	客呼び出し	for_var	18	0x072C5	1049	global_var_2 == 0	sysReqchg	2, ドアガール::talk_step01	actor `ドアガール`	-	-	re-points an entry slot: 2, ドアガール::talk_step01	ドアガール.talk_step01	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a02	客呼び出し	for_var	19	0x072CD	1050	global_var_2 == 0	if	scratch2_var_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -18035,7 +18035,7 @@ asp_a03	客呼び出し	for_rbn_先読み	16	0x046EB	172	global_var_1 == 0; シ�
 asp_a03	客呼び出し	for_rbn_先読み	17	0x046F5	173	global_var_1 == 0; シナリオフラグ = gte(0x17d4)	sysReqchg	2, ラバナ_通常_NPC12::talk_step02	actor `ラバナ_通常_NPC12`	-	-	re-points an entry slot: 2, ラバナ_通常_NPC12::talk_step02	ラバナ_通常_NPC12.talk_step02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a03	客呼び出し	for_rbn_先読み	18	0x046F6	174	global_var_1 == 0; シナリオフラグ = gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a03	客呼び出し	for_rbn_先読み	19	0x046F9	175	global_var_1 == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a03	客呼び出し	for_rbn_先読み	20	0x046F9	176	global_var_1 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a03	客呼び出し	for_rbn_先読み	20	0x046F9	176	global_var_1 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4); unreachable in the listing	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a03	客呼び出し	for_rbn_先読み	21	0x04712	178	global_var_1 == 0	if	scratch2_var_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a03	客呼び出し	for_rbn_先読み	22	0x0471E	180	global_var_1 == 0; scratch2_var_1 == 1	sysReqchg	2, ラバナ_通常_NPC02::talk_step_bafter	actor `ラバナ_通常_NPC02`	-	-	re-points an entry slot: 2, ラバナ_通常_NPC02::talk_step_bafter	ラバナ_通常_NPC02.talk_step_bafter	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a03	客呼び出し	for_rbn_先読み	23	0x04728	181	global_var_1 == 0; scratch2_var_1 == 1	sysReqchg	2, ラバナ_通常_NPC03::talk_step_bafter	actor `ラバナ_通常_NPC03`	-	-	re-points an entry slot: 2, ラバナ_通常_NPC03::talk_step_bafter	ラバナ_通常_NPC03.talk_step_bafter	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -18105,7 +18105,7 @@ asp_a03	客呼び出し	for_nal	30	0x048ED	258	global_var_1 == 0; シナリオ�
 asp_a03	客呼び出し	for_nal	31	0x048F7	259	global_var_1 == 0; シナリオフラグ = gte(0x17d4)	sysReqchg	2, ナルビ_通常_NPC13::talk_step02	actor `ナルビ_通常_NPC13`	-	-	re-points an entry slot: 2, ナルビ_通常_NPC13::talk_step02	ナルビ_通常_NPC13.talk_step02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a03	客呼び出し	for_nal	32	0x048F8	260	global_var_1 == 0; シナリオフラグ = gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a03	客呼び出し	for_nal	33	0x048FB	261	global_var_1 == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a03	客呼び出し	for_nal	34	0x048FB	262	global_var_1 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a03	客呼び出し	for_nal	34	0x048FB	262	global_var_1 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4); unreachable in the listing	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a03	客呼び出し	for_nal	35	0x04914	264	global_var_1 == 0	if	scratch2_var_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a03	客呼び出し	for_nal	36	0x04920	266	global_var_1 == 0; scratch2_var_1 == 1	sysReqchg	2, ナルビ_通常_NPC04::talk_step_bafter	actor `ナルビ_通常_NPC04`	-	-	re-points an entry slot: 2, ナルビ_通常_NPC04::talk_step_bafter	ナルビ_通常_NPC04.talk_step_bafter	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a03	客呼び出し	for_nal	37	0x0492A	267	global_var_1 == 0; scratch2_var_1 == 1	sysReqchg	2, ナルビ_通常_NPC08::talk_step_bafter	actor `ナルビ_通常_NPC08`	-	-	re-points an entry slot: 2, ナルビ_通常_NPC08::talk_step_bafter	ナルビ_通常_NPC08.talk_step_bafter	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -18164,7 +18164,7 @@ asp_a03	客呼び出し	for_byu	30	0x04AA9	327	global_var_1 == 0; シナリオ�
 asp_a03	客呼び出し	for_byu	31	0x04AB3	328	global_var_1 == 0; シナリオフラグ = gte(0x17d4)	sysReqchg	2, ビュエ_通常_NPC06::talk_step02	actor `ビュエ_通常_NPC06`	-	-	re-points an entry slot: 2, ビュエ_通常_NPC06::talk_step02	ビュエ_通常_NPC06.talk_step02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a03	客呼び出し	for_byu	32	0x04AB4	329	global_var_1 == 0; シナリオフラグ = gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a03	客呼び出し	for_byu	33	0x04AB7	330	global_var_1 == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a03	客呼び出し	for_byu	34	0x04AB7	331	global_var_1 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a03	客呼び出し	for_byu	34	0x04AB7	331	global_var_1 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4); unreachable in the listing	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a03	客呼び出し	for_byu	35	0x04AD0	333	global_var_1 == 0	if	scratch2_var_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a03	客呼び出し	for_byu	36	0x04ADC	335	global_var_1 == 0; scratch2_var_1 == 1	sysReqchg	2, ビュエ_通常_NPC02::talk_step_bafter	actor `ビュエ_通常_NPC02`	-	-	re-points an entry slot: 2, ビュエ_通常_NPC02::talk_step_bafter	ビュエ_通常_NPC02.talk_step_bafter	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a03	客呼び出し	for_byu	37	0x04AE6	336	global_var_1 == 0; scratch2_var_1 == 1	sysReqchg	2, ビュエ_通常_NPC03::talk_step_bafter	actor `ビュエ_通常_NPC03`	-	-	re-points an entry slot: 2, ビュエ_通常_NPC03::talk_step_bafter	ビュエ_通常_NPC03.talk_step_bafter	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -18219,7 +18219,7 @@ asp_a03	客呼び出し	for_alc	28	0x04C43	392	global_var_1 == 0; シナリオ�
 asp_a03	客呼び出し	for_alc	29	0x04C4D	393	global_var_1 == 0; シナリオフラグ = gte(0x17d4)	sysReqchg	2, アルケ_通常_NPC14::talk_step02	actor `アルケ_通常_NPC14`	-	-	re-points an entry slot: 2, アルケ_通常_NPC14::talk_step02	アルケ_通常_NPC14.talk_step02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a03	客呼び出し	for_alc	30	0x04C4E	394	global_var_1 == 0; シナリオフラグ = gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a03	客呼び出し	for_alc	31	0x04C51	395	global_var_1 == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a03	客呼び出し	for_alc	32	0x04C51	396	global_var_1 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a03	客呼び出し	for_alc	32	0x04C51	396	global_var_1 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4); unreachable in the listing	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a03	客呼び出し	for_alc	33	0x04C6A	398	global_var_1 == 0	if	scratch2_var_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a03	客呼び出し	for_alc	34	0x04C76	400	global_var_1 == 0; scratch2_var_1 == 1	sysReqchg	2, アルケ_通常_NPC02::talk_step_bafter	actor `アルケ_通常_NPC02`	-	-	re-points an entry slot: 2, アルケ_通常_NPC02::talk_step_bafter	アルケ_通常_NPC02.talk_step_bafter	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a03	客呼び出し	for_alc	35	0x04C80	401	global_var_1 == 0; scratch2_var_1 == 1	sysReqchg	2, アルケ_通常_NPC05::talk_step_bafter	actor `アルケ_通常_NPC05`	-	-	re-points an entry slot: 2, アルケ_通常_NPC05::talk_step_bafter	アルケ_通常_NPC05.talk_step_bafter	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -18275,7 +18275,7 @@ asp_a03	客呼び出し	for_var	28	0x04DE1	458	global_var_1 == 0; シナリオ�
 asp_a03	客呼び出し	for_var	29	0x04DEB	459	global_var_1 == 0; シナリオフラグ = gte(0x17d4)	sysReqchg	2, バーフ_通常_NPC11::talk_step02	actor `バーフ_通常_NPC11`	-	-	re-points an entry slot: 2, バーフ_通常_NPC11::talk_step02	バーフ_通常_NPC11.talk_step02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a03	客呼び出し	for_var	30	0x04DEC	460	global_var_1 == 0; シナリオフラグ = gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a03	客呼び出し	for_var	31	0x04DEF	461	global_var_1 == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a03	客呼び出し	for_var	32	0x04DEF	462	global_var_1 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a03	客呼び出し	for_var	32	0x04DEF	462	global_var_1 == 0; シナリオフラグ is none of lt(0x17d4), gte(0x17d4); unreachable in the listing	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a03	客呼び出し	for_var	33	0x04E08	464	global_var_1 == 0	if	scratch2_var_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a03	客呼び出し	for_var	34	0x04E14	466	global_var_1 == 0; scratch2_var_1 == 1	sysReqchg	2, バーフ_通常_NPC01::talk_step_bafter	actor `バーフ_通常_NPC01`	-	-	re-points an entry slot: 2, バーフ_通常_NPC01::talk_step_bafter	バーフ_通常_NPC01.talk_step_bafter	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a03	客呼び出し	for_var	35	0x04E1E	467	global_var_1 == 0; scratch2_var_1 == 1	sysReqchg	2, バーフ_通常_NPC02::talk_step_bafter	actor `バーフ_通常_NPC02`	-	-	re-points an entry slot: 2, バーフ_通常_NPC02::talk_step_bafter	バーフ_通常_NPC02.talk_step_bafter	resolved	01 ../Scripts-And-Script-Commands/script-requests.md

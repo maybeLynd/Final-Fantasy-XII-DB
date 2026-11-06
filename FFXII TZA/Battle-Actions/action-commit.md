@@ -62,13 +62,18 @@ call sites in four functions: action selection `0x00305AB0` (`0x00305B2F`, `0x00
 ### Release
 
 The action reset `0x003105D0` calls `0x00310780` first (`0x00310605`). For a unit with a stats
-record whose target `+0x710` resolves and whose bit `0x400000` is clear, `0x00310780` removes the unit's bit from
-the target's `+0xEA4`, decrements `+0xEA8`, reports it with `0x00313B30(unit, target, 0)` and calls
+record whose target `+0x710` resolves and whose bit `0x400000` is clear, `0x00310780` removes the unit's bit
+`1 << [unit+0xEA9]` from the target's `+0xEA4` when the mask holds it (`0x003107C5`-`0x003107DB`), decrements the
+byte `+0xEA8`, reports it with `0x00313B30(unit, target, 0)` and calls
 `0x002FEAD0(target)` (`0x0031079F`-`0x003107FE`). `0x00310780` is also called from `0x00300FC0` (`0x0030100D`). Both
 fields are zeroed when a unit is reset for reuse (`0x00236AD8`-`0x00236ADF`) and by `0x00322050` and `0x00322080`.
 
-For any unit with a stats record, `0x00310780` then releases the presentation slot `+0x694`
-([Action phases](action-phases.md); `0x00310812`-`0x00310825`). For the order id `0x414E` it calls
+A null unit or one without a stats record returns at once (`0x00310783`, `0x00310799`). For any other, `0x00310780` then
+calls `0x00308270(unit)` (`0x00310806`) and clears unit flag bits `0x20` and `0x10000000` (`0x0031080B`).
+
+It then releases the presentation slot `+0x694`
+([Action phases](action-phases.md); `0x00310812`-`0x00310825`) and calls `0x00319420(unit + 0x6B0)` and
+`0x00319140(unit, 1)` (`0x0031082C`, `0x00310839`). For the order id `0x414E` it calls
 `0x00317E50`, which is `0x0025AAD0(1, 0)`: with handle 0 `0x003588B0` resolves nothing and the non-zero
 first argument skips the rest, so the call changes nothing (`0x0031084D`-`0x00310856`, `0x003588B4`,
 `0x0025AAE1`).
@@ -79,6 +84,11 @@ first argument skips the rest, so the call changes nothing (`0x0031084D`-`0x0031
 X-Zone (or `0x00377C20()` is non-zero), or when `adding` is 0. For a party-side unit the recipients are
 the living party members at positions 0-3 (`0x0031B810`, staged in `0x022C1788`); otherwise the unit
 itself.
+
+The target is read with no null test, its `+0x698` at `0x00313B4F` and its id `+8` at `0x00313C7A`, so a null target
+faults. A null acting unit counts as not party-side and becomes the one recipient, whose id `+8` is read at
+`0x00313C6B`, so it faults there too. A living member is one with a stats record and without the statuses
+`0x80000003` outside a town (`0x00313BD2`-`0x00313C18`).
 
 To each recipient it posts a combat-relation event to its character record through
 `0x002ED2A0(recipient id, record)`, which resolves the recipient's actor (`0x003588B0`) and hands the
@@ -91,7 +101,8 @@ record to `0x003E6B50`. The record holds:
 ### The idle-unit queue
 
 Queueing happens in the combat frame `0x00308610`, for a unit whose `+0x708` is null and whose bit `0x20` is
-clear (`0x0030868B`-`0x003086DA`):
+clear (`0x0030868B`-`0x003086DA`), once the frame has passed its two early returns, `0x0030DA30(unit)` holding and
+`0x00307DF0(unit)` non-zero (`0x0030864D`-`0x00308689`):
 
 1. When unit bit `0x400000` is set, `0x00308270` is called.
 2. The unit is cancelled and reset (`0x003105D0`) and its bit `0x20` is set.

@@ -101,10 +101,35 @@ is clear and then zero both fields (`0x005DD620`, `0x00597B00`). A replace frees
 same test before storing the new one (`0x00672990`). `0x005CA130` stores a borrowed pointer and sets bit `0x80000000`
 with the count.
 
+`0x005CA130(record, pointer, count)` returns 5 and stores nothing when the count it is given already has bit
+`0x80000000` set (`0x005CA148`-`0x005CA14D`). Otherwise, when the old pointer differs from the new one and bit
+`0x80000000` of the old count is clear, it releases the old array with `0x005B7E10(old, oldCount & 0x7FFFFFFF)`
+(`0x005CA162`-`0x005CA17C`). It then stores the pointer and `count | 0x80000000` and returns 0
+(`0x005CA181`-`0x005CA190`).
+
+`0x005B7E10` returns at once for a null array (`0x005B7E13`). Otherwise it frees, through `0x00584730`, the pointer
+at `+0x28` of each `0x38`-byte element when that pointer is non-null with bit `0x1` clear, and then the array
+itself (`0x005B7E40`-`0x005B7E63`).
+
 In some records a count of 0 or 1 keeps the element inline in the pointer field: `0x00627750` and the
 accessor `0x00623F50` use the field itself as the element when `count & 0x7FFFFFFF` is below 2, and
 dereference it otherwise. A tagged-pointer variant marks borrowed storage with bit `0x1` of the pointer
 instead (`0x005A17A0`).
+
+Both functions handle `0x28`-byte elements. `0x00623F50(record, index)` reads the count at `+0x18` and the
+field at `+0x20`. An index not below `count & 0x7FFFFFFF` returns 0 (`0x00623F5A`, `0x00623F8E`); any other index
+returns the u64 at `+0x08` of element `index` (`0x00623F6A`-`0x00623F88`).
+
+`0x00627750(record, count)` sets a new count, with the count word at `+0x00` and the field at `+0x08`. A count
+equal to the whole stored word returns 0 at once (`0x0062776F`). Otherwise `0x0061CF20` gives the new storage: 0
+for a count of 0, the field itself for a count of 1, and for a larger count a block of `count * 0x28` bytes
+from `0x0017D260` called with `edx = 8`. It zeroes every element of the new storage (`0x0061CF2C`-`0x0061CF88`). The
+old elements are not copied.
+
+A failed allocation for a non-zero count returns 13 (`0x0062779E`). The old array is freed through `0x00584730`
+when it is non-null, is neither the field itself nor the new storage, and bit `0x80000000` of the old count is
+clear (`0x006277AC`-`0x006277C9`). The field then takes the new block unless the new storage is the field itself,
+the count word takes the new count, and the call returns 0 (`0x006277CE`-`0x006277DD`).
 
 ### Allocator-owned containers
 
@@ -113,6 +138,11 @@ EASTL containers carry an allocator object whose vtable slot `+0x18` frees `(poi
 `EASTL vector` or `EASTL set` (`0x0019C630`). A vector release calls the allocator with its buffer and
 capacity in bytes (`0x0019CA20`); list clears walk the nodes and release each through the same slot
 (`0x00199B00`).
+
+`0x0019CA20` handles `0x18`-byte elements. It does nothing when the buffer at `+0x00` is null (`0x0019CA33`).
+Otherwise it calls slot `+0x18` of the allocator at `+0x18` with the buffer and
+`(capacityEnd - buffer) / 0x18 * 0x18` bytes, `capacityEnd` being the pointer at `+0x10`
+(`0x0019CA38`-`0x0019CA6C`).
 
 The compiler generates the container operations once per element type. 76 such bodies between
 `0x00188640` and `0x001FFF00` are listed in [`object-construction-and-destruction-eastl-container-instances.tsv`](object-construction-and-destruction-eastl-container-instances.tsv)
@@ -203,7 +233,7 @@ compiler and library forms by function address; each was profiled against the im
 | `nativeadapter-flaggedteardownchain` | 4 teardowns that close an event record only when its flag is set |
 | `intrusive-virtual-node-dispose-loop`, `nativeleaf-listwalkvcallslot3` | 12 and 4 list clears through the allocator's slot `+0x18` |
 | `nativeleaf-vectorbufferrelease`, `-vectordestroydeallocloop` | 5 and 5 vector releases, the second destroying each element first |
-| `nativeleaf-bumpallocpop` | 2 cursor steps that copy `+0x10` to `+0x18` and advance `+0x10` by `0x10` |
+| `nativeleaf-bumpallocpop` | 2 cursor steps that copy `+0x10` to `+0x18` (`0x002714A0`) or `+0x20` (`0x002714E0`) and advance `+0x10` by `0x10` |
 | `eastl-container-instances` | 76 vector, tree and list operations generated per element type, with the operation and element size of each |
 
 ## Modding notes
@@ -290,7 +320,8 @@ compiler and library forms by function address; each was profiled against the im
   a second form: the smaller of the index and that count, a lookup on `[this+8]`, `0xD` when it fails, and otherwise
   the range shrinks and its tail is freed through `0x00584730` (4 rows).
 - [`object-construction-and-destruction-nativeleaf-bumpallocpop.tsv`](object-construction-and-destruction-nativeleaf-bumpallocpop.tsv):
-  functions that store `[this+0x10]` to `+0x30` and advance `+0x10` by `0x10` (2 rows).
+  functions that store `[this+0x10]` to `+0x18` (`0x002714A0`) or `+0x20` (`0x002714E0`) and advance `+0x10` by `0x10`
+  (2 rows).
 - [`object-construction-and-destruction-nativeleaf-listwalkvcallslot3.tsv`](object-construction-and-destruction-nativeleaf-listwalkvcallslot3.tsv):
   functions that walk the intrusive list at `[this+0x18]`, calling a member operation with each node and then slot 3
   of the object at `+0x30` with `0x58` (4 rows).

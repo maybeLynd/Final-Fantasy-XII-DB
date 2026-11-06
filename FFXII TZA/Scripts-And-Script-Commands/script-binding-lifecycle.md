@@ -42,9 +42,12 @@ model loads. When nothing uses the model any more it is unloaded, and a later sc
 - **An area unload** runs the per-frame binding update itself (`0x002628B0` is one of its callers), so retired
   entries are freed as the zone goes ([script name bindings](script-name-bindings.md#the-per-frame-binding-update),
   [changing areas](../World-Areas-And-Travel/changing-areas.md)).
-- **A pinned entry** (pin bit `0x1` or `0x2`) is never released: its count is clamped to 0 instead
-  ([script name bindings](script-name-bindings.md#find-or-create-holders-and-the-reference-count)).
-- **A retired entry whose buffer handle is 0** is not passed to `0x002E9360`; it ends on no list and its slot stays
+- **A pinned entry** (pin bit `0x1` or `0x2`) is never released: when `--count <= 0` its count is clamped to 0
+  instead, `count = 0` while `+0x19 & 3` is non-zero (`0x002EAF75`-`0x002EAF8C`;
+  [script name bindings](script-name-bindings.md#find-or-create-holders-and-the-reference-count)).
+- **A retired entry whose buffer handle is 0** is not passed to `0x002E9360`. It stays on the retired list while
+  newer entries are released ahead of it (`0x002E9419`); the first per-frame update that starts with such an
+  entry at the head of the list nulls the head (`0x002E6653`), so it ends on no list and its slot stays
   lost until the binding table is set up again
   ([script name bindings](script-name-bindings.md#the-per-frame-binding-update)).
 - **The 129th binding** at once has no free entry, and both finders write through the null pointer

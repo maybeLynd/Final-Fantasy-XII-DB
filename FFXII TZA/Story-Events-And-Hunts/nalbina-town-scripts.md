@@ -37,22 +37,23 @@ scenes](nalbina-town-scenes.md).
 
 - West Barbican: `監督.main` sets flags `0x0025` and `0x0020`, which open the location map's exits between Nalbina
   Town and the Mosphoran Highwaste and the Dalmasca Estersand.
-- West Barbican: the roadblock actor `通行止め監督` turns back a party that slips past the soldiers toward the
-  Mosphoran Highwaste ("Imperial army's engaged in a sweep of the Mosphoran Highwaste. No civilians allowed."); the
-  soldiers' blocking area is removed only while the story counter is above 1520.
-- West Barbican: the same actor's `通行解除イベント再生` shows the soldiers Deweg and Gibbs ("You're not afraid of
-  the chocobo, are you, Gibbs?"), and
-  `山通行解除.解除` sets flag `0x0144`. Gurdy, the chocobo seller (`NAC_ガーディ.talk_gardy`), sets flag `0x0073`,
-  riding a chocobo.
+- West Barbican: the roadblock actor `通行止め監督` turns back a party that slips past the soldiers toward the Mosphoran
+  Highwaste ("Imperial army's engaged in a sweep of the Mosphoran Highwaste. No civilians allowed. You'll have to turn
+  back."); the soldiers' blocking area is removed only while the story counter is above 1520.
+- West Barbican: the same actor's `通行解除イベント再生` shows the soldiers Deweg and Gibbs ("You're not afraid of the chocobo,
+  are you, Gibbs? Your family's held Tchita Downs for generations... Surely you're used to them by now."), and
+  `山通行解除.解除` sets flag `0x0144`. Gurdy, the chocobo seller (`NAC_ガーディ.talk_gardy`), sets flag `0x0073`, riding a
+  chocobo.
 - Jajim Bazaar: the notice board (`掲示板.talk`) shows the hunt bills, and the petitioners Burrogh and Popol
   (`依頼人ブロッホ`, `依頼人ポポル`) talk about their marks, the atomos and the deathscythe ([Hunts](hunts.md)).
 - West Ward: `監督.main` writes 300, loads and plays scene `nac_a0300`, writes 301 and jumps to the Stockade
   (Nalbina Dungeons), field `48`, entrance 0. The petitioners Morgen and Barrong talk about the Roblon and Goliath.
 - West Ward: Jovy (`ジョニー`) speaks from six `talk_step` functions, and `ロケイベント監督.ジョニーお礼渡す` gives the reward
   package that holds an Elixir and a Knot of Rust. The door `扉.開く` jumps to the Aerodrome, field `800`, entrance 1.
-- Aerodrome: the airship counters (`乗船カウンタートーク`) show the boarding lines ("You are now free to board.",
-  "you don't have enough gil"), set flag `0x005E` and jump to the Sky Saloon or the Observation Parlour
-  (Skyferry) or to the aerodromes of Rabanastre, Nalbina Town, Bhujerba, Archades and Balfonheim Port.
+- Aerodrome: the airship counters (`乗船カウンタートーク`) show the boarding lines ("Thank you for being so accommodating, sir.
+  You are now free to board.", "I'm sorry, but I'm afraid you don't have enough gil. Do come again."), set flag
+  `0x005E` and jump to the Sky Saloon or the Observation Parlour (Skyferry) or to the aerodromes of Rabanastre,
+  Nalbina Town, Bhujerba, Archades and Balfonheim Port.
 - Aerodrome: `監督.main` and `発着イベント監視.イベント再生とマップジャンプ` load scene `pas_z0000`
   ([Aerodrome airship scene](aerodrome-airship-scenes.md)).
 - Aerodrome: the private airship desk (`シュトラール受付.talk_step01`) loads scene `str_z0000`
@@ -91,6 +92,10 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
    `0x00348DF0` (`0x00349884`).
 3. `0x00348DF0` pops eight values. The seventh, the script's second argument, is passed with the current field context
    to `0x00264D60` (`0x00348E6A`-`0x00348E74`), the section 2 lookup, which keeps the low 24 bits of the id.
+4. `0x00348DF0` reads the entry's flag through `0x002673A0`, bit `0x1` of the entry's upper half (`0x00348E85`), and
+   opens the window through `0x002E16B0` only when that flag is clear (`0x00348EE0`-`0x00348EFF`). With the flag set it
+   still makes its six slot calls (`0x00348E91`-`0x00348ECA`) and fills the call record (`0x00348ED7`-`0x00348EDC`) but
+   opens no window ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)).
 
 ### Speakers, places and scenes
 
@@ -106,6 +111,8 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
   passes it to the verb, and `0x00348DF0` hands it to `0x002E16B0`. That actor's name is the second name of each pair its
   `setnpcname` calls name; `0x002E16B0` sets the actor's name flag before the window opens, and `0x00263990` shows the
   second name while that flag is set.
+- `0x00348DF0` makes that `0x002E16B0` call only for a line whose section 2 flag is clear (`0x00348EE0`); for a flagged
+  line it opens no window, so the actor's name flag is not set there.
 - An actor no `setnpcname` or `setshopname` call names keeps the name id `0xFFFF` and the empty text the record set-up
   `0x00266530` writes (`0x0026668B`, `0x0026669B`-`0x002666B4`), so its `{actor-name}` header shows no name; that line reads
   `no name shown`. A system message reads `system message`.
@@ -255,7 +262,7 @@ The steps table [`nalbina-town-script-steps.tsv`](nalbina-town-script-steps.tsv)
 | `step` | the step's number in its function, from 1, in the order the function's bytes run |
 | `at` | where the step's instruction sits: its offset in section 0, the script image, of the shipped `plan_master/us` `.ebp`. For `case`, `default` and `label` it is where their code starts. For `shared template` and `same code` it is where the function or actor starts |
 | `line` | the step's line in the script listing, `-` for the `shared template` and `same code` rows |
-| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets |
+| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. A case whose values meet an earlier case's is followed by `not (x = w)` for each such earlier case `w`, so the cell names only the values the case runs on: `x = lte(78); not (x = lt(78))` runs when x is 78. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. When such a way passes a case that an earlier case overlaps, the item counts only the values that case takes: after `case lt(0x0177)`, a `case lt(0x0182)` that returns gives the item `not (x = lt(0x0182)) or x = lt(0x0177)`, which holds unless 0x0177 <= x < 0x0182. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets, and, for a case whose every value an earlier case already matches, on the case values |
 | `verb` | the verb the step calls, by its name in the [verb table](../Scripts-And-Script-Commands/verb-table.md), written `Actor.verb` for a call on another actor. Otherwise the kind of step: `if`, `else if`, `while`, `for`, `switch`, `case`, `default`, `break`, `goto`, `label`, `return`, `returnT`, `store`, `shared template` or `same code` |
 | `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test. A number with a fraction is the listing's print of a 32-bit float to nine significant digits, here and in `condition`: 1.60000002 is the float nearest to 1.6, and 2.36000005e-06 is 2.36000005 times 10 to the power -6 |
 | `addresses` | what the arguments name in the game: the actor, model, animation and motion file, effect file, event sound, camera shot, message window, request slot or variable |

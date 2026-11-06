@@ -69,6 +69,11 @@ The pass returns 1 without driving anything when:
    (`+0x03 & 0xE0 == 0x60`) whose `+0xC0` object has a `+0x138`;
 6. flags2 bit `0x4` is set.
 
+The frozen pass walks the records only while the slot's `+0x10` bit `0x1` is set and its count `+0x20` is
+positive (`0x0025E458`-`0x0025E46F`), and does not test the `0x00358940` result before reading its `+0xC0`
+(`0x0025E47B`). It resolves the focus with slot 0 as the current slot (`0x0025E429`-`0x0025E45C`), and it uses
+only its first argument, the slot (`0x0025E412`).
+
 ### The two globals
 
 Before any record is driven the pass publishes `0x02099D70` = the slot block and `0x02099D78` = the party
@@ -93,7 +98,8 @@ The body takes one of these branches after the refusals:
    clear and the low nibble is not, `0x003DB280(record)` runs and the record is driven again. Once bit
    `0x40` is set, `drivePending` is cleared, the init core `0x002620E0` runs and the pass ends with 0.
 4. Otherwise the area music select `0x00261F90(slot)` runs first: on slot index 0 with flags bit `0x40`
-   clear it selects and starts the area's track once per field, sets flags bit `0x20` when flags3 bit `0x4`
+   clear it selects and starts the area's track once per field while flags3 bit `0x80` is set (`0x00262000`),
+   sets flags bit `0x20` when flags3 bit `0x4`
    is clear, and sets bit `0x40` at its end ([music](../Sound-And-Music/music-table.md)).
    Then the two holds below are checked, each marking the pass busy.
 5. With flags3 bit `0x80` clear and flags bit `0x20` clear the main work runs: the init core, the roster loop,
@@ -145,6 +151,11 @@ The same arming call is made outside the pass by `0x00269800(slot)`, which runs 
 on every record of the slot's class-3 range (ordinals `+0x1DE` to `+0x1DE + +0x1D6 - 1`); the
 `entrystart` verb's begin (`0x013F`, `0x003574B0`) runs it on slot 0.
 
+`0x00269860(record, 1)` returns 0 without filing while the scripts-live byte `0x02099DE1` is clear or for a null
+record (`0x00269876`, `0x00269888`). Otherwise it files the record's `spawn` request on channel 2 when `+0x1C` bit
+`0x80` is set, the slot names a function and `+0x18` is not 1 (`0x002698AC`-`0x002699AB`), then returns
+`0x00269640(record)` (`0x002699B3`); [script requests](../Scripts-And-Script-Commands/script-requests.md) has both.
+
 ### The field-settled sequence
 
 When flags bit `0x80` is set, nothing marked the pass busy and the slot index is 0, the pass runs once:
@@ -178,9 +189,9 @@ Then it resolves the current wait slot `[record + 0xA8] + (i8 record +0x11) * 0x
 | 1, 2 | the bytecode interpreter `0x0025E4C0(slot, record, waitSlot)`, with `0x02099D80` = the record and `0x00357760()` before it | the interpreter returns non-zero, or `0x001ED130()` with slot index 1 or 2 and `0x001EC5C0()` = 0, or slot index 3 with `0x001EC5E0()`, or `0x022C7F84` non-zero; in each case only while `0x00357770()` = 0 | leaves the loop |
 | 3 | `0x003DBF60(0x0020E600(targetRef), waitResourceId, -1)` | the entry is found (not `0xFF`) | `waitKind` = 1, `settled` = 1 |
 | 4 | `0x003DC050(record, record +0x11, stamp - record +0x58)` | no entry (`0xFF`) | `0x003DB2A0(record, entry)` removes it, `waitKind` = 1 |
-| 5 | `0x002674B0(slot, &targetRef)`: walks the list `listRef` names from the cursor `listCursor`, resolving each entry's low word as a record ordinal (`0x00358940`) and its high word as a resource id, and stops at the first `0x003DBF60(record, id, -1)` that is not `0xFF` | an entry is found | `waitKind` = 1 |
+| 5 | `0x002674B0(slot, &targetRef)`: walks the list `listRef` names from the cursor `listCursor`, resolving each entry's low word as a record ordinal (`0x00358940`) and its high word as a resource id, and stops at the first `0x003DBF60(record, id, -1)` that is not `0xFF`; `listCursor` advances past each entry that is `0xFF` (`0x0026751C`) and stays on the one found, so the next visit resumes there and entries already passed are not tested again; a null list holds nothing (`0x002674D3`) | an entry is found | `waitKind` = 1 |
 | 6 | `0x003DB640(0x0020E600(targetRef), waitChannel)` | the channel bit is set | `waitKind` = 1, `settled` = 1 |
-| 7 | `0x00267420(slot, &targetRef)`: the same walk, stopping at the first record whose channel bit `waitChannel` is set (`0x003DB640`) | an entry is found | `waitKind` = 1, `settled` = 1 |
+| 7 | `0x00267420(slot, &targetRef)`: the same walk, stopping at the first record whose channel bit `waitChannel` is set (`0x003DB640`); `listCursor` advances past each record without the bit (`0x00267471`) and stays on the one found; a null list holds nothing (`0x00267443`) | an entry is found | `waitKind` = 1, `settled` = 1 |
 | 0, 8 and above | nothing | always | `parked` = 1 |
 
 After the loop the resolver finishes the visit:

@@ -150,8 +150,8 @@ at `+4`, or when the table is absent. Bit `0x8000` is the town flag (see
 ### Script access
 
 The script verb `btlAtelGetChainCount` (`0x00510100`) returns the breaks in a row for
-argument 0 (`0x00318380`), the chain length for 1 (`0x00318390`), and -1 otherwise. No script verb writes
-the chain.
+argument 0 (`0x00318380`), the chain length for 1 (`0x00318390`), and -1 otherwise. The script verb
+`btladjustsystem` clears the chain when bit `0x1` of its argument is set ([Reset](#reset)).
 
 ### The display
 
@@ -160,16 +160,30 @@ The chain counter is a widget in the HUD sub-object at `+0x57E0`. The HUD keeps 
 
 - `0x0028EF00` (79 B), the break or continue notice, resets the flags to bits `0x8` and `0x1` and stores the
   pending count and level.
-- `0x0028EF70` (70 B) calls `0x0028F0C0()`, keeps the flags and sets bit `0x2` to the coin.
-- `0x0028EF50(level)` (29 B), called on a level rise, sets flag bit `0x4`.
+  - It writes the flags through the HUD pointer `0x0209BE80` (`0x0028EF07`-`0x0028EF26`) before its null test
+    (`0x0028EF34`), which guards only the count and level.
+  - The pointer is written only by `0x0028F8B0`, with the `0x10FD0`-byte block `0x00271420` returns
+    (`0x0028F8CA`-`0x0028F8D4`), and cleared only by the teardown `0x0028F2F0` that `0x0028F8B0` runs first (`0x0028F8B4`,
+    `0x0028F554`). `0x0028F8B0` runs once, at startup: its one call chain is `0x0022A0B0` (`0x0022A415`), `0x00253970`
+    (`0x002539C5`), `0x0035C560` (`0x0035C57F`).
+- `0x0028EF70` (70 B) calls `0x0028F0C0(length)`, keeps the other flags, sets bit `0x2` to the coin's bit `0x1` and
+  stores the level at `+0x7C82` (`0x0028EF7F`-`0x0028EFA9`).
+- `0x0028EF50(level)` (29 B), called on a level rise, sets flag bit `0x4` and stores the new level at `+0x7C82`
+  (`0x0028EF50`-`0x0028EF65`).
 
 The widget update `0x003F9F40` reads those flags each frame:
 
 - Flag bit `0x2` is copied into the widget's `+0xC4` bit `0x2` (`0x003FA069`-`0x003FA07E`), which makes the
   number redraw every frame in a pulsing grey.
-- `0x003F9E50(widget, count, playSound)` (229 B) hides the widget for a count of 0, does not show a
+- `0x003F9E50(widget, count, playSound)` (229 B) returns 1 at once for a count of 0, drawing nothing and
+  leaving the widget as it is (`0x003F9E67`-`0x003F9E69`), does not show a
   count of 1 (the test is on `0x00229E40()` being non-zero, which it always is), and otherwise draws
   `min(count, 999)` in three digits (unsigned compare), playing sound `0x30` when asked.
+- Before drawing, `0x003F9E50` builds the widget in place with `0x00245000(widget, 0xD0, 0x003FAF10, 0)` and opens it
+  (`0x00246AC0`) when its first qword is 0 (`0x00273A20`); for a built widget whose `+0xC4` has bit `0x1` or `0x4` set
+  it returns 0 and draws nothing (`0x003F9E81`-`0x003F9EC8`). The sound comes with the descriptor `0x00D11FA0`
+  (`0x00247570`), and the count is kept at `+0xC8` with `+0xC0` = 0 (`0x003F9ECD`-`0x003F9F1B`). It returns 1
+  (`0x003F9F25`).
 - With flag bit `0x4` set, it counts frames at widget `+0x24A0` and, once the count passes 15 times the
   frame base `0x01DFE0B4`, starts a second element at widget `+0xD0` with the handler `0x003FACF0` and
   clears the bit (`0x003F9F51`-`0x003F9FB5`).

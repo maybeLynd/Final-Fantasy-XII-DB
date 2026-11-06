@@ -33,19 +33,28 @@ Cut-in, motion blur and soft focus follow one pattern:
   is 0 and 0 otherwise (`0x0024B7B0`, `0x0024CBE0`, `0x002512B0`, `0x003756B0`, `0x003AAA50`, `0x003AB500` among them).
 - The target allocator `0x00182B40` ignores its two scale arguments. It always asks for the render
   width by the render height × 512 / 448 (`0x00186AA0`, `0x00186A90`), so every target is full size.
+- `0x00182B40` returns 0 and asks for nothing when `0x001B6C40()` or `0x00189120()` returns 0 (`0x00182B4C`,
+  `0x00182B5A`). Otherwise the height is `h × 512.0 / 448.0`, truncated toward zero, for the render height
+  `h` (`0x008C5B48`, `0x008C5B44`, `0x00182BA2`); the request also names the format `0x02CF7480` (`0x00182BAA`), and
+  `0x00182B40` returns what `0x001B66F0` returns (`0x00182BCE`).
 
 - The targets come from a pool kept by `0x001B6C40()`: `0x001B66F0` finds the 0xA8-byte pool for the width,
   height and format (`0x02CF7480`), creating it with `0x001B6560` when missing, and `0x001B67F0` takes a free
   target from it or makes a new one (`0x001EE040`). `0x00182CA0` hands a target back through `0x001B68D0`,
   which finds its pool by the texture's width `+0x28`, height `+0x2C` and format (its first qword) and returns it (`0x001B6990`).
 
-- The per-frame driver `0x0024D540` calls the three per-frame bodies with the draw index, 0 or 1,
+- The per-frame driver `0x0024D540` calls its per-frame bodies
   only while the main-loop state `0x00229EA0()` is 2 or 6 (`0x0024D6AA`-`0x0024D6B7`). The field frame
   `0x0022A770` is state 2 ([frame update order](../Engine-Core/frame-update-order.md)).
+- In order they are `0x0024BFD0`, `0x0024B7B0`, the soft focus `0x003AB500` with its block `0x020925F0` in draw 0 while
+  bit `0x1` of `0x020926E4` is up, the screen capture `0x0024DEE0`, the cut-in `0x0024CBE0` and the motion blur
+  `0x0024EA10` (`0x0024D6B9`-`0x0024D6F6`); every one but `0x003AB500` takes the draw index, 0 or 1.
 
 Each frame the bodies queue descriptors in the screen-effect pool of
-[screen fades](screen-fades.md). Every handler returns 1 (keep) unless the descriptor's byte
-`+0x1D` names the draw in progress (`0x00358320`). Three steps recur:
+[screen fades](screen-fades.md). Every handler but kind 1's returns 1 (keep) unless the descriptor's draw
+byte names the draw in progress (`0x00358320`): byte `+0x1D` for kinds 2, 4, 6, `0x0C` and `0x0D`, `+0x1E`
+for kind 7, and `+0x1F` for kinds 3, 5 and `0x0B` (`0x003745CE`, `0x00375BAF`, `0x0037428E`, `0x00376094`,
+`0x003752AE`; `0x00374E3E`; `0x00374A37`, `0x00375D9E`, `0x00376248`). Three steps recur:
 
 1. Kind 3 copies the finished scene into a target.
 2. Kind 4 (`0x00375B90`) binds an image to a block address of the emulated GS memory, the low 14
@@ -59,6 +68,19 @@ bit `0x8` is set, kinds 2, 6 and `0x0D` when bit `0x40` is set. Every descriptor
 bit, so an effect redraws only while its per-frame body keeps queueing, and stops the frame after
 its flag bit drops.
 
+Kind 4 reads its qword `+0x30`, here `q`, as fields: the address `q & 0x3FFF` (`0x00375C12`), the format
+`(q >> 20) & 0x3F` (`0x00375C18`-`0x00375C21`), and a width and height of `1 << n` for `n` the four bits
+`(q >> 26) & 0xF` and `(q >> 30) & 0xF`, through `0x002D7F20(n)`, which returns `1 << n` for `n` up to 10 and
+0 above (`0x00375C34`-`0x00375C55`). With `+0x1C` bit `0x10` the image goes up at a fixed 512 × 448 instead
+(`0x00375BF7`-`0x00375C2D`).
+
+Each upload is `0x003A22A0` followed by `0x003A1DB0` (`0x00375C2D`, `0x00375C84`, `0x00375CA8`), and the texture
+`+0x50` is bound only when it is not 0 (`0x00375C92`). The palette goes up only when the format is above 2,
+`(q & 0x3F00000) > 0x200000`, and bit `0x2` is set (`0x00375CAD`-`0x00375CCA`): at the address
+`(q >> 37) & 0x3FFF` in the format `(q >> 51) & 0xF`, 16 × 16 entries with bit `0x4`, else 8 × 2
+(`0x00375CD6`-`0x00375D3F`). Unless that address is 0 or `0xE00`, the palette texture `+0x58` then goes to
+`0x002D7D50` with `q` (`0x00375D44`-`0x00375D65`).
+
 ### Cut-in
 
 `cutinplay` (`0x003DF8F0`) passes the staging block `0x02B59D20` to `0x0024CF50`, which copies its 0x24
@@ -66,6 +88,14 @@ bytes to `0x02092640` and, only when bit `0x8` of the flag word is clear, alloca
 `0x02092638` and raises bit `0x8`. A second play replaces the parameters and keeps the target.
 `cutinclear` (`0x003DF8E0` → `0x0024CEB0`) zeroes the type byte, releases the target and every
 recorded handle, and drops bit `0x8`.
+
+The copy comes first on every play (`0x0024CF5B`-`0x0024CF73`). With bit `0x8` clear, `0x0024CF50` hands back
+a target still held at `0x02092638` (`0x0024CF7B`-`0x0024CFAD`) and calls `0x00182B40(1.0, 1.0)` (`0x0024CFBF`). It
+raises bit `0x8` and stores the result whatever `0x00182B40` returns (`0x0024CFC4`, `0x0024CFCC`), so a failed
+allocation leaves the bit up with a target of 0.
+
+`0x0024CEB0` also zeroes `0x02092638` (`0x0024CF0F`) and calls `0x003587B0(0)` (`0x0024CF16`), which stores 0 in
+the pass-mask byte `0x022C7F99`, byte `+9` of [Phyre frame](../PhyreEngine/the-frame.md).
 
 The parameter verbs only write the staging block (layout below): `cutintype` (`0x0313`, `0x003DF9F0`),
 `cutinlinefade` (`0x0314`, `0x003DF990`), `cutinpos` (`0x0315`, `0x003DF9C0`), `cutinuv` (`0x0318`,
@@ -102,6 +132,12 @@ two targets (`0x02092688`, `0x02092690`), raises bits `0x10` and `0x20` and zero
 other screen type it returns with bit `0x10` clear. `moveblurclear` (`0x003DE140` → `0x0024EB20`) releases
 both targets and drops bit `0x10`. Its handle loop calls the release only for handles that are 0, which
 releases nothing; the descriptors leave the pool on their own.
+
+On that other path `0x0024EC00` leaves `0x02092688` and `0x02092690` holding the targets it has just handed
+back: only the allocation path stores them (`0x0024ECFC`, `0x0024ED13`). The float arguments it passes to
+`0x00182B40`, 0.5 for screen type 1 or 1.0 for type 2 and 0.25 for the second target (`0x01CEBB70`,
+`0x01CEBBA8`, `0x01CEBB68`), are ignored there. Neither `0x0024EC00` nor `0x0024EB20` names the third target
+`0x02092698`, so the clear leaves it held, and `0x0024EB20` leaves bit `0x20` as it is (`0x0024EBB0`).
 
 The four type verbs write the staging block with the mappings of the layout below:
 `moveblurpresettype` (`0x031E`, `0x003DE400`) byte `+0x00`, `moveblurcluttype` (`0x031F`, `0x003DE360`)
@@ -175,7 +211,10 @@ stores it at `0x020927F0`, the type at `+0xE4`, the two frame counts at `+0x120`
 
 - Types 0 and 1 take the first picture of the TIM2 at `[0x0209AC30] + 0x388` (`0x0024A9E0`) and a palette
   from `[0x0209AC30] + 0x390` (type 0) or `+ 0x3A8` (type 1). The picture's texture `0x0209AC38` (`0x00184140`)
-  and palette texture `0x0209AC40` (`0x001837A0`) are made once and kept.
+  and palette texture `0x0209AC40` (`0x001837A0`) are made only while they are null (`0x00250B52`, `0x00250BB8`,
+  `0x00250BFB`).
+- Those two textures are kept until `0x00280670`, run when the `[0x0209AC30] + 0x3D8` pack is loaded (`0x0028067B`),
+  releases them (`0x00183720`) and zeroes them (`0x0028070C`, `0x00280728`).
 - The teardown arm frees the capture buffer `+0xC0` (`0x003697F0`), releases the three targets
   `+0xC8`, `+0xD0`, `+0xD8` (`0x00182CA0`) and clears `0x020927F0`.
 
@@ -233,7 +272,7 @@ first argument.
 
 | Verb | Body | Writes (descriptor offsets) |
 |---|---|---|
-| `blurplay` | `0x003DDF90` | files the descriptor, keeps the handle, resets the descriptor to the defaults |
+| `blurplay` | `0x003DDF90` | first releases a handle the record still holds through `0x0024CFF0` and zeroes it (`0x003DDFCF`-`0x003DDFDC`), then files the descriptor (`0x00375900`, `0x003DDFFB`), keeps the handle, resets the descriptor to the defaults (`0x003DE00C`-`0x003DE04D`) |
 | `blurstop` | `0x003DE060` | releases the handle; the descriptor stays |
 | `bluralpha(a)` | `0x003DDE00` | `+0x34` = `a`; flag nibble 7 when `a` is 0.08 (`0x0090035C`), else 3 |
 | `blurcolor(r, g, b, a)` | `0x003DDE50` | `+0x38` colour |
@@ -342,8 +381,8 @@ byte `+0x1C` picks the mode:
 - Higher modes keep the block's size, texture, blend and switch words from the last draw that set them.
 
 Whatever the mode, block 0 then takes the descriptor's offset (`+0x20`, `+0x24`), scale (`+0x28`, `+0x2C`), alpha
-(`+0x34`), rotation (`+0x30`) and colour bytes from `+0x38`. Kind 2 scales the x offset by the 16:9 factor
-`0x0017FFD0()`.
+(`+0x34`), rotation (`+0x30`) and colour bytes from `+0x38`.
+Kind 2 scales the x offset by the 16:9 factor: `x = [+0x20] × 0x0017FFD0()` into `0x02AE9650` (`0x00374781`-`0x003747B6`).
 
 The four corner colours come from `+0x38`-`+0x47` when bit `0x10` of `+0x1C` is set; otherwise all four
 copy corner 0 (`0x00374545`-`0x0037455C`, `0x003748BE`-`0x003748D5`). The handlers release the descriptor once drawn when
@@ -361,9 +400,9 @@ through `0x00462260` (`0x00462421`) and submit through `0x003A34D0` (`0x00463004
 
 In its copies `0x0036F550` rewrites three words of each block from the summon tint table's tail (`0x02AD9B60`,
 [small binary tables](../Game-Files-And-Data-Tables/small-bin-tables.md)): the depth word `+0x08` and the
-offsets `+0x10` and `+0x14`. With a the `u32` at `+0x290`, t the difference of the `u32` at `+0x294` and a, divided
-by 3 and rounded toward zero (`0x0036F6E1`-`0x0036F6F6`), and s the size factor at `+0x288` (`0x0036F7AA`), block k's
-depth word is `((0xFFFF - a - k * t) << 12) | 0xFF0`:
+offsets `+0x10` and `+0x14`. With a the `u32` at `+0x290`, s the size factor at `+0x288` (`0x0036F7AA`) and t
+the difference of the `u32` at `+0x294` and a, divided by 3 and rounded toward zero, `t = ([+0x294] - a) / 3`
+(a signed division, `0x0036F6E1`-`0x0036F6F6`), block k's depth word is `((0xFFFF - a - k * t) << 12) | 0xFF0`:
 
 - block 0: `0x02AE9648` (`0x0036F90A`); offsets s at `0x02AE9650` and `0x02AE9654` (`0x0036F8E4`, `0x0036F8EF`);
 - block 1: `0x02AE9738` (`0x0036F940`); offsets -0.9 x s (`0x00D10FB0`) at `0x02AE9740` and `0x02AE9744` (`0x0036F912`, `0x0036F91A`);
@@ -420,7 +459,10 @@ depth word is `((0xFFFF - a - k * t) << 12) | 0xFF0`:
 - `0x003DE210` ends a running blur fade (progress set to its duration, direction out), forgets the
   task and clears the blur. The unload, `0x003601D0` and `0x003600D0` call it.
 - The effect teardown `0x0024E910` ends in the blur clear and the cut-in clear (`0x0024EA02`,
-  `0x0024EA0B`); the unload and `0x003601D0` call it.
+  `0x0024EA0B`); the unload and `0x003601D0` call it. Before them it clears bits `0x400` and `0x800` of `0x020926E4`
+  (`0x0024E98D`) and, when bit `0x40` is set, clears that bit and hands the target `0x020926D0` back: appended to
+  `0x02091950` while the count `0x0209216A` is below 256, else freed at once (`0x00182CA0`), and `0x020926D0` is zeroed
+  (`0x0024E9A9`–`0x0024E9F7`).
 - The unload calls `0x0036E810` twice with all zeros, turning soft focus off.
 
 ### Crossfade
@@ -462,8 +504,8 @@ its count `0x0209216A` is below 256 and otherwise frees it at once (`0x001B68D0`
 ### Screen capture
 
 `setcapturescreenmode(on)` (`0x02DF`, `0x00340B90`) keeps a still of the picture in a target. A non-zero
-argument runs `0x0024E0F0`: it sets the two-bit capture mode in bits `0x6` of `0x020926E4` to 1, hands back
-any target at `0x020926D8` and takes a full-size one (`0x00182B40`), clears the handle `0x020926E0`, and
+argument runs `0x0024E0F0`: it sets the two-bit capture mode, the bits under mask `0x6` of `0x020926E4`, to
+1, hands back any target at `0x020926D8` and takes a full-size one (`0x00182B40`), clears the handle `0x020926E0`, and
 drops the mode again when no target came back. Zero runs `0x0024E070`, which clears the mode, hands the
 target back and removes the descriptor `0x020926E0` (`0x00375470`).
 
@@ -481,7 +523,7 @@ The per-frame driver `0x0024D540` calls `0x0024DEE0(draw)` (`0x0024D6E6`), which
 ```
 Flag word 0x020926E4 (bits this page uses)
 bit 0x1  soft focus up
-bits 0x6  screen capture mode: 0 off, 1 capture on the next draw 0, 2 bound each frame
+mask 0x6  screen capture mode: 0 off, 1 capture on the next draw 0, 2 bound each frame
 bit 0x8  cut-in up
 bit 0x10  motion blur up
 bit 0x20  motion blur: capture on the next frame
@@ -544,7 +586,7 @@ Screen blur sprite `0x02B58A80` + index x `0x68`:
 
 ### The mode-screen backdrop's fields
 
-The backdrop is the `0x140`-byte widget at `0x020927F0` with procedure `0x002509D0` (The mode-screen backdrop above).
+The backdrop is the `0x140`-byte widget kept at `0x020927F0` with procedure `0x002509D0` (The mode-screen backdrop above).
 
 `ModeScreenBackdrop` (`0x140` bytes, offsets from the start of the record):
 
@@ -562,8 +604,8 @@ The backdrop is the `0x140`-byte widget at `0x020927F0` with procedure `0x002509
 | `+0x0EC` | `u8[4]` | gapEC | read and written by no function; nothing fixes its width |
 | `+0x0F0` | `u64` | zeroF0 | 0, stored on creation (`0x00250AD2`); no function reads it |
 | `+0x0F8` | `void*` | overlayPalette | the palette the overlay draws with: [`0x0209AC30`] + `0x390` + `0x40` for type 0 or + `0x3A8` + `0x40` for type 1 on creation (`0x00250B4B`, `0x00250BB1`), handed to `0x002553C0` (`0x00250C1F`); `0x00250E90` swaps it (`0x00250ECC`, `0x00250EE0`); the draw binds it (`0x00251806`) |
-| `+0x100` | `void*` | picturePixels | the pixels of the first picture of the TIM2 at [`0x0209AC30`] + `0x388` (`0x0024A9E0`), the picture's header plus its word `+0x0C` (`0x00250B17`-`0x00250B1E`, `0x00250B84`); made into the texture `0x0209AC38` once (`0x00250BE3`); read by the draw (`0x00251A9B`) |
-| `+0x108` | `void*` | picturePalette | that picture's palette, past its pixels (`0x00250B25`-`0x00250B32`, `0x00250B98`); made into `0x0209AC40` once (`0x00250C0C`); read by the draw (`0x00251BA0`) |
+| `+0x100` | `void*` | picturePixels | the pixels of the first picture of the TIM2 at [`0x0209AC30`] + `0x388` (`0x0024A9E0`), the picture's header plus its word `+0x0C` (`0x00250B17`-`0x00250B1E`, `0x00250B84`); made into the texture `0x0209AC38` while it is null (`0x00250B52`, `0x00250BB8`) (`0x00250BE3`); read by the draw (`0x00251A9B`) |
+| `+0x108` | `void*` | picturePalette | that picture's palette, past its pixels (`0x00250B25`-`0x00250B32`, `0x00250B98`); made into `0x0209AC40` while it is null (`0x00250BFB`, `0x00250C0C`); read by the draw (`0x00251BA0`) |
 | `+0x110` | `f32` | progress | the fade's progress, 0 to 1.0: 0 on creation (`0x00250ACC`); the stepper sets it to `+0x114` + `+0x118` x `0x00248F40`(kind, frames, elapsed) (`0x00250E0E`-`0x00250E23`); the draw draws the menu picture at it and makes the composite at exactly 1.0 (`0x0025138F`, `0x0025164A`, `0x002518CB`, `0x00251C01`, `0x00251C46`); `0x00250E50` and `0x00250F30` start a fade from it (`0x00250E5C`, `0x00250F92`) |
 | `+0x114` | `f32` | progressFrom | the progress when the fade started, stored by `0x00250E50` and `0x00250F30` (`0x00250E68`, `0x00250F9D`); read by the stepper (`0x00250E1B`) |
 | `+0x118` | `f32` | progressBy | the change the fade makes, toward 1.0 or 0, stored by `0x00250E50` and `0x00250F30` (`0x00250E70`, `0x00250FA9`); read by the stepper (`0x00250E0E`) |
@@ -670,7 +712,7 @@ The object motion blur block `0x02B58C20` is reset to zero with `0x80` at `+0x07
 
 | Global | Field | Type | Meaning | Set by |
 |---|---|---|---|---|
-| `0x02B58C21` | `+0x01` | `u8` | the limit alpha, the argument truncated | `0x003DE460` (`0x003DE465`); `0x003DDD10` (`0x003DDDB8`); `0x003DE480` (`0x003DE498`) |
+| `0x02B58C21` | `+0x01` | `u8` | the limit alpha, the argument truncated: `cvttss2si rax, xmm0`, the low byte stored (`0x003DE460`-`0x003DE465`) | `0x003DE460` (`0x003DE465`); `0x003DDD10` (`0x003DDDB8`); `0x003DE480` (`0x003DE498`) |
 | `0x02B58C24` | `+0x04` | `u8` | colour byte 0 | `0x003DE450` (`0x003DE452`, a 4-byte copy of its argument's dword over `+0x04` to `+0x07`); `0x003DDD10` (`0x003DDDB8`); `0x003DE480` (`0x003DE498`) |
 | `0x02B58C27` | `+0x07` | `u8` | `0x80` after every store | `0x003DE450` (`0x003DE452`, then `0x80` at `0x003DE458`); `0x003DDD10` (`0x003DDDB8`, then `0x80` at `0x003DDDD2`); `0x003DE480` (`0x003DE498`, then `0x80` at `0x003DE49F`) |
 | `0x02B58C28` | `+0x08` | `f32` | the power | `0x003DE470` (`0x003DE470`); `0x003DDD10`, 0 (`0x003DDDEB`, 8 bytes over `+0x08` to `+0x0F`); `0x003DE480`, 0 (`0x003DE4A6`) |

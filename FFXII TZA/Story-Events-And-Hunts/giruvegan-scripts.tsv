@@ -25,7 +25,7 @@ gil_b01	The Trimahla Water-Steps (Giruvegan)	treasure_01	talk	talk	-	-	-	-	-	-	-
 gil_b01	The Trimahla Water-Steps (Giruvegan)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000370	-	-	-	-	1	-
 gil_b01	The Trimahla Water-Steps (Giruvegan)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000388	-	-	-	-	1	-
 gil_b01	The Trimahla Water-Steps (Giruvegan)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030003a0	-	-	-	-	1	-
-gil_b01	The Trimahla Water-Steps (Giruvegan)	ロケ地図	talk	talk	system message	system message 110	Your location map for this area is complete!	Bank512, second half 0x0012: Set or tested in The Trimahla Water-Steps (Giruvegan)	-	-	-	-	receives Giruvegan	-	-	-	-	2	-
+gil_b01	The Trimahla Water-Steps (Giruvegan)	ロケ地図	talk	talk	system message	system message 110	Your location map for this area is complete!	Bank512, second half 0x0012: The Urn ロケ地図 in gil_b01 has been opened: its talk gives the map Giruvegan (0x801F, additemmes in ゲット＆メッセージ表示) and sets the flag, and its bind function daiji_box_bind turns the talk on only while the flag is clear, so the pot gives it once	-	-	-	-	receives Giruvegan	-	-	-	-	2	-
 gil_b02	The Aadha Water-Steps (Giruvegan)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	The Trimahla Water-Steps (Giruvegan), field 690, entrance 2	-	-	-	1	-
 gil_b02	The Aadha Water-Steps (Giruvegan)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	The Haalmikah Water-Steps (Giruvegan), field 694, entrance 1	-	-	-	1	-
 gil_b02	The Aadha Water-Steps (Giruvegan)	gil_maパレルトン	talk	talk	no name shown	0	A barrier of powerful magicks prevents passage. There might be a mechanism to lower the barrier elsewhere.	-	-	-	-	-	-	-	-	-	-	4	-

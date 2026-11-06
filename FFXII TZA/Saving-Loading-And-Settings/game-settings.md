@@ -36,8 +36,20 @@ save directory (see the [saving and loading page](saving-and-loading.md)) joined
    GetSystemMetrics(1)`);
 3. Language from the Windows LANGID (see the [languages page](languages.md)).
 
+Before step 1 `0x001DE050` stores `0x0101` at `+0x658` and 1 at `+0x44C` and `+0x65A` (`0x001DE069`-`0x001DE07B`);
+step 2 writes the one value to Resolution (`+0x04`) and WindowSize (`+0x2C`) (`0x001DE0BA`, `0x001DE0BD`). After step
+3 it zeroes the 972 bytes of value tables from `+0x7C` to `+0x447` (`0x001DE130`-`0x001DE13E`) and copies the path to
+`+0x450` with `wcscpy_s` (260 characters) only when the path is not null (`0x001DE143`-`0x001DE157`). It returns the
+object (`0x001DE162`).
+
 `0x001DED50` then opens the file: when it is missing, the value tables are initialised (`0x001DF240`)
 and the file is written from the defaults (`0x001DFD40`); otherwise the text is parsed (`0x001DE5D0`).
+
+`0x001DED50` opens the path at `+0x450` with `_wfopen_s` mode `"rb"` (`0x001DED8A`). With no file it runs those two and
+returns the result of `0x001DFD40` (`0x001DEE38`-`0x001DEE43`). With a file it clears `+0x658` and `+0x65A` (`0x001DED9F`,
+`0x001DEDA8`), measures the file with `fseek` and `ftell`, and reads it whole with `fread` into a zeroed stack buffer
+of `size + 0x20` bytes (`0x001DEDB3`-`0x001DEE19`). It closes the file (`fclose`, `0x001DEE23`), parses the buffer with
+`0x001DE5D0` and returns 0 (`0x001DEE2F`-`0x001DEE34`); `0x001DF240` does not run on this path.
 
 ### The 31 settings
 
@@ -117,6 +129,11 @@ its current value (`DecideButton=Circle`). It builds the text in a string stream
 `0x001E00D0` (which calls `0x001E0100` on the stream's buffer at `+8`), and releases the buffer with
 `0x001DF8C0`. `0x001DFD40` writes that text to the ini path with `_wfopen_s("wb")`.
 
+When the open fails `0x001DFD40` writes nothing (`0x001DFD85`). Otherwise it calls `0x001DEE90` with a null buffer and
+takes its result as the length `n` (`0x001DFD87`-`0x001DFD91`), calls it again into a zeroed stack buffer of `n + 1`
+bytes (`0x001DFDB9`-`0x001DFDCE`), writes `n` bytes with `fwrite` and closes the file (`0x001DFDE2`, `0x001DFDEC`). On both
+paths it returns `GetLastError()` (`0x001DFDF2`).
+
 ### The three writers
 
 | Writer | Site | What it writes |
@@ -182,10 +199,12 @@ it then sets byte `+0xDBA` of `0x00189120()` to whether the result is non-zero.
 | 0 (30) | left at the image value 1 | left at 1.0 | left at 1.0 | untouched |
 | 1 (60) | 2 | 2.0 (`0x01CEBC08`) | 0.5 (`0x01CEBB70`) | 1 |
 
-The 30 fps arm writes none of the triple; it begins a multimedia timer period instead
-(`timeGetDevCaps`, then `timeBeginPeriod(wPeriodMin)`, keeping the period at `0x01F82E40` and
-setting `0x01F82E3C` = 1). The 60 fps arm also calls `0x0033F020` and ends that period when one was
-begun. Both arms then call `0x0032AE70`, `0x003333D0`, `0x00337A00` and `0x002BDA90`.
+The 30 fps arm leaves all three cells of the triple at their image values; it begins a multimedia timer period instead
+(`timeGetDevCaps(&caps, 8)`, and only when that returns 0 (`0x001EDE31`) `timeBeginPeriod(wPeriodMin)`, keeping the
+period at `0x01F82E40` and setting `0x01F82E3C` = 1; a failed `timeGetDevCaps` begins no period). The 60 fps arm also
+calls `0x0033F020` and ends that period when one was begun (`timeEndPeriod([0x01F82E40])` and `0x01F82E3C` = 0,
+`0x001EDE01`-`0x001EDE17`). Both arms then call `0x0032AE70`, `0x003333D0`, `0x00337A00` and `0x002BDA90` (the last as a tail
+jump, `0x001EDE60`).
 
 The triple is the game's time base: authored frame counts are multiplied by `0x01DFE0B8` (for
 example the loot pickup lifetime, see the [loot pickups page](../Rewards-EXP-Gil-And-Loot/loot-pickups.md)),
@@ -193,11 +212,12 @@ and per-frame fades by `0x01DFE0BC`, so durations keep their wall-clock length a
 
 ### DecideButton
 
-The Config screen's command `0x26` calls `0x0017E6E0(value)`: `0x001DF340(object, 25, value)`, then
-`0x00198960(0x00198790(), value == 0)` for the input manager, then `0x0022A4F0`, which sets the confirm
-mask `0x01E0C2A0` and the cancel mask `0x01E0C2A4` to `0x2000` and `0x4000` for value 0 and the
-reverse otherwise, and `0x01FD4A64` to whether the value is non-zero. The same masks are set at boot
-(see the [languages page](languages.md)).
+The Config screen's command `0x26` calls `0x0017E6E0(value)`: `0x001DF340(object, 25, value)`, which stores the value as
+DecideButton (`+0x64`), then `0x00198960(0x00198790(), value == 0)` for the input manager, then `0x0022A4F0`, which reads
+DecideButton back through `0x0017E210` (`0x0022A4F4`) and sets the confirm mask `0x01E0C2A0` and the cancel mask `0x01E0C2A4`
+to `0x2000` and `0x4000` for value 0 and the reverse otherwise, as 16-bit stores (`0x0022A526`, `0x0022A51F`), and
+`0x01FD4A64` to whether the value is non-zero (`0x0022A510`). The same masks are set at boot (see the
+[languages page](languages.md)).
 
 The Controls screen's Default calls `0x0017E520`, which runs `0x001DEE70` on the object: CameraRevise
 (`+0x58`) = 1, MouseSensityX (`+0x5C`) = 4, and one 8-byte store that sets MouseSensityY (`+0x60`) to
@@ -219,6 +239,15 @@ normalise), switching on the id through their index tables at `0x002407C0` and `
 | 4 | 38 | `v != 1` |
 | 3, 5 | 17; every other id | unchanged |
 
+In `0x002407F0` the ids 7, 15, 18, 22-27 and 31-37, and any id outside 4-38, go straight to `0x0016D6A0` and set
+nothing (`0x002407F6`-`0x002407FF`, `0x0024095E`). Id 8 passes the same value to both of its setters
+(`0x0024084B`-`0x00240854`), id 14 calls `0x0023B2E0` after its setter (`0x002408B8`-`0x002408BF`), and id 17 loads its value
+as a `u16` (`0x002408DF`).
+
+`0x002403F0(id, out)` first stores 0 at `out` (`0x002403F9`). An id outside 4-38 (`0x00240405`) and the ids the table
+sends to the exit, 7, 15, 18, 22-27 and 31-37 (`0x00240512`), leave that 0. Every other id stores its getter's
+result from the table below, the music version's `u16` zero-extended (`0x002404B2`).
+
 The in-game options are an `0x28`-byte record inside the save image: `0x002DDE60` sets `0x0215E6E0`
 to `0x002536A0() + 8`, writes the template `{0x00000035, 0x00620400}` and patches it (bit `0x20000` of
 dword 0 from `0x005C5230() == 2`; bit `0x1000` of dword 0 set for locale ids 1 and 6; bit `0x400` of dword 1
@@ -237,7 +266,7 @@ the three volumes to 100 (`0x001DBA60(1.0, channel)`), and runs the platform app
 | 11 | Subtitles | `0x002DE230` | dword 0 bit `0x1000` | `0x002DDD70` |
 | 12 | Camera Y-Axis | `0x002DE190` | dword 1 bit `0x100`, pushed to `0x001E1020` | `0x002DDD20` |
 | 13 | Camera X-Axis | `0x002DE160` | dword 1 bit `0x200`, pushed to `0x001E0FF0` | `0x002DDD00` |
-| 14 | Speed Mode Multiplier | `0x002DE250`, `0x0023B2E0` | dword 1 bits `0x7800000` | `0x002DDDA0` |
+| 14 | Speed Mode Multiplier | `0x002DE250`, `0x0023B2E0` | dword 1 bits `0x7800000`: the getter returns `(dword1 >> 23) & 0xF` (`0x002DDDAA`-`0x002DDDAD`); the setter clears the bits with `dword1 & 0xF87FFFFF` and sets `(v & 0xF) << 23` (`0x002DE257`-`0x002DE264`) | `0x002DDDA0` |
 | 16 | Voice language | `0x002DE2F0` | dword 1 bit `0x400` | `0x002DDE20` |
 | 17 | Music version | `0x002DE110` | `+0x0E` u16, pushed to `0x002DF530` | `0x002DDCA0` |
 | 19, 20, 21 | Music, Sound Effects, Voice volume | `0x002DE0B0`, `0x002DE290`, `0x002DE310` | `+0x08`, `+0x0A`, `+0x0C` u16, at most 100, pushed to `0x002DF2B0` on channels 1-3 | `0x002DDC70`, `0x002DDDE0`, `0x002DDE40` |

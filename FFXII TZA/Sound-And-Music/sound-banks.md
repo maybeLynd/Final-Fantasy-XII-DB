@@ -66,6 +66,15 @@ their own number, and `se007` by id 1. The index file is read into a block (`0x0
 3. `0x00223AD0` reads the index, stores the block registry slot at bank `+0x3C` and the block number at `+0x38`, and opens the
    block's `.win.sab` (`0x00223CB1`-`0x00223D05`).
 
+`0x003A1650(file)` answers -1 when the file handle gives no data (`0x0036B130`, `0x003A1667`). When `0x003A0C90` answers -1
+or a handle with bit `0x80000000` clear, a block already registered, it frees the file (`0x00369800`) and answers
+that value (`0x003A1683`-`0x003A168E`, `0x003A1729`-`0x003A1730`).
+
+Any other answer is a new block. `0x003A1650` clears bit `0x80000000` and passes `0x002DEF00` the record's index, or -1
+when the record's generation and index no longer equal the handle (`0x003A169F`-`0x003A16D4`). It stores the result at
+record `+0x10`, the file handle at `+0x14` and state 1 at `+0x0C`, sets the record's bit in `0x02AEF3F0`, calls
+`0x0036A0B0(file)` and answers the handle (`0x003A16D9`-`0x003A1712`).
+
 `0x002DEC10` reads an index's block number, the `i16` at `+0x08`, for `0x003A1650`. A record's handle is its generation
 `+0x0A` over its index `+0x08`, and every user compares the whole handle before it trusts a record:
 
@@ -114,6 +123,10 @@ A sound id is `block registry slot << 9 + sound slot`. `0x003A1180(slot)` builds
 `0x02AEF3FC`. It answers -1 when `0x00267330(0)` is non-zero (`0x003A1180`-`0x003A118F`), or when that handle is -1 or its
 record does not match (`0x003A11AB`-`0x003A11D1`).
 
+The record is entry `handle & 0xFFFF` of `0x02AEEDC0` (24 bytes each), and it matches when its word `+0x0A` shifted
+left by 16 and ORed with its word `+0x08` equals the handle with bit `0x80000000` cleared (`0x003A11AF`). The id is
+that word `+0x08` shifted left by 9 plus the slot, with no bound on the slot (`0x003A11D7`-`0x003A11DA`).
+
 `0x003A11F0(slot)` builds the same id without the `0x00267330` test, for `0x00249CA0`. `0x003A1100` and `0x003A1070` build ids
 from the blocks at `0x02AEF400` and `0x02AEF404`. Both answer -1 while `0x02AEF400` is -1 (`0x003A1106`, `0x003A1076`), which
 happens when block 1's callback `0x003A1330` stores a failed registration there (`0x003A1344`, `0x003A134A`).
@@ -145,7 +158,15 @@ The effect loader `0x00504060` adds an entry for a kind-1 record and opens its b
 
 ### Battle voices
 
-`0x0036ED50` loads both languages of one voice bank. The index is the record's `i16` at `+0x14`.
+`0x0036ED50` loads both languages of one voice bank. The index is the record's `i16` at `+0x14`. For each language
+it asks the size table for file `index` of kind 33 (`us`, `0x0036ED7C`) or kind 39 (`jp`, `0x0036EE0D`). A size of 0
+or less requests nothing and sets the record's `+0x04` (`us`) or `+0x08` (`jp`) to `0xFFFF` (`0x0036EDFE`,
+`0x0036EE85`).
+
+Otherwise it allocates the size in arena 6 (`0x0036C1D0(6, 5)`, `0x0036B160`, `0x0036C140`), keeps the buffer handle at
+`+0x0C` (`us`) or `+0x10` (`jp`), sets the state byte `+0x00` to 1 and byte `+0x03` to 0, and requests the file
+through `0x0032E620` (`0x0036EDA0`-`0x0036EDF7`, `0x0036EE28`-`0x0036EE7E`). Both requests carry the handle
+`(s8 +0x02 << 4) | s8 +0x01` (`0x0036ED81`-`0x0036ED92`), by which the finished load finds the record.
 
 - The kind-33 array at `0x01E127D0` holds the 64 `us` paths and ends there: the cell at `0x01E129D0` is 0.
 - The kind-39 array at `0x01ECB7E0` starts with the 64 `jp` paths and goes on to other files: the cell at `0x01ECBBE0` is
@@ -217,7 +238,7 @@ The records the game reads in a sound bank's `snd ` chunk:
 | `+0x04` | `u8` | playable | 0 makes `0x007A8CF0` refuse the sound (`0x007A8DE3`); 1 in every playable shipped sound |
 | `+0x08` | `u16` | number | the number `0x007A8F40` matches when an id carries bit `0x40000000` (`0x007A8F94`-`0x007A8F9D`); equal to the record's position in every block and voice bank |
 
-The music header fields that name its sections that name its sections (the readers are on [Interactive music](interactive-music.md)):
+The music header fields that name its sections (the readers are on [Interactive music](interactive-music.md)):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -238,7 +259,7 @@ header, the codec header and the data end exactly at the next material or at the
 | `+0x08` | `i16` | block | the number in the file name |
 | `+0x0A` | `i16` | slotCount | 128 |
 | `+0x0C` | `u32` | fileSize | the file's length |
-| `+0x10` | `i32[128]` | slotOffset from +0x210; -1 for an empty slot |  |
+| `+0x10` | `i32[128]` | slotOffset | each slot's offset, counted from `+0x210`, the end of this table; -1 for an empty slot |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

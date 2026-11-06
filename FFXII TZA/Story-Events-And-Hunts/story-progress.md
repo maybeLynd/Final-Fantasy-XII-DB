@@ -39,8 +39,9 @@ class-0 variable at offset *n* is payload byte *n*, read and written on every ac
 The main story counter is the 16-bit word at payload `+0x0`, class 0 offset 0. 513 scripts declare it alone and 193
 declare a 256-word array that starts at the same byte ([Story counter values](story-counter-values.md)).
 
-`0x00265270` is the native reader: while bit `0x1` of `0x02098E20` is set and the payload pointer `0x02098E58`, the `+0x48`
-word of the slot-0 actor manager at `0x02098E10` stored at `0x0026CAFD`, is not null, it returns that word, else 0 (`0x00265270`-`0x0026528B`). 24 call sites in 22 functions read it, among them the
+`0x00265270` is the native reader: while bit `0x1` of `0x02098E20` is set and the payload pointer `0x02098E58`, the
+`+0x48` pointer of the slot-0 actor manager at `0x02098E10` stored at `0x0026CAFD`, is not null, it returns the word it
+points at, zero-extended, else 0 (`0x00265270`-`0x0026528B`). 24 call sites in 22 functions read it, among them the
 story schedule `0x00377970` (`0x003779A4`), the input arbiter (`0x00253DD1`) and the music table reader (`0x003EAA78`).
 
 ### How scenes move it on
@@ -58,9 +59,10 @@ The first value a shipping script writes is 13 (`naf_a01` `常駐監督.main`) a
 `ボス監督.main`).
 
 The order comes from those tests, not from the store. `POPV` (`0x00267E60`) pops the value and stores it through
-`0x0026D530` (`0x00267F37`), whose signed 16-bit arm clamps it to -32,767 to 32,768 and writes the word without reading
-the old one (`0x0026D5C4`-`0x0026D5E3`). A write of a value below the counter's lowers it, and a write in item 3 runs
-whenever its function runs, whatever the counter holds.
+`0x0026D530` (`0x00267F37`), whose signed 16-bit arm clamps it, `w = v < -32767 ? -32767 : v > 32768 ? 32768 : v`
+(-32,767 to 32,768, `0x0026D5C7`-`0x0026D5DF`; 32,768 is stored as the word `0x8000`), and writes the word without
+reading the old one (`0x0026D5C4`-`0x0026D5E3`). A write of a value below the counter's lowers it, and a write in item
+3 runs whenever its function runs, whatever the counter holds.
 
 ### Values only the developer menus set
 

@@ -129,6 +129,10 @@ if (now >= stamp - step * 60) { unlink; 0x0028F000(handle, 4, ...); 0x002FB2A0(s
 The landing position comes from `0x0028EFC0(handle, out)` (`0x0031975E`), which forwards to the world-object part,
 `0x003FA6E0([0x0209BE80] + 0x57E0, handle, out)`, before `0x002FB2D0` publishes it.
 
+An expiry also ends that frame's walk: the expired slot's next link is zeroed (`0x003196D9`) before the walk follows
+it (`0x0031977A`), so the pickups after it in the list wait for the next frame. A slot whose state is not 1 to 7 is
+passed over (`0x00319643`-`0x0031965E`).
+
 The comparisons are unsigned (`jc` at `0x00319718` and `0x00319682`). With the scalar at 1.0 the
 thresholds are:
 
@@ -159,6 +163,8 @@ action word `+0x714` is `0x4165` (`0x003110E8`-`0x003110F4`):
 1. `0x002FB150(unit, 1.0)` returns the first presence record, in slot order, whose XZ distance
    (`0x004686D0`) from the unit's actor position is strictly below `max(r1, r2) + 1.0`, with the
    radii from `0x00265090`; -1 when no record is that close (`0x00311105`-`0x0031110E`).
+   A null unit also gives -1, before any record is read (`0x002FB170`-`0x002FB175`); the tick never passes one,
+   since it has read the unit's `+0x08` at `0x003110DC` before the call.
 2. `0x00469E30(stats)` posts message `0x4E` through `0x0046AB10` when `0x002F8E90()` returns 8
    (`0x0031111B`).
 3. A party record (stats byte `+0x05` = 0) collects it: `0x00319A00(slot, unit handle)`
@@ -201,6 +207,12 @@ nothing when `0x0209BE80` is 0:
 | 4 | expired | `0x003FA820(handle, 0)` |
 | 5 | evicted | `0x003FA820(handle, 0)` |
 | 6 | end every element | `0x003FA900` |
+
+An op outside 1 to 6 does nothing either (`0x0028F017`-`0x0028F01D`), and the handle is taken as a dword (`0x0028F009`).
+Op 1 tail-jumps to `0x003FA160(manager, descriptor, descriptor +0x10, descriptor +0x14)` (`0x0028F034`-`0x0028F04B`) and
+returns its result. Ops 2 and 3 pass the dword at `arg` (`0x0028F050`, `0x0028F063`) and return the handle. Ops 4 and
+5 ignore `arg`, op 6 ignores the handle, and all three return 0 (`0x0028F076`-`0x0028F094`), as does a call that does
+nothing.
 
 `0x003FA160` takes the first free of 13 elements of `0x2A0` bytes at manager `+0x270` (free when
 `+0x272` bit `0x1` is clear) and fills it:

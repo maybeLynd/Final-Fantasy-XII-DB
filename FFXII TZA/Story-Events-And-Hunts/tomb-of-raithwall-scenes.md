@@ -43,8 +43,9 @@ changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)).
   fight, in Hall of the Destroyer, and `rwg_b0200` ("The wall comes. We must be quick! Together we can bring it
   down!") and `rwg_b0202` for the second, in Hall of the Sentinel. `rwg_b0101` and `rwg_b0201`, loaded by the fight
   functions, hold only the Japanese choice list `リプレイ？` (`する` / `しない`).
-- `rwg_b0103`, in Hall of the Destroyer below story counter 1364, holds the talk of the devices ("Vaan What was that
-  thing?" ... "What more need a sky pirate know?").
+- `rwg_b0103`, in Hall of the Destroyer below story counter 1364, holds the talk of the devices ("What was that
+  thing?" ... "The finer points of their operation elude me, but they're handy all the same. What more need a sky
+  pirate know?").
 - `rwg_c0100`, in Royal Passage at 1372, holds the talk at the plundered tomb ("It wounds me to look on as they
   pillage so solemn a place." ... "I can hear its call.").
 - `rwg_d0102`, in the Cloister of Flame, holds the talk of the Mist ("Fog? Underground?" / "Not fog—Mist."); its first

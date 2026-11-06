@@ -26,12 +26,18 @@ Every trap belongs to the field's zone script. The script header's word `+0x6C` 
 `{u32 count = 1; u32 packedRef}`, and `0x002641B0(slot, index)` resolves entry `index` of that list
 for manager `slot` ([section 000](../EBP-Script-Files/ebp-script-image.md)):
 
-1. the reference's tag (bits `0x7000000`) must not be 2, and a zero reference means the script has no
-   table;
-2. the table is `0x00265770(slot, tag) + (reference & 0xFFFFFF)`; for tag 3, every shipped
-   reference, the base is the script image plus its header word `+0x40`
+1. the manager record (`0x02098E10` + `0x288` × `slot`) must have `+0x10` bit `0x1` set and an image
+   loaded, the header offset `+0x6C` must decode to a non-zero address (`0x0020E600`) and `index` must
+   be below the list's count (`0x002641D1`-`0x00264201`), else the result is 0;
+2. the reference's tag (bits `0x7000000`) must not be 2, and a zero reference means the script has no
+   table (`0x00264207`-`0x0026421A`);
+3. the table is `0x00265770(record, tag) + (reference & 0xFFFFFF)` (`0x00264221`-`0x00264233`); for tag 3,
+   every shipped reference, the base is the script image plus its header word `+0x40`
    ([the storage classes](../Scripts-And-Script-Commands/script-variables.md));
-3. the table is `{u32 count; u32 offset[count]}`, each offset relative to the table's own start,
+   - `0x00265770` gives for tag 0 the record's `+0x48`, for 1 its `+0x40`, for 2 the result of the call
+     through its `+0x98`, for 4 its `+0x58` and for 5 its `+0x60` (`0x00265794`-`0x002657B1`);
+   - for tags 6 and 7 it gives 0 (`0x002657B9`), so the reference's low 24 bits are returned as they are;
+4. the table is `{u32 count; u32 offset[count]}`, each offset relative to the table's own start,
    and each record is twelve bytes (Layouts).
 
 ### Arming the traps
@@ -42,10 +48,12 @@ manager's `+0x100` table by `0x00263F80`; a small number is mapped by `0x002EB7A
 `0x630000`, 8 and 9 to `0x6E0001`, 12 and 13 to `0x770002`) and calls `0x003EC630(resource)`:
 
 1. the previous marker resource `0x02B5EC94`, if any, is released (`0x002EBD60(prev, 0)`,
-   `0x002E3DC0(prev)`);
-2. the new resource is stored, its load flag set (`0x002EBD60(resource, 1)`: bit `0x1` of byte `+0x19`
-   of the matching entry in the resource lists at `0x0215FD58` and `0x0215FD78`), and the arming walk
-   `0x002FA740` runs (its only caller, `0x003EC679`).
+   `0x002E3DC0(prev)`) and `0x02B5EC94` becomes 0 (`0x003EC654`);
+2. when the new resource is non-zero, it is stored, its load flag set (`0x002EBD60(resource, 1)`: bit
+   `0x1` of byte `+0x19` of the matching entry in the resource lists at `0x0215FD58` and `0x0215FD78`),
+   and the arming walk `0x002FA740` runs (its only caller, `0x003EC679`);
+3. a resource of 0 stops after the release, with `0x02B5EC94` left at 0 and no arming walk
+   (`0x003EC65E`, `0x003EC67E`).
 
 `0x002FA740`:
 
@@ -60,9 +68,16 @@ manager's `+0x100` table by `0x00263F80`; a small number is mapped by `0x002EB7A
    the count `0x02EC3EC8` capped at 3.
 
 `0x002FB560(i, x, z)` places the marker: `0x003EC5B0(i)` (`0x003EB200(i, 0x02B5EC94, 0, 1, 0)` for `i`
-below 16 outside a town), `0x003EC720(i, x, h, z)` with the ground height `h` that `0x0026E350`
-resolves, and `0x003EC770(i, angle, hit, 0)` with the slope angle from the navmesh query
-(`0x003355A0`, `0x0033CBF0`, `atanf`).
+below 16 outside a town while a marker resource is loaded, `0x003EC5B8`-`0x003EC5DD`), `0x003EC720(i, x, h, z)`
+with the ground height `h` that `0x0026E350` resolves (through `0x0032A790`, `0x002FB5BE`), and
+`0x003EC770(i, angle, hit, 0)` with the slope angle from the navmesh query (`0x003355A0`, `0x0033CBF0`,
+`atanf`).
+
+The query takes the collision part `0x0026E500(0)`, the polygon `0x00231900(part, &(x, h, z), 1)` and
+`0x00231F20(part, out, polygon)` (`0x002FB5E0`-`0x002FB605`). `hit` is what `0x003355A0` gives for the axis
+`(0, 0, 1)` at `0x01F004C0` and `(out.x, 0, out.z)` (`0x002FB641`). `0x0033CBF0` turns `out` by minus `hit`
+(`0x002FB65B`), and `angle` is `atanf` of the turned `z` over the turned `y`, or 0 when that `y` is 0
+(`0x002FB660`-`0x002FB67A`).
 
 The table pointer `0x022BE948` is cleared by `0x002FAEC0`, which `0x002341C0` runs from the manager
 unload `0x002695A0`.
@@ -72,9 +87,12 @@ unload `0x002695A0`.
 The live mask of a field is one `u32`, and the engine keeps three of them: a ring of `{field,
 mask}` records at `0x02EC3EA0`. `0x002FB3B0(ring, field, mask)` stores a mask: when the field is already
 present the mask is replaced and 1 is returned; otherwise the record is written at the write index
-`+0x24` (`0x02EC3EC4`), the count `+0x28` (`0x02EC3EC8`) is incremented and capped at 3, and the index
-advances modulo 3. `0x002FA230` zeroes the whole ring; it runs from the battle runtime reset
-`0x00237DF0` and from the party block bind `0x00233C10` (`0x00233CC0`).
+`+0x24` (`0x02EC3EC4`), the count `+0x28` (`0x02EC3EC8`) is incremented and capped at 3, `min(count + 1, 3)`
+(`cmovge`, `0x002FB3ED`-`0x002FB417`), the index advances modulo 3, `index = (index + 1) % 3` (signed, `imul`
+by `0x55555556`, `0x002FB3F1`-`0x002FB409`), and 0 is returned (`0x002FB41B`).
+
+`0x002FA230` zeroes the whole ring; it runs from the
+battle runtime reset `0x00237DF0` and from the party block bind `0x00233C10` (`0x00233CC0`).
 
 The clear writes 8-byte stores at `0x02EC3EA0`, `0x02EC3EA8`, `0x02EC3EB0`, `0x02EC3EB8` and `0x02EC3EC0` and a 4-byte
 store at `0x02EC3EC8` (`0x002FA232`-`0x002FA255`).
@@ -134,10 +152,16 @@ On a hit, in order:
    the triggering unit; otherwise each of the four party members (`0x0031B810(0..3)`) whose stats
    pass the same three refusals plus the out-of-play mask `0x80000003`, and whose position
    (height zeroed) is within the radius of the point;
+   - a seat with no unit is skipped (`0x002FB91A`), and "within" is a distance at most the radius
+     (`0x002FB9EE`);
+   - it returns how many units it stored: 1 for radius 0 (`0x002FB8E9`), else the count (`0x002FBA0C`);
 4. `0x0046A9D0(stats, action)` posts the battle message: row 3 for action `0x103`, row 1 for
    `0x104`, row 2 for `0x105`, row 0 for anything else ([battle log](../Battle-Actions/battle-log.md));
 5. `0x003EC700(i, 3)` retires marker `i` (`0x002E7410`: render record `+0x294` bit `0x8000000` set, `+0x304`
-   top five bits = 3);
+   top five bits = 3, both through `0x003E6AA0`);
+   - `0x002E7410(0x003EB720(i), mode)` does nothing when the slot's handle is negative or its low word is
+     `0xFFFF`, when the record address `[0x022C6F28]` + `0x740` × that word is 0, or when the record's
+     `+0x284` is 0 (`0x002E7410`-`0x002E743E`);
 6. the bit is cleared in the ring (`0x002FB3B0`) and the walk returns the action id. At most one
    trap fires per call, and the first in index order wins when two overlap.
 
@@ -165,8 +189,8 @@ The sixteen rows the shipped traps name are 246 to 261; their recipes are single
 ### Marking the trap's effect
 
 Between steps 1 and 2 above, the tick hands the effect handle `0x002EACD0` returned to `0x0024ED50`
-(`0x00311070`-`0x00311072`). `0x0024ED50` routes it by the handle's top four bits and sets bit `0x800` (`0x800`)
-of the effect record's `u16` at `+0x36A`:
+(`0x00311070`-`0x00311072`). `0x0024ED50` routes it by the handle's top four bits (`0x0024ED52`-`0x0024ED6C`), and the
+body it reaches sets bit `0x800` of the effect record's `u16` at `+0x36A` (`0x002FCFE1`, `0x003B0F76`):
 
 | Top four bits | Body | Record lookup |
 |---:|---|---|
@@ -182,14 +206,28 @@ non-zero (`0x00319F10`).
 
 `settrapshowstatus(v)` (`0x547`, handler `0x00355E00` → `0x003EC6C0`) shows or hides all sixteen
 marker slots at once outside a town: `0x002ED3A0(0x003EB720(i), v)` sets bit `0x2` of the marker's render
-record `+0x304` to `v` and bit `0x10` of `+0x290`. `0x003EB720(i)` returns slot `i` of the marker table
-`0x02B5EA20` (`i` below 32, byte `+0x40` set) plus `0x10`.
+record `+0x304` to `v != 0` and bit `0x10` of `+0x290` (`0x002ED3D0`-`0x002ED3E4`). `0x003EB720(i)` returns
+slot `i` of the puppet table `0x02B5EA20` (`i` below 32, byte `+0x40` set) plus `0x10`. The markers are
+its slots 0 to 15: `0x003EC5B0` binds the marker resource only for `i` below 16 (`0x003EC5CB`), and
+`0x003EC5F0` releases slots 0 to 15 (`0x003EC601`-`0x003EC612`).
 
-Libra reveals the live traps. `0x002F82F0`, run from the world tick's per-slot pre-pass `0x00234590`
-(`0x00234861`), tests `0x0030C300()`: any of the nine party slots (`0x00320AB0(i, 1)`) alive or in a
-town whose status words carry bit `0x40000000`, Libra. On the change from no Libra to Libra the byte
-`0x022BE944` becomes 1 and every live trap's marker gets mode 1 (`0x003EC700(i, 1)`); on the change
-back it becomes 0 and the markers get mode 2.
+`0x002ED3A0` does nothing for a slot whose handle is -1 or whose low word is `0xFFFF`, for a record
+address of 0, or for a record whose `+0x284` is 0 (`0x002ED3A0`-`0x002ED3CE`).
+
+Libra reveals the live traps. `0x002F82F0`, run from the world tick's per-slot pre-pass `0x00234590` (`0x00234861`), tests
+`0x0030C300()`: any of the nine party slots (`0x00320AB0(i, 1)`) alive or in a town whose status words carry bit
+`0x40000000`, Libra. `0x0030C300` first stores those members (alive: status words `+0x64` or `+0x3C` carry no bit of
+`0x80000003`; in a town: `0x00377C20()` non-zero) into the roster array `0x022C1740` in slot order
+(`0x0030C34A`-`0x0030C360`), then returns 1 at the first that carries the bit (`0x0030C38A`, `0x0030C3B3`) and 0 when no
+stored member does (`0x0030C398`).
+
+On the change from no Libra to Libra the byte `0x022BE944` becomes 1 and every live trap's marker gets mode 1
+(`0x003EC700(i, 1)`); on the change back it becomes 0 and the markers get mode 2.
+
+The pass does nothing while no trap table is bound (`0x022BE948` null, `0x002F82FE`), so the byte then keeps
+its value. It treats the records below `min(count, 32)` (`0x002F8310`-`0x002F831C`) and takes the live mask
+from the ring entry of the current field (`0x003148F0`, `0x002F835D`-`0x002F83DD`); a field missing from the
+ring gives mask 0, so the byte changes and no marker does (`0x002F838F`).
 
 ## Layouts
 
@@ -353,7 +391,7 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
 | `0x022BE944` | u8 | the Libra marker state the pre-pass toggles |
 | `0x02EC3EA0`-`0x02EC3ECB` | struct | the ring of three `{field, mask}` entries, write index and count |
 | `0x02B5EC94` | i32 | the marker resource `settrapresource` loaded |
-| `0x02B5EA20` | ptr[32] | the marker slots `0x003EB720` indexes |
+| `0x02B5EA20` | ptr[32] | the puppet table `0x003EB720` indexes; the markers use slots 0 to 15 |
 | `0x0208D320`, `0x0208D324` | u32 | not used here; the status sets the heal reads |
 
 ## Modding notes

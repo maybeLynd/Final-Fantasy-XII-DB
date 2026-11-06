@@ -117,11 +117,12 @@ The step added to the charge progress each frame is built in three parts:
 | no Haste or Slow, or both | `100` |
 | Haste (status bit `0x100000`) | `150` |
 | Slow (status bit `0x8000`) | `50` |
-| Berserk (status bit `0x8000000`) | the above doubled |
+| Berserk (status bit `0x8000000`) | the above doubled: `step = step + step` when `s & 0x8000000` (`add edi, edi`, `0x002F9C5C`-`0x002F9C62`), with the status word `s = [+0x698][+0x64] OR [+0x698][+0x3C]` (`0x002F9C23`-`0x002F9C26`) |
 
-When bit `0x40` of `0x022C314C` is set, the step is divided by the sum of byte `+0x10` of the equipment rows of
-the unit's five equipment ids (`+0x50`-`+0x58`), with an empty slot counting 0 and a sum of 0 counting
-1.
+When bit `0x40` of `0x022C314C` is set (`[0x022C314C] & 0x40`, `0x0031A900`), the step is divided by the sum of byte
+`+0x10` of the equipment rows of the unit's five equipment ids (`+0x50`-`+0x58`), with an empty slot counting 0
+and a sum of 0 counting 1: `step = step / (sum == 0 ? 1 : sum)` (`cmove esi, eax` at `0x002F9E8D`, `idiv esi` at
+`0x002F9E93`).
 
 Finally it is multiplied by 100, 120, 140, 160, 180 or 200 percent for a Battle Speed setting of 1 to
 6 (`0x002DDC90`, the field `0xFF0` of the options word `*(0x0215E6E0)`, written by Config command 5 through
@@ -138,11 +139,26 @@ once.
 
 ### Showing one action at a time
 
-`0x00313DB0`, run every frame from `0x00234520`, keeps one shown unit at
-`0x02089350`. With no unit shown, it takes ids from the ring until one resolves to a living unit (or one waived
-by `0x00377C20()`), clears its bit `0x1000`, sets bit `0x2000`, stores it and starts the display with
-`0x00226BE0(10, unit id, ...)`. While a unit is shown and no scene is playing (state not 5 or 6), it is
-released when it dies or its bit `0x2000` is cleared - which phase 11 does - with `0x00225CD0(10, -1)`.
+`0x00313DB0`, run every frame from `0x00234520`, keeps one shown unit at `0x02089350`. With no unit shown, it pops ids from
+the 64-entry ring at `0x022BEDA4` (read index `0x022BEDA0`, write index `0x022BEDA1`; id 0 when the two match) and
+resolves each with `0x0031B7E0`, which answers 0 while bit `0x10` of `0x02089340` is clear or `0x003588B0` finds no actor.
+An id that resolves to no unit ends the search for the frame, with that id consumed (`0x00313E11`); an empty ring ends
+it the same way, since `0x003588B0(0)` is 0.
+
+Every unit it resolves has its bit `0x1000` cleared and its bit `0x2000` set (`0x00313E17`, `0x00313E1E`) before it is
+tested. A unit with no record at `+0x698` (`0x00313E2F`), or with KO, Stone or X-Zone (mask `0x80000003` of that
+record's `+0x64` and `+0x3C`) while `0x00377C20()` is 0 (`0x00313E37`-`0x00313E46`), is passed over and the next id is
+popped. The first living unit (or one waived by `0x00377C20()`) is stored and starts the display with
+`0x00226BE0(10, unit id, ...)` (`0x00313E48`, `0x00313E98`).
+
+That call passes fade -1 and flag -1, and at party-control level 2 (`0x0030D9A0`) a non-zero `0x0031E860(0x00327200())`
+as a one-entry handle list (`0x00313E52`-`0x00313E75`). The body then runs the apply `0x00226280`, the sound stop
+`0x002DEE70` and `0x00313A00` (`0x00313E9D`-`0x00313EA7`).
+
+While a unit is shown and no scene is playing (state not 5 or 6; with state 5 or 6 the body returns at
+`0x00313EC8`), it is released when it dies (KO, Stone or X-Zone while `0x00377C20()` is 0) or its bit `0x2000` is
+cleared - which phase 11 does - with `0x00225CD0(10, -1)`. It is also released when it has no record at `+0x698`
+(`0x00313ED4`). The release zeroes `0x02089350` and ends with a tail jump to `0x00313A00` (`0x00313EF5`-`0x00313F13`).
 
 While a unit is shown, `0x00313A00` sets the bits `0x1019FD` (`0x1`, `0x4` to `0x100`, `0x800`, `0x1000` and `0x100000`) of row 2 of the action-availability table
 `0x0215F1C0` (`0x00313A68`-`0x00313AF5`; [Action availability](../Controls-And-Input/action-availability.md)), and the menu
@@ -177,8 +193,10 @@ state (`0x0030EEA0`-`0x0030EF16`).
 ### Loading, once a frame
 
 `0x0030CBE0`, run every frame from `0x00234590` (`0x002346F4`), walks the chain in order. For each slot whose
-unit resolves and whose action id passes `0x00322C50(0x14, id, 1)` it first asks `0x0030C890` whether
-the loads fit (`0x0030CC92`):
+unit resolves (`0x0031B7E0(+0x20)`), whose action id passes `0x00322C50(0x14, id, 1)` and whose action row
+resolves (the table `[0x02EBF138]` and its base from `0x0020E600` non-null, `0x0030CC3F`-`0x0030CC83`) it first asks
+`0x0030C890` whether the loads fit (`0x0030CC92`); a slot that fails any of these is skipped and marks no later
+slot (`0x0030CC1F`, `0x0030CC39`, `0x0030CC49`, `0x0030CC5A`, `0x0030CC83`):
 
 | `0x0030C890` returns | The slot |
 |---:|---|
@@ -213,9 +231,11 @@ flag bit `0x80000000`, any other 2. State 2 becomes 3 once `0x003DCB90` reports 
 
 ### Loading the scene
 
-The scene state is `+0x18`. `0x0030CE10` asks for the scene
-([Quickenings and summons](quickenings-and-summons.md)); on state 2, a unit without flag bit `0x20000000`, or
-one whose `0x00306B10` returns 1, sets slot bit `0x1` and state 3 (`0x0030CD93`-`0x0030CDD8`).
+The scene state is `+0x18`. On state 1 `0x0030CE10(unit, row)` asks for the scene
+([Quickenings and summons](quickenings-and-summons.md)): an answer of -1 makes the state 3 at once without
+touching slot bit `0x1`, 1 makes it 2, and any other answer leaves it at 1 (`0x0030CD93`-`0x0030CDB1`). On state 2,
+a unit without flag bit `0x20000000`, or
+one whose `0x00306B10` returns 1, sets slot bit `0x1` and state 3 (`0x0030CDB8`-`0x0030CDD8`).
 
 ### Whether the loads fit
 
@@ -243,9 +263,11 @@ gives for the stats record (`0x00325AD0`, `0x00325A50`-`0x00325A73`).
 
 ### Ready and shown
 
-Phase 7 calls `0x0030CA80(slot, unit, &show)` (`0x00304E3E`). It returns 1 when all three states are 3,
+Phase 7 calls `0x0030CA80(slot, unit, &show)` (`0x00304E3E`). With a non-null `show` it first writes 0 there
+(`0x0030CAFA`). It returns 1 when all three states are 3,
 and 0 at once when slot bit `0x1` is set and `0x02089340` has bit `0x400` (`0x0030CB00`-`0x0030CB4A`).
-`show` is set only for a ready slot whose unit has neither flag bit `0x1000` nor 13, and then only when one
+`show` is set only for a ready slot whose unit has neither flag bit `0x1000` nor `0x2000` (the test of
+`0x3000` at `0x0030CB58`), and then only when one
 of these holds (`0x0030CB4C`-`0x0030CBA7`):
 
 - the row's `+0x2C` has bit `0x100`;
@@ -253,17 +275,23 @@ of these holds (`0x0030CB4C`-`0x0030CBA7`):
   `0x002FCB40(id)`, bit `0x20` of the byte at `0x02EC19C4 + id * 8`, is 1;
 - slot bit `0x1` is set.
 
-With `0x02089340` bit `0x200`, `show` and the return are cleared (`0x0030CBAD`-`0x0030CBBF`).
+When `show` ends up 1 and `0x02089340` has bit `0x200`, `show` and the return are cleared (`0x0030CBA9`,
+`0x0030CBAD`-`0x0030CBBF`); when `show` ends up 0, or the caller passes no `show`, the return is the ready answer
+whatever bit `0x200` is (`0x0030CB4F`, `0x0030CBAB`, `0x0030CBC3`).
 
 ### Releasing a slot
 
-`0x0030C970(slot)` unlinks the slot from the chain and then (`0x0030C970`-`0x0030CA42`):
+`0x0030C970(slot)` takes a slot index. An index above `0x1F` (`0xFF` included) names no slot, and the call
+does nothing (`0x0030C983`-`0x0030C9A4`, `0x0030C9F2`). Otherwise it unlinks the slot from the chain, moving the
+chain's first `0x022BE978` or last `0x022BEB88` slot when the slot was one of them, and zeroes its two links, and
+then (`0x0030C9B7`-`0x0030CA42`):
 
 1. `0x00325A00(+0x28)` releases the animation through `0x003DC780` when the value has any of bits `0x7FFFFFFE`
    set or is 1.
 2. `0x00317EC0(+0x24)` stops the effect through `0x0042FCC0` unless the handle is -1 or 0; the stop is
    counted at `0x02CA4ED8` and done by `0x002FCB60`.
-3. When the scene state `+0x18` is not 0, `0x00306570` clears the scene for the slot's unit.
+3. When the scene state `+0x18` is not 0, `0x00306570` clears the scene for the slot's unit, the unit
+   `0x0031B7E0` finds for the unit id `+0x20` (`0x0030CA09`-`0x0030CA14`).
 4. The slot is reset: flags `0x1F` cleared, action id `0xFFFF`, effect handle -1, animation
    `0x80000000`, states and unit id 0.
 

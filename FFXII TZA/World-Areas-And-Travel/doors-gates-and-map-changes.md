@@ -26,21 +26,27 @@ and its wall records are 0x90-byte records at `[part + 0x18]`. A polygon id belo
 and an id from 0x4000 names a wall record (`0x0022F8B0`, `0x0022DE60`). The attribute word sits at `+0xC` of
 a polygon and at `+4` of a wall record. Its fields, with the functions that read each one:
 
-| bits | field | written by a verb | read by |
+| mask | field | written by a verb | read by |
 |---|---|---|---|
-| 0-2 | polygon type: 0 floor, 1 wall, 2 and 4 marker polygons, 3 camera region | no verb | `0x00230A40`, `0x0022D4B0`, `0x0022CC50`, `0x00231A90`, `0x002321D0`, `0x00233230` |
-| 3-6 | mj group 0-15; selects override entry `0x40 + group` | no verb | `0x00232020`, `0x00230A40`, `0x00232090`, `0x00231F80`, `0x002321D0`, `0x00231A90` |
-| 12 | copied into bit `0x4` of the body's flag word | `setmapidfloor` kind 9 | `0x003808A0` |
-| 13-17 | floor group 0-31; the wall group on type-1 polygons and wall records | no verb | every override reader below |
-| 18-22 | ground field | `setmapidfloorground` | `0x00231F80` |
-| 23-27 | block bits for movement kinds 0, 5, 1, 2, 3 (bits `0x800000`, `0x1000000`, `0x2000000`, `0x4000000`, `0x8000000`) | `setmapidfloor`, `setmapidmj` | `0x00230A40`, `0x00232090`, `0x0022D4B0`, `0x0022CC50` |
-| 26 | on type-1 polygons and wall records: skipped by the sphere sweep | no verb | `0x0022D7E0` |
-| 30 | wall ignored by kind-4 queries | `setmapidwall` kind 6 | `0x0022D4B0`, `0x0022CC50` |
-| 31 | wall switched off | `setmapidwall` kind 5 | `0x0022F8B0`, `0x0022DE60`, `0x0022D7E0`, `0x0022D4B0`, `0x0022CC50` |
+| `0x7` | polygon type: 0 floor, 1 wall, 2 and 4 marker polygons, 3 camera region | no verb | `0x00230A40`, `0x0022D4B0`, `0x0022CC50`, `0x00231A90`, `0x002321D0`, `0x00233230` |
+| `0x78` | mj group 0-15; selects override entry `0x40 + group` | no verb | `0x00232020`, `0x00230A40`, `0x00232090`, `0x00231F80`, `0x002321D0`, `0x00231A90` |
+| `0x1000` | copied into bit `0x4` of the body's flag word | `setmapidfloor` kind 9 | `0x003808A0` |
+| `0x3E000` | floor group 0-31; the wall group on type-1 polygons and wall records | no verb | every override reader below |
+| `0x7C0000` | ground field | `setmapidfloorground` | `0x00231F80` |
+| `0xF800000` | block bits for movement kinds 0, 5, 1, 2, 3 (bits `0x800000`, `0x1000000`, `0x2000000`, `0x4000000`, `0x8000000`) | `setmapidfloor`, `setmapidmj` | `0x00230A40`, `0x00232090`, `0x0022D4B0`, `0x0022CC50` |
+| `0x4000000` | on type-1 polygons and wall records: skipped by the sphere sweep | no verb | `0x0022D7E0` |
+| `0x40000000` | wall ignored by kind-4 queries | `setmapidwall` kind 6 | `0x0022D4B0`, `0x0022CC50` |
+| `0x80000000` | wall switched off | `setmapidwall` kind 5 | `0x0022F8B0`, `0x0022DE60`, `0x0022D7E0`, `0x0022D4B0`, `0x0022CC50` |
 
 `0x00230A40` closes a polygon to every movement kind when there is no neighbour across the edge (`0x00230A4F`) or the
-polygon type (bits `0x7`, after the overrides) is not 0 (`0x00230AB9`). Otherwise kinds 0, 1, 2, 3 and 5 test their block bit;
-kind 4 and kinds 6 and above have no block bit and pass every floor polygon (`0x00230B4A`).
+polygon type (bits `0x7`, after the overrides) is not 0 (`0x00230AB9`). Otherwise kinds 0, 1, 2, 3 and 5 test their
+block bit; kind 4, kinds 6 and above and negative kinds (the kind is read as a signed 16-bit value, `0x00230AC2`) have
+no block bit and pass every floor polygon (`xor r11d, 1`, `0x00230B4A`).
+
+In bytes it returns `(f & 0x7) == 0 && (f & B) == 0`, with `f` the polygon's flags after the overrides
+(`0x00230A88`-`0x00230AB7`) and `B` the kind's block bit: `0x800000` for kind 0 (`bt ecx, 0x17`), `0x2000000`,
+`0x4000000` and `0x8000000` for kinds 1 to 3, `0x1000000` for kind 5 (`0x00230AC9`-`0x00230B3D`), and 0 for the
+others; a negative neighbour index returns 0 (`0x00230A4F`).
 
 ### The override table
 
@@ -78,11 +84,12 @@ the same bit on every polygon tagged with that mj group.
 
 ### The writers and the path reset
 
-Four functions write the table, and each ends in a call to `0x003278D0`:
+Four functions write the table, and each ends in a call to `0x003278D0`, except that `0x0026E150` with a count of
+0 or less returns at once without a write or the call (`0x0026E150`-`0x0026E152`, `0x0026E196`):
 
 | function | arguments | effect |
 |---|---|---|
-| `0x0026E880` | entry, v, bit, width | `mask \|= ((1 << width) - 1) << bit`, then those bits of `value` become `v << bit` |
+| `0x0026E880` | entry, v, bit, width | `mask \|= ((1 << width) - 1) << bit`, then those bits of `value` become `v << bit`; `v` is not cut to the width, so a set bit of `v << bit` above the field is also set in `value` (`0x0026E89D`, `0x0026E8A4`-`0x0026E8AC`); it ends with a tail jump to `0x003278D0` (`0x0026E8B0`) |
 | `0x0026E850` | entry, bit, width | clears those mask bits, so the authored bits show through again |
 | `0x0026E130` | entry | `mask := 0` for one entry |
 | `0x0026E150` | first, count | `mask := 0` for `count` consecutive entries |
@@ -91,6 +98,8 @@ Four functions write the table, and each ends in a call to `0x003278D0`:
 `i` at `[0x0208E688]`). For every body whose first byte has bit `0x10` set it calls `0x003839C0` and `0x003839F0` on
 the body's `+0x200` block: the two shorts at `+0xC` and `+0xE` become 0xFFFF and the 0x80 bytes from
 `+0x10` become 0xFF. Nothing else is written, and no map model is touched by any of the four writers.
+A null body is skipped (`0x003278F0`), and the count is read again after every body (`0x00327910`); with a count
+of 0 or less nothing is walked (`0x003278DF`).
 
 ### The verbs
 
@@ -157,9 +166,12 @@ wall's off bit. `v = 0` closes, and a negative `v` hands the bit back to the aut
 A body's movement kind is the byte at `+0x50` of its navigation record, the record `0x003808A0`,
 `0x002327D0` and `0x00380D30` work on. The readers of the block bits are:
 
-- `0x00230A40(part, polygon, kind)` applies the overrides and returns 0 when `eff & 7` is not 0 (not a
+- `0x00230A40(part, polygon, kind)` returns 0 for a negative polygon (`0x00230A4F`). It applies the overrides to the
+  attribute word `+0xC` of polygon record `polygon` of `[part + 0x10]` (`0x00230A55`-`0x00230A61`).
+- It then returns 0 when `eff & 7` is not 0 (not a
   type-0 floor polygon). Otherwise it returns 1 when the kind's bit is clear: kind 0 tests bit `0x800000`, kind
-  1 bit `0x2000000`, kind 2 bit `0x4000000`, kind 3 bit `0x8000000`, kind 5 bit `0x1000000`. Kind 4 and kinds above 5 always get 1.
+  1 bit `0x2000000`, kind 2 bit `0x4000000`, kind 3 bit `0x8000000`, kind 5 bit `0x1000000`. Kind 4, kinds above 5
+  and negative kinds always get 1.
 - `0x00232090(part, polygon)` packs the same five bits into a kind bitfield (bit k set means kind k is
   blocked: bit `0x1` from 23, bit `0x2` from 25, bit `0x4` from 26, bit `0x8` from 27, bit `0x20` from 24) and returns 0
   when `eff & 7` is not 0.
@@ -187,6 +199,12 @@ Each applies the wall entry to the attribute word and then decides as follows.
 - A set bit `0x80000000` removes the wall. `0x0022F8B0` calls the contact test `0x00381EB0` only while `eff` is below
   `0x80000000` (and only when its record's `+0x24` is non-zero; with it zero every wall is tested).
   `0x0022DE60` and `0x0022D7E0` skip type-1 polygons and wall records whose bit `0x80000000` is set.
+- `0x0022F8B0(record)` returns at once when the record's `+0x20` is already non-zero (`0x0022F8BD`). Otherwise it
+  walks `+0x14` ids of the part's u16 id list `[part + 0x28]`, from index `+0x12` (part `[record + 8]`,
+  `0x0022F8C8`-`0x0022F90D`).
+- It skips every id outside `0x4000`-`0x4FFF` (`0x0022F914`-`0x0022F91B`), so polygons are never tested. Wall record
+  `id - 0x4000` of `[part + 0x18]` is tested as `0x00381EB0(wall record, [record + 0x18])` (`0x0022F961`-`0x0022F968`).
+  The first hit sets `+0x20` to 1 and ends the walk (`0x0022F97D`).
 - A set bit `0x40000000` makes a type-1 polygon or wall record invisible to kind-4 queries only. `0x0022D4B0` and
   `0x0022CC50` read the query kind from `+0x46` of the query, keep the wall for every other kind and skip
   it for kind 4. Type-4 polygons are the mirror image: they are hit only by kind-4 queries.
@@ -230,6 +248,8 @@ of the actor's `+0xC0` record (`0x002E98C0`) when bit `0x8` of that record's dwo
 `0x0026E300(entry, kind)`, reached through the thunk `0x0032A780`, maps the kind through the table
 `0x00915760` = {23, 25, 26, 27, -1, 24} and returns -1 for kind 4, 0 when the mask bit is clear
 (authored data applies), 1 when the bit is overridden to 0 and 2 when it is overridden to 1.
+The kind is not range-checked (`0x0026E30E`): the dword after the table is `0xC2C80000`, the float -100.0, so kind 6
+also returns -1 (`0x0026E317`), and kind 7 reads 0 and tests bit `0x1` of the entry.
 
 Its two callers belong to the long-range route graph at `[0x02AEDFB0]`: the edge-cost function `0x00383850`
 and the graph walk `0x0033D3E0`. Both read 8-byte edge records whose `+4` is -1 when the edge has no
@@ -246,7 +266,7 @@ tagged with entry `g` for that kind.
 ### Showing and hiding map models
 
 `0x00379010(id, mode)` edits two 64-bit masks, the forced-on set `0x0209A6C0` and the forced-off set
-`0x0209A6C8`, at bit `id & 0x3F`:
+`0x0209A6C8`, at bit `id & 0x3F`; any mode other than 0, 1 and 2 writes neither mask (`0x0037901C`):
 
 | mode | 0x0209A6C0 | 0x0209A6C8 | verb and handler |
 |---|---|---|---|
@@ -261,6 +281,8 @@ Two readers turn the masks into the hidden set of the frame:
   is 0 and `(0x0209A690 | 0x0209A6A0) & ~0x0209A698` otherwise. `0x0209A690` is the collision part's own
   hidden set `[[part] + 0x30]`, copied once at bind (`0x0026E9DC`). `0x0209A6A0` and `0x0209A698` are copied
   every frame by `0x003820C0` (`0x00382810`, `0x00382817`) from `[part + 0x50]` and `[part + 0x48]`.
+
+While no map is bound (`0x0209A670` is 0) `0x0026E5F0` returns 0 (`0x0026E5F0`-`0x0026E5F8`).
 
 `0x0209A6FC` is set to 1 by `0x0026E1D0`, by `0x0026E960` and by the zone's manager-0 start-up `0x002628B0`
 (`0x00262B53`); the verb `setmapmodelstatus` (0x3EE, `0x003526D0`) writes its operand into it through
@@ -325,9 +347,18 @@ set, and `0x00378120` calls `0x0026E760` (`0x00378193`) with the new map data:
 
 1. `0x0026E640` zeroes `0x0209A6C0`, `0x0209A6C8`, `0x0209A690` to `0x0209A6B8` and the rest of the model block,
    and sets the 32 shorts at `0x0209A71C` to 0xFFFF.
-2. `0x0026E960(map)` stores the map in `0x0209A670`, the two part descriptors `map + 0x40` and
-   `map + 0xA8` in `0x0209A678` and `0x0209A680`, copies `[[part] + 0x30]` into `0x0209A690`, sets `0x0209A6FC`
-   to 1 and zeroes all 80 masks, calling `0x003278D0` after each one.
+2. `0x0026E960(map)` binds the map:
+   - it stores the map in `0x0209A670` before it tests it (`0x0026E966`); a null map goes straight to the tail
+     jump to `0x003ED870(map)` (`0x0026EAB1`);
+   - it stores -100.0 at `0x0209A6F4` and 1 at `0x0209A6FC` and at `0x0209A708` (`0x0026E999`-`0x0026E9B0`);
+   - each part descriptor `map + 0x40` and `map + 0xA8` whose first qword is non-zero is stored in `0x0209A678` or
+     `0x0209A680` (`0x0026E9CE`, `0x0026E9F1`); from the first it copies `[[part] + 0x30]` into `0x0209A690` and
+     `[[part] + 0x38]` into `0x0209A6A8` (`0x0026E9D8`-`0x0026E9EA`);
+   - it zeroes all 80 masks, calling `0x003278D0` after each one (`0x0026EA13`-`0x0026EA55`); the value words keep what
+     they held;
+   - it stores `0x003ED0B0()` in `0x0209A2D0`, calls `0x003ED020(i, 0x0209A2F0 + 0x30 × i, 0x0209A300 + 0x30 × i)` for i = 0
+     to 2, then `0x003ECFD0(0x0209A370)`, `0x003ED140()` and `0x003B6BA0()` (`0x0026EA57`-`0x0026EA9A`), and ends with the tail
+     jump to `0x003ED870(map)`.
 
 `0x0209A3E0` and `0x0209A3E4` are referenced by the four writers, by `0x0026E960` and by the twelve readers
 named on this page and by nothing else (38 and 23 references). `0x0209A6C0` and `0x0209A6C8` are referenced

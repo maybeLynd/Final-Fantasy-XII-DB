@@ -29,14 +29,25 @@ A record keeps its object key at `+0x6B0` and the object at `+0x6B8`. The manage
   must have a model in the cache's map at `+0xB8` whose asset list is ready (`0x001BB120`, which then
   binds the model's palette textures), and a model with byte `+0x98` set also needs its companion
   `-2 - key` to pass the same test.
+- `0x0017EFC0` answers 0 when `0x001BC000` gives no cache, and otherwise 1 when the low byte of `0x001BB040`'s
+  answer is non-zero (`0x0017EFC8`-`0x0017EFE8`).
 
 - `0x001BD4A0(manager, key)` looks the model description up (`0x001BAFF0`) and checks a cache of parked
   objects keyed by the description's `+0x2A0`. With no parked object it allocates `0x668` bytes,
   constructs (`0x001F4DA0`) and runs setup (vtable slot 2). With one it takes it out of the cache and
   resets it (`0x001F89E0`). Either way the object is appended to the manager's live list.
+- `0x001BD4A0` takes the object parked last under that key (the back of its list, `0x001BD566`), resets it with the new
+  key before it unlinks it, and erases the key's map entry when the list is left empty (`0x001BD57E`-`0x001BD5CE`). A
+  new object is counted in manager `+0xFC` (`0x001BD54F`), and its setup gets the key and the description.
+- The live list is the vector of object pointers at manager `+0x00`, grown by `0x001AB570` when it is full;
+  `0x001BD4A0` returns the object (`0x001BD5D3`-`0x001BD5FF`).
 - `0x0017F100(object)` returns it: `0x001BD840` removes it from the live list and parks it in the cache under
   its model key (`0x001F6E60`, the description's `+0x2A0`). The record's teardown `0x004200A0` calls it and
   clears `+0x6B8`.
+- `0x0017F100` does nothing when the manager `0x001BDAB0()` or the object is null (`0x0017F109`-`0x0017F116`).
+  `0x001BD840` parks an object only when it finds it in the live vector: it appends `{object, 3}` to its key's list
+  and moves the vector's last element into the freed place (`0x001BD870`-`0x001BD902`). It ends with a jump to the
+  bare `ret` `0x0016D6A0` with the text `Can't find character object when try to remove it!` (`0x001BD907`-`0x001BD92F`).
 - When the record has a parent with an object, `0x0053AB50` attaches the two through `0x0017EF60` →
   `0x001BD630`, with a per-bone map at record `+0x6D0`.
 
@@ -48,9 +59,14 @@ A record keeps its object key at `+0x6B0` and the object at `+0x6B8`. The manage
 
 The constructor clears `+0x4B4`; setup sets it to 1 at its end (`0x001F7729`) and nothing clears it
 again. Slots 3, 8, 9, 13, 24 and 30, the bank copy `0x001FAD50` and the draw `0x001F5D70` do nothing while it
-is 0; slot 16 reads it per part. `0x001F89E0(object, key)`, the reset used on reuse, writes the key to
+is 0, except that slot 24 still sets the cache byte `+0x230` for a non-zero `enable` (`0x001FA1C2`); slot 16
+reads it per part. `0x001F89E0(object, key)`, the reset used on reuse, writes the key to
 `+0x480` and, only for a ready object, restores the per-frame defaults (`+0x4A8` and `+0x4AC` at 1.0,
 `+0x4B5`/`+0x4B6` at 1, the output vectors at `+0x3C0` and `+0x3D0`).
+
+For a ready object `0x001F89E0` also empties the `+0x390` vector, zeroes the byte `+0x498`, `+0x49C`-`+0x4A7` and
+`mSpecialShadowFlag` `+0x4B0`, and sets every lane of `+0x3C0` to 0 and of `+0x3D0` to 4 (`0x001F89F1`-`0x001F8A5E`).
+The constructor calls it with key -1 while the object is not ready, so there it only writes the key (`0x001F4F86`).
 
 ### Setup
 
@@ -164,22 +180,42 @@ null record and otherwise calls `0x0063ABF0([0x01F82E50], record +0x00)`, or `0x
 
 Slot 26, `0x001FAA10(object, palette)`, reads each mesh's bone names: the decimal digits before the
 first `_` give the palette index. It copies that 64-byte matrix into the mesh's bone matrix with the
-first two components of every row negated and the last component forced to 1.0. It does the same for
-the single mesh at `+0x50`, and does not test `+0x4B4`.
+first two components of every row negated (`xorps` with `0x80000000`). Rows 0 to 2 keep their fourth component,
+and in row 3 the fourth is forced to 1.0 (`0x001FAADE`-`0x001FAB99`). It does the same for the single mesh at
+`+0x50`, and does not test `+0x4B4`.
 
 ### Refraction and shadow parameters
 
 - Slot 24, `0x001FA1A0(object, enable, power, alpha, mode)`, sets `refractionEnabled` (1.0 or 0),
   `refractionPower`, `refractionAlpha` and `RefractionSampler` in every part record, and keeps `mode` at
   `+0x664`.
+- A non-zero `enable` first sets byte `+0x230` of the model asset cache `0x001BC000()`, also on an object that is not
+  ready (`0x001FA1B9`-`0x001FA1C2`). A part record is written only when all four descriptors are present. It gets 1.0,
+  `power`, `alpha` and the sampler record {`0xFF`, 0, `v`} (`0x001945B0`) when `enable` and the value `v` are
+  non-zero, and `refractionEnabled` 0 otherwise (`0x001FA2CC`-`0x001FA369`); these stores do not check the size.
+- `v` is the first word of a record from the render manager `0x00189120()`, 0 when the record's byte `+0x08` is
+  set: `0x00186A80` (its `+0xB78`) for a non-zero `mode`; for `mode` 0, `0x00186840`, or `0x00186A00` while `+0x664`
+  still holds a non-zero mode. `+0x664` is stored at each part, so only the first part after a change to mode 0
+  gets `0x00186A00`'s record (`0x001FA274`-`0x001FA2C5`).
 - Slot 30, `0x001FA820`, writes `iDebugMode`, `mSpecialShadowFlag` (from `+0x4B0`, set by slot 25),
   `m_chrObjHeight`, `m_chrObjFlyingHeight`, `g_txShadow` and `g_txChrAlpha` from the shadow object
   `0x001F0850` ([graphics settings](../Engine-Core/graphics-settings.md)).
+- `0x001FA820(object, parts)` works on the vector of part records it is given. For each, `iDebugMode` is the
+  shadow object's `+0x48`, or when that is 0, 1 while `[0x02CB8404]` is above 2.7 (`0x008F3110`) and 0 otherwise.
+  `m_chrObjHeight` and `m_chrObjFlyingHeight` are its `+0x4C` and `+0x50`, and `g_txShadow` and `g_txChrAlpha`
+  its records at `+0x18` and `+0x30`, through `0x001945B0` (`0x001FA8D3`-`0x001FA998`).
+- Each of those writes is skipped when its descriptor is null. While the setting `[0x01F82D20]` `+0x3C` is 0,
+  each part also stores `-|[0x02CB8404]|` into `0x02CB8404`, after reading it for `iDebugMode` (`0x001FA8F2`-`0x001FA90C`).
 
 ### Render model instances
 
 The root's `+0xDA0` bank holds the `0x260`-byte render model instances, 160 slots, taken by
 `0x004780C0` and reset by `0x005049E0`. A record's `+0x64` names its instance (`0x003E55B0`).
+
+`0x004780C0` takes a slot from `0x0051FBB0` and returns null when it gives -1. Otherwise it resets the slot's
+instance (`0x005049E0`), initialises it with `0x00504F00` and its own arguments, stores the slot in the word `+0x00`
+and returns it (`0x004780E0`-`0x00478178`). `0x003E55B0(record)` returns null when the word `+0x64` is -1, and otherwise
+the instance in slot `+0x64` of the `+0xDA0` bank of `0x0020E600(record +0x10)` (`0x003E55B6`-`0x003E55E0`).
 
 Before the instances, `0x0041E4D0` runs `0x004FDD90`, which calls `0x004FDDA0`. That function copies
 the camera matrices `0x02AEDE70`-`0x02AEDEAF` and `0x02AEDD30`-`0x02AEDD6F` to `0x02CA7F80` and writes three records into the
@@ -213,7 +249,12 @@ builder `0x00474710` while `+0xC0` is non-zero and `+0xD0` is 0; `0x00474710` re
 The copy of the
 whole block in `0x004FDDA0` (`0x004FE100`-`0x004FE175`) carries every word into the GS buffer, and then overwrites
 `+0xE0`-`+0xE8` of the copy with the vector `0x02AEDF10` (`0x004FE1F5`-`0x004FE215`). So the boot values there reach no
-consumer that is located yet.
+consumer.
+
+The only instructions that name `0x02EBA4E0`-`0x02EBA4EB` by `rip` or through the image base are the boot
+stores (`0x0047534A`, `0x00475373`, `0x0047537D`). `0x00474710` reads only `+0x4`, `+0x8`, `+0xC`, `+0x14`, `+0x18` and
+`+0x1C` of the record through `r14` and never copies `r14`. The array readers `0x00537AA0` and `0x00537AF0` index
+`0x02EBA460` in 4-byte steps and read `+0` and `+8` of the element their callers name with index 1.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -231,6 +272,15 @@ the sort key `+0x04` (head at bank `+0x60`, link `+0x02`, `0x004781E0`), then ca
 whose skeleton entry passes the frame-state test. `0x00504700` calls `0x0053D780` once, or twice when
 instance `+0x244` bit `0x10` is set, and `0x0053D780` reaches `0x0053AB50`.
 
+First `0x00477F20` calls `0x00537B10(0, 0)`, `0x00537B10(0, 1)` and `0x00521320()` (`0x00477F2D`-`0x00477F3E`). It sorts while
+the bank's byte `+0x62` is 0; 1 takes the `0x004781A0` walk below and any other value draws nothing
+(`0x00477F43`-`0x00477F4E`). In the sorted walk each listed instance takes the bank's byte `+0x66` into `+0xB2`
+(`0x00477FB5`), and its skeleton entry is slot `+0x40` of the bank at `+0x38`, null for -1.
+
+The test: while `0x00229EA0` (the byte `0x02064AD3`) is 3, an instance is drawn when `0x002EF010` gives 1 for its
+entry's `+0xA8`, and otherwise when it gives 0 (`0x00477FD0`-`0x00478006`). `0x00504700` makes the extra call as
+`0x0053D780(instance, 1, 1)` and always ends with a jump to `0x0053D780(instance, 1, 0)` (`0x00504706`-`0x0050472E`).
+
 The record teardown `0x0041E860` returns up to eight instances listed from record `+0x90` through
 `0x00478070(bank, index)`, which releases the instance with `0x00504C40` and frees its slot
 (`0x0051FCF0`). `0x00504C40` frees the sixteen palette resources at `+0x140` (`0x003CD590`, `0x003CD5D0`)
@@ -247,6 +297,12 @@ the instance (`0x005049E0`).
   draws nothing for it (`0x004781AA`–`0x004781D1`).
 
 ## Layouts
+
+`0x001F4DA0` runs the base constructor `0x00212C70`, sets the vtable and gives each of the vectors `+0x08`, `+0x30`,
+`+0x58` and `+0x390` null pointers and an allocator through `0x001EDF00` (which stores the vtable `0x00902720`), and
+constructs `+0x3E0` with `0x00633040`. It writes the values listed below and zero in `+0x28`, `+0x50`, `+0x488`,
+`+0x490`, `+0x498`-`+0x4A7`, `+0x4B0`, `+0x4B4`, `+0x4B7` and `+0x4B8`-`+0x4BF`, zero-fills the template `+0x78`
+(`0x001F4E88`-`0x001F4F7C`), calls `0x001F89E0(object, -1)` and returns the object (`0x001F4F80`-`0x001F4F8C`).
 
 The object, as its constructor `0x001F4DA0` and the methods above use it:
 
@@ -277,6 +333,7 @@ The object, as its constructor `0x001F4DA0` and the methods above use it:
 | `+0x4B4` | `u8` | ready |  |
 | `+0x4B5` | `u8` |  | value 1 |
 | `+0x4B6` | `u8` |  | 1 (slot 21) |
+| `+0x4B7` | `u8` |  | 0 at construction; the ordered draw's ShadowRenderWithRef test |
 | `+0x4B8` | `u32` |  | slot 22 |
 | `+0x4BC` | `u32` |  | slot 23 |
 | `+0x4C0` | `f32` |  | value 20.0 |
@@ -311,17 +368,23 @@ The render model instance, as `0x005049E0` resets it:
 | `+0x0B0` | `i16` |  | composite fade, Q12, `0x1000` |
 | `+0x0D0` | `f32[4]` |  | value 255.0 |
 | `+0x0F8` | `void*` |  | render record |
-| `+0x244` | `u32` |  | bit `0x1` blend override, bit `0x10` draw twice; 4 after a reset |
+| `+0x244` | `u32` |  | bit `0x1` blend override, bit `0x10` draw twice; a reset clears the bits under mask `0x1B` and sets bit `0x4` |
 | `+0x248` | `f32` |  | blend override value, 1.0 |
+
+`0x005049E0` keeps every other bit of `+0x244`: `and eax, 0xFFFFFFE4` then `or eax, 4` (`0x00504AE7`-`0x00504AF3`). It
+also sets the word `+0xE0` and the dwords `+0x40`, `+0x1E4`, `+0x208`-`+0x220` and `+0x240` to -1, the 32 words
+`+0x100`-`+0x13F` to `0xFFFF`, `+0x140`-`+0x17F` to -1, the 20 bytes `+0x180`-`+0x193` to `0xFF` and the 20 dwords
+`+0x194`-`+0x1E3` to -1. It zeroes `+0x04`-`+0x2B`, `+0x30`-`+0x3F`, `+0xB2`, `+0xB6`, `+0xB7`, `+0xB9`-`+0xBB`,
+`+0xE8`, `+0x1E8` and `+0x24C`, and sets byte `+0xB8` to `0xFF` and `+0x250` to 0.03 (`0x00504A05`-`0x00504B9A`).
 
 The vtable has 31 slots (`0x00903B68`, read from the image):
 
 | Slot | Body | What it does |
 |---:|---|---|
-| 0 | `0x001F52F0` | destructor (`0x001F51E0`), frees when asked |
+| 0 | `0x001F52F0` | destructor (`0x001F51E0`), then frees the `0x668` bytes (`0x00809950`) when bit `0x1` of its argument is set; returns the object |
 | 1 | `0x001F89B0` | adds the companion `+0x28` to the list from `0x0018B4E0` |
 | 2 | `0x001F6E70` | setup |
-| 3 | `0x001F6D60` | teardown: removes the companion, empties the vectors, key -1 |
+| 3 | `0x001F6D60` | teardown, only on a ready object (else it returns 0): the mesh instances through `0x001F86F0`, `+0x490` 0, removes the companion `+0x28` from the list of `0x0018B4E0` (`0x0018B0B0`) and hands it to `0x001F8B30(0x01F82F10)`, empties the vectors `+0x58`, `+0x390` and `+0x08`, `+0x488` 0, key -1, `+0x498` 0; returns 1 (`0x001F6D7A`-`0x001F6DE8`) |
 | 4, 5 | `0x001FB070`, `0x001F86E0` | set and get `+0x498` |
 | 8 | `0x001F9B20` | lights and ambient into every part record |
 | 9 | `0x001F9A80` | fog colour into the bank |
@@ -337,6 +400,11 @@ The vtable has 31 slots (`0x00903B68`, read from the image):
 | 28 | `0x001F6E50` | return part record `n` |
 | 29 | `0x00848340` | return `this + 8` |
 | 30 | `0x001FA820` | shadow parameters |
+
+The destructor `0x001F51E0` sets the vtable `0x00903B68` again, zeroes `+0x28` without removing the companion, destroys
+`+0x3E0` (`0x006336E0`) and hands the storage of the vectors `+0x390`, `+0x58`, `+0x30` and `+0x08`, where it has
+any, back to their allocators (slot 3, with the capacity in bytes). It ends with a jump to the base destructor
+`0x00212C80` (`0x001F51F2`-`0x001F52E5`); the mesh instance at `+0x50` is not released there.
 
 Slots 6, 7, 10, 12, 14, 19 and 20 are `0x001F9FF0`, `0x001FB080`, `0x001F8C00`, `0x001F8C70`, `0x001FA0A0`,
 `0x001F8D10` and `0x001FA0E0`. Every access found is in [the object](character-render-object-character-render-object-accesses.tsv),

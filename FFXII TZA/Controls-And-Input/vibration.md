@@ -34,10 +34,28 @@ a handle first compares the generation, so a stale handle does nothing:
 
 1. `0x0035B2F0(pattern, channel)` takes the head of the free list when its state is 0: state 1, strength 1.0, track 1
    at pair 0 and track 2 at the pair the pattern's first `u16` names, and links it into the playing list.
+   - With the free list empty (`0x02EC0B60` is `0xFF`) or its head's state not 0 it takes no slot and returns 0
+     (`0x0035B30C`-`0x0035B31D`).
+   - Otherwise the slot's next byte becomes the free list's head, the slot goes to the front of the playing list
+     `0x02EC0B61`, the pattern pointer goes to `+0x08`, both frame bytes `+0x18` and `+0x19` are zeroed and the channel
+     is stored at `+0x1A` (`0x0035B31F`-`0x0035B371`). It returns the handle, generation × 256 + slot + 1.
 2. `0x0035B580(handle, mask)` starts a slot in state 1: it keeps the mask and moves to state 2, or straight to state 4
    when the mask shares a bit with the pause mask `0x02EC0B40` (`0x0035B5AB`).
+   - The slot is the handle's low byte minus 1 (`0x0035B580`-`0x0035B595`). It stores the mask byte at `+0x1C` and
+     returns 1 (`0x0035B5BB`-`0x0035B5C6`); the pause test is a byte test of the mask against the low byte of
+     `0x02EC0B40`. A stale handle (word `+2` not `handle >> 8`) or a slot not in state 1 is left as it is and the
+     call returns 0 (`0x0035B598`-`0x0035B5A9`).
 3. `0x0035B650(index, mask)` does both for pattern `index` of the loaded table on channel 0, when the index is below
    the table's count and one of the eight entries at `0x022C8030` is empty, and records the handle there.
+   - It returns when the table pointer `0x02EC0B68` is null, when the `u32` count at the table's `+4` is not above the
+     index (unsigned), or when all eight entries hold a handle (`0x0035B663`-`0x0035B6B1`).
+   - Otherwise it calls `0x0035B2F0(0x0020E600(table[+8 + 4 × index]), 0)` and stores the returned handle in the first
+     empty entry (`0x0035B6B2`-`0x0035B6D1`).
+   - It arms the slot inline, the way `0x0035B580` does: when the slot's generation word `+2` equals `handle >> 8`
+     and its state `+1` is 1, it stores the mask at `+0x1C` and sets state 2, or 4 when the mask shares a bit
+     with `0x02EC0B40` (`0x0035B6C5`-`0x0035B707`).
+   - A returned handle of 0 (an empty free list or a busy head slot) leaves the entry 0, and the arming test then
+     reads the generation word at `0x202EC0B62`, slot index `0xFFFFFFFF` zero-extended (`0x0035B6C5`-`0x0035B6E1`).
 
 | Starter | What it plays |
 |---|---|
@@ -59,9 +77,11 @@ steps = accumulator / 10000, run in one pass
 accumulator = accumulator % 10000
 ```
 
-The pass clears the levels `0x02EC0B50` (two channels of two `i32`, track 1 then track 2), then steps each playing
-slot whose mask shares no bit with `0x02EC0B40`. A track's pair k is `{duration, level}` at `+4 + 2k`, and the next
-pair's level is its end:
+With less than 10,000 in the accumulator it returns before any pass, and the levels keep their last values
+(`0x0035AF53`-`0x0035AF5A`). The pass clears the levels `0x02EC0B50` (two channels of two `i32`, track 1 then track 2)
+once (`0x0035AFAB`), then steps each playing slot whose mask shares no bit with `0x02EC0B40`, running all of one
+slot's steps before the next slot's; a step changes only a slot in state 2 (`0x0035AFF0`). A track's pair k is
+`{duration, level}` at `+4 + 2k`, and the next pair's level is its end:
 
 ```python
 level = int(start + (end - start) * frame / duration) * strength    (integer division, then the f32 strength)
@@ -84,12 +104,18 @@ So `vibplay`'s mask 2 is never paused, and an effect's mask 1 is.
 
 `0x0035AE30` runs after the stepping. With the switch `0x02EC0B3C` on it calls `0x0035FED0(channel, 1, track 1 level)` and
 `0x0035FED0(channel, 0, track 2 level)` for channels 0 and 1, and with it off it sends zeros (`0x0035AE41`-`0x0035AE95`).
-It then frees every recorded handle in state 4 (`0x0035AEA1`-`0x0035AEE2`).
+It then frees with `0x0035B1A0` every non-zero recorded handle whose slot is in state 4 and still carries the
+handle's generation (word `+2` equal to `handle >> 8`), and clears its entry (`0x0035AEA1`-`0x0035AEE2`); a handle
+whose slot's generation has moved on stays recorded.
 
 `0x0035FED0(channel, actuator, level)` stores the level byte at `+0x06 + actuator` of the channel record `0x022CAE90`
 (`0x294` bytes each) and the vsync count `0x022CA5E0` at `+0x1C + 4 × actuator`. The two capture frames, the full
 menu frame and the capture-backed frame first clear the four levels with `0x0035AF10` (`0x0022AF63`, `0x0022B009`,
 `0x0022BA0B`, `0x0022BCB7`).
+
+`0x0035FED0` first clamps the actuator to 0-1, a negative one to 0 and one above 1 to 1 (`0x0035FED4`-`0x0035FEE3`), and
+stores nothing for a channel of 2 or more, a signed test (`0x0035FEE6`). The count it stores is the low 32 bits of
+the qword `0x0035E810` returns, `[0x022CA5E0]` (`0x0035FF11`, `0x0035FF16`).
 
 ### From the channel to the pad
 
@@ -98,10 +124,25 @@ On every poll `0x0035F420` calls `0x0035F590` (`0x0035F548`):
 1. With the channel's flag bit `0x4` set, the large value is the envelope `+0x16` times the actuator-1 level `+0x07`,
    shifted right 14, and the small value is bit `0x200000` of the envelope `+0x16` times the actuator-0 level `+0x06`
    (`0x0035F61B`-`0x0035F639`: multiplied, shifted right 14, then right 7, then masked with 1); without it both are 0.
-2. It hands them through `0x008628F0` to `0x001E1120(pad +0x02, small, large)`, and sets flag bit `0x10` when either level it read
-   is non-zero. `0x0035FCA0` clears bit `0x10` before each poll (`0x0035FCE8`).
+   - As expressions, with `/` a signed division rounding toward zero (`cdq`, `and edx, 0x3fff`, `add eax, edx`,
+     `sar eax, 0xe`): `large = (+0x16 × +0x07) / 16384` (`0x0035F5E3`-`0x0035F5F7`) and
+     `small = ((+0x16 × +0x06) / 16384 >> 7) & 1` (`0x0035F61B`-`0x0035F637`), each stored as a byte (`0x0035F5FA`,
+     `0x0035F639`).
+2. It hands them through `0x008628F0` to `0x001E1120(pad +0x02, small, large)`, and sets flag bit `0x10` when either
+   level it read is non-zero. `0x0035FCA0` clears bit `0x10` before each poll (`0x0035FCE8`).
+   - Each value is computed only under its bit of the first byte the third argument points to, bit `0x2` the
+     large and bit `0x1` the small; with neither bit set nothing is handed over and bit `0x10` is not set
+     (`0x0035F5D7`, `0x0035F60F`, `0x0035F64B`).
+   - The only caller, `0x0035F420`, passes `0x022CB640` (`0x0035F53C`), whose first dword `0x00862660` sets to
+     `0xFFFFFFFF` earlier in the same poll (`0x0035F44A`-`0x0035F456`), so both values are computed and handed over
+     on every poll.
+   - The levels are read only with flag bit `0x4` of byte `+0x09` (`0x0035F5DD`, `0x0035F615`), so with it clear bit
+     `0x10` is never set (`0x0035F672`-`0x0035F676`).
 3. `0x001E1120` sends zeros instead unless the input manager's last-device byte `+0x38` says the pad was used last
    (`0x00197780`) and `0x00228480` answers 0 (`0x001E1148`-`0x001E116F`).
+   - It also sends zeros when `0x00198790` returns no input manager (`0x001E113E`). Either way it tail-jumps to
+     `0x00198E80(input manager, pad, small, large)` (`0x001E1172`-`0x001E1186`), which looks the pad up itself and does
+     not use the manager argument (`0x00198E97`-`0x00198EA5`).
 4. `0x00198E80` takes the n-th registered controller of kind 2 (`0x0079D620`, `0x00796FC0(2, n)`) and `0x007A1080` stores the
    large value at `+0x98`, the small one at `+0x99` and 1 at `+0x9A`.
 
@@ -130,9 +171,13 @@ the step `+0x18`:
 | While | Count | What happens |
 |---|---|---|
 | vibrating (flag bit `0x10`) | `+0x12` past `0x6DF` (1759 polls) | the step becomes -546: the envelope falls |
-| vibrating | `+0x12` past `0x6FE` (1790 polls) | the envelope is held at 0 while `+0x10` counts |
-| vibrating | `+0x10` past `0xB3` (180 polls) | the step becomes +546 and the counts restart |
-| not vibrating | `+0x14` reaches `0xB4` (180 polls) | the envelope returns to `0x4000` and `+0x12` to 0 |
+| vibrating | `+0x12` at most `0x6FE` | `+0x14` and `+0x10` are set to 0 (`0x0035F6FD`, `0x0035F73C`) |
+| vibrating | `+0x12` past `0x6FE` (1790 polls) | the envelope is held at 0 while `+0x10` counts: one dword store at `+0x16` zeroes the envelope and the step (`0x0035F6D5`), `+0x12` is held at `0x6FE` (`0x0035F6D1`) and `+0x14` counts with `+0x10`, up to `0xB4` (`0x0035F6C4`-`0x0035F6DF`) |
+| vibrating | `+0x10` past `0xB3` (180 polls) | the step becomes +546 and the counts restart: one dword store zeroes `+0x10` and `+0x12`, and `+0x14` is set to 0 (`0x0035F6E9`-`0x0035F6F6`) |
+| not vibrating | `+0x14` below `0xB4` | a non-zero `+0x12` goes on counting, up to `0x6FE` (`0x0035F704`-`0x0035F71E`), and the step is kept, so a falling envelope goes on falling; only 180 polls without vibration restart the fade timing |
+| not vibrating | `+0x14` reaches `0xB4` (180 polls) | the envelope returns to `0x4000` and `+0x12` to 0; the same stores set the step to 0 and `+0x14` to `0xB4`, and `+0x10` is set to 0 (`0x0035F731`-`0x0035F73C`) |
+
+Every poll then adds the step to the envelope and keeps the sum between 0 and `0x4000` (`0x0035F741`-`0x0035F757`).
 
 ## Layouts
 

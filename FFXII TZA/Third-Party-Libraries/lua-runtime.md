@@ -46,12 +46,25 @@ parser through `luaD_protectedparser` (`0x0081DF50`). That function takes the ad
 `f_parser` looks at the first byte of the chunk:
 
 - `0x1B` (the start of `\x1bLua`): the binary loader `luaU_undump` (`0x0082E910`), which first checks
-  the header (`0x0082E490`).
+  the header (`0x0082E490`). It names the chunk `binary string` when the name starts with `0x1B` and drops
+  a leading `@` or `=` (`0x0082E922`-`0x0082E940`).
 - anything else: the source parser `luaY_parser` (`0x0082BE30`).
 
 Each branch refuses its form only when a mode string is given and lacks `b` or `t`
 (`attempt to load a %s chunk (mode is '%s')`). `0x00683C30` passes no mode, so both plain Lua source
 and precompiled chunks are accepted.
+
+A refusal names the form `binary` or `text` and is thrown with status 3 (`0x0081D8A8`-`0x0081D8C9`,
+`0x0081D8CF`-`0x0081D8F0`, through `0x0081E2C0`). After either loader, `f_parser` gives each upvalue slot of the
+new closure, counted by its byte `+0x0A`, a new closed upvalue (`0x0081ED90`, `0x0081D84D`-`0x0081D891`).
+
+`luaU_undump` loads the main prototype (`0x0082E350`, `0x0082E9B4`) into a closure of one upvalue, and replaces
+that closure with one of the prototype's own upvalue count `+0x50` when the count is not 1
+(`0x0082E9BD`-`0x0082E9D9`).
+
+`luaY_parser` reads statements (`0x0082D130`) until the end of the text. A main chunk cut short by `else`,
+`elseif`, `end` or `until`, or text after its `return`, raises `%s expected` with `<eof>`
+(`0x0082C010`-`0x0082C0A1`). It closes the function (`0x00829F50`) and returns the closure (`0x0082C054`-`0x0082C061`).
 
 ### Who calls the loader
 
@@ -74,10 +87,35 @@ pointer at pool `+0x50`, `+0x58` counts the entries in use and `+0x48` (bit `0x8
 capacity. It copies entry `+0x10` bytes (bit `0x80000000` cleared) from the buffer at entry `+0x18` to the one
 at entry `+0x08` and runs the script on the state at entry `+0x20`.
 
+`0x00684D10(this, L)` runs in this order:
+
+1. It reads the `PScript` from `[this + 8] + 0x50` and a function name from `[this + 8] + 0x60` with its
+   low bit cleared, and returns 0 at once when the name is null (`0x00684D37`-`0x00684D52`).
+2. It takes a pool entry only when `+0x58` is below the capacity (`0x00684D6B`-`0x00684D74`); without an
+   entry it runs on its argument `L` (`0x00684D8A`).
+3. When `0x00683C30` fails it returns 0 (`0x00684DD8`). It runs the chunk with `lua_pcall` (`0x00810340`) with no
+   arguments and no results (`0x00684DDE`-`0x00684DF2`).
+4. On a failure it passes `0x005CDAA0` the level 3, the text `0x00D6FEB0`, the code and the message
+   (`0x00811530`), pops the message and returns 0 (`0x00684DFE`-`0x00684E30`).
+5. It pushes the global of that name (`0x0080FB20`) and returns 0 when its type is 0, nil (`0x008119F0`,
+   `0x00684E68`).
+6. It hands the function the values of the argument state, n of them, n being that state's top at this
+   point (`0x0080FD00`, `0x00684E38`). On the argument state itself it pushes copies of indices 1 to n
+   (`0x00810730`, `0x00684E75`-`0x00684E92`); on a pool state it copies them over with `0x00682AA0` (`0x00684EA5`).
+7. It calls the function with n arguments and one result (`0x00684EB4`-`0x00684ECA`); a failure is logged
+   and popped as in step 4 (`0x00684EDF`-`0x00684EE6`). On a pool state it copies the result back to the
+   argument state (`0x00682AA0`, `0x00684F00`).
+8. It returns `gettop(argument state) - n` (`0x00684F05`-`0x00684F0F`). Every exit after step 1 first gives
+   the pool entry back as below (`0x00684F12`-`0x00684F37`).
+
 On its way out it gives the entry back by decrementing `+0x58`, but only when the entry is still the
 last one taken. `0x00681840` is the same release as a separate function; the only callers are two
 exception-unwind funclets, `0x008A0030` and `0x008A0070`, which pass it the pool and entry they find in
 their parent's frame.
+
+`0x00681840` reads the pool from its argument's `+0x00` and the entry from `+0x08` (`0x00681840`, `0x00681848`).
+Both copies of the release do nothing for a null pool, a null entry or a count of 0
+(`0x00681843`-`0x00681856`, `0x00684F12`-`0x00684F21`).
 
 ### No code creates a Lua state
 
@@ -120,12 +158,26 @@ No library is ever opened:
 - `0x00685AC0`, slot 1 of the `PUtilityScripting` vtable `0x00D6FD98`, makes five other setup calls
   and then appends four pairs, `math`, `bit32`, `string` and `coroutine` with their openers,
   to a list through `0x006844C0`. The list's count `0x02E41570` and buffer `0x02E41578` are touched only by
-  `0x006844C0` and by `0x00685F60` (slot 2) and `0x008B25C0` (exit), which free it. Nothing reads the
-  pairs.
+  `0x006844C0` and by `0x00685F60` (slot 2) and `0x008B25C0` (exit), which free it.
+- Apart from `0x006844C0`, which copies the earlier pairs into each new buffer of count + 1 16-byte entries
+  (`0x006844E5`, `0x0068452C`-`0x00684533`), nothing reads the pairs, and no code calls an opener from the list.
+- `0x006844C0` returns `0xD` when the new buffer cannot be had (`0x006844ED`-`0x006844F2`). Otherwise it writes
+  the new pair last (`0x0068454E`-`0x00684553`), frees the old buffer when it is set and bit `0x80000000` of
+  the count is clear (`0x0068455D`-`0x00684576`), stores the new buffer and count with that bit clear
+  (`0x0068457B`-`0x0068458A`) and returns 0 (`0x00684590`).
+- `0x00685F60` does nothing when the count is 0 (`0x00685F6C`, `0x00685F9C`). Otherwise it frees the buffer when
+  it is set and bit `0x80000000` of the count is clear (`0x00685F75`-`0x00685F83`), then zeroes the buffer and
+  the count (`0x00685F88`-`0x00685F91`). It returns 0 on both paths.
 
 The `io`, `os`, `debug` and `package` functions, among them `io.open`
 (`0x00825660`, which checks its mode against `[rwa]%+?b?` and opens a `FILE*`) and `package.loadlib`
 (`0x00828580`), are therefore present and unreachable.
+
+`io.open` takes the mode `r` when its second argument is absent (`0x00825690`, `0x008256A3`) and pushes the `0x10`-byte
+`FILE*` userdata, with the closer `0x008262E0`, before it checks the mode (`0x008256A8`-`0x008256DE`). A mode
+that fails raises `invalid mode '%s' (should match '[rwa]%%+?b?')` (`0x0082573D`-`0x0082574A`). When `fopen`
+returns null it returns the result of `0x00812A50(L, 0, name)` (`0x0082572A`-`0x00825737`); otherwise it
+returns 1 (`0x00825739`).
 
 ### Objects and the collector
 
@@ -206,6 +258,12 @@ The precompiled-chunk header `0x0082E490` compares, 18 bytes:
 It reads 17 bytes after the signature byte the parser has already taken (`0x0082E4CC`) and compares all
 18 with the expected header it builds from immediates (`0x0082E4C7` to `0x0082E4EA`).
 
+A short read raises `truncated` (`0x0082E4F7`, `0x0082E56B`). A mismatch is named by its first difference:
+`not a` for the signature (`0x0082E521`), `version mismatch in` for the version or format byte
+(`0x0082E52D`), `incompatible` for `+0x06` to `+0x0B` (`0x0082E536`, `0x0082E544`) and `corrupted` for the tail
+(`0x0082E5BB`). Each goes into `%s: %s precompiled chunk` with the chunk name and is thrown with status 3
+(`0x0081E2C0`).
+
 The `PScript` fields `0x00683C30` reads:
 
 | Offset | Type | Name | Meaning |
@@ -251,8 +309,13 @@ One row per function, 13 rows in address order. Each body is 54 bytes: it reads 
 - [Script interpreter](../Scripts-And-Script-Commands/script-interpreter.md): the game's own script
   machine, which runs every shipped script.
 - [The member table](lua-runtime-members.tsv): the interpreter's functions, from `0x0080F2E0` up to `0x00830760`,
-  213 of the 600 with their Lua 5.2.1 name: 130 from the libraries' `luaL_Reg` tables (`print`, `string.format`,
-  `file:read`, the `luaopen_` openers) and 83 from a message only that function uses or from its code
-  (`lua_pcallk` `0x00810340`, `index2addr` `0x0080F300`); the evidence is in each row.
+  217 of the 600 with their Lua 5.2.1 name; the evidence is in each row.
+  - 130 are named from the libraries' `luaL_Reg` tables (`print`, `string.format`, `file:read`, the `luaopen_`
+    openers).
+  - 81 are named from a message only that function uses.
+  - 4 are named from their code (`lua_pcallk` `0x00810340`, `index2addr` `0x0080F300`, `lua_gc` `0x0080F800`,
+    `lua_getglobal` `0x0080FB20`).
+  - 2 are named as on [Phyre Lua bindings](../PhyreEngine/phyre-lua-bindings.md)
+    (`lua_pushcclosure` `0x00810470`, `lua_setglobal` `0x00810ED0`).
 - [The one-argument math functions](lua-runtime-lua-math-unaryfunctionadapter.tsv): the thirteen `math` functions
   that take one argument.

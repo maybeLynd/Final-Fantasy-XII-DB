@@ -5,6 +5,8 @@ function	name	site	disp	kind	instruction	route	note
 0x003DB2A0	ActorResource_RemoveActiveEntry	0x003DB3A8	0x0	r	movzx eax, byte ptr [rdi]	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x003DB420	ActorResource_RecycleEntryRange	0x003DB4D3	0x0	r	movzx r8d, byte ptr [rcx + rdx*4]	an entry the function resolved itself	idx*4
 0x003DB550	ActorResource_GetEntryByOrdinal	0x003DB56B	0x0	addr	lea rax, [rax + rdx*4]	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
+0x003DB580	FUN_003db580	0x003DB5BB	0x0	w	mov byte ptr [r9], al	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
+0x003DB580	FUN_003db580	0x003DB5F2	0x0	w	mov byte ptr [rax + rdx*4], 0xff	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x003DB650	FUN_003db650	0x003DB66F	0x0	addr	lea r8, [rax + r9*4]	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x003DB650	FUN_003db650	0x003DB693	0x0	addr	lea r10, [r9 + rcx*4]	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x003DB650	FUN_003db650	0x003DB6AC	0x0	addr	lea r9, [r9 + rcx*4]	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
@@ -42,6 +44,8 @@ function	name	site	disp	kind	instruction	route	note
 0x003DC1B0	FUN_003dc1b0	0x003DC217	0x0	addr	lea rax, [rcx + rdx*4]	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x003DC1B0	FUN_003dc1b0	0x003DC230	0x0	w	mov byte ptr [r10], cl	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x003DB2A0	ActorResource_RemoveActiveEntry	0x003DB3DC	0x1	r	movzx ecx, byte ptr [rdi + 1]	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
+0x003DB580	FUN_003db580	0x003DB5C1	0x1	w	mov byte ptr [r9 + 1], al	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
+0x003DB580	FUN_003db580	0x003DB5DC	0x1	w	mov byte ptr [rax + 1], 0xff	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x003DB650	FUN_003db650	0x003DB69C	0x1	r	movzx eax, byte ptr [r10 + 1]	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x003DB650	FUN_003db650	0x003DB6B5	0x1	r	movzx eax, byte ptr [r9 + 1]	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x003DB650	FUN_003db650	0x003DB6CD	0x1	w	mov byte ptr [r10 + 1], r11b	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
@@ -57,6 +61,7 @@ function	name	site	disp	kind	instruction	route	note
 0x003DBDC0	ActorResource_StartEntryScriptExecution	0x003DBE27	0x3	r	movzx ecx, byte ptr [rsi + 3]	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x003DC0D0	FUN_003dc0d0	0x003DC0EA	0x3	r	movzx ecx, byte ptr [rbx + 3]	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025E152	0x4	r	movzx r14d, word ptr [rax + 4]	an entry the function resolved itself	
+0x003DB580	FUN_003db580	0x003DB5B3	0x4	w	mov dword ptr [r9 + 4], 0x80000000	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x003DB7A0	ActorResource_InsertEntryFromDescriptor	0x003DB84A	0x4	r	cmp word ptr [rax + rcx*4 + 4], r14w	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x003DBDC0	ActorResource_StartEntryScriptExecution	0x003DBDDC	0x4	r	movzx edx, word ptr [rdx + 4]	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x003DBEA0	FUN_003dbea0	0x003DBF01	0x4	r	movzx eax, word ptr [r8 + 4]	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
@@ -73,11 +78,14 @@ function	name	site	disp	kind	instruction	route	note
 0x003DC0D0	FUN_003dc0d0	0x003DC0FD	0xC	r	mov ecx, dword ptr [rbx + 0xc]	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x003DB2A0	ActorResource_RemoveActiveEntry	0x003DB2F8	0x10	r	cmp byte ptr [rdi + 0x10], 4	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x003DB2A0	ActorResource_RemoveActiveEntry	0x003DB371	0x10	r	cmp byte ptr [rdi + 0x10], 3	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
+0x003DB580	FUN_003db580	0x003DB5C7	0x10	w	mov word ptr [r9 + 0x10], bx	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x003DBDC0	ActorResource_StartEntryScriptExecution	0x003DBE10	0x10	r	cmp byte ptr [rsi + 0x10], 2	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
 0x003DB1F0	FUN_003db1f0	0x003DB240	0x11	r	cmp byte ptr [rcx], 1	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x11	
 0x003DB1F0	FUN_003db1f0	0x003DB245	0x11	w	mov byte ptr [rcx], 2	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x11	
 0x003DB420	ActorResource_RecycleEntryRange	0x003DB4C4	0x11	r	movzx r9d, byte ptr [rcx + rdx*4 + 0x11]	an entry the function resolved itself	idx*4
 0x003DB6E0	ActorResource_SelectPendingEntryForExecution	0x003DB733	0x11	r	movzx ecx, byte ptr [rax + rcx*4 + 0x11]	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	
+0x003DBAE0	FUN_003dbae0	0x003DBB30	0x11	r	cmp byte ptr [rax], 1	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x11	
+0x003DBAE0	FUN_003dbae0	0x003DBB35	0x11	w	mov byte ptr [rax], 2	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x11	
 0x003DBBF0	FUN_003dbbf0	0x003DBCA7	0x11	r	cmp byte ptr [rcx], 1	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x11	
 0x003DBBF0	FUN_003dbbf0	0x003DBCAC	0x11	w	mov byte ptr [rcx], 2	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x11	
 0x003DBDC0	ActorResource_StartEntryScriptExecution	0x003DBE68	0x11	w	mov byte ptr [rsi + 0x11], 3	chain from the record: ActorStorageRecord +0xA0 count=slotCountA0 base+0x0	

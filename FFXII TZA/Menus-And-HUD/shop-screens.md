@@ -23,6 +23,10 @@ A script opens a shop with `openfullscreenmenu_48d(2, shop)`, menu request 10 ([
 screen calls `0x0057B800(shop)` (`0x0027FCDA`), which creates the command list `0x0057B890`. The shop number is the only
 argument; the mode is chosen inside the screen. The title is the shop's name, `0x002FAE40(shop)` (`0x0057B98F`-`0x0057B9C1`).
 
+`0x0057B800` builds the window with the record `{0, shop, 0}` (`0x0057B818`-`0x0057B872`). For a shop number of 0 or more
+it first calls `0x002C99A0([0x01E0C3B8], [0x01E0C3BC], 1)` and sets bit `0x80` of `+0x38` in the `icons_c` picture entry
+that `0x0024A5A0` finds by name (`0x0057B82D`-`0x0057B855`); a negative number skips both (`0x0057B829`-`0x0057B82B`).
+
 ### The window's memory
 
 The shop window takes two blocks:
@@ -62,6 +66,15 @@ read back only by `0x0057B6F0` (`0x0057B740`, `0x0057B74C`).
 Sell is offered when any Sell tab has goods and Bazaar when the bazaar list has any, through `0x0056E880`. A greyed row
 refuses the choice (`0x0057C070`).
 
+`0x0057BD40(window)` first sets `+0x150` bit `0x2` when `0x0057B6F0` answers non-zero (`0x0057BDC9`-`0x0057BDD2`). For each
+row it takes the row's node `0x002CD420(i)` and asks `0x0056E880(shop, 0xFF, 0)` for row 1 and
+`0x0056E880(shop, 0xB, 1)` for row 2 (`0x0057BD6E`-`0x0057BD91`, `0x0057BE10`-`0x0057BE3A`).
+
+While a row is active it only
+sets the styles; with no active row an offered row gets its help text and style 0, a greyed one the greyed text and
+style 2, the text going to the node's `+0x18` through `0x002F9860` (`0x0057BE5C`-`0x0057BE80`). The style's colour
+`0x002DD7E0(style)` goes to the node through `0x002C9F20` (`0x0057BE84`-`0x0057BE90`).
+
 ### New bazaar goods
 
 Each time `0x0057BD40` runs, `0x0057B6F0` looks at every bazaar good the shop lists ([Bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md)).
@@ -84,17 +97,73 @@ Only the Sell key sets the screen's sell bit (`0x0056DE3D`-`0x0056DE4E`). `0x005
 `0x0057D620` reports it has goods, so an empty tab never shows. Before the screen opens, `0x0057BEE0` measures every name
 the mode can list and sizes the window to the widest.
 
+What `0x0056DD50` does, in order (`0x0056DD50`-`0x0056DEB1`):
+
+1. It builds the screen with `0x00564AC0(0, 0x1C0, key, 0x0056E140)`, keeps the shop at `+0x190` and runs
+   `0x00564780(screen, byte +0x192, 0, shop)` (`0x0056DD66`-`0x0056DD98`).
+2. The child `+0xC8` is `0x00567190(owner, n, +0xE8, screen + 0xF0)`: with `0x00254A10` answering 0 the owner is the
+   shop window's child `0x0057B680(0)` and `n` is 6, otherwise `[[0x0209AC30] + 0x48]` and 9; it is attached to the
+   screen (`0x0056DD9D`-`0x0056DDF6`).
+3. It redraws the tab strip (`0x005674B0`, `0x0056DE1A`) and stores at `+0x191` the help kind `0x0056DC30` of the byte
+   `+0xF7`, or of 1 when `+0x180` has no bit of `0x1F0000` (`0x0056DE1F`-`0x0056DE43`).
+4. The sell bit is `+0x194` bit `0x1`: set for keys `0x597`-`0x59D` and `0x59F`-`0x5A2` and cleared for any other,
+   so of the three keys only `0x5A2` sets it (`0x0056DE3D`-`0x0056DE65`).
+5. It runs `0x0056C950(screen, +0x191, sell bit)`, `0x0056E410(screen)`, `0x0056E5D0(screen, 1)`, `0x002CF890` and
+   `0x002C9490([0x01E0C3DC], [0x01E0C3BC], [0x01E0C3E8])`, and returns the screen (`0x0056DE6B`-`0x0056DEB1`).
+
 ### Rows
 
-`0x005655F0` builds a tab's rows through `0x0057CF20` (`0x005656A2`), one 0x20-byte row per good:
+`0x005655F0` builds a tab's rows through `0x0057CF20` (`0x005656A2`), one 0x20-byte row per good. It gives the shop
+number in the high 16 bits and the pane's kind, byte `+0x17F`, in the low 16 bits; on the Buy and Sell screens,
+kinds 32 and 19, the kind becomes the tab's category from `0x0057D5E0`, and any other kind goes as it is
+(`0x00565666`-`0x005656A2`):
 
 - Buy rows come from the shop's current list, by category (`0x002FAD30`, `0x002FA920` mode 1, `0x0057CFC4`, `0x0057D022`), as
   [Shops](../Items-Equipment-Shops-And-Licenses/shops.md) describes.
+- Sell rows come from the party's inventory lists through `0x00D23D00` (`0x0057D0BA`-`0x0057D0DC`): lists 1 to 4 for
+  WEAPONS, ARMOR, ACCESSORIES and AMMUNITION (categories 8 to 11), list 0 for ITEMS (12) and list 11 for LOOT (15).
+- The Inventory's rows come through `0x00D23960` (`0x0057D0E9`-`0x0057D103`), except Abilities, kind 5, which reads
+  lists 9 and 8 (`0x0057D26A`-`0x0057D3D9`), and the equipment screen's through `0x00D23988` (`0x0057D0A2`-`0x0057D0AD`).
 - Bazaar rows come from the shop's bazaar list (`0x002FA920` mode 2, `0x0057D07B`).
-- Sell rows come from the party's inventory lists through `0x00D23D00` (`0x0057D0A2`-`0x0057D0AD`).
 
 Each row holds the name, the id, the sellable count, the count owned and the price, filled by `0x0057DED0` (equipment),
-`0x0057DAD0` (items and loot), `0x0057DD60` (magicks, technicks and gambits) or `0x0057DC30` (bazaar goods).
+`0x0057DAD0` (items, loot and key items), `0x0057DD60` (magicks, technicks and gambits) or `0x0057DC30` (bazaar goods).
+
+`0x0057DAD0(rows, ids, n, class, range, flags)` skips `0xFFFF` (`0x0057DB41`-`0x0057DB44`), looks up each id it keeps
+with `0x0035D380(class, id)` (`0x0057DB50`) and returns how many ids it keeps (`0x0057DBEC`, `0x0057DC1A`). `0x0057CF20`
+gives it class 5, items, for kinds 4, 12 and 24
+(`0x0057D352`); class 7, loot, for kinds 6, 15 and 27 (`0x0057D411`); and class 13, key items, only for kind 7, the
+Inventory's Key Items, with the id range of the tab's category (`0x0057D41B`-`0x0057D48D`). On the shop screens it
+fills the ITEMS and LOOT tabs of Buy (24 and 27) and of Sell (12 and 15), and no shop tab lists key items.
+
+`0x0057D620` makes the same three calls with no rows (`0x0057D908`, `0x0057D9B3`, `0x0057DA2B`), and with no rows
+`0x0057DAD0` stores nothing and only counts (`0x0057DB5C`-`0x0057DB5F`).
+
+A row of `0x0057DAD0` holds the fields below and leaves `+0x14` to `+0x1F` unwritten (`0x0057DB65`-`0x0057DBE0`):
+
+- `+0x00` the name, `0x002B58B0` of record `+0x18`; `+0x08` the id, record `+6`; `+0x0A` the icon, record `+0x2C`,
+  which is the table row's byte `+4` for all three classes (`0x0031C83E`, `0x0031CBFA`, `0x0031D26B`);
+- `+0x10` the price, record `+0x28`: the table row's word `+0xA` for items (`0x0031C81A`), word `+0` for loot
+  (`0x0031CBE0`) and -1 for key items (`0x0031D63E`); its bit `0x80000000` is cleared first (`0x0057DB91`-`0x0057DB9F`);
+- flags bit `0x2` stores the price in the low 31 bits of `+0x10` (`0x0057DBA6`-`0x0057DBB7`); otherwise bit `0x4`
+  stores half of it, shifted right by one (`0x0057DBB9`-`0x0057DBCC`), and with bit `0x20` sets bit `0x80000000` when
+  that half is 0 (`0x0057DBCF`-`0x0057DBE0`); with neither bit the dword keeps the 0 of the zeroed rows
+  (`0x0057D118`-`0x0057D134`);
+- `+0x0C` the sellable count, record `+0x20` (inventory channel 0), only when flags bit `0x8` is set, and `0xFFFF`
+  otherwise (`0x0057DB67`-`0x0057DB76`), and no caller sets bit `0x8`; `+0x0E` the count owned, record `+0x24`
+  (inventory channel 1, `0x0057DB9B`-`0x0057DBA2`).
+
+`0x0057CF20` sets the flags from the kind, so `0x0057DAD0` gets 2 on Buy, 4 for Sell ITEMS, `0x24` for Sell LOOT and 0
+in the Inventory:
+
+- 0 for the Inventory's kinds 0 to 7 (`0x0057CF74`);
+- 2 for the Buy categories 20 to 27 and 29 (`0x0057D02B`) and for the Bazaar's kind 31 (`0x0057D080`);
+- 4 for the other kinds 8 to 63, the Sell categories among them (`0x0057D0E1`), with bit `0x20` added for Sell LOOT,
+  kind 15 (`0x0057D3E7`-`0x0057D3F0`);
+- `0x10` for the equipment screen's kinds `0x40` to `0x44`, which `0x003FD360` sets as the slot plus `0x40`
+  (`0x003FD36E`-`0x003FD371`), at `0x0057CFAE` for kind `0x41` and `0x0057D0B2` for the others;
+- bit `0x1` on top, for `0x0057DED0` only: on the AMMUNITION tabs, kinds 11 and 23 (`0x0057D168`-`0x0057D175`,
+  `0x0057D1A1`), and for the second list of kind `0x41`, list 4 (`0x0057D233`).
 
 ### Prices
 
@@ -119,6 +188,21 @@ listed value, and every write of `+0x28` in the query filler `0x0031C5D0` (14 of
 
 The most the party can hold is 99 for weapons, armour, accessories, ammunition, items and loot, 1 for technicks,
 magicks and gambits, and 255 for bazaar goods (`0x00D235F8`).
+
+`0x0056E700(row, state, most)` answers a mask of refusal bits. The list passes its `+0xD8` as the state: byte `+0x00`
+bit `0x1` for selling, the quantity `+0x04`, the most the party can hold `+0x06` from `0x00D235F8` and the gil `+0x08`
+from `0x00253690` (`0x0056D509`-`0x0056D556`). It first stores 0 in `*most` when `most` is given (`0x0056E70D`-`0x0056E712`).
+
+- Selling: bit `0x8` when the price `+0x10` has bit `0x80000000` (`0x0056E71A`-`0x0056E72B`); bit `0x2` when the
+  sellable count `+0x0C` is 0, a count of -1 standing for the count owned `+0x0E` (`0x0056E726`-`0x0056E746`). With
+  state bit `0x2` it adds bit `0x1` when the count is at most the quantity, and stores the count in `*most`
+  (`0x0056E748`-`0x0056E767`).
+- Buying: bit `0x1` when the count owned is at least the most, a most of `0xFF` skipping this test, so a bazaar good
+  is never refused for the count owned (`0x0056E770`-`0x0056E794`); bit `0x4` when the price without bit `0x80000000`
+  is above the gil (`0x0056E797`-`0x0056E7AB`).
+- Buying with state bit `0x2`: bit `0x1` when the count owned plus the quantity reaches the most, and bit `0x4` when
+  the quantity's price is above the gil. `*most` becomes the largest count the gil pays for, held to the most less
+  the count owned, and bit `0x1` is set when the quantity is not below it (`0x0056E7AE`-`0x0056E820`).
 
 ### The quantity window
 
@@ -189,6 +273,13 @@ quantity (`0x0029FF60`). `0x0056D9D0(list, quantity)` stores the quantity at `+0
   `0x0057D620` (`0x0057D9C2`-`0x0057D9FD`) pass `0x0057DAD0` an end and a start, and it keeps an id only when
   start <= id < end (`0x0057DB2C`-`0x0057DB3B`): category 20 takes `0x8060`-`0x81FF`, 21 takes `0x8000`-`0x803F` and
   22 takes `0x8040`-`0x805F` ([Key item list](../Items-Equipment-Shops-And-Licenses/key-item-list.md)).
+- The category is word `+6` of the tab's entry in the pane's tab list: for `0x0057CF20` from `0x005655F0` and
+  `0x00565720` (`0x0056568E`, `0x0056577B`), and for `0x0057D610` from `0x00564780` and `0x003FD360` (`0x00564851`, `0x00564928`,
+  `0x003FD442`). `0x0056E880` and `0x0056E9A0` give `0x0057D610` the categories 0, 17, 18 or 24 (`0x0056E8F9`-`0x0056E90E`,
+  `0x0056E9D0`-`0x0056E9F4`).
+- Of the tab lists at `0x01F2CB90` for kinds 0 to 37, only kind 7's, `0x00D23B58`, the Inventory's Key Items, holds a
+  key-item category: one tab, id 23, category 20. No list holds 21 or 22. So the Inventory's Key Items lists only
+  `0x8060`-`0x81FF`, and the ranges of categories 21 and 22 are used by no tab list.
 - `0x0057CE10(category)` returns the category's row table, one of 17 between `0x00D239A0` and `0x00D23A50`; `0x0057CDD0(n)`
   allocates `n` zeroed 0x20-byte rows from arena 2 (`0x002497E0(2, n x 0x20)`, `0x0057CDDC`-`0x0057CDF6`).
 - `0x0056DED0(screen)` is the screen's step: the quantity window's input while it is open (`0x0056CA60`); otherwise the

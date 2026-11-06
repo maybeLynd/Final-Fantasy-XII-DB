@@ -115,6 +115,12 @@ all-pass divide by `(1 + alpha) / 0.9999`, so their poles sit just inside the un
 `A` is the gain; the peaking filter divides by `1 + alpha / A` instead. The shelves `0x007D1140` and `0x007D0F60` use the
 same `A` with `2 * sqrt(A) * alpha`. The bodies receive `w` and the ramped values from `0x007D1C80`.
 
+`0x007D1C80` reads the frequency ramp at `+0x38` the way `0x007A9E00` reads the 1/Q ramp `+0x68` and the gain ramp
+`+0x98`: the target `+0x44` while the ramp time `+0x4C` is 0 (`0x007D1C9E`), otherwise
+`+0x40 + (+0x44 - +0x40) * 0x007A9E50(+0x48 / +0x4C, curve +0x54)` (`0x007D1CA7`-`0x007D1CC9`). A shape above 8 leaves
+the coefficients as they were (`0x007D1CE2`-`0x007D1CE5`), and shape 0 stores `b0` = 1.0 and zeroes the other four
+(`0x007D1D00`-`0x007D1D11`).
+
 ### The one-pole filter
 
 `SimpleFilter` is the low-pass every voice carries as effect 0 ([Sound engine](sound-engine.md)). `0x007D9770` runs it on
@@ -219,6 +225,12 @@ out = x * outGain * state                                          ; times inGai
 
 The zero and one vectors it compares with live at `0x02EAE040`-`0x02EAE07F`, which the builder fills (`0x007D8794`-`0x007D87A9`).
 `0x007D8210` gives a side-chain input's buffer, and `0x007D89A0` puts back the base vtables and frees the gain state.
+
+The state step works on `g + 1e-25`, the four floats at `0x01CB7790` (`0x007D8D60`, `0x007D8D67`), both in the attack or
+release choice and in the step, and takes the same amount off the new state (`0x007D8DAE`, `0x007D8DB2`), so
+`state = g + c * (state - g - 1e-25)` with `c` the attack or release. With a side chain the body reads its buffer
+through `0x007D8210` (`0x007D8C8E`); without one it reads its own input and takes `outGain * inGain` as the
+output gain, worked out once per block (`0x007D8C81`).
 
 ### The side-chain input
 

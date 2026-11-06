@@ -75,6 +75,29 @@ parameter `0x9001D1E`. `0x0046C6E0` runs first and can refuse the sound. `0x0046
 its volume byte by `volume / 128`, capped at `0x7F`, plays nothing when that is 0 and calls the play routine
 ([Spatial sound](spatial-sound.md)).
 
+The radius is `0.5 * param`, or 0 when `0x002EDBD0` returns null for the emitter's word `+8`
+(`0x0046C7E4`-`0x0046C808`, `0x0046CA06`-`0x0046CA2A`). Each reads its own copy of the twelve-entry jump table
+(`0x0046C898`, `0x0046CB64`): types 1 and 8 ask `0x00421E20` for `0x101`, types 2 and 3 ask `0x00426770` for `0x200`,
+types 4-7 ask for bone `0x0C`, and types 9-12 for `0x100`, which is also the fallback of `0x200` and `0x0C`
+(`0x0046C76A`-`0x0046C7D3`, `0x0046C98C`-`0x0046C9F5`).
+
+`0x0046C6E0` returns 0 when the emitter's word `+8` is -1 or names a record
+whose `+0x284` is 0 (`0x0046C70C`-`0x0046C73A`), for a type outside 1-12 (`0x0046C74E`), and for a footstep (type 1)
+whose volume from `0x00361CF0` is 0 (`0x0046C85F`-`0x0046C864`); otherwise it returns 1. The footstep's pan and volume
+come from `0x00361CF0`, the other types' from `0x00361BF0` (`0x0046C84F`, `0x0046C81E`).
+
+The footstep also passes the float at `0x01F004D0 + 4 * b`, with `b` the byte `+0xB5` of the character object
+`0x003E56C0` returns (shipped values 25.0, 35.0, 45.0 and 55.0 for `b` 0 to 3; `0x0046C825`-`0x0046C842`,
+`0x0046CAE5`-`0x0046CB0A`).
+
+`0x0046C8F0` refuses as `0x0046C6E0` does except for the footstep volume test
+(`0x0046C92B`-`0x0046C970`), and builds the source with `0x003617B0` and the `0x01F004D0` float for a footstep, with
+`0x00361750` for the other types (`0x0046CB1D`, `0x0046CA4F`).
+
+The volume byte is the source's `+0x19`: `byte * volume / 128`, truncated toward zero and kept to its low
+8 bits (`0x0046CA5F`-`0x0046CA77`); a volume of 0 leaves the byte as it is (`0x0046CA72`). A zero result returns 0
+(`0x0046CB4D`); otherwise it calls `0x003A0E50` with the sound id and returns its result (`0x0046CAAE`).
+
 ### Which sample
 
 `0x002E9D90(actor record, group, variant, footstep flag)` finds the sample in the actor's sound set at `+0xC0`:
@@ -83,10 +106,15 @@ its volume byte by `volume / 128`, capped at `0x7F`, plays nothing when that is 
   `0x002E9F50`); only the weapon (`w`) rows of `charseinfo` author that block. Groups 1 and 2 read the set itself.
 - For group 1, the footstep, the index is the movement body's ground type `+0x8A` (`0x002E9F29`) looked up in
   `soundfoottable.bin`, with the table's 32 added when the flag and the field's environment variant are both set.
+  With a negative flag group 1 plays the variant as given (`0x002E9E99`).
 - For group 2 with a variant below 10, when the actor's voice-pool entry (`+0x20` of the actor it resolves to through
   `0x00263F40` and `0x00263F10`) has state 3, its bank loaded (`0x0036ECA0`), the sound comes straight from that bank
   (`0x0036EC50`, `0x002E9F81`): the character's own voice.
+- Outside that voice case a non-zero flag adds the field's environment variant `0x02099DBC` to the variant before the
+  block lookup, for every group (`0x002E9FA7`).
 - The footstep flag is set for types 1, 8, 9 and 10.
+- A group above 2 gives -1 (`0x002E9E72`), as do the gates listed on
+  [Character SE tables](../Game-Files-And-Data-Tables/character-se-tables-chse.md).
 
 ### The play routine
 

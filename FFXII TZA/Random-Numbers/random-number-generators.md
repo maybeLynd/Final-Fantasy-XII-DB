@@ -51,6 +51,10 @@ set to 624 so that the first draw refills (`0x00866D98`). The refill `0x00866B90
 with `0x9908B0DF` (written as `* -0x66F74F21`), in a four-lane SSE form when `0x01F44858` is 2 or more
 and a scalar form otherwise, and ends with the index at 0 (`0x00866D31`).
 
+The SSE form covers words 0-223, eight per iteration (`0x00866BF0`-`0x00866C7A`); the scalar loops then do
+words 224-226 (`0x00866CB0`), 227-622 (`0x00866CF0`) and the last word (`0x00866D1D`-`0x00866D54`), the same
+loops that do every word when `0x01F44858` is below 2.
+
 ### Seeding the gameplay Mersenne Twister
 
 The seed function has exactly two callers:
@@ -102,9 +106,14 @@ initialisations. Loading a save does not touch the word or the counter.
 
 A second MT19937 instance lives in a caller-supplied block at `0x01F7F600`: 624 words, then a cursor
 pointer at `+0x9C0` (`0x01F7FFC0`) and a remaining count at `+0x9C8` (`0x01F7FFC8`). Its seed
-`0x0018D740(block, seed)` runs the same initialisation recurrence as `0x00866D60` (SSE form when
-`0x01F44858` is 2 or more), and its refill `0x0018EE20(block)` is the same twist, ending with the
-count at 624 and the cursor at the array start.
+`0x0018D740(block, seed)` runs the same initialisation recurrence as `0x00866D60` and writes only the
+624 words, and its refill `0x0018EE20(block)` is the same twist, scalar only, ending with the
+count at 624 and the cursor at the array start (`0x0018EECD`-`0x0018EED8`).
+
+`0x0018D740` holds a four-lane SSE copy of its loop behind `0x01F44858` being 2 or more (`0x0018D746`), but
+the overlap test in front of it (`0x0018D773`-`0x0018D77B`) always picks the scalar loop
+(`0x0018D820`-`0x0018D844`): each word is stored one word after the word it is computed from, so the SSE
+body (`0x0018D7A0`-`0x0018D819`) never runs and the block is seeded by the scalar loop at every level.
 
 It is seeded once, by the static initialiser `0x0015BCF0` (entry in the initialiser table at
 `0x008C3200`): seed = `0x0018D680(_time64(NULL), clock())`, a byte-fold of the two values plus a call
@@ -137,11 +146,26 @@ state = (((state & 0x003FFFFF) | 0x1FC00000) << 1) | feedback;  # the bits form 
 | `0x003D8E50(A)` | 7 when enabled: 5 before the sample, 2 after (`0x003D8E95`-`0x003D8FBE`); 0 when `A` is 0 or the enable word is 0 | `f32(sample × A) − f32(A × vf00.w)`, with `vf00.w` at `0x01EF93FC` |
 | `0x004005E0()` | 1 when enabled | `sample − 1.0`, in [0, 1); the sample is kept at `0x022D92E0` and copied to `0x022D8F90` |
 
+`0x003D8E50` returns 0.0 at once for an `A` of 0 (`0x003D8E5D`-`0x003D8E6B`); a NaN `A` takes the drawing path. Otherwise
+it saves the 16 bytes at `0x022D8F30` with `0x0036D930(1, 0x022D8F30)` (`0x003D8E78`) and puts them back with `0x0036D8E0`
+before it returns (`0x003D8FE2`), which also sets the count `0x022D8F08` to 0 (`0x0036D91A`).
+
+In between it writes `0x022D8F30` = `A` and `0x022D8F34` = 0, or `0xFFFFFFFF` for an `A` with the sign bit set
+(`0x003D8F3F`-`0x003D8F44`), copies `0x022D8F30`-`0x022D8F3F` to `0x022D92E0` (`0x003D8F56`), and stores `0x022D91A0` = sample ×
+`A` (`0x003D8F65`), `0x022D92E0` = the result (`0x003D8F71`) and `0x022D92F0` = the generator's new state read as a float,
+or 1.0 when disabled (`0x003D8FCD`). It copies `0x022D92E0`-`0x022D92EF` back to `0x022D8F30` (`0x003D8FD5`) before the
+restore.
+
 `0x00259180` seeds it: `0x01EF93E8` = `0x022D92E0` = `0x458DC800` and `0x022D9138` = 1 (`0x00259216`);
 it runs from the boot frame mode `0x0022A0B0` (`0x0022A406`). Ten functions touch the state directly:
 the two above, the seed, and seven that step the recurrence inline (`0x003CCC20`, `0x003A6E60`,
 `0x00515DA0`, `0x004010A0`, `0x0044B960`, `0x0044BAC0`, `0x00515FE0`). `0x003D8E50` has 220 call sites in 49
 functions.
+
+`0x004005E0` steps the register only while `0x022D9138` is non-zero (`0x004005E0`-`0x004005EF`). With the word
+at 0 it leaves `0x01EF93E8` as it is and takes 1.0 from `0x01CEBBA8` as the sample (`0x004005F1`), so it
+returns 0.0. On both paths it stores the sample at `0x022D92E0` (`0x00400625`), copies the 16 bytes
+`0x022D92E0`-`0x022D92EF` to `0x022D8F90` (`0x0040062D`-`0x00400634`) and returns `sample − 1.0` (`0x00400647`).
 
 ### The counter hash
 

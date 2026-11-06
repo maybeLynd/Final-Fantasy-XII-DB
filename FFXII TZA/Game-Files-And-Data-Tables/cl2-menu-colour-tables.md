@@ -27,6 +27,16 @@ loader `0x003C1F00(widget, owner, descriptor, n)`, reached through `0x003C2190` 
    entries) and, when `n` is below the count and byte `+1` of entry `n` is not 0, requests kind 7 id
    `0xE1 + byte` through `0x00249210` into heap 3 (`0x003C2068`-`0x003C208D`), keeping the buffer at `+0x118`.
 
+The pane loader returns 0 and requests nothing when both panes are in use, or when one is in use and
+exactly one of the first 50 entries of `menumap_common.bin` has entry `n`'s group byte (an index at or past
+the count reads as group 0; `0x003C1F4D`, `0x003C1FC6`-`0x003C1FD3`). Otherwise it stores `n` at pane `+0x10` and
+the descriptor's byte `+0x10` at pane `+0x12`, passes the descriptor's dword `+0` to `0x00249180`
+(`0x003C1FFD`), and returns 1 (`0x003C20A4`).
+
+All three callers build a descriptor with 2 in its dword `+0` and 2 at `+0x10` (`0x002B7CEF` and `0x002B7D00`,
+`0x002BB0F7` and `0x002BB108`, `0x003CB5CB` and `0x003CB5DF`), so every pane passes 2 to `0x00249180` and stores 2 at pane
+`+0x12`. The entry table and `+0x118` are read through `0x02B457E0`, the widget `0x003C2190` passes.
+
 ## Layouts
 
 All multi-byte fields are little-endian.
@@ -93,6 +103,11 @@ entry's pictures carry that value.
   colours are palettes 0 and 1. Within a palette, pixel value `v` takes colour `v` with its bits `0x8` and
   `0x10` exchanged (`0x00181064`-`0x00181108`): colour 8 serves pixel value 16. Every pixel value from 0 to 255
   occurs in the pictures.
+- The exchange runs only for a picture whose `clutType << 8 | imageType` is `0x105`, `0x205`, `0x305`,
+  `0x4104`, `0x4204` or `0x4304` (`0x00181064`-`0x00181095`); any other pair keeps the file's order (`0x00181111`).
+  Every sloc picture in every folder (654 pictures, 3,502 copies) has clut type 3 and image type 5, `0x305`.
+- Each palette becomes a 256 x 1 texture (`0x0017F3B0`, `0x00181122`), registered under the picture's name with
+  its palette number (`0x001B20B0`, `0x00181140`).
 - 239 colours of each 512-colour table have alpha `0xFF`, above the PS2 opaque `0x80`; the TSV marks them
   out of range, and the upload draws them at 255 like `0x80`. Every other alpha is at most `0x6F`.
 - `Loca_rbl.cl2` (`0xE4`, 32 colours, `ch` and `in`) is selected by no map entry: byte `+1` is 0 in the 46
@@ -119,16 +134,34 @@ picture whose atlas slot is still empty and whose offset is not -1, it:
 3. names the picture `loca_<a>_<b>` (`sprintf "loca_%d_%d"`) from the sub file's tables and registers it through
    `0x0024A480(picture, name, flags, palette, colours)`.
 
-`0x0024A480` registers the atlas (`0x0024A4E0`) and, for a colour count below `0x4000`, stores the count in bits `0x40000` and
-up of the slot's flags and the palette at slot `+0x28`, then builds the texture (`0x0024A1D0`).
+`0x003C26C0` returns 0 when neither pane holds a file for `n` (`0x003C2704`). Otherwise it stores the picture count, the
+low byte of the table's first word, at pane `+0x13` and the key array at pane `+0x08` (`0x003C2730`-`0x003C273F`),
+walks that many entries and returns 1 (`0x003C2864`). The flags it registers with are the pane's byte `+0x12`
+(`0x003C2815`), and the handle goes into the atlas slot (`0x003C2829`). It also asks `0x0024A9E0` for the picture's
+own header and drops the answer (`0x003C27C7`).
+
+`0x0024A480` registers the atlas (`0x0024A4E0`) and, for a colour count below `0x4000`, stores the count in bits
+`0x40000` and up of the slot's flags and the palette at slot `+0x28`, then builds the texture (`0x0024A1D0`) and
+returns the slot. The count compare is signed (`0x0024A4AA`); a larger count leaves `+0x28` at the 0 that
+`0x0024A4E0` stored. The slot is not tested: with all 64 slots busy `0x0024A4E0` returns null, and the flag write
+at `0x0024A4B1` faults, or with a larger count `0x0024A1D0` is handed the null slot.
 
 ### The upload
 
 With a slot palette present, `0x0024A1D0` passes the stored count, the palette and the picture's own clut and image
 type bytes (picture header `+0x12`, `+0x13`) to `0x00181000` for an 8-bit picture or `0x00180E70` for a 4-bit one, so
-the file's `clutType` and `imageType` never matter. Both reach `0x0017F3B0`, which creates a texture of the format object `0x02CF7480` (named `RGBA8` by
-`0x00163D00`), copies the colours, and rescales byte 3 of each to `min(255, trunc(a × 255 / 128))`
-(`0x0017F517`-`0x0017F54A`, factor 1/128 at `0x008C5B34`).
+the file's `clutType` and `imageType` never matter.
+
+Both reach `0x0017F3B0(colours, n, 1, 1)`, n 256 or 16, which creates an n x 1 texture of the format object
+`0x02CF7480` (`0x0060DD70`, `0x0017F433`), named `RGBA8` by `0x00163D00`. That initialiser builds the object through
+`0x00616210` with the name, `0xB`, `0x1F8`, 0 and four `0x1C`, and registers its teardown `0x008AF060` with
+`atexit` (`0x00808B90`). `0x0017F3B0` maps the texture (`0x0017EBD0`), copies the colours (`0x00679570`,
+`0x0017F503`), and rescales byte 3 of each to `min(255, trunc(a × 255 / 128))` (`0x0017F517`-`0x0017F54A`,
+factor 1/128 at `0x008C5B34`), then commits it (`0x0062C360`, `0x0017F572`).
+
+A failed map skips the copy, the rescale and the commit (`0x0017F4D8`). A null mapped pointer skips only the
+copy, and the rescale then reads address 3 and faults (`0x0017F4E6`, `0x0017F520`). A null colour pointer
+returns the texture unfilled (`0x0017F4B9`).
 
 An alpha of `0x80` or more draws fully opaque; `0x6F` draws as
 221 of 255.

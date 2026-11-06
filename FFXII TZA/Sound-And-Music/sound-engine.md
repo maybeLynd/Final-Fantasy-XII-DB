@@ -194,7 +194,19 @@ port's four output buffers for 1.1 blocks at the new rate and channel count, cut
 
 `0x007AEA20(out, rate, channels, format, callback, ..., heap)` builds a source voice. With `heap` 0 it takes one from
 the pool `0x02EAD250` and links it into the list `0x02EAD2A0`; with `heap` 1 it allocates 0x2B8 bytes (`0x007AD460`) and
-links it into `0x02EAD300` (`0x007AF490`). `Voice::Initialize` (`0x007ED303`) and the HCA mixer (`0x007DCE64`) give 0; the external source
+links it into `0x02EAD300` (`0x007AF490`).
+
+The `heap` byte is tested against 0 only (`0x007AEA3A`), and an allocated block is zeroed first (`0x007AEB3B`). Either
+way the constructor `0x007E0650` runs on the block (`0x007AEA6C`, `0x007AEB43`), a buffer comes from `0x02EAD200`
+(`0x007AEA84`, `0x007AEB5B`), and the open call `0x007E0980` gets the other arguments and that buffer; its result is not
+tested (`0x007AEAD7`, `0x007AEBAE`).
+
+A pooled voice is linked by `0x007AF380` while the lock `0x02EAD138` is held (`0x007AEADC`-`0x007AEB01`), an allocated one
+while `0x02EAD160` is held (`0x007AEBB3`-`0x007AEBD6`), each through `EnterCriticalSection` and `LeaveCriticalSection`.
+`0x007AEA20` then stores the voice at `out` and returns 0 (`0x007AEB07`, `0x007AEBDC`). An empty pool, a failed
+allocation or a null from the constructor stores 0 at `out` and returns -1 (`0x007AEBE3`-`0x007AEBE6`).
+
+`Voice::Initialize` (`0x007ED303`) and the HCA mixer (`0x007DCE64`) give 0; the external source
 (`0x007B91BC`) gives 1. `0x007E0650` builds a source voice and `0x007E0720` tears one down; `0x007AED10` and `0x007AEE20` build
 the two fixed source lists.
 
@@ -308,7 +320,10 @@ places in 90 functions; `Voice::Initialize` alone has 27. Each is formatted (`0x
 ### The time-unit converter
 
 `0x007F31F0(meter, value, from, to)` converts a music time between units through a sample count. A value of 0, or a
-meter rate `+0x30` of 0 or less, gives 0. The units are:
+meter rate `+0x30` of 0 or less, gives 0. The value test is an unordered compare, so a NaN value gives 0 as well
+(`0x007F3217`). A rate of 0 or less first prints "[sead][!!error!!]Can't convert time in current meter.
+currentMeter_.sampleRate = %d" through `OutputDebugStringA` and the sink `0x007A5570` (`0x007F3227`-`0x007F3280`). The
+units are:
 
 | Unit | To samples | Without the meter's counts (byte `+0x18`) |
 |---:|---|---|
@@ -321,6 +336,11 @@ meter rate `+0x30` of 0 or less, gives 0. The units are:
 The sample count is truncated to a whole number (`0x007F3321`); on the way out units 2 and 3 divide by the whole
 numbers `rate / 8` and `rate / 2` (`0x007F33CB`, `0x007F339B`). A unit above 4 gives 0. The music commands `0x007C92F0` and
 `0x007CC4A0` call it.
+
+On the way out, unit 0 is `samples / rate` (`0x007F33FC`) and unit 1 the sample count itself (`0x007F33E4`). With the
+meter's counts, units 2, 3 and 4 are `samples / [+0x24]`, `samples / [+0x28]` and `samples / [+0x2C]` (`0x007F33C5`,
+`0x007F3395`, `0x007F3363`); without them unit 4 is `samples / (rate * 2)` (`0x007F336C`-`0x007F3377`). A `from` unit above
+4 gives a sample count of 0 (`0x007F328A`, `0x007F32AB`), and a `to` unit above 4 returns 0 (`0x007F3348`).
 
 ## Shipped data
 

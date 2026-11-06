@@ -131,6 +131,14 @@ Three slots apply the element against the target's statuses:
 The same three slots also multiply the scale for other statuses, for example Shell (status 19) by
 0.75 at `0x0038B057`-`0x0038B065`.
 
+Slot 102 multiplies the scale by `(+0xC4 - 1) / 10` for a source, and then a target, with Stone or Petrify
+(statuses 1 and 2), the factor being 0 when `+0xC4` is 0 or below (`0x0038C95B`-`0x0038C984`, `0x0038C9EE`-`0x0038CA14`).
+
+It multiplies by 1.5, `s = s * 1.5`, for a source with Bravery (21) or Berserk (27) and for a target with Sleep
+(4), and by 0.75, `s = s * 0.75`, for a target with Protect (18), each test on its own. The tests are
+`[context + 0x04] & 0x200000`, `[context + 0x04] & 0x8000000`, `[context + 0x08] & 0x10` and
+`[context + 0x08] & 0x40000`, with `s` the scale `0x02AEE054` (`0x0038C996`-`0x0038C9E6`).
+
 ### Weather and terrain scaling
 
 Slot 94, `0x0038B220`, scales a magick's element by the area's conditions. It runs in recipes 7, 14, 37,
@@ -163,14 +171,17 @@ it fails.
 The environment and wind classes belong to the area, and the terrain class to the target:
 
 - **Environment class** `0x02099DA8` (read through `0x00321490`): `0x0026D910` looks up the active weather
-  lane's index byte in the 16-entry table at `map_ref.bin` header `+0x10` (`0x0026DA10`-`0x0026DA26`).
+  lane's index byte in the count-prefixed table at `map_ref.bin` header `+0x10` (`0x0026DA10`-`0x0026DA26`), and
+  stores 0 when the index is not below the table's count dword (`0x0026DA1A`-`0x0026DA24`). The shipped file's
+  table holds 16 entries ([weather](../World-Areas-And-Travel/weather.md)).
 - **Wind class** `0x02099DAC` (read through `0x003214A0`): `0x0026D910` takes the lane's wind preset, bits
   `0x7` of its MWeather entry, from `0x00377850`, giving 0 for preset 0, 1 for presets 1-3 and 2 for the
   strong-wind presets 4 and above ([Weather](../World-Areas-And-Travel/weather.md))
   (`0x0026DA31`-`0x0026DA4E`).
 - **Terrain class** (`0x003210E0`, then `0x00263DD0`): the target actor's ground index, the `i16` at `+0x8A`
   of the record its `+0xC0` and `+0x138` pointers reach (index 0 when either is missing), looked up in the
-  32-entry table at `map_ref.bin` header `+0x14` (`0x00263DD7`-`0x00263E00`; bound by `0x002678A0`).
+  32-entry table at `map_ref.bin` header `+0x14` (`0x00263DD7`-`0x00263E00`; bound by `0x002678A0`). A null actor gives
+  class 0 without the lookup (`0x00263DD5`).
 
 ## Layouts
 

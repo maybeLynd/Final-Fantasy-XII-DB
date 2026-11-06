@@ -18,18 +18,26 @@ When no copy is found or a found copy sits outside a trusted folder, the game ru
 
 `0x00158EC0` calls it with `nvapi64.dll` and flags 0. It clears the last error, then:
 
-1. A name containing `\` or `/` is refused with error `0xA0`.
+1. A name containing `\` or `/` is refused with error `0xA0` (`0x0015BBFB`) and `0x0015BB30` returns 0; a null
+   or empty name skips this test (`0x0015BB56`, `0x0015BB6E`).
 2. On Windows build 14308 (`0x37E4`) or later, a name starting with `nv` (case-insensitive, `0x01CC70EC`)
    goes to the driver search `0x0015B820`. A path it returns is loaded with `0x0015B550`. When it finds
    nothing and the error is anything but `0x7E`, `0x0015BB30` returns 0.
-3. Every other case, and a search that ends with `0x7E`, loads the name from the system folder with
+3. A found path is freed with `LocalFree` after the load (`0x0015BBF0`), and the handle from `0x0015B550` is
+   returned as it is, 0 included: a found path that fails to load is not retried from the system folder
+   (`0x0015BBF6`).
+4. Every other case, and a search that ends with `0x7E`, loads the name from the system folder with
    `0x00159AA0`.
 
 ### The Windows build
 
-`0x0015A240(n)` returns whether the build is at least `n`. On first use it reads the `REG_SZ` value
+`0x0015A240(n)` returns whether the build is at least `n`, as the unsigned test `build >= n` (`0x0015A31D`).
+On first use it reads the `REG_SZ` value
 `CurrentBuildNumber` under `HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion` (`0x0015A0E0`) and parses
-its digits into `0x02EAECE0`; a value with a non-digit leaves 0, which is read again on the next call.
+its digits into `0x02EAECE0` as `build = build * 10 + digit` (`0x0015A2DE`-`0x0015A2E9`); a value with a
+non-digit leaves 0 (`0x0015A2F6`), which is read again on the next call. A failed read or a value type other
+than `REG_SZ` also leaves 0 (`0x0015A299`, `0x0015A2A0`), and the read buffer is freed with `LocalFree`
+(`0x0015A309`).
 
 ### Finding the NVIDIA adapter
 
@@ -40,6 +48,12 @@ caller passes the class at `0x01CC6BE8`, `{1CA05180-A699-450A-9A0C-DE4FBE3DDD89}
 
 `0x0015B5F0(class)` reads that device's registry property 9 and prefixes it with
 `SYSTEM\CurrentControlSet\Control\Class\` (`0x0015B440`), giving the adapter's driver key.
+
+It clears the last error first (`0x0015B637`); a null `class` sets error `0xA0` and returns 0 (`0x0015B642`).
+It returns 0 when `Setupapi.dll`, `SetupDiGetDeviceRegistryPropertyW` or `SetupDiDestroyDeviceInfoList`
+cannot be found or `0x0015A330` finds no NVIDIA device (`0x0015B734`), and when the property is empty or
+cannot be read (`0x0015B774`, `0x0015B7B5`). It frees the property buffer (`0x0015B7CC`), destroys the
+device-information set (`0x0015B7DA`) and clears the last error again when it returns a key (`0x0015B7E7`).
 
 ### The search: `0x0015B820(name)`
 
@@ -79,10 +93,28 @@ name matches.
 - `0x0015AC50(name, root, key, valueNames)` opens `key` with query access and reads each listed value
   (`0x00159F90`). A `REG_SZ` value matches as a whole; a `REG_MULTI_SZ` value is searched string by string;
   any other type sets error `0xD`. It returns a copy of the matching string.
+- `0x0015AC50` opens the key with access 1 (`0x0015AD37`) and returns 0 when that fails (`0x0015AD51`). The
+  list `valueNames` ends at a null entry (`0x0015AD64`). Each value is matched with `0x001595F0` (`0x0015ADC7`,
+  `0x0015ADFA`). A value that cannot be read, has no match, or has another type (after the `0xD` error,
+  `0x0015ADB3`) moves on to the next name; the first match ends the walk (`0x0015AE1B`), and the key is
+  closed (`0x0015AE29`).
 - `0x0015AE60(name, root, keys)` opens each key for reading and walks its value names with `RegEnumValueW`
   until error `0x103`, returning the first value name that matches.
+- `0x0015AE60`: the list `keys` ends at a null entry (`0x0015AF67`); each key opens with access `0x20019`
+  (`0x0015AF75`), and a key that does not open is skipped (`0x0015AF8E`). An error other than `0x103` moves on
+  to the next index (`0x0015B022`); the first match ends the walk over keys (`0x0015B045`).
+- `0x0015AE60` reads the names into a `0x10000`-byte buffer (`0x0015AF97`), whose first `0x8000` bytes are
+  cleared before each read (`0x0015AFC7`), with a length of `0x7FFF` characters (`0x0015AFBC`), and matches
+  each with `0x001595F0` (`0x0015B009`).
 - `0x00159F90(key, value, &type, &data)` asks for the size, allocates it with `LocalAlloc` and reads
   the value; `0x0015A0E0` wraps it with `RegOpenKeyExW` and `RegCloseKey`.
+- `0x00159F90` returns the registry error code. The buffer is zero-filled (`LocalAlloc` flags `0x40`,
+  `0x0015A071`); a size of 0 returns 0 with `data` left as the caller set it (`0x0015A06C`); a failed second
+  read frees the buffer and sets `data` to 0 (`0x0015A0B4`, `0x0015A0BA`). When `Advapi32.dll` or
+  `RegQueryValueExW` cannot be found, or the allocation fails, it returns `GetLastError` (`0x0015A082`).
+- `0x0015A0E0(root, key, value, &type, &data)` opens `key` with access 1 (`0x0015A1D3`), returns the open
+  error when that fails, else the result of `0x00159F90`, and closes the key (`0x0015A20E`). When
+  `Advapi32.dll`, `RegOpenKeyExW` or `RegCloseKey` cannot be found it returns `GetLastError` (`0x0015A22A`).
 
 ### The driver store
 
@@ -97,13 +129,27 @@ of the answer.
 slash) to `0x0015B070`; a bare file name to `0x00159AA0`; any other relative path fails with `0x7E`.
 
 `0x0015B070` loads the path with `LoadLibraryExW(path, 0, flags & 0xFFFFE0F7)` only when the trusted-folder
-test `0x00159CA0` passes; otherwise it fails with `0xA1`.
+test `0x00159CA0` passes; otherwise it fails with `0xA1`. It clears the last error first (`0x0015B081`) and
+checks the absolute form again: a null path or one that is not absolute fails with error `0xA0` and
+returns 0 (`0x0015B0F0`). The load is a tail jump to `LoadLibraryExW` (`0x0015B0E9`).
 
 `0x00159CA0(path)` first runs `VerifyVersionInfoW` once for Windows 6.1 or later (major 6, minor 1,
 service pack 0, all greater-or-equal, kept at `0x02EAEBC0`). On an older Windows every path passes. Otherwise
 it expands the path with `GetFullPathNameW` and passes it only when it starts with one of the folders
 `0x24`, `0x26` or `0x2A` (the Windows folder, Program Files, Program Files (x86)), each built by
 `0x00159B10` with `SHGetFolderPathW` and a trailing `\`.
+
+A null path fails (`0x00159D72`), and so does a path whose `GetFullPathNameW` length is 0 or does not fit
+the buffer it allocates (`0x00159D92`, `0x00159DC4`). The prefix test is `_wcsnicmp` over the folder's length,
+so case is ignored (`0x00159E01`). A folder that `0x00159B10` cannot build ends the test with a failure
+(`0x00159DE6`), so the folders after it are not tried. Each built folder and the expanded path are freed
+with `LocalFree` (`0x00159E16`, `0x00159E30`, `0x00159E39`).
+
+`0x00159B10(folder, suffix)` asks `SHGetFolderPathW(0, folder, 0, 0, buffer)` for the folder into a cleared
+`0x20A`-byte stack buffer (`0x00159B4D`, `0x00159C01`) and returns a new string of the folder, `\` and
+`suffix` (`0x00159C4E`-`0x00159C6E`); `0x00159CA0` gives it the empty string (`0x00159DD4`). It returns 0 for a
+null `suffix` (`0x00159B3A`), when `SHGetFolderPathW` cannot be found (`0x00159BE5`) or fails (`0x00159C05`),
+and when the allocation fails (`0x00159C41`).
 
 ### System-folder loads
 
@@ -112,11 +158,26 @@ flag mask. `0x00159580` returns the system folder alone. The helper libraries ar
 and kept: `Setupapi.dll` at `0x02EAEAA0`, `Shell32.dll` at `0x02EAEAE0` and `Advapi32.dll` at `0x02EAEB38`,
 with each function resolved on first use.
 
+`0x00159420` returns 0 for a null name (`0x00159445`). Otherwise it asks `GetSystemDirectoryW` for the
+folder's size, allocates a zero-filled buffer for the folder, a `\` and the name (`0x00159479`), and adds
+the `\` only when the folder does not already end in one (`0x00159496`). `0x00159AA0` frees that string after
+the load (`0x00159AE7`); a non-null name whose string cannot be built returns 0 without a load
+(`0x00159ACB`), and a null name goes on to `LoadLibraryExW` with a null path (`0x00159AC6`).
+
+`0x00159580` clears the last error (`0x0015958C`), allocates the size `GetSystemDirectoryW` asks for, and
+frees it and returns 0 when the second call returns 0 or a length larger than the buffer (`0x001595C1`,
+`0x001595C5`).
+
 ### String helpers
 
 `0x00159520` tests a name for `\` or `/`. `0x00159760`, `0x001597E0`, `0x00159870`, `0x00159900` and `0x001599D0`
 are bounded copies and appends that return `0x80070057` for a bad size and `0x8007007A` when the text
 is cut; `0x00159E60` and `0x00159EF0` duplicate a string, the second at most `n` characters.
+
+`0x0015B440(a, b)` joins two strings into a new one: a null `a` gives a copy of `b` and a null `b` a copy
+of `a` (`0x0015B462`). It puts a `\` between them only when `a` is not empty and does not end in `\`, and
+`b` is not empty and does not start with `\` (`0x0015B4A3`-`0x0015B4B4`). A failed copy or append frees the
+new string and returns 0 (`0x0015B521`).
 
 ## Operations
 

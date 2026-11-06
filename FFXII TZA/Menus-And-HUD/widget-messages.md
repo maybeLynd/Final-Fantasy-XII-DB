@@ -8,8 +8,13 @@ addresses: "0x00247510, 0x002465F0, 0x00248030, 0x00245E60, 0x002473F0, 0x002448
 ## What it lists
 
 [`widget-messages.tsv`](widget-messages.tsv) has one row per message id that a widget procedure answers or a sender raises, 56 in all:
-1-26, 29-53 and 285-289. The counts come from decoding the 274 widget procedures of the image (the 267 built by
-[Widgets](widgets.md)'s constructors and seven base procedures their defaults pass messages to).
+1-26, 29-53 and 285-289. The counts come from decoding the 274 widget procedures of the image: the 267 built by
+[Widgets](widgets.md)'s constructors, the six base procedures their defaults pass messages to (`0x003EE420`,
+`0x003F7F50`, `0x002B6DB0`, `0x002BC3E0`, `0x005519E0`, `0x00553F40`), and `0x005651E0`.
+
+The four item list pane procedures `0x005636F0`, `0x00563930`, `0x00563B10` and `0x00563D20` jump to `0x005651E0` for ids 4,
+8-10, 12, 18, 26 and 286 (`0x0056370B`-`0x005637BE`, jumps `0x00563721`, `0x00563953`, `0x00563B41`, `0x00563D43`).
+`0x005651E0` answers all of them but 4, so ids 8-10, 12, 18, 26 and 286 count it as well as the four panes.
 
 ### The message record
 
@@ -30,7 +35,7 @@ do no more than that.
 | `1` | construct, with the creator's `a` and `b` | `0x002465F0` |
 | `2` | per-tick update | the drain `0x00248030` |
 | `3`, `4`, `5` | draw: before the widget's content, after it, after the children | the draw pass `0x00245E60` (`0x002462D0`, `0x0024635A`, `0x002463BC`) |
-| `6`, `7` | activated, deactivated | `0x002473F0` (`0x0024740C`-`0x00247418`), repeated down the subtree |
+| `6`, `7` | activated, deactivated | `0x002473F0(widget, on)` (`0x0024740C`-`0x00247418`), repeated down the subtree; a widget changes only when it has bit `0x2` and its bit `0x1` differs from `on`: the bit is then set to `on` and the message sent when it has a procedure (`0x00247423`-`0x0024744E`). The descent goes through `0x00247490`, which applies the same test to each child and does not go below a child it leaves unchanged (`0x002474AB`-`0x002474F4`) |
 | `8`, `9` | focus gained, focus lost | `0x00244830` |
 | `10`, `11` | input turn for the focus widget; 11 while a widget up its chain is running | `0x002481C0`; also `0x002286B0` |
 | `12` | command to an owner: `a` is a sub-command, `b` its argument | `0x00247510` (101 calls in 67 functions) and 11 other sites |
@@ -51,7 +56,10 @@ No procedure answers ids 27 or 28.
 
 ### Command sub-codes (message 12)
 
-`0x00247510(widget, a, b)` builds message 12 and returns the reply (`0x00247523`-`0x0024755B`). The sub-codes a list or
+`0x00247510(widget, a, b)` builds message 12 and returns the reply (`0x00247523`-`0x0024755B`). It builds the 24-byte
+record on its stack (id 12 at `+0x00`, `a` at `+0x08`, `b` at `+0x10`) and calls the procedure pointer at the
+widget's `+0x00` with the widget and the record (`0x00247523`-`0x00247547`). For a null widget, or a widget whose
+procedure pointer is null, it sends nothing and returns 0 (`0x00247535`-`0x00247540`, `0x0024755B`). The sub-codes a list or
 dialog posts to its owner:
 
 | `a` | Means | Sent by |

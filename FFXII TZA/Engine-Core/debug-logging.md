@@ -128,8 +128,10 @@ writes either, so every formatter above passes the value 4.
 
 Every log call: format into the stack buffer, build the sink on the first call, call slot 1.
 Every `printf` call: format straight to the C runtime's standard output. At process exit:
-`0x008AADA0` re-establishes the stock object's vtable and, only when the pointer still names that
-object, rebuilds the pointer.
+`0x008AADA0` re-establishes the stock object's vtable (`0x008AADB3`), runs the pointer's guarded
+construction under the guard `0x02CB6158` (`0x008AADD5`, again at `0x008AADE9` on the rebuild path), so
+a pointer not yet built is built there through `0x005CDA30` (`0x008AAE16`), and, only when the pointer
+still names that object (`0x008AADE0`), rebuilds the pointer from `0x005CDA30` (`0x008AADF2`).
 
 ## State
 

@@ -25,12 +25,24 @@ archive index:
    - the block pack, kind 4 at the signed word `+0x00` of the 16-byte block record the row's `+0x02` selects
      (`0x00264F40`). The block record's second word plus 500 is the sound map number (`0x00264FD0`);
    - the area, the row's word `+0x04` (`0x00264ED0`). Its battle data is kind 21 at 2 × area, the `.ard` that
-     `0x003EA820` sizes and reads ([Area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md)).
+     `0x003EA820` sizes and reads ([Area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md));
+   - the row readers take *n* with no bound (`0x00264F26`, `0x00264F56`, `0x00264FE6`) and answer only while `0x02099D88`
+     and `0x02099D90` are both set: otherwise `0x00264F10` gives 0 and `0x00264F40` and `0x00264FD0` give -1 (`0x00264F3D`,
+     `0x00264F7E`, `0x0026500F`).
 3. **The remastered map art.** `0x00379A10` cuts `<area>\<map>` out of the zone pack's path and swaps five zones for
    the art they reuse (the table `0x01EF9490`); `0x001A7A50` builds
-   `.\GameData\D3D11\ArtData\map\<area>\<map>\<map>_d3d11.ah` ([Map art](map-art.md),
-   [Prefetch and asset-header manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md)). `art_meshes` and
-   `art_textures` count the list's meshes and textures.
+   `.\GameData\D3D11\ArtData\map\<area>\<map>\<map>_D3D11_srm.ah` and requests it when `0x0019EAA0` can open it,
+   else `<map>_D3D11.ah` (`0x001A7C02`-`0x001A7C53`; [Map art](map-art.md),
+   [Prefetch and asset-header manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md)).
+   - Every shipped map folder has its `_srm` list, so the game requests that one. `art` names the plain
+     `<map>_d3d11.ah` list, and `art_meshes` and `art_textures` count that list's meshes and textures.
+   - `0x00379A10(kind, index)` acts only when `0x0032E400(kind, index)` gives a size above 0 (`0x00379A3E`). It copies
+     the path `0x002DF980(kind, index)` and keeps the text between the fourth and the second separator (`\` or `/`)
+     from the end (`0x00379A5A`-`0x00379B0A`); a cut at or past 260 characters ends in the range-check failure
+     `0x00809728` (`0x00379ADD`-`0x00379AE4`).
+   - The swap compares that text from its seventh character on with the five names of `0x01EF9490` and, on a
+     match, keeps the first six characters and appends the reused map (`0x00379B30`-`0x00379B8A`). The name then
+     goes to `0x001805D0` and `0x022BE7E0` is set to 0 (`0x00379B94`, `0x00379B99`; [Map art](map-art.md)).
 4. **The map sounds.** The binder `0x003635E0` keeps the `SPP1` list of the pack loaded in mode 0, the block pack
    (`0x00331990`), and opens the six-digit bank each listed id names ([Map sounds](../Sound-And-Music/map-sounds.md)). The
    block pack's slot 10 holds the list: a `0x20`-byte header with the id count at `+0x04`, then the `u32` ids.
@@ -46,7 +58,9 @@ archive index:
    - the map name, `0x00377B60(n)`: entry *n* of the offset table at `+0x10`, while *n* is below the area count
      `+0x04` (1,312);
    - the region name, `0x003778B0(n)`: entry `[+0x04]` + group of the same table, while the group is below the region
-     count `+0x08` (59). The group is the word `+0x06` of `map_ref.bin` row *n* (`0x00264F90`).
+     count `+0x08` (59). The group is the word `+0x06` of `map_ref.bin` row *n* (`0x00264F90`), 0 while that table
+     is not bound (`0x00264FBE`). While the name table `[0x02ADD0F8]` is not loaded the region name is empty
+     (`0x003778C5`, `0x003778E8`).
 
    An empty entry gives an empty name. For the 608 zones below 1,154 the map name is the one
    [area-flags-navimapdata.tsv](area-flags-navimapdata.tsv) lists for that id.
@@ -66,7 +80,7 @@ The five swapped zones are `dst0109` (art of `dst0103`), `dst0110` (`dst0105`), 
 | `.fpk` | named for all 708, shipped for no zone |
 | map packs | 458 distinct zone packs and 88 distinct block packs, all shipped |
 | area battle data | 215 distinct `.ard` files named; not shipped for 120 zones |
-| remastered map art | 704 zones, 451 distinct lists, each with one mesh; 82,856 textures in all. The four zones `ttl_a01`, `ttl_b01`, `ttl_c01` and `ttl_d01` have no art list |
+| remastered map art | 704 zones, 451 distinct lists, each with one mesh. The 451 shipped lists name 62,089 textures, none twice in one list, 62,087 distinct texture files in all; the `art_textures` column sums to 82,856 because a list that several zones share is counted on each of its rows. The four zones `ttl_a01`, `ttl_b01`, `ttl_c01` and `ttl_d01` have no art list |
 | map sounds | 704 zones bind a list, from 87 block packs: 1 to 48 ids, 624 distinct, 10,215 in all. The four `ttl` zones' block pack `tst0100` carries no sound id. Sound map numbers 502 to 594, 88 distinct |
 | models | 582 zones name models in their manifest, 209 distinct models in all |
 | foes | 471 zones place foes. Seven zones (`nal_a01`, `nal_b01`, `rui_a04`, `sav_b01`, `rbn_a01`, `rbn_a03`, `srb_b04`) place definitions whose shipped name is "No name" (21 bestiary rows, NPC models such as `n1020`) and list that name |
@@ -93,7 +107,7 @@ A way is one of these:
 - a walk exit, the map jump of an exit group. It counts where the zone's walk mesh joins the entrance the party arrived
   by to the exit's floor, under the floor and map-jump settings the zone's start-up script makes at that counter
   ([Doors, gates and map changes](doors-gates-and-map-changes.md)). The party walks as movement kind 0; an exit the
-  mesh joins only for a chocobo rider (kind 5) counts for a ride;
+  mesh joins only for a chocobo rider (kind 5) counts for a ride when its condition lets a rider through;
 - a Strahl destination chosen on the World Map, under that area's gate in
   [menu-map-files-world-areas.tsv](../Game-Files-And-Data-Tables/menu-map-files-world-areas.tsv): Ridorana Cataract
   (`rwf_a01`) from 5150 and the Bahamut (`bhm_z01`) from 6100;
@@ -108,7 +122,7 @@ set-up `pre_z0000` sets to 1. A value is there from the lowest counter at which 
 under its own condition; a store before the test in the same function counts where its own path holds. A key item a
 condition tests is there from the step of the scene or script that gives it.
 
-566 rows are `dated`, from 0 to 7150 over 51 values; the commonest are 105 (99 zones), 4230 (81) and 1475 (80). The
+566 rows are `dated`, from 0 to 7150 over 57 values; the commonest are 4230 (81 zones), 1475 (75) and 100 (47). The
 highest is `ttl_b01` at 7150, reached by an event in `bhm_d01`. 50 rows name a battle in `basis`, and without that
 battle's store their date moves later: 40 the Zodiark battle (`hne_e01` step 137) and 10 the Firemane battle
 (`grm_d01` step 155). The other rows:
@@ -121,7 +135,7 @@ battle's store their date moves later: 40 the Zodiark battle (`hne_e01` step 137
   `global_var_3`, `global_var_5` and `global_var_6`, the sluice gate states, all at 1 (closed). The table names the
   way and gives no counter, because the reading leaves those four values free.
 
-In 105 rows `basis` also names the walls the way's source zone switches on (`setmapidwall` kind 5, value 0) under a
+In 102 rows `basis` also names the walls the way's source zone switches on (`setmapidwall` kind 5, value 0) under a
 condition that is not false at the date. The date does not take them into account: it counts the way open past
 them. Kind 6 writes, which never change where a walking body stops, and writes that switch a wall off are not listed.
 In 67 rows the arrival entrance of a way is held in a saved value; the date then counts the exit group reachable from
@@ -132,7 +146,7 @@ A `gate_text` or `basis_text` cell names each saved value it tests by a label, `
 each label with that store's own condition, in the same words, so each store is written once.
 
 A value tested inside one of those conditions is named by its label and has rows of its own, so every store of every
-value the cells name is in the table: 2,351 values, 30,875 stores. Among them are the values the door conditions of
+value the cells name is in the table: 3,321 values, 47,948 stores. Among them are the values the door conditions of
 [Script censuses](../Story-Events-And-Hunts/script-censuses.md) test and the values the `set_conditions` cells of
 [Story flag ids](../Story-Events-And-Hunts/story-flag-ids.md) test.
 
