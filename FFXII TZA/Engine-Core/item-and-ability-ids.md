@@ -129,10 +129,13 @@ delta of 1 and `0x24` for any other (`0x0046A637`-`0x0046A67B`); both events are
 
 The four handler-only classes act on other classes, only for `absolute` 0 and channel 1; any other
 call returns 0 at once (`0x002FD53F`-`0x002FD54C`, `0x002FD64F`-`0x002FD65C`, `0x002FD78F`-`0x002FD79C`,
-`0x002FD88F`-`0x002FD898`), and every path returns 0. Classes 14, 15 and 18 find the row as
+`0x002FD88F`-`0x002FD898`), and every path that returns gives 0.
+
+Classes 14, 15 and 18 find the row as
 `0x0020E600([table + 0x0C]) + (id - base) × u16 [table + 8]` in 32-bit arithmetic, and take row address
 0 when the slot is null or that decoded base is 0 (`0x002FD56A`-`0x002FD5A6`, `0x002FD66E`-`0x002FD6AA`,
-`0x002FD7AE`-`0x002FD7F0`):
+`0x002FD7AE`-`0x002FD7F0`); their first read through that address then faults (class 14 at `0x002FD5A9`, class 15
+at `0x002FD6C0` or `0x002FD704`, class 18 at `0x002FD7F2`), so those paths do not return:
 
 - class 14 (`0x002FD530`): row `{u32 gil, u16 item, u16 count, u16 item, u16 count}` of the table at
   `0x02EBF070`; gil through `0x00254EE0(0x00253690() + gil × delta)` clamped at 0, with the gil

@@ -87,7 +87,8 @@ writes it (`0x00321ABA`-`0x00321AC7`). It does so when all of these hold:
 
 `0x00321B00(enemy, value, except, mode)` builds the active party list (`0x0030A880(buffer, 1)`, `0x00321B5E`)
 and, for every member other than `except`, changes the enemy's entry for that member's type byte by the
-same rules as `0x00321850` (`0x00321B90`-`0x00321CF7`).
+same rules as `0x00321850` (`0x00321B90`-`0x00321CF7`). Unlike `0x00321850`, which returns at once for a null enemy
+(`0x00321850`-`0x00321853`), it reads the enemy's `+0x698` without a test (`0x00321B11`).
 
 ### Decay
 
@@ -118,9 +119,10 @@ Two more callers change the table:
 - **Espers keep the table.** With flag 0, an Esper record (party type `0x1B`-`0x27`) leaves `0x00300FC0`
   early through `0x003105D0` and `0x003138D0` (`0x00300FCF`-`0x00301005`), before the reset. The status write's
   own Esper call at `0x0030E497` takes that exit too.
-- **Battle orders `0x4163` and `0x4164`.** The direct state orders call `0x00321B00` on the committing
-  enemy: `0x4163` sets every active party member's entry to 1 and `0x4164` adds the order's parameter
-  (`0x002FE4F1`-`0x002FE507`, [Battle orders](../Battle-Actions/battle-orders.md)).
+- **Battle orders `0x4163` and `0x4164`.** The direct state orders call `0x00321B00` on the committing enemy: `0x4163`
+  writes 1 (mode 1) and `0x4164` adds the order's parameter (mode 0) to every active party member's entry by those
+  rules (`0x002FE4F1`-`0x002FE507`, [Battle orders](../Battle-Actions/battle-orders.md)), so under `0x4163` an entry
+  that was 0 becomes 11 when no entry of the enemy is above 1 at that moment (`0x00321C55`-`0x00321C67`).
 
 ### How the AI reads it
 

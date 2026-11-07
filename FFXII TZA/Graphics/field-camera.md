@@ -239,7 +239,8 @@ The level is `l = [camera + 0x7C] + [camera + 0xFC] / [camera + 0x100] + [camera
 - The level's mouse term, not negated, uses the heading's `0.4 × 2π / (30 × [0x01DFE0B4])` and the same sensitivity
   factor (`0x0032D73F`-`0x0032D7A5`).
 - With no input, both rates are multiplied by `[0x022C3180]` each frame: 0.5, or √0.5 when `0x001EDE70` is
-  set (`0x0032AE70`). They stop at once when Camera Auto-Rotation (`0x0017E260`) is off and no recentre is
+  set (`0x0032AE70`), and a rate whose size is then below 0.00001 is set to 0 (`0x0032D5DD`-`0x0032D5F8`,
+  `0x0032D7DC`-`0x0032D7F7`). They stop at once when Camera Auto-Rotation (`0x0017E260`) is off and no recentre is
   running.
 - Bit `0x4` of the pad word `0x0036FF80()` starts a recentre (`0x0032DC00`) toward the heading
   `3π/2 − facing`, behind the leader. The swing is converted into a stick deflection `+0x370`;

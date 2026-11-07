@@ -100,8 +100,10 @@ with right, left and parent pointers and a colour byte (red 0, black 1); the key
   while the node is its parent's right child. It writes nothing. With a right child it returns the leftmost
   node below it (`0x0016D6E4` to `0x0016D6F0`). After the climb it returns the parent it reached, except that a node
   whose right link is that parent is returned itself (`0x0016D70C`, `0x0016D70F`).
-- `0x0016D720` steps to the previous node, the mirror image, after first returning the anchor's right
-  link when the node is the red anchor itself (its parent's parent is itself).
+- `0x0016D720` steps to the previous node. It first returns the anchor's right link when the node is the red anchor
+  itself (its parent's parent is itself, `0x0016D727`-`0x0016D736`). With a left child it returns the rightmost node
+  below it (`0x0016D737`-`0x0016D75E`); otherwise it climbs while the node is its parent's left child and returns the
+  parent it reached (`0x0016D75F`-`0x0016D77D`). It has no counterpart of the `0x0016D70C` test.
 - `0x0016D780` and `0x0016D7E0` rotate left and right; only the erase calls them.
 - `0x0016D780(node, root)` lifts the node's right child: the child's left subtree becomes the node's right
   (`0x0016D787`, `0x0016D793`), the child takes the node's parent (`0x0016D79B`) and the node becomes the child's

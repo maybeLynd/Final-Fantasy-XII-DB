@@ -141,9 +141,9 @@ come from (`0x002679F0` calls it through record `+0x88`):
 
 | Manager | Arena | Callback |
 |---|---|---|
-| 0 and 4 | 5 | `0x00267930` |
-| 1, 2 | `0xD` when enabled, else 5 | `0x00267BB0` |
-| 3 | `0xE` when enabled, else 5 | `0x00267C20` |
+| 0 and 4, and 1 to 3 when their arena is not enabled | 5 | `0x00267930` (`0x0032F8FE`, `0x0032F94E`-`0x0032F95A`) |
+| 1, 2 with `0xD` enabled | `0xD` | `0x00267BB0` (`0x0032F945`) |
+| 3 with `0xE` enabled | `0xE` | `0x00267C20` (`0x0032F923`) |
 
 Each callback pushes its arena (`0x0036C1D0`), allocates with `0x0036A100`, labels the block
 `ateldecode.c` with a per-site tag (`0x1676`, `0x16C1`, `0x16E6`) and pops the arena. The handler

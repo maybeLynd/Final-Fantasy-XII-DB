@@ -364,8 +364,10 @@ The Party Menu's member rows, the Status and Equip rows and the license board us
      every descendant, and then `0x00244700(widget, 1)` takes every copy of the widget off the focus stack
      (`0x00245032`-`0x0024503F`); the release is a tail jump to `0x002482E0` (`0x00245085`).
    - The deferred path is `0x002473F0(widget, 0)`, then bit `0x2` cleared and bit `0x400` set (`0x0024508A`-`0x0024509B`).
-3. The release `0x002482E0` releases the children, unlinks the widget, frees its array, sends message 24, clears the
-   procedure, frees the storage and jumps to `+0x08` when set (`0x00248308`-`0x00248405`).
+3. The release `0x002482E0` releases the children, unlinks the widget, frees its array, sends message 24 when the
+   procedure is set, clears `+0x40` bit `0x400` and the low four bits of `+0x7C`, has `0x00228450` zero
+   `[0x01FD4948]+0xC8` when that holds the widget, clears the procedure, frees the storage (a borrowed widget instead
+   has bit `0x4000` and byte `+0xA2` cleared) and jumps to `+0x08` when set (`0x00248308`-`0x00248405`).
 
 ### The half-rate phase counter
 

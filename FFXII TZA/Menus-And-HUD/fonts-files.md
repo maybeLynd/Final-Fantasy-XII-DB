@@ -126,13 +126,15 @@ set it above 1:
 
 `0x0029FF60` fills such a node's text with the `ex` formatter `0x00365B30` when the field is above 0 (`0x0029FFE5`).
 Its call is `0x0029FF60(node, buffer, size, n, id, p)`. The text id is `id`, or the item's `+0x14` plus 100,000 when
-`id` is 0 and `+0x14` is not -1 (`0x0029FF8F`-`0x0029FF9F`); an id from 100,000 up is read with `0x002F9920` (`0x0029FFB8`).
+`id` is 0 and `+0x14` is not -1 (`0x0029FF8F`-`0x0029FF9F`); an id from 100,000 up is read with `0x002F9920` (`0x0029FFB8`),
+any lower id with `0x002F9860` (`0x0029FFC1`).
 The field counts as above 0 when the bits under `0xFFC0` of the node's dword `+0x08`, moved to the top of the
 register, make a positive number (`0x0029FFC9`-`0x0029FFD4`).
 
 With such a field and a buffer of 32 bytes or less, `0x0029CC70` formats instead, with a 32-byte limit
-(`0x0029FFF4`). A field at 0 formats with `0x002B4090` (`0x002A0004`). With no buffer the text goes to the next of the
-eight rotating buffers through `0x0029CC00`, or `0x0029CB80` for a field at 0 (`0x002A000B`-`0x002A0023`). The node keeps
+(`0x0029FFF4`). A field not above 0, that is 0 or with bit `0x8000` of `+0x08` set, formats with `0x002B4090`
+(`0x002A0004`). With no buffer the text goes to the next of the eight rotating buffers through `0x0029CC00`, or
+`0x0029CB80` for a field not above 0 (`0x002A000B`-`0x002A0023`). The node keeps
 the text at `+0x18` and `0x0020E620(p)` at `+0x20` (`0x002A0030`-`0x002A0048`).
 
 Over the 4,484 type-5 items of all shipped layout copies, `+0x12` is 0 in 3,182, 1 in 642, 2 in 10, 4 in 330 and
@@ -150,11 +152,16 @@ holding the 23 calls of `0x002D8650` (among them `0x0027E530`) and the call of `
 
 ### Which text fonts 1, 3, 4, 5 and 6 draw
 
-A text context keeps a font index at `+0xA6`. `0x002B3400` and `0x002B32D0` set it to the place of the context's glyph
-sheet in the sheet table `0x02AEE810`, 1 to 7, or 0 when the sheet is not there (`0x0039BAD0`, `0x002B3420`-`0x002B3425`).
-When the language test `0x00254A10` is false and the index is 7, both also set the context's bit `0x800` and its
-sheet `+0x60` to `0x0039C4A0(1)` (`0x002B342B`-`0x002B3452`, `0x002B331F`-`0x002B3341`); `0x002B3400(context, text, sheet)`
-takes the sheet from its third argument.
+A text context keeps a font index at `+0xA6`. `0x002B3400` and `0x002B32D0` set it to the place of a sheet argument in the
+sheet table `0x02AEE810`, 1 to 7, or 0 when the argument is 0 or its low 32 bits match none of the table's dwords
+(`0x0039BAD0`, `0x002B3420`-`0x002B3425`, `0x002B3301`-`0x002B3306`). When the language test `0x00254A10` is false and the index
+is 7, both also set the context's bit `0x800` and its sheet `+0x60` to `0x0039C4A0(1)` (`0x002B342B`-`0x002B3452`,
+`0x002B331F`-`0x002B3341`).
+
+`0x002B3400(context, text, sheet)` looks up its third argument (`0x002B340F`, `0x002B341D`) and `0x002B32D0` its second
+(`0x002B32EA`, `0x002B32FA`); neither stores that argument in the context, whose sheet `+0x60` otherwise keeps the
+`0x0039C4A0(0)` that `0x002AC1E0` stores after clearing the context (`0x002AC1F1`, `0x002AC200`-`0x002AC245`), so the index can
+name a sheet the context does not hold.
 
 A two-byte code whose lead is at least `[0x01E0CDF8]` is drawn with that index; one-byte codes and lower leads with
 index 0 (`0x002B0280`), and in the character mapping `0x002AC2F0` with 7 once the context's bit `0x800` is set

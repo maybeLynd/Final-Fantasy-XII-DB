@@ -207,7 +207,7 @@ its value as given, without the `[0x01DFE0BC]` factor.
 
 `0x002E86B0(actor, v)` writes the render record's `+0x420` (`[0x022C6F28] + id * 0x740`, only when its
 `+0x284` is non-zero); a null actor, a null controller, or a controller whose dword `+0` or word `+0` (the
-id) is -1 gets no write (`0x002E86B3`-`0x002E86CD`).
+id) is -1, or a record address of 0, gets no write (`0x002E86B3`-`0x002E86CD`, `0x002E86E1`).
 
 The locomotion selectors `0x004256E0` and `0x004255B0` compare the render
 record's `+0x23C` with it: at or above it `0x004255B0` picks state 2 and `0x004256E0` state 2 or a

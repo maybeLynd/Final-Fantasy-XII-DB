@@ -201,7 +201,8 @@ and in row 3 the fourth is forced to 1.0 (`0x001FAADE`-`0x001FAB99`). It does th
   `m_chrObjHeight`, `m_chrObjFlyingHeight`, `g_txShadow` and `g_txChrAlpha` from the shadow object
   `0x001F0850` ([graphics settings](../Engine-Core/graphics-settings.md)).
 - `0x001FA820(object, parts)` works on the vector of part records it is given. For each, `iDebugMode` is the
-  shadow object's `+0x48`, or when that is 0, 1 while `[0x02CB8404]` is above 2.7 (`0x008F3110`) and 0 otherwise.
+  shadow object's `+0x48`, or when that is 0, 1 while `[0x02CB8404]` is above 0.99 (`0x008F3110`,
+  `0x001FA8EA`-`0x001FA8EE`) and 0 otherwise.
   `m_chrObjHeight` and `m_chrObjFlyingHeight` are its `+0x4C` and `+0x50`, and `g_txShadow` and `g_txChrAlpha`
   its records at `+0x18` and `+0x30`, through `0x001945B0` (`0x001FA8D3`-`0x001FA998`).
 - Each of those writes is skipped when its descriptor is null. While the setting `[0x01F82D20]` `+0x3C` is 0,

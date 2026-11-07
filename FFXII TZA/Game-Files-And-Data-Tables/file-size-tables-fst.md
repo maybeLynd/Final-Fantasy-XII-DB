@@ -190,8 +190,8 @@ The expansion the tick would hand to `0x00369050` therefore never runs. `0x00536
 the low two bits of `+4` copies the data, expands it with `0x00536DD0`, or with `0x00537030`.
 
 The header is read from the buffer at `[0x02EBB538]`, and the output goes to the buffer at `[0x02EBB530]`. The two bits
-pick: 0 the copy, 1 `0x00536DD0` (`0x00536F85`), 2 `0x00537030` (`0x00536F7F`), and 3 a return with nothing written
-(`0x00536F78`).
+pick: 0 the copy, 1 `0x00536DD0` (`0x00536F85`), 2 `0x00537030` (`0x00536F7F`), and 3 a return that writes no output
+(`0x00536F78`); the size and position stores below come first, on every path (`0x00536F55`, `0x00536F64`).
 
 The copy ignores the size. With `[0x02EBB528]` non-zero it copies `[0x02EBB528]` less the header bytes from past the
 header, then `[0x02EBB52C]` bytes from `0x02EBA520` (`0x00536F8A`-`0x00536FEF`). With `[0x02EBB528]` 0 it copies

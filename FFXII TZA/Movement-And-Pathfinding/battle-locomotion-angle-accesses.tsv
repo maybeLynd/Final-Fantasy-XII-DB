@@ -241,6 +241,8 @@ function	name	site	disp	kind	instruction	route	note
 0x003394A0	BattleLocomotion_SolveClassMode2Step	0x00339588	ctx+0xC0	r	movss xmm1, dword ptr [rbx + 0xc0]	backtrace 0x0033CEF0->arg0 mov	
 0x003394A0	BattleLocomotion_SolveClassMode2Step	0x0033959D	ctx+0x10	r	movaps xmm0, xmmword ptr [rbx + 0x10]	backtrace 0x0033CEF0->arg0 mov	
 0x003394A0	BattleLocomotion_SolveClassMode2Step	0x003395C4	ctx+0xB8	w	movss dword ptr [rbx + 0xb8], xmm0	backtrace 0x0033CEF0->arg0 mov	
+0x003394A0	BattleLocomotion_SolveClassMode2Step	0x003395DF	ctx+0xB0	w	mov dword ptr [rcx + 0xb0], 0	solver	
+0x003394A0	BattleLocomotion_SolveClassMode2Step	0x003395E9	ctx+0x20	addr	lea rdx, [rcx + 0x20]	solver	
 0x003394A0	BattleLocomotion_SolveClassMode2Step	0x0033960F	ctx+0xBC	w	movss dword ptr [rbx + 0xbc], xmm0	backtrace 0x0033CEF0->arg0 mov	
 0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339BF6	ctx+0x30	addr	lea rdx, [rcx + 0x30]	solver->arg0@0x003394C9	
 0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339C08	ctx+0xF0	r	mov rax, qword ptr [rbx + 0xf0]	solver->arg0@0x003394C9	

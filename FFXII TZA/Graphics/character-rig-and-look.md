@@ -76,7 +76,8 @@ Scripts do not call the switches. A verb's service sets a bit in render record `
 Each setter refuses a record whose `+0x284` is 0. `0x002E75A0` and `0x002E8570` take the actor and also do nothing for a
 null actor, a null `+0xC0` object, or one whose first dword or index word is −1 (`0x002E75A3`-`0x002E75BD`,
 `0x002E8573`-`0x002E858D`); the others take the render index and do nothing for −1 (`0x002EDDC4`, `0x002EDE74`, `0x002EDF34`,
-`0x002EE0D4`).
+`0x002EE0D4`). All six also do nothing when the record address `[0x022C6F28] + index × 0x740` is 0 (`0x002E75D1`,
+`0x002E85A1`, `0x002EDDD8`, `0x002EDE88`, `0x002EDF48`, `0x002EE0E8`).
 
 The plain forms zero the timer whether they set or clear the bit (`0x002E85AC`, `0x002EE0F3`, `0x002EDE93`); the eyes and
 body-shake setters keep no timer. The timed forms store

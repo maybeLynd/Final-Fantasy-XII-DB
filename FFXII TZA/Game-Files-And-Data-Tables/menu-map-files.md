@@ -531,9 +531,9 @@ The widget holds up to two sloc files, in two 0xA8-byte slots at `+0x120`: data 
   a field, finding the field's sub-location with `0x003C0380` first.
 - `0x003C2320` copies the NPS2 record's width and height into the zone's draw row (`+0x24`, `+0x26`), and
   `0x003BED70` uses them to size the page around the drawn zones.
-- `0x00404730` draws a zone picture through the zone's explored-cell mask from `0x002551B0`, which `0x003C4AE0`
-  asks for with `0x00264790()` when that is positive, and otherwise, or on a null result, takes the block at `0x02B45A50`; with no mask, or
-  with bit `0x8000` of the element's flags, every cell is shown.
+- `0x00404730` draws a zone picture through the zone's explored-cell mask from `0x002551B0`, which `0x003C4AE0` asks for
+  with `0x00264790()` when that is positive, and otherwise, or on a null result, takes the pointer kept at `0x02B45A50`
+  (`0x003C4AED`, `0x003C4B05`); with no mask, or with bit `0x8000` of the element's flags, every cell is shown.
 - `0x00404730` places the picture with `0x003C46B0(…, element, …)`: from the element record it sets up a matrix from
   `+0x20`, turns it by -π/2 (`0xBFC90FDB`, `0x003985B0`) and by the negated `+0x1C` (`0x00398C50`), sets it at half of
   `+0x04` and `+0x08`, and combines it (`0x003977B0`) with the record's `+0x14`/`+0x18` and with a second matrix moved
@@ -675,6 +675,8 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
 - While the widget's `+0xC9` is `0x0F` the name is text `0x17DE` (`0x002F9860`, `0x003BD108`). With state bit
   `0x800` a non-zero extra type byte replaces the amap type and adds state bit `0x20000`
   (`0x003BD171`-`0x003BD181`). It answers 1, and 0 for area 0 with nothing written (`0x003BD19F`).
+- An area at or past the table's count, or a table address of 0, leaves the entry pointer 0 (`0x003BD088`,
+  `0x003BD094`): the area byte `+1` is written (`0x003BD0A7`) and the next read is of address `0xA` (`0x003BD0AB`).
 - `0x003BD480` sets: 1 current area; 2 an area map of one of its groups is owned; `0x4000` every sub-location of
   its groups explored. The current area is that of the current field (`0x003148F0`, `0x00264F90`, `0x00254380`);
   its groups are the groups 0 to 58 whose area (`0x00254380`) it is, and `0x4000` stays set when the area has

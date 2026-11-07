@@ -283,11 +283,14 @@ A first-pool shadow slot (`0xE0` bytes, 160 at `[0x02B40528]`), the ramp fields:
 (`0x003B56F0`-`0x003B5707`); it gives the slot the next generation from `0x02B40520`, wrapping to 1 above `0xFFFFFF`
 (`0x003B5719`-`0x003B5744`), and stores `generation << 8 | slot` at `+0x10` (`0x003B574A`-`0x003B5756`).
 
-`0x003B6890` sets
-the generation to 0 when it allocates or resets the pool (`0x003B68C9`-`0x003B68CB`). It runs from the start-up
-`0x004269A0` (`0x00426C25`) and allocates only while `[0x02B40528]` is null, under arena 6 (`0x0036C1D0(6, 6)`,
-`0x0036A100(0x8C00)`, `0x0036C140`; `0x003B689E`-`0x003B68BD`). Every call also zeroes the gate `0x02B40524` (`0x003B68D7`)
-and clears bit `0x1` of `+0x40` in all 160 slots, two a step (`0x003B68DD`-`0x003B68F7`).
+`0x003B6890` sets the generation to 0 when it allocates or resets the pool (`0x003B68C9`-`0x003B68CB`). It runs from the
+start-up `0x004269A0` (`0x00426C25`) and allocates only while `[0x02B40528]` is null, under arena 6 (`0x0036C1D0(6, 6)`,
+`0x0036A100(0x8C00)`, `0x0036C140`; `0x003B689E`-`0x003B68BD`). Every call also zeroes the gate `0x02B40524` (`0x003B68D7`); when
+the pool exists it clears bit `0x1` of `+0x40` in all 160 slots, two a step (`0x003B68DD`-`0x003B68F7`).
+
+The pool pointer is stored untested (`0x003B68B6`). When both of `0x0036A100`'s attempts give 0 (`0x0036BC60`, then
+`0x0036BFE0`), it returns 0 (`0x0036A151`-`0x0036A154`), `[0x02B40528]` stays 0, and the first clear writes address `0x40`
+(`0x003B68E2`), which faults.
 
 [The ramp-channel access table](authored-presentation-commands-ramp-channel-record-accesses.tsv) lists every slot
 field access of the 23 functions that load the slot base `0x02B40528`, among them the two ramp setters `0x003B6950`

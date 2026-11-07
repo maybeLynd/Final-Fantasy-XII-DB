@@ -276,6 +276,10 @@ makes the first pointer store fault (`0x002433E4`). Both walks step to the next 
 `0x002434E0`), which keeps only the low 32 bits of the item's address. Types 1 and 8 get the parent as a third
 argument (`0x0024347F`, `0x0024348F`).
 
+The nodes are placed the same way: the first node is the low 32 bits of the block plus `count × 8`
+(`0x002433B3`-`0x002433B7`) and each next node a 32-bit add of its size (`0x002434D7`), so the node pointers stored in the
+block keep only the low 32 bits of the block's address.
+
 A zero-size item (type 3, 6 or out of range) still gets a pointer slot and its shared fields, written at the
 address the next node takes. In the middle of a list its slot therefore points at the following item's node,
 which the drawers then visit twice; as the last item it writes `0x14` bytes past the end of the block.
@@ -431,9 +435,14 @@ widget (`0x002482EE`-`0x00248331`). When bit `0x2` of the list header at its `+0
 (`0x0024833B`-`0x00248343`) and, when the block at `+0x60` is set, frees the pointer at `+0x80` of each type-7 node
 (type bits `0x1C`, `0x0029F100`), then frees the block (`0x003697F0`) and zeroes `+0x60` (`0x0024838E`-`0x00248398`).
 
-A list without bit `0x2` keeps its block. The release then sends message 24, clears the procedure, frees the
-storage unless `+0x40` bit `0x4000` marks it borrowed (`0x002483A0`-`0x002483F0`) and jumps to `+0x08` when that is set
-(`0x00248405`).
+A list without bit `0x2` keeps its block. The release then sends message 24 through the procedure at `+0x00` when that
+is set (`0x002483A0`-`0x002483B2`), clears bit `0x400` of `+0x40` and the low four bits of `+0x7C` (`0x002483B4`,
+`0x002483BE`), and calls `0x00228450(widget)`, which zeroes `[0x01FD4948]+0xC8` when that holds the widget (`0x002483C2`;
+`0x00228450`-`0x00228465`).
+
+It then clears the procedure (`0x002483CE`) and frees the storage (`0x003697F0`, `0x002483DE`) unless `+0x40` bit `0x4000`
+marks it borrowed; a borrowed widget instead has that bit and byte `+0xA2` cleared (`0x002483E5`-`0x002483F0`). Last it
+jumps to the `+0x08` it read before the free, when that is set (`0x002483CA`, `0x002483F8`-`0x00248405`).
 
 ### Atlas lookup
 

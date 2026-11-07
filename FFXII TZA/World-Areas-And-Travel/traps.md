@@ -207,11 +207,13 @@ non-zero (`0x00319F10`).
 `settrapshowstatus(v)` (`0x547`, handler `0x00355E00` → `0x003EC6C0`) shows or hides all sixteen
 marker slots at once outside a town: `0x002ED3A0(0x003EB720(i), v)` sets bit `0x2` of the marker's render
 record `+0x304` to `v != 0` and bit `0x10` of `+0x290` (`0x002ED3D0`-`0x002ED3E4`). `0x003EB720(i)` returns
-slot `i` of the puppet table `0x02B5EA20` (`i` below 32, byte `+0x40` set) plus `0x10`. The markers are
-its slots 0 to 15: `0x003EC5B0` binds the marker resource only for `i` below 16 (`0x003EC5CB`), and
+slot `i` of the puppet table `0x02B5EA20` plus `0x10` when `i` is below 32 (unsigned), the entry is non-null and its
+byte `+0x40` is set, and 0 otherwise (`0x003EB720`-`0x003EB743`).
+
+The markers are its slots 0 to 15: `0x003EC5B0` binds the marker resource only for `i` below 16 (`0x003EC5CB`), and
 `0x003EC5F0` releases slots 0 to 15 (`0x003EC601`-`0x003EC612`).
 
-`0x002ED3A0` does nothing for a slot whose handle is -1 or whose low word is `0xFFFF`, for a record
+`0x002ED3A0` does nothing for a null slot pointer (`0x002ED3A3`), for a slot whose handle is -1 or whose low word is `0xFFFF`, for a record
 address of 0, or for a record whose `+0x284` is 0 (`0x002ED3A0`-`0x002ED3CE`).
 
 Libra reveals the live traps. `0x002F82F0`, run from the world tick's per-slot pre-pass `0x00234590` (`0x00234861`), tests

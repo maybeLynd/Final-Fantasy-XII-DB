@@ -187,7 +187,8 @@ has the handler `0x003401D0`: it pops `n` (`0x00267E10`) and calls `0x002E73C0(a
 actor's presentation context (`+0xC0`), its record index (word `+0x00`, −1 for no record; a negative dword
 `+0x00` also means no record, and a null actor or context returns at once, `0x002E73C3`-`0x002E73DD`) and the
 render record
-`[0x022C6F28] + index × 0x740` (the array pointer held at `0x022C6F28`, `0x002E73EA`), and for a record whose `+0x284` is non-zero tail-jumps to
+`[0x022C6F28] + index × 0x740` (the array pointer held at `0x022C6F28`, `0x002E73EA`; it returns when that address
+is 0, `0x002E73F1`), and for a record whose `+0x284` is non-zero tail-jumps to
 `0x003E6AA0(record, n)`, which stores `n` in bits `0xF8000000` of `+0x304` and sets `+0x294` bit `0x8000000`
 (`0x003E6AA0`-`0x003E6ABD`). Nothing plays yet.
 

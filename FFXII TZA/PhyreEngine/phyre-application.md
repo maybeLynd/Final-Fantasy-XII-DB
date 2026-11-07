@@ -444,6 +444,7 @@ through `r14`.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
+| `0x01F403A8` | `u64` | 0 (file-backed `.data`) | `+0x00`: the game window handle `0x02EA5248` | `0x0079E520` (`0x0079E567`) | `0x006253D0` (`0x00625473`, passed to `GetClientRect`; `0x006257A8`, passed to `0x00625830`) |
 | `0x01F403B0` | `u32` | 1 (file-backed `.data`) | `+0x08`: the application's `+0xD3C`, the MSAA sample count `0x001DE570` returns (1, 2, 4, 8 or 9), or 1 when that is 0 | `0x0079E520` (`0x0079E59C`) | no instruction names it; `0x006253D0` does not read `+0x08` |
 | `0x01F403B4` | `u8` | 0 (file-backed `.data`) | `+0x0C`: the application's `+0xD20`, 1 for full screen (ScreenMode 1) | `0x0079E520` (`0x0079E578`) | `0x006253D0` (`0x006257AE`: 0 makes the device request windowed, `sete r9b`) |
 | `0x01F403B8` | `u32` | 0 (file-backed `.data`) | `+0x10`: the application's `+0xD44`, VSync (settings `+0x14`); `0x006253D0` turns 0, 1 and 2 into the word `0`, `1` and `0x101` at its `+0x1848` | `0x0079E520` (`0x0079E585`) | `0x006253D0` (`0x006254D9`) |

@@ -168,6 +168,9 @@ record pointer from the object's `+0x00` and jumps to the integration function:
    vtable `0x00D899A8`, 0 at `+0x10` and the context at `+0x18`, kept at the first argument's `+0x08`
    (`0x006CBE3E`-`0x006CBE73`).
 
+When `0x00210EC0` returns null in step 5, the body stores 0 at the first argument's `+0x08` and writes the context to
+address `0x18`, which faults (`0x006CBE53`, `0x006CBE69`-`0x006CBE73`).
+
 `0x006DAA70` is `IPfxBaseContext::Initialize`. It runs the licence verifier once (flag `0x01F3BB28`) and
 keeps the result at `0x02EA0B90`; with a negative result it returns that result and creates nothing.
 Otherwise it allocates the `0xD40`-byte global block (constructor `0x006FF5D0`), stores it at

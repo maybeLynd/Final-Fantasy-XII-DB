@@ -100,13 +100,13 @@ takes the category named by byte `+6` of its sound header (`0x007BD570`), and th
 
 ### Pan
 
-`0x002256F0(voice, pan, frames)` turns the pan byte into the driver's pan and front-back values
-(`0x00225743`-`0x00225783`):
+`0x002256F0(voice, pan, frames)` turns the pan, a 32-bit argument it compares signed with `0x7F` (`0x00225743`), into
+the driver's pan and front-back values (`0x00225743`-`0x00225783`):
 
-| Pan byte | Driver pan | Front-back |
+| Pan | Driver pan | Front-back |
 |---|---|---|
-| `0x00`-`0x7F` | `(pan - 0x40) / 128` | +1 |
-| `0x80`-`0xFF` | `(0xBF - pan) / 128` | -1 |
+| up to `0x7F` | `(pan - 0x40) / 128` | +1 |
+| above `0x7F` | `(0xBF - pan) / 128` | -1 |
 
 The driver turns pan into an angle of `pan * pi`, and a front-back of -1 adds half a turn (`0x007B875B`-`0x007B8769`).
 So `0x40` is straight ahead, `0x00` 270 degrees, `0x7F` about 89 degrees, `0xBF` straight behind and `0xFF` 90 degrees:
@@ -115,7 +115,7 @@ ring is used. A pan change moves at no more than 5.0 per second (`0x007BE510`).
 
 `0x002256F0` reaches the driver sound at voice `+8` in two posts: first command `0x12` with 1 (`0x007A7E00`,
 `0x0022576A`), which turns that 5.0 limit on, then command `0x10` with the pan, the front-back value, 0 and
-`frames / 60` seconds (`0x007A7E90`, `0x0022578E`). It keeps the pan byte in the voice at `+0x20` (`0x002257A2`). Its
+`frames / 60` seconds (`0x007A7E90`, `0x0022578E`). It keeps the pan in the voice at `+0x20`, a dword (`0x002257A2`). Its
 earlier call of `0x0016D6A0` (`0x0022573E`), with 0 when voice `+0x2C` is 3, 5 or 9 and 1 otherwise
 (`0x0022571E`-`0x00225739`), returns at once: that body is a bare `ret` (`0x0016D6A0`).
 

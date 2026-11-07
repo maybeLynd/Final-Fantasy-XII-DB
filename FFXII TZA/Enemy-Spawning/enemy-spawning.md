@@ -322,9 +322,9 @@ Each of the five handlers below writes nothing when `0x0031B760` finds no battle
 record pointer `+0x6A0` with no null test (`0x0023928C`, `0x002391DC`, `0x002396E0`, `0x0023A24A`); `0x00236860` also
 writes nothing when the lane does not resolve (`0x00236871`-`0x002368A8`).
 
-- `0x00239210(actor, degrees)` (verb handler `0x0051077C`): a negative argument draws `0x00328370() % 360`;
-  the angle in radians is wrapped (`0x00316DA0`) and stored at the record's `+0x70`, then applied to
-  the actor (`0x0026A0D0`, `0x0026B620`).
+- `0x00239210(actor, degrees)` (verb handler `0x00510760`, through its tail jump at `0x0051077C`): a negative argument
+  draws `0x00328370() % 360`; the angle in radians is wrapped (`0x00316DA0`) and stored at the record's `+0x70`, then
+  applied to the actor (`0x0026A0D0`, `0x0026B620`).
 - verb `0x3015` `btlAtelSetCallGroup(tag)` (`0x00510370`) → `0x002391C0`: on a record not released, clears
   flag bit `0x10` and `+0x15`, then sets both to the tag when it is non-zero.
 - verb `0x3005` `btlAtelSetUnitType(n)` (`0x00510340`) → `0x002396B0`: unit `+0x58` from the table

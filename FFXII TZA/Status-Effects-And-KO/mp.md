@@ -79,6 +79,10 @@ regime 2 or 3 (`0x00320160`, `0x002F9220`-`0x002F9234`).
    Stone or X-Zone without the field's bit `0x8000` (`0x00307B3F`-`0x00307B61`).
 5. In an area with MP regime 2 or 3 the total is tripled (`0x002F93C2`-`0x002F93D6`).
 
+The action row is `0x0020E600([[0x02EBF138] + 0x0C]) + action × u16 [[0x02EBF138] + 8]`, summed in 32 bits
+(`0x002F9309`-`0x002F9315`, `0x002F9365`-`0x002F9370`). With `[0x02EBF138]` null or that base 0 the row address is 0, and the
+bit test reads address `0x2C` and faults (`0x002F92E3`, `0x002F92F1`, `0x002F9323`; `0x002F933F`, `0x002F934D`, `0x002F9377`).
+
 ### The damage ladder
 
 `0x002FB6C0(unit, damage)` reads rows 1 to 19 of the MP table `[0x02EBF0B8]` (`0x002FB6E9`-`0x002FB85B`):

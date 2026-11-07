@@ -69,7 +69,9 @@ free those that have stopped; `0x0046EE70` frees all of a sequence's vibrations.
 
 ### Stepping
 
-`0x0035AF20` turns the time into whole steps; the field frame calls it at `0x0022A955`, `0x0022AC7A` and `0x0022ADDE`:
+`0x0035AF20` turns the time into whole steps; the field frame calls it at `0x0022A955`, `0x0022AC7A` and `0x0022ADDE`, the
+menu frame `0x0022B8C0` at `0x0022BAB9`, the capture-backed frame `0x0022BC20` at `0x0022BD0F`, and the two capture states
+`0x0022AF50` and `0x0022B000` at `0x0022AF96` and `0x0022B030`:
 
 ```python
 accumulator 0x022C8050 += 10000 * [0x01DFE0BC]

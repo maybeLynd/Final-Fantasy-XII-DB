@@ -109,8 +109,11 @@ class `+0x00` is null or reaches the descriptor `0x02CAF0E0` through the `+0x78`
 `0x005BECAB`). A class off that chain raises this error with the two class names `+0x30` (`0x005BEC5E`-`0x005BEC99`):
 `Object pointer obtained from script was of type "%s" when an object of type "%s" was required.`
 
-With no record, or a null object, it reads the type at the top: a nil is popped and 0 returned
-(`0x008119F0`, `0x005BECBA`-`0x005BECD4`). Any other type raises this error (`0x005BECE1`-`0x005BED1C`):
+With no record it reads the type of the value at the top; with a null object it reads the type of the value now at the
+top, the one below the value it popped at `0x005BEC29` (`0x00811130(L, -2)`, `0x005BEC38`).
+
+Either way a nil is popped and 0 returned (`0x008119F0`, `0x005BECBA`-`0x005BECD4`). Any other type raises this error
+(`0x005BECE1`-`0x005BED1C`):
 `Unable to obtain object pointer from script - found another type of data instead (Lua type %d)`.
 Before either error it stores the source location at `0x02E41000`-`0x02E41010`: the file name `0x00D23FF0`, the
 line (`0x6A` or `0x76`) and the function name `0x00D2BBB0`.

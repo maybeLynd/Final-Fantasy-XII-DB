@@ -321,9 +321,9 @@ direction. The offset is mapped through `+0x10` as a direction and its length re
 - `0x0026E3C0` searches the part it is given and tests no bound map. It returns the polygon id that `0x00231900`
   found, zero-extended, not 0, and `0xFFFF` with `p` left as it was when no polygon qualifies (`0x0026E3EB`,
   `0x0026E490`, `0x0026E4F4`).
-- The first test is at the floor plus 1.0, `probe.y = h + 1.0` with `h` the floor height `0x00231890` stores in
-  `p.y` (`0x0026E40E`-`0x0026E41E`), through `0x00232490(part, probe, 1)` (`0x0026E460`-`0x0026E478`). Each later test
-  raises it again, `probe.y += 1.0` (`addss xmm2, xmm6`, `0x0026E460`).
+- The first test is at the floor plus 1.0, `probe.y = h + 1.0` with `h` the floor height `0x00231890` returns,
+  which `0x0026E3C0` stores in `p.y` (`0x0026E40E`-`0x0026E41E`), through `0x00232490(part, probe, 1)`
+  (`0x0026E460`-`0x0026E478`). Each later test raises it again, `probe.y += 1.0` (`addss xmm2, xmm6`, `0x0026E460`).
 - When all 30 raised points report contact (`cmp ebx, 0x1e`, `0x0026E483`), `0x0026E3C0` returns with `p.y` at the floor
   height and casts no ray. The ray is `0x00230B60(part, hit, probe, floor point, 0xFFFF, 0)`; with `r >= 0` for its
   result `r` it sets `p.y` to the hit's y (`0x0026E4B8`-`0x0026E4DA`, `0x0026E4DF`-`0x0026E4ED`), so a miss,

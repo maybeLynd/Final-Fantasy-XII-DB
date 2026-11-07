@@ -397,8 +397,9 @@ not name is given by its offsets, as hex bytes.
   `0x004096F0` gives for the entry of word `+0x2F8` in the root's descriptor `+0xD90`
   (`0x0042933A`-`0x0042936E`), and returns its result.
 - No match runs `0x00422C20(record)` (`0x00429378`), which releases the presentation entries `+0xC4` and
-  `+0xC8` (`0x00422C50`, `0x00422C7E`) and clears `+0x68`, `+0xD8`, `+0xE0`, `+0xF0`, `+0xF8` and `+0x23C`
-  (`0x00422C8D`-`0x00422CC1`).
+  `+0xC8` (`0x00422C50`, `0x00422C7E`), setting each to -1 (`0x00422C55`, `0x00422C83`) and, after `+0xC4`, word `+0xCC`
+  to `0xFFFF` (`0x00422C5B`); it then clears `+0x68`, `+0xD8`, `+0xE0`, `+0xF0`, `+0xF8` and `+0x23C` and bit
+  `0x40` of byte `+0xC0`, and stores `0x0020E620(0)` at `+0x69C` (`0x00422C8D`-`0x00422CC1`).
 - Without own entries, or for an id below `0x1000`, a `direct` of 0 returns −1 (`0x00429398`); otherwise
   it calls `0x00423B10(record, address, id)` with the address `0x0020E600` decodes from `source` `+0x390`
   and returns its result (`0x004293B5`).

@@ -115,7 +115,7 @@ What these callers do with a null name:
 |---|---|---|
 | nine readers of `0x00263990` and `0x002639E0` | `0x0025C5C9`, `0x0025C679`, `0x0025D0C5`, `0x0025D192`, `0x002ADEB3`, `0x002ADDBA`, `0x002B173A`, `0x002B16DE`, `0x002B52F4` | test it and skip the name |
 | `0x00272CE0` | `0x00272D22`-`0x00272D25` | writes the empty string (`0x00272DA6`) |
-| the conversation window, through `0x00272CB0` | `0x0027E626` | stores it at `+0x1578`, the `+0x28` of the record `+0x1550` that `0x002D8650` hands to `0x002B0280`, which tests it and returns (`0x002B02BD`) |
+| the battle menu's target-list row painter `0x0027E530`, through `0x00272CB0` | `0x0027E626` | stores it at `+0x1578`, the `+0x28` of the record `+0x1550` that `0x002D8650` hands to `0x002B0280`, which tests it and returns (`0x002B02BD`) |
 | a formatted message, through `0x00272CB0` | `0x0027ACE6` | passes it to `0x002B4090` with text `0x7D0`; the formatter skips a null string argument (`0x002B4D7E`) |
 | the widest-name measure | `0x002BA5DA`, `0x002BA5F0` | `0x0029CD00` measures it as 0 by 0 (`0x002B313F`-`0x002B3163`) |
 | the shop screens, through `0x003EABE0` | `0x0057B9B7`, `0x0057C029` | `0x002CA150` copies it with `0x00254F30`, which copies nothing from a null source (`0x00254F39`) |

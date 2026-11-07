@@ -105,12 +105,15 @@ and only while that poll returns odd.
 The scratch block `+0x18` of the wait slot is what carries a durative verb across frames: the
 begin writes it, the poll reads it.
 
-`wait` (`0x0000`) is the plainest case: its begin `0x0034CF90`
-pops the frame count and stores it in the first scratch dword, scaled by `0x00265880` (× the frame
-multiplier `0x01DFE0B4`, 1 in this build, unless `0x001EDDA0` is set; counts below 2 pass unscaled
-while `0x001EDC80` is 0). The raw count is stored instead under any of four gates: `0x022C7F84` set,
-`0x001EC5E0` for manager 3, `0x001ED130` with `0x001EC5C0` clear for managers 1 and 2, or the three
-field ids `0x001ED180` names.
+`wait` (`0x0000`) is the plainest case: its begin `0x0034CF90` pops the frame count and stores it in the first scratch
+dword, scaled by `0x00265880`: counts below 2 pass unscaled while `0x001EDC80` is 0, and the rest are multiplied by the
+frame multiplier `0x01DFE0B4` only when `0x001EDDA0` answers 0, which needs the 60 fps flag `0x01F82E38` set and the
+suppressor `0x01DFE0C0` clear (`0x00265896`-`0x0026589F`, `0x001EDDA0`-`0x001EDDB2`).
+
+The only stores to the flag and the multiplier sit together in `0x001EDDC0`, which sets the flag to 1 and the multiplier
+to 2 for 60 fps (`0x001EDDE8`, `0x001EDDF2`; [startup constants](../Engine-Core/startup-constants.md)), so a
+scaled count is doubled. The raw count is stored instead under any of four gates: `0x022C7F84` set, `0x001EC5E0` for
+manager 3, `0x001ED130` with `0x001EC5C0` clear for managers 1 and 2, or the three field ids `0x001ED180` names.
 
 Its poll `0x0034DCC0` decrements the word and finishes, returning 0, when it goes below zero
 (`0x0034DCCD`). Otherwise it reads the skip mask of the manager named by the target actor's `+0x15`
@@ -272,7 +275,7 @@ EffectSlot (`0x18` bytes):
 | can hold a script (has a poll) | 290; 59 have all three callbacks |
 | begin without poll | 77, finishing on the first call |
 | distinct callbacks | begin 236, poll 159, result 1,491; 1,885 functions in all |
-| frame multiplier `0x01DFE0B4` | 1 |
+| frame multiplier `0x01DFE0B4` | 1 in the image; 2 once `0x001EDDC0` runs for 60 fps (`0x001EDDF2`), the only state in which `0x00265880` applies it |
 | skip-mask readers | 72 call sites of `0x00267310` |
 
 ## Operations

@@ -446,9 +446,12 @@ back to `JsonData/init.json` through an output file stream (`0x00202930`).
   `mShadowRed/Green/Blue/Alpha` and `mFontRed/Green/Blue/Alpha` as integers at `+0x04` to `+0x20`,
   and clears the document. Nothing fetches `mClutComment`.
 - When the document has no `mClutIndex` (the lookup gives the tag-6 entry, `0x00200BE0`), `0x001C76E0` returns at once
-  and leaves the document as it is (`0x001C76FA`-`0x001C7701`). The entry comes from `0x001E94E0(0x001B5FA0(), index)`
-  (`0x001C7733`), which takes entry 0 for an index above 27 (`0x001E94F6`, `0x001E9560`); the clear is the tail jump to
-  `0x00202880` (`0x001C783B`).
+  without clearing it (`0x001C76FA`-`0x001C7701`). The lookup `0x001FF740` has already added `mClutIndex` to it with a tag-6
+  value (`0x001FF4F0`: `0x001FF5E1`, `0x001FF647`), after making a document that is not an object (tag 3) an empty object
+  (`0x001FF6B0`: `0x001FF6CF`-`0x001FF713`).
+- The entry comes from `0x001E94E0(0x001B5FA0(), index)` (`0x001C7733`), which takes entry 0 for an index above 27 or below
+  0, the compare being unsigned (`0x001E94F6`-`0x001E94FA`, `0x001E9560`); the clear is the tail jump to `0x00202880`
+  (`0x001C783B`).
 - Layouts: `0x001C6C00` (from `0x001B1580`) loads `UISize.json` or `UISize_sd.json`
   ([Screen layouts](../Menus-And-HUD/screen-layouts.md)).
 - `0x001C2F50` (from `0x0017D6E0`) parses `/Tools/AutoTest/MapIndex.json` for a `MapIndex` value; no such

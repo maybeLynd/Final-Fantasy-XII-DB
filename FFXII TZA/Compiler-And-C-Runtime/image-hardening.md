@@ -111,7 +111,7 @@ belong to one structure, Phyre serialization's scalar-conversion tree:
   `PUInt32`, `PInt64`, `PUInt64`, `PUInt128`, `float` and `double`, each returned by its own accessor
   in `0x0062FF50`–`0x00630490`. Each of the 144 ordered pairs occurs once.
 - `0x0059D2D0` stores the routine `0x0059A030` returns, and stores `0x0016D6A0` itself when there is no routine
-  (`0x0059D3BD`), so an unsupported pair converts nothing. It asks for (file type, run-time type) when its byte
+  (`0x0059D3BD`-`0x0059D3CA`), so an unsupported pair converts nothing. It asks for (file type, run-time type) when its byte
   argument is non-zero, which both its callers give (`0x0059AF0D`, `0x0059BA0D`), and for (run-time type, file type)
   when it is 0 (`0x0059D39C`-`0x0059D3B2`).
 

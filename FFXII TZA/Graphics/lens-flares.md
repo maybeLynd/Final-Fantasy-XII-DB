@@ -369,6 +369,7 @@ returns `out` (`0x0017E7E4`-`0x0017E8D5`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
+| `0x01F7F550` | `f32` | 0 (zero-filled tail of `.data`) | row 0, column 0 | `0x0017ED50` (`0x0017EEB9`) | `0x00217150` (`0x002171DE`, `0x002173B8`) |
 | `0x01F7F554` | `f32` | 0 (zero-filled tail of `.data`) | row 0, column 1 | `0x0017ED50` (`0x0017EE6A`) | `0x00217150` (`0x002171A5`, `0x002173D5`) |
 | `0x01F7F558` | `f32` | 0 (zero-filled tail of `.data`) | row 0, column 2 | `0x0017ED50` (`0x0017EE5F`) | `0x00217150` (`0x00217187`) |
 | `0x01F7F55C` | `f32` | 0 (zero-filled tail of `.data`) | row 0, column 3 | `0x0017ED50` (`0x0017EEE1`) | `0x00217150` (`0x00217257`) |

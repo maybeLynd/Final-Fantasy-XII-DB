@@ -115,7 +115,7 @@ the init registers.
 
 | Module | Classes it names | Init |
 |---|---|---|
-| `PSerialization` | `PStream`, `PStreamReaderFile`, `PStreamWriterFile`, the `PBinary` cluster header types | 1 type; shutdown frees the list at `0x02CA9D88` |
+| `PSerialization` | `PStream`, `PStreamReaderFile`, `PStreamWriterFile`, the `PBinary` cluster header types | 1 type and 4 helper calls (`0x005983E0`, `0x00598C50`, `0x00639450`, `0x00598DF0`), three of which register one more type each (`0x02CA9FA0`, `0x02CA9DA0`, `0x02CA9EA0` at `0x005983FB`, `0x00598C6B`, `0x00598E0B`); it then sets `0x02CA9D90` to 1 (`0x0059D57D`) and returns 0; shutdown frees the list at `0x02CA9D88` |
 | `PScene` | `PNode` | one call, `0x006B41A0` |
 | `PAnimation` | animation sets, clips, channels, channel target binds, blender and time controllers, animation events | 4 types and 47 helper calls |
 | `PRendering` | shaders and shader passes, D3D11 textures (2D, 3D, cube), render targets, constant and structured buffers, materials, lights, shadow casters, mesh instances, context switches, the renderer | 22 types, then the render set-up (`0x0062D0D0`, `0x005FD2A0`) |

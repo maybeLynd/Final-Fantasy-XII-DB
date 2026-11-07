@@ -274,8 +274,10 @@ or clear state bit `0x2` of that one record in group 0. An id missing from the t
 entry 0 of the type-3 table.
 
 The other by-id routines use the same lookup. `0x0037B0F0` sets state bit `0x1`, turning the light off
-(`0x0037B171`), and `0x0037B190` clears it (`0x0037B211`); a type-3 index at or past the table's count changes
-nothing (`0x0037B15C`, `0x0037B1FC`). `0x0037B030(group, id)` returns 1 only while the record is on, is of kind 2
+(`0x0037B171`), and `0x0037B190` clears it (`0x0037B211`); a group with no type-3 table (a null pointer at `+0x20`), or
+a type-3 index at or past the table's count, changes nothing (`0x0037B15A`, `0x0037B15C`, `0x0037B1FA`, `0x0037B1FC`).
+
+`0x0037B030(group, id)` returns 1 only while the record is on, is of kind 2
 and its clock `+0x1C` is below the duration `+0x18` (`0x0037B0A5`-`0x0037B0BE`), and 0 otherwise. For an id
 without bit `0x4000`, `0x003E8440` resets the clock (`0x0037A270`) and starts the animation (`0x0037A1D0`) when
 it returns 0 (`0x003E84D3`-`0x003E851B`).
