@@ -149,9 +149,9 @@ Recipe 56 (action `0xB0`, Numerology) runs slot 49 (`0x00389C60`) and slot 144 (
 
 1. The hit chance becomes `row[+0x12] - count * count / 4` (`0x00389D0B`-`0x00389D19`).
 2. With a stored preview (bit `0x1` of the user's 64-byte record `+0x12`) and a count below 17, a roll under
-   that chance writes `count + 1` into result `+0x138`; a miss or a count of 17 writes 0 and fails the
-   action (`0x00389D24`-`0x00389DAE`). Without a stored preview it fails at count 0, and at a higher count
-   only rolls the hit chance and writes no new count (`0x00389D7E`-`0x00389DA2`).
+   that chance writes `count + 1` into result `+0x138`; a miss or a count of 17 or more writes 0 and fails
+   the action (`0x00389D24`-`0x00389DAE`). Without a stored preview it fails at count 0, and at a higher count
+   rolls the hit chance, writes no new count and fails the action on a miss (`0x00389D7E`-`0x00389DAE`).
 3. Both rolls compare the chance with the roll as unsigned 32-bit numbers (`0x00389D48`-`0x00389D4F`,
    `0x00389D9B`-`0x00389DA2`), so a chance below 0, from a row byte below `count * count / 4`, reads as a number
    above 99 and the roll hits.

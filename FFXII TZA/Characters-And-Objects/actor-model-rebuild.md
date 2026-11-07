@@ -189,8 +189,9 @@ separation weight from `0x00265950` (`0x0026DAC0`), and calls `0x002EAC90`, `0x0
 
 `0x0037C730` fills the record for the current slot (actor from `0x00263750`, state 0, bit `0x80` clear,
 counter 0, `+0x0B` from `0x002DEBD0`, `0x002DEB90(1)`, actor `+0x23` = 0), runs the machine until it
-returns 1, adds the step to the slot, and repeats until `0x0037CB50` reports the walk finished (slot 4
-or more going up, below 0 going down). It then calls `0x00233AA0` (`0x0030D8B0(1)`, `0x00326500`,
+returns 1, adds the step to the slot, and repeats until `0x0037CB50` reports the walk finished: the task
+pointer `0x02EBF400` is 0, or the slot is 4 or more with a step above 0, or below 0 with a step of 0 or
+less (`0x0037CB50`-`0x0037CB7B`). It then calls `0x00233AA0` (`0x0030D8B0(1)`, `0x00326500`,
 `0x00311E10(0)`, `0x00311E20`) and clears the task pointer `0x02EBF400`.
 
 In the read-in record `0x0037C730` stores the state byte `0x02EBF3F8` as 0 (`0x0037C7DB`), the slot `0x02EBF3F9` (`0x0037C7E1`),

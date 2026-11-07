@@ -15389,7 +15389,7 @@ function	0x001BA910	-	Engine-Core/game-application.md	-	4
 function	0x001BA990	-	Compiler-And-C-Runtime/object-construction-and-destruction.md	-	5
 function	0x001BAA30	-	Engine-Core/game-application.md	-	3
 function	0x001BAFF0	-	Graphics/character-render-object.md	-	5
-function	0x001BB040	-	Game-Files-And-Data-Tables/prefetch-manifests.md	-	4
+function	0x001BB040	-	Graphics/character-render-object.md	-	4
 function	0x001BB120	-	Engine-Core/game-application.md	-	4
 function	0x001BB190	-	Engine-Core/game-application.md	-	4
 function	0x001BB2B0	-	Game-Files-And-Data-Tables/prefetch-manifests.md	-	10
@@ -17727,7 +17727,7 @@ function	0x00241BF0	-	Menus-And-HUD/dialogs.md	-	5
 function	0x00241C90	-	Menus-And-HUD/dialogs.md	-	9
 function	0x00241D00	-	Menus-And-HUD/dialogs.md	-	3
 function	0x00241D40	-	Menus-And-HUD/dialogs.md	-	14
-function	0x00242600	-	Menus-And-HUD/menu-sprites.md	-	3
+function	0x00242600	-	Menus-And-HUD/menu-sprites.md	-	4
 function	0x002426F0	-	Menus-And-HUD/screen-layouts.md	-	6
 function	0x00242870	-	Menus-And-HUD/menu-sprites.md	-	4
 function	0x00242970	-	Menus-And-HUD/menu-sprites.md	-	3
@@ -19512,8 +19512,8 @@ function	0x0029F130	-	Random-Numbers/which-roll-uses-which-generator.md	-	4
 function	0x0029F480	-	Game-Files-And-Data-Tables/ui-typed-lists.md	-	5
 function	0x0029F4B0	-	Menus-And-HUD/script-gauges.md	-	4
 function	0x0029F4C0	-	Menus-And-HUD/widgets.md	-	5
-function	0x0029F580	-	Game-Files-And-Data-Tables/as7-menu-graphics.md	-	4
-function	0x0029F5D0	-	Menus-And-HUD/widgets.md	-	7
+function	0x0029F580	-	Game-Files-And-Data-Tables/tim2-images.md	-	5
+function	0x0029F5D0	-	Menus-And-HUD/widgets.md	-	8
 function	0x0029F6E0	-	World-Areas-And-Travel/chocobos-and-airships.md	-	10
 function	0x0029F930	-	Game-Files-And-Data-Tables/ui-typed-lists.md	-	5
 function	0x0029FA40	-	Game-Files-And-Data-Tables/ui-typed-lists.md	-	3

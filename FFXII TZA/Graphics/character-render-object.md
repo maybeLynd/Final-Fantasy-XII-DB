@@ -27,8 +27,9 @@ A record keeps its object key at `+0x6B0` and the object at `+0x6B8`. The manage
 
 - `0x0017EFC0(key)` asks the model asset cache (`0x001BC000`) through `0x001BB040(cache, key)`: the key
   must have a model in the cache's map at `+0xB8` whose asset list is ready (`0x001BB120`, which then
-  binds the model's palette textures), and a model with byte `+0x98` set also needs its companion
-  `-2 - key` to pass the same test.
+  binds the model's palette textures). For a model with byte `+0x98` set, the companion `-2 - key`, when
+  the map holds it, must first pass the asset-list test too; a companion the map does not hold is not
+  required (`0x001BB0B6`-`0x001BB0FD`).
 - `0x0017EFC0` answers 0 when `0x001BC000` gives no cache, and otherwise 1 when the low byte of `0x001BB040`'s
   answer is non-zero (`0x0017EFC8`-`0x0017EFE8`).
 

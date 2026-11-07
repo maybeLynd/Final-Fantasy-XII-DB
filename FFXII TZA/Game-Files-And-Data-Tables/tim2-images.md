@@ -81,6 +81,47 @@ Glyph-sheet block (picture `+0x30`; present when headerSize > `0x30`):
 A handle is a 32-bit offset from the base pointer at `0x01F83530`: `0x0020E620` subtracts it and `0x0020E600`
 adds it back.
 
+A standalone `.tm2` picture whose header is longer than `0x30` bytes carries an `eXt` block at picture `+0x30`
+instead. It lists the picture's sprites: a menu draws a sprite as a rectangle of the picture with its own palette
+([Menu sprites](../Menus-And-HUD/menu-sprites.md), "Finding a sprite"; [Typed UI lists](ui-typed-lists.md), "Sub-image
+lookup").
+
+EXt block (picture `+0x30`; present when headerSize > `0x30`; offsets in the block are from `+0x30`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x30` | `char[4]` | tag | "eXt\0" |
+| `+0x34` | `u32` | size | headerSize - `0x30` |
+| `+0x38` | `u32` | size2 | headerSize - `0x30` |
+| `+0x3C` | `u32` | zero | 0 |
+| `+0x40` | `u16` | recordsOff | records start at `+0x30` + recordsOff; 48 or 64 (`0x0029F59E`, `0x00242634`) |
+| `+0x42` | `u16` | paletteOff | palette table at `+0x30` + paletteOff; always recordsOff - 16 (`0x0029F6A6`) |
+| `+0x44` | `u16[]` | index | up to the palette table: 6 entries when recordsOff is 48, 14 when 64 index[0]            the set count, and also where set 0's group list starts index[s]            for each set s: where its group list starts, as a position in index[] group lists         per set, the first record of each group; unused entries are 0 |
+
+```
++0x30+paletteOff  u8[16]     palette base of each palette group
++0x30+recordsOff  record[]   8 bytes each, up to headerSize; there is no count field
+```
+
+Sprite record (8 bytes):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` | x |  |
+| `+0x02` | `u16` | y |  |
+| `+0x04` | `u32` |  | bits 0-11 width, bits 12-23 height, bits 24-27 palette added, bits 28-31 palette group palette = palette table[group] + added |
+
+A sprite is named by a code, `set << 8 | group`, and a frame; its record is record
+`index[index[set] + group] + frame`. `0x0029F580` binds the code's first record to a widget: it reads the code from
+the widget template `+0x0E` and stores the record address at widget `+0x20` (`0x0029F586`-`0x0029F5BC`). The draw
+`0x0029F5D0` then takes record `widget +0x0A` from that address (`0x0029F5DA`-`0x0029F622`), looks the palette up
+through `paletteOff` (`0x0029F65E`-`0x0029F6B4`) and writes the palette number to the draw context `+0x5C`
+(`0x0029F6BC`).
+
+The set count in `index[0]` is read only as set 0's start: neither the code nor the frame is checked against
+the table. The tag and the three dwords after it are read by none of the 59 functions that compute a record
+address.
+
 ## Shipped data
 
 | Fact | Value |
@@ -94,7 +135,13 @@ adds it back.
 | `.tm2` pixel formats | TEX0 PSM `0x13` with image type 5 in 441, PSM `0x14` with image type 4 in 6; CLUT type 3 in all 447 |
 | `.tm2` dimensions | width and height powers of two in all 447; 1024 x 1024 in 138, 512 x 512 in 63, 128 x 128 in 48; 16 distinct sizes; one mipmap level in all 447 |
 | `.tm2` CLUT colours | 8-bit pictures: 256 in 282, then multiples of 256 up to 16,384 (36 have 4,096); 4-bit: 16 to 272 |
-| `.tm2` header size | `0x30` in 30; larger in 417, all with `eXt\0` at picture `+0x30` |
+| `.tm2` header size | `0x30` in 30; larger in 417, all with `eXt\0` at picture `+0x30`, the two size dwords equal to the header size minus `0x30` and the third 0 |
+| `eXt` record and palette offsets | 48 and 32 in 367 files, 64 and 48 in 50 (`loca_8_c`, `w_icon_p`, `hand_4_c`, `lic_4_c` and `lic_8_c` in every folder that has them) |
+| `eXt` sets and groups | one set of one group in 287 (all 39 `areatim2`, all 12 `questtim2`, 236 `tm2_menu`); several groups or sets in 13 names, 10 files each: `dataface_c` 2 sets, `hand_4_c` 2, `maru_c_2` 3, `lic_4_c` and `lic_8_c` 4, and one set of 2 to 11 groups in `lic_8_c2`, `lic_b_8_c`, `loca_8_c`, `medal_c`, `shop_8_c`, `title_c`, `w_icon_p` and `w_win_c` |
+| `eXt` records | 7,266 in the 417 files, 2 to 158 each (2 in 209 files); 323 all-zero records, every one after the last used record; group starts below the record count and rising within each set in all 417 |
+| records outside their picture | 7, all in `in_sdver/tm2_menu`: `hand_4_c` records 0 to 2 keep the `us` x halved (193, 195, 198) on a picture of width 128; `lic_4_c` record 39 ends at row 144 of 128; `lic_8_c` records 125 to 127 start at row 512 of 512 |
+| palette past the CLUT | `medal_c` records 1 to 3 name palette 1 in all 10 folders; the picture has one 256-colour palette |
+| every `eXt` block | one row per file in [`tim2-images-ext.tsv`](tim2-images-ext.tsv), 417 rows: header size, both offsets, the index table split into sets and groups, record and zero-record counts, the palette table, the largest palette named, the CLUT's palette count, width, height and PSM |
 | every standalone file | one row per picture in [`tim2-images-files-rows.tsv`](tim2-images-files-rows.tsv), 457 rows for the 456 files: size and SHA-256 prefix, version, picture count, every picture header field, whether the `eXt` block follows, and the gate nibble |
 | every `.tm2` and its path | one row per file in [`tim2-images-tm2-files.tsv`](tim2-images-tm2-files.tsv), 447 rows: folder, path, size, SHA-256, the kind 7 ids and languages whose path array names it, the languages whose size table gives that id the file's size, the `in_sdver` entry, the pack entries with the same bytes, and how many prefetch lists name it |
 | named by a kind 7 array | 402: every `.tm2` under `us`, `de`, `es`, `fr`, `it`, `in`, `kr`, `cn` and `ch` except `title_logo_fore3.tm2`; each naming language's size table gives the id the file's size |
