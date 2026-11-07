@@ -143,8 +143,8 @@ is null or has `+0x284` = 0 (`0x0042FB42`-`0x0042FB52`); otherwise it returns th
 ### The global dimming ramp
 
 `0x0024BFD0(0)` moves `0x020926E8` while bits `0x100` and `0x200` of `0x020926E4` hold 1 or 2: it counts `0x020926E6`
-down, adds the step `0x020926F0`, and at zero stores the target `0x020926EC` and clears the two bits;
-for the value 2 it then calls `0x002FD060` and `0x003B1000`. The ramp is started by `0x0024FB90` and `0x0024FBF0`, the
+down, adds the step `0x020926F0`, and at zero stores the target `0x020926EC`, calls `0x002FD060` and `0x003B1000`
+when the two bits hold 2 (`0x0024C037`, `0x0024C03C`), and then clears the two bits (`0x0024C046`). The ramp is started by `0x0024FB90` and `0x0024FBF0`, the
 time-stop fades on [Time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
 
 With a non-zero argument `0x0024BFD0` returns at once (`0x0024BFD6`), and with the two bits at 0 or 3 it returns

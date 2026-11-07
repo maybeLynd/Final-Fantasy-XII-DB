@@ -151,7 +151,7 @@ stats record goes straight to the row test (`0x002FFA87`-`0x002FFB43`).
 `0x0030AF30` compares the counter `+0x75C` with `30 * (int)(30.0 * [0x01DFE0B8])` for an action id below
 `0x21F`, 10 times that factor above it, and 60 times it when the word at `[+0x708]+4` is negative. On a
 timeout it also performs the cancel: it zeroes the action's timers and targets, clears unit bit `0x4000`
-(except for actions `0x113` and `0x95`), entry flag bit `0x400` of `+0x788` and bit `0x2` of `+0x6B0`, sets bit
+(except while the unit's word `+0xBA0` is `0x113` or `0x95`, `0x0030AFD5`, `0x0030AFE5`), entry flag bit `0x400` of `+0x788` and bit `0x2` of `+0x6B0`, sets bit
 `0x200000` of the unit's word `+0x04`, and calls `0x004697C0` and `0x00290540`.
 
 None of `0x002FFB60`, `0x002FFA60` or `0x0030AF30` reads a position or a distance, and neither does the

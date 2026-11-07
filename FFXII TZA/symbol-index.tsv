@@ -18538,7 +18538,7 @@ function	0x00267FC0	-	Scripts-And-Script-Commands/script-variables.md	-	6
 function	0x00268100	-	Scripts-And-Script-Commands/script-variables.md	-	5
 function	0x002681C0	-	Characters-And-Objects/actor-model-rebuild.md	-	6
 function	0x002681D0	-	Movement-And-Pathfinding/player-movement.md	-	9
-function	0x002681E0	-	Scripts-And-Script-Commands/party-during-scenes.md	-	14
+function	0x002681E0	-	Scripts-And-Script-Commands/party-during-scenes.md	-	15
 function	0x002682D0	-	Movement-And-Pathfinding/movement-bodies-and-separation.md	-	7
 function	0x00268320	WorldPersistence_ResetBanksAndMarkInitializationState	World-Areas-And-Travel/weather.md	-	13
 function	0x00268380	-	Movement-And-Pathfinding/movement-bodies-and-separation.md	-	63
@@ -58589,7 +58589,6 @@ data	0x00719360	-	Engine-Core/jump-thunks.md	-	0
 data	0x00719370	-	Engine-Core/jump-thunks.md	-	0
 data	0x00785117	-	Third-Party-Libraries/yebis-ppfx-post-effects.md	-	0
 data	0x007911DF	-	Third-Party-Libraries/yebis-ppfx-post-effects.md	-	0
-data	0x007979A3	-	Controls-And-Input/controllers.md	-	0
 data	0x007A9F1C	-	Sound-And-Music/sound-effects.md	-	0
 data	0x007AC080	-	Sound-And-Music/sound-engine.md	-	0
 data	0x007ACCF0	-	Sound-And-Music/sound-engine-config.md	-	0

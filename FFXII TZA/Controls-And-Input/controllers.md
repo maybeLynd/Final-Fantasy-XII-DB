@@ -16,7 +16,7 @@ addresses: "0x00797910, 0x00796230, 0x00798A40, 0x00797690, 0x00792B70, 0x00792C
 
 ### Start-up
 
-`0x00797910` runs once (`0x00797910`-`0x007979A3`):
+`0x00797910` runs once (`0x00797910`-`0x007979A2`):
 
 1. It fetches the Steam controller interface into `0x02EA9508` and, when there is one, initialises it.
 2. It creates DirectInput 8 into `0x02EA5370`; a failure returns error 9 (`0x0079795D`-`0x00797966`).

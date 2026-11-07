@@ -38,7 +38,8 @@ A change is a request and a later commit:
    leader, the old leader is released (`0x00358B40`) and camera context 0 is re-seated with `0x0025A680`, or
    `0x0025A690` for request kind 2 or no previous leader, after `0x00259800(0)` (`0x00358BFC`).
 3. The handle `0x022C7FE4`, re-read after the release, becomes the leader, the kind returns to 0, and the new
-   leader's actor gets its roster-role notice (`0x002681D0`) when the handle resolves to one (`0x00358C49`). A
+   leader's actor gets its animation mode set by `0x002681D0`, which writes it to the body's `+0x80` and the
+   controller's `+0x153` (`0x002682A7`, `0x002682B5`), when the handle resolves to one (`0x00358C49`). A
    request for the current leader skips the release and the camera calls of step 2 and still does this
    (`0x00358BE4`).
 
@@ -58,7 +59,7 @@ Three functions call `0x003594B0`:
 2. `0x00269C70` requests the actor it installs in a roster slot when no leader is set (`0x00269D34`).
 3. The developer verb `0x2021` `debug_setpc` (`0x0050C610`) installs an actor in a roster slot. For slots 0-3 it
    requests the actor, commits at once through `0x00358BB0`, re-seats the camera with `0x0025A690` and sends the
-   roster-role notice `0x002681D0` (`0x0050C62C`-`0x0050C65D`).
+   animation mode through `0x002681D0` (`0x0050C62C`-`0x0050C65D`).
 
 `0x00237F40`, run by `0x0025C830` (`0x0025D41F`) and `0x0026C3E0` (`0x0026C59E`), replaces a fallen leader through the
 first of them. It does nothing while bit `0x200` or bit `0x400` of `0x02089340` is set, or while the leader `0x003272A0` has unit
