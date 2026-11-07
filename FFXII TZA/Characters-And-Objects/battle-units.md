@@ -285,10 +285,10 @@ Every immediate-mask write and test on `+0x00` and `+0x04` in the access table
 (`0x00236A95`). Each bit value is a bit of the qword at `+0x00`, so values from `0x100000000` up are bits of the dword
 at `+0x04`.
 
-Tested by names the tests on the word in memory. The last column names each function that tests the bit with `bt`
-or `test` on a register loaded from the word (or a copy of it) in the straight-line code after the load, with the
-first such test; the load is the access-table row. `0x00301140` testing `0x4000000` with `bt rax, 0x1a` (`0x00301176`)
-is one:
+The Tested by column lists the functions that test the bit on the word in memory. The last column lists the
+functions that load the word into a register and, before any branch, test the bit with `bt` or `test` on that
+register or a copy of it, each with the address of its first such test. `0x00301140`, for one, tests `0x4000000`
+with `bt rax, 0x1a` at `0x00301176`:
 
 | Bit value | Set by | Cleared by | Tested by | Tested in a register by |
 |---|---|---|---|---|

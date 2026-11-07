@@ -568,7 +568,10 @@ unit; `0x4023` the target of `+0x710` with the parameter as reach; `0x4024` the 
 `0x4124`, `0x4125`, `0x414A`, `0x414E` and `0x4165` are five higher sources; `0x4021`, `0x4025` and
 everything else reject. The reach returned is the larger of the actor's radii plus the target's
 where one exists; for `0x4022` it is `0x00309B10(unit)`, the unit's larger radius plus 0.1, plus
-`0x00309A90()`. `0x00312DF0` draws random points until `0x00317DE0(unit, point, flag)` accepts one: it
+`0x00309A90()`.
+
+`0x00312DF0` draws up to nine random points (`0x00312E40`-`0x00312E47`), answering 0 when
+`0x00317DE0(unit, point, flag)` accepts one (`0x00312E9F`) and -2 when it accepts none (`0x00312EBC`). `0x00317DE0`
 tests a copy of the point with `0x00337700` (no shaped obstacle at the point, on the mesh, and walkable
 at the unit's larger radius for its mover class `+0x1F4`, `0x00336390`) or, with the flag, `0x003377C0`.
 

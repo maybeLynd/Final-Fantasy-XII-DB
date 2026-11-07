@@ -73,8 +73,8 @@ flag-bank verbs.
 
 ### Who sets the id
 
-`0x00269F40(actor, id)` stores the id at `+0x102`; a non-negative id has bit `0x4000` cleared first, a
-negative one is stored as it is. Two script verbs reach it:
+`0x00269F40(actor, id)` stores the low 16 bits of the id at `+0x102` (`0x00269F48`); a non-negative id has bit
+`0x4000` cleared first (`0x00269F44`), and a negative one keeps its low 16 bits as they are. Two script verbs reach it:
 
 | Verb | Id | Handler | What it does |
 |---|---|---|---|
@@ -84,8 +84,13 @@ negative one is stored as it is. Two script verbs reach it:
 The accessors have no lower bound. For `setnpcname(-1)`, `0x003EABE0` computes index `2 * -1 + 1 = -1`
 and reads the dword before the entry array, the dictionary's own `count` (`+0x08`), so -1 is accepted
 whenever the dictionary is loaded with a non-zero count; -2 reads the magic at `+0x00` and is always
-accepted; lower ids read the memory before the block. A negative id makes the actor show its literal
-text at `+0xF8`.
+accepted; lower ids down to -0x40000000 read the memory before the block. Below that, `2 * id + 1` wraps in
+32 bits (`0x003EABE0`) to a non-negative index that the signed `count` test (`0x003EABF6`) refuses unless it is
+below `count`: -0x7FFFFFFF gives index 3, a real entry.
+
+A stored negative id makes the actor show its literal text at `+0xF8` only when bit `0x8000` of its low word is set,
+as for every id from -0x8000 to -1. An accepted id such as -0x10000 is stored as 0 (`0x00269F48`) and is read
+as name id 0.
 
 Three script verbs store that literal text on the verb's target actor with `0x00269F20(actor, text, 0)`, which writes
 the text pointer at `+0xF8` and 0 at `+0x100` (`0x00269F20`-`0x00269F27`; [EBP text

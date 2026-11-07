@@ -487,8 +487,10 @@ swapped last, by a tail jump (`0x0059C245`).
   through the file's schema, and checks the platform again (6).
 - That class is the `0x30`-byte table entry whose `+0x10` is the descriptor `0x02CAA0A0` (`0x00599543`). The
   conversion `0x00599670(entry, source, header, 1)` (`0x0059962A`) reads from a local copy of the 84 bytes
-  (`0x005995E6`-`0x00599619`), or from the second buffer at `+0x08` of its third argument when `m_size` is
-  above 84 (`0x005995E0`), and writes into the header.
+  (`0x005995E6`-`0x00599619`), or, when `m_size` is above 84, from the second buffer whose pointer is at `+0x08` of
+  `0x00599500`'s own third argument (`0x0059951B`, `0x005995E0`), and writes into the header.
+- `0x00599500`'s only caller `0x0059E070` passes as that third argument the pair it also passes to `0x0059A3B0` as the
+  fourth argument (`0x0059E142`, `0x0059E200`).
 - For a swapped file it swaps an 84-byte header back to file order before the copy (`0x00599592`) and
   swaps the converted header after it (`0x00599642`). The platform check compares `m_platformID` with
   `0x00686D00` (`0x00599647`-`0x00599656`); a match returns 0.

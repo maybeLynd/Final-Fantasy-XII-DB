@@ -79,9 +79,18 @@ has bit `0x20`, and, when the controller has a movement body at `+0x138`, into t
 followed by a rebuild of the body's placement (`0x003DAF20` with the context's `+0x104`-`+0x106`).
 
 When the controller's render record id is not -1 it hands `{aux, angle, 0}` to the render record
-(`0x003EC260`), which stages the triple for `commit` = 0 and stages and commits it for 1; the writer
-hands in any non-zero `commit` as 1 (`0x002E5F4B`). So variant
-0 stages a facing and variant 1 stages and commits it, a difference only a class-3 actor shows. A null
+(`0x003EC260`); the writer hands in any non-zero `commit` as 1 (`0x002E5F4B`). `0x003EC260` does nothing for a
+record whose `+0x284` is 0 (`0x003EC28A`-`0x003EC297`). For a record whose `+0x290` bit `0x100000` is clear and
+word `+0x06` is not -1 it stages and commits nothing: with `+0x284` bit `0x8000000` set it writes nothing,
+otherwise it zeroes `+0x120`-`+0x128` and sets `+0x12C` to 1.0 (`0x003EC29D`-`0x003EC2E8`).
+
+Any other record takes the triple at `+0x120`-`+0x128` when it differs from the stored one: the old values go
+to `+0x250`-`+0x258`, `+0x12C` is set to 1.0 and `+0x284` bit `0x200` is cleared (`0x003EC2E9`-`0x003EC358`).
+
+For `commit` 1 the call then copies the triple to `+0x250`-`+0x258`, calls `0x004288B0(record, -1)` unless
+`+0x284` bit `0x20000` is set (`0x003EC368`, `0x003EC396`), and tail-jumps to `0x003B3CA0(+0x288, 0x1E)` when
+`+0x288` is not -1 (`0x003EC3A3`-`0x003EC3BC`). So, for a record that takes the triple, variant 0 stages a facing
+and variant 1 stages and commits it, a difference only a class-3 actor shows. A null
 actor faults at `0x002E5E55`, which reads its `+0xB8` after the null test.
 
 `0x002E5F90(actor, aux, commit)` re-runs the writer with the current facing and a new `+0xAC`.

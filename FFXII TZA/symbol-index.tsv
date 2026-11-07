@@ -21499,7 +21499,7 @@ function	0x00317B70	Equipment_CheckItemEligibleAgainstCurrentLoadoutByStatsIndex
 function	0x00317BC0	-	Battle-Actions/command-availability.md	-	6
 function	0x00317C80	-	Battle-Actions/action-definition-row.md	-	6
 function	0x00317D80	-	Battle-Actions/target-selection.md	-	3
-function	0x00317DE0	-	EBP-Script-Files/ebp-position-entries.md	-	4
+function	0x00317DE0	-	Movement-And-Pathfinding/battle-locomotion.md	-	4
 function	0x00317E50	-	Battle-Actions/action-commit.md	-	3
 function	0x00317E60	-	Movement-And-Pathfinding/player-movement.md	-	15
 function	0x00317EC0	-	Battle-Actions/action-phases.md	-	3
@@ -25393,7 +25393,7 @@ function	0x003B3B40	-	Engine-Core/time-stop-and-freeze.md	-	5
 function	0x003B3B50	-	Graphics/character-effects.md	-	6
 function	0x003B3BA0	-	Engine-Core/time-stop-and-freeze.md	-	6
 function	0x003B3C00	-	Graphics/character-effects.md	-	11
-function	0x003B3CA0	-	Graphics/effect-element-runtime.md	-	8
+function	0x003B3CA0	-	Graphics/effect-element-runtime.md	-	9
 function	0x003B3D20	-	Graphics/effect-drawing.md	-	8
 function	0x003B3E10	-	Engine-Core/startup-constants.md	-	4
 function	0x003B3E40	-	Graphics/character-effects.md	-	5
@@ -27148,7 +27148,7 @@ function	0x00427BD0	-	Graphics/character-render-records.md	-	6
 function	0x00427C90	-	Graphics/character-render-records.md	-	7
 function	0x00427DE0	RenderRecords_ProcessDirtyState	Graphics/character-render-records.md	-	14
 function	0x00428710	-	Graphics/character-render-records.md	-	7
-function	0x004288B0	-	Graphics/authored-presentation-commands.md	-	12
+function	0x004288B0	-	Graphics/authored-presentation-commands.md	-	13
 function	0x004288E0	CharacterRenderSystem_UpdateAuxTransformInterpolation	Graphics/character-rig-and-look.md	-	7
 function	0x00428940	-	Graphics/character-fades.md	-	5
 function	0x00428960	-	Graphics/character-render-records-character-render-record-accesses.tsv	-	5

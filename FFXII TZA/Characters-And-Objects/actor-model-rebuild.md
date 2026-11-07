@@ -91,9 +91,11 @@ with the selector (`0x0031C2A1`, `0x0031C2E9`), so its answer is the model id. A
 low byte is above the `0x02EBF120` count `+4` less one, or that row's first byte above the `0x02EBF150` count `+4`
 less one, both compared unsigned (`0x0031C348`, `0x0031C3A0`).
 
-No path tests for an unbound table: with `0x02EBF130` or its data null the high-byte-0 path reads the dword at
-address `0x70` (`0x0031C45D`-`0x0031C45F`), and a null `0x02EBF120` or `0x02EBF150` gives a count of 0 that every index
-passes, then a read at address 0 (`0x0031C380`-`0x0031C383`, `0x0031C3E5`).
+Only the high-byte-0 path refuses an unbound table: `0x00322C50(2, ·)` gives a null `0x02EBF130` a count of 0
+(`0x00322CA6`, `0x0032302A`) and refuses every index (`0x0032303B`), so the answer is -1 (`0x0031C40B`). With `0x02EBF130`
+bound but its data null (`0x0031C42F`) the path reads the dword at address `0x70` (`0x0031C45D`-`0x0031C45F`). The
+high-byte-1 path tests nothing: a null `0x02EBF120` or `0x02EBF150` gives a count of 0 that every index passes, and a
+null table or null data then reads address 0 (`0x0031C380`-`0x0031C383`, `0x0031C3E5`).
 
 `0x0031C540(id, &colour, &variant)` zeroes both outputs and answers −1 unless battle flag `0x02089340` bit `0x10`
 is set and the id resolves through `0x003588B0` and `0x00263E30` to a unit with a stats record `[unit + 0x698]`,
