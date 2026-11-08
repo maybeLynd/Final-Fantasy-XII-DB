@@ -14,6 +14,9 @@ settings switch those two effects; the `EnableYebis` configuration key switches 
 and then the frame is shown without post-effects. The library also carries a licence check with an
 expiry message, which the shipped game never prints.
 
+The `EnableYebis` value is read from the scene and map configuration files, where 1 means on. A script command can
+also switch the pass, and can ask for the change to wait a set number of frames.
+
 ## How it works
 
 ### The library in the image

@@ -13,6 +13,10 @@ addresses: "0x02EC0B80, 0x0035B2F0, 0x0035B580, 0x0035B650, 0x0035AF20, 0x0035AE
 - A vibration that goes on for a long time fades out, stays off for a while, and comes back.
 - An Xbox-style pad and a Steam controller vibrate; other pads do not.
 
+A scene's script plays one of the 11 patterns in `common/eventvib.bin` with `vibplay`, and an effect sequence can
+start a pattern too. Each frame the game turns every playing pattern into a motor strength, which reaches the pad only
+while Vibration Function is on and the pad was the last device used.
+
 ## How it works
 
 ### The request slots
@@ -237,8 +241,10 @@ No other instruction reaches these globals. The handles' address is taken only b
 
 ## Modding notes
 
-- A second track in `eventvib.bin` drives the right motor, which is either off or full: the small value is 1 only
-  for a level of 128 or more at full envelope.
+- A second track in `eventvib.bin` drives the right motor through a two-valued small command: the small value is 1
+  only for a level of 128 or more at full envelope. XInput passes 0 or 65535 for it as the right motor, the Steam
+  controller 0 or 256 (`0x007A21FC`-`0x007A221F`, `0x007A2099`-`0x007A20D0`). No shipped pattern plays a second track
+  (track 2 has duration 0 in all 11, above).
 - The table's patterns always play on channel 0, the only channel the Vibration Function setting reaches.
 - `0x0035B510` resumes every paused vibration, not only those of the mask it clears.
 - The pattern file's layout is on [Small .bin tables](../Game-Files-And-Data-Tables/small-bin-tables.md).

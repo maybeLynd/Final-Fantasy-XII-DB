@@ -14,6 +14,10 @@ winner is of the additive sort, in which case the character gets the sum of the 
 shader receives at most six directional lights. Each character also has a shadow whose strength fades
 with the distance from the camera, and scripts can fix that strength or the shadow's alpha.
 
+Every character's lights come from one shared list of up to 128 lights. When the character is drawn, the game picks
+its lights, keeps at most six and scales the ambient by the character's fade and script colour. The character's draw
+object then gives every part of the model an ambient and six lights, adjusted by the map's character-light settings.
+
 ## How it works
 
 ### The light pool

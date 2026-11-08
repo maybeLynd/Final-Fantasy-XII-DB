@@ -175,9 +175,9 @@ the write cursor ([render command list](render-command-list.md)). The 16-byte re
   current GS command buffer record `0x02EBEFC0 + 0x18 * [0x02EBEFF0]`, takes that record's pointer `+0x08` as
   the header and starts the cursor 0x20 bytes past it (`0x002DAF49`-`0x002DAF6D`), so it opens with seven
   records after the header.
-- `0x002DD1E0` sets up the writer, returns outside sprite mode and copies the matrix like `0x002DAF30`, then
-  writes the brightness record and its tag with no TEX1_1 record (`0x002DD1E6`-`0x002DD2BA`), so it opens with
-  six records.
+- Outside sprite mode `0x002DD1E0` returns at once, before it touches the writer (`0x002DD1E6`-`0x002DD1F3`).
+  Otherwise it sets up the writer and copies the matrix like `0x002DAF30`, then writes the brightness record
+  and its tag with no TEX1_1 record (`0x002DD1F9`-`0x002DD2BA`), so it opens with six records.
 - Both openers also reset the register mirror (`0x00181560`), set its colour to brightness, brightness,
   brightness, alpha (`0x001816F0`) and select entry 3 (`0x00181870`).
 - `0x002DD350(writer, code)` closes a sprite packet: at the cursor it appends a record with a zero first

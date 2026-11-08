@@ -15,6 +15,10 @@ addresses: "0x00310DB0, 0x00385DF0, 0x00386C70, 0x00385570, 0x00385CA0, 0x003868
 - Below a fifth of max HP a unit is in HP Critical.
 - An enemy that loses sight of its foes heals back up over time.
 
+Each status's length and beat are numbers in its row of `battle_pack.bin`, written onto the unit when the status
+lands. Every frame the unit's periodic step counts both down: on each beat Poison, Sap or Regen acts, and when the
+length runs out the status is removed.
+
 ## How it works
 
 ### The periodic step

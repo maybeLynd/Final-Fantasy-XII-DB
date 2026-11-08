@@ -10,8 +10,12 @@ addresses: "0x0046B3F0, 0x0046B290, 0x0046B490, 0x0046B350, 0x0046B380, 0x0046B2
 - Taking on a quest marks it as ordered; finishing it marks it as cleared and adds one to the total of
   quests cleared.
 - Each quest also keeps a small progress value and a word the scripts use for its contract.
-- Finishing a quest numbered above 7 leaves it marked as ordered and unmarks one of the first eight quests instead
-  (finishing quest 13 unmarks quest 5), through a slip in how the game finds the bit.
+- Finishing a quest numbered above 7 also unmarks one of the first eight quests (finishing quest 13 unmarks quest
+  5), through a slip in how the game finds the bit. On its own that would leave the finished quest marked as
+  ordered, but every shipped script that finishes a quest unmarks it first ([the quests](#the-quests)).
+
+A quest's state is a few bits and numbers in the save. The zone scripts write them with the quest verbs, and the quest
+menu, the Clan Primer's hunt pages and the clan rank read the same bits back.
 
 ## How it works
 
@@ -61,8 +65,11 @@ it. The developer verb `0x206C` `debug_clearquestall` does nothing: its handler 
 When `setquestclear` sets a cleared bit it also means to clear the quest's ordered bit, but it computes the byte
 and bit again from the bit position, `q & 7`, instead of from *q* (`0x0046B2EF`-`0x0046B316`). The byte is therefore
 always the first, and the bit value `1 << (q & 7)`: clearing quest 13 clears the ordered bit of quest 5, and the
-quest itself stays ordered. Only quests 0-7 have their own ordered bit cleared. The same happens when a clear
-arrives through `0x00329E60` kind 5.
+verb leaves the quest's own bit as it was. Only quests 0-7 have their own ordered bit cleared by the verb. The
+same happens when a clear arrives through `0x00329E60` kind 5.
+
+The shipped scripts clear the quest's own bit themselves, one line before the clear, with
+`setquestorder(q, 0)` ([the quests](#the-quests)).
 
 ### Who else reads it
 

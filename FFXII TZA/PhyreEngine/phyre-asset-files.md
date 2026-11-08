@@ -17,6 +17,10 @@ The files sit in the archive under `gamedata/d3d11/artdata/`, as `<name>.dae.phy
 meshes, `<name>.dds.phyre` for textures and `<name>.fx.phyre` for shaders. The `.ah` lists beside them
 name, in order, the files each model, map or font loads.
 
+Each file named in an `.ah` list is loaded only once and then shared: a second request for the same path raises a use
+count instead. Inside the file, a table of names describes every class and field it holds, and the game matches those
+names to its own classes to rebuild each object; a name it does not know is dropped with a log line.
+
 A load request of kind 1 from such a list reaches `0x0019CB20(manager, path)` through `0x001A07B0`. It
 hashes the path (`0x00674A00`: 5381, × 33 plus each byte as a signed value, `0x00674A17`, masked to 31 bits) and
 looks it up in the manager's loaded set. A hit raises the entry's reference count and returns the loaded

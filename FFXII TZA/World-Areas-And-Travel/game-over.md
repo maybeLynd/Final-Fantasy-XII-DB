@@ -337,7 +337,8 @@ only while a map is bound (`0x0209A670`) and `[[0x0209A678]]` is non-null, and 0
 are 0 (`0x00377AEE`-`0x00377B35`). On every path the angle goes through `0x003A1C50` (`0x00377B37`-`0x00377B4A`).
 
 The crystal script sets `setnowjumpindex(-2)` around the save screen and restores the real
-entrance afterwards ([save and teleport crystals](save-and-teleport-crystals.md)). Slot 0 is the
+entrance afterwards. On field 403, Valley of the Dead, while the story counter is below 1,345, it heals the party
+again instead and keeps the entrance ([save and teleport crystals](save-and-teleport-crystals.md)). Slot 0 is the
 field-transition autosave and a manual save cannot choose it
 ([save data fields](../Saving-Loading-And-Settings/save-data-fields.md)).
 

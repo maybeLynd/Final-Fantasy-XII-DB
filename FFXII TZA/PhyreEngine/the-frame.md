@@ -13,6 +13,10 @@ frame can draw the scene twice with different layers switched on.
 Underneath, every frame mode still starts by writing PlayStation 2 Graphics Synthesizer register
 settings into a command buffer.
 
+The game writes into one of two command lists of 512 records each while the other is handed on. At each flip the
+finished list's place and length go into a shared command word, and the other list starts again from its beginning as
+the list the game now writes into.
+
 ## How it works
 
 ### Where the game takes over

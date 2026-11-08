@@ -53,8 +53,10 @@ order](frame-update-order.md)) with `force` = 0, on every pass that reaches the 
   the flag is 0 (`0x00252CBA`-`0x00252CCE`): a flag at 1 is kept by `state` 0 even while the enable is clear,
   and a flag at 0 is rewritten by `state` 0 to 1 and then to the enable. The call returns 1 when it
   writes and 0 when it does not (`0x00252CB6`, `0x00252CEA`-`0x00252CEF`);
-- so every pass re-asserts the toggle's state, and a script's write that disagrees with it lasts only
-  until the arbiter's next pass.
+- on a pass where `0x00265680()` answers non-zero the arbiter passes the toggle, so the toggle's state is
+  re-asserted and a script's write that disagrees with it lasts only until that pass; when `0x00265680()` answers
+  0 it passes instead whether the arming word `0x022CBE1A` has bit `0x1` (`0x003669D0`, `0x00254179`-`0x0025418F`), and
+  while `0x00253BC0([0x02092730])` answers non-zero it calls nothing (`0x0025416C`-`0x00254173`).
 
 The arbiter keeps the toggle in `0x020927E0`: it flips on each press while `0x0017DE10()` holds and
 the edge byte `0x020927E4` was clear, is forced to 1 by the device poll path (`0x00862CF0`, with
@@ -91,7 +93,8 @@ The cue comes first (`0x003667ED`-`0x0036680D`), then the stop, and it ends by c
 
 ### What fleeing changes
 
-The raw predicate has 8 call sites in 7 functions and the thunk 8 sites in 6 functions:
+The raw predicate has 7 call sites in 7 functions, and its thunk `0x0030C0D0` (a jump to it) 8 sites in 6
+functions:
 
 | Reader | What it does while fleeing |
 |---|---|
@@ -142,7 +145,7 @@ locomotion](../Movement-And-Pathfinding/battle-locomotion.md)).
 | Address | Type | Name | Meaning |
 |---|---|---|---|
 | `0x01E0C2B8` | `u32` |  | force fight mode: 1 fighting (image value), 0 fleeing |
-| `0x02B4053C` | `u8` |  | enable byte 1: 0 in the image; 1 from the boot, the manager-0 unload and debug_setfightstatusbyevent |
+| `0x02B4053C` | `u8` |  | enable byte 1: 0 in the image; 1 from the boot and the manager-0 unload; the argument of debug_setfightstatusbyevent |
 | `0x02B4053D` | `u8` |  | enable byte 2: 0 in the image; 1 from the boot |
 | `0x020927E0` | `u32` |  | the R2 toggle state (1 = fleeing requested) |
 | `0x020927E4` | `u8` |  | its press edge |
@@ -159,7 +162,7 @@ locomotion](../Movement-And-Pathfinding/battle-locomotion.md)).
 | image value of the flag | 1 (fighting) |
 | image value of the enable bytes | 0 and 0 |
 | verbs | `setforcefightmode` `0x0334`, `debug_setfightstatusbyevent` `0x206B` |
-| readers | raw: 8 direct sites, 8 through the thunk; effective: 2 |
+| readers | raw: 7 direct call sites, 8 through the thunk; effective: 2 |
 | distances, divisors, factor | fighting: 24.0, divisors 3 and 5; fleeing: 3.8 or 2.2, divisor 1.5, factor 0.25 |
 
 ## Operations
@@ -196,9 +199,9 @@ it.
 
 - The predicate's sense is inverted from its name: a true `0x00253B90()` means fleeing. A hook that
   fires "during forced fights" on a true result is backwards.
-- Scripts and the toggle share one dword, and the arbiter re-asserts the toggle's state on every
-  pass: a script's write holds only until then. Every shipped call is `setforcefightmode(0)`, at
-  map entry and after a teleport in the area scripts; no call passes 1.
+- Scripts and the toggle share one dword, and the arbiter re-asserts the toggle's state on each pass where
+  `0x00265680()` answers non-zero: a script's write holds only until then. Every shipped call is
+  `setforcefightmode(0)`, at map entry and after a teleport in the area scripts; no call passes 1.
 - Clearing either enable byte makes `setforcefightmode(1)` write 0 and makes the toggle's disengage,
   which rewrites only a flag at 0 (`0x00252CC8`-`0x00252CCE`), write 1 and then 0, so once the party flees
   it can never leave the fleeing state; a flag still at 1 stays 1 under the disengage. Only the debug

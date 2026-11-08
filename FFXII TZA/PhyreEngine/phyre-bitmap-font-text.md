@@ -12,6 +12,10 @@ block of white text with a black copy behind it that starts with `Debug Info:`. 
 battle messages are drawn by the game's own text code. The overlay draws only while its enable byte
 is set.
 
+The overlay joins two files: `tuffysdf.fgen.phyre` holds the font, a picture of the characters with a table giving
+each one's place and size in it, and `PhyreText.fx.phyre` holds the shader that draws it. For each character of the
+string the game takes its table entry and draws one small rectangle cut from the font picture.
+
 ## How it works
 
 ### The objects

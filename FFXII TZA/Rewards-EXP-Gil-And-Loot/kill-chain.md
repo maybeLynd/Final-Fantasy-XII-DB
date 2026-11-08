@@ -32,6 +32,10 @@ Everything resets when you touch a save crystal, when you enter an area flagged 
 villages, shops, aerodromes and similar safe areas), and when a script applies a preset party and
 inventory state. Moving between ordinary areas keeps the chain.
 
+Whether an area counts as a town is a flag in the field record file `navimapdata.bin`, and a save crystal's talk
+script asks for the reset. The chain's level, its run of kills of one quantity group and its breaks in a row are what the loot
+roll reads to choose drop chances and quantities.
+
 ## How it works
 
 `EnemyChain_UpdateOnDefeat` (`0x00317ED0`, 529 bytes) has one caller, the defeat-reward routine
@@ -59,14 +63,18 @@ When the class matches, the chain continues (`0x00317F2D`-`0x00318065`):
    more (see the [languages page](../Saving-Loading-And-Settings/languages.md)), so the cap is 998 and the
    999 arm never runs.
 2. Breaks in a row `0x022C3164` = 0 (`0x00317F6A`).
-3. The same-model run `0x022C3160`: if the `u16` at `[actor+0xE68]+0x40` (the model id that palette swaps
-   share) equals the previous one at `0x022C316C`, it adds 1, capped at 999; otherwise it resets to 0 and
-   stores the new model id (`0x00317F70`-`0x00317FB6`). This run chooses the loot quantity table.
-   - Only this step stores a model id: `0x00317FB6` is the one RIP-relative write to `0x022C316C`, beside
+3. The quantity-group run `0x022C3160`: if the `u16` at `[actor+0xE68]+0x40` (the class row's quantity
+   group, `model_family` in the [bestiary](../Enemy-Spawning/bestiary.md)) equals the previous
+   one at `0x022C316C`, `run = min(run + 1, 999)`; otherwise it resets to 0 and stores the new group
+   (`0x00317F70`-`0x00317FB6`). This run chooses the loot quantity table.
+   - The group is not the model: the bound model id is the class row's `+0x00`. Coeurl and Grimalkin
+     are both model `m1014` (`0x006D0014`) and class 5, with groups `0x0226` and `0x139A`, so after a run
+     of Coeurl kills a party kill of a Grimalkin continues the chain but resets this run to 0.
+   - Only this step stores a group: `0x00317FB6` is the one RIP-relative write to `0x022C316C`, beside
      the reset's -1 through `0x022C3168` (`0x003183BE`). The first-kill path (`0x003180BB`-`0x003180D0`) and the
      break path (`0x0031806C`-`0x003180B5`) leave it.
    - After a reset (`0x022C316C` = -1, `0x003183BE`) the first kill stores only the class, the second
-     stores the model and leaves the run at 0, and each further kill of the same class and model
+     stores the group and leaves the run at 0, and each further kill of the same class and group
      adds 1, so kill *n* of such a run leaves it at *n* - 2, up to the cap of 999.
 4. `EnemyChain_TryAdvanceRank` (`0x003183D0`, 315 bytes) tries to raise the chain level (`0x00317FBC`); see
    below.
@@ -85,7 +93,7 @@ When the class differs, the chain breaks (`0x0031806C`-`0x003180B5`):
 1. `0x0028EF00(length, level)` posts the break to the display (again the stored length plus one).
 2. Breaks in a row `0x022C3164` += 1, capped at 999.
 3. Zeroed together: `0x022C3170`/`0x022C3174` (one qword store, `0x00318091`), chain level `0x022C3158` and
-   length `0x022C315C` (one qword store, `0x00318098`), and the same-model run `0x022C3160`.
+   length `0x022C315C` (one qword store, `0x00318098`), and the quantity-group run `0x022C3160`.
 4. The coin bit is cleared and the class stored (`0x003180BB`-`0x003180D0`). The break path draws nothing.
 
 ### The level rise
@@ -214,10 +222,10 @@ then the clock value (`0x00863D4D`-`0x00863D6A`). It does not touch `0x022C256C`
 |---|---|---|---|
 | `0x022C3158` | `u32` | chain level 0-3 | `0x003183D0` (rise); zeroed on a break (`0x00318098`) |
 | `0x022C315C` | `u32` | chain length, cap 999 or 998 | `0x00317F64`; zeroed on a break |
-| `0x022C3160` | `u32` | same-model run, cap 999 | `0x00317F70`-`0x00317FB6`; zeroed on a break (`0x0031809F`) |
+| `0x022C3160` | `u32` | quantity-group run, cap 999 | `0x00317F70`-`0x00317FB6`; zeroed on a break (`0x0031809F`) |
 | `0x022C3164` | `u32` | breaks in a row, cap 999 | `0x003180B5`; zeroed by a continuing kill (`0x00317F6A`) and by the chain reset `0x003183A0` (`0x003183B0`, a qword store from `0x022C3160`) |
 | `0x022C3168` | `i32` | previous kill's class byte; negative before the first kill | `0x003180D0` |
-| `0x022C316C` | `u32` | model id stored by the last continuing kill whose model differed from it; -1 after a reset | `0x00317FB6`; `0x003183BE` (-1) |
+| `0x022C316C` | `u32` | quantity group (class row `+0x40`) stored by the last continuing kill whose group differed from it; -1 after a reset | `0x00317FB6`; `0x003183BE` (-1) |
 | `0x022C3170` | `u32` | chain length at the last level rise | `0x003184DC`; zeroed on a break (`0x00318091`) |
 | `0x022C3174` | `u32` | loot pickups since the last level rise | `0x00319974` (+1); `0x003184EC` (0); zeroed on a break |
 | `0x022C3178` | `u32` | bit `0x1`: the coin | `0x003180C6` |
@@ -232,11 +240,11 @@ then the clock value (`0x00863D4D`-`0x00863D6A`). It does not touch `0x022C256C`
   in game data.
 - The 999 / 998 cap is chosen by locale, not by data.
 - To change what the chain does to drops, see [Loot drops](loot-drops.md):
-  level, the same-model run and breaks in a row each select a row of the drop table.
+  level, the quantity-group run and breaks in a row each select a row of the drop table.
 
 ## Related
 
-- [Loot drops](loot-drops.md) - how chain level, the same-model
+- [Loot drops](loot-drops.md) - how chain level, the quantity-group
   run and breaks in a row choose drop chances and quantities.
 - [Teleport and save crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md) - the
   crystal script that resets the chain.

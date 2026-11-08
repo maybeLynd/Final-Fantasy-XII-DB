@@ -11,6 +11,10 @@ A dynamic mesh whose modifier network names these codes is skinned to its skelet
 between morph targets by the CPU. The morph codes are what move a face or a shape key between its
 target shapes as their weights change.
 
+A model file stores each modifier code as its name, and the game looks the name up in its list of fourteen codes. Each
+code pairs a step that gathers its inputs, the morph weights or the bone matrices, with a step that does the blending
+or skinning.
+
 ## How it works
 
 ### The modifier record

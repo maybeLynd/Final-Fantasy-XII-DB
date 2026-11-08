@@ -11,6 +11,10 @@ Nothing directly, but every loaded thing, from a zone's script to a model's mesh
 reached as a named section inside a larger resource. A hand-edited resource whose section names or
 offsets are off is not found, and whatever needed it does not appear.
 
+An `@FRP` container is a list of sections, each with a four-letter tag and a name of up to 31 characters. The game
+finds a piece by walking the container's offset list for the first section whose tag and name match the ones asked
+for.
+
 ## How it works
 
 ### Matching a section

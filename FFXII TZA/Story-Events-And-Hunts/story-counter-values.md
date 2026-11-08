@@ -29,6 +29,10 @@ It lists, by region, the exits whose condition compares the counter with a liter
 script](script-censuses.md); each exit's row gives the whole condition) and the monsters placed only when the counter
 passes a test ([enemy spawning](../Enemy-Spawning/enemy-spawning.md)), each with its test.
 
+The counter is one number at the start of the save, and scripts only ever set it to a written value. Shop lists, Clan
+Primer entries, the story schedule, scene loads, hunt bills, airship routes, exits and monster placements each compare
+it with their own value, and the `unlocks` column gathers those comparisons.
+
 The table lists every value a script writes to it, from the 1,114 `us` scripts under `plan_master/us` that decode;
 `evt_t0020` has no `EBP2` header and holds no code.
 
@@ -82,8 +86,13 @@ the 93 unreached writes are this ladder. The other two, 710 and 720, are a choic
 130 of the 268 reached shipping writes have a counter compare-and-jump, or a switch on the counter, before them in
 the same function's bytecode. 125 lie inside such a test's branch: after the compare's conditional jump and before
 that jump's target, or at or after a switch case's target. That is a control-flow property of the bytecode walk, and the `set_by` column
-gives the test. The other writes are in functions that do
-not test the counter, such as `touch`, `touchon` and named event functions, which their callers start.
+gives the test.
+
+Of the other 143, 5 follow a test in their function but lie outside its branch: `rwg_a01` `EventDirector.main`
+guards its write of 1,342 with `counter < 1342`, then writes 1,345, 1,355 and 1,360 after that test's branch has
+closed. The other 138 have no compare or switch on the counter before them in their function, such as `touch`,
+`touchon` and named event functions, which their callers start. A write outside a guard runs only when its
+function's own path reaches it, not on every call.
 
 ## Columns
 

@@ -12,6 +12,10 @@ addresses: "0x0215F1C0, 0x002E1C20, 0x002E1CA0, 0x002E1CD0, 0x002E0FA0, 0x002545
 - Event skip with Start is offered only while a scene allows it, and Start's event skip never runs while a movie plays. Story movies have a skip of their own, run by the scene's script: Start shows or hides a "[confirm button] Skip" prompt, and the confirm button while the prompt shows ends the movie with a half-second fade. The title screen's opening movie ends on Start or the confirm button, with no prompt.
 - Escape Mode switches itself off at several of these moments, among them movies, screen fades, full-screen menus and the pause menu (the table below; [Escape Mode](escape.md)).
 
+Scene commands such as the movie, screen-mask and user-control commands each switch on bits in their own row of one
+shared table of 16 rows. Before a menu opens or a button acts, the game combines all the rows, and anything whose bit
+is on in any row is refused.
+
 ## How it works
 
 ### The table

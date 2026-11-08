@@ -25,6 +25,10 @@ example). It loads the registry slot `0x02EBF138`, resolves the slot's `+0x0C` t
 the first row, and adds the action id times the slot's `u16` stride at `+0x08`. While a recipe runs,
 the action id is the formula scratch word `0x02AEDFD4`.
 
+When the battle data arrives, the game files every row that has a command-list page and row into the command grid, and
+sorts the action numbers into lists by kind: Attack, magicks, technicks, summons, Quickenings and items. The battle
+menu builds its command lists from those lists.
+
 ## Layouts
 
 All multi-byte fields are little-endian.

@@ -179,7 +179,7 @@ id	name	part	entry
 0x0000	Potion	shop	Vendor of Goods (shop 24) in Hunters' Camp (Phon Coast) from the start
 0x0000	Potion	shop	Stranded Merchant (shop 25) in Alley of Low Whispers (Old Archades) from the start
 0x0000	Potion	shop	The Leapin' Bangaa (shop 26) in Gallerina Marketplace (Balfonheim Port) from the start
-0x0000	Potion	shop	Assistant Storekeeper (shop 32) in Observation Parlour (Skyferry) from the start
+0x0000	Potion	shop	Assistant Storekeeper (shop 32) in Observation Parlour (Skyferry), on the Nalbina Town - Archades flights, either way (route codes 7, 8) from the start
 0x0000	Potion	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from the start
 0x0000	Potion	shop	Granch (shop 50) in Granch's Requisites (Archades) from the start
 0x0000	Potion	treasure chest	The Lightworks (Barheim Passage) [mic_a01] chest 01: 45% (Diamond Armlet 0%)
@@ -421,7 +421,7 @@ id	name	part	entry
 0x0000	Potion	drop	Werewolf
 0x0000	Potion	drop	Wolf
 0x0000	Potion	drop	Zombie
-0x0000	Potion	scene gift (talk)	The Clan Hall (Rabanastre) [rbn_a14] (one of a set of 31 packages, of which 0x902F holds it)
+0x0000	Potion	scene gift (talk)	The Clan Hall (Rabanastre) [rbn_a14] (package 0x902F)
 0x0000	Potion	scene gift (talk)	Nomad Village (Giza Plains) [sav_b01] (package 0x905E)
 0x0000	Potion	scene gift (talk)	North Sprawl (Lowtown) [slm_a01] (package 0x9054)
 0x0000	Potion	hunt reward	Red & Rotten in the Desert (package 0x9003), reported in The Sandsea (Rabanastre) [rbn_a16]
@@ -437,7 +437,7 @@ id	name	part	entry
 0x0001	Hi-Potion	shop	Vendor of Goods (shop 24) in Hunters' Camp (Phon Coast) from the start
 0x0001	Hi-Potion	shop	Stranded Merchant (shop 25) in Alley of Low Whispers (Old Archades) from story progress 1330 (After the Urutan-Yensa appear)
 0x0001	Hi-Potion	shop	The Leapin' Bangaa (shop 26) in Gallerina Marketplace (Balfonheim Port) from the start
-0x0001	Hi-Potion	shop	Assistant Storekeeper (shop 34) in Observation Parlour (Skyferry) from the start
+0x0001	Hi-Potion	shop	Assistant Storekeeper (shop 34) in Observation Parlour (Skyferry), on the Bhujerba - Balfonheim Port flights, either way (route codes 11, 12) from the start
 0x0001	Hi-Potion	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from story progress 1330 (After the Urutan-Yensa appear)
 0x0001	Hi-Potion	shop	Granch (shop 50) in Granch's Requisites (Archades) from story progress 1330 (After the Urutan-Yensa appear)
 0x0001	Hi-Potion	treasure chest	Great Eastern Passage (Barheim Passage) [mic_a02] chest 01: 27.5% (Diamond Armlet 0%)
@@ -667,12 +667,12 @@ id	name	part	entry
 0x0001	Hi-Potion	scene gift (talk)	Muthru Bazaar (Rabanastre) [rbn_a02] (package 0x905C)
 0x0001	Hi-Potion	scene gift (talk)	East End (Rabanastre) [rbn_a03] (package 0x905C)
 0x0001	Hi-Potion	scene gift (talk)	Southern Plaza (Rabanastre) [rbn_a04] (package 0x9056)
-0x0001	Hi-Potion	scene gift (talk)	The Clan Hall (Rabanastre) [rbn_a14] (one of a set of 31 packages, of which 0x9032 holds it)
+0x0001	Hi-Potion	scene gift (talk)	The Clan Hall (Rabanastre) [rbn_a14] (one of a set of 10 packages, of which 0x9032 holds it)
 0x0001	Hi-Potion	scene gift (talk)	Aerodrome (Rabanastre) [rbn_b01] (package 0x905C)
 0x0002	X-Potion	shop	Portentous Provisions (shop 5) in West Barbican (Nalbina Town) from story progress 3250 (After slipping into the imperial capital)
 0x0002	X-Potion	shop	Unlucky Merchant (shop 9) in South Bank Village (Dalmasca Estersand) from story progress 3250 (After slipping into the imperial capital)
 0x0002	X-Potion	shop	The Leapin' Bangaa (shop 26) in Gallerina Marketplace (Balfonheim Port) from the start
-0x0002	X-Potion	shop	Assistant Storekeeper (shop 33) in Observation Parlour (Skyferry) from the start
+0x0002	X-Potion	shop	Assistant Storekeeper (shop 33) in Observation Parlour (Skyferry), on the Nalbina Town - Balfonheim Port flights, either way (route codes 9, 10) from the start
 0x0002	X-Potion	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from story progress 3250 (After slipping into the imperial capital)
 0x0002	X-Potion	shop	Granch (shop 50) in Granch's Requisites (Archades) from story progress 3250 (After slipping into the imperial capital)
 0x0002	X-Potion	treasure chest	Hall of Shadowlight (Sochen Cave Palace) [rui_c01] chest 00 (once): 100%
@@ -943,7 +943,7 @@ id	name	part	entry
 0x0003	Ether	scene gift (talk)	North End (Rabanastre) [rbn_a01] (package 0x905C)
 0x0003	Ether	scene gift (talk)	Muthru Bazaar (Rabanastre) [rbn_a02] (package 0x905C)
 0x0003	Ether	scene gift (talk)	East End (Rabanastre) [rbn_a03] (package 0x905C)
-0x0003	Ether	scene gift (talk)	The Clan Hall (Rabanastre) [rbn_a14] (one of a set of 31 packages, of which 0x9033 holds it)
+0x0003	Ether	scene gift (talk)	The Clan Hall (Rabanastre) [rbn_a14] (one of a set of 10 packages, of which 0x9033 holds it)
 0x0003	Ether	scene gift (talk)	Aerodrome (Rabanastre) [rbn_b01] (package 0x905C)
 0x0004	Hi-Ether	treasure chest	Sundered Earth (Tchita Uplands) [pla_a02] chest 11: 15% (Diamond Armlet 0%)
 0x0004	Hi-Ether	treasure chest	Piebald Path (The Salikawood) [frs_c02] chest 00: 25% (Diamond Armlet 0%)
@@ -988,7 +988,7 @@ id	name	part	entry
 0x0004	Hi-Ether	treasure chest	Stage 97 (Trial Mode) [tri_t02] chest 01: 100% (Diamond Armlet 0%)
 0x0004	Hi-Ether	treasure chest	pre_a01 (a script no field loads: no zone-script entry and no path in the executable) chest 09: 100%
 0x0004	Hi-Ether	treasure chest	pre_b01 (a script no field loads: no zone-script entry and no path in the executable) chest 11: 100%
-0x0004	Hi-Ether	scene gift (talk)	The Clan Hall (Rabanastre) [rbn_a14] (one of a set of 31 packages, of which 0x9035 holds it)
+0x0004	Hi-Ether	scene gift (talk)	The Clan Hall (Rabanastre) [rbn_a14] (one of a set of 10 packages, of which 0x9035 holds it)
 0x0004	Hi-Ether	scene gift (talk)	Nomad Village (Giza Plains) [sav_b01] (package 0x9069)
 0x0004	Hi-Ether	scene gift (talk)	Crossfield (Cerobi Steppe) [srb_a02] (package 0x9088)
 0x0004	Hi-Ether	scene gift (talk)	The Terraced Bank (Cerobi Steppe) [srb_a03] (package 0x9088)
@@ -1027,7 +1027,7 @@ id	name	part	entry
 0x0005	Elixir	scene gift (talk)	Central Waterway Control (Garamsythe Waterway) [grm_e13] (package 0x9089)
 0x0005	Elixir	scene gift (talk)	Babbling Vale (Mosphoran Highwaste) [mnt_d01] (package 0x9089)
 0x0005	Elixir	scene gift (talk)	West Ward (Nalbina Town) [nac_a03] (package 0x906A)
-0x0005	Elixir	scene gift (talk)	The Clan Hall (Rabanastre) [rbn_a14] (one of a set of 31 packages, of which 0x9036 holds it)
+0x0005	Elixir	scene gift (talk)	The Clan Hall (Rabanastre) [rbn_a14] (one of a set of 10 packages, of which 0x9036 holds it)
 0x0006	Phoenix Down	shop	Portentous Provisions (shop 5) in West Barbican (Nalbina Town) from story progress 145 (After the chain tutorial)
 0x0006	Phoenix Down	shop	Unlucky Merchant (shop 9) in South Bank Village (Dalmasca Estersand) from story progress 200 (After the sky pirate Balthier arrives, Balthier and Fran appear)
 0x0006	Phoenix Down	shop	Desert Merchant (later Lohen) (shop 10) in The Western Divide (Dalmasca Westersand) from story progress 1240 (Start of the mystery of the Dawn Shard)
@@ -1044,7 +1044,7 @@ id	name	part	entry
 0x0006	Phoenix Down	shop	Vendor of Goods (shop 24) in Hunters' Camp (Phon Coast) from the start
 0x0006	Phoenix Down	shop	Stranded Merchant (shop 25) in Alley of Low Whispers (Old Archades) from story progress 200 (After the sky pirate Balthier arrives, Balthier and Fran appear)
 0x0006	Phoenix Down	shop	The Leapin' Bangaa (shop 26) in Gallerina Marketplace (Balfonheim Port) from the start
-0x0006	Phoenix Down	shop	Assistant Storekeeper (shop 35) in Observation Parlour (Skyferry) from the start
+0x0006	Phoenix Down	shop	Assistant Storekeeper (shop 35) in Observation Parlour (Skyferry), on the Archades - Balfonheim Port flights, either way (route codes 13, 14) from the start
 0x0006	Phoenix Down	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from story progress 200 (After the sky pirate Balthier arrives, Balthier and Fran appear)
 0x0006	Phoenix Down	shop	Granch (shop 50) in Granch's Requisites (Archades) from story progress 200 (After the sky pirate Balthier arrives, Balthier and Fran appear)
 0x0006	Phoenix Down	treasure chest	Great Eastern Passage (Barheim Passage) [mic_a02] chests 02/06: 32.5% (Diamond Armlet 0%)
@@ -1261,7 +1261,7 @@ id	name	part	entry
 0x0007	Gold Needle	shop	Vendor of Goods (shop 24) in Hunters' Camp (Phon Coast) from the start
 0x0007	Gold Needle	shop	Stranded Merchant (shop 25) in Alley of Low Whispers (Old Archades) from story progress 680 (After the mystery of the Lhusu Mines)
 0x0007	Gold Needle	shop	The Leapin' Bangaa (shop 26) in Gallerina Marketplace (Balfonheim Port) from the start
-0x0007	Gold Needle	shop	Assistant Storekeeper (shop 31) in Observation Parlour (Skyferry) from the start
+0x0007	Gold Needle	shop	Assistant Storekeeper (shop 31) in Observation Parlour (Skyferry), on the Rabanastre - Archades flights, either way (route codes 1, 2) from the start
 0x0007	Gold Needle	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from story progress 680 (After the mystery of the Lhusu Mines)
 0x0007	Gold Needle	shop	Granch (shop 50) in Granch's Requisites (Archades) from story progress 680 (After the mystery of the Lhusu Mines)
 0x0007	Gold Needle	treasure chest	The Yoma (Dalmasca Estersand) [dst_c01] chests 01/08: 32.5% (Diamond Armlet 0%)
@@ -1318,7 +1318,7 @@ id	name	part	entry
 0x0008	Echo Herbs	shop	Vendor of Goods (shop 24) in Hunters' Camp (Phon Coast) from the start
 0x0008	Echo Herbs	shop	Stranded Merchant (shop 25) in Alley of Low Whispers (Old Archades) from story progress 145 (After the chain tutorial)
 0x0008	Echo Herbs	shop	The Leapin' Bangaa (shop 26) in Gallerina Marketplace (Balfonheim Port) from the start
-0x0008	Echo Herbs	shop	Assistant Storekeeper (shop 31) in Observation Parlour (Skyferry) from the start
+0x0008	Echo Herbs	shop	Assistant Storekeeper (shop 31) in Observation Parlour (Skyferry), on the Rabanastre - Archades flights, either way (route codes 1, 2) from the start
 0x0008	Echo Herbs	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from story progress 145 (After the chain tutorial)
 0x0008	Echo Herbs	shop	Granch (shop 50) in Granch's Requisites (Archades) from story progress 145 (After the chain tutorial)
 0x0008	Echo Herbs	treasure chest	Great Central Passage (Barheim Passage) [mic_b01] chest 00: 35% (Diamond Armlet 0%)
@@ -1371,7 +1371,7 @@ id	name	part	entry
 0x0009	Antidote	shop	Vendor of Goods (shop 24) in Hunters' Camp (Phon Coast) from the start
 0x0009	Antidote	shop	Stranded Merchant (shop 25) in Alley of Low Whispers (Old Archades) from story progress 145 (After the chain tutorial)
 0x0009	Antidote	shop	The Leapin' Bangaa (shop 26) in Gallerina Marketplace (Balfonheim Port) from the start
-0x0009	Antidote	shop	Assistant Storekeeper (shop 30) in Observation Parlour (Skyferry) from the start
+0x0009	Antidote	shop	Assistant Storekeeper (shop 30) in Observation Parlour (Skyferry), on the Rabanastre - Nalbina Town flights, either way (route codes 3, 4) from the start
 0x0009	Antidote	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from story progress 145 (After the chain tutorial)
 0x0009	Antidote	shop	Granch (shop 50) in Granch's Requisites (Archades) from story progress 145 (After the chain tutorial)
 0x0009	Antidote	treasure chest	Great Eastern Passage (Barheim Passage) [mic_a02] chest 00: 32.5% (Diamond Armlet 0%)
@@ -1441,7 +1441,7 @@ id	name	part	entry
 0x000A	Eye Drops	shop	Vendor of Goods (shop 24) in Hunters' Camp (Phon Coast) from the start
 0x000A	Eye Drops	shop	Stranded Merchant (shop 25) in Alley of Low Whispers (Old Archades) from the start
 0x000A	Eye Drops	shop	The Leapin' Bangaa (shop 26) in Gallerina Marketplace (Balfonheim Port) from the start
-0x000A	Eye Drops	shop	Assistant Storekeeper (shop 33) in Observation Parlour (Skyferry) from the start
+0x000A	Eye Drops	shop	Assistant Storekeeper (shop 33) in Observation Parlour (Skyferry), on the Nalbina Town - Balfonheim Port flights, either way (route codes 9, 10) from the start
 0x000A	Eye Drops	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from the start
 0x000A	Eye Drops	shop	Granch (shop 50) in Granch's Requisites (Archades) from the start
 0x000A	Eye Drops	treasure chest	The Yoma (Dalmasca Estersand) [dst_c01] chests 03/04: 32.5% (Diamond Armlet 0%)
@@ -1481,7 +1481,7 @@ id	name	part	entry
 0x000B	Prince's Kiss	shop	Vendor of Goods (shop 24) in Hunters' Camp (Phon Coast) from the start
 0x000B	Prince's Kiss	shop	Stranded Merchant (shop 25) in Alley of Low Whispers (Old Archades) from story progress 500 (met from 520, After the floating continent)
 0x000B	Prince's Kiss	shop	The Leapin' Bangaa (shop 26) in Gallerina Marketplace (Balfonheim Port) from the start
-0x000B	Prince's Kiss	shop	Assistant Storekeeper (shop 30) in Observation Parlour (Skyferry) from the start
+0x000B	Prince's Kiss	shop	Assistant Storekeeper (shop 30) in Observation Parlour (Skyferry), on the Rabanastre - Nalbina Town flights, either way (route codes 3, 4) from the start
 0x000B	Prince's Kiss	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from story progress 500 (met from 520, After the floating continent)
 0x000B	Prince's Kiss	shop	Granch (shop 50) in Granch's Requisites (Archades) from story progress 500 (met from 520, After the floating continent)
 0x000B	Prince's Kiss	treasure chest	Broken Sands (Dalmasca Estersand) [dst_c02] chest 10: 32.5% (Diamond Armlet 0%)
@@ -1519,7 +1519,7 @@ id	name	part	entry
 0x000C	Handkerchief	shop	Vendor of Goods (shop 24) in Hunters' Camp (Phon Coast) from the start
 0x000C	Handkerchief	shop	Stranded Merchant (shop 25) in Alley of Low Whispers (Old Archades) from story progress 500 (met from 520, After the floating continent)
 0x000C	Handkerchief	shop	The Leapin' Bangaa (shop 26) in Gallerina Marketplace (Balfonheim Port) from the start
-0x000C	Handkerchief	shop	Assistant Storekeeper (shop 29) in Observation Parlour (Skyferry) from the start
+0x000C	Handkerchief	shop	Assistant Storekeeper (shop 29) in Observation Parlour (Skyferry), on the Rabanastre - Bhujerba flights, either way (route codes 5, 6) from the start
 0x000C	Handkerchief	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from story progress 500 (met from 520, After the floating continent)
 0x000C	Handkerchief	shop	Granch (shop 50) in Granch's Requisites (Archades) from story progress 500 (met from 520, After the floating continent)
 0x000C	Handkerchief	treasure chest	The Yoma (Dalmasca Estersand) [dst_c01] chests 06/12: 32.5% (Diamond Armlet 0%)
@@ -1553,7 +1553,7 @@ id	name	part	entry
 0x000D	Chronos Tear	shop	Vendor of Goods (shop 24) in Hunters' Camp (Phon Coast) from the start
 0x000D	Chronos Tear	shop	Stranded Merchant (shop 25) in Alley of Low Whispers (Old Archades) from story progress 680 (After the mystery of the Lhusu Mines)
 0x000D	Chronos Tear	shop	The Leapin' Bangaa (shop 26) in Gallerina Marketplace (Balfonheim Port) from the start
-0x000D	Chronos Tear	shop	Assistant Storekeeper (shop 29) in Observation Parlour (Skyferry) from the start
+0x000D	Chronos Tear	shop	Assistant Storekeeper (shop 29) in Observation Parlour (Skyferry), on the Rabanastre - Bhujerba flights, either way (route codes 5, 6) from the start
 0x000D	Chronos Tear	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from story progress 680 (After the mystery of the Lhusu Mines)
 0x000D	Chronos Tear	shop	Granch (shop 50) in Granch's Requisites (Archades) from story progress 680 (After the mystery of the Lhusu Mines)
 0x000D	Chronos Tear	treasure chest	Broken Sands (Dalmasca Estersand) [dst_c02] chests 01/03: 32.5% (Diamond Armlet 0%)
@@ -1612,7 +1612,7 @@ id	name	part	entry
 0x000E	Nu Khai Sand	shop	Vendor of Goods (shop 24) in Hunters' Camp (Phon Coast) from the start
 0x000E	Nu Khai Sand	shop	Stranded Merchant (shop 25) in Alley of Low Whispers (Old Archades) from story progress 1240 (Start of the mystery of the Dawn Shard)
 0x000E	Nu Khai Sand	shop	The Leapin' Bangaa (shop 26) in Gallerina Marketplace (Balfonheim Port) from the start
-0x000E	Nu Khai Sand	shop	Assistant Storekeeper (shop 35) in Observation Parlour (Skyferry) from the start
+0x000E	Nu Khai Sand	shop	Assistant Storekeeper (shop 35) in Observation Parlour (Skyferry), on the Archades - Balfonheim Port flights, either way (route codes 13, 14) from the start
 0x000E	Nu Khai Sand	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from story progress 1240 (Start of the mystery of the Dawn Shard)
 0x000E	Nu Khai Sand	shop	Granch (shop 50) in Granch's Requisites (Archades) from story progress 1240 (Start of the mystery of the Dawn Shard)
 0x000E	Nu Khai Sand	treasure chest	Diverging Way (The Salikawood) [frs_a03] chest 03: 25% (Diamond Armlet 0%)
@@ -1660,7 +1660,7 @@ id	name	part	entry
 0x0010	Remedy	shop	Vendor of Goods (shop 24) in Hunters' Camp (Phon Coast) from the start
 0x0010	Remedy	shop	Stranded Merchant (shop 25) in Alley of Low Whispers (Old Archades) from story progress 3050 (Start of Head for Archades, scenario stage 7 begins)
 0x0010	Remedy	shop	The Leapin' Bangaa (shop 26) in Gallerina Marketplace (Balfonheim Port) from the start
-0x0010	Remedy	shop	Assistant Storekeeper (shop 32) in Observation Parlour (Skyferry) from the start
+0x0010	Remedy	shop	Assistant Storekeeper (shop 32) in Observation Parlour (Skyferry), on the Nalbina Town - Archades flights, either way (route codes 7, 8) from the start
 0x0010	Remedy	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from story progress 3050 (Start of Head for Archades, scenario stage 7 begins)
 0x0010	Remedy	shop	Granch (shop 50) in Granch's Requisites (Archades) from story progress 3050 (Start of Head for Archades, scenario stage 7 begins)
 0x0010	Remedy	treasure chest	The Yoma (Dalmasca Estersand) [dst_c01] chest 05: 32.5% (Diamond Armlet 0%)
@@ -1814,7 +1814,7 @@ id	name	part	entry
 0x0014	Bacchus's Wine	shop	Vendor of Goods (shop 24) in Hunters' Camp (Phon Coast) from the start
 0x0014	Bacchus's Wine	shop	Stranded Merchant (shop 25) in Alley of Low Whispers (Old Archades) from story progress 3100 (After the memory, after the memory of Rasler)
 0x0014	Bacchus's Wine	shop	The Leapin' Bangaa (shop 26) in Gallerina Marketplace (Balfonheim Port) from the start
-0x0014	Bacchus's Wine	shop	Assistant Storekeeper (shop 34) in Observation Parlour (Skyferry) from the start
+0x0014	Bacchus's Wine	shop	Assistant Storekeeper (shop 34) in Observation Parlour (Skyferry), on the Bhujerba - Balfonheim Port flights, either way (route codes 11, 12) from the start
 0x0014	Bacchus's Wine	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from story progress 3100 (After the memory, after the memory of Rasler)
 0x0014	Bacchus's Wine	shop	Granch (shop 50) in Granch's Requisites (Archades) from story progress 3100 (After the memory, after the memory of Rasler)
 0x0014	Bacchus's Wine	treasure chest	Broken Sands (Dalmasca Estersand) [dst_c02] chest 06: 32.5% (Diamond Armlet 0%)
@@ -3221,6 +3221,45 @@ id	name	part	entry
 0x003F	Knot of Rust	treasure chest	Stage 23 (Trial Mode) [tri_e03] chest 01: 100% (Diamond Armlet 0%)
 0x003F	Knot of Rust	treasure chest	Stage 45 (Trial Mode) [tri_i05] chest 01: 100% (Diamond Armlet 0%)
 0x003F	Knot of Rust	treasure chest	bts_z01 (a script no field loads: no zone-script entry and no path in the executable) chests 00/01/02/03/04/05/06/07/08/09/10/11/12/13/14/15: 0% (Diamond Armlet 95%)
+0x003F	Knot of Rust	monograph	Abaddon
+0x003F	Knot of Rust	monograph	Air Chaosjet
+0x003F	Knot of Rust	monograph	Apsara
+0x003F	Knot of Rust	monograph	Bogey
+0x003F	Knot of Rust	monograph	Brainpan
+0x003F	Knot of Rust	monograph	Cassie
+0x003F	Knot of Rust	monograph	Crusader
+0x003F	Knot of Rust	monograph	Crypt Bunny
+0x003F	Knot of Rust	monograph	Cubus
+0x003F	Knot of Rust	monograph	Cultsworn Lich
+0x003F	Knot of Rust	monograph	Dark Lord
+0x003F	Knot of Rust	monograph	Dead Bones
+0x003F	Knot of Rust	monograph	Deidar
+0x003F	Knot of Rust	monograph	Earth Chaosjet
+0x003F	Knot of Rust	monograph	Evil Spirit
+0x003F	Knot of Rust	monograph	Fire Chaosjet
+0x003F	Knot of Rust	monograph	Foobar
+0x003F	Knot of Rust	monograph	Forbidden
+0x003F	Knot of Rust	monograph	Glaring Eye
+0x003F	Knot of Rust	monograph	Golem
+0x003F	Knot of Rust	monograph	Happy Bunny
+0x003F	Knot of Rust	monograph	Hecteyes
+0x003F	Knot of Rust	monograph	Ice Azer
+0x003F	Knot of Rust	monograph	Imdugud
+0x003F	Knot of Rust	monograph	Mu
+0x003F	Knot of Rust	monograph	Ose
+0x003F	Knot of Rust	monograph	Pallicant
+0x003F	Knot of Rust	monograph	Reaver
+0x003F	Knot of Rust	monograph	Ripe Rampager
+0x003F	Knot of Rust	monograph	Skulwyrm
+0x003F	Knot of Rust	monograph	Spee
+0x003F	Knot of Rust	monograph	Storm Elemental
+0x003F	Knot of Rust	monograph	Treant
+0x003F	Knot of Rust	monograph	Vampyr
+0x003F	Knot of Rust	monograph	Vivian
+0x003F	Knot of Rust	monograph	Vorpal Bunny
+0x003F	Knot of Rust	monograph	Water Chaosjet
+0x003F	Knot of Rust	monograph	Wyrdhare
+0x003F	Knot of Rust	monograph	Zombie Warlock
 0x2000	Teleport Stone	shop	Dyce (shop 18) in Valley of the Dead (The Tomb of Raithwall) or Sea Breeze Lane (Balfonheim Port) from story progress 3050 (Start of Head for Archades, scenario stage 7 begins)
 0x2000	Teleport Stone	shop	Assistant Storekeeper (shop 36) in Observation Parlour (Skyferry) from story progress 1982 (After the view over Mt Bur-Omisace, scenario stage 6 begins)
 0x2000	Teleport Stone	drop	Bagoly

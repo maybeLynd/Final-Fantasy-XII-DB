@@ -22,6 +22,9 @@ Nothing about damage, cost or timing is decided at that moment.
 - **Idle units.** A unit with no action goes into a queue; once per simulation tick, up to 8 queued
   units that are still able to act are sent back to choose their next action.
 
+The group leader also keeps its own copy of the hostile target it committed to, and that copy is what the gambit
+target selector reads.
+
 ## How it works
 
 ### The commit

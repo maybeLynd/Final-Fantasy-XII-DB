@@ -9,8 +9,11 @@ addresses: "0x0041E580, 0x0041E490, 0x00409FE0, 0x00409A60, 0x00409730, 0x00409D
 
 Character motions, effects and script-loaded animation sets appear when their data has loaded and
 vanish cleanly when the scene that loaded them is unloaded. An event script that calls `motionread`
-waits in `motionreadsync` until the animation set is in memory, plays it, and frees it with
-`motiondispose`. Underneath, every loaded block has exactly one owner that frees it, and every
+waits in `motionreadsync` while the motion record is armed or its read is in flight, plays the
+animation set, and frees it with `motiondispose`. The wait also ends when the read was held back or
+could not be set up, so its end alone does not mean the set loaded ([Script motion slots](#script-motion-slots)).
+
+Underneath, every loaded block has exactly one owner that frees it, and every
 renderer, effect and view that uses it is detached before that happens.
 
 ## How it works
@@ -239,8 +242,10 @@ from whatever area the slot then holds, so the motion is read from the next area
 opening a view when `0x00409780` gives the offset −1 of an absent section (`0x004099B6`).
 
 A mode 0 entry resolves its copy (`0x0051EE30`, `0x006B5C70`); a mode 1 entry pins its source with
-`0x003AB880`, which takes the block out of the movable tree so compaction cannot move it; an entry of
-any other mode opens nothing and adds the offset to a base of 0 (`0x004099C6`, `0x004099F8`). The sum is
+`0x003AB880`, which takes the block out of the movable tree so compaction cannot move it. An entry of
+any other mode gets no section: `0x00409780` leaves the offset at −1 for a mode other than 0 or 1
+(`0x004097AA`, `0x004097D7`-`0x004097E1`), so it returns 0 at `0x004099B6` and the arm that would add the offset to a
+base of 0 (`0x004099C6`, `0x004099F8`) is never reached. The sum is
 `low32(base) + offset` sign-extended.
 
 `0x00409C00(entry)` ends the view: `0x0051EF80` for mode 0, `0x003AB940` for mode 1. The pin is a flag, not

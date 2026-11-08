@@ -166,10 +166,14 @@ accessor	global	width	kind	instruction	follow_up	callers	address_refs
 0x002EF640	0x02164280	0	address	lea rax, [rip + 0x1e74c39]		28	0
 0x002F1A20	0x022BE7C8	4	read	mov eax, dword ptr [rip + 0x1fccda2]		3	0
 0x002FBA40	0x022BE950	4	read	mov eax, dword ptr [rip + 0x1fc2f0a]		2	0
+0x00304660	0x02EBF190	8	read	mov rax, qword ptr [rip + 0x2bbab29]	movss xmm0, dword ptr [rax + 0x5ae4]	1	0
+0x00304670	0x02EBF190	8	read	mov rax, qword ptr [rip + 0x2bbab19]	movss xmm0, dword ptr [rax + 0x5ae8]	1	0
 0x00309460	0x022BE960	4	read	mov eax, dword ptr [rip + 0x1fb54fa]		1	0
 0x00309470	0x022BE964	4	read	mov eax, dword ptr [rip + 0x1fb54ee]		1	0
 0x003137E0	0x02EBF190	8	read	mov rax, qword ptr [rip + 0x2bab9a9]	movzx eax, byte ptr [rax + 0x5ad4]	5	0
 0x003137F0	0x02EBF190	8	read	mov rax, qword ptr [rip + 0x2bab999]	movzx eax, byte ptr [rax + 0x5ad5]	6	0
+0x00313820	0x02EBF190	8	read	mov rax, qword ptr [rip + 0x2bab969]	movss xmm0, dword ptr [rax + 0x5ad8]	1	0
+0x00313830	0x02EBF190	8	read	mov rax, qword ptr [rip + 0x2bab959]	movss xmm0, dword ptr [rax + 0x5adc]	1	0
 0x00314840	0x022C253D	1	read	movzx eax, byte ptr [rip + 0x1fadcf6]		1	0
 0x00314890	0x022C252C	4	read	mov eax, dword ptr [rip + 0x1fadc96]		1	0
 0x003148A0	0x022C2540	4	read	mov eax, dword ptr [rip + 0x1fadc9a]		1	0
@@ -402,6 +406,7 @@ accessor	global	width	kind	instruction	follow_up	callers	address_refs
 0x006DD030	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c3b39]	movzx eax, byte ptr [rax + 0xbe8]	0	0
 0x006DD190	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c39d9]	movzx eax, byte ptr [rax + 0xc24]	0	0
 0x006DD250	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c3919]	movzx eax, byte ptr [rax + 0xab0]	0	0
+0x006DD9D0	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c3199]	movss xmm0, dword ptr [rax + 0x718]	0	0
 0x006DF3B0	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c17b9]	mov rax, qword ptr [rax + 0x20]	0	0
 0x006DF410	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c1759]		1	0
 0x006DF420	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c1749]	mov rax, qword ptr [rax + 0x108]	1	0

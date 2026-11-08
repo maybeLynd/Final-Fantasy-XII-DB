@@ -7,7 +7,10 @@ addresses: "0x0017DE10, 0x00253C70, 0x00252B60, 0x00252C80, 0x00366870, 0x01E0C2
 
 ## What the player sees
 
-- Pressing R2 switches Escape Mode on, and pressing it again switches it off; the button does not have to be held.
+- With the keyboard key bound to R2, one press switches Escape Mode on and the next switches it off; the key
+  does not have to be held.
+- With R2 on a pad, Escape Mode is on only while R2 is held and goes off when it is released
+  ([the latch](#the-latch), step 2).
 - Escape Mode takes about a second to engage after the press, with a sound while it arms.
 - In towns it switches itself off as soon as R2 is released.
 - While it is on, the party runs instead of fighting: the commands offered, combos, engagement and battle movement all

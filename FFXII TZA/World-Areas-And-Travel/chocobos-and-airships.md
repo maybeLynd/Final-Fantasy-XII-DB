@@ -7,20 +7,25 @@ addresses: "0x00303D90, 0x00303EE0, 0x00303EC0, 0x0030D9A0, 0x003135C0, 0x00303F
 
 ## What the player sees
 
-At a chocobo keeper, or a wild chocobo, the player hands over Gysahl Greens, the screen fades and
-the leader is riding, with the chocobo theme playing. The ride lasts three minutes; when the time
-runs out the party is set down where it stands, and the player can also get off by pressing the cancel
-button, which asks "Dismount?", by touching a crystal, by boarding an airship or when a scene needs the
-party on foot. The question becomes "You cannot dismount here." where the chocobo has no room to stand.
+A chocobo comes from a keeper or a wild chocobo. A keeper rents one for gil, each at its own price; a wild chocobo
+asks for one Gysahl Greens, except the one at The Shred, which asks for nothing. On the Sunlit Path an Imperial
+soldier lends one once the party has given him a Potion, and the Jahara keeper gives one free ride to Haulo Green from
+story counter 1,650 on.
+
+Then the screen fades and the leader is riding, with the chocobo theme playing. The ride lasts three minutes; when the
+time runs out the party is set down where it stands, and the player can also get off by pressing the cancel button,
+which asks "Dismount?", by touching a crystal, by boarding an airship or when a scene needs the party on foot. The
+question becomes "You cannot dismount here." where the chocobo has no room to stand.
 
 While riding, the screen shows the time left in seconds and tenths, which changes colour over the last second
 and pulses once the time is up, and up to three marks for the dashes left. The confirm button spends one
 mark on a dash at double speed, ten seconds at Frame Rate 30 and twenty at Frame Rate 60; a ride has three, and
 nothing gives them back before the next mount.
 
-At an aerodrome counter the player buys a ticket and chooses whether to watch the flight: the
-party then either sees the departure scene and arrives at the other aerodrome, or spends the flight
-on the airship's deck. Now and then a monster attacks the airship in flight.
+At an aerodrome counter the player buys a ticket for the leisure craft or a private cabin. With the leisure craft the
+party sees the departure scene and spends the flight aboard, starting in the Observation Parlour. A private cabin
+takes it straight to the other aerodrome, with the departure scene only until a story arrival scene has played. Now
+and then a monster attacks the airship in flight, and the party is taken to the Sky Saloon.
 
 ## How it works
 
@@ -89,12 +94,57 @@ touch and trigger tests (`0x0025BB74`, `0x0025BE8B`, `0x0025C367`, `0x0025C8D7`)
 `0x002675FF`) leave out every actor without it ([actor record](../Characters-And-Objects/actor-record.md#the-verb-accessors)). The byte is cleared
 to its top two bits by the record initialiser and has bit `0x40` cleared by the movement defaults.
 
+### Who lends a chocobo
+
+Eight keepers rent a chocobo for gil. Each reads its own price id with `getprice`, takes the gil with `subgill` and
+mounts the party; seven then jump it to a field outside, and the West Barbican keeper sets it down where it stands
+(`setposparty`). The prices are the price ids' rows of
+[price-list-buys.tsv](../Rewards-EXP-Gil-And-Loot/price-list-buys.tsv).
+
+| Script | Keeper's field | Actor | Price id | Gil | Jump |
+|---|---|---|---|---|---|
+| `rbn_a17` | 305 Eastgate | `NPC01` | `0xB000` | 500 | 227, The Stepping |
+| `rbn_a18` | 306 Southgate | `NPC01` | `0xB000` | 500 | 236 or 253, Throne Road, by `mp_sav季節` |
+| `rbn_a19` | 307 Westgate | `NPC01` | `0xB000` | 500 | 345, Galtea Downs |
+| `glf_a01` | 751 Banks of the Sogoht | `ガーディ` | `0xB011` | 30 | 527, Haulo Green |
+| `nac_a01` | 630 West Barbican | `NAC_ガーディ` | `0xB028` | 800 | no jump: `setposparty` in the same field |
+| `bul_b02` | 742 Sand-strewn Pass | `ガーディ` | `0xB02A` | 600 | 465, Freezing Gorge |
+| `var_a01` | 823 Sea Breeze Lane | `NPC_MOG_GARDY` | `0xB02B` | 800 | 504, South Liavell Hills |
+| `fon_b01` | 488 Hunters' Camp | `ガーディ` | `0xB02E` | 1,400 | 491, Caima Hills, or 484, The Hakawea Shore, by the answer to its question |
+
+The Jahara keeper charges 30 gil before story counter 1,650 (`0x672`). The first ride asked for from then on is free
+and sets the global byte `0x312` to 1; every later ride costs 30 gil again. Every ride from Jahara goes to Haulo
+Green.
+
+The Sand-strewn Pass keeper is part of quest 164. While the quest is taken (`isquestorder(164)`) and its stage is 30
+or below, he asks a question instead of lending: one answer sets stage 50 and the Trickster's battle flag
+(`g_btl_nm_トリックスター`), the other stage 30. At stage 70 he sets stage 90 and clears the quest (`賞金首監督::クエストクリア`) instead
+of lending. At any other stage, and while the quest is not taken, he lends for 600 gil.
+
+Five wild chocobos (`野良騎乗チョコボ`) stand in `enw_a05` (394, The Sandscale Bank), `fon_a07` (484, The Hakawea Shore),
+`fon_c01` (491, Caima Hills), `mnt_b01` (215, Rays of Ashen Light) and `ozm_c01` (536, The Shred). With at least one
+Gysahl Greens (`haveitem(0x20D8)`), the first answer to the chocobo's question takes one (`subitem(0x20D8, 1)`);
+without, the chocobo refuses.
+
+Each copy first tests for field 536 (`nowmap() == 0x218`) and there asks its question with no item, so The Shred's
+chocobo, the only one in that field, lends for nothing.
+
+On the Sunlit Path (`ozm_b04`, field 533) an Imperial soldier (`帝国兵01_before`, `帝国兵01`) asks for a Potion while the
+global byte `0x30A` is 0. Handing it over (`subitem(0, 1)`) sets the byte to 1, and from then on he lends a chocobo
+with no payment.
+
 ### Mounting and dismounting in the scripts
 
-The keeper scripts (`fon_a07` and the others) mount with `subitem(0x20D8, 1)` (Gysahl Greens),
-`suspendbattle`, a fade, `setchocobomode(1); partyallread();`, the riding motion,
-`setmapjumpgroupflag(115)`, a re-read of the map music (`musicplay(getnowmapmusicno_47a(0))`) and
-`resumebattle`. The dismount routine every script shares (`sumcho_byebye`) is:
+A keeper and a wild chocobo mount the party with the same steps: `suspendbattle`, a fade,
+`setchocobomode(1); partyallread();`, the riding motion and `setmapjumpgroupflag(115)`. Seven keepers then call
+`resumebattle` and jump the party to a field outside (above); the West Barbican keeper (`nac_a01`), like a wild
+chocobo (`fon_a07` and the others), instead re-reads the map music (`musicplay(getnowmapmusicno_47a(0))`) before its
+`resumebattle`.
+
+The dismount routine `sumcho_byebye` is defined 114 times in 101 of the 1,114 `us` scripts, in the actors
+`choco_sum_ctrl_murasawa` (81), `choco_sum_ctrl` (28) and the aerodromes' `発着イベント監視` (5). 81 copies first end summon
+mode (`getsummonmodebit`); the other 33 first end event party modes 1 and 2 (`geteventpartymodebit`,
+`geteventparty2modebit`) and then summon mode. Every copy ends with the same chocobo block:
 
 ```python
 if (getchocobomodebit()) { setchocobomode(0); partyallread(); releasemapjumpgroupflag(115); }
@@ -405,7 +455,8 @@ Every later frame (message 2) runs the state machine `0x0035CA70`:
 | 10 | waits for `0x002F1A30(1)` = 0, then `0x002DEDE0(slot)` | 11, or 12 for a negative slot |
 | 11 | waits for `0x001DBBF0(slot)` = 0 | 12 |
 | 12 | `0x00360D70` or `0x00360E50`; `0x0026DE00(0)` picks the field's track | 13 or 14, or 2 with no track |
-| 13 / 14 | `0x00360C20(track)` = 5 restarts the field music (`0x002DEC00`, `0x002DECE0`); 14 retries `0x00361630(track)` | 2 |
+| 13 | `0x00360C20(track)` = 5 restarts the field music (`0x002DEC00`, `0x002DECE0`); stays in 13 until then | 2 |
+| 14 | `0x00361630(track)`, repeated while it returns a negative value | 13 |
 | 2 | `0x00282F80`, `0x00283270(1)`, `0x002839B0`: rebuild the party status records | 3 |
 | 3 | builds the slot list from the roster (`0x00282DF0`, the `0x0209AC30 + 0xB10` membership bytes) and applies it (`0x00283870`, `0x003273D0(unit, 1)`, `0x00283840(0)`) | 4 |
 | 4 | waits for `0x00283980()`, then `0x00283940`, **`0x0032AB60(0x73, 0)`** (story flag 115 cleared, `0x0035CE74` `xor edx, edx`), `0x0026C840(0)`, `0x003634B0(0xF)` | 7 |
@@ -450,11 +501,13 @@ that bit and runs `0x0025D540` (`0x002E2777`-`0x002E277E`), then:
 - with the child's `+0x14F` bit `0x4` set, it passes the child's three authored vectors to `0x0042F3B0`: secondary
   `+0x120` to the render record's `+0x140` (`0x00420F20`), `+0x128` to its angles `+0x120` (`0x00420CF0`) and `+0x130`
   to its scales `+0x160` (`0x00420D50`); a missing vector gives 0, 0, 0, or 1, 1, 1 for the scale;
-- otherwise `0x002EDAA0(parent id, slot, child id)` (`0x002E2892`) zeroes the child record's angles and `+0x140`
-  (`0x00420CF0` and `0x00420F20` with 0, 0, 0), then `0x0042F310` ties it (a tail jump with the child id, the parent id
-  and the slot, `0x002EDB28`);
+- otherwise `0x002EDAA0(parent id, slot, child id)` (`0x002E2892`) sets the child record's angles `+0x120` and its
+  `+0x140` to 0, 0, 0 with 1.0 in the fourth float and clears its `+0x284` bit `0x200` (`0x00420CF0` and `0x00420F20`
+  with 0, 0, 0; `0x00420CF0` first copies the old angles to `+0x250`-`+0x258`, `0x00420D00`-`0x00420D18`), then
+  `0x0042F310` ties it (a tail jump with the child id, the parent id and the slot, `0x002EDB28`);
 - `0x002EDAA0` takes the child record as `[0x022C6F28] + 0x740 x child id`; for a child id of `0xFFFF` or a record whose
-  `+0x284` is 0 it skips the zeroing and still ties (`0x002EDAB9`-`0x002EDAE6`);
+  `+0x284` is 0 it skips the zeroing and still jumps to `0x0042F310` (`0x002EDAB9`-`0x002EDAE6`), which returns at once
+  for the child id `0xFFFF` (`0x0042F314`) and stores nothing on the empty record (`0x0042F380`);
 - both ties store the parent's render id at the child record's `+0x3CE` and the slot at `+0x3CC`, set `+0x290` bit
   `0x80000` and clear bits `0x40000` and `0x100000` (`0x0042F382`-`0x0042F3A0`, `0x0042F487`-`0x0042F4A4`), a
   pending attachment ([character fades](../Graphics/character-fades.md), `0x0042F880`);
@@ -487,8 +540,8 @@ In that file the entry is 0, so the rider's skeleton is linked to node 0, the ro
 `model` bone, no pool translation), by `0x0046E640` and `0x00370390` (`0x00421738`-`0x0042175C`;
 [animation playback](../Graphics/animation-playback.md#the-node-records-and-the-attach-tree)).
 
-Only an entry of `0xFFFF` would fall back to bone key `0x1E`, `n_hara`, which in `m1178` is node 1
-at (0, 1.0, 0) above the root.
+Only an entry of `0xFFFF` would fall back to bone key `0x1E`, `n_hara`, which in `m1178` is node 1,
+at (0, 1.632, 0.122) from the root.
 
 The slot-15 branch then sets the chocobo's `+0x284` bit `0x8000000` and the rider's bits `0x4000000` and `0x8000000`, bit `0x40` of
 `+0x4B7` on both, resets both presentation entries (`0x0041CFC0`), copies the 16 bytes at `0x02064AB0`
@@ -501,26 +554,44 @@ is therefore the chocobo's root, with no offset and zero angles from the tie; th
 
 ### Airship travel
 
-There is no airship verb; `setflystatus` is the only flight-named verb and no shipped script calls
-it. The five aerodrome scripts (`rbn_b01`, `nac_b01`, `byu_b01`, `alc_e01`, `var_b01`) share the
-boarding counter and departure watcher actors:
+There is no airship verb; `setflystatus` is the only flight-named verb and no shipped script calls it. Each of the
+five aerodrome scripts (`rbn_b01`, `nac_b01`, `byu_b01`, `alc_e01`, `var_b01`) defines its own boarding counter and
+departure watcher (`発着イベント監視`) actors, with its own price ids and route codes; the steps are the same in all five:
 
 1. the counter prices the route with its own price ids, `0xB002` to `0xB00F` in all, three per aerodrome and two at
    `byu_b01` ([price-list-buys.tsv](../Rewards-EXP-Gil-And-Loot/price-list-buys.tsv)), and keeps the route code
    in `global_flag[2]`;
 2. a monster attack is rolled with `rand_29(100)` against a chance that rises with quest 153's
    progress, into `battle_global_flag[1]`;
-3. `subgill(price)`; a fade; the dismount routine above; scene 214 (`eventread_e8(0, 214)`,
-   `eventplay_ec(0)`);
-4. the jump, always `mapjump(field, entrance, 1)`: with the attack, `setmapjumpgroupflag(94)` and
-   field 125 (`asp_a02`); declining to watch, the destination aerodrome by route code (`0x314`/4,
-   `0x320`/3, `0x317`/7, `0x31A`/7, `0x31D`/7); otherwise `setmapjumpgroupflag(94)` and field 124
-   (`asp_a01`, the deck), whose script jumps on to `asp_a02` or the destination by the same code.
+3. `subgill(price)`; a fade; the same dismount steps as `sumcho_byebye`, written out in `イベント再生とマップジャンプ`; scene 214
+   (`eventread_e8(0, 214)`, `eventplay_ec(0)`). A party that books a private cabin (the counter's second answer) after
+   the arrival scene in `alc_e01` has set `event_global_flag[2]` skips the scene: the counter's `高速移動時のマップジャンプ` fades,
+   runs `sumcho_byebye` and jumps at once;
+4. the jump, always `mapjump(field, entrance, 1)`: with the attack, `setmapjumpgroupflag(94)` and field 125
+   (`asp_a02`, the Sky Saloon); for a private cabin, the destination aerodrome by route code (`0x314`/4, `0x320`/3,
+   `0x317`/7, `0x31A`/7, `0x31D`/7); otherwise `setmapjumpgroupflag(94)` and field 124 (`asp_a01`, the Observation
+   Parlour), which leads on to `asp_a02` or the Air Deck; `asp_a02` jumps to the destination by the same code.
 
 Each route has its own clerk, who is placed and can be talked to only from a story counter value. The clerk's talk
 stores the route code, and the counter's switch prices it.
 [`airship-routes.tsv`](airship-routes.tsv) lists the 14 routes: from and to, the fare and its price id, the clerk,
 the story point from which the route is sold, and the steps that show it.
+
+In the Observation Parlour (`asp_a01`) the left shopkeeper's shop follows the route code in `global_flag[2]`: her
+`set` step names it (`setshopname`), and the talk the director picks for that route opens it
+(`openfullscreenmenu_48d(2, shop)`), in the ordinary and the battle version alike. The right shopkeeper is shop 36
+on every route. What each shop sells, and from which story point, is in
+[`shops.tsv`](../Items-Equipment-Shops-And-Licenses/shops.tsv), whose place column names the route.
+
+| Route, either way | Route codes | Left shop |
+|---|---|---|
+| Rabanastre - Archades | 1, 2 | 31 |
+| Rabanastre - Nalbina Town | 3, 4 | 30 |
+| Rabanastre - Bhujerba | 5, 6 | 29 |
+| Nalbina Town - Archades | 7, 8 | 32 |
+| Nalbina Town - Balfonheim Port | 9, 10 | 33 |
+| Bhujerba - Balfonheim Port | 11, 12 | 34 |
+| Archades - Balfonheim Port | 13, 14 | 35 |
 
 - Rabanastre sells Nalbina from story counter 350, Bhujerba from 670 and Archades from 4000.
 - Bhujerba's clerks are placed from the start but cannot be talked to below 710.
@@ -528,8 +599,9 @@ the story point from which the route is sold, and the steps that show it.
 - The chocobo keepers and their prices are in
   [`price-list-buys.tsv`](../Rewards-EXP-Gil-And-Loot/price-list-buys.tsv).
 
-The private airship's counter (`nac_b01`) jumps with `mapjump(dest, entrance, 4)`.
-Everything in a flight is therefore a gil write, a scene and a map jump
+The private airship's counter in `nac_b01` (`シュトラール受付`) and the `NPC01` actors of `rbn_b01`, `byu_b01` and `var_b01`
+jump with `mapjump(dest, entrance, 4)`.
+Everything in a flight is therefore a gil write, a scene that a private cabin can skip, and map jumps
 ([zone changes](zone-changes-and-mapjump.md)).
 
 ## Layouts
@@ -654,7 +726,7 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 | `[0x001D50D0()] + 0xE1D`, `+0xE1E` | u8 | debug-menu rows 229 and 230: endless ride, turbo charges refilled to 3 |
 | `0x02B47758` | ptr | the ride HUD manager `0x003CA860`; its `+0xA90` low two bits are the show (1) or hide (2) request |
 | story flag 115 (primary bank) | flag | riding, as the scripts see it |
-| story flag 94 (primary bank) | flag | set before the airship-deck and attack jumps (scripts) |
+| story flag 94 (primary bank) | flag | set before the Observation Parlour and attack jumps (scripts) |
 
 ## Modding notes
 
@@ -674,12 +746,12 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
   rebuild.
 - Mounting in a town is possible but leaves chocobo mode: the ladder puts the town flag above the
   riding bit, so the theme and the menu command do not follow.
-- Airship travel needs no engine change: it is the aerodrome script's gil charge, scene and
-  `mapjump`; the route is a story global and the attack is a local random roll.
+- Airship travel needs no engine change: it is the aerodrome script's gil charge, a scene that a private cabin can
+  skip, and `mapjump` calls; the route is a story global and the attack is a local random roll.
 
 ## Related
 
-- [Zone changes and mapjump](zone-changes-and-mapjump.md): the jump the flights and the deck use.
+- [Zone changes and mapjump](zone-changes-and-mapjump.md): the jump the flights and the Observation Parlour use.
 - [Save and teleport crystals](save-and-teleport-crystals.md): the crystal's dismount.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): the transition record that carries `+0x5B04`.
 - [The party block field map](../Party/party-data.md): the block the riding fields sit in.

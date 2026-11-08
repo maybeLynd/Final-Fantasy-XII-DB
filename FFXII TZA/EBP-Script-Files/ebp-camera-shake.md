@@ -153,6 +153,9 @@ bind stores the clock argument at `+0x17C`, the row number at `+0x17A`, the row'
 3. Slot `k` is value `k mod 4` of oscillator `k div 4`: the speed, the speed's random range, the
    size and the size's random range. Each oscillator's phase grows by `(random × range + speed)`
    times the frame factor `0x01DFE0BC`, and its output is `sin(phase) × (random × range + size)`.
+   - Each random is a float from the gameplay Mersenne Twister (`0x00379CE0`), sixteen per step, the
+     generator that also rolls hits and chests
+     ([which roll uses which generator](../Random-Numbers/which-roll-uses-which-generator.md)).
 4. The shake runs while `clock − 0.5 ≤ duration` (the margin is 0 when `0x001EDDA0` returns non-zero);
    then the entry is finished.
 5. Unless step 4 finished the entry, the clock at record `+0x17C + 0x18 x k` grows by the entry's rate (record

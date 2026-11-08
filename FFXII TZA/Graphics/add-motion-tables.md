@@ -13,6 +13,10 @@ switches between posed groups under the control of the pose sequencer. In towns 
 use a second, civilian set of tables. One high-detail body moves part of its skeleton with a partner
 model's bones, and some models are swapped for others as the story advances.
 
+Each name in `add_motion_list.txt` brings in a table `<name>.adm` and, when that file exists, a second table
+`<name>_town.adm`. A high-detail model is given the two tables whose names match its own file name, and its bones
+follow the town table while the current field is flagged for it.
+
 ## Where it comes from
 
 The files are in the archive at `ps2data/add_motion/`. All three readers run once at start-up and

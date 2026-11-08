@@ -9330,4 +9330,4 @@ prefetchdata/us/events/75.txt	us	events	no	named by no eventlist.csv record
 prefetchdata/us/events/76.txt	us	events	no	named by no eventlist.csv record
 prefetchdata/us/events/77.txt	us	events	no	named by no eventlist.csv record
 prefetchdata/us/events/78.txt	us	events	no	named by no eventlist.csv record
-prefetchdata/add-on/events/250.txt	add-on	events	yes	eventlist.csv 488,3070,250,0
+prefetchdata/add-on/events/250.txt	add-on	events	no	eventlist.csv 488,3070,250,0 asks for /PrefetchData//add-on//Events/250.txt, a name the archive does not hold

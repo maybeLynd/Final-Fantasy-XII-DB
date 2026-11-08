@@ -304,7 +304,8 @@ Calls between the functions this page cites and code in other parts of the progr
   [frame update order](../Engine-Core/frame-update-order.md).
 - Input: and on
   [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
-- Movement: `0x00355A00` calls `0x0026B0C0`, `0x0026B620`, `0x0026BB00`, `0x0026BC70`, `0x0026BD50`, `0x0026BFF0`; `0x00379430` calls
+- Movement: `0x00355A00` calls `0x0026AB60`, `0x0026B0C0`, `0x0026B620`, `0x0026BB00`, `0x0026BC70`, `0x0026BD50`, `0x0026BDD0`,
+  `0x0026BFF0`; `0x00379430` calls
   `0x0026E850`, `0x0026E880`.
 - Movement: those functions are documented on
   [party control modes](../Engine-Core/party-control-modes.md),

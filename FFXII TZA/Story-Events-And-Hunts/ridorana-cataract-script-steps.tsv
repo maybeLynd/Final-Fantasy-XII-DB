@@ -3937,7 +3937,7 @@ rwf_a0100	監督	main	69	0x012B4	117	file_var_s0_1 == 0	sysReqew	1, ロケタイ
 rwf_a0100	監督	main	70	0x012B8	119	-	skipstart	0	argument 1: the skip entry to arm, i of the calling event manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_a0100	監督	main	71	0x012C2	120	-	if	file_var_s0_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_a0100	監督	main	72	0x012C8	122	file_var_s0_1 == 1	skipexec	0	argument 1: the skip entry i of the calling script's manager m (byte +0x15) to execute	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwf_a0100	監督	main	73	0x012D4	124	-	setmapwind	3, 1, 0	argument 1: the wind preset (1 to 6; 0 copies no preset) / argument 2: the sun's azimuth in sectors of 22.5 degrees / argument 3: the sun's elevation class	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rwf_a0100	監督	main	73	0x012D4	124	-	setmapwind	3, 1, 0	argument 1: the wind preset (1 to 6; 0 copies no preset) / argument 2: the wind's azimuth in sectors of 22.5 degrees / argument 3: the wind's elevation class	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_a0100	監督	main	74	0x012DA	125	-	modelread	0x03000000	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_a0100	監督	main	75	0x012E0	126	-	modelread	0x03000001	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_a0100	監督	main	76	0x012E6	127	-	modelread	0x03000002	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6027,7 +6027,7 @@ rwf_c0102	監督	main	44	0x01523	85	-	maskopen	0	argument 1: popped and ignored	
 rwf_c0102	監督	main	45	0x01526	86	-	pausesestop	-	every sound-effect bank	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c0102	監督	main	46	0x01529	87	-	resetbehindcamerafovyroll	-	puts the behind (follow) camera's roll and field of view offsets back to 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c0102	監督	main	47	0x0152F	88	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-rwf_c0102	監督	main	48	0x0153B	89	-	setmapwind	3, 2, 0	argument 1: the wind preset (1 to 6; 0 copies no preset) / argument 2: the sun's azimuth in sectors of 22.5 degrees / argument 3: the sun's elevation class	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rwf_c0102	監督	main	48	0x0153B	89	-	setmapwind	3, 2, 0	argument 1: the wind preset (1 to 6; 0 copies no preset) / argument 2: the wind's azimuth in sectors of 22.5 degrees / argument 3: the wind's elevation class	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c0102	監督	main	49	0x01541	90	-	modelread	0x03000000	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c0102	監督	main	50	0x01547	91	-	modelread	0x03000001	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c0102	監督	main	51	0x0154D	92	-	modelread	0x03000002	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

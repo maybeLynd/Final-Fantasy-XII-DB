@@ -12,6 +12,10 @@ addresses: "0x00254B50, 0x0215F1A0, 0x002E1B10, 0x002E1A60, 0x002E0DA0, 0x002E09
 - Menus stay shut during scenes and while another menu is open.
 - When every member of the party has fallen, a notice appears, and then the main menu opens to reform the party.
 
+These screens open by request: Triangle and the map buttons post one, and a crystal's, shop's or notice board's script
+posts one with `openfullscreenmenu_48d`. Before opening anything the router checks the shared action-availability
+table, so a request is refused while a scene blocks it.
+
 ## How it works
 
 ### The router

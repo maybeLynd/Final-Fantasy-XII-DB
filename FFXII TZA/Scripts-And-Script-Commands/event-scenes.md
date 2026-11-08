@@ -11,6 +11,10 @@ A story scene: the screen fades, the party vanishes and the scene's own actors t
 over, characters talk and move on their own, and at the end control comes back. Some scenes are pre-rendered movies.
 Many can be skipped from the pause menu.
 
+Behind this, the area script asks for the scene's files to load into one of three scene slots kept apart from the
+area's own actors. The files may finish early, but the scene starts only when the script's play command lifts a hold
+on it, and a wait command can hold the script until the scene's slot goes idle.
+
 ## How it works
 
 ### Scene managers and the two gates
@@ -32,11 +36,11 @@ never set in retail, so scene verbs always proceed past it.
 |---|---|---|---|
 | `eventread_e8(slot, id)` | `0x00E8` | begin `0x00351880`, poll `0x00351C90`, result `0x003522C0` | the begin stores both and prefetches `0x001D6A70(id, slot)`; the poll waits while manager `m` is active (`+0x10` bit `0x1`) and busy (`+0x13`) (`0x00351CBD`, `0x00351CC3`) and tests neither gate; the result queues the load `0x0032FC30(m, id)` and sets the hold `0x0032ED70(m)`, and does nothing when the event switch is 0 (`0x003522D8`), the auto-test byte is 1 (`0x003522E2`) or the slot is negative (`0x003522E6`) |
 | `eventread(id)` | `0x00E7` | begin `0x003529E0`, result `0x00353080` | the begin pops the id, pushes 0 and the id back and pops them again, storing the id at `+4` and 0 at `+0`, and prefetches `0x001D6A70(id, 0)` as `eventread_e8`'s begin does (`0x003529F8`-`0x00352A3C`); the result: slot 0, the same gates, sign test and load (`0x003530AA`, `0x003530B3`, `0x003530B7`), after `0x00314D40(1)`, which sets byte `0x022C253D` to 1 and runs before the gates (`0x00353099`) |
-| `eventreadsync_ea(slot)` | `0x00EA` | begin `0x00353A10`, poll `0x003541B0` | the begin stores `m` (`0x00353A28`, `0x00353A3E`); the poll waits while `0x0032F6C0(m)` reports loads pending other than the start hold bit `0x1` (`0x0032F6CD`) in the mask's low 32 bits (`0x0032F6CA`), so for the scene's files and not for `eventplay`, calling `0x00314D40(1)` on each poll that finds loads pending (`0x003541F6`); it stops waiting when the auto-test byte is 1 (`0x003541C7`) or the event switch is 0 (`0x003541E4`). With no load pending it asks `0x0053DD10`, which always returns 1, so it stops (`0x0035420B`) and the branch to the stub `0x0016D6A0` (`0x00354210`) never runs; the `0x00264190(m)` call before the gates has its result discarded (`0x003541D8`) |
+| `eventreadsync_ea(slot)` | `0x00EA` | begin `0x00353A10`, poll `0x003541B0` | the begin stores `m` (`0x00353A28`, `0x00353A3E`); the poll waits while `0x0032F6C0(m)` reports loads pending other than the start hold bit `0x1` (`0x0032F6CD`) in the mask's low 32 bits (`0x0032F6CA`), so for the scene's files and not for `eventplay`, calling `0x00314D40(1)` on each poll that finds loads pending (`0x003541F6`); it stops waiting when the auto-test byte is 1 (`0x003541C7`) or the event switch is 0 (`0x003541E4`). With no load pending it asks `0x0053DD10`, which always returns 1, so it stops (`0x0035420B`) and the branch to the stub `0x0016D6A0` (`0x00354210`) never runs; the `0x00264190(m)` call between the two gates, after the auto-test test and before the event-switch test, has its result discarded (`0x003541D8`) |
 | `eventplay_ec(slot)` | `0x00EC` | result `0x00354B20` | releases the hold `0x00332130(m)`, then `0x001EC680(m)`, `0x0020AF10(m, −1)` and `0x001EC600()` |
 | `eventsync_ee(slot)` | `0x00EE` | begin `0x00353A10`, poll `0x00355970` | waits while `0x00267210(m)` is non-zero: manager active or busy (`0x003559A5`); it stops waiting when the event switch is 0 (`0x00355998`), and when the auto-test byte is 1 it first stores 1 into the auto-test walker's arrival word `0x01EEBADC` (`0x00355983`) |
-| `eventstartsync(slot)` | `0x0165` | begin `0x0034F3C0`, poll `0x0034F6F0` | the begin pushes a 0 flag first; waits while manager `+0x10` has bit `0x2` |
-| `eventstartsync_166(slot, flag)` | `0x0166` | begin `0x0034E460`, poll `0x0034EAB0` | waits while `+0x10` has bit `0x2`, or bit `0x1` while the flag is set and bit `0x80` is set |
+| `eventstartsync(slot)` | `0x0165` | begin `0x0034F3C0`, poll `0x0034F6F0` | the begin pushes a 0 flag first; waits while manager `+0x10` has bit `0x2` and not bit `0x1`; with bit `0x1` set the 0 flag ends the wait at once (`0x0034F703`) |
+| `eventstartsync_166(slot, flag)` | `0x0166` | begin `0x0034E460`, poll `0x0034EAB0` | waits while `+0x10` has bit `0x2` and not bit `0x1`, or has bits `0x1` and `0x80` while the flag is set; with bit `0x1` set, a clear flag or a clear bit `0x80` ends the wait whatever bit `0x2` holds (`0x0034EAC6`, `0x0034EACC`) |
 | `eventstartsync_167()` | `0x0167` | begin `0x0034FC50`, poll `0x0034F6F0` | the begin pushes two zeros: manager 1, flag 0 |
 | `eventdispose_f2(slot)` | `0x00F2` | begin `0x00356D40`, poll `0x0033F150` | `0x00332190(m)`: when manager `m` is busy (`+0x13`), active or loading (`+0x11` bit `0x8`) it sets `0x022C6D20[m]` to 1 (`0x003321BD`) and, when the manager is active, requests its teardown through `0x0026A5F0` (`0x003321CA`); a manager that is idle, inactive and not loading is left as it is (`0x003321B0`). A negative slot means the issuer's own manager, `[0x02099D70] + 0x28` (`0x00356DAC`), disposed only when it is 1 to 3 (`0x00356DB5`); from manager 0 or 4 the begin disposes nothing. The begin clears its flag (`0x00356D5C`) and sets it to 1 when `m` is the issuer's manager (`0x00356DBE`, `0x00356DC3`), and the poll halts the issuer (`+0x14` bit `0x40`) when it disposed itself. After a non-negative slot's dispose it calls the stub `0x0016D6A0(m)` (`0x00356D83`, `0x00356D9D`), which does nothing; on every path it then releases the depth-of-field focus with `0x00382B50(-1, 0, 0)` (`0x00356DD1`, [post-processing](../Graphics/post-processing.md)) and tail-jumps to `0x001EC4B0(m)` (`0x00356DE7`), which empties event-slot panel slot `m` (`0x0020A760`) and raises the scene-reset byte (`0x00214B30`) |
 
@@ -70,8 +74,15 @@ does nothing when no Steam manager `[0x01F83450]` exists (`0x00863256`) and othe
 The verb then tail-jumps to `0x0026B750(n)` (`0x0034C9CD`). It reads the frame counter `0x022C252C` through `0x00314890` and
 discards the value (`0x0026B758`), resets the counter to 0 (`0x00314010`), stores `n` at `0x022C2538` and 0 at the bytes
 `0x022C253C` and `0x022C253D` (`0x00314DF0`). It pushes `n`, not the scene id, into the event-slot panel slot of the
-issuer's manager through `0x0020AF10` (`0x001EC6A0(m, n)`, a jump to `0x0020AF10`, `0x0026B775`) and runs the debug
-cutscene JSON hook `0x001EC600`, which returns at once in retail.
+issuer's manager through `0x0020AF10` (`0x001EC6A0(m, n)`, a jump to `0x0020AF10`, `0x0026B775`).
+
+For a slot of 0 to 4, an `n` other than -1 and a slot with a name, `0x0020AF10` appends `n` to the slot's vector and
+adds 1 to the slot's count at `0x01F832B0` (`0x0020AF61`-`0x0020AFB4`).
+
+It ends with a tail jump to `0x001EC600` (`0x0026B77F`), which jumps to the cutscene JSON loader `0x001C5930` when the
+slot `0x0020AF10` marked at `0x01DFE40C` has a non-zero count (`0x001EC600`-`0x001EC617`) and otherwise returns. The
+loader's gate byte `0x01DF6E48` ships as 1 (`0x001C5958`); the
+[debug menu](../Engine-Core/debug-menu.md) has the event-slot panel.
 
 ### Movies
 

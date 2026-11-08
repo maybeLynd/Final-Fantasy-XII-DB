@@ -31,6 +31,10 @@ not ship. `menuquest.h`, in the `us`, `cn` and `kr` folders, is a C header with 
 the highest quest id (172) and the group count (3); the quest ids `0x128`-`0x13A` do not include it. The `questtim2` folders of `ch`
 and `in` hold six `q_c00`-`q_c05.tm2` pictures.
 
+A hunt's record in `menuquest.dat` gives its name, row picture and group. The group picks one of `menuquest00` to
+`02.bin`, and the hunt's place within its group picks its record there: its text, map steps and labels, and how many
+parts show at each stage of progress. `menuquest.lst` adds the petitioner line and when the row picture changes.
+
 ## Layouts
 
 ### Queued requests

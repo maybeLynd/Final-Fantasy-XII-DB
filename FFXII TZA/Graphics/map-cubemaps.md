@@ -12,6 +12,11 @@ lit surfaces pick up ambient colour from them. The pictures are cubemaps capture
 map, one set per weather slot. A surface blends the probes nearest to it, so the reflection changes as one
 walks from one part of a map to another.
 
+Each map's art carries the probe pictures as textures named by probe number and weather slot, and `cubeMapConfigs.txt`
+in the map's folder gives each probe its position, weight and radius. For every mesh of a map model the game weighs
+the probes by distance from the mesh's centre and hands the best four, in the current weather, to that mesh's
+material.
+
 ## How it works
 
 ### The probe manager

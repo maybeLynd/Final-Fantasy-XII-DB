@@ -11,6 +11,9 @@ The markers the minimap shows during play are listed in the field map script's s
 zone, and the minimap draws the icon where that object stands, once the icon's story gate
 passes. The same block lets a script move an actor onto the object an icon names.
 
+The object an icon names is an entry in one of the lists of the zone script's image (section 0), and the minimap takes
+the marker's position from that entry, not from the icon itself.
+
 ## Where it comes from
 
 Section 4 is slot 4 of the `.ebp` directory ([EBP script container](ebp-script-container.md)).

@@ -93,11 +93,16 @@ name matches.
 - `0x0015AC50(name, root, key, valueNames)` opens `key` with query access and reads each listed value
   (`0x00159F90`). A `REG_SZ` value matches as a whole; a `REG_MULTI_SZ` value is searched string by string;
   any other type sets error `0xD`. It returns a copy of the matching string.
-- `0x0015AC50` opens the key with access 1 (`0x0015AD37`) and returns 0 when that fails (`0x0015AD51`). The
+- `0x0015AC50` returns 0 when `Advapi32.dll`, `RegOpenKeyExW` or `RegCloseKey` cannot be found (`0x0015ACD2`,
+  `0x0015ACFD`, `0x0015AD29`); each is kept at `0x02EAEB38`, `0x02EAEB40` and `0x02EAEB58` once found (`0x0015ACC8`,
+  `0x0015ACF3`, `0x0015AD1F`).
+- It then opens the key with access 1 (`0x0015AD37`) and returns 0 when that fails (`0x0015AD51`).
+- The
   list `valueNames` ends at a null entry (`0x0015AD64`). Each value is matched with `0x001595F0` (`0x0015ADC7`,
   `0x0015ADFA`). A value that cannot be read, has no match, or has another type (after the `0xD` error,
-  `0x0015ADB3`) moves on to the next name; the first match ends the walk (`0x0015AE1B`), and the key is
-  closed (`0x0015AE29`).
+  `0x0015ADB3`) moves on to the next name; the first match whose copy succeeds ends the walk; a
+  match whose copy fails (`0x00159E60` returns 0) moves on to the next name (`0x0015AE1B`-`0x0015AE1E`). The key is
+  then closed (`0x0015AE29`).
 - `0x0015AE60(name, root, keys)` opens each key for reading and walks its value names with `RegEnumValueW`
   until error `0x103`, returning the first value name that matches.
 - `0x0015AE60`: the list `keys` ends at a null entry (`0x0015AF67`); each key opens with access `0x20019`

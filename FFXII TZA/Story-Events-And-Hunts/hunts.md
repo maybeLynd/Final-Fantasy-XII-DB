@@ -17,6 +17,10 @@ Each hunt's record is the bill, the accepted hunt with where the mark is, the de
 row is marked done at the part that reports the mark defeated, or for hunt 163 trapped in the urn: the `.lst`
 threshold is 3, and 4 for hunt 167.
 
+A hunt's page in the Clan Primer grows as its scripts raise the hunt's progress number in the save. A table in
+`menuquest01.bin` says how many parts of its text show at each progress value, and the row is marked done once as many
+parts show as the threshold in `menuquest.lst`.
+
 The files hold no item or gil field. The record files carry text, a
 picture, a threshold, the progress table and the map chunks only (the layouts on
 [Quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md)).

@@ -128,11 +128,11 @@ Its two callers are the model update entries `0x003DFFE0` and `0x003E00C0`, whic
 translated per-model routines `0x0040EE70`, `0x0040F390`, `0x0040D890`, `0x0040ACF0` and `0x0040B180`. Rows
 `0x022D93A0` to `0x022D942F` have no other reference, so the live vector registers end at `vf31`.
 
-`0x0036DD80` re-stores `(0, 0, 0, 1)` into `vf00` from the image constant and has 90 callers; a
-translated body calls it after every store that used `vf00` as an operand, before the constant
-is read again (`0x0025C830` does so four times, `0x00363FD0` three). `0x0036DD90` and `0x0036DDA0`
-set bits `0x80` and `0x40` of the byte `0x022D9470` (twelve callers each, `0x00361FF5`, `0x0040ADAE`,
-`0x003A29A5` and their siblings); nothing reads that byte.
+`0x0036DD80` re-stores `(0, 0, 0, 1)` into `vf00` from the image constant and is called at 90 sites in 47
+functions; a translated body calls it after every store that used `vf00` as an operand, before the constant
+is read again (`0x0025C830` does so six times, `0x00363FD0` three). `0x0036DD90` and `0x0036DDA0`
+set bits `0x80` and `0x40` of the dword `0x022D9470` with a dword `or` (each called at twelve sites in eight
+functions: `0x00361FF5`, `0x0040ADAE`, `0x003A29A5` and their siblings); nothing else reads that dword.
 
 ### Register save and restore
 
@@ -221,7 +221,7 @@ read by nothing.
 | `0x022D91A0` | `f32[4]` | ACC |  |
 | `0x022D91B0` | `f32[31][4]` |  | vf01..vf31 at `0x022D91A0` + 16n |
 | `0x022D93A0` | `...` |  | `0x022D93A0` to `0x022D942F`, cleared by `0x0036D9E0`, otherwise unreferenced |
-| `0x022D9470` | `u8` |  | flag byte: or `0x80` by `0x0036DD90`, or `0x40` by `0x0036DDA0`; nothing else reads it |
+| `0x022D9470` | `u32` |  | flag dword: or `0x80` by `0x0036DD90`, or `0x40` by `0x0036DDA0`; nothing else reads it |
 | `0x01EF93F0` | `f32[4]` | vf00 | = (0, 0, 0, 1); image constant copied by `0x0036DD80` |
 | `0x02EC0800` | `...` |  | saved register values, 16 B each |
 | `0x02EC0A00` | `...` |  | the saved addresses |

@@ -15,6 +15,10 @@ addresses: "0x003272A0, 0x003594B0, 0x00358BC0, 0x00326500, 0x00263750, 0x003384
   (`setucpcmovelockstatus`), and the controls lock when the last member of an enemy group falls
   ([Boss fights](../Battle-Actions/boss-fights.md)).
 
+Who you control is saved as a member number in the party block. Each party refresh turns that number, or a mode's own
+choice such as the chocobo, into the one leader the game reads, and every follower's place in the formation is worked
+out from that leader each frame.
+
 ## How it works
 
 ### The leader handle
@@ -137,8 +141,8 @@ summon mode when the summoner is down (`0x0023B17C`-`0x0023B1B8`). It is publish
 | `0x4` | `0x022C8005` bit `0x2` (`0x003592C0(1, on)`, `0x0023B1C0`-`0x0023B1CD`) | the controlled actor is not turned to the stick |
 | `0x2`, inverted | `0x0209A2C5` (`0x0026BD40`, `0x0023B1E1`-`0x0023B1FA`) | read by the gameplay capability checks |
 
-The full list of contributions, and the gameplay checks that read `0x0209A2C5`, are on
-[Action availability](../Controls-And-Input/action-availability.md).
+The full list of contributions, how each lock bit is published, and the readers and writers of `0x0209A2C5` are
+under [The locks](../Movement-And-Pathfinding/player-movement.md#the-locks) in Player movement.
 
 ### The movement locks
 

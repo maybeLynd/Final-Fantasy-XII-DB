@@ -41,9 +41,9 @@ The namespace is the outermost component of the decorated name, so an enclosing 
 
 | Namespace | Primary vtables | What it is |
 |---|---|---|
-| `Phyre` | 1,743 | PhyreEngine: `PInternal` 168, `PPostProcessing` 37, `PInputs` 34, `PAnimation` 29, `PPhysics` 25, `PRendering` 21, `PFramework` 15, `sce` 14 and the class-descriptor templates |
+| `Phyre` | 1,739 | PhyreEngine: `PInternal` 168, `PPostProcessing` 37, `PInputs` 34, `PAnimation` 29, `PPhysics` 25, `PRendering` 19, `PFramework` 15 and the class-descriptor templates (14 of them over `sce::Vectormath` types) |
 | `SQEX::Sd` | 218 | the Square Enix sound driver |
-| global namespace | 130 | the game's own classes, the Steam callback templates and `type_info` |
+| global namespace | 134 | the game's own classes, the Steam callback templates, `type_info` and four `TAsyncUpdate<…>` templates over Phyre D3D11 resources |
 | Bullet (`bt*`) | 76 | the physics library Phyre uses: 53 top-level, 7 nested, `btAxisSweep3Internal<unsigned short>` and 15 function-local callback classes |
 | `PPFX`, `Yebis` | 43 | the Yebis post-processing library and its two D3D11 shims |
 | `std`, `eastl` | 20 | stream and allocator classes of the C++ libraries |
@@ -71,13 +71,15 @@ The game's own classes fall into a few families:
 No class belongs to combat, the party, items, spawning, the script interpreter or the world: those
 systems are procedures over flat record tables, and the only game code with classes is the code
 that sits against the engine (application, rendering, loading, input, audio, saving). The
-PhyreEngine classes carry the engine's own reflection as well: 1,199 of the Phyre vtables are
-`PClassDescriptor…<T>` templates, one per reflected type.
+PhyreEngine classes carry the engine's own reflection as well: 1,183 of the Phyre vtables are
+`PClassDescriptor…<T>` templates for 409 reflected types: 367 types own three of them (`PTexture3D` has
+`…Abstract`, `…Concrete` and `…ForType`), 40 own two and 2 own one.
 
 ### Inheritance and shared bodies
 
-2,101 of the 2,242 primary vtables name at least one base, up to 13 deep through the Phyre
-descriptor templates. 44 vtables sit at a non-zero object offset, in 34 classes: 28 of them have two or
+2,101 of the 2,242 primary vtables name at least one base: up to 13 bases (the Phyre
+`PClassDescriptorHeader<T>` templates) and up to 10 levels deep (`Phyre::PPhysics::PPhysicsCapsule`, `0x00D79A38`).
+44 vtables sit at a non-zero object offset, in 34 classes: 28 of them have two or
 three vtables, and six `std` stream classes have that secondary vtable only. This is multiple and virtual
 inheritance: `PrimitiveRendererD3D11` carries a second vtable
 at `+8` for `IBatchMergerEvent` (`0x00D86AD0`, one slot), and the `std` stream classes carry theirs
@@ -93,16 +95,22 @@ that class alone, and a hook on a shared body reaches every class that folded on
 ### How an object gets its class
 
 A constructor stamps the vtable address into the object's first qword with
-`lea reg, [vtable]; mov [object], reg`. 2,282 of the 2,286 vtables are loaded by such a `lea` in
-`.text`, at 5,786 sites; the four that no `lea` loads are `AdapterInfoBase` (`0x00906868`),
-`Phyre::PClassDataMemberDynamicType<PClassDataMemberDynamic>` (`0x00D58468`),
-`SoundObjectManagerCallbackHandler` (`0x01CB4328`) and `SQEX::Sd::HashTable` (`0x01CB4AE8`), bases
-that are never constructed on their own.
+`lea reg, [vtable]; mov [object], reg`.
 
-Static objects get theirs from the C++ initializers that
+2,282 of the 2,286 vtables are loaded by such a `lea` in `.text`, at 5,786 sites; the four that no `lea` loads are `AdapterInfoBase` (`0x00906868`),
+`Phyre::PClassDataMemberDynamicType<PClassDataMemberDynamic>` (`0x00D58468`),
+`SoundObjectManagerCallbackHandler` (`0x01CB4328`) and `SQEX::Sd::HashTable` (`0x01CB4AE8`), whose vtable
+address is already stored in static objects in the image file's `.data`: `0x01E02580`, `0x01F2DF30`,
+`0x01F403D0`, and `0x01F40440`, `0x01F40C50` and `0x01F41460` for the last.
+
+`AdapterInfoBase` is the base of `AdapterInfos`, `AmdAdapterInfo` and `NvidiaAdapterInfo`; the other three are
+the base of no class.
+
+Most static objects get theirs from the C++ initializers that
 run before the game's entry point or, like the debug-log sink at `0x02CB6140`, on first use
 (`Phyre::PTTYCallback`'s vtable `0x00D360A0`, [debug logging](debug-logging.md)); either way a
-global that is zero in the image file has a class fixed at link time.
+global that is zero in the image file has a class fixed at link time. The six static objects
+named above hold their vtable address in the image file itself.
 
 ## Layouts
 
@@ -120,7 +128,7 @@ vtable      ptr slot[0..n-1], each into .text
 
 | Fact | Value |
 |---|---|
-| vtables / class names | 2,286 / 2,248, in [class-hierarchy.tsv](class-hierarchy.tsv) |
+| vtables / class names | 2,286 / 2,248, in [class-hierarchy.tsv](class-hierarchy.tsv): vtable, decorated name, class (filled for the 626 rows without template arguments; the others are named by decorated), namespace, offset in the object, slots, base count, and the bases in base-array order joined by ` < `, some in decorated form |
 | primary vtables / secondary | 2,242 / 44 (34 classes) |
 | virtual slots / distinct functions | 25,801 / 6,886 |
 | functions in exactly one class | 4,275 ([vtable methods](vtable-methods.md)) |
@@ -131,9 +139,13 @@ vtable      ptr slot[0..n-1], each into .text
 
 At link time the compiler emits the records; at process start the C++ initializers stamp the
 static objects' vtables; at run time a constructor stamps each new object, and a virtual call
-reads `[[object] + slot × 8]`. Nothing in the game reads the type descriptors: the executable
+reads `[[object] + slot × 8]`. No cast or typeid reads the type descriptors: the executable
 imports none of `__RTDynamicCast`, `__RTtypeid`, `__RTCastToVoid` or the `__std_type_info_*`
 helpers, so `dynamic_cast` and `typeid` are not linked.
+
+C++ exception handling does read them: the 69 calls to `_CxxThrowException` (through `0x00861ECC`) pass throw
+records whose catchable types name type descriptors (`0x0019501D` throws `std::bad_cast`, caught as it or as
+`std::exception`), and `__CxxFrameHandler3` matches catch clauses by them.
 
 ## State
 

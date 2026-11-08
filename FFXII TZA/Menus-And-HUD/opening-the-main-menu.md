@@ -32,10 +32,13 @@ does nothing.
    [0x01E0C3BC], 1)`, which runs the band builder `0x002C99E0` (`0x00280D72`-`0x00280D84`,
    [menu screens](menu-screens.md)).
    - The descriptor `0x00915C10` (`0x00247570`) and the opening through `0x00246AC0` belong to the side mask `0x0029D340` at
-     `[0x0209C318]`, a `0xC0`-byte widget built the first time (`0x00280D89`-`0x00280DC6`): `0x00246AC0` hands it to
-     `0x00246AD0`, which attaches it, starts its forward run and sends message 14
+     `[0x0209C318]`, a `0xC0`-byte widget built the first time (`0x00280D89`-`0x00280DC6`). On every run, not only the
+     first, `0x00246AC0` hands it to `0x00246AD0` (`0x00280D93`, `0x00280DC6`)
      ([widgets](widgets.md#the-tree), [widgets](widgets.md#opening-and-closing-runs),
      [widget messages](widget-messages.md)).
+     - `0x00246AD0` attaches it when it has no parent (`0x00246AE5`). In run state 0 or 1 it starts its forward run
+       and sends message 14; in state 4 it reverses the closing run and sends message 14; in states 2, 3 and
+       5-15 it starts no run and sends no message (`0x00246B5C`-`0x00246B6C`).
    - The main menu opens itself under the root with `0x00246AD0` on message 16, sent when its resources have loaded
      (`0x00280E62`-`0x00280EA7`).
 7. **While it is open.** The drain sets action availability row 7 to `0x100203` and the main loop to mode 4, which

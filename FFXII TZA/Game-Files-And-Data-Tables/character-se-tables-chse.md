@@ -10,9 +10,14 @@ addresses: "0x002EA530, 0x021641A8, 0x002ED950, 0x002EA6E0, 0x002E60F0, 0x002ED9
 Each character, monster, summon and weapon model has its own footsteps, cries and swing sounds. Those
 sounds are played by the model's animations ([Animation sounds](../Sound-And-Music/animation-sounds.md)), but
 the banks they come from are named here: one row per model, giving the sound blocks to load with the model
-and, for 39 character, guest and summon models, the bank their battle shouts come from. A model with an
+and, for 39 models (14 characters, 11 NPC models, 13 summons and the monster model `m1208`), the bank their
+battle shouts come from. A model with an
 empty row loads no sound blocks; background objects, gadgets and treasure chests ship with every row
 empty.
+
+When a model's file arrives, the game reads its row and loads the named sound blocks with it. An animation sound then
+picks a block by its group: groups 1 and 2, footsteps among them, come from the model's own row, and group 0 from the
+row of the model held in its first attach slot, as weapons are.
 
 ## Where it comes from
 
@@ -128,7 +133,7 @@ allocator `0x002E25E0` set (`0x002E2627`, `0x002E262B`).
   until `0x0032E4D0` answers 0 (`0x002E6290`).
 - Then `0x0036D200` runs on the handle (`0x002E61D6`). A handle of 0 stores -1 and moves on (`0x002E622D`). Any other
   is registered with `0x003A1650`, and the block handle it returns is
-  stored in the binding's slot word; a failed registration (-1) moves on, and otherwise the task waits until
+  stored in the binding's slot dword; a failed registration (-1) moves on, and otherwise the task waits until
   `0x003A1290` answers 2 (`0x002E61FE`).
 
 After the third slot it sets the binding's ready bit, and runs the release `0x002EAEB0` when one was
@@ -177,9 +182,9 @@ are the verbs `charseplay_move_51e` (`0x0034B7C0`), `charseplay_voice_520` (`0x0
 sound helper `0x0046CC70` that presentation commands `0x19` and `0x29` use, and `0x0046CC20`
 ([authored presentation commands](../Graphics/authored-presentation-commands.md)).
 
-It reads the block handle from word `+0x30 + 4 × group` of a binding (`0x002E9F62`). The binding hangs off
+It reads the block handle from dword `+0x30 + 4 × group` of a binding (`0x002E9F62`). The binding hangs off
 `+0xC0` of the actor the sound resolves to: `0x00263F40` (`0x002E9DF9`) replaces an actor whose byte `+0x18` is 1
-with the record `0x003587C0` finds for its bytes `+0x19` and `+0x1A`.
+with the record `0x003587C0` finds for its byte `+0x19` and word `+0x1A`, when it finds one.
 
 - Groups 1 and 2 use the actor's own model binding, `[[actor + 0xC0] + 0x08]`, so `block1` and `block2`.
 - Group 0 uses the binding attached in the model's first attach slot, `[[actor + 0xC0] + 0x38]`
@@ -197,9 +202,9 @@ with the record `0x003587C0` finds for its bytes `+0x19` and `+0x1A`.
   matches its registry record (`0x003A1240`, called at `0x002E9FB2`).
 
 Before any of that, `0x002E9D90` returns -1, so no sound plays, while byte `0x022CB726` is set (`0x003603C0`,
-`0x002E9DB2`) or a skip of mask index 1 to 3 has executed (`0x00360670`, `0x002E9DBF`), unless both bytes
-`0x0215FD54` and `0x0215FD55` are set (`0x002E9DC5`-`0x002E9DD5`), for a negative variant (`0x002E9DDD`) and for a
-null actor (`0x002E9DF0`). The script binder `0x0026C8C0` sets both bytes to 1 through `0x002EC590(1)` and
+`0x002E9DB2`), while a skip of mask index 1 to 3 has executed (`0x00360670`, `0x002E9DBF`), while the bytes
+`0x0215FD54` and `0x0215FD55` are not both set (`0x002E9DC5`-`0x002E9DD5`), for a negative variant (`0x002E9DDD`) and
+for a null actor (`0x002E9DF0`). The script binder `0x0026C8C0` sets both bytes to 1 through `0x002EC590(1)` and
 `0x002EC5A0(1)` (`0x0026CA75`, `0x0026CA7F`).
 
 It also returns -1 unless the resolved actor's manager `0x00263FF0(byte +0x15)` has bit `0x20` of `+0x17` set
@@ -225,8 +230,10 @@ again. Both bytes are 0 until the first script binding:
   shipped rows reads past it.
 - Edit the `in` and `ch` copies alike: which one loads depends on the language.
 - Use `0xFFFF` for an empty slot; any value with bit `0x8000` set is treated as an empty slot.
-- Give `block0`-`block2` only ids that name a shipped `.seb` by the rule on
-  [Sound banks](../Sound-And-Music/sound-banks.md): 0-2, 200-499 or 700 and up.
+- Give `block0`-`block2` only ids that reach a shipped `.seb` by the rule on
+  [Sound banks](../Sound-And-Music/sound-banks.md): 0, 2, 200-434 and 700-709 load the `.seb` of the same number,
+  id 1 loads `se007.seb`, ids 192, 193 and 195 load `se000`, `se007` and `se002`, and ids 500-634 load
+  `se300`-`se434`.
 - `block0` sounds only when the model is attached to another model's first attach slot, as weapons are.
   `block1` is the footstep block; its variant is the ground type.
 - Keep `voiceBank` from 0 to 63, the length of the kind-33 array; a battle unit with an override word wins

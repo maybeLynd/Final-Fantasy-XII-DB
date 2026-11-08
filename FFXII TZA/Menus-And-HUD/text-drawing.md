@@ -12,6 +12,10 @@ addresses: "0x001E8070, 0x001E8580, 0x002142A0, 0x00213FE0, 0x00212E70, 0x002131
 - Text keeps its size and place at any window resolution, because glyph positions are given in a fixed
   1920 x 1080 frame and scaled to the window.
 
+Each letter is cut from its font's picture as a small textured square. Its colour and its border colour come from one
+of the 28 `fontclut` palette entries, and the squares of each font are gathered into one batch that is drawn when the
+text is flushed.
+
 ## How it works
 
 ### From a glyph to a batch
@@ -264,7 +268,7 @@ it (`0x002D2C3F`, `0x002D2C64`). For each of the header's nodes that has the dra
 - the record takes the node's scale `+0x28` as the size `+0x60`, `+0x2C` as the palette byte `+0x5C`, `+0x2D`, `+0x2F`
   and the low byte of the field under mask `0xFFC0` of `+0x08` (its bits under `0x3FC0`, `0x00243912`-`0x0024391F`) as
   `+0x66`, `+0x65` and `+0x64`, and `+0x24` as the colour `+0x90` unless bit `0x40000` of the
-  dword at `+0x5C` is set; node flag `0x2` makes the alpha scale `+0x5A` `0x80` for that node;
+  dword at `+0x5C` is set; node flag `0x2` makes the brightness (RGB scale) `+0x5A` `0x80` for that node;
 - with `+0x2D` bit `0x4` the node is clipped to its rectangle (`0x0029FE20`, `0x00249FD0`) and recentred from
   `[0x0208F574] / 4` and its `+0x0A`;
 - a string `0x00364980` reports as UTF-16 is skipped; any other gets a context from `0x002B3400`, the colour bytes scaled

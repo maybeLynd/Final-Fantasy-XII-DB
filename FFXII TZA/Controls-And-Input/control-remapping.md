@@ -14,6 +14,10 @@ addresses: "0x01F80F90, 0x0023C5C0, 0x001E1050, 0x00198A00, 0x01DF13E0, 0x00195D
 - Some keys refuse to be bound, and the screen cannot be left while a first-profile control is unbound.
 - A row restores every default.
 
+Each binding is kept in one of three keyboard profiles laid out like `keymap.ini`. The game does not read the profiles
+for input: after every change it copies them into the records it checks for key presses, and leaving the screen writes
+them back to `keymap.ini`.
+
 ## How it works
 
 ### Where a binding lives

@@ -12,6 +12,9 @@ world matrix and a list of components. The engine uses the registry on this page
 entity does this matrix, or this object, belong to", for example when a physics body reports a
 contact.
 
+When a `.phyre` file is loaded, every entity in it that has a world matrix is entered into this registry; an entity
+given a new matrix with `setWorldMatrix` is moved to that matrix in the registry.
+
 ## How it works
 
 ### Entities and components

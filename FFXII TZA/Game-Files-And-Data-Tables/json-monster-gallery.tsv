@@ -32,7 +32,7 @@ MonsterId28	m1046	Suriander	7143433	4634				0	1.0	0	1.0	0.35	-0.5	0.785	30.0	13.
 MonsterId29	m1054	Mimic, Killbug	7143428	4621				16	1.0	0	1.0	0.2	-0.7	0.785	7.0	0.0		0	255	255	255	255	255	255		1.0	0	0	0	1.0	0	0	0	0	0	0	1.0	0	0	0	Bestiary entry 29 shows model 0x006D0004 (m1054), used by Mimic, Killbug
 MonsterId30	n1097	Zombie	7208992	4613				0	1.0	0	1.0	0.25	-1.0	0.785	0	0		0	255	255	255	255	255	255		1.0	0	0	0	1.0	0	0	0	0	0	0	1.0	0	0	0	Bestiary entry 30 shows model 0x006E0020 (n1097), used by Zombie
 MonsterId31	m1057	Tiny Mimic, Tiny Bug, Minibug	7143434	4621				0	1.0	0	1.0	0.35	-0.7	0.785	23.0	329.0		0	255	255	255	255	255	255		1.0	0	0	0	1.0	0	0	0	0	0	0	1.0	0	0	0	Bestiary entry 31 shows model 0x006D000A (m1057), used by Tiny Mimic, Tiny Bug, Minibug
-MonsterId32			7208993	4613				29	1.0	0	1.0	0.25	-0.9	0.785	0.0	0.0		0	255	255	255	255	255	255		1.0	0	0	0	1.0	0	0	0	0	0	0	1.0	0	0	0	Bestiary entry 32 shows model 0x006E0021
+MonsterId32	n1100		7208993	4613				29	1.0	0	1.0	0.25	-0.9	0.785	0.0	0.0		0	255	255	255	255	255	255		1.0	0	0	0	1.0	0	0	0	0	0	0	1.0	0	0	0	Bestiary entry 32 shows model 0x006E0021 (n1100)
 MonsterId33	m1158	Battery Mimic	7143477	4621				16	1.0	0	1.0	0.65	-0.7	0.785	-12.0	306.0		0	255	255	255	255	255	255		1.0	0	0	0	1.0	0	0	0	0	0	0	1.0	0	0	0	Bestiary entry 33 shows model 0x006D0035 (m1158), used by Battery Mimic
 MonsterId34	m1258	Specter	7143652	4634				0	1.0	0	1.0	0.5	-1.6	0.785	30.0	327.0		0	255	255	255	255	255	255		1.0	0	0	0	1.0	0	0	0	0	0	0	1.0	0	0	0	Bestiary entry 34 shows model 0x006D00E4 (m1258), used by Specter
 MonsterId35	m1159	Tiny Battery	7143478	4621				0	1.0	0	1.0	0.25	-0.7	0.785	30.0	23.0		0	255	255	255	255	255	255		1.0	0	0	0	1.0	0	0	0	0	0	0	1.0	0	0	0	Bestiary entry 35 shows model 0x006D0036 (m1159), used by Tiny Battery
@@ -278,7 +278,7 @@ MonsterId274	m1101	Firemane	7143518	4634				0	1.0	0	0.7	0.55	-1.3	0.785	-11.0	32
 MonsterId275	m1134	Rafflesia	7143469	4634				0	1.0	0	0.45	0.45	-1.6	0.785	-15.0	342.0	-7000	0	255	255	255	255	255	255		1.0	0	0	0	1.0	0	0	0	0	0	0	1.0	0	0	0	Bestiary entry 275 shows model 0x006D002D (m1134), used by Rafflesia
 MonsterId276	m1058	Mimic Queen	7143438	4621				0	1.0	0	0.3	0.75	-0.8	0.785	30.0	332.0	-7000	0	255	255	255	255	255	255		1.0	0	0	0	1.0	0	0	0	0	0	0	1.0	0	0	0	Bestiary entry 276 shows model 0x006D000E (m1058), used by Mimic Queen
 MonsterId277	n1105	Daedalus	7208998	4552				0	1.0	0	0.925	0.5	-1.203	0.785	21.0	291.0	-7000	0	255	255	255	255	255	255		1.0	0	0	0	1.0	0	0	0	0	0	0	1.0	0	0	0	Bestiary entry 277 shows model 0x006E0026 (n1105), used by Daedalus
-MonsterId278			7208966	4553				0	1.0	0	1.0	0.25	-1.2	0.785	14.0	334.0		0	255	255	255	255	255	255		1.0	0	0	0	1.0	0	0	0	0	0	0	1.0	0	0	0	Bestiary entry 278 shows model 0x006E0006
+MonsterId278	n1021		7208966	4553				0	1.0	0	1.0	0.25	-1.2	0.785	14.0	334.0		0	255	255	255	255	255	255		1.0	0	0	0	1.0	0	0	0	0	0	0	1.0	0	0	0	Bestiary entry 278 shows model 0x006E0006 (n1021)
 MonsterId279	m1187	Tyrant	7143575	4620				0	1.0	0	0.55	0.5	-1.1	0.785	22.0	327.0	-7000	0	255	255	255	255	255	255		1.0	0	0	0	1.0	0	0	0	0	0	0	1.0	0	0	0	Bestiary entry 279 shows model 0x006D0097 (m1187), used by Tyrant
 MonsterId280	m1078	Demon Wall	7143470	4613				0	1.0	0	0.5	0.55	-1.3	0.785	-11.0	325.0	-7000	0	255	255	255	255	255	255		1.0	0	0	0	1.0	0	0	0	0	0	0	1.0	0	0	0	Bestiary entry 280 shows model 0x006D002E (m1078), used by Demon Wall
 MonsterId281	m1188	Hydro	7143576	4620				0	1.0	0	0.6	0.4	-1.2	0.785	-3.0	334.0	-7000	0	255	255	255	255	255	255		1.0	0	0	0	1.0	0	0	0	0	0	0	1.0	0	0	0	Bestiary entry 281 shows model 0x006D0098 (m1188), used by Hydro

@@ -2,7 +2,7 @@ opcode	mnemonic	length	handler	field2	field4	field16	field20	effect
 0x00	NOP	0	0x0025E613	0	0	0	0	advance the pc by the instruction length; nothing else (the common tail every handler returns through)
 0x01	LABEL	0	0x0025E60A	8	0	0	0	inert: shares the invalid-opcode target 0x0025E60A (marks the tick finished and advances)
 0x02	TAG	0	0x0025E60A	7	0	0	0	inert, as 0x01
-0x03	SYSHALT	1	0x0025E5EA	0	0	0	0	halt: set actor +0x14 bit 0x40 and rewind the pc, so the instruction repeats every tick
+0x03	SYSHALT	1	0x0025E5EA	0	0	0	0	halt: set actor +0x14 bit 0x40 and rewind the pc to the instruction (0x0025E607); while the bit is set the interpreter returns at its entry check, and request selection clears the bit when it selects an entry (0x003DB774)
 0x04	SYSTEM	1	0x0025E649	0	0	1	1	pop one value and discard it
 0x05	OPLOR	1	0x0025E664	0	0	1	1	logical OR: pop b, pop a (int, floats truncated), push (a != 0 or b != 0)
 0x06	OPLAND	1	0x0025E6D8	0	0	1	1	logical AND: push (a != 0 and b != 0)

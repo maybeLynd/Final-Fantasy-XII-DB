@@ -115,6 +115,10 @@ belong to one structure, Phyre serialization's scalar-conversion tree:
   argument is non-zero, which both its callers give (`0x0059AF0D`, `0x0059BA0D`), and for (run-time type, file type)
   when it is 0 (`0x0059D39C`-`0x0059D3B2`).
 
+Put simply, Phyre's serialization code looks up a converter for each pair of number types, the type stored in the file
+and the type the running code uses, such as `double` to `float`. All 144 pairs of its twelve number types have one;
+any other pair converts nothing.
+
 The 144 nodes share 68 routines. Every routine takes `(source base, destination base, desc, context)`,
 where `desc` holds the element count, the source stride, the destination stride and a byte that swaps
 the two field offsets read from the context, and converts `count` elements, four per loop pass. The

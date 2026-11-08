@@ -13,12 +13,17 @@ addresses: "0x00300CE0, 0x00307B0D, 0x002F91A0, 0x002F9240, 0x002FB6C0, 0x002F94
 - **Hitting** a foe gives MP with Inquisitor (augment 86) or Warmage (augment 20), each only for actions whose
   row carries that augment's mark.
 - **Defeating** a foe gives a quarter of its level in MP with Headsman (augment 23).
-- In the areas whose `navimapdata.bin` record sets MP regime 2 or 3 (Terminus No. 7, the Necrohol of Nabudis,
-  the Great Crystal, the Pharos, the Henne Mines' Site 7 and Giruvegan; [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)),
+- In the areas whose `navimapdata.bin` record sets MP regime 2 or 3 (among them Terminus No. 7, the Nabreus
+  Deadlands, the Great Crystal, the Necrohol of Nabudis, the Pharos, the Lhusu Mines' Site 7, the Stilshrine of
+  Miriam and Giruvegan; [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)),
   the MP from damage and kills is tripled and walking recovery runs three times as fast.
 - The Channeling licenses (augments 91-93) lower what an action costs.
 
 Healing gives no MP, and neither does damage between two units on the same side.
+
+The MP for a hit and the walk for a point both come from one small table in `battle_pack.bin`. The game looks up the
+size of a hit in its first twenty rows for the MP it gives, and current MP in its last five rows for the walk to the
+next point.
 
 ## How it works
 
@@ -96,6 +101,10 @@ The factor is row byte `+0x03` for a summoned Esper (a party record of type `0x1
 for everyone else (`0x002FB752`-`0x002FB7FE`). A damage of 0 gives 0, as does a negative one (`0x002FB6DE`-`0x002FB6E4`).
 The thresholds are the rows' 16-bit words `+0x00` (`0x002FB73F`), and the Esper test needs a stats record with byte
 `+0x05` = 0 and type `+0x04` from `0x1B` to `0x27` (`0x002FB752`-`0x002FB76E`).
+
+Row i is at `0x0020E600([[0x02EBF0B8] + 0x0C]) + i × u16 [[0x02EBF0B8] + 8]`, summed in 32 bits (`0x002FB731`,
+`0x002FB7A4`, `0x002FB85E`). With `[0x02EBF0B8]` null, or that base 0, the row address is 0 and the first threshold read
+faults (`0x002FB703`, `0x002FB711`, `0x002FB73F`).
 
 ### Rich areas
 

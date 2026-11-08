@@ -18,6 +18,10 @@ Standalone TIM2 files sit in the archive under `ps2data/image/ff12/myoshiok/` as
 `<language>/quest/menuquest.nfs`. Many more TIM2 images are embedded in other files: packs, `.dat`
 handbook bundles, `.ebp` scripts and `.mpk` map packs.
 
+A TIM2 picture holds a grid of colour numbers followed by its palette. When the file arrives the game makes a texture
+from the grid and one palette for every 256 colours, or every 16 for a 4-bit picture, and names them with the name the
+requesting screen gave.
+
 A standalone menu picture is requested as a kind-7 resource with a texture entry: `0x002493D0` files the
 request (`0x00249210` with a last argument of 1, so the buffer is taken top-down with `0x0036A190`), takes an entry
 from the 64-entry texture table at `0x0208F580` (`0x0024A4E0` with the caller's name and flags, `0x48` bytes each)
@@ -274,8 +278,12 @@ also written by the font-pack completion `0x0039C150`.
 - `0x003BC4E0`, the map-data widget, registers the TIM2 inside the guide file it holds at `+0xF8` (at that
   file's u16 `+0x0A`, `0xFFFF` for no picture, `0x003BD8F0`), with `0x0017FBC0(4)`; it, `0x003BBFB0` and `0x003BC970`
   unregister it with `0x0017FA70(4)`.
-- `0x00575710`, the handbook page, registers the TIM2 at the bundle's i32 `+0x0C` (unless -1), with
-  `0x0017FBC0(6)` when its kind byte `+0xD2` is 4; `0x00575640` unregisters it.
+- `0x00575710`, the handbook page, registers the TIM2 at the bundle's i32 `+0x0C` (unless -1) when its slot
+  byte `+0xC8` is 1 (`0x0057572E`-`0x00575738`), with `0x0017FBC0(6)` when its kind byte `+0xD2` is 4;
+  `0x00575640` unregisters it.
+  - For kind 5 it hands the sheet to the font manager as `handbook_monster<NNN>.txt`, `NNN` being the word
+    `+0xCC`: `0x0017FA90(NNN + 1, 1, name, 7)`, `0x0017FB70(NNN + 1)`, `0x0017F790(NNN, sheet)` and `0x0017FBE0()`
+    (`0x00575782`-`0x005757D9`).
 - `0x0039BB60(buffer)` clears the first of slots 1 to 7 whose low 32 bits equal the buffer's and lays out
   every slot again; a buffer not found changes nothing.
 - `0x0039BB30` (from `0x0029CE40`, which also zeroes the `0x0209C320` table) clears `0xF0` bytes from

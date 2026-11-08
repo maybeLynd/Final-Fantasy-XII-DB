@@ -17,6 +17,11 @@ addresses: "0x02B457E0, 0x003BC450, 0x003BC2D0, 0x00253780, 0x020927D0, 0x003C1F
 
 [Map screens](../Menus-And-HUD/map-screens.md) covers the screens themselves; this page covers the files they read.
 
+A sub-location's number is its place in the directory of `menumap_common.bin`; it picks its zone pictures in
+`menumap_subNN.bin` and its record of zones and exits in `menumap_location.bin`. A zone counts as explored once enough
+of its cells are, by a count in `menumap_common.bin`, whose schedule also picks the guide line from a
+`menumap_guideNN.bin` by story progress.
+
 ## Where it comes from
 
 All six kinds are resource kind 7 files under `ps2data/image/ff12/myoshiok/<folder>/worldmap/`:
@@ -573,9 +578,17 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
   zone name (`0x00377B60`) and the picture size. For a marker: the destination, resolved by `0x003BDDE0`; the
   label text, or "???" (`0x3EC`) while locked; destination 13 (`sav01_s01`) becomes 47 (`sav01_s02`) when
   the story gate `0x107` passes (`0x0032A8A0`).
+- While the widget's `+0xD0` has bit `0x2000`, which the location page `0x003BE3A0` sets on its first pass at
+  location 13 or 47, `0x003C2320` swaps destination 13 for 47 when bit `0x4000` is set, instead of testing the
+  gate (`0x003C24AA`-`0x003C24C4`).
+- When `0x003C2320` swaps the destination, `destPoint` becomes `0x003BE700(47, location)`, the first marker of
+  record 47 whose `dest` is the location the page shows (`0x003C24C6`-`0x003C24DA`); with no such marker the
+  destination stays 13 and `destPoint` is `0xFF` (`0x003C24E1`).
 - `0x003BCDE0(n, i, link, out)` keeps a link when its gate passes and, outside screen mode 6, when `0x003C1180`
-  accepts its point at `+4` or `+0xC`: the zone's area map is owned (`0x002543F0`), `0x00377A40` accepts the
-  field, or the point's cell is explored.
+  accepts its point at `+4` or `+0xC`: the zone's gate key item is owned, for a zone gated by a key item
+  (`0x003C06E0` bit `0x8`), otherwise the zone's area map is owned (`0x002543F0`) (`0x003C1193`-`0x003C11B6`);
+  `0x00377A40` accepts the field; the zone has no explored-cell mask (`0x003C120C`); or the point's cell is
+  explored.
 - Point i must also pass its gate (`0x003C18A0` for a zone, `0x003C0F70` for a marker), be a zone, lack draw bit
   `0x800` (`0x003BCBA0`) and have its field id at one end of the link (`0x003BCE1D`-`0x003BCEA7`). The record's
   zone with the field id at the other end is the far zone (`0x003BCF20`-`0x003BCF4A`).
@@ -745,7 +758,7 @@ While the widget's `+0xD0` has bits `0x100` and `0x200`, the maps read the selec
 | Function | Reads | Out of range | Result |
 |---|---|---|---|
 | `0x00254380(group)` | group table | 0 | the group's area |
-| `0x002543A0(area)` | name table | area 0 or above the count: empty string | the area name (`0x002F9920`) |
+| `0x002543A0(area)` | name table | area 0, or at or past the count: empty string | the area name (`0x002F9920`) |
 | `0x002543D0(area)` | type table | 0 | the area's type byte, copied by `0x003BD040` |
 | `0x002543F0(group)` | map table | 0, also for `0xFFFF` | whether the key item is owned (`0x00309EC0`) |
 

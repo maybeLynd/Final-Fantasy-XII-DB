@@ -13,6 +13,10 @@ icons with their countdowns, and whether the member is the leader, KO'd, engaged
 in the middle of an action. None of those screens reads the party's stats directly: each asks for a
 fresh 192-byte snapshot of the member and reads that.
 
+The snapshot is built each time from the member's stats record, which gives HP, MP, statuses, level, experience, LP
+and equipment. While the member fights in a battle unit, that unit adds whether it is acting or idle and whether it
+stands too far from the member in focus.
+
 ## How it works
 
 ### The builder and its callers

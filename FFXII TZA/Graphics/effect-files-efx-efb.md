@@ -174,7 +174,7 @@ its size equals its `+0x0C`, and its walk ends there. Each `.efb`, `.cm` and `.m
 magic and so one stream: in a `.efb` file it is at file offset `0x20`, inside the file's one blob.
 
 The 242,875 chunks are 157,819 in the `.efx` files, 40,574 in the `.efb` streams and 44,482 in the embedded streams
-(5,756 in the 144 `.cm` files and 38,726 in the 387 `.mpk` files). For the 1,394 entries of
+(5,756 in the 144 `.cm` files and 38,726 in the 387 `.mpk` files). For the 1,396 entries of
 [`effect-file-list.tsv`](effect-file-list.tsv) whose file ships, the `chunks`, `elements` and `textures` cells match
 the `.efx` rows.
 

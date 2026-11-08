@@ -10,9 +10,12 @@ addresses: "0x0030E360, 0x00312280, 0x003171C0, 0x00315820, 0x00317090, 0x003112
 An enemy that is KO'd, turned to Stone or sent to X-Zone pays out at once: the chain moves, the party
 gets EXP, LP and gil, and loot may drop where it fell. An enemy killed by another enemy pays nothing.
 Enemies finished off by party-applied Poison, or turned to Stone through party-applied Petrify, still
-pay. Every enemy defeat counts toward the **Blood Dancer** achievement (500 defeats) and the
-**Record Breaker** achievement (a score total of 500,000), and each kind of monster has its own defeat
-count.
+pay. Every enemy defeat, paying or not, counts toward the **Blood Dancer** achievement (500 defeats),
+and each kind of monster has its own defeat count.
+
+The **Record Breaker** achievement (a score total of
+500,000) grows only for the defeats that pay out, and by the score scripts add with `addclanpoint`
+([reward verbs](../Scripts-And-Script-Commands/reward-verbs.md)).
 
 ## How it works
 
@@ -99,7 +102,7 @@ Kind 17 is a 32-bit total at `[0x020927C0] + 0x3868`. Kind 11, the LP total fed 
 | Kind | Total | Achievement (record in `0x01DFE410`) | Threshold in `menuhandbook.bin` |
 |---:|---|---|---|
 | 4 | enemies defeated | 5, `ACH_COUNT_KILL` "Blood Dancer" (`0x01DFEC08`) | 500 in all nine language folders |
-| 11 | LP earned | 13, `ACH_MASTER_LICENSE` "Conqueror" (`0x01DFF8C8`) | 48,000 in `ch`, `cn`, `in`, `kr`; the `de`, `es`, `fr`, `it`, `us` files have no entry, so the table default 0 applies and Conqueror unlocks on the first LP ever earned |
+| 11 | LP earned | 13, `ACH_MASTER_LICENSE` "Conqueror" (`0x01DFF8C8`) | 48,000 in the `in` and `ch` copies, the only ones the game reads: every language's kind 7 array names id 200 as one of them; the `de`, `es`, `fr`, `it` and `us` copies have no entry, but no array names them |
 | 17 | score | 9, `ACH_COUNT_SCORE` "Record Breaker" (`0x01DFF268`) | 500,000 in all nine |
 
 The achievement ids come from `0x00D10550 + kind*4`, and each record's first dword is its counter kind.
@@ -122,8 +125,8 @@ The achievement ids come from `0x00D10550 + kind*4`, and each record's first dwo
   Hooking it sees each enemy defeat once, with the killer.
 - To make an enemy pay nothing, set bit `0x8` of its unit byte `+0xE9A`. Actions whose result carries `+0x2C`
   bit `0x80000` do this already.
-- Conqueror's 48,000 LP threshold is missing from the `de`, `es`, `fr`, `it` and `us` handbook files; adding
-  bit `0x800` to that record's mask and inserting 48,000 at its place in the packed values restores it.
+- Conqueror's 48,000 LP threshold is absent from the `de`, `es`, `fr`, `it` and `us` handbook copies, which no
+  path array names; the `in` and `ch` copies the game reads hold it, so every language needs 48,000 LP.
 - The score per enemy is the first word of its two reward rows, the same rows that hold its EXP, LP and
   gil.
 

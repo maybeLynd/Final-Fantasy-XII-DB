@@ -11,6 +11,10 @@ A shop's stock is a ladder of lists, most advanced first. The menu finds the fir
 player meets and sells that list together with every list after it, so a shop's stock grows as the story goes
 on or the clan rank rises.
 
+A map's script opens a shop by its number, either by giving a vendor actor that shop's name or by opening the shop
+screen on it directly. The screen then reads that shop's ladder from `battle_pack.bin` and compares each list's
+condition with the story counter or the clan rank.
+
 ### The table
 
 The shop table is section 39 of `battle_pack.bin`, the section its directory entry at file offset `+0xA0` points

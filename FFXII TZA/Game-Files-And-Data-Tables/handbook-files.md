@@ -30,6 +30,10 @@ All are kind-7 resources. The family's base id is the `u16` at `0x00D23740 + 2 x
 and numbered file `NNN` base + 2 + `NNN`, matching the `us` kind-7 path array at `0x01EC73A0`. The same folder
 holds `menuhandbook.bin` and `menuhandbook_order.bin`, which the Clan Primer page covers.
 
+Opening an entry reads its catalog record, which names the text bundle that holds its words and a picture page; the
+page map turns that page into one of the picture files. The family's unlock table has one row per entry, each testing
+save flags or story progress, and the result becomes the entry's unlock mark.
+
 ## Layouts
 
 All multi-byte fields are little-endian.
@@ -540,8 +544,9 @@ With a sheet, for `tutorial` it also calls `0x0017FBC0(6)`; for `monster` it reg
 
 A text writes a sheet character as two bytes, shown as `{exp:0xN}` in the tables:
 
-- **Code.** `0x002AC2F0` takes the `0x00916570` table value for the lead byte's low nibble, plus the second byte less
-  `0x20` (`0x002AC3B4`-`0x002AC3BC`).
+- **Code.** `0x002AC2F0` takes the value for the lead byte's low nibble from the table at `0x00916570`, or from the
+  table at `0x009165B0` when `[0x0209CC38]` is set, plus the second byte less `0x20` (`0x002AC399`-`0x002AC3BC`).
+  `0x002AB7D0`, the word's only writer, sets it to 1 for the same locales for which it picks `0x1C` below.
 - **Sheet or font.** A lead at or above `[0x01E0CDF8]` is drawn from a sheet. `0x002AB7D0` sets that word to `0x18`, or
   to `0x1C` for the locales its test picks (`0x002AB7D9`-`0x002AB7E9`).
 - **Record.** The sheet block is the renderer's `+0x68`, or `0x0039BA30` of its font slot `+0xA6`

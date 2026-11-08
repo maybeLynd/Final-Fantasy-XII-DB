@@ -25,8 +25,9 @@ SHA-256.
   pointer at `0x01F2C750`. No RIP-relative, image-base-relative, absolute-pointer or RVA operand or data word names an
   address from `0x01F2C750` to `0x01F2C75F`.
 - The data on either side belongs to other readers. Before it, an image ends at `0x01F2C74F`: a 0x10-byte header,
-  0x1000 bytes of pixels and a 256-entry palette at `0x01F2C350`, read by `0x0051D220` and `0x0051D270`. After it, six
-  16-byte records start at `0x01F2C760`, which `0x00521450` walks forward from `0x0052177E`.
+  0x1000 bytes of pixels and a 256-entry palette at `0x01F2C350`, read by `0x0051D220`, which loads the image's base
+  at `0x0051D270`, and by `0x0051CDE0`, which reads header bytes `+0x09` to `+0x0D` (`0x0051CF08`-`0x0051CF66`). After
+  it, six 16-byte records start at `0x01F2C760`, which `0x00521450` walks forward from `0x0052177E`.
 - None of the four addresses occurs as text in any `.exe` or `.dll` in `x64`.
 
 The archive's only other file without an extension is `ps2data/square_ff12/ff12config`, 2,048 bytes: the settings defaults that `0x00408C30` copies into the settings globals. Its reader and layout are on [Game settings](../Saving-Loading-And-Settings/game-settings.md).
@@ -113,7 +114,7 @@ gives that entry the file's size.
 | families with no copy named | 20, 41 files |
 | families with a loader | 81; two of them through a literal path |
 | families with no loader | 65: the 20 unnamed ones, 40 loose battle tables, and five more |
-| families documented on another page | 114 |
+| families documented on another page | 115 |
 
 Row tables for the six `packfiles` packs (Pack directories) and for four small `bin_menu` files of `ch` and `in`,
 decoded with the family rows and, for `fontcolor.bin`, the colour table on [Text drawing](../Menus-And-HUD/text-drawing.md).
@@ -147,8 +148,9 @@ The colours of `item_clut.bin` are on [Menu graphics containers](as7-menu-graphi
 - **Italian fonts.** The `it` copies of `fontpack_fs.bin` and `fontpack_it.bin` are not named; Italian
   reads the `us` copies, as do French, German, Spanish and UK.
 - **UK.** For 39 named families the UK arrays name a `uk` copy, among them `battle_pack.bin`, the text
-  groups, `npcdic.bin`, `planmapname.bin` and the menu-map files. No `uk` folder ships and the UK size
-  table marks those entries −1, so in UK those files are never read.
+  groups, `npcdic.bin`, `planmapname.bin` and the menu-map files. No `uk` copy of these families ships (the
+  archive's only `uk` folder is `ps2data/effect_finish/uk/`, 12 `.efx` files), and the UK size table marks
+  those entries −1, so in UK those files are never read.
 - **`in_sdver`.** The `in_sdver` copies of the four `*pack_ys` files, like the other `in_sdver` paths,
   are named only in a replacement list `0x002DF9A0` writes over the kind 7 array when its second argument is 0.
   That argument is the dword `0x01E0280C`, which the image initialises to 1 and no instruction writes
@@ -164,7 +166,7 @@ wrappers `0x00249180`, `0x00249210`, `0x00249320`, `0x00249350`, `0x00249380`, `
 | Loader | Id | Family |
 |---|---|---|
 | `0x002385D0` | the byte table `0x01E09F68[group]` (`0xFF`, 20-23, 1, 43-56, 24, 25, 62-67) | text groups 1 to 27 |
-| `0x00238260` | `0x47 +` board | `board_1.bin` to `board_12.bin` |
+| `0x00238260` | `0x47 +` the board index 0 to 11 (`0x00238304`-`0x0023836A`; `board_1.bin` is `0x47`) | `board_1.bin` to `board_12.bin` |
 | `0x002EA530` | `0x0B +` i, i = 0 to 9 | `charseinfo_*.bin` |
 | `0x002CEAE0` | `0x10 +` byte `[0x0209AC30] + 0xB2D` | `face_guest#.bin` |
 | `0x003C9950` | `0x0E +` byte `+0xC1` of its object | `map_efe#.bin` |
@@ -255,7 +257,7 @@ start, padded with `0xFFFFFFFF`, then the sub-files.
 |---|---|---|---|---|
 | `texpack_ys.bin` | 16 | 5 (4 in `in_sdver`) | TIM2 | `0x00246A10` binds entries 0-4 through `0x0024A1D0` into the five texture objects `0x002467A0` set up, each at the pack start plus its directory offset; it does nothing while the pack pointer `0x0208EA88` is null (`0x00246A1E`) and skips a null texture object (`0x00246A2E`-`0x00246AA5`); `0x002467A0` returns at once while `0x0208EA88` is set (`0x002467B1`), sets up only the objects that are still null, and stores the pack buffer `0x00249180` returns at `0x0208EA88` (`0x0024688C`) |
 | `tex2pack_ys.bin` | 16 | 11 | TIM2 | `0x00280670` binds entries 0-9 into `[0x0209AC30] + 0x338`..`0x380`; entry 10 is stored unbound at `+0x388`; it does nothing while the pack buffer `+0x3D8` is null (`0x00280683`), skips a null slot (`0x002806A7`), stores entry 10 only while `+0x388` is null (`0x002806D3`), and then releases and zeroes `0x0209AC38` and `0x0209AC40` when set (`0x00183720`, `0x0028070C`, `0x00280728`) |
-| `mrppack_ys.bin` | 32 | 23 (21 in `in_sdver`) | MRP | `0x00280980` stores entries 0-22 at `[0x0209AC30] + 8 × i` and relocates each with `0x002A00F0`, each the start of the pack at `+0x3D0` plus its directory offset; it does nothing while `+0x3D0` is null (`0x00280993`) and stores and relocates each entry only while its slot is null (`0x002809A8`) |
+| `mrppack_ys.bin` | 32 | 23 (21 in `in_sdver`) | MRP | `0x00280980` stores entries 0-22 at `[0x0209AC30] + 8 × i` and relocates each with `0x002A00F0`, each the start of the pack at `+0x3D0` plus its directory offset; it skips the entries while `+0x3D0` is null (`0x00280993`), stores and relocates each entry only while its slot is null (`0x002809A8`), and ends either way with a tail jump to `0x00280AD0`, the `clutpack_ys.bin` binder (`0x002809EE`) |
 | `clutpack_ys.bin` | 16 | 4 | CLT2 | `0x00280AD0` stores entries 0-3 at `[0x0209AC30] + 0x390`..`0x3A8`, each the start of the pack at `+0x3C8` plus its directory offset; it does nothing while `+0x3C8` is null (`0x00280AE1`) and stores each entry only while its slot is null (`0x00280AEF`-`0x00280B56`) |
 | `fontpack_fs.bin` | 16 | 7 | font tables | `0x003643A0`: entry 0 (the font block) to `+0x08` (walked by `0x00366080`), 1 (the palette block) to `+0x190`, 2, 4, 5, 6 to `+0x110`, `+0x120`, `+0x128`, `+0x130`, the sheets of faces 0, 2, 3 and 4, whose font ids `0xB`, `0xD`, `0xE`, `0xF` it registers ([header](btm-exfont-bitmaps.md#layouts)); the binder skips entry 3, which repeats entry 2's offset in all six files; it returns at once while `[0x022CBE00]` is null (`0x003643AE`), fills each sheet slot only while that slot is null, and sets the face's ready bit and registers its id either way (`0x003643E5`-`0x0036449E`) |
 | `fontpack_it.bin` | 16 | 6 | 2 TIM2, 4 tables | `0x0039C150`: entries 0-5 to `0x02AEE810`, `0x02AEE850`, `0x02AEE870`, `0x02AEE878`, `0x02AEE880`, `0x02AEE888`; entries 6 and 7, both `0xFFFFFFFF` in every file, would go to `0x02AEE848` and over `0x02AEE880` |
@@ -354,7 +356,7 @@ The 58 `.bin` files under `<lang>/bin/` hold 27 different contents. The `ch` and
 section's `.ebp`, `.dbg`, `.msb` and `.sbn`, 32 files
 ([ATEL debug companions](../EBP-Script-Files/atel-debug-companions.md)).
 
-Of the 27 contents, 26 are read:
+Of the 58 files, 26 are read, holding 22 of the 27 contents:
 
 | Files | Read by |
 |---|---|
@@ -376,7 +378,8 @@ bytes) occurs nowhere in `evctrl.ebp` (38,720 bytes), so it is another build of 
 
 ### The battle tables file by file
 
-The 495 files under `test_battle/` hold 329 different contents. 267 are read:
+The 495 files under `test_battle/` hold 329 different contents. 267 of the files are read, holding 239 of the
+contents:
 
 | Files | Copies read | Loader |
 |---|---|---|

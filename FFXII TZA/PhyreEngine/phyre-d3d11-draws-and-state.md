@@ -11,6 +11,10 @@ Every model, menu and effect on screen reaches the graphics card through the eig
 this page. A primitive type the table does not know is skipped without a draw, and a triangle fan
 is drawn as a strip, which gives a different shape from a fan with more than three vertices.
 
+A material pairs one shader build with one block of values for it. The shader build lists each value by name with its
+type and its place and size in the block, and the game writes a value into the block by looking its name up in that
+list.
+
 ## How it works
 
 ### The render context

@@ -13,6 +13,9 @@ cranes to the next pose and how long that takes. Section 9 holds the shots and s
 of rows a script's camera verbs pick from. 296 of the 345 event scripts and 127 of the 769 field
 map scripts in a language tree carry them; a map without them keeps the ordinary follow camera.
 
+A shot can also tie its camera position or its look-at point to an actor of the scene, or to one joint of that actor's
+model, so the camera follows that character.
+
 ## Where it comes from
 
 Sections 8 and 9 are slots 8 and 9 of the `.ebp` directory

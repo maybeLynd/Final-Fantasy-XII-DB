@@ -12,6 +12,11 @@ vanishes, its model, held items and body are swapped for the ones its current de
 for, and it reappears in place. A scene waits while `partyallread` runs. The frames the member is
 invisible are the loads this machine waits on.
 
+The model a member should have comes from one number: a byte kept for its roster slot in slots 0 to 3, otherwise a
+number in its battle unit's stats record. The number's high byte picks one table, or a second table that leads to a
+third, and its low byte the row that holds the model. Only a model that differs from the bound one is released and
+loaded again.
+
 ## How it works
 
 ### The rebuild record

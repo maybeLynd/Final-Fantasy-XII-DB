@@ -19,8 +19,9 @@ it has lived once, or the zone script says so, every later placement is pushed o
 
 Walk far enough from a monster and it vanishes. The default range is 43 units, just outside the
 band it appeared in, and the distance is measured flat on the ground to the character you are
-steering, so a monster on a cliff above you counts as next to you. Some monsters instead vanish
-when the leader comes near an authored point. A monster that vanished this way comes straight back
+steering, so a monster on a cliff above you counts as next to you. The engine can also make a monster
+vanish when the leader comes near an authored point, but no shipped script asks for that mode: every
+script call picks the distance rule or switches vanishing off. A monster that vanished comes straight back
 when you return, with no cooldown, because vanishing is not dying.
 
 Monsters stand on the ground because, at the moment one is placed, the engine asks the terrain for

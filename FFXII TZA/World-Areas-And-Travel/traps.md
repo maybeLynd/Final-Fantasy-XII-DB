@@ -69,12 +69,15 @@ manager's `+0x100` table by `0x00263F80`; a small number is mapped by `0x002EB7A
 
 `0x002FB560(i, x, z)` places the marker: `0x003EC5B0(i)` (`0x003EB200(i, 0x02B5EC94, 0, 1, 0)` for `i`
 below 16 outside a town while a marker resource is loaded, `0x003EC5B8`-`0x003EC5DD`), `0x003EC720(i, x, h, z)`
-with the ground height `h` that `0x0026E350` resolves (through `0x0032A790`, `0x002FB5BE`), and
-`0x003EC770(i, angle, hit, 0)` with the slope angle from the navmesh query (`0x003355A0`, `0x0033CBF0`,
+with the ground height `h` that `0x0026E350` resolves (through `0x0032A790`, `0x002FB5BE`), or the 1.0 that
+`0x002FB5B7` seeds when the point lies on no cell or the cell's plane has `ny` at most 0.001 (`0x0026E388`,
+`0x00231849`), and
+`0x003EC770(i, angle, hit, 0)` with the slope angle from the collision-mesh query (`0x003355A0`, `0x0033CBF0`,
 `atanf`).
 
 The query takes the collision part `0x0026E500(0)`, the polygon `0x00231900(part, &(x, h, z), 1)` and
-`0x00231F20(part, out, polygon)` (`0x002FB5E0`-`0x002FB605`). `hit` is what `0x003355A0` gives for the axis
+`0x00231F20(part, out, polygon)` (`0x002FB5E0`-`0x002FB605`). The polygon index is not sign-tested before `0x00231F20`
+(`0x002FB5FA`-`0x002FB605`), so a point on no cell copies the 16 bytes before the plane table. `hit` is what `0x003355A0` gives for the axis
 `(0, 0, 1)` at `0x01F004C0` and `(out.x, 0, out.z)` (`0x002FB641`). `0x0033CBF0` turns `out` by minus `hit`
 (`0x002FB65B`), and `angle` is `atanf` of the turned `z` over the turned `y`, or 0 when that `y` is 0
 (`0x002FB660`-`0x002FB67A`).
@@ -323,10 +326,10 @@ Over the 1,114 `us` zone and event scripts (one file is not an `EBP2` container)
 | real traps | 489 |
 
 Every table reference is tag 3. Tables hold 1 to 16 records; 285 hold one. All 489 real traps
-have flag id `0xFF`, so no shipped trap ever sets a story flag and no trap is ever skipped at
+have flag id `0xFF`, so no real trap ever sets a story flag and no trap is ever skipped at
 arming: a field's traps are rolled afresh every time its `settrapresource` runs (an unconditional call in the
-`init` of its `btl_trap_ctrl` actor), and the story-flag path exists only
-for authored data that does not ship. The arm chance is 100 in 487 traps and 60 in the two traps
+`init` of its `btl_trap_ctrl` actor), and the story-flag path is reached only by an all-zero record
+(flag id 0), in the one case given under the trigger walk below. The arm chance is 100 in 487 traps and 60 in the two traps
 of `rbl_n02` (rows 260 and 261 twice over). Byte `+0x0B` is 0 everywhere.
 
 | Radius | Traps | Radius | Traps |
@@ -379,8 +382,19 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
   the code, and the arm chance and gather radius are per record.
 - `0x002F8060` is one of two functions in the image that both draw the generator and call a
   story-flag setter (the other is the treasure chest resolver `0x002FAFD0`,
-  [Story flags](../Story-Events-And-Hunts/story-flags.md)); with every
-  shipped flag id `0xFF`, the trap's setter never runs in shipped play.
+  [Story flags](../Story-Events-And-Hunts/story-flags.md)).
+- Every shipped record that can arm has flag id `0xFF`. Each of the 246 tables that hold one all-zero record has
+  flag id 0 there, with arm chance 0, so the arming walk never sets its bit (`0x002FA815`-`0x002FA81C`).
+- The walk takes the mask of the current field id (`0x002F8099`) but the records of the bound table (`0x002F809E`,
+  `0x002F81B2`). A jump writes the new field id when it is staged (`0x00314685`), and the old zone's table stays bound
+  until the next tick unloads that zone before any record runs (`0x0025BFB0`, `0x002628B0`, `0x002FAEC0`).
+- So the setter runs in one case only: a jump staged during the zone's own pass over its records (`0x0025D9E0`),
+  out of a field with an all-zero table and into a field whose ring entry still has bit `0x1` (record 0), while
+  the gate `0x00265680` holds (`sysucoff` makes it fail, `0x00310F12`).
+- In that case a unit whose frame runs later in the pass and stands within 1.3 of the field's origin fires
+  record 0, and `0x0032AD70(0, 1)` sets story flag 0 (`0x002F8247`-`0x002F8253`).
+- The field ids `0x112` (`0x00394303`) and `0x483` (`0x005842DF`) are written on the title, which binds no trap table
+  (`0x002F80AC`).
 
 - The two access tables beside this page, [`traps-live-entry-accesses.tsv`](traps-live-entry-accesses.tsv) and
   [`traps-live-set-accesses.tsv`](traps-live-set-accesses.tsv), list every reach into the ring's entries and into the live set.

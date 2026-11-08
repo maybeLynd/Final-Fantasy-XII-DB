@@ -12,6 +12,11 @@ addresses: "0x00797910, 0x00796230, 0x00798A40, 0x00797690, 0x00792B70, 0x00792C
   Input.
 - A DirectInput pad stops responding while the game window is not in front.
 
+At start-up, and again whenever a device is plugged in, the game lists every attached device and builds one controller
+for each pad. It builds a Steam controller when Steam reports one, an XInput controller for each of the first four
+Xbox-style pads, and a DirectInput one for any other pad. The per-frame device update then runs every controller in
+that list.
+
 ## How it works
 
 ### Start-up
@@ -45,9 +50,11 @@ Both callbacks return 1 for every device, whatever its type, so the listing goes
 
 `0x00797690(device)` decides what to build (`0x00797690`-`0x0079790D`):
 
-1. `0x00797AD0` tests whether the device is an XInput pad; a yes also sets `0x02EA5379`.
+1. `0x00797AD0` tests whether the device is an XInput pad; a yes also sets `0x02EA5379`. Steps 4 and 5 do not
+   reuse this answer: they call `0x00797AD0` again (`0x007977B9`) and branch on the second answer (`0x007977C0`).
 2. It returns when a registered controller of kind 2 in the list `0x01F401E8` already holds this device's instance
-   GUID; it checks up to 18 of them.
+   GUID; it checks up to 18 of them (`0x0079773A`-`0x00797759`). All three controller kinds answer 2 (vtable slot `+8`,
+   `0x00290180`), and the test comes before step 3 (`0x0079774E`), so an existing controller of any kind stops it.
 3. When the Steam interface reports a connected controller, it builds a Steam controller, `0x458` bytes, with
    `0x00792B70`.
 4. For an XInput pad, when fewer than four have been counted, it builds an XInput controller, `0x470` bytes, with
@@ -68,8 +75,8 @@ running and the XInput count are set even then (`0x007977B3`, `0x00797813`-`0x00
 
 In step 5 the result of `Acquire` is not tested (`0x007978B9`), and a cooperative-level answer other than "not
 implemented" goes on to `EnumObjects` (`0x0079788E`-`0x00797893`). A device whose `SetDataFormat` or `EnumObjects`
-call fails, or whose cooperative level answers "not implemented", is left without a release (`0x00797874`,
-`0x00797893`, `0x007978AF`).
+call fails, whose cooperative level answers "not implemented", or whose controller allocation returns null after
+`Acquire`, is left without a release (`0x00797874`, `0x00797893`, `0x007978AF`, `0x007978CE`).
 
 ### What the controllers share
 
@@ -150,9 +157,12 @@ that `0x00797910` hands DirectInput (`0x00797942`) is the 8-byte interface point
 ## Modding notes
 
 - A fifth XInput pad is counted but never built.
-- Every pad is checked against the registered list by instance GUID, so the walk on each arrival does not build a
-  second controller for a pad it already has; a Steam controller holds no GUID, so it is built again on each walk
-  while Steam reports one.
+- Every pad is checked against the registered list by instance GUID before anything is built (`0x0079774E`), so the
+  walk on each arrival does not build a second controller for a pad it already has. A Steam controller holds no
+  GUID and never satisfies that test itself, but an XInput or DirectInput controller holding the pad's GUID still
+  stops the Steam build.
+- While Steam reports a controller, each walk builds a new Steam controller for every pad that no controller holds:
+  a pad that is not XInput (step 5 is skipped once step 3 builds, `0x00797826`) and a fifth XInput pad (`0x007977C8`).
 
 ## Related
 
@@ -172,3 +182,4 @@ Calls between the functions this page cites and code in other parts of the progr
 - Resource: `0x00584740` is called by `0x001A11B0`, `0x001DAD60`, `0x00637C50`; those functions are documented on
   [game application](../Engine-Core/game-application.md),
   [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md).
+- Script VM: `0x00290180` is called by `0x003423E0`.

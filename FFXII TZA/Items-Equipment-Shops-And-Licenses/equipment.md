@@ -126,6 +126,10 @@ Taking something off always succeeds: every setter skips the test for `0xFFFF`, 
 empty slot 1-4. The free-copy test runs before the old copy is released (`0x0031A677`, `0x0031A69B`), so re-equipping the
 item already worn needs a spare copy.
 
+Equipping draws on three other parts of the game. The piece's row says which slot it fits and which weapon it pairs
+with, the inventory must hold a copy nobody is wearing, and a main character must own a License Board square that
+grants it. When the slot changes, the game rebuilds the character's stats.
+
 The slot check `0x0031794A` belongs to the eligibility test, so `0x0031A510` stores `0xFFFF` without it: `0x0031A581`
 jumps past `0x00317930` to the read of the slot's old word (`0x0031A5A5`). Every caller that stores `0xFFFF` through
 `0x0031A510` gives a slot from 0 to 4:

@@ -12,6 +12,9 @@ screen. When a script binds a model to an actor it usually names the model by it
 table, so the table decides which body, chest or prop appears. A wrong entry puts a different model
 in the scene; a missing one gives the bind no model.
 
+Each entry is a letter and a number. The letter picks the kind of resource the model is loaded from, and the number,
+counted in steps that depend on the letter, picks the file within that kind.
+
 ## Where it comes from
 
 Slot 12 of the [EBP script container](ebp-script-container.md) directory, in zone scripts

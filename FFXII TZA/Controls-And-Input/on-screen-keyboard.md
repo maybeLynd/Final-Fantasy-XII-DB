@@ -16,6 +16,9 @@ addresses: "0x0017DE60, 0x0027E9E0, 0x002878E0, 0x0209AC18, 0x0209AC50, 0x00287C
 - The key caps follow the Windows keyboard layout (French and German layouts have their own) and the game
   language.
 
+Every panel shows the key bound to its control in the same three keyboard profiles that `keymap.ini` fills and the
+Config screen edits. The Config screen rebuilds the panels after each change, so a new binding shows at once.
+
 ## How it works
 
 ### Opening and closing

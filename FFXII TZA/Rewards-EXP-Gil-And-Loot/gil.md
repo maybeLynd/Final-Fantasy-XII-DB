@@ -14,6 +14,10 @@ than MP." (the Turtleshell Choker) pays for magicks in gil. A member with "Conve
 earned to gil." (the Cat-ear Hood) turns the LP from each kill into gil. The game keeps two hidden totals, gil gained and gil spent; the
 first unlocks the Steam achievement **Plunderer** and the second **Spendthrift**.
 
+Every change of gil passes through one setter, which adds a gain to the gil-gained total or a loss to the gil-spent
+total before it stores the new amount. The amounts that unlock Plunderer (100,000 gained) and Spendthrift (1,000,000
+spent) are read from the handbook file `menuhandbook.bin`, not from the program.
+
 ## How it works
 
 ### Storage
@@ -70,9 +74,13 @@ it, it sets the bit and calls `0x008632B0` with the achievement id from `0x00D10
 and `ACH_COUNT_USE_GIL` "Spendthrift" (`0x01DFF400`); each record's first dword is its counter kind, 6
 and 7.
 
-Because the meter runs only for the kind matching the change's direction, and the check reads the
-total before the update, Plunderer unlocks on the first gain after gained reaches the threshold, and
-Spendthrift on the first spend after spent reaches it.
+The meter runs only for the kind matching the change's direction, and its own check reads the total from
+before the update, so the change that reaches a threshold does not unlock the achievement by itself.
+
+The end-of-field-frame sweep `0x00316930` evaluates descriptors 0-29 with the stored totals (`0x00316A36`-`0x00316A43`),
+kinds 6 and 7 among them (mode 0, `0x00D10490`, `0x00D10498`), so Plunderer and Spendthrift unlock at the first
+sweep after the stored total reaches the threshold, with no further gain or spend
+([achievements](../Steam-And-Achievements/achievements.md#the-sweep-and-the-re-send)).
 
 ### The thresholds
 

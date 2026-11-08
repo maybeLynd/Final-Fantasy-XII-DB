@@ -299,7 +299,8 @@ direction. The offset is mapped through `+0x10` as a direction and its length re
 ### Point queries
 
 - `0x00231890(part, p, polygon)` is the height of the polygon's plane under `p`: `v[0].y + ((v[0].x -
-  p.x) n.x + (v[0].z - p.z) n.z) / n.y`; with no polygon, or `n.y` at or below 0.001, it is `p.y`.
+  p.x) n.x + (v[0].z - p.z) n.z) / n.y`; with no polygon, or `n.y` at or below 0.001 or NaN, it is `p.y`
+  (`0x00231899`, `0x002318C0`).
   `0x00231820` is the same, written into `p.y`.
 - `0x00231900(part, p, typeMask)` is the highest polygon under `p`: of the bank-0 ids of `p`'s cell,
   the polygons with `n.y` above 0.001, a type (attribute bits `0x7`) whose bit value `1 << type` is set in
@@ -348,7 +349,7 @@ direction. The offset is mapped through `+0x10` as a direction and its length re
 | `+0x10` | `f32` | dirX | the footprint x axis is `(-dirX, 0, dirZ)` |
 | `+0x18` | `f32` | dirZ | the pair's second part |
 | `+0x40` | `f32[4]` | push | push of this move, normalised by `0x00380C40` |
-| `+0x50` | `u8` | kind | the kind `0x00230A40` tests |
+| `+0x50` | `u16` | kind | the kind `0x00230A40` tests, read as a zero-extended word (`0x0022FB1F`, `0x00232EAE`, `0x002331B5`); `0xFFFF` at set-up (`0x00380B97`) |
 | `+0x52` | `i16` | polygon | polygon under the body |
 | `+0x60` | `u32` | flags | bit `0x1` flier, bit `0x10` pushed this move |
 | `+0x6C` | `f32` | height | a flier's ellipsoid |

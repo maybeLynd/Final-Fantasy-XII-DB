@@ -32,6 +32,10 @@ for the file (`0x0032E400(9, 6)`, `0x00360CA9`). A negative size requests nothin
 (`0x00360CC6`); otherwise it allocates that size in heap 5 (`0x0036C1D0(5, 5)`, `0x0036A190`, `0x0036C140`) and requests
 the file through `0x0032E620` with the completion `0x00360B40` (`0x00360CC8`-`0x00360D19`).
 
+`musicctrl.bin` gives each field id a track, plus a ladder of story-counter values that switch it to another track, or
+to silence, as the story moves on. `musicinfo.bin` holds one entry per track, and its boss-music flag keeps that track
+playing when the chocobo or summon music would otherwise take over.
+
 ## Layouts
 
 All multi-byte fields are little-endian. The two-byte fields of runs and rungs are read a byte at a time, byte
@@ -159,7 +163,7 @@ not wait (`0x00341FA3`). `setnowmapmusicno` is called 1,363 times; its 229 calls
 | Verb | Call id | Calls | What it does |
 |---|---|---|---|
 | `musicread` | `0x229` | 4,097 | loads a track into a music slot (`0x00341710` -> `0x00361630`) |
-| `musicreadsync` | `0x22A` | 2,296 | waits until the track's slot is loaded (`0x00341F90`) |
+| `musicreadsync` | `0x22A` | 2,296 | waits while the track's slot state is neither 0 (free) nor 5 (ready) (`0x00341F90`, `0x00360C00`) |
 | `musicplay` | `0x22B` | 3,081 | loads and starts a track (`0x00342770`, `0x00342F80`) |
 | `musicstop` | `0x22C` | 2,189 | stops a track and keeps its resume point (`0x00345010` -> `0x002DEDE0`) |
 | `musicclear` | `0x22D` | 2,083 | frees a track's slot (`0x00345600` -> `0x00360E50`) |

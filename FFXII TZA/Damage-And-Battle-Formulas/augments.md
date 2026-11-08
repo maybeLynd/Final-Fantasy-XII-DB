@@ -16,6 +16,10 @@ makes the wearer immune to statuses.
 - Buying an augment license gives its augments the same way.
 - Enemies get their augments and status immunities from their own script.
 
+All sources go into one set, rebuilt each time: the character's own row, an enemy's script, one augment from each worn
+helm, armour or accessory, and up to eight from each owned augment license. An augment given by two sources counts
+once and does not stack.
+
 ## How it works
 
 ### The rebuild

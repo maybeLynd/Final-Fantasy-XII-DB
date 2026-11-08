@@ -43,7 +43,11 @@ leaves the product's `(x, y, z, w)` in `vf22` (`0x022D9300`, `0x0039ADB0`, `0x00
 
 `0x002F1D90(a, b)` returns `sqrtf(dx × dx + dy × dy + dz × dz)` with `d = b - a`, the square root of the
 summed squared differences in lanes 0 to 2 (`0x002F1DC8`-`0x002F1E54`; `sqrtf` `0x00861F14` at `0x002F1E66`); lane 3
-takes no part. It copies `a` into `vf20` (`0x022D92E0`) and `b` into `vf21` (`0x022D92F0`), and the root also goes
+takes no part.
+
+It copies `a` into `vf20` (`0x022D92E0`) and `b` into `vf21` (`0x022D92F0`) and then overwrites both. It leaves
+`vf20` = `(dx, dy, dz, a.w)` (`0x002F1DFF`-`0x002F1E0F`) and
+`vf21` = `(vf00.x + root, dy × dy, dz × dz, b.w)` (`0x002F1E3C`, `0x002F1E48`, `0x002F1E7F`). The root also goes
 to `Q` (`0x022D9198`). It then adds the float at `0x01EF93F0`, which ships as 0.0: that is lane 0 of `vf00`,
 re-stored as `(0, 0, 0, 1)` by `0x0036DD80` at `0x002F1E17`, so the result is the distance itself.
 

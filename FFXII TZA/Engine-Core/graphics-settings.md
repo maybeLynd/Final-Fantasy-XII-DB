@@ -17,6 +17,10 @@ Their strengths are shipped as numbers: each area's scene configuration sets som
 them, a summon scene's own file can override the depth of field, and the rest stay at the
 values compiled into the game.
 
+All of these numbers live in one settings block. Every frame the game copies the block, compares the copy with the
+previous frame's, and only when something changed rewrites the list of values the shipped shaders read, so a changed
+number shows from the next frame on.
+
 ## How it works
 
 ### The block and its defaults
@@ -52,9 +56,15 @@ The defaults are immediates in those three bodies; the table
 [graphics-settings.tsv](graphics-settings.tsv) carries every one.
 
 The first `0x190` bytes are the tunables the developer menu steps ([debug menu](debug-menu.md)):
-`0x001D1660`'s arms touch 86 addresses in the block, 84 of them below `+0x190`, with `addss` and
-`subss` on a float each. The console's row renderer `0x001CD0E0` reads them back to print the
-current value beside the label.
+`0x001D1660`'s arms touch 86 addresses in the block, 84 of them below `+0x190`. 78 floats are stepped with
+`addss` and `subss`; the bytes `+0x000`, `+0x014`, `+0x178` and `+0x464` and the dword `+0x180` are flipped
+between 0 and 1 with `cmp` and `sete`; the int `+0x16C` is cycled from 0 to 2; `+0x17C` is set to 1 when the
+menu's own counter `+0xC2C` (cycled from 0 to 3) is 1 or 3, else to 0 (`0x001D1B50`-`0x001D1BAF`).
+
+Row 28 alone sets `+0x0B0`, to a weighted sum of three values of the `0x001A9930` object (`0x001D1A10`-`0x001D1A48`);
+it also saves and clears `+0x000`, `+0x014` and `+0x160` to `+0x168`, and puts all of them back when switched
+off (`0x001D1A55`-`0x001D1B04`). The console's row renderer `0x001CD0E0` reads 84 of the 86 back to print the current
+value beside the label; it does not read `+0x0B0` or `+0x17C`.
 
 ### The scene-config loaders
 
@@ -95,8 +105,10 @@ while it is not absent itself; otherwise the chain takes `0x01DF6E50`'s document
 |---|---|---|---|---|---|
 | `0x01DF6E58` | `void*` | `0x01F813D8`, slot 0's second-screen document | the document a second-screen (mode 1) cutscene settings run reads its cut section from | `0x001C3D50` (`0x001C3E5A`, `0x001C3E78`) | `0x001C3D50` (`0x001C3E98`, in mode 1 only; in mode 0 `rcx` is replaced by `0x01DF6E50`'s value at `0x001C3EB8`) |
 
-`0x001C52C0(map, section, key)` is the same chain for a
-key inside a section, used three times by the cutscene loader (`0x001C4760`-`0x001C47BA`).
+`0x001C52C0(map, key, map_key)` is the same chain with two key names: the given map is asked for the third
+argument (`0x001C52D5`), and the `Common` section, `0x01F81328` and `0x01F813C8` for the second (`0x001C533A`,
+`0x001C5350`, `0x001C536B`). The cutscene loader calls it three times (`0x001C4760`-`0x001C47BA`), with
+`mCascadePartition0_1` and `mCascadePartition0`, and the same pairs for 1 and 2.
 `0x001CC9A0(out, n)` makes the decimal string of n (`"%d"`, `0x008F6D3C`) that `0x001C5570` and `0x001CC600` append to
 their key names.
 
@@ -188,11 +200,13 @@ The three per-slot shadow sets are stored by slot index and applied for the curr
 
 - `mShadowValueLerpMinForMap`, `…Map2`, `…Map3` go through `0x001A9DA0(ctx, i, v)` to `+0x338 + i × 4`,
   and the three `…ForChr` keys through `0x001A9D70` to `+0x344 + i × 4`;
-- `lightHeight` and `lightOrientation` 1 to 3, read only when the area's own file has both, become
+- `lightHeight` and `lightOrientation`, `…2` and `…3`, read only when the area's own file has both
+  `lightOrientation` and `lightHeight` (`0x001C7F41`-`0x001C7F6F`; `…2` and `…3` then come from the area's file or
+  `init.json`), become
   a direction (`0x001C4F50`, the two angles in degrees) that `0x001C78D0` hands to `0x001A9B30(ctx, i, x, y, z)`
   at `+0x374 + i × 0xC`, setting the byte `+0x398`; without them the loader clears `+0x398`;
-- the cutscene loader's `0x001C7850(height, orientation)` makes the same direction and passes it, with y negated, straight to
-  the shadow object (`0x001F0850`, `0x001F08A0`);
+- the cutscene loader's `0x001C7850(height, orientation)` makes the same direction and passes it, with its third
+  component (z) negated (`0x001C7895`), straight to the shadow object (`0x001F0850`, `0x001F08A0`);
 - the cascade rows of `mCascadePartition%d_%d` sit at `+0x350 + i × 0xC`.
 
 After each of these the setter (or `0x001AA3B0` after the cascade loop and after each light)
@@ -252,8 +266,10 @@ At start-up the application set-up `0x00186CD0` gives the shadow object (`0x001F
 `0x001F0570`: the Shadows setting's pair (`0x001DE5A0` on `[0x01F82D20]`) as its high half at `+0x844` and its low
 half at `+0x848`.
 
-The shadow scalars are written in the same pass. `+0x390` to `+0x3AF` is a copy of object
-`+0x850` to `+0x86F`; the rest is derived, with h = the map size at object `+0x848`:
+The shadow scalars are written in the same function. `+0x390` to `+0x3AF` is a copy of object
+`+0x850` to `+0x86F`; the fields in the table below are derived, with h = the map size at object `+0x848`.
+`0x001F0AD0` does not store `+0x3BC`, `+0x3C0` to `+0x3CC` (written by `0x001F1600`), `+0x3DC`, `+0x3E0` (written
+by `0x001FB310`), `+0x42C` (the area loader) or `+0x42D`:
 
 | block | value |
 |---|---|
@@ -273,9 +289,11 @@ The shadow scalars are written in the same pass. `+0x390` to `+0x3AF` is a copy 
 | `+0x424`, `+0x428` | the same of `+0x894` |
 | `+0x430`, `+0x434` | object `+0x140`, `+0x144` |
 
-`0x001F0AD0` also services the map resize request at object `+0xAFE` (`0x001EE040` with `0x02CF7480` /
-`0x02CF79C0`) and ends in `0x001F06D0` when the enable byte `+0` is set. No developer-menu arm touches
-this range.
+`0x001F0AD0` also services the map resize request at object `+0xAFE`: when either map exists it passes object
+`+8` and `+0x10` to `0x001EEE80` (`0x001F0B2C`, `0x001F0B45`), then copies the requested size `+0xB00`, `+0xB04` to
+`+0x844`, `+0x848` (`0x001F0B50`, `0x001F0B5C`). While the enable byte `+0` is set, a null map at `+8` or `+0x10` is
+created by `0x001EE040` with `0x02CF7480` / `0x02CF79C0` (`0x001F0B98`, `0x001F0BD0`). It ends in `0x001F06D0` when the
+enable byte `+0` is set. No developer-menu arm touches this range.
 
 ### From the block to the shaders
 
@@ -315,12 +333,14 @@ out).
 
 ### Columns of graphics-settings.tsv
 
-One row per 4-byte field of the render settings block that feeds a shader constant, 276 rows.
+One row per field of the render settings block that feeds a shader constant, 276 rows; a field is 4 bytes,
+except the seven byte fields `+0x000`, `+0x014`, `+0x094`, `+0x178`, `+0x42C`, `+0x42D` and `+0x464`.
 
 | Column | Holds |
 |---|---|
 | `block_off` | the field's offset in the render settings block, `+0x000` to `+0x468`; `address` is `0x02CB7FD0` plus this offset on all 276 rows |
 | `cbuffer_off` | the byte offset, `0x184` to `0x5E0`, of the variable in `SceneWideParameterConstantBuffer` that `0x00604750` writes from this field (`shader_constant` names it) |
+| `config_key` | the scene-config key that `0x001C7940` stores into the field (30 rows; `0x001C3D50` stores 19 of them too); `-` on the 246 others |
 | `default` | the value a constructor stores, as a decimal: `0x005DC580` for `+0x000` to `+0x0C4`, `0x005DC430` for `+0x0D0` to `+0x184`, `0x005DC720` for `+0x42C` to `+0x468`; `+0x17C`, `+0x184` and `+0x42D` hold 0 from `0x005DC43E`, from the high half of the 8-byte store at `0x005DC569` and from the high byte of the word store at `0x005DC756`; 108 rows have one, and `-` marks the 168 fields no constructor stores |
 | `menu_ids` | the developer-console command ids whose arm writes the field, separated by commas (91 ids on 86 rows, ids 28 to 168; see [debug menu commands](debug-menu-commands.md)); `-` on the 190 fields no console row reaches |
 | `menu_labels` | the console labels of those ids, separated by semicolons; id 28, `Use PS2 lighting`, writes several fields, and on some of its rows its label is not the first |
@@ -332,11 +352,13 @@ One row per field of graphics-settings.tsv, 276 rows.
 | Column | Holds |
 |---|---|
 | `input` | the field's offset in the render settings block, as `block_off` in graphics-settings.tsv |
-| `domain` | the field's type (`f32` on 256 rows, `i32` on 14, `u8` on 6) and its values: the constructor default with the constructor's address, and, for a field the scene-config loaders set, the values in init.json and the area files |
-| `precedence` | which store lands last: on 161 fields `0x001F0AD0` rewrites it every frame from the shadow object `[0x01F82EA8]`; on the others the scene-config loaders, another named writer, or the constructors with the developer menu as the only other store |
+| `label` | the field's offset and address in the render settings block and the shader variable it feeds, then its scene-config key and the labels of the developer-menu rows that step it where it has them |
+| `domain` | the field's type (`f32` on 256 rows, `i32` on 13, `u8` on 7) and its values: the constructor default with the constructor's address, and, for a field the scene-config loaders set, the values in init.json and the area files |
+| `precedence` | which store lands last: on 162 fields `0x001F0AD0` rewrites it every frame from the shadow object `[0x01F82EA8]`; on the others the scene-config loaders, another named writer, or the constructors with the developer menu as the only other store |
+| `takes_effect` | when a change reaches the constant buffer, the same on all 276 rows: from the next frame, as `0x006084B0` copies the block into the frame's snapshot after running the block's callbacks (`0x00608870`), and `0x00604750` rewrites the constant buffer only when the snapshot differs from the last one in some byte |
 | `consumers` | the `SceneWideParameterConstantBuffer` variable the field feeds, with its offset and size, and how many of the shipped program codes that declare the variable mark it as used |
 | `visible_effect` | the shader files whose programs read the variable and how many programs and variant files that is (271 rows); `switches subsurface scattering` for `+0x464`; `-` on the four fields no program reads |
-| `inert_when` | when a change has no effect: `-` on 271 fields; `always: no shipped program reads the variable` on `+0x41C`, `+0x424`, `+0x42D` and `+0x460`; on one field, that every instruction that stores it writes 0 (`0x001A2130`, `0x001A5B00`) |
+| `inert_when` | when a change has no effect: `-` on 271 fields; `always: no shipped program reads the variable` on `+0x41C`, `+0x424`, `+0x42D` and `+0x460`; on `+0x094`, that every store after the constructor's 1 (`0x005DC67A`) writes 0 (`0x001A2130`, `0x001A5B00`) |
 
 ### The tonemap byte
 
@@ -353,7 +375,7 @@ Event scripts set depth of field through two request slots (0 and 1) that `0x002
 
 | Call | Handler | Request |
 |---|---|---|
-| `0x5C1` | `0x003513F0` → `0x00214B80` → `0x00214B90(kind, focus, aperture, slot)` | a full request; kind 0 replaces focus and aperture with `mDofFocusDistance` and `mDofApertureFnumber` from the map's file `0x01F81328` (`0x001C5530`, falling back to `0x01F813C8`); the enable word becomes 1. Kind 0 reads both keys with `0x00200B50` (`0x00214BC4`, `0x00214BE2`), so a key absent from both files gives 0.0; any other kind keeps the focus and aperture it is given. `0x00214B90` stores the enable word `0x01FD3AE8` + slot × 4 = 1, the kind, focus and aperture at `0x01FD3AC8`, `0x01FD3ACC` and `0x01FD3AD0` plus slot × `0xC`, and the full-request byte `0x01FD3AE0` + slot = 1 (`0x00214BF2`-`0x00214C20`) |
+| `0x5C1` | `0x003513F0` → `0x00214B90(kind, focus, aperture, slot)` (a tail jump at `0x0035144E`; the slot is the fourth value it pops, `0x0035142A`) | a full request; kind 0 replaces focus and aperture with `mDofFocusDistance` and `mDofApertureFnumber` from the map's file `0x01F81328` (`0x001C5530`, falling back to `0x01F813C8`); the enable word becomes 1. Kind 0 reads both keys with `0x00200B50` (`0x00214BC4`, `0x00214BE2`), so a key absent from both files gives 0.0; any other kind keeps the focus and aperture it is given. `0x00214B90` stores the enable word `0x01FD3AE8` + slot × 4 = 1, the kind, focus and aperture at `0x01FD3AC8`, `0x01FD3ACC` and `0x01FD3AD0` plus slot × `0xC`, and the full-request byte `0x01FD3AE0` + slot = 1 (`0x00214BF2`-`0x00214C20`) |
 | `0x5BA` | `0x0034D870` → `0x00214B40(enable)` | an enable-only request for slot 0 |
 | `0x5C0` | `0x0034DAF0` → `0x00214B50(enable, slot)` | an enable-only request for the given slot |
 
@@ -443,9 +465,12 @@ and the scene-reset byte runs `0x001C7290` (when `0x01F81288` differs from `0x01
 
 Slot 0's saved copy is `0x01FD3AF0` (enable), `0x01FD3AF4` (focus), `0x01FD3AF8` (aperture), `0x01FD3AFC` and `0x01FD3B00`;
 slot 1's is `0x01FD3B04`, `0x01FD3B08`, `0x01FD3B0C`, `0x01FD3B10` and `0x01FD3B14`. The crossfade's rising edge copies
-`+0x110` to `+0x120` into both: `0x00214C75` and `0x00214C7F` for slot 0, `0x00214C88` and `0x00214C92` for slot 1. A held
-request stores its enable with `setne` and its focus or aperture with `movss` (`0x00214D9E` and `0x00214D96` for slot 0,
-`0x00214E01` and `0x00214DF9` for slot 1). Slot 1's pending bytes are `0x01FD3AE1` (full request) and `0x01FD3AE5`
+`+0x110` to `+0x120` into both: `0x00214C75` and `0x00214C7F` for slot 0, `0x00214C88` and `0x00214C92` for slot 1.
+
+A held request stores its enable with `setne` and its focus and aperture with `movss` into slot 1's copy
+(`0x00214D3E`; `0x00214E01`, `0x00214DF9`, `0x00214E08`), whichever slot it came from; slot 0's copy is written
+(`0x00214CFB`; `0x00214D96`-`0x00214DA5`) only when a slot-0 request meets a pending slot-1 request of the same kind,
+which then fills slot 1's copy. Slot 1's pending bytes are `0x01FD3AE1` (full request) and `0x01FD3AE5`
 (enable-only request).
 
 ## Layouts
@@ -540,7 +565,7 @@ The block's `+0x1010` is the vector of callbacks `0x0060B720` appends to, `0x001
 | Fact | Value |
 |---|---|
 | block fields with a shader constant | 276, in [graphics-settings.tsv](graphics-settings.tsv) |
-| fields with a scene-config key | 30 in the block (21 below `+0x190`), 13 in the second run |
+| fields with a scene-config key | 30 in the block (25 below `+0x190`), 13 in the second run |
 | constructor defaults | 108 fields; `mMapAmbientColor` 1, 1, 1; `chrFresnelSpecularIntensity` 3.9; `mCubemapIntensity` 0.6; `mDebugWaterSpecFactor` 3.59; `+0x0C0` / `+0x0C4` 1920 and 1080 |
 | shadow matrices | 8 of 64 bytes, block stride 64, object stride `0xD8` |
 | developer-menu arms on the block | 86 addresses, 84 below `+0x190` |
@@ -550,7 +575,9 @@ The block's `+0x1010` is the vector of callbacks `0x0060B720` appends to, `0x001
 At boot: the constructor's defaults. At every area or cutscene load: the loader's keyed stores.
 Every frame: `0x001F0AD0`'s matrix copy, `0x006084B0`'s snapshot, `0x00604750`'s comparison with the
 last slot and, only when a byte differs, its constant-buffer write; `0x0018EEE0`'s frame
-parameters. On a developer-menu press: one `addss` or `subss` on one field.
+parameters. On a developer-menu press: an `addss` or `subss` on one float, a `cmp` and `sete` flip of one flag,
+a step of the int `+0x16C`, a 0 or 1 into `+0x17C` from the menu's own counter, or, for row 28, stores to six
+fields (`+0x000`, `+0x014`, `+0x0B0`, `+0x160`, `+0x164`, `+0x168`).
 
 ## State
 
@@ -592,10 +619,13 @@ and the string's address is taken only at `0x001C3C80` and `0x001C3EA6`.
 
 - The defaults are immediates in `0x005DC580`, `0x005DC430` and `0x005DC720`; patching them changes the
   value every area starts from, and a scene config with the key overrides it on load.
-- A field below `+0x190` is live: the next frame's snapshot carries whatever is written there,
-  and the constant buffer is rewritten because the snapshot changed. A field in `+0x190` to
-  `+0x434` is overwritten by `0x001F0AD0`, and `+0x460` by `0x001EF6D0`, before the frame uses it;
-  `+0x42C` and `+0x438` to `+0x444` hold until the next area load.
+- A field below `+0x190` is live: the next frame's snapshot carries what is written there, and the constant
+  buffer is rewritten because the snapshot changed; the block's callbacks, which `0x006084B0` runs before its copy
+  (`0x00608870`), can first rewrite `+0x0B8`, `+0x0C0` and `+0x0C4` (`0x001A97F0`) and `+0x184` (`0x001BD9D0`).
+- A field in `+0x190` to `+0x434` is overwritten by `0x001F0AD0`, and `+0x460` by `0x001EF6D0`, before the frame
+  uses it, except `+0x3BC`, `+0x3C0` to `+0x3CC` (written by `0x001F1600`), `+0x3DC`, `+0x3E0` (written by
+  `0x001FB310`) and `+0x42D`, which `0x001F0AD0` does not store; `+0x42C` and `+0x438` to `+0x444` hold until the
+  next area load.
 - `EnableYebis` is the whole post-processing layer, not one effect; `EnableAO`, `EnableDof`,
   `EnableShadow` and `EnableIBL` each switch one.
 - Depth of field has three authors writing the same `+0x110` to `+0x120`: the area's config
@@ -615,4 +645,4 @@ and the string's address is taken only at `0x001C3C80` and `0x001C3EA6`.
 - [Debug menu commands](debug-menu-commands.md): which row steps which field.
 - [Game settings](../Saving-Loading-And-Settings/game-settings.md): the options that switch these effects and the quality presets.
 - [`graphics-settings-02cb7fd0-accesses.tsv`](graphics-settings-02cb7fd0-accesses.tsv): every access to the
-  render settings object `0x02CB7FD0`, one row per instruction (58 rows).
+  render settings object `0x02CB7FD0`, one row per instruction (1,113 rows).

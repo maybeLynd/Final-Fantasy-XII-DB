@@ -84,8 +84,10 @@ the same bit on every polygon tagged with that mj group.
 
 ### The writers and the path reset
 
-Four functions write the table, and each ends in a call to `0x003278D0`, except that `0x0026E150` with a count of
-0 or less returns at once without a write or the call (`0x0026E150`-`0x0026E152`, `0x0026E196`):
+Apart from the map bind `0x0026E960`, which clears the table, four functions write it, and each calls `0x003278D0`:
+`0x0026E880`, `0x0026E850` and `0x0026E130` end in a tail jump to it (`0x0026E8B0`, `0x0026E873`, `0x0026E141`), and `0x0026E150`
+calls it after every entry it clears (`0x0026E178`), so `count` times; with a count of 0 or less `0x0026E150` returns at
+once without a write or the call (`0x0026E150`-`0x0026E152`, `0x0026E196`):
 
 | function | arguments | effect |
 |---|---|---|
@@ -163,7 +165,7 @@ wall's off bit. `v = 0` closes, and a negative `v` hands the bit back to the aut
 
 ### What the floor bits block
 
-A body's movement kind is the byte at `+0x50` of its navigation record, the record `0x003808A0`,
+A body's movement kind is the word at `+0x50` of its navigation record (`0x00380D30` reads only its low byte), the record `0x003808A0`,
 `0x002327D0` and `0x00380D30` work on. The readers of the block bits are:
 
 - `0x00230A40(part, polygon, kind)` returns 0 for a negative polygon (`0x00230A4F`). It applies the overrides to the
@@ -179,11 +181,12 @@ A body's movement kind is the byte at `+0x50` of its navigation record, the reco
   neighbouring polygon the body is about to cross into. A 0 answer makes the sweep treat that edge as a
   wall (`0x0022F9B0`, `0x0022FB2C`), so the body slides along the boundary of a blocked polygon exactly as
   along a wall.
-- `0x00233110`, called by `0x00380D30` and `0x00231400`, picks the polygon under a point from the cell's list
-  and skips every polygon `0x00230A40` refuses (`0x002331C0`).
+- `0x00233110`, called by `0x00380D30`, `0x00231400` and `0x00232760` (from `0x003808A0`, `0x00380A22`), picks the polygon under a
+  point from the cell's list and skips every polygon `0x00230A40` refuses (`0x002331C0`).
 - `0x00380D30(record, position)` places a body: after finding its polygon it reads `0x00232090` into
-  `+0x5E` and, when the body's own kind bit is set, writes 0xFFFE into the polygon slot `+0x52`. The body
-  is then standing on ground that is closed to it.
+  `+0x5E` and, when the body's own kind bit is set, writes 0xFFFE into the polygon slot `+0x52`. The position is then
+  not copied: the body keeps its old position with no polygon (`0x00380D94`), and for the negative slot `0x003808A0` only
+  sets `+0x54` to -1 and returns (`0x003808B7`, `0x00380A2C`-`0x00380A2F`).
 - `0x00231A90` searches the body's cell for type-2 and type-4 marker polygons (stored at `+0x5C` and
   `+0x54`), using the overridden type bits.
 
@@ -221,9 +224,9 @@ effective attribute of the body's polygon it stores the floor group into `+0x56`
 `+0x58`, bit `0x1000` into flag bit `0x4` of `+0x60`, and the five-bit ground field (`0x00231F80`, bits `0x7C0000` after
 overrides) into `+0x5A`. `0x00231F80` has that one caller (`0x0038090E`).
 
-The record is the placement at `+0x30` of an actor's movement body (`[actor + 0xC0] + 0x138`), so the
-body holds the floor group at `+0x86` and the ground field at `+0x8A`. The script reads and writes
-them through three helpers that return -1 when the actor has no body:
+The record is the placement at `+0x30` of an actor's movement body (the qword at `[actor + 0xC0] + 0x138`), so the
+body holds the floor group at `+0x86` and the ground field at `+0x8A`. The script reads them through two helpers that
+return -1 when the actor has no body, and writes the ground field through a third that then writes nothing:
 
 | Verb | Handler | Helper | Effect |
 |---|---|---|---|
@@ -239,9 +242,10 @@ The ground field also picks an effect: the presentation command `0x18` (`0x00520
 103 for 11, 12 and 15, 148 for 16 and 18, and nothing for the others (`0x003B02A0`). A
 `setmapgroundtype` write lasts until the body's next move or placement rewrites `+0x8A`.
 
-Two of those effects carry a float, stored at the new effect's `+0x36C` with bit `0x800` set in its word
-`+0x368`: 148 takes the actor's `+0x144`, and 103 takes the float `+0xC0` of the record at qword `+0x138`
-of the actor's `+0xC0` record (`0x002E98C0`) when bit `0x8` of that record's dword `+0x90` is set (`0x002E9860`).
+Two of those effects carry a float, stored at the new effect's `+0x36C` with bit `0x800` set in its word `+0x368`: 148
+takes `+0x144` of the actor's render record (`[0x022C6F28] + 0x740 × id`, `0x003B0D3E`), whose `+0x108` is the actor, and
+103 takes the float `+0xC0` of the record at qword `+0x138` of the actor's `+0xC0` record (`0x002E98C0`) when bit `0x8`
+of that record's dword `+0x90` is set (`0x002E9860`).
 
 ### Asking whether a bit is overridden
 
@@ -434,21 +438,23 @@ A body steps towards a blocked polygon:
 | `0x0209A690` | the part's hidden model set | `0x0026E960` | `0x0026E640` |
 | `0x0209A698`, `0x0209A6A0` | the part's shown and hidden sets of the frame | `0x003820C0` | `0x0026E640` |
 | `0x0209A6FC` | 1: the part's sets take part in `0x0026E5F0` | `0x0026E1D0`, `0x0026E960`, `0x002628B0`, `0x00379070` | never cleared by the functions here |
-| `0x0209A670` | the bound map; 0 before a map is bound | `0x0026E960` | `0x0026E1D0` |
+| `0x0209A670` | the bound map; 0 before a map is bound | `0x0026E960` | `0x0026E1D0` (`0x0026E20C`); `0x003EC860` (`0x003EC885`, after it releases the map), from the map teardowns `0x0026E760`, `0x0026E7D0`, `0x0026EAC0` and `0x0026EAF0` |
 | `0x0209A678`, `0x0209A680` | the two part descriptors | `0x0026E960` | `0x0026E640` |
 | `0x0209A6D0`, `0x0209A6D8` | forced-on and forced-off map effect masks | `0x00378FB0` | `0x0026E640` |
 | `0x0209A6A8` | the part's hidden effect set | `0x0026E960` | `0x0026E640` |
 | `0x0209A6B0`, `0x0209A6B8` | the camera regions' shown and hidden effect sets | `0x003820C0` | `0x0026E640` |
-| `0x0209A6E0` | the hidden effect set of the last step | `0x0026EB30` | replaced by `0x0026EB30` every step |
+| `0x0209A6E0` | the hidden effect set of the last step | `0x0026EB30` | replaced by `0x0026EB30` every step (`0x0026ED3C`); zeroed by `0x0026E640` (`0x0026E697`), from `0x0026E1D0` and the map teardowns `0x0026E760`, `0x0026E7D0`, `0x0026EAC0` and `0x0026EAF0` |
 | `0x02EBF278` | 64 `f32` fade weights of the camera regions | `0x0022FF10` | `0x00382080`, every frame |
 
-The two resets also write three words beside the model block, each 0 at load (the zero-filled tail of `.data`); no
-instruction reads them at these addresses:
+The resets also write four words beside the model block, each 0 at load (the zero-filled tail of `.data`). No
+instruction reads `0x0209A700`, `0x0209A70C` or `0x0209A714` at these addresses. `0x0209A704` is read: it is the
+`setskyonly` flag, and while it is set the draw-list build `0x002F5550` skips every instance without the sky bit
+`0x10000000` (`0x002F5E03`-`0x002F5E10`, [weather](weather.md)):
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x0209A700` | `u32` | 0 | cleared together with `0x0209A704` (below) by one qword store of 0 | `0x0026E1D0` (`0x0026E21A`, 8 bytes, covering `0x0209A700`-`0x0209A707`) | no instruction at this address |
-| `0x0209A704` | `u32` | 0 | the word after `0x0209A700`: the map set-up clears it, the map teardown clears it, `0x00379930(x)` stores its argument, and the draw-list build reads it | `0x0026E1D0` (`0x0026E21A`, in the same qword store); `0x00378120`, 0 (`0x0037814C`); `0x00378230`, 0 (`0x00378253`); `0x00379930` (`0x00379930`, its first argument) | `0x002F5550` (`0x002F5585`) |
+| `0x0209A704` | `u32` | 0 | the `setskyonly` flag, the word after `0x0209A700`: the map set-up clears it, the map teardown clears it, `0x00379930(x)` stores its argument, and the draw-list build reads it | `0x0026E1D0` (`0x0026E21A`, in the same qword store); `0x00378120`, 0 (`0x0037814C`); `0x00378230`, 0 (`0x00378253`); `0x00379930` (`0x00379930`, its first argument) | `0x002F5550` (`0x002F5585`) |
 | `0x0209A70C` | `u64` | 0 | all bits set: `0xFFFFFFFFFFFFFFFF`, stored as one qword | `0x0026E640` (`0x0026E6CA`) | no instruction at this address |
 | `0x0209A714` | `u64` | 0 | all bits set, stored as one qword; it ends at `0x0209A71B`, just before the 32 anchor words at `0x0209A71C` that the same reset fills with `0xFFFF` (`0x0026E6EE`) | `0x0026E640` (`0x0026E6D5`) | no instruction at this address |
 

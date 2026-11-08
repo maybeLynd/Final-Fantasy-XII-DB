@@ -180,8 +180,10 @@ list in two passes:
    handle from `0x00183780(0, 1 << d, 1, 0x20)`, d the digit after `idx` in the name, to `+0xA0 + n × 8`;
 2. a texture `tex_<n>_clut_<m>` with any other m fills the entry of key `n << 16 | (m & 0xFF)` in the
    map at `+0x10` (`0x001B9A10`, which inserts a zeroed entry for a new key): a `_n.dds` name goes to
-   `+0x08`, `_spec.dds` to `+0x10`, `_diffuseCorrection.dds` to `+0x18`, each only while that field
-   is empty, and any other name to `+0x00` while it is empty, which then also takes palette n's address at `+0x20` and its
+   `+0x08`, `_spec.dds` to `+0x10` and `_diffuseCorrection.dds` to `+0x18` while that field is empty.
+
+   A name of none of these kinds, or one whose own field is already filled (the tests fall through in that
+   order), goes to `+0x00` while it is empty, which then also takes palette n's address at `+0x20` and its
    handle at `+0x28`.
 
 | Offset | Type | Name | Meaning |
@@ -363,8 +365,8 @@ The header (`0x001875A9`-`0x00187613`) has image type 2, the width `+0xCF0`, the
 pixel; each row is one `fwrite` of width × 3 bytes (`0x00187640`-`0x00187682`), then `fclose` (`0x00187694`); after the free
 (`0x00210EB0`) it nulls `+0xCF8` (`0x001876B5`).
 
-Only the constructor (0), `0x00186010` (2) and `0x00187550` (0) store to `+0xCD8`; `0x00186010` and `0x00188730`
-(`0x00188748`) read it.
+Only the constructor (0), `0x00186010` (2) and `0x00187550` (0) store to `+0xCD8`; `0x00186010` (`0x00186016`),
+`0x00187550` (`0x00187565`) and `0x00188730` (`0x00188748`) read it.
 
 With the boot byte `+0xDB8` set, `0x00187860` also runs a 3840 × 2160 capture, keyed by the state
 `+0xDAC`:
@@ -405,14 +407,19 @@ at `0x01F82CD8`, `0x40` bytes built by `0x001D89D0` in the init burst with a fad
    way in; 255 minus that on the way out (`+0x24` set), clearing the shown byte once the timer
    passes the fade time. The update then adds `dt` to the timer and to the clock `+0x10`, and
    draws with the angle clock × π through `0x001D7A20`.
-4. `0x001D7A20` draws nothing while the pause flag reads set (`0x00199780`). Otherwise it sets the
+4. `0x001D7A20` draws nothing when qword `+0x10` of `[0x01F82CD0]` is 0 or the pause flag reads set
+   (`0x001D7A44`-`0x001D7A65`, `0x00199780`). Otherwise it sets the
    sprite state (`0x001D8600`), places the four corners of the layout rectangle of `[0x01F82CD0]`
    centred for a 1920 × 1080 or 512 × 448 frame, writes the alpha into each, rotates them by the
    angle (`0x001D8790`) while the running byte `[0x0018A7D0()]` is 0, and emits them (`0x001B06D0`, `0x001B03D0`).
 5. `0x00183070` dismisses it (`0x001D8770`): it zeroes the start time, clears the armed byte and,
-   unless a fade-out already runs, starts one. The actor drive pass `0x0025D9E0` calls it, and so do
-   six functions of the script layer, among them the handlers of `fadesync` (`0x00B9`, `0x0033F4C0`) and `calltelepoeffect`
-   (`0x333`, `0x00344170`) ([native commands](../Scripts-And-Script-Commands/native-commands.md)).
+   unless a fade-out already runs, starts one.
+
+   The actor drive pass `0x0025D9E0` calls it, and so do
+   eight functions of the script layer: six command handlers, among them those of `fadesync` (`0x00B9`,
+   `0x0033F4C0`) and `calltelepoeffect` (`0x333`, `0x00344170`), and `0x0035B840` and `0x00473E60`, which the
+   handlers `0x00356460` (`0x368`) and `0x0034EA10` (`0x5A3`) call
+   ([native commands](../Scripts-And-Script-Commands/native-commands.md)).
 
 A load shorter than 5 s therefore never shows the icon.
 
@@ -445,8 +452,8 @@ These cells sit in the static block at `0x01F7F490`; each row names the cell's o
 | `+0x38` | `void*` | containerCell | 0x01F7F4C8: the 0xC0-byte object the init burst 0x0017D4C0 builds (0x0017D4FC-0x0017D524) with 0x001A16E0, which runs 0x001A1500(object, 5000, 0): an EASTL vector of 16-byte elements at +0x00 grown to 5,000, two EASTL sets at +0x20 and +0x58, a lock at +0x90 and the byte +0xB8 = 0; no instruction reads the cell back |
 | `+0x40` | `void*` | immediateTarget | 0x01F7F4D0: the 0x10-byte GeometryRenderTargetImmediate (vtable 0x008F5F28, RTTI) that 0x001A17D0 builds in the init burst, its +0x08 pointing at itself (0x0017D51F-0x0017D547). 0x001FB810(node, n) calls its +0x08's slot 0, 0x001F48B0, which wraps the node in a 0x28-byte GeometryInstanceOrderedObject from the ring allocator +0x30 and files it on [0x01F7F5E0] (0x001F48DE-0x001F4940); 0x001FB830 runs 0x001A1850, which with a render manager (0x00189120) wraps the node the same way and hands it to the new object's slot 1 with the manager's +0x08, and otherwise calls slot 0 with 0x40 (0x001A186F-0x001A190E). 0x0020E630(node, kind) submits through it (0x0020E63C-0x0020E66A) |
 | `+0x48` | `void*` | sceneBracket | 0x01F7F4D8: the 0xA0-byte object 0x001B24D0 builds in the init burst (0x0017D542-0x0017D565) that brackets each effect layer (Effect element runtime): 0x00862C10 opens a layer with 0x001B2530, which stores the pass id at +0x90 and the layer at +0x94; 0x00862C30 closes it with 0x001B2600; 0x00862BF0, 0x00862C00 and 0x00862C40 return the two words |
-| `+0x74` | `u32` | earlyWaterDraw | 0x01F7F504: the area's mEarlyWaterDraw setting, 1 when the scene config holds 1 (0x001C913A-0x001C9146 through 0x00182FE0); MainLoop_Draw reads it (0x0017FE20 at 0x0022B0ED) and, when it is set, draws the "Water effect" pass (0x0017F330, 0x00180A30) right after effect layer 3 (0x0022B416-0x0022B431), otherwise later in the frame (0x0022B46A-0x0022B48A) |
-| `+0x78` | `u32` | nextRenderKey | 0x01F7F508: the key the next render record takes: each presentation set-up stores its model entry's id (entry +0x14) here just before 0x0042FB80 creates the render record (0x002E2980, 0x002E334D, 0x002EE2B3, 0x003EB2DE; the monster viewer's loader stores 0x02164210 at 0x002EE55F) and restores it after (0x002E299D, 0x002E3360, 0x002EE2C5, 0x002EE57E, 0x003EB2EF); the record's initialiser 0x00420480 copies it, when not 0, into the render record's key +0x6B0 (0x00420636-0x00420640) |
+| `+0x74` | `u32` | earlyWaterDraw | 0x01F7F504: the area's mEarlyWaterDraw setting, 1 when the scene config holds 1 (0x001C913A-0x001C9146 through 0x00182FE0); MainLoop_Draw reads it (0x0017FE20 at 0x0022B0ED); while [0x01FD49E8] is non-zero it draws the "Water effect" pass (0x0017F330, 0x00180A30) right after effect layer 3 when this is set (0x0022B40E-0x0022B431), and otherwise later in the frame when [0x01DF08F4] (0x0017FE10) is also non-zero (0x0022B462-0x0022B48A) |
+| `+0x78` | `u32` | nextRenderKey | 0x01F7F508: the key the next render record takes: each presentation set-up stores its model entry's id (entry +0x14) here just before 0x0042FB80 creates the render record (0x002E2980, 0x002E334D, 0x002EE2B3, and 0x003EB2DE through 0x002ED4E0; the monster viewer's loader stores 0x02164210 at 0x002EE55F) and sets it back to 0 after (0x002E299D, 0x002E3360, 0x002EE2C5, 0x002EE57E, 0x003EB2EF); the record's initialiser 0x00420480 copies it, when not 0, into the render record's key +0x6B0 (0x00420636-0x00420640) |
 | `+0x7C` | `u8` | opaquePosted | 0x01F7F50C: once-per-frame latch of the RenderOpaqueObj command: 0x0017F070, called by MainLoop_Draw (0x0022B38F), posts the command on the render command vector (0x0018C580) only while this is 0 and the vector exists, and sets it to 1 (0x0017F074-0x0017F09A); 0x0017F270 (0x0022B331) clears it with +0x7D |
 | `+0x7D` | `u8` | mapOpaquePosted | 0x01F7F50D: the same latch for the RenderMapOpaqueObj command, posted by 0x001809A0 (0x001809A4-0x001809CA; Map art); while it is set, +0x7E is 0 and the map-art context's +0x419 is 0, the map command's draw 0x001F3570 draws the characters' opaque objects before the map's (0x001F3586-0x001F35D0) and RenderOpaqueObj's draw 0x001F36B0 leaves them out (0x001F36B9-0x001F36D7) |
 | `+0x7E` | `u8` | charsWithOpaque | 0x01F7F50E: set to 1 by the effect group draw 0x0024D370 when the open layer [0x01F7F4D8] + 0x94 (read by 0x00862BF0) is 2 (0x0024D451-0x0024D45E, through 0x00183060, which stores 1 when its argument is not 0, 0x00183060-0x00183062); a group whose +0x36A has bit 0x1 reaches that test only when 0x003AA2E0(0), called at 0x0024D448, answers non-zero (0x0024D419-0x0024D44F), and a group without the bit reaches it at once (0x0024D420); MainLoop_Draw clears it on a pass whose first argument is not 1 (0x0022B10D-0x0022B14D). While it is set both opaque draws leave the characters to RenderOpaqueObj (0x0017FE50 at 0x001F3586 and 0x001F36B9) |
@@ -508,7 +515,7 @@ Vtables:
 | Address | Type | Name | Meaning |
 |---|---|---|---|
 | `0x008C5760` | `...` |  | GameApplication, 31 slots (table above) |
-| `0x01CB2508` | `...` |  | Phyre::PFramework::PApplication, 31 slots; RTTI locator at `0x01CB2500` |
+| `0x01CB2508` | `...` |  | Phyre::PFramework::PApplication, 31 slots; RTTI locator `0x01D3E310`, named by the qword at `0x01CB2500` |
 
 Globals:
 
@@ -680,8 +687,9 @@ No other instruction has the displacement `0x113C` or `0x113D`.
   mount.
 - Slot 5 is deliberately empty, not missing; a hook that expects an unimplemented slot there finds
   a thunk to the stub.
-- A second pump pass runs only while `0x01F82D30` is set by the pacing predicate; the game step then
-  sees a delta of 0 on the second pass.
+- A second pump pass runs only while `0x01F82D30` is set. `0x001E0560` sets it at the end of `0x0022A580`
+  (`0x0022A705`) when `0x01F82D31` is armed, and `0x001E0550` arms that byte when the pacing predicate holds
+  (`0x0017D736`). The game step then sees a delta of 0 on the second pass.
 - The pause byte behind `0x01F810F0` is reached through `0x001997D0` (returns the pointer at `0x01F810F0`) and `0x00199780`
   (returns the byte). Its writers and readers:
   - `0x0017E720(flag)` stores `flag != 0` through `0x001997E0` (`0x0017E728`, `0x0017E73B`). Its only caller is the pause
@@ -690,8 +698,9 @@ No other instruction has the displacement `0x113C` or `0x113D`.
   - The vtable slots 21 and 22 (`0x0017CFD0`, `0x0017D170`) read and write it too, each after `0x001997D0`'s null test
     (`0x0017CFD9`).
   - `0x0017E4E0()` returns the byte (`0x0017E4E4`-`0x0017E4F1`). The pre-dispatch step `0x0022A580` copies it to `0x02F974A0`
-    (`0x0022A67A`) and, with no second pass armed (`0x01FD4A68` = 0), tests the copy at `0x0022A713`: clear, it runs
-    `0x001E05E0()` and, when that is 0, `0x001832F0()`, before `0x00375B80(0)`; set, it goes to `0x00375B80(0)` at once.
+    (`0x0022A67A`) and, when `0x01FD4A68` is 0 (it stores 1 there in main states 4 and 6, 0 in the others,
+    `0x0022A600`-`0x0022A632`), tests the copy at `0x0022A713`: clear, it runs `0x001E05E0()` and, when that is 0,
+    `0x001832F0()`, before `0x00375B80(0)`; set, it goes to `0x00375B80(0)` at once.
   - The field frame `0x0022A770` runs `0x002506D0` only while the byte is set (`0x0022A8CA`,
     [frame update order](frame-update-order.md)).
   - The UI tick `0x00250540` first runs `0x00184960` with 1 or 2 (by `0x001EDE70()` and `0x00181DD0()`,

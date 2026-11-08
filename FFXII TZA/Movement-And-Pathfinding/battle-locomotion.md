@@ -18,6 +18,10 @@ choice comes from the C runtime's random generator, shared with everything else 
 A unit that makes no progress for about a second is treated as stuck and looks for a point along
 its own route it can still reach.
 
+The order a unit is carrying out sets its goal. Depending on the order, the goal is a randomly drawn walkable point,
+the position kept in its spawn record, the party leader, its current target, or a unit the order names; some orders
+give no goal.
+
 ## How it works
 
 ### The navigation step
@@ -27,6 +31,12 @@ four combat sites (`0x002FDBE9`, `0x002FDD69`, `0x00304D5B`, `0x00308341`): it r
 mesh and follows the route to the next waypoint ([navigation mesh and
 pathfinding](navigation-mesh-and-pathfinding.md)), refreshes the locomotion flags, and hands the
 locomotion block at unit `+0x80` to the solver `0x00336CE0(block, block)`.
+
+When `0x00325D90(unit)` returns 0 it does none of this: it runs `0x0033C9B0(block)` and returns 1
+(`0x00325BD7`-`0x00325BE1`). When the route search `0x00383620` returns non-zero, the step calls `0x0016D6A0` on the
+unit's `+0x698` record and returns 0 before the waypoint step and the solver (`0x00325C29`-`0x00325C3C`). After the
+solver, block flag bit `0x400` (`+0x170`) zeroes the block's `+0xD8` and runs `0x00313500`, and flag bit `0x80`
+zeroes `+0xD8`, clears itself and calls `0x003003F0` (`0x00325D0F`-`0x00325D5C`).
 
 The solver writes its results back: the block's `+0xD8` from the context's speed `+0xB0`; `+0xDC`,
 `+0xF4` and `+0xE0` from the desired heading, pitch and limited heading `+0xB4`-`+0xBC`; `+0x170`

@@ -63,8 +63,8 @@ and 7 need the bit value `1 << (group − 1)` (`0x1`, `0x2`, `0x4`, `0x8`, `0x40
 of `0x02092162`, `0x02092164` and `0x02092166`; group 2 also needs `0x02F8F29E` bit `0x1` clear and group 5
 `0x02EBEF68` bit `0x1` clear, and groups 6 and 9 always pass (`0x0024D4E0`–`0x0024D538`).
 
-For each instance the group draw publishes the group at `0x02092700` and skips the instance unless
-its `+0x3A8` equals `0x00181DD0()`, the high nibble of its word `+0x378` equals the layer, and the
+Once the gate passes, the group draw stores the group at `0x02092700` (`0x0024D3B8`, before the walk), and it
+skips an instance unless its `+0x3A8` equals `0x00181DD0()`, the high nibble of its word `+0x378` equals the layer, and the
 per-instance gate `0x0024D770(instance, 1)` passes (`0x0024D3C0`–`0x0024D3FC`). It makes the instance
 current and walks its emitters through `0x003A72F0` → `0x003A8D80`, which calls `0x00441970` for each
 (`0x0024D405`, `0x0024D499`, `0x003A8D84`–`0x003A8DAB`). So an effect's layer is authored in its

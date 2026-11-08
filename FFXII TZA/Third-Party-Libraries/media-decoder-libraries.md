@@ -13,6 +13,10 @@ banks, whose materials the sound driver decodes with the CRI HCA decoder or, for
 material, with Tremor and libogg. None of these libraries is the game's own code; each is linked in
 whole or in part as its authors published it.
 
+When a movie opens, the game keeps its picture track and the sound track whose language matches the movie player's
+English or other-language flag (with fewer than three tracks, any sound track). It then reads the file's blocks into
+queues that a picture thread and a sound thread decode separately.
+
 ## How it works
 
 ### Opening a movie
@@ -325,7 +329,10 @@ The movie player calls no control, so the map is linked data that nothing reads.
 
 - Type 1 needs the packet's `+0x0C` not 0 and the info's `+0x08` 0 (`0x008801C3`, `0x008801CA`); that field is the
   third value `0x00880720` stores (`0x00880789`). A null codec setup at info `+0x20` returns `-129 + 7` (`0x008801E5`);
-  otherwise the result is `r + 7` for the `r` of `0x00880720(info, reader)` (`0x008801F2`, `0x008801F7`).
+  otherwise the result is `r + 7` for the `r` of `0x00880720(info, reader, setup)` with the setup from info `+0x20`
+  (`0x008801D7`, `0x008801F2`, `0x008801F7`).
+- `0x00880720` stores the two block sizes `1 << e` at the codec setup's `+0x00` and `+0x04` (`0x008807D2`,
+  `0x008807E1`).
 - `0x00880720` returns `0x17` for a header it accepts (`0x00880805`), so an accepted first header gives
   `0x17 + 7`, the 30 bytes the open steps over.
 - Type 3 needs the info's `+0x08` not 0 and the comment's `+0x18` null (`0x008801A7`, `0x008801AD`) and returns

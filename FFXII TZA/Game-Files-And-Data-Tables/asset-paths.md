@@ -18,6 +18,10 @@ PS2-era model and motion file, effect files, sound banks, voice files and movies
 under `gamedata/` is reached by name instead, through the `.ah` lists
 ([Prefetch and asset-header manifests](prefetch-manifests.md)), and is not in this table.
 
+The game asks for such a file with only a kind and a number. The kind picks one list of paths and the number picks the
+path in it; the language's size table gives the file's size or marks it as no file, and the shipped archive
+`FFXII_TZA.vbf` holds the file under that path.
+
 ### Where the values come from
 
 The columns come from the executable's path arrays, the US size table and the archive index:
@@ -35,7 +39,7 @@ The columns come from the executable's path arrays, the US size table and the ar
    - Past the end an id is listed only when the size table sizes it, with no path (below).
 4. **The size.** `0x002DF960(kind, id)` returns the dword at `kind × 5000 + id` of the language's
    `FileSizeTable_<lang>.fst`; `0xFFFFFFFF` is no file. The size column is the US table's value.
-5. **Shipping.** The path, less its `PS2Data\` prefix and in lower case, is looked up among the 89,414 names of
+5. **Shipping.** The path in lower case with forward slashes, `ps2data/` kept, is looked up among the 89,414 names of
    the shipped `FFXII_TZA.vbf` index that `0x001F4340` reads; the archive record's size is
    written beside it.
 

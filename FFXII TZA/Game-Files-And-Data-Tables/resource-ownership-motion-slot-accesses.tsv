@@ -1,11 +1,22 @@
 function	name	site	disp	kind	instruction	route	note
+0x003DD380	FUN_003dd380	0x003DD3C8	0x0	r	mov edi, dword ptr [rbx - 4]	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DD380	FUN_003dd380	0x003DD3E0	0x0	r	mov ecx, dword ptr [rbx - 4]	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DD380	FUN_003dd380	0x003DD3EC	0x0	w	mov qword ptr [rbx - 4], rbp	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DD420	FUN_003dd420	0x003DD45F	0x0	r	mov ebx, dword ptr [rdi]	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DD420	FUN_003dd420	0x003DD476	0x0	r	mov ecx, dword ptr [rdi]	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DD420	FUN_003dd420	0x003DD487	0x0	w	mov qword ptr [rdi], rax	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DD420	FUN_003dd420	0x003DD49D	0x0	r	mov ecx, dword ptr [rdi]	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DD420	FUN_003dd420	0x003DD4A9	0x0	w	mov qword ptr [rdi], rax	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DD4C0	FUN_003dd4c0	0x003DD61B	0x0	w	mov dword ptr [rbx], esi	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0 zeroclear	
+0x003DD740	FUN_003dd740	0x003DD75F	0x0	r	mov eax, dword ptr [rax + rcx]	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DD790	FUN_003dd790	0x003DD7B6	0x0	w	mov qword ptr [rax - 0xd], r10	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DD7E0	FUN_003dd7e0	0x003DD826	0x0	w	mov qword ptr [rax - 0xd], r8	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DD850	FUN_003dd850	0x003DD85C	0x0	r	mov ecx, dword ptr [rdi]	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	the slot is the context 0x003DDA70 registers this completion with (0x003DDA83, 0x003DDAB5)
+0x003DD850	FUN_003dd850	0x003DD86E	0x0	r	mov ebx, dword ptr [rdi]	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	the slot is the context 0x003DDA70 registers this completion with (0x003DDA83, 0x003DDAB5)
+0x003DD850	FUN_003dd850	0x003DD887	0x0	r	mov ecx, dword ptr [rdi]	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	the slot is the context 0x003DDA70 registers this completion with (0x003DDA83, 0x003DDAB5)
 0x003DDA70	FUN_003dda70	0x003DDA79	0x0	r	mov ecx, dword ptr [rcx]	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DD380	FUN_003dd380	0x003DD3B0	0x4	r	mov ecx, dword ptr [rbx]	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DD380	FUN_003dd380	0x003DD40F	0x4	w	mov dword ptr [rbx], 5	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DD420	FUN_003dd420	0x003DD441	0x4	r	mov ecx, dword ptr [rdi + 4]	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DD420	FUN_003dd420	0x003DD490	0x4	w	mov dword ptr [rdi + 4], 5	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DD4C0	FUN_003dd4c0	0x003DD52F	0x4	r	cmp dword ptr [rbx + 4], 2	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
@@ -14,11 +25,26 @@ function	name	site	disp	kind	instruction	route	note
 0x003DD4C0	FUN_003dd4c0	0x003DD5D7	0x4	w	mov dword ptr [rbx + 4], r13d	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0 zeroclear	
 0x003DD4C0	FUN_003dd4c0	0x003DD638	0x4	w	mov dword ptr [rbx + 4], 1	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DD740	FUN_003dd740	0x003DD758	0x4	r	cmp dword ptr [rax + rcx + 4], 4	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DD770	FUN_003dd770	0x003DD788	0x4	r	mov eax, dword ptr [rax + rcx]	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DD850	FUN_003dd850	0x003DD863	0x4	r	cmp dword ptr [rdi + 4], 5	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	the slot is the context 0x003DDA70 registers this completion with (0x003DDA83, 0x003DDAB5)
+0x003DD850	FUN_003dd850	0x003DD88E	0x4	w	mov dword ptr [rdi + 4], 0	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	the slot is the context 0x003DDA70 registers this completion with (0x003DDA83, 0x003DDAB5)
+0x003DD850	FUN_003dd850	0x003DD8B5	0x4	w	mov dword ptr [rdi + 4], 4	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	the slot is the context 0x003DDA70 registers this completion with (0x003DDA83, 0x003DDAB5)
+0x003DD8D0	FUN_003dd8d0	0x003DD905	0x4	r	cmp dword ptr [rax + rcx], 4	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DD980	FUN_003dd980	0x003DD9B5	0x4	r	cmp dword ptr [rax + rcx], 4	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DDA20	FUN_003dda20	0x003DDA3B	0x4	r	cmp dword ptr [rax + rcx + 4], 0	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DDA20	FUN_003dda20	0x003DDA4E	0x4	w	mov dword ptr [rax + rcx + 4], 2	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DDA70	FUN_003dda70	0x003DDABE	0x4	w	mov dword ptr [rbx + 4], 3	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DDA20	FUN_003dda20	0x003DDA42	0x8	w	mov dword ptr [rax + rcx + 8], r8d	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DD790	FUN_003dd790	0x003DD7BD	0xC	w	mov byte ptr [rax - 1], cl	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DD7E0	FUN_003dd7e0	0x003DD82D	0xC	w	mov byte ptr [rax - 1], dl	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DD380	FUN_003dd380	0x003DD3E8	0xD	w	mov byte ptr [rbx + 9], bpl	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DD420	FUN_003dd420	0x003DD484	0xD	w	mov byte ptr [rdi + 0xd], al	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DD420	FUN_003dd420	0x003DD4A6	0xD	w	mov byte ptr [rdi + 0xd], al	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DD4C0	FUN_003dd4c0	0x003DD665	0xD	w	mov byte ptr [rbx + 0xd], sil	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DD790	FUN_003dd790	0x003DD7BA	0xD	w	mov byte ptr [rax], r10b	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DD7E0	FUN_003dd7e0	0x003DD82A	0xD	w	mov byte ptr [rax], r8b	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DD790	FUN_003dd790	0x003DD7B0	0xE	w	mov word ptr [rax + 1], dx	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
+0x003DD7E0	FUN_003dd7e0	0x003DD820	0xE	w	mov word ptr [rax + 1], cx	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DD4C0	FUN_003dd4c0	0x003DD609	0x10	w	mov word ptr [rbx + 0x10], ax	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DDA70	FUN_003dda70	0x003DDA98	0x10	r	movsx ecx, word ptr [rbx + 0x10]	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	
 0x003DD4C0	FUN_003dd4c0	0x003DD61D	0x12	w	mov word ptr [rbx + 0x12], ax	route-seeded ARRAY 0x02B581A0 stride=0x1C count=80 index=group*16+index; helper arguments require caller bounds base+0x0	

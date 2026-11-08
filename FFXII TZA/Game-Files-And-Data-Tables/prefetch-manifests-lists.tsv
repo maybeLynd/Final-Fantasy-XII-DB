@@ -1,7 +1,7 @@
 list	path	language	part	bytes	sha256	size_token	names	same_bytes_as
 1	prefetchdata/ff12mapjump_custom_nocrystal.csv	-	ff12mapjump_custom_nocrystal.csv	64639	8f87f14c98e96d9c179d706ae9c4074f8004a96e1654041d458e4fdbfdb6509d			
 2	prefetchdata/add-on/events/250.txt	add-on	events	1767	d83260a8eb3bab21f0b9affdb8d4180ec22e57aa37ebd190020d0b6d0c3f2241		31	
-3	prefetchdata/ch/common.txt	ch	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7	##PhyreShader	873	
+3	prefetchdata/ch/common.txt	ch	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7		873	
 4	prefetchdata/ch/eventlist.csv	ch	eventlist.csv	4912	b4332cb7329a6910c1a40c4f01f8aa9bd1a15632ba561ec073dc60938885ea80			
 5	prefetchdata/ch/events/100.txt	ch	events	41123	737dd5844ca64bce0dbc20076d485a9e48696b0bcbccd32d63fd5e05a32a5e9f	##Total_data_Size:_203_MB	487	
 6	prefetchdata/ch/events/101.txt	ch	events	37232	8a22fd03ed3f0884187996d042fcff782a2a1c606324b95641955ec6e1c9d35d	##Total_data_Size:_167_MB	448	
@@ -1037,7 +1037,7 @@ list	path	language	part	bytes	sha256	size_token	names	same_bytes_as
 1036	prefetchdata/ch/maps/ztc_c03.txt	ch	maps	52633	3032cd2f3a4cfcda1786c282bd489083fb534afd7b7ab5b5780ee68e9339f1e0	##Total_data_Size:_389_MB	667	
 1037	prefetchdata/ch/maps/ztc_c04.txt	ch	maps	69917	06329584230dcdc9cbc3e03eb68777d20e63a612558292a6666307816b0df922	##Total_data_Size:_489_MB	875	
 1038	prefetchdata/ch/maps/ztc_d01.txt	ch	maps	46519	15c2deaf31e4e31f41b7a5c15c87948f4578cc5a0a69a4d3c83801087cff4525	##Total_data_Size:_351_MB	633	
-1039	prefetchdata/cn/common.txt	cn	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7	##PhyreShader	873	3
+1039	prefetchdata/cn/common.txt	cn	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7		873	3
 1040	prefetchdata/cn/eventlist.csv	cn	eventlist.csv	4912	b4332cb7329a6910c1a40c4f01f8aa9bd1a15632ba561ec073dc60938885ea80			4
 1041	prefetchdata/cn/events/100.txt	cn	events	41123	3ec82c09816b10a43ff78b98bacc792837a672b4791303ecc792e1ca29d54b30	##Total_data_Size:_204_MB	487	
 1042	prefetchdata/cn/events/101.txt	cn	events	37232	6d6ee8f09a6087d62665f9c1fd143d7c04ff928676f1ba6010356ae933f7e2cd	##Total_data_Size:_167_MB	448	
@@ -2073,7 +2073,7 @@ list	path	language	part	bytes	sha256	size_token	names	same_bytes_as
 2072	prefetchdata/cn/maps/ztc_c03.txt	cn	maps	52633	11abf5645316aff68ecf29af56511a7ae2cb6e4ba33277f47353d501539cf4c6	##Total_data_Size:_389_MB	667	
 2073	prefetchdata/cn/maps/ztc_c04.txt	cn	maps	69917	f9b1a380754684176f78a9745f88c2a3aa9dca1026d6acf6671002d7382ea38a	##Total_data_Size:_489_MB	875	
 2074	prefetchdata/cn/maps/ztc_d01.txt	cn	maps	46519	7b1256c2eb85dfe4bfcecf210911592a19cab7934106849a9904a166788dcc83	##Total_data_Size:_351_MB	633	
-2075	prefetchdata/de/common.txt	de	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7	##PhyreShader	873	3
+2075	prefetchdata/de/common.txt	de	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7		873	3
 2076	prefetchdata/de/eventlist.csv	de	eventlist.csv	4912	b4332cb7329a6910c1a40c4f01f8aa9bd1a15632ba561ec073dc60938885ea80			4
 2077	prefetchdata/de/events/100.txt	de	events	43097	99e2f4c7d11678509a1ae170958f91e2b52a6b28b21631220df4a8abed9819a4	##Total_data_Size:_220_MB	517	
 2078	prefetchdata/de/events/101.txt	de	events	39133	3a910ebcbb24a38763f1c333f89cd65537dab4062c1ac3062347bcacf36a5483	##Total_data_Size:_190_MB	477	
@@ -3115,7 +3115,7 @@ list	path	language	part	bytes	sha256	size_token	names	same_bytes_as
 3114	prefetchdata/de/maps/ztc_c03.txt	de	maps	55083	a2f97891e2d3250d4d30c28df509f25898dc4d76e8a26cad37000248912ec8f0	##Total_data_Size:_422_MB	707	
 3115	prefetchdata/de/maps/ztc_c04.txt	de	maps	72980	465fa822c30753f20e6c4275b598bafd53577b6ef67068e8b79d16041d8bb0f5	##Total_data_Size:_519_MB	926	
 3116	prefetchdata/de/maps/ztc_d01.txt	de	maps	49338	fec30601683f4841b0c16968153376ede2eacb972913d3a1951289dd2c1c8cdd	##Total_data_Size:_463_MB	679	
-3117	prefetchdata/es/common.txt	es	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7	##PhyreShader	873	3
+3117	prefetchdata/es/common.txt	es	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7		873	3
 3118	prefetchdata/es/eventlist.csv	es	eventlist.csv	4912	b4332cb7329a6910c1a40c4f01f8aa9bd1a15632ba561ec073dc60938885ea80			4
 3119	prefetchdata/es/events/100.txt	es	events	43097	c01ed41c98720d2b7ee938552bbf69611a631d6411635795700491229ef33f91	##Total_data_Size:_220_MB	517	
 3120	prefetchdata/es/events/101.txt	es	events	39133	8dde5af3b03d0b6655cfbbb31c6e3df16f9443111e04224d37223ed9d8214d8e	##Total_data_Size:_190_MB	477	
@@ -4155,7 +4155,7 @@ list	path	language	part	bytes	sha256	size_token	names	same_bytes_as
 4154	prefetchdata/es/maps/ztc_c03.txt	es	maps	55083	5f3154e5cb68a058267c77afad8005017a9518aa19240ab3aea7341daeb0f842	##Total_data_Size:_422_MB	707	
 4155	prefetchdata/es/maps/ztc_c04.txt	es	maps	72980	61d8bd95f6f2546489987581e2bd7a313fd80021ae3d51b0f64e914b5a5eb588	##Total_data_Size:_519_MB	926	
 4156	prefetchdata/es/maps/ztc_d01.txt	es	maps	49338	9e909c576ad07c5120c4b288615c54ee17ef26496df273dbdcf45e5998ac0bfd	##Total_data_Size:_463_MB	679	
-4157	prefetchdata/fr/common.txt	fr	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7	##PhyreShader	873	3
+4157	prefetchdata/fr/common.txt	fr	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7		873	3
 4158	prefetchdata/fr/eventlist.csv	fr	eventlist.csv	4912	b4332cb7329a6910c1a40c4f01f8aa9bd1a15632ba561ec073dc60938885ea80			4
 4159	prefetchdata/fr/events/100.txt	fr	events	43097	e9a6fbde112c6bea4bbef73d403ab3016570bcf2828f5e3cc645cc127bd4736b	##Total_data_Size:_220_MB	517	
 4160	prefetchdata/fr/events/101.txt	fr	events	39133	856c76705fb0c827ddbda6347428e30d6fd091fbab2dfc274c530f437cee6788	##Total_data_Size:_190_MB	477	
@@ -5195,7 +5195,7 @@ list	path	language	part	bytes	sha256	size_token	names	same_bytes_as
 5194	prefetchdata/fr/maps/ztc_c03.txt	fr	maps	55083	959120f8e4a24b669722ba005b63660df87be800d639e297dee699d29375f702	##Total_data_Size:_422_MB	707	
 5195	prefetchdata/fr/maps/ztc_c04.txt	fr	maps	72980	d78b8cbecb3dea2d30ab347761b2fd5de6a69b31471c3c52f1bbd1bdf4e151ea	##Total_data_Size:_519_MB	926	
 5196	prefetchdata/fr/maps/ztc_d01.txt	fr	maps	49338	296bf6d16b2c5fe61327d01f217665bcdb4ba295b612d543378b730518b23c97	##Total_data_Size:_463_MB	679	
-5197	prefetchdata/it/common.txt	it	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7	##PhyreShader	873	3
+5197	prefetchdata/it/common.txt	it	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7		873	3
 5198	prefetchdata/it/eventlist.csv	it	eventlist.csv	4912	b4332cb7329a6910c1a40c4f01f8aa9bd1a15632ba561ec073dc60938885ea80			4
 5199	prefetchdata/it/events/100.txt	it	events	43097	ecdc3e9f9435514e16281d41e4a8bd3547c07d00e3a9ee252303be6537706989	##Total_data_Size:_220_MB	517	
 5200	prefetchdata/it/events/101.txt	it	events	39133	4fcd4c01d145811c70306b976236eaab8effd005e91f95266e053f4924be4215	##Total_data_Size:_190_MB	477	
@@ -6235,7 +6235,7 @@ list	path	language	part	bytes	sha256	size_token	names	same_bytes_as
 6234	prefetchdata/it/maps/ztc_c03.txt	it	maps	55083	d8afa6a17426259823922599d2830d8629b1a7cd8b46ee2564a1c00d7ea3fb23	##Total_data_Size:_422_MB	707	
 6235	prefetchdata/it/maps/ztc_c04.txt	it	maps	72980	7c150c011a102fd5d65fe54d2b9e27ddf2ec18d40f5fe60475104b2c88910515	##Total_data_Size:_519_MB	926	
 6236	prefetchdata/it/maps/ztc_d01.txt	it	maps	49338	66e367997a949496db8ce21055cab2b370a8dfabe6d080bfa72e080668aaa31f	##Total_data_Size:_463_MB	679	
-6237	prefetchdata/jp/common.txt	jp	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7	##PhyreShader	873	3
+6237	prefetchdata/jp/common.txt	jp	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7		873	3
 6238	prefetchdata/jp/eventlist.csv	jp	eventlist.csv	4912	b4332cb7329a6910c1a40c4f01f8aa9bd1a15632ba561ec073dc60938885ea80			4
 6239	prefetchdata/jp/events/100.txt	jp	events	43097	32352a0c59e53025558712efa7abbad61824ff867541acdcd63a274a2c333a47	##Total_data_Size:_219_MB	517	
 6240	prefetchdata/jp/events/101.txt	jp	events	39133	6b3fcd0fa00e6301858420f4adc571a0a3075a4dcaf7624d4794e61decf867ee	##Total_data_Size:_190_MB	477	
@@ -7274,7 +7274,7 @@ list	path	language	part	bytes	sha256	size_token	names	same_bytes_as
 7273	prefetchdata/jp/maps/ztc_c03.txt	jp	maps	54690	683df717aed580e19de2f2d73f62a95fcca79cec2cf16d23d347bd48fe97626c	##Total_data_Size:_420_MB	700	
 7274	prefetchdata/jp/maps/ztc_c04.txt	jp	maps	72587	7be11763f6f17c581b4d88ae2db48588ace77623e321be69ac60c541d061781b	##Total_data_Size:_517_MB	919	
 7275	prefetchdata/jp/maps/ztc_d01.txt	jp	maps	48945	169fd573a38dfaff320812b1745dc4cc541fa91413d42adbfd6c9307b3c564a1	##Total_data_Size:_461_MB	672	
-7276	prefetchdata/kr/common.txt	kr	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7	##PhyreShader	873	3
+7276	prefetchdata/kr/common.txt	kr	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7		873	3
 7277	prefetchdata/kr/eventlist.csv	kr	eventlist.csv	4912	b4332cb7329a6910c1a40c4f01f8aa9bd1a15632ba561ec073dc60938885ea80			4
 7278	prefetchdata/kr/events/100.txt	kr	events	41123	75e158904acb9acb2418f343eddb58d0961decb82be7d3b08500531dee94307a	##Total_data_Size:_204_MB	487	
 7279	prefetchdata/kr/events/101.txt	kr	events	37232	bc2d07460cbb268d4d14c2258becb38c7ddbd7cbd7353d6cb9230be9d94f5b0e	##Total_data_Size:_167_MB	448	
@@ -8310,7 +8310,7 @@ list	path	language	part	bytes	sha256	size_token	names	same_bytes_as
 8309	prefetchdata/kr/maps/ztc_c03.txt	kr	maps	52633	41be18d7306116b51ecfdd6ad16ac98eea76eb609d7b5fb71d7ef441ff649277	##Total_data_Size:_389_MB	667	
 8310	prefetchdata/kr/maps/ztc_c04.txt	kr	maps	69917	2f5cb4e43e2b03593b5365cd530b4b5d6d436484f49bf6b107a9391fd35642bd	##Total_data_Size:_489_MB	875	
 8311	prefetchdata/kr/maps/ztc_d01.txt	kr	maps	46519	0ec10e1e84ea017a11ac14b70b4c008713d78311458a1c5581387154efb9b81a	##Total_data_Size:_351_MB	633	
-8312	prefetchdata/us/common.txt	us	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7	##PhyreShader	873	3
+8312	prefetchdata/us/common.txt	us	common.txt	29534	f62630ec080a7bf1c4279408520861275abab4e8bad50ba68c5cb9ce11c72ea7		873	3
 8313	prefetchdata/us/eventlist.csv	us	eventlist.csv	4912	b4332cb7329a6910c1a40c4f01f8aa9bd1a15632ba561ec073dc60938885ea80			4
 8314	prefetchdata/us/events/100.txt	us	events	43097	763e6bb0c19d39f32afe9f09d843e61d959b1cf892ec45dde62b4d20475473c1	##Total_data_Size:_220_MB	517	
 8315	prefetchdata/us/events/101.txt	us	events	39133	4f2c8628932bb2551be7fc7b2643ca58197012cf4e12bf0b3e35177916a81c82	##Total_data_Size:_190_MB	477	

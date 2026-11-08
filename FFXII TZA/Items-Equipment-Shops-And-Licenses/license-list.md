@@ -15,6 +15,10 @@ By requirement kind there are 176 equipment nodes, 97 action nodes (magicks, tec
 the 13 Espers), 87 augment nodes and the one Second Board node, 360. 60 squares are on all twelve boards, and the
 14 Quickening nodes not placed on a board are on no board, as [License Board](license-board.md) states.
 
+Each row is the content of one square. The twelve board files place these rows on their grids by row number, so a
+square shared by several boards is one row here, and the ids it lists name the equipment, actions or augments the
+square grants.
+
 ### Where the values come from
 
 Each line is read from the shipped files in these steps:

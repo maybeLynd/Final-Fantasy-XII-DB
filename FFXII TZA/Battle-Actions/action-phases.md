@@ -32,6 +32,9 @@ frame.
    instead ([Quickenings and summons](quickenings-and-summons.md)).
 8. **The end**, once the animation has signalled that it is done.
 
+While one action is being shown, the game marks a set of menu requests as unavailable in its action-availability
+table, and the menu request handler refuses each request so marked until the shown unit is released.
+
 ### Keeping the charge
 
 If a party member's action is cancelled before it goes off and the same action

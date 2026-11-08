@@ -147,15 +147,19 @@ paths it returns `GetLastError()` (`0x001DFDF2`).
 `0x001DE4F0(object, quality)` returns at once when Quality already equals the argument; otherwise it
 stores it at `+0x0C` and, for every setting whose reset flag is set, copies the defaults table's
 column `quality` unless the quality is 3. Its one caller is `0x001D5120` (`0x001D5139`), the
-graphics-settings apply, which then pushes five settings to their consumers in this order:
+graphics-settings apply. Of the ten settings the preset stores, it then pushes six to their consumers, in this
+order:
 
-1. WaterQuality (`+0x40`) to `0x001A5B00(0x001A9930(), value)`.
-2. Shadow (`+0x1C`) as the pair `0x00900F00[Shadow % 3]` (`0x001DE5A0`), the shadow map size for Low,
+1. Anisotropic (`+0x18`) to the samplers: `0x0018AC50([0x01F7E340])` and `0x001BD940(0x001BDAB0())`
+   (`0x001D513E`-`0x001D5152`), which take the anisotropy from `0x001DE540`
+   ([config screen](../Menus-And-HUD/config-screen.md)).
+2. WaterQuality (`+0x40`) to `0x001A5B00(0x001A9930(), value)`.
+3. Shadow (`+0x1C`) as the pair `0x00900F00[Shadow % 3]` (`0x001DE5A0`), the shadow map size for Low,
    Medium and High: 512, 1024 and 2048 on each axis, to `0x001EF520(0x001F0850(), high, low)`.
-3. MSAA (`+0x20`) as a non-zero flag to byte `+0xDBA` of `0x00189120()`, and as the sample count
+4. MSAA (`+0x20`) as a non-zero flag to byte `+0xDBA` of `0x00189120()`, and as the sample count
    `0x00900EE8[MSAA % 5]` = 1, 2, 4, 8 or 9 (`0x001DE570`) to `0x00189520`.
-4. PostAA (`+0x24`) == 1 to byte `+0x4A3` of `0x00193D50()`.
-5. SoftParticle (`+0x38`) == 1 to the virtual slot `+0x60` of the object at the caller's `+0xA80`.
+5. PostAA (`+0x24`) == 1 to byte `+0x4A3` of `0x00193D50()`.
+6. SoftParticle (`+0x38`) == 1 to the virtual slot `+0x60` of the object at the caller's `+0xA80`.
 
 | Setting | Low | Medium | High |
 |---|---|---|---|
@@ -438,7 +442,7 @@ Both tables have one row per entry of the FF12CONFIG layout, 22 rows in the same
 
 | Function | Role |
 |---|---|
-| `0x001DE050` | build the settings object: defaults, desktop size, Windows language, path |
+| `0x001DE050` | build the settings object: defaults, desktop size, the Windows Region Format language, path |
 | `0x001DED50` | load the ini, or create it from the defaults |
 | `0x001DE5D0`, `0x001DF350` | parse the text, parse one value |
 | `0x001DEE90`, `0x001DFD40` | serialise, write the file |

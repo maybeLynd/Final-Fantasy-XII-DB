@@ -37,7 +37,9 @@ types and shipped values, which document wins when several hold it, when the gam
 player sees and when it changes nothing. 65 keys change nothing: no loader reads them from their documents, and
 `monstertoweapon.json` is never opened.
 
-One more file under `jsondata/` is text, not JSON: `parametersmanagermonstergallerystruct.txt`, 1,781 bytes, LF line ends, no line end after the last line. No string in the executable holds its name or a setter name in it; the viewer reads `JsonData/MonsterGallery.json`.
+One more file under `jsondata/` is text, not JSON: `parametersmanagermonstergallerystruct.txt`, 1,781 bytes,
+CRLF line ends, no line end after the last line. No string in the executable holds its name or a setter name
+in it; the viewer reads `JsonData/MonsterGallery.json`.
 
 - The first line is the column title `#title name, dummy, type, dummy, min, max, default.`
 - Each of the 33 lines after it names one monster viewer setting, then `in`, `int` or `float`, a setter name, a minimum, a maximum and a default.
@@ -82,7 +84,10 @@ The columns come from the documents and from the loaders that read them:
 3. whether the executable holds the name as a string between two zero bytes, and at which file offset;
 4. the reader columns, one row per family and key, from the loaders' code;
 5. for the gallery, every entry's keys as columns, and the model file and bestiary names that
-   [Bestiary](../Enemy-Spawning/bestiary.md) lists for the entry's model id.
+   [Bestiary](../Enemy-Spawning/bestiary.md) lists for the entry's model id; for a model id no
+   bestiary row has, the model file is the `.cm` that the executable's path array names at
+   `(id & 0xFFFF) * multiplier`, the kind and multiplier set by the class letter `id >> 16 & 0xFF`
+   (`0x002ED6F0`; `0x0B` for `m`, `0x19` for `n` and `s`).
 
 ## Columns
 
@@ -135,3 +140,10 @@ The columns come from the documents and from the loaders that read them:
 - [Screen layouts: the UISize layout files, every key they set, the loader that binds each key to its cell, and the screens that read them](../Menus-And-HUD/screen-layouts.md)
 - [Fonts: the font files a language uses, their kerning pairs and expansion lists, and how digits and glyphs are laid out](../Menus-And-HUD/fonts.md)
 - [Clan Primer: the Hunts, Bestiary, Sky Pirate's Den and Traveler's Tips pages, how entries unlock, and the monster viewer](../Menus-And-HUD/clan-primer.md)
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Script VM: `0x002ED6F0` is called by `0x003580C0`; those functions are documented on
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md).

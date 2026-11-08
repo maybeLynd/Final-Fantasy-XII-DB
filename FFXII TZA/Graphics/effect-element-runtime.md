@@ -12,6 +12,10 @@ piece is an element. Elements are born in bursts at set intervals, move and chan
 authored tracks say, spawn further pieces while they live or as they die, and disappear when their
 lifetime runs out or they leave their visibility window.
 
+The effect file holds the recipes. When an effect starts, the game copies a template into a live effect, which keeps a
+list of emitters; each emitter takes one emitter record and one element definition from the file's parsed data and
+keeps the pieces it gives birth to on its own list.
+
 ## How it works
 
 ### Instances, emitters and elements
@@ -727,7 +731,7 @@ Effect instance (`0x3B0`, `0x0024B270`):
 | `+0x340` | `void*` |  | effect context |
 | `+0x348` | `void*` | next |  |
 | `+0x350` | `...` | previous |  |
-| `+0x36A` | `u8` |  | flags: bit `0x1` draws every emitter |
+| `+0x36A` | `u16` |  | flags: bit `0x1` draws every emitter; mask `0x7000` the target-lookup selector (3: `0x0036E620`), read as a word by `0x003A4220` (`0x003A4234`) and set by `0x0024F8D0` (`0x0024F90B`-`0x0024F916`) |
 | `+0x378` | `u16` |  | high nibble: display layer |
 | `+0x3A8` | `u16` |  | stamp from `0x00181DD0`() |
 

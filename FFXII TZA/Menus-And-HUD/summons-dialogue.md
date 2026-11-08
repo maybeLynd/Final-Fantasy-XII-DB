@@ -112,7 +112,8 @@ Calls between the functions this page cites and code in other parts of the progr
   documented on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md),
   [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
   [script requests](../Scripts-And-Script-Commands/script-requests.md).
-- Movement: `0x00355A00` calls `0x0026B0C0`, `0x0026B620`, `0x0026BB00`, `0x0026BC70`, `0x0026BD50`, `0x0026BFF0`; those functions
+- Movement: `0x00355A00` calls `0x0026AB60`, `0x0026B0C0`, `0x0026B620`, `0x0026BB00`, `0x0026BC70`, `0x0026BD50`, `0x0026BDD0`,
+  `0x0026BFF0`; those functions
   are documented on [party control modes](../Engine-Core/party-control-modes.md),
   [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md).
 - Presentation: `0x001FDD60` is called by `0x001B4590`; those functions are documented on

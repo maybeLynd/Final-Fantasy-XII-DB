@@ -41,8 +41,9 @@ The Poll handler `0x00355350` runs every frame. In state 0 it does the following
    map to the `ret 0` stub `0x0016D6A0` (`0x001D6AF7`): a no-op.
 4. Calls `0x00314440(map, entrance, mode, 1)`. A non-zero result means the resource queue is busy; the
    poll returns 1 and tries again next frame.
-5. Sets `ctx[0]` = 1 (`0x003553D8`) and in the same call answers as state 1 does: 0 at once for a scene's
-   context, else 1 (`0x003553DA`-`0x003553E1`).
+5. Sets `ctx[0]` = 1 (`0x003553D8`) and returns 1 in that call: `edi` is already 1 (`0x003553CA`), so the
+   `cmovne` at `0x003553DE` leaves 1 whatever `c+0x28` holds (`0x003553DA`-`0x003553E1`). The state 1 test runs from
+   the next frame's poll.
 
 In state 1 the poll returns 1 while `c+0x28` is 0 and 0 (done) once it is non-zero. `+0x28` is the index
 of the actor manager the script runs in: 0 for the zone's own scripts, 1 to 3 for a scene. So a jump
@@ -240,7 +241,11 @@ state `0xC`. Their close path `0x002D6F90` ends by calling `0x003CA0A0` (`0x002D
 Verbs `0x599` (`lockmapjump`, handler `0x0034AD70`) and `0x59A` (`unlockmapjump`, `0x0034B1C0`) set and
 clear bit `0x4` of byte `+0x200` of the current field context `0x002640C0()`. `0x00264830` reports a lock when
 any of managers 0 to 2 (`0x02098E10`, stride `0x288`) has `+0x10` bit `0x1` and `+0x200` bit `0x4` set; the mapjump
-poll waits on it. A script that locks and never unlocks holds every pending jump.
+poll waits on it, except for a scene's context or a set `c+0x16` (step 2 above).
+
+The only other reader is the `sysucoff` poll (`0x00346A83`), which reports the lock in its result for the exit
+triggers that test it ([Boss fights](../Battle-Actions/boss-fights.md)). A script that locks and never unlocks
+holds those `mapjump` waits and those exits, not every jump.
 
 ### The jump-index verbs
 
@@ -358,8 +363,8 @@ third.
 
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
-| `0x01EED064` | `i32` | pending map id, -1 when no map is pending | `0x003145E0`, `0x00314530`, `0x00314020` |
-| `0x02099ABC` | `u32` | manager request mask | `0x0026A5F0`, `0x0025BFB0` |
+| `0x01EED064` | `i32` | pending map id, -1 when no map is pending | `0x003145E0`, `0x00314530`, `0x00314020`; -1 from `0x00314970` (`0x0031497E`), which `0x00266D10` calls (`0x00267117`) |
+| `0x02099ABC` | `u32` | manager request mask | `0x0026A5F0`, `0x0025BFB0`; 0 from `0x00266D10` (`0x0026713B`) |
 | `0x022C6E48` | `u64[5]` | pending-load mask per manager; bit `0x1` the start hold | `0x0032FC30`, `0x0032FCA0`, `0x00330310`, `0x0032ED70`, `0x00332130`, the load callbacks |
 | `0x022CB720` | `u32` | the busy mask | the table above |
 | `0x02099D70` | `void*` | current field context | the actor manager runtime |

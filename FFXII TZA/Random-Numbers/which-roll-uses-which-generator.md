@@ -16,9 +16,10 @@ Two generators decide almost everything a player would call luck:
 
 The two never mix: no amount of fighting changes the next loot roll through the damage numbers,
 but the AI decisions taken during the fight do move it. Reloading a save rerolls the first group,
-because that generator is reseeded from the clock on every load, and leaves the second group's
-sequence exactly where it was. Entering an area restarts the second group from a counter of areas
-entered since the game was started.
+because that generator is reseeded from the clock on every load. The load itself leaves the second
+group's sequence where it was, but the area the save opens is then set up like any area entered.
+Entering an area restarts the second group from a counter of areas entered since the game was
+started, so a completed reload restarts it too.
 
 ## How it works
 

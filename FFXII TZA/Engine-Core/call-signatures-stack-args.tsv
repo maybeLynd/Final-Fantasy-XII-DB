@@ -146,8 +146,8 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00135124	4	5	5	0x001352BA mov rdi, qword ptr [rbp + 0x30]	-
 0x001352DE	4	5	5	0x001355E8 mov rdi, qword ptr [rbp + 0x30]	-
 0x0013560C	4	5	5	0x001356B0 mov rdi, qword ptr [rbp + 0x30]	-
-0x001356E0	4	-	-	-	-
-0x00139ACD	4	-	-	-	-
+0x001356E0	4	5	5	0x00139A7D mov rdi, qword ptr [rbp + 0x30]	-
+0x00139ACD	4	5	5	0x0013BCCE mov rdi, qword ptr [rbp + 0x30]	-
 0x0013BD20	4	5,6,7,8,9,10,11,13	13	0x0013BE56 mov r9, qword ptr [rsp + 0x100]	-
 0x0013C2F0	4	5,6,7,8,9,10,11,13	13	0x0013C3A6 mov r11, qword ptr [rsp + 0x100]	-
 0x0013C730	4	5	5	0x0014078D mov r10, qword ptr [rsp + 0x28]	-
@@ -3901,7 +3901,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x001F57E0	4	-	-	-	-
 0x001F5B80	1	-	-	-	-
 0x001F5C10	1	-	-	-	-
-0x001F5C20	0	-	-	-	-
+0x001F5C20	1	-	-	-	-
 0x001F5D70	1	-	-	-	-
 0x001F68E0	1	-	-	-	-
 0x001F6D60	1	-	-	-	-
@@ -5649,7 +5649,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x002501A0	0	-	-	-	-
 0x002501E0	0	-	-	-	-
 0x00250200	0	-	-	-	-
-0x00250270	0	-	-	-	-
+0x00250270	1	-	-	-	-
 0x00250540	0	-	-	-	-
 0x002506D0	0	-	-	-	-
 0x00250730	1	-	-	-	-
@@ -6512,8 +6512,8 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00272710	1	-	-	-	-
 0x00272730	4	5	5	0x0027279D movsxd rax, dword ptr [rsp + 0x50]	-
 0x002727C0	2	-	-	-	-
-0x002727F0	0	-	-	-	-
-0x002729A0	0	-	-	-	-
+0x002727F0	3	-	-	-	-
+0x002729A0	1	-	-	-	-
 0x00272B40	1	-	-	-	-
 0x00272C80	0	-	-	-	-
 0x00272CB0	1	-	-	-	-
@@ -6554,7 +6554,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00273A30	3	-	-	-	-
 0x00273B40	2	-	-	-	-
 0x00273BA0	1	-	-	-	-
-0x00273E30	0	-	-	-	0x00273F97 r14+0x0 from -0xf8 by +0x4 per pass
+0x00273E30	1	-	-	-	0x00273F97 r14+0x0 from -0xf8 by +0x4 per pass
 0x00274780	2	-	-	-	-
 0x00274790	1	-	-	-	-
 0x002747B0	4	-	-	-	-
@@ -6597,15 +6597,15 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0027AA70	2	-	-	-	-
 0x0027AD70	2	-	-	-	-
 0x0027AF00	2	-	-	-	-
-0x0027AF80	0	5	5	0x0027AFB2 mov eax, dword ptr [rsp + 0x10d0]	-
-0x0027B090	0	-	-	-	-
+0x0027AF80	4	5	5	0x0027AFB2 mov eax, dword ptr [rsp + 0x10d0]	-
+0x0027B090	2	-	-	-	-
 0x0027B120	2	-	-	-	-
 0x0027B200	2	-	-	-	-
 0x0027B290	3	-	-	-	-
 0x0027B3B0	2	-	-	-	-
 0x0027B430	4	-	-	-	-
-0x0027B5A0	0	-	-	-	-
-0x0027B6C0	0	-	-	-	-
+0x0027B5A0	3	-	-	-	-
+0x0027B6C0	1	-	-	-	-
 0x0027B770	3	-	-	-	-
 0x0027B880	2	-	-	-	-
 0x0027BB70	4	-	-	-	-
@@ -6626,7 +6626,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0027D480	4	-	-	-	-
 0x0027D5C0	3	-	-	-	-
 0x0027D700	3	-	-	-	-
-0x0027D740	0	-	-	-	-
+0x0027D740	1	-	-	-	-
 0x0027DC10	4	-	-	-	-
 0x0027DCA0	2	-	-	-	-
 0x0027DE30	2	-	-	-	-
@@ -6835,8 +6835,8 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0028EA20	2	-	-	-	-
 0x0028EA40	0	-	-	-	-
 0x0028EA90	1	-	-	-	-
-0x0028EAB0	0	-	-	-	-
-0x0028EE10	0	-	-	-	-
+0x0028EAB0	1	-	-	-	-
+0x0028EE10	1	-	-	-	-
 0x0028EF00	2	-	-	-	-
 0x0028EF50	1	-	-	-	-
 0x0028EF70	3	-	-	-	-
@@ -9267,7 +9267,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0031E7B0	1	-	-	-	-
 0x0031E800	1	-	-	-	-
 0x0031E860	0	-	-	-	-
-0x0031E880	0	-	-	-	-
+0x0031E880	3	-	-	-	-
 0x0031E9A0	0	-	-	-	-
 0x0031E9F0	1	-	-	-	-
 0x0031EA90	1	-	-	-	-
@@ -9642,7 +9642,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x003302B0	1	-	-	-	-
 0x00330310	4	-	-	-	-
 0x003304A0	1	-	-	-	-
-0x003306E0	0	-	-	-	0x00330D90 rdx+0x0 from -0x1e68 by +0x1 per pass
+0x003306E0	4	-	-	-	0x00330D90 rdx+0x0 from -0x1e68 by +0x1 per pass
 0x00331610	1	-	-	-	-
 0x003316B0	1	-	-	-	-
 0x00331760	1	-	-	-	-
@@ -11432,7 +11432,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0035BB70	0	-	-	-	-
 0x0035BC30	0	-	-	-	-
 0x0035BC40	0	-	-	-	-
-0x0035BC50	0	-	-	-	0x0035BD00 rdx+0x0 from -0x10b8 by +0x8 per pass; 0x0035BF90 rdx+0x0 from -0x10b8 by +0x8 per pass
+0x0035BC50	1	-	-	-	0x0035BD00 rdx+0x0 from -0x10b8 by +0x8 per pass; 0x0035BF90 rdx+0x0 from -0x10b8 by +0x8 per pass
 0x0035C050	1	-	-	-	-
 0x0035C070	1	-	-	-	-
 0x0035C080	0	-	-	-	-
@@ -11729,7 +11729,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00366A30	4	5,6,7	7	0x00366AD2 mov eax, dword ptr [rsp + 0x90]	-
 0x00366B80	2	-	-	-	-
 0x00367110	3	-	-	-	-
-0x00367200	4	-	-	-	-
+0x00367200	1	-	-	-	-
 0x003676B0	0	-	-	-	-
 0x003676D0	0	-	-	-	-
 0x00367820	2	-	-	-	-
@@ -11792,7 +11792,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x003697C0	1	-	-	-	-
 0x003697F0	1	-	-	-	-
 0x00369800	1	-	-	-	-
-0x00369860	1	-	-	-	-
+0x00369860	2	-	-	-	-
 0x00369C60	2	-	-	-	-
 0x00369CF0	1	-	-	-	-
 0x00369D30	4	-	-	-	-
@@ -14355,7 +14355,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x004026D0	2	-	-	-	-
 0x00402730	3	-	-	-	-
 0x004027D0	4	-	-	-	-
-0x00402A40	0	-	-	-	0x00402AC0 rsi+0x0 from -0x14c7 by +0x30 per pass
+0x00402A40	4	-	-	-	0x00402AC0 rsi+0x0 from -0x14c7 by +0x30 per pass
 0x00402BF0	1	-	-	-	-
 0x00402C30	2	-	-	-	-
 0x00402D20	3	-	-	-	-
@@ -14367,9 +14367,9 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00403380	2	-	-	-	-
 0x00403550	4	5	5	0x00403577 movss xmm1, dword ptr [rsp + 0x50]	-
 0x00403600	2	-	-	-	-
-0x00403640	0	5,6,7,8,9,10,11,13,14,15,16,17,18,19	19	0x0040379E mov eax, dword ptr [rbp + 0x15b0]	-
+0x00403640	3	5,6,7,8,9,10,11,13,14,15,16,17,18,19	19	0x0040379E mov eax, dword ptr [rbp + 0x15b0]	-
 0x00403970	4	5,6,7,8,9,10,11,12,13	13	0x00403AD4 mov ecx, dword ptr [rsp + 0x390]	-
-0x00403BC0	0	5,6,9	9	0x00403BFB mov rax, qword ptr [rbp + 0x1510]	-
+0x00403BC0	4	5,6,9	9	0x00403BFB mov rax, qword ptr [rbp + 0x1510]	-
 0x00403F00	3	-	-	-	-
 0x00403F90	4	-	-	-	-
 0x00404060	2	-	-	-	-
@@ -14998,7 +14998,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x004355D0	2	-	-	-	-
 0x00436D00	2	-	-	-	-
 0x00437130	2	-	-	-	-
-0x00438860	0	-	-	-	0x004392E2 rdi+0x0 from -0xdb8 by +0x40 per pass; 0x00439690 rdi+0x0 from -0xdb8 by +0x40 per pass; 0x00439900 rdi+0x0 from -0xdb8 by +0x40 per pass; 0x00439C52 rdi+0x0 from -0xdb8 by +0x40 per pass; 0x0043A000 rdi+0x0 from -0xdb8 by +0x40 per pass; 0x0043A270 rdi+0x0 from -0xdb8 by +0x40 per pass; 0x0043A720 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043A727 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043ACA0 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043ACA7 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043B490 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043B497 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043BA10 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043BA17 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043C200 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043C207 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043C740 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043C747 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043CA30 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043CA37 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043CEE0 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043CEE7 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043D420 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043D427 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043D710 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043D717 rbx+0x0 from -0xd98 by +0x40 per pass
+0x00438860	2	-	-	-	0x004392E2 rdi+0x0 from -0xdb8 by +0x40 per pass; 0x00439690 rdi+0x0 from -0xdb8 by +0x40 per pass; 0x00439900 rdi+0x0 from -0xdb8 by +0x40 per pass; 0x00439C52 rdi+0x0 from -0xdb8 by +0x40 per pass; 0x0043A000 rdi+0x0 from -0xdb8 by +0x40 per pass; 0x0043A270 rdi+0x0 from -0xdb8 by +0x40 per pass; 0x0043A720 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043A727 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043ACA0 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043ACA7 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043B490 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043B497 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043BA10 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043BA17 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043C200 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043C207 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043C740 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043C747 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043CA30 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043CA37 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043CEE0 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043CEE7 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043D420 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043D427 rbx+0x0 from -0xd98 by +0x40 per pass; 0x0043D710 rbx-0x20 from -0xd98 by +0x40 per pass; 0x0043D717 rbx+0x0 from -0xd98 by +0x40 per pass
 0x0043D8E0	0	-	-	-	-
 0x0043D8F0	3	-	-	-	-
 0x0043DB90	4	5,6	6	0x0043DBBA mov edx, dword ptr [rsp + 0x68]	-
@@ -15790,9 +15790,9 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00501950	1	-	-	-	-
 0x005019D0	2	-	-	-	-
 0x00501A40	0	-	-	-	-
-0x00501A50	0	-	-	-	0x00501ED0 r8+0x0 from -0x878 by +0x40 per pass; 0x00501ED7 r8-0x20 from -0x878 by +0x40 per pass; 0x00501FE0 r8+0x0 from -0x878 by +0x40 per pass; 0x00501FE7 r8-0x20 from -0x878 by +0x40 per pass
+0x00501A50	2	-	-	-	0x00501ED0 r8+0x0 from -0x878 by +0x40 per pass; 0x00501ED7 r8-0x20 from -0x878 by +0x40 per pass; 0x00501FE0 r8+0x0 from -0x878 by +0x40 per pass; 0x00501FE7 r8-0x20 from -0x878 by +0x40 per pass
 0x00502160	2	-	-	-	-
-0x00502280	0	-	-	-	0x005029C2 rdi-0x20 from -0xc68 by +0x40 per pass; 0x005029C9 rdi+0x0 from -0xc68 by +0x40 per pass; 0x00502B20 rdi-0x20 from -0xc68 by +0x40 per pass; 0x00502B27 rdi+0x0 from -0xc68 by +0x40 per pass
+0x00502280	4	-	-	-	0x005029C2 rdi-0x20 from -0xc68 by +0x40 per pass; 0x005029C9 rdi+0x0 from -0xc68 by +0x40 per pass; 0x00502B20 rdi-0x20 from -0xc68 by +0x40 per pass; 0x00502B27 rdi+0x0 from -0xc68 by +0x40 per pass
 0x00502CB0	2	-	-	-	-
 0x00502EA0	3	-	-	-	-
 0x00502F30	4	-	-	-	-
@@ -15860,7 +15860,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00508C90	2	-	-	-	-
 0x00509BB0	2	-	-	-	-
 0x0050A100	3	-	-	-	-
-0x0050AC20	0	-	-	-	-
+0x0050AC20	2	-	-	-	-
 0x0050C450	2	-	-	-	-
 0x0050C4A0	0	-	-	-	-
 0x0050C560	4	-	-	-	-
@@ -16674,7 +16674,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0053AA30	2	-	-	-	-
 0x0053AAC0	2	-	-	-	-
 0x0053AB10	2	-	-	-	-
-0x0053AB50	0	5,6,7	7	0x0053ADB7 cmp dword ptr [rbp + 0x8700], 0	-
+0x0053AB50	4	5,6,7	7	0x0053ADB7 cmp dword ptr [rbp + 0x8700], 0	-
 0x0053D140	4	5,6	6	0x0053D1F9 cmp dword ptr [rsp + 0x68], r11d	-
 0x0053D4B0	4	5,6,7	7	0x0053D6CB mov rax, qword ptr [rsp + 0x60]	-
 0x0053D780	3	-	-	-	-
@@ -16709,7 +16709,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00541DB0	1	-	-	-	-
 0x00541E00	1	-	-	-	-
 0x00542060	1	-	-	-	-
-0x00542100	4	-	-	-	0x005424C7 rcx+0x0 from -0x208 by +0x80 per pass; 0x005424CA rcx+0x10 from -0x208 by +0x80 per pass; 0x005424D9 rcx-0x60 from -0x208 by +0x80 per pass; 0x005424E1 rcx-0x50 from -0x208 by +0x80 per pass; 0x005424E9 rcx-0x40 from -0x208 by +0x80 per pass; 0x005424F1 rcx-0x30 from -0x208 by +0x80 per pass; 0x005424F9 rcx-0x20 from -0x208 by +0x80 per pass; 0x00542501 rcx-0x10 from -0x208 by +0x80 per pass; 0x00542513 rcx+0x0 after the loop at 0x00542511 (from -0x188 by +0x80 per pass); 0x0054251B rcx+0x10 after the loop at 0x00542516 (from -0x188 by +0x80 per pass); 0x00542522 rcx+0x20 after the loop at 0x0054251F (from -0x188 by +0x80 per pass); 0x0054252A rcx+0x30 after the loop at 0x00542526 (from -0x188 by +0x80 per pass); 0x00542532 rcx+0x40 after the loop at 0x0054252E (from -0x188 by +0x80 per pass); 0x0054253A rcx+0x50 after the loop at 0x00542536 (from -0x188 by +0x80 per pass)
+0x00542100	4	-	-	-	0x005424C7 rcx+0x0 from -0x208 by +0x80 per pass; 0x005424CA rcx+0x10 from -0x208 by +0x80 per pass; 0x005424D9 rcx-0x60 from -0x208 by +0x80 per pass; 0x005424E1 rcx-0x50 from -0x208 by +0x80 per pass; 0x005424E9 rcx-0x40 from -0x208 by +0x80 per pass; 0x005424F1 rcx-0x30 from -0x208 by +0x80 per pass; 0x005424F9 rcx-0x20 from -0x208 by +0x80 per pass; 0x00542501 rcx-0x10 from -0x208 by +0x80 per pass; 0x00542513 rcx+0x0 after the loop at 0x00542511 (from -0x208 by +0x80 per pass); 0x0054251B rcx+0x10 after the loop at 0x00542511 (from -0x208 by +0x80 per pass); 0x00542522 rcx+0x20 after the loop at 0x00542511 (from -0x208 by +0x80 per pass); 0x0054252A rcx+0x30 after the loop at 0x00542511 (from -0x208 by +0x80 per pass); 0x00542532 rcx+0x40 after the loop at 0x00542511 (from -0x208 by +0x80 per pass); 0x0054253A rcx+0x50 after the loop at 0x00542511 (from -0x208 by +0x80 per pass)
 0x00542740	4	-	-	-	-
 0x00543940	2	-	-	-	-
 0x005439A0	1	-	-	-	-
@@ -17048,18 +17048,18 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0056A1D0	4	5	5	0x0056A228 mov eax, dword ptr [rsp + 0x50]	-
 0x0056A3D0	1	-	-	-	-
 0x0056A780	4	-	-	-	-
-0x0056A890	0	-	-	-	-
+0x0056A890	2	-	-	-	-
 0x0056AAC0	1	-	-	-	-
 0x0056AB00	1	-	-	-	-
 0x0056AC50	3	-	-	-	-
 0x0056AD50	1	-	-	-	-
 0x0056ADA0	2	-	-	-	-
-0x0056AE80	0	-	-	-	-
-0x0056B100	0	-	-	-	-
+0x0056AE80	2	-	-	-	-
+0x0056B100	2	-	-	-	-
 0x0056B350	3	-	-	-	-
 0x0056B4D0	2	-	-	-	-
 0x0056BBD0	4	-	-	-	-
-0x0056BC70	0	-	-	-	-
+0x0056BC70	2	-	-	-	-
 0x0056BE40	1	-	-	-	-
 0x0056C060	2	-	-	-	-
 0x0056C170	2	-	-	-	-
@@ -27066,7 +27066,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00715360	1	-	-	-	-
 0x007153B0	3	-	-	-	-
 0x00715580	2	-	-	-	-
-0x007155E0	0	-	-	-	-
+0x007155E0	2	-	-	-	-
 0x007156C0	2	-	-	-	-
 0x007157A0	3	-	-	-	-
 0x007158B0	4	-	-	-	-
@@ -27209,8 +27209,8 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0071CCE0	1	-	-	-	-
 0x0071CCF0	4	-	-	-	-
 0x0071CD10	1	-	-	-	-
-0x0071CE10	0	-	-	-	-
-0x0071D170	0	-	-	-	-
+0x0071CE10	2	-	-	-	-
+0x0071D170	2	-	-	-	-
 0x0071D9E0	2	-	-	-	-
 0x0071E290	3	-	-	-	-
 0x0071E2C0	3	-	-	-	-
@@ -27597,7 +27597,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x007445C0	4	5,6,7	7	0x00744901 movss xmm0, dword ptr [rbp + 0x130]	-
 0x007449B0	2	5,6,7,8,9,10,11,12,13,14,15,16	16	0x00744A02 mov rax, qword ptr [rsp + 0xd8]	-
 0x00744A90	4	5,6,7,8,9,10,11,12,13,14,15	15	0x00744B02 movzx eax, byte ptr [rsp + 0xe0]	-
-0x00744B90	0	5,6,7,8,9,10,11,13,14,15,16,17,18,19,20	20	0x00744C80 mov rax, qword ptr [rbp + 0x10b8]	-
+0x00744B90	4	5,6,7,8,9,10,11,13,14,15,16,17,18,19,20	20	0x00744C80 mov rax, qword ptr [rbp + 0x10b8]	-
 0x007467E0	4	5,6,7,8,9,10,11,12,13,14,15,16,17	17	0x00746A99 cmp byte ptr [rbp + 0x860], 0	-
 0x007472C0	4	5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21	21	0x007478F2 mov rcx, qword ptr [rbp + 0x250]	-
 0x00747960	4	5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30	30	0x00747D37 cmp byte ptr [rbp + 0x528], r14b	-
@@ -28474,7 +28474,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00796280	2	-	-	-	-
 0x00796310	1	-	-	-	-
 0x00796350	2	-	-	-	-
-0x007963C0	3	-	-	-	0x00796431 rax+0x1 from -0xffffffffd0 by +0x1 per pass
+0x007963C0	3	-	-	-	0x00796431 rax+0x1 from 0x30 above the rsp that the allocation at 0x00796419 leaves, by +0x1 per pass
 0x00796490	1	-	-	-	-
 0x00796640	2	-	-	-	-
 0x00796760	2	-	-	-	-
@@ -28495,7 +28495,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00797690	1	-	-	-	-
 0x00797910	0	-	-	-	-
 0x007979B0	0	-	-	-	-
-0x00797A20	3	-	-	-	0x00797A91 rax+0x1 from -0xffffffffe0 by +0x1 per pass
+0x00797A20	3	-	-	-	0x00797A91 rax+0x1 from 0x20 above the rsp that the allocation at 0x00797A79 leaves, by +0x1 per pass
 0x00797AD0	1	-	-	-	-
 0x00797EE0	2	-	-	-	-
 0x00797F20	2	-	-	-	-
@@ -28507,7 +28507,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00798A30	1	-	-	-	-
 0x00798A40	1	-	-	-	-
 0x00798A80	2	-	-	-	-
-0x00798AC0	3	-	-	-	0x00798B56 rax+0x0 from -0xffffffffe0 by +0x1 per pass
+0x00798AC0	3	-	-	-	0x00798B56 rax+0x0 from 0x20 above the rsp that the allocation at 0x00798B39 leaves, by +0x1 per pass
 0x00798D70	1	-	-	-	-
 0x00798E90	1	-	-	-	-
 0x00798EB0	3	-	-	-	-
@@ -30076,7 +30076,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x007F9C30	1	-	-	-	-
 0x007F9C40	3	-	-	-	-
 0x007F9E40	1	-	-	-	-
-0x007F9EC0	2	-	-	-	0x007FA1D0 rdx+0x0 from -0xffffffffe0 by +0x4 per pass
+0x007F9EC0	2	-	-	-	0x007FA1D0 rdx+0x0 from 0x20 above the rsp that the allocation at 0x007FA177 leaves, by +0x4 per pass
 0x007FA600	1	-	-	-	-
 0x007FA650	2	-	-	-	-
 0x007FA670	2	-	-	-	-
@@ -31343,7 +31343,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0084E2F0	3	-	-	-	-
 0x0084EB60	3	-	-	-	-
 0x0084F5A0	4	5,6,7	7	0x0084FA9C cmp byte ptr [rbp + 0x50], 0	-
-0x0084FB30	0	5,6,7	7	0x0084FB70 movzx eax, byte ptr [rbp + 0x3b20]	-
+0x0084FB30	2	5,6,7	7	0x0084FB70 movzx eax, byte ptr [rbp + 0x3b20]	-
 0x00850010	3	-	-	-	-
 0x00850160	3	-	-	-	-
 0x00850220	3	-	-	-	-
@@ -32514,7 +32514,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x008828E0	3	-	-	-	-
 0x00882AC0	1	-	-	-	-
 0x00882B10	2	-	-	-	-
-0x00882C20	2	-	-	-	0x00882E70 rdx+0x0 from -0xffffffffe0 by +0x4 per pass
+0x00882C20	2	-	-	-	0x00882E70 rdx+0x0 from 0x20 above the rsp that the allocation at 0x00882E17 leaves, by +0x4 per pass
 0x008832D0	1	-	-	-	-
 0x008832F0	1	-	-	-	-
 0x00883360	1	-	-	-	-
@@ -32533,14 +32533,14 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x008858B0	4	5,6,7,8	8	0x008858B0 movsxd r10, dword ptr [rsp + 0x40]	-
 0x00885930	2	-	-	-	-
 0x00885960	4	5,6,7	7	0x008859FA mov rdi, qword ptr [rsp + 0xf0]	-
-0x00885E60	3	5	5	0x00885EBC movss xmm0, dword ptr [rbp + 0x40]	-
+0x00885E60	4	5	5	0x00885EBC movss xmm0, dword ptr [rbp + 0x40]	-
 0x008860D0	3	-	-	-	-
 0x008865C0	4	5,6	6	0x00886C8F mov r12d, dword ptr [rbp + 0x148]	-
 0x00886FE0	3	-	-	-	-
 0x00887130	3	-	-	-	-
 0x00887330	4	5,6	6	0x0088736C subss xmm6, dword ptr [rsp + 0xa8]	-
 0x00887630	4	5,6,7	7	0x0088764C addss xmm0, dword ptr [rsp + 0x38]	-
-0x00887810	3	5	5	0x00887918 movss xmm7, dword ptr [rbp + 0x8050]	-
+0x00887810	4	5	5	0x00887918 movss xmm7, dword ptr [rbp + 0x8050]	-
 0x00888650	2	-	-	-	-
 0x00888690	2	-	-	-	-
 0x00888700	2	-	-	-	-

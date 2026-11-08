@@ -13,6 +13,9 @@ for the item under the cursor. Confirming an item picks it up; moving the cursor
 there, and the new order is kept. The sort bar offers Auto-sort, By Strength and By Quantity. Returning to a
 category puts the cursor back on the item last looked at.
 
+Each category's rows are built by the same list builder the shops use, from the party's item lists in their stored
+order. Moving an item writes its new place into that list.
+
 ## How it works
 
 ### The category rows

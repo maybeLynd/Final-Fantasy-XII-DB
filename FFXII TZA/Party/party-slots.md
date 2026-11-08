@@ -11,6 +11,10 @@ The party menu shows four fighting members and up to five in reserve. During a s
 the Esper fight, on a chocobo only the rider, in a town only the leader walks, and some story scenes fix who
 is in the party; afterwards the party is as it was.
 
+The game keeps the real party as one list of nine seats in the party block, plus four working copies that the fight,
+the battle menu and the rest of the game read. A summon, a chocobo ride, a town or a scripted party rebuilds the
+copies from the real list for that mode, while the real list stays as it was.
+
 ## How it works
 
 ### The nine seats
@@ -149,7 +153,23 @@ of 4 rows of 3 that `0x0031BAC0` builds on its stack (`0x0031BAEF`-`0x0031BB9B`)
 when `0x003135C0` answers non-zero (`0x0031BBDA`-`0x0031BBF2`); with fewer than two standing members it places nobody
 (`0x0031BC51`).
 
-The position is turned by the angle (`0x0031BC75`-`0x0031BD0D`). `0x0037D000` calls it for seats 0 to 3 after
+The member takes entry `row * 3 + position` of the table, the position being `0x022C2674`. Each entry is an x and z
+offset from the point (`0x00D10830`-`0x00D10890` and zeros, `0x0031BAEF`-`0x0031BB9B`; x and z read at `0x0031BC94` and
+`0x0031BC8E`):
+
+| Row | When | Position 0 | Position 1 | Position 2 |
+|---:|---|---|---|---|
+| 0 | 2 standing members | (0.6, -2.2) | (0, 0) | (0, 0) |
+| 1 | 3 standing members | (-0.8, -1.2) | (0.8, -1.2) | (0, 0) |
+| 2 | 4 standing members | (-1.0, -1.2) | (1.0, -1.2) | (0.6, -2.2) |
+| 3 | `0x003135C0` non-zero (party control mode 1) | (1.8, 2.0) | (0, 0.2) | (0, 0) |
+
+The offset is turned by the angle `a`, which `0x00325E60` brings into -π to π. With `t = a / 2π × 32768`, the sine
+is sample `t & 0x7FFF` of the sine table `0x01F004E0` and the cosine sample `(t + 0x2000) & 0x7FFF`; the member
+stands at `x = point.x + dx × cos + dz × sin` and `z = point.z + dz × cos - dx × sin` (`0x0031BC75`-`0x0031BD0D`).
+
+Its height `out + 4` is copied from the float at `rsp + 0x24` of the function's frame, which `0x0031BAC0` does not
+write (`0x0031BCF0`). `0x0037D000` calls it for seats 0 to 3 after
 `0x0031BD60` (`0x0037D029`-`0x0037D09D`), and so does `0x0037B4D0` (`0x0037BFA6`), which places the party at a field start.
 
 | Global | Type | Start | Meaning | Set by | Read by |

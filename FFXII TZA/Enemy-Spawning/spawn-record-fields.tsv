@@ -136,16 +136,32 @@ function	name	site	disp	kind	instruction	route	note
 0x00239840	SpawnUnit_BindEntryAndMarkCapTracked	0x002398CA	0x18	r	movzx eax, byte ptr [rdx + 0x18]	0x0208E690	
 0x0023A2E0	SpawnUnit_SetEntryMapAndResetTransientEntries	0x0023A362	0x18	r	movzx ecx, byte ptr [rax + 0x18]	0x0208E690	
 0x00321530	BattleEnmity_UpdatePeriodicDecay	0x00321569	0x19	addr	lea rdi, [rax + 0x19]	unit +0x6A0	
+0x00321530	BattleEnmity_UpdatePeriodicDecay	0x0032158F	0x19	r	movzx ecx, byte ptr [rdi]	unit +0x6A0	
+0x00321530	BattleEnmity_UpdatePeriodicDecay	0x003215AC	0x19	w	mov byte ptr [rdi], cl	unit +0x6A0	
 0x003215C0	BattleEnmity_ReadForCombatantId	0x003215D7	0x19	addr	lea rbx, [rax + 0x19]	unit +0x6A0	
 0x00321630	BattleEnmity_GetHighestRelevant	0x00321650	0x19	addr	lea rbp, [rax + 0x19]	unit +0x6A0	
 0x00321770	BattleEnmity_AnyAboveThreshold	0x00321792	0x19	addr	lea rsi, [rax + 0x19]	unit +0x6A0	
 0x00321810	FUN_00321810	0x00321824	0x19	addr	lea rcx, [rax + 0x19]	unit +0x6A0	
+0x00321810	FUN_00321810	0x00321834	0x19	w	mov byte ptr [rcx], dl	unit +0x6A0	
 0x00321850	BattleEnmity_WriteForCombatantId	0x00321885	0x19	addr	lea rbp, [rax + 0x19]	unit +0x6A0	
 0x00321850	BattleEnmity_WriteForCombatantId	0x0032195D	0x19	addr	lea rdi, [rax + 0x19]	unit +0x6A0	
 0x003219D0	BattleEnmity_PropagateToPerceivingFoes	0x00321A50	0x19	addr	lea rdi, [rax + 0x19]	unit +0x6A0	
 0x00321B00	BattleEnmity_AdjustOtherRelevantCombatants	0x00321BB7	0x19	addr	lea rbp, [rax + 0x19]	unit +0x6A0	
 0x00321B00	BattleEnmity_AdjustOtherRelevantCombatants	0x00321C8E	0x19	addr	lea rdi, [rax + 0x19]	unit +0x6A0	
 0x00321D30	BattleEnmity_WriteAllCombatantIds	0x00321D61	0x19	addr	lea r9, [rax + 0x19]	unit +0x6A0	
+0x003215C0	BattleEnmity_ReadForCombatantId	0x0032160D	0x1A	r	movzx eax, byte ptr [rdi + rbx + 1]	unit +0x6A0	idx
+0x00321630	BattleEnmity_GetHighestRelevant	0x003216AE	0x1A	r	movzx eax, byte ptr [rsi + rbp + 1]	unit +0x6A0	idx
+0x00321770	BattleEnmity_AnyAboveThreshold	0x003217CA	0x1A	r	movzx eax, byte ptr [rdi + rsi + 1]	unit +0x6A0	idx
+0x00321850	BattleEnmity_WriteForCombatantId	0x00321906	0x1A	r	movzx esi, byte ptr [r14 + rbp + 1]	unit +0x6A0	idx
+0x00321850	BattleEnmity_WriteForCombatantId	0x00321975	0x1A	r	movzx eax, byte ptr [rdi]	unit +0x6A0	a pointer walk over ids 0-39 from +0x1A
+0x00321850	BattleEnmity_WriteForCombatantId	0x003219A3	0x1A	w	mov byte ptr [rdi], bl	unit +0x6A0	a pointer walk over ids 0-39 from +0x1A
+0x003219D0	BattleEnmity_PropagateToPerceivingFoes	0x00321A73	0x1A	r	movzx ecx, byte ptr [r14 + rdi + 1]	unit +0x6A0	idx
+0x00321B00	BattleEnmity_AdjustOtherRelevantCombatants	0x00321C26	0x1A	r	movzx edi, byte ptr [rsi + rbp + 1]	unit +0x6A0	idx
+0x00321B00	BattleEnmity_AdjustOtherRelevantCombatants	0x00321CA6	0x1A	r	movzx eax, byte ptr [rdi]	unit +0x6A0	a pointer walk over ids 0-39 from +0x1A
+0x00321B00	BattleEnmity_AdjustOtherRelevantCombatants	0x00321CD9	0x1A	w	mov byte ptr [rdi], bl	unit +0x6A0	a pointer walk over ids 0-39 from +0x1A
+0x00321DC0	FUN_00321DC0	0x00321E16	0x1A	w	mov byte ptr [rdi + rbp + 1], al	arg0+0x19 from 0x00321810 at 0x00321839	idx
+0x00321E40	BattleEnmity_ClampAndStore	0x00321E7F	0x1A	w	mov byte ptr [rdi + rsi + 1], bl	arg0+0x19 from 0x00321850 at 0x00321946	idx
+0x00321E40	BattleEnmity_ClampAndStore	0x00321E7F	0x1A	w	mov byte ptr [rdi + rsi + 1], bl	arg0+0x19 from 0x00321B00 at 0x00321C72	idx
 0x002355A0	Spawn_PrepareRandomCandidateForCurrentEntry	0x002356DE	0x50	w	movups xmmword ptr [rsi + 0x50], xmm0	0x0208E690	
 0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x00235A0F	0x50	w	movups xmmword ptr [rdi + 0x50], xmm9	0x0208E690	
 0x00239410	SpawnEntry_SetCurrentCandidateState	0x00239494	0x50	w	movups xmmword ptr [rcx + 0x50], xmm0	0x0208E690	

@@ -39,8 +39,8 @@ seven test the pointer for null and the rest are in the table.
 | `+0x6B0` | 4 | the command word: bit `0x2` a command issued and not yet committed | [action commit](../Battle-Actions/action-commit.md) |
 | `+0x6B4` | 1 | the action phase | [action phases](../Battle-Actions/action-phases.md) |
 | `+0x6B7`, `+0x6B8` | 2 | combo progress and its saved copy | [combos](../Battle-Actions/combos.md) |
-| `+0x700` | 16 | the action block; `+0x708` the action context, `+0x710` the target focus handle, `+0x714` the action id | [action commit](../Battle-Actions/action-commit.md), [battle orders](../Battle-Actions/battle-orders.md) |
-| `+0x718` | 16 | the copy of the action block taken at commit | [action commit](../Battle-Actions/action-commit.md) |
+| `+0x700` | 24 | the action block; `+0x708` the action context, `+0x710` the target focus handle, `+0x714` the action id | [action commit](../Battle-Actions/action-commit.md), [battle orders](../Battle-Actions/battle-orders.md) |
+| `+0x718` | 24 | the copy of the action block taken at commit | [action commit](../Battle-Actions/action-commit.md) |
 | `+0x730`, `+0x740` | 16 + 8 | the cancelled action's record, target and id | [action phases](../Battle-Actions/action-phases.md) |
 | `+0x768`, `+0x76C` | 8 | action fields the status record shows while acting | [party member status record](party-member-status-record.md) |
 | `+0x778` | 520 | the target buffer (below) | [target selection](../Battle-Actions/target-selection.md) |
@@ -135,7 +135,7 @@ Struct BattleUnitPathState base=unit+`0x200` size=`0x490`:
 | `+0x00` | `i32` | current | the waypoint index the walker is on (`0x00383670` reads and writes it) |
 | `+0x0C` | `u16[2]` | endpoints | `0xFFFF` after `0x003839C0` |
 | `+0x10` | `u8[128]` | predecessor | the next waypoint after each index; `0xFF` after `0x003839F0` |
-| `+0x90` | `f32[2][128]` | waypoints | x and z per index; `0x00383670` copies entry i to its output at +0 and +8 |
+| `+0x90` | `f32[128][2]` | waypoints | 128 (x, z) pairs, one per index (`0x003836F8` reads index * 8 + `0x90`); `0x00383670` copies entry i to its output at +0 and +8 |
 
 `0x00383670(position, _, out, state, arg)` follows the predecessor chain from `current` while
 `0x00383A30` reports each step reached, calls `0x00383C90` for the chosen index, copies that waypoint's
@@ -230,7 +230,7 @@ The next-action selector's
   buffer at unit `+0x778`, by its offset in the buffer (64 rows).
 - [`battle-target-result-entry-accesses.tsv`](battle-target-result-entry-accesses.tsv): the accesses that reach the
   entries at unit `+0x988`, by offset from `+0x988`: four in the code that uses the entries and twelve moves at the
-  end of a block copy of unit `+0x6B0` to `+0xB8F`, which their `note` names (16 rows).
+  end of a block copy of unit `+0x6B0` to `+0xB9F`, which their `note` names (16 rows).
 - [`navigation-path-state-accesses.tsv`](navigation-path-state-accesses.tsv): every access to the
   navigation path state at unit `+0x200`, by its offset in the state (14 rows).
 

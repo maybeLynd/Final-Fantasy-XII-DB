@@ -14,10 +14,16 @@ battle message table ([Battle message list](battle-message-list.md)).
 - **Far-away fights are quiet.** A line about units more than 24 units from the party leader is
   dropped, unless the message is one of the always-shown ones.
 - **No repeats.** Some messages (action cancelled, out of range, the magick field lines) are not
-  repeated for the same unit while an earlier copy is less than 450 clock ticks old.
+  repeated for the same unit while an earlier copy is less than 450 frames old (450 clock ticks at
+  30 fps, 900 at 60) and is still among the last ten messages posted. A dropped repeat does not
+  restart the wait.
 - **Healing off the field.** Using an item on a party member who is not on the field gives the menu's
   lines - HP or MP partially or fully restored, regains consciousness, status cured - and the reserve
   members' lines for party-wide items.
+
+Each line starts from an action's result, and the game picks the message row from what the result holds. It then fills
+the row's blanks with the names of the units involved and with the amount, status, item, level or action from that
+result.
 
 ## How it works
 
@@ -109,6 +115,8 @@ Action `0xB1` with a target present then posts `0x3B` (`0x0046A5FE`-`0x0046A617`
    `0x02EBB560` (event `u16` at `+0`, tick at `+4`, stats at `+8`) holds the same event and stats and
    its tick plus `450 * [0x01DFE0B4]` is still ahead of `0x0032A150()` (`0x0046ABB3`-`0x0046ABF5`).
 4. It records `{event, tick, stats}` in the ring entry `[0x02EBB54C]`, advances that index modulo 10,
+   so ten later posts of any message overwrite an entry; a message dropped in steps 1-3 records nothing
+   (`0x0046ABF5` jumps to the exit `0x0046AC6B`),
    and calls `0x005369C0(stats, event, context)` (`0x0046AC00`-`0x0046AC66`).
 
 The area initialisation `0x002342F0` empties the ring through `0x0033A380` (`0x00234463`), which calls

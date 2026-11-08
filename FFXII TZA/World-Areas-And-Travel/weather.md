@@ -13,8 +13,8 @@ not weather: they are two separate sets of maps, and the exit you take into the 
 from the story and the play clock (see [the Giza Plains seasons](#the-giza-plains-seasons)).
 
 The weather is decided each time you arrive on a map, before you can move, and it never changes while you
-stay there; some cutscenes and one boss ending change the wind and the sun in the sky for the rest of
-the visit.
+stay there; some cutscenes and one boss ending change the map wind, which sways hair, cloth and hanging
+gear, for the rest of the visit. The sky stays as the weather slot drew it.
 
 Arriving on another map decides again, but not always by chance: 430 maps always use their first
 weather, maps whose script picks the weather choose again only when you arrive from certain maps and
@@ -138,11 +138,11 @@ roll is 0, 1 or 2 depending on the branch, and a reimplementation must draw the 
    values, and `0x02099DBC` keeps the 0 of step 3.
 7. `payload[0x1061]` is cleared (`0x0026DA92`) on every path, including the bail-out when the table is
    not bound.
-8. The tail jump `0x002E3D40(0, 0, 0, 0)` (`0x0026DAAD`) refreshes the sky.
+8. The tail jump `0x002E3D40(0, 0, 0, 0)` (`0x0026DAAD`) refreshes the map wind ([below](#the-map-wind)).
 
 Two slots can be in play inside one call. The gameplay wind class of step 6 is extracted with the
 requested slot `req + 1` (`0x0026DA2C`-`0x0026DA31`), while the model selection of step 5, the two table
-lookups and the sky refresh use the committed slot re-read from the payload. They differ only when
+lookups and the map wind refresh use the committed slot re-read from the payload. They differ only when
 the restore flag dropped the request: after the setup actor's `setweatherslot` arms the flag, the roll
 of the same zone start, when it lands elsewhere, publishes one slot's combat wind under another slot's
 sky.
@@ -202,15 +202,18 @@ return v;
 | wrapper | bits | width | field |
 |---|---|---|---|
 | `0x00377850` | 0 to 2 | 3 | wind preset, 0 to 7 |
-| `0x003777A0` | 3 to 6 | 4 | sun azimuth sector, 16 sectors |
-| `0x003777B0` | 7 to 8 | 2 | sun elevation class |
+| `0x003777A0` | 3 to 6 | 4 | wind azimuth sector, 16 sectors |
+| `0x003777B0` | 7 to 8 | 2 | wind elevation class |
 
 The file is sized for 776 by 3 zero-based entries (2,627 bytes needed, 2,628 shipped), which is
 the reading the `-10` produces.
 
-### The sky
+### The map wind
 
-`0x002E3D40(mode, preset, azimuth, elevation)` feeds the sky. With `mode` 0 it computes the three values
+`0x002E3D40(mode, preset, azimuth, elevation)` sets the map wind. It drives the sway of hair, cloth and hanging
+gear ([Model oscillators](../Graphics/model-oscillators-and-pose-sequencer.md)) and does not
+reach the sky, which the weather slot chooses ([What the sky is](#what-the-sky-is)). With `mode` 0 it computes
+the three values
 itself from the current field (`0x003148F0`), its selector (`0x00264F10`) and the committed slot
 (`0x00265920`) through the three wrappers; with a non-zero mode it passes its arguments through. Either
 way it tail-calls `0x0040AAD0(preset, azimuth, elevation)`:
@@ -218,7 +221,7 @@ way it tail-calls `0x0040AAD0(preset, azimuth, elevation)`:
 1. The azimuth and elevation bytes are stored at `0x02CA4391` and `0x02CA4392` (`0x0040AAFA`, `0x0040AB01`), and
    `0x0040B3B0(preset)` stores the preset byte at `0x02CA4390` (`0x0040B3B0`) and copies row `preset - 1` of the
    32-byte table at `0x01EFFA30` to `0x02CA4380`-`0x02CA439C` (preset 0 copies nothing).
-2. The sun direction starts as the unit Z axis `{0, 0, 1}`, the 16 bytes at `0x009155F0` (`0x0040AB0C`), and is
+2. The wind direction starts as the unit Z axis `{0, 0, 1}`, the 16 bytes at `0x009155F0` (`0x0040AB0C`), and is
    rotated about X by `elev + (r1 - 0.15)` and about Y by `(r2 - 0.15) - azimuth * 0.3926991`, where `elev` is 0
    for class 0, +0.5235988 (30 degrees) for class 1 and -0.5235988 for class 2 or 3 (`0x0040AB18`-`0x0040AB32`), and
    each sector is 22.5 degrees.
@@ -322,7 +325,7 @@ select, matches no arm of `0x0038B220` and so scales nothing.
 
 ### What the slot does to the map
 
-Only the roll path rebinds the map, through step 4 of `0x002620E0`; the verb path ends at the sky
+Only the roll path rebinds the map, through step 4 of `0x002620E0`; the verb path ends at the map wind
 refresh. Because the verb works only before `0x002620E0` in the same start pass, the rebind always uses
 the slot the setup script chose. `0x00379290` sets `0x02ADD0E9` to 1 and calls
 `0x0026E8D0(0x00265920())` when the area runtime `0x02ADD090` exists, else clears it and runs the preset
@@ -358,9 +361,10 @@ while `0x02EBF420` is empty it tail-jumps to `0x003774C0`, which frees the same 
 
 `0x0209A6E8` is read by the draw-list build `0x002F5550` (a model is drawn only when bit `23 + slot` of
 its flag word is set, `0x002F5616`), by the texture page rebuild `0x002F7380` (`0x002F738E`), which
-`0x0026E290` runs once while the dirty flag is set, and by the five lighting passes above. `0x00379860`
-stores `slot - 1` at `0x02EBF408` when `0x02ADD090` exists, and `0x0037AD40` uses it to pick the slot's
-effect preset rows (`+4 + slot * 8` and the three at `+6 + slot * 8`) of each 0x50-byte preset bank.
+`0x0026E290` runs once while the dirty flag is set, and by the five lighting passes above. `0x00379860` stores `slot - 1`
+at `0x02EBF408` when `0x02ADD090` exists and the slot is 1 to 3 (`0x00379F50`-`0x00379F5B`; any other slot leaves the value as
+it was), and `0x0037AD40` uses it to pick the slot's effect preset rows (`+4 + slot * 8` and the three at
+`+6 + slot * 8`) of each 0x50-byte preset bank.
 
 `0x0026FAD0(channel, slot, manager)` instantiates effect rows through `0x0026F470`: a row of the field's
 effect table (`0xA0` bytes, type 3 or others at `+0`) is created only when its byte `+7 + slot` is
@@ -424,8 +428,8 @@ row per slot pattern and scene group, with the zones that load the pack, the rec
 |---|---|---|---|
 | 0x21A | `setweatherslot(n)` | `0x003565C0` | when the running manager (`0x002640C0()`) has `+0x28` = 0, byte `+0x12` non-zero and the actor's word matches `[manager] + 0x50`: clamps `n` to 1 to 3, calls `0x0026D910(n)` and then `0x0026D8F0()`, which sets `payload[0x1061]` to 1 so the roll that follows in the same start pass keeps it. Byte `+0x12` is set by the bind (`0x0026CD28`, when header word `+0x50` names a setup actor) and cleared at `0x0025DB79`, just before `0x002620E0`, so the verb acts only while the setup actor runs its start functions |
 | 0x40C | `getweatherslot()` | `0x00356250` | returns `0x00265920()` |
-| 0x481 | `setmapwind(preset, azimuth, elevation)` | `0x0034B6C0` | `0x002E3D40(1, preset, azimuth, elevation)`: the sky from the operands, the table bypassed |
-| 0x482 | `defaultmapwind()` | `0x0034BD10` | `0x002E3D40(0, 0, 0, 0)`: the sky from the table for the committed slot |
+| 0x481 | `setmapwind(preset, azimuth, elevation)` | `0x0034B6C0` | `0x002E3D40(1, preset, azimuth, elevation)`: the map wind from the operands, the table bypassed |
+| 0x482 | `defaultmapwind()` | `0x0034BD10` | `0x002E3D40(0, 0, 0, 0)`: the map wind from the table for the committed slot |
 | 0x3DD | `changeenvsoundweather(n)` | `0x0034D900` | `0x00363A20(n)`, the environment sound |
 | 0x2024 | `debug_setweather` | `0x0050C7F0` | pops one operand and returns |
 | 0x209F | `debug_setlockweatherslot(n)` | `0x00510720` | pops one operand (`0x00267E10`) and jumps to the `ret` stub `0x0016D6A0` (`0x00510732`); writes nothing |
@@ -433,8 +437,8 @@ row per slot pattern and scene group, with the zones that load the pack, the rec
 The verb's guard means a call from any actor other than the zone's setup actor, or any call after the
 zone has started, does nothing, without any report. In the shipped `us` scripts all 1,744 calls are in
 actor `setup` of 122 zone scripts and none of the 345 event scripts calls it, so the weather slot never
-changes during a visit. Cutscenes change the sky instead: 152 event scripts call `setmapwind` 168
-times, and zone `wdl_b01` calls it after its boss; that sets the wind preset and sun through
+changes during a visit. Cutscenes change the map wind instead: 152 event scripts call `setmapwind` 168
+times, and zone `wdl_b01` calls it after its boss; that sets the wind preset and direction through
 `0x002E3D40` mode 1 and leaves the slot and the combat classes alone.
 
 ### The Giza Plains seasons
@@ -609,9 +613,9 @@ A zone script choosing the weather:
 | `0x02099D88`, `0x02099D90` | the `map_ref.bin` image and the address of its `+0x14` table | the map_ref loader `0x00268750` and its completion `0x002678A0` |
 | `0x02ADD0B0` | the MWeather image | `0x00378F70`, `0x00378540` (zeroed) |
 | `0x02099DA8`, `0x02099DAC`, `0x02099DB0`, `0x02099DBC` | the published variant | `0x0026D910`; `0x0026AB40` for the last |
-| `0x0209A6E8`, `0x0209A708` | the map's slot and dirty flag | `0x0026E8D0`; `0x0026E290` clears the flag |
-| `0x02EBF408` | the effect preset slot | `0x00379860` |
-| `0x02CA4380`-`0x02CA439C`, `0x02CA43A0`, `0x02CA43B0` | wind preset row, sun direction, tangent | `0x0040B3B0`, `0x0040B430` |
+| `0x0209A6E8`, `0x0209A708` | the map's slot and dirty flag | slot: `0x0026E8D0` (`0x0026E8E1`), 1 from `0x0026E640` (`0x0026E653`); flag: set by `0x0026E8D0` (`0x0026E8E7`) and the map bind `0x0026E960` (`0x0026E9B0`), cleared by `0x0026E290` (`0x0026E2C9`) and `0x0026E1D0` (`0x0026E22B`) |
+| `0x02EBF408` | the effect preset slot | `0x00379860` through `0x00379F50` (`0x00379F5B`); 0 from `0x00379F70` (`0x0037A0C0`), called by `0x00266D10` (`0x00266E85`) and `0x00379D00` (`0x00379D0D`) |
+| `0x02CA4380`-`0x02CA439C`, `0x02CA43A0`, `0x02CA43B0` | wind preset row, wind direction, tangent | `0x0040B3B0`, `0x0040B430` |
 | debug `+0xAAC` | slot override | no writer in the image |
 
 The map's lights are three records of `0x30` bytes from `0x0209A2E0`, light i at `0x0209A2E0` + i × `0x30`, after the

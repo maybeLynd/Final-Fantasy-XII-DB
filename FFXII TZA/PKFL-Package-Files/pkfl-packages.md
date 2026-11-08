@@ -12,6 +12,10 @@ and a package is how a script asks for "motion 3" or "voice 5" of the current ar
 in the file it lies. The `.vpc` and `.vpcjp` packages of an area are the same clips in the chosen voice
 language and in Japanese.
 
+When an area loads, the game reads only the small table at the front of each of its packages. A script step such as
+`motionread`, `eventsoundread` or `voiceread` later names a slot, and the game uses the table to read just that slot's
+data; a play step such as `motionplay` then picks an entry inside the loaded slot.
+
 ## Where it comes from
 
 The packages sit beside each area's script in the archive, `<area>.mot`, `<area>.snd`, `<area>.vpc` and

@@ -312,6 +312,10 @@ The `+0x03` and `+0x15` bits, by their readers:
 
 ### Colour and model variants
 
+Two bytes of each enemy definition choose how its model looks: the variant picks one of the model's `@FOR` records,
+which also sets its scale and pose entry, and the colour picks that record's option number. So every chocobo uses the
+one model `m1066`, and only the colour number tells a Red Chocobo (1) from a Brown one (5).
+
 `0x0031C540(actorId, &colour, &variant)` resolves the id to its actor (`0x003588B0`) and the actor's unit (`0x00263E30`,
 `+0x30`), and reads the two bytes from the unit's definition (`[unit + 0xE60]`, `+0x12` and `+0x11`) when the
 unit's row `+0x698` byte `+5` is 1. Otherwise it fails with both 0 and a non-zero return.
@@ -372,7 +376,7 @@ chocobo definition has variant 0 and one of these colours:
 | `+0x28` | `u8` | bit `0x1` the view query's height; bit `0x2` the kill chain skips it | `0x0031ADB0` (`0x0031B08D`), `0x00317ED0` (`0x00317F09`) |
 | `+0x29` | `u8[5]` | absorb, halve, nullify, weak, potency | `0x002FEF30` ([Elements](../Damage-And-Battle-Formulas/elements.md)) |
 | `+0x30` | `u8[16]` | read and written by no instruction (below); taken as eight little-endian pairs, each is `0xFFFF` or `0x0100`-`0x01FF` | no instruction |
-| `+0x40` | `u16` | model family, the same-model run | `0x00317ED0` (`0x00317F77`) |
+| `+0x40` | `u16` | model family: the loot quantity group the kill chain's run compares, not the model (Coeurl and Grimalkin are both `m1014`, with `0x0226` and `0x139A`) | `0x00317ED0` (`0x00317F77`) |
 | `+0x52` | `u16` | Clan Primer Bestiary entry, `0xFFFF` no entry (above) | `0x003171C0`, `0x0031B9A0`, `0x00329220` ([Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)) |
 
 The other bytes (`08`-`0F`, `13`-`17`, `19`-`1F`, `24`, `2E`-`2F`, `42`-`51`) are 0 in every row.

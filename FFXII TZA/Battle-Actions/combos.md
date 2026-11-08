@@ -30,6 +30,9 @@ Whether a combo happens, and how many hits it has, is decided once, on the first
 - While a character is in the middle of a combo it does not take navigation steps, and for the
   party leader the party-control suppression state is forced fully on until the combo ends.
 
+The game also counts the hits of an Attack across the whole combo, and from the second hit on it hands the unit and
+that count to the on-screen display (the HUD).
+
 ## How it works
 
 ### Where the decision is made
@@ -97,7 +100,8 @@ c = min(n, 11)
 ### Guard and knockback on combo hits
 
 Slot 6 (`0x00388440`) sets the knockback decision `0x02AEDFC8` on a draw below `0x02AEDFD8`, made only when
-bit `0x1` of context bytes `+0x68` and `+0x78` is clear. Slot 8 (`0x003884F0`) sets the guard decision
+the target has no Stability: bit `0x1` (augment 0) is clear in both of the target's augment layers, stats
+`+0x68` and `+0x78` (`0x00388444`, `0x0038844A`; [Augments](../Damage-And-Battle-Formulas/augments.md)). Slot 8 (`0x003884F0`) sets the guard decision
 `0x02AEDFC4` on a draw below `0x02AEDFDC` for a target whose unit has flag bit `0x800000`.
 
 Slot 41 (`0x003896B0`) runs after slot 10 and reads both: `0x02AEDFC4` turns outcome codes 1 and 3 into 2

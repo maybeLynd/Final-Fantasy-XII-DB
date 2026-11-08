@@ -274,7 +274,9 @@ The shader files decode as below; the linked tables hold every value.
 
 - An effect can only select a variant it ships; a key with no table entry leaves the draw without one.
 - The `NUM_LIGHTS` output holds four light pointers before its count, so an effect authored with
-  `m_maxLightCount` above 4 that keeps a fifth light overwrites the count.
+  `m_maxLightCount` above 4 that keeps a fifth light loses that light: its pointer lands on `+0x20`, and the
+  count, stored after the pointers (`0x006B92E0`, `0x006B9360`), replaces its low half. A sixth or later light is
+  written from `+0x28` on, past the record.
 - A switch name the engine does not implement becomes a base switch answering 1; its name must fit
   the 64-byte name slot.
 - Material defines such as `SKINNING_ENABLED` in a `PMaterialSwitch` are compile-time names and do not

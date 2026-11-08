@@ -16,6 +16,10 @@ The name the menu shows comes from the row word `+0x14`: section 61, sub-table `
 `+0x04`, text id 16000 + row, which is entry `row` of `listhelp_targetchip.bin` (`0x0031D0BE`). Row 255 has no
 help id and no place on the menu.
 
+Enemies are tested the same way: an enemy's own orders carry the same kind of tests a gambit line gets from its
+condition, and the same code tests them. Of the 50,050 orders in the shipped area files, 3,336 carry exactly the tests
+and flags of one gambit condition.
+
 ### How a condition is tested
 
 When a gambit list is built, each line's condition row becomes up to three tests in the walked order
@@ -23,8 +27,10 @@ When a gambit list is built, each line's condition row becomes up to three tests
 
 1. The relation filter `0x0030BD00` keeps foes, allies or the character only ([Gambits](gambits.md) has the
    relation rules, including the enmity a foe must hold).
-2. The test keeps the units that pass it, or, for a highest or lowest test, the units with the best value.
-3. The target is picked from what the first test kept (`0x003017BF`, `0x003087E0`). A second test only has to
+2. The test keeps the units that pass it; a highest or lowest test instead gives the picker the value to compare
+   and whether the highest or the lowest wins.
+3. The target is picked from what the first test kept (`0x003017BF`, `0x003087E0`): the picker first drops the units
+   the action would not change (below), then compares the rest, the nearest winning a tie. A second test only has to
    keep at least one unit; in 44 of the 46 rows with one, it tests the character itself.
 
 A row whose test keeps no unit fails the line, and the walk goes on to the next line.

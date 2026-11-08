@@ -30,28 +30,28 @@ name	text	lists	target
 29	PS2Data/sound/se/sead_data_win//se610//se610005.win.sab	1	file once doubled slashes and ./ are removed
 30	PS2Data/sound/se/sead_data_win//se610//se610006.win.sab	1	file once doubled slashes and ./ are removed
 31	PS2Data/sound/se/sead_data_win//se610//se610007.win.sab	1	file once doubled slashes and ./ are removed
-32	./GameData/D3D11/ArtData/shaders/anisolighting.dds.phyre	9	file once doubled slashes and ./ are removed
-33	./GameData/D3D11/ArtData/shaders/copybuffer.fx.phyre	9	file once doubled slashes and ./ are removed
-34	./GameData/D3D11/ArtData/shaders/hbao.fx.phyre	9	file once doubled slashes and ./ are removed
-35	./GameData/D3D11/ArtData/shaders/phyrechrshader.fx#6bdc4d831e6893916755a028221125bd.phyre	9	file once doubled slashes and ./ are removed
+32	./GameData/D3D11/ArtData/shaders/anisolighting.dds.phyre	9	file
+33	./GameData/D3D11/ArtData/shaders/copybuffer.fx.phyre	9	file
+34	./GameData/D3D11/ArtData/shaders/hbao.fx.phyre	9	file
+35	./GameData/D3D11/ArtData/shaders/phyrechrshader.fx#6bdc4d831e6893916755a028221125bd.phyre	9	file
 36	./GameData/D3D11/ArtData/shaders/phyrechrshader.fx#3000202e93a8cf0478fe986536ab3a71.phyre	9	no shipped file
 37	./GameData/D3D11/ArtData/shaders/phyrechrshader.fx#b2b2f5b332215575f5a9d32d38a3673c.phyre	9	no shipped file
-38	./GameData/D3D11/ArtData/shaders/phyrechrshader.fx#cb0f9f994888730e82ad01521483e596.phyre	9	file once doubled slashes and ./ are removed
-39	./GameData/D3D11/ArtData/shaders/phyrechrshader.fx#e0c4972f01fd4520bf3f1330c4e1c44d.phyre	9	file once doubled slashes and ./ are removed
-40	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#5b374ae619a8c4ff4abbc247bbdb580e.phyre	9	file once doubled slashes and ./ are removed
-41	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#6bdc4d831e6893916755a028221125bd.phyre	9	file once doubled slashes and ./ are removed
+38	./GameData/D3D11/ArtData/shaders/phyrechrshader.fx#cb0f9f994888730e82ad01521483e596.phyre	9	file
+39	./GameData/D3D11/ArtData/shaders/phyrechrshader.fx#e0c4972f01fd4520bf3f1330c4e1c44d.phyre	9	file
+40	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#5b374ae619a8c4ff4abbc247bbdb580e.phyre	9	file
+41	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#6bdc4d831e6893916755a028221125bd.phyre	9	file
 42	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#58fe8cd767db4ca83d8be6b9d411f786.phyre	9	no shipped file
-43	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#269e9a4047ad941abe905a13e604f0e4.phyre	9	file once doubled slashes and ./ are removed
-44	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#5980d96e1281a86af2fbedc51ef83ecc.phyre	9	file once doubled slashes and ./ are removed
-45	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#04955239e088e6769c0c75b310bae6a6.phyre	9	file once doubled slashes and ./ are removed
-46	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#8575223fcfe4fc70d9592f3c00866dea.phyre	9	file once doubled slashes and ./ are removed
-47	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#a94c4583cb4a66ac5e17b6917714f98e.phyre	9	file once doubled slashes and ./ are removed
-48	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#c73bf7fcec8a4bcda23c986e269b6953.phyre	9	file once doubled slashes and ./ are removed
+43	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#269e9a4047ad941abe905a13e604f0e4.phyre	9	file
+44	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#5980d96e1281a86af2fbedc51ef83ecc.phyre	9	file
+45	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#04955239e088e6769c0c75b310bae6a6.phyre	9	file
+46	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#8575223fcfe4fc70d9592f3c00866dea.phyre	9	file
+47	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#a94c4583cb4a66ac5e17b6917714f98e.phyre	9	file
+48	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#c73bf7fcec8a4bcda23c986e269b6953.phyre	9	file
 49	./GameData/D3D11/ArtData/shaders/phyredefaultlitshader.fx#ce0fd4c3302c992008c5839918f6c127.phyre	9	no shipped file
-50	./GameData/D3D11/ArtData/shaders/phyretext.fx.phyre	9	file once doubled slashes and ./ are removed
-51	./GameData/D3D11/ArtData/shaders/sao.fx.phyre	9	file once doubled slashes and ./ are removed
-52	./GameData/D3D11/ArtData/shaders/unsharpmask.fx.phyre	9	file once doubled slashes and ./ are removed
-53	./GameData/D3D11/ArtData/shaders/video.fx.phyre	9	file once doubled slashes and ./ are removed
+50	./GameData/D3D11/ArtData/shaders/phyretext.fx.phyre	9	file
+51	./GameData/D3D11/ArtData/shaders/sao.fx.phyre	9	file
+52	./GameData/D3D11/ArtData/shaders/unsharpmask.fx.phyre	9	file
+53	./GameData/D3D11/ArtData/shaders/video.fx.phyre	9	file
 54	./GameData/D3D11/ArtData/shaders/postProcess/postProcess_d3d11.ah	9	no shipped file
 55	PS2Data/image/FF12/myoshiok/in/Mrp_Menu/Loca.mrp	9	file
 56	PS2Data/image/FF12/myoshiok/in/Tm2_Menu/Loca_8_c.tm2	9	file

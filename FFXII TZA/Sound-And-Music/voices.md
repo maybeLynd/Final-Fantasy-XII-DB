@@ -12,6 +12,10 @@ addresses: "0x02B5D0B0, 0x003EA0D0, 0x003E9F80, 0x003E9C10, 0x003E9780, 0x003581
 - The Voice volume row sets how loud the lines are.
 - Field maps play no cutscene voice; battle shouts come from the battle-voice banks ([Sound banks](sound-banks.md)).
 
+Each cutscene event has two voice packs, a `.vpc` and a `.vpcjp`. The game loads sub-file k of both into voice slot k,
+and the language setting only chooses which of the two the verbs use. A script names a line by its slot and its number
+in the slot's cue table, and the line plays as a stream once it has loaded.
+
 ## How it works
 
 ### The slots

@@ -140,9 +140,15 @@ the member (`0x00654160`, `0x00656B10`: render target, `ColorBuffer`, `InvColorB
 a zeroed record and 0 (`0x00191E3D`-`0x00191E70`).
 
 Both then call `0x001EE8E0` (`0x0018FDDF`, `0x00191E70`), the game's shared copy pass, which has 17 call
-sites in all: it sets `ColorBuffer`, `ColorBufferSampler` and
-`ColorBufferOffset` on the material at `[0x01F82E58]+0x20`, picks the `Opaque`, `OpaqueRGB` or another pass
-record by the target's format, and submits one draw through `0x0060B980`.
+sites in all: it sets `ColorBuffer`, `ColorBufferSampler` and `ColorBufferOffset` on the material at
+`[0x01F82E58]+0x20`, stores a pass record at `+0x80` of `[0x00189120() + 8]` (`0x001EE921`, `0x001EEBA3`) and submits
+one draw through `0x0060B980`.
+
+The pass record comes from the source texture, the first argument, and the dword `+8` of the record passed
+third (`0x001EE925`). A source whose format dword `+0x10` is `0x2A` gets `OpaqueDepth` (`0x01F82E68`,
+`0x001EEB6B`-`0x001EEB75`); otherwise `+8` = 3 gets `OpaqueGray` (`0x01F82E88`), 4 gets `OpaqueRGB` (`0x01F2D6C0`) and
+any other value `Opaque` (`0x01F2D6A0`) (`0x001EEB7E`-`0x001EEB9C`). All 17 call sites pass a record whose `+8` is 0,
+so the copy draws with `OpaqueDepth` or `Opaque`.
 
 ## Layouts
 

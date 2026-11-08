@@ -12,6 +12,11 @@ addresses: "0x001B44A0, 0x001B4D70, 0x001B5230, 0x001FDC10, 0x001FDDD0, 0x001B4C
 - The Japanese, Korean and Chinese versions carry extra fonts for subtitles, guides, tutorials, quests and monster
   names.
 
+Each language's font folder has a list, `fontlist.ah`, naming its fonts. For each name the game loads `<name>.dat`,
+whose records give each character's rectangle in the picture `<name>.dds.phyre` and its advance. When the header asks,
+it also loads `<name>.ker`, the spacing pairs, and `<name>.fex`, lists that renumber glyphs for one scene or map's
+text.
+
 ## Where it comes from
 
 ### The font list
@@ -195,12 +200,12 @@ The manager at `[0x01F81200]`, `0x378` bytes, from the constructor `0x001B3940`'
 | `+0x010` | `void*` | namesEnd |  |
 | `+0x018` | `void*` | namesCap |  |
 | `+0x020` | `void*` | namesAlloc | vtable `0x00902720` from `0x001EDF00` (`0x001B397C`); the name "EASTL vector" (`0x008C5F58`) is dropped |
-| `+0x028` | `u8[56]` | fonts | the fonts by id, an EASTL map: `+0x08` header node pointing at itself, `+0x10` its mirror, `+0x18` root, `+0x20` flag byte, `+0x28` count, `+0x30` allocator `0x008F4120`; built at `0x001B3993`-`0x001B39DE`; `0x001B4590`, `0x001B4C00`, `0x001B51C0`, `0x001B5230`, `0x001B5480`, `0x001B5750` and `0x001B58E0` search it from its header `+0x30` (`0x001B4639`, `0x001B4C71`, `0x001B51F8`, `0x001B5292`, `0x001B54E0`, `0x001B57B0`, `0x001B5937`) and read the node they find, not the manager |
+| `+0x028` | `u8[56]` | fonts | the fonts by id, an EASTL map: `+0x08` header node pointing at itself, `+0x10` its mirror, `+0x18` root, `+0x20` flag byte, `+0x28` count, `+0x30` allocator (vtable `0x00902720`; the name "EASTL map" (`0x008F4120`) is dropped); built at `0x001B3993`-`0x001B39DE`; `0x001B4590`, `0x001B4C00`, `0x001B51C0`, `0x001B5230`, `0x001B5480`, `0x001B5750` and `0x001B58E0` search it from its header `+0x30` (`0x001B4639`, `0x001B4C71`, `0x001B51F8`, `0x001B5292`, `0x001B54E0`, `0x001B57B0`, `0x001B5937`) and read the node they find, not the manager |
 | `+0x060` | `u8[56]` | atlasRequests | the atlas requests by font id, the same shape: built at `0x001B39E3`-`0x001B3A2E`; `0x001B58E0` files a request (lea `+0x60` at `0x001B59C2`, `+0x68` and `+0x78` at `0x001B596D`-`0x001B5971`) |
 | `+0x098` | `u8[56]` | shadowRequests | the shadow-atlas requests by font id, the same shape: built at `0x001B3A33`-`0x001B3A72`; `0x001B58E0` files one when the shadow path is taken (`+0x98`, `+0xA0`, `+0xB0` at `0x001B5ACF`, `0x001B5A80`, `0x001B5A79`) |
 | `+0x0D0` | `u8[192]` | requestPool | built by `0x001B36D0`(`+0xD0`, `0x200`, 0) (`0x001B3A75`-`0x001B3A84`), `0xC0` bytes (The pools below); `0x001B4C00`, `0x001B4D70`, `0x001B5230`, `0x001B5480` and `0x001B5750` take it by address (`0x001B4D2A`, `0x001B5089`, `0x001B52F5`, `0x001B54F4`, `0x001B57C4`) |
 | `+0x190` | `u8[192]` | slotPool | built by `0x001B3540`(`+0x190`, 10, 0) (`0x001B3A8A`-`0x001B3A97`), `0xC0` bytes; `0x001B5330`, `0x001B5CC0`, `0x001B6350`, `0x001B6470` and `0x001B6510` take it by address (`0x001B53D0`, `0x001B5D09`, `0x001B6398`, `0x001B6485`, `0x001B651F`); `0x001B5B60` works inside it: the tree at `+0x1F0` with its root `+0x200` is the pool's second map (`+0x190` + `0x58` + 8) and the byte `+0x248` is that pool's flag `+0xB8` (`0x001B5BBD`-`0x001B5C17`) |
-| `+0x250` | `void*` | pendingBegin | a second vector, 8-byte entries: 0 from the constructor (`0x001B3AA9`-`0x001B3AB0`), allocator `0x008C5F58` at `+0x268` (`0x001B3ABF`); `0x001B6350` pushes (`0x001B635D`-`0x001B63E3`); `0x001B47A0` and `0x001B5330` remove the matching entry (memmove `0x008C2A40` at `0x001B47FF` and `0x001B5383`, then `+0x258` -= 8 at `0x001B4805` and `0x001B5389`): `0x001B47A0` the entry whose `+0x04` is the id and `+0x10` is 0, `0x001B5330` the entry equal to `+0x270` |
+| `+0x250` | `void*` | pendingBegin | a second vector, 8-byte entries: 0 from the constructor (`0x001B3AA9`-`0x001B3AB0`), allocator at `+0x268`, vtable `0x00902720` from `0x001EDF00` (`0x001B3ABF`; the name "EASTL vector" (`0x008C5F58`) is dropped); `0x001B6350` pushes (`0x001B635D`-`0x001B63E3`); `0x001B47A0` and `0x001B5330` remove the matching entry (memmove `0x008C2A40` at `0x001B47FF` and `0x001B5383`, then `+0x258` -= 8 at `0x001B4805` and `0x001B5389`): `0x001B47A0` the entry whose `+0x04` is the id and `+0x10` is 0, `0x001B5330` the entry equal to `+0x270` |
 | `+0x258` | `void*` | pendingEnd |  |
 | `+0x260` | `void*` | pendingCap |  |
 | `+0x268` | `void*` | pendingAlloc |  |

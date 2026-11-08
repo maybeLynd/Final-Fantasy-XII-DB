@@ -47,6 +47,10 @@ New Game+ file gets no badge: the file records the mode, but nothing in the game
 The mode is stored in the save file, and loading the file brings it back. Going back to the
 title clears it from the running game until a save is loaded or a new game is started.
 
+Choosing either mode, from the title list or from the question a script asks after the staff roll or Trial Mode, only
+leaves a request. The request becomes the game's mode when the new game's first area starts, and from then on it
+travels in the save file.
+
 ## How it works
 
 ### The request bits

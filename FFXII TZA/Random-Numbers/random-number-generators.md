@@ -15,8 +15,10 @@ generators that start from a known number and step through a fixed sequence.
 - Loot drops, the chain coin, where enemies appear and which action an AI picks come from a second
   generator that restarts from a counter every time an area is entered, counting from the moment
   the game was started. A save load leaves it alone.
-- Everything else, from noise textures to shaking effects, uses generators of its own that never
-  touch those two.
+- Noise textures and most other effects use generators of their own that never touch those two. Scripted
+  camera shakes are the exception: each step of a shake draws sixteen floats from the first generator
+  (`0x0037D1F0` calling `0x00379CE0`), so a shake moves the sequence that hits and chests use
+  ([which roll uses which generator](which-roll-uses-which-generator.md#rolls-on-the-gameplay-mersenne-twister)).
 
 Which roll uses which generator is on the [roll map page](which-roll-uses-which-generator.md).
 
@@ -100,7 +102,12 @@ eight advance the same word, so every draw by any of them moves the others along
 (`0x00234320`). The seed is the counter at `0x0208E6B0`, which `0x002342F0` reads and then increments
 (`0x00234301`-`0x00234315`); those two instructions are the counter's only references in the image, so
 it starts at 0 with the process and the generator is seeded 0, 1, 2, ... on successive area
-initialisations. Loading a save does not touch the word or the counter.
+initialisations.
+
+The load callback `0x00584210` does not touch the word or the counter, but a loaded
+save enters its area through the restore path `0x00314530`, which requests manager 0; that bind runs
+`0x0026CE60` and so `0x002342F0`, which seeds the word from the counter while the battle system's up flag
+`0x02089300` is set (`0x002342F4`-`0x002342FB`).
 
 ### The graphics-noise Mersenne Twister
 

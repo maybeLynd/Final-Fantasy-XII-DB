@@ -19,6 +19,10 @@ buffer getters `0x002EF640` and `0x002EF2B0` and the pointers passed on from the
 `0x02EBF190` and `0x020927C0`, directly at the buffer `0x02164280`, and the block moves (the clears, the copies and the
 slot file's read and write).
 
+The payload is one block the game keeps in memory and uses while playing: the quest bits, the story flags, the
+zone-change record, the spawn records and the party data all live inside it. A save writes the whole block to the slot
+file, and a load reads it back in one piece.
+
 ### The regions
 
 | Payload offset | Size | Region | Written by | Read by |

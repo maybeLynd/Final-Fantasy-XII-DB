@@ -11,9 +11,15 @@ When an enemy dies and its loot roll gives at least one item, a pickup appears w
 stood and the party collects everything in it, up to seven stacks, by walking the controlled
 character over it. A pickup waits one minute. For the last five seconds it blinks, faster and
 faster, and then it is gone. Only ten pickups can exist at once: an eleventh drop destroys the
-oldest one still on the ground. A pickup that an enemy walks over disappears without giving the
-party anything. The game clock has to be running for the minute to pass; while it is stopped, the
+oldest one still on the ground.
+
+An enemy that touches a pickup while it is heading for one (its action
+is `0x4165`, below) destroys it without giving the party anything; other enemies pass over pickups. The game clock has to be running for the minute to pass; while it is stopped, the
 pickups wait.
+
+A pickup holds the items the enemy's drop roll chose. When a party member walks over it, every item is added to the
+inventory with a notice, and the pickup is counted against the next rise of the chain level. Its look is picked from
+the kinds of equipment inside it.
 
 ## How it works
 
@@ -163,8 +169,13 @@ action word `+0x714` is `0x4165` (`0x003110E8`-`0x003110F4`):
 1. `0x002FB150(unit, 1.0)` returns the first presence record, in slot order, whose XZ distance
    (`0x004686D0`) from the unit's actor position is strictly below `max(r1, r2) + 1.0`, with the
    radii from `0x00265090`; -1 when no record is that close (`0x00311105`-`0x0031110E`).
-   A null unit also gives -1, before any record is read (`0x002FB170`-`0x002FB175`); the tick never passes one,
-   since it has read the unit's `+0x08` at `0x003110DC` before the call.
+   - A null unit also gives -1, before any record is read (`0x002FB170`-`0x002FB175`); the tick never passes one,
+     since it has read the unit's `+0x08` at `0x003110DC` before the call.
+   - `0x00265090` writes the two radii only when the top three bits of the actor's byte `+3` are `0x60`
+     (`0x00265094`-`0x00265098`); otherwise `0x002FB150` compares against two stack slots it never sets
+     (`0x002FB1AD`-`0x002FB1C1`, `0x002FB1E5`-`0x002FB1F0`).
+   - `0x00265020` reads the position only when byte `+3` >> 5 is 1 or 3 (`0x0026502A`-`0x00265038`) and gives
+     (0, 0, 0) otherwise.
 2. `0x00469E30(stats)` posts message `0x4E` through `0x0046AB10` when `0x002F8E90()` returns 8
    (`0x0031111B`).
 3. A party record (stats byte `+0x05` = 0) collects it: `0x00319A00(slot, unit handle)`

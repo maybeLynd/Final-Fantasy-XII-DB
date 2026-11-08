@@ -13,10 +13,16 @@ A status icon appears or goes, and with it:
 - the unit reacts, when it is near the party leader;
 - a party member turned to stone or sent to X-Zone gets its battle message;
 - KO, Stone and X-Zone end the unit's part in the fight, and an enemy pays out;
-- losing Bubble halves the unit's current HP;
+- losing a Bubble that was applied as a status halves the unit's current HP. Bubble that only equipment gives
+  (a Bubble Belt) does not end through this function: taking the item off rebuilds the unit's stats, and current
+  HP is then capped at the plain max HP ([Augments](../Damage-And-Battle-Formulas/augments.md#the-clamps));
 - Confuse and Berserk interrupt what the unit was doing.
 
 Some moments refuse every status change, such as while the battle is frozen or a defeat is being handled.
+
+Every status change goes through the same step, whether it comes from an action's result, HP running out, an enemy AI
+order or the script verb `setpartybattlestatus`. When a status lands, that step reads the new status's row in the
+status table to find the statuses it removes.
 
 ## How it works
 

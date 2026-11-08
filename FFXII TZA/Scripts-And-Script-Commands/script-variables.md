@@ -204,7 +204,7 @@ Banks:
 | save-payload offsets a script declares | 620, `0x0` to `0xCF4`; one offset shared by 575 scripts ([script-variables-global-offsets.tsv](script-variables-global-offsets.tsv), [script-variables-global-by-script.tsv](script-variables-global-by-script.tsv)) |
 | global arrays | 34 ([script-variables-global-arrays.tsv](script-variables-global-arrays.tsv)) |
 | variables whose tests gate script steps | 562 of the 620 offsets, in 4,230 rows, one per variable and script ([script-variables-global-gates.tsv](script-variables-global-gates.tsv)) |
-| variable values and what each leads to | 3,355 rows for all 620 offsets ([script-variables-global-values.tsv](script-variables-global-values.tsv)) |
+| variable values and what each leads to | 3,344 rows for all 620 offsets ([script-variables-global-values.tsv](script-variables-global-values.tsv)) |
 | variables that gate no step | 58, with the reason for each ([script-variables-global-nogate.tsv](script-variables-global-nogate.tsv)) |
 | bank size | 512 bytes each |
 | resolver callers | 4: `PUSHV`, `POPV`, `PUSHP`, `PUSHDBG` |
@@ -265,12 +265,12 @@ scripts and `ttl_a01_e3`, which ships in the `cn` and `kr` trees only.
 ### What each value means
 
 [`script-variables-global-values.tsv`](script-variables-global-values.tsv) says, for every value a script tests or
-writes, what happens when the variable holds it. It has 3,355 rows for all 620 offsets, keyed by `payload_offset`,
+writes, what happens when the variable holds it. It has 3,344 rows for all 620 offsets, keyed by `payload_offset`,
 `element` and `value`, and the `source` column says what a row rests on:
 
 | source | rows | what the row gives |
 |---|---|---|
-| gated steps | 2,343 | a value some step's condition tests: each form of the test, and for each form the place, the actor and function, and what every gated step does |
+| gated steps | 2,332 | a value some step's condition tests: each form of the test, and for each form the place, the actor and function, and what every gated step does |
 | written value | 544 | a value a script stores that no condition names: the stores, and the tested forms the value meets or fails |
 | counter rule | 23 | a counter: the stores that add 1, and the rule by which its value chooses steps, read at the scripts |
 | no gated step | 445 | a variable that gates no step: each value written to it, with the reason no step depends on it |

@@ -13,6 +13,9 @@ may grow to a third of the machine's physical memory, never below 32 MiB and nev
 on start the game raises its own process priority and widens its working set to nearly all
 physical memory.
 
+The start-up memory is taken as eleven blocks, nine of which become resource arenas. Later arenas, such as the ones
+labelled `EVTMEM` and `SMNMEM`, are cut from an existing arena instead of being taken from the system again.
+
 ## How it works
 
 ### One heap, reached through eight imports

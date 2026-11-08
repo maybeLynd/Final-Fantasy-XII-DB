@@ -19,9 +19,10 @@ or produces a step, and anything outside that class silently refuses: no error, 
 zero step.
 
 Animation can take over the step. When a character that has been in one animation state for at
-least 30 frames is given a speed of 0, the step keeps the facing and speed the character had a
-moment before, shrinking to 0.83 of itself each frame until it falls to 0.05: the character
-slides to a halt instead of stopping dead, and the facing and speed the game sets meanwhile are
+least one second (30 frames at 30 fps, 60 at 60) is given a speed of 0, the step keeps the facing
+and speed the character had a moment before, shrinking to 0.83 of itself each frame with no
+lower limit, and lets go once that speed is 0.05 or less: the character slides to a halt instead
+of stopping dead, and the facing and speed the game sets meanwhile are
 set aside. Two other animation states lower the speed each frame, and one holds it at 0.
 
 ## How it works
@@ -139,9 +140,10 @@ handle `0x02EBCC70`.
   `+0x614`, and clears `+0x61C` bit `0x1`;
 - then, when dword `+0xC4` is not -1 and its action entry resolves (`0x0020E600` on dword `+0x10`,
   `0x0051F240`, an entry whose byte `+1` is 1): states `0x35` and `0x36` multiply the accumulator
-  (`+0x618`, or `+0x628` when the latch was entered in this same call) by 0.9 and the speed by
-  the result, state `0x0D` forces the speed to 0, and any other state stores 1.0 into that
-  accumulator and touches nothing else (`+0x61C` keeps its value).
+  `+0x618` by 0.9 and the speed by the result, state `0x0D` forces the speed to 0, and any other
+  state stores 1.0 into the accumulator and touches nothing else (`+0x61C` keeps its value).
+  - The 1.0 goes to `+0x628` instead when the latch was entered in this same call (`0x004241F3`).
+    The multiply never reaches `+0x628`: the latch is entered only in state `0x10`.
 
 The record is Presentation's ([character render record
 array](../Graphics/character-render-records.md));
@@ -230,8 +232,8 @@ For a battle unit the producer is `0x0023A070(unit)`, run from the per-unit fram
 the pitch from `+0x174`, the facing from `+0x160` (`0x0026B5A0`) and, unless unit flag bit `0x40000` is set,
 the speed from `+0x158`.
 
-A unit without a stats record (`+0x698` null) takes the second path, and so does a null unit
-(`0x0023A085`-`0x0023A094`). The actor every setter gets is the unit's `+0x10`, the flag bit `0x40000` is in the
+A unit without a stats record (`+0x698` null) takes the second path (`0x0023A091`-`0x0023A094`). A null unit is sent
+there too (`0x0023A085`-`0x0023A088`), and that path's first read, unit `+0x15C` at `0x0023A0AF`, faults on it. The actor every setter gets is the unit's `+0x10`, the flag bit `0x40000` is in the
 unit's dword `+0x00` (`0x0023A0E2`), and both speed calls are tail jumps (`0x0023A0AA`, `0x0023A0FC`).
 
 ## Layouts
@@ -314,12 +316,12 @@ Battle unit:
 
 | Constant | Value | Where |
 |---|---|---|
-| `0x01DFE0B4` | 1 | the time-base integer: the latch waits 30 frames |
+| `0x01DFE0B4` | 1 | the time-base integer, 2 at 60 fps: the latch waits 30 × it frames, 30 at 30 fps and 60 at 60 |
 | `0x01DFE0B8` | 1.0 | the frame-rate scale: 30 × 3.6 × 1.0 = 108 per unit of speed |
 | `0x01DFE0BC` | 1.0 | the authored-speed scale |
 | `0x008F8D80`, `0x00915734` | 30.0, 3.6 | the rate multipliers |
 | `0x01CEBC50`, `0x00915620`, `0x01CEBC78` | pi, -pi, 2pi | the wrap constants |
-| decay, floor, state factor | 0.83, 0.05, 0.9 | the override's constants |
+| decay, release threshold, state factor | 0.83, 0.05, 0.9 | the override's constants; the decayed speed is returned as it is, not held at 0.05 (`0x00424103`) |
 
 ## Operations
 
@@ -345,8 +347,8 @@ mode; the body's `+0x70`, `+0x90`, `+0xC8` and `+0x110`; the render record's `+0
 - The pass-through is the door for an exact displacement; the engine records its magnitude at
   `+0xF8`, a field the normal path also uses as a negative sentinel.
 - Animation takes precedence: while the render record's latch is set the step uses the record's
-  yaw and speed, decaying at 0.83 per call to a floor of 0.05, and state `0x0D` forces the speed
-  to 0. If the class gate passes and an actor still will not move, look at its animation state.
+  yaw and speed, decaying at 0.83 per call until the latch lets go at a speed of 0.05 or less, and
+  state `0x0D` forces the speed to 0. If the class gate passes and an actor still will not move, look at its animation state.
 - Which integration path runs is not a caller choice: the driver always passes the controller's
   body, so the plain addition runs only when that pointer is null.
 - Actor byte `+0x08` bit `0x4` changes the reported displacement, not the movement.

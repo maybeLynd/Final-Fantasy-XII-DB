@@ -168,7 +168,7 @@ The driver's start-up `0x007AEF30` fixes the mix format:
 | channels | 8 (`0x007AC698`); any other count is refused with "enable SIMD, need rendering channel 8" |
 | frames per block | 256 (`0x007A4F46`) |
 | source voice pool | the sum of three start-up counts, each capped: `min(+0x20, 2 x ([0x02EAD3E8] + 32)) + min(+0x24, 128) + min(+0x28, 32)` of the start-up block, unsigned (`0x007A4EC0`-`0x007A4EFD`) |
-| buses | one submix per `bus ` chunk record |
+| buses | the root bus (busIndex 0) is a master voice (`0x007AE930`, `0x007ACAA9`-`0x007ACAC7`); each other `bus ` record is a submix (`0x007AEC10`, `0x007ACB1A`); the shipped chunk has one bus, `Master`, so no submix is built |
 | masters | one (`0x02EAD358`); a second (`0x02EAD360`) only with start-up byte `+0x1C` set, which is 0 |
 
 The device asks for each block through `0x007DF690`, which runs `0x007AF740` under the lock `0x02EAE0B0`:

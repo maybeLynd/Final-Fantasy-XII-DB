@@ -1,5 +1,21 @@
 function	name	site	disp	kind	instruction	route	note
+0x00225CD0	FUN_00225cd0	0x00225E1C	0x0	w	mov qword ptr [rcx + rdx], 0xffffffffffffffff	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
+0x00225CD0	FUN_00225cd0	0x00225E24	0x0	w	mov qword ptr [rcx + rdx + 0x2a0], 0xffffffffffffffff	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
+0x00225CD0	FUN_00225cd0	0x00225E72	0x0	rw	and qword ptr [rcx + rdx + 0x2a0], rax	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
+0x00225EB0	FUN_00225eb0	0x00225FF0	0x0	w	mov qword ptr [r13 - 0x14], 0xffffffffffffffff	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x14	
+0x00225EB0	FUN_00225eb0	0x00225FF8	0x0	w	mov qword ptr [r13 + 0x28c], 0xffffffffffffffff	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x14	
+0x00225EB0	FUN_00225eb0	0x00226044	0x0	rw	and qword ptr [r13 + 0x28c], rax	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x14	
+0x00226280	FUN_00226280	0x002262E0	0x0	r	mov r8, qword ptr [rax - 0x10]	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x10	
+0x00226280	FUN_00226280	0x002262E4	0x0	r	and rdi, qword ptr [rax - 0x2b0]	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x10	
+0x00226280	FUN_00226280	0x0022630A	0x0	w	mov qword ptr [rax - 0x10], r8	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x10	
+0x00226280	FUN_00226280	0x00226603	0x0	w	movups xmmword ptr [rip + 0x1dae096], xmm0	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0	
+0x00226280	FUN_00226280	0x00226624	0x0	w	movups xmmword ptr [rip + 0x1dae08d], xmm0	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0	
+0x00226B10	FUN_00226b10	0x00226B1E	0x0	addr	lea rax, [rax + rcx*8]	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
+0x00226B30	FUN_00226b30	0x00226B60	0x0	w	mov qword ptr [rdx - 0x14], 0xffffffffffffffff	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x14	
 0x00226B30	FUN_00226b30	0x00226B80	0x0	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0	
+0x00226BA0	FUN_00226ba0	0x00226BA0	0x0	r	mov rcx, qword ptr [rip + 0x1dadb11]	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0	
+0x00226BA0	FUN_00226ba0	0x00226BA9	0x0	r	and rcx, qword ptr [rip + 0x1dadaf0]	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0	
+0x00226BE0	FUN_00226be0	0x00226C27	0x0	addr	lea r12, [rax + 0x2a0]	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0	
 0x00226BE0	FUN_00226be0	0x00226C2E	0x0	addr	lea r12, [r12 + r10*8]	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
 0x00226BE0	FUN_00226be0	0x00226C37	0x0	addr	lea r15, [rax + r10*8]	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
 0x00226BE0	FUN_00226be0	0x00226C77	0x0	r	mov eax, dword ptr [r15]	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
@@ -208,6 +224,8 @@ function	name	site	disp	kind	instruction	route	note
 0x00227680	FUN_00227680	0x00227C99	0x0	r	mov rax, qword ptr [rdx]	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
 0x00227680	FUN_00227680	0x00227CA4	0x0	w	mov qword ptr [rdx], rax	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
 0x00227680	FUN_00227680	0x00227CA7	0x0	rw	and qword ptr [rbx], 0xfffffffffeffffff	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
+0x0022A770	FUN_0022a770	0x0022AB32	0x0	r	mov ecx, dword ptr [rax]	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
+0x0025D950	FUN_0025d950	0x0025D973	0x0	r	test qword ptr [rax], rcx	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
 0x00227680	FUN_00227680	0x00227698	0x8	w	mov qword ptr [rdx + 8], rax	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed zeroclear	
 0x00227680	FUN_00227680	0x002276A2	0x8	w	mov qword ptr [r8 + 8], rax	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed zeroclear	
 0x00227680	FUN_00227680	0x002277A1	0x8	w	mov qword ptr [rdx + 8], 0xffffffffffffffff	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
@@ -220,7 +238,19 @@ function	name	site	disp	kind	instruction	route	note
 0x00227680	FUN_00227680	0x00227C55	0x8	w	mov qword ptr [rbx + 8], 0xffffffffffffffff	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
 0x00227680	FUN_00227680	0x00227C82	0x8	w	mov qword ptr [rdx + 8], 0xffffffffffffffff	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
 0x00227680	FUN_00227680	0x00227C91	0x8	w	mov qword ptr [rbx + 8], 0xffffffffffffffff	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
+0x00225CD0	FUN_00225cd0	0x00225E3D	0x10	w	mov dword ptr [rcx + rdx + 0x2b0], eax	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
+0x00225EB0	FUN_00225eb0	0x00226010	0x10	w	mov dword ptr [r13 + 0x29c], 0xffffffff	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x14	
+0x00226280	FUN_00226280	0x002262EE	0x10	r	mov edx, dword ptr [rax]	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x10	
+0x00226280	FUN_00226280	0x00226301	0x10	w	mov dword ptr [rax], 0xffffffff	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x10	
+0x00226280	FUN_00226280	0x00226616	0x10	w	movsd qword ptr [rip + 0x1dae092], xmm1	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0	
+0x00226280	FUN_00226280	0x0022662B	0x10	w	movsd qword ptr [rip + 0x1dae095], xmm1	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0	
+0x00226B30	FUN_00226b30	0x00226B6D	0x10	w	mov dword ptr [rdx - 4], 0xffffffff	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x14	
 0x00226BE0	FUN_00226be0	0x00226C4B	0x10	w	mov dword ptr [r12 + 0x10], eax	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
+0x00225CD0	FUN_00225cd0	0x00225E30	0x14	w	mov byte ptr [rcx + rdx + 0x14], 0	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
+0x00225CD0	FUN_00225cd0	0x00225E35	0x14	w	mov byte ptr [rcx + rdx + 0x2b4], 0	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
+0x00225EB0	FUN_00225eb0	0x00226003	0x14	w	mov byte ptr [r13], 0	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x14	
+0x00225EB0	FUN_00225eb0	0x00226008	0x14	w	mov byte ptr [r13 + 0x2a0], 0	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x14	
+0x00226B30	FUN_00226b30	0x00226B74	0x14	w	mov byte ptr [rdx], 0	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x14	
 0x00226B30	FUN_00226b30	0x00226B87	0x14	w	mov byte ptr [rax + 0x14], 0	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0	
 0x00227680	FUN_00227680	0x002276B0	0x14	w	mov byte ptr [r8 + 0x14], r9b	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	
 0x00227680	FUN_00227680	0x00227814	0x14	r	cmp byte ptr [rbx + 0x14], 0	route-seeded EMBED SystemStopRegistry +0x0 stride=0x18 count=56 | EMBED SystemStopRegistry +0x540 stride=0x18 count=2 base+0x0 exposed	

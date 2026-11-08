@@ -84,7 +84,7 @@ teleport arrival entrance at `+0x52` (`gettelepoindex`, `0x00342490`), the save 
 `getanchorindex` reads the zone image through the first pointer of actor manager 0 (`0x00263FF0(0)`, `0x02098E10`) and
 answers 0 when that pointer is null (`0x0034347D`-`0x0034348C`); it writes the answer through `0x0026B4E0` (`0x003434A1`).
 
-The image's `+0x70` word points to five list offsets. Each list holds a count at `+0` and `0x20`-byte entries from
+The image's `+0x70` dword (`0x00264B03`, `0x00264B10`) points to five list offsets. Each list holds a count at `+0` and `0x20`-byte entries from
 `+0x10`; `0x00264CA0` maps kind 3 to list 2 and kind 8 to list 4. `getcrystalid(3, 0)` returns entry 0's `u16` at
 `+0x14` of list 2 (`0x00352CB5`). `getanchorid(8, 0)` returns entry 0's `u16` at `+0x16` of list 4 (`0x00353305`).
 `setposbynaviicon` places the actor at the same entry for kinds 3 and 8; kinds 6 and 9 go to the global table
@@ -120,6 +120,10 @@ The `talk` switch of `system_crystal_actor` names a key item for each gate numbe
 3-6, 8-13, 15 and 17-25, then 28 `0x8059`, 29 `0x805A`, 32 `0x805B` and 33 `0x805C`; no map declares 2, 7, 14 or 16. All 25 arms of the `telepoeffect` switch send the
 key's crystal to its own map at that map's `+0x52`. The `default` arm (`pla_a06`, field 142, entrance 3) serves
 `0x805C`, crystal 33.
+
+A map's crystals and arrival points are not written in its scripts: the map's zone file holds them, and the shared
+crystal actor reads them when the map starts. Each gate crystal's number is tied to a key item, and teleporting to
+that crystal lands the party at its map's own arrival point.
 
 ### Exits that choose a destination
 

@@ -12,6 +12,10 @@ areas. A zone is the area loader's context *n*. For each it gives the map and re
 menu, the files the loader requests for that zone and the models and foes the zone's script brings in. The 708 are
 the zones whose script the US resource-kind 5 array names and the archive ships.
 
+A zone's number picks its script files directly, and the zone's row in `map_ref.bin` names the rest: its own map pack,
+a shared block pack that carries only sounds, and the area whose battle data it loads. The models come from a list
+inside the zone's script.
+
 ### Where the values come from
 
 The columns come from the path arrays of [Asset paths](../Game-Files-And-Data-Tables/asset-paths.md) and the

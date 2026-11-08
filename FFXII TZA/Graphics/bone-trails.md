@@ -11,6 +11,10 @@ A swung weapon leaves a short coloured ribbon that follows the blade and fades t
 monster have trails on other bones. A trail fades in over two frames when a scene's command turns it on and fades
 out over five when it turns off, and it fades with its character.
 
+A model's own data lists up to four trails, each naming the bone it follows and four colours. When an authored command
+turns trails on, the order is passed from the character down to the weapon in its hand, and the game opens one trail
+for each entry in the list it finds there.
+
 ## How it works
 
 ### The descriptor

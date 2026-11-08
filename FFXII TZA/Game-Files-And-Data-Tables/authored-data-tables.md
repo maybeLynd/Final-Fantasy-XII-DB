@@ -13,6 +13,9 @@ start-up or each time the party enters a new area. When a table is missing, the 
 back to a default: most lookups read from address 0 and the game crashes, and the few that first
 check an id against the table's count refuse the id instead.
 
+An id such as an item or a spell number also says which table it belongs to: each range of ids belongs to one table,
+and the id less the start of its range is the row. The id is valid only while that row is below the table's row count.
+
 ## How it works
 
 The game reaches its authored tables through one array of 64 qword slots, `0x02EBF008` to `0x02EBF200`,

@@ -21,6 +21,8 @@ Nothing moves while the screen is dark, and a second jump asked for in that time
    and calls `0x002EFA70(3, 0, 1, 0)` on fade slot 3 (`0x00314700`)
    ([zone changes](zone-changes-and-mapjump.md#staging-and-the-transition-record),
    [save data fields](../Saving-Loading-And-Settings/save-data-fields.md)).
+   - A nonblocking request instead returns 1 at once while the queue is busy, before any write
+     (`0x00314609`-`0x0031461C`).
 3. **The autosave test.** Still inside staging, when `0x0020E500(map, 0x00265270(), entrance)` returns non-zero
    (`0x00314774`-`0x0031477B`), the runtime state is captured (`0x003147BB`, `0x003147DF`, `0x003147E4`) and the autosave
    widget `0x0057E4D0` is created (`0x00583260` at `0x003147E9`)

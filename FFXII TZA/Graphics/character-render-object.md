@@ -336,8 +336,8 @@ The object, as its constructor `0x001F4DA0` and the methods above use it:
 | `+0x4B5` | `u8` |  | value 1 |
 | `+0x4B6` | `u8` |  | 1 (slot 21) |
 | `+0x4B7` | `u8` |  | 0 at construction; the ordered draw's ShadowRenderWithRef test |
-| `+0x4B8` | `u32` |  | slot 22 |
-| `+0x4BC` | `u32` |  | slot 23 |
+| `+0x4B8` | `f32` |  | slot 22 (`0x001F9FE0`): the shadow height, copied to the shadow object's `+0x4C` for m_chrObjHeight (`0x001FB31E`) |
+| `+0x4BC` | `f32` |  | slot 23 (`0x001F9A70`): times 2.3 into the shadow object's `+0x50` for m_chrObjFlyingHeight (`0x001FB32F`) |
 | `+0x4C0` | `f32` |  | value 20.0 |
 | `+0x4C4` | `f32[48]` |  | matrix bank A |
 | `+0x584` | `f32[48]` |  | matrix bank B |
@@ -349,12 +349,14 @@ The part record:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `void*` |  | the mesh's parameter set; its `+0x08` is the parameter block |
-| `+0x08` | `f32` |  | z-bias a, bank A |
-| `+0x0C` | `f32` |  | z-bias a, bank B |
-| `+0x10` | `f32` |  | z-bias b, bank A |
-| `+0x14` | `f32` |  | z-bias b, bank B |
-| `+0x30` | `void*[92]` |  | parameter descriptors, sunIndex first, g_txChrAlpha at `+0x310` |
+| `+0x000` | `void*` |  | the mesh's parameter set; its `+0x08` is the parameter block |
+| `+0x008` | `f32` |  | z-bias a, bank A |
+| `+0x00C` | `f32` |  | z-bias a, bank B |
+| `+0x010` | `f32` |  | z-bias b, bank A |
+| `+0x014` | `f32` |  | z-bias b, bank B |
+| `+0x030` | `void*[65]` |  | parameter descriptors 0-64, sunIndex first |
+| `+0x238` | `void*` |  | position 65: not among the stored descriptors (the record's slot table, below) |
+| `+0x240` | `void*[27]` |  | parameter descriptors 66-92, g_txChrAlpha at `+0x310`; 92 stored descriptors in all |
 
 The render model instance, as `0x005049E0` resets it:
 

@@ -15,6 +15,10 @@ addresses: "0x00300FC0, 0x002372E0, 0x00237260, 0x002371B0, 0x00237140, 0x002345
 - A revived character stands up where it lay; one whose body had been hidden reappears beside the character
   under control.
 
+A fallen body is put away only after two signals: its death animation has played, and a separate hide signal has
+arrived from the battle timeline. Each field frame the game checks the four fighting characters, and when every main
+character among them is put away and no main character in reserve is standing, it posts Game Over.
+
 ## How it works
 
 ### The defeat cleanup
@@ -88,8 +92,10 @@ posts `0x0B` when `0x002371B0` is 1, else `0x18` when `0x00237140` is 1, through
 `0x0035C7B0(0x0B)` has one other caller, for a wipe that lands outside the field frame: `0x0027EFA0`, run from the
 main loop through `0x00254E50` (`0x0022AC73`, `0x00254E61`). It posts Game Over when `0x002805D0` allows it: Game Over is
 armed (`0x022C83E8` bit `0x2`, `0x0035C740`), the screen object's `+0xD4` is 0, and the mode `0x02092730` is 6, 10,
-`0x0F`, `0x11`, `0x12` or `0x13`, or 2 with its `+0xC4` state past `0x42`. It then also runs `0x00252B40(0x0B)`. It
-calls `0x0035C7B0(0x0B, 0)` (`0x0027EFC8`), so `0x0035C7B0` skips its `0x002E1B10` write (`0x0035C815`).
+`0x0F`, `0x11`, `0x12` or `0x13`, or 2 with its `+0xC4` state outside `0x40` to `0x42` (`0x00280630`-`0x0028063C`).
+
+It then also runs `0x00252B40(0x0B)`. It calls `0x0035C7B0(0x0B, 0)` (`0x0027EFC8`), so `0x0035C7B0` skips its
+`0x002E1B10` write (`0x0035C815`).
 
 `0x0035C7A0(0x0B)` also has a caller outside the field frame: `0x00237D60`, the begin of the script verb `callgameover`
 (`0x04D8`, through `0x0033F640`), which calls it (`0x00237D70`) unless `0x0035C700` answers non-zero, and returns 1.

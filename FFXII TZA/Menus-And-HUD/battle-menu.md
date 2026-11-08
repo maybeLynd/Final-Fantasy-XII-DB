@@ -13,6 +13,10 @@ addresses: "0x00279E20, 0x00276D30, 0x002778C0, 0x0027E050, 0x0027C3D0, 0x00311B
 - The party list shows each member's name, HP and MP; a boss shows a gauge at the top, and units carry HP gauges
   above their heads.
 
+Each command's name and help line come from the battle command table, which points at texts in `help_menu.bin`.
+Choosing a row opens the next list, opens a target list, or hands the action and its target to the battle's action
+phases.
+
 ## How it works
 
 ### The widgets

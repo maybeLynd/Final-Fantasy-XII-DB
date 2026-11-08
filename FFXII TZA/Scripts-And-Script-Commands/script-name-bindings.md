@@ -312,7 +312,8 @@ list, or an entry whose lane record is missing or stale leaves everything as it 
 
 A lane is held while its count is positive, while it is in any of the five group words
 `+0x48..+0x5B`, or while it is in the hold mask `+0x38` (the readers `0x002E3F00`, `0x002E4000` and
-`0x002EB890` also test `+0x3C`, which has no writer among the xrefs to it).
+`0x002EB890` also test `+0x3C`, which only the qword store of 0 at `0x002E26C9` in `0x002E2660` writes, so it is
+always 0).
 
 `0x002ECAB0(id, lane, on)`
 sets or clears the lane in `+0x38`, and `0x002ECA30(entry, lane, on)` does the same in `+0x40`, a mask
@@ -687,8 +688,8 @@ Binding entry   `0x0215FDA0` + slot*`0x40`, 128 slots:
 | `+0x08` | `...` |  | next (free / requested / live / retired list) |
 | `+0x10` | `u32` |  | load handle (`0x0036B160`) |
 | `+0x14` | `u32` |  | bound id |
-| `+0x18` | `u8` |  | state: bit1 ready, bit2 release pending, bit3 not registered with the render system |
-| `+0x19` | `u8` |  | pins: bits0-1 keep at count 0, bit2 no load buffer, bit3 created with a holder, bit4 kept by `0x002E3E90` |
+| `+0x18` | `u8` |  | state: bit `0x2` ready, bit `0x4` release pending, bit `0x8` not registered with the render system |
+| `+0x19` | `u8` |  | pins: mask `0x3` keep at count 0, bit `0x4` no load buffer, bit `0x8` created with a holder, bit `0x10` kept by `0x002E3E90` |
 | `+0x1A` | `u16` |  | own slot |
 | `+0x1C` | `i16` |  | reference count |
 | `+0x1E` | `i16` |  | lane record index (-1 no lane record) |

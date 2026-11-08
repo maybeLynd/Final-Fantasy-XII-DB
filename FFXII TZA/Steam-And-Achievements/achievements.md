@@ -17,6 +17,11 @@ Thirty of the achievements, all but the eight story scenes, the two Trial Mode s
 Ivalice, are also kept in the save. The Clan Primer's Sky Pirate's Den shows one statue for each of those
 thirty earned, and the clan rank counts them, so both work without Steam.
 
+Most of the running totals are kept in the save, and each target (50 items stolen, 500 foes defeated and so on) comes
+from the language's copy of `menuhandbook.bin`. Once a total has reached its target, the game sets that achievement's
+bit in the save and passes the award to Steam; an award made before Steam has sent its stats is only marked in the
+game.
+
 ## How it works
 
 ### The records

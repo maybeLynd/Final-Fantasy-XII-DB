@@ -11,6 +11,10 @@ addresses: "0x02EBF020, 0x0032A230, 0x0032A320, 0x0032A3E0, 0x0031EB20, 0x0027E0
 reaches (`battle_pack.bin` directory entry `+0x70`), and one line for the empty group 0. The rows come in groups;
 a group limits the battle menu of each member it has a row for.
 
+A battle chooses its group through the script command `set_interventionmenu_tutorialmode`, whose number reaches the
+battle menu as the group to apply. No script in the nine language trees calls it, so no shipped battle limits the menu
+this way.
+
 | Group | Rows | Member and what is left |
 |---:|---|---|
 | 0 | no row | nothing is limited |

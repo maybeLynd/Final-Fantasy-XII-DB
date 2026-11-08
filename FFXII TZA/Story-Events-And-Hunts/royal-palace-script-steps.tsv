@@ -9843,7 +9843,7 @@ rrp_a06	map_ダミーＰＣ	ＳＥＴＴＵＲＮxyz	3	0x02210	1253	-	releasepc	
 rrp_a06	map_ダミーＰＣ	ＳＥＴＴＵＲＮxyz	4	0x02213	1254	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rrp_a0500	DIRECTOR	init	1	0x01240	23	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rrp_a0500	DIRECTOR	main	1	0x01244	28	-	skipstart	0	argument 1: the skip entry to arm, i of the calling event manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rrp_a0500	DIRECTOR	main	2	0x01250	29	-	setmapwind	0, 0, 0	argument 1: the wind preset (1 to 6; 0 copies no preset) / argument 2: the sun's azimuth in sectors of 22.5 degrees / argument 3: the sun's elevation class	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rrp_a0500	DIRECTOR	main	2	0x01250	29	-	setmapwind	0, 0, 0	argument 1: the wind preset (1 to 6; 0 copies no preset) / argument 2: the wind's azimuth in sectors of 22.5 degrees / argument 3: the wind's elevation class	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rrp_a0500	DIRECTOR	main	3	0x01256	30	-	fadeout	1	the screen fade, out	-	1 frame	-	-	resolved	17 ../Graphics/screen-fades.md
 rrp_a0500	DIRECTOR	main	4	0x01259	31	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rrp_a0500	DIRECTOR	main	5	0x0125F	32	-	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

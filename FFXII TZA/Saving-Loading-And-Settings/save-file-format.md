@@ -95,7 +95,7 @@ the name from `0x00584610` at `+0x00` and the write buffer at `+0x28` (`0x0057E3
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | checksum | in the file: CRC-32 of image[`0x08`, `0xE200`) (`0x0057E3BF`); the finaliser writes its complement here first (`0x00583FA1`) |
-| `+0x04` | `u32` | one | 1 in the written image (`0x0057E3C7`) |
+| `+0x04` | `u32` | one | 1 in the written image (`0x0057E3C7`); neither the slot scan nor a load reads it back |
 | `+0x08` | `i32` | gil | written by `0x00254EE0` (`0x00254F1F`), read by `0x00253690` |
 | `+0x0C` | `u32` | walked | walked-distance total mirrored from the battle block by `0x00254E80` (`0x00254E90`) |
 | `+0x10` | `u64` | ticks | play clock, 60 Hz ticks, added by `0x00254CC0`; its bound is the sign-extended immediate `0xFFFFFFFF80BEFBFF` compared unsigned (`0x00254CF1`, `0x00254D30`-`0x00254D33`), so it never fires |
@@ -107,8 +107,8 @@ the name from `0x00584610` at `+0x00` and the write buffer at `+0x28` (`0x0057E3
 | `+0x3C` | `u32` | esper | the summoned Esper's character row: `0x003200A0` sets its flag bit `0x1` when summon mode is on (block `+0x5B04` bit `0x1`, `0x003135E0`) and copies the row byte block `+0x5AD4` (`0x003137E0`); `0x00583D60` stores it, else `0xFF` (`0x00583F08`-`0x00583F0D`); the slot pane's ESPER row shows its name when it is not `0xFF` (`0x0057EFE0`, `0x0057F0CC`) |
 | `+0x40` | `u32` | counter | counter kind `0x11` (`0x003166F0`) when story flag `0x400B` is set, else untouched |
 | `+0x44` | `u32` | clanrank | `0x00315390`() when story flag `0x400B` is set, else 0 |
-| `+0x48` | `u32` | mapgroup | the area's map persistence group: `0x00254380`(`0x00264F90`(areaId)) |
-| `+0x4C` | `u32` | area | the active or pending area id (`0x003148F0`) |
+| `+0x48` | `u32` | maparea | the World Map area of the field's persistence group: `0x00254380`(`0x00264F90`(field)), the group's area byte in the map file (not the group itself, nor the field) |
+| `+0x4C` | `u32` | field | the active or pending field id (`0x003148F0`) |
 | `+0x50` | `u32` |  | savecount `0x00583D60`'s second argument (the controller's `+0xD0`); in the written image the save counter `0x02CA99B4`, saturating at `0xFFFFFFFF` (`0x0057E3CE`-`0x0057E3DD`) |
 | `+0x54` | `u8` | slot | `0x00583D60`'s first argument: the save slot (controller `+0xCD` from `0x00581DA0` at `0x00581EE7`; 0 from `0x005844A0` at `0x005844BE`) |
 | `+0x55` | `u8[2]` | pad2 | not written by the enumerated writers |

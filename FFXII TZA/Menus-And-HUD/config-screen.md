@@ -7,10 +7,15 @@ addresses: "0x0023FBE0, 0x002407F0, 0x0023BD40, 0x0017DB90, 0x001D1660, 0x0023CE
 
 ## What the player sees
 
-- Config holds the battle, camera, sound and language settings, and two rows that open Graphics Settings and Controls.
+- Config holds the battle, camera, sound and voice language settings, and two rows that open Graphics Settings
+  and Controls.
 - Graphics Settings changes quality presets and display options; some changes ask for confirmation or a restart.
 - Controls rebinds keys and sets mouse sensitivity, camera auto-rotation and the confirm button.
 - Volumes slide while a direction is held; most other rows step once per press or repeat.
+
+The three screens keep their settings in different places. Config's rows go into the options record inside the save,
+so they are kept only when the game is saved; Graphics Settings and the other Controls settings are written to
+`GameSetting.ini`, and key bindings to `keymap.ini`, when those screens are left.
 
 ## How it works
 

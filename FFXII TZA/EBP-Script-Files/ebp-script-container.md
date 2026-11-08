@@ -35,6 +35,10 @@ The zone script is requested from `0x00314020` (`0x003140BA`, manager 0, the id 
 Event scripts go to managers 1 to 3: `0x003522C0` and `0x00353080` add 1 to their argument and clamp
 it to 1 to 3, and `0x00353590`, `0x003CA07C` and `0x00306BD0` use manager 3.
 
+A zone script is fetched with its `.mot` file, and an event script with its `.mot`, `.snd` and `.vpc` files. The game
+reads the whole script at once and hands each part to its own system, and builds the scene's actors only after every
+requested file and part has arrived.
+
 ## Layouts
 
 All multi-byte fields are little-endian.

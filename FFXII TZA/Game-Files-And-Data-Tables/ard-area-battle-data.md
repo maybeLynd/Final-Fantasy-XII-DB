@@ -20,6 +20,10 @@ builds name the files through their own kind-21 path array (see
 
 Beside it is `<area>.nmb` (kind `0x1A`, 26).
 
+The file for an action animation is picked from three lists in turn: the global list in `pc_skillmotion.bin`, read
+once at start-up; the area file's own list; then a list carried by a script container. The first list that names the
+model and the motion decides the file.
+
 The area number comes from the map-reference row: `0x00264ED0` returns the `u16` at `+4` of row `n` of
 the table at `[0x02099D88]`. The rows are 8 bytes each from the offset the table holds at `+0x04`
 (`0x00264EE9`-`0x00264EF0`), with no bounds check on `n`. It returns 0 while `[0x02099D88]` or `[0x02099D90]` is

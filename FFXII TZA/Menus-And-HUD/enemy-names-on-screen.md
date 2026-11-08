@@ -10,6 +10,10 @@ addresses: "0x0023A570, 0x002B58B0, 0x00269F20, 0x00263990, 0x00272CE0, 0x002B58
 An enemy's name appears in a box over it, in the battle menu's target list and in the battle log. Several
 enemies of the same kind are told apart by a letter after the name.
 
+The name starts as a word in the enemy's row of the area's battle data, which points into the battle text banks. When
+the enemy is placed, the game keeps that text on the unit with a spawn number that becomes the letter. The overhead
+box and the target list show it from there, and the battle log reads the same word from the area's row.
+
 ## Steps
 
 1. **The name word.** Each enemy definition row of an area file holds a name word at `+0x08`
@@ -34,6 +38,7 @@ enemies of the same kind are told apart by a letter after the name.
    ([battle unit construction](../Characters-And-Objects/battle-unit-construction.md)). It goes in as the blank `0x06`, a
    space (`0x01` if `0x00254A10` is true, else `0x04`) and the letter, one byte, or two for a code outside
    `0x20`-`0xFF` (`0x002B5969`-`0x002B59D3`).
+   - An entry of 0 gives a second space byte in place of the letter (`0x002B59AA`-`0x002B59B1`).
 7. **The target list.** The battle menu's target-list painter `0x0027E530` draws the unit's name through `0x00272CB0`
    and, when `0x00272C80` gives an ordinal above 0, that ordinal's letter after it, written by `0x0024ABE0` as in step 6
    (`0x0027E657`-`0x0027E6FA`) ([battle menu](battle-menu.md#row-painters),

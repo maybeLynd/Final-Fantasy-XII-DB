@@ -31,6 +31,21 @@ function	name	site	disp	kind	instruction	route	note
 0x00380800	FUN_00380800	0x00380881	0x1C	r	mov eax, dword ptr [rbx + 0xc]	route-seeded STATIC 0x022C7FA0 base+0x10	
 0x00380800	FUN_00380800	0x00380889	0x1C	w	mov dword ptr [rdi + 0xc], eax	route-seeded STATIC 0x022C7FA0 base+0x10	
 0x004742A0	FUN_004742a0	0x004743F3	0x1C	w	mov dword ptr [rbx + 4], eax	route-seeded STATIC 0x022C7FA0 base+0x18	
+0x00380800	FUN_00380800	0x00380827	0x20	r	movss xmm6, dword ptr [rdx]	route-seeded STATIC 0x022C7FA0 base+0x20	
+0x00380800	FUN_00380800	0x00380864	0x20	w	movss dword ptr [rdi], xmm6	route-seeded STATIC 0x022C7FA0 base+0x20	
+0x004742A0	FUN_004742a0	0x004743DF	0x20	w	mov dword ptr [rbx - 8], eax	route-seeded STATIC 0x022C7FA0 base+0x28	
 0x004742A0	FUN_004742a0	0x0047443F	0x20	r	movss xmm0, dword ptr [rdi + 0x20]	route-seeded STATIC 0x022C7FA0 base+0x0	
+0x00380800	FUN_00380800	0x0038080A	0x24	r	movss xmm1, dword ptr [rdx + 4]	route-seeded STATIC 0x022C7FA0 base+0x20	
+0x00380800	FUN_00380800	0x00380868	0x24	r	mulss xmm0, dword ptr [rbx + 4]	route-seeded STATIC 0x022C7FA0 base+0x20	
+0x00380800	FUN_00380800	0x00380872	0x24	w	movss dword ptr [rdi + 4], xmm0	route-seeded STATIC 0x022C7FA0 base+0x20	
+0x004742A0	FUN_004742a0	0x004743E5	0x24	w	mov dword ptr [rbx - 4], eax	route-seeded STATIC 0x022C7FA0 base+0x28	
+0x004742A0	FUN_004742a0	0x004743F6	0x24	w	mov dword ptr [rbx - 4], ebp	route-seeded STATIC 0x022C7FA0 base+0x28	
+0x00380800	FUN_00380800	0x00380812	0x28	r	movss xmm2, dword ptr [rdx + 8]	route-seeded STATIC 0x022C7FA0 base+0x20	
+0x00380800	FUN_00380800	0x00380877	0x28	r	mulss xmm1, dword ptr [rbx + 8]	route-seeded STATIC 0x022C7FA0 base+0x20	
+0x00380800	FUN_00380800	0x0038087C	0x28	w	movss dword ptr [rdi + 8], xmm1	route-seeded STATIC 0x022C7FA0 base+0x20	
+0x004742A0	FUN_004742a0	0x004743EB	0x28	w	mov dword ptr [rbx], eax	route-seeded STATIC 0x022C7FA0 base+0x28	
 0x004742A0	FUN_004742a0	0x00474406	0x28	addr	lea rbx, [rbx + 0x10]	route-seeded STATIC 0x022C7FA0 base+0x18	
 0x004742A0	FUN_004742a0	0x0047446A	0x28	r	movss xmm0, dword ptr [rdi + 0x28]	route-seeded STATIC 0x022C7FA0 base+0x0	
+0x00380800	FUN_00380800	0x00380881	0x2C	r	mov eax, dword ptr [rbx + 0xc]	route-seeded STATIC 0x022C7FA0 base+0x20	
+0x00380800	FUN_00380800	0x00380889	0x2C	w	mov dword ptr [rdi + 0xc], eax	route-seeded STATIC 0x022C7FA0 base+0x20	
+0x004742A0	FUN_004742a0	0x004743F3	0x2C	w	mov dword ptr [rbx + 4], eax	route-seeded STATIC 0x022C7FA0 base+0x28	

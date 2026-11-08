@@ -17,11 +17,12 @@ full, up to 16 KB, before it is thrown away unread.
 ### The log call
 
 `0x005CDAA0(channel, format, …)` is the log call of the PhyreEngine layer and the game code built
-on it: 135 functions call it at 245 sites. It reserves a `0x4050`-byte frame, fetches the C
-runtime options word through `0x0016D670`, and formats into its 16 KB buffer with
+on it: 136 functions reach it at 245 sites (232 calls, 13 tail jumps). It reserves a `0x4050`-byte
+frame, fetches the C runtime options word through `0x0016D670`, and formats into its 16 KB buffer with
 `__stdio_common_vsnprintf_s(options, buffer, 0x4000, -1, format, 0, args)`; the `-1` count is
-`_TRUNCATE`, so a longer message is cut, never dropped. It then makes sure the sink exists and
-calls the sink's virtual slot 1 with the channel and the buffer. The function has one exit and no
+`_TRUNCATE`, so a longer message is cut, never dropped.
+
+It then makes sure the sink exists and calls the sink's virtual slot 1 with the channel and the buffer. The function has one exit and no
 test that could skip the formatting.
 
 The sink is a lazily built singleton. The guard `0x02CB6158` and the pointer `0x02CB6150` follow the
@@ -30,8 +31,10 @@ first use); the pointer comes from `0x005CDA30`, itself a lazy static (guard `0x
 installs the `Phyre::PTTYCallback` vtable `0x00D360A0` into the 8-byte object at `0x02CB6140` and
 registers `0x008AADA0` with `atexit`.
 
-`0x005CD9C0` returns the pointer's address for other users of the same singleton, and `0x005CD960` runs the same guarded construction and returns nothing; it is
-reached only through the thunk `0x00866B80`, which no code calls.
+`0x005CD9C0` returns the pointer's address for other users of the same singleton, and `0x005CD960` runs the same
+guarded construction and returns nothing; it is reached through the thunk `0x00866B80`, which the thunk
+`0x00863100` jumps to, and `0x00863100` is called by `0x002DF9A0` (`0x002E045D`, `0x002E0486`) and `0x0079EDD0`
+(`0x0079EDFF`).
 
 ### What the sink does
 
@@ -75,8 +78,8 @@ the sprite batcher `0x001B0A20` builds `%s_clut_%d` texture names with it
 ([Sprite batcher](../Graphics/sprite-batcher.md)).
 
 `0x0017D280(format, …)` is a plain `printf`: `__stdio_common_vfprintf(options, stdout, format, 0,
-args)`. 38 functions call it at 60 sites: the PS2 emulation start-up lines in `0x0036D990` and
-`0x0022CB90` ([PS2 CPU emulation](ps2-cpu-emulation.md)), the boot step list in `0x0036FCC0`
+args)`. 40 functions reach it at 62 sites (49 calls, 13 tail jumps): the PS2 emulation start-up lines in
+`0x0036D990` and `0x0022CB90` ([PS2 CPU emulation](ps2-cpu-emulation.md)), the boot step list in `0x0036FCC0`
 (`AtelMapJumpByLoad()`, `YsConfig_Load()` and five more), the loader's `load failed!` in
 `0x0017D9D0`, two lines in the field start `0x00314020`, and the script verbs of the `0x0050C670` to
 `0x00510870` family that print their arguments.
@@ -117,10 +120,10 @@ writes either, so every formatter above passes the value 4.
 
 | Fact | Value |
 |---|---|
-| log call sites / functions | 245 / 135 |
+| log call sites / functions | 245 / 136 |
 | literal channels | 0: 16, 1: 80, 2: 84, 3: 26; computed: 39 |
 | `vsprintf` wrapper callers / sites | 120 / 268 |
-| `printf` callers / sites | 38 / 60 |
+| `printf` callers / sites | 40 / 62 |
 | message buffer | 16,384 bytes, truncating |
 | sink action | channel 4 with a debugger attached: `DebugBreak`; otherwise nothing |
 

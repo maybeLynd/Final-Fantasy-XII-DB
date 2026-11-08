@@ -47,8 +47,10 @@ The code tests are looser than the names: UNPACK is any code with bits `0x20` an
 
 `0x0022C8D0` is the double-buffer step the console does on MSCAL: it copies TOPS into TOP
 `0x02064E1C`, then sets TOPS to BASE and clears status bit `0x40` if that bit was set, or to
-BASE + OFFSET and sets the bit otherwise. `0x0022C930` zeroes the installed count; `0x001DB550` calls
-it before every packet list, so programs live only for the list that installed them.
+BASE + OFFSET and sets the bit otherwise. `0x0022C930` zeroes only the installed count (`0x02088E44`); `0x001DB550` calls it
+before every packet list, so MSCAL's search sees only the list's own installs, but the program table `0x02068E30` keeps
+its pointers: a search that finds nothing calls the entry for address 0, the last program any list installed there
+(`0x0022CAE5`, `0x0022CB1E`).
 
 ### VU memory and the unit's state
 
@@ -60,7 +62,7 @@ it before every packet list, so programs live only for the list that installed t
 | `0x02088E50` onwards | 4 per entry, the first `0x02088E50` to `0x02088E53` | the installed list: one VU address per MPG since the last clear, stored at `0x02088E50 + count × 4` with no bound check (`0x0022CA53`-`0x0022CA60`); the next global the image addresses is the visited list `0x02088FE0` of the [collision walk](../Movement-And-Pathfinding/collision-mesh-movement.md), 100 entries on |
 | `0x02064E1C`, `0x02064E28` | u16 each | TOP and TOPS |
 | `0x02064B00` to `0x02064E2F` | — | the microprograms' own working words: 16-bit cell indices (`0x02064B0C`, `0x02064DB0`, `0x02064DB4`, `0x02064DB8`, `0x02064DD0`) and float scratch |
-| `0x02064DEC` | u16 | the sticky status flags: `0x0022CC40` sets `0x40` (zero) and `0x0022CC30` sets `0x80` (sign); they are its only writers, and 40 microprograms call them at 116 sites each |
+| `0x02064DEC` | u16 | the sticky status flags: `0x0022CC40` sets `0x40` (zero) and `0x0022CC30` sets `0x80` (sign); they are its only writers, and 40 functions call each of them at 116 sites: 33 microprograms and the shared subroutines `0x004753B0`, `0x004825F0`, `0x00487D60`, `0x0048D240`, `0x004B0CF0`, `0x004B0F60` and `0x004EB910` |
 
 The boot routine `0x0022CB90` zeroes the VU memory, TOP, TOPS, the status word and the words
 `0x02088E30` to `0x02088E38`, and `0x0017D6E0` runs it again on every restart pass
@@ -74,8 +76,9 @@ cells between cycle starts. It returns 0 without writing when CYCLE is below WL.
 
 The thirteen formats are `vn` = S, V2, V3, V4 by `vl` = 32, 16, 8, with V4-5 as the last:
 
-- S broadcasts one value to all four lanes; V2 writes x and y and leaves z and w; V3 writes
-  three lanes; V4 four;
+- S broadcasts one value to all four lanes, but its three arms move the destination 4 bytes per element instead of 16
+  (`0x0022C10B`, `0x0022C1BB`, `0x0022C24D`), so inside a cycle each element overwrites three lanes of the one before; V2
+  writes x and y and leaves z and w; V3 writes three lanes; V4 four;
 - V4-5 expands a 16-bit colour as `r = (v & 0x1F) << 3`, `g = (v >> 2) & 0xF8`,
   `b = (v >> 7) & 0xF8`, `a = (v >> 8) & 0x80`;
 - the 16- and 8-bit formats sign-extend unless the unsigned flag is set;
@@ -91,11 +94,16 @@ V4-32, so neither arm runs on shipped content.
 A microprogram is an x64 function that reads and writes VU memory through the 16-bit index words above and hands each
 finished GS packet to the callback.
 
-`0x004EF860(callback, context)` is the leaf most of them end in: it writes `word[0x02064DB8] + 0x8000` (the 16-bit sum,
-zero-extended to 32 bits, `0x004EF89C`-`0x004EF8B6`) into the cell at `0x02064DB0`, resets `0x02064DB8` to the word `0x02064B0C`
-(`0x004EF8C0`), copies twelve bytes of the cell at `0x02064DD0` beside it (staged at `0x02064C60`), sets `0x02064DB4` to
-`0x02064B0C + 0x2A8`, or `+ 0x168` when `0x02064B0C` differs from `0x02064DB0 - 0x168`, calls `callback(cell address,
-context, 0)` (`0x004EF90A`-`0x004EF910`), then sets `0x02064DB0` to `0x02064B0C + 0x02064DB4` and `0x02064DB4` one past it.
+`0x004EF860(callback, context)` is the packet leaf that `0x004EF940` and `0x004F7070` reach through `0x004EDB50` and
+`0x004F5360`. 18 other programs call one of its nine copies (`0x002EFE70`, `0x00479370`, `0x004C4C40`, `0x004C7F00`, `0x004CF3B0`,
+`0x004D7B10`, `0x004DB270`, `0x004DF360`, `0x004E78A0`), which differ from it only in the two buffer offsets (`0x2A8` and
+`0x168` below); `0x00478280` and `0x004ECC50` call the variant `0x004ECB70`, and the other 35 programs call none of them.
+
+`0x004EF860` writes `word[0x02064DB8] + 0x8000` (the 16-bit sum, zero-extended to 32 bits, `0x004EF89C`-`0x004EF8B6`) into the
+cell at `0x02064DB0`, resets `0x02064DB8` to the word `0x02064B0C` (`0x004EF8C0`), copies twelve bytes of the cell at
+`0x02064DD0` beside it (staged at `0x02064C60`), sets `0x02064DB4` to `0x02064B0C + 0x2A8`, or `+ 0x168` when `0x02064B0C`
+differs from `0x02064DB0 - 0x168`, calls `callback(cell address, context, 0)` (`0x004EF90A`-`0x004EF910`), then sets
+`0x02064DB0` to `0x02064B0C + 0x02064DB4` and `0x02064DB4` one past it.
 
 The image installs 57 distinct programs at 141 call sites ([ps2-vif1-vu1-emulation-programs.tsv]
 ([`ps2-vif1-vu1-emulation-programs.tsv`](ps2-vif1-vu1-emulation-programs.tsv)), resolved from the `lea` that loads each site's program
@@ -108,10 +116,13 @@ argument). Three routes build the packets that carry them:
 - **Template contents.** The decoded command streams are in
   [ps2-vif1-vu1-emulation-templates.tsv](ps2-vif1-vu1-emulation-templates.tsv) and the GIF tags
   they carry in [ps2-vif1-vu1-emulation-gif-tags.tsv](ps2-vif1-vu1-emulation-gif-tags.tsv).
-- **Template headers.** 37 builders start with `0x008631E0(object, program, 0)`, which stamps the word 1 at `+0` and
-  kind `0x30` at `+3`, appends `{0x4A000000 | addr, program}` to the record table `0x02EAF930` (count `0x02EB37B0`) and
-  stores the record's handle at `+4`: the low 32 bits of the record's address minus `[0x01F83530]` (`0x0020E620`,
-  `0x00863226`-`0x0086322B`; [global state accessors](global-state-accessors.md)). The templates install 35 programs.
+- **Template headers.** 37 builders call `0x008631E0(object, program, 0)`, which stamps the word 1 at `+0` and kind
+  `0x30` at `+3`, appends `{0x4A000000 | addr, program}` to the record table `0x02EAF930` (count `0x02EB37B0`) and stores
+  the record's handle at `+4`: the low 32 bits of the record's address minus `[0x01F83530]` (`0x0020E620`,
+  `0x00863226`-`0x0086322B`; [global state accessors](global-state-accessors.md)).
+
+  29 of them call it first; the other 8 clear the object with `memset` (thunk `0x00861EC0`) before it. The templates
+  install 35 programs.
 - **Plain headers.** `0x008631D0(object, count)` stamps the plain kind `0x10` header: the count as a word at `+0`, the
   kind at `+3` and 0 at `+4` (`0x008631D0`-`0x008631D7`).
 - **Per-draw registrars.** `0x003A34D0` (45 sites) and `0x003A33B0` (22) append a `0x28`-byte record
@@ -138,16 +149,20 @@ argument). Three routes build the packets that carry them:
 
 ### Shared subroutines of the microprograms
 
-The programs share 33 subroutines, listed with their callers in
+The programs share 58 subroutines, listed with their callers in
 [ps2-vif1-vu1-emulation-subroutines.tsv](ps2-vif1-vu1-emulation-subroutines.tsv). They work on the same words:
 
 - `0x004A6780` clears the float and index words at the start of 14 programs;
 - `0x0047BFB0` and `0x00487F90` evaluate a sine series and `0x0048F790` wraps an angle by whole turns;
 - `0x004825F0`, `0x0048D240`, `0x004B0CF0`, `0x004B0F60` and `0x00487D60` look a frame up in a table of per-frame counts in VU
   memory;
-- `0x004753B0` and `0x004AD9E0` clip edges, `0x004EB910` builds a sprite, and `0x004ECB70` emits a GS packet like `0x004EF860`;
-- the 21 small ones from `0x004B97F0` to `0x004B9E30`, with `0x004CF230` and `0x004CF280`, are lane arithmetic, cell loads
-  and the random generator `0x01E02828` (`0x004B97F0`), which returns 1.0 while `0x02064AFC` is 0.
+- `0x004753B0` and `0x004AD9E0` clip edges and `0x004EB910` builds a sprite;
+- `0x004ECB70` emits a GS packet like `0x004EF860`, and the nine copies of `0x004EF860` (`0x002EFE70`, `0x00479370`, `0x004C4C40`,
+  `0x004C7F00`, `0x004CF3B0`, `0x004D7B10`, `0x004DB270`, `0x004DF360`, `0x004E78A0`) emit it with other buffer offsets;
+  `0x004EDB50` and `0x004F5360` work the cells for `0x004EF940` and `0x004F7070` and end in `0x004EF860`;
+- the 30 small ones from `0x004B97F0` to `0x004B9E30`, with `0x004B9E60`, `0x004CF230`, `0x004CF280` and `0x004CF350`, are lane
+  arithmetic, comparisons, cell loads and stores and the random generator `0x01E02828` (`0x004B97F0`), which returns 1.0
+  while `0x02064AFC` is 0.
 
 `0x00476C80` is a template read end to end. It holds `0x008631E0` with program `0x004758E0`, BASE 0 and OFFSET 0
 (`0x03000000`, `0x02000000`), then a sub-header `0x008631D0(object + 0x10, 0x43)` (`0x00476CAF`: the word `0x43` at
@@ -183,32 +198,32 @@ One row per boot template, 77 rows, decoded from the stores each builder makes.
 | Column | Holds |
 |---|---|
 | `family` | `startup/N` or `startup-ext/N`, where N is the builder's place in the boot calls: 0 to 27 in the calls of `0x0037DF90`, 28 to 76 in those of `0x0037E0F0`; `startup-ext` marks the nine builders that lie below `0x00480000` (rows 18, 32, 51 to 54, 64, 68 and 69) |
-| `memset_size` | the byte count the builder clears at the object's start with `memset` (thunk `0x00861EC0`), in decimal, for example 304 for `0x004B0B70` (`mov r8d, 0x130`); empty on the 58 builders that do not call it |
+| `memset_size` | the byte count of the builder's first `memset` clear (thunk `0x00861EC0`), in decimal, for example 304 for `0x004B0B70` (`mov r8d, 0x130`): at the object's start, except in `startup/6` (`+0xBC0`), `startup/13` (`+0x1E8`), `startup/61` (`+0x60`), `startup/65` (`+0x90`) and `startup/71` (`+0xE0`), where the clear starts inside the object; empty on the 58 builders that do not call it |
 | `obj_header` | the header at the object's start: `0x30` where `0x008631E0(object, program, 0)` stamps the kind with a record handle (37 rows), `0x10 w=N` where `0x008631D0(object, N)` stamps the plain kind with a word count N; empty when the builder writes no header |
 | `sub_headers` | each further `0x008631D0` header inside the object, as offset and word count in hex, for example `+10:w=11` for `0x008631D0(object + 0x10, 0x11)`; empty when there is no such header |
 | `mpg_program` | the program address `0x008631E0` is handed (its second argument); empty on the 40 rows without that header |
 | `mpg_addr` | the VU address `0x008631E0` is handed (its third argument): 0 on all 37 rows that have one |
 | `command_sequence` | every VIF command the builder stores, as object offset and decoded command (BASE, OFFSET, NOP, STCYCL, UNPACK with format, count and address, DIRECT, MSCALF, FLUSH, FLUSHA, SUBHDR for a sub-header), separated by ` ; ` |
-| `gif_writes` | the GS register writes of the A+D data in the packet a DIRECT command carries: `CLAMP_1=0x0` on the one row that has a DIRECT command (`startup/28`, `0x004C2040`); empty on the other 76 |
+| `gif_writes` | the GS register writes of the A+D data in the packet a DIRECT command carries: `CLAMP_1=0x0` on `startup/28` (`0x004C2040`); empty on the other 76, among them the 28 other rows whose command sequence holds a DIRECT command |
 | `tail_reg_pairs` | the register and value pairs the builder stores after its looped blocks, just before MSCALF: `ST`, `CLAMP_1`, `RGBAQ` and `XYZF2` set to 0 on `0x00476C80` (`+0x400` to `+0x43F`) and `0x0047BAF0`; empty on the other 75 |
 | `unattributed_stores` | the builder's stores that fall in no command and no payload: 0 on all 77 rows |
-| `payload_stores` | how many of the builder's stores put a non-zero value inside the UNPACK payloads (28 for `0x004B0B70`, whose other six payload stores write a zeroed register) |
+| `payload_stores` | how many store instructions of the builder and its callees put a non-zero value inside the UNPACK payloads or a DIRECT packet, immediate or register, each instruction counted once (30 for `0x004B0B70`: 28 immediates and two stores of `rax` = `0x8000000080` at `0x004B0BB3` and `0x004B0BB7`; its four other register stores write a zeroed register) |
 
 ### Columns of ps2-vif1-vu1-emulation-gif-tags.tsv
 
-One row per GIF tag inside a template payload, 75 rows.
+One row per GIF tag inside a template payload, 124 rows.
 
 | Column | Holds |
 |---|---|
-| `unpack_at` | the object offset of the UNPACK command whose payload holds the tag: `+0x1C` (64 rows) after a header, or `+0xC` (11 rows) in a template without one |
-| `prim_raw` | the tag's 11-bit PRIM field in hex, which `prim`, `iip`, `tme`, `fge` and `abe` decode; `0x000` with `prim` reading `(PRE=0, PRIM unwritten)` on the 39 tags whose PRE bit is 0 |
-| `ad_payload` | for the 38 A+D tags (`regs` reads `A+D`), each register the following data quadwords write and its value, as `NAME=value` separated by semicolons (an address in hex, such as `0x0E`, where the register has no name); empty on the other 37 |
+| `unpack_at` | the object offset of the UNPACK command whose payload holds the tag: `+0x1C` (111 rows) after a header, or `+0xC` (13 rows) in a template without one |
+| `prim_raw` | the tag's 11-bit PRIM field in hex, which `prim`, `iip`, `tme`, `fge` and `abe` decode; `0x000` with `prim` reading `(PRE=0, PRIM unwritten)` on the 64 tags whose PRE bit is 0 |
+| `ad_payload` | for the 61 A+D tags (`regs` reads `A+D`), each register the following data quadwords write and its value, as `NAME=value` separated by semicolons (an address in hex, such as `0x0E`, where the register has no name); empty on the other 63 |
 
 ### Columns of ps2-vif1-vu1-emulation-subroutines.tsv
 
 | Column | Holds |
 |---|---|
-| `called_from` | the programs that call the subroutine, separated by commas; all 29 addresses that occur are programs of ps2-vif1-vu1-emulation-programs.tsv, and 20 subroutines are called from `0x004B1190` alone |
+| `called_from` | the programs that call the subroutine, separated by commas; all 47 addresses that occur are programs of ps2-vif1-vu1-emulation-programs.tsv, and 33 subroutines are called from `0x004B1190` alone |
 
 ### The GiVmax render command
 
@@ -402,7 +417,7 @@ vertex (48 B)        +0 x y z w (after the divide), +0x10 r g b a, +0x20 u v; bu
 | template builders that register a program | 37 |
 | registrar call sites | 104: `0x003A34D0` 45, `0x003A35E0` 27, `0x003A33B0` 22, `0x003A2F70` 10 |
 | distinct microprograms | 57: 35 by template, 44 by registrar, 22 by both |
-| programs calling the sticky-flag helpers | 40 |
+| functions calling the sticky-flag helpers | 40: 33 microprograms and 7 shared subroutines |
 | GS registers honoured | 20 |
 | vertex batch | 682 slots of 48 bytes; only the fan arm range-checks the index count (`0x8000` bytes) |
 | GS coordinate scale | 0.0625 |
@@ -447,9 +462,10 @@ Four more words steer the replay:
 - `0x01FC3607` is 1 when the last texture has base pointer 0; the replay then ends with the device's `TEXFLUSH`
   slot `+0x128`.
 - `0x01FD3610` holds the command's flag `+0x639`; while it is set, texture id `0xE00` is looked up as `0xDFF`.
-- `0x01F83560` holds the command's byte `+0x638`; while it is set, the GS's ordinary alpha blend
-  `(Cs - Cd) × As + Cd` becomes D3D11's MAX operation. Type `0x02`'s draw `0x004490D0` and `0x004559C0` set it
-  around their sprite draws.
+- `0x01F83560` holds the command's byte `+0x638`; while it is set, the GS's ordinary alpha blend `(Cs - Cd) × As + Cd`
+  becomes D3D11's MAX operation. Type `0x02`'s draw `0x004490D0` and `0x004559C0` set the latch `0x01FD3698` around their
+  sprite draws (through `0x003A3D00`, a jump to `0x002105D0`); `0x001DB840` copies it into `+0x638` (`0x001DBA0A`-`0x001DBA12`),
+  and slot 1 `0x001DB3D0` stores `0x01F83560` through `0x002105B0`.
 
 `0x01FD3688` is the copy of the texture-table entry `0x0020F250` returns for the current `TEX0`: for a
 format field (`TEX0 & 0x3F00000`) of `0x300000` or more it copies entry `(TEX0 >> 37) & 0x3FFF` of
@@ -499,8 +515,9 @@ integer words in `.data` at `0x02CA7F40` to `0x02CA7F78` instead of in the index
 - The templates are immediates in the builders; patching a word changes the packet every draw
   from that template sends.
 - An MPG word in a hand-built packet needs an x64 function pointer after it, not microcode.
-- A program is reachable only within the packet list that installed it; `0x0022C930` empties the
-  list before each `GiVmax` runs.
+- `0x0022C930` empties the installed list before each `GiVmax` runs, but not the program table: an MSCAL with no install
+  at or below its address calls the table entry for address 0, which keeps the last program installed there by any
+  list.
 
 ## Related
 

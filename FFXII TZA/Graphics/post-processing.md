@@ -34,7 +34,7 @@ array at `0x01F2D6A0` ([array](post-processing-named-render-pass-array.tsv)):
 | `0x00191E90` | scalable AO (SAO) | `SAOGenerateAO` | `projScale`, `radiusChr`, `biasChr`, `intensityChr`, `radiusSce`, `biasSce`, `intensitySce`, `g_fadeoutScale`, `CS_Z_buffer`, `tNormal`, `projInfo`, `widthAO`, `heightAO` | `0x0018F510` |
 | `0x001925D0` | SMAA | `ColorEdgeDetection`, `BlendingWeightCalculation`, `NeighborhoodBlending` | `areaTex`, `searchTex`, `edgesTex`, `blendTex`, `colorTex`, `smaa_resolution`, `SMAA_RT_METRICS`, `SMAA_THRESHOLD`, `SMAA_MAX_SEARCH_STEPS`, `SMAA_MAX_SEARCH_STEPS_DIAG`, `SMAA_CORNER_ROUNDING` | `0x00191DA0` |
 | `0x001930F0` | subsurface-scattering blur | `SSS` | `useBigKernel`, `blendAmount`, `sssBlur`, `dir`, `SingleStepOffset`, `colorTex`, `depthTex`, `normalTex` | `0x001F3740` |
-| `0x001EE8E0` | colour-buffer copy | `Opaque`, `OpaqueRGB` | `ColorBuffer`, `ColorBufferSampler`, `ColorBufferOffset` | 17 sites |
+| `0x001EE8E0` | colour-buffer copy | `Opaque`, `OpaqueRGB`, `OpaqueDepth` (`0x01F82E68`), `OpaqueGray` (`0x01F82E88`) | `ColorBuffer`, `ColorBufferSampler`, `ColorBufferOffset` | 17 sites |
 
 The samplers `LinearSampler`, `PointSampler` and `samNearest` are named too. The shaders are the
 `.fx.phyre` assets on [Render parameters and shader assets](render-parameters-and-shader-assets.md).
@@ -43,13 +43,17 @@ The samplers `LinearSampler`, `PointSampler` and `samNearest` are named too. The
 Otherwise it reads the Brightness option, the dword `+0x10` of the game settings `[0x01F82D20]`, keeps it as
 a float `v` at `+0x1F8` (`0x0018F6F1`-`0x0018F6F9`) and writes `g_brightPara = (v - 50.0) / 100.0` (`0x008F3130`,
 `0x008F3134`, `0x0018F76A`-`0x0018F772`) under the size test below, returning 3 when it does not fit
-(`0x0018F7BF`). `g_BrightTex` gets a record holding `0xFF` and the texture `[texture]`, null when the byte at
-`texture + 8` is set, through `0x001945B0` (`0x0018F7DD`-`0x0018F80D`).
+(`0x0018F7BF`).
+
+`g_BrightTex` gets the texture `[texture]`, null when the byte at `texture + 8` is set, through
+`0x001945B0` (`0x0018F7DD`-`0x0018F80D`): the record's first dword `0xFF` is replaced by the descriptor's type, `0x43`
+or `0x44`, else `0x42` (`0x00194643`-`0x00194661`), and a non-zero status from `0x001945B0` (5 for another type, 3 when
+it does not fit) ends the pass with that value (`0x0018F812`-`0x0018F814`).
 
 The pass then calls `0x0060D4F0(ctx, 0, 0)`, `0x0060DB50(ctx, 0)`, `0x0060D190(ctx, 0.0, 0.0, 0.0, 0.0)` and
 `0x005FEFD0(ctx, 0)`, stores the `BrightBlend` record `0x01F2DD40` at `ctx + 0x80` (`0x0018F86A`), submits with
 `0x0060B980` (`0x0018F8AE`) and ends with `0x00600A60(ctx, 0)` (`0x0018F8BD`). The first of these calls to return
-non-zero ends the pass with its value (`0x0018F827`-`0x0018F8C4`); otherwise the pass returns 0.
+non-zero ends the pass with its value (`0x0018F812`-`0x0018F8C4`); otherwise the pass returns 0.
 
 The copy pass draws a mesh that `0x001EEC80` builds once, from the render-manager installer
 `0x00186CD0`. It loads `./GameData/D3D11/ArtData/shaders/CopyBuffer.fx.phyre` (`0x0019CB20`,
@@ -311,8 +315,11 @@ Two sets of named pass records exist side by side:
 `0x001D5970` creates one timestamp-disjoint query and five rings of 128 timestamp queries
 (`0x01F81838`, `0x01F81880`). `0x00187950` queues `0x001D5FD0` on the render command list, and each call
 ends the next timestamp query of the current ring (`0x001D6250`). `0x001D6000`, also from `0x00187950`,
-stamps an `END` marker (`0x001D6040`), reads back the ring from the frame before
-(`0x001D5650`), stores the measured time as a double at `+0xD70` of the object `0x001D50D0` returns, and
+stamps an `END` marker (`0x001D6040`).
+
+`0x001D5650` reads back ring `(r + 1) mod 5` while ring `r` takes this frame's timestamps, then advances `r`
+(`0x01F81834`, `0x01F81848` under State). Called once a frame, the ring it reads was written four frames earlier,
+once all five have been written. `0x001D6000` then stores the measured time as a double at `+0xD70` of the object `0x001D50D0` returns, and
 clears the marker list (`0x001D6170`).
 
 `0x001D62D0` allocates only while `0x01F82C80` is null (`0x001D62F0`), through `0x00210EC0`, and leaves null there

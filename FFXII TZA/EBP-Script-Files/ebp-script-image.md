@@ -13,6 +13,10 @@ own entry in the image with a set of named functions (`init`, `main`, `talk` and
 [script interpreter](../Scripts-And-Script-Commands/script-interpreter.md) runs those functions a
 few instructions at a time each frame.
 
+Besides the code, the image header holds values other systems read: three weather chances for the zone, the zone's
+exploration field number, which the game uses to look up the save's map-exploration marks, and the chest model that
+`setuptreasure` places.
+
 ## Where it comes from
 
 Section 0 of each `.ebp` container, at file offset `0x80` in every shipped file

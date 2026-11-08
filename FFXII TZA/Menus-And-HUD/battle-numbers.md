@@ -12,6 +12,10 @@ other before the number fades. Some results show a small picture instead, and a 
 Several popups on the same unit at once are spread apart. Popups far from the camera are drawn smaller and vanish
 beyond a set distance.
 
+The battle's HP and MP code posts each number popup, drawn as digit pictures from the `battle_4_c` atlas; the result
+reactions post picture popups from `battle_4_p`, and a status taking hold posts a popup that writes the status's name.
+Each popup also flashes its owner's row in the party list.
+
 ## How it works
 
 ### The popup ring

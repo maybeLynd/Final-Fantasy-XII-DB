@@ -13,6 +13,10 @@ asks for them. Separately, every character, weapon, monster, map and font in the
 assembled from a `.ah` list of its parts; a part the list does not name is never loaded. The few
 menu textures that are not part of a picture, such as the target lines, come from one more list.
 
+The list read on entering a map is named after that map's zone script file. The lists read for events are the ones the
+`eventlist.csv` records name for the current story progress, and the worker reloads them whenever that progress
+changes.
+
 ## Where it comes from
 
 Both are plain text in the archive. Prefetch manifests live under `prefetchdata/<language>/`
@@ -20,6 +24,10 @@ Both are plain text in the archive. Prefetch manifests live under `prefetchdata/
 `.ah` lists sit beside their assets under `gamedata/d3d11/artdata/` as `<asset>_d3d11.ah`, with a
 `_d3d11_srm.ah` list beside many of them. The menu texture list is
 `gamedata/d3d11/artdata/menu/texlist.txt`.
+
+Binding a PS2-era model also queues its remastered parts: the game turns the model's PS2 file path into a character
+name and requests the `.ah` list of that name and its shadow list. Each line of a list names a `.phyre` file, and the
+game loads every one.
 
 ## Layouts
 
@@ -110,8 +118,9 @@ Every prefetch list, every name it holds and every entry, in three kinds of tabl
 
 - The 9,351 files hold 7,912 different contents; a file with the same bytes as an earlier one points to it and has
   no entry rows of its own.
-- Of the 61,235 different names, 61,101 name a shipped file and 49 name one once their doubled slashes and leading
-  `./` are removed.
+- Of the 61,235 different names, 61,119 name a shipped file as the archive lookup reads them (it skips leading
+  `.`, `/` and `\`, turns `\` into `/` and lower-cases the rest, `0x0059F114`-`0x0059F185`), and 31 name one only
+  once their doubled slashes are removed.
 - 85 names name no file in the archive: 44 `_GNM.ta` animation names under `map/`, 15 `chr`, `chr_shadow` and `map`
   model and texture files, 12 `JsonData/CutScenes` files, 6 under `shared/map/`, 5 under `shaders/`, 2 under
   `effect_finish/uk/event/`, and `PS2Data/oldsave/new077`, which 5,823 lists name.
@@ -246,7 +255,8 @@ paths are built by inserting that code and `/PrefetchData/` in front of the file
   each sets its list's empty byte (`+0x78`, `+0x130`). `0x001D9D80` is true when both are set.
 - A list that is already empty is left as it is: the function returns before the byte store (`0x001D99D4`,
   `0x001D9947`). Each frees the names (`0x00210EB0`) and then the 24-byte nodes through the list's allocator.
-- `0x001DA970`, called on every pass of the worker, reloads the event list when the story-progress word
+- `0x001DA970`, called on each pass of the worker that gets past the busy test (`+0x24` and `+0x28` both 0,
+  `0x001DAE25`-`0x001DAE35`) and the time test (`0x001DAE5A`), reloads the event list when the story-progress word
   (`0x00265270`) is positive and differs from `+0xE8`: it stores the value, empties the list under its lock
   `+0xF0` and runs `0x001D9EC0`. It does nothing while the RAM cache is off (`0x001D6B20`, `0x001DA980`).
 - The worker takes the map list's first name with `0x001DAD30` and logs
@@ -260,11 +270,18 @@ Opening a name is what loads it. In the resolver a name that passes the cache's 
 whole into the RAM cache when it misses, and the hit or new entry is stamped by its selector, a hit by
 `0x0020C300` and a new entry by `0x0020B680`, which takes the selector as the entry's kind: selector 5 makes
 it kind 5, which eviction never frees; selector 3 stamps its group word;
-selector 4 stamps the current map number, which eviction protects while that map or the previous one
-is current.
+selector 4 stamps the current map number.
 
-A name the filter rejects (three- or four-letter extensions) is opened and closed and not
-cached. The manifests are advisory: a file no manifest names still opens normally.
+Eviction (`0x0020BFA0`) first frees only entries of neither the current map (`+0x80`) nor the previous one
+(`+0x84`); when that frees too little it calls `0x0020B840` with its third argument 1 (`0x0020C0EF`), which keeps
+only the current map's entries (`0x0020B8D3`-`0x0020B8E6`). Both passes keep kind 5 entries and entries whose
+group word is the manager's `+0xE8` (`0x0020C02E`-`0x0020C04C`, `0x0020B89E`-`0x0020B8C1`).
+
+A name the filter rejects is opened and closed and not cached. The filter (`0x0059EF4B`-`0x0059EFA9`) tests single
+characters, not a suffix: it rejects a name of 4 characters or fewer, or one with `.` 4th or 5th from the end,
+`w` 4th from the end, `m` or `e` 3rd from the end, `a` or `b` 2nd from the end, or `b` or `m` last, so `.ah`
+and `.cm` names are not cached either. The manifests are advisory: a file no manifest names still opens
+normally.
 
 ### Asset-header lists
 
@@ -304,10 +321,10 @@ list record `0x0019EB60` returns at `+0x00` (`0x001BE87B`) and writes
 `0x001BB2B0` takes a character's name from its PS2 model path: `0x002E98F0` turns the model id into a kind
 and index (`0x002ED6F0`, adding `0x33` to the index for kind 1), `0x002DF980` returns that path, and the
 text after `PS2Data\obj_finish\in\`, less its last three characters (`.cm`), with `\` turned into
-`/`, is the name. Model id −1 uses `global/MaterialSphere`.
+`/`, is the name. Model id −1 uses `global/MaterialSphere/MaterialSphere` (`0x008F91E0`, copied at `0x001BB3DC`).
 
 With that name N, `0x001BB2B0` files two lists through `0x0019EB60`: `./GameData/D3D11/ArtData/chr/N_D3D11.ah`
-(`0x001BB7D9`) and, for a model id other than −1 (`0x001BB7E8`), a shadow list (`0x001BB8B9`). When N starts with `h`
+(`0x001BB7D9`) and, for a model id of 0 or more (`0x001BB7E8`), a shadow list (`0x001BB8B9`). When N starts with `h`
 the shadow list is `chr_shadow/N_D3D11.ah` (`0x008F9180`); otherwise it is
 `chr_shadow/<N less its last 11 characters><S>/<S>_D3D11.ah` (`0x008F91B0`), S being N's last five characters.
 
@@ -409,8 +426,10 @@ record `0x001B2410` filled with `+0x110` and `+0x118` at 0, as `0x00181930` fill
 tree does not hold draws nothing ([Sprite batcher](../Graphics/sprite-batcher.md)).
 
 The code references to the two names (`targetline_p` at `0x009152A0` and the pointer `0x01E0C1E0`, `w_line01` at
-`0x009159E8` and the tables `0x00D231C0` and `0x00D232D0`) give these draws; the other references only register or
-look up the PS2 pictures of the same names (`0x0024A4E0`, `0x0024A5A0`):
+`0x009159E8`) give these draws; the other references only register or look up the PS2 pictures of the same names
+(`0x0024A4E0`, `0x0024A5A0`), among them the name tables `0x00D231C0` (its pointer at `0x00D23220`, which `0x00562F90`
+passes to `0x002493D0`) and `0x00D23270` (its pointer at `0x00D232C8`, which `0x00563110` passes to `0x0024A5A0`;
+`0x00D232D0` is that table's end):
 
 | Draw | Texture | Palette number | Variant asked for |
 |---|---|---|---|

@@ -11,6 +11,10 @@ Flickering fire, moving tree shade, flapping tents and shimmering reflections on
 flipped in sequence, not moving geometry. Each `.ta` file names one such texture and its frames; a
 map without its list keeps drawing the still picture.
 
+The list loads no pictures itself: each frame must already be loaded with the map, and a path the archive does not
+hold is first renamed through `phyremaps.txt`. Which frame shows comes from one of the map's animation tracks, whose
+clock sets the speed and looping.
+
 ## Where it comes from
 
 The files are in the archive at `gamedata/d3d11/artdata/map/<area>/<map>/<map>_anime_<n>_d3d11.ta`.

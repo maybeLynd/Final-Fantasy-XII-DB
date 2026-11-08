@@ -96,6 +96,9 @@ second range, `0x0087BD60` and `0x0087CA60`.
 Only three places outside zlib call it. The archive block reader `0x0019AA20` and the save reader
 (call at `0x00865DFB`) call `uncompress`; the save writer calls `compress2` (`0x0086646C`).
 
+In plain terms, zlib unpacks compressed blocks of the game archive when they are read, unpacks the compressed layer of
+a save file when a save is loaded, and packs that layer when the game saves.
+
 ### JsonBox
 
 The JSON library is identified by its namespace in three RTTI type names,

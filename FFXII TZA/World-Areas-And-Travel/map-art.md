@@ -13,6 +13,10 @@ appear and vanish with the story exactly where the PlayStation 2 version had the
 carry normal and specular detail, many surfaces get a tiled detail texture such as sand, concrete or
 steel, and a handful of areas change the order in which scenery and characters are drawn.
 
+Each new model carries in its name the number of one object in the area's original world data, and the game attaches
+the model to that object; a model whose number matches no object is never drawn. The original palette pictures are
+still rebuilt from the PlayStation 2 data, and the game refreshes their palettes every frame.
+
 ## How it works
 
 ### The context

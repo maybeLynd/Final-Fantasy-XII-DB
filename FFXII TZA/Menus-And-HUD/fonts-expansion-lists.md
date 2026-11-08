@@ -17,6 +17,10 @@ lines keep the file order.
 [Font files](fonts-files.md) says which `.fex` files are requested and how the table rebuilds every `.fex` byte
 for byte.
 
+Each list belongs to one scene or map folder, or to one Bestiary text bundle. While text from that place is drawn,
+each character number in the text picks an entry of the list, and that entry names the glyph to draw from the font's
+`.dat` of the same name.
+
 ### The path of a list
 
 A list's key is `0x00674A00` of a name (`0x001B6350`): for a `fontex_expand` or `fontex_subtitle` list a path

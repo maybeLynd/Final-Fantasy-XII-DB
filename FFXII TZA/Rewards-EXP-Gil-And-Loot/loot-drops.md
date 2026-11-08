@@ -16,10 +16,14 @@ The **chain level** (0 to 3, see [the chain](kill-chain.md)) sets the drop
 and the fifth slot always drops. Right after a chain break, the chances come from a
 weighted roll instead of the chain level, and the more breaks in a row, the better that roll.
 
-A **run of the same model** of enemy (palette swaps such as Wolf and Alpha Wolf count as one model)
-sets the *quantities*: the run's counter moves the quantity table up a step each time it passes 8,
+For quantities, enemies are grouped by a number each enemy's class row carries (`+0x40`, the bestiary's
+`model_family`), not by the model they are drawn with: Wolf and Alpha Wolf share one (`0x01FF`), while Wary
+Wolf, drawn with the same model `m1015`, has its own (`0x138D`), as do Coeurl (`0x0226`) and Grimalkin
+(`0x139A`), both `m1014`.
+
+A **run of one quantity group** of enemy sets the *quantities*: the run's counter moves the quantity table up a step each time it passes 8,
 16 and 24. After a reset the counter stays 0 for the first two kills and adds 1 for each further
-kill by the party of the same class and model, so kills 1, 2, 10, 11, 19 and 27 leave it at 0, 0, 8, 9, 17 and 25
+kill by the party of the same class and group, so kills 1, 2, 10, 11, 19 and 27 leave it at 0, 0, 8, 9, 17 and 25
 and use quantity rows 0, 0, 0, 1, 2 and 3 ([the chain](kill-chain.md)).
 
 The two extra drops are the **Monograph** drops; half the enemy definitions have both and the other half neither.
@@ -32,6 +36,10 @@ restore, and from level 2, Protect or Shell.
 
 All of these rolls come from one deterministic generator that restarts from a counter on every area
 load, so the same actions after the same area loads produce the same drops.
+
+What drops and how often come from two places. The enemy's own record names the item in each of its five slots and its
+two extras. The chances and quantities come from a four-row table in `battle_pack.bin` that every enemy shares, and
+the chain picks the row.
 
 ## How it works
 
@@ -60,7 +68,7 @@ drop data is the record at `[unit+0xE60]`.
 1. **Chance profile** = chain level `0x022C3158` (`0x00318116`); when breaks in a row `0x022C3164` is above
    zero it is replaced by `Loot_SelectChanceProfileByWeight` (`0x00318820`, `0x0031815C`-`0x0031816A`).
 2. **Quantity profile** = the first row of the drop table whose signed byte `+0x05` is negative or at
-   least the same-model run `0x022C3160`; row 0 if no row qualifies (`0x003181C7`-`0x003181EF`).
+   least the quantity-group run `0x022C3160`; row 0 if no row qualifies (`0x003181C7`-`0x003181EF`).
    - With the shipped limits 8, 16, 24 and -1 this is row 0 for a run of 0-8, row 1 for 9-16,
      row 2 for 17-24 and row 3 from 25.
    - When the killer is a party unit, the roll reads the run after the same kill's chain update:
@@ -182,7 +190,7 @@ identical in all nine language copies.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `i8[5]` | chance | drop chance per slot, percent (`0x003185D0`) |
-| `+0x05` | `i8` | runLimit | same-model run limit for the quantity row (`0x003181C7`); -1 ends the list |
+| `+0x05` | `i8` | runLimit | quantity-group run limit for the quantity row (`0x003181C7`); -1 ends the list |
 | `+0x06` | `i8[20]` | qtyWeights | four cumulative quantity weights per slot (`0x003186F0`) |
 | `+0x1A` | `u8[7]` | bonusCopy | the same values as the chain-bonus row at `0x01EED3B8`; the code reads the EXE copy |
 | `+0x21` | `i8` | breakLimit | breaks-in-a-row limit for the weighted chance profile (`0x00318960`); -1 ends the list |
@@ -256,7 +264,7 @@ Meteorite (`0x0019`-`0x001C`, 5).
 
 ## Related
 
-- [Kill chain](kill-chain.md) - the chain level, the same-model
+- [Kill chain](kill-chain.md) - the chain level, the quantity-group
   run and breaks in a row.
 - [Who gets EXP, LP and gil from a kill](exp-lp-and-level-ups.md) - the
   rest of the defeat rewards.

@@ -11,6 +11,10 @@ Nothing while it works. Loaded models, effects and tables live in a handful of l
 that the game compacts as it goes, moving blocks to close gaps; a block whose header has been
 overwritten makes the game write a memory dump and quit.
 
+A block keeps its handle when compaction moves it, but an address kept elsewhere still points at the old place.
+Effects keep addresses into their source data, so the game compares the source's current address with the one the
+effect stored and, when they differ, shifts every kept address by the distance moved.
+
 ## How it works
 
 ### The arenas
@@ -563,8 +567,14 @@ path held, so it errs towards listing an access rather than missing one.
 
 ## Operations
 
-Per allocation: one free-list walk and up to two header writes. Per compaction pass: one tree search and
-at most one move, a header save and restore plus one payload copy.
+Per allocation: one free-list walk and up to two header writes. A compaction `0x00369C60` runs the exact pass and
+then the adjacent pass. The exact pass searches the tree once and moves at most one block when `repeat` is 0
+(`0x0036AB68`); when it is set it searches again from the new head of the free list after each move, until a
+search finds no block (`0x0036AB6D`-`0x0036AB74`).
+
+The adjacent pass takes the free blocks in turn until one block moves, and returns after that move
+(`0x0036AC95`-`0x0036AC9A`): for each free block it either moves the block after it, with no search, or searches
+the tree once. Each move is a header save and restore plus one payload copy.
 
 ## State
 

@@ -214,9 +214,11 @@ While `+0x29` is non-zero the wait resolver `0x0025DF00` re-issues `0x0026D6F0(a
    target `+0x29` = 0, a movement mode 2 is torn down (`0x0026C120(actor, 0)`), and `+0x24` and
    `+0xD0` are zeroed again.
 
-The classical `v = sqrt(2 a d)` with `a` floored in keeps a stopping distance from going negative;
-at 60 fps the arrival scale `[0x01DFE0B8]` is 2.0 and the speed is halved, `speed * [0x01DFE0BC]` (`0x0026D6A0`), so a
-walk ends at the same distance from its goal at either frame rate: two 60 fps frames out, one 30 fps frame.
+The classical `v = sqrt(2 a d)` with `a` floored in keeps a stopping distance from going negative.
+At 60 fps the arrival scale `[0x01DFE0B8]` is 2.0 and the speed is halved, `speed * [0x01DFE0BC]` (`0x0026D6A0`), so in
+ramp mode 1 a walk ends at the same distance from its goal at either frame rate: two 60 fps frames out, one 30 fps
+frame. A ramped mode tests arrival with the ramped `v` (`0x002E48D4`-`0x002E48DC`), and with `a` halved too (`setaccr`)
+`sqrt(2 a d)` is `sqrt(0.5)` of its 30 fps value, not half, so that cancellation does not carry over.
 
 `0x0026AFE0(actor, x, y, z, flag)` is that placement; both steer sites give it `flag` 0 (`0x002E474D`, `0x002E4924`).
 For class 3 it calls `0x002E5DF0`, or for a non-zero `flag` `0x002EB930` and then `0x002E5C70`
@@ -358,14 +360,14 @@ The look-at verbs set the shapes:
   `+0x74` and `+0x224` to 0; it copies all 16 bytes of `vec` to `+0x10`-`+0x1F`, so the fourth float lands
   on the handle `+0x1C` (`0x002EC2F0`-`0x002EC2FA`), and stages the position on the render record's look
   request (`0x002E7B40`: `0x003E6CC0`, then `0x003E6C00` with `0x30B`);
-- `0x002EBFA0(actor, ordinal, manager, id)` stores an actor target with shape 1 and its handle at
+- `0x002EBFA0(actor, manager, ordinal, id)` stores an actor target with shape 1 and its handle at
   `+0x1C` (`0x003589B0`), the three arguments at `+0x10`, `+0x14` and `+0x18`, sets `+0x70` from the bearing
   to the target and `+0x74` and `+0x224` to 0, and runs `0x002E7A80(actor, target, id)`
   (`0x002EC005`-`0x002EC0CA`);
 - `0x002EBFA0` falls back to the position form with `0x0026A1A0(actor, 1)` (bit `0x80`) when the target has
   no render record (no controller at `+0xC0`, or a render id of -1) or the actor is not class 3, giving
   `0x002EC2C0` the target's position (`0x00265470`) with a fourth float of 1.0 (`0x002EC0D6`-`0x002EC110`), and
-  clears the channel (`0x002E64E0`) when the actor does not resolve (`0x003587C0(ordinal, manager)` is null,
+  clears the channel (`0x002E64E0`) when the actor does not resolve (`0x003587C0(manager, ordinal)` is null,
   `0x002EBFD6`).
 
 Shapes 4-7 are never written. `0x002EC510(shape, actor, target)`, called by the `raturn` verbs
@@ -411,7 +413,8 @@ Struct SteeringRecord size=`0x80`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `f32[4]` |  | target position {x, y, z, 1.0}, or {ordinal, manager} for an actor target |
+| `+0x00` | `f32[4]` |  | target position {x, y, z, 1.0}; for an actor target instead |
+| `+0x00` | `i32` |  | manager index, `+0x04` i32 ordinal (negative: the party focus) |
 | `+0x10` | `f32[3]` | resume parameters |  |
 | `+0x1C` | `u32` | resume target handle (shape 1, 0x002EBFA0); shape 0's | 16-byte copy (`0x002EC2C0`) puts the position's fourth float here |
 | `+0x20` | `f32` |  | reach (setreachr) |
@@ -483,7 +486,8 @@ its staged triple; the globals `0x02164200` and `0x02099DB4`.
 - `+0x5C` is a dead store; `+0x58` is both the per-frame cap and the divisor of the untimed turn's
   frame count.
 - Mode 4's frame count is doubled at 60 fps through `[0x01DFE0B4]` and `[0x01DFE0BC]`, so a timed turn
-  keeps its length in seconds; a walk ends at the same distance from its goal at either frame rate.
+  keeps its length in seconds. A walk in ramp mode 1 ends at the same distance from its goal at either frame rate;
+  a ramped walk tests arrival with its ramped speed, so that cancellation does not carry over.
 - Writing the selector `+0xDC` directly switches slots; a value above 1 keeps the old cursor.
   Copying `+0x120` over `+0x1A0` copies a whole steering state.
 - A look-at (shapes 2 and 3) is not resumed by the pop; only a walk (shapes 0 and 1) is.

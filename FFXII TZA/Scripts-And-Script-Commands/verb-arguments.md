@@ -50,7 +50,7 @@ How an argument is read:
 ### Standard motions
 
 `stdmotionplay` (`0x011D`) and `stdmotionplay_2c2` (`0x02C2`) take a standard-motion id. An id with bit
-`0x1000000` set, as every literal the scripts pass (`0x01000000` to `0x0100001D`), is an index into the 30 words
+`0x1000000` set (the scripts pass `0x01000000` to `0x0100001D` as literals) is an index into the 30 words
 of the table `0x01EFE9D0`, which `0x003DDB40` plays as a render event, (kind << 12) + slot.
 
 The slot is the `@FMC` entry of that number in the actor's `.ca` motion archives, and it carries the same name in
@@ -59,7 +59,8 @@ forms; for slot 1, `ready` in 746 archives and `rlx_ready` in 45).
 
 `0x003DDB40` takes the low 24 bits with no bound; the variables the scripts pass hold only `0x01000000`-`0x01000001`
 and `0x01000010`-`0x01000016`. An id without bit `0x1000000` plays as the render event (manager << 20) | id |
-`0x1000` (`0x003DDB85`-`0x003DDB8E`), the slot of that number of kind 1; the scripts give 0, 1 and 5 this way (31 steps).
+`0x1000` (`0x003DDB85`-`0x003DDB8E`), the slot of that number of kind 1; the US scripts give 0, 1, 5, 10 and 53 this
+way (27, 26, 26, 1 and 1 steps).
 
 | Entry | Id | Render event | Slot | Slot name in the motion archives |
 |---:|---|---|---:|---|

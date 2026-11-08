@@ -54,10 +54,10 @@ The function unpacks its flags first (`0x00300580`-`0x00300601`):
 | `0x1` | skip both suppression gates | `0x003005A0`, `0x00300605`, `0x0030072F` |
 | `0x2` | no "has fallen" message | `0x00300588`, `0x0030079C` |
 | `0x4` | no presentation event at all | `0x003005D2` |
-| `0x10` | no hit or heal reaction | `0x0030058D`, `0x003006AC` |
-| `0x20` | with a delta of 0, the reaction counts as a heal | `0x003005AB`-`0x003005C0` |
+| `0x10` | no floating damage or healing number (`0x003283D0`) | `0x0030058D`, `0x003006AC` |
+| `0x20` | with a delta of 0, the number counts as a heal | `0x003005AB`-`0x003005C0` |
 | `0x40` | no event while the target survives | `0x003005E5`, `0x0030086C` |
-| `0x80` | no damage number | `0x003005F6`, `0x003006D8` |
+| `0x80` | the HP counter of the party list or target window does not start its roll (`0x0028F1F0`) | `0x003005F6`, `0x003006D8` |
 | `0x100` | the KO event is `0x200E` | `0x00300846` |
 
 All flags, including bits this function does not test (`0x217` carries bit `0x200`), are passed on to the
@@ -117,13 +117,16 @@ The KO test compares the stored HP with the floor, not with 0 (`0x00300784`-`0x0
 floor of 796 is KO'd when it reaches 796. The revive test compares the HP before the change with 0
 (`0x00300752`), so such a unit cannot be revived by this function.
 
-### Reactions and the number
+### The number and the counter roll
 
 With a target unit, two publishers run before the store, on the limited value (`0x003006A7`-`0x003006E7`):
 
-- `0x003283D0(targetUnit, delta, isHeal, 0)`, the hit or heal reaction, unless flag bit `0x10`. `isHeal` is
-  `delta > 0`, or flag bit `0x20` when the delta is 0.
-- `0x0028F1F0(targetUnit[+0x08], old, new, 0)`, the damage number, unless flag bit `0x80`.
+- `0x003283D0(targetUnit, delta, isHeal, 0)` posts the floating damage or healing number through `0x003BBD00`
+  ([Battle numbers](../Menus-And-HUD/battle-numbers.md)), unless flag bit `0x10`. `isHeal` is `delta > 0`, or flag bit
+  `0x20` when the delta is 0.
+- `0x0028F1F0(targetUnit[+0x08], old, new, 0)` starts the roll of the unit's HP counter in the party list or the
+  target window ([Party list](../Menus-And-HUD/party-list.md)), unless flag bit `0x80`. An HP change can so move one
+  display without the other.
 
 Then it reads the event variant: bit `0x100` of the source unit's target-buffer entry for this target
 (`0x00316D70` over source `+0x778`, entry dword at `+0x788`), or 0 without both units

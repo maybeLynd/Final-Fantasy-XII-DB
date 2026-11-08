@@ -76,7 +76,7 @@ function	name	site	disp	kind	instruction	route	note
 0x001CD0E0	FUN_001cd0e0	0x001CDC21	0xc40	r	mov eax, dword ptr [r15 + 0xc40]	call-seeded 0x001D50D0	
 0x001CD0E0	FUN_001cd0e0	0x001CDC33	0x130	r	mov rax, qword ptr [r15 + r13*8 + 0x130]	call-seeded 0x001D50D0	indexed: the row-label pointer table +0x130, 8 bytes per id (0x001D0390)
 0x001CD0E0	FUN_001cd0e0	0x001CDC55	0xda0	r	movsxd rax, dword ptr [r15 + 0xda0]	call-seeded 0x001D50D0	
-0x001CD0E0	FUN_001cd0e0	0x001CDC5C	0xda4	addr	lea rcx, [r15 + 0xda4]	call-seeded 0x001D50D0	lea: the text at +0xDA4, the %s in brackets of '%s%s %s (%s)' (0x008FFCC8), id 19
+0x001CD0E0	FUN_001cd0e0	0x001CDC5C	0xda4	addr	lea rcx, [r15 + 0xda4]	call-seeded 0x001D50D0	lea: the text at +0xDA4, the third %s of '%s%s %s (%s)' (0x008FFCC8); the %s in brackets is the name picked by +0xDA0 (0x001CDC55), id 19
 0x001CD0E0	FUN_001cd0e0	0x001CDC7E	0xc44	r	mov eax, dword ptr [r15 + 0xc44]	call-seeded 0x001D50D0	
 0x001CD0E0	FUN_001cd0e0	0x001CDC95	0xc48	r	mov eax, dword ptr [r15 + 0xc48]	call-seeded 0x001D50D0	
 0x001CD0E0	FUN_001cd0e0	0x001CDCD4	0xab8	r	mov eax, dword ptr [r15 + 0xab8]	call-seeded 0x001D50D0	

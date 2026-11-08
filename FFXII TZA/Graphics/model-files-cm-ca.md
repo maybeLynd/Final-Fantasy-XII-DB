@@ -37,6 +37,10 @@ A character render record is bound to its model by `0x0041FCF0`, which passes th
 `0x00420480` then points record `+0x400` at the `@FCP` payload (`0x004205E6`) and stores the `@FOR` scale
 at record `+0x26C` (`0x0042061B`).
 
+Binding a character to its model takes three things from the `.cm`: the `@FTR` entry becomes the character's skeleton,
+a draw instance is made for the model, and when the model carries an effect, an effect context is made for it. The
+character then keeps a link to the model's `@FCP` parameter block.
+
 ## Layouts
 
 All multi-byte fields are little-endian.

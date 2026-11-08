@@ -260,8 +260,8 @@ reading the validator `0x00322C50` and the query filler `0x0031C5D0` as the two 
 5. **Address.** `address = 0x0020E600([table + 0x0C]) + u16[table + 0x08] × row`, in 32-bit arithmetic
    ([finding a row](../Game-Files-And-Data-Tables/authored-data-tables.md#finding-a-row)).
    - `+0x0C` is the row array's offset until `0x003845F0` adds the table's low 32 bits to it, when it is non-zero
-     (`0x00384600`-`0x0038460E`); it is `0x20`, the header size, in all 64 battle_pack `st2e` tables that have rows
-     and in every `.ard` category-0 and category-2 table that has rows.
+     (`0x00384600`-`0x0038460E`); it is `0x20`, the header size, in every battle_pack `st2e` table that has rows (35
+     tables, named by 64 directory entries) and in every `.ard` category-0 and category-2 table that has rows.
 
 The filler's class-6 arm applies the rule: `eax = 0x0020E600([[0x02EBF0F8] + 0xC])` (`0x0031C886`-`0x0031C890`), then
 `movzx ebp, word ptr [rbx + 6]`, `sub ebp, 0x1000`, `movzx ecx, word ptr [r8 + 8]`, `imul ebp, ecx`, `add ebp, eax`
@@ -288,7 +288,7 @@ The exceptions, each read at its bytes:
 - **Classes 22 and 23.** No table: literal counts 4 and 9 (`0x00322FA6`, `0x00322FAF`), ids 0-3 and 0-8; the filler
   returns 0 without a row.
 - **Class 12.** Slot `0x02EBF0D0` is never written, so its count is 0 and every id is refused.
-- **Class 10.** The filler's arm reads no row (`0x0031CF28`-`0x0031CF75`); gambit_data is read by `0x00327CB0`, which
+- **Class 10.** The filler's arm reads no row (`0x0031CF28`-`0x0031CF71`); gambit_data is read by `0x00327CB0`, which
   fills a new stats record's gambit block from a preset, and by `0x00235AF0` ([gambits](../Enemy-AI-And-Gambits/gambits.md)).
 - **Base-0 classes** (2-5, 20, 21, 24-29 and 32). The id is the row. The query record takes it at `+4` for 2-4,
   20, 21, 24-29 and 32 (and the bare id for 22 and 23, which have no row) and at `+6` for 5 (The query record
@@ -333,24 +333,24 @@ with the id in the high word of `+4`, and eleven other functions hand `0x0031C5D
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x022CA524` | `i32` | 0 (zero-filled tail) | `+4` of the row-form record `0x022CA520`: the row, or for `0x0035E070` the class-1 id in the high word | `0x0035D330`, the row argument (`0x0035D346`); `0x0035E070`, the id shifted left 16 (`0x0035E2B6`) | `0x0031C5D0`, through the record's address from both (`0x0035D34C`, `0x0035E2C6`), in its class arms (`0x0031C61F`-`0x0031CF28`) |
+| `0x022CA524` | `i32` | 0 (zero-filled tail) | `+4` of the row-form record `0x022CA520`: the row, or for `0x0035E070` the class-1 id in the high word | `0x0035D330`, the row argument (`0x0035D346`); `0x0035E070`, the id shifted left 16 (`0x0035E2B6`); the `0x98`-byte clear when the fill returns negative (`0x0035D36A`, `0x0035E2E8`) | `0x0031C5D0`, through the record's address from both (`0x0035D34C`, `0x0035E2C6`), in its class arms: 42 dword reads of `+4` (`0x0031C63B`-`0x0031E564`) and the word reads of `+6` (`0x0031C61F`-`0x0031D9EF`); `0x00273BA0`'s 16-byte copy of the record (`0x00273BE6`) |
 
-No other instruction reaches `0x022CA524`: no other RIP-relative, image-base-relative or 32-bit offset reference names
-it.
+No other RIP-relative, image-base-relative or 32-bit offset reference names `0x022CA524`; other code reaches it
+only through the record's address, as the copy at `0x00273BE6` and the clears through `0x00861EC0` do.
 
 The id-form record's id word:
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x022CA486` | `u16` | 0 (zero-filled tail) | `+6` of the id-form record `0x022CA480`: the id the caller asks about | `0x0035D380`, the id argument (`0x0035D396`), from its 15 call sites (the first `0x0027BADE`, the last `0x0057DF35`); the `0x98`-byte clear (`0x0035D3BB`) when the fill returns negative | `0x0031C5D0`, through the record's address (`0x0035D38C`), in its class arms: 73 word reads of `+6`, from `0x0031C61F` to `0x0031D9EF` |
+| `0x022CA486` | `u16` | 0 (zero-filled tail) | `+6` of the id-form record `0x022CA480`: the id the caller asks about | `0x0035D380`, the id argument (`0x0035D396`), from its 15 call sites (the first `0x0027BADE`, the last `0x0057DF35`); the `0x98`-byte clear (`0x0035D3BB`) when the fill returns negative | `0x0031C5D0`, through the record's address (`0x0035D38C`), in its class arms: 73 word reads of `+6`, from `0x0031C61F` to `0x0031D9EF`; the list code that reads the returned record's id word: `0x0057DB7A`, `0x0057DCC0`, `0x0057DCD8`, `0x0057DDED`, `0x0057DF89` |
 
 The menus are those callers: the gambit screen's row and page builders (`0x00567B60`, `0x0056B100`,
 `0x0056AE80`), the licence screens (`0x00558CE0`, `0x005618E0`) and the battle menu's title
 `0x0027D480` use the row form ([gambit screen](../Menus-And-HUD/gambit-screen.md),
 [menu screens](../Menus-And-HUD/menu-screens.md)).
 
-Half of the callers read the name at `+0x18` and no other field; the equipment block
-`+0x3C` to `+0x60` is read by the equip menus, the licence bytes `+0x21` to `+0x25` by the
+Of the 87 functions that call `0x0035D330` or `0x0035D380`, 21 read the name at `+0x18` and no other field; the
+equipment block `+0x3C` to `+0x60` is read by the equip menus, the licence bytes `+0x21` to `+0x25` by the
 licence board. String pointers point into the loaded text banks; the record never allocates or
 copies them.
 
@@ -534,4 +534,4 @@ records.
   pack load that binds each slot, and the row arithmetic the readers inline.
 - [`item-and-ability-ids-query-record-accesses.tsv`](item-and-ability-ids-query-record-accesses.tsv): every access to
   the query record (`EncodedIdQueryRecord`, `0x98` bytes): its row-form copy `0x022CA520` and its id-form
-  copy `0x022CA480`, one row per instruction (326 rows).
+  copy `0x022CA480`, one row per instruction (648 rows).

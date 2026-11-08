@@ -20,6 +20,9 @@ reaches (`battle_pack.bin` directory entry `+0x6C`). Row *n* is id `0xC000` + *n
 The bits gate License Board squares: `0x00323D10` refuses an Esper square, node *n* 18-30, until bit `0xC000` + *n*
 is owned, and the Second Board square until bit `0xC01F` is ([Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md)).
 
+Each Esper's fight scene runs a shared script block that adds that Esper's id when it is not held yet. Owning the id
+lets the License Board open the Esper's square, and the summon action that names the same id is that Esper's summon.
+
 ### Where the values come from
 
 Each line is a row of the `st2e` table at entry `+0x6C` (32 rows of 8 bytes from the section's `+0x20`), named by

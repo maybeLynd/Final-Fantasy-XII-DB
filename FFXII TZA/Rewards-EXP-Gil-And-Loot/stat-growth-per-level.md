@@ -8,13 +8,25 @@ addresses: "0x0030C650, 0x002F9A60, 0x002F9B20, 0x002F9BD0, 0x0030C470, 0x00863B
 ## What the player sees
 
 Each level adds a fixed amount of Strength, Magick Power, Vitality and Speed that depends on the
-character, and an amount of max HP and max MP that is the same for everyone at a given level plus a
-small random bonus. A big kill can raise several levels at once; the stats grow once per level gained,
-and the notice, popup and sound play once, for the last level. Levels stop at 99.
+character, and an amount of raw max HP and max MP that is the same for everyone at a given level plus a
+small random bonus.
+
+Each character's max HP is `raw HP × (+0x18 + 1) × +0x19 / 100` and its max MP `raw MP × +0x1D / 100`, kept as
+whole numbers (`0x002FEF30` through `0x002F8E50` and `0x002F9180`; [the party table](../Party/party-table.md)).
+`+0x19` and `+0x1D` are each character's own, 147 and 134 for Vaan and 132 and 152 for Penelo, and `+0x18` is 0
+except on the Espers' rows, which have 1 to 3. So the same growth gives different characters different maximums,
+before equipment and other adjustments.
+
+A big kill can raise several levels at once; the stats grow once per level gained, and the notice, popup and sound
+play once, for the last level. Levels stop at 99.
 
 A summoned Esper is grown on the spot to its summoner's level with its own growth values and never gains levels from kills,
 because the EXP formula pays Espers nothing. The Chocobo's four stats are at the cap
 from its first level, and it is left out when a kill's EXP is divided ([EXP, LP and level-ups](exp-lp-and-level-ups.md)).
+
+The growth numbers come from two tables in `battle_pack.bin`. One is a list of HP and MP gains per level that every
+character shares; the other is the character table `chr_data`, whose row for each character holds its starting stats
+and its Strength, Magick Power, Vitality and Speed gain per level.
 
 ## How it works
 
@@ -28,8 +40,8 @@ never lowers a level: when the target is not above the current level it returns 
    (`0x0030C6CC`, `0x0030C6D9`). `L` is the level before the step, and `row` is row `+0x04` (the
    character's type id) of `chr_data`, the table in registry slot `0x02EBF130` (`battle_pack.bin`
    directory `+0x44`, 40 rows of `0x80` bytes):
-   - max HP `+0x08` (dword) `= 0x002F9A60(L, HP)`;
-   - max MP `+0x0C` (i16) `= 0x002F9B20(L, MP)`;
+   - raw HP `+0x08` (dword) `= 0x002F9A60(L, HP)`, which `0x002FEF30` turns into max HP (above);
+   - raw MP `+0x0C` (i16) `= 0x002F9B20(L, MP)`, likewise for max MP;
    - Strength `+0x10` (float) `= 0x002F9BD0(Strength, row.b[+0x1F])`;
    - Magick Power `+0x14` `= 0x002F9BD0(Magick Power, row.b[+0x22])`;
    - Vitality `+0x18` `= 0x002F9BD0(Vitality, row.b[+0x25])`;
@@ -84,12 +96,15 @@ read from the shipped file.
 
 | Column | Holds |
 |---|---|
-| `hp_base` | byte 0 of the row, the base HP gain `b` for the level-up from `level` |
-| `hp_gain_min` | the smallest HP gain, `b` itself (bonus 0); equal to `hp_base` on all 99 rows |
-| `hp_gain_max` | the largest HP gain, `b + (int(b / 5 × 100) - 1) / 100` rounded down, or `b` when `b / 5` is below 0.01 |
-| `mp_base` | byte 1 of the row, the base MP gain `b`: 1 to 5 |
-| `mp_gain_min` | the smallest MP gain, `b`; equal to `mp_base` on all 99 rows |
-| `mp_gain_max` | the largest MP gain, `b + (int(b × 100) - 1) / 100` rounded down, which is `2b - 1` |
+| `hp_base` | byte 0 of the row, the base raw-HP gain `b` for the level-up from `level` |
+| `hp_gain_min` | the smallest raw-HP gain, `b` itself (bonus 0); equal to `hp_base` on all 99 rows |
+| `hp_gain_max` | the largest raw-HP gain, `b + (int(b / 5 × 100) - 1) / 100` rounded down, or `b` when `b / 5` is below 0.01 |
+| `mp_base` | byte 1 of the row, the base raw-MP gain `b`: 1 to 5 |
+| `mp_gain_min` | the smallest raw-MP gain, `b`; equal to `mp_base` on all 99 rows |
+| `mp_gain_max` | the largest raw-MP gain, `b + (int(b × 100) - 1) / 100` rounded down, which is `2b - 1` |
+
+The gains are to the raw values `+0x08` and `+0x0C`. A raw-HP gain `g` moves max HP from `HP × k / 100` to
+`(HP + g) × k / 100` with `k = (+0x18 + 1) × +0x19`, and a raw-MP gain the same way with `k = +0x1D`.
 
 ### Strength, Magick Power, Vitality and Speed
 
@@ -100,7 +115,7 @@ The four stats grow by `0x002F9BD0`: `value + byte / 128`, and a result above 10
 
 `0x0030C470(record, level, ...)` sets the level byte to 0 (`0x0030C496`). For a party
 record it then copies the row's starting values:
-- max HP from `row.u16[+0x16]` and max MP from `row.u16[+0x1A]` (`0x0030C4F9`-`0x0030C507`);
+- raw HP from `row.u16[+0x16]` and raw MP from `row.u16[+0x1A]` (`0x0030C4F9`-`0x0030C507`);
 - the four stats from the base bytes `+0x1E`, `+0x21`, `+0x24`, `+0x27` (`0x0030C50B`-`0x0030C546`);
 - byte `+0x20` from `row.b[+0x46]`, or from `0x00324100(record)`, the largest licence-granted value, when
   that is larger.
@@ -144,9 +159,9 @@ first activation (see [Gil](gil.md)).
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x16` | `u16` | startMaxHp | max HP at level 0 |
+| `+0x16` | `u16` | startHp | raw HP at level 0; Vaan's 46 gives max HP 67 |
 | `+0x18` | `u8[2]` | hpFactors | the max-HP factor and percentage; not read by the growth code |
-| `+0x1A` | `u16` | startMaxMp | max MP at level 0 |
+| `+0x1A` | `u16` | startMp | raw MP at level 0 |
 | `+0x1C` | `u8[2]` | mpPercent | `+0x1C` is 0 on every row, `+0x1D` the max-MP percentage; not read by the growth code |
 | `+0x1E` | `u8` | strBase | Strength at level 0 |
 | `+0x1F` | `u8` | strGrowth | Strength gained per level, in 1/128 |
@@ -214,7 +229,9 @@ The fixed parts sum to 3,210 HP and 333 MP from level 0 to 99, before the random
 ## Modding notes
 
 - HP and MP growth are shared by every character: edit `hpmpbase_data` (directory `+0x28`). A
-  character's own HP and MP differ only by its starting values `+0x16` / `+0x1A`.
+  character's own HP and MP differ by its starting values `+0x16` / `+0x1A`, its percentages `+0x19` and
+  `+0x1D` and its factor `+0x18`, which `0x002FEF30` applies to the raw values
+  ([the party table](../Party/party-table.md)).
 - Per-character growth of the four stats is `chr_data` bytes `+0x1F`, `+0x22`, `+0x25`, `+0x28`, in
   1/128 per level; with the base bytes, a stat at level `L` is `base + L × growth / 128`.
 - The level cap 99 is code (`0x0030C650`, and `0x002F8F20` on [EXP, LP and level-ups](exp-lp-and-level-ups.md)), not data.

@@ -60,14 +60,17 @@ The followed transform at controller `+0x630` gives the position and the leader'
 `0x8000000` of the state word `+0xC0`.
 
 `0x0032B1C0(camera, position)` is the per-frame body. It keeps only the bits under mask `0xE7FE0000` of the state
-`+0xC0` (`0x0032B1CC`), places the orbit block `+0x80` from its heading `+0xB0` and level `+0xBC` (`0x0032DF40`), copies
+`+0xC0` (`0x0032B1CC`), places the block `+0x00` from the orbit block's look `+0xA0`, heading `+0xB0` and level
+`+0xBC` (`0x0032DF40` with the camera as its output, `0x0032B1D6`-`0x0032B1FB`), copies
 `+0xE0`-`+0xEC` to `+0xD0`-`+0xDC`, keeps `0x0026E500(0)` at `+0x2C8`, copies the position to `+0x60` and raises it by
 `+0x11C`, and runs `0x0032CE40` and `0x0032C910` (`0x0032B1FB`-`0x0032B272`).
 
 It then makes one or two passes (`0x0032B280`-`0x0032B302`): the pulled-in branch `0x0032B4D0` while bit `0x4000000` is set,
 else the normal branch `0x0032B390`. A second pass runs only when the first changed that bit, and runs the other branch.
 When the normal branch pulled the camera in and Camera Auto-Rotation is on (`0x0017E260`), the heading `+0x70` becomes
-the heading from the look point to the pulled-in eye `+0x2D0` (`0x003CC130`, `0x0032B2BF`-`0x0032B2F2`).
+the heading from the look point to the pulled-in eye `+0x2D0` (`0x003CC130`, `0x0032B2BF`-`0x0032B2F2`). Whenever the
+normal branch pulled the camera in, the byte `+0x40` is then set to 0, with Camera Auto-Rotation on or off
+(`0x0032B2F7`, `0x0032B2FB`).
 
 Last it eases the floor lift and the distance scale (`0x0032DDE0`, `0x0032DE90`, `f = 1 + cos(π + π/4 × (T - n) / T)`
 below), copies the orbit look `+0xA0` to the follow look `+0x2F0` and stores at `+0x130` the horizontal distance
@@ -347,8 +350,12 @@ Auto-Rotation is on, turns the heading toward the pulled-in eye `+0x2D0` (`0x003
 adds the rates without the wall and auto terms (`0x0032BA70`) and places the orbit (`0x0032DF40`).
 
 `0x0032BEB0` sweeps again and, on a hit, shrinks the distance scale `+0x120` to the hit's share of the full distance, up
-to two retries; its eye goes to `+0x2E0`, and a hit eye also to `+0x2D0` (`0x0032B57D`-`0x0032B5E2`). The scale holds for
-`60 × [0x01DFE0B4]` frames, then `0x0032DE90` eases it back toward 1. When a sweep is clear, bit `0x4000000` is cleared
+to two retries; its eye goes to `+0x2E0`, and a hit eye also to `+0x2D0` (`0x0032B57D`-`0x0032B5E2`).
+
+The hit also sets the count `+0x124` to `T = 60 × [0x01DFE0B4]` (`0x0032BFE2`-`0x0032C008`). `0x0032DE90` counts it
+down before testing it, so the scale starts easing back toward 1 on the next update, by a fraction that grows as
+the count falls. At count 0 each update still moves it the fraction `1 - √2/2` of the way, so it approaches 1 and
+no update sets it to exactly 1. When a sweep is clear, bit `0x4000000` is cleared
 (`0x0032B59E`) and the normal branch `0x0032B390` runs again, in the same call when the pulled-in branch ran first.
 
 ### Framing a target

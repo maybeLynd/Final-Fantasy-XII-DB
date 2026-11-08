@@ -23,6 +23,10 @@ Quickenings, the Concurrences, and mounting and dismounting a chocobo.
 - **Targets stay valid.** While a scene plays, the controlled character's current target always
   counts as a valid target.
 
+Which actions get a scene is one flag in each action's row of `battle_pack.bin`, and the scene plays on scene manager
+3, the same one script cutscenes use. During a Quickening chain, the script commands `getspattackskillinfo` and
+`spattackplay` read the Quickening the chain reported and run each chain step.
+
 ## How it works
 
 ### Which actions

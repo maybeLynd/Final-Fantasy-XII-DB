@@ -9,11 +9,11 @@ addresses: "0x0020E600, 0x0020E620, 0x00189120, 0x002640C0, 0x006372A0, 0x003590
 
 One row per function whose body is a single load or `lea` of one global through a rip-relative
 operand and a `ret`, with at most one instruction between them that uses only the loaded register: a step
-such as `and eax, 1` or `or rax, 1`, or one load through it. Of the executable's 39,108 functions, 454 are
-such accessors, 313 reads and 141 address takes:
+such as `and eax, 1` or `or rax, 1`, or one load through it. Of the executable's 39,108 functions, 459 are
+such accessors, 318 reads and 141 address takes:
 
-- 257 return the global's value, 48 a field of the object the global points to, and 8 the value after one
-  step on the register (`and eax, 1` in five of them).
+- 257 return the global's value, 53 a field of the object the global points to (five of them a float), and 8
+  the value after one step on the register (`and eax, 1` in five of them).
 - 118 return the global's address, and 23 the address with bit `0x1` set (`or rax, 1`).
 
 Five functions of the same shape write through the global's pointer instead of reading, and are not

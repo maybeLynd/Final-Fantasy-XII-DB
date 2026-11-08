@@ -17,7 +17,7 @@ prints a live value).
 
 | Kind | Rows | Meaning |
 |---|---|---|
-| nudge | 110 | a float stepped by one constant in both directions |
+| nudge | 110 | a float adjusted in both directions: most add or subtract one constant; id 106 multiplies by 0.99 or 1.01, and ids 190 to 193 scale their step while the field `+0xC58` is above 20 |
 | toggle | 55 | a byte or flag flipped between two values |
 | int-step | 30 | an integer stepped by 1 (or 10) with a floor, clamp or wrap |
 | cycle | 23 | a small mode value cycled over N states |

@@ -11,6 +11,9 @@ addresses: "0x02EBF068, 0x002FD640, 0x0031C5D0, 0x0031D712, 0x00322C50"
 `0x02EBF068` reaches (`battle_pack.bin` directory entry `+0x9C`). Row *n* is selector id `0xA000` + *n*, inventory
 class 15 ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)).
 
+Giving a selector gives each reward package its first list names, or its second list when the give asks for it, and
+each package then adds its own gil and items. In the shipped table every used selector names exactly one package.
+
 - 45 selectors, `0xA080`-`0xA0AC`, name one reward package each in their first triple, and no selector uses its second
   triple.
 - The other 211 rows hold `0xFFFF` in all six ids.

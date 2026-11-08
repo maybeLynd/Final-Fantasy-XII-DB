@@ -1,4 +1,7 @@
 function	name	site	disp	kind	instruction	route	note
+0x0032E400	FUN_0032e400	0x0032E40F	0x0	addr	lea r8, [rip + 0x1f96dda]	route-seeded STATIC 0x022C51F0 base+0x0	
+0x0032E400	FUN_0032e400	0x0032E416	0x0	r	mov r8, qword ptr [r8 + rax*8]	route-seeded STATIC 0x022C51F0 base+0x0	
+0x0032EA90	FUN_0032ea90	0x0032EAA0	0x0	addr	lea rax, [rip + 0x1f96749]	route-seeded STATIC 0x022C51F0 base+0x0	
 0x0032EA90	FUN_0032ea90	0x0032EAB1	0x0	w	mov qword ptr [rax], rdx	route-seeded STATIC 0x022C51F0 base+0x0 zeroclear	
 0x0032EA90	FUN_0032ea90	0x0032EAB4	0x8	w	mov qword ptr [rax + 8], rdx	route-seeded STATIC 0x022C51F0 base+0x0 zeroclear	
 0x0032EA90	FUN_0032ea90	0x0032EAB8	0x10	w	mov qword ptr [rax + 0x10], rdx	route-seeded STATIC 0x022C51F0 base+0x0 zeroclear	
@@ -8,3 +11,5 @@ function	name	site	disp	kind	instruction	route	note
 0x0032EA90	FUN_0032ea90	0x0032EACC	0x30	w	mov qword ptr [rax - 0x10], rdx	route-seeded STATIC 0x022C51F0 base+0x40 zeroclear	
 0x0032EA90	FUN_0032ea90	0x0032EAD0	0x38	w	mov qword ptr [rax - 8], rdx	route-seeded STATIC 0x022C51F0 base+0x40 zeroclear	
 0x0032EA90	FUN_0032ea90	0x0032EABC	0x40	addr	lea rax, [rax + 0x40]	route-seeded STATIC 0x022C51F0 base+0x0	
+0x0032EB40	FUN_0032eb40	0x0032EB68	0x0	addr	lea r9, [rip + 0x1f96681]	route-seeded STATIC 0x022C51F0 base+0x0	
+0x0032EB40	FUN_0032eb40	0x0032EB6F	0x0	r	mov r9, qword ptr [r9 + rdi*8]	route-seeded STATIC 0x022C51F0 base+0x0	

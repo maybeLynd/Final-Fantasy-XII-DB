@@ -1,6 +1,6 @@
 offset	region	function	site	kind	instruction	via	note
 0x0	script operand bank	0x002EF2D0	0x002EF2E1	addr	lea rcx, [rax + 0x200]		
-0x0	whole payload	0x002EF570	0x002EF57C	copy	lea rax, [rip + 0x1e74cfd]	0x02164280	copy, 0xACD x 0x80 bytes: the whole image out to 0x022676C0
+0x0	whole payload	0x002EF570	0x002EF57C	copy	lea rax, [rip + 0x1e74cfd]	0x02164280	copy, 0xACD x 0x80 bytes and a 0x10-byte tail (0x002EF5E3-0x002EF5E6), 0x56690 bytes: the whole image out to 0x022676C0
 0x0	whole payload	0x002EF5F0	0x002EF603	set	call 0x861ec0	0x02164280	memset, 0x56690 bytes: the whole image
 0x0	whole payload	0x002EF650	0x002EF663	set	call 0x861ec0	0x02164280	memset, 0x56690 bytes: the whole image
 0x0	whole payload	0x0057E310	0x0057E42F	copy	mov qword ptr [rdi + 0x100], 0x56690	file kind 8	the write request's length: the whole image to the slot file

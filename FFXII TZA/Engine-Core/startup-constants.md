@@ -48,8 +48,10 @@ archive mount. It runs these in order:
    count `0x02064AD0` = 0; a drain loop over `0x00364200` / `0x0032E040` / `0x0035EA30(0)` gated on
    `0x005C5230()` being non-zero never runs.
 
-`0x0022A4B0`, which the manager-init burst `0x0017D4C0` calls right after the boot fixer (`0x0017D5E3`, [game
-application](game-application.md)), files the start-up graphics and text requests: `0x00291C80` (the item pictures,
+The manager-init burst `0x0017D4C0` calls `0x0022A4B0` at `0x0017D5E3`, after the boot fixer (`0x0017D5CC`) and three
+more calls (`0x001B1BA0`, `0x001B1C00`, `0x001B1580`; [game application](game-application.md)).
+
+`0x0022A4B0` files the start-up graphics and text requests: `0x00291C80` (the item pictures,
 [menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md)), `0x0053DD10` (it returns 1 and the result is
 not used), `0x00563520` (the battle text groups 10, 20 and 14, [battle text
 tables](../Game-Files-And-Data-Tables/battle-text-tables.md)) and `0x00556500` (the License Board picture `lic_4_c`,
@@ -101,7 +103,8 @@ of pacer ticks the field frame waits per frame (`0x0035EC80([0x02064ACC], 0)`, a
 
 It has a second writer, the setter `0x00229F10`: the manager-unload reset `0x002695A0` (its only caller is the unload
 `0x002628B0`) rewrites `2 / [0x01DFE0B4]`, and the verb `mainloopallsyncv` (`0x18F`, `0x003464B0` →
-`0x0026DB10`) stores its popped value divided by `[0x01DFE0B4]`, so the verb speaks in 30 fps ticks.
+`0x0026DB10`) stores its popped value divided by `[0x01DFE0B4]`, or 2 divided by it when the value is negative
+(`0x0026DB12`-`0x0026DB19`), so the verb speaks in 30 fps ticks.
 
 `0x00184960(mode)` sets the suppressor `0x01DFE0C0` to 1 (`0x001EDEF0`) and reads the mode flag `0x01F82E38` (`0x001EDE70`):
 with the flag clear it keeps the suppressor and hands `mode` on; with it set and `mode` not 1 it clears the
@@ -227,7 +230,8 @@ sound](../Sound-And-Music/spatial-sound.md)), and ends with a stub call with `0x
 boot the module walk has left 0 in `0x022D7FC0` and `0x022D7FC4` and -1 in `0x022D7FC8`, so the first two are released.
 
 `0x003694D0` fills the two 256-byte tables `0x022C5AF0` (`0x0032EAF0`) and `0x022C59F0` (`0x0032EB10`, which also sets bit
-`0x80` of its byte `0x1F`) with -1 for a non-zero argument, else 0.
+`0x80` of its byte `0x1F`) with 0: it passes 0 to both fillers (`0x003694D4`, `0x003694DB`), which fill with -1 only for
+a non-zero argument. It then makes a stub call with 1 when the byte `0x02B62DAA` is 1 (`0x00408B50`), else with 0.
 
 ### The subsystem resets
 
@@ -244,10 +248,10 @@ when their pointer is null:
 | `0x00376A80` | clears `0x02ADBB30`, `0x02ADBB34` and the first word of 8 records at `0x02ADBB40` (stride `0x90`) |
 | `0x0024C970` | clears `0x1670` bytes from `0x020910A0`; sets the five u16 `0x0209215E` to `0x02092166` to `0x3FF` and `0x020926F4` = `0x4003C`; under arena 8 clears the four soft-particle tables and reads them and `softparticle_bg.csv` ([Standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md)); `0x02092700` = −1 |
 | `0x003D7F10` | clears a word in each of 32 records from `0x02EBBA00` (stride `0x84`) |
-| `0x003D8C30` | points `0x02B4E3D0` to `0x02B4E3E8` at the four data blocks `0x01EFE3A0`, `0x01EFE510`, `0x01EFE690`, `0x01EFE810` and runs `0x0050C450` over each; `0x02B4D7B8` = 1.0; clears 32 records |
+| `0x003D8C30` | points `0x02B4E3D0` to `0x02B4E3E8` at the data of four blocks, `0x01EFE3A0`, `0x01EFE520`, `0x01EFE6A0` and `0x01EFE820`, each with its length in the dword 8 bytes before it, and runs `0x0050C450` over each data range; `0x02B4D7B8` = 1.0; clears 32 records |
 | `0x003773C0`, `0x003B3E10` | clear 128 records ending at `0x02ADCFC0`, and the 8-byte records from `0x02EBCC80` to `0x02EBCD84` |
 | `0x00259250` | resets the block at `0x02096810` to `0x02096D28` (white at `0x02096810`, 0.5 at `0x020968BC`, `0x80808080` at `0x020968B0`) |
-| `0x0039CD50` | allocates `0x20000` at `0x02AEED50`; `0x0039AED0(2048.0, 2048.0)` and `0x0039AF20(512.0)`, which store `0x02EBEFFC`, `0x02EBEFF8`, `0x02EBF000` and copy 64 bytes from `0x02AEDD30` to `0x02AEE5A0`; `0x02AEE910` = 8 |
+| `0x0039CD50` | under arena 9, and every time rather than only when null: allocates `0x20000` at `0x02AEED50`; runs `0x003970D0`; `0x0039AED0(2048.0, 2048.0)` and `0x0039AF20(512.0)`, which store `0x02EBEFFC`, `0x02EBEFF8`, `0x02EBF000` and copy 64 bytes from `0x02AEDD30` to `0x02AEE5A0`; `0x02AEE910` = 8 |
 | `0x003A3670` | under arena 9, and every time rather than only when null: allocates `0x190000` at `0x02F8F2F8`, `0xC8028` at `0x02F8F300`, and `[0x02F8F2C0]` = `0x0036B080(9)` bytes at `0x02F8F2D0` (also `0x02F8F308`), with `0x02F8F2D8` = `[0x02F8F2D0]` + (s / 16) × 16 for s = `[0x02F8F2C0]`, the division signed and toward zero; `0x02F8F2E0` = `[0x01FD4A78]`; clears `0x02F8F2C5`, `0x02F8F2C6`, `0x02F8F2CC`, `0x02F8F2E8`, `0x02F8F2F0` and the low two bits of `0x02F8F310` |
 | `0x00375120` | clears the handle `+0x68` of the 32 fade-pool records at `0x02EBF9E0` (stride `0x70`, the words from `0x02EBFA48`; [screen fades](../Graphics/screen-fades.md)); sets the class enables `0x02EC07E0` to `0x02EC07E5` to 1 (`0x0037514F`, `0x0037515C`) and the handle counter `0x02EC07E8` to 0 (`0x00375149`); writes a 16-step grey ramp (step `0x11`, alpha `0x80`) at `0x02ADB6E0` and eight 32-step ramps after it, from `0x02ADB720`: ramp n holds the grey levels 32n to 32n + 31 with alpha `0x80`, its entries 8 to 15 holding 32n + 16 to 32n + 23 and its entries 16 to 23 holding 32n + 8 to 32n + 15 (`0x003751A0`-`0x00375266`) |
 | `0x002FC200` | under arena 8 (`0x0036C1D0(8, 10)` … `0x0036C140`): zeroes the 48 records of `0x38` bytes at `0x02EC32E0`, sets each one's first word to its index with `0x10000000`, and chains them into a list (`0x02EC3D70`) through `+0x28` (the next record, 0 on the last) and `+0x30` (the previous, 0 on the first) (`0x002FC230`-`0x002FC334`); clears the 16 bytes at `0x02EC3D60`, the word `0x02EC3D78` and the byte `0x02EC3D7C`; runs `0x0024C460(1)`; clears `0x02EC19C0` (`0x1000` bytes) and copies 401 five-bit values from `0x01EEBB10` into it, one per 8 bytes, into the low five bits of the u16 at `+4` of each 8-byte slot (`0x002FC2E0`-`0x002FC2FD`); clears the byte `0x02EC3D7D` (`0x002FC2FF`) |

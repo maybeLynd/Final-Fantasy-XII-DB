@@ -13,6 +13,10 @@ part of the model uses, poses skinned models from their bone matrices, and hands
 colour, position, fall-off and shadow matrices of up to four lights. A part whose effect has no
 shader build for the current pass is not drawn.
 
+Each part of a model has a material. The material's effect holds one technique per render pass, and each technique
+holds a list of shader builds; the game takes the technique for the current pass and then one build from its list for
+that part.
+
 ## How it works
 
 ### The mesh-instance draw

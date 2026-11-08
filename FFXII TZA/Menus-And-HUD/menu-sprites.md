@@ -14,6 +14,10 @@ addresses: "0x002467A0, 0x00280750, 0x0024B0C0, 0x002D8BB0, 0x002DB080, 0x002426
 - The highlighted row of a list sits on a bar that fades out to the right and slowly dims and brightens.
 - The Gambits row of the battle menu shows ON or OFF.
 
+Each of the five shared atlases is one TIM2 picture in `texpack_ys.bin`, and its `eXt` block holds a table of sprite
+records, each giving a rectangle of the picture and its palette. A menu names a sprite by atlas, set, group and frame,
+and the game draws that rectangle where the menu asks.
+
 ## How it works
 
 ### The atlases
@@ -80,7 +84,8 @@ Three forwarders reach the sprite draw `0x002DB080(widget, atlas, source, destin
 | `0x002D8D10(widget, atlas, source, box, record, scale)` | `box` | the caller's |
 
 The draw pass gives each widget a fresh `0xA0`-byte draw record from `0x002D8C00` (`0x00245EA7`): clip on (`+0x5C` bit `0x20000`),
-alpha `0x80` at `+0x5A`, colour `0x80808080` at `+0x90` and `+0x94`, and 1.0 at `+0x60`, `+0x68` and `+0x6C`.
+brightness (RGB scale) `0x80` at `+0x5A` (`0x002D8C22`), colour `0x80808080` at `+0x90` and `+0x94`, and 1.0
+at `+0x60`, `+0x68` and `+0x6C`.
 
 `0x002D8530` applies its clip box `+0x48`, or no clip box when bit `0x20000` is clear, through `0x00249FD0`;
 `0x002DD2F0(record, box)` clips to `box` moved by the record's `+0x50`/`+0x52` and cut to its clip box (`0x00249EE0`), or

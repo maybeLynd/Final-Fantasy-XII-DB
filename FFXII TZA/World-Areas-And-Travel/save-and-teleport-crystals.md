@@ -7,12 +7,15 @@ addresses: "0x00350240, 0x00351940, 0x00350600, 0x00351CE0, 0x00314D00, 0x00314C
 
 ## What the player sees
 
-Walking up to a crystal heals the whole party and revives anyone who is down. Pressing confirm
-opens a short menu: save, teleport, or both, depending on which the story currently allows. Saving
+Walking up to a crystal only plays its touch effect.
+
+Pressing confirm heals the whole party and revives
+anyone who is down, then opens a short menu: save, teleport, or both, depending on which the story
+currently allows. Saving
 fades to black, opens the save screen and fades back in. A gate crystal also asks where to go:
 choosing a place costs one Teleport Stone, plays a flash around the party, and the party appears
-beside the destination crystal. The first time the party touches a gate crystal, that place joins
-the list of destinations.
+beside the destination crystal. The first time the party uses a gate crystal, that place joins
+the list of destinations; Rabanastre's crystal joins it as soon as any zone with a crystal loads.
 
 ## How it works
 
@@ -177,10 +180,14 @@ setnowjumpindex(saved);
 ```
 
 `setnowjumpindex` (`0x3D1`, `0x0034AC10` → `0x00314D80`) writes payload `+0x1048`, the entrance of the
-transition record. While the save screen is open the record therefore names entrance -2, which the
+transition record. While the save screen is open the record therefore names entrance -2 (with one exception,
+below), which the
 entrance resolver `0x00264CE0` turns into the zone header's `+0x78`, the save entrance; -1 becomes
 `+0x52`, the teleport-arrival entrance, -3 becomes `+0x7A`, any other negative value `+0x52`, and
 the result is never negative.
+
+The exception is field 403, Valley of the Dead: while the story counter is below 1,345 (`0x541`), the script heals
+the party again (`healall(0)`) instead of setting -2, so the record keeps the entrance it had.
 
 The resolver runs these tests one after another on the current value (`0x00264CED`-`0x00264D0C`), so a
 negative header word is resolved again by the later tests, and a negative result becomes 0
@@ -412,8 +419,8 @@ position, and `facing` gives the heading in radians. All 81 entries carry a spot
 
 ## Operations
 
-- A crystal touch is a script action: `healall`, `btladjustsystem`, the key-item grant and the destination array write
-  are all script verbs.
+- Using a crystal is a script action of its `talk` function: `healall`, `btladjustsystem`, the key-item grant and
+  the destination array write are all script verbs.
 - The save screen is a UI request of category `0x8006` raised by the script; the script sits in
   the `openfullscreenmenu_48d` Poll until `0x0022B8C0` writes the done byte, so the crystal is held
   for as long as the save screen is open.
@@ -442,7 +449,7 @@ position, and `facing` gives the heading in radians. All 81 entries carry a spot
 ## Modding notes
 
 - To open or close a gate crystal, set or clear bit `0x4` of payload `+0x1062` (or call
-  `setsaveramtelepostatus`); the next crystal touch rebuilds its menu from the two getters.
+  `setsaveramtelepostatus`); the next use of a crystal rebuilds its menu from the two getters.
 - A new destination needs a key item named in the `talk` switch, an entry in the `telepoeffect`
   switch of every crystal script and a crystal script answering `getcrystalid(3, 0)` with `n`; the
   engine side needs no change.

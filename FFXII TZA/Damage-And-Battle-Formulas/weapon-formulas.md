@@ -27,6 +27,10 @@ then multiplies by a scale built from the wielder's level and one or two stats:
   Belt carries, and they can score critical hits that double the damage, as guns can.
 - **Axes, hammers and hand-bombs** deal a random share, from nothing up to the full amount.
 
+The formula is chosen by the weapon's own row: an Attack has no formula of its own, so the game uses the recipe number
+in the main-hand weapon's equipment row. Ammunition adds its Attack and its element to the bow, crossbow, gun or
+hand-bomb that fires it.
+
 ## How it works
 
 ### Which recipe a weapon uses
@@ -200,7 +204,10 @@ its committed list:
    (`0x00388E5C`-`0x00388E62`).
 3. Slot 147 deals the record's value divided by the user's target count `+0x77C`, and fails when there
    are no targets or the share is 0 (`0x0038EDB4`-`0x0038EDFF`). A user without a battle unit fails too (`0x0038EDB2`);
-   failing sets only `0x02AEDFBC` (`0x0038EDFF`), and the share goes to the HP loss `0x02AEE004` (`0x0038EDDF`).
+   failing sets `0x02AEDFBC` (`0x0038EDFF`) and writes no HP loss, and the share goes to the HP loss `0x02AEE004`
+   (`0x0038EDDF`).
+   - Every call, failing or not, stores the user's battle unit from `0x0031B860`, or 0, at `0x02EBF188`
+     (`0x0038EDA8`, before the failure tests; also `0x0038ED7A` and `0x0038EDC4`).
 
 ## Modding notes
 
@@ -218,3 +225,16 @@ its committed list:
 - [Steal](steal.md) - another recipe end to end.
 - [Action definition row](../Battle-Actions/action-definition-row.md) - the recipe byte of an action.
 - [Combos](../Battle-Actions/combos.md) - the combo hits of melee weapons.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Items equipment shops license: `0x0031B860` is called by `0x0031A410`, `0x0031A510`, `0x0031A630`, `0x00323910`; those
+  functions are documented on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
+- Movement: `0x0031B860` is called by `0x0033CB10`, `0x0033D890`; those functions are documented on
+  [status timers](../Status-Effects-And-KO/status-timers.md),
+  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
+- Rewards progression economy: `0x0031B860` is called by `0x002F8BB0`, `0x0030C650`; those functions are documented on
+  [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).

@@ -44,6 +44,9 @@ when `0x02CA8A88` is still 0 (`0x0053ECA6`-`0x0053ECE7`). Command 6 of `0x0053F0
 roll's table, with line kind 3 (`0x0053F1EA`-`0x0053F209`). The finaliser task `0x0053EEA0`, on its message 1, releases the
 picture (`0x0024A680(picture, 1)`) and clears the pointer (`0x0053EF15`-`0x0053EF32`).
 
+So `fsroll_initialize` holds the script until six font slots, two texts and the `sf_logo_c` logo picture are all
+loaded. The logo then appears as one line of the staff roll, and a finishing task releases it afterwards.
+
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x02CA8A88` | `void*` | 0 (zero-filled tail of `.data`) | the staff roll's logo picture | `0x0053EB90` (`0x0053ECE7`); `0x0053EEA0`, 0 (`0x0053EF32`) | `0x0053EB90` (`0x0053ECA6`); `0x0053EEA0` (`0x0053EF15`); `0x0053F0D0` (`0x0053F1EA`) |

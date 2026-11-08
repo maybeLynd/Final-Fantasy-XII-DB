@@ -80,7 +80,9 @@ the exit-trap stub `0x008620C0` when the highest bit of `+0x26` lies above the h
 non-zero `+0x24` (`0x0025B5E4`-`0x0025B5F2`) and otherwise does nothing. `0x008620C0` only jumps to the bare `ret 0`
 stub `0x0016D6A0` (`0x008620C9`), so `0x0025B580` writes nothing on either path. Any other result decrements the
 target's `+0x10` when it is non-zero (`0x00268A44`).
-`SW` and `EW` then park the requester as wait kind 4.
+
+`SW` and `EW` then park the requester as wait kind 4 when the filing returns 1 (`0x002602E6`-`0x002602EE`); on any
+other result the requester is not parked (`0x002602E8`).
 
 `PREQ`, `PREQSW` and `PREQEW` (`0x2A` to `0x2C`) share one handler that pops three values and
 files nothing.
@@ -159,8 +161,8 @@ channel state: that is how notifications travel.
 
 ### Selection and start
 
-Engine filings enter in state 1 and wait for `0x003DB1F0`, which the script step `0x00314020` runs for every manager after
-each drive pass (the manager initialisation `0x0026CE60` also runs it once, `0x0026D365`). It works only on a live manager
+Requests filed in state 1 (every `0x003DBB60` filing, and a `0x003DBBF0` filing with a null requester) wait for
+`0x003DB1F0`, which the script step `0x00314020` runs for every manager after each drive pass (the manager initialisation `0x0026CE60` also runs it once, `0x0026D365`). It works only on a live manager
 (`+0x10` bit `0x1`, `0x003DB1FE`): for every actor whose `+0x63` is non-zero every state-1 entry becomes state 2
 (`0x003DB222`-`0x003DB250`), then for every actor the selection runs and `+0x63 >>= 1` (`0x003DB25A`).
 

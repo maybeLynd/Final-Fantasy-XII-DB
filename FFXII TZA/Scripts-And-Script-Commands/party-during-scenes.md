@@ -92,9 +92,16 @@ family 0 table.
 Each actor keeps a pose snapshot at `+0xED0` of the record its `+0x30` points to (`0x00359B80`, null
 when there is no record). `duplicatebattletarget` (`0x0194`, `0x003475D0` → `0x003B7440`) fills it for the
 leader (`0x003B73B0`) and for every non-null slot of the requested count: the position
-(`0x00265020`), the three floats at body `+0x20` (`0x00265240`), the heading (`0x00265200`, body
-`+0xA8`), the movement heading (`0x00263CC0`, body `+0xA4`) and the presentation byte `+0x13`
-(`0x002E9BE0`).
+(`0x00265020`), the three floats at body `+0x20` (`0x00265240`), the heading (`0x00265200`), the movement
+heading (`0x00263CC0`, stored at `+0x34` twice, `0x003B74CB`, `0x003B74E2`) and the presentation byte `+0x13`
+(`0x002E9BE0`, -1 when the actor's `+0xC0` is null, `0x002E9BF6`).
+
+What each read gives depends on the actor's class, byte `+3` >> 5. For class 3 the position is body
+`+0x00`-`+0x08`, the three floats are body `+0x20`-`+0x28`, the heading is body `+0xA8` and the movement
+heading body `+0xA4`. For class 1 the position is the same, both headings are body `+0x38`, and snapshot
+`+0x10`-`+0x18` keeps what it held. Any other class gets a zero position and headings of 0.0, and
+`+0x10`-`+0x18` again keeps what it held (`0x00265020`-`0x0026505C`, `0x00265240`-`0x00265268`,
+`0x00265200`-`0x00265233`, `0x00263CC0`-`0x00263CF3`).
 
 A slot or leader whose `0x00359B80` record is null is skipped (`0x003B748C`; `0x003B73B0` returns for a
 null leader at `0x003B73B3` and for a null record at `0x003B73CD`).
@@ -252,7 +259,7 @@ reads `+0x18` of each roster pointer without testing it for null (`0x00269556`).
 
 ### Event party modes
 
-`seteventpartymode(v)` (`0x050F`, `0x0037D120`) writes bit `0x4` of the party block word
+`seteventpartymode(v)` (`0x050F`, `0x00351B40` → `0x0037D120` → `0x00307240`) writes bit `0x4` of the party block word
 `[0x02EBF190] + 0x5B04` and `seteventparty2mode` (`0x0514`) bit `0x8`; `geteventpartymode` (`0x0510`,
 `0x00355FE0`) returns whether the mode ladder `0x0030D9A0` reads 4, and `geteventpartymodebit`
 (`0x0513`) returns bit `0x4`.
@@ -284,11 +291,11 @@ PoseSnapshot (at `+0xED0` of the record an actor's `+0x30` points to):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `f32[3]` | position | from `0x00265020` |
-| `+0x10` | `f32[3]` | bodyVector | body `+0x20` to `+0x28`, from `0x00265240` |
-| `+0x24` | `f32` | heading | body `+0xA8`, from `0x00265200` |
-| `+0x34` | `f32` | moveHeading | body `+0xA4`, from `0x00263CC0` |
-| `+0x64` | `i8` | presentation13 | presentation `+0x13`, from `0x002E9BE0` |
+| `+0x00` | `f32[3]` | position | from `0x00265020`: body `+0x00`-`+0x08` for class 1 or 3, else 0 |
+| `+0x10` | `f32[3]` | bodyVector | body `+0x20` to `+0x28`, from `0x00265240`, class 3 only (other classes leave it unchanged) |
+| `+0x24` | `f32` | heading | from `0x00265200`: body `+0xA8` for class 3, `+0x38` for class 1, else 0.0 |
+| `+0x34` | `f32` | moveHeading | from `0x00263CC0`: body `+0xA4` for class 3, `+0x38` for class 1, else 0.0 |
+| `+0x64` | `i8` | presentation13 | presentation `+0x13`, from `0x002E9BE0`; -1 when the actor has no presentation record |
 
 ## Shipped data
 

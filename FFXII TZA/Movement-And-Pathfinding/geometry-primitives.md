@@ -14,6 +14,10 @@ this shape, is this point inside it, where on this area is the point nearest to 
 this page are those answers. Nothing on screen names them; when one is wrong the symptom is a
 walker that hugs a wall it should clear or a trigger that fires a step early.
 
+The map pack stores sound areas as ellipses, rectangles or chains of line segments. For each area the game moves a
+given point to the nearest spot on it, or leaves the point alone when it already lies inside an ellipse or rectangle.
+A rectangle test of the same kind tells when a party member stands inside the authored rectangles of an actor record.
+
 ## How it works
 
 ### The shape record and the segment test
@@ -284,7 +288,7 @@ Collision polygon (`0x20` bytes at [part + `0x10`]):
 |---|---|---|---|
 | `+0x00` | `f32[3]` |  | plane normal |
 | `+0x0C` | `u32` |  | attribute word |
-| `+0x10` | `u16[3]` |  | vertex indices into the `0x10`-byte vertices at [part + `0x08`] |
+| `+0x10` | `i16[3]` |  | vertex indices into the `0x10`-byte vertices at [part + `0x08`], read sign-extended (`0x0022CFB8`) |
 
 Globals:
 

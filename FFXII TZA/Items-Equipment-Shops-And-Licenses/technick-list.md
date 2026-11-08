@@ -14,6 +14,10 @@ reaches (`battle_pack.bin` directory entry `+0x7C`). Row *n* is technick id `0x4
 Every row's `+0x02` is its action row, rows 158-181 of the action table, and each of those has kind 2 and `+0x22`
 equal to the technick id.
 
+A technick row holds only its shop price, name, icon and sort order; what the technick does and what it costs come
+from the action row it points to. A member can use it only when it is owned and the member holds a licence square that
+grants it.
+
 ### Where the values come from
 
 Each line is read from the `st2e` table at entry `+0x7C`, as [Magick list](magick-list.md) reads its table; the rows

@@ -32,6 +32,10 @@ file's address in slot *k*, releasing a board already there with `0x003844F0` fi
 board 0). No request for index 70 is made by the calls to the
 file request functions `0x00384420` and `0x003843F0`.
 
+A board file only places squares on a grid: each square holds a number that points to a row of the license list inside
+`battle_pack.bin`, and that row gives the square's name, LP cost and what it grants. Which squares a character owns is
+saved with that character, not in the board files.
+
 ## Layouts
 
 All multi-byte fields are little-endian.
@@ -110,9 +114,12 @@ node number, and the node's name and LP cost from the node record (`+0x00` name 
 
 `license_board.bin`, the single 24 x 24 board at index 70, ships in `ch`, `cn`, `in` and `kr`, four identical
 1,160-byte copies. No call site requests index 70: the one kind-2 request `0x00384420` is reached only from the
-pack, board and text-group loads (`0x0038440A`, `0x0023837D`, `0x0023861E`). The
-board the game reads in its place is the pack's entry `+0x11C`, which the battle-pack load stores at `0x02EBF200`;
-the file equals that entry for its 1,160 bytes.
+pack, board and text-group loads (`0x0038440A`, `0x0023837D`, `0x0023861E`).
+
+The pack holds the same board as its entry `+0x11C`, equal to the file for its 1,160 bytes; the battle-pack load
+stores its address at `0x02EBF200` (`0x00237031`), and no instruction reads that slot
+([Authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md)). The board screen reads only
+the twelve job boards above.
 
 ## Loader behaviour
 

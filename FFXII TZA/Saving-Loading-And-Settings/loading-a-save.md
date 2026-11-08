@@ -10,6 +10,10 @@ addresses: "0x00580EB0, 0x00582860, 0x00394400, 0x00394130, 0x00512130, 0x002552
 The player picks Load and a slot. "Loading..." shows, then "Load complete."; the screen fades, and the party appears
 where the save was made.
 
+The slot's file is read whole into the game's live save image. The party data is then pointed at that image, and the
+area is started again from the zone-change record stored in it; the options in force before the load are written back
+over the loaded ones.
+
 ## Steps
 
 1. **The widget is created.** The End handler `0x00512130` of script verb `0x705D` creates the post-load widget

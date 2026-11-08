@@ -9,8 +9,10 @@ addresses: "0x007980A0, 0x01DFE0D0, 0x001F3E10, 0x001F3AE0, 0x0020CD30, 0x0020C7
 
 When Steam's relaunch check asks for it, the game exits at start-up. Under Steam, the overlay works, achievements
 unlock, the game's language follows the language set for it in Steam, and saves go to a folder named after
-the Steam account. Without Steam the game still runs: achievements are kept only in the save, and the
-language and save folder fall back to their own settings.
+the Steam account. Without Steam the game still runs. The thirty achievements the Sky Pirate's Den shows keep
+their award bits and counters in the save; the other eleven (the eight story scenes, the two Trial Mode stages
+and Champion of Ivalice) have no saved flag and are not recorded. The language and save folder fall back to
+their own settings.
 
 ## How it works
 
@@ -185,7 +187,8 @@ prints `load failed!`. Neither file is in the shipped archive, and nothing else 
 ### Without Steam
 
 - `SteamAPI_Init` fails, so `0x01F83450` stays 0: `0x008632B0`, `0x00863240` and `0x00863280` return at once and
-  no achievement reaches Steam. Counters, award bits and the Sky Pirate's Den statues still work.
+  no achievement reaches Steam. Counters, award bits and the Sky Pirate's Den statues still work for the thirty
+  tracked achievements; the script and scene awards and Champion of Ivalice leave no record.
 - The interface slots stay 0: no language override, no Steam id in the save folder, and no Steam
   controller.
 - The overlay and achievement callbacks are never registered; the connection listener is.

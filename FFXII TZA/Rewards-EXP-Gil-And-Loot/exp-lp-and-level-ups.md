@@ -8,7 +8,8 @@ addresses: "0x00312280, 0x002F8BB0, 0x002F90C0, 0x002F8F20, 0x0023A570, 0x0028FB
 ## What the player sees
 
 When an enemy dies, the party members fighting on the field share its EXP; party members not on the
-field get no EXP. Every party member, on the field or not, receives the enemy's full LP.
+field get no EXP. Every party member who is not KO'd, turned to stone or sent to X-Zone, on the field or in
+reserve, receives the enemy's full LP.
 
 Four augments, each carried by one piece of equipment, change this per member:
 
@@ -20,6 +21,10 @@ Four augments, each carried by one piece of equipment, change this per member:
 A game started in New Game- earns no EXP at all, though LP and gil are still paid. EXP stops at
 99,999,999 and LP at 99,999. A member levels up as soon as their EXP reaches the next level's total;
 the last level is 99. While the script's summon mode is on, the whole EXP goes to one unit.
+
+An enemy's EXP, LP and gil come from two reward rows its definition points to: a base amount plus a per-level amount
+times the difference between the enemy's level and a second number in its stats. The EXP is then split among the
+members on the field, while every member not out of play (below) gets the full LP.
 
 ## How it works
 

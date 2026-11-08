@@ -14,6 +14,10 @@ addresses: "0x00574CB0, 0x00574E80, 0x0056F810, 0x00571A50, 0x005701B0, 0x005771
   more of that monster are defeated.
 - Sky Pirate's Den shows a statue for each title the clan has earned.
 
+Each category reads its own data files: Traveler's Tips and the Bestiary use the `menuhandbook` files, whose unlock
+tables test story flags, the story counter or kill counts; Hunts use `menuquest.dat`, and Sky Pirate's Den
+`menuhandbook_order.bin`. The save keeps which entries are unlocked and read.
+
 ## How it works
 
 ### Opening
@@ -100,8 +104,11 @@ entry row (the read test is `0x00576D20`). The Bestiary keeps its captions on th
   `0x800` on, stepping the list (`0x002D3BA0`) until the cursor reaches it.
 - `0x005715E0` runs one list step and reports when the cursor lands on an entry row.
 - `0x00576D20(kind, entry)` answers whether an entry is fully read: the family's read bit (`0x003156E0`) or, for the
-  Bestiary, every unlocked slot of the seven read (`0x00576E30`, `0x00315670`; the loop runs 0-7, and slot 7 is the
-  mode marker `0x00576860` returns, not a text). `0x005779E0(kind)` marks a family seen
+  Bestiary, every unlocked slot of the seven read (`0x00576E30`, `0x00315670`; the loop runs 0-7).
+  - Slot 7 has no text: `0x00576860` returns no threshold for it, only the empty value of the entry's mode
+    (`0xFF`, or `0xFFFF` for modes 1 and 2; `0x0057689F`-`0x005768C5`); the mode itself comes from `0x005768E0`.
+    `0x00577550(5)` marks slot 7 read with no test (`0x005775F5`), so it never keeps an entry from counting as read.
+- `0x005779E0(kind)` marks a family seen
   (`0x00315B50` of `0x00D23750[kind]`).
 
 ### The entry page
@@ -190,7 +197,7 @@ The slots are at `+0x108`, `+0x110` and `+0x118` of `[0x02CA9738]`, each with a 
 busy):
 
 - `0x005766B0` and `0x00576C70` return the text and picture bundles (`+0xF8`) of slots 1 and 2 when ready, and
-  `0x005766E0(i)` the bundle word `+4` of catalog record `i` of slot 0; `0x00576DA0` answers whether any slot is busy.
+  `0x005766E0(i)` the section word `+4` of catalog record `i` of slot 0 (`0x00576731`; the text bundle is `+6`); `0x00576DA0` answers whether any slot is busy.
 - `0x00577880(entry)` asks slot 0 for a load (`0x00575A50`) unless the manager is closing (`+0x100` bit `0x40`); `0x005776D0`
   cancels every slot (busy ones are marked 3, idle ones reset by `0x00575640`) and sets bit `0x40`; `0x00575F10` releases every
   slot the same way and sets bit `0x8`.
@@ -245,7 +252,7 @@ Each entry has seven text slots, whose unlock is worked out each time the entry 
 | `2` | this monster or the monster the slot names has been defeated |
 
 The read marks are save `+0x3604 + i`, one bit per slot (`0x00315670`, `0x00315AD0`). `0x00577550(5)` sets the marks of empty
-slots, so an entry counts as read when every unlocked slot has been viewed. The entry shows the kill count (`0x005760A0`).
+slots (a threshold equal to the mode's empty value) and of slot 7, so an entry counts as read when every unlocked slot has been viewed. The entry shows the kill count (`0x005760A0`).
 
 #### Hunts
 

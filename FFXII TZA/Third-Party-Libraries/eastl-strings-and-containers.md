@@ -12,6 +12,9 @@ of its lists, sets and maps, from JSON files read through JsonBox to sorted look
 executable: three consecutive pointers followed by an allocator are usually one string or one
 vector, not four fields.
 
+The screen-layout files are JSON text. The game reads a whole file into memory, and JsonBox turns it into these
+containers: a map for each JSON object, a vector (a growable list) for each array and a string for each piece of text.
+
 ## How it works
 
 ### Identity
@@ -63,7 +66,11 @@ is one site):
 3. otherwise allocate `n` bytes through slot `+0x10` and set capacity end to the block plus `n`;
 4. copy the text with `memmove`, set end to the last character and write the terminator.
 
-Every empty string in the process points at the same byte. Freeing is guarded by
+A string built empty points at the shared byte. A string emptied after it held text keeps its block
+instead. `0x0020A760` empties the event-slot names, which the pusher `0x0020AF10` fills through `0x001A5760`
+(growing the block with `0x001A52A0`): it writes a zero first byte and sets end back to begin
+(`0x0020A77D`-`0x0020A787`, `0x0020A7AE`-`0x0020A7B4`) and leaves capacity end where it was
+([debug menu](../Engine-Core/debug-menu.md)). Freeing is guarded by
 `capacity end - begin > 1` and a non-null begin, so the shared byte is never freed.
 
 ### Vectors
@@ -220,7 +227,7 @@ Eastl::basic_string&lt;char&gt;   `0x20` bytes:
 |---|---|---|---|
 | `+0x00` | `void*` | begin | first character |
 | `+0x08` | `void*` | end | the terminator; length = end - begin |
-| `+0x10` | `void*` | capacityEnd | one past the block; `0x02EBA2E1` for an empty string |
+| `+0x10` | `void*` | capacityEnd | one past the block; `0x02EBA2E1` for a string built empty |
 | `+0x18` | `void*` | allocator | the allocator object itself (its vtable pointer) |
 
 Eastl::vector&lt;T&gt;:

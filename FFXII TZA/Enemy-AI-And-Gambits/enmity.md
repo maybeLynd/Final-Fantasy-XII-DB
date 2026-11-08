@@ -20,6 +20,10 @@ Every enemy remembers how much each party member has bothered it.
   below 1: an enemy never fully forgets someone it was angry at.
 - **Enemies act on it.** Enemy AI orders can pick the party member the enemy hates most.
 
+How much an action changes enmity is set in that action's own definition row: one number for the target, one spread to
+other enemies already holding a grudge, and one taken off the target's enmity toward the rest of the party. Only party
+members' actions create enmity, and only enemies hold it.
+
 ## How it works
 
 ### The table

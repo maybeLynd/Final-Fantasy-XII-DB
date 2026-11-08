@@ -96,7 +96,8 @@ actor in this order:
 
 ### Instantaneous and durative
 
-A verb is instantaneous when its record has no begin and no poll: 1,589 of the 1,960, and every
+A verb is instantaneous when its record has no begin and no poll: 1,593 of the 1,960 (the 1,589 with
+only a result and the 4 empty records), and every
 one of them completes inside the call that issued it. A verb with a begin or a poll is durative in
 shape, but 77 of them have a begin and no poll, so they also finish on the first call: the begin
 does the work and the absent poll reads as finished. Only the 290 with a poll can hold a script,
@@ -271,7 +272,7 @@ EffectSlot (`0x18` bytes):
 | Fact | Value |
 |---|---|
 | commands | 1,960 in five tables |
-| instantaneous (no begin, no poll) | 1,589 |
+| instantaneous (no begin, no poll) | 1,593 (1,589 result only, 4 empty) |
 | can hold a script (has a poll) | 290; 59 have all three callbacks |
 | begin without poll | 77, finishing on the first call |
 | distinct callbacks | begin 236, poll 159, result 1,491; 1,885 functions in all |

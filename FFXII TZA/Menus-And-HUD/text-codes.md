@@ -42,8 +42,10 @@ selector, is:
 | `0F )` | 3 + the larger of 1 and bits `0x7` of the first payload byte | `0x003FFBC0` |
 | `0F *` | 4 + bits under mask `0x7F` of the second payload byte | `0x003FFD70` |
 
-Control byte `0x08` is 3 bytes (`0x002AD011`), control bytes `0x0B`-`0x0D` move nothing (`0x002AC6CA`), and every other control byte is 1
-byte.
+Control byte `0x08` is 3 bytes (`0x002AD011`), control bytes `0x0B`-`0x0D` move nothing (`0x002AC6CA`), and the
+choice list `0x0E` runs to its closing `00`: 5 bytes, `ceil(count / 7)` more when bit `0x1` of its fourth byte
+is set, and each option's length byte and text ([Choice lists](#choice-lists), `0x003FFDF0`). Every other control
+byte is 1 byte.
 
 The parsers `0x003FFAB0`, `0x003FFB00` and `0x003FFBC0` look their argument up through `0x0039BA00(v)`, which returns the
 5-byte record `v & 0x1FF` of the table at `[0x02AEE870]` (`fontpack_it.bin` entry 2), counting from its byte 1, and

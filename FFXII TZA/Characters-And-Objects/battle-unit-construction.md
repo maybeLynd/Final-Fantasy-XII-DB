@@ -280,7 +280,7 @@ Class row (`0x02EBF150`):
 | `+0x28` | `u8` | flags28 | bit `0x1` the view query's height (`0x0031B08D`); bit `0x2` no chain (`0x00317F09`) |
 | `+0x29` | `u8[5]` | affinity | absorb, halve, nullify, weak, potency (`0x002FEF30`) |
 | `+0x30` | `u16[8]` | words30 | no reader among the four readers of `0x02EBF150` and the 47 loads of unit `+0xE68`, each followed to its fields |
-| `+0x40` | `u16` | modelFamily | the same-model run (`0x00317F77`) |
+| `+0x40` | `u16` | modelFamily | the loot quantity group of the kill chain's run (`0x00317F77`); not the model, which is `+0x00` |
 | `+0x52` | `u16` | species | `0xFFFF` no entry (`0x003171C0`) |
 
 ## Modding notes

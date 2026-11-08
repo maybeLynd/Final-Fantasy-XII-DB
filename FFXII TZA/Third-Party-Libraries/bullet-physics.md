@@ -13,6 +13,10 @@ PhyreEngine code that would feed it are in the executable, but the physics manag
 never switched on and no shipped asset declares a physics object, so no Bullet world or body is ever
 created.
 
+Had the route run, the game would take each physics world of a PhyreEngine scene and build a Bullet world for it. It
+would then turn each rigid body into one Bullet shape made of its child shapes, with friction and bounce taken from
+its material.
+
 ## How it works
 
 ### Identity and version

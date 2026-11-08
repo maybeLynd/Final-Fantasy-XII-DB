@@ -12,6 +12,10 @@ by side on flat tiles, and the tiles come from this file. The same file also hol
 that the World Map draws with a soft shading texture, and that the license board screen draws again
 without a texture.
 
+Each part of the mesh carries a slot name such as `main0.psd`. Once all files have arrived the game swaps that name
+for its paired picture, `w_main0` to `w_main3` for the four tiles and `w_shade_p` for the shading, which the same
+screen loads beside the mesh.
+
 ## Where it comes from
 
 The file is `ps2data/image/ff12/myoshiok/<tree>/worldmap/meshdata.mg` in the archive, and it is kind 7,

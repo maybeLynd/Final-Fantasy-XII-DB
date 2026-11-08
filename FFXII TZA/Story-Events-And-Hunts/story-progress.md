@@ -52,8 +52,11 @@ Every script write is a literal, and 268 writes in shipping scripts are reachabl
    most often in its `main` function.
 2. 125 lie inside the branch of a test of the counter's current value: an `if`, as in `alc_c01` `EventDirector.main`
    writing 3,260 when the counter is below 3,260, or a case of a switch on it (68).
-3. The rest are in functions that do not test it, mostly `touch`, `touchon` and named event functions, which their
-   callers start.
+3. Of the other 143, 5 follow a test in their function but lie outside its branch, as `rwg_a01`
+   `EventDirector.main`'s writes of 1,345, 1,355 and 1,360 after the test that guards its 1,342. The other 138
+   have no test of the counter before them in their function, mostly `touch`, `touchon` and named event
+   functions, which their callers start. A write outside a guard runs only when its function's own path reaches
+   it, not on every call.
 
 The first value a shipping script writes is 13 (`naf_a01` `常駐監督.main`) and the last 7,150 (`bhm_d01`
 `ボス監督.main`).

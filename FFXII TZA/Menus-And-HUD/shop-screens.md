@@ -15,6 +15,10 @@ addresses: "0x0057B800, 0x0057B890, 0x0057BD40, 0x0056DD50, 0x0057CF20, 0x0056D3
 - After buying equipment the shop asks "Equip your purchase now?"; after a bazaar purchase it shows what the good
   gave.
 
+A shop's script opens the screen with only the shop's number. Buy rows come from that shop's current goods list, Sell
+rows from the party's inventory and Bazaar rows from the shop's bazaar list; each sale of loot is counted toward the
+bazaar.
+
 ## How it works
 
 ### Opening a shop
@@ -186,8 +190,10 @@ listed value, and every write of `+0x28` in the query filler `0x0031C5D0` (14 of
 3. selling, the good cannot be sold (`0x0056E71A`);
 4. selling, none of the good can be sold.
 
-The most the party can hold is 99 for weapons, armour, accessories, ammunition, items and loot, 1 for technicks,
-magicks and gambits, and 255 for bazaar goods (`0x00D235F8`).
+The most the party can hold is 99 for weapons, armour, accessories, ammunition, items and loot, and 1 for
+technicks, magicks and gambits (`0x00D235F8`). The bazaar goods' entry, 255 (`0xFF`), is not a count: the buy
+test skips its owned-count refusal for that value (below). A bazaar good is a bundle that gives its items when
+bought ([Bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md)), and its quantity stays 1.
 
 `0x0056E700(row, state, most)` answers a mask of refusal bits. The list passes its `+0xD8` as the state: byte `+0x00`
 bit `0x1` for selling, the quantity `+0x04`, the most the party can hold `+0x06` from `0x00D235F8` and the gil `+0x08`
@@ -317,10 +323,30 @@ quantity (`0x0029FF60`). `0x0056D9D0(list, quantity)` stores the quantity at `+0
 The equip offer checks each party member (`0x00317B70`):
 
 1. When someone can equip it, it asks "Equip your purchase now?" (`0x803`).
-2. For the categories in `0x00D23910` it says instead that the item cannot be equipped at a shop and to use the Equip
-   command in the Party Menu (`0xCF8`).
+2. When the item's class is one of the eight in `0x00D23910`, the ranged weapons and their ammunition, it says instead
+   that the item cannot be equipped at a shop and to use the Equip command in the Party Menu (`0xCF8`, `0x0057AB32`).
 3. Yes opens the member picker `0x0057AC10`, "Select a character to equip." (`0xC70`), which equips through
    `0x0031A510` (`0x0057AF18`) once per copy bought.
+
+`0x00D23910` is `u8[8]`, equipment classes: the equipment row's byte `+0x09`, which the class-6 query `0x0035D380(6, id)`
+copies to `+0x38` (`0x0031C9BD`-`0x0031C9C1`; [Equipment row](../Items-Equipment-Shops-And-Licenses/equipment-row.md)).
+Once a member can equip the item, `0x0057A8B6`-`0x0057A8D3` compares its class with the eight bytes (`edx < 8`), and a
+match sets `+0xCC` bit `0x2` and the message above (`0x0057A8D9`). The class names are the game's category table
+names ([Equipment list](../Items-Equipment-Shops-And-Licenses/equipment-list.md)):
+
+| Class | Name | Named rows | First and last |
+|---|---|---|---|
+| `0x07` | Bow (2H) | 16 | Shortbow `0x1042`, Dhanusha `0x10C7` |
+| `0x08` | Crossbow (2H) | 8 | Bowgun `0x1050`, Tula `0x10B0` |
+| `0x09` | Gun (2H) | 12 | Altair `0x1057`, Mithuna `0x10C5` |
+| `0x11` | Hand-bomb (2H) | 6 | Hornito `0x109A`, Makara `0x10C3` |
+| `0x17` | Arrows | 8 | Onion Arrows `0x1184`, Artemis Arrows `0x118B` |
+| `0x18` | Bolts | 8 | Onion Bolts `0x118C`, Grand Bolts `0x1193` |
+| `0x19` | Shot | 8 | Onion Shot `0x1194`, Stone Shot `0x119B` |
+| `0x1A` | Incendiaries | 8 | Onion Bombs `0x119C`, Castellanos `0x11A3` |
+
+The three bytes after the table, `0x00D23918`, are a separate list that `0x0057B1A0` reads with its own bound of 3
+(`0x0057B2B4`-`0x0057B2D9`).
 
 ## Layouts
 

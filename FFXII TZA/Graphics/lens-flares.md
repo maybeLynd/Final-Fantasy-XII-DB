@@ -12,6 +12,11 @@ the light nears the centre of the screen. When a wall, a character or the edge o
 light, the flare fades out over a few frames instead of popping, and a flare that is set to dazzle also
 darkens the rest of the picture and lights the characters from the light's direction while it shows.
 
+A flare is one piece of an effect, of the lens-flare type. When it appears it takes one of eight flare slots and can
+add a light that every character takes. Each frame the game asks the graphics card how much of a small square at the
+light is visible; that amount sets the flare's brightness, how far the rest of the picture dims and the strength of
+that light.
+
 ## How it works
 
 ### The flare slots

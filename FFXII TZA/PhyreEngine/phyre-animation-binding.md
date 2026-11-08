@@ -14,6 +14,10 @@ alone keeps the rotation and scale it already had. In the shipped game this
 path is used by two map models, where an animation switches one node's visibility; no character,
 monster or weapon cluster carries a PhyreEngine animation.
 
+In each of the two map files the clip names two targets: a node, which the game finds by its name in the scene, and
+the method `setVisibilityFromAnimation`. Binding links each name to its target once; after that, every evaluation
+writes the channel values through those links.
+
 ## How it works
 
 The work is split in two: binding, once per animation and target object, turns each channel target

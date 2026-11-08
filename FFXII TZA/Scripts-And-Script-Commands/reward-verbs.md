@@ -41,7 +41,7 @@ discovery bits in `[0x02EBF190] + 4`:
 - class 3: bit `0x1`, plus `0x01EECF98[s]`, where s is word `+0x2C & 7` (below 5) of the `0x02EBF138` row
   that byte `+2` of the `0x02EBF0F0` row `id − 0x3000` names;
 - class 4: bit `0x40`;
-- key items: bit `0x80` for `0xC000` to `0xC011`, bit `0x100` for `0xC012` to `0xC01E`.
+- Quickenings `0xC000` to `0xC011`: bit `0x80`; Espers `0xC012` to `0xC01E`: bit `0x100` (`0x0030099A`-`0x003009D4`).
 
 Grants made with another mode set no bits: `0x00300490` (mode 4) and `0x0030C410` (mode 2).
 
@@ -62,8 +62,10 @@ drive the gil window and write nothing.
 All 1,966 chest talk functions in the US scripts run the same calls in this order:
 
 ```
-settrapshowstatus(0); ucoff(); btlAtelOpenTreasureStart(); talktreasure(id); sethpmenu_436(0, 5);
+sethpmenu(0); ucoff(); settrapshowstatus(0); btlAtelOpenTreasureStart(); talktreasure(id); sethpmenu_436(0, 5);
 btlAtelOpenTreasureMessage(id); sethpmenu_436(1, 5); talktreasureafter(id); btlAtelOpenTreasureFinish(); ucon();
+sethpmenu(1); clear_force_char_nearfade(); setmaphighmodeldepth(-1); setmapmodelstatus(1);
+setstatuserrordispdenystatus(0); settrapshowstatus(1);
 ```
 
 `setuptreasure` (`0x02BE`, begin `0x00354400`) places the chest actor and rolls its presence through
@@ -210,9 +212,15 @@ non-zero (`0x0030FD40`-`0x0030FD86`). It then clears every slot of those records
 (`0x0030FDB0`-`0x0030FDC8`), calls `0x00324380` once and returns 1 (`0x0030FDE2`-`0x0030FDEC`).
 
 `resetJobs(sel)` (`0x05D6`, `0x00342230` → `0x00328BD0`) refuses a selector above 5 (returns −1). It clears the
-character's equipment (`0x0031A260`) and both job bytes `+0x1C3` and `+0x1C4` (`0x00328990`), calls `0x00559760`, and, when
+character's equipment (`0x0031A260`), runs `0x00328990` on each board the job bytes `+0x1C3` and `+0x1C4` name, which
+takes back that board's licenses and refunds their LP (`0x00328C16`-`0x00328C35`;
+[licenses](../Items-Equipment-Shops-And-Licenses/licenses.md#resetting-the-boards)), calls `0x00559760`, and, when
 the selector is the character recorded at `[0x02EBF190] + 0x5AD5`, issues command `0x113` to party slot 3
 (`0x003138D0(1)`, [battle verbs](battle-verbs.md)) and calls `0x00313550(0)`.
+
+Only after rebuilding the stats and gambits does `resetJobs` clear the job bytes: one word store puts
+`0xFF` in both `+0x1C3` and `+0x1C4` (`0x00328D52`), and
+`+0x1C5` is set to `0xFF` after it (`0x00328D5D`).
 
 `0x00559760(sel)` (`0x00328C3C`) looks for the selector in the word `+0x60` of the nine record pointers at
 `[0x0209AC30] + 0xAC8` (`0x00282E10`, which skips null pointers and reads `[0x0209AC30]` without a null test, so a null
@@ -287,7 +295,7 @@ count at `0x01EEBCFC`, `0x01EEBD54` or `0x01EEBDAC`. The equipment walk starts a
 
 ```python
 inventory call   0x003008A0(item id, n, set, mode, arg): class = id >> 12, index = id & 0xFFF, class count at 0x01EEBCFC + class × 0x58
-discovery bits   [0x02EBF190] + 4: bit 0x1 and 0x01EECF98[school] for magicks, bit 0x40 technicks, bit 0x80 key items 0xC000..0xC011, bit 0x100 0xC012..0xC01E
+discovery bits   [0x02EBF190] + 4: bit 0x1 and 0x01EECF98[school] for magicks, bit 0x40 technicks, bit 0x80 Quickenings 0xC000..0xC011, bit 0x100 Espers 0xC012..0xC01E
 gil              0x003004B0(n, notify) = max(0, gil + n); 0x00254EE0 stores min(total, 99,999,999) and logs counter 6 or 7
 chest record     +0 index in the field, +8 flags (bit 0x40 random gil), +9 opened-flag id, +0xA presence %, +0xB item %
 chest contents   +0xC/+0xE item words, +0x10/+0x12 alternate item words, +0x14 gil, +0x16 alternate gil

@@ -113,7 +113,7 @@ and it writes no count (`0x00316F62`-`0x00316F82`).
 | a quest or hunt reward | `0x003F4AEA`, `0x003F4B1A` (verb `0x37C` `questresultwindow`) |
 | an item given in a message window | `0x002A541B` |
 | the item verbs `additem` `0x2E5`, `additem_47f` `0x47F`, `additemmes` `0x480`, `subitem` `0x2F2`, through `0x0032A810`, and `setitemnum` `0x55C`, through `0x0032A830`; both floor the result at 0 | `0x003450DC`, `0x003449EF`, `0x0034B252`, `0x003459ED`, `0x0034554B` |
-| an item used in battle: reserved at commit, refunded on cancel | `0x0030EFB0`, `0x003002CB` |
+| an item used in battle: reserved when phase 0 of the action starts, refunded on cancellation ([Item use](item-use.md)) | `0x0030EFB0`, `0x003002CB` |
 | a member joining or leaving ([Party members](../Party/party-members.md)) | `0x00316E9C`-`0x00317009`, `0x00323586`-`0x00323594` |
 | a Quickening square bought ([Licenses](licenses.md)) | `0x00323B0D` |
 | equipping and unequipping | `0x0030C410` and `0x0030F9A0` from `0x00318B40`, `0x0031A410`, `0x0031A510`, `0x0031A630` |
@@ -157,6 +157,10 @@ The table `0x02092760` holds 8 bytes per list:
 
 The lists end at `+0x47B6`. List 7 has capacity 0 and shares list 8's array. That is why twelve list numbers cover
 eleven arrays.
+
+What the party owns is kept twice: as counts or owned marks in the party block, and as twelve ordered lists of ids in
+the save that the inventory screen shows. Every change stores the count first and then adds the id to its list or
+removes it, so an item whose list is full stays owned but is missing from the screen's list.
 
 How an id reaches its list:
 

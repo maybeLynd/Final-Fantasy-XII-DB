@@ -14,6 +14,10 @@ as the game needs it. An edited index the game does not accept leaves the archiv
 file the game then asks for fails to open. A compressed block that fails to inflate shows a Windows
 error box, "Broken game data, please repair or restore the data."
 
+To open a file the game turns its path into a short fingerprint, an MD5 key, and looks that key up in the index, whose
+entry says where the file's bytes start. The bytes are kept in 64 KiB blocks, each stored as is or compressed, and a
+read unpacks only the blocks it reaches.
+
 ## How it works
 
 ### Mounting
@@ -178,8 +182,10 @@ copy (`0x0019AE06`), calls `0x007A0A80(1)` (`0x0019AE1D`), shows the copy with `
 
 `0x007A0A80(1)` frees the cursor clip (`0x0079ED60(1)`, `0x007A0A89`), reads the cursor state with
 `GetCursorInfo` (`0x007A0A9F`) and, when its flags are 0, shows the cursor with `ShowCursor(1)` and sets
-`0x01F3DA06` to 1 (`0x007A0AB7`, `0x007A0ABD`). Given 0, it hides a cursor whose flags have bit `0x1` with
-`ShowCursor(0)` and sets the byte to 0 (`0x007A0ACA`-`0x007A0ADB`).
+`0x01F3DA06` to 1 (`0x007A0AB7`, `0x007A0ABD`). Given 0, it first clips the cursor to the drawing area of the window
+`[0x02EA5248]` (`0x0079ED60(0)`: `GetClientRect`, two `ClientToScreen` calls and `ClipCursor`,
+`0x0079ED7B`-`0x0079EDB6`), then hides a cursor whose flags have bit `0x1` with `ShowCursor(0)` and sets the byte to
+0 (`0x007A0ACA`-`0x007A0ADB`).
 
 ### Read records
 
@@ -188,10 +194,11 @@ bytes built by `0x0019B200(manager + 8, 30)`, which constructs each with `0x0019
 part descriptors, each with its own 64 KiB buffer) and creates a semaphore with thirty counts.
 
 `0x0019B200(bank, count)` stores the count at `bank + 0x08` (`0x0019B219`). It first destroys and frees a
-record array already at `bank + 0x10` (`0x00809054` with `0x0019A500`, `0x00809950`) and closes a semaphore
-already at `bank + 0x00` (`CloseHandle`, `0x0019B2BC`). The new array is `count × 0x98` bytes after an 8-byte
-count (`0x00210EC0`, `0x0019B27A`); when that allocation returns null the array pointer is 0 (`0x0019B2AE`). The
-semaphore, `CreateSemaphoreW(NULL, count, count, NULL)`, goes to `bank + 0x00` untested (`0x0019B2DA`).
+record array already at `bank + 0x10` (`0x00809054` with `0x0019A500`, `0x00809950`). The new array is
+`count × 0x98` bytes after an 8-byte count (`0x00210EC0`, `0x0019B27A`); when that allocation returns null the
+array pointer is 0 (`0x0019B2AE`). After storing the array (`0x0019B2B0`) it closes a semaphore already at
+`bank + 0x00` and stores 0 there (`CloseHandle`, `0x0019B2BC`, `0x0019B2C2`). The new semaphore,
+`CreateSemaphoreW(NULL, count, count, NULL)`, goes to `bank + 0x00` untested (`0x0019B2DA`).
 
 - `0x0019A660` waits on the semaphore, then claims the first record whose busy word `+0x90` it can
   change from 0 to 1 atomically, and raises its use count `+0x40`. The semaphore, the record count and

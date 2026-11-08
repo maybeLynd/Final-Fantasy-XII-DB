@@ -27,6 +27,11 @@ Every reader computes the row itself: it loads the registry slot `0x02EBF0F8`, r
 `0x0020E600` to the first row, and adds `(id - 0x1000)` times the slot's `u16` stride at `+0x08`
 (`0x0031C869`-`0x0031C8F3` is one example). The bonus record is `0x0020E600(row +0x28)`.
 
+Each piece of equipment is one row of numbers in `battle_pack.bin`, and the row points to a separate bonus record with
+its extra stats, statuses and elements, so two rows can share one record. The row's class decides whether three of its
+numbers mean a weapon's reach, damage formula and Attack, a shield's two evades, or armor's Defense, Magick Resist and
+augment.
+
 ## Layouts
 
 All multi-byte fields are little-endian.

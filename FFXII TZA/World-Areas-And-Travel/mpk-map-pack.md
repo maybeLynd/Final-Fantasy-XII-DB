@@ -916,7 +916,7 @@ bytes.
 | quantity | value |
 |---|---|
 | packs | 550; count 32 and a 0xC0 header in every one; the sizes sum to the file length in every one |
-| packs a field names | all 550. The 1,315 `map_ref.bin` rows name 531 packs as a field's own pack (the row's first word, `0x00264F10`) and 93 as a block pack (the first word of the row's 16-byte block record, `0x00264F40`). Each pack is kind 4's entry for its id, and all twelve size tables give that entry the file's size |
+| packs a field names | all 550. The 1,315 `map_ref.bin` rows name 531 distinct indices as a field's own pack (the row's first word, `0x00264F10`) and 93 as a block pack (the first word of the row's 16-byte block record, `0x00264F40`). 461 of the 531 and 89 of the 93 are pack files, 550 in all with no pack serving both; the other 70 and 4 indices name no file ([`mpk-map-pack-map-ref-field-packs.tsv`](mpk-map-pack-map-ref-field-packs.tsv)). Each pack is kind 4's entry for its id, and all twelve size tables give that entry the file's size |
 | slots used | 0 (545), 1 (46), 4 (461), 8 (461), 9 (270), 10 (545), 13 (387), 15 (2), 16 (456), 17 (212), 24 to 27 (421, 136, 32, 17), 28 to 31 (396, 133, 31, 17) |
 | navigation headers | 461 sections, word `+0x00` 1 and `+0x2C` 0 in all; 116 distinct region counts, the largest 128. [`mpk-map-pack-nav-header-rows.tsv`](mpk-map-pack-nav-header-rows.tsv) has each header's counts and offsets, the zero gap bytes and the zero bytes after the last array |
 | navigation vertices | 94,143. [`mpk-map-pack-nav-vertices-rows.tsv`](mpk-map-pack-nav-vertices-rows.tsv) has each x and z |

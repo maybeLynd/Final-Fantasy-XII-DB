@@ -13,6 +13,10 @@ addresses: "0x01F7FFE0, 0x00196FF0, 0x00197160, 0x01DF1480, 0x0035F420, 0x0035FA
 - A small push of a stick does nothing; a larger push of the left stick also works as a direction button.
 - Which of Circle and Cross confirms follows the Config setting.
 
+Each device has a record that says which key or button stands for each of the sixteen buttons and two sticks. On every
+poll the game checks all the records, merges them into one set of buttons and stick values, keeps the last 16 sets,
+and compares them to tell presses, holds, releases and repeats apart.
+
 ## How it works
 
 ### The input manager
@@ -154,7 +158,8 @@ of the newest frame (`0x0035FC87`).
 
 ### The button words
 
-`0x002498B0` rebuilds the words at `0x02F97360` once per game frame, ORing every poll since the last game frame. The
+`0x002498B0` rebuilds the words at `0x02F97360` once per game frame, ORing the polls selected for that game frame: at
+most `0x00184950()` of them, and none while `0x01FD4A84` is clear (Where a game frame reads the history, below). The
 table is channel 0; channel 1's words follow at `0x02F97374`, and a filtered copy of channel 0 at `0x02F97388` is masked
 by the block at `0x02F973A0` when that block is not zero:
 
@@ -173,7 +178,8 @@ by the block at `0x02F973A0` when that block is not zero:
 Bit i of every mask is button i in this order: Select, L3, R3, Start, Up, Right, Down, Left, L2, R2, L1, R1, Triangle,
 Circle, Cross, Square. It is called from the main loop (`0x0022B908`) and from `0x0022A7F6`, `0x0022BC50` and `0x00249C4D`.
 
-Each word is the OR of a history word over every poll since the last game frame (`0x00249940`-`0x0024999F`):
+Each word is the OR of a history word over the polls selected for the game frame, the count `+0x08`
+(`0x0035F130` at `0x00249928`, `0x00249940`-`0x0024999F`):
 held `+0x06`, pressed `+0x0E`, repeat `+0x0A`, released `+0x12` for set 1, and `+0x04`, `+0x0C`, `+0x08`, `+0x10`
 for set 0. `0x002498B0` clears the three records first (`0x002498BD`-`0x002498E0`), as does `0x002284F0` (`0x00228605`-`0x00228628`).
 Set 1 is read by few functions; set 0 is the one menus and the field read:

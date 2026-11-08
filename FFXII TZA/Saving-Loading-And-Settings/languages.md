@@ -7,11 +7,26 @@ addresses: "0x0017E270, 0x001DE050, 0x0022A0B0, 0x00229E40, 0x00229E50, 0x00254A
 
 ## What the player sees
 
-The Config screen offers nine languages: Japanese, English, French, German, Italian, Spanish,
-Korean, Traditional Chinese and Simplified Chinese. On a fresh install the game picks the one
-matching Windows' display language, English when no language matches.
+The game's text is in one of nine languages: Japanese, English, French, German, Italian, Spanish, Korean,
+Traditional Chinese and Simplified Chinese. It is the Language line of GameSetting.ini and is fixed when the game
+starts; no in-game menu changes it.
 
-The choice decides which data folder the text, voices and fonts load from, and a few rules change
+Three sources set it at start-up, each later one replacing the one before. First the language of the Windows
+user's Region Format (`GetUserDefaultLangID`, which can differ from the display language), English when no
+language matches: it counts only when GameSetting.ini does not exist yet, and the game writes it into the new
+file. Then the file's Language line, English when the file has none. Last, when Steam is running and names one
+of the nine as the game's language, Steam's language replaces the file's, and the game's next save of its
+settings writes it to the file.
+
+The settings launcher picks its own window language in the same order (the Region Format language, the file's
+Language line, Steam's language) and writes the result as the file's Language line when OK or Apply saves.
+
+The Config screen's Language row is a separate option: it picks Japanese or English voices ("Select language
+for voices."), not the text. It is a bit of the options record in the save, so loading a save brings its choice
+back. Its default is Japanese when the text language is Japanese, Korean or either Chinese, and English
+otherwise ([Game settings](game-settings.md)).
+
+The text language decides which data folder the text, voices and fonts load from, and a few rules change
 with it: the kill chain counter is capped at 998 and shown one higher, one text parameter differs
 for Korean and the two Chinese languages, and a handful of scripts ask which language is running.
 A separate option, DecideButton, swaps which of two buttons confirms and which cancels.
@@ -33,8 +48,9 @@ setting: an index into the code table at `0x01DF0030`, ten pointers to the strin
 | 3 | `de` | 8 | `cn` |
 | 4 | `it` | 9 | `none` |
 
-The Config screen's value names for the setting (row 0 of the table at `0x01DFD150`) point at the
-same strings. `0x0017E210` reads the sibling field `+0x64`, the DecideButton setting.
+The ini file's value names for the setting (row 0 of the table at `0x01DFD150`, which the parser `0x001DF350`
+matches and the writer `0x001DEE90` prints) point at the same strings, nine of them, without `none`. `0x0017E210`
+reads the sibling field `+0x64`, the DecideButton setting.
 
 ### The default on a fresh install
 
@@ -56,6 +72,23 @@ setting; Language's default is 1, `en`) and then overwrites the Language index f
 
 The Traditional test runs first on the whole LANGID (`(id - 0x404) & 0xFFFFE7FF == 0` and
 `id != 0x1C04`); the primary language is `id & 0x3F`.
+
+`GetUserDefaultLangID` returns the language of the user's Region Format setting, which can differ from the
+display language. The game reads no display-language setting: its one UI-language import,
+`SetThreadUILanguage`, is called only by `0x007A0FC0`, which sets the thread's UI language from the text
+language `[0x01F82D20] + 0x00` ([Phyre application](../PhyreEngine/phyre-application.md#window-helpers)).
+
+The Region Format value lasts only when GameSetting.ini is missing:
+`0x001DED50` then writes the file from the object (`0x001DF240`, `0x001DFD40`). With a file, the parser `0x001DE5D0`
+stores its Language line (`0x001DF350`, called at `0x001DEA39`), and a file without a Language line gets the default
+again, 1 `en` in all four quality columns (`0x001DEC72`-`0x001DEC90`).
+
+Steam comes last. After the file, the main routine calls `0x007A0C60` (`0x00798272`): with Steam's apps interface it
+compares Steam's game language with `japanese`, `english`, `french`, `german`, `italian`, `spanish`, `koreana`,
+`tchinese` and `schinese` and stores the index 0 to 8 through `0x001DF340(settings, 0, index)` (`0x007A0F17`). Any
+other string, or no interface, leaves the file's value
+([Steam integration](../Steam-And-Achievements/steam-integration.md)). `0x001DF340` only stores; the
+game's next write of GameSetting.ini (`0x001DFD40`) keeps Steam's choice.
 
 ### From code to locale id
 
@@ -201,7 +234,7 @@ result and always plays sound 3 (`0x00277E36`-`0x00277E53`).
 
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
-| `[0x01F82D20] + 0x00` | `i32` | Language index 0-9 | `0x001DE050`, the Config screen |
+| `[0x01F82D20] + 0x00` | `i32` | Language index 0-9 | `0x001DE050`, the file parser `0x001DF350`, Steam's language (`0x007A0F17`) |
 | `[0x01F82D20] + 0x64` | `i32` | DecideButton | the Config screen |
 | `0x01E02814` | `i32` | locale id | `0x0022A0B0` (`0x0022A0CB`) |
 | `0x01E0281C` | `i32` | the constant 10 from `0x0017E410` | `0x0022A0B0` (`0x0022A0D6`) |

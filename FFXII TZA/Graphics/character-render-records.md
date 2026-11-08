@@ -406,13 +406,15 @@ the `motiontrigger` script verb reaches it that way, through its result callback
 
 With `flag` set, work
 on a record also raises `+0x294` bit `0x2000000` on the top of its parent chain, and `0x00427BD0` then composes
-that root's model transform (`0x00420A40`). `0x00426090` calls `0x00427DE0(0)` inside each simulation step
+that root's model transform (`0x00420A40`), except while the root's `+0x284` bit `0x200` is set, when `0x00420A40`
+composes nothing (`0x00420A5F`-`0x00420A6F`) and the bit is consumed all the same. `0x00426090` calls `0x00427DE0(0)` inside each simulation step
 (from `0x003323D0`); `0x0042ED60` calls it with 1 at the end of the frame. Each bit's test site, handler
 and setters are in
 [the dirty-bit table](character-render-records-dirty-bits.tsv).
 
 `0x00427BD0` takes only active records without a parent (`+0x06` -1) that have `+0x294` bit `0x2000000`
-(`0x00427C00`-`0x00427C11`). It clears the bit and calls `0x00420A40(record, 0)`, then `0x00373030` with the record's
+(`0x00427C00`-`0x00427C11`). It clears the bit and calls `0x00420A40(record, 0)` (which returns at once while `+0x284`
+bit `0x200` is set, `0x00420A6F`), then `0x00373030` with the record's
 skeleton entry and `record + 0x180` when that entry exists, and then `0x00428E70(record)` (`0x00427C13`-`0x00427C61`).
 
 `0x00426090` points the bone scratch list at `[0x01FD4A78]` (`0x00370DF0`), stores the tail's `+0x2C` (see the system
@@ -430,7 +432,7 @@ dword `word` (`0x1` to `0x80000000`).
 |---|---|
 | `clear_kind` | who clears the bit: `processor` when `0x00427DE0` clears it itself after the handler returns (40 rows); `handler` when the handler clears it in its own body (11 rows); `inline` when `0x00427DE0` does the work in its own body with no handler call (2 rows); `consume` when there is no handler (`handlers` is `-`) and `0x00427DE0` only clears the bit with `btr` (2 rows); `kept` on the pass-5 row for bit `0x100000`, where the handler `0x0042F4C0` runs again and leaves the bit set; `n/a` on the last row, bit `0x2000000` of `+0x294`, which `0x00427DE0` sets rather than tests |
 | `clear_site` | the address of the instruction that clears the bit: an `and` of the word with the bit's inverse mask, inside `0x00427DE0` for `processor` and `inline` rows and inside the handler for `handler` rows; for `consume` rows the store of the `btr` result, with the `btr` address in brackets when it differs; `self` when the handler clears it at more than one place; `consumed by 0x00427BD0` on the last row; `-` on the two pass-5 rows, which clear nothing |
-| `set_by` | the functions that set the bit, each followed by the instruction that does it (`or` with the bit's value, or `bts` and a store) and, after `<-`, the functions that call that setter; a group writer clears other bits of the same word in the same instruction, listed in brackets; 16 rows state that no instruction in the executable sets the bit, with the code it rests on (every store at `+0x290` to `+0x297`, the wider stores from `+0x28C`, and the constructor `0x0041F730`, which zeroes the record) and, on some rows, the code that clears the bit; the row for `+0x294` bit `0x2000` names its one setter, `0x004278D0`, which no call, jump or stored address reaches |
+| `set_by` | the functions that set the bit, each followed by the instruction that does it (`or` with the bit's value, or `bts` and a store) and, after `<-`, the functions that call that setter; a group writer clears other bits of the same word in the same instruction, listed in brackets; 16 rows state that no instruction in the executable sets the bit, with the code it rests on (every store at `+0x290` to `+0x297`, the wider stores from `+0x28C`, and the constructor `0x0041F730`, which zeroes the record) and, on some rows, the code that clears the bit; the row for `+0x294` bit `0x2000` names its one setter, `0x004278D0`, which `0x002EB4A0` jumps to when the record's `+0x284` is not 0 (`0x002EB4DA`), and the callers of `0x002EB4A0` |
 | `rebuilds` | what the handler or inline block does to the record: the functions it calls, the fields it copies or writes, and the bits it re-arms, with the instruction addresses |
 
 ### The system tail

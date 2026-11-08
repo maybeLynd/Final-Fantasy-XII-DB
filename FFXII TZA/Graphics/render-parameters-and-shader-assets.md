@@ -44,8 +44,13 @@ cache's `+0x00` the object address it computes from the list's `+0x60` and the c
 The values live in JSON inside the archive: `jsondata/init.json` holds the global defaults,
 `jsondata/maps/<map>.json` one set per map, and `jsondata/cutscenes/<scene>.json` one set per
 cutscene, keyed `Common` and `Cut 1` to `Cut N`. Every key is looked up by name through `0x001FF740`
-(and `0x001FF6B0` beneath it); the area loader `0x001C7940` falls back to the defaults when a map omits a
-key, and the cutscene loader `0x001C3D50` goes through `0x001C51D0`.
+(and `0x001FF6B0` beneath it); the area loader `0x001C7940` usually falls back to the defaults when a map
+omits a key, and the cutscene loader `0x001C3D50` goes through `0x001C51D0`.
+
+The light directions are the
+exception: `lightOrientation` and `lightHeight` must both be in the map's own file, or the loader clears
+the map-art context's direction flag `+0x398` and applies none of the three pairs (`0x001C7F41`-`0x001C7F6F`,
+`0x001C8112`).
 [Graphics settings](../Engine-Core/graphics-settings.md) lists where each key lands.
 
 `0x001FF6B0(value, key)` first turns a value whose tag `+0x00` is not 3 into an empty map: it calls
@@ -120,8 +125,9 @@ directly or through the cascade template. The other 43 are:
 
 ## Modding notes
 
-- A map's look is changed in its `jsondata/maps/<map>.json`; a key the map omits comes from
-  `init.json`.
+- A map's look is changed in its `jsondata/maps/<map>.json`; a key the map omits usually comes from
+  `init.json`. The light directions apply only when the map's file has both `lightOrientation` and
+  `lightHeight`.
 - Editing a `…CheckBoxCheckState` or `…Lock` key, `mCascadeNumber`, or the alpha `mMapAmbientColorA`
   changes nothing.
 - Shadow cascade splits are the nine keys `mCascadePartition<column>_<row>`, columns 0 to 2 and rows

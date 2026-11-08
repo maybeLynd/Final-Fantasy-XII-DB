@@ -14,6 +14,10 @@ addresses: "0x00568B30, 0x005691E0, 0x00567D80, 0x00567F90, 0x0056B4D0, 0x0056AC
   fit is refused with a message such as "You do not have the license for this action."
 - Every change is kept at once; there is no confirm on leaving.
 
+Every change is copied straight into the character's selected gambit set in the party data, and the game then rebuilds
+that character's gambit orders from the lines that are on and filled. The condition and action lists come from the
+game's condition and action tables, and an action needs its license before it can be chosen.
+
 ## How it works
 
 ### Opening
@@ -86,9 +90,11 @@ At confirm's step 4 a line turned on plays `0x29` and one turned off `0x5E`; eit
 (`0x00567EE1`-`0x00567F25`).
 
 Before any of its steps, while `0x00368240()`, the hand cursor's byte `0x022CBE62`, answers 1, confirm sets the list's
-sound `+0xFC` to `0xFF` and returns (`0x00567DA5`-`0x00567DBE`). The header row also clears `+0x353` (`0x00567DC7`). On a
-condition or action, confirm first sets `[0x02CA9700] + 0x360` to 1 and opens no list while `0x00264150` answers non-zero
-(the byte `0x0209A2A9`); another column does nothing (`0x00567E0E`-`0x00567E78`).
+sound `+0xFC` to `0xFF` and returns (`0x00567DA5`-`0x00567DBE`). The header row also clears `+0x353` (`0x00567DC7`). Every
+other row first sets the sound `+0xFC` to 0 (`0x00567E07`) before the column is read.
+
+On a condition or action, confirm then sets `[0x02CA9700] + 0x360` to 1 and opens no list while `0x00264150` answers
+non-zero (the byte `0x0209A2A9`); another column stores nothing further (`0x00567E0E`-`0x00567E78`).
 
 After step 4, the refused turn-on and step 5, `0x00567F90` runs and `0x005680E0` ends the hold, clearing bit `0x1`
 of `+0x340` and setting `+0x341` to `0xFF` (`0x00567F51`-`0x00567F5C`, `0x005681C4`-`0x005681CD`). `0x00567F90` takes the

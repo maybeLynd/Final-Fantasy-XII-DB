@@ -22,6 +22,10 @@ and other ammunition weapons the element of the ammunition.
 Weakness and resistance are separate: a target weak to an element and halving it takes the normal
 amount, because both multipliers apply.
 
+A unit's weak, absorb, half, immune and potency elements are rebuilt from the attribute records of its five equipped
+items, plus, for an enemy, its enemy area row. The area's conditions come from its weather lane and the ground from
+the target's ground index, each looked up in a table of `map_ref.bin`.
+
 ## How it works
 
 ### The element bits

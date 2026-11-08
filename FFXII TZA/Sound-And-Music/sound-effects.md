@@ -71,8 +71,8 @@ handle is returned even when no bank owns the id, and is kept in the voice at `+
 
 | Flag bit | Effect |
 |---|---|
-| `0x08` | not started while slot 7 of the same bank plays, unless this is slot 7 (`0x00224657`-`0x0022467E`) |
-| `0x20` | before starting, every playing block or six-digit sound whose own slot flags have bit `0x40` is checked: one with the same id fades to the new volume over 4.8 s and the new sound is not started; any other fades out over 4.8 s (`0x0022468A`-`0x002246A4`, `0x00210710`, `0x002238F0`) |
+| `0x08` | not started while slot 7 of the same bank plays, unless this is slot 7 (`0x00224657`-`0x0022467E`); of the 4,404 slot entries of the 248 shipped block files only `se000`'s slot 7 has the bit, which that exception covers, so no shipped slot byte brings the wait into play ([`sound-block-index-files.tsv`](sound-block-index-files.tsv)) |
+| `0x20` | before starting, the playing six-digit sounds whose own slot flags have bit `0x40` are checked, and the playing block sounds with that bit only when no six-digit bank reports one (`0x00210710`, `0x0021072E`-`0x00210741`; [Audio manager](audio-manager.md)): one with the same id fades to the new volume over 4.8 s and the new sound is not started; any other fades out over 4.8 s (`0x0022468A`-`0x002246A4`, `0x00210710`, `0x002238F0`) |
 | `0x80` | a voice already playing this slot is reused with the new pan and volume (`0x002246E3`-`0x00224756`) |
 
 A six-digit bank's start `0x00223190` reads one flag byte for the whole bank, `+0x44`, and a bank with bit `0x20` starts its

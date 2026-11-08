@@ -13,6 +13,10 @@ executable's resource languages). Nothing else here is visible: the sound and po
 libraries still write diagnostic text to the Windows debug channel, which only a debug viewer
 shows.
 
+Two writers make these dumps. The one wrapped around the game's main code and its PhyreEngine threads saves
+`<executable path>.<date>_<time>.dmp` beside the game; a last-resort handler, for a crash nothing else takes, saves
+`Dump_<date and time>.dmp` in the working folder and then shows the box.
+
 ## How it works
 
 ### The import table

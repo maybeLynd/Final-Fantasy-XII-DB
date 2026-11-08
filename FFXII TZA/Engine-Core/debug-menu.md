@@ -17,6 +17,10 @@ What a player does see is the Config screen's graphics rows: brightness, V-sync,
 aliasing, ambient occlusion, depth of field, glare and the rest are the same rows, driven through
 the same dispatcher.
 
+When the player changes one of these Config rows, the game turns the row into one of the menu's command numbers, runs
+that command's step on the setting, then reads the new setting back to show beside the row. The other 266 commands
+have nothing in the retail game that reaches them.
+
 ## How it works
 
 ### The console object
@@ -126,7 +130,8 @@ name also has `<name>.json` loaded through `0x001C5750` (`0x0020AD6A`) before it
 appends the value to the slot's vector `0x01F83390 + slot × 0x20` (in place, or through `0x001A4250` when the vector is
 full), sets the counter `0x01F832C4` to 0 and adds 1 to the slot's count at `0x01F832B0` (`0x0020AF88`-`0x0020AFB4`).
 
-It ends by passing `0x00189120()` to `0x0016D6A0`, a bare `ret`.
+After a push it passes `0x00189120()` to `0x0016D6A0`, a bare `ret` (`0x0020AFBB`, `0x0020AFC3`); the three early stops skip
+that call.
 
 `0x0020A760(slot)` empties a slot. It first stores the slot in the marker `0x01DFE40C` (`0x0020A760`). For a slot below 5
 (an unsigned compare, so a negative slot is skipped too, `0x0020A768`) it clears the shared name `0x01F832C8` and the
@@ -135,8 +140,9 @@ slot's name (each, when not already empty, by a zero first byte and its end set 
 (`0x0020A7E7`).
 
 The setter `0x0020AC30` calls it when the new name differs from the slot's and the slot's count is non-zero
-(`0x0020ACD8`), and so does `0x001EC4B0` (from `0x00360120` and from `0x00356D40`, the begin of `eventdispose_f2`), which then
-raises the byte `0x01FD3AE3` (`0x00214B30`).
+(`0x0020ACD8`), and so does `0x001EC4B0` (from `0x00360120`, from `0x00356D40`, the begin of `eventdispose_f2`, and from
+`0x00350960`, the result callback of script call `0x5AB`, which passes the calling manager's index `+0x28`), which
+then raises the byte `0x01FD3AE3` (`0x00214B30`).
 
 The shared name is a static string: `0x01F832C8` its begin, `0x01F832D0` its end and `0x01F832D8` its capacity end, with
 its allocator at `0x01F832E0`. The initialiser `0x0015DBB0` builds it empty (`0x0015DBDC`); `0x0020A760` empties it by
@@ -158,7 +164,7 @@ Several rows print a live value that the renderer `0x001CD0E0` gathers itself:
 
 | Row | Label | What the renderer prints |
 |---|---|---|
-| 2 | (information) | the frame rates and the background, with the loaded map `0x00314910()` (payload `+0x105C`, [zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)) and the story-progress word `0x00265270()` as its `(%d/%d)`, and, with an event slot marked, `event:` with the slot's name from `0x001C5110` (the name at `0x01F832F0 + slot × 0x20`, empty without a marked slot) |
+| 2 | (information) | the frame rates and the background, with the loaded map `0x00314910()` (payload `+0x105C`, [zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)) and the story-progress word `0x00265270()` as its `(%d/%d)`, and, while the marked slot's queued count at `0x01F832B0` is non-zero, `event:` with the slot's name from `0x001C5110` (the name at `0x01F832F0 + slot × 0x20`) |
 | 7 | (information) | `CutSceneName: %s Cut: %d(id: %d) Frame: %d`: the slot name (`0x001C5110`), its queued count, the last entry of its vector `0x01F83390`, and the counter `0x01F832C4` |
 | 8 | (information) | for the picked object of `0x001C0DA0()` while its byte `+9` is set and the information page is open: its name (`0x001C0330`: `Disabled`, `NULL` or its own), its mesh texture (`0x001C0540`), its procedural texture (`0x001C0480`) and its tiling and blending values |
 | 57 | Operate cube map | `0x001AD440()` `+0x168` through `0x0017F5E0` (-1 without the object), marked `NOT EDITABLE` unless its `+0x40` is 1 |
@@ -195,11 +201,14 @@ For row 8, `0x001C0540(object, out)` asks the map-art context `0x001A9930()`:
 `0x001A74A0(context, out, [object + 0x10])` finds the `+0x260` of the object's `+0x10` in the map at
 `+0x448`, takes the name at the entry's `+0x40`, and keeps the part after the last `/` minus its
 last ten characters. While the object's byte `+9` is 0, or its `+0x10` is 0, `0x001C0540` returns an empty string
-instead (`0x001C0557`, `0x001C05B1`). `0x001C0480` copies the string at `+0x80` of the first entry of the object's
-`+0x18` list (`0x001E3E90`) with `0x001BE660`.
+instead (`0x001C0557`, `0x001C05B1`).
 
-Rows 102 and 266 query the graphics vendors' libraries. The current adapter is the record at `+0x78 + [+0x48] × 0x140`
-of the `0x001DDAB0` object (`0x001DC9C0`), and `0x0020D2B0` builds a chain of `AdapterInfos` providers whose head sits on
+`0x001C0480` copies, with `0x001BE660`, the string that `+0x80` of the first entry of the `+0x18` list of the
+object's `+0x10` points to, with that pointer's bit `0x1` cleared (`0x001C04B7`, `0x001E3E90`).
+
+Rows 102 and 266 query the graphics vendors' libraries. The current adapter is the record at
+`[+0x78] + [+0x48] × 0x140` of the `0x001DDAB0` object (`0x001DC9C0`), and `0x0020D2B0` builds a chain of `AdapterInfos`
+providers whose head sits on
 the stack and whose second link is the static provider at `0x01E02580`. `0x0020DA50` asks each provider in turn (vtable
 slot 0) for the temperature of the adapter id at the record's `+0x104` until one answers, and `0x0020D9F0` asks the same
 way (slot 1) for the name.
@@ -217,11 +226,15 @@ entries name 227 distinct targets, 226 arms and the shared do-nothing arm `0x001
 share; 212 of the arms end in a jump to it. Valid ids are 12 to 293, so ids 1 to 11 are label-only
 rows.
 
-The arms are small. 110 step a float: `movss` the field, `test bl, bl` (the direction), `subss`
-or `addss` by one constant from the float pool, `movss` back. 102 of them have one magnitude,
-symmetric in both directions: 0.01 for 58 arms, 0.02 for 11, 0.05 for 10, 0.1 for 9, 0.001 for
-7, 0.03 for 3, 1.0 for 2, 0.5 and 0.005556 for one each. The sign composes from the mnemonic and
-the constant's own sign (`+0.01` at `0x008F30E4`, `-0.01` at `0x009002F4`).
+The arms are small. 110 adjust a float in both directions. Most `movss` the field, `test bl, bl`
+(the direction), `subss` or `addss` one constant from the float pool and `movss` it back. 102 of
+the 110 have one magnitude, symmetric in both directions: 0.01 for 58 arms, 0.02 for 11, 0.05 for
+10, 0.1 for 9, 0.001 for 7, 0.03 for 3, 1.0 for 2, 0.5 and 0.005556 for one each. The sign composes
+from the mnemonic and the constant's own sign (`+0.01` at `0x008F30E4`, `-0.01` at `0x009002F4`).
+
+Two kinds scale instead of adding a constant. Id 106 multiplies the field by 0.99 or 1.01 (`0x001D2BC5`,
+`0x001D2BDA`), and ids 190 to 193 scale their step by the field `+0xC58` / 5 while that field is above
+20 (`0x001D3CCB`, `0x001D3CE7`).
 
 The rest call a subsystem, step an integer with a wrap, toggle a byte or cycle a mode; the table
 on [debug menu commands](debug-menu-commands.md) gives every id. The shared helpers are
@@ -370,10 +383,10 @@ the fixed count `+0x4610` and the mode `+0x0C` to 0 (`0x001C1E40`, `0x001C1E46`)
 0 (`0x001C1DC5`), and sets the scales `+0x4664 = -5.5` and `+0x4668 = -10.0` (`0xC0B00000` and `0xC1200000`,
 `0x001C1E49`, `0x001C1E53`).
 
-`0x001C2980(display, line, kind)` queues a line. Both kinds map the position through `0x001C2D10(display, &x, &y)`
-(x × `+0x4664` - 1.65, y × `+0x4668` - 2.0, written back in place; it changes nothing when either pointer is 0,
-`0x001C2D13`, `0x001C2D18`), hand the text to the object (`0x001EADB0`, `0x001EAD20`) and
-mark it visible (`0x001EAEA0`):
+`0x001C2980(display, line, kind)` queues a line. Both kinds map the position as x × `+0x4664` - 1.65 and
+y × `+0x4668` - 2.0, written back in place: kind 0 through `0x001C2D10(display, &x, &y)`, which changes nothing when
+either pointer is 0 (`0x001C2D13`, `0x001C2D18`), kind 1 inline (`0x001C2C74`-`0x001C2CA1`), testing only the y pointer;
+both hand the text to the object (`0x001EADB0`, `0x001EAD20`) and mark it visible (`0x001EAEA0`):
 
 - kind 0, from `0x00181F20` (the character-name printer `0x0053AB50`): taken only while the mode is
   non-zero and fewer than 32 fixed lines are queued (`+0x4610`);

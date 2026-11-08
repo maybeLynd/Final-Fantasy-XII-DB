@@ -13,6 +13,10 @@ row count (23), and then one byte per row from `+0x04`. Row *m* is a weapon moti
 main-hand equipment row ([Equipment row](../Items-Equipment-Shops-And-Licenses/equipment-row.md)), and its byte is an
 animation set.
 
+So the weapon in a unit's main hand decides its animation set: the game reads the weapon's motion class from its
+equipment row and takes that class's byte here, which the game uses for the motion lane of the unit's model. An enemy
+whose definition row names a set uses that set instead.
+
 ### How the set is chosen
 
 `0x003202F0(stats, &set)` gives a unit its animation set (`0x003202F0`-`0x00320443`). It first sets `set` to −1, and a
@@ -45,6 +49,8 @@ Its callers:
   that is not a party unit; a party unit (stats `+0x05` = 0) gets the byte of row 1 there, set 1
   (`0x00325A50`-`0x00325A5A`, `0x00325AD0`). A unit whose stats record `+0x698` is null is not a party unit there:
   it goes to `0x003202F0` with 0, which gives −1 (`0x00325A43`, `0x00325AEB`).
+  - A null unit is sent to the same branch (`0x00325A3A`, `0x00325ADF`), which then reads `[0 + 0x698]`
+    (`0x00325A62`, `0x00325B09`) and faults.
 
 ### Where the values come from
 

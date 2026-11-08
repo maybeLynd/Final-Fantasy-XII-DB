@@ -8,8 +8,9 @@ addresses: "0x0057C480, 0x0057C380, 0x002CDF20, 0x002CE370, 0x00566680, 0x0056F8
 ## What the player sees
 
 - A yes-or-no question, such as buying a license, opens a small window with Yes and No.
-- Notices, such as an error or a newly obtained license, open the same window without a choice and close themselves
-  after a few seconds or at any button.
+- Notices, such as an error or a newly obtained license, open the same window without a choice. How one closes
+  depends on its flags (below): an ordinary notice and a tutorial or license announcement stay until the player
+  closes them, and some error notices also close by themselves after a few seconds, at any button, or both.
 - The item screen's Sort command opens it with the sort options.
 - Two more screens have a box of their own: the Clan Primer opens on a list of Hunts, Bestiary, Sky Pirate's Den
   and Traveler's Tips, and the license board chooser shows the name and description of the board under the cursor.

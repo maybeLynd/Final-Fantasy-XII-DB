@@ -1043,35 +1043,35 @@ colour	loca_gil.cl2 (9 copies)																					508	91 96 D4 FF	255	1	252	78 
 colour	loca_gil.cl2 (9 copies)																					509	91 96 D4 FF	255	1	253	1469 pixels of gil_i01 0, gil_i02 1	alpha 0xFF above the PS2 opaque 0x80; drawn 255	ch cn de es fr in it kr us	RGB (145, 150, 212) at 255 of 255 opacity in palette 1 of the The Great Crystal map pictures, for pixel value 253
 colour	loca_gil.cl2 (9 copies)																					510	91 96 D4 FF	255	1	254	1061 pixels of gil_i01 0, gil_i02 1	alpha 0xFF above the PS2 opaque 0x80; drawn 255	ch cn de es fr in it kr us	RGB (145, 150, 212) at 255 of 255 opacity in palette 1 of the The Great Crystal map pictures, for pixel value 254
 colour	loca_gil.cl2 (9 copies)																					511	92 97 D5 6F	221	1	255	1626 pixels of gil_i01 0, gil_i02 1		ch cn de es fr in it kr us	RGB (146, 151, 213) at 221 of 255 opacity in palette 1 of the The Great Crystal map pictures, for pixel value 255
-colour	loca_rbl.cl2 (2 copies)																					0	00 00 00 00	0	0	0	no picture: the file is never requested		ch in	RGB (0, 0, 0) at 0 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					1	3F 21 10 03	5	0	1	no picture: the file is never requested		ch in	RGB (63, 33, 16) at 5 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					2	3E 21 10 11	33	0	2	no picture: the file is never requested		ch in	RGB (62, 33, 16) at 33 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					3	3D 20 10 1D	57	0	3	no picture: the file is never requested		ch in	RGB (61, 32, 16) at 57 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					4	3C 1F 0F 29	81	0	4	no picture: the file is never requested		ch in	RGB (60, 31, 15) at 81 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					5	06 05 05 43	133	0	5	no picture: the file is never requested		ch in	RGB (6, 5, 5) at 133 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					6	19 25 26 5C	183	0	6	no picture: the file is never requested		ch in	RGB (25, 37, 38) at 183 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					7	25 39 39 52	163	0	7	no picture: the file is never requested		ch in	RGB (37, 57, 57) at 163 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					8	32 4C 4D 4D	153	0	16	no picture: the file is never requested		ch in	RGB (50, 76, 77) at 153 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					9	43 6A 5B 4C	151	0	17	no picture: the file is never requested		ch in	RGB (67, 106, 91) at 151 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					10	55 83 67 4B	149	0	18	no picture: the file is never requested		ch in	RGB (85, 131, 103) at 149 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					11	60 91 6B 49	145	0	19	no picture: the file is never requested		ch in	RGB (96, 145, 107) at 145 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					12	8B A5 7D 48	143	0	20	no picture: the file is never requested		ch in	RGB (139, 165, 125) at 143 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					13	A3 AF 73 42	131	0	21	no picture: the file is never requested		ch in	RGB (163, 175, 115) at 131 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					14	C9 C9 96 43	133	0	22	no picture: the file is never requested		ch in	RGB (201, 201, 150) at 133 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					15	DE DE C6 41	129	0	23	no picture: the file is never requested		ch in	RGB (222, 222, 198) at 129 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					16	00 00 00 28	79	0	8	no picture: the file is never requested		ch in	RGB (0, 0, 0) at 79 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					17	14 0F 1D 2E	91	0	9	no picture: the file is never requested		ch in	RGB (20, 15, 29) at 91 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					18	2A 17 3C 34	103	0	10	no picture: the file is never requested		ch in	RGB (42, 23, 60) at 103 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					19	3E 20 61 3A	115	0	11	no picture: the file is never requested		ch in	RGB (62, 32, 97) at 115 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					20	4F 2C 7D 40	127	0	12	no picture: the file is never requested		ch in	RGB (79, 44, 125) at 127 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					21	5F 37 98 48	143	0	13	no picture: the file is never requested		ch in	RGB (95, 55, 152) at 143 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					22	74 46 B6 58	175	0	14	no picture: the file is never requested		ch in	RGB (116, 70, 182) at 175 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					23	79 61 BE 60	191	0	15	no picture: the file is never requested		ch in	RGB (121, 97, 190) at 191 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					24	31 0E 3E 54	167	0	24	no picture: the file is never requested		ch in	RGB (49, 14, 62) at 167 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					25	38 0F 4C 57	173	0	25	no picture: the file is never requested		ch in	RGB (56, 15, 76) at 173 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					26	42 0E 61 5A	179	0	26	no picture: the file is never requested		ch in	RGB (66, 14, 97) at 179 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					27	54 11 80 5D	185	0	27	no picture: the file is never requested		ch in	RGB (84, 17, 128) at 185 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					28	60 28 99 63	197	0	28	no picture: the file is never requested		ch in	RGB (96, 40, 153) at 197 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					29	72 4C B0 69	209	0	29	no picture: the file is never requested		ch in	RGB (114, 76, 176) at 209 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					30	81 79 C3 6C	215	0	30	no picture: the file is never requested		ch in	RGB (129, 121, 195) at 215 of 255 opacity; drawn by no map
-colour	loca_rbl.cl2 (2 copies)																					31	92 97 D5 6F	221	0	31	no picture: the file is never requested		ch in	RGB (146, 151, 213) at 221 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					0	00 00 00 00	0			no picture: the file is never requested		ch in	RGB (0, 0, 0) at 0 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					1	3F 21 10 03	5			no picture: the file is never requested		ch in	RGB (63, 33, 16) at 5 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					2	3E 21 10 11	33			no picture: the file is never requested		ch in	RGB (62, 33, 16) at 33 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					3	3D 20 10 1D	57			no picture: the file is never requested		ch in	RGB (61, 32, 16) at 57 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					4	3C 1F 0F 29	81			no picture: the file is never requested		ch in	RGB (60, 31, 15) at 81 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					5	06 05 05 43	133			no picture: the file is never requested		ch in	RGB (6, 5, 5) at 133 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					6	19 25 26 5C	183			no picture: the file is never requested		ch in	RGB (25, 37, 38) at 183 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					7	25 39 39 52	163			no picture: the file is never requested		ch in	RGB (37, 57, 57) at 163 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					8	32 4C 4D 4D	153			no picture: the file is never requested		ch in	RGB (50, 76, 77) at 153 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					9	43 6A 5B 4C	151			no picture: the file is never requested		ch in	RGB (67, 106, 91) at 151 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					10	55 83 67 4B	149			no picture: the file is never requested		ch in	RGB (85, 131, 103) at 149 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					11	60 91 6B 49	145			no picture: the file is never requested		ch in	RGB (96, 145, 107) at 145 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					12	8B A5 7D 48	143			no picture: the file is never requested		ch in	RGB (139, 165, 125) at 143 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					13	A3 AF 73 42	131			no picture: the file is never requested		ch in	RGB (163, 175, 115) at 131 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					14	C9 C9 96 43	133			no picture: the file is never requested		ch in	RGB (201, 201, 150) at 133 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					15	DE DE C6 41	129			no picture: the file is never requested		ch in	RGB (222, 222, 198) at 129 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					16	00 00 00 28	79			no picture: the file is never requested		ch in	RGB (0, 0, 0) at 79 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					17	14 0F 1D 2E	91			no picture: the file is never requested		ch in	RGB (20, 15, 29) at 91 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					18	2A 17 3C 34	103			no picture: the file is never requested		ch in	RGB (42, 23, 60) at 103 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					19	3E 20 61 3A	115			no picture: the file is never requested		ch in	RGB (62, 32, 97) at 115 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					20	4F 2C 7D 40	127			no picture: the file is never requested		ch in	RGB (79, 44, 125) at 127 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					21	5F 37 98 48	143			no picture: the file is never requested		ch in	RGB (95, 55, 152) at 143 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					22	74 46 B6 58	175			no picture: the file is never requested		ch in	RGB (116, 70, 182) at 175 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					23	79 61 BE 60	191			no picture: the file is never requested		ch in	RGB (121, 97, 190) at 191 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					24	31 0E 3E 54	167			no picture: the file is never requested		ch in	RGB (49, 14, 62) at 167 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					25	38 0F 4C 57	173			no picture: the file is never requested		ch in	RGB (56, 15, 76) at 173 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					26	42 0E 61 5A	179			no picture: the file is never requested		ch in	RGB (66, 14, 97) at 179 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					27	54 11 80 5D	185			no picture: the file is never requested		ch in	RGB (84, 17, 128) at 185 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					28	60 28 99 63	197			no picture: the file is never requested		ch in	RGB (96, 40, 153) at 197 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					29	72 4C B0 69	209			no picture: the file is never requested		ch in	RGB (114, 76, 176) at 209 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					30	81 79 C3 6C	215			no picture: the file is never requested		ch in	RGB (129, 121, 195) at 215 of 255 opacity; drawn by no map
+colour	loca_rbl.cl2 (2 copies)																					31	92 97 D5 6F	221			no picture: the file is never requested		ch in	RGB (146, 151, 213) at 221 of 255 opacity; drawn by no map

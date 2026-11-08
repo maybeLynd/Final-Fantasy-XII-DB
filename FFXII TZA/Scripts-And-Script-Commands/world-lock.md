@@ -64,9 +64,13 @@ release resets them.
 Every request locks every actor of managers 0 to 2 and then releases the configured rows: the
 party leader always, the other party members only when the flag is 0, and the non-party types by
 their configuration. A locked actor keeps the request's bit in `+0x10C`, and the interpreter gate
-refuses its script every frame ([script interpreter](script-interpreter.md)), which is why
-townspeople stand still while the player talks and why the talk partner, released by the request's
-own list, keeps acting.
+refuses its script every frame unless the actor's byte `+0x0B` has bit `0x20` set
+([script interpreter](script-interpreter.md)), which is why townspeople stand still while the player
+talks.
+
+Request 6 itself names no actor and no list (`0x00226BE0(6, 0, 0, 0, 4, flag)`), so it releases
+no one beyond the configured rows; the field hold's requests 5, 4 and 7, below, are the ones that carry
+a one-entry actor list.
 
 ### Event time stop
 

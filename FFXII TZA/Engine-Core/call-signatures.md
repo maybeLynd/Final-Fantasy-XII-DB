@@ -21,14 +21,14 @@ the second, `r8` or `xmm2` the third, `r9` or `xmm3` the fourth. Arity is the hi
 (`0x0079D752 movd xmm0, [rcx+0x414]`), so its arguments are `rcx` and `rdx`, arity 2.
 
 A function can leave a lower position unread: `0x00197710` overwrites `ecx` with `movzx ecx, r8b`
-before any read and reads `dl`, `r8b` and `r9b`, so it lists `rdx,r8,r9` at arity 4. 7,060 functions
+before any read and reads `dl`, `r8b` and `r9b`, so it lists `rdx,r8,r9` at arity 4. 7,058 functions
 have such an unread position below their arity.
 
 ### Stack arguments
 
 A fifth or later argument arrives on the stack, above the caller's 32-byte home area, and the main table's arity
 does not count it. The stack arguments are in [`call-signatures-stack-args.tsv`](call-signatures-stack-args.tsv):
-1,668 functions read one. `0x0085DDE0` reads positions 7, 8 and 9 (`0x0085DDF8 mov r15, [rsp+0xA0]` under a 0x58-byte
+1,670 functions read one. `0x0085DDE0` reads positions 7, 8 and 9 (`0x0085DDF8 mov r15, [rsp+0xA0]` under a 0x58-byte
 frame); `0x0073F920` reads every position from 5 to 45.
 
 Fifty-nine functions also read their own stack through a pointer that a loop advances: `0x001263AD` walks `rsp` itself
@@ -37,14 +37,14 @@ loops until its output pointer `rdi` (the fifth argument), advanced each pass by
 (`0x0012652C`), reaches the end `rdi + 8 * stride` set at `0x00126488` (`0x0012652F cmp rdi, rcx`): eight passes for a
 non-zero stride, after which `0x00126534 pop rsp` loads the stack pointer saved just above the array.
 
-Those reads are in the `loop_reads` column, each with the pointer's offset on the first pass and its change per pass;
-how far they reach is set by the loop's exit test.
+Those reads are in the `loop_reads` column, each with the pointer's offset when the loop is entered and its change
+per pass; how far they reach is set by the loop's exit test.
 
 ### What a call receives
 
-[`call-signatures-forwards.tsv`](call-signatures-forwards.tsv) has one row for each of the 137,605 call and tail-call
-sites: 122,334 calls and 15,271 tail calls. 126,525 name a function, 3,802 an import, 441 a function pointer kept in
-a global, and 6,837 a register or memory operand. At 35,736 sites at least one argument register still holds the
+[`call-signatures-forwards.tsv`](call-signatures-forwards.tsv) has one row for each of the 137,603 call and tail-call
+sites: 122,336 calls and 15,267 tail calls. 126,523 name a function, 3,802 an import, 441 a function pointer kept in
+a global, and 6,837 a register or memory operand. At 35,829 sites at least one argument register still holds the
 function's incoming value on every path to the site, so the callee receives that argument unchanged.
 
 ## Columns
@@ -58,8 +58,8 @@ function's incoming value on every path to the site, so the callee receives that
 | `int_regs` | the integer argument registers read before written, `-` when the body reads no integer argument register |
 | `flt_regs` | the float argument registers `xmm0` to `xmm3` read before written |
 | `home_spill` | integer argument registers stored unchanged into their own home slot (`[entry rsp + 8]` for `rcx` up to `+0x20` for `r9`) |
-| `call_passthrough` | argument registers the body neither reads nor writes before some call or tail call, which that callee receives unchanged |
-| `insns` | instructions in the body |
+| `call_passthrough` | argument registers some path leaves unwritten up to a call or tail call (the site's `held_on_every_path` or `held_on_some_paths` in the forwarding table), less those in `int_regs` and `flt_regs`; on that path the callee receives them unchanged |
+| `insns` | instructions reached from the entry and from the body's `__except` blocks; bytes of the extent that no path reaches, such as a switch table or padding, are not counted |
 
 `home_spill` is a store of the incoming register into its own slot. A store of an argument register elsewhere does not
 count: `0x0030FE60` zeroes `ecx` and writes it through `rax` as a dword every 8 bytes over three 0x200-byte tables (from
@@ -67,7 +67,7 @@ count: `0x0030FE60` zeroes `ecx` and writes it through `rax` as a dword every 8 
 and `0x00311CD0` stores `r9d` at `[rsp+0x20]` after `sub rsp, 0x38`, which is the fifth argument of its own call to
 `0x00311B20`.
 
-Neither is a home spill. 1,333 functions have one, among them `0x0018D680`, which then reads its arguments' bytes back
+Neither is a home spill. 1,334 functions have one, among them `0x0018D680`, which then reads its arguments' bytes back
 from the slots.
 
 [`call-signatures-stack-args.tsv`](call-signatures-stack-args.tsv), one row per function:
@@ -79,7 +79,7 @@ from the slots.
 | `stack_positions` | the argument positions read from the stack: 5 is `[entry rsp + 0x28]`, eight bytes per position |
 | `max_position` | the highest of them |
 | `first_read` | the first instruction, in address order, that reads the highest position |
-| `loop_reads` | reads of the function's own stack through a pointer a loop advances: the site, the pointer and displacement, its offset from the entry `rsp` on the first pass and its change per pass; `after the loop at L` for a read through the pointer a loop has left behind |
+| `loop_reads` | reads of the function's own stack through a pointer a loop advances: the site, the pointer and displacement, the pointer's offset from the entry `rsp` when the loop is entered and its change per pass (a site after the pass has advanced the pointer reads one step higher on the first pass); `after the loop at L` for a read through the pointer a loop has left behind |
 
 [`call-signatures-forwards.tsv`](call-signatures-forwards.tsv), one row per call or tail-call site:
 
@@ -110,13 +110,13 @@ so that its first argument is that class's `this`:
 | Fact | Value |
 |---|---|
 | Functions | 39,108 |
-| Arity 0 / 1 / 2 / 3 / 4 | 10,693 / 8,205 / 11,160 / 4,770 / 4,280 |
-| Read a float argument register | 1,311 |
-| Store an argument in its home slot | 1,333 |
-| Leave a position below their arity unread | 7,060 |
-| Read a stack argument | 1,668 |
+| Arity 0 / 1 / 2 / 3 / 4 | 10,661 / 8,214 / 11,173 / 4,772 / 4,288 |
+| Read a float argument register | 1,314 |
+| Store an argument in its home slot | 1,334 |
+| Leave a position below their arity unread | 7,058 |
+| Read a stack argument | 1,670 |
 | Read their own stack through a loop-advanced pointer | 59 |
-| Call and tail-call sites | 137,605 |
+| Call and tail-call sites | 137,603 |
 | Sit in a class's virtual table | 6,883 |
 
 `0x0053DD10` (`mov eax, 1; ret`) is held by 24 virtual tables. It is also called directly: `0x002DDC50()` answers

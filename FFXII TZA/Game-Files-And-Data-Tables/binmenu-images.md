@@ -14,6 +14,10 @@ The game pastes these files into three menu pictures at run time:
 - when an area flag is set, the icon `map_efe0N` into `battle_4_c`. Four of these flags are the ones that stop
   the party using Attack, Magicks, Technicks or Items ([command availability](../Battle-Actions/command-availability.md)).
 
+Each of these files is a bare grid of colour numbers with no colours of its own. When a guest joins or an area flag is
+set, the game copies the grid into a fixed rectangle of one of three menu pictures loaded from `tex2pack_ys.bin`, and
+that picture's palette turns each number into a colour.
+
 ## Where it comes from
 
 All eighteen are kind-7 resources in `ps2data/image/ff12/myoshiok/<lang>/bin_menu/`:
@@ -27,6 +31,10 @@ All eighteen are kind-7 resources in `ps2data/image/ff12/myoshiok/<lang>/bin_men
 The language's kind-7 path array (`0x002DF9A0`) names the folder: `us`, `fr`, `de`, `it` and `es` for language
 ids 1-5, `in` for id 6 and the default, `kr`, `ch` and `cn` for 7, 8 and 11. The destination pictures come
 from the same language's `packfiles/tex2pack_ys.bin` (kind 7, `0xD7`).
+
+The area flags behind the icons are set and cleared by the script verbs `set_field_effect` and `clear_field_effect`.
+The lowest flag that is set picks the icon pasted into `battle_4_c`, and four of the flags also bar Attack, Magicks,
+Technicks or Items.
 
 ## Layouts
 

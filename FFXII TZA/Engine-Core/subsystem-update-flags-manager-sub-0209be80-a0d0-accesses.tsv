@@ -1,5 +1,6 @@
 function	name	site	disp	kind	instruction	route	note
 0x0028E290	FUN_0028e290	0x0028E43D	0x0	addr	lea rcx, [rbx + 0xa0d0]	embed ManagerSingleton0209BE80+0xA0D0	
+0x003F7E80	FUN_003f7e80	0x003F7EAA	0x220	addr	lea rax, [rdi + 0x220]	embed ManagerSingleton0209BE80+0xA0D0	
 0x003F80E0	FUN_003f80e0	0x003F80EE	0x960	addr	lea r9, [rcx + 0x960]	embed ManagerSingleton0209BE80+0xA0D0	
 0x003F80E0	FUN_003f80e0	0x003F8103	0x960	w	mov dword ptr [rcx], eax	embed ManagerSingleton0209BE80+0xA0D0	
 0x003F80E0	FUN_003f80e0	0x003F8121	0x960	w	mov dword ptr [r9], ecx	embed ManagerSingleton0209BE80+0xA0D0	
@@ -7,4 +8,13 @@ function	name	site	disp	kind	instruction	route	note
 0x0028F8B0	FUN_0028f8b0	0x0028F911	0x974	w	mov dword ptr [rax + 0xaa44], 1	embed ManagerSingleton0209BE80+0xA0D0	
 0x00290410	FUN_00290410	0x0029041D	0x974	r	mov eax, dword ptr [rax + 0xaa44]	embed ManagerSingleton0209BE80+0xA0D0	
 0x00290430	FUN_00290430	0x0029043C	0x974	w	mov dword ptr [rax + 0xaa44], ecx	embed ManagerSingleton0209BE80+0xA0D0	
+0x003F7E80	FUN_003f7e80	0x003F7EB6	0x978	r	cmp qword ptr [rdi + 0x978], rcx	embed ManagerSingleton0209BE80+0xA0D0	
+0x003F7E80	FUN_003f7e80	0x003F7F2A	0x978	w	mov qword ptr [rdi + 0x978], rbx	embed ManagerSingleton0209BE80+0xA0D0	
+0x003F7E80	FUN_003f7e80	0x003F7EBF	0x980	r	cmp dword ptr [rdi + 0x980], 2	embed ManagerSingleton0209BE80+0xA0D0	
+0x003F7E80	FUN_003f7e80	0x003F7ECD	0x980	w	mov dword ptr [rdi + 0x980], ecx	embed ManagerSingleton0209BE80+0xA0D0	
+0x003F7E80	FUN_003f7e80	0x003F7ED3	0x980	r	movsxd rax, dword ptr [rdi + 0x980]	embed ManagerSingleton0209BE80+0xA0D0	
+0x003F7E80	FUN_003f7e80	0x003F7F1D	0x980	rw	inc dword ptr [rdi + 0x980]	embed ManagerSingleton0209BE80+0xA0D0	
+0x003F7E80	FUN_003f7e80	0x003F7EA3	0x984	rw	and dword ptr [rdi + 0x984], 0xfffffffe	embed ManagerSingleton0209BE80+0xA0D0	
+0x003F7E80	FUN_003f7e80	0x003F7EF0	0x984	rw	or dword ptr [rdi + 0x984], 1	embed ManagerSingleton0209BE80+0xA0D0	
+0x003F7E80	FUN_003f7e80	0x003F7F23	0x984	rw	and dword ptr [rdi + 0x984], 0xfffffffe	embed ManagerSingleton0209BE80+0xA0D0	
 0x003F80D0	FUN_003f80d0	0x003F80D0	0x984	r	test byte ptr [rcx + 0x984], 1	embed ManagerSingleton0209BE80+0xA0D0	

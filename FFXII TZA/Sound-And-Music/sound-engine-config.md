@@ -73,6 +73,10 @@ element (`0x007AA1A5`, `0x007AA0AB`).
 `mcr `, `epsp`, `eps ` and `curv` build nothing. `mcr ` is read where it lies each time a macro runs (`0x007B31A0`),
 `epsp` and `eps ` each time a preset is applied (`0x007ACD30`, `0x007AD240`), and `curv` by the curve binders.
 
+The game reads `sead.win.config` once at start-up and the sound engine keeps a whole copy of it. From the copy it
+builds one object per sound category, with room for as many sounds as the category's size allows, and the buses with
+their effects; macros and effect presets are read from the copy each time they are used.
+
 ## Layouts
 
 All multi-byte fields are little-endian.

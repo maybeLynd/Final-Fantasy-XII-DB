@@ -39,6 +39,10 @@ Every shipped bank and index is listed, with its header, contents, loader and wh
 [`sound-block-index-files.tsv`](sound-block-index-files.tsv) and [`sound-voice-bank-files.tsv`](sound-voice-bank-files.tsv).
 The columns are under Shipped data.
 
+A character's sound record names up to three sound blocks. For each one the game loads the block's index file
+(`.seb`), files it in a list of at most 64 loaded blocks and opens the matching `.win.sab` bank; a sound id then names
+a block by its place in that list and a sound by its slot in the block.
+
 ### Block banks and the block index
 
 An actor's sound-effect record names up to three SE blocks as `u16` ids, bit `0x8000` meaning no block. `0x002E60F0`

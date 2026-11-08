@@ -14,6 +14,10 @@ addresses: "0x0055B3F0, 0x0055BFF0, 0x0055B310, 0x0055DD70, 0x0055CD40, 0x00557D
   announce a new Esper, a new Mist ability or the Second Board.
 - From the board chooser, a board can be previewed without choosing it.
 
+The screen draws the member's chosen board file: each square names a license, whose record gives its LP cost, and the
+member's license data says whether the square is owned, can be obtained now, or only later. Obtaining a square writes
+that license to the member, charges the LP, and the squares are worked out again.
+
 ## How it works
 
 ### Opening

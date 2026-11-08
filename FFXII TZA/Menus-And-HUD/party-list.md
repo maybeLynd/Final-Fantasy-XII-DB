@@ -81,7 +81,7 @@ A row's flag word `+0xD8` (`+0x318 + i x 0x160` in the list) drives its effects:
 | `0x2` | the row is refused in a pick mode; its widget's brightness `+0x5A` becomes `+0x5A >> 1` (`0x0029A247`-`0x0029A24B`) |
 | `0x4` | the cursor is on the row; its brightness `+0x5A` pulses, `0x00296FB0(32, 128, 0)` (`0x0029A25C`-`0x0029A264`), and a pointer is drawn (`0x0029A1EA`) |
 | `0x8` | the row is closing |
-| `0x10` | a status pulse: brightness `+0x5A` and alpha `+0x58` follow the track `0x009162B0` over `+0x110` (`0x0029A223`-`0x0029A23D`), 16 a frame (`0x00299890`) |
+| `0x10` | the row pulse that `0x00296E90` starts, whose one caller is the HP damage flash (Flashes, below; `0x0028FC59`): brightness `+0x5A` and alpha `+0x58` follow the track `0x009162B0` over `+0x110` (`0x0029A223`-`0x0029A23D`), 16 a frame (`0x00299890`) |
 | `0x20`, `0x40` | an HP or MP flash, below |
 | `0x80` | nodes 0-2 fade out over 8 frames, and back in once it clears (`0x00298130`) |
 
@@ -92,13 +92,14 @@ bit `0x2` at `+0x25` is also drawn at half brightness (`+0x5A`, `0x0029A267`-`0x
 ### Flashes
 
 `0x0028FBE0(popup)`, run for every battle number the popup queue `0x003BBD00` adds (`0x003BBE6C`), flashes the member's row
-by the popup's kind byte `+0x0D`:
+when the popup is a number (kind byte `+0x0C` 0, `0x0028FBE6`) with a non-zero amount (`0x0028FBF3`), by the number's
+colour slot, byte `+0x0D` (`0x0028FC2B`; [Battle numbers](battle-numbers.md)):
 
-| Kind | Flash |
-|---|---|
-| `1`, `5` | HP: bit `0x20`, `0x00297040(list, handle, 0)` |
-| `3`, `7` | MP: bit `0x40`, `0x00297040(list, handle, 1)`, not on a row of kind 3 |
-| `2`, `6` | status pulse: bit `0x10`, `0x00296E90` |
+| Colour slot | Number | Flash |
+|---|---|---|
+| `1`, `5` | HP recovery | HP: bit `0x20`, `0x00297040(list, handle, 0)` |
+| `3`, `7` | MP recovery | MP: bit `0x40`, `0x00297040(list, handle, 1)`, not on a row of kind 3 |
+| `2`, `6` | HP damage | the row pulse: bit `0x10`, `0x00296E90` |
 
 `0x002994E0` draws the HP flash as a highlight sprite round the union of the HP digit nodes (`0x00271DB0`), as wide as
 the digit frame plus 24 for each node past the first (`0x002998D0`). For the draw it sets the widget's
@@ -264,16 +265,21 @@ Request 3 ([Menus](menus.md)) reaches `0x00290500(1)`, which runs `0x00296BE0(li
    - A null list or mode 2 answers 0; a list already in mode 1 answers 1 and changes nothing (`0x00296BE9`,
      `0x00296CAE`-`0x00296CBF`). Otherwise it stores the leader index `0x0035BAE0()` at `+0xB48`, the list itself as the
      context `+0xB30` and the handler at `+0xB20`, and clears `+0xB4A` bit `0x2` (`0x00296CC5`-`0x00296CF4`).
-2. `0x00299BD0` offers each row whose member has a handle, is not KO (flag bit `0x1`), has flag bit `0x40` clear and passes
-   `0x002739D0`; the others are refused.
-3. The cursor starts on the leader, or the next offered row (`0x00296D96`, `0x00296DA7`).
-   - The leader's row keeps the cursor when it has bit `0x1` (`ax & 1`, `0x00296D32`); otherwise the search wraps
-     round from the row after it, `i = i + 1 < n ? i + 1 : 0`, and with no offered row the cursor stays on the
-     leader's row.
-   - The search steps at most `n` rows, `n` the row count byte `+0xB42`, testing `[list + 0x318 + 0x160 * i] & 0x1`
-     (`0x00296D2A`-`0x00296D91`). The row gets bit `0x4`; `0x0035BB00` is called for the leader's and the cursor's index
-     and its answer is not used (`0x00296D0C`-`0x00296DB7`).
-4. The header closes, the overlay `0x0029C9D0` opens over the rows, and the list takes the focus (`0x002470D0`).
+2. `0x00299BD0` visits rows 0 to `n - 1`, `n` the row count byte `+0xB42`, and gives each one bit `0x1`. A row
+   whose member has a handle, is not KO (flag bit `0x1`), has flag bit `0x40` clear and passes `0x002739D0` is
+   offered (`0x00299C5F`); the others are refused: they lose bit `0x4` and get bits `0x1` and `0x2`
+   (`0x00299C76`-`0x00299C82`).
+3. The cursor goes to the leader's row (`0x00296D96`, `0x00296DA7`).
+   - Every row below `n` has bit `0x1`, offered or refused, so a leader index from 0 to `n - 1` always keeps the
+     cursor (`ax & 1`, `0x00296D32`), even when the leader's own row is refused.
+   - Only a leader index outside the rows can fail that test: -1, or `n` or more. The rebuild `0x0035BC50` leaves
+     such an index when no listed member is the leader: it keeps the old index, -1 at first, unless that is above
+     the new member count (`0x0035BD66`, `0x0035BE72`-`0x0035BE90`).
+   - When the word tested for such an index has bit `0x1` clear, the search `i = i + 1 < n ? i + 1 : 0`
+     (`0x00296D47`-`0x00296D91`) stops at row 0 on its first step; with `n` = 0 it does not run and the cursor
+     index stays the leader index.
+   - The row gets bit `0x4`; `0x0035BB00` is called for the leader's and the cursor's index and its answer is not
+     used (`0x00296D0C`-`0x00296DB7`).
    - The header `+0xB38` closes with `0x00244DD0` (`0x00296D07`). It clears `+0xB4A` bit `0x1` and sets it again when
      `0x0029C9D0` answers 0.
    - It then runs `0x003678F0`, which writes `0x8000`, no position, to the hand cursor's words at

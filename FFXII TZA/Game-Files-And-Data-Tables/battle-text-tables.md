@@ -12,6 +12,10 @@ menu label and help line is a string looked up by number. The battle names live 
 `battle_pack.bin`, loaded at start-up; the menu and help text lives in separate files that a menu
 loads when it first needs them.
 
+A battle name's number splits into a bank and a row of that block. A menu or help line's number is its file's group
+times 1,000 plus its row, and a line whose file is not loaded yet shows as empty text. Each string is a run of glyph
+numbers that the language's font turns into letters.
+
 ## Where it comes from
 
 - **Word banks:** entry `+0xF8` of `battle_pack.bin` (`word.bin`), bound to the registry slot

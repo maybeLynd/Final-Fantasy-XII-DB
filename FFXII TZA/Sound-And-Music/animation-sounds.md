@@ -12,6 +12,10 @@ addresses: "0x00520C50, 0x00520D00, 0x0046CC70, 0x0046C250, 0x0046C6E0, 0x0046C8
 - A cry is sometimes skipped, and the same cry is never picked twice running.
 - An animation that is cut short never plays its later sounds.
 
+The animation files carry the sound commands, each naming a sound type. When one fires, the character's sound emitter
+picks a variation, finds the sample in the character's own sound set (for a footstep, through `soundfoottable.bin` and
+the ground type underfoot) and plays it from a point on the body.
+
 ## How it works
 
 ### The three commands
@@ -72,7 +76,8 @@ Types 4 and 5 are also silent when `0x003326C0` finds nothing for emitter word `
 
 `0x0046C6E0` and `0x0046C8F0` find the point by type from one table, and the source's radius is half the character's
 parameter `0x9001D1E`. `0x0046C6E0` runs first and can refuse the sound. `0x0046C8F0` builds the spatial source, scales
-its volume byte by `volume / 128`, capped at `0x7F`, plays nothing when that is 0 and calls the play routine
+its volume byte by `volume / 128`, keeps the low 8 bits of the result, plays nothing when that is 0, caps it at
+`0x7F` and calls the play routine
 ([Spatial sound](spatial-sound.md)).
 
 The radius is `0.5 * param`, or 0 when `0x002EDBD0` returns null for the emitter's word `+8`
@@ -96,7 +101,9 @@ The footstep also passes the float at `0x01F004D0 + 4 * b`, with `b` the byte `+
 
 The volume byte is the source's `+0x19`: `byte * volume / 128`, truncated toward zero and kept to its low
 8 bits (`0x0046CA5F`-`0x0046CA77`); a volume of 0 leaves the byte as it is (`0x0046CA72`). A zero result returns 0
-(`0x0046CB4D`); otherwise it calls `0x003A0E50` with the sound id and returns its result (`0x0046CAAE`).
+(`0x0046CB4D`). Then `byte = min(byte, 0x7F)` (`0x0046CA7F`-`0x0046CA89`): a byte of 127 with a volume of 255
+gives 253 and then 127, while 200 with 200 gives 312, kept as 56, which the cap leaves as it is. It then
+calls `0x003A0E50` with the sound id and returns its result (`0x0046CAAE`).
 
 ### Which sample
 

@@ -13,6 +13,10 @@ addresses: "0x00253C70, 0x002B6350, 0x002B9D30, 0x003BC450, 0x003BC2D0, 0x003C18
 - A small map in the corner of the field shows the surroundings, the party and nearby markers.
 - Places not yet visited or mapped are hidden, and unrevealed names show "???".
 
+The map screens draw from the `menumap` files: `menumap_world.bin` for the World Map, `menumap_location.bin` for the
+location maps and `menumap_common.bin` for both. Whether a place, link or name shows is decided by story flags, the
+visit record kept for each area, and whether the party owns that area's map.
+
 ## How it works
 
 ### Names
@@ -20,7 +24,7 @@ addresses: "0x00253C70, 0x002B6350, 0x002B9D30, 0x003BC450, 0x003BC2D0, 0x003C18
 | Map | Shipped text | Code |
 |---|---|---|
 | World Map | `menu_command.bin` `0x4B7`, help `0xCCA` | main-menu entry `0x00281C36` |
-| location map | the phrase in `0xCCA`; opened by the control "Display Map" (`0x589`) | menu request `0x21` ([Menus](menus.md)) |
+| location map | the phrase in `0xCCA`; opened by the control "Display Map" (`0x589`) | menu request 2 with parameter `0x21` ([Menus](menus.md)) |
 | map overlay | toggled by the control "Map Transparency" (`0x586`); its layout keys are `TrackMap*` | `0x002B6220` |
 | minimap | shown by the script verbs `shownavimap` (`0x00352390`) and `shownavimapfast` (`0x00352AD0`), hidden by `hidenavimap` (`0x003527D0`) and `hidenavimapfast` (`0x00352E20`); `setnavimapindex` (`0x00356BF0`) picks its picture | widget `0x003C5910` |
 
@@ -37,8 +41,10 @@ The input arbiter `0x00253C70` keeps the map state in `0x02092750`:
 2. State 3 opens the map overlay with `0x002B6220(1)` (`0x00253DE2`) when the field-time container is ready (`0x003CB3E0`),
    `0x02092754` is 0, the field has a map record (`0x003BFDF0`) and the story counter is at least 16
    (`0x00253DD1`-`0x00253DDA`).
-3. Display Map closes the overlay and posts menu request `0x21`, the location map (`0x00253EA4`-`0x00253EF2`). Leaving
-   the location map restores the overlay as it was (`0x002BBA2F`-`0x002BBA3C`).
+3. Display Map closes the overlay and posts menu request 2 with parameter `0x21`, the location map
+   (`0x00253EA4`-`0x00253EF2`, `0x002E1B10` at `0x00253EE6`). Leaving the location map restores the overlay as it was
+   (`0x002BBA2F`-`0x002BBA3C`). The arbiter's other post of request 2 (`0x00253F01`-`0x00253F58`) also sends `0x21` until
+   story flag `0x5E` is set (`0x00253F21`); then it sends `0x00264640(2)`, or 1 when that is 0 ([Menus](menus.md)).
 4. While the state is not 3, the overlay is closed every frame (`0x002B6260`, `0x00253C92`).
 
 The location map also opens from `0x0028E630`, `0x0028E660` and `0x0028E690`, and the World Map host `0x00550400` from

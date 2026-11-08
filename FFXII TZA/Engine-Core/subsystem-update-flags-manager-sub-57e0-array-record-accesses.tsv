@@ -16,9 +16,18 @@ function	name	site	disp	kind	instruction	route	note
 0x003FA160	FUN_003fa160	0x003FA43F	0x20	addr	lea rcx, [rbx + 0x20]	embed ManagerSub0209BE80_57E0+0x270	
 0x003FBE90	FUN_003fbe90	0x003FC019	0x20	addr	lea rcx, [rbx - 0x10]	embed ManagerSub0209BE80_57E0+0x270	
 0x00270B40	FUN_00270b40	0x00270BA9	0x30	w	movss dword ptr [rdi], xmm0	embed ManagerSub0209BE80_57E0+0x270	
+0x00270B40	FUN_00270b40	0x00270C62	0x30	w	movss dword ptr [rdi + r15*4], xmm1	embed ManagerSub0209BE80_57E0+0x270	
+0x00270B40	FUN_00270b40	0x00270C9B	0x30	w	movss dword ptr [rdi + rsi*4], xmm0	embed ManagerSub0209BE80_57E0+0x270	
+0x00270B40	FUN_00270b40	0x00270CBB	0x30	w	movss dword ptr [rdi + r14*4], xmm0	embed ManagerSub0209BE80_57E0+0x270	
 0x003FBE90	FUN_003fbe90	0x003FBED8	0x30	addr	lea rbx, [rcx + 0x10]	embed ManagerSub0209BE80_57E0+0x270	
 0x00270B40	FUN_00270b40	0x00270BBB	0x34	w	movss dword ptr [rdi + 4], xmm1	embed ManagerSub0209BE80_57E0+0x270	
+0x00270B40	FUN_00270b40	0x00270C62	0x34	w	movss dword ptr [rdi + r15*4], xmm1	embed ManagerSub0209BE80_57E0+0x270	
+0x00270B40	FUN_00270b40	0x00270C9B	0x34	w	movss dword ptr [rdi + rsi*4], xmm0	embed ManagerSub0209BE80_57E0+0x270	
+0x00270B40	FUN_00270b40	0x00270CBB	0x34	w	movss dword ptr [rdi + r14*4], xmm0	embed ManagerSub0209BE80_57E0+0x270	
 0x00270B40	FUN_00270b40	0x00270BCE	0x38	w	movss dword ptr [rdi + 8], xmm0	embed ManagerSub0209BE80_57E0+0x270	
+0x00270B40	FUN_00270b40	0x00270C62	0x38	w	movss dword ptr [rdi + r15*4], xmm1	embed ManagerSub0209BE80_57E0+0x270	
+0x00270B40	FUN_00270b40	0x00270C9B	0x38	w	movss dword ptr [rdi + rsi*4], xmm0	embed ManagerSub0209BE80_57E0+0x270	
+0x00270B40	FUN_00270b40	0x00270CBB	0x38	w	movss dword ptr [rdi + r14*4], xmm0	embed ManagerSub0209BE80_57E0+0x270	
 0x00270B40	FUN_00270b40	0x00270B96	0x3C	w	movss dword ptr [rdi + 0xc], xmm1	embed ManagerSub0209BE80_57E0+0x270	
 0x00270B40	FUN_00270b40	0x00270CD9	0x3C	w	movss dword ptr [rdi + 0xc], xmm0	embed ManagerSub0209BE80_57E0+0x270	
 0x003FBE90	FUN_003fbe90	0x003FBEF0	0xA0	w	mov dword ptr [rbx + 0x70], r14d	embed ManagerSub0209BE80_57E0+0x270	

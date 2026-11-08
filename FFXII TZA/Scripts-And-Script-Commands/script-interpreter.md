@@ -147,7 +147,7 @@ opcode its mnemonic, length, handler and effect. By family:
 | Opcodes | Family | Effect |
 |---|---|---|
 | `0x00` NOP | | advance only |
-| `0x03` SYSHALT | halt | sets actor `+0x14` bit `0x40` and rewinds, so the script repeats it every tick |
+| `0x03` SYSHALT | halt | sets actor `+0x14` bit `0x40` and rewinds the pc to itself (`0x0025E607`); while the bit is set the entry check returns at once, and request selection clears it when it selects an entry (`0x003DB774`) |
 | `0x04` SYSTEM | | pops and discards one value |
 | `0x05` to `0x09`, `0x10`, `0x11`, `0x17`, `0x18` | logic | pop two (or one) ints, push the logical or bitwise result; `OPSRL` is an arithmetic shift |
 | `0x0A` to `0x0F` | compare | `0x0025D740` on two operands, push 0 or 1 for `== != > < >= <=` |
@@ -242,7 +242,8 @@ from.
 - The table entries are offsets from `0x120000`, not addresses.
 - A verb that must wait returns an odd poll value; its begin runs once, its poll every frame
   until it completes.
-- `OPMOD` by zero and `INT_MIN MOD -1` fault; `OPDIV` does not.
+- `OPMOD` by zero and `INT_MIN MOD -1` fault; `OPDIV` yields 0 on a zero divisor, but its int path runs `idiv`
+  with no `INT_MIN / -1` test (`0x0025F0D1`-`0x0025F0DA`), so `INT_MIN / -1` faults as well.
 
 ## Related
 

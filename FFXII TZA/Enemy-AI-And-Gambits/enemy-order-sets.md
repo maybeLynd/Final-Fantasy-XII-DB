@@ -35,6 +35,10 @@ run's weights sum to 100.
 A word whose index is not below the count comes back unchanged (`0x00308EF0`-`0x00308EFA`), and a run with no such
 entry gives `0xFFFF` (`0x00308FA4`).
 
+So an order in an area file can point to a weighted list instead of a single action. These lists are kept in
+`battle_pack.bin`, each list's weights add up to 100, and the game rolls a number from 0 to 99 and takes the first
+action whose running total of weights is above the roll.
+
 ### What a test can check
 
 Each test is a relation word, a sub-selector byte `s`, an opcode byte and an `i16` operand `v` (order `+0x06`,
@@ -196,7 +200,7 @@ Both percentages, and the weighted pick, take a draw of the shared gameplay LCG 
 | `keep` | `0x8000` | the order in flight is not re-planned over, and its time-out is 60 times the time-out factor instead of 30 (10 for an action id above `0x21E`) ([Target selection](../Battle-Actions/target-selection.md)) | `0x0030873B`, `0x0030AF49` |
 | `guard` | `0x4000` | while it is in flight, a resumed walk tries only `resume` orders | `0x00305D7F` |
 | `sticky` | `0x1000` | when the deciding unit's `+0x744` is this action, the unit in its `+0x740` is taken as the only target | `0x00301B47`-`0x00301B72`, `0x00301E76`-`0x00301E88` |
-| `no-repeat` | `0x800` | not tried while it is the unit's previous order | `0x003015A6` |
+| `no-repeat` | `0x800` | not tried while it is the unit's previous order `+0x738`; an action id outside the order band only when the previous command's `+0x730` has bit `0x1`, set when its state step finished with result 1 ([Enemy AI](enemy-ai.md), [Gambits](gambits.md)) | `0x003015A6`-`0x003015C9` |
 | `spread` | `0x400` | an enemy passes over a candidate three units are committed against (`+0xEA8`) | `0x00301B79`-`0x00301B9C`, `0x00301E8E`-`0x00301E9D` |
 | `skip-resume` | `0x80` | skipped by a resumed walk | `0x00305DBC` |
 | `resume` | `0x40` | tried by a resumed walk while a `guard` order is in flight | `0x00305DB2` |

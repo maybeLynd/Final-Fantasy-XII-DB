@@ -32,6 +32,9 @@ The kind-7 path array is chosen per locale id by `0x002DF9A0`. Locale ids 1-6 an
 from `packfiles/fontpack_fs.bin` (kind 7, `0xD2`): the `us` copy for ids 1-6, `kr`, `ch` and `cn` for 7, 8 and 11,
 and `in` for the default.
 
+A sheet is only a run of letter pictures with no index of its own. The game finds a letter by looking its code up in
+that face's glyph table in `fontpack_fs.bin`, which gives the letter's size and where its picture starts in the sheet.
+
 ## Layouts
 
 All multi-byte fields are little-endian.
@@ -146,8 +149,9 @@ and how often each language's staff-roll text asks for its code.
   to 6, 9 and 10, are asked for 38 of the 78 cells of font A (faces 6 and 7), 63 of font B (faces 8 and 9)
   and 66 of font C (faces 10 and 11); the `ch` sheets, read by id 8, for 35, 63 and 63.
 - Each of the others is fetched by no line: no staff-roll line set in its font, in any language that loads
-  the sheet, holds its code once `0x003647E0` has taken out the codes below `0x21`, `0x3000` and the `0x7B`
-  escapes. The TSV names those languages per cell.
+  the sheet, holds its code once `0x003647E0` has taken out the codes `0x01`-`0x03`, `0x20` and `0x3000` and
+  the `0x7B` escapes (no shown line holds a code from `0x04` to `0x1F`). The TSV names those languages per
+  cell.
 - The 49 cells that only the `us` tables place in faces 8 to 11 start 512 to 20,992 bytes past the end of
   their sheet; the TSV marks them out of range. No staff-roll line of locale ids 1 to 6, the ids that use
   the `us` tables, asks for them, so they are never fetched.
@@ -267,7 +271,8 @@ rectangle, and only when the colour's alpha byte is non-zero.
 ### Control codes and measuring
 
 `0x003649A0` reads the line as 16-bit codes and hands each to `0x003647E0` first (`0x00364B58`), which
-consumes the codes below `0x21` and the escape `0x7B` and returns any other code for drawing. `0x00364530`
+consumes the codes `0x01`-`0x03`, `0x20` and `0x3000` and the escape `0x7B`, returns `0x0000` at the end of
+the line, and returns any other code, `0x04`-`0x1F` among them, for drawing. `0x00364530`
 walks the same codes without drawing to measure the line; `0x003656A0` calls it (`0x00365778`), and the
 staff roll's line layout `0x0053DD20` measures through `0x003656A0`.
 

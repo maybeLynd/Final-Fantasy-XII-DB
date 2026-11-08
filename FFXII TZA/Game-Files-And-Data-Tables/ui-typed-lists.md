@@ -13,6 +13,10 @@ gauge and grid of cells on those screens is an item in an authored list that pla
 texture atlas, a line of text from the string tables, a bar, or a child panel at a fixed position. Changing a
 list moves, recolours or removes those pieces without touching code.
 
+A picture item names its atlas only through the list's table of atlas names; the game matches that name against the
+pictures the screen has registered, and a name that matches no picture falls back to the first slot. The item's
+sub-image code then picks a rectangle from the picture's own sub-image table, and that rectangle is drawn.
+
 ## Where it comes from
 
 The lists ship in two forms, both starting with the magic `MRP\0`:
@@ -73,7 +77,9 @@ address and encodes the sum (`0x002A1A96`-`0x002A1A9F`), then, for each of the `
 32 bits of the record's own address and encodes that (`0x002A1AC7`-`0x002A1AD9`).
 
 A row tagged 1 at `+0x00` registers the name at its relocated `+0x08`, with a TIM2 image 16 bytes after the name,
-through `0x0024A440` (the readers are in `0x00406A60`); every shipped list has no rows.
+through `0x0024A440` (the readers are in `0x00406A60`). The 344 `.mrp` files and pack units have no rows; the two
+lists in slot 15 of the map packs `rwg0201` and `rwg0202` have two each, registering `template` and `temlate02`
+([Map pack](../World-Areas-And-Travel/mpk-map-pack.md)).
 
 ### List record (20 bytes)
 
@@ -222,7 +228,7 @@ Measured over every `.mrp` file and every `mrppack_ys.bin` unit in the archive.
 |---|---|
 | standalone lists | 116 `.mrp` files, 12 names, in 10 locale folders (`us`, `de`, `es`, `fr`, `it`, `in` have all 12; `ch`, `cn`, `kr`, `in_sdver` lack `title_fore3.mrp`) |
 | packs | 10 `mrppack_ys.bin`; 23 units in nine, 21 in `in_sdver` (the last two offsets are `0xFFFFFFFF`); 228 units |
-| list files in all | 344, every one `MRP\0` with byte `+3` = 0, outer table at file offset `0x30`, no rows |
+| list files in all | 344, every one `MRP\0` with byte `+3` = 0, outer table at file offset `0x30`, no rows (the map packs' slot-15 lists, outside this count, have two) |
 | list records | 7,665 (1,458 in files, 6,207 in pack units); the largest holds 104 items |
 | every list record | one row each in [`ui-typed-lists-records-rows.tsv`](ui-typed-lists-records-rows.tsv), 7,665 rows: carrier file, pack unit, index, item count, mask `0xFFFFC00`, bit `0x10000000`, mask `0xE0000000`, rectangle, the `+0x0C` value and the first item's offset |
 | every item | one row each in [`ui-typed-lists-items-rows.tsv`](ui-typed-lists-items-rows.tsv), 30,546 rows: carrier, unit, record, position, length, type, bytes `+2` and `+3`, rectangle and the type fields in hex |
@@ -340,7 +346,7 @@ bits `0x3C`. Types 1, 3, 6 and 8 have no arm.
   `+0x60` from the scale `+0x28`, `+0x64` from the low byte of the field under mask `0xFFC0` of `+0x08`, `+0x65` from
   `+0x2F`, the palette byte `+0x5C` from the mode `+0x2C`, and the colour `+0x90` from `+0x24` unless the
   context's `+0x5C` bit `0x40000` is set.
-- Node bit `0x2` sets the context's alpha scale `+0x5A` to `0x80` for the call (`0x0029FC26`, `0x0029FE02`). The
+- Node bit `0x2` sets the context's brightness (RGB scale) `+0x5A` to `0x80` for the call (`0x0029FC26`, `0x0029FE02`). The
   text's x is the node's x `+0x0C`, or `+0x0A` when `+0x2D` has a bit of `0x38` (`0x0029FC3C`-`0x0029FC44`).
 - With `+0x2D` bit `0x4` it measures the text (`0x002D8B00`, `0x0029FC8C`) and clips the draw to the node's rectangle,
   at least as tall as the scaled text, `h = max(+0x12, (int)(textH × +0x28))`, and cut to the context's clip box

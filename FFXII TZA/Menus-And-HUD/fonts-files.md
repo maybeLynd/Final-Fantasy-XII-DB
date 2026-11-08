@@ -68,6 +68,11 @@ Every `.dat` a list names has its atlas, `<name>.dds.phyre` in the same folder, 
 glyphs, the font builder requests the atlas for every font it builds, with no test on the flag word
 (`0x001B501F`, `0x001B58E0`); the completion `0x001B6230` hands the texture to the font.
 
+While byte `+0x2378` of the object `[0x01F811F8]` is 0 (`0x001E9A20`, `0x001B5A38`-`0x001B5A46`), `0x001B58E0` also
+requests the font's shadow file, the name in the font's string `+0x100` (`0x001FDE60` at `0x001B5AF9`). The builder
+sets that name with the suffix `_shadow.dds.phyre` (`0x001B4DCD`, `0x001B4FF3`); the completion is `0x001B6110`
+(`0x001B5A62`, `0x001B5B43`). A key the font map does not hold gets no request (`0x001B5937`-`0x001B593A`).
+
 Each atlas is a Phyre cluster (`PHYR`, platform `DX11`) holding one `PTexture2D` named
 `ArtData/font/<folder>/<name>.dds`. The two words before the class name are the width and height, which equal the
 `.dat` header's `atlasW` and `atlasH` in all 62. The pixel data, the last `u32 +0x50` bytes, is width x height x 1
@@ -261,7 +266,10 @@ loads it.
   (`0x001E9D87`-`0x001E9DA4`, `0x001E9ED4`-`0x001E9EEA`).
 - A font id that the font list does not hold draws nothing either: the lookup `0x001B51C0` returns 0, `0x001E9D20` clears
   the current font (`0x001E9DC4`, `0x001E9ED4`), and the emitter adds no vertex while it is 0 (`0x001E80C9`). An id outside
-  1 to 31 is cleared the same way (`0x001E9DD9`-`0x001E9DE3`), because each group has 32 batches indexed by font id.
+  1 to 31 is cleared the same way (`0x001E9DD9`-`0x001E9DE3`), because each block has 32 batches indexed by font id.
+  - The block is 0 while `+0x2379` is clear (`0x001E9E6C`-`0x001E9E7C`). With it set, the block is the first of the
+    two `0x2C`-byte slots at `+0x2320` that holds 0 or the fourth argument, which is stored there
+    (`0x001E9E01`-`0x001E9E46`), or block 1 when neither does (`0x001E9E51`-`0x001E9E67`).
 - A new font in a list needs both `<name>.dat` and `<name>.dds.phyre`: the builder requests the atlas for every
   font it builds (`0x001B501F`).
 

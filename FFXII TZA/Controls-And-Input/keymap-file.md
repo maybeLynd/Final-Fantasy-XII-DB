@@ -51,6 +51,10 @@ the manager (`0x001950DF`, `0x001950F0`).
 The file is written by `0x001993B0`, from the Config screen (`0x001E0F40`, called at `0x0023D263`) and when the game shuts
 down (`0x0017D670`, from `0x0017CDC0`). A first run with no file therefore ends by writing the defaults.
 
+The file is read only once, at start-up, into three keyboard profiles. During play the game copies those profiles into
+the input records that turn key presses into button presses, and the Config screen and shutdown write them back to the
+file.
+
 ## Layouts
 
 All multi-byte fields are little-endian.

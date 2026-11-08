@@ -7,8 +7,9 @@ addresses: "0x0026C8C0, 0x00377440, 0x00377480, 0x0025A990, 0x0025AA30, 0x02ADD0
 
 ## What the player sees
 
-Nothing directly: these are working memory for the actors of events and summons. A field on the list, or a field
-marked as a town, loads them from the general memory instead.
+Nothing directly: these are working memory for the actors of events and summons. The two are decided separately:
+a field on the event memory list loads its event actors from the general memory, and a field marked as a town
+loads its summon actor from there. A field that is both, or neither, follows each rule on its own.
 
 ## How it works
 
@@ -43,8 +44,10 @@ The slot reset `0x002628B0` releases both heaps the same way when slot 0 is rese
 `0x00262DD3`-`0x00262E28`).
 
 The slot loaders take the payloads of slots 1 and 2 from heap 13 and the payload of slot 3 from heap 14 when those
-heaps exist, and from pool 5 otherwise (`0x0032F8F6`-`0x0032F96B`, `0x0032FE00`-`0x0032FE40`). So a field on the list, or
-a town, loads those slots' actors from the general pool.
+heaps exist, and from pool 5 otherwise (`0x0032F8F6`-`0x0032F96B`, `0x0032FE00`-`0x0032FE40`). So a field on the list
+loads slots 1 and 2 from the general pool, and a town loads slot 3 from it. A heap is also absent when its block
+cannot be had: `0x0036A190` returns 0 when both of its tries fail (`0x0036A1C9`, `0x0036A1F0`, `0x0036A1FB`), and
+`0x0025A990` then leaves heap 13 unmade (`0x0025A9F2`-`0x0025A9F5`).
 
 ### The two tests
 

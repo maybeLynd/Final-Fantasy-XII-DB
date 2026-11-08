@@ -11,14 +11,27 @@ Saving at a save crystal opens the slot list. Picking a slot asks for confirmati
 empty or already holds a save, shows "Saving" while the file is written, and reports completion or
 failure. Loading from the title screen reads the slot's file, shows "Loading", and continues into
 the saved area with the clock, the gil and the party as they were saved. The game also writes a
-hidden autosave to slot 0 whenever an area changes. A save that was interrupted part-way through
-is left on disk with its header zeroed, so the slot shows it as unusable rather than as an older
-save.
+hidden autosave to slot 0 whenever an area changes.
+
+A save that was interrupted part-way through is left on disk with its first eight bytes zeroed: the
+checksum and the mark that is 1 only on a finished save. The slot list does not test that mark: a slot
+whose first `0xA0` bytes read in full is drawn from those bytes, and only a short read shows "Corrupt
+save data." ([the slot scan](#the-slot-scan)).
+
+Loading does not test the mark or the checksum either
+([what a load checks](save-file-format.md#what-a-load-checks)), so such a save loads. The zeroing write
+rewrites the file at its full length ([the file layer](#the-file-layer)), so a save stopped before the
+whole image was written (state 7 of [the save transaction](#the-save-transaction)) loads as the save it
+was replacing, and one stopped after that write loads as the new save.
 
 The slot list shows each used slot's party, gil, Esper row and clan rank, and marks the others
 "Unused file." or "Corrupt save data."; the load list puts the autosave next to the newest manual
 save. The title screen asks whether any save file exists before it offers loading. A shipped list
 names the area changes that do not autosave.
+
+A save writes the game's live save image, the block that holds the party, the story flags, the gil and the clock
+during play, to the slot's file, and a load reads that file back into the same block. The slot list reads only the
+first part of each slot's image, its header, which carries the party, gil, Esper and clan rank it shows.
 
 ## How it works
 

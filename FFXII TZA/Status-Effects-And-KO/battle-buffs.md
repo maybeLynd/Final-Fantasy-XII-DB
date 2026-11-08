@@ -12,6 +12,10 @@ Magick Shield against magick or a White Wind against harmful statuses, use Battl
 or Shift to move their weakness to one element and absorb all the others. Paling, Magick Shield and White Wind come with a message when they rise and
 when they fall, and last two minutes. The others last until the enemy drops them.
 
+Each buff is a numbered extra from the same list that gear and licences use, kept in a second set that battle switches
+on and off. An enemy's AI order or an ability's own row names the extra to switch on. Paling, Magick Shield and White
+Wind also get a two-minute timer that each periodic step counts down; at zero the buff is removed.
+
 ## How it works
 
 ### The two augment layers
@@ -71,7 +75,7 @@ Two paths set `+0x68` in shipped play:
 | `31` | order `0x40B1` | the target's Reflect does not bounce the holder's magick | `0x00390DFA`-`0x00390E39` |
 | `48` | Greater Barrier | damage to the holder is cut to 70 %, except from `0xB3` | `0x00390F8B`-`0x00390FC3` |
 | `49` | Battle Cry | the holder's damage ×1.2 | `0x0038F89B`-`0x0038F8B8`; constant `0x008FCC90` |
-| `50` | Saber | the holder's damage ×2 | `0x0038F8BE`-`0x0038F8D0` |
+| `50` | Saber | the holder's damage ×2, and that doubled HP loss is copied into the holder's own HP loss `0x02AEE014`, its HP cost at that stage of formula slot 165, which recipes 20-29, 64, 103 and 104 run ([Damage formula](../Damage-And-Battle-Formulas/damage-formula.md), [Formula recipes](../Damage-And-Battle-Formulas/formula-recipes.md)) | `0x0038F8BE`-`0x0038F8D0` |
 | `51` | Mana Spring, Unleash | the cost `0x002F95D0` gives the holder is 0 once its two earlier routes are passed: a party record's Quickenings (`0xD0`-`0xE1`) and Esper summons (`0x106`-`0x112`) keep the row cost (`0x002F9640`-`0x002F9667`, `0x002F9806`), and a holder with augment 32 gets the gil cost `10 * trunc(cost * 64 / 50)` (`0x002F9674`-`0x002F9682`, `0x002F97E4`-`0x002F9802`), 120 gil for a cost of 10 ([MP gain and cost](mp.md)) | `0x002F97A3`-`0x002F97E0` |
 | `52` | Shift | an enemy holder's weakness moves to one element drawn at random; it absorbs every other element and loses its immunity to the drawn one; again on each hit on its weakness (Shift's weakness, below) | `0x00386B0C`, `0x0038B78D`, `0x0038C1ED` |
 | `53` | Enrage, Limit Break | Attack and orders charge instantly | `0x002F85A6`-`0x002F888A` |
@@ -92,8 +96,9 @@ the damage before Greater Barrier's cut (`0x00390F4E`-`0x00390F85`, then `0x0039
 
 `0x0030EA40(stats, id, timer)` stores the timer in one of eight slots at `+0x17C`, chosen by the augment row's
 byte `+6`; a byte above 7 means no timer (`0x0030EA9D`-`0x0030EAB9`). A negative timer takes the default `0x00387020`,
-row `+4` × 30 × frame base. Only ids 55, 56 and 57 have a slot, 3, 4 and 5, with `+4` = 120: 3,600 steps, two
-minutes at one step per frame.
+row `+4` × 30 × frame base (`0x00387074`-`0x0038707F`; the frame base `[0x01DFE0B4]` is 1 at 30 fps and 2 at 60).
+Only ids 55, 56 and 57 have a slot, 3, 4 and 5, with `+4` = 120: 3,600 steps at 30 fps and 7,200 at 60, two
+minutes at one step per frame either way.
 
 Each periodic step `0x00385570` walks the ids held in either layer whose row byte `+6` is not `0xFF`
 (`0x003855CD`-`0x00385623`, [Status timers](status-timers.md)), among the ids below the row count `[0x02EBF040] + 4` of

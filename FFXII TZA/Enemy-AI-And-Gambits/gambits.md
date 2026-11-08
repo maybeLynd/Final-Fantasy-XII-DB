@@ -21,6 +21,10 @@ When a character is ready to act:
 Each character has three gambit sets. All three start as copies of the character's preset, and the menu
 chooses which one is used.
 
+The game does not walk the menu's lines directly: it rebuilds the chosen set into the same kind of order list an enemy
+reads from its area file, one order per switched-on line, copying each line's tests from its condition's row in
+`battle_pack.bin`. The preset is also a row of `battle_pack.bin`, named by the character's party table row.
+
 ## How it works
 
 ### What runs before the gambits
@@ -279,7 +283,7 @@ One order of a walked set, 24 bytes from set `+0x20`:
 |---|---|---|---|
 | `+0x00` | `u16` | action | action id, or `0x8000` + weighted-table index (`0x00308ECA`) |
 | `+0x02` | `i16` | chance | percent chance the line is tried; 0 = always (`0x00301608`) |
-| `+0x04` | `u16` | flags | `0x40` try while resuming, `0x80` skip on resume (`0x00305DB2`, `0x00305DBC`); `0x4000` on the order in flight limits a resume to `0x40` orders (`0x00305D7F`); `0x20` >> i with `0x20` >> (i + 1) chains test i + 1 to test i (`0x003016BE`); `0x800` not repeated while it is the previous order (`0x003015A6`); a gambit line takes the condition row's `+0x0E` (`0x00327F2F`) |
+| `+0x04` | `u16` | flags | `0x40` try while resuming, `0x80` skip on resume (`0x00305DB2`, `0x00305DBC`); `0x4000` on the order in flight limits a resume to `0x40` orders (`0x00305D7F`); `0x20` >> i with `0x20` >> (i + 1) chains test i + 1 to test i (`0x003016BE`); `0x800` not repeated while it is the previous order `+0x738`, an action id outside the order band only when the previous command's `+0x730` bit `0x1` is set (`0x003015A6`-`0x003015C9`); a gambit line takes the condition row's `+0x0E` (`0x00327F2F`) |
 | `+0x06` | `u16` | relation0 | first test: relation mode, 0 = no test (`0x00301685`; row `+0x10`, `0x00327EEA`) |
 | `+0x08` | `u8` | sub0 | first test: sub-selector (`0x00301B1A`; row `+0x08`, `0x00327EDF`) |
 | `+0x09` | `u8` | opcode0 | first test: opcode; even = highest, set or at least, odd = lowest, clear or below (`0x00301B14`, `0x00301B44`) |

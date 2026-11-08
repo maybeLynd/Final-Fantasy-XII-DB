@@ -9,7 +9,8 @@ addresses: "0x007BBFB0, 0x02EADE08, 0x007EF630, 0x00362850, 0x007F0320, 0x007F25
 
 - A waterfall or machine gets louder as the party approaches and sounds from its side of the screen.
 - Ambient loops play the same everywhere in an area.
-- Sounds are heard from a point near the party leader, pulled a little toward the camera, facing where the camera looks.
+- Sounds are heard from a point near the party leader, pulled a little toward the camera, facing where the camera
+  looks, unless a script moves the microphone to a set point or to the camera.
 
 ## How it works
 
@@ -35,8 +36,10 @@ works out how it sounds from the listener.
 
 The listener is one `0xA0`-byte object whose pointer is at `0x02EADE08` (`0x007BB610`), built once by `0x007BB620`:
 
-1. `0x00362850` places it each update: at the party's focus character, moved 0.3 of the way toward the camera in the
-   horizontal plane only; the factor is `0x022CBB28`, set by `0x00362F70` from `0x0215EFD0` = 0.3 (`0x002DE360`) clamped to 0-1.
+1. `0x00362850` places it each update. In the default microphone mode 0 it stands at the party's focus character,
+   moved 0.3 of the way toward the camera in the horizontal plane only; the factor is `0x022CBB28`, set by `0x00362F70`
+   from `0x0215EFD0` = 0.3 (`0x002DE360`) clamped to 0-1. Mode 1 puts it at a position a script stored, and mode 2 at
+   the camera (The listener's place, below).
 2. Its front is the camera's target minus its eye (`0x003CBFA0`), and its up is fixed at (0, 1, 0) (`0x00211340`).
 3. Lay action 2, `0x007EF630`, stores them and builds the world-to-listener matrix with `0x007EF3B0`, the right-handed
    builder the game selects (`0x002108CA`).

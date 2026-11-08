@@ -12,6 +12,9 @@ as it plays. Each record is one light that tints the characters and objects near
 tables decide which records are lit at a given moment. Field maps carry the same format in their
 map pack ([map pack](../World-Areas-And-Travel/mpk-map-pack.md), slot 17), bound into group 0.
 
+A light shines only while a chunk lists it. That chunk is a fixed range of lights, a cut that the scene's script
+switches on (cut 0 is on when the scene loads), or, on four field maps, a set picked by the current weather.
+
 ## Where it comes from
 
 Slot 14 of the [EBP script container](ebp-script-container.md) directory, present only in event

@@ -45,6 +45,9 @@ If even its fast speed could not get it there in time, it simply goes. This paci
 target is itself targeting a party-side character other than an Esper, and runs only while the
 movement step has it switched on.
 
+For weapon-flag actions, the kind byte of the weapon's equipment row picks which two of the character's own parameters
+give near and middle, and the game reads them from the `@FCP` parameter block of the character's model.
+
 ## How it works
 
 ### The builder
@@ -201,7 +204,8 @@ the speed `ctx+0xB0` is non-zero; otherwise it clears bit `0x100` and returns 0 
   `battle_pack.bin`, 6 action rows set them (`1, 20` three times, `1, 15` twice, `20, 20` once) and
   none of those has bit `0x4000000`.
 - With bit `0x4000000` set, these functions use the equipment row instead of the action row's `+0x05`,
-  `+0x02` and `+0x03`: the reach is the equipment row's byte `+0x18` times 10, and near and middle are
+  `+0x02` and `+0x03`: the reach is the equipment row's byte `+0x18` divided by 10 (`+0x18 / 10.0`,
+  `0x0030939B`), and near and middle are
   character parameters chosen by the equipment row's kind byte `+0x25`. 35 shipped action rows have bit `0x4000000`.
 - Shipped equipment reaches by kind (`+0x18`): kind 1 10-20, kind 2 100-250, kind 3 10-20, kind 4
   10-30, kind 5 10-20; kind 0 (305 rows) 0-90.

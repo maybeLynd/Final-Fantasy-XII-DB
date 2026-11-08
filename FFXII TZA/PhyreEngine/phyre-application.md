@@ -125,10 +125,13 @@ handed to it, then loops while its run word `+0x50` is non-zero, calling the win
 
 - slot 0, `0x007A3110`: returns 9 when the quit byte `+0x69` is set; otherwise `SteamAPI_RunCallbacks`
   and the input poll `0x007A2440` on the application's input object `+0xDF8`, then returns 0 (`0x007A3140`);
-- slot 1, `0x007A0340`: moves a drawing-area size parked by the window procedure into the `+0x48` queue as
-  request 0 (`0x007A3BD0`, `0x007A0372`, under the lock at `+0x20`), runs the screen-mode state step
-  `0x007A3FC0(+0x48, ScreenMode)` (`0x007A0395`), returns 9 on the quit byte, and otherwise jumps through the application's `+0xD18` (`0x007A03C4`). `0x00793E8C`
-  there tail-jumps to slot 28, the per-frame update `0x0079C140`.
+- slot 1, `0x007A0340`: under the lock at `+0x20`, hands the drawing-area size parked in `+0x1C` to the current
+  screen-mode state as request 0 and clears `+0x1C` (`0x007A0372`, `0x007A0377`). It then
+  runs the screen-mode state step `0x007A3FC0(+0x48, ScreenMode)` (`0x007A0395`), returns 9 on the quit byte, and
+  otherwise jumps through the application's `+0xD18` (`0x007A03C4`). `0x00793E8C` there tail-jumps to slot 28, the
+  per-frame update `0x0079C140`.
+  - `0x007A3BD0` jumps to slot `+0x28` of the state at `+0x48 + 0x30` and does nothing when no state is current
+    (`0x007A3BD0`-`0x007A3BDC`).
   - In the state step the current state's slots `+0x30` and `+0x38` run; a result n other than -1 leaves the
     old state, makes entry n current, logs `[Screen Mode]=======Change State %d` and enters it.
 
@@ -181,8 +184,8 @@ work on the update thread:
 
 The window procedure calls slot 14 when the new window is the foreground window (`WM_CREATE`), slot 20
 on `WM_MOVE`, and slot 17 with 1 or 0 around a mouse press on the title bar or border, installing a `WH_MOUSE` hook
-(`0x00798F80`) for its duration. Activation changes go to the update thread through `0x007A3BD0` on the
-window's `+0x48` queue, and a new drawing-area size is parked in the window's `+0x1C` (`0x007A07C0`) for the
+(`0x00798F80`) for its duration. Activation changes are handed to the current screen-mode state through
+`0x007A3BD0` (slot `+0x28` of the state at the window's `+0x48 + 0x30`), and a new drawing-area size is parked in the window's `+0x1C` (`0x007A07C0`) for the
 window's slot 1 to apply.
 
 ### Window helpers
@@ -194,8 +197,8 @@ window's slot 1 to apply.
   `0xCF0000` and the WindowSize at the saved position `+0x6C`/`+0x70` (0, windowed), only logs (1, full screen), or
   gives it `WS_POPUP` over the monitor rectangle `0x0017E220` or the screen (2), each time logging
   `[Screen Mode]onSizeCallBack ...` ([Screen mode and aspect](../Graphics/screen-mode-and-aspect.md)).
-- `0x007A04F0` (`0x001DC78C`) queues request 1 with the WindowSize or the Resolution, by ScreenMode, on the window
-  object's queue `+0x48` (`0x007A3BD0`).
+- `0x007A04F0` (`0x001DC78C`) hands request 1 with the WindowSize or the Resolution, by ScreenMode, to the window
+  object's current screen-mode state (`0x007A3BD0`, the state at `+0x48 + 0x30`).
 - `0x00796310(full)` maximises the window (`ShowWindow` 3), or for 0 maximises and restores it (9)
   (`0x007A3CE2`, `0x007A3D41`, `0x007A4069`, `0x007A408F`).
 - `0x0079B0B0` stores in `0x02EA5213` whether the game window `0x02EA5248` is the foreground window (`0x007A3E27`,
@@ -419,7 +422,7 @@ own branches; the button-up messages above `0x112` are tested at `0x0079968A`.
 | `0x02EACD30` | `u32` | 0 (zero-filled tail of `.data`) | `cbSize` of the `CURSORINFO` record `0x02EACD30`-`0x02EACD47`, set to `0x18` before each `GetCursorInfo` on it; the flags word `0x02EACD34` that call fills decides the stores to `0x01F3DA06` | `0x00798FF0` (`0x0079956A`); `0x007A0A80` (`0x007A0A95`) | `GetCursorInfo`, through the address `0x00798FF0` (`0x00799574`) and `0x007A0A80` (`0x007A0A8E`) pass |
 | `0x02EA5244` | `u8` | 0 (zero-filled tail of `.data`) | 1 while a mouse button is held on the title bar or border | `0x00798FF0` (`0x007995C8`, 1, on `WM_NCLBUTTONDOWN` or `WM_NCRBUTTONDOWN`, after slot 17 with 1, and the `WH_MOUSE` hook `0x00798F80` is then installed; `0x00799617`, 0, on `WM_NCLBUTTONUP` or `WM_NCRBUTTONUP`, after slot 17 with 0, and the hook is then removed) | `0x00798FF0` (`0x007995A7`, `0x007995F8`); `0x00798F80` (`0x00798FA4`: while it is set, a `WM_LBUTTONUP` the hook sees posts `WM_NCLBUTTONUP` to the window) |
 | `0x02EA5361` | `u8` | 0 (zero-filled tail of `.data`) | when set, the close confirmation stores ScreenMode 1 (`0x001DF340(settings, 2, 1)`, `0x007992CA`) and writes the settings file (`0x007992D6`) after its box closes, calling `0x0017DB40` first when the answer is OK, and then clears the byte | `0x00798FF0` (`0x007992DB`, 0) | `0x00798FF0` (`0x007992A7`) |
-| `0x02EA5360` | `u8` | 0 (zero-filled tail of `.data`) | 1 after the borderless branch of the size callback has placed the window; while it is set, the next borderless placement adds `SWP_NOMOVE` (2) to the `SetWindowPos` flags `0x60` (`0x0079F96B`-`0x0079F981`) | `0x0079F750` (`0x0079F99D`, 1; `0x0079F89E`, 0, windowed; `0x0079F8C0`, 0, full screen); `0x00795DC0` (`0x00795EA9`, 0, after its own `SetWindowPos`); `0x007A03D0` (`0x007A03E0`, 0, before it queues request 5) | `0x0079F750` (`0x0079F96B`) |
+| `0x02EA5360` | `u8` | 0 (zero-filled tail of `.data`) | 1 after the borderless branch of the size callback has placed the window; while it is set, the next borderless placement adds `SWP_NOMOVE` (2) to the `SetWindowPos` flags `0x60` (`0x0079F96B`-`0x0079F981`) | `0x0079F750` (`0x0079F99D`, 1; `0x0079F89E`, 0, windowed; `0x0079F8C0`, 0, full screen); `0x00795DC0` (`0x00795EA9`, 0, after its own `SetWindowPos`); `0x007A03D0` (`0x007A03E0`, 0, before it hands request 5 to the screen-mode state) | `0x0079F750` (`0x0079F96B`) |
 
 The only store to `0x02EA5361` is the clear at `0x007992DB`, so the settings write on close runs only if the byte is set
 from outside the executable.

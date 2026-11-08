@@ -12,7 +12,7 @@ and being sent to X-Zone. A character in one of those states is treated as absen
 actions, no EXP or LP, no attention from monsters.
 
 Inside a town that rule is switched off. In Rabanastre's streets and shops, the Clan Hall, the Sandsea,
-every Aerodrome, the Strahl's Sky Saloon, Jahara, Eruyt Village, Mt Bur-Omisace, Balfonheim and the
+every Aerodrome, the skyferry's Sky Saloon, Jahara, Eruyt Village, Mt Bur-Omisace, Balfonheim and the
 other safe areas, a fallen party member still walks, talks and shops with the party instead of being
 frozen out. The same character in the same condition behaves differently one zone over.
 
@@ -65,7 +65,7 @@ functions read it, and each takes one part:
 All seven share one prologue: load the table pointer, return the default when it is null, compare the
 field id unsigned against the count at `+4` and return the default when it is not below it, then read
 bytes `+8` and `+9` (or `+10`) of `table + 3 × id`. `0x00377C20` is the model: `0x00377C29` loads the
-pointer, `0x00377C33` tests it, `0x00377C35`-`0x00377C39` bounds the id, `0x00377C42`-`0x00377C53` assembles
+pointer, `0x00377C30` tests it, `0x00377C35`-`0x00377C39` bounds the id, `0x00377C42`-`0x00377C53` assembles
 the word from two byte loads, `0x00377C55` shifts by 15.
 
 These seven are the only code that reads the table. Its address is held only in `0x02ADD100`: no instruction or data
@@ -101,9 +101,11 @@ Readers worth naming:
 
 - The defeat-reward routine `0x00312280` keeps a recipient who is out of play only when the flag is set
   (`0x00312382`), and the EXP divisor and recipient tests in `0x002F8BB0` use the same mask.
-- The kill chain is reset on entering an area with the flag set (`0x003183D0`, see the kill chain page).
-- The party-control level `0x0030D9A0` returns level 3 when the flag is set (`0x0030D9CF`-`0x0030D9D8`),
-  before the combat and menu levels; see the battle runtime mode page.
+- The kill chain is reset on entering an area with the flag set: the area initialisation `0x002342F0` calls `0x00377C20`
+  (`0x00234446`) and, when it returns non-zero, the chain reset `0x003183A0` (`0x0023444F`); see the kill chain page.
+- The party-control level `0x0030D9A0` returns level 3 when the flag is set (`0x0030D9CF`-`0x0030D9D8`), after the two
+  event-party levels 5 and 4 (bits `0x8` and `0x4` of `[0x02EBF190] + 0x5B04`) and before the chocobo and summon levels
+  2 and 1; see the battle runtime mode page.
 - The status write `0x0030E360` lets a unit that already carries a terminal status take another one
   only when the flag is set (`0x0030E4B6`).
 - Explicit-id reads go through `0x00377480`; its one caller is the actor definition binder `0x0026C8C0`
@@ -145,9 +147,10 @@ current area's entry as already seen (`0x003160FA`).
 ### The area-name flag
 
 Bit `0x4000` is read by `0x00377A40` for an explicit id. Its five callers are menu and HUD functions
-(`0x003F92B0`, `0x003F9720`, `0x003C2320`, `0x003BF9A0`, `0x003C1180`). `0x003F92B0` shows the use: when the
-current area's bit is set (`0x003F92DA`) it prints, after the location text, the region name that `0x00377870`
-returns for the word at `+0x04` of its record (`0x003F9310`-`0x003F9314`); otherwise it prints text `0x3EC`.
+(`0x003F92B0`, `0x003F9720`, `0x003C2320`, `0x003BF9A0`, `0x003C1180`). `0x003F92B0` shows the use: when its record's word at
+`+0x04` is not negative (`0x003F92BF`, `0x003F92CD`) and either the current area's bit is set (`0x003F92DA`) or the record's
+byte `+0x03` is non-zero (`0x003F92E3`), it prints, after the location text, the region name that `0x00377870` returns for
+that word (`0x003F9310`-`0x003F9314`); otherwise it prints text `0x3EC`.
 
 The same name table (`MapName`, `planmapname.bin`, at `0x02ADD0F8`) also names the regions. Each entry of the offset
 table `+0x10` is a `u16` offset from the start of the file. Three readers return a name:
@@ -169,17 +172,21 @@ Bit `0x1` of the third byte is read inverted by `0x00377700`: it returns 1 only 
 `0x00377733 call`, `0x0037773C mov eax, 1`). A missing table yields a zero byte (`0x00377728`), so the
 missing-table answer is 1, the permissive value. The save bit can only force the answer to 0.
 
-Six actor-system functions call it (`0x00263230`, `0x00268D10`, `0x0026A1D0`, `0x0026B980`, `0x0026C3E0`,
-`0x0026C5D0`). Two of them store the inverse into the party-hold byte `0x02099DE7`: `0x0026A1D0` at
-`0x0026A20B` and `0x00268D10` at `0x00268E29` (`setz bpl` on the call's result). That byte is the parameter
-of the party hold request the time-stop registry receives; see the time stop page.
+Six actor-system functions call it (`0x00263230`, `0x00268D10`, `0x0026A1D0`, `0x0026B980`, `0x0026C3E0`, `0x0026C5D0`).
+`0x00268D10` stores the inverse into the party-hold byte `0x02099DE7` (`sete bpl` on the call's result, `0x00268E25`,
+`0x00268E29`). `0x0026A1D0` calls it only when its first argument is non-zero and its second negative
+(`0x0026A1E3`-`0x0026A1F4`) and otherwise stores its second argument's low byte (`0x0026A20B`); its only caller, the manager
+unload `0x002628B0`, passes 0 and -1 (`0x00262BFA`-`0x00262BFF`), so it stores `0xFF`.
+
+That byte is the parameter of the party hold request the time-stop registry receives; see the time stop page.
 
 ### The default leader
 
-Bits `0x70` of the third byte are read by `0x00377C70` (`0x00377C99 shr eax, 4`, `0x00377C9C and eax, 7`). Its
-callers are `0x00326500`, `0x003266C0` and `0x0031C000`. `0x00326500` picks the party member the game follows
-when control returns: the saved leader at `[0x02EBF190] + 0x5AA4` at control levels 0 and 1, id `0x1A`
-at level 2, and this field at level 3, the town level (`0x0030D9A0`).
+Bits `0x70` of the third byte are read by `0x00377C70` (`0x00377C99 shr eax, 4`, `0x00377C9C and eax, 7`). Its callers are
+`0x00326500`, `0x003266C0` and `0x0031C000`. `0x00326500` picks the party member the game follows when control returns: the
+saved leader at `[0x02EBF190] + 0x5AA4` at control levels 0 and 1, id `0x1A` at level 2, and this field at level 3, the
+town level (`0x0030D9A0`). At the event-party levels 4 and 5 it keeps `0xFF` (`0x0032650A`), which names no member, so it
+takes the fallback below.
 
 Every shipped record has these bits at 0 (counts below), and 0 is party row 0, Vaan, so in every town the game hands
 control to
@@ -219,9 +226,9 @@ third byte. The defaults do not agree on what they mean:
 ## Shipped data
 
 Every record, decoded field by field, is in [area-flags-navimapdata.tsv](area-flags-navimapdata.tsv): one row per area
-id with the `us` name `0x00377B60` returns (empty for an id with no name entry), the flag word, the Map entry
-(`-` for `0xFFF`), the MP regime, the area-name and town bits, the third byte, the hold bit, mask `0xE` and the
-default leader.
+id with the `us` name `0x00377B60` returns (empty for an id with no name entry), the flag word, the Map entry (`-` for
+`0xFFF`), the MP regime, the area-name and town bits, the third byte, the hold bit, the third byte's bits under mask
+`0xE` shifted down by one (`bits_1_3`, 0 to 7) and the default leader.
 
 Counts over the 1,154 records in `navimapdata.bin`:
 
@@ -232,7 +239,7 @@ Counts over the 1,154 records in `navimapdata.bin`:
 | MP regime (mask `0x3000`) | 0 on 945, 1 on 36, 2 on 69, 3 on 104 |
 | Map entry (mask `0xFFF`) | `0xFFF` (no entry) on 556; one on the other 598: 0 on 200; 369 distinct values, every value from 0 to 368 |
 | hold flag (byte 2 bit `0x1`) | set on 170 areas, every one of them a town; the 23 towns without it are ids 0-22 |
-| byte 2 bits under mask `0xE` | 0x02, 0x04 and 0x08 in eight combinations across 638 areas |
+| byte 2 bits under mask `0xE` | 0x02, 0x04 and 0x08 in all seven non-zero combinations across 638 areas: 0x02 on 84, 0x04 on 3, 0x06 on 3, 0x08 on 259, 0x0A on 50, 0x0C on 188, 0x0E on 51 |
 | byte 2 bits under mask `0xF0` | 0 on every record |
 
 The towns, with the names the `us` `planmapname.bin` gives through the name indexer `0x00377B60`
@@ -244,7 +251,7 @@ The towns, with the names the `us` `planmapname.bin` gives through the name inde
 | 48, 50, 51 | Stockade, rbn_z01, Oubliette |
 | 124-130 | Observation Parlour, Sky Saloon, Air Deck, South Bank Village, North Bank Village |
 | 233, 243 | Outpost, Nomad Village |
-| 289-310 | North End, Muthru Bazaar, East End, Southern Plaza, Amal's Weaponry, Panamis's Protectives, Migelo's Sundries, Yugri's Magicks, Batahn's Technicks, Yamoora's Gambits, Samalzalam Manor, The Clan Hall, The Sandsea, Eastgate, Southgate, Westgate |
+| 289-310 | North End, Muthru Bazaar, East End, Southern Plaza, NOT USED (293 and 294), Amal's Weaponry, Panamis's Protectives, Migelo's Sundries, Yugri's Magicks, Batahn's Technicks, Yamoora's Gambits, Samalzalam Manor, The Clan Hall, The Sandsea, Eastgate, Southgate, Westgate |
 | 312, 488 | East Waterway Control, Hunters' Camp |
 | 567-575 | Cellar Stores, Cellars, Lower Halls, Secret Passage, Treasure Room No. 8, The Garden Stairs |
 | 631-643 | Jajim Bazaar, West Ward, Grand Arcade, Highgarden Terrace, Molberry, Trant, Charlotte's Magickery, Bulward's Technicks |
@@ -256,9 +263,9 @@ The towns, with the names the `us` `planmapname.bin` gives through the name inde
 | 910-924 | rbn_y01, byu_w01, byu_x01, Siti Bhrusuna, var_z01, bhm_y01, bhm_z01 |
 | 1151 | Babbling Vale |
 
-Every named town is a settlement, a shop or house interior, a plaza, an aerodrome, an airship interior
-or a story room; the code-shaped names (`alc_z01`, `rbn_x01`, `var_z01` and the like) are the scene
-variants of those areas.
+Every named town is a settlement, a shop or house interior, a plaza, an aerodrome, an airship interior or a story
+room, apart from ids 293 and 294, whose name is NOT USED; the code-shaped names (`alc_z01`, `rbn_x01`, `var_z01` and
+the like) are the scene variants of those areas.
 
 Areas with MP regime 2 or 3 include:
 
@@ -301,10 +308,10 @@ The name table's header, measured in all nine language copies of `planmapname.bi
 |---|---|---|---|
 | `0x02ADD100` | `void*` | the loaded table | `0x00378540` (null), `0x00378B80` (delivery) |
 | payload `+0x1044` | `i32` | current or pending field id | the zone change (see the zone changes page) |
-| payload `+0x1062` bit `0x1` | bit | vetoes the hold flag | the zone change record's flag byte |
-| payload `+0x1062` bit `0x80` | bit | enables the MP regime override | the zone change record's flag byte; the script verb `setmist(v)` (`0x00314BE0`: set for a positive `v`, cleared otherwise) |
-| payload `+0x1063` bits under mask `0x30` | 2 bits | the overriding MP regime, the level the scripts call the mist level | the zone change record; `setmist(v)` stores `v & 3` (`0x00314C1B`-`0x00314C28`) and clears it for `v` at most 0 |
-| `0x02099DE7` | `u8` | the party hold parameter, `0x00377700() == 0` | `0x0026A20B`, `0x00268E29` |
+| payload `+0x1062` bit `0x1` | bit | vetoes the hold flag | the script verb `setsaverambattlestatus(v)` (`0x303`, `0x0034F870` → `0x00314B80(v == 0)`); cleared by `0x00314A00` from the manager unload `0x002628B0` (`0x002695A0`, `0x00262CEF`); the whole byte also by the payload clears, the save read and the copy ([save and teleport crystals](save-and-teleport-crystals.md#every-bit-of-the-flag-byte)) |
+| payload `+0x1062` bit `0x80` | bit | enables the MP regime override | the script verb `setmist(v)` (`0x00314BE0`: set for a positive `v`, cleared otherwise); cleared by `0x00314A00` from the manager unload `0x002628B0` (`0x002695A0`, `0x00262CEF`); the whole byte also by the payload clears, the save read and the copy ([save and teleport crystals](save-and-teleport-crystals.md#every-bit-of-the-flag-byte)) |
+| payload `+0x1063` bits under mask `0x30` | 2 bits | the overriding MP regime, the level the scripts call the mist level | `setmist(v)` stores `v & 3` (`0x00314C1B`-`0x00314C28`) and clears it for `v` at most 0; cleared by `0x00314A00` from the manager unload `0x002628B0` (`0x002695A0`, `0x00262CEF`); the whole byte also by the payload clears, the save read and the copy ([save and teleport crystals](save-and-teleport-crystals.md#every-bit-of-the-flag-byte)) |
+| `0x02099DE7` | `u8` | the party hold parameter: `0x00377700() == 0` from `0x00268E29`, `0xFF` from the other five | `0x00268E29`; `0xFF`: `0x00262BEE`, `0x0026311C`, `0x00266F5F`, `0x00266FC1`, and `0x0026A20B` (its caller `0x002628B0` passes -1) |
 
 ## Modding notes
 
@@ -333,3 +340,12 @@ The name table's header, measured in all nine language copies of `planmapname.bi
 - [The time-stop registry](../Engine-Core/time-stop-and-freeze.md)
 - [The thirty-two statuses](../Status-Effects-And-KO/statuses.md)
 - [The save payload field map](../Saving-Loading-And-Settings/save-data-fields.md)
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Core runtime: `0x002695A0` calls `0x002341C0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- RNG random selection: `0x002342F0` calls `0x00328D80`; those functions are documented on
+  [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md).

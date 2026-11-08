@@ -1,3 +1,10 @@
 function	name	site	disp	kind	instruction	route	note
+0x001D6D70	FUN_001d6d70	0x001D6D7C	0x0	w	mov dword ptr [rax], ecx	route-seeded STATIC 0x0215EFF4 base+0x0	through the pointer kept at 0x01F82CC0 (stored by 0x001D6DCD and 0x001D6FED)
 0x001D6D90	FUN_001d6d90	0x001D6DD4	0x0	w	mov dword ptr [rax], 0xffffffff	route-seeded STATIC 0x0215EFF4 base+0x0	
 0x001D6FB0	FUN_001d6fb0	0x001D6FF4	0x0	w	mov dword ptr [rax], 0xffffffff	route-seeded STATIC 0x0215EFF4 base+0x0	
+0x002DF6C0	FUN_002df6c0	0x002DF719	0x0	addr	lea rax, [rip + 0x1e7f8d4]	route-seeded STATIC 0x0215EFF4 base+0x0	
+0x002DF6C0	FUN_002df6c0	0x002DF75F	0x0	addr	lea rax, [rip + 0x1e7f88e]	route-seeded STATIC 0x0215EFF4 base+0x0	
+0x002DF780	FUN_002df780	0x002DF808	0x0	addr	lea rax, [rip + 0x1e7f7e5]	route-seeded STATIC 0x0215EFF4 base+0x0	
+0x002DF780	FUN_002df780	0x002DF838	0x0	addr	lea rax, [rip + 0x1e7f7b5]	route-seeded STATIC 0x0215EFF4 base+0x0	
+0x0046DFE0	FUN_0046dfe0	0x0046DFE7	0x0	r	cmp dword ptr [rip + 0x1cf1006], -1	route-seeded STATIC 0x0215EFF4 base+0x0	
+0x0046E0E0	FUN_0046e0e0	0x0046E0E0	0x0	r	mov eax, dword ptr [rip + 0x1cf0f0e]	route-seeded STATIC 0x0215EFF4 base+0x0	

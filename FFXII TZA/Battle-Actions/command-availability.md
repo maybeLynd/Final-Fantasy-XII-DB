@@ -32,6 +32,9 @@ first that refuses:
 9. **Cost.** Not enough MP; not enough Mist charges for summons and Quickenings; not enough gil when
    magicks are paid with gil.
 
+The switches in step 5 are bits of the battle flags. Internal battle orders set and clear them, and AI order lists and
+scripts are what issue those orders.
+
 ## How it works
 
 ### The check
@@ -78,7 +81,9 @@ kind test. The row is 0 when the action table slot `0x02EBF138` is 0 or `0x0020E
 Byte `+0x1E` of an action row is its kind; the names come from the members of each kind in
 `battle_pack.bin`: 0 Attack, 1 Magicks,
 2 Technicks, 3 Items, 5 summons, 6 Quickenings, 7 Foecraft, 8 traps, 9 Esper attacks, 10 Concurrences,
-255 unused.
+and 255 for 56 rows: 47 placeholders named `NOT USED` or Reserve, and nine named rows, Do nothing. (`0x92`),
+Mount (`0x94`), Dismount (`0x95`), `sousachange` (`0x98`), three Mist Charge rows (`0xF2`-`0xF4`), Chain Bonus
+(`0xF5`) and Dismiss (`0x113`) ([Action list](action-list.md)).
 
 ### Ownership
 

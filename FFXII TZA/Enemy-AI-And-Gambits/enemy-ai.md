@@ -18,6 +18,10 @@ target it has noticed:
 
 When nothing in its list fits, the enemy waits.
 
+The lists come from the area file, which holds a directory of order lists. An enemy starts with the list its
+definition row names, the row can name up to four lists, and the enemy's own orders switch it to another of those
+lists or to one of twelve phases inside a list.
+
 ## How it works
 
 ### The order sets
@@ -205,8 +209,9 @@ No other instruction reaches `0x022C2564` or `0x022C2568`.
 
 ## Modding notes
 
-- A phase change is an order: an enemy switches phase only when one of its own orders `0x4116`-`0x4121`
-  runs.
+- A phase change is an order. One of an enemy's own orders `0x4116`-`0x4121` selects phase 0 to 11, and an order
+  `0x4112`-`0x4115` that installs a new set also returns it to phase 0 (`0x002FE09F`); a selector past the
+  directory's count refuses that order instead (`0x002FE077`).
 - The default and wait records are `.data`: patching `0x01EEC298`'s word changes what every unit does when its
   lists come up empty.
 - An enemy with class row byte `+0x18 & 0x0E` = 4 notices every eligible unit at once, at any distance.

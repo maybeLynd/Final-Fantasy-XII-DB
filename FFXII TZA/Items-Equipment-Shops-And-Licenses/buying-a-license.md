@@ -26,7 +26,8 @@ next to it light one after another, and a notice may announce a new Esper, a new
    other three are closed (`0x0055A23C`-`0x0055A30D`)
    ([License Board screen](../Menus-And-HUD/license-board-screen.md#obtaining-a-license),
    [License Board screen](../Menus-And-HUD/license-board-screen.md#detail-panel-and-member-switch)).
-4. **The take request.** Confirm again sends take-square to the view: an owned square or one not obtainable yet plays
+4. **The take request.** Confirm again sends take-square to the view. The owned Second Board square opens the
+   second-board chooser for a member with none; any other owned square, or one not obtainable yet, plays
    sound 5, an obtainable square the member cannot afford shows "Insufficient license points.", and an affordable one
    asks the question ([License Board screen](../Menus-And-HUD/license-board-screen.md#obtaining-a-license)).
 5. **The question.** The text follows the square's rule: one character only, up to three Quickenings, one character

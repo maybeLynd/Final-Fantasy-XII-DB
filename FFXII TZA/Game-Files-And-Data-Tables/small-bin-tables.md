@@ -15,6 +15,10 @@ addresses: "0x00378540, 0x002E9D90, 0x00379E90, 0x0035B3E0, 0x0035B650, 0x0035B2
 - The message in the quest result window that scripts open.
 - The colour shift and full-screen tint while a summon's effect is active.
 
+A footstep plays the sound this table gives for the ground under the character: set A normally, set B while the
+weather has switched on the second set. That number picks the sound inside the model's footstep block, which the
+character sound table names.
+
 ## Where it comes from
 
 All six are files under `ps2data/image/ff12/` in the archive, reached by resource kind and id through the
@@ -395,10 +399,11 @@ it runs, reading each entry as one qword with `cmove`/`cmovb`, and calls `0x003B
   (`0x0036FAC8`-`0x0036FB36`), with the tail floats at `+0x280` and `+0x284` (`0x02AE9660`, `0x02AE9664`), sets a
   256 × 224 rectangle (`0x02AE9658`, `0x02AE965C`) and submits the packet through `0x003A35E0`.
 - It zeroes `0x02AE9650`-`0x02AE9657` and stores 1.0 at `0x02AE9668`, `0x02AE9670` and `0x02AE9674` (`0x0036FA60`,
-  `0x0036FAA9`-`0x0036FABE`), and it clears the first word of the template's quad blocks 1 to 3 (`0x02AE9730`,
+  `0x0036FAA9`-`0x0036FABE`; the store at `0x0036FAA9` is a qword, so it also writes 0 at `0x02AE966C`), and it clears the first word of the template's quad blocks 1 to 3 (`0x02AE9730`,
   `0x02AE9820`, `0x02AE9910`). `0x0036F550` builds the layered form from the tail fields at `+0x288` to `+0x294`.
 - Its other stores are 512.0 at `0x02AE9628` and `0x02AE962C`, 1 at `0x02AE9640` and `0x02AE9644`, `0x0FFFFFF0` at
-  `0x02AE9648`, zero at `0x02AE9680`-`0x02AE968F`, the qwords 5, `[0x02AEECF0]`, `0x44` and `0x1001` at `0x02AE96E0`,
+  `0x02AE9648`, the floats 0.0, 0.0, 1.0 and 0.875 from `0x00D10FC0` at `0x02AE9680`-`0x02AE968F` (`0x0036FA22`,
+  `0x0036FA29`), the qwords 5, `[0x02AEECF0]`, `0x44` and `0x1001` at `0x02AE96E0`,
   `0x02AE96F0`, `0x02AE9700` and `0x02AE9710`, and the dword `0x5D` at `0x02AE9720` (`0x0036FA77`-`0x0036FB6B`).
 - It then calls `0x0039D3F0` (`0x0036FB75`) and submits `0x438` bytes from `0x02AE9618` through `0x003A35E0` with
   the template `0x02AE9600`'s words `+0x08` and `+0x0C` and the microprogram `0x004758E0` (`0x0036FB7A`-`0x0036FB9C`).

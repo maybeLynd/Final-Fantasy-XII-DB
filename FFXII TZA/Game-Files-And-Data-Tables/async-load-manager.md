@@ -8,10 +8,14 @@ addresses: "0x01F81160, 0x001A11B0, 0x001A1220, 0x0019F620, 0x001A0AF0, 0x0019F4
 ## What the player sees
 
 The game keeps drawing while it loads. Remastered models, maps, textures, fonts and the text lists that
-name them, and the PS2-era files the game logic asks for, are read on a separate loading thread; the
-code that asked is told in a later frame that the data is there. When a summon, a monster or an NPC
+name them, and the PS2-era files the game logic asks for, are mostly read on a separate loading thread, and
+the code that asked is told in a later frame that the data is there. When a summon, a monster or an NPC
 model is read, the game also reads that model's character effect file and hands both over as one
 block.
+
+A request filed with `now` set runs at once on the calling thread instead, and a record with byte `+0x18`
+set calls back on the thread that ran it, not in a later frame: a PS2-era file the RAM cache already holds
+is read that way, and its callback has run when the read returns (`0x001D7028`, `0x001D7076`).
 
 ## How it works
 

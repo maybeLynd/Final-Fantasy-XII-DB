@@ -46,37 +46,37 @@ id	gil	item1	item1_name	count1	item2	item2_name	count2	selectors	script_gives	ex
 0x902C	3000	0x1192	Sapping Bolts	1	0x1015	Ragnarok	1	0xA0A9	0	gives 3000 gil + Sapping Bolts x1 + Ragnarok x1
 0x902D	20000	0x0015	Megalixir	2				0xA0AA	0	gives 20000 gil + Megalixir x2
 0x902E	30000	0x20F4	Godslayer's Badge	1				0xA0AB	0	gives 30000 gil + Godslayer's Badge x1
-0x902F	0	0x0000	Potion	3					4	gives Potion x3
-0x9030	0	0x0037	Warp Mote	2	0x2000	Teleport Stone	2		4	gives Warp Mote x2 + Teleport Stone x2
-0x9031	0	0x0010	Remedy	3	0x2000	Teleport Stone	2		4	gives Remedy x3 + Teleport Stone x2
-0x9032	0	0x0001	Hi-Potion	3	0x2000	Teleport Stone	2		4	gives Hi-Potion x3 + Teleport Stone x2
-0x9033	0	0x0003	Ether	2	0x2000	Teleport Stone	2		4	gives Ether x2 + Teleport Stone x2
-0x9034	0	0x0002	X-Potion	2	0x2000	Teleport Stone	2		4	gives X-Potion x2 + Teleport Stone x2
-0x9035	0	0x0004	Hi-Ether	2	0x2000	Teleport Stone	3		4	gives Hi-Ether x2 + Teleport Stone x3
-0x9036	0	0x0005	Elixir	2	0x2000	Teleport Stone	3		4	gives Elixir x2 + Teleport Stone x3
-0x9037	0	0x204D	High Arcana	1	0x2000	Teleport Stone	3		4	gives High Arcana x1 + Teleport Stone x3
-0x9038	0	0x20ED	Empyreal Soul	1	0x2000	Teleport Stone	3		4	gives Empyreal Soul x1 + Teleport Stone x3
-0x9039	0	0x0015	Megalixir	2	0x2000	Teleport Stone	3		4	gives Megalixir x2 + Teleport Stone x3
-0x903A	0	0x20F0	Centurio Hero's Badge	1	0x2000	Teleport Stone	3		4	gives Centurio Hero's Badge x1 + Teleport Stone x3
-0x903B	150								4	gives 150 gil
-0x903C	200								4	gives 200 gil
-0x903D	1200								4	gives 1200 gil
-0x903E	300								4	gives 300 gil
-0x903F	1200	0x20BF	Electrum	1					4	gives 1200 gil + Electrum x1
-0x9040	600	0x0037	Warp Mote	1					4	gives 600 gil + Warp Mote x1
-0x9041	800								4	gives 800 gil
-0x9042	900								4	gives 900 gil
-0x9043	1100								4	gives 1100 gil
-0x9044	1300	0x20A5	Mallet	1					4	gives 1300 gil + Mallet x1
-0x9045	1600								4	gives 1600 gil
-0x9046	1600								4	gives 1600 gil
-0x9047	50000								4	gives 50000 gil
-0x9048	1800								4	gives 1800 gil
-0x9049	1900								4	gives 1900 gil
-0x904A	1900								4	gives 1900 gil
-0x904B	2000								4	gives 2000 gil
-0x904C	2100								4	gives 2100 gil
-0x904D	2100	0x0014	Bacchus's Wine	1					4	gives 2100 gil + Bacchus's Wine x1
+0x902F	0	0x0000	Potion	3					1	gives Potion x3
+0x9030	0	0x0037	Warp Mote	2	0x2000	Teleport Stone	2		1	gives Warp Mote x2 + Teleport Stone x2
+0x9031	0	0x0010	Remedy	3	0x2000	Teleport Stone	2		1	gives Remedy x3 + Teleport Stone x2
+0x9032	0	0x0001	Hi-Potion	3	0x2000	Teleport Stone	2		1	gives Hi-Potion x3 + Teleport Stone x2
+0x9033	0	0x0003	Ether	2	0x2000	Teleport Stone	2		1	gives Ether x2 + Teleport Stone x2
+0x9034	0	0x0002	X-Potion	2	0x2000	Teleport Stone	2		1	gives X-Potion x2 + Teleport Stone x2
+0x9035	0	0x0004	Hi-Ether	2	0x2000	Teleport Stone	3		1	gives Hi-Ether x2 + Teleport Stone x3
+0x9036	0	0x0005	Elixir	2	0x2000	Teleport Stone	3		1	gives Elixir x2 + Teleport Stone x3
+0x9037	0	0x204D	High Arcana	1	0x2000	Teleport Stone	3		1	gives High Arcana x1 + Teleport Stone x3
+0x9038	0	0x20ED	Empyreal Soul	1	0x2000	Teleport Stone	3		1	gives Empyreal Soul x1 + Teleport Stone x3
+0x9039	0	0x0015	Megalixir	2	0x2000	Teleport Stone	3		1	gives Megalixir x2 + Teleport Stone x3
+0x903A	0	0x20F0	Centurio Hero's Badge	1	0x2000	Teleport Stone	3		1	gives Centurio Hero's Badge x1 + Teleport Stone x3
+0x903B	150								1	gives 150 gil
+0x903C	200								1	gives 200 gil
+0x903D	1200								1	gives 1200 gil
+0x903E	300								1	gives 300 gil
+0x903F	1200	0x20BF	Electrum	1					1	gives 1200 gil + Electrum x1
+0x9040	600	0x0037	Warp Mote	1					1	gives 600 gil + Warp Mote x1
+0x9041	800								1	gives 800 gil
+0x9042	900								1	gives 900 gil
+0x9043	1100								1	gives 1100 gil
+0x9044	1300	0x20A5	Mallet	1					1	gives 1300 gil + Mallet x1
+0x9045	1600								1	gives 1600 gil
+0x9046	1600								1	gives 1600 gil
+0x9047	50000								1	gives 50000 gil
+0x9048	1800								1	gives 1800 gil
+0x9049	1900								1	gives 1900 gil
+0x904A	1900								1	gives 1900 gil
+0x904B	2000								1	gives 2000 gil
+0x904C	2100								1	gives 2100 gil
+0x904D	2100	0x0014	Bacchus's Wine	1					1	gives 2100 gil + Bacchus's Wine x1
 0x904E	0	0x204C	Arcana	2	0x2000	Teleport Stone	2		1	gives Arcana x2 + Teleport Stone x2
 0x904F	0	0x204D	High Arcana	1	0x2000	Teleport Stone	2		1	gives High Arcana x1 + Teleport Stone x2
 0x9050	0	0x20EF	Gemsteel	1	0x2000	Teleport Stone	2		1	gives Gemsteel x1 + Teleport Stone x2

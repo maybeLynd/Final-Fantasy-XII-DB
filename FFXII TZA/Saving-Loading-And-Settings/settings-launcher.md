@@ -11,8 +11,9 @@ addresses: "0x001DE050, 0x001F3ED0, 0x0079813C, 0x0078AD20, 0x007911D0, 0x00862C
   graphics quality, frame limit and VSync. OK and Apply save them; Cancel discards them.
 - A Reset button, after a warning, deletes the keyboard control file, so the game rebuilds its default
   controls on the next start.
-- The window follows the Steam language, or the Windows language when Steam does not answer, and it can be
-  driven with a gamepad.
+- The window follows the Steam language. When Steam does not answer or names another language, it follows the
+  Language line of GameSetting.ini, and without one the language of the Windows Region Format. It can be driven
+  with a gamepad.
 
 ## How it works
 
@@ -41,7 +42,9 @@ through Steam; on true the launcher exits at once. The game makes the same check
 `Program.LoadIniFile` then keeps the file's `Language` value when there is one, and
 `SetLanguageAccordingToSteam` overrides both with `SteamApps.GetCurrentGameLanguage`: `english`, `german`,
 `french`, `italian`, `koreana`, `spanish`, `schinese`, `tchinese` and `japanese` become `en`, `de`, `fr`, `it`,
-`kr`, `es`, `cn`, `ch` and `jp`, and the result is written back as `Language`.
+`kr`, `es`, `cn`, `ch` and `jp`; any other answer, or no Steam, leaves the earlier value. The result replaces
+`Language` among the keys the launcher holds (`SetIniString`), and the file gets it only when OK or Apply runs
+`SaveIniFile`.
 
 The window's text comes from `SettingsLoc.xml`: one `Lang` element per language with its title, font, language
 name, five message texts (`msg_Caption`, `msg_Content`, `msg_WarningCaption`, `msg_WarningContent`,

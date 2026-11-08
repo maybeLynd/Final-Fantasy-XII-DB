@@ -123,7 +123,11 @@ to `0x0042E1F0`. For a piece whose parent's kind is `0x11` to `0x15`, the parent
 
 `0x0042E1F0(record, arg)` first runs `0x004292B0(record, [arg + 8], 0)` on every record it is given, piece or not,
 then reads the kind through `0x003E5CF0` (`0x0042E20E`-`0x0042E225`); a piece without a parent is left there
-(`0x0042E227`-`0x0042E22F`). The handled record is `[arg + 8]` (`0x0042E2AC`) and the ramp is
+(`0x0042E227`-`0x0042E22F`).
+
+The parent's own parent index `+6` is used with no -1 test (`0x0042E258`-`0x0042E264`),
+so for a parent without a parent the `+0x284` and `+0xCC` tests read the 0x740 bytes before the record array
+`[0x022C6F28]`. The handled record is `[arg + 8]` (`0x0042E2AC`) and the ramp is
 `0x003E5D60(record, 1, 0, 5)`, a tail jump (`0x0042E2C1`-`0x0042E2D7`). A record whose word `+0x2F2` is non-zero skips
 all of this: it tail-jumps to `0x00423B10(record, [arg + 0x10], dword [arg + 0x20])` (`0x0042E1FA`-`0x0042E208`,
 `0x0042E2E6`-`0x0042E2F8`).

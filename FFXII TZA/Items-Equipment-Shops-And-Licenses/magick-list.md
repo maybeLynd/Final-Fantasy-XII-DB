@@ -14,6 +14,10 @@ subtracts `0x3000` from the id and multiplies by the row size (`0x0031CD0D`-`0x0
 Every row's `+0x02` is its action row, rows 0-80 of the action table, and each of those has kind 1 and `+0x22` equal
 to the magick id. By school there are 25 White, 25 Black, 20 Time, 6 Green and 5 Arcane magicks.
 
+A magick row holds only its shop price, name, icon and sort order; what the spell does, its MP cost and its school
+come from the action row it points to. A member can use the magick only when it is owned and the member holds a
+licence square that grants it.
+
 ### Where the values come from
 
 Each line is read from the shipped files in these steps, with the action fields as on

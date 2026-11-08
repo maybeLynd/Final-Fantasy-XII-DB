@@ -50,7 +50,7 @@ Struct NavDataset base=section:
 | `+0x1C` | `off` | adjacency | regionCount x regionCount u16: the portal index from i to j, 0 = no portal |
 | `+0x20` | `off` | grid | u8 cellW, u8 cellH, u8 cols, u8 rows, i16 originX, i16 originZ, +8 off cellTable (u16 per cell), `+0xC` off listPool |
 | `+0x24` | `u32` |  | trailer record count (at most 32 used) |
-| `+0x28` | `off` | trailer records | `0x20` B each: i16 kind, f32 x +4, f32 z +8, f32 radius `+0xC`, f32 radius2 `+0x10`, f32 `+0x14` (kind 1; read by the segment query only) |
+| `+0x28` | `off` | trailer records | `0x20` B each: u16 kind (0 circle, 1 ellipse, others skipped), f32 x +4, f32 z +8, f32 radius `+0xC`, f32 radius2 `+0x10`, f32 `+0x14` (kind 1; read by the segment query only) |
 
 Portal index 0 means no portal, so the adjacency entries are 1-based and record 0 is padding.
 Across the 461 shipped sections every triangle names a region that lists it back, the adjacency

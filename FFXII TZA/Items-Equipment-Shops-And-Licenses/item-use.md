@@ -74,8 +74,11 @@ back through the same `0x00253690` and `0x00254EE0` and clears it (`0x003002D7`-
 ### Units that never spend items
 
 The record kind byte `+5` is 0 only for the party's own records; enemies have 1
-([Licenses](licenses.md) has the same test). Every step above returns early for any other kind, so a non-party
-unit's item actions take no item and reserve no gil. Guests have party records: `BattleStats_InitializeDefinitionRecord`
+([Licenses](licenses.md) has the same test). The reservation, its clearing and the refund return early for any
+other kind, so a non-party unit's item actions take no item and reserve no gil; the MP, Mist and `+0xE54` gil
+charges of `0x00305640` apply to every unit.
+
+Guests have party records: `BattleStats_InitializeDefinitionRecord`
 writes kind 0 for any row of the party table, with no limit on the row (`0x0023AD41`-`0x0023AD8E`). So guests' item
 actions spend the party's items; the License test differs, because it also passes every party row above 6.
 

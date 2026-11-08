@@ -133,6 +133,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002475D0	FUN_002475d0	0x00247673	0x22B	w	mov byte ptr [rcx + 0xab], al	embed ManagerSingleton0209BE80+0xAB30	
 0x00296960	FUN_00296960	0x0029699B	0x414	addr	lea rax, [rbx + 0x414]	embed ManagerSingleton0209BE80+0xAB30	
 0x00296960	FUN_00296960	0x002969B2	0x414	w	mov byte ptr [rax], 9	embed ManagerSingleton0209BE80+0xAB30	
+0x00296960	FUN_00296960	0x002969B2	0x5F4	w	mov byte ptr [rax], 9	embed ManagerSingleton0209BE80+0xAB30	
 0x00296960	FUN_00296960	0x002969B5	0x5F4	addr	lea rax, [rax + 0x1e0]	embed ManagerSingleton0209BE80+0xAB30	
 0x0029B550	FUN_0029b550	0x0029B56C	0x6A8	r	mov rax, qword ptr [rcx + 0x60]	embed ManagerSingleton0209BE80+0xAB30	
 0x0029B550	FUN_0029b550	0x0029B664	0x708	r	add ax, word ptr [r15 + 0xc0]	embed ManagerSingleton0209BE80+0xAB30	
@@ -142,9 +143,11 @@ function	name	site	disp	kind	instruction	route	note
 0x002906D0	FUN_002906d0	0x002906FF	0x710	r	cmp dword ptr [rcx + 0xb240], eax	embed ManagerSingleton0209BE80+0xAB30	
 0x00296490	FUN_00296490	0x002964BA	0x710	w	mov dword ptr [rbx + 0x710], 1	embed ManagerSingleton0209BE80+0xAB30	
 0x00296960	FUN_00296960	0x0029696A	0x710	r	cmp dword ptr [rcx + 0x710], 0	embed ManagerSingleton0209BE80+0xAB30	
+0x00296960	FUN_00296960	0x002969B5	0x7D4	addr	lea rax, [rax + 0x1e0]	embed ManagerSingleton0209BE80+0xAB30	
 0x00276650	FUN_00276650	0x002766F7	0x61B0	w	mov qword ptr [rsi + 0x61b0], rdi	embed ManagerSingleton0209BE80+0xAB30	
 0x00276650	FUN_00276650	0x0027670D	0x61B8	w	mov word ptr [rsi + 0x61b8], r14w	embed ManagerSingleton0209BE80+0xAB30	
 0x002767C0	FUN_002767c0	0x0027680A	0x61B8	r	movsx eax, word ptr [rbx + 0x61b8]	embed ManagerSingleton0209BE80+0xAB30	
 0x00276650	FUN_00276650	0x002766E5	0x61CC	rw	and dword ptr [rsi + 0x61cc], 0xfffffeff	embed ManagerSingleton0209BE80+0xAB30	
 0x00276650	FUN_00276650	0x00276704	0x61CC	rw	or dword ptr [rsi + 0x61cc], ebp	embed ManagerSingleton0209BE80+0xAB30	
+0x00276650	FUN_00276650	0x00276722	0x61CC	rw	or dword ptr [rbx + 0x61cc], 0x400	embed ManagerSingleton0209BE80+0xAB30	
 0x0028F970	FUN_0028f970	0x0028F9D4	0x61CC	rw	or dword ptr [rax + 0x10cfc], 0x40	embed ManagerSingleton0209BE80+0xAB30	

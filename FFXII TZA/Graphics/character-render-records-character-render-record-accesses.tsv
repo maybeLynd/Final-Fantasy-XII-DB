@@ -576,9 +576,10 @@ function	name	site	disp	kind	instruction	route	note
 0x00424080	Movement_ModifyHeadingSpeedForObjectState	0x0042419F	0xC4	r	cmp dword ptr [rbx + 0xc4], -1	seed	
 0x00424080	Movement_ModifyHeadingSpeedForObjectState	0x004241A8	0x10	r	mov ecx, dword ptr [rbx + 0x10]	seed	
 0x00424080	Movement_ModifyHeadingSpeedForObjectState	0x004241B0	0xC4	r	mov edx, dword ptr [rbx + 0xc4]	seed	
-0x00424080	Movement_ModifyHeadingSpeedForObjectState	0x004241F3	0x628	w	mov dword ptr [rdi + 8], 0x3f800000	seed	
-0x00424080	Movement_ModifyHeadingSpeedForObjectState	0x004241FC	0x628	r	movss xmm0, dword ptr [rdi + 8]	seed	
-0x00424080	Movement_ModifyHeadingSpeedForObjectState	0x00424209	0x628	w	movss dword ptr [rdi + 8], xmm0	seed	
+0x00424080	Movement_ModifyHeadingSpeedForObjectState	0x004241F3	0x618	w	mov dword ptr [rdi + 8], 0x3f800000	seed	the 1.0 store of any state but 0x0D, 0x35 and 0x36, through rdi = record+0x610 from 0x004240C7; the next row is the same store when the arm path ran in this call
+0x00424080	Movement_ModifyHeadingSpeedForObjectState	0x004241F3	0x628	w	mov dword ptr [rdi + 8], 0x3f800000	seed	only after the arm path (state 0x10, 0x00424132-0x00424156) set rdi = record+0x620 at 0x00424158 in this call; otherwise the store is the +0x618 of the row above
+0x00424080	Movement_ModifyHeadingSpeedForObjectState	0x004241FC	0x618	r	movss xmm0, dword ptr [rdi + 8]	seed	states 0x35 and 0x36 only (0x004241DE-0x004241E4); the arm path needs state 0x10, so rdi is record+0x610 from 0x004240C7 here
+0x00424080	Movement_ModifyHeadingSpeedForObjectState	0x00424209	0x618	w	movss dword ptr [rdi + 8], xmm0	seed	states 0x35 and 0x36 only (0x004241DE-0x004241E4); the arm path needs state 0x10, so rdi is record+0x610 from 0x004240C7 here
 0x00425E10	FUN_00425e10	0x00425E3E	0x290	r	test byte ptr [rcx + 0x290], 2	seed	
 0x00425E70	FUN_00425e70	0x00425EBC	0x8	r	movzx eax, word ptr [rbx + 8]	seed	
 0x00425E70	FUN_00425e70	0x00425EE4	0x8	r	movzx ecx, word ptr [rbx + 8]	seed	

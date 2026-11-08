@@ -126,7 +126,10 @@ storage (`0x00673130` for `PArray<unsigned int,4>`, `0x0060F2D0` for `PSharray<P
 
 ### Resizing
 
-Every resize body has the same shape, shown by `0x005C8BF0` (`PArray<float>`):
+The resize bodies that keep their elements have the same shape, shown by `0x005C8BF0` (`PArray<float>`).
+One helper keeps none: `0x001EF1A0`, for a `PSharray` of 8-byte elements (called from `0x001EE1D0`), zeroes
+the new storage (`0x001EF212`-`0x001EF21A`) instead of copying, returns `0xD` when the allocation fails
+(`0x001EF225`), and frees the old storage when owned. The common shape:
 
 1. When the new count equals the whole count word it returns 0 at once (`0x005C8C15`-`0x005C8C17`). An array with
    bit `0x80000000` set never matches, so resizing it always makes an owned copy.

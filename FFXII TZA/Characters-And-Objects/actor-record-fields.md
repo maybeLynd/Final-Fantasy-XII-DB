@@ -16,10 +16,10 @@ and `+0xC0` of a record it holds:
 | Table | Region | Rows |
 |---|---|---|
 | [`actor-record-fields.tsv`](actor-record-fields.tsv) | the record itself | 1,961 |
-| [`actor-record-fields-movement-context.tsv`](actor-record-fields-movement-context.tsv) | the movement context, record `+0x120`, `0x230` bytes | 991 |
+| [`actor-record-fields-movement-context.tsv`](actor-record-fields-movement-context.tsv) | the movement context, record `+0x120`: `0x230` bytes for class 3, `0x80` for class 1, `0x20` for class 2 | 991 |
 | [`actor-record-fields-secondary-context.tsv`](actor-record-fields-secondary-context.tsv) | the secondary context, record `+0x350`, `0x188` bytes | 849 |
 | [`secondary-context-element-accesses.tsv`](secondary-context-element-accesses.tsv) | the `0x30`-byte elements at the start of the secondary context, each access by its offset in the element; every site is also a row of the secondary-context table, and every secondary-context access below `+0x120` has a row here | 594 |
-| [`actor-record-fields-wait-slots.tsv`](actor-record-fields-wait-slots.tsv) | the wait slots behind `+0xA8` | 26 |
+| [`actor-record-fields-wait-slots.tsv`](actor-record-fields-wait-slots.tsv) | the wait slots behind `+0xA8` | 32 |
 | [`actor-record-fields-resource-entries.tsv`](actor-record-fields-resource-entries.tsv) | the request entries behind `+0xA0` | 96 |
 
 Every access whose base register holds a record, followed from the holders below, is a row. The records come from the
@@ -37,7 +37,9 @@ pointer, are not in the table. The 35 other functions that reference the manager
 fields, not records.
 
 The interiors were followed from every record so held, through their pointers, through the 47 functions that receive
-an interior pointer in an argument register and through the entry resolvers `0x003DB550` and `0x002651A0`.
+an interior pointer in an argument register, through the entry resolver `0x003DB550` and through `0x002651A0`,
+which returns the current wait slot's integer result `+0x0C` and sets the slot's phase `+0x15` to 2
+(`0x002651B0`, `0x002651B5`).
 
 ### The regions
 
@@ -56,7 +58,7 @@ an interior pointer in an argument register and through the entry resolvers `0x0
 | `+0x0C8` | `0x24` | the eighteen override words |
 | `+0x0F8` | `0x0C` | the name text, its length and the name id |
 | `+0x104` | `0x1C` | sentinels and counters the initialiser sets |
-| `+0x120` | `0x230` | the movement context (class 1 and above; the position is its first three floats) |
+| `+0x120` | `0x230` | the movement context (class 1 and above; the position is its first three floats). `0x230` is class 3's extent; it is `0x80` for class 1 and `0x20` for class 2 ([actor record](actor-record.md)) |
 | `+0x350` | `0x188` | the secondary context (class 3) |
 | after | | the request entry pool and the wait slots, at the offsets the actor record page's table gives per sequence |
 

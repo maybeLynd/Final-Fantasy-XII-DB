@@ -9,7 +9,8 @@ addresses: "0x02EBF060, 0x0031C5D0, 0x0031D7B0, 0x0034B000, 0x0032A880, 0x0030A0
 
 [`price-list.tsv`](price-list.tsv) holds one line for each of the 128 rows of the price table that registry slot `0x02EBF060` reaches
 (`battle_pack.bin` directory entry `+0x74`). Row *n* is price id `0xB000` + *n*, inventory class 16
-([Item and ability ids](../Engine-Core/item-and-ability-ids.md)): a gil amount with no item behind it,
+([Item and ability ids](../Engine-Core/item-and-ability-ids.md)): a gil amount or a sale count
+(below), with no item behind it,
 which an event script reads with `getprice`. The aerodrome counters of
 [Chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md) read `0xB002`-`0xB00F` this way and then
 take the amount with `subgill`.
@@ -53,7 +54,7 @@ with a `PUSHI` argument read through the script section's int pool (`+0x20`,
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | price | gil; `0x0031C5D0`'s class-16 arm copies it to the query record's price `+0x28` (`0x0031D7B0`-`0x0031D7F4`) |
+| `+0x00` | `u32` | price | gil, or a number of sales for `0xB054`-`0xB072` (What it lists); `0x0031C5D0`'s class-16 arm copies it to the query record's price `+0x28` (`0x0031D7B0`-`0x0031D7F4`) |
 
 `getprice(id)` (verb `0x2F0`, `0x0034B000`) pops the id and returns `0x0032A880(id)`: `0x0030A0F0` fills a class-1 query
 record for the id and returns its `+0x28`, and `0x0032A880` turns a failed fill (-1) into 0. The table is read only
@@ -70,7 +71,7 @@ negative value (`0x0030A115`-`0x0030A117`), for example the -2 it returns when `
 | Column | Meaning |
 |---|---|
 | `id` | the price id |
-| `price` | `+0x00`, in gil |
+| `price` | `+0x00`: gil, except the 31 trophy trade limits `0xB054`-`0xB072`, where it is the number of times a package sells |
 | `script_calls`, `scripts` | the number of us `getprice` calls that name the id, and their scripts |
 | `explanation` | the amount and who asks for it |
 

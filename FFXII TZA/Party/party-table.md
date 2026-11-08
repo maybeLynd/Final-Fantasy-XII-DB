@@ -11,6 +11,10 @@ addresses: "0x02EBF130, 0x0023AC80, 0x0030C470, 0x0030C650, 0x002FEF30, 0x0023A5
 (`battle_pack.bin` directory entry `+0x44`). Row *n* belongs to the stats record whose type byte `+0x04` is *n*:
 `0x0023AC80` builds a member stats record from it, and every reader below takes its row by that byte.
 
+Each character's starting values are one row of a table in `battle_pack.bin`, and the game reads that row whenever it
+builds the character's stats record. The row also names the character's gambit preset, model, and the items and gil
+added on the first join.
+
 | Rows | Kind | Test |
 |---|---|---|
 | 0-6 | the main characters, Vaan to Reks | `0x003172E0` refuses a selector above 6 |
@@ -50,10 +54,10 @@ Each line is read from the shipped files in these steps:
 | `+0x08` | `u8[2]` | unread08 | no instruction | read by no instruction, and written by no instruction after `battle_pack.bin` is loaded; nothing fixes its width |
 | `+0x0A` | `u16[5]` | equipment | `0x0023AC80` (`0x0031A630`), `0x00316DF0` | starting equipment, slots 0-4 (main hand, off hand, head, body, accessory) |
 | `+0x14` | `u16` | gambitPreset | `0x0023AC80`, `0x00328BD0` (`0x00327CB0`), `0x00235AF0` | the preset gambit list, `0x5000` + row of `gambit_data` |
-| `+0x16` | `u16` | startHp | `0x0030C470` | max HP at level 0 |
+| `+0x16` | `u16` | startHp | `0x0030C470` | raw HP at level 0, which the `+0x18` row turns into max HP |
 | `+0x18` | `u8` | hpFactor | `0x002FEF30` (`0x002F8E50`) | max HP = (`+0x18` + 1) × HP × `+0x19` / 100 |
 | `+0x19` | `u8` | hpPercent | `0x002FEF30` | the percentage in that product |
-| `+0x1A` | `u16` | startMp | `0x0030C470` | max MP at level 0 |
+| `+0x1A` | `u16` | startMp | `0x0030C470` | raw MP at level 0, which the `+0x1D` row turns into max MP |
 | `+0x1D` | `u8` | mpPercent | `0x002FEF30` (`0x002F9180`) | max MP = MP × `+0x1D` / 100 |
 | `+0x1E` | `u8[11]` | stats | `0x0030C470`, `0x0030C650` | Strength `+0x1E`/`+0x1F`, Magick Power `+0x21`/`+0x22`, Vitality `+0x24`/`+0x25`, Speed `+0x27`/`+0x28`: base and growth in 1/128 per level |
 | `+0x2A` | `u8` | evade | `0x002FEF30` (`0x002FF095`) | innate evade |

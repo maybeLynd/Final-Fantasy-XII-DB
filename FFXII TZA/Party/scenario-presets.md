@@ -13,6 +13,10 @@ A script verb can ask for a numbered set of save data: `0x0050F810`, the handler
 The next area start applies it once, from `BattleSystem_InitializeAreaState` (`0x00234349`), and the table the
 sets come from gives the pack its folder name, `test_battle`.
 
+A script only names a set's number, and the game applies it at the next area start. It rebuilds every character from
+the party table, then takes the gil, items, seats and leader from the set's scenario row, and each member's level,
+gear and gambits from the preset rows with the same number, both in `battle_pack.bin`.
+
 ### Applying a set
 
 `0x00239960` reads the number and sets it back to -1, so a set is applied once (`0x00239966`-`0x0023997B`). -2 resets

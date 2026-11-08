@@ -24,6 +24,10 @@ addresses: "0x003E7650, 0x02B59D80, 0x00320BB0, 0x0046FD00, 0x0046FFA0, 0x004700
   in towns, the colour looks and the Invisible fade are hidden; while one turns on `setstatuserrorctrldenystatus`, the
   looks hold still.
 
+Once per game tick the game reads each battle unit's status flags. For every status that has just started or ended it
+switches a colour look, a shadow or see-through change, or a body motion on or off for that unit's character model,
+and then updates the looks.
+
 ## How it works
 
 ### The push
@@ -166,7 +170,9 @@ Blind's offset is `(-0.5, -0.5, -0.5)`, the shared look's `(-0.2, -0.7, 0)`. Oil
 
 ### Stone and Petrify
 
-Stone's step `0x00470AA0` raises its phase over 30 frames and holds it at 1. Each frame it sets render record byte
+Stone's step `0x00470AA0` raises its phase by `[0x01DFE0BC] × 0.03333` a frame and holds it at 1
+(`0x00470AB3`-`0x00470AD6`): the phase is 0.9999 after 30 frames at 30 fps and after 60 frames at 60 fps, and
+reaches 1 on the next frame. Each frame it sets render record byte
 `+0x5E0` = 2, `+0x5DC` = `1 + 0.3 × pulse(phase / 2)`, `+0x5EC` = 0.4 and mode 3. When the look changes it sets mode
 0, releases both handles and returns 1 in the same frame. It creates no light.
 

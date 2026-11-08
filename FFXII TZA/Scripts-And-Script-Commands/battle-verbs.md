@@ -56,7 +56,9 @@ at index `+0xEA9` (`0x00313088`-`0x003130C7`). A commit is followed by `0x003284
 `0x00308270(unit)` undoes that state, and does nothing while flag bit `0x400000` is clear (`0x00308280`): it zeroes
 `+0x28`, frees the slot `+0x695` (`0x0030C970`, then `0xFF`), restores `+0xDC8` and `+0xE58` from the `0x022C1DB0`
 record, copies the action state back with `0x0030EDA0`, zeroes `+0x690`, and clears flag bit `0x400000` and `+4`
-bit `0x4000` (`0x00308282`-`0x003082DF`).
+bit `0x4000` (`0x00308282`-`0x003082DF`). `0x0030EDA0` copies the `0x4F0` bytes at `[+0xB88]` into `+0x6B0`; when
+`[+0xB88]` is block k of the eight `0x4F0`-byte blocks at `0x022BEFC0`, it also clears the bit of value
+`1 << k` in `0x022BEFB0` (`0x0030EE50`-`0x0030EE97`).
 
 `0x00312FA0` saves and commits only when all of these hold (`0x00312FC3`-`0x00313082`); otherwise it returns with
 `+0x28` cleared and nothing else written:
@@ -111,9 +113,17 @@ With `all` non-zero `0x00311B20` issues to every party-slot unit 0-3 that has a 
 `0x00311CF0` result (`0x00311C93`-`0x00311CA6`).
 
 Its callers are the menu path `0x00311B20` (two sites), which the battle menu `0x002778C0` calls ([battle
-menu](../Menus-And-HUD/battle-menu.md)), and `0x003138D0`. The one verb that reaches it is `resetJobs` (`0x05D6`, `0x00342230` →
-`0x00328BD0`): resetting the character recorded at `[0x02EBF190] + 0x5AD5` (`0x003137F0`) runs `0x003138D0(1)`, which issues
-the fixed command `0x113` to the party-slot-3 unit (`0x0031B8C0(3)`) with itself as target.
+menu](../Menus-And-HUD/battle-menu.md)), and `0x003138D0`.
+
+`resetJobs` (`0x05D6`, `0x00342230` → `0x00328BD0`) reaches it: resetting the character recorded at
+`[0x02EBF190] + 0x5AD5` (`0x003137F0`) runs `0x003138D0(1)`, which issues the fixed command `0x113` to the party-slot-3
+unit (`0x0031B8C0(3)`) with itself as target.
+
+`0x003138D0` has three other callers,
+`0x00300FC0`, `0x00310DB0` and `0x00313760`. The defeat cleanup `0x00300FC0(unit, 0)` runs it for a summoned Esper (a party
+record of type `0x1B`-`0x27`, `0x00301005`) and, while `0x0030D9A0()` is 1, for the recorded character (`0x0030111E`).
+Adding KO, Stone or X-Zone runs that cleanup (`0x0030E497`, `0x0030E877`), so `btlAtelSetStatus` (`0x3002`) also
+reaches `0x003138D0`, through `0x0030EAE0` (`0x00239577`), when it gives one of the three to either unit.
 
 `0x003138D0` acts only when `0x0030D9A0()` is 1, the unit exists (`0x003138F1`), the unit's `+0x714` is not `0x113`, and it
 does not already hold an issued `0x113` (flag `0x4000` with `+0xBA0` = `0x113`, `0x00313903`-`0x00313913`). It issues the
@@ -415,8 +425,9 @@ the two script grant words; the render record's drawn state; `0x022C1F48` and `0
 ## Modding notes
 
 - A script cannot make a character use a chosen command; it can engage, disengage, draw, sheathe,
-  stop thinking or change the stance. The one script-reachable issue is `resetJobs` on the recorded
-  character, which issues command `0x113` to the party-slot-3 unit.
+  stop thinking or change the stance. `resetJobs` on the recorded character issues command `0x113` to the
+  party-slot-3 unit, and so does `btlAtelSetStatus` when it gives KO, Stone or X-Zone to a summoned Esper or,
+  while `0x0030D9A0()` is 1, to the recorded character (`0x00300FC0` → `0x003138D0`).
 - `setemergency` wears off by itself once no target qualifies; `resetemergency` ends it at once,
   sheathes instantly and reinstalls the default gambit set.
 - `setbattlethinkstatus(0)` freezes a character mid-fight: it cancels the action and stops movement

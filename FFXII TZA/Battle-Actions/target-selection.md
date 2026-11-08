@@ -10,9 +10,10 @@ addresses: "0x0031EB20, 0x00322A80, 0x003230E0, 0x00322490, 0x0046B870, 0x0046B6
 When you choose an action, the menu's target list holds only what that action may affect: the user itself,
 the user's allies and the user's foes, each allowed or not by a flag of the action.
 
-- **Range.** A living target is listed only when it is within 24 units, measured on the ground, of
-  the character you are controlling - not of the character who will act, when you give an order to
-  another party member.
+- **Range.** A living target that is on the field as a battle unit is listed only when it is within 24
+  units, measured on the ground, of the character you are controlling - not of the character who will
+  act, when you give an order to another party member. A reserve member with no battle unit is listed
+  without the range test.
 - **Foes.** Enemies come from the actors loaded in the area. KO'd, stoned, X-Zoned and Invisible
   enemies are not listed.
 - **KO'd and stoned allies.** An action that may target KO'd units (Raise, Arise, Phoenix Down,
@@ -227,8 +228,8 @@ No other instruction reaches these two.
 
 ## Modding notes
 
-- The 24-unit limit is the float at `0x00D1081C` (576.0, the square of the range); it applies to every
-  living candidate in every list, through `0x00322490`.
+- The 24-unit limit is the float at `0x00D1081C` (576.0, the square of the range); it applies, through
+  `0x00322490`, to every living candidate that has a battle unit (`0x00322BA6`-`0x00322BAF`).
 - The KO and Stone permissions are bits `0x40` and `0x80` of the action row's word `+0x2C`; they also keep
   `0x002FFA60` from cancelling the action when its target is KO'd, stoned or X-Zoned. In the shipped
   `battle_pack.bin`, bit `0x40` is set on 10 action rows (Raise twice, Arise, Phoenix Down, Revive, Cry for

@@ -20,6 +20,10 @@ with a little randomness.
   multipliers, and the element stages apply last, among them Oil's ×3 on fire damage and Float's
   miss on earth magicks ([Elements](elements.md)).
 
+Which steps an action runs is set by its recipe number, read from the action's row or, for recipe 0, from the equipped
+weapon's row: one list of steps lands the hit, a second builds the number. Which of the evade chances a target can use
+is read from two values in its model's `@FCP` block.
+
 ## How it works
 
 ### The resolver

@@ -14,6 +14,10 @@ addresses: "0x0032A8A0, 0x00377970, 0x0032AB60, 0x0032ABF0, 0x0032AD70, 0x0032AA
   story.
 - A new game starts with a set of map flags already on.
 
+Most of these flags are bits in the save that scripts, talks, chests and traps switch on. The menu entries work
+differently: their flag numbers point into `mapjumpgroupflagrom.bin`, a list of story counter values, so they appear
+once the counter reaches the listed point. The map flags a new game starts with are listed in `mapjumpgroupinit.bin`.
+
 ## How it works
 
 ### The banks

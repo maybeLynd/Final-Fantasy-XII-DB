@@ -273,7 +273,7 @@ when the cell is negative (the -2 included), so a blocked placement keeps its st
 words.
 
 Otherwise it reads the cell record (`[field + 0x10] + cell *
-32`, attribute dword `+0xC`) through the mask table `0x0209A2D0` (`0x00232020`): bits `0x3E000` to `+0x56`,
+32`, attribute dword `+0xC`) through the override table `0x0209A3E0` (`0x00232020`): bits `0x3E000` to `+0x56`,
 bits `0x78` to `+0x58`, `0x00231F80`'s bits to `+0x5A`, attribute bit `0x1000` to flag bit `0x4`; `0x00231A90`; the
 second cell `+0x54`'s height to `+0x90` with flag bit `0x8` when above the ground height. Flag bits `0x4` and
 `0x8` are cleared first (`0x00380913`), and a negative second cell skips the height (`0x0038093D`), leaving `+0x90`
@@ -330,7 +330,8 @@ controller's `+0x151` bit `0x80` (`0x00264EA0`). `0x003DAE20` returns the list's
 
 ### The separation pass
 
-`World_UpdateSimulationTick` first runs `0x003DAA40` (`0x003140C5`): the 32 masks are zeroed and every
+`World_UpdateSimulationTick` (`0x00314020`) runs `0x003DAA40` at `0x003140C5`, after its calls at
+`0x00314051`-`0x00314078` and, unless `[0x01EED064]` is negative (`0x00314098`), those at `0x003140A1`-`0x003140BA`: the 32 masks are zeroed and every
 body's `+7` cleared, so a body that does not register during the frame is not active for the pass.
 Its tail runs `0x003DAC70(0x00314F30)` (`0x00314244`) over the active list:
 
@@ -457,7 +458,7 @@ the body's mask word `+0x110` (`0x002E9BB0`, `0x002EC5B0`) and, for a negative `
 | `+0x040` | `f32[4]` | orientation | the heading's direction pair, `+0x44` = 0, `+0x4C` = 1.0; `{0, 0, 1.0, 1.0}` at allocation (`0x00380B80`) |
 | `+0x060` | `f32[4]` | groundTint | vertex colours of the type-2 polygon underfoot, blended by `0x00231A90`; `0x0209A3A0` without one; four 1.0 (white) at allocation (`0x00380B80`) |
 | `+0x070` | `f32[4]` | displacement | the cell solver's push of the last move |
-| `+0x080` | `u8` | cellClass | the kind the floor overrides test (`0x00230A40`); its word is -1 at allocation (`0x00380B80`) |
+| `+0x080` | `u16` | cellClass | the movement kind: the floor overrides' callers pass the word zero-extended to `0x00230A40` (`0x0022FB1F`, `0x00232EAE`, `0x002331B5`), `0x00380D30` reads its low byte (`0x00380D89`); `0xFFFF` at allocation (`0x00380B97`), 1 from `0x002681E0` (`0x002682A7`) |
 | `+0x082` | `i16` | cell | polygon underfoot, `-2` refused; -1 at allocation (`0x00380B80`) |
 | `+0x084` | `i16` | secondCell | the type-4 marker polygon |
 | `+0x086` | `u16` | floorGroup | attribute bits under mask `0x3E000`; `FFFF` at allocation (`0x00380B80`) |

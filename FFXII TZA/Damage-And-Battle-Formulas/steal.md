@@ -17,6 +17,10 @@ An enemy can carry up to three items to steal: a common, an uncommon and a rare 
   to steal".
 - **A roll that lands on an item the enemy does not carry** fails with "couldn't steal from".
 
+The three items are words of the enemy's own record, and which of them are still there is set when the enemy is first
+set up from its spawn record. Thief's Cuffs work through their equipment row, whose augment byte gives the wearer
+augment 17, Thievery, the bit the roll tests.
+
 For an enemy that carries all three items:
 
 | Item | Without Thief's Cuffs | With Thief's Cuffs |

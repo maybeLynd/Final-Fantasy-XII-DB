@@ -50,8 +50,8 @@ slot 5 of the `GameApplication` vtable `0x008C5760` ([game application](game-app
 
 For 384 forwarders a stored pointer names the thunk rather than the body: a hook on the body misses
 every dispatch through such a pointer. Among the table's rows, for 132 bodies the thunk is the only
-named entry any `call` uses. The reverse holds for the 8 targets a table names directly (`0x0080A270`, `0x001FC320`,
-`0x0020B0F0`, `0x001D6B70`, `0x006AB7E0` and `0x005EA310` among them): a hook on the thunk misses the
+named entry any `call` uses. The reverse holds for the 8 targets a table names directly (`0x005C5230`, `0x007A0B40`,
+`0x0016D6A0`, `0x0019C590`, `0x00784DF0`, `0x001243B0`, `0x00844090` and `0x0083AE00`): a hook on the thunk misses the
 dispatch through the table.
 
 Ten rows of the table jump to another row: `0x00235DC0` to `0x003844F0` to `0x003697F0`, `0x002E08B0` to
@@ -90,3 +90,25 @@ the slot and the check stays a no-op; the linker folded the two empty functions 
 - [Global state accessors](global-state-accessors.md): the other one-instruction family.
 - [Debug logging](debug-logging.md): `0x005CD960`, the end of one chain, is the log sink's
   construction entry.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x001243B0` is called by `0x00121030`, `0x00121E20`, `0x00210ED0`, `0x00210F60`, `0x002112D0`, `0x00211340`, `0x002254D0`,
+  `0x00225610`, `0x007A48C0`, `0x007A4A10`, `0x007A4AC0`, `0x007A4B30`; `0x001243B0` is also called by `0x007A4BB0`, `0x007A4C70`,
+  `0x007A4CA0`, `0x007A4D50`, `0x007A5A00`, `0x007A5B20`, `0x007A87C0`, `0x007AC4F0`, `0x007ACD30`, `0x007AD240`, `0x007B0F90`,
+  `0x007B31A0`.
+- Audio: `0x001243B0` is also called by `0x007BBAB0`, `0x007BDFA0`, `0x007BE0B0`, `0x007BEAF0`, `0x007BED30`, `0x007BEF30`,
+  `0x007C8890`, `0x007CA650`, `0x007CA9F0`, `0x007EEA00`, `0x007EFA30`, `0x007EFA70`; `0x001243B0` is also called by `0x007EFB60`,
+  `0x007EFC40`, `0x007EFCB0`, `0x007EFD20`, `0x007EFD90`, `0x007EFE00`, `0x007EFE70`, `0x007EFFE0`, `0x007F0060`, `0x007F0120`,
+  `0x007F0190`, `0x007F0210`.
+- Audio: `0x001243B0` is also called by `0x007F0320`, `0x007F0580`, `0x007F0660`, `0x007F0700`, `0x007F0790`, `0x007F0820`,
+  `0x007F1340`, `0x007F1A50`.
+- Audio: those functions are documented on [sound engine](../Sound-And-Music/sound-engine.md),
+  [sound effects](../Sound-And-Music/sound-effects.md), [audio manager](../Sound-And-Music/audio-manager.md),
+  [sound driver objects](../Sound-And-Music/sound-driver-objects.md), [debug logging](debug-logging.md),
+  [spatial sound](../Sound-And-Music/spatial-sound.md).
+- Audio: and on [audio effects](../Sound-And-Music/audio-effects.md),
+  [sound engine config](../Sound-And-Music/sound-engine-config.md),
+  [maths library](../Compiler-And-C-Runtime/maths-library.md).

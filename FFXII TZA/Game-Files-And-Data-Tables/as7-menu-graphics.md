@@ -11,6 +11,10 @@ Two kinds of menu picture come out of these files. The item pictures that menu l
 needs one. The large character silhouette behind the Gambits screen is one of six groups of pages in
 `char_silhouette.as7`, picked by the party member being edited.
 
+An item's picture number is its equipment row: the number divided by 64 picks one of the eight `item_gra` sheets and
+the rest picks a page. The game unpacks that page, a grid of colour numbers, into the `itemgra_c` menu picture and
+gives it the sheet's palette from `Item_Clut.bin`.
+
 ## Where it comes from
 
 The files are resource kind 7, in the `in` and `ch` locale folders only:

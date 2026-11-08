@@ -13,6 +13,10 @@ A unit's statuses are 32 bits, status *s* being bit `1 << s`, held in its stats 
 5 (row word `+0x00` = `0x2800` + *s*), and the help line is entry *s* of `listhelp_status.bin` (row word `+0x0A`,
 text id 12,000 + *s*, `0x0031E288`).
 
+Each status is one row of a table in `battle_pack.bin`. The row gives the number of the status's name in a text bank
+and of its help line in `listhelp_status.bin`, and holds its length, its beat, and the statuses it removes or is
+blocked by.
+
 Row bytes `+0x11`-`+0x12` and `+0x14`-`+0x1F` are read and written by no function; nothing fixes their width. In the
 shipped rows 42 of these 448 bytes are not `0xFF`, all of them 25 to 31.
 

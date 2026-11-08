@@ -105,7 +105,7 @@ entry's pictures carry that value.
   occurs in the pictures.
 - The exchange runs only for a picture whose `clutType << 8 | imageType` is `0x105`, `0x205`, `0x305`,
   `0x4104`, `0x4204` or `0x4304` (`0x00181064`-`0x00181095`); any other pair keeps the file's order (`0x00181111`).
-  Every sloc picture in every folder (654 pictures, 3,502 copies) has clut type 3 and image type 5, `0x305`.
+  Every sloc picture in every folder (385 distinct pictures, 3,502 copies) has clut type 3 and image type 5, `0x305`.
 - Each palette becomes a 256 x 1 texture (`0x0017F3B0`, `0x00181122`), registered under the picture's name with
   its palette number (`0x001B20B0`, `0x00181140`).
 - 239 colours of each 512-colour table have alpha `0xFF`, above the PS2 opaque `0x80`; the TSV marks them

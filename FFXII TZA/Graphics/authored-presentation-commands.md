@@ -13,6 +13,11 @@ between hand and sheath, a sway or a rotator speeding up, and the character's sh
 turning, stretching and fading over a number of frames. These commands are all run by the code on
 this page.
 
+Each command in the motion data carries a number; the game looks it up in a table and runs the handler that the
+character render system or the actor code put there at start-up. The four shadow commands store a target and a number
+of frames, a step once per character update moves the shadow toward it, and the shadow drawing reads the result every
+frame.
+
 ## How it works
 
 ### Walking the stream

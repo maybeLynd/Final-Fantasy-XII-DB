@@ -70,8 +70,8 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00124C20	0x00125085	call	0x00124920	-	-
 0x00125710	0x00125723	call	0x00125260	rcx,rdx,xmm0,xmm1,xmm2,xmm3	-
 0x00125710	0x0012573A	tail	0x00125420	-	-
-0x001356E0	0x00135718	tail	0x0013575A	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00139ACD	0x00139B05	tail	0x00139B47	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
+0x001356E0	0x0013575A	call	0x0013575F	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
+0x00139ACD	0x00139B47	call	0x00139B4C	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00149610	0x0014963E	call	0x00861F38	-	rcx,r8,r9,xmm0,xmm1,xmm2
 0x00158DA0	0x00158DBE	call	KERNEL32.dll!DeleteCriticalSection	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00158DA0	0x00158DCC	call	0x00210EB0	-	-
@@ -11838,7 +11838,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x001D1660	0x001D4A07	call	0x001DE5A0	-	-
 0x001D1660	0x001D4A11	call	0x001F0850	-	-
 0x001D1660	0x001D4A1E	call	0x001EF520	-	-
-0x001D1660	0x001D4A53	call	0x001DF2C0	xmm0,xmm1,xmm2,xmm3	r8
+0x001D1660	0x001D4A53	call	0x001DF2C0	xmm0,xmm1,xmm2,xmm3	-
 0x001D1660	0x001D4A5D	call	0x00189120	-	-
 0x001D1660	0x001D4A6F	call	0x001DE570	-	-
 0x001D1660	0x001D4A76	call	0x00189120	-	-
@@ -14497,7 +14497,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x001F5B80	0x001F5BCE	call	qword ptr [r9 + 0x18]	-	-
 0x001F5B80	0x001F5BE6	call	0x00199DB0	-	-
 0x001F5C20	0x001F5C2E	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x001F5C20	0x001F5C58	call	0x00628570	-	-
+0x001F5C20	0x001F5C58	call	0x00628570	r9,xmm0,xmm1,xmm2,xmm3	-
 0x001F5C20	0x001F5CD6	call	0x00861EBA	-	-
 0x001F5C20	0x001F5D12	call	0x006215A0	-	-
 0x001F5C20	0x001F5D47	call	0x00628570	-	-
@@ -19398,7 +19398,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0022FF10	0x0022FF39	call	0x0022F050	rcx,r8,xmm0,xmm1,xmm2,xmm3	-
 0x0022FF10	0x0022FFCC	call	0x00808C40	-	-
 0x0022FFE0	0x0022FFF0	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0022FFE0	0x00230037	call	0x0026E500	-	-
+0x0022FFE0	0x00230037	call	0x0026E500	rdx,r8,r9,xmm2,xmm3	-
 0x0022FFE0	0x0023006C	call	0x00861EC0	-	-
 0x0022FFE0	0x00230080	call	0x00861EC0	-	-
 0x0022FFE0	0x002300A9	call	0x00202C70	-	-
@@ -19526,7 +19526,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00233700	0x00233756	call	0x00229ED0	-	-
 0x00233700	0x0023376F	tail	0x00182FB0	-	-
 0x00233780	0x00233785	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00233780	0x002337C1	call	0x003148F0	-	-
+0x00233780	0x002337C1	call	0x003148F0	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00233780	0x002337C8	call	0x0032A150	-	-
 0x00233780	0x002339B0	call	0x00861EC0	-	-
 0x00233A20	0x00233A29	call	0x0030BE80	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
@@ -21708,9 +21708,9 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00250200	0x00250235	call	0x002B9FC0	-	-
 0x00250200	0x0025023E	call	0x00229E00	-	-
 0x00250270	0x00250277	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00250270	0x002503E7	call	0x0020E600	-	-
+0x00250270	0x002503E7	call	0x0020E600	-	xmm2,xmm3
 0x00250270	0x00250408	call	0x0035D330	-	-
-0x00250270	0x00250524	call	0x00808C40	-	-
+0x00250270	0x00250524	call	0x00808C40	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x00250540	0x00250546	call	0x001EDE70	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00250540	0x00250557	call	0x00181DD0	-	-
 0x00250540	0x0025056B	call	0x00184960	-	-
@@ -24529,15 +24529,15 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00272590	0x00272697	call	0x003A1DB0	-	-
 0x00272730	0x00272754	call	0x00271960	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x002727F0	0x002727FA	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x002727F0	0x002728AE	call	0x00861EBA	-	-
-0x002727F0	0x00272989	call	0x00808C40	-	-
+0x002727F0	0x002728AE	call	0x00861EBA	r9,xmm2,xmm3	-
+0x002727F0	0x00272989	call	0x00808C40	-	r9,xmm2,xmm3
 0x002729A0	0x002729A7	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x002729A0	0x00272A2A	call	0x00861EBA	-	-
+0x002729A0	0x00272A2A	call	0x00861EBA	r9,xmm2,xmm3	-
 0x002729A0	0x00272A3B	call	0x0035BAD0	-	-
 0x002729A0	0x00272A73	call	0x002E9D10	-	-
 0x002729A0	0x00272A92	call	0x00249110	-	-
 0x002729A0	0x00272AC5	call	0x002748E0	-	-
-0x002729A0	0x00272B2D	call	0x00808C40	-	-
+0x002729A0	0x00272B2D	call	0x00808C40	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x00272B40	0x00272B7D	call	0x0035BAD0	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00272B40	0x00272BBB	call	0x002E9D10	-	r8,r9,xmm0,xmm1,xmm2,xmm3
 0x00272B40	0x00272BD7	call	0x00249110	-	-
@@ -24640,7 +24640,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00273BA0	0x00273DB8	call	0x002D03B0	-	-
 0x00273BA0	0x00273E05	call	0x00808C40	-	-
 0x00273E30	0x00273E55	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00273E30	0x00273F9A	call	0x002F9860	-	-
+0x00273E30	0x00273F9A	call	0x002F9860	-	rdx,r8,r9,xmm1,xmm2,xmm3
 0x00273E30	0x00273FBB	call	0x0029CD00	-	-
 0x00273E30	0x00273FE5	call	0x0035D330	-	-
 0x00273E30	0x00273FF0	call	0x002B58B0	-	-
@@ -25149,12 +25149,12 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0027AD70	0x0027AEE3	call	0x00247570	-	-
 0x0027AF00	0x0027AF37	call	0x00861F0E	rcx,rdx,r8,r9,xmm1,xmm2,xmm3	-
 0x0027AF80	0x0027AF8C	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0027AF80	0x0027AFD0	call	0x0031EB20	-	-
+0x0027AF80	0x0027AFD0	call	0x0031EB20	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0027AF80	0x0027B016	call	0x00273710	-	-
 0x0027AF80	0x0027B023	call	0x002647E0	-	-
 0x0027AF80	0x0027B073	call	0x00808C40	-	-
 0x0027B090	0x0027B095	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0027B090	0x0027B0CE	call	0x0031EB20	-	-
+0x0027B090	0x0027B0CE	call	0x0031EB20	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0027B090	0x0027B0EE	call	0x00808C40	-	-
 0x0027B090	0x0027B108	call	0x00808C40	-	-
 0x0027B200	0x0027B25C	call	0x002030E0	rdx,r9,xmm2,xmm3	-
@@ -25175,12 +25175,12 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0027B430	0x0027B57A	call	0x00249C60	-	-
 0x0027B430	0x0027B58C	call	0x00808C40	-	-
 0x0027B5A0	0x0027B5AC	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0027B5A0	0x0027B606	call	0x0031EB20	-	-
+0x0027B5A0	0x0027B606	call	0x0031EB20	rdx,r8,r9,xmm2,xmm3	-
 0x0027B5A0	0x0027B650	call	0x00273710	-	-
 0x0027B5A0	0x0027B65D	call	0x002647E0	-	-
 0x0027B5A0	0x0027B6AD	call	0x00808C40	-	-
 0x0027B6C0	0x0027B6C5	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0027B6C0	0x0027B720	call	0x0031EB20	-	-
+0x0027B6C0	0x0027B720	call	0x0031EB20	rdx,r8,r9,xmm2,xmm3	-
 0x0027B6C0	0x0027B740	call	0x00808C40	-	-
 0x0027B6C0	0x0027B75A	call	0x00808C40	-	-
 0x0027B770	0x0027B80B	call	0x0027B3B0	r9,xmm1,xmm2,xmm3	-
@@ -25314,7 +25314,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0027D700	0x0027D715	call	0x0027B200	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0027D700	0x0027D731	tail	0x0027B770	-	r9,xmm0,xmm1,xmm2,xmm3
 0x0027D740	0x0027D747	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0027D740	0x0027D819	call	0x00273270	-	-
+0x0027D740	0x0027D819	call	0x00273270	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0027D740	0x0027D84E	call	0x0027C220	-	-
 0x0027D740	0x0027D865	call	0x0031EB20	-	-
 0x0027D740	0x0027D877	call	0x00250270	-	-
@@ -25331,7 +25331,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0027D740	0x0027DA8A	call	0x002727F0	-	-
 0x0027D740	0x0027DA9A	call	0x00272400	-	-
 0x0027D740	0x0027DB50	call	0x00272400	-	-
-0x0027D740	0x0027DBF5	call	0x00808C40	-	-
+0x0027D740	0x0027DBF5	call	0x00808C40	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x0027DC10	0x0027DC44	call	0x00290CD0	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0027DC10	0x0027DC56	call	0x0031AB80	-	-
 0x0027DC10	0x0027DC6C	call	0x00273710	-	-
@@ -26647,7 +26647,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0028EA20	0x0028EA2C	tail	0x002911D0	r8,xmm0,xmm1,xmm2,xmm3	-
 0x0028EA40	0x0028EA6D	call	0x00244F00	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0028EAB0	0x0028EAC3	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0028EAB0	0x0028EAE3	call	0x00254560	-	-
+0x0028EAB0	0x0028EAE3	call	0x00254560	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0028EAB0	0x0028EAEC	call	0x002E1030	-	-
 0x0028EAB0	0x0028EAF5	call	0x001FBE50	-	-
 0x0028EAB0	0x0028EAFA	call	0x001EB110	-	-
@@ -26698,7 +26698,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0028EAB0	0x0028EDEB	call	0x003F1530	-	-
 0x0028EAB0	0x0028EDFA	call	0x00808C40	-	-
 0x0028EE10	0x0028EE15	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0028EE10	0x0028EE3F	call	0x00271450	-	-
+0x0028EE10	0x0028EE3F	call	0x00271450	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0028EE10	0x0028EE49	call	0x0016D6A0	-	-
 0x0028EE10	0x0028EE58	call	0x00271010	-	-
 0x0028EE10	0x0028EE62	call	0x00271450	-	-
@@ -30102,7 +30102,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x002C3560	0x002C388A	call	0x00247930	-	-
 0x002C3560	0x002C3899	call	0x00808C40	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x002C38B0	0x002C38B8	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x002C38B0	0x002C395B	call	0x00861EC0	-	-
+0x002C38B0	0x002C395B	call	0x00861EC0	r9,xmm0,xmm1,xmm2,xmm3	-
 0x002C38B0	0x002C3990	call	0x0031EB20	-	-
 0x002C38B0	0x002C3998	call	0x00254A10	-	-
 0x002C38B0	0x002C39E0	call	0x0035D330	-	-
@@ -30116,7 +30116,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x002C38B0	0x002C3B1D	call	0x0035D330	-	-
 0x002C38B0	0x002C3B28	call	0x002B58B0	-	-
 0x002C38B0	0x002C3B33	call	0x0020E620	-	-
-0x002C38B0	0x002C3B76	call	0x00808C40	-	-
+0x002C38B0	0x002C3B76	call	0x00808C40	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x002C3B90	0x002C3BAD	call	0x002D4840	xmm0,xmm1,xmm2,xmm3	-
 0x002C3C10	0x002C3C3B	call	0x00246AD0	r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x002C3C10	0x002C3C74	tail	0x002C3B90	-	-
@@ -30145,7 +30145,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x002C4460	0x002C46E2	call	0x00247930	-	-
 0x002C4460	0x002C470B	call	0x00808C40	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x002C4720	0x002C4731	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x002C4720	0x002C47FA	call	0x00861EC0	-	-
+0x002C4720	0x002C47FA	call	0x00861EC0	r9,xmm1,xmm2,xmm3	-
 0x002C4720	0x002C481B	call	0x0031EB20	-	-
 0x002C4720	0x002C4823	call	0x00254A10	-	-
 0x002C4720	0x002C485B	call	0x0035D330	-	-
@@ -30210,7 +30210,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x002C4720	0x002C52A7	call	0x002F9860	-	-
 0x002C4720	0x002C52B2	call	0x0020E620	-	-
 0x002C4720	0x002C52D1	call	0x0029FE20	-	-
-0x002C4720	0x002C539D	call	0x00808C40	-	-
+0x002C4720	0x002C539D	call	0x00808C40	-	r8,r9,xmm1,xmm2,xmm3
 0x002C53B0	0x002C5411	call	0x002D4840	xmm0,xmm1,xmm2,xmm3	-
 0x002C5480	0x002C54A7	tail	0x00246AD0	r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x002C5660	0x002C5672	call	0x00282DF0	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
@@ -36163,7 +36163,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0031E860	0x0031E864	call	0x00263750	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0031E860	0x0031E87A	tail	0x003589B0	-	-
 0x0031E880	0x0031E88D	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0031E880	0x0031E8C4	call	0x0031EB20	-	-
+0x0031E880	0x0031E8C4	call	0x0031EB20	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0031E880	0x0031E907	call	0x003588B0	-	-
 0x0031E880	0x0031E914	call	0x00263E30	-	-
 0x0031E880	0x0031E97A	call	0x00808C40	-	-
@@ -37377,7 +37377,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x003304A0	0x003306AA	call	0x00263FF0	-	-
 0x003304A0	0x003306BF	call	0x0032F1B0	-	-
 0x003306E0	0x003306FA	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x003306E0	0x0033072C	call	0x00263FF0	-	-
+0x003306E0	0x0033072C	call	0x00263FF0	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x003306E0	0x00330744	call	0x0032E3F0	-	-
 0x003306E0	0x00330AB9	call	0x0032F6F0	-	-
 0x003306E0	0x00330AE9	call	0x0032F6F0	-	-
@@ -43776,7 +43776,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0035BB70	0x0035BC20	tail	0x002A1E90	-	-
 0x0035BC40	0x0035BC45	tail	0x0035BC50	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0035BC50	0x0035BC59	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0035BC50	0x0035BC7C	call	0x003C5FF0	-	-
+0x0035BC50	0x0035BC7C	call	0x003C5FF0	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0035BC50	0x0035BCCC	call	0x0031EB20	-	-
 0x0035BC50	0x0035BD19	call	0x00272B40	-	-
 0x0035BC50	0x0035BD1E	call	0x003272E0	-	-
@@ -44687,17 +44687,17 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00369800	0x00369828	call	0x0036A9C0	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00369800	0x00369846	tail	0x00369860	-	-
 0x00369860	0x00369872	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00369860	0x003698AA	call	0x0017D2E0	-	-
-0x00369860	0x00369901	call	0x0017D2E0	-	-
+0x00369860	0x003698AA	call	0x0017D2E0	xmm0,xmm1,xmm2,xmm3	-
+0x00369860	0x00369901	call	0x0017D2E0	-	r9,xmm0,xmm1,xmm2,xmm3
 0x00369860	0x003699C0	call	0x0017D2E0	-	-
 0x00369860	0x00369A58	call	0x0017D2E0	-	-
 0x00369860	0x00369A6F	call	0x0036A570	-	-
 0x00369860	0x00369A79	call	api-ms-win-crt-runtime-l1-1-0.dll!exit	-	-
-0x00369860	0x00369A96	call	0x0017D2E0	-	-
+0x00369860	0x00369A96	call	0x0017D2E0	r9,xmm0,xmm1,xmm2,xmm3	-
 0x00369860	0x00369AAD	call	0x0036A570	-	-
 0x00369860	0x00369AB7	call	api-ms-win-crt-runtime-l1-1-0.dll!exit	-	-
-0x00369860	0x00369AD6	call	0x0017D2E0	-	-
-0x00369860	0x00369B44	call	0x0020E620	-	-
+0x00369860	0x00369AD6	call	0x0017D2E0	xmm0,xmm1,xmm2,xmm3	-
+0x00369860	0x00369B44	call	0x0020E620	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00369860	0x00369B53	call	0x0020E600	-	-
 0x00369860	0x00369B6E	call	0x0020E600	-	-
 0x00369860	0x00369B84	call	0x0036B730	-	-
@@ -45169,8 +45169,8 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00370180	0x00370333	call	0x0046D100	-	-
 0x00370390	0x00370397	tail	0x00373160	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x003703A0	0x00370438	call	0x00808F10	r9,xmm0,xmm1,xmm2,xmm3	-
-0x003703A0	0x00370459	call	0x00808F10	-	-
-0x003703A0	0x0037046F	call	0x00861EC0	-	-
+0x003703A0	0x00370459	call	0x00808F10	r9,xmm0,xmm1,xmm2,xmm3	-
+0x003703A0	0x0037046F	call	0x00861EC0	r9,xmm0,xmm1,xmm2,xmm3	-
 0x003703A0	0x00370485	call	0x00861EC0	-	-
 0x003703A0	0x003704A4	call	0x0020E600	-	-
 0x003703A0	0x003704B5	call	0x0020E600	-	-
@@ -49514,12 +49514,12 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x003BBB30	0x003BBB34	call	0x0028FB60	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x003BBB30	0x003BBB53	tail	0x00861EC0	-	-
 0x003BBB60	0x003BBB65	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x003BBB60	0x003BBBC1	call	0x003F1520	-	-
+0x003BBB60	0x003BBBC1	call	0x003F1520	rdx,r8,r9,xmm2,xmm3	xmm0,xmm1
 0x003BBB60	0x003BBC26	call	0x0028A090	-	-
 0x003BBB60	0x003BBC37	call	0x00505560	-	-
 0x003BBB60	0x003BBC46	call	0x003F1530	-	-
 0x003BBB60	0x003BBC53	call	0x0028EE10	-	-
-0x003BBB60	0x003BBC73	call	0x00808C40	-	-
+0x003BBB60	0x003BBC73	call	0x00808C40	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x003BBCD0	0x003BBCE6	tail	0x00861EC0	r9,xmm0,xmm1,xmm2,xmm3	-
 0x003BBD00	0x003BBD74	call	0x0035D330	xmm0,xmm1,xmm2,xmm3	-
 0x003BBD00	0x003BBE2E	call	api-ms-win-crt-utility-l1-1-0.dll!rand	-	xmm0,xmm1,xmm2,xmm3
@@ -54345,7 +54345,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x004027D0	0x004029E9	call	0x00270260	-	-
 0x004027D0	0x00402A1E	call	0x00808C40	-	-
 0x00402A40	0x00402A55	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00402A40	0x00402A87	call	0x003BED70	-	-
+0x00402A40	0x00402A87	call	0x003BED70	r9,xmm0,xmm1,xmm2,xmm3	-
 0x00402A40	0x00402A9E	call	0x003BE3A0	-	-
 0x00402A40	0x00402ADC	call	0x003C0890	-	-
 0x00402A40	0x00402B25	call	0x004023D0	-	-
@@ -54375,7 +54375,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00403380	0x00403541	call	0x00246AC0	-	-
 0x00403550	0x0040356A	call	0x00401FD0	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00403640	0x0040365A	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00403640	0x004036E0	call	0x00404230	-	-
+0x00403640	0x004036E0	call	0x00404230	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00403640	0x00403717	call	0x00861F0E	-	-
 0x00403640	0x00403749	call	0x00861F0E	-	-
 0x00403640	0x004037FC	call	0x004048E0	-	-
@@ -54396,7 +54396,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00403970	0x00403B8A	call	0x00403640	-	-
 0x00403970	0x00403B9A	call	0x00808C40	-	-
 0x00403BC0	0x00403BDA	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00403BC0	0x00403C5C	call	0x00861F0E	-	-
+0x00403BC0	0x00403C5C	call	0x00861F0E	rcx,rdx,r8,r9,xmm1,xmm2,xmm3	-
 0x00403BC0	0x00403C7E	call	0x003DFBB0	-	-
 0x00403BC0	0x00403CBB	call	0x003DFB50	-	-
 0x00403BC0	0x00403CCF	call	0x003FFF40	-	-
@@ -58165,7 +58165,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00437130	0x004387C1	call	0x0039F780	-	-
 0x00437130	0x00438846	call	0x00808C40	-	r8,xmm0,xmm1,xmm2,xmm3
 0x00438860	0x00438873	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00438860	0x0043890E	call	0x003977B0	-	-
+0x00438860	0x0043890E	call	0x003977B0	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00438860	0x0043891A	call	0x0039B550	-	-
 0x00438860	0x0043892D	call	0x00397910	-	-
 0x00438860	0x00438941	call	0x00397910	-	-
@@ -64098,7 +64098,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x005019D0	0x00501A33	tail	0x00501950	-	-
 0x00501A40	0x00501A40	tail	0x00501950	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00501A50	0x00501A64	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00501A50	0x00501A87	call	0x00502EA0	-	-
+0x00501A50	0x00501A87	call	0x00502EA0	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00501A50	0x00501B14	call	0x00250010	-	-
 0x00501A50	0x00501B2D	call	0x00398C50	-	-
 0x00501A50	0x00501B3A	call	0x0039ADE0	-	-
@@ -64120,7 +64120,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00502160	0x00502235	call	0x0039C800	-	r8,r9,xmm1,xmm2,xmm3
 0x00502160	0x0050225E	call	0x00808C40	-	-
 0x00502280	0x00502294	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00502280	0x005022C4	call	0x00502EA0	-	-
+0x00502280	0x005022C4	call	0x00502EA0	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00502280	0x00502355	call	0x00250010	-	-
 0x00502280	0x0050236D	call	0x00398C50	-	-
 0x00502280	0x0050237A	call	0x0039ADE0	-	-
@@ -64436,13 +64436,13 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00507120	0x005071B3	call	0x0053DB50	r8,xmm0,xmm2,xmm3	rdx
 0x00507490	0x0050807F	call	0x00808C40	-	r8,r9,xmm0,xmm1,xmm2,xmm3
 0x0050AC20	0x0050AC32	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0050AC20	0x0050AD36	call	0x00861EBA	-	-
-0x0050AC20	0x0050AFC7	call	0x00861EBA	-	-
-0x0050AC20	0x0050B294	call	0x00861EBA	-	-
-0x0050AC20	0x0050B52F	call	0x00861EBA	-	-
-0x0050AC20	0x0050BEFF	call	0x00861EBA	-	-
-0x0050AC20	0x0050C1B1	call	0x00861EBA	-	-
-0x0050AC20	0x0050C43F	call	0x00808C40	-	-
+0x0050AC20	0x0050AD36	call	0x00861EBA	xmm0,xmm1,xmm2,xmm3	-
+0x0050AC20	0x0050AFC7	call	0x00861EBA	xmm0,xmm1,xmm2,xmm3	-
+0x0050AC20	0x0050B294	call	0x00861EBA	xmm0,xmm1,xmm2,xmm3	-
+0x0050AC20	0x0050B52F	call	0x00861EBA	xmm0,xmm1,xmm2,xmm3	-
+0x0050AC20	0x0050BEFF	call	0x00861EBA	xmm0,xmm1,xmm2,xmm3	-
+0x0050AC20	0x0050C1B1	call	0x00861EBA	xmm0,xmm1,xmm2,xmm3	-
+0x0050AC20	0x0050C43F	call	0x00808C40	-	r8,xmm0,xmm1,xmm2,xmm3
 0x0050C450	0x0050C45F	call	0x00500470	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0050C450	0x0050C46D	call	0x00430AF0	-	-
 0x0050C450	0x0050C47B	call	0x00430AF0	-	-
@@ -68343,7 +68343,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0053AB10	0x0053AB1F	call	0x00500470	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0053AB10	0x0053AB2D	call	0x0042FCF0	-	-
 0x0053AB50	0x0053AB62	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0053AB50	0x0053AC52	call	0x0020E620	-	-
+0x0053AB50	0x0053AC52	call	0x0020E620	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0053AB50	0x0053AC5F	call	0x0020E600	-	-
 0x0053AB50	0x0053AC98	call	0x00861EC0	-	-
 0x0053AB50	0x0053ACAF	call	0x0017EFC0	-	-
@@ -71097,7 +71097,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0056A780	0x0056A7C7	call	0x002DD7E0	-	-
 0x0056A780	0x0056A864	call	0x0029FF60	-	-
 0x0056A890	0x0056A897	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0056A890	0x0056A8F8	call	0x00861EC0	-	-
+0x0056A890	0x0056A8F8	call	0x00861EC0	r9,xmm0,xmm1,xmm2,xmm3	-
 0x0056A890	0x0056A949	call	0x0031EB20	-	-
 0x0056A890	0x0056A97C	call	0x0035D330	-	-
 0x0056A890	0x0056A98E	call	0x002B58B0	-	-
@@ -71126,14 +71126,14 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0056ADA0	0x0056AE5F	call	0x005674B0	-	-
 0x0056ADA0	0x0056AE6C	call	0x00808C40	-	-
 0x0056AE80	0x0056AE89	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0056AE80	0x0056AEE3	call	0x00327BB0	-	-
+0x0056AE80	0x0056AEE3	call	0x00327BB0	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0056AE80	0x0056AEEE	call	0x00327BA0	-	-
 0x0056AE80	0x0056AF7F	call	0x0031EB20	-	-
 0x0056AE80	0x0056B008	call	0x0035D330	-	-
 0x0056AE80	0x0056B020	call	0x0035D330	-	-
 0x0056AE80	0x0056B0ED	call	0x00808C40	-	-
 0x0056B100	0x0056B109	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0056B100	0x0056B16D	call	0x00327BD0	-	-
+0x0056B100	0x0056B16D	call	0x00327BD0	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0056B100	0x0056B178	call	0x00327BC0	-	-
 0x0056B100	0x0056B1EE	call	0x0031EB20	-	-
 0x0056B100	0x0056B276	call	0x0035D330	-	-
@@ -71175,7 +71175,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0056BBD0	0x0056BC00	call	0x0020E620	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0056BBD0	0x0056BC2E	call	0x002DD7E0	-	-
 0x0056BC70	0x0056BC77	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0056BC70	0x0056BCD0	call	0x00861EC0	-	-
+0x0056BC70	0x0056BCD0	call	0x00861EC0	r9,xmm0,xmm1,xmm2,xmm3	-
 0x0056BC70	0x0056BD28	call	0x0031EB20	-	-
 0x0056BC70	0x0056BD5F	call	0x0035D330	-	-
 0x0056BC70	0x0056BD78	call	0x002B58B0	-	-
@@ -77070,7 +77070,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x005B2D60	0x005B38CE	call	0x0017D260	-	xmm0,xmm1,xmm2,xmm3
 0x005B2D60	0x005B393A	call	0x005B7EF0	-	-
 0x005B2D60	0x005B3ABA	call	0x00808F10	-	xmm0,xmm1,xmm2,xmm3
-0x005B2D60	0x005B3BAA	call	0x005C04B0	-	-
+0x005B2D60	0x005B3BAA	call	0x005C04B0	-	xmm0,xmm1,xmm2,xmm3
 0x005B2D60	0x005B3BD9	call	0x00584730	-	-
 0x005B2D60	0x005B3C0C	call	qword ptr [rax]	-	-
 0x005B2D60	0x005B3C23	call	0x00584730	-	-
@@ -78115,8 +78115,8 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x005BEF70	0x005BEFB7	call	0x0067FFB0	-	-
 0x005BF0E0	0x005BF104	call	0x005BF110	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x005BF110	0x005BF173	call	0x00808F10	r9,xmm0,xmm1,xmm2,xmm3	-
-0x005BF110	0x005BF21B	call	qword ptr [rbp + 0x80]	-	-
-0x005BF110	0x005BF26D	call	0x00808C40	-	-
+0x005BF110	0x005BF21B	call	qword ptr [rbp + 0x80]	-	xmm0,xmm1,xmm2,xmm3
+0x005BF110	0x005BF26D	call	0x00808C40	-	r9,xmm0,xmm1,xmm2,xmm3
 0x005BF290	0x005BFB97	call	0x005CAA80	-	-
 0x005BFE70	0x005BFE8E	call	0x00861EBA	r9,xmm0,xmm1,xmm2,xmm3	-
 0x005BFEA0	0x005BFEC4	call	0x005BF110	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
@@ -78172,8 +78172,8 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x005C0C90	0x005C0D76	call	0x005CDAA0	-	-
 0x005C0C90	0x005C0D97	call	qword ptr [rax + 0x10]	-	-
 0x005C0E00	0x005C0E8D	call	0x00808F10	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x005C0E00	0x005C0F14	call	0x00808F10	-	-
-0x005C0E00	0x005C0F29	call	0x00861EC0	-	-
+0x005C0E00	0x005C0F14	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	rdx,r8,r9
+0x005C0E00	0x005C0F29	call	0x00861EC0	xmm0,xmm1,xmm2,xmm3	r9
 0x005C0E00	0x005C0F7D	call	0x005C35A0	-	-
 0x005C0E00	0x005C0FC0	call	0x0067F580	-	-
 0x005C0E00	0x005C0FD8	call	0x00808C40	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
@@ -78376,7 +78376,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x005C22B0	0x005C2F00	call	0x00584730	-	-
 0x005C22B0	0x005C2F1B	call	0x00584730	-	-
 0x005C2FE0	0x005C3035	call	0x00808F10	rcx,rdx,r9,xmm0,xmm1,xmm2,xmm3	-
-0x005C2FE0	0x005C3047	call	0x00861EC0	-	-
+0x005C2FE0	0x005C3047	call	0x00861EC0	r9,xmm0,xmm1,xmm2,xmm3	-
 0x005C2FE0	0x005C30BD	call	0x00808C40	-	-
 0x005C30D0	0x005C30F6	call	0x00584730	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x005C3110	0x005C3136	call	0x00584730	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
@@ -78607,12 +78607,12 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x005C5C80	0x005C5FFC	call	0x005BEFE0	-	-
 0x005C5C80	0x005C6009	tail	0x005BEF70	-	-
 0x005C62C0	0x005C634E	call	0x00808F10	rdx,r9,xmm0,xmm1,xmm2,xmm3	-
-0x005C62C0	0x005C64F1	call	0x005C2F40	-	-
-0x005C62C0	0x005C6590	call	0x005C0180	-	-
-0x005C62C0	0x005C6600	call	0x005C0180	-	-
-0x005C62C0	0x005C6681	call	0x005C2F40	-	-
-0x005C62C0	0x005C66F7	call	0x00584730	-	-
-0x005C62C0	0x005C6706	call	0x00808C40	-	-
+0x005C62C0	0x005C64F1	call	0x005C2F40	-	xmm0,xmm1,xmm2,xmm3
+0x005C62C0	0x005C6590	call	0x005C0180	-	xmm0,xmm1,xmm2,xmm3
+0x005C62C0	0x005C6600	call	0x005C0180	-	xmm0,xmm1,xmm2,xmm3
+0x005C62C0	0x005C6681	call	0x005C2F40	-	xmm0,xmm1,xmm2,xmm3
+0x005C62C0	0x005C66F7	call	0x00584730	-	rdx,xmm0,xmm1,xmm2,xmm3
+0x005C62C0	0x005C6706	call	0x00808C40	-	rdx,xmm0,xmm1,xmm2,xmm3
 0x005C6730	0x005C6740	call	0x005C7130	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x005C6730	0x005C6751	call	0x005C6980	-	-
 0x005C6770	0x005C67B7	call	qword ptr [rax + 0x20]	rdx,r8,r9,xmm1,xmm2,xmm3	-
@@ -78741,7 +78741,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x005C80F0	0x005C8108	call	0x0080F420	r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x005C80F0	0x005C811C	tail	0x00810580	-	-
 0x005C8130	0x005C81EE	call	0x00808F10	rdx,r9,xmm0,xmm1,xmm2,xmm3	-
-0x005C8130	0x005C8204	call	0x00861EC0	-	-
+0x005C8130	0x005C8204	call	0x00861EC0	r9,xmm0,xmm1,xmm2,xmm3	-
 0x005C8130	0x005C83D2	call	0x005A7850	-	-
 0x005C8130	0x005C8412	call	0x005A7620	-	-
 0x005C8130	0x005C85B2	call	0x005A7850	-	-
@@ -78966,11 +78966,11 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x005CB800	0x005CB8A1	call	0x00584730	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x005CB800	0x005CB8B5	call	0x00584730	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x005CB8D0	0x005CB935	call	0x00808F10	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x005CB8D0	0x005CB995	call	0x0067FF40	-	-
+0x005CB8D0	0x005CB995	call	0x0067FF40	r8,xmm0,xmm1,xmm2,xmm3	-
 0x005CB8D0	0x005CBA20	call	0x0067FF40	-	-
-0x005CB8D0	0x005CBA61	call	0x005AD6E0	-	-
+0x005CB8D0	0x005CBA61	call	0x005AD6E0	-	xmm0,xmm1,xmm2,xmm3
 0x005CB8D0	0x005CBA97	call	0x00584730	-	-
-0x005CB8D0	0x005CBAF4	call	0x005C8850	-	-
+0x005CB8D0	0x005CBAF4	call	0x005C8850	-	xmm0,xmm1,xmm2,xmm3
 0x005CB8D0	0x005CBB52	call	0x0067FF40	-	-
 0x005CB8D0	0x005CBBCC	call	0x0067FF40	-	-
 0x005CB8D0	0x005CBC1F	call	0x005A74A0	-	-
@@ -79127,7 +79127,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x005CDA30	0x005CDA8D	call	0x00808B90	-	-
 0x005CDA30	0x005CDA99	call	0x0080929C	-	-
 0x005CDAA0	0x005CDAB7	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x005CDAA0	0x005CDADE	call	0x0016D670	-	-
+0x005CDAA0	0x005CDADE	call	0x0016D670	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x005CDAA0	0x005CDB08	call	api-ms-win-crt-stdio-l1-1-0.dll!__stdio_common_vsnprintf_s	-	-
 0x005CDAA0	0x005CDB42	call	qword ptr [rax + 8]	-	-
 0x005CDAA0	0x005CDB50	call	0x00808C40	-	-
@@ -84998,7 +84998,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x006069F0	0x006069F4	call	0x0062FF50	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00606A10	0x00606A1B	tail	0x005F05F0	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00606A20	0x00606A8C	call	0x00808F10	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00606A20	0x00606ADF	call	qword ptr [rax + 0x10]	-	-
+0x00606A20	0x00606ADF	call	qword ptr [rax + 0x10]	-	xmm0,xmm1,xmm2,xmm3
 0x00606A20	0x00606BB4	call	0x00808C40	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x00606CC0	0x00606CD5	call	0x005F0C70	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00606CC0	0x00606CE6	call	0x006BC4C0	-	-
@@ -85299,7 +85299,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00609AC0	0x00609B26	call	qword ptr [rax + 0x10]	-	-
 0x00609AC0	0x00609BC3	call	0x00861EBA	-	-
 0x00609BF0	0x00609C4C	call	0x00808F10	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00609BF0	0x00609C9C	call	api-ms-win-crt-utility-l1-1-0.dll!qsort	-	-
+0x00609BF0	0x00609C9C	call	api-ms-win-crt-utility-l1-1-0.dll!qsort	xmm0,xmm1,xmm2,xmm3	-
 0x00609BF0	0x00609D5C	call	0x00808C40	-	-
 0x00609D80	0x00609DF2	call	0x00670E00	r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00609D80	0x00609E57	call	0x00808F10	-	-
@@ -85500,7 +85500,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0060B980	0x0060BA36	call	0x006B6410	r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0060B980	0x0060BA40	call	0x006B64F0	-	-
 0x0060B980	0x0060BA72	call	0x00808F10	r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0060B980	0x0060BA94	call	0x005FF090	-	-
+0x0060B980	0x0060BA94	call	0x005FF090	-	r8,r9,xmm0,xmm1,xmm2,xmm3
 0x0060B980	0x0060BC34	call	qword ptr [rax]	-	-
 0x0060B980	0x0060BC6C	call	0x00187460	-	-
 0x0060B980	0x0060BDEF	call	0x00606A20	-	-
@@ -87232,7 +87232,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0061C2B0	0x0061C4EE	call	qword ptr [rax + 0x128]	-	-
 0x0061C2B0	0x0061C527	call	qword ptr [rax + 0x90]	-	-
 0x0061C550	0x0061C5C6	call	0x00808F10	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0061C550	0x0061C5DE	call	0x00861EBA	-	-
+0x0061C550	0x0061C5DE	call	0x00861EBA	r9,xmm0,xmm1,xmm2,xmm3	-
 0x0061C550	0x0061C65F	call	qword ptr [rax + 0x28]	-	-
 0x0061C550	0x0061C669	call	0x00808C40	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x0061C8A0	0x0061C8C9	call	qword ptr [r10 + 0x90]	rcx,xmm0,xmm1,xmm2,xmm3	-
@@ -94640,7 +94640,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00671D80	0x00671E6F	call	0x00808C40	-	r9,xmm0,xmm1,xmm2,xmm3
 0x00671E80	0x00671EE8	call	0x0061C920	xmm0,xmm1,xmm2,xmm3	-
 0x00671E80	0x00671F15	call	0x00808F10	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
-0x00671E80	0x00671F9C	call	qword ptr [rax + 0x28]	-	-
+0x00671E80	0x00671F9C	call	qword ptr [rax + 0x28]	-	xmm0,xmm1,xmm2,xmm3
 0x00671E80	0x00671FB7	call	0x00808C40	-	-
 0x00671FE0	0x00671FF2	call	0x00668AE0	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00671FE0	0x0067200F	tail	0x00684080	-	-
@@ -101412,9 +101412,9 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x006B8F70	0x006B8FBC	call	0x0017D260	r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x006B8F70	0x006B9005	call	0x00584730	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x006B9120	0x006B9187	call	0x00808F10	rdx,r9,xmm0,xmm1,xmm2,xmm3	-
-0x006B9120	0x006B922B	call	0x006B83C0	-	-
-0x006B9120	0x006B9252	call	0x00861EC0	-	-
-0x006B9120	0x006B9380	call	0x00808C40	-	-
+0x006B9120	0x006B922B	call	0x006B83C0	xmm0,xmm1,xmm2,xmm3	-
+0x006B9120	0x006B9252	call	0x00861EC0	-	r9,xmm0,xmm1,xmm2,xmm3
+0x006B9120	0x006B9380	call	0x00808C40	-	rdx,r9,xmm0,xmm1,xmm2,xmm3
 0x006B9450	0x006B9489	call	0x00671670	r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x006B94B0	0x006B94BB	tail	0x006B89C0	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x006B94C0	0x006B950C	call	0x0017D260	r8,r9,xmm0,xmm1,xmm2,xmm3	-
@@ -101480,7 +101480,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x006B9B90	0x006B9C61	call	0x0017D260	-	r8,r9,xmm0,xmm1,xmm2,xmm3
 0x006B9B90	0x006B9C89	call	0x00584730	-	-
 0x006B9CF0	0x006B9D61	call	0x00808F10	rcx,rdx,r9,xmm0,xmm1,xmm2,xmm3	-
-0x006B9CF0	0x006B9DAC	call	0x006B82A0	-	-
+0x006B9CF0	0x006B9DAC	call	0x006B82A0	xmm0,xmm1,xmm2,xmm3	-
 0x006B9CF0	0x006B9DDC	call	0x00808F10	-	-
 0x006B9CF0	0x006B9E82	call	0x0017D260	-	-
 0x006B9CF0	0x006B9EF4	call	0x00584730	-	-
@@ -104126,13 +104126,13 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x006D2D20	0x006D2D65	call	0x00584730	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x006D2D20	0x006D2D7D	call	0x00584730	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x006D2DA0	0x006D2E54	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
-0x006D2DA0	0x006D2F72	call	0x00808F10	-	-
-0x006D2DA0	0x006D2F9E	call	0x00808F10	-	-
-0x006D2DA0	0x006D3100	call	0x00808F10	-	-
-0x006D2DA0	0x006D3127	call	0x00808F10	-	-
-0x006D2DA0	0x006D329A	call	qword ptr [r11 + 0x48]	-	-
-0x006D2DA0	0x006D32D8	call	0x00861EBA	-	-
-0x006D2DA0	0x006D3319	call	0x00808C40	-	-
+0x006D2DA0	0x006D2F72	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x006D2DA0	0x006D2F9E	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x006D2DA0	0x006D3100	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x006D2DA0	0x006D3127	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x006D2DA0	0x006D329A	call	qword ptr [r11 + 0x48]	-	xmm0,xmm1,xmm2,xmm3
+0x006D2DA0	0x006D32D8	call	0x00861EBA	-	xmm0,xmm1,xmm2,xmm3
+0x006D2DA0	0x006D3319	call	0x00808C40	-	xmm0,xmm1,xmm2,xmm3
 0x006D3350	0x006D3365	call	0x00682980	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x006D3350	0x006D3375	call	0x00811130	-	-
 0x006D3350	0x006D338C	call	0x006D2390	-	-
@@ -107181,7 +107181,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00715580	0x0071559A	call	0x007153B0	rcx,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00715580	0x007155AE	call	0x00861EBA	-	-
 0x007155E0	0x007155E9	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x007155E0	0x00715616	call	api-ms-win-crt-stdio-l1-1-0.dll!fgets	-	-
+0x007155E0	0x00715616	call	api-ms-win-crt-stdio-l1-1-0.dll!fgets	r9,xmm0,xmm1,xmm2,xmm3	-
 0x007155E0	0x0071565A	call	0x007153B0	-	-
 0x007155E0	0x0071566F	call	0x00861EBA	-	-
 0x007155E0	0x00715683	call	api-ms-win-crt-stdio-l1-1-0.dll!fgets	-	-
@@ -107228,14 +107228,14 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00716090	0x007160B8	call	api-ms-win-crt-string-l1-1-0.dll!islower	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x00716090	0x007160CA	call	api-ms-win-crt-string-l1-1-0.dll!toupper	-	-
 0x00716100	0x00716117	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00716100	0x0071613F	call	0x0016D670	-	-
+0x00716100	0x0071613F	call	0x0016D670	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00716100	0x00716166	call	api-ms-win-crt-stdio-l1-1-0.dll!__stdio_common_vsprintf	-	-
 0x00716100	0x0071619E	call	0x006DA8A0	-	-
 0x00716100	0x007161B4	call	0x007153B0	-	-
 0x00716100	0x007161CA	call	0x00861EBA	-	-
 0x00716100	0x007161DD	call	0x00808C40	-	-
 0x00716200	0x00716217	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00716200	0x0071623F	call	0x0016D670	-	-
+0x00716200	0x0071623F	call	0x0016D670	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00716200	0x00716268	call	api-ms-win-crt-stdio-l1-1-0.dll!__stdio_common_vsprintf	-	-
 0x00716200	0x0071628D	call	0x007153B0	-	-
 0x00716200	0x007162A4	call	0x00861EBA	-	-
@@ -107563,7 +107563,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0071CD10	0x0071CDD4	call	0x0071EF10	-	-
 0x0071CD10	0x0071CDE6	call	0x00808C40	-	-
 0x0071CE10	0x0071CE25	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0071CE10	0x0071CE61	call	0x00861EC0	-	-
+0x0071CE10	0x0071CE61	call	0x00861EC0	r9,xmm0,xmm1,xmm2,xmm3	-
 0x0071CE10	0x0071CEA6	call	0x00861EBA	-	-
 0x0071CE10	0x0071CEC6	call	api-ms-win-crt-string-l1-1-0.dll!strtok_s	-	-
 0x0071CE10	0x0071CEFD	call	api-ms-win-crt-string-l1-1-0.dll!strtok_s	-	-
@@ -107581,7 +107581,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0071CE10	0x0071D128	call	0x001DFA10	-	-
 0x0071CE10	0x0071D14D	call	0x00808C40	-	-
 0x0071D170	0x0071D189	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0071D170	0x0071D1CC	call	0x00861EC0	-	-
+0x0071D170	0x0071D1CC	call	0x00861EC0	r9,xmm0,xmm1,xmm2,xmm3	-
 0x0071D170	0x0071D1FC	call	0x00861EC0	-	-
 0x0071D170	0x0071D213	call	0x0071F120	-	-
 0x0071D170	0x0071D225	call	0x0071CE10	-	-
@@ -110136,7 +110136,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00744A90	0x00744AFD	call	0x007445C0	rcx,xmm2,xmm3	-
 0x00744A90	0x00744B56	call	0x00743F90	-	-
 0x00744B90	0x00744BAA	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00744B90	0x00744D0D	call	0x006F0EF0	-	-
+0x00744B90	0x00744D0D	call	0x006F0EF0	r8,r9,xmm2,xmm3	-
 0x00744B90	0x00744D2A	call	0x006F0EF0	-	-
 0x00744B90	0x00744D47	call	0x006F0EF0	-	-
 0x00744B90	0x00744D64	call	0x006F0EF0	-	-
@@ -114566,7 +114566,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00796350	0x00796373	call	0x0063DA50	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x00796350	0x00796393	call	0x0063B010	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x007963C0	0x00796414	call	0x00808F10	rcx,rdx,r9,xmm0,xmm1,xmm2,xmm3	-
-0x007963C0	0x00796424	call	0x00861EBA	-	-
+0x007963C0	0x00796424	call	0x00861EBA	rdx,r9,xmm0,xmm1,xmm2,xmm3	-
 0x007963C0	0x0079646A	call	0x005CDAA0	-	-
 0x007963C0	0x00796478	call	0x00808C40	-	-
 0x00796490	0x007964FC	call	0x0079A120	-	r9,xmm0,xmm1,xmm2,xmm3
@@ -114673,7 +114673,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x007979B0	0x007979F8	call	KERNEL32.dll!GetSystemInfo	-	-
 0x007979B0	0x00797A09	call	0x005A0AE0	-	-
 0x00797A20	0x00797A74	call	0x00808F10	rcx,rdx,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00797A20	0x00797A84	call	0x00861EBA	-	-
+0x00797A20	0x00797A84	call	0x00861EBA	rdx,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00797A20	0x00797AAD	call	0x0079FB10	-	-
 0x00797A20	0x00797AB9	call	0x00808C40	-	-
 0x00797AD0	0x00797B1E	call	0x00861EC0	r9,xmm0,xmm1,xmm2,xmm3	-
@@ -114707,7 +114707,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00798000	0x00798020	call	0x0071F970	xmm0,xmm1,xmm2,xmm3	-
 0x00798000	0x00798085	call	qword ptr [rax + 0x38]	-	-
 0x007980A0	0x007980B7	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x007980A0	0x007980F7	call	KERNEL32.dll!SetUnhandledExceptionFilter	-	-
+0x007980A0	0x007980F7	call	KERNEL32.dll!SetUnhandledExceptionFilter	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x007980A0	0x00798100	call	0x00861E9C	-	-
 0x007980A0	0x00798109	call	ole32.dll!CoInitializeEx	-	-
 0x007980A0	0x00798116	call	steam_api64.dll!SteamInternal_ContextInit	-	-
@@ -114821,7 +114821,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00798A80	0x00798A93	call	qword ptr [rax + 0x40]	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00798A80	0x00798AA5	call	0x00798AC0	-	-
 0x00798AC0	0x00798B34	call	0x00808F10	rcx,rdx,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00798AC0	0x00798B44	call	0x00861EBA	-	-
+0x00798AC0	0x00798B44	call	0x00861EBA	rdx,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00798AC0	0x00798B7F	call	0x005CDAA0	-	-
 0x00798AC0	0x00798B92	call	qword ptr [rax + 0x10]	-	-
 0x00798AC0	0x00798B9C	call	0x00610330	-	-
@@ -122217,9 +122217,9 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x007FA960	0x007FA9A8	call	0x007FA670	-	r8,r9,xmm0,xmm1,xmm2,xmm3
 0x007FA960	0x007FAA06	call	0x007FA670	-	r8,r9,xmm0,xmm1,xmm2,xmm3
 0x007FAA70	0x007FAADC	call	0x00808F10	r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x007FAA70	0x007FAB04	call	0x00808F10	-	-
-0x007FAA70	0x007FAB36	call	0x007FA670	-	-
-0x007FAA70	0x007FABD7	call	0x007FA670	-	-
+0x007FAA70	0x007FAB04	call	0x00808F10	r8,r9,xmm0,xmm1,xmm2,xmm3	-
+0x007FAA70	0x007FAB36	call	0x007FA670	-	r8,r9,xmm0,xmm1,xmm2,xmm3
+0x007FAA70	0x007FABD7	call	0x007FA670	-	r8,r9,xmm0,xmm1,xmm2,xmm3
 0x007FAA70	0x007FAC65	call	0x00808C40	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x007FAC90	0x007FACF8	call	0x007FA670	-	r8,r9,xmm0,xmm1,xmm2,xmm3
 0x007FAC90	0x007FAD78	call	0x007FA670	-	r8,r9,xmm0,xmm1,xmm2,xmm3
@@ -122276,8 +122276,8 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x007FB940	0x007FB986	call	0x007FB9B0	xmm0,xmm1,xmm2,xmm3	-
 0x007FB940	0x007FB9A2	call	0x00861EC0	r9,xmm0,xmm1,xmm2,xmm3	-
 0x007FB9B0	0x007FBA22	call	0x00808F10	rdx,r8,xmm0,xmm1,xmm2,xmm3	-
-0x007FB9B0	0x007FBCFF	call	0x00861EC0	-	-
-0x007FB9B0	0x007FBE75	call	0x00808C40	-	-
+0x007FB9B0	0x007FBCFF	call	0x00861EC0	xmm0,xmm1,xmm2,xmm3	-
+0x007FB9B0	0x007FBE75	call	0x00808C40	-	rdx,r8,xmm0,xmm1,xmm2,xmm3
 0x007FBEA0	0x007FBEB5	call	0x00861EC0	rcx,r9,xmm0,xmm1,xmm2,xmm3	-
 0x007FBEA0	0x007FBEBD	call	[0x01F41D10]	-	-
 0x007FBED0	0x007FBEE5	call	0x00861EC0	rcx,r9,xmm0,xmm1,xmm2,xmm3	-
@@ -122337,9 +122337,9 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x007FD270	0x007FD375	call	0x007FA810	-	-
 0x007FD270	0x007FD421	call	0x007FAC90	-	-
 0x007FD4B0	0x007FD55C	call	0x00808F10	r8,xmm0,xmm1,xmm2,xmm3	-
-0x007FD4B0	0x007FD585	call	0x007F8460	-	-
-0x007FD4B0	0x007FD5E8	call	0x007FA810	-	-
-0x007FD4B0	0x007FD6D0	call	qword ptr [rbp + 0xa0]	-	-
+0x007FD4B0	0x007FD585	call	0x007F8460	-	r8,xmm0,xmm1,xmm2,xmm3
+0x007FD4B0	0x007FD5E8	call	0x007FA810	-	xmm0,xmm1,xmm2,xmm3
+0x007FD4B0	0x007FD6D0	call	qword ptr [rbp + 0xa0]	-	xmm0,xmm1,xmm2,xmm3
 0x007FD4B0	0x007FD757	call	0x00808C40	-	rdx,r8,xmm0,xmm1,xmm2,xmm3
 0x007FD780	0x007FD795	call	0x00861EC0	rcx,r9,xmm0,xmm1,xmm2,xmm3	-
 0x007FD780	0x007FD79D	call	[0x01F41D10]	-	-
@@ -122373,16 +122373,16 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x007FDA10	0x007FDC0F	call	0x007F9360	-	-
 0x007FDA10	0x007FDC31	call	0x007F9360	-	-
 0x007FDC60	0x007FDCF6	call	0x00808F10	r9,xmm0,xmm1,xmm2,xmm3	-
-0x007FDC60	0x007FDD1F	call	0x00808F10	-	-
-0x007FDC60	0x007FDD40	call	0x00808F10	-	-
-0x007FDC60	0x007FDD61	call	0x00808F10	-	-
-0x007FDC60	0x007FDDC3	call	qword ptr [rax + 0x20]	-	-
+0x007FDC60	0x007FDD1F	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x007FDC60	0x007FDD40	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x007FDC60	0x007FDD61	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x007FDC60	0x007FDDC3	call	qword ptr [rax + 0x20]	-	xmm0,xmm1,xmm2,xmm3
 0x007FDC60	0x007FDDE5	call	0x00861EC0	-	-
-0x007FDC60	0x007FDEEE	call	qword ptr [rax + 0x20]	-	-
-0x007FDC60	0x007FDFFB	call	qword ptr [rax + 0x28]	-	-
-0x007FDC60	0x007FE03D	call	0x007FF1C0	-	-
+0x007FDC60	0x007FDEEE	call	qword ptr [rax + 0x20]	-	xmm0,xmm1,xmm2,xmm3
+0x007FDC60	0x007FDFFB	call	qword ptr [rax + 0x28]	-	xmm0,xmm1,xmm2,xmm3
+0x007FDC60	0x007FE03D	call	0x007FF1C0	-	xmm0,xmm1,xmm2,xmm3
 0x007FDC60	0x007FE08B	call	0x007FB180	-	-
-0x007FDC60	0x007FE0C1	call	0x00808C40	-	-
+0x007FDC60	0x007FE0C1	call	0x00808C40	-	xmm0,xmm1,xmm2,xmm3
 0x007FE530	0x007FE5B9	call	0x007FEAC0	-	r9,xmm0,xmm1,xmm2,xmm3
 0x007FE530	0x007FE613	call	0x007FE820	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
 0x007FE820	0x007FEAA8	call	0x007FE630	xmm0,xmm1,xmm2,xmm3	-
@@ -123142,8 +123142,6 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0080E200	0x0080E27C	call	0x00861EBA	-	r9,xmm0,xmm1,xmm2,xmm3
 0x0080E200	0x0080E2A2	call	0x00861EBA	-	r9,xmm0,xmm1,xmm2,xmm3
 0x0080E200	0x0080E2B8	call	0x00861EBA	-	-
-0x0080E300	0x0080E340	tail	0x0080E5DB	rdx,xmm0,xmm1,xmm2,xmm3	-
-0x0080E300	0x0080E4CF	tail	0x0080E5DB	xmm0,xmm1,xmm2,xmm3	rdx
 0x0080E5F0	0x0080E5F3	tail	0x0080E910	rcx,rdx,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0080E910	0x0080E918	tail	0x0080E600	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0080E920	0x0080E926	tail	api-ms-win-crt-heap-l1-1-0.dll!malloc	r8,r9,xmm0,xmm1,xmm2,xmm3	-
@@ -127423,7 +127421,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0084EB60	0x0084F590	call	0x00808C40	-	-
 0x0084F5A0	0x0084FADC	call	0x00808C40	rdx,r8,r9	-
 0x0084FB30	0x0084FB45	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0084FB30	0x0084FB94	call	0x0084F5A0	-	-
+0x0084FB30	0x0084FB94	call	0x0084F5A0	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0084FB30	0x0084FC0C	call	0x0084EB60	-	-
 0x0084FB30	0x0084FD02	call	0x0084E2F0	-	-
 0x0084FB30	0x0084FD72	call	rsi	-	-
@@ -130998,8 +130996,8 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00883A60	0x00883AA6	call	0x00883E90	-	r8,r9,xmm0,xmm1,xmm2,xmm3
 0x00883A60	0x00883B16	call	0x00883E90	-	r8,r9,xmm0,xmm1,xmm2,xmm3
 0x00883C70	0x00883CCE	call	0x00808F10	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00883C70	0x00883CF6	call	0x00808F10	-	-
-0x00883C70	0x00883D16	call	0x00883E90	-	-
+0x00883C70	0x00883CF6	call	0x00808F10	r8,r9,xmm0,xmm1,xmm2,xmm3	-
+0x00883C70	0x00883D16	call	0x00883E90	-	r8,r9,xmm0,xmm1,xmm2,xmm3
 0x00883E50	0x00883E5F	call	0x00883E90	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00883E90	0x00883EB9	call	0x0017C9F0	r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00883E90	0x00883F65	call	0x0017C9F0	-	-
@@ -131034,46 +131032,46 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00884550	0x00884565	call	0x00861FBC	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00884550	0x00884579	call	0x00861EC0	-	-
 0x008845A0	0x0088469C	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
-0x008845A0	0x008846BD	call	0x00808F10	-	-
-0x008845A0	0x008846E1	call	0x00808F10	-	-
-0x008845A0	0x00884702	call	0x00808F10	-	-
-0x008845A0	0x00884739	call	0x00808F10	-	-
-0x008845A0	0x00884774	call	0x00808F10	-	-
-0x008845A0	0x008847D1	call	0x00808F10	-	-
-0x008845A0	0x008847F1	call	0x00808F10	-	-
-0x008845A0	0x00884812	call	0x00808F10	-	-
-0x008845A0	0x00884832	call	0x00808F10	-	-
-0x008845A0	0x008849BE	call	0x00861EBA	-	-
+0x008845A0	0x008846BD	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x008845A0	0x008846E1	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x008845A0	0x00884702	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x008845A0	0x00884739	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x008845A0	0x00884774	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x008845A0	0x008847D1	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x008845A0	0x008847F1	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x008845A0	0x00884812	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x008845A0	0x00884832	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x008845A0	0x008849BE	call	0x00861EBA	-	xmm0,xmm1,xmm2,xmm3
 0x008845A0	0x008849CF	call	0x00861EC0	-	-
 0x008845A0	0x00884E07	call	0x00885310	-	-
 0x008845A0	0x008851CA	call	0x00885310	-	-
 0x00885310	0x00885380	call	0x00808F10	r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00885310	0x00885442	call	0x00861F5C	-	-
+0x00885310	0x00885442	call	0x00861F5C	-	r8,xmm1,xmm2,xmm3
 0x00885310	0x0088544B	call	0x00861FB0	-	-
-0x00885310	0x00885456	call	0x00861F5C	-	-
+0x00885310	0x00885456	call	0x00861F5C	-	r8,xmm1,xmm2,xmm3
 0x00885310	0x0088545F	call	0x00861FB0	-	-
-0x00885310	0x0088554D	call	0x00861F5C	-	-
+0x00885310	0x0088554D	call	0x00861F5C	-	xmm1,xmm2,xmm3
 0x00885310	0x00885556	call	0x00861FB0	-	-
-0x00885310	0x00885561	call	0x00861F5C	-	-
+0x00885310	0x00885561	call	0x00861F5C	-	xmm1,xmm2,xmm3
 0x00885310	0x0088556A	call	0x00861FB0	-	-
-0x00885310	0x00885604	call	api-ms-win-crt-utility-l1-1-0.dll!qsort	-	-
+0x00885310	0x00885604	call	api-ms-win-crt-utility-l1-1-0.dll!qsort	-	xmm0,xmm1,xmm2,xmm3
 0x00885E60	0x00885EB0	call	0x00808F10	rdx,xmm0,xmm1,xmm2,xmm3	-
-0x00885E60	0x00886092	call	0x00887330	-	-
+0x00885E60	0x00886092	call	0x00887330	xmm3	-
 0x00885E60	0x008860A0	call	0x00886FE0	-	-
 0x008860D0	0x00886120	call	0x00808F10	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x008860D0	0x00886150	call	0x008865C0	-	-
+0x008860D0	0x00886150	call	0x008865C0	xmm1,xmm2,xmm3	-
 0x008860D0	0x008862D9	call	0x008865C0	-	-
 0x008865C0	0x0088665A	call	0x00808F10	rdx,r8,xmm0,xmm1,xmm2,xmm3	-
-0x008865C0	0x00886677	call	0x00808F10	-	-
-0x008865C0	0x00886694	call	0x00808F10	-	-
-0x008865C0	0x008866B1	call	0x00808F10	-	-
-0x008865C0	0x008866CE	call	0x00808F10	-	-
+0x008865C0	0x00886677	call	0x00808F10	rdx,xmm0,xmm1,xmm2,xmm3	-
+0x008865C0	0x00886694	call	0x00808F10	rdx,xmm0,xmm1,xmm2,xmm3	-
+0x008865C0	0x008866B1	call	0x00808F10	rdx,xmm0,xmm1,xmm2,xmm3	-
+0x008865C0	0x008866CE	call	0x00808F10	rdx,xmm0,xmm1,xmm2,xmm3	-
 0x00886FE0	0x0088700F	call	0x00887130	r9,xmm0,xmm1,xmm2,xmm3	-
 0x00887130	0x00887179	call	0x00808F10	rdx,r8,xmm0,xmm1,xmm2,xmm3	-
-0x00887130	0x00887196	call	0x00808F10	-	-
+0x00887130	0x00887196	call	0x00808F10	rdx,r8,xmm0,xmm1,xmm2,xmm3	-
 0x00887810	0x00887830	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00887810	0x008878BB	call	0x00808F10	-	-
-0x00887810	0x008878D1	call	[0x01CEB628]	-	-
+0x00887810	0x008878BB	call	0x00808F10	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
+0x00887810	0x008878D1	call	[0x01CEB628]	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00887810	0x008878EA	call	0x00861EC0	-	-
 0x00887810	0x00888065	call	[0x01CEB628]	-	-
 0x00887810	0x00888096	call	0x00861FA4	-	-
@@ -131139,7 +131137,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0088A110	0x0088A23D	call	0x0088A260	rcx,rdx,r8,r9	-
 0x0088A110	0x0088A24F	tail	0x0088A260	-	-
 0x0088A340	0x0088A3A2	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
-0x0088A340	0x0088A557	call	0x00889990	-	-
+0x0088A340	0x0088A557	call	0x00889990	-	xmm0,xmm1,xmm2,xmm3
 0x0088A340	0x0088A562	call	0x008897C0	-	-
 0x0088A740	0x0088A756	call	[0x01CEB630]	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0088A740	0x0088A765	call	[0x01CEB630]	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3
@@ -131204,16 +131202,16 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0088E250	0x0088E263	call	0x00861EC0	rcx,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0088E250	0x0088E26B	call	[0x01CEB630]	-	-
 0x0088E280	0x0088E2F7	call	0x00808F10	rcx,xmm0,xmm1,xmm2,xmm3	-
-0x0088E280	0x0088E320	call	0x00808F10	-	-
-0x0088E280	0x0088E341	call	0x00808F10	-	-
-0x0088E280	0x0088E362	call	0x00808F10	-	-
-0x0088E280	0x0088E3F0	call	qword ptr [r8 + 0x28]	-	-
+0x0088E280	0x0088E320	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x0088E280	0x0088E341	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x0088E280	0x0088E362	call	0x00808F10	xmm0,xmm1,xmm2,xmm3	-
+0x0088E280	0x0088E3F0	call	qword ptr [r8 + 0x28]	-	xmm0,xmm1,xmm2,xmm3
 0x0088E280	0x0088E413	call	0x00861EC0	-	-
-0x0088E280	0x0088E57B	call	qword ptr [r10 + 0x38]	-	-
-0x0088E280	0x0088E840	call	qword ptr [r10 + 0x30]	-	-
+0x0088E280	0x0088E57B	call	qword ptr [r10 + 0x38]	-	xmm0,xmm1,xmm2,xmm3
+0x0088E280	0x0088E840	call	qword ptr [r10 + 0x30]	-	xmm0,xmm1,xmm2,xmm3
 0x0088E280	0x0088E886	call	0x00889400	-	-
 0x0088E8C0	0x0088E97B	call	0x00808F10	r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x0088E8C0	0x0088E996	call	0x00882180	-	-
+0x0088E8C0	0x0088E996	call	0x00882180	r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0088E8C0	0x0088E9A8	call	0x00882180	-	-
 0x0088E8C0	0x0088E9BA	call	0x00882180	-	-
 0x0088E8C0	0x0088E9E8	call	0x00808F10	-	-
@@ -131300,10 +131298,10 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00890A70	0x00890AE3	tail	0x00890ED0	xmm0,xmm1,xmm2,xmm3	-
 0x00890B00	0x00890B56	tail	0x00890B70	rdx,r8,xmm0,xmm1,xmm2,xmm3	-
 0x00890B70	0x00890C00	call	0x00808F10	r8,xmm0,xmm1,xmm2,xmm3	-
-0x00890B70	0x00890C48	call	[0x01CEB628]	-	-
-0x00890B70	0x00890C77	call	[0x01CEB628]	-	-
-0x00890B70	0x00890D25	call	0x00883E90	-	-
-0x00890B70	0x00890E14	call	qword ptr [rbp + 0xa0]	-	-
+0x00890B70	0x00890C48	call	[0x01CEB628]	-	r8,xmm0,xmm1,xmm2,xmm3
+0x00890B70	0x00890C77	call	[0x01CEB628]	-	r8,xmm0,xmm1,xmm2,xmm3
+0x00890B70	0x00890D25	call	0x00883E90	-	xmm0,xmm1,xmm2,xmm3
+0x00890B70	0x00890E14	call	qword ptr [rbp + 0xa0]	-	xmm0,xmm1,xmm2,xmm3
 0x00890ED0	0x00890F3F	call	0x00861EC0	r9,xmm0,xmm1,xmm2,xmm3	-
 0x00890ED0	0x00890F51	call	0x00861EC0	-	-
 0x00890ED0	0x00891034	call	0x0017C890	-	-
@@ -131403,8 +131401,8 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00894850	0x00894E9B	call	0x0017C890	rcx,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00894850	0x00894EB9	call	0x00861EC0	-	-
 0x00894EE0	0x00894F0C	call	0x00808F10	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
-0x00894EE0	0x00894FC6	call	0x008932B0	-	-
-0x00894EE0	0x00895010	call	0x008932B0	-	-
+0x00894EE0	0x00894FC6	call	0x008932B0	xmm0,xmm1,xmm2,xmm3	-
+0x00894EE0	0x00895010	call	0x008932B0	-	xmm0,xmm1,xmm2,xmm3
 0x00894EE0	0x00895069	call	0x00892C10	-	-
 0x00894EE0	0x008951C7	call	0x008929C0	-	-
 0x00894EE0	0x00895226	call	0x00892C10	-	-

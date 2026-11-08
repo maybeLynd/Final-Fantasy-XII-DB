@@ -17,6 +17,10 @@ Each map pack (`.mpk`) carries its list in slot 10 and its `SeSep` sound-bank re
 ([Map pack](../World-Areas-And-Travel/mpk-map-pack.md)); 545 packs have one. The one loose list,
 `ps2data/sound/se/map/position_map/spp/env/env99.spp`, carries its bank after the list.
 
+Each map pack carries a list of sound ids and the records of the sound banks they come from. Binding the pack's sound
+opens every listed bank; scripts then play an entry by its number in the list, the map's emitters play entries at
+their own positions, and the weather picks up to three entries as the ambience.
+
 ### Binding
 
 When the map pack binds its sound, `0x003635E0(list, bank, handle)`:

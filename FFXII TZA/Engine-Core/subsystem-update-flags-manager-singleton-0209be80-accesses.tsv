@@ -125,7 +125,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002482E0	FUN_002482e0	0x002483A0	0x57E0	r	mov rax, qword ptr [rdi]	route-seeded PTR 0x0209BE80 base+0x57E0 exposed	
 0x002482E0	FUN_002482e0	0x002483CE	0x57E0	w	mov qword ptr [rdi], 0	route-seeded PTR 0x0209BE80 base+0x57E0 exposed	
 0x00273A20	FUN_00273a20	0x00273A22	0x57E0	r	cmp qword ptr [rcx], rax	route-seeded PTR 0x0209BE80 base+0x57E0 exposed	
-0x00275550	FUN_00275550	0x00275564	0x57E0	w	rep stosd dword ptr [rdi], eax	route-seeded PTR 0x0209BE80 base+0x57E0	
+0x00275550	FUN_00275550	0x00275564	0x57E0	w	rep stosd dword ptr [rdi], eax	route-seeded PTR 0x0209BE80 base+0x57E0 zeroclear	
 0x0028E290	FUN_0028e290	0x0028E39B	0x57E0	addr	lea rcx, [rbx + 0x57e0]	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028E290	FUN_0028e290	0x0028E517	0x57E0	addr	lea rcx, [rbx + 0x57e0]	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028EAB0	FUN_0028eab0	0x0028EBF5	0x57E0	addr	lea r9, [rax + 0x57e0]	route-seeded PTR 0x0209BE80 base+0x0	
@@ -194,7 +194,7 @@ function	name	site	disp	kind	instruction	route	note
 0x003FAAF0	FUN_003faaf0	0x003FAB2D	0x5840	r	mov rax, qword ptr [rdi + 0x60]	route-seeded PTR 0x0209BE80 base+0x57E0	
 0x00244DD0	FUN_00244dd0	0x00244E88	0x5848	w	mov qword ptr [rbx + 0x68], rcx	route-seeded PTR 0x0209BE80 base+0x57E0 exposed	
 0x00246AD0	FUN_00246ad0	0x00246BB0	0x5848	w	mov qword ptr [rbx + 0x68], rcx	route-seeded PTR 0x0209BE80 base+0x57E0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244E6A	0x5850	w	mov dword ptr [rbx + 0x70], ecx	route-seeded PTR 0x0209BE80 base+0x57E0 exposed	
+0x00244DD0	FUN_00244dd0	0x00244E6A	0x5850	w	mov dword ptr [rbx + 0x70], ecx	route-seeded PTR 0x0209BE80 base+0x57E0 exposed zeroclear	
 0x00244DD0	FUN_00244dd0	0x00244E75	0x5850	r	sub eax, dword ptr [rbx + 0x70]	route-seeded PTR 0x0209BE80 base+0x57E0 exposed	
 0x00244DD0	FUN_00244dd0	0x00244ED4	0x5850	w	mov dword ptr [rbx + 0x70], edx	route-seeded PTR 0x0209BE80 base+0x57E0 exposed	
 0x00246AD0	FUN_00246ad0	0x00246B7B	0x5850	w	mov dword ptr [rbx + 0x70], 0	route-seeded PTR 0x0209BE80 base+0x57E0 exposed	
@@ -222,7 +222,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00246AD0	FUN_00246ad0	0x00246BEF	0x585C	rw	and dword ptr [rbx + 0x7c], 0xffffffd2	route-seeded PTR 0x0209BE80 base+0x57E0 exposed	
 0x00246AD0	FUN_00246ad0	0x00246BF3	0x585C	rw	or dword ptr [rbx + 0x7c], 0x12	route-seeded PTR 0x0209BE80 base+0x57E0 exposed	
 0x002482E0	FUN_002482e0	0x002483BE	0x585C	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	route-seeded PTR 0x0209BE80 base+0x57E0 exposed	
-0x002465F0	FUN_002465f0	0x00246711	0x5878	w	mov dword ptr [rdi + 0x98], eax	route-seeded PTR 0x0209BE80 base+0x57E0	
+0x002465F0	FUN_002465f0	0x00246711	0x5878	w	mov dword ptr [rdi + 0x98], eax	route-seeded PTR 0x0209BE80 base+0x57E0 zeroclear	
 0x002465F0	FUN_002465f0	0x00246717	0x587C	w	mov dword ptr [rdi + 0x9c], 0x800080	route-seeded PTR 0x0209BE80 base+0x57E0	
 0x002465F0	FUN_002465f0	0x0024670A	0x5880	w	mov byte ptr [rdi + 0xa0], 0x80	route-seeded PTR 0x0209BE80 base+0x57E0	
 0x002465F0	FUN_002465f0	0x002466E6	0x5881	w	mov word ptr [rdi + 0xa1], 0xff80	route-seeded PTR 0x0209BE80 base+0x57E0	
@@ -237,7 +237,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002465F0	FUN_002465f0	0x00246700	0x5898	w	mov dword ptr [rdi + 0xb8], 0x3f800000	route-seeded PTR 0x0209BE80 base+0x57E0	
 0x00246AD0	FUN_00246ad0	0x00246B1B	0x5898	w	mov dword ptr [rbx + 0xb8], 0x3f800000	route-seeded PTR 0x0209BE80 base+0x57E0 exposed	
 0x00246AD0	FUN_00246ad0	0x00246B49	0x5898	w	movss dword ptr [rbx + 0xb8], xmm1	route-seeded PTR 0x0209BE80 base+0x57E0 exposed	
-0x003F9E50	FUN_003f9e50	0x003F9EF2	0x58A0	w	mov word ptr [rbx + 0xc0], ax	route-seeded PTR 0x0209BE80 base+0x57E0	
+0x003F9E50	FUN_003f9e50	0x003F9EF2	0x58A0	w	mov word ptr [rbx + 0xc0], ax	route-seeded PTR 0x0209BE80 base+0x57E0 zeroclear	
 0x0028F0C0	FUN_0028f0c0	0x0028F15B	0x58A4	r	test byte ptr [rcx + 0x58a4], 1	route-seeded PTR 0x0209BE80 base+0x0	
 0x003F9E50	FUN_003f9e50	0x003F9E8E	0x58A4	r	mov eax, dword ptr [rbx + 0xc4]	route-seeded PTR 0x0209BE80 base+0x57E0	
 0x003F9F40	FUN_003f9f40	0x003FA059	0x58A4	r	mov r8d, dword ptr [rbx + 0xc4]	route-seeded PTR 0x0209BE80 base+0x57E0	
@@ -315,7 +315,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002482E0	FUN_002482e0	0x00248398	0x5910	w	mov qword ptr [rdi + 0x60], 0	route-seeded PTR 0x0209BE80 base+0x58B0 exposed	
 0x00244DD0	FUN_00244dd0	0x00244E88	0x5918	w	mov qword ptr [rbx + 0x68], rcx	route-seeded PTR 0x0209BE80 base+0x58B0 exposed	
 0x00246AD0	FUN_00246ad0	0x00246BB0	0x5918	w	mov qword ptr [rbx + 0x68], rcx	route-seeded PTR 0x0209BE80 base+0x58B0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244E6A	0x5920	w	mov dword ptr [rbx + 0x70], ecx	route-seeded PTR 0x0209BE80 base+0x58B0 exposed	
+0x00244DD0	FUN_00244dd0	0x00244E6A	0x5920	w	mov dword ptr [rbx + 0x70], ecx	route-seeded PTR 0x0209BE80 base+0x58B0 exposed zeroclear	
 0x00244DD0	FUN_00244dd0	0x00244E75	0x5920	r	sub eax, dword ptr [rbx + 0x70]	route-seeded PTR 0x0209BE80 base+0x58B0 exposed	
 0x00244DD0	FUN_00244dd0	0x00244ED4	0x5920	w	mov dword ptr [rbx + 0x70], edx	route-seeded PTR 0x0209BE80 base+0x58B0 exposed	
 0x00246AD0	FUN_00246ad0	0x00246B7B	0x5920	w	mov dword ptr [rbx + 0x70], 0	route-seeded PTR 0x0209BE80 base+0x58B0 exposed	
@@ -343,7 +343,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00246AD0	FUN_00246ad0	0x00246BEF	0x592C	rw	and dword ptr [rbx + 0x7c], 0xffffffd2	route-seeded PTR 0x0209BE80 base+0x58B0 exposed	
 0x00246AD0	FUN_00246ad0	0x00246BF3	0x592C	rw	or dword ptr [rbx + 0x7c], 0x12	route-seeded PTR 0x0209BE80 base+0x58B0 exposed	
 0x002482E0	FUN_002482e0	0x002483BE	0x592C	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	route-seeded PTR 0x0209BE80 base+0x58B0 exposed	
-0x002465F0	FUN_002465f0	0x00246711	0x5948	w	mov dword ptr [rdi + 0x98], eax	route-seeded PTR 0x0209BE80 base+0x58B0	
+0x002465F0	FUN_002465f0	0x00246711	0x5948	w	mov dword ptr [rdi + 0x98], eax	route-seeded PTR 0x0209BE80 base+0x58B0 zeroclear	
 0x002465F0	FUN_002465f0	0x00246717	0x594C	w	mov dword ptr [rdi + 0x9c], 0x800080	route-seeded PTR 0x0209BE80 base+0x58B0	
 0x002465F0	FUN_002465f0	0x0024670A	0x5950	w	mov byte ptr [rdi + 0xa0], 0x80	route-seeded PTR 0x0209BE80 base+0x58B0	
 0x002465F0	FUN_002465f0	0x002466E6	0x5951	w	mov word ptr [rdi + 0xa1], 0xff80	route-seeded PTR 0x0209BE80 base+0x58B0	
@@ -428,7 +428,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002482E0	FUN_002482e0	0x00248398	0x59E0	w	mov qword ptr [rdi + 0x60], 0	route-seeded PTR 0x0209BE80 base+0x5980 exposed	
 0x00244DD0	FUN_00244dd0	0x00244E88	0x59E8	w	mov qword ptr [rbx + 0x68], rcx	route-seeded PTR 0x0209BE80 base+0x5980 exposed	
 0x00246AD0	FUN_00246ad0	0x00246BB0	0x59E8	w	mov qword ptr [rbx + 0x68], rcx	route-seeded PTR 0x0209BE80 base+0x5980 exposed	
-0x00244DD0	FUN_00244dd0	0x00244E6A	0x59F0	w	mov dword ptr [rbx + 0x70], ecx	route-seeded PTR 0x0209BE80 base+0x5980 exposed	
+0x00244DD0	FUN_00244dd0	0x00244E6A	0x59F0	w	mov dword ptr [rbx + 0x70], ecx	route-seeded PTR 0x0209BE80 base+0x5980 exposed zeroclear	
 0x00244DD0	FUN_00244dd0	0x00244E75	0x59F0	r	sub eax, dword ptr [rbx + 0x70]	route-seeded PTR 0x0209BE80 base+0x5980 exposed	
 0x00244DD0	FUN_00244dd0	0x00244ED4	0x59F0	w	mov dword ptr [rbx + 0x70], edx	route-seeded PTR 0x0209BE80 base+0x5980 exposed	
 0x00246AD0	FUN_00246ad0	0x00246B7B	0x59F0	w	mov dword ptr [rbx + 0x70], 0	route-seeded PTR 0x0209BE80 base+0x5980 exposed	
@@ -456,7 +456,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00246AD0	FUN_00246ad0	0x00246BEF	0x59FC	rw	and dword ptr [rbx + 0x7c], 0xffffffd2	route-seeded PTR 0x0209BE80 base+0x5980 exposed	
 0x00246AD0	FUN_00246ad0	0x00246BF3	0x59FC	rw	or dword ptr [rbx + 0x7c], 0x12	route-seeded PTR 0x0209BE80 base+0x5980 exposed	
 0x002482E0	FUN_002482e0	0x002483BE	0x59FC	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	route-seeded PTR 0x0209BE80 base+0x5980 exposed	
-0x002465F0	FUN_002465f0	0x00246711	0x5A18	w	mov dword ptr [rdi + 0x98], eax	route-seeded PTR 0x0209BE80 base+0x5980	
+0x002465F0	FUN_002465f0	0x00246711	0x5A18	w	mov dword ptr [rdi + 0x98], eax	route-seeded PTR 0x0209BE80 base+0x5980 zeroclear	
 0x002465F0	FUN_002465f0	0x00246717	0x5A1C	w	mov dword ptr [rdi + 0x9c], 0x800080	route-seeded PTR 0x0209BE80 base+0x5980	
 0x002465F0	FUN_002465f0	0x0024670A	0x5A20	w	mov byte ptr [rdi + 0xa0], 0x80	route-seeded PTR 0x0209BE80 base+0x5980	
 0x002465F0	FUN_002465f0	0x002466E6	0x5A21	w	mov word ptr [rdi + 0xa1], 0xff80	route-seeded PTR 0x0209BE80 base+0x5980	
@@ -474,7 +474,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0028F0C0	FUN_0028f0c0	0x0028F1C2	0x5A42	r	cmp word ptr [rcx + 0x5a42], 0	route-seeded PTR 0x0209BE80 base+0x0	
 0x00202B10	FUN_00202b10	0x00202B14	0x5A50	r	movss xmm0, dword ptr [rdx]	route-seeded PTR 0x0209BE80 base+0x5A50 exposed	
 0x00202C90	FUN_00202c90	0x00202C93	0x5A50	w	movups xmmword ptr [rcx], xmm0	route-seeded PTR 0x0209BE80 base+0x5A50 exposed	
-0x00275550	FUN_00275550	0x00275564	0x5A50	w	rep stosd dword ptr [rdi], eax	route-seeded PTR 0x0209BE80 base+0x5A50	
+0x00275550	FUN_00275550	0x00275564	0x5A50	w	rep stosd dword ptr [rdi], eax	route-seeded PTR 0x0209BE80 base+0x5A50 zeroclear	
 0x003FA160	FUN_003fa160	0x003FA39E	0x5A50	addr	lea rbx, [rsi + 0x270]	route-seeded PTR 0x0209BE80 base+0x57E0	
 0x00202B10	FUN_00202b10	0x00202B1D	0x5A54	r	movss xmm1, dword ptr [rdx + 4]	route-seeded PTR 0x0209BE80 base+0x5A50 exposed	
 0x003FA160	FUN_003fa160	0x003FA43A	0x5A54	r	movss xmm0, dword ptr [rbx + 4]	route-seeded PTR 0x0209BE80 base+0x5A50	
@@ -489,12 +489,21 @@ function	name	site	disp	kind	instruction	route	note
 0x003FA160	FUN_003fa160	0x003FA43F	0x5A70	addr	lea rcx, [rbx + 0x20]	route-seeded PTR 0x0209BE80 base+0x5A50	
 0x003FBE90	FUN_003fbe90	0x003FC019	0x5A70	addr	lea rcx, [rbx - 0x10]	route-seeded PTR 0x0209BE80 base+0x5A80	
 0x00270B40	FUN_00270b40	0x00270BA9	0x5A80	w	movss dword ptr [rdi], xmm0	route-seeded PTR 0x0209BE80 base+0x5A80	
+0x00270B40	FUN_00270b40	0x00270C62	0x5A80	w	movss dword ptr [rdi + r15*4], xmm1	route-seeded PTR 0x0209BE80 base+0x5A80	
+0x00270B40	FUN_00270b40	0x00270C9B	0x5A80	w	movss dword ptr [rdi + rsi*4], xmm0	route-seeded PTR 0x0209BE80 base+0x5A80	
+0x00270B40	FUN_00270b40	0x00270CBB	0x5A80	w	movss dword ptr [rdi + r14*4], xmm0	route-seeded PTR 0x0209BE80 base+0x5A80	
 0x003FBE90	FUN_003fbe90	0x003FBED8	0x5A80	addr	lea rbx, [rcx + 0x10]	route-seeded PTR 0x0209BE80 base+0x5A70	
 0x00270B40	FUN_00270b40	0x00270BBB	0x5A84	w	movss dword ptr [rdi + 4], xmm1	route-seeded PTR 0x0209BE80 base+0x5A80	
+0x00270B40	FUN_00270b40	0x00270C62	0x5A84	w	movss dword ptr [rdi + r15*4], xmm1	route-seeded PTR 0x0209BE80 base+0x5A80	
+0x00270B40	FUN_00270b40	0x00270C9B	0x5A84	w	movss dword ptr [rdi + rsi*4], xmm0	route-seeded PTR 0x0209BE80 base+0x5A80	
+0x00270B40	FUN_00270b40	0x00270CBB	0x5A84	w	movss dword ptr [rdi + r14*4], xmm0	route-seeded PTR 0x0209BE80 base+0x5A80	
 0x00270B40	FUN_00270b40	0x00270BCE	0x5A88	w	movss dword ptr [rdi + 8], xmm0	route-seeded PTR 0x0209BE80 base+0x5A80	
+0x00270B40	FUN_00270b40	0x00270C62	0x5A88	w	movss dword ptr [rdi + r15*4], xmm1	route-seeded PTR 0x0209BE80 base+0x5A80	
+0x00270B40	FUN_00270b40	0x00270C9B	0x5A88	w	movss dword ptr [rdi + rsi*4], xmm0	route-seeded PTR 0x0209BE80 base+0x5A80	
+0x00270B40	FUN_00270b40	0x00270CBB	0x5A88	w	movss dword ptr [rdi + r14*4], xmm0	route-seeded PTR 0x0209BE80 base+0x5A80	
 0x00270B40	FUN_00270b40	0x00270B96	0x5A8C	w	movss dword ptr [rdi + 0xc], xmm1	route-seeded PTR 0x0209BE80 base+0x5A80	
 0x00270B40	FUN_00270b40	0x00270CD9	0x5A8C	w	movss dword ptr [rdi + 0xc], xmm0	route-seeded PTR 0x0209BE80 base+0x5A80	
-0x003FBE90	FUN_003fbe90	0x003FBEF0	0x5AF0	w	mov dword ptr [rbx + 0x70], r14d	route-seeded PTR 0x0209BE80 base+0x5A80	
+0x003FBE90	FUN_003fbe90	0x003FBEF0	0x5AF0	w	mov dword ptr [rbx + 0x70], r14d	route-seeded PTR 0x0209BE80 base+0x5A80 zeroclear	
 0x003FA160	FUN_003fa160	0x003FA40C	0x5CB0	w	mov dword ptr [rbx + 0x260], r15d	route-seeded PTR 0x0209BE80 base+0x5A50	
 0x003FA160	FUN_003fa160	0x003FA413	0x5CB4	w	mov dword ptr [rbx + 0x264], 0xbe800000	route-seeded PTR 0x0209BE80 base+0x5A50	
 0x003FA160	FUN_003fa160	0x003FA41D	0x5CB8	w	mov dword ptr [rbx + 0x268], r14d	route-seeded PTR 0x0209BE80 base+0x5A50	
@@ -519,7 +528,7 @@ function	name	site	disp	kind	instruction	route	note
 0x003FA900	FUN_003fa900	0x003FA908	0x7C70	r	mov rbx, qword ptr [rcx + 0x2490]	route-seeded PTR 0x0209BE80 base+0x57E0	
 0x0028EF00	FUN_0028ef00	0x0028EF39	0x7C78	w	mov word ptr [rax + 0x7c78], cx	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028F0C0	FUN_0028f0c0	0x0028F0EF	0x7C78	w	mov word ptr [rax + 0x7c78], bx	route-seeded PTR 0x0209BE80 base+0x0	
-0x0028F0C0	FUN_0028f0c0	0x0028F11A	0x7C78	w	mov word ptr [rax + 0x7c78], cx	route-seeded PTR 0x0209BE80 base+0x0	
+0x0028F0C0	FUN_0028f0c0	0x0028F11A	0x7C78	w	mov word ptr [rax + 0x7c78], cx	route-seeded PTR 0x0209BE80 base+0x0 zeroclear	
 0x003F9F40	FUN_003f9f40	0x003FA004	0x7C78	r	movzx eax, word ptr [rbx + 0x2498]	route-seeded PTR 0x0209BE80 base+0x57E0	
 0x003F9F40	FUN_003f9f40	0x003FA084	0x7C78	r	movzx eax, word ptr [rbx + 0x2498]	route-seeded PTR 0x0209BE80 base+0x57E0	
 0x003FA570	FUN_003fa570	0x003FA5BF	0x7C78	r	cmp word ptr [rdi + 0x2498], 0	route-seeded PTR 0x0209BE80 base+0x57E0	
@@ -547,7 +556,7 @@ function	name	site	disp	kind	instruction	route	note
 0x003F9F40	FUN_003f9f40	0x003FA146	0x7C7C	rw	or dword ptr [rbx + 0x249c], 1	route-seeded PTR 0x0209BE80 base+0x57E0	
 0x003F9F40	FUN_003f9f40	0x003F9F5D	0x7C80	rw	inc word ptr [rcx + 0x24a0]	route-seeded PTR 0x0209BE80 base+0x57E0	
 0x003F9F40	FUN_003f9f40	0x003F9F6B	0x7C80	r	movsx eax, word ptr [rcx + 0x24a0]	route-seeded PTR 0x0209BE80 base+0x57E0	
-0x003F9F40	FUN_003f9f40	0x003F9F76	0x7C80	w	mov word ptr [rcx + 0x24a0], si	route-seeded PTR 0x0209BE80 base+0x57E0	
+0x003F9F40	FUN_003f9f40	0x003F9F76	0x7C80	w	mov word ptr [rcx + 0x24a0], si	route-seeded PTR 0x0209BE80 base+0x57E0 zeroclear	
 0x0028EF00	FUN_0028ef00	0x0028EF47	0x7C82	w	mov word ptr [rax + 0x7c82], dx	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028EF50	FUN_0028ef50	0x0028EF65	0x7C82	w	mov word ptr [rax + 0x7c82], cx	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028EF70	FUN_0028ef70	0x0028EFA9	0x7C82	w	mov word ptr [rax + 0x7c82], di	route-seeded PTR 0x0209BE80 base+0x0	
@@ -596,7 +605,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0028CA40	FUN_0028ca40	0x0028CA59	0x7EA0	w	mov qword ptr [rcx], rax	route-seeded PTR 0x0209BE80 base+0x7EA0 zeroclear	
 0x0028E290	FUN_0028e290	0x0028E55A	0x7EA0	addr	lea rcx, [rbx + 0x7ea0]	route-seeded PTR 0x0209BE80 base+0x0	
 0x00291750	FUN_00291750	0x00291794	0x7EA0	addr	lea rcx, [rdi + 0x7ea0]	route-seeded PTR 0x0209BE80 base+0x0	
-0x003E5510	FUN_003e5510	0x003E554D	0x7EA0	w	mov qword ptr [rbx], rdx	route-seeded PTR 0x0209BE80 base+0x7EA0	
+0x003E5510	FUN_003e5510	0x003E554D	0x7EA0	w	mov qword ptr [rbx], rdx	route-seeded PTR 0x0209BE80 base+0x7EA0 zeroclear	
 0x003E5510	FUN_003e5510	0x003E556B	0x7EA0	w	mov dword ptr [rbx], eax	route-seeded PTR 0x0209BE80 base+0x7EA0	
 0x00217060	FUN_00217060	0x00217090	0x7EA4	r	movss xmm7, dword ptr [r8 + 4]	route-seeded PTR 0x0209BE80 base+0x7EA0 exposed	
 0x00275490	FUN_00275490	0x002754AB	0x7EA4	r	subss xmm0, dword ptr [rdx + 4]	route-seeded PTR 0x0209BE80 base+0x7EA0	
@@ -606,7 +615,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00275490	FUN_00275490	0x002754C4	0x7EA8	r	subss xmm2, dword ptr [rdx + 8]	route-seeded PTR 0x0209BE80 base+0x7EA0	
 0x00275490	FUN_00275490	0x002754CD	0x7EA8	r	addss xmm2, dword ptr [rdx + 8]	route-seeded PTR 0x0209BE80 base+0x7EA0	
 0x0028CA40	FUN_0028ca40	0x0028CA5C	0x7EA8	w	mov qword ptr [rcx + 8], rax	route-seeded PTR 0x0209BE80 base+0x7EA0 zeroclear	
-0x003E5510	FUN_003e5510	0x003E5550	0x7EA8	w	mov dword ptr [rbx + 8], edx	route-seeded PTR 0x0209BE80 base+0x7EA0	
+0x003E5510	FUN_003e5510	0x003E5550	0x7EA8	w	mov dword ptr [rbx + 8], edx	route-seeded PTR 0x0209BE80 base+0x7EA0 zeroclear	
 0x003E5510	FUN_003e5510	0x003E5566	0x7EA8	w	movss dword ptr [rbx + 8], xmm1	route-seeded PTR 0x0209BE80 base+0x7EA0	
 0x00217060	FUN_00217060	0x00217086	0x7EAC	r	movss xmm6, dword ptr [r8 + 0xc]	route-seeded PTR 0x0209BE80 base+0x7EA0 exposed	
 0x003E5510	FUN_003e5510	0x003E5572	0x7EAC	w	mov dword ptr [rbx + 0xc], 0x3f800000	route-seeded PTR 0x0209BE80 base+0x7EA0	
@@ -621,7 +630,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0028D260	FUN_0028d260	0x0028D2FE	0x7EB0	addr	lea r8, [rbp + 0x10]	route-seeded PTR 0x0209BE80 base+0x7EA0	
 0x0028DFD0	FUN_0028dfd0	0x0028E011	0x7EB0	addr	lea r8, [rdi + 0x10]	route-seeded PTR 0x0209BE80 base+0x7EA0	
 0x0028DFD0	FUN_0028dfd0	0x0028E03F	0x7EB0	addr	lea rdx, [rdi + 0x10]	route-seeded PTR 0x0209BE80 base+0x7EA0	
-0x003E5510	FUN_003e5510	0x003E554D	0x7EB0	w	mov qword ptr [rbx], rdx	route-seeded PTR 0x0209BE80 base+0x7EB0	
+0x003E5510	FUN_003e5510	0x003E554D	0x7EB0	w	mov qword ptr [rbx], rdx	route-seeded PTR 0x0209BE80 base+0x7EB0 zeroclear	
 0x003E5510	FUN_003e5510	0x003E556B	0x7EB0	w	mov dword ptr [rbx], eax	route-seeded PTR 0x0209BE80 base+0x7EB0	
 0x00217060	FUN_00217060	0x00217090	0x7EB4	r	movss xmm7, dword ptr [r8 + 4]	route-seeded PTR 0x0209BE80 base+0x7EB0 exposed	
 0x00275490	FUN_00275490	0x002754A5	0x7EB4	r	movss xmm0, dword ptr [r8 + 4]	route-seeded PTR 0x0209BE80 base+0x7EB0	
@@ -629,7 +638,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00217060	FUN_00217060	0x0021706C	0x7EB8	r	movss xmm5, dword ptr [r8 + 8]	route-seeded PTR 0x0209BE80 base+0x7EB0 exposed	
 0x00275490	FUN_00275490	0x002754BE	0x7EB8	r	movss xmm2, dword ptr [r8 + 8]	route-seeded PTR 0x0209BE80 base+0x7EB0	
 0x0028CA40	FUN_0028ca40	0x0028CA64	0x7EB8	w	mov qword ptr [rcx + 0x18], rax	route-seeded PTR 0x0209BE80 base+0x7EA0 zeroclear	
-0x003E5510	FUN_003e5510	0x003E5550	0x7EB8	w	mov dword ptr [rbx + 8], edx	route-seeded PTR 0x0209BE80 base+0x7EB0	
+0x003E5510	FUN_003e5510	0x003E5550	0x7EB8	w	mov dword ptr [rbx + 8], edx	route-seeded PTR 0x0209BE80 base+0x7EB0 zeroclear	
 0x003E5510	FUN_003e5510	0x003E5566	0x7EB8	w	movss dword ptr [rbx + 8], xmm1	route-seeded PTR 0x0209BE80 base+0x7EB0	
 0x00217060	FUN_00217060	0x00217086	0x7EBC	r	movss xmm6, dword ptr [r8 + 0xc]	route-seeded PTR 0x0209BE80 base+0x7EB0 exposed	
 0x003E5510	FUN_003e5510	0x003E5572	0x7EBC	w	mov dword ptr [rbx + 0xc], 0x3f800000	route-seeded PTR 0x0209BE80 base+0x7EB0	
@@ -705,7 +714,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0028CA40	FUN_0028ca40	0x0028CB1F	0x7F14	r	movzx ecx, word ptr [rbx + 0x74]	route-seeded PTR 0x0209BE80 base+0x7EA0	
 0x0028CA40	FUN_0028ca40	0x0028CB42	0x7F14	w	mov word ptr [rbx + 0x74], ax	route-seeded PTR 0x0209BE80 base+0x7EA0	
 0x0028C870	FUN_0028c870	0x0028C892	0x7F16	rw	sub word ptr [rcx + 0x76], ax	route-seeded PTR 0x0209BE80 base+0x7EA0	
-0x0028C870	FUN_0028c870	0x0028C898	0x7F16	w	mov word ptr [rcx + 0x76], bx	route-seeded PTR 0x0209BE80 base+0x7EA0	
+0x0028C870	FUN_0028c870	0x0028C898	0x7F16	w	mov word ptr [rcx + 0x76], bx	route-seeded PTR 0x0209BE80 base+0x7EA0 zeroclear	
 0x0028C870	FUN_0028c870	0x0028C89E	0x7F16	rw	add word ptr [rcx + 0x76], ax	route-seeded PTR 0x0209BE80 base+0x7EA0	
 0x0028C870	FUN_0028c870	0x0028C8A7	0x7F16	r	cmp word ptr [rcx + 0x76], ax	route-seeded PTR 0x0209BE80 base+0x7EA0	
 0x0028C870	FUN_0028c870	0x0028C8AD	0x7F16	w	mov word ptr [rcx + 0x76], ax	route-seeded PTR 0x0209BE80 base+0x7EA0	
@@ -759,7 +768,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002482E0	FUN_002482e0	0x00248398	0x8010	w	mov qword ptr [rdi + 0x60], 0	route-seeded PTR 0x0209BE80 base+0x7FB0 exposed	
 0x002465F0	FUN_002465f0	0x002466D8	0x802C	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	route-seeded PTR 0x0209BE80 base+0x7FB0	
 0x002482E0	FUN_002482e0	0x002483BE	0x802C	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	route-seeded PTR 0x0209BE80 base+0x7FB0 exposed	
-0x002465F0	FUN_002465f0	0x00246711	0x8048	w	mov dword ptr [rdi + 0x98], eax	route-seeded PTR 0x0209BE80 base+0x7FB0	
+0x002465F0	FUN_002465f0	0x00246711	0x8048	w	mov dword ptr [rdi + 0x98], eax	route-seeded PTR 0x0209BE80 base+0x7FB0 zeroclear	
 0x002465F0	FUN_002465f0	0x00246717	0x804C	w	mov dword ptr [rdi + 0x9c], 0x800080	route-seeded PTR 0x0209BE80 base+0x7FB0	
 0x002465F0	FUN_002465f0	0x0024670A	0x8050	w	mov byte ptr [rdi + 0xa0], 0x80	route-seeded PTR 0x0209BE80 base+0x7FB0	
 0x002465F0	FUN_002465f0	0x002466E6	0x8051	w	mov word ptr [rdi + 0xa1], 0xff80	route-seeded PTR 0x0209BE80 base+0x7FB0	
@@ -771,36 +780,36 @@ function	name	site	disp	kind	instruction	route	note
 0x002465F0	FUN_002465f0	0x0024675C	0x8064	w	mov dword ptr [rdi + 0xb4], 1	route-seeded PTR 0x0209BE80 base+0x7FB0	
 0x002465F0	FUN_002465f0	0x00246700	0x8068	w	mov dword ptr [rdi + 0xb8], 0x3f800000	route-seeded PTR 0x0209BE80 base+0x7FB0	
 0x00299A30	FUN_00299a30	0x00299A71	0x8074	r	cmp dword ptr [rbx - 0x2c], esi	route-seeded PTR 0x0209BE80 base+0x80A0	
-0x00296670	FUN_00296670	0x002966A4	0x80A0	w	mov dword ptr [rbx + 0xf0], esi	route-seeded PTR 0x0209BE80 base+0x7FB0	
+0x00296670	FUN_00296670	0x002966A4	0x80A0	w	mov dword ptr [rbx + 0xf0], esi	route-seeded PTR 0x0209BE80 base+0x7FB0 zeroclear	
 0x002966E0	FUN_002966e0	0x0029678D	0x80A0	r	cmp dword ptr [rbx + 0xf0], r14d	route-seeded PTR 0x0209BE80 base+0x7FB0	
 0x002966E0	FUN_002966e0	0x002967B1	0x80A0	r	cmp dword ptr [rdi + 0xf0], r14d	route-seeded PTR 0x0209BE80 base+0x7FB0	
 0x002966E0	FUN_002966e0	0x002967D3	0x80A0	w	mov dword ptr [rbx + 0xf0], 1	route-seeded PTR 0x0209BE80 base+0x7FB0	
 0x002966E0	FUN_002966e0	0x0029680F	0x80A0	w	mov dword ptr [rdi + 0xf0], 1	route-seeded PTR 0x0209BE80 base+0x7FB0	
 0x00296860	FUN_00296860	0x00296897	0x80A0	r	cmp dword ptr [rbx - 0x14], ebp	route-seeded PTR 0x0209BE80 base+0x80B4	
-0x00296860	FUN_00296860	0x00296909	0x80A0	w	mov dword ptr [rbx - 0x14], ebp	route-seeded PTR 0x0209BE80 base+0x80B4	
+0x00296860	FUN_00296860	0x00296909	0x80A0	w	mov dword ptr [rbx - 0x14], ebp	route-seeded PTR 0x0209BE80 base+0x80B4 zeroclear	
 0x00299A30	FUN_00299a30	0x00299A56	0x80A0	addr	lea rbx, [rcx + 0xf0]	route-seeded PTR 0x0209BE80 base+0x7FB0	
 0x00299A30	FUN_00299a30	0x00299A76	0x80A0	r	cmp dword ptr [rbx], 0	route-seeded PTR 0x0209BE80 base+0x80A0	
 0x002966E0	FUN_002966e0	0x002967DD	0x80A4	w	mov dword ptr [rbx + 0xf4], r12d	route-seeded PTR 0x0209BE80 base+0x7FB0	
 0x002966E0	FUN_002966e0	0x00296819	0x80A4	w	mov dword ptr [rdi + 0xf4], r12d	route-seeded PTR 0x0209BE80 base+0x7FB0	
 0x00296860	FUN_00296860	0x002968CA	0x80A4	r	mov eax, dword ptr [rbx - 0x10]	route-seeded PTR 0x0209BE80 base+0x80B4	
 0x00299A30	FUN_00299a30	0x00299A7B	0x80A4	r	cmp dword ptr [rbx + 4], esi	route-seeded PTR 0x0209BE80 base+0x80A0	
-0x00296670	FUN_00296670	0x002966AA	0x80A8	w	mov qword ptr [rbx + 0xf8], rsi	route-seeded PTR 0x0209BE80 base+0x7FB0	
-0x00296670	FUN_00296670	0x002966B1	0x80B0	w	mov dword ptr [rbx + 0x100], esi	route-seeded PTR 0x0209BE80 base+0x7FB0	
+0x00296670	FUN_00296670	0x002966AA	0x80A8	w	mov qword ptr [rbx + 0xf8], rsi	route-seeded PTR 0x0209BE80 base+0x7FB0 zeroclear	
+0x00296670	FUN_00296670	0x002966B1	0x80B0	w	mov dword ptr [rbx + 0x100], esi	route-seeded PTR 0x0209BE80 base+0x7FB0 zeroclear	
 0x00296860	FUN_00296860	0x00296881	0x80B4	addr	lea rbx, [rcx + 0x104]	route-seeded PTR 0x0209BE80 base+0x7FB0	
 0x00296860	FUN_00296860	0x002968AC	0x80B4	r	movsx rax, word ptr [rbx]	route-seeded PTR 0x0209BE80 base+0x80B4	
 0x00296860	FUN_00296860	0x002968EB	0x80B4	r	movsx rax, word ptr [rbx]	route-seeded PTR 0x0209BE80 base+0x80B4	
 0x00296860	FUN_00296860	0x002968F3	0x80B4	rw	inc word ptr [rbx]	route-seeded PTR 0x0209BE80 base+0x80B4	
 0x00296860	FUN_00296860	0x002968F6	0x80B4	r	cmp word ptr [rbx], 3	route-seeded PTR 0x0209BE80 base+0x80B4	
-0x00296860	FUN_00296860	0x002968FC	0x80B4	w	mov word ptr [rbx], bp	route-seeded PTR 0x0209BE80 base+0x80B4	
+0x00296860	FUN_00296860	0x002968FC	0x80B4	w	mov word ptr [rbx], bp	route-seeded PTR 0x0209BE80 base+0x80B4 zeroclear	
 0x00296860	FUN_00296860	0x002968FF	0x80B4	r	movsx rax, word ptr [rbx]	route-seeded PTR 0x0209BE80 base+0x80B4	
 0x002966E0	FUN_002966e0	0x002967CB	0x80B6	r	movsx rax, word ptr [rbx + 0x106]	route-seeded PTR 0x0209BE80 base+0x7FB0	
 0x002966E0	FUN_002966e0	0x002967EC	0x80B6	rw	inc word ptr [rbx + 0x106]	route-seeded PTR 0x0209BE80 base+0x7FB0	
 0x002966E0	FUN_002966e0	0x002967F3	0x80B6	r	cmp word ptr [rbx + 0x106], 3	route-seeded PTR 0x0209BE80 base+0x7FB0	
-0x002966E0	FUN_002966e0	0x002967FD	0x80B6	w	mov word ptr [rbx + 0x106], r14w	route-seeded PTR 0x0209BE80 base+0x7FB0	
+0x002966E0	FUN_002966e0	0x002967FD	0x80B6	w	mov word ptr [rbx + 0x106], r14w	route-seeded PTR 0x0209BE80 base+0x7FB0 zeroclear	
 0x002966E0	FUN_002966e0	0x00296807	0x80B6	r	movsx rax, word ptr [rdi + 0x106]	route-seeded PTR 0x0209BE80 base+0x7FB0	
 0x002966E0	FUN_002966e0	0x00296828	0x80B6	rw	inc word ptr [rdi + 0x106]	route-seeded PTR 0x0209BE80 base+0x7FB0	
 0x002966E0	FUN_002966e0	0x0029682F	0x80B6	r	cmp word ptr [rdi + 0x106], 3	route-seeded PTR 0x0209BE80 base+0x7FB0	
-0x002966E0	FUN_002966e0	0x00296839	0x80B6	w	mov word ptr [rdi + 0x106], r14w	route-seeded PTR 0x0209BE80 base+0x7FB0	
+0x002966E0	FUN_002966e0	0x00296839	0x80B6	w	mov word ptr [rdi + 0x106], r14w	route-seeded PTR 0x0209BE80 base+0x7FB0 zeroclear	
 0x002465F0	FUN_002465f0	0x00246641	0x8FA0	w	mov qword ptr [rdi], rbx	route-seeded PTR 0x0209BE80 base+0x8FA0	
 0x00291750	FUN_00291750	0x002917AA	0x8FA0	addr	lea rcx, [rdi + 0x8fa0]	route-seeded PTR 0x0209BE80 base+0x0	
 0x00291750	FUN_00291750	0x002917B6	0x8FA0	addr	lea rcx, [rdi + 0x8fa0]	route-seeded PTR 0x0209BE80 base+0x0	
@@ -815,7 +824,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002465F0	FUN_002465f0	0x002466FA	0x8FE4	w	mov word ptr [rdi + 0x44], ax	route-seeded PTR 0x0209BE80 base+0x8FA0	
 0x002465F0	FUN_002465f0	0x00246687	0x8FE8	w	mov qword ptr [rdi + 0x48], rax	route-seeded PTR 0x0209BE80 base+0x8FA0	
 0x002465F0	FUN_002465f0	0x002466D8	0x901C	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	route-seeded PTR 0x0209BE80 base+0x8FA0	
-0x002465F0	FUN_002465f0	0x00246711	0x9038	w	mov dword ptr [rdi + 0x98], eax	route-seeded PTR 0x0209BE80 base+0x8FA0	
+0x002465F0	FUN_002465f0	0x00246711	0x9038	w	mov dword ptr [rdi + 0x98], eax	route-seeded PTR 0x0209BE80 base+0x8FA0 zeroclear	
 0x002465F0	FUN_002465f0	0x00246717	0x903C	w	mov dword ptr [rdi + 0x9c], 0x800080	route-seeded PTR 0x0209BE80 base+0x8FA0	
 0x002465F0	FUN_002465f0	0x0024670A	0x9040	w	mov byte ptr [rdi + 0xa0], 0x80	route-seeded PTR 0x0209BE80 base+0x8FA0	
 0x002465F0	FUN_002465f0	0x002466E6	0x9041	w	mov word ptr [rdi + 0xa1], 0xff80	route-seeded PTR 0x0209BE80 base+0x8FA0	
@@ -865,7 +874,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002482E0	FUN_002482e0	0x0024838A	0x9AC0	r	mov rcx, qword ptr [rdi + 0x60]	route-seeded PTR 0x0209BE80 base+0x9A60 exposed	
 0x002482E0	FUN_002482e0	0x00248398	0x9AC0	w	mov qword ptr [rdi + 0x60], 0	route-seeded PTR 0x0209BE80 base+0x9A60 exposed	
 0x00244DD0	FUN_00244dd0	0x00244E88	0x9AC8	w	mov qword ptr [rbx + 0x68], rcx	route-seeded PTR 0x0209BE80 base+0x9A60 exposed	
-0x00244DD0	FUN_00244dd0	0x00244E6A	0x9AD0	w	mov dword ptr [rbx + 0x70], ecx	route-seeded PTR 0x0209BE80 base+0x9A60 exposed	
+0x00244DD0	FUN_00244dd0	0x00244E6A	0x9AD0	w	mov dword ptr [rbx + 0x70], ecx	route-seeded PTR 0x0209BE80 base+0x9A60 exposed zeroclear	
 0x00244DD0	FUN_00244dd0	0x00244E75	0x9AD0	r	sub eax, dword ptr [rbx + 0x70]	route-seeded PTR 0x0209BE80 base+0x9A60 exposed	
 0x00244DD0	FUN_00244dd0	0x00244ED4	0x9AD0	w	mov dword ptr [rbx + 0x70], edx	route-seeded PTR 0x0209BE80 base+0x9A60 exposed	
 0x00244DD0	FUN_00244dd0	0x00244E78	0x9AD4	r	sub eax, dword ptr [rbx + 0x74]	route-seeded PTR 0x0209BE80 base+0x9A60 exposed	
@@ -890,8 +899,8 @@ function	name	site	disp	kind	instruction	route	note
 0x002BE270	FUN_002be270	0x002BE270	0x9FD0	r	mov rax, qword ptr [rcx + 0x1030]	route-seeded PTR 0x0209BE80 base+0x8FA0	
 0x002BE300	FUN_002be300	0x002BE329	0x9FD0	w	mov qword ptr [rcx + 0x570], 0	route-seeded PTR 0x0209BE80 base+0x9A60	
 0x002BE300	FUN_002be300	0x002BE36A	0x9FD0	r	mov rax, qword ptr [rcx + 0x570]	route-seeded PTR 0x0209BE80 base+0x9A60	
-0x002BEA40	FUN_002bea40	0x002BEA59	0x9FD0	w	mov qword ptr [rcx + 0x570], rsi	route-seeded PTR 0x0209BE80 base+0x9A60	
-0x002BEED0	FUN_002beed0	0x002BEEF0	0x9FD0	w	mov qword ptr [rcx + 0x1030], rsi	route-seeded PTR 0x0209BE80 base+0x8FA0	
+0x002BEA40	FUN_002bea40	0x002BEA59	0x9FD0	w	mov qword ptr [rcx + 0x570], rsi	route-seeded PTR 0x0209BE80 base+0x9A60 zeroclear	
+0x002BEED0	FUN_002beed0	0x002BEEF0	0x9FD0	w	mov qword ptr [rcx + 0x1030], rsi	route-seeded PTR 0x0209BE80 base+0x8FA0 zeroclear	
 0x002C0F30	FUN_002c0f30	0x002C0F9E	0x9FD0	w	mov qword ptr [rbx + 0x570], rdi	route-seeded PTR 0x0209BE80 base+0x9A60	
 0x002C0F30	FUN_002c0f30	0x002C0FAF	0x9FD0	r	mov rcx, qword ptr [rbx + 0x570]	route-seeded PTR 0x0209BE80 base+0x9A60	
 0x002C0F30	FUN_002c0f30	0x002C0FC2	0x9FD0	r	mov rcx, qword ptr [rbx + 0x570]	route-seeded PTR 0x0209BE80 base+0x9A60	
@@ -916,9 +925,9 @@ function	name	site	disp	kind	instruction	route	note
 0x002BDCE0	FUN_002bdce0	0x002BDE41	0x9FE8	r	cmp qword ptr [rbx + 0x1048], rbp	route-seeded PTR 0x0209BE80 base+0x8FA0	
 0x002BDCE0	FUN_002bdce0	0x002BDF31	0x9FE8	r	cmp qword ptr [rbx + 0x1048], rbp	route-seeded PTR 0x0209BE80 base+0x8FA0	
 0x002BE020	FUN_002be020	0x002BE029	0x9FE8	r	mov rcx, qword ptr [rcx + 0x1048]	route-seeded PTR 0x0209BE80 base+0x8FA0	
-0x002BE020	FUN_002be020	0x002BE03C	0x9FE8	w	mov qword ptr [rbx + 0x1048], rax	route-seeded PTR 0x0209BE80 base+0x8FA0	
+0x002BE020	FUN_002be020	0x002BE03C	0x9FE8	w	mov qword ptr [rbx + 0x1048], rax	route-seeded PTR 0x0209BE80 base+0x8FA0 zeroclear	
 0x002BE110	FUN_002be110	0x002BE124	0x9FE8	r	mov rax, qword ptr [rcx + 0x1048]	route-seeded PTR 0x0209BE80 base+0x8FA0	
-0x002BEED0	FUN_002beed0	0x002BEF50	0x9FF0	w	mov qword ptr [rdi + 0x1050], rsi	route-seeded PTR 0x0209BE80 base+0x8FA0	
+0x002BEED0	FUN_002beed0	0x002BEF50	0x9FF0	w	mov qword ptr [rdi + 0x1050], rsi	route-seeded PTR 0x0209BE80 base+0x8FA0 zeroclear	
 0x002BDAE0	FUN_002bdae0	0x002BDAE0	0x9FF8	r	mov rcx, qword ptr [rcx + 0x1058]	route-seeded PTR 0x0209BE80 base+0x8FA0	
 0x002BDB00	FUN_002bdb00	0x002BDB04	0x9FF8	r	mov rcx, qword ptr [rcx + 0x1058]	route-seeded PTR 0x0209BE80 base+0x8FA0	
 0x002BDB60	FUN_002bdb60	0x002BDBC8	0x9FF8	r	mov rax, qword ptr [rbx + 0x1058]	route-seeded PTR 0x0209BE80 base+0x8FA0	
@@ -931,9 +940,9 @@ function	name	site	disp	kind	instruction	route	note
 0x002BDCE0	FUN_002bdce0	0x002BDFBA	0x9FF8	r	mov rdx, qword ptr [rbx + 0x1058]	route-seeded PTR 0x0209BE80 base+0x8FA0	
 0x002BDCE0	FUN_002bdce0	0x002BDFD6	0x9FF8	r	mov rax, qword ptr [rbx + 0x1058]	route-seeded PTR 0x0209BE80 base+0x8FA0	
 0x002BEED0	FUN_002beed0	0x002BEF33	0xA008	r	mov rcx, qword ptr [rdi + 0x1068]	route-seeded PTR 0x0209BE80 base+0x8FA0	
-0x002BEED0	FUN_002beed0	0x002BEF44	0xA008	w	mov qword ptr [rdi + 0x1068], rsi	route-seeded PTR 0x0209BE80 base+0x8FA0	
+0x002BEED0	FUN_002beed0	0x002BEF44	0xA008	w	mov qword ptr [rdi + 0x1068], rsi	route-seeded PTR 0x0209BE80 base+0x8FA0 zeroclear	
 0x002BEED0	FUN_002beed0	0x002BEF1B	0xA010	r	mov rcx, qword ptr [rdi + 0x1070]	route-seeded PTR 0x0209BE80 base+0x8FA0	
-0x002BEED0	FUN_002beed0	0x002BEF2C	0xA010	w	mov qword ptr [rdi + 0x1070], rsi	route-seeded PTR 0x0209BE80 base+0x8FA0	
+0x002BEED0	FUN_002beed0	0x002BEF2C	0xA010	w	mov qword ptr [rdi + 0x1070], rsi	route-seeded PTR 0x0209BE80 base+0x8FA0 zeroclear	
 0x002BDB60	FUN_002bdb60	0x002BDB7F	0xA018	r	mov rax, qword ptr [rbx + 0x1078]	route-seeded PTR 0x0209BE80 base+0x8FA0	
 0x002BDB60	FUN_002bdb60	0x002BDBE8	0xA018	r	mov rcx, qword ptr [rbx + 0x1078]	route-seeded PTR 0x0209BE80 base+0x8FA0	
 0x002BDC00	FUN_002bdc00	0x002BDC23	0xA018	r	mov rcx, qword ptr [rbx + 0x1078]	route-seeded PTR 0x0209BE80 base+0x8FA0	
@@ -972,7 +981,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002BF3D0	FUN_002bf3d0	0x002BF45F	0xA060	w	mov dword ptr [rsi + 0x10], eax	route-seeded PTR 0x0209BE80 base+0xA050	
 0x002BDCE0	FUN_002bdce0	0x002BDE4A	0xA070	r	cmp qword ptr [rbx + 0x10d0], rbp	route-seeded PTR 0x0209BE80 base+0x8FA0	
 0x002BDCE0	FUN_002bdce0	0x002BDF3A	0xA070	r	cmp qword ptr [rbx + 0x10d0], rbp	route-seeded PTR 0x0209BE80 base+0x8FA0	
-0x002BE020	FUN_002be020	0x002BE043	0xA070	w	mov qword ptr [rbx + 0x10d0], rax	route-seeded PTR 0x0209BE80 base+0x8FA0	
+0x002BE020	FUN_002be020	0x002BE043	0xA070	w	mov qword ptr [rbx + 0x10d0], rax	route-seeded PTR 0x0209BE80 base+0x8FA0 zeroclear	
 0x002BE110	FUN_002be110	0x002BE162	0xA070	w	movups xmmword ptr [rbx + 0x10d0], xmm0	route-seeded PTR 0x0209BE80 base+0x8FA0	
 0x002BE110	FUN_002be110	0x002BE16F	0xA080	w	movups xmmword ptr [rbx + 0x10e0], xmm1	route-seeded PTR 0x0209BE80 base+0x8FA0	
 0x002BE110	FUN_002be110	0x002BE176	0xA090	w	movsd qword ptr [rbx + 0x10f0], xmm0	route-seeded PTR 0x0209BE80 base+0x8FA0	
@@ -989,24 +998,34 @@ function	name	site	disp	kind	instruction	route	note
 0x00290250	FUN_00290250	0x0029025C	0xA09C	w	mov word ptr [rax + 0xa09c], cx	route-seeded PTR 0x0209BE80 base+0x0	
 0x00290250	FUN_00290250	0x0029026A	0xA09E	w	mov word ptr [rax + 0xa09e], dx	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028E290	FUN_0028e290	0x0028E43D	0xA0D0	addr	lea rcx, [rbx + 0xa0d0]	route-seeded PTR 0x0209BE80 base+0x0	
+0x003F7E80	FUN_003f7e80	0x003F7EAA	0xA2F0	addr	lea rax, [rdi + 0x220]	route-seeded PTR 0x0209BE80 base+0xA0D0	
 0x003F80E0	FUN_003f80e0	0x003F80EE	0xAA30	addr	lea r9, [rcx + 0x960]	route-seeded PTR 0x0209BE80 base+0xA0D0	
-0x003F80E0	FUN_003f80e0	0x003F8103	0xAA30	w	mov dword ptr [rcx], eax	route-seeded PTR 0x0209BE80 base+0xAA30	
+0x003F80E0	FUN_003f80e0	0x003F8103	0xAA30	w	mov dword ptr [rcx], eax	route-seeded PTR 0x0209BE80 base+0xAA30 zeroclear	
 0x003F80E0	FUN_003f80e0	0x003F8121	0xAA30	w	mov dword ptr [r9], ecx	route-seeded PTR 0x0209BE80 base+0xAA30	
 0x003F80E0	FUN_003f80e0	0x003F8105	0xAA34	addr	lea rcx, [rcx + 4]	route-seeded PTR 0x0209BE80 base+0xAA30	
 0x0028F8B0	FUN_0028f8b0	0x0028F911	0xAA44	w	mov dword ptr [rax + 0xaa44], 1	route-seeded PTR 0x0209BE80 base+0x0	
 0x00290410	FUN_00290410	0x0029041D	0xAA44	r	mov eax, dword ptr [rax + 0xaa44]	route-seeded PTR 0x0209BE80 base+0x0	
 0x00290430	FUN_00290430	0x0029043C	0xAA44	w	mov dword ptr [rax + 0xaa44], ecx	route-seeded PTR 0x0209BE80 base+0x0	
+0x003F7E80	FUN_003f7e80	0x003F7EB6	0xAA48	r	cmp qword ptr [rdi + 0x978], rcx	route-seeded PTR 0x0209BE80 base+0xA0D0	
+0x003F7E80	FUN_003f7e80	0x003F7F2A	0xAA48	w	mov qword ptr [rdi + 0x978], rbx	route-seeded PTR 0x0209BE80 base+0xA0D0	
+0x003F7E80	FUN_003f7e80	0x003F7EBF	0xAA50	r	cmp dword ptr [rdi + 0x980], 2	route-seeded PTR 0x0209BE80 base+0xA0D0	
+0x003F7E80	FUN_003f7e80	0x003F7ECD	0xAA50	w	mov dword ptr [rdi + 0x980], ecx	route-seeded PTR 0x0209BE80 base+0xA0D0 zeroclear	
+0x003F7E80	FUN_003f7e80	0x003F7ED3	0xAA50	r	movsxd rax, dword ptr [rdi + 0x980]	route-seeded PTR 0x0209BE80 base+0xA0D0	
+0x003F7E80	FUN_003f7e80	0x003F7F1D	0xAA50	rw	inc dword ptr [rdi + 0x980]	route-seeded PTR 0x0209BE80 base+0xA0D0	
+0x003F7E80	FUN_003f7e80	0x003F7EA3	0xAA54	rw	and dword ptr [rdi + 0x984], 0xfffffffe	route-seeded PTR 0x0209BE80 base+0xA0D0	
+0x003F7E80	FUN_003f7e80	0x003F7EF0	0xAA54	rw	or dword ptr [rdi + 0x984], 1	route-seeded PTR 0x0209BE80 base+0xA0D0	
+0x003F7E80	FUN_003f7e80	0x003F7F23	0xAA54	rw	and dword ptr [rdi + 0x984], 0xfffffffe	route-seeded PTR 0x0209BE80 base+0xA0D0	
 0x003F80D0	FUN_003f80d0	0x003F80D0	0xAA54	r	test byte ptr [rcx + 0x984], 1	route-seeded PTR 0x0209BE80 base+0xA0D0	
 0x0028F260	FUN_0028f260	0x0028F26C	0xAA60	w	mov dword ptr [rax + 0xaa60], ecx	route-seeded PTR 0x0209BE80 base+0x0	
 0x00290CF0	FUN_00290cf0	0x00290D65	0xAA60	addr	lea rcx, [rbx + 0xaa60]	route-seeded PTR 0x0209BE80 base+0x0	
 0x00290CF0	FUN_00290cf0	0x00290D88	0xAA60	addr	lea rdx, [rbx + 0xaa60]	route-seeded PTR 0x0209BE80 base+0x0	
-0x00276650	FUN_00276650	0x002766B2	0xAA78	w	mov dword ptr [rdi + 0x18], ebx	route-seeded PTR 0x0209BE80 base+0xAA60	
-0x00276650	FUN_00276650	0x002766C2	0xAA78	w	mov dword ptr [rdi + 0x18], ebx	route-seeded PTR 0x0209BE80 base+0xAA60	
-0x00276650	FUN_00276650	0x002766CE	0xAAC8	w	mov dword ptr [rdi + 0x68], ebx	route-seeded PTR 0x0209BE80 base+0xAA60	
+0x00276650	FUN_00276650	0x002766B2	0xAA78	w	mov dword ptr [rdi + 0x18], ebx	route-seeded PTR 0x0209BE80 base+0xAA60 zeroclear	
+0x00276650	FUN_00276650	0x002766C2	0xAA78	w	mov dword ptr [rdi + 0x18], ebx	route-seeded PTR 0x0209BE80 base+0xAA60 zeroclear	
+0x00276650	FUN_00276650	0x002766CE	0xAAC8	w	mov dword ptr [rdi + 0x68], ebx	route-seeded PTR 0x0209BE80 base+0xAA60 zeroclear	
 0x00276650	FUN_00276650	0x002766AC	0xAACE	r	cmp word ptr [rdi + 0x6e], bx	route-seeded PTR 0x0209BE80 base+0xAA60	
 0x00276650	FUN_00276650	0x002766B5	0xAACE	w	mov word ptr [rdi + 0x6e], r14w	route-seeded PTR 0x0209BE80 base+0xAA60	
 0x00276650	FUN_00276650	0x002766BC	0xAACE	r	cmp word ptr [rdi + 0x6e], bx	route-seeded PTR 0x0209BE80 base+0xAA60	
-0x00276650	FUN_00276650	0x002766C5	0xAACE	w	mov word ptr [rdi + 0x6e], bx	route-seeded PTR 0x0209BE80 base+0xAA60	
+0x00276650	FUN_00276650	0x002766C5	0xAACE	w	mov word ptr [rdi + 0x6e], bx	route-seeded PTR 0x0209BE80 base+0xAA60 zeroclear	
 0x002465F0	FUN_002465f0	0x00246641	0xAB30	w	mov qword ptr [rdi], rbx	route-seeded PTR 0x0209BE80 base+0xAB30	
 0x00246AD0	FUN_00246ad0	0x00246BF7	0xAB30	r	mov rax, qword ptr [rbx]	route-seeded PTR 0x0209BE80 base+0xAB30 exposed	
 0x002473F0	FUN_002473f0	0x0024743E	0xAB30	r	mov rax, qword ptr [r8]	route-seeded PTR 0x0209BE80 base+0xAB30 exposed	
@@ -1057,7 +1076,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00246AD0	FUN_00246ad0	0x00246BD4	0xABAC	w	mov dword ptr [rbx + 0x7c], eax	route-seeded PTR 0x0209BE80 base+0xAB30 exposed	
 0x00246AD0	FUN_00246ad0	0x00246BEF	0xABAC	rw	and dword ptr [rbx + 0x7c], 0xffffffd2	route-seeded PTR 0x0209BE80 base+0xAB30 exposed	
 0x00246AD0	FUN_00246ad0	0x00246BF3	0xABAC	rw	or dword ptr [rbx + 0x7c], 0x12	route-seeded PTR 0x0209BE80 base+0xAB30 exposed	
-0x002465F0	FUN_002465f0	0x00246711	0xABC8	w	mov dword ptr [rdi + 0x98], eax	route-seeded PTR 0x0209BE80 base+0xAB30	
+0x002465F0	FUN_002465f0	0x00246711	0xABC8	w	mov dword ptr [rdi + 0x98], eax	route-seeded PTR 0x0209BE80 base+0xAB30 zeroclear	
 0x002465F0	FUN_002465f0	0x00246717	0xABCC	w	mov dword ptr [rdi + 0x9c], 0x800080	route-seeded PTR 0x0209BE80 base+0xAB30	
 0x002465F0	FUN_002465f0	0x0024670A	0xABD0	w	mov byte ptr [rdi + 0xa0], 0x80	route-seeded PTR 0x0209BE80 base+0xAB30	
 0x002465F0	FUN_002465f0	0x002466E6	0xABD1	w	mov word ptr [rdi + 0xa1], 0xff80	route-seeded PTR 0x0209BE80 base+0xAB30	
@@ -1108,7 +1127,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002482E0	FUN_002482e0	0x0024838A	0xAC50	r	mov rcx, qword ptr [rdi + 0x60]	route-seeded PTR 0x0209BE80 base+0xABF0 exposed	
 0x002482E0	FUN_002482e0	0x00248398	0xAC50	w	mov qword ptr [rdi + 0x60], 0	route-seeded PTR 0x0209BE80 base+0xABF0 exposed	
 0x00244DD0	FUN_00244dd0	0x00244E88	0xAC58	w	mov qword ptr [rbx + 0x68], rcx	route-seeded PTR 0x0209BE80 base+0xABF0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244E6A	0xAC60	w	mov dword ptr [rbx + 0x70], ecx	route-seeded PTR 0x0209BE80 base+0xABF0 exposed	
+0x00244DD0	FUN_00244dd0	0x00244E6A	0xAC60	w	mov dword ptr [rbx + 0x70], ecx	route-seeded PTR 0x0209BE80 base+0xABF0 exposed zeroclear	
 0x00244DD0	FUN_00244dd0	0x00244E75	0xAC60	r	sub eax, dword ptr [rbx + 0x70]	route-seeded PTR 0x0209BE80 base+0xABF0 exposed	
 0x00244DD0	FUN_00244dd0	0x00244ED4	0xAC60	w	mov dword ptr [rbx + 0x70], edx	route-seeded PTR 0x0209BE80 base+0xABF0 exposed	
 0x00244DD0	FUN_00244dd0	0x00244E78	0xAC64	r	sub eax, dword ptr [rbx + 0x74]	route-seeded PTR 0x0209BE80 base+0xABF0 exposed	
@@ -1141,6 +1160,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002475D0	FUN_002475d0	0x00247673	0xAD5B	w	mov byte ptr [rcx + 0xab], al	route-seeded PTR 0x0209BE80 base+0xACB0	
 0x00296960	FUN_00296960	0x0029699B	0xAF44	addr	lea rax, [rbx + 0x414]	route-seeded PTR 0x0209BE80 base+0xAB30	
 0x00296960	FUN_00296960	0x002969B2	0xAF44	w	mov byte ptr [rax], 9	route-seeded PTR 0x0209BE80 base+0xAF44	
+0x00296960	FUN_00296960	0x002969B2	0xB124	w	mov byte ptr [rax], 9	route-seeded PTR 0x0209BE80 base+0xB124	
 0x00296960	FUN_00296960	0x002969B5	0xB124	addr	lea rax, [rax + 0x1e0]	route-seeded PTR 0x0209BE80 base+0xAF44	
 0x0029B550	FUN_0029b550	0x0029B56C	0xB1D8	r	mov rax, qword ptr [rcx + 0x60]	route-seeded PTR 0x0209BE80 base+0xB178	
 0x0029B550	FUN_0029b550	0x0029B664	0xB238	r	add ax, word ptr [r15 + 0xc0]	route-seeded PTR 0x0209BE80 base+0xB178	
@@ -1150,11 +1170,13 @@ function	name	site	disp	kind	instruction	route	note
 0x002906D0	FUN_002906d0	0x002906FF	0xB240	r	cmp dword ptr [rcx + 0xb240], eax	route-seeded PTR 0x0209BE80 base+0x0	
 0x00296490	FUN_00296490	0x002964BA	0xB240	w	mov dword ptr [rbx + 0x710], 1	route-seeded PTR 0x0209BE80 base+0xAB30	
 0x00296960	FUN_00296960	0x0029696A	0xB240	r	cmp dword ptr [rcx + 0x710], 0	route-seeded PTR 0x0209BE80 base+0xAB30	
+0x00296960	FUN_00296960	0x002969B5	0xB304	addr	lea rax, [rax + 0x1e0]	route-seeded PTR 0x0209BE80 base+0xB124	
 0x00276650	FUN_00276650	0x002766F7	0x10CE0	w	mov qword ptr [rsi + 0x61b0], rdi	route-seeded PTR 0x0209BE80 base+0xAB30	
 0x00276650	FUN_00276650	0x0027670D	0x10CE8	w	mov word ptr [rsi + 0x61b8], r14w	route-seeded PTR 0x0209BE80 base+0xAB30	
 0x002767C0	FUN_002767c0	0x0027680A	0x10CE8	r	movsx eax, word ptr [rbx + 0x61b8]	route-seeded PTR 0x0209BE80 base+0xAB30	
 0x00276650	FUN_00276650	0x002766E5	0x10CFC	rw	and dword ptr [rsi + 0x61cc], 0xfffffeff	route-seeded PTR 0x0209BE80 base+0xAB30	
 0x00276650	FUN_00276650	0x00276704	0x10CFC	rw	or dword ptr [rsi + 0x61cc], ebp	route-seeded PTR 0x0209BE80 base+0xAB30	
+0x00276650	FUN_00276650	0x00276722	0x10CFC	rw	or dword ptr [rbx + 0x61cc], 0x400	route-seeded PTR 0x0209BE80 base+0xAB30	
 0x0028F970	FUN_0028f970	0x0028F9D4	0x10CFC	rw	or dword ptr [rax + 0x10cfc], 0x40	route-seeded PTR 0x0209BE80 base+0x0	
 0x00290EB0	FUN_00290eb0	0x00290ED8	0x10D20	addr	lea rdi, [rcx + 0x10d20]	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028E290	FUN_0028e290	0x0028E342	0x10EF0	w	mov qword ptr [rbx + 0x10ef0], 0	route-seeded PTR 0x0209BE80 base+0x0	
@@ -1221,7 +1243,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0028E290	FUN_0028e290	0x0028E4FD	0x10F40	w	mov qword ptr [rcx + 0x10f40], rax	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028EAB0	FUN_0028eab0	0x0028ED34	0x10F40	r	mov rcx, qword ptr [rbx + 0x10f40]	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028F2F0	FUN_0028f2f0	0x0028F387	0x10F40	r	mov rcx, qword ptr [rcx + 0x10f40]	route-seeded PTR 0x0209BE80 base+0x0	
-0x0028F2F0	FUN_0028f2f0	0x0028F39A	0x10F40	w	mov qword ptr [rax + 0x10f40], rdi	route-seeded PTR 0x0209BE80 base+0x0	
+0x0028F2F0	FUN_0028f2f0	0x0028F39A	0x10F40	w	mov qword ptr [rax + 0x10f40], rdi	route-seeded PTR 0x0209BE80 base+0x0 zeroclear	
 0x00290CD0	FUN_00290cd0	0x00290CD9	0x10F40	r	mov rcx, qword ptr [rcx + 0x10f40]	route-seeded PTR 0x0209BE80 base+0x0	
 0x002911D0	FUN_002911d0	0x002911F9	0x10F40	r	mov rcx, qword ptr [rdi + 0x10f40]	route-seeded PTR 0x0209BE80 base+0x0	
 0x002911D0	FUN_002911d0	0x002912E1	0x10F40	r	mov rcx, qword ptr [rdi + 0x10f40]	route-seeded PTR 0x0209BE80 base+0x0	
@@ -1310,14 +1332,14 @@ function	name	site	disp	kind	instruction	route	note
 0x0028E290	FUN_0028e290	0x0028E30A	0x10F6C	r	mov edx, dword ptr [rbx + 0x10f6c]	route-seeded PTR 0x0209BE80 base+0x0	
 0x00290370	FUN_00290370	0x00290396	0x10F6C	w	mov dword ptr [rax + 0x10f6c], r9d	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028E290	FUN_0028e290	0x0028E302	0x10F70	r	movzx r8d, word ptr [rbx + 0x10f70]	route-seeded PTR 0x0209BE80 base+0x0	
-0x00290370	FUN_00290370	0x002903A4	0x10F70	w	mov word ptr [rax + 0x10f70], cx	route-seeded PTR 0x0209BE80 base+0x0	
+0x00290370	FUN_00290370	0x002903A4	0x10F70	w	mov word ptr [rax + 0x10f70], cx	route-seeded PTR 0x0209BE80 base+0x0 zeroclear	
 0x0028E290	FUN_0028e290	0x0028E2F7	0x10F72	r	movzx r9d, word ptr [rbx + 0x10f72]	route-seeded PTR 0x0209BE80 base+0x0	
 0x00290370	FUN_00290370	0x002903B2	0x10F72	w	mov word ptr [rax + 0x10f72], r8w	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028F2F0	FUN_0028f2f0	0x0028F472	0x10F74	r	mov eax, dword ptr [rcx + 0x10f74]	route-seeded PTR 0x0209BE80 base+0x0	
-0x0028F2F0	FUN_0028f2f0	0x0028F48F	0x10F74	w	mov dword ptr [rax + 0x10f74], edi	route-seeded PTR 0x0209BE80 base+0x0	
+0x0028F2F0	FUN_0028f2f0	0x0028F48F	0x10F74	w	mov dword ptr [rax + 0x10f74], edi	route-seeded PTR 0x0209BE80 base+0x0 zeroclear	
 0x0028E290	FUN_0028e290	0x0028E391	0x10F78	r	cmp qword ptr [rbx + 0x10f78], 0	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028F2F0	FUN_0028f2f0	0x0028F49C	0x10F78	r	mov rax, qword ptr [rcx + 0x10f78]	route-seeded PTR 0x0209BE80 base+0x0	
-0x0028F2F0	FUN_0028f2f0	0x0028F4B7	0x10F78	w	mov qword ptr [rax + 0x10f78], rdi	route-seeded PTR 0x0209BE80 base+0x0	
+0x0028F2F0	FUN_0028f2f0	0x0028F4B7	0x10F78	w	mov qword ptr [rax + 0x10f78], rdi	route-seeded PTR 0x0209BE80 base+0x0 zeroclear	
 0x0028F800	FUN_0028f800	0x0028F807	0x10F78	r	mov rax, qword ptr [rax + 0x10f78]	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028F810	FUN_0028f810	0x0028F817	0x10F78	r	mov rcx, qword ptr [rcx + 0x10f78]	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028FBE0	FUN_0028fbe0	0x0028FC1F	0x10F78	r	mov rcx, qword ptr [rcx + 0x10f78]	route-seeded PTR 0x0209BE80 base+0x0	
@@ -1340,7 +1362,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0028E290	FUN_0028e290	0x0028E536	0x10F80	r	mov rcx, qword ptr [rbx + 0x10f80]	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028EAB0	FUN_0028eab0	0x0028ED8B	0x10F80	r	mov rcx, qword ptr [rax + 0x10f80]	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028F2F0	FUN_0028f2f0	0x0028F4C5	0x10F80	r	mov rax, qword ptr [rcx + 0x10f80]	route-seeded PTR 0x0209BE80 base+0x0	
-0x0028F2F0	FUN_0028f2f0	0x0028F4E0	0x10F80	w	mov qword ptr [rax + 0x10f80], rdi	route-seeded PTR 0x0209BE80 base+0x0	
+0x0028F2F0	FUN_0028f2f0	0x0028F4E0	0x10F80	w	mov qword ptr [rax + 0x10f80], rdi	route-seeded PTR 0x0209BE80 base+0x0 zeroclear	
 0x0028F750	FUN_0028f750	0x0028F760	0x10F80	r	mov rcx, qword ptr [rax + 0x10f80]	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028F750	FUN_0028f750	0x0028F794	0x10F80	r	mov rcx, qword ptr [rax + 0x10f80]	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028FA00	FUN_0028fa00	0x0028FA07	0x10F80	r	mov rcx, qword ptr [rax + 0x10f80]	route-seeded PTR 0x0209BE80 base+0x0	
@@ -1362,7 +1384,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0028EA40	FUN_0028ea40	0x0028EA61	0x10F88	r	mov rcx, qword ptr [rax + 0x10f88]	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028EA40	FUN_0028ea40	0x0028EA79	0x10F88	w	mov qword ptr [rax + 0x10f88], 0	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028F2F0	FUN_0028f2f0	0x0028F350	0x10F88	r	mov rcx, qword ptr [rax + 0x10f88]	route-seeded PTR 0x0209BE80 base+0x0	
-0x0028F2F0	FUN_0028f2f0	0x0028F368	0x10F88	w	mov qword ptr [rax + 0x10f88], rdi	route-seeded PTR 0x0209BE80 base+0x0	
+0x0028F2F0	FUN_0028f2f0	0x0028F368	0x10F88	w	mov qword ptr [rax + 0x10f88], rdi	route-seeded PTR 0x0209BE80 base+0x0 zeroclear	
 0x0028F8B0	FUN_0028f8b0	0x0028F946	0x10F88	r	mov rcx, qword ptr [rax + 0x10f88]	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028F8B0	FUN_0028f8b0	0x0028F95E	0x10F88	w	mov qword ptr [rax + 0x10f88], 0	route-seeded PTR 0x0209BE80 base+0x0	
 0x00290EB0	FUN_00290eb0	0x00290F1E	0x10F88	w	mov qword ptr [rbx + 0x10f88], rax	route-seeded PTR 0x0209BE80 base+0x0	
@@ -1379,10 +1401,10 @@ function	name	site	disp	kind	instruction	route	note
 0x00290EB0	FUN_00290eb0	0x00290F83	0x10F98	r	cmp qword ptr [rbx + 0x10f98], 0	route-seeded PTR 0x0209BE80 base+0x0	
 0x00290EB0	FUN_00290eb0	0x00290F9A	0x10F98	w	mov qword ptr [rbx + 0x10f98], rax	route-seeded PTR 0x0209BE80 base+0x0	
 0x00290EB0	FUN_00290eb0	0x00290FA1	0x10F98	r	mov rdx, qword ptr [rbx + 0x10f98]	route-seeded PTR 0x0209BE80 base+0x0	
-0x0028F970	FUN_0028f970	0x0028F9AF	0x10FA0	w	mov word ptr [rax + 0x10fa0], cx	route-seeded PTR 0x0209BE80 base+0x0	
+0x0028F970	FUN_0028f970	0x0028F9AF	0x10FA0	w	mov word ptr [rax + 0x10fa0], cx	route-seeded PTR 0x0209BE80 base+0x0 zeroclear	
 0x00290220	FUN_00290220	0x00290227	0x10FA0	w	mov word ptr [rax + 0x10fa0], cx	route-seeded PTR 0x0209BE80 base+0x0	
 0x00290CF0	FUN_00290cf0	0x00290D9D	0x10FA0	r	movzx r10d, word ptr [rbx + 0x10fa0]	route-seeded PTR 0x0209BE80 base+0x0	
-0x00290CF0	FUN_00290cf0	0x00290DD1	0x10FA0	w	mov word ptr [rbx + 0x10fa0], ax	route-seeded PTR 0x0209BE80 base+0x0	
+0x00290CF0	FUN_00290cf0	0x00290DD1	0x10FA0	w	mov word ptr [rbx + 0x10fa0], ax	route-seeded PTR 0x0209BE80 base+0x0 zeroclear	
 0x0028E690	FUN_0028e690	0x0028E6F6	0x10FA2	w	mov byte ptr [rax + 0x10fa2], 1	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028E690	FUN_0028e690	0x0028E704	0x10FA2	r	movzx ecx, byte ptr [rax + 0x10fa2]	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028E790	FUN_0028e790	0x0028E7AF	0x10FA2	r	cmp byte ptr [rax + 0x10fa2], 3	route-seeded PTR 0x0209BE80 base+0x0	
@@ -1394,7 +1416,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00290230	FUN_00290230	0x0029023C	0x10FA3	w	mov byte ptr [rax + 0x10fa3], cl	route-seeded PTR 0x0209BE80 base+0x0	
 0x002901D0	FUN_002901d0	0x002901E0	0x10FA4	w	mov word ptr [rax + 0x10fa4], cx	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028E690	FUN_0028e690	0x0028E70B	0x10FA6	r	movzx edx, word ptr [rax + 0x10fa6]	route-seeded PTR 0x0209BE80 base+0x0	
-0x0028E790	FUN_0028e790	0x0028E7BA	0x10FA6	w	mov word ptr [rax + 0x10fa6], cx	route-seeded PTR 0x0209BE80 base+0x0	
+0x0028E790	FUN_0028e790	0x0028E7BA	0x10FA6	w	mov word ptr [rax + 0x10fa6], cx	route-seeded PTR 0x0209BE80 base+0x0 zeroclear	
 0x0028E790	FUN_0028e790	0x0028E7CF	0x10FA6	r	movzx edx, word ptr [rax + 0x10fa6]	route-seeded PTR 0x0209BE80 base+0x0	
 0x002901B0	FUN_002901b0	0x002901BC	0x10FA6	w	mov word ptr [rax + 0x10fa6], cx	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028E790	FUN_0028e790	0x0028E806	0x10FA8	r	mov ecx, dword ptr [rax + 0x10fa8]	route-seeded PTR 0x0209BE80 base+0x0	
@@ -1419,7 +1441,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0028F2F0	FUN_0028f2f0	0x0028F420	0x10FC0	r	mov rcx, qword ptr [rcx + 0x10fc0]	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028F2F0	FUN_0028f2f0	0x0028F450	0x10FC0	r	mov rcx, qword ptr [rcx + 0x10fc0]	route-seeded PTR 0x0209BE80 base+0x0	
 0x0028F2F0	FUN_0028f2f0	0x0028F521	0x10FC0	r	mov rax, qword ptr [rcx + 0x10fc0]	route-seeded PTR 0x0209BE80 base+0x0	
-0x0028F2F0	FUN_0028f2f0	0x0028F53C	0x10FC0	w	mov qword ptr [rax + 0x10fc0], rdi	route-seeded PTR 0x0209BE80 base+0x0	
+0x0028F2F0	FUN_0028f2f0	0x0028F53C	0x10FC0	w	mov qword ptr [rax + 0x10fc0], rdi	route-seeded PTR 0x0209BE80 base+0x0 zeroclear	
 0x0028FA50	FUN_0028fa50	0x0028FA5A	0x10FC0	r	mov rcx, qword ptr [rcx + 0x10fc0]	route-seeded PTR 0x0209BE80 base+0x0	
 0x00290DF0	FUN_00290df0	0x00290DFF	0x10FC0	r	mov rcx, qword ptr [rcx + 0x10fc0]	route-seeded PTR 0x0209BE80 base+0x0	
 0x00291010	FUN_00291010	0x002910A6	0x10FC0	r	mov rdx, qword ptr [rdx + 0x10fc0]	route-seeded PTR 0x0209BE80 base+0x0	

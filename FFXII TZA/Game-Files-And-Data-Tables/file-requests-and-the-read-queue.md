@@ -7,9 +7,17 @@ addresses: "0x0032E450, 0x022C31C0, 0x022C51C0, 0x022C51C8, 0x022C51D0, 0x01EED4
 
 ## What the player sees
 
-Every file the game loads during play, from a map's script set to a menu image, is a request in this
-queue. When more than 64 loads are outstanding, the code asking for the next one stops and services
+Every file the game logic asks for by kind and number, from a map's script set to a menu image, is a request
+in this queue. When more than 64 of them are outstanding, the code asking for the next one stops and services
 the queue until a slot frees up, which can lengthen a load.
+
+The remastered assets that `.ah` lists name (models, maps, textures, fonts) do not use this queue: their loader
+files requests with the [asynchronous load manager](async-load-manager.md) directly (`0x0019EC14`), whose pool
+holds 1,024 records. This queue hands its own reads to that manager too.
+
+A request names a file by kind and number, and the queue hands it on to be read. When the language's size table marks
+that file as absent, nothing is read, yet the request normally still finishes as delivered, with its buffer left as it
+was.
 
 ## How it works
 
@@ -247,7 +255,8 @@ at `+0x1C`, index = its argument at `+0x20`, `+0x00` = −1, the qword `+0x14` =
 and `+0x30` = 1 with `+0x31` = 1 in one 16-bit store (`0x003EB10C`-`0x003EB139`). Its only caller is
 `bgmstreamread` (`0x0448`, `0x00354690`).
 
-`0x003EB010` releases it (`0x003EAD10`, then frees `+0x08`; callers `usebgmstream` `0x003557C0` and `0x002628B0`),
+`0x003EB010` releases it (`0x003EAD10`, then frees `+0x08`; callers `usebgmstream` `0x003557C0` and `0x002628B0`, and
+`freebgmstream` (`0x044E`, `0x00355C30`) is a single `jmp` to it),
 `0x003EB050` resets it at init (from `0x0032EA90`), and `0x003EB0D0` is the query (callers `0x0032E620`,
 `bgmstreamplaysync` `0x003550F0` and `getbgmstreamstatus` `0x00355FB0`).
 
@@ -337,21 +346,32 @@ Queue:
 |---|---|---|---|
 | `0x0215EFF4` | `...` | read status | -1 in flight, >= 0 delivered, other negative failed |
 
-The fields are listed access by access in
-[`file-requests-and-the-read-queue-slot-accesses.tsv`](file-requests-and-the-read-queue-slot-accesses.tsv),
-[`file-requests-and-the-read-queue-read-status-accesses.tsv`](file-requests-and-the-read-queue-read-status-accesses.tsv) and
+The slot fields reached through the slot pointer of `0x0032E070`, `0x0032E330`, `0x0032E370`, `0x0032E3B0`, `0x0032E590` and
+`0x0032EC40` are listed access by access in
+[`file-requests-and-the-read-queue-slot-accesses.tsv`](file-requests-and-the-read-queue-slot-accesses.tsv). The
+builder `0x0032E450`, `0x0032E870`, `0x0032E620`, `0x0032E990`, `0x0032E4D0` and `0x0032E2F0` also read or write slot fields
+and are not in it, nor are the stores `0x0032EC40` makes into the links of the neighbouring slots (`0x0032EC77`,
+`0x0032EC84`, `0x0032EC91`, `0x0032EC9E` and `0x0032ECB6`).
+
+Every access of the read status is in
+[`file-requests-and-the-read-queue-read-status-accesses.tsv`](file-requests-and-the-read-queue-read-status-accesses.tsv)
+and every access of the size overrides in
 [`file-requests-and-the-read-queue-size-override-accesses.tsv`](file-requests-and-the-read-queue-size-override-accesses.tsv).
 
 ## Shipped data
 
 [`file-requests-and-the-read-queue-constant-requests.tsv`](file-requests-and-the-read-queue-constant-requests.tsv)
-has 238 rows for the 182 call sites of the request and size entries, with the kind, id and file name where
-they are constant. By entry the rows are `0x0032E620` 65 (51 sites), `0x0032E400` 86 (71), `0x00249210` 52 (25),
-`0x002493D0` 21, `0x00249180` 11, `0x0032E3F0` 2 and `0x00249350` 1, one row per site. The exception is the 10 sites
-inside the request wrappers: each has one row per caller site (`via_caller_site`), 66 rows in all.
+has 236 rows for the 182 call sites of the request and size entries, with the kind, id and file name where
+they are the same on every path to the call. The file name is the one the path arrays of the JP, ASIA and IN
+locales give (the `in` folder, where a kind has one array per locale).
 
-203 rows carry a constant kind: 121 of kind 7, 34 of kind 9, 18 path requests (`0xFF`), 8 of kind 5 and
-22 over twelve other kinds. No decompiled script in any locale calls
+By entry the rows are `0x0032E620` 65 (51 sites), `0x0032E400` 85 (71), `0x00249210` 51 (25), `0x002493D0` 21,
+`0x00249180` 11, `0x0032E3F0` 2 and `0x00249350` 1, one row per site. The exception is the 9 sites inside the
+request wrappers whose callers pass both a constant kind and a constant id: each has one row per such caller
+site (`via_caller_site`), 63 rows in all.
+
+199 rows carry a constant kind: 118 of kind 7, 34 of kind 9, 18 path requests (`0xFF`), 5 of kind 8, 1 of kind 5
+and 23 over eleven other kinds. No decompiled script in any locale calls
 `debug_fileread`.
 
 ## Operations
@@ -371,13 +391,13 @@ counter `0x022CA5E0` and the BGM stream reader at `0x02B5E0E0`.
 |---|---|---|---|---|---|
 | `0x022C31D8` | `void*` | 0 (zero-filled tail of `.data`) | slot 0 `+0x18`, its previous link. `0x0032E450` chains the 64 slots with a cursor that starts here (`0x0032E460`); the loop's first pass stores the address `0x80` below slot 0, and after the loop it stores 0, so the first slot of the free list has no previous slot | `0x0032E450` (`0x0032E47A`, the first pass; `0x0032E4AA`, 0) | the slot field `+0x18` accesses of [file-requests-and-the-read-queue-slot-accesses.tsv](file-requests-and-the-read-queue-slot-accesses.tsv), through a slot pointer |
 | `0x022C5150` | `void*` | 0 (zero-filled tail of `.data`) | slot 63 `+0x10`, its next link: the loop's last pass stores `0x022C51C0`, the address just past the last slot, and the builder then stores 0 | `0x0032E450` (`0x0032E48A`, the last pass; `0x0032E4B8`, 0) | the slot field `+0x10` accesses of the same table, through a slot pointer |
-| `0x022C5A0F` | `u8` | 0 (zero-filled tail of `.data`) | byte `0x1F` of the read-from-PC table `0x022C59F0`, the bits of kinds `0xF8` to `0xFF` (the byte index is the kind divided by 8, signed, `0x0032ED23`-`0x0032ED36`); bit `0x80` is kind `0xFF`, which both writers keep set | `0x0032EB10` (`0x0032EB28`, the 256-byte fill with 0 or `0xFF`; `0x0032EB2F`, `or 0x80`); `0x0032ED20` (`0x0032ED5E`, `or`; `0x0032ED64`, `and`) | `0x0032ED20` (`0x0032ED5E`, `0x0032ED64`, both read before they write) |
+| `0x022C5A0F` | `u8` | 0 (zero-filled tail of `.data`) | byte `0x1F` of the read-from-PC table `0x022C59F0`, the bits of kinds `0xF8` to `0xFF` (the byte index is the kind divided by 8, signed, `0x0032ED23`-`0x0032ED36`); bit `0x80` is kind `0xFF`, which both writers keep set | `0x0032EB10` (`0x0032EB28`, the 256-byte fill with 0 or `0xFF`; `0x0032EB2F`, `or 0x80`); `0x0032ED20` (`0x0032ED5E`, `or`; `0x0032ED64`, `and`) | `0x0032EB10` (`0x0032EB2F`, `or`); `0x0032ED20` (`0x0032ED5E`, `0x0032ED64`); each reads before it writes |
 | `0x022C2680` | `u32` | 0 (zero-filled tail of `.data`) | `+0x08` of `0x00324510`'s request descriptor `0x022C2678`, the callback word: the low 32 bits of the address of the entry `0x022C27B8 + 8 × i` it requests | `0x00324510` (`0x00324631`) | `0x0032E870` (`0x0032E8E5`), through the descriptor `0x00324510` passes to `0x0032E620` (`0x00324637`); `0x0032E620` (`0x0032E678`, a 16-byte copy, taken while `0x003EB0D0()` is non-zero) |
 | `0x022C2688` | `void*` | 0 (zero-filled tail of `.data`) | the descriptor's delivery callback `+0x10`, `0x003244F0` | `0x00324510` (`0x0032459C`) | `0x0032E870` (`0x0032E8DD`), through the descriptor `0x00324510` passes to `0x0032E620` (`0x00324637`); `0x0032E620` (`0x0032E67B`, the same copy) |
 | `0x022C2690` | `void*` | 0 (zero-filled tail of `.data`) | the descriptor's cancel callback `+0x18`, `0x003244F0` | `0x00324510` (`0x00324590`) | `0x0032E870` (`0x0032E8E1`), through the descriptor `0x00324510` passes to `0x0032E620` (`0x00324637`); `0x0032E620` (`0x0032E67B`) |
 | `0x022C3148` | `i32` | 0 (zero-filled tail of `.data`) | the index `i` of `0x00324510`'s next file: 0 when the build starts, one more after each file; the loop runs while `i` is below `0x12D` (301), a signed compare (`jge` at `0x00324578`, `jl` at `0x0032467A`) | `0x00324510` (`0x003245B2`, `0x00324672`) | `0x00324510` (`0x00324565`, `0x0032465C`) |
 | `0x022C3150` | `void*` | 0 (zero-filled tail of `.data`) | `0x00324510`'s destination cursor in its buffer `[0x022C27B0]`: `+0x4BC` at the start, then advanced by each file's size rounded up to 4 (`0x00324654`-`0x00324669`). Each request gets it as its destination, and its offset from the buffer goes into the buffer's table (`0x00324617`-`0x00324622`) | `0x00324510` (`0x003245C2`, `0x00324669`) | `0x00324510` (`0x0032457E`, `0x0032463C`) |
-| `0x02ADD178` | `void*` | 0 (zero-filled tail of `.data`) | record 0 `+0x08` of the sixteen `0x70`-byte records at `0x02ADD170`, its previous link. `0x00379D60` clears the records (`0x00379D99`) and links records 0 to 14 through `+0x00` (next) and `+0x08` (previous); the first pass stores the address `0x70` below record 0 here, then 0 | `0x00379D60` (`0x00379D99`, the clear; `0x00379DC7`, the first pass; `0x00379DF3`, 0) | no instruction names it |
+| `0x02ADD178` | `void*` | 0 (zero-filled tail of `.data`) | record 0 `+0x08` of the sixteen `0x70`-byte records at `0x02ADD170`, its previous link. `0x00379D60` clears the records (`0x00379D99`) and links records 0 to 13 through `+0x00` (next) and `+0x08` (previous) in 14 passes (`0x00379DB3`-`0x00379DD7`), so record 13's next is record 14, record 14 keeps 0 in both links and record 15's previous link is record 14 (`0x00379E19`); the first pass stores the address `0x70` below record 0 here, then 0 | `0x00379D60` (`0x00379D99`, the clear; `0x00379DC7`, the first pass; `0x00379DF3`, 0) | no instruction names it |
 | `0x02ADD800` | `void*` | 0 (zero-filled tail of `.data`) | record 15 `+0x00`, its next link: 0 | `0x00379D60` (`0x00379D99`; `0x00379DFA`, 0) | no instruction names it |
 | `0x02ADD808` | `void*` | 0 (zero-filled tail of `.data`) | record 15 `+0x08`: record 14 (`0x02ADD790`). Record 14's own next link stays 0, so the chain from record 0 ends at record 14 | `0x00379D60` (`0x00379D99`; `0x00379E19`) | no instruction names it |
 | `0x02ADD878` | `void*` | 0 (zero-filled tail of `.data`) | the qword after `0x02ADD870`, cleared before the records | `0x00379D60`, 0 (`0x00379D7D`) | no instruction names it |

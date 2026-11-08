@@ -24,7 +24,8 @@ the actor a cutscene names are the exemptions the records carve out.
 
 There are twenty-eight request ids. Each has two records, A at `0x01FD4160 + id × 0x18` and B at
 `0x01FD4400 + id × 0x18`: a qword of permission bits at `+0`, a fade length at B `+0x10` and a flag
-byte at `+0x14`. The bitset `0x01FD46D4` holds the active ids, the dirty byte `0x01FD46D0` tells the
+byte at B `+0x14` (A `+0x14` is only ever cleared). The bitset `0x01FD46D4` holds the active ids, the dirty
+byte `0x01FD46D0` tells the
 apply step that something changed, and `0x01FD46A0` / `0x01FD46B8` hold the last combined A and B.
 
 A set bit in a record is an exemption. For a category `c` from 0 to 6: A bit `c` exempts the
@@ -52,15 +53,15 @@ Otherwise:
    when its `+0x10` bit `0x1` holds): every record from `+0x1DE` for `+0x1D6` entries (`0x00358940`)
    gets the id's bit OR-ed into its seven pending-set words and cleared from its seven
    pending-clear words;
-3. for a manager whose `+0x28` is 0, the exemptions: for each category the id's bit is removed
-   again from the pending-set word of every set whose record bit is set.
+3. the exemptions: for each category the id's bit is removed again from the pending-set word of every set whose
+   record bit is set; a manager whose `+0x28` is non-zero skips those of categories 0, 1, 5 and 6 (`0x00226D99`).
 
 Nothing stops yet: the apply does that.
 
-`0x00227680` starts both records from one default (A bits under mask `0x34FD000000`; B bits `0x1` to
-4, 8 to 12, 24, 27, 33, 35 to 37 and 40 to 44) and then runs the id's case; ids 4, 6 and 7 also
-read the flag. Ids 0, 1, 2, 3, 15, 22 and 27 share one case, 4, 6 and 7 another, 8 and 9, 16, 20
-and 21, 17 to 19, 23 and 25, 24 and 26 are pairs; id 0 runs `0x00182D10` unless the options bit `0x8`
+`0x00227680` starts both records from one default (A bits under mask `0x34FD000000`; B bits under mask
+`0x1F3A09001F1F`) and then runs the id's case; ids 4, 6 and 7 also
+read the flag. Ids 0, 1, 2, 3, 15, 22 and 27 share one case, 4, 6 and 7 another, 16, 20 and 21 another and
+17 to 19 another; 8 and 9, 23 and 25, and 24 and 26 are pairs; id 0 runs `0x00182D10` unless the options bit `0x8`
 (`0x002DDC30`, the Battle Mode setting, [game settings](../Saving-Loading-And-Settings/game-settings.md))
 is set, id 12 and 17 run `0x00182CF0`, 13 and 15 run `0x00182CD0`.
 
@@ -89,7 +90,7 @@ bits ([controls](../Controls-And-Input/controls.md)).
 | 22 | `0x0035C7B0(0x0B)` on the game-over route `0x0027EFA0` ([game over](../World-Areas-And-Travel/game-over.md)), and through `0x0035C7A0(0x0B)` from the field frame's wipe post `0x00234590` and the verb `callgameover` (`0x00237D60`); `0x0035C7B0` calls `0x00227370` (`0x0035C810`) only for kind `0x0B` and only past its refusal tests (`0x0035C7BA`-`0x0035C7ED`), with apply | UI request 11's close (`0x002260A0`) |
 | 23, 24 | `setstatuserrordispdenystatus(1)` (`0x00227550`), `setstatuserrorctrldenystatus(1)` (`0x00227510`), with apply | the same verbs with 0 (`0x002261B0`, `0x00226180`), with apply |
 | 25, 26 | `…dispdenystatus_by_menu(1)` (`0x002275D0`), `…ctrldenystatus_by_menu(1)` (`0x00227590`), with apply | the same verbs with 0 (`0x00226210`, `0x002261E0`), with apply |
-| 27 | `skipexec` (`0x0034ECF0` → `0x00360710` → `0x002273E0`) | `skipend` (`0x0034E6D0` → `0x002260E0`), the area unload's skip sweep `0x003603F0(manager)` (from `0x002628B0`, `0x0026293F`), which ends the manager's eight skip entries with `0x00360A50` and, after each one that had executed (state 2), clears bit `0x8000` of `0x022CB720` (`0x003601C0(0xF)`); only when one had executed does it run `0x003600D0`, `0x003601C0(0xF)`, `0x002EFA70(4, 8, 1, 0)` and the release `0x002260E0` (`0x00360432`-`0x00360458`) |
+| 27 | `skipexec` (`0x0034ECF0` → `0x00360710` → `0x002273E0`), and `0x00360880` (from `0x00228130` on message 18 while bit `0x2000` of the dword at `+8` of its first argument's `+0xC0` pointer is set, `0x002281B7`, which clears the bit after it, `0x002281C3`): for each of the masks `0x022CB9C4`, `0x022CB9C8` and `0x022CB9CC` (managers 1 to 3) that is non-zero it runs `0x00360710(entry, manager)` for the lowest of its bits `0x1` to `0x80` that is set | `skipend` (`0x0034E6D0` → `0x002260E0`), the area unload's skip sweep `0x003603F0(manager)` (from `0x002628B0`, `0x0026293F`), which ends the manager's eight skip entries with `0x00360A50` and, after each one that had executed (state 2), clears bit `0x8000` of `0x022CB720` (`0x003601C0(0xF)`); only when one had executed does it run `0x003600D0`, `0x003601C0(0xF)`, `0x002EFA70(4, 8, 1, 0)` and the release `0x002260E0` (`0x00360432`-`0x00360458`) |
 | 1, 3, 8, 9, 14, 20, 21 | nothing: no wrapper and no direct call carries these ids | |
 
 The six mask verbs pop their argument with `0x00267E10` and drop it. `maskopenfast` runs `0x002E2440(1, 0)` and
@@ -217,7 +218,10 @@ Read as behaviour:
   selects the apply's 1.0 fade;
 - the field hold and an event taking an actor keep the party leader and the type-0 actors moving,
   and the other party members too unless the flag is 1;
-- ids 16 to 27 stop no actor at all: they exist for the global bits.
+- ids 16, 20, 21 and 23 to 27 stop no actor and exist for the global bits;
+- ids 17 to 19 put nothing in sets 1 to 5, so they stop no movement, but they set the battle stop flag
+  and the flag word of the party leader and the other roster entries (sets 6 and 7);
+- id 22, the game-over route, is the first row's full freeze above.
 
 ### The apply step
 
@@ -255,16 +259,18 @@ fade and resets each such slot to -1, and ORs bit `0x20000000000` into every slo
 - B bit `0x800000000`: `0x002EBBF0(1, B35)`, bit `0x2` of `0x0215FD56`: B35 set clears the bit and B35 clear sets it
   (`0x002EBC00`-`0x002EBC0F`); the byte's zero state then sets bit `0x1` of the render table's `+0x48818` (character
   distance culling, the table `[0x022C6F28]`), and a non-zero byte clears that bit (`0x002EBC20`, `0x002EBC28`);
-- the combined A and B are stored at `0x01FD46A0` and `0x01FD46B8`; `0x01FD46B0` and `0x01FD46C8` receive
-  two stack slots the apply never writes, and nothing reads them.
+- the combined A and B are stored at `0x01FD46A0` and `0x01FD46B8` as two `0x18`-byte records: the qwords `0x01FD46A8`,
+  `0x01FD46B0`, `0x01FD46C0` and `0x01FD46C8` receive stack slots the apply never writes, and nothing reads them.
 
 ### The per-actor pass and the seven stop sets
 
 `0x00226640(allExempt, fade, three)` walks three managers (one when `three` is set) and every record.
 Each set is a live bitset of request ids plus a pending-set and a pending-clear word; the pass
-folds them (`live |= set; live &= ~clear;` both zeroed) and fires the set's hook on a change.
+folds them (`live |= set; live &= ~clear;` both zeroed); the hook of set 1 runs when it becomes non-zero, that of
+set 3 when it changes, `0x002269A0` of set 5 for every record (it tests the change itself), and those of sets 6 and
+7 on every pass for each record with a battle unit.
 
-| Set | Live | Pending set / clear | On change | What the live set stops |
+| Set | Live | Pending set / clear | Hook | What the live set stops |
 |---|---|---|---|---|
 | 1 | battle unit `+0x40` (`0x00359B80`: `[record + 0x30] + 0xED0`) | `+0x54` / `+0x60` | becoming non-zero: `0x0026D6D0` → `0x0026D6F0(actor, 0.0, 2)`, the movement speed written to 0 | movement |
 | 2 | record `+0x10C` | `+0x110` / `+0x114` | no hook | the actor's per-step tail in the drive pass `0x0025DF00`: the animation-driven step `0x003E6EF0`, the mode word `0x002681E0`, the movement step `0x002E5030` and the facing integrator `0x002E5750` run only when the set is 0 and byte `+0x13` bit `0x1` is clear, or byte `+0x0B` bit `0x20` is set; otherwise `0x002E6310` runs instead; the interpreter refuses at `0x0025E524` and `0x00264DF0` refuses the stick |
@@ -368,12 +374,9 @@ speed-mode block) and `0x00226BD0(id)` tests one bit (`0x0025C830` tests 10).
 | `0x020926EC` | `f32` | target | the fade ramp |
 | `0x020926F0` | `f32` | step | the fade ramp |
 
-Record A:
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u64` |  | permission bits |
-| `+0x14` | `u8` | flag |  |
+| `+0x14` | `u8` |  | cleared only (the flag is in record B) |
 
 Record B:
 
@@ -424,7 +427,7 @@ Manager:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x010` | `...` |  | bit `0x1` live |
-| `+0x028` | `...` |  | exemptions skipped when non-zero |
+| `+0x028` | `...` |  | exemptions of categories 0, 1, 5 and 6 skipped when non-zero |
 | `+0x1D6` | `...` | count |  |
 | `+0x1DE` | `...` | first |  |
 | `+0x1F0` | `...` |  | fade list |
@@ -435,7 +438,7 @@ Manager:
 | Fact | Value |
 |---|---|
 | request ids | 28, slots of `0x18` bytes |
-| default record | A `0x34FD000000`, B `0x00001F3A09001F1F` (ids 0 to 3, 15, 22 drop A bits `0x1000000`, `0x8000000`, `0x20000000` and set B bit `0x1000000`) |
+| default record | A `0x34FD000000`, B `0x00001F3A09001F1F` (ids 0 to 3, 15 and 22 drop A bits `0x1000000`, `0x8000000` and `0x20000000` and keep the default B; id 15 also clears the B bits under mask `0x1F0000000000`) |
 | records per id | the table above, all 28 cases of `0x00227680` |
 | ids never raised | 1, 3, 8, 9, 14, 20, 21 |
 | fades passed | 4 (an event taking an actor, its removal), -1 (every other engine site), the verbs' arguments |
@@ -488,7 +491,7 @@ masks and the fade ramp; the source bytes.
   to the request record block at `0x01FD4160`, taken as a whole (3 rows).
 - [`time-stop-and-freeze-record-accesses.tsv`](time-stop-and-freeze-record-accesses.tsv): every access to
   its `0x18`-byte records: records A and B of the twenty-eight request ids (from `0x01FD4160` and `0x01FD4400`) and the
-  two after them, at the block's `+0x540` (226 rows).
+  two after them, at the block's `+0x540` (256 rows).
 
 In the `route` cells of these tables, `SystemStopRegistry` names the record block at `0x01FD4160`.
 

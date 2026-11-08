@@ -20,6 +20,10 @@ addresses: "0x003172E0, 0x003170E0, 0x00328B20, 0x003288F0, 0x00316DF0, 0x003174
   A guest who leaves changes nothing in the inventory.
 - Some scenes decide who fights, for example leaving Vaan to fight alone.
 
+Joins and leaves are script verbs in the zone scripts. Each change rewrites the party's seats and starts loading the
+fighters' models, and the script waits until that loading is done; what a joiner brings comes from their row of the
+party table in `battle_pack.bin`.
+
 ## How it works
 
 ### Members and guests

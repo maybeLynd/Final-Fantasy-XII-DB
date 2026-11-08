@@ -14,6 +14,10 @@ bone, such as a weapon or the high-detail body a story scene swaps in for a part
 that bone. This page describes the objects behind that: the player object that holds the motion,
 the bone records it writes, and the links between skeletons.
 
+A motion and a model meet bone by bone. Each record in the motion's bone channel list carries a bone number, and the
+game hands that record to the bone of the model's skeleton that has the same key; every frame it then writes the
+record's values into that bone.
+
 ## How it works
 
 ### The player object

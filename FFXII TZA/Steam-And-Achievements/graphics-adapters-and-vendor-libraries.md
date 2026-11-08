@@ -14,6 +14,11 @@ every usable adapter. The Anti-Aliasing row offers only the multisample levels t
 game asks NVIDIA's and AMD's driver libraries for the GPU's name and temperature; without them it uses
 the name Windows reports.
 
+The two libraries are asked in turn, NVIDIA's first and then AMD's, and each finds the card by matching the device
+number Direct3D reports for it; the first library that answers supplies the name or the temperature. NVIDIA's library
+file itself comes only from places the registry, the driver store or the system folder give, never from beside the
+game.
+
 ## How it works
 
 ### Choosing the adapter at start-up

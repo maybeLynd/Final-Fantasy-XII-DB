@@ -68,8 +68,11 @@ it rewrites a set bit, and for bit `0x1` runs `0x0035C620` again, for bit `0x2` 
   (after `0x003138D0(1)`); the reset `0x00313840`; the save handover `0x00584210` on both of its sides.
 - bit `0x2`: `ridechocobo` (`0x00347230` → `0x0037CFF0` → `0x00303D90(1)`), `getoffchocobo` (`0x00347820` →
   `0x0037CFC0` → `0x00303D90(0)`), `setchocobomode(arg)` (`0x003514D0` → `0x0037D100`), the mount stage of
-  the special sequence, the dismount `0x00304680` (which calls `0x00303D90(0)` first), and state 1 of
-  the task `0x0035CA70` ([chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md)).
+  the special sequence and its stage 6 (`0x022C215C` = 6: `0x00303D90(0)` at `0x00306A90`), the dismount `0x00304680`
+  (which calls `0x00303D90(0)` first), state 1 of the task `0x0035CA70`
+  ([chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md)).
+- bit `0x2`, also: the load step `0x005843E0` (called from `0x00582860`), which clears the bit itself (`0x0058446A`) when bit `0x1000` of
+  the dword at `[0x02EBF190] + 4` is set (`0x00236760`) and otherwise restores the word through `0x002EF410`.
 - bits `0x4` and `0x8`: only the verbs `seteventpartymode` (`0x00351B40` → `0x0037D120` → `0x00307240`) and
   `seteventparty2mode` (`0x00351E50` → `0x0037D110` → `0x00307200`); no engine path sets them.
 - the restore `0x002EF410` writes the whole word (below).
@@ -308,7 +311,7 @@ Transition record:
 | the ride time | 180.0 (`0x43340000`) |
 | the Esper row after reset | `0x1B` |
 | the chocobo's row | `0x1A` |
-| timer restart floor | 2.0 on channels 1 and 2 |
+| timer restart floor | 2.0 (`0x01CEBC08`) for the ride countdown on channel 1 (`0x00304790`) and the summon countdown on channel 2 (`0x003139D0`); the chocobo turbo countdown on channel 2 is restored as saved (`0x003047C0`) |
 | `0x00309A90` | 24.0, 3.8, 2.2 |
 
 ## Operations
@@ -347,16 +350,29 @@ leader; the two source bytes.
 - [Frame update order](frame-update-order.md): the drive pass and the orchestrator that run the
   dispatcher and test the level.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): the transition record.
-- [`party-control-modes-manager-0209ac60-accesses.tsv`](party-control-modes-manager-0209ac60-accesses.tsv): every
-  access to the menu state block `0x0209AC60` (`0xE00` bytes, [menu screens](../Menus-And-HUD/menu-screens.md)),
-  reached at its address or through the pointer `[0x0209AC30]` (964 rows).
+- [`party-control-modes-manager-0209ac60-accesses.tsv`](party-control-modes-manager-0209ac60-accesses.tsv): the
+  accesses to the menu state block `0x0209AC60` (`0xE00` bytes, [menu screens](../Menus-And-HUD/menu-screens.md)) at its address
+  or through the pointer `[0x0209AC30]` with a fixed displacement, each at its loop's first pass (964 rows).
+
+  Not listed: the accesses that add an index register (the pointers from `+0xAC8`, the bytes from `+0xB2E`, the slots
+  at `+0x170`, `+0x290`, `+0x2B8` and `+0x2C8`), the clear at `0x002800FA` and later loop passes.
 - [`party-control-modes-manager-sub-0209ac60-02f8-accesses.tsv`](party-control-modes-manager-sub-0209ac60-02f8-accesses.tsv):
   every access to the description window that the block's `+0x2F8` points to (83 rows).
 - [`party-control-modes-manager-sub-0209ac60-02f8-00c0-accesses.tsv`](party-control-modes-manager-sub-0209ac60-02f8-00c0-accesses.tsv):
-  every access to the object at that window's `+0xC0` (128 rows).
+  every access to the object at that window's `+0xC0` (90 rows).
 - [`party-control-modes-party-selection-registry-ptrs-022c8388-accesses.tsv`](party-control-modes-party-selection-registry-ptrs-022c8388-accesses.tsv):
-  every access to the four actor record pointers of the party slots at `0x022C8388`, which the party rebuild
-  `0x0035BC50` writes ([party list](../Menus-And-HUD/party-list.md)) (2 rows).
+  the two stores of the party rebuild `0x0035BC50` to the four actor record pointers of the party slots at `0x022C8388`
+  ([party list](../Menus-And-HUD/party-list.md)) (2 rows).
+
+  Both sit in the four-pass loop `0x0035BDB0`-`0x0035BE6C`: `0x0035BDC3` writes all four pointers, `0x0035BDDF` the pointer of
+  each slot that passes the tests at `0x0035BDC6` and `0x0035BDD2`; the clears `0x0035BB85` and `0x0035C573` zero them.
 
 In the `route` cells of these tables, `Manager0209AC60` names the menu state block and `ManagerSub0209AC60_02F8` the
 description window.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Save load settings: `0x00582860` calls `0x00582790`; those functions are documented on
+  [mrp menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md).

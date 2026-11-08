@@ -11,6 +11,9 @@ addresses: "0x02EBF100, 0x0031C5D0, 0x0031C7F5, 0x0031C81A, 0x0031C83E, 0x0031C8
 (`battle_pack.bin` directory entry `+0x4C`). Row *n* is item id *n*, `0x0000`-`0x003F`: the class-5 arm of
 `0x0031C5D0` multiplies the id by the table's row size (`0x0031C7E1`-`0x0031C7F3`).
 
+An item row holds only the item's name, price, sort order and icon. What the item does when used comes from the action
+row it points to in the action table, and that action is what takes the item from the inventory.
+
 - 51 rows are usable items. Each row's `+0x07` is its action row, and that row is the one whose kind `+0x1E` is 3
   and whose `+0x22` is the item id, the rule on [Using an item](item-use.md): action rows 82-110 and 124-145.
 - Rows 29-41 (ids `0x001D`-`0x0029`) are named Reserve. Their `+0x07` points at action rows 111-123, which have kind

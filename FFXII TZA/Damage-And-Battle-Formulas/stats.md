@@ -11,6 +11,10 @@ A character's numbers on the status screen are a sum, worked out again every tim
 the character's own values, plus equipment, plus augments from the License Board and gear. Nothing is
 added on top of an old value.
 
+An enemy's own values come from its rows in the area's enemy tables, grown by the difference between its level and its
+reference level. Each equipped item adds the values of its equipment row and its attribute record, and each Lore or HP
+augment adds the number in its row of the augment table.
+
 | Stat | Cap |
 |---|---:|
 | max HP | 9,999 for the party, 32,767 for Espers |

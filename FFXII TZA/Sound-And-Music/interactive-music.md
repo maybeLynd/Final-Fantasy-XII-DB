@@ -11,6 +11,10 @@ addresses: "0x007C82D0, 0x007CAB80, 0x007C1620, 0x007C9E70, 0x007C91F0, 0x007CA7
   with a short crossfade.
 - Every track can start from a chosen bar.
 
+Every shipped music bank holds one music with three sections, and the three sections are the three music versions.
+Changing the version finds the same bar, beat and tick in the new section and moves into it over four seconds, from
+the next sync point.
+
 ## How it works
 
 ### The music object
@@ -287,7 +291,7 @@ tick = the rest
 | `0x007F2E30`, `0x007F2F30` | one tick back, one tick forward |
 | `0x007F3140` | subtracts one timing from another |
 | `0x007F2F10` | rounds up to the next bar when the beat or tick is not 0 |
-| `0x007F2FA0`, `0x007F3080` | round a timing (bar `+0`, beat `+2`, tick `+3`) down to the grid of a sync type, and step it by one grid unit: 3 two ticks, 4 three ticks, 5 a beat, 6 two beats, 7 a bar, 8 two bars, 9 four bars, 10 eight bars, and for the step only 2 one tick; rounding clears the smaller units, and a step carries into the next beat at `+0x21` ticks and into the next bar at `+0x20` |
+| `0x007F2FA0`, `0x007F3080` | round a timing (bar `+0`, beat `+2`, tick `+3`) down to the grid of a sync type, and step it by one grid unit: 3 two ticks, 4 three ticks, 5 a beat, 6 two beats, 7 a bar, 8 two bars, 9 four bars, 10 eight bars, and for the step only 2 one tick; rounding clears the smaller units, and a step carries into the next beat when the tick reaches `+0x21` (`0x007F30DB`-`0x007F30ED`) and into the next bar when `beat × +0x21 + tick` reaches `+0x20`, the ticks per bar (`0x007F30F2`-`0x007F3113`) |
 | `0x007F3570` | the sample of a timing: with `d` = timing − start timing `+0x08` (`0x007F3140`), `[+0x00] + d.bar x [+0x2C] + d.beat x [+0x28] + d.tick x [+0x24]`, or `[+0x04]` at the end timing `+0x0C`; a timing before the start or past the end is clamped with a warning ("GetSampleFromTiming timing is before startTiming"), and with byte `+0x18` clear it logs "Invalid Timing!" and returns `[+0x00]` (`0x007F3570`-`0x007F37FE`) |
 | `0x007F3800` | the timing of a sample, through `0x007F2EA0`; "GetTimingFromSample Invalid Timing!" outside the music |
 | `0x007F3510` | the sample of a custom point: from its timing (`0x007F3570`) when its byte `+0x18` is set, otherwise from its sample |
@@ -340,8 +344,11 @@ A request that fires calls slot 4 of the callback object with the timing and the
 ### Instruments
 
 A `Magi::Instrument` plays one instrument of a music's `inst` chunk in time with that music; the run-time type data
-names it in its list type, `FixedList<4, Magi::Instrument*>`. The pool holds 32 ([Sound driver objects](sound-driver-objects.md)),
-and each keeps its voice at `+0x40` and a state at `+0x58`:
+names it in its list type, `FixedList<4, Magi::Instrument*>`. The shipped game never creates one: the start-up
+value that enables the instrument builder is 0 (`0x00210831`, `0x007A519B`-`0x007A51A0`), so the pool, which that
+builder would size for 32, and its list stay empty ([Sound driver objects](sound-driver-objects.md)). The
+structure and commands below are those of this unused system. Each instrument keeps its voice at `+0x40` and a
+state at `+0x58`:
 
 | Function | Does |
 |---|---|
