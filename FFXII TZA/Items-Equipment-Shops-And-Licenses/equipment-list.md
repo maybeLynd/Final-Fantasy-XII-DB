@@ -16,10 +16,13 @@ reaches (`battle_pack.bin` directory entry `+0x38`). The meaning of every field,
   weapons, 52 off-hand items (shields and ammunition), 60 head pieces, 60 body pieces and 48 accessories.
 - Thirteen of the main-hand rows, 179-191, are named Reserve: classes 5, 0 and 8 and a price of 1, with weapon
   stats (Attack 61-201, reach, recipe, knockback on three) and element sets of their own, and empty bonus stats. An
-  inventory count reaches them; their explanation says so and lists their Attack and element sets.
+  inventory count reaches them, and the party table gives them to the 13 Espers as starting main hands, rows 27-39
+  one to one. Their explanation says so and lists their Attack and element sets.
 - Rows 420-556, ids `0x11A4`-`0x122C`, are past the inventory's 420 counts, so the party cannot hold them. Their
   names are "NOT USED" (124 rows) or "Reserve" (13 rows). The id check `0x00322C50` still accepts them, since it
   bounds class 6 by the table's own 557 rows (`0x1000` to `0x1000` + 557 - 1).
+- The 13 rows named Reserve here, 544-556, are the Espers' starting body pieces. Thirteen `NOT USED` rows, 440,
+  444-449, 462-464, 486, 490 and 491, are reserve data: the id check accepts them and nothing shipped names them.
 - Enemies are given these ids: 958 of the 1,146 enemy definitions hold one of them in their main-hand word
   `+0x16`, which `0x0023AC80` installs ([Bestiary](../Enemy-Spawning/bestiary.md)).
 
@@ -143,7 +146,7 @@ with its slot words `+0x50` as the loadout and with the free-copy test when `fla
 | `attack_effect` | weapons (classes 0-17): `+0x2C`, the effect a plain Attack shows in its low 15 bits (`0x0030AD56`) |
 | `bonus_record` | the bonus record's index: `+0x28` / 24 |
 | `model_id` | weapons, ammunition and shields: the held model `+0x30` |
-| `explanation` | a one-line summary built from the row's own fields; for the Reserve rows 179-191 and the rows past the inventory's 420, what the row is |
+| `explanation` | a one-line summary built from the row's own fields; for the Reserve rows 179-191 and the rows past the inventory's 420, what the row is and who holds it, or that nothing shipped names it |
 | `sources` | where the piece of equipment is obtained, one part per kind of source, with each shop's place and opening, how a scene gift is handed over, the trophy trade and the hunt reward, the treasure chests that hold it with the odds ("Where each piece of equipment comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; for the six guest weapons, `no source for the player` and who wears them; `-` for a row with no source |
 | `licence` | the licence squares that grant it, by name and node, or `no licence needed` ("The licence it needs" above) |
 

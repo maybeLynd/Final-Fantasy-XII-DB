@@ -196,7 +196,7 @@ size of each; the other 76 are on
   return the string (`0x001A5383`, `0x001A53D0`).
 - `0x001FC640` is a map's `operator[]` with a `u32` key at node `+0x20`: it walks from the root
   `+0x18`, and when the key is missing it inserts a default value, an empty vector whose allocator
-  is named `EASTL vector`, through `0x001FD310`.
+  is passed the name `EASTL vector`, through `0x001FD310`.
 - `0x001FC640` keeps the first node whose key is not below the key, comparing unsigned (`0x001FC674` to
   `0x001FC689`); a key equal to that node's key skips the insert (`0x001FC695`). For a missing key it builds the
   pair through `0x001FBFC0` (`0x001FC6CF`), and after `0x001FD310` (`0x001FC701`) frees each temporary vector's block
@@ -354,7 +354,7 @@ type tag is not 0, the string tag. Its two callers read it: `0x001C3760` its `be
 `0x001C38FA`), and `0x001C6E20` its `end` and `begin` (`0x001C6F68`, `0x001C6F6C`, after the call at `0x001C6F47`). The
 destructor `0x008A6FB0` reads `capacityEnd` and `begin`.
 
-`0x0015D260` builds an empty map at `0x01F83250` with an allocator named `EASTL map` (`0x008F4120`):
+`0x0015D260` builds an empty map at `0x01F83250` with an allocator passed the name `EASTL map` (`0x008F4120`):
 
 1. the anchor's right and left links point at the anchor `0x01F83258` (`0x0015D2C1`, `0x0015D2C8`);
 2. the root is 0 (`0x0015D2AF`), the anchor's colour byte is 0 (`0x0015D2CF`) and the count is 0 (`0x0015D2D6`).

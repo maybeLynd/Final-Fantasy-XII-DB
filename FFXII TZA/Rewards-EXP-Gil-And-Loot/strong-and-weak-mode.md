@@ -97,7 +97,7 @@ the same way.
 
 | Bit of `[0x02EBF190] + 4` | Meaning | Getter | Setter |
 |---|---|---|---|
-| `0x2000` | New Game+ | `0x00236740` | `0x00239960`; `0x0023A2C0(v)`, from the unused verbs `0x3086`/`0x3088` |
+| `0x2000` | New Game+ | `0x00236740` | `0x00239960`; `0x0023A2C0(v)`, from the Reserve verbs `0x3086`/`0x3088` |
 | `0x4000` | New Game- | `0x00236780` | `0x00239960` only |
 | `0x1000` | Trial Mode stash (kept alongside; see [Saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md)) | `0x00236760` | `0x00239960`, `0x00233C10`, `0x0023A390` |
 

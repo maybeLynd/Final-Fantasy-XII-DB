@@ -67,7 +67,7 @@ The archive's only other file without an extension is `ps2data/square_ff12/ff12c
 | `fst_size_matches` | `yes` when every reading language's size equals the file's size |
 | `loader` | the function that requests the kind and id |
 | `battle_pack_entry` | (test_battle only) the same folder's pack entry of the file's id: equal for the file's length, differing from a byte, empty, or no entry |
-| `used` | `used: read by` the languages, or `unused` with the reason |
+| `used` | `used: read by` the languages; `reserve` with the reason, when a request could reach the file and nothing shipped makes one; or `unused` with the reason, when a limit in the code stops it |
 
 ## Data
 
@@ -391,7 +391,8 @@ The other 228 are never read:
 
 - 98 copies the arrays name but no call site requests: the `ch` and `in` copies of the 40 loose battle tables,
   and `battle_message.bin` and `word.bin` in all nine folders. `0x00384420`, the one kind-2 request, has three
-  callers, the pack (`0x0038440A`), the boards (`0x0023837D`) and the text groups (`0x0023861E`).
+  callers, the pack (`0x0038440A`), the boards (`0x0023837D`) and the text groups (`0x0023861E`). No limit stops these ids,
+  because `debug_fileread` passes a script's kind and id unchecked, so the table calls them `reserve`.
 - 104 copies no array names: the `cn` and `kr` copies of the same 40 tables and of the twelve boards.
 - 26 files no path names: the 13 families that ship only in `cn` and `kr` (Families no path names).
 

@@ -99,8 +99,10 @@ is started by the walk alone.
 
 The start-up calls it directly when the message loop ends (`0x007986D5`), and the normal quit then ends in
 `ExitProcess(0)` without running the `atexit` table. A start-up step that returns non-zero calls it at `0x00798886`
-instead and returns (`0x007985FD`-`0x00798621`); the run-time `exit` then runs the table, whose entry finds the byte
-clear and does nothing.
+instead and returns (`0x007985FD`-`0x00798621`); the run-time `exit` then runs the table. It holds an entry for
+`0x005A0840` only when `0x005A08E0` reached its registration (`0x005A0AC7`), and that entry finds the byte clear and does
+nothing. A failure inside `0x005A08E0` before that point returns with no entry registered (six `jne`,
+`0x005A0927`-`0x005A0ABE`).
 
 When the run-time `exit` runs the teardowns, each module's `atexit` destructor writes the base vtable back and
 unlinks the object.

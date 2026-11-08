@@ -190,9 +190,9 @@ and "Reserve", lie past the inventory's counts, so the party cannot hold them, b
   other rows in the off hand `+0x1C`; `0x0023AC80` installs both (`0x0023ADA8`, `0x0023ADBA`).
 - Guests: Lamont, Larsa and Reddas carry rows 468, 469, 484 and 485 from the party table (`+0x0A`-`+0x13`,
   `0x0023AE8C`-`0x0023AEDA`) and the scenario presets (`+0x04`-`+0x0D`, `0x00239C62`-`0x00239CBF`).
-- Espers: the 13 "Reserve" rows 544-556 are the body pieces of the 13 Espers, one each, and Shemhazai holds row
-  459 in the off hand.
-- Rows 440, 444-449, 462-464, 486, 490 and 491 have no reference in the area files, `battle_pack.bin` (party
+- Espers: the 13 "Reserve" rows 179-191 are the main hands of the 13 Espers and rows 544-556 their body pieces, one
+  each, and Shemhazai holds row 459 in the off hand.
+- Reserve: rows 440, 444-449, 462-464, 486, 490 and 491 have no reference in the area files, `battle_pack.bin` (party
   table, scenario presets, shops, bazaar, reward packages and selectors, licenses, starting inventory), the
   chests and other records of the shipped scripts, or an immediate of the executable.
 

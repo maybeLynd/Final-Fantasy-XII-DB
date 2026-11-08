@@ -331,7 +331,7 @@ loads it.
 | `dat_size_match` | 1 when `width` and `height` equal the `.dat` header's `atlasW` and `atlasH` |
 | `isSDF`, `fontSize`, `lineSpacing`, `baselineOffset`, `characters` | for a bitmap font, the `PBitmapFont` members and its character count |
 | `loader` | the function that requests the file |
-| `used` | `used`, or `unused` with the reason |
+| `used` | `used`, or `unused` with the limit in the code that stops it |
 
 ## Related
 

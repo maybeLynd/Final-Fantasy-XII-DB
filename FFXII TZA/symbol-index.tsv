@@ -15355,7 +15355,7 @@ function	0x001B8E90	-	Engine-Core/game-application.md	-	3
 function	0x001B9020	-	Third-Party-Libraries/eastl-strings-and-containers-template-instances.tsv	-	4
 function	0x001B90F0	-	Third-Party-Libraries/eastl-strings-and-containers-template-instances.tsv	-	3
 function	0x001B9260	-	Third-Party-Libraries/eastl-strings-and-containers-template-instances.tsv	-	3
-function	0x001B9370	-	Graphics/render-parameters-and-shader-assets.md	-	4
+function	0x001B9370	-	Engine-Core/game-application.md	-	4
 function	0x001B9520	-	Compiler-And-C-Runtime/exception-handling-cleanup-funclets.tsv	-	4
 function	0x001B9570	-	Compiler-And-C-Runtime/exception-handling-cleanup-funclets.tsv	-	4
 function	0x001B95D0	-	Compiler-And-C-Runtime/exception-handling-cleanup-funclets.tsv	-	5
@@ -16064,7 +16064,7 @@ function	0x001EDE70	-	Menus-And-HUD/map-screens.md	-	20
 function	0x001EDE80	-	Engine-Core/frame-update-order.md	-	9
 function	0x001EDEC0	-	Saving-Loading-And-Settings/loading-a-save.md	-	16
 function	0x001EDEF0	-	Engine-Core/startup-constants.md	-	6
-function	0x001EDF00	-	Menus-And-HUD/fonts.md	-	24
+function	0x001EDF00	-	Menus-And-HUD/fonts.md	-	25
 function	0x001EDF10	-	Third-Party-Libraries/eastl-strings-and-containers.md	-	6
 function	0x001EDF80	-	Third-Party-Libraries/eastl-strings-and-containers.md	-	6
 function	0x001EDFE0	-	Third-Party-Libraries/eastl-strings-and-containers.md	-	6
@@ -21315,7 +21315,7 @@ function	0x0030F4B0	-	World-Areas-And-Travel/game-over.md	-	6
 function	0x0030F4D0	-	World-Areas-And-Travel/save-and-teleport-crystals.md	-	4
 function	0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	World-Areas-And-Travel/save-and-teleport-crystals.md	-	10
 function	0x0030F690	BattleStats_RemoveStatusesFromMaskAndRecompute	Damage-And-Battle-Formulas/augments.md	-	18
-function	0x0030F760	BattleUnit_CommitAction	Engine-Core/identifier-spaces.md	-	22
+function	0x0030F760	BattleUnit_CommitAction	Engine-Core/identifier-spaces.md	-	23
 function	0x0030F9A0	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	6
 function	0x0030FA00	BattleAction_TryContinueComboSequence	Battle-Actions/combos.md	-	9
 function	0x0030FAA0	InventoryEquipment_RestoreTemporarySnapshotAndClearBackup	Party/party-data.md	-	13
@@ -21715,7 +21715,7 @@ function	0x00322950	-	Characters-And-Objects/battle-units.md	-	3
 function	0x003229A0	-	Characters-And-Objects/battle-units.md	-	6
 function	0x003229E0	-	Graphics/effect-anchors-and-targets.md	-	5
 function	0x00322A80	-	Battle-Actions/target-selection.md	-	14
-function	0x00322C50	BattleEncodedId_IsValidForClass	Engine-Core/identifier-spaces.md	-	57
+function	0x00322C50	BattleEncodedId_IsValidForClass	Engine-Core/identifier-spaces.md	-	58
 function	0x003230E0	-	Battle-Actions/target-selection.md	-	7
 function	0x003231F0	Equipment_CheckPrimarySecondaryPairReasonByStatsIndex	Menus-And-HUD/inventory-screen.md	-	7
 function	0x00323350	BattleAction_ApplyKnockbackImpulse	Items-Equipment-Shops-And-Licenses/equipping-an-item.md	-	6
@@ -22496,7 +22496,7 @@ function	0x003452D0	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	5
 function	0x00345370	-	World-Areas-And-Travel/doors-gates-and-map-changes.md	-	5
 function	0x003453D0	-	Characters-And-Objects/actor-model-rebuild.md	-	8
 function	0x00345400	-	Sound-And-Music/music-table.md	-	8
-function	0x00345430	-	Scripts-And-Script-Commands/party-during-scenes.md	-	15
+function	0x00345430	-	Scripts-And-Script-Commands/party-during-scenes.md	-	16
 function	0x00345520	-	Scripts-And-Script-Commands/reward-verbs.md	-	8
 function	0x00345570	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	5
 function	0x003455B0	-	World-Areas-And-Travel/doors-gates-and-map-changes.md	-	5
@@ -23116,7 +23116,7 @@ function	0x0034F6F0	-	Scripts-And-Script-Commands/event-scenes.md	-	4
 function	0x0034F730	-	Engine-Core/startup-constants.md	-	6
 function	0x0034F770	-	Graphics/effect-file-list.md	-	8
 function	0x0034F7C0	-	Menus-And-HUD/script-gauges.md	-	6
-function	0x0034F800	-	Graphics/effect-anchors-and-targets.md	-	5
+function	0x0034F800	-	Graphics/effect-anchors-and-targets.md	-	6
 function	0x0034F870	-	World-Areas-And-Travel/save-and-teleport-crystals.md	-	6
 function	0x0034F890	-	Scripts-And-Script-Commands/party-verbs.md	-	7
 function	0x0034F930	-	Characters-And-Objects/actor-managers.md	-	57
@@ -28198,9 +28198,9 @@ function	0x0050C670	-	Engine-Core/debug-logging.md	-	7
 function	0x0050C6B0	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
 function	0x0050C790	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	4
 function	0x0050C7A0	-	Graphics/effect-anchors-and-targets.md	-	7
-function	0x0050C7F0	-	Sound-And-Music/music.md	-	7
+function	0x0050C7F0	-	Scripts-And-Script-Commands/verb-table.md	-	8
 function	0x0050C800	-	Saving-Loading-And-Settings/loading-a-save.md	-	6
-function	0x0050C850	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
+function	0x0050C850	-	Scripts-And-Script-Commands/verb-table.md	-	5
 function	0x0050C860	-	Story-Events-And-Hunts/shared-zone-script-actors.md	-	7
 function	0x0050C870	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
 function	0x0050C890	-	Engine-Core/debug-menu.md	-	6
@@ -28344,7 +28344,7 @@ function	0x0050E8B0	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
 function	0x0050E8E0	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
 function	0x0050E900	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
 function	0x0050E960	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
-function	0x0050E980	-	Scripts-And-Script-Commands/battle-verbs.md	-	5
+function	0x0050E980	-	Scripts-And-Script-Commands/battle-verbs.md	-	6
 function	0x0050E9A0	-	Engine-Core/identifier-spaces.tsv	-	5
 function	0x0050E9C0	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
 function	0x0050EA00	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	6
@@ -28359,7 +28359,7 @@ function	0x0050ED10	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
 function	0x0050ED50	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
 function	0x0050ED70	-	Story-Events-And-Hunts/shared-zone-script-actors.md	-	7
 function	0x0050EDE0	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
-function	0x0050EE00	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
+function	0x0050EE00	-	Scripts-And-Script-Commands/verb-table.md	-	5
 function	0x0050EE30	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
 function	0x0050EEA0	-	Saving-Loading-And-Settings/loading-a-save.md	-	7
 function	0x0050EEE0	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
@@ -29515,7 +29515,7 @@ function	0x00576DA0	-	Menus-And-HUD/clan-primer.md	-	5
 function	0x00576E10	-	Graphics/menu-effects.md	-	4
 function	0x00576E30	-	Game-Files-And-Data-Tables/handbook-files.md	-	6
 function	0x00576F30	-	Game-Files-And-Data-Tables/handbook-files.md	-	5
-function	0x00576F50	-	Game-Files-And-Data-Tables/battle-text-tables.md	-	9
+function	0x00576F50	-	Game-Files-And-Data-Tables/battle-text-tables.md	-	10
 function	0x005770A0	-	Menus-And-HUD/clan-primer.md	-	5
 function	0x00577100	-	Engine-Core/engine-types.tsv	-	4
 function	0x00577180	-	Game-Files-And-Data-Tables/battle-text-tables.md	-	5
@@ -58910,7 +58910,7 @@ data	0x00901B34	-	World-Areas-And-Travel/traps.md	-	0
 data	0x00901B38	-	Status-Effects-And-KO/battle-buffs.md	-	0
 data	0x00901B3C	-	Damage-And-Battle-Formulas/damage-formula.md	-	4
 data	0x00902438	-	Battle-Actions/area-of-effect.md	-	0
-data	0x00902720	-	Menus-And-HUD/fonts.md	-	13
+data	0x00902720	-	Menus-And-HUD/fonts.md	-	14
 data	0x00902750	-	Menus-And-HUD/text-drawing.md	-	2
 data	0x00902C60	-	Menus-And-HUD/text-drawing.md	-	1
 data	0x00902CE0	-	Menus-And-HUD/text-drawing.md	-	1
@@ -59278,7 +59278,7 @@ data	0x00D235E8	-	Menus-And-HUD/shop-screens.md	-	0
 data	0x00D235F8	-	Menus-And-HUD/shop-screens.md	-	0
 data	0x00D23628	-	Game-Files-And-Data-Tables/tim2-images.md	-	3
 data	0x00D23668	-	Game-Files-And-Data-Tables/tim2-images.md	-	1
-data	0x00D23688	-	Menus-And-HUD/dialogs.md	-	3
+data	0x00D23688	-	Menus-And-HUD/clan-primer-entries.md	-	3
 data	0x00D236A0	-	Menus-And-HUD/clan-primer.md	-	0
 data	0x00D236A4	-	Menus-And-HUD/clan-primer.md	-	0
 data	0x00D236E0	-	Menus-And-HUD/clan-primer.md	-	0

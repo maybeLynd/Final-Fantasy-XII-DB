@@ -19,7 +19,9 @@ Mist Charge rows (242-244), Chain Bonus (245) and Dismiss (275).
 
 The kind counts include rows named as unused: 24 of the 235 Foecraft rows are named Reserve and 8 of the 16
 Concurrence rows `NOT USED`. With the 47 such rows of kind 255 and the three kind-13 Reserve rows, 82 rows in all
-carry the explanation "an unused row".
+are reserve data: the id check and the commit accept them and no enemy order or other shipped table names them. The
+party route refuses the 35 of kinds 7, 10 and 13. Rows 111-123 are the action rows of the item rows `0x001D`-`0x0029`,
+also named Reserve.
 
 The `enemy_users` column names, for every row, the enemies that use it. An enemy uses an action when an order set its definition names ([Enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md), `used_by`) holds an order with that action word, or a weighted pick (`0x8000` + run, `[0x02EBF160]`, drawn by `0x00308EC0`) whose run lists it. 305 of the 543 rows have such users, 39 of them only through weighted picks. Attack has the most, 426 enemy names, then Lunge 183, Protect 83, Ram 74 and Shell 48.
 
@@ -88,7 +90,7 @@ rule.
 | `target_flags`, `target_flag_names` | `+0x36` as hex and the bits with a named effect |
 | `help_id`, `help` | `+0x00` and its shipped line (4000 = no line) |
 | `desc_id`, `description` | `+0x2E` and its shipped line |
-| `explanation` | a one-line summary built from the row's own fields: "an unused row" for the `NOT USED` and Reserve rows, "kind 255, no linked id" for the nine named kind-255 rows |
+| `explanation` | a one-line summary built from the row's own fields: what nothing shipped names, for the `NOT USED` and Reserve rows, "kind 255, no linked id" for the nine named kind-255 rows |
 | `enemy_users` | how many distinct enemy names use the action through their order sets, then the names in alphabetical order; a definition with no name as `No name (<area> row <n>)`; `-` when no order of the 1,422 sets names it |
 
 ## Related

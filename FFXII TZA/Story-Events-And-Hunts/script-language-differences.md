@@ -256,7 +256,8 @@ two files are byte-identical and their image names `ttl_a01.src` as its source. 
 
 No build loads it. Every language arm of the executable's zone script path table names `ttl_a01.ebp` for zone 12
 ([asset paths](../Game-Files-And-Data-Tables/asset-paths.md)), and neither the executable nor any shipped data
-file names `ttl_a01_e3`. It is an unused copy; the [title scripts](titles-scripts.md) are those of `ttl_a01`.
+file names `ttl_a01_e3`. It is an unused copy, because that path table has no entry for it; the
+[title scripts](titles-scripts.md) are those of `ttl_a01`.
 
 ## Related
 

@@ -56,6 +56,9 @@ that entry.
 
 ### How an entry unlocks
 
+The word unused covers these families' pages. The four records at `0x00D23688` hold kinds 6, 5, 7 and 4, so no category
+opens families 0 to 3. Their files still load and their unlock tables are still bound (`0x00576F50`).
+
 Traveler's Tips and the four unused families keep one unlock bit per entry at save `+0x32CC`. Each time an index is
 built, `0x00577550` tests the entry's record of `menuhandbook_<family>.dat` (`0x00575E80`) and sets or clears the bit
 (`0x00315910`), so an entry follows its condition both ways. In the shipped files the only test used is the story

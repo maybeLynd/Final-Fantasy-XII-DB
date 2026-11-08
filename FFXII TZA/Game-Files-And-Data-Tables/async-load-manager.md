@@ -211,7 +211,7 @@ This body does not free the manager's own block.
 | `+0x008` | `Thread` | thread | the thread record of [runtime services](../Compiler-And-C-Runtime/runtime-services.md) (handle, start, argument; zeroed by `0x005CC900`), started by `0x001A0AF0` |
 | `+0x020` | `u8` | started | |
 | `+0x028` | `PhyreLock` | queue lock | the PhyreEngine lock of [runtime services](../Compiler-And-C-Runtime/runtime-services.md), built by `0x005CC8A0` |
-| `+0x050` | `List` | queue | an EASTL list: the anchor's next and previous (the tail) at `50` and `58`, its allocator at `60` named `EASTL list`; `0x18`-byte nodes, the record at node `10` |
+| `+0x050` | `List` | queue | an EASTL list: the anchor's next and previous (the tail) at `50` and `58`, its allocator at `60` built by `0x001EDF00`, which drops the name `EASTL list` it is passed (`0x0019F678`); `0x18`-byte nodes, the record at node `10` |
 | `+0x068` | `u8` | queue empty | |
 | `+0x069` | `u8` | thread idle | |
 | `+0x070` | `PhyreLock` | completion lock | the PhyreEngine lock, built by `0x005CC8A0` |

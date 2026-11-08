@@ -192,8 +192,14 @@ freeing `+0x98` frees both; `+0x80` and `+0x98` are nulled and `+0xA0` keeps its
 The exit destructor `0x006BA940` runs only when the run-time `exit` runs the teardowns; the normal quit ends in
 `ExitProcess(0)` before that
 ([static initialisation and teardown](../Compiler-And-C-Runtime/static-initialisation-and-teardown.md)).
-When it runs, it runs `0x006BAED0` again after the shutdown's slot 3; with `+0x30`, `+0x98` and the worker array
+When it runs after the shutdown's slot 3, it runs `0x006BAED0` a second time; with `+0x30`, `+0x98` and the worker array
 already null, only the stub calls and `0x006AA600` run then, and `0x006AA600` finds every pointer null.
+
+The destructor is
+registered at the pool's first use (`0x006AA313`), which is `0x005A08E0`'s call at `0x005A0A8E`, before it sets its guard.
+After a failure at `0x005A0A9E` or `0x005A0ABE` the shutdown therefore skips slot 3 (`0x005A084B`), and this call is the
+pool's first stop. The four earlier failure exits (`0x005A0927`, `0x005A0A3E`, `0x005A0A54`, `0x005A0A61`) come before
+`0x005A0A8E`, so no pool exists and no destructor is registered.
 
 ### The immediate pool
 

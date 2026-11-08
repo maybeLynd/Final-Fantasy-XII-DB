@@ -388,6 +388,9 @@ attack line, each later variant plays the line before its Japanese counterpart, 
 
 ### Files nothing loads
 
+The `.orb.sab` banks and `shout64` and `shout65` are Unused, because a limit in the code stops them. The other
+groups except the last are Reserve: a shipped record could name them and none does.
+
 - 132 `.orb.sab` voice banks, 66 per language, each beside a `.win.sab` of the same name; the executable holds no
   `.orb` string.
 - `shout64` and `shout65` in both languages: the kind-33 and kind-39 arrays name only `shout00`-`shout63`.
