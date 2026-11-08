@@ -1,0 +1,827 @@
+pool	action_word	section_offset	bytes	members	weight_sum	zero_weight_members	orders	sets	used_in
+0	0x8000	0x0CF0	8	2	100	0	0	0	none
+1	0x8001	0x0CF8	12	3	100	0	0	0	none
+2	0x8002	0x0D04	8	2	100	0	0	0	none
+3	0x8003	0x0D0C	12	3	100	0	0	0	none
+4	0x8004	0x0D18	16	4	100	0	0	0	none
+5	0x8005	0x0D28	8	2	100	0	0	0	none
+6	0x8006	0x0D30	12	3	100	0	0	0	none
+7	0x8007	0x0D3C	8	2	100	0	0	0	none
+8	0x8008	0x0D44	8	2	100	0	0	0	none
+9	0x8009	0x0D4C	12	3	100	0	0	0	none
+10	0x800A	0x0D58	8	2	100	0	0	0	none
+11	0x800B	0x0D60	12	3	100	0	0	0	none
+12	0x800C	0x0D6C	8	2	100	0	0	0	none
+13	0x800D	0x0D74	12	3	100	0	0	0	none
+14	0x800E	0x0D80	12	3	100	0	0	0	none
+15	0x800F	0x0D8C	44	11	100	0	0	0	none
+16	0x8010	0x0DB8	4	1	100	0	0	0	none
+17	0x8011	0x0DBC	8	2	100	0	49	31	nal_b:0 nal_b:2 nal_b:3 naf_a:5 naf_a:6 naf_a:7 naf_a:8 naf_a:10 naf_a:11 naf_a:12 naf_a:13 naf_b:4 naf_b:5 naf_b:7 naf_b:9 naf_b:10 naf_b:11 naf_b:12 naf_b:13 naf_b:14 naf_b:15 grm_b:7 grm_b:8 nal_c:0 nal_c:2 nal_c:3 nal_c:8 nal_c:9 nal_c:10 nal_c:11 nal_c:15
+18	0x8012	0x0DC4	8	2	100	0	1	1	naf_b:16
+19	0x8013	0x0DCC	20	5	100	0	6	3	nal_c:12 nal_c:13 nal_c:14
+20	0x8014	0x0DE0	8	2	100	0	16	8	mic_a:0 mic_a:1 mic_a:2 mic_a:3 mic_b:0 mic_b:1 mic_b:2 mic_b:3
+21	0x8015	0x0DE8	8	2	100	0	32	8	mic_a:0 mic_a:1 mic_a:2 mic_a:3 mic_b:0 mic_b:1 mic_b:2 mic_b:3
+22	0x8016	0x0DF0	20	5	100	0	4	1	dor_c:0
+23	0x8017	0x0E04	12	3	100	0	12	3	dor_c:10 dor_d:2 dor_e:7
+24	0x8018	0x0E10	16	4	100	0	8	2	dor_c:3 dor_e:4
+25	0x8019	0x0E20	12	3	100	0	12	3	bhm_a:4 dor_c:5 dor_e:5
+26	0x801A	0x0E2C	12	3	100	0	12	3	dor_c:8 dor_d:0 dor_e:6
+27	0x801B	0x0E38	12	3	100	0	4	1	dor_e:3
+28	0x801C	0x0E44	8	2	100	0	6	3	rsn_b:18 rsn_b:19 rsn_c:13
+29	0x801D	0x0E4C	8	2	100	0	28	14	rsn_b:0 rsn_b:2 rsn_b:3 rsn_b:4 rsn_b:5 rsn_b:6 rsn_b:7 rsn_b:8 rsn_b:9 rsn_c:0 rsn_c:2 rsn_c:3 rsn_d:2 tri_b:4
+30	0x801E	0x0E54	20	5	100	0	12	6	rsn_b:10 rsn_b:11 rsn_c:4 rsn_c:5 rsn_d:3 tri_b:5
+31	0x801F	0x0E68	8	2	100	0	18	9	rsn_b:12 rsn_b:13 rsn_b:14 rsn_b:15 rsn_b:16 rsn_b:17 rsn_c:10 rsn_c:11 rsn_c:12
+32	0x8020	0x0E70	8	2	100	0	2	1	rsn_b:22
+33	0x8021	0x0E78	16	4	100	0	4	1	bhm_a:0
+34	0x8022	0x0E88	48	12	100	0	4	2	bhm_a:7 tri_l:3
+35	0x8023	0x0EB8	12	3	100	0	4	1	bhm_a:3
+36	0x8024	0x0EC4	12	3	100	0	4	1	bhm_a:6
+37	0x8025	0x0ED0	12	3	100	0	0	0	none
+38	0x8026	0x0EDC	20	5	100	0	4	1	bhm_a:5
+39	0x8027	0x0EF0	8	2	100	0	4	4	grm_c:0 grm_c:2 grm_c:3 grm_c:4
+40	0x8028	0x0EF8	8	2	100	0	4	4	grm_c:0 grm_c:2 grm_c:3 grm_c:4
+41	0x8029	0x0F00	16	4	100	0	1	1	grm_d:0
+42	0x802A	0x0F10	12	3	100	0	1	1	grm_d:0
+43	0x802B	0x0F1C	32	8	100	0	2	2	mic_d:2 tri_g:6
+44	0x802C	0x0F3C	12	3	100	0	2	2	wdl_b:0 tri_d:7
+45	0x802D	0x0F48	12	3	100	0	2	2	wdl_b:0 tri_d:7
+46	0x802E	0x0F54	12	3	100	0	2	1	lus_g:3
+47	0x802F	0x0F60	12	3	100	0	3	1	lus_g:4
+48	0x8030	0x0F6C	16	4	100	0	3	1	lus_g:6
+49	0x8031	0x0F7C	16	4	100	0	3	1	lus_g:5
+50	0x8032	0x0F8C	16	4	100	0	2	1	lus_c:5
+51	0x8033	0x0F9C	12	3	100	0	4	2	lus_e:5 tri_s:20
+52	0x8034	0x0FA8	8	2	100	0	2	1	enw_a:7
+53	0x8035	0x0FB0	8	2	100	0	2	1	enw_a:7
+54	0x8036	0x0FB8	12	3	100	0	10	1	enw_a:7
+55	0x8037	0x0FC4	16	4	100	0	6	2	enw_c:0 tri_l:11
+56	0x8038	0x0FD4	24	6	100	0	4	2	enw_c:2 tri_l:12
+57	0x8039	0x0FEC	16	4	100	0	4	2	enw_c:4 tri_l:14
+58	0x803A	0x0FFC	16	4	100	0	4	2	enw_c:3 tri_l:13
+59	0x803B	0x100C	8	2	100	0	2	1	rwg_a:0
+60	0x803C	0x1014	8	2	100	0	2	1	rwg_a:0
+61	0x803D	0x101C	12	3	100	0	12	2	frs_b:0 tri_e:0
+62	0x803E	0x1028	12	3	100	0	18	2	frs_b:0 tri_e:0
+63	0x803F	0x1034	12	3	100	0	6	2	frs_b:2 tri_e:2
+64	0x8040	0x1040	12	3	100	0	6	2	frs_b:2 tri_e:2
+65	0x8041	0x104C	12	3	100	0	6	2	bds_g:0 tri_m:7
+66	0x8042	0x1058	16	4	100	0	4	2	bds_f:0 tri_m:13
+67	0x8043	0x1068	16	4	100	0	4	2	bds_f:0 tri_m:13
+68	0x8044	0x1078	8	2	100	0	6	2	hne_b:0 tri_c:5
+69	0x8045	0x1080	8	2	100	0	4	2	hne_b:0 tri_c:5
+70	0x8046	0x1088	12	3	100	0	9	4	gil_c:0 gil_c:1 tri_k:11 tri_k:12
+71	0x8047	0x1094	8	2	100	0	4	4	gil_c:0 gil_c:1 tri_k:11 tri_k:12
+72	0x8048	0x109C	16	4	100	0	4	4	gil_c:0 gil_c:1 tri_k:11 tri_k:12
+73	0x8049	0x10AC	12	3	100	0	2	1	bul_a:2
+74	0x804A	0x10B8	12	3	100	0	4	2	mrm_c:0 mrm_c:1
+75	0x804B	0x10C4	12	3	100	0	0	0	none
+76	0x804C	0x10D0	16	4	100	0	16	6	rui_c:0 rui_c:3 rui_c:4 tri_f:17 tri_f:19 tri_f:20
+77	0x804D	0x10E0	16	4	100	0	8	2	rui_c:1 tri_f:18
+78	0x804E	0x10F0	12	3	100	0	14	5	rui_d:0 rui_d:1 tri_e:8 tri_f:3 tri_f:4
+79	0x804F	0x10FC	12	3	100	0	14	5	rui_d:0 rui_d:1 tri_e:8 tri_f:3 tri_f:4
+80	0x8050	0x1108	4	1	100	0	10	3	rui_d:0 tri_e:8 tri_f:3
+81	0x8051	0x110C	12	3	100	0	14	5	rui_d:3 rui_d:4 tri_f:0 tri_f:5 tri_f:6
+82	0x8052	0x1118	4	1	100	0	14	5	rui_d:3 rui_d:4 tri_f:0 tri_f:5 tri_f:6
+83	0x8053	0x111C	4	1	100	0	10	3	rui_d:3 tri_f:0 tri_f:5
+84	0x8054	0x1120	12	3	100	0	14	5	rui_d:5 rui_d:6 tri_e:11 tri_f:7 tri_f:8
+85	0x8055	0x112C	12	3	100	0	14	5	rui_d:5 rui_d:6 tri_e:11 tri_f:7 tri_f:8
+86	0x8056	0x1138	4	1	100	0	10	3	rui_d:5 tri_e:11 tri_f:7
+87	0x8057	0x113C	12	3	100	0	14	5	rui_d:7 rui_d:8 tri_e:5 tri_f:9 tri_f:10
+88	0x8058	0x1148	12	3	100	0	14	5	rui_d:7 rui_d:9 tri_e:5 tri_f:9 tri_f:11
+89	0x8059	0x1154	4	1	100	0	10	3	rui_d:7 tri_e:5 tri_f:9
+90	0x805A	0x1158	12	3	100	0	14	5	rui_d:10 rui_d:11 tri_e:3 tri_f:12 tri_f:13
+91	0x805B	0x1164	12	3	100	0	14	5	rui_d:10 rui_d:11 tri_e:3 tri_f:12 tri_f:13
+92	0x805C	0x1170	4	1	100	0	10	3	rui_d:10 tri_e:3 tri_f:12
+93	0x805D	0x1174	40	10	100	0	6	1	rui_e:0
+94	0x805E	0x119C	40	10	100	0	4	1	rui_e:1
+95	0x805F	0x11C4	24	6	100	0	2	1	rui_e:1
+96	0x8060	0x11DC	20	5	100	0	2	1	rwf_c:0
+97	0x8061	0x11F0	24	6	100	0	2	1	rwf_c:0
+98	0x8062	0x1208	8	2	100	0	3	1	rwf_c:0
+99	0x8063	0x1210	16	4	100	0	4	2	rwf_d:1 tri_t:8
+100	0x8064	0x1220	16	4	100	0	4	2	rwf_d:1 tri_t:8
+101	0x8065	0x1230	12	3	100	0	6	3	dgl_n:6 rbl_c:0 tri_s:11
+102	0x8066	0x123C	12	3	100	0	18	3	dgl_n:6 rbl_c:0 tri_s:11
+103	0x8067	0x1248	12	3	100	0	2	1	rbl_j:0
+104	0x8068	0x1254	16	4	100	0	18	3	dgl_n:5 rbl_j:0 tri_s:10
+105	0x8069	0x1264	8	2	100	0	6	3	dgl_n:8 rbl_g:9 tri_s:13
+106	0x806A	0x126C	8	2	100	0	6	3	dgl_n:8 rbl_g:9 tri_s:13
+107	0x806B	0x1274	20	5	100	0	2	1	dgl_g:0
+108	0x806C	0x1288	12	3	100	0	2	1	dgl_g:2
+109	0x806D	0x1294	16	4	100	0	12	3	rbl_g:5 rbl_h:6 rbl_i:7
+110	0x806E	0x12A4	36	9	100	0	6	3	rbl_g:5 rbl_h:6 rbl_i:7
+111	0x806F	0x12C8	12	3	100	0	12	1	rsn_a:0
+112	0x8070	0x12D4	12	3	100	0	8	4	rsn_a:2 rsn_d:0 rsn_z:2 tri_b:3
+113	0x8071	0x12E0	12	3	100	0	3	1	bhm_b:0
+114	0x8072	0x12EC	12	3	100	0	6	2	bhm_b:2 tri_t:12
+115	0x8073	0x12F8	16	4	100	0	8	4	bhm_c:0 bhm_c:2 bhm_c:3 bhm_c:4
+116	0x8074	0x1308	20	5	100	0	4	4	bhm_c:6 bhm_c:7 bhm_c:9 bhm_c:10
+117	0x8075	0x131C	8	2	100	0	5	2	bhm_d:0 bhm_d:1
+118	0x8076	0x1324	12	3	100	0	4	3	bhm_d:0 bhm_d:1 bhm_d:3
+119	0x8077	0x1330	8	2	100	0	2	1	sav_d:3
+120	0x8078	0x1338	8	2	100	0	6	3	sav_g:0 ztc_b:3 ztc_c:9
+121	0x8079	0x1340	8	2	100	0	6	3	sav_g:0 ztc_b:3 ztc_c:9
+122	0x807A	0x1348	16	4	100	0	9	3	sav_g:0 ztc_b:3 ztc_c:9
+123	0x807B	0x1358	16	4	100	0	9	3	sav_g:0 ztc_b:3 ztc_c:9
+124	0x807C	0x1368	8	2	100	0	4	2	srb_b:7 mic_e:10
+125	0x807D	0x1370	12	3	100	0	4	2	srb_b:7 mic_e:10
+126	0x807E	0x137C	16	4	100	0	8	2	srb_b:7 mic_e:10
+127	0x807F	0x138C	16	4	100	0	6	2	srb_b:7 mic_e:10
+128	0x8080	0x139C	8	2	100	0	4	2	bog_a:6 bog_b:6
+129	0x8081	0x13A4	12	3	100	0	4	2	bog_a:6 bog_b:6
+130	0x8082	0x13B0	16	4	100	0	6	2	bog_a:6 bog_b:6
+131	0x8083	0x13C0	20	5	100	0	6	2	bog_a:6 bog_b:6
+132	0x8084	0x13D4	12	3	100	0	4	1	lus_b:7
+133	0x8085	0x13E0	16	4	100	0	2	1	lus_b:7
+134	0x8086	0x13F0	8	2	100	0	4	2	sav_g:2 tri_f:21
+135	0x8087	0x13F8	8	2	100	0	4	2	sav_g:2 tri_f:21
+136	0x8088	0x1400	12	3	100	0	4	1	rui_b:10
+137	0x8089	0x140C	12	3	100	0	0	0	none
+138	0x808A	0x1418	8	2	100	0	2	1	fon_c:8
+139	0x808B	0x1420	8	2	100	0	2	1	fon_c:8
+140	0x808C	0x1428	20	5	100	0	2	1	fon_c:8
+141	0x808D	0x143C	8	2	100	0	2	1	srb_b:8
+142	0x808E	0x1444	8	2	100	0	2	1	srb_b:8
+143	0x808F	0x144C	16	4	100	0	2	1	srb_b:8
+144	0x8090	0x145C	36	9	100	4	1	1	srb_b:8
+145	0x8091	0x1480	12	3	100	0	8	2	sav_d:7 sav_f:4
+146	0x8092	0x148C	12	3	100	0	8	2	sav_d:7 sav_f:4
+147	0x8093	0x1498	12	3	100	0	8	2	ozm_a:7 ozm_b:2
+148	0x8094	0x14A4	16	4	100	0	8	2	ozm_a:7 ozm_b:2
+149	0x8095	0x14B4	12	3	100	0	4	1	pbc_b:4
+150	0x8096	0x14C0	16	4	100	0	4	1	pbc_b:4
+151	0x8097	0x14D0	12	3	100	0	8	2	grm_e:3 tri_h:9
+152	0x8098	0x14DC	16	4	100	0	8	2	grm_e:3 tri_h:9
+153	0x8099	0x14EC	12	3	100	0	4	1	pla_b:11
+154	0x809A	0x14F8	12	3	100	0	4	1	pla_b:11
+155	0x809B	0x1504	12	3	100	0	3	1	ozm_c:2
+156	0x809C	0x1510	12	3	100	0	6	1	dst_a:14
+157	0x809D	0x151C	16	4	100	0	6	2	grm_e:11 tri_h:10
+158	0x809E	0x152C	16	4	100	0	6	2	grm_e:11 tri_h:10
+159	0x809F	0x153C	8	2	100	0	28	2	dst_a:2 wdl_a:1
+160	0x80A0	0x1544	12	3	100	0	20	2	wdl_a:0 tri_a:6
+161	0x80A1	0x1550	8	2	100	0	28	2	sav_a:0 sav_c:0
+162	0x80A2	0x1558	12	3	100	0	34	3	sav_d:0 sav_f:0 tri_a:7
+163	0x80A3	0x1564	12	3	100	0	8	2	gol_a:2 gol_b:0
+164	0x80A4	0x1570	12	3	100	0	8	2	gol_a:2 gol_b:0
+165	0x80A5	0x157C	12	3	100	0	8	2	pbc_a:0 pbc_b:0
+166	0x80A6	0x1588	12	3	100	0	8	2	pbc_a:0 pbc_b:0
+167	0x80A7	0x1594	16	4	100	0	21	3	dst_c:0 mnt_a:0 mnt_b:2
+168	0x80A8	0x15A4	16	4	100	0	21	3	dst_c:0 mnt_a:0 mnt_b:2
+169	0x80A9	0x15B4	16	4	100	0	16	4	fon_a:4 fon_c:3 srb_a:0 srb_b:0
+170	0x80AA	0x15C4	16	4	100	0	16	4	fon_a:4 fon_c:3 srb_a:0 srb_b:0
+171	0x80AB	0x15D4	16	4	100	0	4	1	mfr_a:7
+172	0x80AC	0x15E4	16	4	100	0	4	1	mfr_a:7
+173	0x80AD	0x15F4	12	3	100	0	4	1	mfr_a:2
+174	0x80AE	0x1600	12	3	100	0	4	1	mfr_a:2
+175	0x80AF	0x160C	8	2	100	0	6	2	wdl_a:8 tri_a:5
+176	0x80B0	0x1614	8	2	100	0	6	2	wdl_a:8 tri_a:5
+177	0x80B1	0x161C	12	3	100	0	3	1	wdl_a:13
+178	0x80B2	0x1628	12	3	100	0	3	1	wdl_a:13
+179	0x80B3	0x1634	16	4	100	0	3	1	wdl_a:12
+180	0x80B4	0x1644	16	4	100	0	3	1	wdl_a:12
+181	0x80B5	0x1654	12	3	100	0	3	1	mnt_a:5
+182	0x80B6	0x1660	12	3	100	0	3	1	mnt_a:5
+183	0x80B7	0x166C	8	2	100	0	6	1	sav_a:3
+184	0x80B8	0x1674	12	3	100	0	6	1	wdl_a:3
+185	0x80B9	0x1680	12	3	100	0	6	2	ozm_b:7 ozm_c:0
+186	0x80BA	0x168C	12	3	100	0	6	2	ozm_b:7 ozm_c:0
+187	0x80BB	0x1698	12	3	100	0	18	3	enw_a:4 enw_b:7 tri_b:6
+188	0x80BC	0x16A4	16	4	100	0	12	2	fon_a:3 fon_c:2
+189	0x80BD	0x16B4	16	4	100	0	17	5	mfr_a:9 mfr_a:10 mfr_c:4 tri_h:0 tri_h:2
+190	0x80BE	0x16C4	20	5	100	1	17	5	mfr_a:9 mfr_a:10 mfr_c:4 tri_h:0 tri_h:2
+191	0x80BF	0x16D8	12	3	100	0	6	2	grm_b:3 grm_e:8
+192	0x80C0	0x16E4	16	4	100	0	6	2	grm_b:3 grm_e:8
+193	0x80C1	0x16F4	12	3	100	0	6	2	gol_a:5 gol_d:4
+194	0x80C2	0x1700	16	4	100	0	6	2	gol_a:5 gol_d:4
+195	0x80C3	0x1710	20	5	100	0	8	4	rui_a:0 rui_a:6 rui_b:7 rui_b:8
+196	0x80C4	0x1724	24	6	100	0	8	4	rui_a:0 rui_a:6 rui_b:7 rui_b:8
+197	0x80C5	0x173C	16	4	100	0	4	2	rui_a:6 rui_b:8
+198	0x80C6	0x174C	28	7	100	0	8	2	rui_a:6 rui_b:8
+199	0x80C7	0x1768	20	5	100	0	6	2	ztc_a:0 ztc_c:3
+200	0x80C8	0x177C	24	6	100	0	6	2	ztc_a:0 ztc_c:3
+201	0x80C9	0x1794	20	5	100	0	6	2	gil_b:3 gil_c:5
+202	0x80CA	0x17A8	24	6	100	0	6	2	gil_b:3 gil_c:5
+203	0x80CB	0x17C0	32	8	100	0	12	4	bds_a:0 bds_b:0 bds_c:0 tri_l:2
+204	0x80CC	0x17E0	36	9	100	0	12	4	bds_a:0 bds_b:0 bds_c:0 tri_l:2
+205	0x80CD	0x1804	12	3	100	0	4	2	lus_d:7 tri_o:3
+206	0x80CE	0x1810	16	4	100	0	4	2	lus_d:7 tri_o:3
+207	0x80CF	0x1820	20	5	100	0	14	7	gil_g:5 gil_e:5 gil_f:5 gil_i:5 gil_j:7 gil_k:4 tri_l:0
+208	0x80D0	0x1834	24	6	100	0	14	7	gil_g:5 gil_e:5 gil_f:5 gil_i:5 gil_j:7 gil_k:4 tri_l:0
+209	0x80D1	0x184C	20	5	100	0	2	1	bog_b:10
+210	0x80D2	0x1860	36	9	100	4	2	1	bog_b:10
+211	0x80D3	0x1884	8	2	100	0	26	9	frs_c:6 rui_a:10 sav_d:2 sav_f:2 grm_b:2 ene_a:7 fon_a:6 ztc_a:2 ztc_c:2
+212	0x80D4	0x188C	8	2	100	0	26	9	frs_c:6 rui_a:10 sav_d:2 sav_f:2 grm_b:2 ene_a:7 fon_a:6 ztc_a:2 ztc_c:2
+213	0x80D5	0x1894	8	2	100	0	24	8	mic_b:7 pla_b:5 sav_f:5 pbc_a:4 pbc_b:5 grm_e:2 mic_e:9 tri_c:0
+214	0x80D6	0x189C	8	2	100	0	24	8	mic_b:7 pla_b:5 sav_f:5 pbc_a:4 pbc_b:5 grm_e:2 mic_e:9 tri_c:0
+215	0x80D7	0x18A4	16	4	100	0	13	5	rbl_g:3 rbl_k:4 rbl_l:4 rbl_m:4 tri_j:11
+216	0x80D8	0x18B4	16	4	100	0	13	5	rbl_g:3 rbl_k:4 rbl_l:4 rbl_m:4 tri_j:11
+217	0x80D9	0x18C4	16	4	100	0	3	1	pla_b:9
+218	0x80DA	0x18D4	16	4	100	0	3	1	pla_b:9
+219	0x80DB	0x18E4	8	2	100	0	8	4	frs_a:2 ozm_a:3 ozm_b:8 mfr_a:0
+220	0x80DC	0x18EC	8	2	100	0	6	2	sav_a:2 sav_c:2
+221	0x80DD	0x18F4	8	2	100	0	6	2	sav_a:2 sav_c:2
+222	0x80DE	0x18FC	12	3	100	0	6	2	ozm_a:3 ozm_b:8
+223	0x80DF	0x1908	12	3	100	0	6	2	ozm_a:3 ozm_b:8
+224	0x80E0	0x1914	12	3	100	0	5	1	frs_a:2
+225	0x80E1	0x1920	12	3	100	0	5	1	frs_a:2
+226	0x80E2	0x192C	28	7	100	0	3	1	mfr_a:0
+227	0x80E3	0x1948	28	7	100	0	3	1	mfr_a:0
+228	0x80E4	0x1964	16	4	100	0	0	0	none
+229	0x80E5	0x1974	16	4	100	0	0	0	none
+230	0x80E6	0x1984	16	4	100	0	2	1	frs_a:5
+231	0x80E7	0x1994	16	4	100	0	2	1	frs_a:5
+232	0x80E8	0x19A4	20	5	100	0	2	1	mfr_a:8
+233	0x80E9	0x19B8	20	5	100	0	2	1	mfr_a:8
+234	0x80EA	0x19CC	24	6	100	0	2	1	mfr_a:8
+235	0x80EB	0x19E4	8	2	100	0	13	6	dst_c:5 dst_a:12 sav_d:4 sav_f:3 grm_a:3 tri_a:11
+236	0x80EC	0x19EC	8	2	100	0	13	6	dst_c:5 dst_a:12 sav_d:4 sav_f:3 grm_a:3 tri_a:11
+237	0x80ED	0x19F4	12	3	100	0	6	3	ene_a:2 enw_a:5 enw_b:2
+238	0x80EE	0x1A00	12	3	100	0	6	3	ene_a:2 enw_a:5 enw_b:2
+239	0x80EF	0x1A0C	16	4	100	0	4	2	fon_a:2 fon_c:6
+240	0x80F0	0x1A1C	16	4	100	0	4	2	fon_a:2 fon_c:6
+241	0x80F1	0x1A2C	16	4	100	0	6	3	bog_a:5 bog_b:7 rui_a:5
+242	0x80F2	0x1A3C	16	4	100	0	6	3	bog_a:5 bog_b:7 rui_a:5
+243	0x80F3	0x1A4C	16	4	100	0	4	2	sav_d:6 sav_f:8
+244	0x80F4	0x1A5C	16	4	100	0	4	2	sav_d:6 sav_f:8
+245	0x80F5	0x1A6C	16	4	100	0	4	2	fon_a:9 tri_g:3
+246	0x80F6	0x1A7C	16	4	100	0	4	2	fon_a:9 tri_g:3
+247	0x80F7	0x1A8C	12	3	100	0	3	1	frs_c:0
+248	0x80F8	0x1A98	12	3	100	0	3	1	frs_c:0
+249	0x80F9	0x1AA4	12	3	100	0	9	3	ztc_a:6 ztc_c:7 tri_g:8
+250	0x80FA	0x1AB0	12	3	100	0	9	3	ztc_a:6 ztc_c:7 tri_g:8
+251	0x80FB	0x1ABC	12	3	100	0	3	1	mfr_c:0
+252	0x80FC	0x1AC8	12	3	100	0	3	1	mfr_c:0
+253	0x80FD	0x1AD4	12	3	100	0	8	2	lus_d:2 tri_i:9
+254	0x80FE	0x1AE0	12	3	100	0	8	2	lus_d:2 tri_i:9
+255	0x80FF	0x1AEC	12	3	100	0	9	3	rwf_a:0 rwf_b:0 tri_i:7
+256	0x8100	0x1AF8	12	3	100	0	9	3	rwf_a:0 rwf_b:0 tri_i:7
+257	0x8101	0x1B04	12	3	100	0	4	2	lus_d:3 tri_i:8
+258	0x8102	0x1B10	12	3	100	0	4	2	lus_d:3 tri_i:8
+259	0x8103	0x1B1C	12	3	100	0	2	1	frs_c:8
+260	0x8104	0x1B28	12	3	100	0	2	1	frs_c:8
+261	0x8105	0x1B34	16	4	100	0	6	2	gol_a:3 tri_c:6
+262	0x8106	0x1B44	16	4	100	0	8	2	gol_a:3 tri_c:6
+263	0x8107	0x1B54	16	4	100	0	12	4	pla_a:0 pla_b:0 pla_b:1 gol_b:2
+264	0x8108	0x1B64	16	4	100	0	12	4	pla_a:0 pla_b:0 pla_b:1 gol_b:2
+265	0x8109	0x1B74	16	4	100	0	6	2	srb_a:3 srb_b:3
+266	0x810A	0x1B84	16	4	100	0	6	2	srb_a:3 srb_b:3
+267	0x810B	0x1B94	16	4	100	0	14	4	gil_g:0 gil_e:0 gil_f:0 tri_h:7
+268	0x810C	0x1BA4	20	5	100	0	11	7	gil_g:0 gil_g:2 gil_e:0 gil_e:2 gil_f:0 gil_f:2 tri_h:7
+269	0x810D	0x1BB8	8	2	100	0	17	7	gil_g:0 gil_g:2 gil_e:0 gil_e:2 gil_f:0 gil_f:2 tri_h:7
+270	0x810E	0x1BC0	16	4	100	0	2	1	pbc_c:4
+271	0x810F	0x1BD0	16	4	100	0	2	1	pbc_c:4
+272	0x8110	0x1BE0	16	4	100	0	2	1	pla_a:5
+273	0x8111	0x1BF0	16	4	100	0	2	1	pla_a:5
+274	0x8112	0x1C00	16	4	100	0	10	4	grm_b:4 grm_b:5 grm_e:9 grm_e:10
+275	0x8113	0x1C10	20	5	100	0	10	4	grm_b:4 grm_b:5 grm_e:9 grm_e:10
+276	0x8114	0x1C24	16	4	100	0	5	2	mic_a:11 mic_a:12
+277	0x8115	0x1C34	24	6	100	0	5	2	mic_a:11 mic_a:12
+278	0x8116	0x1C4C	16	4	100	0	5	2	mic_e:6 mic_e:7
+279	0x8117	0x1C5C	24	6	100	0	5	2	mic_e:6 mic_e:7
+280	0x8118	0x1C74	8	2	100	0	7	3	rwg_c:8 rwg_c:9 tri_b:8
+281	0x8119	0x1C7C	12	3	100	0	7	3	rwg_c:8 rwg_c:9 tri_b:8
+282	0x811A	0x1C88	20	5	100	0	7	3	ztc_c:5 ztc_c:6 tri_g:10
+283	0x811B	0x1C9C	20	5	100	0	7	3	ztc_c:5 ztc_c:6 tri_g:10
+284	0x811C	0x1CB0	12	3	100	0	14	4	gil_g:8 gil_g:9 gil_j:0 gil_j:1
+285	0x811D	0x1CBC	12	3	100	0	14	4	gil_g:8 gil_g:9 gil_j:0 gil_j:1
+286	0x811E	0x1CC8	24	6	100	0	21	9	hne_d:0 hne_d:1 rbl_g:0 rbl_h:3 rbl_i:0 rbl_m:6 rbl_m:7 rbl_n:7 rbl_n:8
+287	0x811F	0x1CE0	24	6	100	0	21	9	hne_d:0 hne_d:1 rbl_g:0 rbl_h:3 rbl_i:0 rbl_m:6 rbl_m:7 rbl_n:7 rbl_n:8
+288	0x8120	0x1CF8	12	3	100	0	2	1	grm_g:4
+289	0x8121	0x1D04	12	3	100	0	4	1	grm_g:4
+290	0x8122	0x1D10	8	2	100	0	4	2	rwg_c:10 tri_b:9
+291	0x8123	0x1D18	8	2	100	0	4	2	rwg_c:10 tri_b:9
+292	0x8124	0x1D20	24	6	100	0	10	5	gil_i:6 gil_j:8 gil_k:5 gil_l:2 tri_r:11
+293	0x8125	0x1D38	24	6	100	0	10	5	gil_i:6 gil_j:8 gil_k:5 gil_l:2 tri_r:11
+294	0x8126	0x1D50	16	4	100	0	6	4	gol_a:8 gol_c:3 gol_d:3 tri_c:9
+295	0x8127	0x1D60	16	4	100	0	6	4	gol_a:8 gol_c:3 gol_d:3 tri_c:9
+296	0x8128	0x1D70	12	3	100	0	4	1	mnt_b:7
+297	0x8129	0x1D7C	12	3	100	0	2	1	mnt_b:7
+298	0x812A	0x1D88	16	4	100	0	2	1	mfr_a:3
+299	0x812B	0x1D98	16	4	100	0	2	1	mfr_a:3
+300	0x812C	0x1DA8	16	4	100	0	16	4	gil_g:6 gil_b:4 gil_f:6 tri_h:4
+301	0x812D	0x1DB8	16	4	100	0	8	4	gil_g:6 gil_b:4 gil_f:6 tri_h:4
+302	0x812E	0x1DC8	12	3	100	0	8	2	bds_a:7 bds_b:3
+303	0x812F	0x1DD4	12	3	100	0	4	2	bds_a:7 bds_b:3
+304	0x8130	0x1DE0	12	3	100	0	4	1	bog_b:14
+305	0x8131	0x1DEC	16	4	100	0	2	1	bog_b:14
+306	0x8132	0x1DFC	12	3	100	0	4	1	bds_c:9
+307	0x8133	0x1E08	12	3	100	0	2	1	bds_c:9
+308	0x8134	0x1E14	20	5	100	0	4	1	ztc_a:8
+309	0x8135	0x1E28	16	4	100	0	2	1	ztc_a:8
+310	0x8136	0x1E38	12	3	100	0	4	2	mfr_c:5 tri_n:9
+311	0x8137	0x1E44	12	3	100	0	4	2	mfr_c:5 tri_n:9
+312	0x8138	0x1E50	2704	676	100	667	2	2	rbl_n:9 tri_j:3
+313	0x8139	0x28E0	8	2	100	0	9	3	dst_a:3 wdl_a:10 tri_a:14
+314	0x813A	0x28E8	8	2	100	0	9	3	dst_a:3 wdl_a:10 tri_a:14
+315	0x813B	0x28F0	12	3	100	0	6	2	enw_a:11 enw_b:0
+316	0x813C	0x28FC	12	3	100	0	6	2	enw_a:11 enw_b:0
+317	0x813D	0x2908	12	3	100	0	3	1	rwg_c:0
+318	0x813E	0x2914	12	3	100	0	3	1	rwg_c:0
+319	0x813F	0x2920	12	3	100	0	3	1	frs_a:3
+320	0x8140	0x292C	12	3	100	0	3	1	frs_a:3
+321	0x8141	0x2938	16	4	100	0	9	3	rui_a:2 ztc_a:5 ztc_c:4
+322	0x8142	0x2948	16	4	100	0	9	3	rui_a:2 ztc_a:5 ztc_c:4
+323	0x8143	0x2958	16	4	100	0	9	3	rbl_b:0 rbl_d:3 rbl_e:4
+324	0x8144	0x2968	16	4	100	0	9	3	rbl_b:0 rbl_d:3 rbl_e:4
+325	0x8145	0x2978	8	2	100	0	4	2	sav_a:6 tri_b:2
+326	0x8146	0x2980	8	2	100	0	6	3	sav_a:6 tri_b:0 tri_b:2
+327	0x8147	0x2988	12	3	100	0	4	2	sav_a:5 tri_b:0
+328	0x8148	0x2994	12	3	100	0	2	1	sav_a:5
+329	0x8149	0x29A0	12	3	100	0	4	2	dst_a:11 tri_a:15
+330	0x814A	0x29AC	12	3	100	0	4	2	dst_a:11 tri_a:15
+331	0x814B	0x29B8	8	2	100	0	3	1	sav_a:7
+332	0x814C	0x29C0	8	2	100	0	3	1	sav_a:7
+333	0x814D	0x29C8	12	3	100	0	3	1	ozm_a:2
+334	0x814E	0x29D4	12	3	100	0	3	1	ozm_a:2
+335	0x814F	0x29E0	12	3	100	0	3	1	mnt_b:3
+336	0x8150	0x29EC	12	3	100	0	3	1	mnt_b:3
+337	0x8151	0x29F8	12	3	100	0	6	2	pla_a:4 pla_b:6
+338	0x8152	0x2A04	12	3	100	0	6	2	pla_a:4 pla_b:6
+339	0x8153	0x2A10	12	3	100	0	3	1	mfr_c:3
+340	0x8154	0x2A1C	12	3	100	0	3	1	mfr_c:3
+341	0x8155	0x2A28	8	2	100	0	2	1	lus_a:6
+342	0x8156	0x2A30	8	2	100	0	2	1	lus_a:6
+343	0x8157	0x2A38	12	3	100	0	4	2	ztc_a:4 tri_g:9
+344	0x8158	0x2A44	12	3	100	0	8	2	ztc_a:4 tri_g:9
+345	0x8159	0x2A50	12	3	100	0	3	1	gol_a:4
+346	0x815A	0x2A5C	12	3	100	0	3	1	gol_a:4
+347	0x815B	0x2A68	8	2	100	0	2	1	mnt_b:9
+348	0x815C	0x2A70	8	2	100	0	2	1	mnt_b:9
+349	0x815D	0x2A78	20	5	100	0	12	4	mic_a:10 mic_b:6 lus_a:0 lus_b:6
+350	0x815E	0x2A8C	20	5	100	0	12	4	mic_a:10 mic_b:6 lus_a:0 lus_b:6
+351	0x815F	0x2AA0	12	3	100	0	15	5	mic_a:14 mic_b:9 lus_a:2 lus_b:0 lus_g:0
+352	0x8160	0x2AAC	12	3	100	0	15	5	mic_a:14 mic_b:9 lus_a:2 lus_b:0 lus_g:0
+353	0x8161	0x2AB8	16	4	100	0	3	1	rwg_c:6
+354	0x8162	0x2AC8	16	4	100	0	3	1	rwg_c:6
+355	0x8163	0x2AD8	16	4	100	0	3	1	rwg_c:7
+356	0x8164	0x2AE8	16	4	100	0	3	1	rwg_c:7
+357	0x8165	0x2AF8	20	5	100	0	8	3	gol_b:4 pbc_b:2 pbc_c:7
+358	0x8166	0x2B0C	20	5	100	0	8	3	gol_b:4 pbc_b:2 pbc_c:7
+359	0x8167	0x2B20	16	4	100	0	6	2	pbc_a:2 pbc_b:3
+360	0x8168	0x2B30	16	4	100	0	6	2	pbc_a:2 pbc_b:3
+361	0x8169	0x2B40	24	6	100	0	6	2	lus_f:0 tri_q:3
+362	0x816A	0x2B58	24	6	100	0	6	2	lus_f:0 tri_q:3
+363	0x816B	0x2B70	20	5	100	0	4	1	mrm_g:3
+364	0x816C	0x2B84	20	5	100	0	20	6	mic_d:4 bog_a:4 bog_b:3 mic_e:0 rbl_n:6 tri_g:7
+365	0x816D	0x2B98	24	6	100	0	20	6	bog_a:4 bog_b:3 mic_e:0 rbl_h:0 rbl_i:6 rbl_n:6
+366	0x816E	0x2BB0	16	4	100	0	15	5	bog_a:2 rbl_k:0 rbl_l:0 rbl_m:0 tri_i:14
+367	0x816F	0x2BC0	20	5	100	0	15	5	bog_a:2 rbl_k:0 rbl_l:0 rbl_m:0 tri_i:14
+368	0x8170	0x2BD4	16	4	100	0	2	1	wdl_a:14
+369	0x8171	0x2BE4	16	4	100	0	2	1	wdl_a:14
+370	0x8172	0x2BF4	20	5	100	0	2	1	gol_b:5
+371	0x8173	0x2C08	20	5	100	0	2	1	gol_b:5
+372	0x8174	0x2C1C	16	4	100	0	4	2	gil_i:7 tri_q:8
+373	0x8175	0x2C2C	16	4	100	0	4	2	gil_i:7 tri_q:8
+374	0x8176	0x2C3C	12	3	100	0	8	2	sav_a:4 lus_a:3
+375	0x8177	0x2C48	12	3	100	0	8	2	sav_a:4 lus_a:3
+376	0x8178	0x2C54	12	3	100	0	12	3	pbc_a:5 pbc_b:9 pbc_c:8
+377	0x8179	0x2C60	12	3	100	0	12	3	pbc_a:5 pbc_b:9 pbc_c:8
+378	0x817A	0x2C6C	16	4	100	0	20	5	dst_c:7 mnt_a:2 mnt_b:8 mnt_b:11 lus_d:6
+379	0x817B	0x2C7C	16	4	100	0	20	5	dst_c:7 mnt_a:2 mnt_b:8 mnt_b:11 lus_d:6
+380	0x817C	0x2C8C	12	3	100	0	3	1	ozm_c:4
+381	0x817D	0x2C98	12	3	100	0	3	1	ozm_c:4
+382	0x817E	0x2CA4	16	4	100	0	0	0	none
+383	0x817F	0x2CB4	16	4	100	0	0	0	none
+384	0x8180	0x2CC4	12	3	100	0	0	0	none
+385	0x8181	0x2CD0	12	3	100	0	0	0	none
+386	0x8182	0x2CDC	8	2	100	0	10	2	sav_c:3 wdl_a:4
+387	0x8183	0x2CE4	8	2	100	0	6	2	sav_c:3 wdl_a:4
+388	0x8184	0x2CEC	12	3	100	0	0	0	none
+389	0x8185	0x2CF8	12	3	100	0	0	0	none
+390	0x8186	0x2D04	12	3	100	0	4	1	ozm_a:0
+391	0x8187	0x2D10	12	3	100	0	5	1	ozm_a:0
+392	0x8188	0x2D1C	16	4	100	0	6	2	gil_j:3 gil_j:4
+393	0x8189	0x2D2C	16	4	100	0	6	2	gil_j:3 gil_j:4
+394	0x818A	0x2D3C	12	3	100	0	4	1	bog_b:15
+395	0x818B	0x2D48	12	3	100	0	4	1	bog_b:15
+396	0x818C	0x2D54	12	3	100	0	3	1	sav_c:5
+397	0x818D	0x2D60	12	3	100	0	3	1	sav_c:5
+398	0x818E	0x2D6C	16	4	100	0	3	1	enw_a:12
+399	0x818F	0x2D7C	16	4	100	0	3	1	enw_a:12
+400	0x8190	0x2D8C	12	3	100	0	6	3	pla_a:7 pla_b:8 tri_p:3
+401	0x8191	0x2D98	12	3	100	0	4	2	wdl_a:6 tri_p:1
+402	0x8192	0x2DA4	12	3	100	0	1	1	mfr_a:4
+403	0x8193	0x2DB0	16	4	100	0	1	1	mfr_a:4
+404	0x8194	0x2DC0	16	4	100	0	2	2	gil_b:5 tri_p:10
+405	0x8195	0x2DD0	16	4	100	0	2	2	gil_b:5 tri_p:10
+406	0x8196	0x2DE0	12	3	100	0	2	2	bds_a:8 bds_c:6
+407	0x8197	0x2DEC	12	3	100	0	2	2	bds_a:8 bds_c:6
+408	0x8198	0x2DF8	12	3	100	0	2	2	bog_b:8 tri_p:14
+409	0x8199	0x2E04	16	4	100	0	2	2	bog_b:8 tri_p:14
+410	0x819A	0x2E14	12	3	100	0	2	2	rbl_i:8 tri_p:12
+411	0x819B	0x2E20	12	3	100	0	2	2	rbl_i:8 tri_p:12
+412	0x819C	0x2E2C	16	4	100	0	2	2	rbl_h:9 tri_p:8
+413	0x819D	0x2E3C	16	4	100	0	2	2	rbl_h:9 tri_p:8
+414	0x819E	0x2E4C	12	3	100	0	9	3	mic_a:9 rwg_c:11 mrm_b:5
+415	0x819F	0x2E58	12	3	100	0	9	3	mic_a:9 rwg_c:11 mrm_b:5
+416	0x81A0	0x2E64	16	4	100	0	8	3	mic_a:15 mic_a:16 rwg_c:12
+417	0x81A1	0x2E74	16	4	100	0	8	3	mic_a:15 mic_a:16 rwg_c:12
+418	0x81A2	0x2E84	24	6	100	0	3	1	rwg_c:13
+419	0x81A3	0x2E9C	24	6	100	0	3	1	rwg_c:13
+420	0x81A4	0x2EB4	8	2	100	0	3	1	mrm_b:2
+421	0x81A5	0x2EBC	12	3	100	0	3	1	mrm_b:2
+422	0x81A6	0x2EC8	16	4	100	0	3	1	mrm_b:11
+423	0x81A7	0x2ED8	20	5	100	0	3	1	mrm_b:11
+424	0x81A8	0x2EEC	12	3	100	0	6	2	mrm_b:12 mrm_d:3
+425	0x81A9	0x2EF8	16	4	100	0	6	2	mrm_b:12 mrm_d:3
+426	0x81AA	0x2F08	12	3	100	0	6	2	rui_a:3 rui_b:0
+427	0x81AB	0x2F14	16	4	100	0	6	2	rui_a:3 rui_b:0
+428	0x81AC	0x2F24	28	7	100	0	2	1	ztc_d:0
+429	0x81AD	0x2F40	24	6	100	0	2	1	ztc_d:0
+430	0x81AE	0x2F58	24	6	100	0	10	5	gil_i:3 gil_j:5 gil_k:2 gil_l:0 tri_r:10
+431	0x81AF	0x2F70	24	6	100	0	10	5	gil_i:3 gil_j:5 gil_k:2 gil_l:0 tri_r:10
+432	0x81B0	0x2F88	32	8	100	0	16	6	rui_b:5 bds_b:2 rbl_i:2 rbl_m:5 rbl_n:5 tri_j:4
+433	0x81B1	0x2FA8	32	8	100	0	16	6	rui_b:5 bds_b:2 rbl_i:2 rbl_m:5 rbl_n:5 tri_j:4
+434	0x81B2	0x2FC8	12	3	100	0	6	2	bog_a:3 bog_b:4
+435	0x81B3	0x2FD4	12	3	100	0	6	2	bog_a:3 bog_b:4
+436	0x81B4	0x2FE0	20	5	100	0	2	1	rwg_c:14
+437	0x81B5	0x2FF4	20	5	100	0	2	1	rwg_c:14
+438	0x81B6	0x3008	12	3	100	0	2	1	grm_e:12
+439	0x81B7	0x3014	12	3	100	0	2	1	grm_e:12
+440	0x81B8	0x3020	12	3	100	0	2	1	bog_b:13
+441	0x81B9	0x302C	12	3	100	0	2	1	bog_b:13
+442	0x81BA	0x3038	24	6	100	2	6	2	lus_f:4 tri_r:9
+443	0x81BB	0x3050	8	2	100	0	9	3	ozm_a:4 ozm_b:3 tri_d:8
+444	0x81BC	0x3058	8	2	100	0	12	3	ozm_a:4 ozm_b:3 tri_d:8
+445	0x81BD	0x3060	8	2	100	0	3	1	pbc_c:3
+446	0x81BE	0x3068	8	2	100	0	4	1	pbc_c:3
+447	0x81BF	0x3070	12	3	100	0	6	2	dst_c:3 wdl_a:5
+448	0x81C0	0x307C	12	3	100	0	6	2	dst_c:3 wdl_a:5
+449	0x81C1	0x3088	12	3	100	0	3	1	mnt_b:5
+450	0x81C2	0x3094	12	3	100	0	4	1	mnt_b:5
+451	0x81C3	0x30A0	12	3	100	0	6	2	fon_a:0 fon_c:0
+452	0x81C4	0x30AC	12	3	100	0	8	2	fon_a:0 fon_c:0
+453	0x81C5	0x30B8	12	3	100	0	6	2	srb_a:2 srb_b:4
+454	0x81C6	0x30C4	12	3	100	0	6	2	srb_a:2 srb_b:4
+455	0x81C7	0x30D0	8	2	100	0	6	2	enw_a:10 tri_b:7
+456	0x81C8	0x30D8	8	2	100	0	8	2	enw_a:10 tri_b:7
+457	0x81C9	0x30E0	12	3	100	0	9	3	ozm_a:9 ozm_b:5 tri_l:8
+458	0x81CA	0x30EC	12	3	100	0	9	3	ozm_a:9 ozm_b:5 tri_l:8
+459	0x81CB	0x30F8	12	3	100	0	9	3	ozm_a:8 ozm_b:4 tri_l:7
+460	0x81CC	0x3104	12	3	100	0	9	3	ozm_a:8 ozm_b:4 tri_l:7
+461	0x81CD	0x3110	12	3	100	0	2	1	fon_a:11
+462	0x81CE	0x311C	8	2	100	0	2	1	fon_a:11
+463	0x81CF	0x3124	12	3	100	0	9	3	dst_c:6 frs_c:4 tri_l:9
+464	0x81D0	0x3130	8	2	100	0	9	3	dst_c:6 frs_c:4 tri_l:9
+465	0x81D1	0x3138	12	3	100	0	6	2	frs_c:5 tri_l:10
+466	0x81D2	0x3144	8	2	100	0	6	2	frs_c:5 tri_l:10
+467	0x81D3	0x314C	12	3	100	0	2	2	pbc_b:7 tri_l:6
+468	0x81D4	0x3158	12	3	100	0	3	2	pbc_b:7 tri_l:6
+469	0x81D5	0x3164	12	3	100	0	2	1	ene_a:12
+470	0x81D6	0x3170	12	3	100	0	3	1	ene_a:12
+471	0x81D7	0x317C	16	4	100	0	3	1	mrm_d:12
+472	0x81D8	0x318C	16	4	100	0	3	1	mrm_d:12
+473	0x81D9	0x319C	24	6	100	0	9	3	rui_a:4 rui_b:2 tri_f:15
+474	0x81DA	0x31B4	24	6	100	0	9	3	rui_a:4 rui_b:2 tri_f:15
+475	0x81DB	0x31CC	24	6	100	0	3	1	rui_b:3
+476	0x81DC	0x31E4	24	6	100	0	3	1	rui_b:3
+477	0x81DD	0x31FC	24	6	100	0	3	1	lus_b:2
+478	0x81DE	0x3214	28	7	100	0	3	1	lus_b:2
+479	0x81DF	0x3230	24	6	100	0	3	1	lus_b:3
+480	0x81E0	0x3248	24	6	100	0	3	1	lus_b:3
+481	0x81E1	0x3260	16	4	100	0	12	4	rbl_g:6 rbl_k:3 rbl_l:3 rbl_m:3
+482	0x81E2	0x3270	20	5	100	0	12	4	rbl_g:6 rbl_k:3 rbl_l:3 rbl_m:3
+483	0x81E3	0x3284	16	4	100	0	4	2	rui_a:11 tri_o:5
+484	0x81E4	0x3294	20	5	100	0	4	2	rui_a:11 tri_o:5
+485	0x81E5	0x32A8	12	3	100	0	3	1	pbc_b:13
+486	0x81E6	0x32B4	12	3	100	0	3	1	pbc_b:13
+487	0x81E7	0x32C0	12	3	100	0	3	1	pbc_b:14
+488	0x81E8	0x32CC	12	3	100	0	3	1	pbc_b:14
+489	0x81E9	0x32D8	16	4	100	0	6	2	rui_b:6 tri_f:14
+490	0x81EA	0x32E8	16	4	100	0	6	2	rui_b:6 tri_f:14
+491	0x81EB	0x32F8	12	3	100	0	2	1	srb_a:6
+492	0x81EC	0x3304	12	3	100	0	2	1	srb_a:6
+493	0x81ED	0x3310	16	4	100	0	4	2	rbl_m:8 tri_o:4
+494	0x81EE	0x3320	16	4	100	0	4	2	rbl_m:8 tri_o:4
+495	0x81EF	0x3330	12	3	100	0	3	1	pbc_c:9
+496	0x81F0	0x333C	12	3	100	0	3	1	pbc_c:9
+497	0x81F1	0x3348	12	3	100	0	3	1	pbc_c:0
+498	0x81F2	0x3354	12	3	100	0	3	1	pbc_c:0
+499	0x81F3	0x3360	12	3	100	0	2	1	mrm_d:7
+500	0x81F4	0x336C	12	3	100	0	2	1	mrm_d:7
+501	0x81F5	0x3378	12	3	100	0	3	1	ztc_c:8
+502	0x81F6	0x3384	8	2	100	0	3	1	ztc_c:8
+503	0x81F7	0x338C	12	3	100	0	6	2	ztc_c:10 tri_g:13
+504	0x81F8	0x3398	12	3	100	0	6	2	ztc_c:10 tri_g:13
+505	0x81F9	0x33A4	12	3	100	0	4	2	ztc_c:10 tri_g:13
+506	0x81FA	0x33B0	12	3	100	0	6	2	gil_j:10 gil_k:0
+507	0x81FB	0x33BC	12	3	100	0	6	2	gil_j:10 gil_k:0
+508	0x81FC	0x33C8	20	5	100	0	4	2	gil_j:10 gil_k:0
+509	0x81FD	0x33DC	24	6	100	0	3	1	hne_c:4
+510	0x81FE	0x33F4	24	6	100	0	3	1	hne_c:4
+511	0x81FF	0x340C	28	7	100	0	3	1	rbl_n:2
+512	0x8200	0x3428	28	7	100	0	3	1	rbl_n:2
+513	0x8201	0x3444	16	4	100	0	5	4	rbl_g:11 rbl_h:2 rbl_i:10 rbl_l:5
+514	0x8202	0x3454	16	4	100	0	5	4	rbl_g:11 rbl_h:2 rbl_i:10 rbl_l:5
+515	0x8203	0x3464	16	4	100	0	12	4	rbl_g:11 rbl_h:2 rbl_i:10 rbl_l:5
+516	0x8204	0x3474	16	4	100	0	2	2	srb_b:10 tri_m:17
+517	0x8205	0x3484	16	4	100	0	2	2	srb_b:10 tri_m:17
+518	0x8206	0x3494	8	2	100	0	8	2	asp_b:0 tri_m:16
+519	0x8207	0x349C	20	5	100	0	4	2	asp_b:0 tri_m:16
+520	0x8208	0x34B0	20	5	100	0	8	2	asp_b:0 tri_m:16
+521	0x8209	0x34C4	8	2	100	0	2	1	mrm_d:8
+522	0x820A	0x34CC	8	2	100	0	2	1	mrm_d:8
+523	0x820B	0x34D4	16	4	100	0	6	1	mrm_d:8
+524	0x820C	0x34E4	28	7	100	0	4	1	fon_a:10
+525	0x820D	0x3500	28	7	100	0	0	0	none
+526	0x820E	0x351C	8	2	100	0	3	1	hne_a:6
+527	0x820F	0x3524	8	2	100	0	3	1	hne_a:6
+528	0x8210	0x352C	8	2	100	0	2	1	mrm_d:13
+529	0x8211	0x3534	8	2	100	0	2	1	mrm_d:13
+530	0x8212	0x353C	12	3	100	0	3	1	ztc_b:0
+531	0x8213	0x3548	12	3	100	0	3	1	ztc_b:0
+532	0x8214	0x3554	20	5	100	0	3	1	ztc_b:0
+533	0x8215	0x3568	12	3	100	0	7	3	rbl_b:2 rbl_g:4 rbl_h:5
+534	0x8216	0x3574	12	3	100	0	7	3	rbl_b:2 rbl_g:4 rbl_h:5
+535	0x8217	0x3580	12	3	100	0	2	1	frs_c:7
+536	0x8218	0x358C	12	3	100	0	2	1	frs_c:7
+537	0x8219	0x3598	12	3	100	0	4	2	rwf_b:3 tri_i:6
+538	0x821A	0x35A4	12	3	100	0	4	2	rwf_b:3 tri_i:6
+539	0x821B	0x35B0	20	5	100	0	8	2	rwf_b:3 tri_i:6
+540	0x821C	0x35C4	12	3	100	0	8	4	bds_a:5 bds_b:5 bds_c:5 tri_k:1
+541	0x821D	0x35D0	12	3	100	0	8	4	bds_a:5 bds_b:5 bds_c:5 tri_k:1
+542	0x821E	0x35DC	16	4	100	0	12	4	bds_a:5 bds_b:5 bds_c:5 tri_k:1
+543	0x821F	0x35EC	8	2	100	0	15	5	mic_a:4 grm_a:2 grm_b:6 lus_a:4 lus_g:2
+544	0x8220	0x35F4	8	2	100	0	15	5	mic_a:4 grm_a:2 grm_b:6 lus_a:4 lus_g:2
+545	0x8221	0x35FC	8	2	100	0	9	3	mic_a:6 rwg_c:3 hne_a:0
+546	0x8222	0x3604	12	3	100	0	9	3	mic_a:6 rwg_c:3 hne_a:0
+547	0x8223	0x3610	12	3	100	0	6	2	mrm_b:4 hne_a:2
+548	0x8224	0x361C	16	4	100	0	6	2	mrm_b:4 hne_a:2
+549	0x8225	0x362C	12	3	100	0	15	4	rui_b:4 hne_c:0 lus_f:2 tri_t:0
+550	0x8226	0x3638	16	4	100	0	9	3	rui_b:4 hne_c:0 lus_f:2
+551	0x8227	0x3648	16	4	100	0	12	4	lus_a:7 lus_b:8 lus_d:0 tri_m:5
+552	0x8228	0x3658	16	4	100	0	12	4	lus_a:7 lus_b:8 lus_d:0 tri_m:5
+553	0x8229	0x3668	16	4	100	0	2	1	mic_e:8
+554	0x822A	0x3678	16	4	100	0	2	1	mic_e:8
+555	0x822B	0x3688	12	3	100	0	2	1	lus_a:5
+556	0x822C	0x3694	12	3	100	0	2	1	lus_a:5
+557	0x822D	0x36A0	12	3	100	0	2	1	gol_d:5
+558	0x822E	0x36AC	12	3	100	0	5	2	gol_d:5 tri_t:0
+559	0x822F	0x36B8	16	4	100	0	1	1	rui_a:7
+560	0x8230	0x36C8	8	2	100	1	1	1	rui_a:7
+561	0x8231	0x36D0	8	2	100	0	1	1	rwg_c:2
+562	0x8232	0x36D8	12	3	100	0	1	1	rwg_c:2
+563	0x8233	0x36E4	8	2	100	0	1	1	mrm_b:3
+564	0x8234	0x36EC	12	3	100	0	1	1	mrm_b:3
+565	0x8235	0x36F8	12	3	100	0	3	3	rbl_d:1 rbl_e:1 tri_i:12
+566	0x8236	0x3704	12	3	100	0	3	3	rbl_d:1 rbl_e:1 tri_i:12
+567	0x8237	0x3710	12	3	100	0	2	2	rbl_e:3 tri_i:13
+568	0x8238	0x371C	20	5	100	0	2	2	rbl_e:3 tri_i:13
+569	0x8239	0x3730	8	2	100	0	1	1	rwg_c:5
+570	0x823A	0x3738	12	3	100	0	1	1	rwg_c:5
+571	0x823B	0x3744	8	2	100	0	2	2	rbl_e:7 tri_i:11
+572	0x823C	0x374C	24	6	100	0	2	2	rbl_e:7 tri_i:11
+573	0x823D	0x3764	8	2	100	0	3	1	mic_a:8
+574	0x823E	0x376C	8	2	100	0	3	1	mic_a:8
+575	0x823F	0x3774	12	3	100	0	3	1	rwg_c:4
+576	0x8240	0x3780	12	3	100	0	3	1	rwg_c:4
+577	0x8241	0x378C	8	2	100	0	6	2	hne_a:3 tri_c:2
+578	0x8242	0x3794	12	3	100	0	6	2	hne_a:3 tri_c:2
+579	0x8243	0x37A0	12	3	100	0	6	2	mrm_b:8 mrm_d:9
+580	0x8244	0x37AC	12	3	100	0	6	2	mrm_b:8 mrm_d:9
+581	0x8245	0x37B8	8	2	100	0	6	2	ztc_a:3 ztc_c:0
+582	0x8246	0x37C0	12	3	100	0	6	2	ztc_a:3 ztc_c:0
+583	0x8247	0x37CC	16	4	100	0	8	3	hne_c:2 hne_d:4 tri_s:4
+584	0x8248	0x37DC	16	4	100	0	10	3	hne_c:2 hne_d:4 tri_s:4
+585	0x8249	0x37EC	12	3	100	0	7	3	bog_b:5 grm_f:3 tri_i:5
+586	0x824A	0x37F8	16	4	100	0	3	1	bog_b:5
+587	0x824B	0x3808	12	3	100	0	4	2	grm_e:7 tri_i:2
+588	0x824C	0x3814	12	3	100	0	4	2	grm_e:7 tri_i:2
+589	0x824D	0x3820	12	3	100	0	4	2	grm_e:6 tri_i:0
+590	0x824E	0x382C	12	3	100	0	0	0	none
+591	0x824F	0x3838	16	4	100	0	4	2	hne_a:9 tri_c:3
+592	0x8250	0x3848	16	4	100	0	8	4	hne_a:9 grm_e:6 tri_c:3 tri_i:0
+593	0x8251	0x3858	12	3	100	0	4	2	rui_b:9 tri_f:16
+594	0x8252	0x3864	12	3	100	0	4	2	rui_b:9 tri_f:16
+595	0x8253	0x3870	16	4	100	0	2	1	srb_b:9
+596	0x8254	0x3880	16	4	100	0	2	1	srb_b:9
+597	0x8255	0x3890	8	2	100	0	24	8	mnt_a:3 mnt_b:4 sav_c:4 pbc_b:10 pbc_c:5 ozm_a:5 ozm_b:0 tri_a:13
+598	0x8256	0x3898	8	2	100	0	24	8	mnt_a:3 mnt_b:4 sav_c:4 pbc_b:10 pbc_c:5 ozm_a:5 ozm_b:0 tri_a:13
+599	0x8257	0x38A0	20	5	100	0	9	3	mfr_c:2 gil_b:2 tri_h:3
+600	0x8258	0x38B4	20	5	100	0	9	3	mfr_c:2 gil_b:2 tri_h:3
+601	0x8259	0x38C8	16	4	100	0	17	7	rbl_g:10 rbl_k:2 rbl_l:2 rbl_m:2 tri_j:7 tri_q:5 tri_q:7
+602	0x825A	0x38D8	16	4	100	0	25	7	rbl_g:10 rbl_k:2 rbl_l:2 rbl_m:2 tri_j:7 tri_q:5 tri_q:7
+603	0x825B	0x38E8	16	4	100	0	2	2	ztc_a:9 tri_k:4
+604	0x825C	0x38F8	16	4	100	0	2	2	ztc_a:9 tri_k:4
+605	0x825D	0x3908	16	4	100	0	2	1	ztc_b:2
+606	0x825E	0x3918	16	4	100	0	2	1	ztc_b:2
+607	0x825F	0x3928	12	3	100	0	3	1	mic_a:13
+608	0x8260	0x3934	12	3	100	0	3	1	mic_a:13
+609	0x8261	0x3940	12	3	100	0	3	1	mic_e:3
+610	0x8262	0x394C	12	3	100	0	3	1	mic_e:3
+611	0x8263	0x3958	8	2	100	0	6	1	mrm_b:0
+612	0x8264	0x3960	12	3	100	0	3	1	ztc_a:7
+613	0x8265	0x396C	12	3	100	0	3	1	ztc_a:7
+614	0x8266	0x3978	12	3	100	0	10	4	gil_g:7 gil_e:6 gil_i:0 gil_i:1
+615	0x8267	0x3984	12	3	100	0	10	4	gil_g:7 gil_e:6 gil_i:0 gil_i:1
+616	0x8268	0x3990	12	3	100	0	6	2	rbl_n:0 tri_j:0
+617	0x8269	0x399C	12	3	100	0	6	2	rbl_n:0 tri_j:0
+618	0x826A	0x39A8	12	3	100	0	2	1	enw_b:6
+619	0x826B	0x39B4	12	3	100	0	2	1	enw_b:6
+620	0x826C	0x39C0	8	2	100	0	2	1	ene_a:9
+621	0x826D	0x39C8	8	2	100	0	2	1	ene_a:9
+622	0x826E	0x39D0	12	3	100	0	2	1	mrm_b:10
+623	0x826F	0x39DC	12	3	100	0	2	1	mrm_b:10
+624	0x8270	0x39E8	8	2	100	0	11	4	dst_c:4 dst_a:0 wdl_a:7 tri_a:8
+625	0x8271	0x39F0	8	2	100	0	15	4	dst_c:4 dst_a:0 wdl_a:7 tri_a:8
+626	0x8272	0x39F8	12	3	100	0	8	3	fon_a:5 fon_c:5 tri_e:9
+627	0x8273	0x3A04	12	3	100	0	10	3	fon_a:5 fon_c:5 tri_e:9
+628	0x8274	0x3A10	8	2	100	0	11	3	fon_a:5 fon_c:5 tri_e:9
+629	0x8275	0x3A18	8	2	100	0	11	4	wdl_a:15 ene_a:0 enw_a:6 tri_f:2
+630	0x8276	0x3A20	8	2	100	0	11	4	wdl_a:15 ene_a:0 enw_a:6 tri_f:2
+631	0x8277	0x3A28	8	2	100	0	11	4	pbc_a:3 pbc_b:12 pbc_c:6 tri_e:13
+632	0x8278	0x3A30	8	2	100	0	11	4	pbc_a:3 pbc_b:12 pbc_c:6 tri_e:13
+633	0x8279	0x3A38	8	2	100	0	16	4	pbc_a:3 pbc_b:12 pbc_c:6 tri_e:13
+634	0x827A	0x3A40	8	2	100	0	7	2	frs_a:0 tri_e:6
+635	0x827B	0x3A48	8	2	100	0	4	1	frs_a:0
+636	0x827C	0x3A50	8	2	100	0	7	2	frs_a:0 tri_e:6
+637	0x827D	0x3A58	16	4	100	0	5	2	mfr_a:6 tri_e:4
+638	0x827E	0x3A68	16	4	100	0	5	2	mfr_a:6 tri_e:4
+639	0x827F	0x3A78	8	2	100	0	7	2	mfr_a:6 tri_e:4
+640	0x8280	0x3A80	12	3	100	0	5	2	mfr_c:6 mfr_c:7
+641	0x8281	0x3A8C	12	3	100	0	5	2	mfr_c:6 mfr_c:7
+642	0x8282	0x3A98	4	1	100	0	4	1	mfr_c:6
+643	0x8283	0x3A9C	12	3	100	0	5	2	mfr_c:8 mfr_c:9
+644	0x8284	0x3AA8	12	3	100	0	5	2	mfr_c:8 mfr_c:9
+645	0x8285	0x3AB4	4	1	100	0	4	1	mfr_c:8
+646	0x8286	0x3AB8	12	3	100	0	5	2	mfr_c:10 mfr_c:11
+647	0x8287	0x3AC4	12	3	100	0	5	2	mfr_c:10 mfr_c:11
+648	0x8288	0x3AD0	4	1	100	0	4	1	mfr_c:10
+649	0x8289	0x3AD4	12	3	100	0	5	2	mfr_c:12 mfr_c:13
+650	0x828A	0x3AE0	12	3	100	0	5	2	mfr_c:12 mfr_c:14
+651	0x828B	0x3AEC	4	1	100	0	4	1	mfr_c:12
+652	0x828C	0x3AF0	12	3	100	0	5	2	mfr_c:15 mfr_c:16
+653	0x828D	0x3AFC	12	3	100	0	5	2	mfr_c:15 mfr_c:16
+654	0x828E	0x3B08	4	1	100	0	4	1	mfr_c:15
+655	0x828F	0x3B0C	8	2	100	0	6	3	dst_a:6 dst_a:7 tri_a:9
+656	0x8290	0x3B14	8	2	100	0	8	4	dst_a:6 dst_a:7 dst_a:8 tri_a:9
+657	0x8291	0x3B1C	8	2	100	0	4	1	dst_a:5
+658	0x8292	0x3B24	8	2	100	0	4	2	dst_a:9 tri_a:10
+659	0x8293	0x3B2C	8	2	100	0	8	2	dst_a:9 tri_a:10
+660	0x8294	0x3B34	8	2	100	0	12	2	dst_a:9 tri_a:10
+661	0x8295	0x3B3C	8	2	100	0	1	1	mic_b:4
+662	0x8296	0x3B44	12	3	100	0	1	1	mic_b:4
+663	0x8297	0x3B50	12	3	100	0	1	1	hne_a:4
+664	0x8298	0x3B5C	12	3	100	0	1	1	hne_a:4
+665	0x8299	0x3B68	12	3	100	0	2	2	lus_b:4 lus_d:5
+666	0x829A	0x3B74	12	3	100	0	2	2	lus_b:4 lus_d:5
+667	0x829B	0x3B80	12	3	100	0	2	2	bds_a:6 lus_f:3
+668	0x829C	0x3B8C	12	3	100	0	2	2	bds_a:6 lus_f:3
+669	0x829D	0x3B98	12	3	100	0	2	2	mic_e:2 rbl_b:3
+670	0x829E	0x3BA4	12	3	100	0	2	2	mic_e:2 rbl_b:3
+671	0x829F	0x3BB0	12	3	100	0	1	1	ozm_a:6
+672	0x82A0	0x3BBC	12	3	100	0	1	1	ozm_a:6
+673	0x82A1	0x3BC8	12	3	100	0	1	1	mic_e:11
+674	0x82A2	0x3BD4	12	3	100	0	1	1	mic_e:11
+675	0x82A3	0x3BE0	12	3	100	0	12	3	lus_d:4 gol_a:0 gol_d:0
+676	0x82A4	0x3BEC	16	4	100	0	14	4	lus_d:4 gol_a:0 gol_d:0 mfr_b:4
+677	0x82A5	0x3BFC	16	4	100	0	8	2	gol_a:7 gol_d:2
+678	0x82A6	0x3C0C	16	4	100	0	8	2	gol_a:7 gol_d:2
+679	0x82A7	0x3C1C	16	4	100	0	8	2	frs_a:4 frs_c:3
+680	0x82A8	0x3C2C	16	4	100	0	8	2	frs_a:4 frs_c:3
+681	0x82A9	0x3C3C	16	4	100	0	12	3	pla_a:3 pla_b:4 grm_e:0
+682	0x82AA	0x3C4C	12	3	100	0	12	3	pla_a:3 pla_b:4 grm_e:0
+683	0x82AB	0x3C58	20	5	100	0	12	3	gil_b:0 gil_c:4 tri_n:14
+684	0x82AC	0x3C6C	16	4	100	0	12	3	gil_b:0 gil_c:4 tri_n:14
+685	0x82AD	0x3C7C	20	5	100	0	12	3	rwf_a:2 rwf_b:2 tri_n:11
+686	0x82AE	0x3C90	16	4	100	0	12	3	rwf_a:2 rwf_b:2 tri_n:11
+687	0x82AF	0x3CA0	20	5	100	0	6	2	mfr_b:3 tri_n:10
+688	0x82B0	0x3CB4	16	4	100	0	6	2	mfr_b:3 tri_n:10
+689	0x82B1	0x3CC4	12	3	100	0	4	2	frs_a:6 tri_n:13
+690	0x82B2	0x3CD0	12	3	100	0	4	2	frs_a:6 tri_n:13
+691	0x82B3	0x3CDC	20	5	100	0	3	1	pla_a:8
+692	0x82B4	0x3CF0	16	4	100	0	3	1	pla_a:8
+693	0x82B5	0x3D00	12	3	100	0	5	4	bog_b:17 srb_a:4 srb_b:5 tri_n:4
+694	0x82B6	0x3D0C	12	3	100	0	5	4	bog_b:17 srb_a:4 srb_b:5 tri_n:4
+695	0x82B7	0x3D18	16	4	100	0	8	4	bog_b:17 srb_a:4 srb_b:5 tri_n:4
+696	0x82B8	0x3D28	16	4	100	0	8	4	bog_b:17 srb_a:4 srb_b:5 tri_n:4
+697	0x82B9	0x3D38	12	3	100	0	3	3	mnt_c:3 gil_j:9 gil_k:6
+698	0x82BA	0x3D44	12	3	100	0	3	3	mnt_c:3 gil_j:9 gil_k:6
+699	0x82BB	0x3D50	24	6	100	0	6	3	mnt_c:3 gil_j:9 gil_k:6
+700	0x82BC	0x3D68	24	6	100	0	6	3	mnt_c:3 gil_j:9 gil_k:6
+701	0x82BD	0x3D80	12	3	100	0	3	2	wdl_a:16 tri_d:6
+702	0x82BE	0x3D8C	12	3	100	0	3	2	wdl_a:16 tri_d:6
+703	0x82BF	0x3D98	16	4	100	0	2	2	wdl_a:16 tri_d:6
+704	0x82C0	0x3DA8	16	4	100	0	2	2	wdl_a:16 tri_d:6
+705	0x82C1	0x3DB8	12	3	100	0	2	1	pla_b:10
+706	0x82C2	0x3DC4	12	3	100	0	2	1	pla_b:10
+707	0x82C3	0x3DD0	20	5	100	0	2	1	pla_b:10
+708	0x82C4	0x3DE4	20	5	100	0	2	1	pla_b:10
+709	0x82C5	0x3DF8	12	3	100	0	4	2	mfr_c:18 tri_r:14
+710	0x82C6	0x3E04	12	3	100	0	4	2	mfr_c:18 tri_r:14
+711	0x82C7	0x3E10	24	6	100	0	6	2	mfr_c:18 tri_r:14
+712	0x82C8	0x3E28	24	6	100	0	2	2	mfr_c:18 tri_r:14
+713	0x82C9	0x3E40	12	3	100	0	4	2	pbc_c:11 tri_r:13
+714	0x82CA	0x3E4C	12	3	100	0	4	2	pbc_c:11 tri_r:13
+715	0x82CB	0x3E58	16	4	100	0	16	2	ene_a:10 enw_b:8
+716	0x82CC	0x3E68	16	4	100	0	16	2	ene_a:10 enw_b:8
+717	0x82CD	0x3E78	28	7	100	0	9	3	pla_a:2 pla_b:3 srb_b:2
+718	0x82CE	0x3E94	28	7	100	0	9	3	pla_a:2 pla_b:3 srb_b:2
+719	0x82CF	0x3EB0	24	6	100	0	39	8	lus_f:5 rbl_d:4 rbl_d:5 rbl_e:5 rbl_e:6 rbl_n:3 rbl_n:4 tri_j:2
+720	0x82D0	0x3EC8	24	6	100	0	39	8	lus_f:5 rbl_d:4 rbl_d:5 rbl_e:5 rbl_e:6 rbl_n:3 rbl_n:4 tri_j:2
+721	0x82D1	0x3EE0	16	4	100	0	8	1	enw_b:9
+722	0x82D2	0x3EF0	16	4	100	0	8	1	enw_b:9
+723	0x82D3	0x3F00	16	4	100	0	2	1	ozm_c:3
+724	0x82D4	0x3F10	16	4	100	0	2	1	ozm_c:3
+725	0x82D5	0x3F20	28	7	100	0	6	2	mnt_b:10 tri_n:6
+726	0x82D6	0x3F3C	28	7	100	0	6	2	mnt_b:10 tri_n:6
+727	0x82D7	0x3F58	12	3	100	0	4	2	gol_b:3 gol_d:6
+728	0x82D8	0x3F64	12	3	100	0	6	2	gol_b:3 gol_d:6
+729	0x82D9	0x3F70	12	3	100	0	2	1	hne_a:8
+730	0x82DA	0x3F7C	12	3	100	0	3	1	hne_a:8
+731	0x82DB	0x3F88	12	3	100	0	2	1	dst_c:2
+732	0x82DC	0x3F94	12	3	100	0	3	1	dst_c:2
+733	0x82DD	0x3FA0	12	3	100	0	2	1	fon_c:4
+734	0x82DE	0x3FAC	12	3	100	0	3	1	fon_c:4
+735	0x82DF	0x3FB8	16	4	100	0	1	1	mfr_c:17
+736	0x82E0	0x3FC8	16	4	100	0	2	1	mfr_c:17
+737	0x82E1	0x3FD8	16	4	100	0	4	2	gil_k:7 tri_q:9
+738	0x82E2	0x3FE8	16	4	100	0	6	2	gil_k:7 tri_q:9
+739	0x82E3	0x3FF8	16	4	100	0	2	2	rwf_c:2 tri_q:16
+740	0x82E4	0x4008	16	4	100	0	2	2	rwf_c:2 tri_q:16
+741	0x82E5	0x4018	12	3	100	0	4	2	dst_c:8 tri_q:17
+742	0x82E6	0x4024	12	3	100	0	6	2	dst_c:8 tri_q:17
+743	0x82E7	0x4030	16	4	100	0	4	2	rwf_a:3 tri_q:18
+744	0x82E8	0x4040	16	4	100	0	6	2	rwf_a:3 tri_q:18
+745	0x82E9	0x4050	12	3	100	0	2	1	dst_a:4
+746	0x82EA	0x405C	12	3	100	0	3	1	dst_a:4
+747	0x82EB	0x4068	8	2	100	0	3	1	grm_e:4
+748	0x82EC	0x4070	12	3	100	0	3	1	grm_e:4
+749	0x82ED	0x407C	16	4	100	0	6	1	grm_e:4
+750	0x82EE	0x408C	8	2	100	0	24	7	gil_g:4 gil_e:4 gil_f:4 gil_i:4 gil_j:6 gil_k:3 tri_k:8
+751	0x82EF	0x4094	12	3	100	0	18	6	gil_g:4 gil_e:4 gil_f:4 gil_i:4 gil_j:6 gil_k:3
+752	0x82F0	0x40A0	20	5	100	0	36	6	gil_g:4 gil_e:4 gil_f:4 gil_i:4 gil_j:6 gil_k:3
+753	0x82F1	0x40B4	8	2	100	0	3	1	lus_b:5
+754	0x82F2	0x40BC	12	3	100	0	3	1	lus_b:5
+755	0x82F3	0x40C8	16	4	100	0	6	1	lus_b:5
+756	0x82F4	0x40D8	8	2	100	0	3	1	hne_d:3
+757	0x82F5	0x40E0	12	3	100	0	3	1	hne_d:3
+758	0x82F6	0x40EC	20	5	100	0	6	1	hne_d:3
+759	0x82F7	0x4100	8	2	100	0	15	4	bds_a:4 bds_b:4 bds_c:4 tri_k:3
+760	0x82F8	0x4108	12	3	100	0	9	3	bds_a:4 bds_b:4 bds_c:4
+761	0x82F9	0x4114	16	4	100	0	24	4	bds_a:4 bds_b:4 bds_c:4 tri_k:3
+762	0x82FA	0x4124	8	2	100	0	9	3	rbl_g:2 rbl_h:4 rbl_i:5
+763	0x82FB	0x412C	12	3	100	0	9	3	rbl_g:2 rbl_h:4 rbl_i:5
+764	0x82FC	0x4138	20	5	100	0	24	4	rbl_g:2 rbl_h:4 rbl_i:5 tri_k:8
+765	0x82FD	0x414C	8	2	100	0	3	1	hne_a:5
+766	0x82FE	0x4154	8	2	100	0	3	1	hne_a:5
+767	0x82FF	0x415C	12	3	100	0	6	1	hne_a:5
+768	0x8300	0x4168	8	2	100	0	6	2	bds_b:6 tri_k:9
+769	0x8301	0x4170	8	2	100	0	6	2	bds_b:6 tri_k:9
+770	0x8302	0x4178	8	2	100	0	3	1	wdl_a:11
+771	0x8303	0x4180	8	2	100	0	3	1	wdl_a:11
+772	0x8304	0x4188	8	2	100	0	3	1	mrm_d:14
+773	0x8305	0x4190	8	2	100	0	3	1	mrm_d:14
+774	0x8306	0x4198	12	3	100	0	6	1	mrm_d:14
+775	0x8307	0x41A4	8	2	100	0	3	1	mic_e:4
+776	0x8308	0x41AC	8	2	100	0	3	1	mic_e:4
+777	0x8309	0x41B4	20	5	100	0	6	1	mic_e:4
+778	0x830A	0x41C8	8	2	100	0	6	2	bds_c:8 tri_m:14
+779	0x830B	0x41D0	8	2	100	0	6	2	bds_c:8 tri_m:14
+780	0x830C	0x41D8	20	5	100	0	12	2	bds_c:8 tri_m:14
+781	0x830D	0x41EC	8	2	100	0	2	1	mrm_b:6
+782	0x830E	0x41F4	8	2	100	0	3	1	mrm_b:6
+783	0x830F	0x41FC	12	3	100	0	3	1	mrm_b:7
+784	0x8310	0x4208	8	2	100	0	3	1	mrm_b:7
+785	0x8311	0x4210	12	3	100	0	3	1	ene_a:4
+786	0x8312	0x421C	12	3	100	0	3	1	ene_a:4
+787	0x8313	0x4228	12	3	100	0	11	4	ene_a:5 enw_a:0 enw_a:8 enw_b:3
+788	0x8314	0x4234	12	3	100	0	11	4	ene_a:5 enw_a:0 enw_a:8 enw_b:3
+789	0x8315	0x4240	24	6	100	0	18	6	frs_c:2 bog_a:0 bog_b:0 bds_a:2 bds_c:2 tri_m:3
+790	0x8316	0x4258	24	6	100	0	18	6	frs_c:2 bog_a:0 bog_b:0 bds_a:2 bds_c:2 tri_m:3
+791	0x8317	0x4270	16	4	100	0	6	2	bog_b:2 tri_m:2
+792	0x8318	0x4280	16	4	100	0	6	2	bog_b:2 tri_m:2
+793	0x8319	0x4290	20	5	100	0	12	4	bog_b:16 bds_a:3 bds_c:3 tri_m:0
+794	0x831A	0x42A4	20	5	100	0	12	4	bog_b:16 bds_a:3 bds_c:3 tri_m:0
+795	0x831B	0x42B8	12	3	100	0	3	1	mnt_b:6
+796	0x831C	0x42C4	12	3	100	0	3	1	mnt_b:6
+797	0x831D	0x42D0	12	3	100	0	6	2	pla_a:6 pla_b:7
+798	0x831E	0x42DC	12	3	100	0	6	2	pla_a:6 pla_b:7
+799	0x831F	0x42E8	16	4	100	0	2	1	srb_a:7
+800	0x8320	0x42F8	16	4	100	0	2	1	srb_a:7
+801	0x8321	0x4308	20	5	100	0	3	1	fon_a:8
+802	0x8322	0x431C	20	5	100	0	3	1	fon_a:8
+803	0x8323	0x4330	32	8	100	0	3	1	srb_a:5
+804	0x8324	0x4350	32	8	100	0	3	1	srb_a:5
+805	0x8325	0x4370	24	6	100	0	2	1	dst_c:9
+806	0x8326	0x4388	24	6	100	0	2	1	dst_c:9
+807	0x8327	0x43A0	24	6	100	0	4	2	ozm_b:9 tri_k:7
+808	0x8328	0x43B8	24	6	100	0	4	2	ozm_b:9 tri_k:7
+809	0x8329	0x43D0	12	3	100	0	1	1	rui_a:12
+810	0x832A	0x43DC	16	4	100	0	6	3	ztc_a:10 tri_k:5 tri_k:6
+811	0x832B	0x43EC	12	3	100	0	10	4	sav_g:3 tri_f:22 tri_g:0 tri_g:2
+812	0x832C	0x43F8	16	4	100	0	1	1	pbc_b:8
+813	0x832D	0x4408	12	3	100	0	6	3	enw_c:5 tri_l:15 tri_l:17
+814	0x832E	0x4414	16	4	100	0	3	1	ene_a:11
+815	0x832F	0x4424	16	4	100	0	3	1	ene_a:11
+816	0x8330	0x4434	20	5	100	0	2	2	sav_f:6 ozm_a:12
+817	0x8331	0x4448	20	5	100	0	2	2	sav_f:6 ozm_a:12
+818	0x8332	0x445C	16	4	100	0	4	3	dst_a:10 wdl_a:9 tri_l:20
+819	0x8333	0x446C	16	4	100	0	4	3	dst_a:10 wdl_a:9 tri_l:20
+820	0x8334	0x447C	16	4	100	0	1	1	sav_c:6
+821	0x8335	0x448C	16	4	100	0	1	1	sav_c:6
+822	0x8336	0x449C	28	7	100	0	4	2	hne_a:7 tri_d:5
+823	0x8337	0x44B8	24	6	100	0	6	2	hne_a:7 tri_d:5
+824	0x8338	0x44D0	24	6	100	0	4	2	gil_c:3 tri_k:10
+825	0x8339	0x44E8	20	5	100	0	4	2	gil_c:3 tri_k:10

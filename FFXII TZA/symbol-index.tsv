@@ -17563,7 +17563,7 @@ function	0x00236860	SpawnEntry_ResetTransientState	Enemy-Spawning/spawn-record-f
 function	0x002368D0	BattleStorage_InitializeWorkArrays	Game-Files-And-Data-Tables/authored-data-tables.md	-	26
 function	0x00236A40	-	Battle-Actions/action-definition-row.md	-	8
 function	0x00236A60	BattleUnit_ResetStateForReuse	Characters-And-Objects/battle-unit-fields.md	-	21
-function	0x00236C30	-	Menus-And-HUD/text-string-tables.md	-	30
+function	0x00236C30	-	Menus-And-HUD/text-string-tables.md	-	31
 function	0x00237040	-	Characters-And-Objects/battle-unit-construction.md	-	3
 function	0x00237080	SpawnEntry_ClearSelectionTransientStateForTeardown	Enemy-Spawning/spawn-record-fields.md	-	13
 function	0x002370A0	-	Engine-Core/frame-update-order.md	-	3
@@ -21168,7 +21168,7 @@ function	0x00308C20	AiOrder_ComputeBoundedSelectorScalar	Enemy-AI-And-Gambits/ga
 function	0x00308D90	Spawn_CountActiveCapTrackedActors	Enemy-Spawning/enemy-spawning.md	-	12
 function	0x00308DE0	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	6
 function	0x00308E80	-	Engine-Core/debug-menu.md	-	6
-function	0x00308EC0	BattleData_ResolveWeightedId	Enemy-AI-And-Gambits/gambits.md	-	8
+function	0x00308EC0	BattleData_ResolveWeightedId	Enemy-AI-And-Gambits/enemy-order-sets.md	-	8
 function	0x00308FF0	BattleAction_ComputeSecondaryResourceMultiplier	Battle-Actions/quickenings-and-summons.md	-	9
 function	0x00309060	BattleAction_ComputeGilCost	Items-Equipment-Shops-And-Licenses/item-use.md	-	8
 function	0x00309110	BattleAction_ComputePrimaryResourceCost	Status-Effects-And-KO/mp.md	-	6
@@ -22117,8 +22117,8 @@ function	0x0033D890	-	Movement-And-Pathfinding/battle-locomotion.md	-	14
 function	0x0033DB60	-	EBP-Script-Files/ebp-position-entries.md	-	8
 function	0x0033DFD0	-	Movement-And-Pathfinding/battle-locomotion.md	-	8
 function	0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	Random-Numbers/which-roll-uses-which-generator.md	-	6
-function	0x0033E310	-	Graphics/character-status-visuals.md	-	4
-function	0x0033E5E0	-	Graphics/character-status-visuals.md	-	6
+function	0x0033E310	-	Graphics/character-status-visuals.md	-	5
+function	0x0033E5E0	-	Graphics/character-status-visuals.md	-	8
 function	0x0033E990	-	Graphics/character-status-visuals.md	-	4
 function	0x0033ECE0	-	Graphics/character-status-visuals.md	-	4
 function	0x0033F020	-	Graphics/character-rig-and-look.md	-	7
@@ -24695,7 +24695,7 @@ function	0x00384500	-	Characters-And-Objects/battle-units.md	-	6
 function	0x00384510	-	Game-Files-And-Data-Tables/authored-data-tables.md	-	5
 function	0x00384580	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	-	5
 function	0x003845F0	AreaData_BindAndRebaseSectionDescriptor	Battle-Actions/action-definition-row.md	-	16
-function	0x003846F0	-	Game-Files-And-Data-Tables/authored-data-tables.md	-	14
+function	0x003846F0	-	Game-Files-And-Data-Tables/authored-data-tables.md	-	15
 function	0x003847B0	-	Game-Files-And-Data-Tables/authored-data-tables.md	-	8
 function	0x003847C0	BattleFormula_BuildEvaluationContext	Damage-And-Battle-Formulas/augments.md	-	16
 function	0x003848E0	-	Battle-Actions/action-results.md	-	9
@@ -27735,7 +27735,7 @@ function	0x0046F370	-	Graphics/effect-files-efx-efb.md	-	4
 function	0x0046F380	-	Game-Files-And-Data-Tables/resource-lifecycle.md	-	6
 function	0x0046F460	-	Movement-And-Pathfinding/battle-locomotion.md	-	4
 function	0x0046F4B0	-	Graphics/effect-anchors-and-targets.md	-	5
-function	0x0046FAA0	-	Graphics/character-rig-and-look.md	-	3
+function	0x0046FAA0	-	Graphics/character-rig-and-look.md	-	4
 function	0x0046FAE0	-	Graphics/model-effects-and-motion-commands.md	-	9
 function	0x0046FB40	-	Graphics/character-status-visuals.md	-	3
 function	0x0046FBB0	-	Graphics/character-status-visuals.md	-	3
@@ -28154,7 +28154,7 @@ function	0x005043F0	-	Game-Files-And-Data-Tables/resource-lifecycle.md	-	5
 function	0x00504450	-	Graphics/character-render-object.md	-	5
 function	0x00504490	-	Graphics/legacy-ps2-gs-layer.md	-	4
 function	0x005044B0	RenderCommand_GetCurrentWriteBuffer	Graphics/model-files-cm-ca.md	-	7
-function	0x005044D0	-	Graphics/character-status-visuals.md	-	4
+function	0x005044D0	-	Graphics/model-files-cm-ca.md	-	4
 function	0x00504520	-	Graphics/model-files-cm-ca.md	-	4
 function	0x00504610	RenderModelInstance_RemoveSubresourceVariantBinding	Graphics/character-render-object-render-model-instance-accesses.tsv	-	4
 function	0x00504700	-	Graphics/character-render-object.md	-	5
@@ -29001,7 +29001,7 @@ function	0x0053A9D0	-	Graphics/effect-element-types.md	-	5
 function	0x0053AA30	-	Graphics/effect-element-types.md	-	4
 function	0x0053AAC0	-	Graphics/effect-element-types.md	-	5
 function	0x0053AB10	-	Graphics/effect-element-types.md	-	4
-function	0x0053AB50	-	Graphics/character-render-object.md	-	16
+function	0x0053AB50	-	Graphics/model-files-cm-ca.md	-	16
 function	0x0053D140	-	Graphics/model-files-cm-ca.md	-	4
 function	0x0053D4B0	-	Graphics/model-files-cm-ca.md	-	4
 function	0x0053D780	-	Graphics/character-render-object.md	-	7
@@ -60127,14 +60127,14 @@ data	0x01F004D0	-	Sound-And-Music/animation-sounds.md	-	0
 data	0x01F004E0	-	Enemy-Spawning/enemy-spawning.md	-	10
 data	0x01F084E0	-	Enemy-Spawning/enemy-spawning.md	-	2
 data	0x01F204E0	-	Graphics/animation-playback.md	-	2
-data	0x01F20540	-	Graphics/character-status-visuals.md	-	0
-data	0x01F209F0	-	Graphics/character-status-visuals.md	-	0
-data	0x01F20AA0	-	Graphics/character-status-visuals.md	-	0
-data	0x01F20C80	-	Graphics/character-rig-and-look.md	-	0
-data	0x01F20E60	-	Graphics/model-effects-and-motion-commands.md	-	2
-data	0x01F21418	-	Graphics/authored-presentation-commands.md	-	0
-data	0x01F21F40	-	Graphics/character-status-visuals.md	-	0
-data	0x01F22030	-	Graphics/character-status-visuals.md	-	0
+data	0x01F20540	-	Graphics/character-status-visuals.md	-	2
+data	0x01F209F0	-	Graphics/character-status-visuals.md	-	2
+data	0x01F20AA0	-	Graphics/character-status-visuals.md	-	2
+data	0x01F20C80	-	Graphics/character-rig-and-look.md	-	3
+data	0x01F20E60	-	Graphics/model-effects-and-motion-commands.md	-	3
+data	0x01F21418	-	Graphics/authored-presentation-commands.md	-	1
+data	0x01F21F40	-	Graphics/character-status-visuals.md	-	2
+data	0x01F22030	-	Graphics/character-status-visuals.md	-	2
 data	0x01F22130	-	Graphics/character-rig-and-look.md	-	0
 data	0x01F22170	-	Graphics/character-rig-and-look.md	-	0
 data	0x01F221C0	-	Graphics/character-rig-and-look.md	-	0

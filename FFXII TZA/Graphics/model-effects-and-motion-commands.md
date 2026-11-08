@@ -314,6 +314,23 @@ The curves' entry count is the dword `0x01F20A98`, 60 in the file: `0x0046FAE0` 
 `t × (count − 1)`, clamped to the curve (`0x0046FAEF`), and `0x0046FBF0` doubles the count for the 60 fps time
 base (`0x0046FC4D`) and resamples the nine curves to it (`0x0046FCC0`).
 
+[`motion-blend-curves.tsv`](motion-blend-curves.tsv) lists the 60 stored samples of each of the nine curves, with
+each sample's address and raw bits. `0x0046FAE0` tests the entry against the count and tests neither `a` nor `b`.
+Entries 60 to 119 of each curve are zero in the file.
+
+| Column | Meaning |
+|---|---|
+| `curve` | `a × 3 + b` |
+| `a`, `b` | the two selector words |
+| `entry` | the sample, 0 to 59 |
+| `address` | the sample's address in the image |
+| `f32_bits` | its raw 32-bit float |
+| `value` | the same number to nine significant digits |
+
+The 60 fps resampler is `0x0033E5E0`. Entry `2k` is source entry `k`, entry `2k + 1` is the mean of source entries `k`
+and `k + 1`, and the last entry copies source entry 59 (`0x0033E84D`-`0x0033E858`). The table comes from the executable
+with sha256 `73461D0896204B1C259C52F61AEF4EFBC95A2FFC388CADB36493D5D1D89721F8`.
+
 It turns the rotation channels into a matrix (`0x0046D380`, three angles through the sine table
 `0x01F004E0`, 32,768 entries) and that into a quaternion at bone `+0x110` (`0x0046D730`, normalised by
 `0x00476E70`, which falls back to (0.57735, 0.57735, 0.57735, 0) for a zero quaternion).

@@ -1,0 +1,577 @@
+row	column	cell	name	lp_cost
+0	0	0xFFFF	-	-
+0	1	0xFFFF	-	-
+0	2	0xFFFF	-	-
+0	3	0xFFFF	-	-
+0	4	0xFFFF	-	-
+0	5	0xFFFF	-	-
+0	6	0xFFFF	-	-
+0	7	0xFFFF	-	-
+0	8	0xFFFF	-	-
+0	9	0xFFFF	-	-
+0	10	0xFFFF	-	-
+0	11	0x001D	Ultima	115
+0	12	0x00CC	Time Magick 7	80
+0	13	0x00CB	Time Magick 6	70
+0	14	0x00C5	Black Magick 8	70
+0	15	0x00C4	Black Magick 7	60
+0	16	0x0006	Quickening	125
+0	17	0xFFFF	-	-
+0	18	0xFFFF	-	-
+0	19	0xFFFF	-	-
+0	20	0xFFFF	-	-
+0	21	0xFFFF	-	-
+0	22	0x00B3	Accessories 19	100
+0	23	0x00B5	Ribbon	215
+1	0	0xFFFF	-	-
+1	1	0xFFFF	-	-
+1	2	0xFFFF	-	-
+1	3	0xFFFF	-	-
+1	4	0xFFFF	-	-
+1	5	0xFFFF	-	-
+1	6	0xFFFF	-	-
+1	7	0xFFFF	-	-
+1	8	0xFFFF	-	-
+1	9	0xFFFF	-	-
+1	10	0xFFFF	-	-
+1	11	0x00DA	Time Magick 9	100
+1	12	0x00D9	Black Magick 13	165
+1	13	0x00CA	Time Magick 5	60
+1	14	0x00C9	Time Magick 4	50
+1	15	0x00C3	Black Magick 6	50
+1	16	0x00C2	Black Magick 5	40
+1	17	0x00C1	Black Magick 4	30
+1	18	0x0019	Shemhazai	50
+1	19	0x00AB	Accessories 11	45
+1	20	0x00AE	Accessories 14	70
+1	21	0x0009	Quickening	125
+1	22	0x00B2	Accessories 18	80
+1	23	0x00B4	Accessories 20	115
+2	0	0xFFFF	-	-
+2	1	0xFFFF	-	-
+2	2	0xFFFF	-	-
+2	3	0xFFFF	-	-
+2	4	0xFFFF	-	-
+2	5	0xFFFF	-	-
+2	6	0xFFFF	-	-
+2	7	0xFFFF	-	-
+2	8	0xFFFF	-	-
+2	9	0xFFFF	-	-
+2	10	0xFFFF	-	-
+2	11	0x00D3	White Magick 13	155
+2	12	0x00D8	Black Magick 12	120
+2	13	0x00D7	Black Magick 11	100
+2	14	0x00D6	Arcane Magick 3	110
+2	15	0x00C8	Time Magick 3	40
+2	16	0x00C7	Time Magick 2	30
+2	17	0x00C0	Black Magick 3	25
+2	18	0x000D	Quickening	125
+2	19	0x00A8	Accessories 8	45
+2	20	0x00AC	Accessories 12	60
+2	21	0x00AF	Accessories 15	70
+2	22	0x00B0	Accessories 16	70
+2	23	0x0017	Famfrit	100
+3	0	0xFFFF	-	-
+3	1	0xFFFF	-	-
+3	2	0xFFFF	-	-
+3	3	0xFFFF	-	-
+3	4	0xFFFF	-	-
+3	5	0xFFFF	-	-
+3	6	0xFFFF	-	-
+3	7	0xFFFF	-	-
+3	8	0xFFFF	-	-
+3	9	0xFFFF	-	-
+3	10	0x0011	Quickening	125
+3	11	0x00BD	White Magick 8	70
+3	12	0x00D2	White Magick 12	110
+3	13	0x00D1	White Magick 11	100
+3	14	0x00D5	Arcane Magick 2	50
+3	15	0x00D4	Arcane Magick 1	40
+3	16	0x00C6	Time Magick 1	20
+3	17	0x00BF	Black Magick 2	20
+3	18	0x00A4	Accessories 4	35
+3	19	0x00A7	Accessories 7	40
+3	20	0x00AA	Accessories 10	40
+3	21	0x00AD	Accessories 13	60
+3	22	0x00B1	Accessories 17	80
+3	23	0xFFFF	-	-
+4	0	0xFFFF	-	-
+4	1	0xFFFF	-	-
+4	2	0xFFFF	-	-
+4	3	0xFFFF	-	-
+4	4	0xFFFF	-	-
+4	5	0xFFFF	-	-
+4	6	0xFFFF	-	-
+4	7	0xFFFF	-	-
+4	8	0xFFFF	-	-
+4	9	0xFFFF	-	-
+4	10	0xFFFF	-	-
+4	11	0xFFFF	-	-
+4	12	0x00BC	White Magick 7	60
+4	13	0x00D0	White Magick 10	90
+4	14	0x00CF	Green Magick 3	90
+4	15	0x00CE	Green Magick 2	50
+4	16	0x00CD	Green Magick 1	40
+4	17	0x00BE	Black Magick 1	15
+4	18	0x00A2	Accessories 2	20
+4	19	0x00A5	Accessories 5	35
+4	20	0x00A9	Accessories 9	30
+4	21	0x000A	Quickening	125
+4	22	0xFFFF	-	-
+4	23	0xFFFF	-	-
+5	0	0xFFFF	-	-
+5	1	0xFFFF	-	-
+5	2	0xFFFF	-	-
+5	3	0xFFFF	-	-
+5	4	0xFFFF	-	-
+5	5	0xFFFF	-	-
+5	6	0xFFFF	-	-
+5	7	0xFFFF	-	-
+5	8	0xFFFF	-	-
+5	9	0xFFFF	-	-
+5	10	0xFFFF	-	-
+5	11	0xFFFF	-	-
+5	12	0x00BB	White Magick 6	50
+5	13	0x00BA	White Magick 5	40
+5	14	0x00B9	White Magick 4	30
+5	15	0x00B8	White Magick 3	25
+5	16	0x00B7	White Magick 2	20
+5	17	0x00B6	White Magick 1	15
+5	18	0x00A1	Accessories 1	5
+5	19	0x00A3	Accessories 3	25
+5	20	0x00A6	Accessories 6	35
+5	21	0xFFFF	-	-
+5	22	0xFFFF	-	-
+5	23	0xFFFF	-	-
+6	0	0xFFFF	-	-
+6	1	0xFFFF	-	-
+6	2	0xFFFF	-	-
+6	3	0xFFFF	-	-
+6	4	0xFFFF	-	-
+6	5	0xFFFF	-	-
+6	6	0xFFFF	-	-
+6	7	0xFFFF	-	-
+6	8	0xFFFF	-	-
+6	9	0x00E2	Serenity	70
+6	10	0x00F7	Ether Lore 3	70
+6	11	0x00DB	Warmage	30
+6	12	0x00E9	Channeling	30
+6	13	0x0101	Magick Lore	30
+6	14	0x00F5	Ether Lore 1	20
+6	15	0x010B	Gambit Slot	20
+6	16	0x0105	+30 HP	20
+6	17	0x010A	Gambit Slot	15
+6	18	0x0114	Steal	20
+6	19	0x0115	Libra	25
+6	20	0x0012	Belias	20
+6	21	0xFFFF	-	-
+6	22	0xFFFF	-	-
+6	23	0xFFFF	-	-
+7	0	0xFFFF	-	-
+7	1	0xFFFF	-	-
+7	2	0xFFFF	-	-
+7	3	0xFFFF	-	-
+7	4	0xFFFF	-	-
+7	5	0xFFFF	-	-
+7	6	0xFFFF	-	-
+7	7	0xFFFF	-	-
+7	8	0xFFFF	-	-
+7	9	0x0112	Gambit Slot	70
+7	10	0x0102	Magick Lore	30
+7	11	0x00EA	Channeling	50
+7	12	0x00F6	Ether Lore 2	35
+7	13	0x010F	Gambit Slot	40
+7	14	0x00E0	Spellbreaker	65
+7	15	0x0100	Magick Lore	30
+7	16	0x010D	Gambit Slot	30
+7	17	0x00F2	Potion Lore 1	20
+7	18	0x0116	First Aid	20
+7	19	0x0118	Charge	30
+7	20	0x0119	Horology	50
+7	21	0xFFFF	-	-
+7	22	0xFFFF	-	-
+7	23	0xFFFF	-	-
+8	0	0xFFFF	-	-
+8	1	0xFFFF	-	-
+8	2	0xFFFF	-	-
+8	3	0xFFFF	-	-
+8	4	0xFFFF	-	-
+8	5	0xFFFF	-	-
+8	6	0xFFFF	-	-
+8	7	0xFFFF	-	-
+8	8	0x0005	Quickening	125
+8	9	0x0103	Magick Lore	30
+8	10	0x00EB	Channeling	80
+8	11	0x0111	Gambit Slot	50
+8	12	0x0107	+110 HP	40
+8	13	0x00EC	Swiftness	30
+8	14	0x00DE	Headsman	30
+8	15	0x010E	Gambit Slot	35
+8	16	0x00FB	Battle Lore	30
+8	17	0x010C	Gambit Slot	25
+8	18	0x0117	Poach	30
+8	19	0x011A	Souleater	35
+8	20	0x0122	Infuse	30
+8	21	0x0129	1000 Needles	35
+8	22	0x0016	Cúchulainn	50
+8	23	0xFFFF	-	-
+9	0	0xFFFF	-	-
+9	1	0xFFFF	-	-
+9	2	0xFFFF	-	-
+9	3	0xFFFF	-	-
+9	4	0xFFFF	-	-
+9	5	0xFFFF	-	-
+9	6	0xFFFF	-	-
+9	7	0xFFFF	-	-
+9	8	0x0104	Magick Lore	50
+9	9	0x00E5	Brawler	90
+9	10	0x00F1	Remedy Lore 3	70
+9	11	0x00ED	Swiftness	50
+9	12	0x00F4	Potion Lore 3	70
+9	13	0x00E4	Spellbound	30
+9	14	0x00F3	Potion Lore 2	35
+9	15	0x00F8	Phoenix Lore	30
+9	16	0x00EF	Remedy Lore 1	20
+9	17	0x00E6	Shield Block	25
+9	18	0x011B	Traveler	50
+9	19	0x011D	Shear	50
+9	20	0x0120	Charm	30
+9	21	0x0123	Addle	50
+9	22	0x0127	Expose	50
+9	23	0xFFFF	-	-
+10	0	0xFFFF	-	-
+10	1	0xFFFF	-	-
+10	2	0xFFFF	-	-
+10	3	0xFFFF	-	-
+10	4	0xFFFF	-	-
+10	5	0xFFFF	-	-
+10	6	0xFFFF	-	-
+10	7	0xFFFF	-	-
+10	8	0x00FF	Battle Lore	50
+10	9	0x0113	Gambit Slot	100
+10	10	0x0108	+150 HP	50
+10	11	0x00E1	Focus	70
+10	12	0x00FA	Phoenix Lore	90
+10	13	0x00E7	Shield Block	45
+10	14	0x0110	Gambit Slot	45
+10	15	0x00DC	Martyr	30
+10	16	0x00DF	Adrenaline	65
+10	17	0x00FC	Battle Lore	30
+10	18	0x0125	Shades of Black	70
+10	19	0x0128	Revive	40
+10	20	0x011F	Gil Toss	30
+10	21	0x011C	Numerology	40
+10	22	0x0126	Stamp	40
+10	23	0x0010	Quickening	125
+11	0	0x0041	Whale Whisker	90
+11	1	0x0034	Yagyu Darkblade & Mesa	180
+11	2	0x005F	Shikari Nagasa & Mina	220
+11	3	0x0003	Quickening	125
+11	4	0xFFFF	-	-
+11	5	0xFFFF	-	-
+11	6	0xFFFF	-	-
+11	7	0x001E	Zodiark	200
+11	8	0x00EE	Swiftness	80
+11	9	0x0109	+190 HP	60
+11	10	0x00FE	Battle Lore	30
+11	11	0x00E8	Shield Block	75
+11	12	0x00FD	Battle Lore	30
+11	13	0x00F0	Remedy Lore 2	30
+11	14	0x00DD	Inquisitor	30
+11	15	0x00F9	Phoenix Lore	50
+11	16	0x00E3	Last Stand	70
+11	17	0x0106	+70 HP	30
+11	18	0xFFFF	-	-
+11	19	0xFFFF	-	-
+11	20	0xFFFF	-	-
+11	21	0x0121	Sight Unseeing	40
+11	22	0x011E	Achilles	40
+11	23	0x012A	Wither	50
+12	0	0x0052	Guns 6	110
+12	1	0x004C	Crossbows 4	115
+12	2	0x0040	Poles 5	50
+12	3	0x005E	Daggers 5	60
+12	4	0x005D	Daggers 4	45
+12	5	0xFFFF	-	-
+12	6	0xFFFF	-	-
+12	7	0xFFFF	-	-
+12	8	0xFFFF	-	-
+12	9	0x001A	Chaos	100
+12	10	0xFFFF	-	-
+12	11	0x001B	Zeromus	65
+12	12	0xFFFF	-	-
+12	13	0x001C	Exodus	65
+12	14	0xFFFF	-	-
+12	15	0xFFFF	-	-
+12	16	0xFFFF	-	-
+12	17	0x000E	Quickening	125
+12	18	0xFFFF	-	-
+12	19	0xFFFF	-	-
+12	20	0xFFFF	-	-
+12	21	0x000F	Quickening	125
+12	22	0x0124	Bonecrusher	30
+12	23	0x012B	Telekinesis	80
+13	0	0x0074	Hand-bombs 3	75
+13	1	0x0051	Guns 5	90
+13	2	0x0033	Ninja Swords 2	120
+13	3	0x003F	Poles 4	40
+13	4	0x004A	Crossbows 2	40
+13	5	0xFFFF	-	-
+13	6	0xFFFF	-	-
+13	7	0x0098	Mystic Armor 4	25
+13	8	0x009A	Mystic Armor 6	40
+13	9	0x009C	Mystic Armor 8	60
+13	10	0x009E	Mystic Armor 10	75
+13	11	0x009F	Mystic Armor 11	80
+13	12	0x0092	Light Armor 10	75
+13	13	0x0093	Light Armor 11	80
+13	14	0x00A0	Mystic Armor 12	90
+13	15	0x0087	Heavy Armor 10	80
+13	16	0xFFFF	-	-
+13	17	0xFFFF	-	-
+13	18	0xFFFF	-	-
+13	19	0xFFFF	-	-
+13	20	0xFFFF	-	-
+13	21	0xFFFF	-	-
+13	22	0xFFFF	-	-
+13	23	0xFFFF	-	-
+14	0	0x0000	Quickening	50
+14	1	0x0073	Hand-bombs 2	55
+14	2	0x004B	Crossbows 3	60
+14	3	0x003E	Poles 3	35
+14	4	0x0032	Ninja Swords 1	100
+14	5	0x0013	Mateus	30
+14	6	0xFFFF	-	-
+14	7	0x0097	Mystic Armor 3	20
+14	8	0x0099	Mystic Armor 5	30
+14	9	0x009B	Mystic Armor 7	50
+14	10	0x009D	Mystic Armor 9	70
+14	11	0x008F	Light Armor 7	50
+14	12	0x0090	Light Armor 8	60
+14	13	0x0085	Heavy Armor 8	65
+14	14	0x0094	Light Armor 12	90
+14	15	0x0088	Genji Armor	190
+14	16	0x000B	Quickening	125
+14	17	0xFFFF	-	-
+14	18	0xFFFF	-	-
+14	19	0xFFFF	-	-
+14	20	0xFFFF	-	-
+14	21	0xFFFF	-	-
+14	22	0xFFFF	-	-
+14	23	0xFFFF	-	-
+15	0	0xFFFF	-	-
+15	1	0x0050	Guns 4	70
+15	2	0x004F	Guns 3	60
+15	3	0x003D	Poles 2	30
+15	4	0x0049	Crossbows 1	25
+15	5	0x005C	Daggers 3	35
+15	6	0x0095	Mystic Armor 1	10
+15	7	0x0096	Mystic Armor 2	15
+15	8	0x008C	Light Armor 4	25
+15	9	0x008D	Light Armor 5	30
+15	10	0x008E	Light Armor 6	40
+15	11	0x0082	Heavy Armor 5	50
+15	12	0x0091	Light Armor 9	70
+15	13	0x0084	Heavy Armor 7	60
+15	14	0x0086	Heavy Armor 9	70
+15	15	0xFFFF	-	-
+15	16	0xFFFF	-	-
+15	17	0xFFFF	-	-
+15	18	0xFFFF	-	-
+15	19	0xFFFF	-	-
+15	20	0xFFFF	-	-
+15	21	0xFFFF	-	-
+15	22	0xFFFF	-	-
+15	23	0xFFFF	-	-
+16	0	0xFFFF	-	-
+16	1	0xFFFF	-	-
+16	2	0xFFFF	-	-
+16	3	0x0072	Hand-bombs 1	35
+16	4	0x003C	Poles 1	20
+16	5	0x005B	Daggers 2	20
+16	6	0x008A	Light Armor 2	15
+16	7	0x0075	Shields 1	15
+16	8	0x008B	Light Armor 3	20
+16	9	0x0080	Heavy Armor 3	35
+16	10	0x0081	Heavy Armor 4	40
+16	11	0x0078	Shields 4	30
+16	12	0x0083	Heavy Armor 6	55
+16	13	0x0079	Shields 5	35
+16	14	0x007B	Ensanguined Shield	100
+16	15	0xFFFF	-	-
+16	16	0xFFFF	-	-
+16	17	0xFFFF	-	-
+16	18	0xFFFF	-	-
+16	19	0xFFFF	-	-
+16	20	0xFFFF	-	-
+16	21	0xFFFF	-	-
+16	22	0xFFFF	-	-
+16	23	0xFFFF	-	-
+17	0	0xFFFF	-	-
+17	1	0xFFFF	-	-
+17	2	0xFFFF	-	-
+17	3	0x004E	Guns 2	50
+17	4	0x004D	Guns 1	30
+17	5	0x005A	Daggers 1	15
+17	6	0x0089	Light Armor 1	10
+17	7	0x007E	Heavy Armor 1	25
+17	8	0x007F	Heavy Armor 2	30
+17	9	0x0076	Shields 2	20
+17	10	0x0077	Shields 3	25
+17	11	0xFFFF	-	-
+17	12	0x007C	Shell Shield	90
+17	13	0x007A	Shields 6	40
+17	14	0x007D	Zodiac Escutcheon	235
+17	15	0xFFFF	-	-
+17	16	0xFFFF	-	-
+17	17	0xFFFF	-	-
+17	18	0xFFFF	-	-
+17	19	0xFFFF	-	-
+17	20	0xFFFF	-	-
+17	21	0xFFFF	-	-
+17	22	0xFFFF	-	-
+17	23	0xFFFF	-	-
+18	0	0xFFFF	-	-
+18	1	0xFFFF	-	-
+18	2	0x0018	Zalera	30
+18	3	0x0061	Rods 2	30
+18	4	0x0060	Rods 1	20
+18	5	0x0065	Staves 1	15
+18	6	0x001F	Essentials	1
+18	7	0x0020	Swords 1	15
+18	8	0x0021	Swords 2	25
+18	9	0x0022	Swords 3	35
+18	10	0x0023	Swords 4	50
+18	11	0xFFFF	-	-
+18	12	0x000C	Quickening	125
+18	13	0xFFFF	-	-
+18	14	0xFFFF	-	-
+18	15	0xFFFF	-	-
+18	16	0xFFFF	-	-
+18	17	0xFFFF	-	-
+18	18	0xFFFF	-	-
+18	19	0xFFFF	-	-
+18	20	0xFFFF	-	-
+18	21	0xFFFF	-	-
+18	22	0xFFFF	-	-
+18	23	0xFFFF	-	-
+19	0	0x0008	Quickening	125
+19	1	0xFFFF	-	-
+19	2	0x006D	Maces 4	80
+19	3	0x0067	Staves 3	30
+19	4	0x0066	Staves 2	25
+19	5	0x006A	Maces 1	30
+19	6	0x0042	Bows 1	20
+19	7	0x0035	Spears 1	20
+19	8	0x0036	Spears 2	25
+19	9	0x0037	Spears 3	35
+19	10	0x0027	Blood Sword	50
+19	11	0x0024	Swords 5	55
+19	12	0x0025	Swords 6	60
+19	13	0x0026	Swords 7	70
+19	14	0xFFFF	-	-
+19	15	0xFFFF	-	-
+19	16	0xFFFF	-	-
+19	17	0xFFFF	-	-
+19	18	0xFFFF	-	-
+19	19	0xFFFF	-	-
+19	20	0xFFFF	-	-
+19	21	0xFFFF	-	-
+19	22	0xFFFF	-	-
+19	23	0xFFFF	-	-
+20	0	0x0064	Rod of Faith	130
+20	1	0x006E	Maces 5	130
+20	2	0x0062	Rods 3	40
+20	3	0x006C	Maces 3	60
+20	4	0x006B	Maces 2	40
+20	5	0x006F	Measures 1	40
+20	6	0x0043	Bows 2	30
+20	7	0x0044	Bows 3	35
+20	8	0x0046	Bows 5	60
+20	9	0x0047	Bows 6	70
+20	10	0x0038	Spears 4	50
+20	11	0x0039	Spears 5	60
+20	12	0x003A	Dragon Whisker	70
+20	13	0x002B	Excalibur	135
+20	14	0xFFFF	-	-
+20	15	0xFFFF	-	-
+20	16	0xFFFF	-	-
+20	17	0xFFFF	-	-
+20	18	0xFFFF	-	-
+20	19	0xFFFF	-	-
+20	20	0xFFFF	-	-
+20	21	0xFFFF	-	-
+20	22	0xFFFF	-	-
+20	23	0xFFFF	-	-
+21	0	0x0071	Measures 3	70
+21	1	0x0063	Rods 4	50
+21	2	0x0068	Staves 4	40
+21	3	0x0004	Quickening	150
+21	4	0xFFFF	-	-
+21	5	0x0014	Adrammelech	35
+21	6	0x0053	Axes & Hammers 1	20
+21	7	0x0045	Bows 4	45
+21	8	0x002D	Katana 1	35
+21	9	0x002E	Katana 2	50
+21	10	0x0058	Axes & Hammers 6	65
+21	11	0x0059	Axes & Hammers 7	85
+21	12	0x0048	Sagittarius	130
+21	13	0x003B	Zodiac Spear	240
+21	14	0xFFFF	-	-
+21	15	0xFFFF	-	-
+21	16	0xFFFF	-	-
+21	17	0xFFFF	-	-
+21	18	0xFFFF	-	-
+21	19	0xFFFF	-	-
+21	20	0xFFFF	-	-
+21	21	0xFFFF	-	-
+21	22	0xFFFF	-	-
+21	23	0xFFFF	-	-
+22	0	0x0069	Staff of the Magi	110
+22	1	0x0070	Measures 2	50
+22	2	0x0015	Hashmal	50
+22	3	0xFFFF	-	-
+22	4	0xFFFF	-	-
+22	5	0xFFFF	-	-
+22	6	0x0054	Axes & Hammers 2	25
+22	7	0x0055	Axes & Hammers 3	35
+22	8	0x0056	Axes & Hammers 4	50
+22	9	0x0057	Axes & Hammers 5	60
+22	10	0x0028	Greatswords 1	50
+22	11	0x002F	Katana 3	70
+22	12	0x0030	Katana 4	90
+22	13	0x0031	Masamune	130
+22	14	0xFFFF	-	-
+22	15	0xFFFF	-	-
+22	16	0xFFFF	-	-
+22	17	0xFFFF	-	-
+22	18	0xFFFF	-	-
+22	19	0xFFFF	-	-
+22	20	0xFFFF	-	-
+22	21	0xFFFF	-	-
+22	22	0xFFFF	-	-
+22	23	0xFFFF	-	-
+23	0	0x0002	Quickening	100
+23	1	0xFFFF	-	-
+23	2	0xFFFF	-	-
+23	3	0xFFFF	-	-
+23	4	0xFFFF	-	-
+23	5	0xFFFF	-	-
+23	6	0xFFFF	-	-
+23	7	0x0007	Quickening	125
+23	8	0xFFFF	-	-
+23	9	0xFFFF	-	-
+23	10	0x0001	Quickening	75
+23	11	0x0029	Greatswords 2	70
+23	12	0x002A	Greatswords 3	80
+23	13	0x002C	Tournesol	225
+23	14	0xFFFF	-	-
+23	15	0xFFFF	-	-
+23	16	0xFFFF	-	-
+23	17	0xFFFF	-	-
+23	18	0xFFFF	-	-
+23	19	0xFFFF	-	-
+23	20	0xFFFF	-	-
+23	21	0xFFFF	-	-
+23	22	0xFFFF	-	-
+23	23	0xFFFF	-	-

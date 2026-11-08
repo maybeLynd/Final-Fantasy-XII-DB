@@ -265,6 +265,18 @@ record +(i+1) x 0x20   part i's selector bytes
 | `+0x06` | `u16` |  | upload height |
 | `+0x0C` | `u32` |  | data offset, from the entry: four pages of palette-bytes each |
 
+[`model-files-cm-ca-fct-palette-colours.tsv`](model-files-cm-ca-fct-palette-colours.tsv) lists every colour of every
+page, one row each. The 1,972 palettes share 1,512 contents, and each content is written once;
+[`model-files-cm-ca-fct-palette-contents.tsv`](model-files-cm-ca-fct-palette-contents.tsv) gives its `sha256`, the
+same column as the palette table.
+
+`0x005044D0` returns a page's address (data offset + page × palette bytes), and `0x0053BE13` copies that many bytes
+unchanged. The fourth byte of a colour is its alpha. The alpha reference of a draw stops at `0x80` (`0x0053D4B0`), and
+959,330 of the 1,377,728 colours hold `0x80` there, 58,026 hold 0 and 26,496 hold more than `0x80`.
+
+Two palettes hold fewer than four pages: `high/c10/c1005/hc1005_01.cm` palette 1 and `high/n11/n1164/hn1164_01.cm`
+palette 2 stop after 64 colours of page 0, where their entry ends. `0x005044D0` does not test the size.
+
 ## Shipped data
 
 | Fact | Value |
@@ -307,6 +319,8 @@ not name is given by its offsets, as hex bytes.
 | [`model-files-cm-ca-fdm-keys.tsv`](model-files-cm-ca-fdm-keys.tsv) | 30,023 | `@FDM` key: its position in the key table |
 | [`model-files-cm-ca-fte-textures.tsv`](model-files-cm-ca-fte-textures.tsv) | 2,127 | `@FTE` texture: sizes, format and pixel data offset |
 | [`model-files-cm-ca-fct-palettes.tsv`](model-files-cm-ca-fct-palettes.tsv) | 1,972 | `@FCT` palette: sizes, data offset, grey pages, the largest channel spread of each page and the SHA-256 of its colours |
+| [`model-files-cm-ca-fct-palette-colours.tsv`](model-files-cm-ca-fct-palette-colours.tsv) | 1,377,728 | one colour of one page of one distinct palette content |
+| [`model-files-cm-ca-fct-palette-contents.tsv`](model-files-cm-ca-fct-palette-contents.tsv) | 1,512 | one distinct palette content: its SHA-256, sizes and how many palettes use it |
 
 | Column | Table | Meaning |
 |---|---|---|
@@ -342,6 +356,10 @@ not name is given by its offsets, as hex bytes.
 | `vram_bytes`, `palette_bytes`, `colours`, `upload_width`, `pages`, `upload_height` | fct-palettes | record `+0x00`, `+0x02`, palette bytes / 4, `+0x04`, `+0x05` and `+0x06` |
 | `dword_08`, `data_offset`, `data_bytes` | fct-palettes | record `+0x08`, `+0x0C`, and the bytes of the four pages inside the entry |
 | `grey_pages`, `page_spreads`, `sha256` | fct-palettes | the pages on which every colour has equal red, green and blue, the largest max − min channel difference over each page's colours, pages 0 to 3 (both `-` when the pages do not fit), and the SHA-256 of the data bytes |
+| `content`, `page`, `colour` | fct-palette-colours | the content's number from fct-palette-contents, page 0 to 3, and the colour's place in the page |
+| `byte0`, `byte1`, `byte2`, `byte3` | fct-palette-colours | the colour's four stored bytes, in decimal: red, green, blue, as the `grey_pages` column reads them, and alpha |
+| `content`, `sha256` | fct-palette-contents | the number the colour rows use, and the `sha256` of the palette table |
+| `palette_bytes`, `colours`, `data_bytes`, `palettes` | fct-palette-contents | the record's palette bytes, palette bytes / 4, the bytes present in the entry, and how many of the 1,972 palettes hold this content |
 
 ## Loader behaviour
 

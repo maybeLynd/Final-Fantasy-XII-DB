@@ -406,15 +406,21 @@ Growing a vector copies `DebugLine` records. `0x001C1C80(dst, src)` copy-constru
 256-byte text, then the text object through `0x001C1E70`, and returns `dst`. `0x001C1B00(out, first, last, dest)`
 does the same for a range into new storage, `0x230` bytes apart: it keeps the next destination in `*out`
 (`0x001C1B1B`, `0x001C1BDB`), skips the copy for a destination of 0 (`0x001C1B40`) and returns `out`.
-`0x001C1A60(first, last, destEnd)` copy-assigns a range backward, the text object through `0x001C22A0`, and returns
-the first record it wrote (`0x001C1AF0`), `destEnd` itself for an empty range.
 
-Both text-object copies take the
+`0x001C1A60(first, last, destEnd)` copy-assigns a range backward, the text object through `0x001C22A0`, and returns
+the lowest record it wrote, the last one copied (`0x001C1AF0`), `destEnd` itself for an empty range.
+
+`0x001C1E70` takes the
 object's array of strings with `0x001C1C00(dst, src)`: a new array of the same count (the low 31 bits
 of its count word) from `0x0017D260(count × 8, 8)`, and `0x001C19A0(dst, src, n)` duplicates each string into its own
 block, its source pointer read with bit `0x1` cleared. An empty source, or a failed allocation, leaves the copy
-with count 0 and array pointer 0 (`0x001C1C2F`, `0x001C1C45`, `0x001C1C69`); the copy's count word never has bit
-`0x80000000` set.
+with count 0 and array pointer 0 (`0x001C1C2F`, `0x001C1C45`, `0x001C1C69`).
+
+`0x001C22A0` builds the same array itself (`0x001C2317`, `0x001C232D`). It releases the destination's old array and
+its strings through `0x00584730`, keeping a string that is 0 or has bit `0x1` set, unless the old pointer is the
+new one, the old pointer is null or the old count word has bit `0x80000000` set (`0x001C2342`-`0x001C2383`). It then
+stores the new pointer and the count (`0x001C2388`, `0x001C238C`), so a failed allocation leaves array pointer 0 with
+the source's count. In both copies the count word never has bit `0x80000000` set.
 
 For each string `0x001C19A0` measures the text, takes a block of its length plus one from
 `0x0017D260(length + 1, 2)` and copies the text and its terminator with `memcpy` (`0x00861EBA`, `0x001C1A2C`); a source

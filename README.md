@@ -169,7 +169,7 @@ every other address in the executable that a page cites. Its columns:
   cell of a table row, or in a sentence that says what it is or does), else the page that cites it most; an address
   only tables cite has the table that cites it most.
 - `see_also`: the other pages that describe a structure.
-- `cited_in_files`: how many other pages and tables cite the address.
+- `cited_in_files`: how many other pages and tables cite the address; `README.md` files and this index are not counted.
 
 ## Phenomenon index
 

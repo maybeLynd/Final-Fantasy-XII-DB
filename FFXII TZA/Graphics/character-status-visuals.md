@@ -419,6 +419,39 @@ Measured from the executable image.
 | frame values at 60 fps | `0x001EDDC0` stores 0.5, 2.0, 2 and 1, then `0x0033F020` doubles the pulse table's count (`0x0046FBF0`) and stretches the two curves over twice the frames (`0x00471100`) |
 | Immobilize constants | 1.5 (`0x00901B3C`), 0.5 (`0x01CEBB70`), 0.3 (`0x0091523C`), 0.7 (`0x008F3104`) |
 
+[`status-visual-curves.tsv`](status-visual-curves.tsv) lists every stored sample of the six float tables above, with
+raw bits and addresses. [`status-visual-curves-60fps.tsv`](status-visual-curves-60fps.tsv) lists what the two
+resamplers compute from them. Those values are worked out from the code and are not stored in the executable.
+
+| `table` | Address | Channels | Stored entries | Read at |
+|---|---|---|---|---|
+| `pulse` | `0x01F20AA0` | 1 | 60 | `0x0046FBB0` |
+| `curve1` | `0x01F21F40` | 1 | 30 | the steps `0x00470230` and `0x00470B70` |
+| `curve2` | `0x01F22030` | 1 | 30 | the steps `0x00470230` and `0x00470B70` |
+| `scale` | `0x01F20540` | 3 | 50 | `0x0046FB40` |
+| `0x01F209F0` | `0x01F209F0` | 1 | 21 | named only by `0x0046FBF0` (`0x0046FC5E`) |
+| `0x01F20C80` | `0x01F20C80` | 1 | 60 | `0x0046FACF` |
+
+Columns of the first table:
+
+| Column | Meaning |
+|---|---|
+| `table`, `table_address`, `channels` | the table, as above |
+| `entry`, `channel` | the sample's entry and its channel within the entry |
+| `address` | the sample's address in the image |
+| `f32_bits` | its raw 32-bit float |
+| `value` | the same number to nine significant digits |
+
+The 60 fps table has the same `table`, `entry`, `channel`, `f32_bits` and `value` columns, then:
+
+| Column | Meaning |
+|---|---|
+| `resampler` | `0x0033E5E0` for four tables, `0x0033E310` for `curve1` and `curve2` |
+| `from` | the source entry, the two source entries of the mean, or the source entry the last entry copies |
+
+The samples come from the executable with sha256
+`73461D0896204B1C259C52F61AEF4EFBC95A2FFC388CADB36493D5D1D89721F8`.
+
 ## State
 
 - `0x02B59D80`: the 32 presentation records.

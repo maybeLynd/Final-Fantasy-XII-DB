@@ -121,6 +121,17 @@ stores its address at `0x02EBF200` (`0x00237031`), and no instruction reads that
 ([Authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md)). The board screen reads only
 the twelve job boards above.
 
+[`license-board-legacy.tsv`](license-board-legacy.tsv) lists all 576 cells of that board, row by row: 300 hold a node
+and the other 276 the empty marker `0xFFFF`. The node names and LP costs are those of the current node table, entry
+`+0x34`, read the same way as for the twelve job boards. The file's sha256 is
+`236b1ab4d59a6d78f399b7e231d13800f7947f28b5bb95f2670f97bcfc2f3ab0`.
+
+| Column | Meaning |
+|---|---|
+| `row`, `column` | the cell, 0 to 23 each |
+| `cell` | the raw `u16`, `0xFFFF` for an empty square |
+| `name`, `lp_cost` | the node's name and LP cost; `-` for an empty square |
+
 ## Loader behaviour
 
 1. `BattleStorage_InitializeWorkArrays` zeroes the twelve slots and requests each board once (`0x002369E5`-`0x00236A24`).

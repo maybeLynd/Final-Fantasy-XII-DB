@@ -35,6 +35,19 @@ run's weights sum to 100.
 A word whose index is not below the count comes back unchanged (`0x00308EF0`-`0x00308EFA`), and a run with no such
 entry gives `0xFFFF` (`0x00308FA4`).
 
+The loader adds the section's address to all `count + 1` offsets (`0x00236D39`, `0x00384780`, bound at `0x0038478B`).
+[`enemy-weighted-pools.tsv`](enemy-weighted-pools.tsv) lists the 826 pools and
+[`enemy-weighted-pool-members.tsv`](enemy-weighted-pool-members.tsv) their 3,587 members, with raw action ids,
+weights and pad bytes.
+
+Pools 0-16, 37, 75, 137, 228, 229, 382-385, 388, 389, 525 and 590 are Reserve. None of the 50,050 orders of the 166
+area files names one of them, in the `in` or the `ch` folder, and the index test at `0x00308EF0`-`0x00308EFA` accepts
+each.
+
+A member of weight 0 is never taken: the running sum does not rise at it and the roll is at least 0
+(`0x00308F94`-`0x00308F99`). Six pools hold 679 such members, each with action word `0x0000`, and 667 of them are in
+pool 312, which has 676 members.
+
 So an order in an area file can point to a weighted list instead of a single action. These lists are kept in
 `battle_pack.bin`, each list's weights add up to 100, and the game rolls a number from 0 to 99 and takes the first
 action whose running total of weights is above the roll.
@@ -226,12 +239,42 @@ the executable, at the sites above:
 | `noInterruptByHigherPriority` | `guard` | `0x4000` |
 | `noInterruptByAny` | `keep` | `0x8000` |
 
+[`enemy-weighted-pools.tsv`](enemy-weighted-pools.tsv), one row per pool:
+
+| Column | Meaning |
+|---|---|
+| `pool` | the index a word from `0x8000` carries |
+| `action_word` | `0x8000 + pool`, the word an order holds |
+| `section_offset` | where the pool's first member starts, from the section |
+| `bytes`, `members` | the run's length and how many 4-byte members it holds |
+| `weight_sum` | the sum of its weights |
+| `zero_weight_members` | how many of its members have weight 0 |
+| `orders`, `sets` | how many orders of the 166 area files hold its word, and in how many sets |
+| `used_in` | those sets, each as `area:set`; `none` when no order holds the word |
+
+[`enemy-weighted-pool-members.tsv`](enemy-weighted-pool-members.tsv), one row per member:
+
+| Column | Meaning |
+|---|---|
+| `pool`, `member` | the pool and the member's place in it |
+| `section_offset` | the member's offset from the section |
+| `action_id` | the `u16` at `+0`, raw |
+| `action` | that action's name |
+| `weight` | the `u8` at `+2` |
+| `pad` | the `u8` at `+3` |
+
 ## Data
 
-The two TSVs hold the order sets of the `us` `battle_pack.bin` and of the 166 area files of the kind-21 path list
+The order TSVs hold the order sets of the `us` `battle_pack.bin` and of the 166 area files of the kind-21 path list
 ([Bestiary](../Enemy-Spawning/bestiary.md)). Every file has the slot layout above, and every set has
 its zero padding and fills its length exactly. Of the 50,050 orders, 3,336 carry exactly the tests and flags of a
 gambit condition, and the TSV's wording for those agrees with the condition's name.
+
+The pool TSVs hold directory entry `+0x2C` of the `us` `battle_pack.bin`: 17,664 bytes at file offset `0x4910`,
+sha256 `51da8a9d38aa3837b5c421eba862a813a2d3dabbf07d487a01e7fcc0e4161803`. Four zero bytes follow the last pool.
+All nine language files hold the same bytes, at `fr` `0x4900`, `de` `0x4C60`, `es` `0x4BB8`, `it` `0x4980`,
+`kr` `0x4920`, `cn` `0x4468`, `ch` `0x4460` and `in` `0x4450`. Every pool's weights sum to 100, every pad byte is
+0 and every member's action id is below `0x21F`.
 
 ## Related
 
