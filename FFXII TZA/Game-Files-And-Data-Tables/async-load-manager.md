@@ -9,12 +9,12 @@ addresses: "0x01F81160, 0x001A11B0, 0x001A1220, 0x0019F620, 0x001A0AF0, 0x0019F4
 
 The game keeps drawing while it loads. Remastered models, maps, textures, fonts and the text lists that
 name them, and the PS2-era files the game logic asks for, are mostly read on a separate loading thread, and
-the code that asked is told in a later frame that the data is there. When a summon, a monster or an NPC
-model is read, the game also reads that model's character effect file and hands both over as one
+the code that asked is told on a later run of the completion pump that the data is there. When a summon, a
+monster or an NPC model is read, the game also reads that model's character effect file and hands both over as one
 block.
 
 A request filed with `now` set runs at once on the calling thread instead, and a record with byte `+0x18`
-set calls back on the thread that ran it, not in a later frame: a PS2-era file the RAM cache already holds
+set calls back on the thread that ran it, not from the completion pump: a PS2-era file the RAM cache already holds
 is read that way, and its callback has run when the read returns (`0x001D7028`, `0x001D7076`).
 
 ## How it works
@@ -115,11 +115,15 @@ running `0x001A07B0`: the loading thread for a queued request, the filing thread
 when full); the entry's third word is the record's whole qword at `+0x18`, the byte and the seven bytes after it
 (`0x001A0889`).
 
-Each frame the pump runs `0x001A1310(manager)`: under the same lock it copies the vector to the stack and
-empties it, then calls every non-null callback with its argument on the main thread. A callback that
-files a new request with byte `+0x18` clear therefore sees it finish in a later frame; with the byte set, the new
-request's callback runs on the thread that ran it (`0x001A0846`-`0x001A0853`), before the filing call returns when
-`now` is set.
+Each pass of the frame pump `0x0017D6E0` runs `0x001A1310(manager)` (`0x0017D790`): under the same lock it copies the
+vector to the stack and empties it, then calls every non-null callback with its argument on the main thread.
+
+A callback that files a new request with byte `+0x18` clear therefore sees that request's callback no earlier than
+a later run of `0x001A1310`, the first one after the completion is queued. That run is not always in a later frame,
+because `0x0017D6E0` can make a second pass in one call
+([the game application](../Engine-Core/game-application.md)). The file being read and its callback
+running are separate events. With the byte set, the new request's callback runs on the thread that ran it
+(`0x001A0846`-`0x001A0853`), before the filing call returns when `now` is set.
 
 ### PS2 file reads
 
@@ -274,8 +278,8 @@ its pointer `0x01F82CC0` for PS2 file reads.
   so its size table entry must cover the model, the effect and 4 bytes. A model not listed gets
   nothing appended.
 - Replacing an appended `.efx` changes the total; update that model's size in every `.fst`.
-- A callback on a queued request with byte `+0x18` clear runs in the next frame, not when the file
-  arrives.
+- A callback on a queued request with byte `+0x18` clear runs at the first run of `0x001A1310` after the completion is
+  queued, not when the file arrives. One frame can hold two such runs.
 
 ## Related
 
@@ -286,3 +290,10 @@ its pointer `0x01F82CC0` for PS2 file reads.
 - [PhyreEngine asset files](../PhyreEngine/phyre-asset-files.md): what a kind 1 load does with the file.
 - [Model files](../Graphics/model-files-cm-ca.md): the `.cm` files the appendix extends.
 - [Effect files](../Graphics/effect-files-efx-efb.md): the `.efx` files it appends.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Developer: `0x0017D6E0` calls `0x001C2F50`; those functions are documented on
+  [game application](../Engine-Core/game-application.md).

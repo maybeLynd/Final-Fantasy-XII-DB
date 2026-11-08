@@ -117,7 +117,7 @@ mode):
 
 | Slot | Does |
 |---:|---|
-| `1` | the draw entry `0x00213FE0(instance, renderer)`: its own slot 11 with 1 (`0x0021400E`), the viewport from `+0x108`-`+0x118` (`0x0021403F`), the state codes `+0x100` and `+0xF8` (`0x00214046`-`0x00214132`), among them blend `(6, 7, 6, 7)` with program 0 (`0x002140E9`), the identity matrix (`0x00214138`-`0x00214176`), then its own slot 10 (`0x00214191`); after it the viewport goes back to `(0, 0, width, height, 0)` with the width of `0x00182EB0` and the height of `0x00182E80` (`0x00214194`-`0x002141CA`), and slot 11 runs again with 0 (`0x002141DC`) |
+| `1` | the draw entry `0x00213FE0(instance, renderer)`: its own slot 11 with 1 (`0x0021400E`), the viewport from `+0x108`-`+0x118` (`0x0021403F`), the state codes `+0x100` and `+0xF8` (`0x00214046`-`0x00214132`): of `+0x100` only the pair from bit `0x10000` and bits `0x60000` reaches the renderer (slot `+0xA0`, `0x00214085`), the pair from bit `0x1` and bits `0xE` is decoded and not read, slot `+0x88` gets the constants `(0, 7, 0.0)` (`0x00214069`) and slot `+0xA8` gets 0 (`0x00214093`); of `+0xF8` only `0x001EE650`'s `out+8` and its `out+0xC`-`out+0x18` reach it (slots `+0x98` and `+0x80`, `0x002140FC`, `0x00214132`), while blend `(6, 7, 6, 7)` is immediate, with last argument 0, which the renderer stores at `+0x7C` (`0x002140E9`, `0x006CABA9`); the identity matrix (`0x00214138`-`0x00214176`), renderer slot `+0x48` with `(0, 1)` (`0x00214185`), then its own slot 10 (`0x00214191`); after it the viewport goes back to `(0, 0, width, height, 0)` with the width of `0x00182EB0` and the height of `0x00182E80` (`0x00214194`-`0x002141CA`), and slot 11 runs again with 0 (`0x002141DC`) |
 | `3` | sets the 4 x 4 matrix (`0x00214710`) |
 | `4` | sets layer `i`'s texture (`0x00213B30`) |
 | `5` | sizes layer `i`'s vertex array (`0x00213F90`) |
@@ -143,14 +143,14 @@ type 2, the result of slot 1 and the count (`0x00214374`-`0x0021438E`).
 
 `Final` (`0x00214210`) and `Shadow` (`0x00214540`) run a short prefix and jump into it (`0x00214296`, `0x0021458D`):
 
-- `Shadow` sets blend `(6, 7, 6, 7)` and program 9 (`0x00214550`-`0x0021457A`).
+- `Shadow` sets blend `(6, 7, 6, 7)` with last argument 9 (`0x00214550`-`0x0021457A`).
 - `Final` would replace row 0 of the matrix with `(height x 16/9 / width, 0, 0, 0)` (`0x0021425C`-`0x0021427B`, `0x00183280`),
   1.0 at 1920 x 1080. Its gate `0x00182F50` needs the first word of the display object `[0x01F82D18]` to be 1
   (`0x001DD8C4`).
   - The constructor writes 0 there (`0x001DC5D6`) and nothing else stores it: the 72 calls of the getter
     `0x001DDAB0` and the 25 functions they hand the object to never write its `+0x00`, and only the creator stores
     the pointer (`0x001DDAA4`). The row is therefore left at the identity.
-- `ShadowFinal` (`0x002143E0`) does not use the shared body: it draws layer 0 alone as a triangle strip with program 10
+- `ShadowFinal` (`0x002143E0`) does not use the shared body: it draws layer 0 alone as a triangle strip, blend last argument 10
   (`0x0021446D`, `0x0021453C`).
 
 Draw types are those of `0x006DA5A0`: 2 a triangle list, 3 a strip, 4 a fan. A strip and a fan of `n` vertices become

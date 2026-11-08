@@ -53,15 +53,19 @@ is below its count at `+4`, otherwise taken as clear; the save bit is the persis
 (`0x00314A60`, set by `setsaverambattlestatus(0)`).
 
 The field hold `0x00263480(actor, mode)` runs `0x00263560` first (`0x002634B0`). While `0x02099DE5` or `0x02099DE6` is
-non-zero it raises request 5 for mode 0, 4 for mode 1 and 7 for mode 2 with the actor as a one-entry list (its
-handle from `0x003589B0`; no list for a null actor), and 4 for any other mode too, passing `0x02099DE7 == 0` as the
-flag with fade -1, then runs the apply (`0x0026351D`).
+non-zero it raises request 5 for mode 0, 4 for mode 1, 7 for mode 2 and 4 for any other mode. Only mode 2 with a
+non-null actor passes a list, the actor's handle from `0x003589B0` as its one entry (`0x002634C9`-`0x002634EB`); every
+other case passes no list (`0x002634FD`-`0x00263507`). Each passes `0x02099DE7 == 0` as the flag with fade -1, and the
+hold then runs the apply (`0x0026351D`).
 
 With the hold bytes `0x02099DE5` and `0x02099DE6` both clear it releases 5, 4 and 7 instead, through `0x00225CD0` with
 fade -1 and without the apply. The talk filer sets `0x02099DE7` to `0x00377700() == 0` and `0x02099DE5` to 1; the
 release resets them.
 
-Every request locks every actor of managers 0 to 2 and then releases the configured rows: the
+Requests 4, 5, 6 and 7 walk manager 0 alone, because their A bit `0x80000000` is set (`0x00226C77`-`0x00226C91`)
+([time stop and freeze](../Engine-Core/time-stop-and-freeze.md)).
+
+Every request locks every actor of the managers it walks and then releases the configured rows: the
 party leader always, the other party members only when the flag is 0, and the non-party types by
 their configuration. A locked actor keeps the request's bit in `+0x10C`, and the interpreter gate
 refuses its script every frame unless the actor's byte `+0x0B` has bit `0x20` set
@@ -98,8 +102,8 @@ Request 7 also puts its bit in `+0x10C` for nibbles 4 and 5. The field hold take
 `+0x0C` has bit `0x80` set (`0x00268E0A`-`0x00268E30`), and its one-entry list releases only that partner.
 
 Request 6 itself names no actor and no list (`0x00226BE0(6, 0, 0, 0, 4, flag)`), so it releases
-no one beyond the configured rows; the field hold's requests 5, 4 and 7, below, are the ones that carry
-a one-entry actor list.
+no one beyond the configured rows. Of the field hold's requests, only request 7 for mode 2 with a non-null actor
+carries a list, one entry long.
 
 ### Event time stop
 
@@ -126,7 +130,7 @@ Globals:
 
 ## Operations
 
-Per lock take: one registry request over managers 0 to 2 and its release.
+Per lock take: one registry request over manager 0 and its release.
 
 ## State
 

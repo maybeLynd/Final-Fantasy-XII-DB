@@ -14035,7 +14035,7 @@ function	0x0017D4C0	-	Engine-Core/startup-constants.md	-	15
 function	0x0017D650	-	Engine-Core/game-application.md	-	6
 function	0x0017D670	-	Engine-Core/game-application.md	-	6
 function	0x0017D6B0	-	Engine-Core/debug-menu.md	-	6
-function	0x0017D6E0	-	Engine-Core/game-application.md	-	16
+function	0x0017D6E0	-	Engine-Core/game-application.md	-	17
 function	0x0017D880	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	6
 function	0x0017D8B0	-	Engine-Core/engine-types-fields.tsv	-	5
 function	0x0017D8D0	-	Game-Files-And-Data-Tables/standard-file-formats.md	-	6
@@ -15510,7 +15510,7 @@ function	0x001C2D50	-	Engine-Core/debug-menu.md	-	3
 function	0x001C2DB0	-	Engine-Core/debug-menu.md	-	4
 function	0x001C2F00	-	Engine-Core/debug-menu.md	-	5
 function	0x001C2F40	-	Engine-Core/debug-menu.md	-	8
-function	0x001C2F50	-	Game-Files-And-Data-Tables/standard-file-formats.md	-	14
+function	0x001C2F50	-	Game-Files-And-Data-Tables/standard-file-formats.md	-	15
 function	0x001C3370	-	PhyreEngine/phyre-application.md	-	11
 function	0x001C3390	-	Engine-Core/game-application.md	-	3
 function	0x001C3420	-	Engine-Core/game-application.md	-	3
@@ -20690,7 +20690,7 @@ function	0x002EB810	-	Scripts-And-Script-Commands/script-name-bindings.md	-	4
 function	0x002EB870	-	Scripts-And-Script-Commands/verb-table.md	-	5
 function	0x002EB890	-	Scripts-And-Script-Commands/script-name-bindings.md	-	7
 function	0x002EB930	-	Movement-And-Pathfinding/facing-and-steering.md	-	10
-function	0x002EB9D0	-	Scripts-And-Script-Commands/script-name-bindings.md	-	8
+function	0x002EB9D0	-	Scripts-And-Script-Commands/script-name-bindings.md	-	10
 function	0x002EBAD0	-	Characters-And-Objects/actor-record-fields-secondary-context.tsv	-	7
 function	0x002EBB80	-	Characters-And-Objects/actor-model-rebuild.md	-	11
 function	0x002EBBB0	CharacterRenderSystem_SetPrimaryDistanceCullEnable	Story-Events-And-Hunts/script-language-differences.md	-	10
@@ -37766,7 +37766,7 @@ function	0x006CA7B0	-	PhyreEngine/phyre-d3d11-draws-and-state.md	-	7
 function	0x006CA8D0	-	PhyreEngine/phyre-d3d11-draws-and-state.md	-	7
 function	0x006CAB40	-	Graphics/gi-render-commands.md	-	6
 function	0x006CAB50	-	Engine-Core/vtable-methods.tsv	-	4
-function	0x006CAB80	-	Engine-Core/vtable-methods.tsv	-	6
+function	0x006CAB80	-	Menus-And-HUD/text-drawing.md	-	7
 function	0x006CABC0	-	Compiler-And-C-Runtime/generated-function-families-explained-callee-adapters.tsv	-	5
 function	0x006CABE0	-	Graphics/gi-render-commands.md	-	6
 function	0x006CABF0	-	Graphics/gi-render-commands.md	-	6

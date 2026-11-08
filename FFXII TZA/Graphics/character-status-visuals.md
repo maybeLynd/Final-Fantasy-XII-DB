@@ -282,7 +282,8 @@ These steps use a phase stepping by `0.033 × [0x01DFE0BC]` and an envelope movi
 - Immobilize, `0x0051DE30`: the same with `s = (0.7 + 0.3p) × envelope`, colour `(128s, 16s, 4s)`, vector
   `(1 + 0.3p, 1 - 0.3p, 1 - 0.3p, 1)`, and the shadow's `+0xC` = `1 + (1.5 + 0.5p) × envelope`.
 - Leaving, Slow and Immobilize restore the shadow's `+0xC` to 1.0, its colour to 0, store `(0, 0, 0, 1)` at
-  `0x02CB8390` and call `0x0051E510(record, 0)`.
+  `0x02CB8390`, call `0x0051E510(record, 0)`, clear the step `+0x40` and return 1 (`0x0051E1EC`, `0x0051E281`; `0x0051DEAF`,
+  `0x0051DF44`).
 
 `0x0051E510` walks the record and every record attached under it and calls the method at offset `0xC8` of each render
 object (record `+0x6B8`) with 1 or 0. The shadow pool is 160 entries of `0xE0` bytes at `[0x02B40528]`; `0x003B6B10` and
