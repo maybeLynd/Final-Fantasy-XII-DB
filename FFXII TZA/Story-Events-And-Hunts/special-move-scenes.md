@@ -54,12 +54,9 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 173 |
-| empty | 21 |
+| `resolved` | 194 |
 
-A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
-script writes them (`-` for a verb without arguments). Its `addresses`, `timing` and `sync` cells carry what they give
-for the step, and `-` otherwise.
+No step has an empty `resolution` cell.
 
 A scene reads from top to bottom in its functions. In `spc_z0000` (event `210`), `監督.main` files `監督.全体処理`, which
 files `技読み込み.技読み込み` and `技読み込み.技読み込み終了待ち`, waiting until each ends, hides the HUD, fades the music to volume 64 over

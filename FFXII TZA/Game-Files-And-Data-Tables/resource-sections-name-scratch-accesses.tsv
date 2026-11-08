@@ -1,6 +1,14 @@
 function	name	site	disp	kind	instruction	route	note
-0x00409210	FUN_00409210	0x0040921B	0x0	w	mov qword ptr [rcx], rax	route-seeded STATIC 0x02B62E20 base+0x0 zeroclear	
-0x00409210	FUN_00409210	0x0040921E	0x8	w	mov qword ptr [rcx + 8], rax	route-seeded STATIC 0x02B62E20 base+0x0 zeroclear	
-0x00409210	FUN_00409210	0x00409222	0x10	w	mov qword ptr [rcx + 0x10], rax	route-seeded STATIC 0x02B62E20 base+0x0 zeroclear	
-0x00409210	FUN_00409210	0x0040922A	0x18	w	mov qword ptr [rcx + 0x18], rax	route-seeded STATIC 0x02B62E20 base+0x0 zeroclear	
-0x00409210	FUN_00409210	0x00409234	0x1F	w	mov byte ptr [rbx + 0x1f], 0	route-seeded STATIC 0x02B62E20 base+0x0	
+0x00409210	FUN_00409210	0x0040921B	0x0	w	mov qword ptr [rcx], rax	route-seeded STATIC 0x02B62E20 base+0x0 zeroclear	host 0x00409780
+0x00409C30	ResourceSectionHeader_MatchesTagAndName32	0x00409C45	0x0	r	mov eax, dword ptr [r8]	route-seeded STATIC 0x02B62E20 base+0x0	host 0x00409780
+0x00409C30	ResourceSectionHeader_MatchesTagAndName32	0x00409C4D	0x4	r	mov eax, dword ptr [r8 + 4]	route-seeded STATIC 0x02B62E20 base+0x0	host 0x00409780
+0x00409210	FUN_00409210	0x0040921E	0x8	w	mov qword ptr [rcx + 8], rax	route-seeded STATIC 0x02B62E20 base+0x0 zeroclear	host 0x00409780
+0x00409C30	ResourceSectionHeader_MatchesTagAndName32	0x00409C56	0x8	r	mov eax, dword ptr [r8 + 8]	route-seeded STATIC 0x02B62E20 base+0x0	host 0x00409780
+0x00409C30	ResourceSectionHeader_MatchesTagAndName32	0x00409C5F	0xC	r	mov eax, dword ptr [r8 + 0xc]	route-seeded STATIC 0x02B62E20 base+0x0	host 0x00409780
+0x00409210	FUN_00409210	0x00409222	0x10	w	mov qword ptr [rcx + 0x10], rax	route-seeded STATIC 0x02B62E20 base+0x0 zeroclear	host 0x00409780
+0x00409C30	ResourceSectionHeader_MatchesTagAndName32	0x00409C68	0x10	r	mov eax, dword ptr [r8 + 0x10]	route-seeded STATIC 0x02B62E20 base+0x0	host 0x00409780
+0x00409C30	ResourceSectionHeader_MatchesTagAndName32	0x00409C71	0x14	r	mov eax, dword ptr [r8 + 0x14]	route-seeded STATIC 0x02B62E20 base+0x0	host 0x00409780
+0x00409210	FUN_00409210	0x0040922A	0x18	w	mov qword ptr [rcx + 0x18], rax	route-seeded STATIC 0x02B62E20 base+0x0 zeroclear	host 0x00409780
+0x00409C30	ResourceSectionHeader_MatchesTagAndName32	0x00409C7A	0x18	r	mov eax, dword ptr [r8 + 0x18]	route-seeded STATIC 0x02B62E20 base+0x0	host 0x00409780
+0x00409C30	ResourceSectionHeader_MatchesTagAndName32	0x00409C83	0x1C	r	mov eax, dword ptr [r8 + 0x1c]	route-seeded STATIC 0x02B62E20 base+0x0	host 0x00409780
+0x00409210	FUN_00409210	0x00409234	0x1F	w	mov byte ptr [rbx + 0x1f], 0	route-seeded STATIC 0x02B62E20 base+0x0	host 0x00409780

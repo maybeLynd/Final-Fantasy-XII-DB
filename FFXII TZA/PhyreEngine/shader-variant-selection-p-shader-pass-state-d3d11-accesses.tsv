@@ -1,39 +1,101 @@
 function	name	site	disp	kind	instruction	route	note
-0x00615840	FUN_00615840	0x00615AA9	0x0	addr	lea rcx, [rbp + 0x830]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x-830	
-0x00615ED0	FUN_00615ed0	0x00615EE9	0x0	w	mov dword ptr [rcx], edx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615EEB	0x4	w	mov dword ptr [rcx + 4], 3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615EF2	0x8	w	mov qword ptr [rcx + 8], 3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615FE3	0x8	w	mov dword ptr [rcx + 8], 1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615EFA	0x10	w	mov qword ptr [rcx + 0x10], rdx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615EFE	0x18	w	mov dword ptr [rcx + 0x18], edx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F01	0x1C	w	mov qword ptr [rcx + 0x1c], 1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F09	0x24	w	mov qword ptr [rcx + 0x24], rdx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615FEA	0x24	w	mov dword ptr [rcx + 0x24], 1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F0D	0x2C	w	mov dword ptr [rcx + 0x2c], 1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F14	0x30	w	mov dword ptr [rcx + 0x30], 1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F1B	0x34	w	mov qword ptr [rcx + 0x34], 2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F23	0x3C	w	mov word ptr [rcx + 0x3c], 0xffff	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F29	0x40	w	movups xmmword ptr [rcx + 0x40], xmm1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F35	0x50	w	movups xmmword ptr [rcx + 0x50], xmm1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F39	0x60	w	mov qword ptr [rcx + 0x60], rdx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F3D	0x68	w	movups xmmword ptr [rcx + 0x68], xmm3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F8C	0x78	w	movups xmmword ptr [rcx + 0x78], xmm2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F49	0x88	w	movups xmmword ptr [rcx + 0x88], xmm3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F90	0x98	w	movups xmmword ptr [rcx + 0x98], xmm2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F58	0xA8	w	movups xmmword ptr [rcx + 0xa8], xmm3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F97	0xB8	w	movups xmmword ptr [rcx + 0xb8], xmm2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F69	0xC8	w	movups xmmword ptr [rcx + 0xc8], xmm3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F9E	0xD8	w	movups xmmword ptr [rcx + 0xd8], xmm2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F70	0xE8	w	movups xmmword ptr [rcx + 0xe8], xmm3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615FA5	0xF8	w	movups xmmword ptr [rcx + 0xf8], xmm2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F77	0x108	w	movups xmmword ptr [rcx + 0x108], xmm3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615FAC	0x118	w	movups xmmword ptr [rcx + 0x118], xmm2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F7E	0x128	w	movups xmmword ptr [rcx + 0x128], xmm3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615FB3	0x138	w	movups xmmword ptr [rcx + 0x138], xmm2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615F85	0x148	w	movups xmmword ptr [rcx + 0x148], xmm3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615FBA	0x158	w	movups xmmword ptr [rcx + 0x158], xmm2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
-0x00615ED0	FUN_00615ed0	0x00615FC1	0x168	w	mov qword ptr [rcx + 0x168], rdx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0 zeroclear	
-0x00615ED0	FUN_00615ed0	0x00615FC8	0x170	w	mov qword ptr [rcx + 0x170], rdx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0 zeroclear	
-0x00615ED0	FUN_00615ed0	0x00615FCF	0x178	w	mov qword ptr [rcx + 0x178], rdx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0 zeroclear	
-0x00615ED0	FUN_00615ed0	0x00615FD6	0x180	w	mov qword ptr [rcx + 0x180], rdx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0 zeroclear	
-0x00615ED0	FUN_00615ed0	0x00615FDD	0x188	w	mov byte ptr [rcx + 0x188], dl	route-seeded EMBED RenderPrimitivePass1E8 +0x058 base+0x0	
+0x00615840	FUN_00615840	0x00615AA9	0x0	addr	lea rcx, [rbp + 0x830]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x-830	host 0x005FD050
+0x00615ED0	FUN_00615ed0	0x00615EE9	0x0	w	mov dword ptr [rcx], edx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x0062958A	0x0	addr	lea rdi, [rcx + 0x58]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x-58	host 0x0060A410
+0x00629580	FUN_00629580	0x006295B2	0x0	w	movups xmmword ptr [rax - 0x80], xmm0	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x80	host 0x0060A410
+0x00629580	FUN_00629580	0x00629600	0x0	rw	or dword ptr [rdi], 4	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615EEB	0x4	w	mov dword ptr [rcx + 4], 3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x0061DE20	FUN_0061de20	0x0061DE5B	0x4	addr	lea rdx, [rbx + 4]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DEA9	0x4	r	movups xmm0, xmmword ptr [rbx + 4]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615EF2	0x8	w	mov qword ptr [rcx + 8], 3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00615ED0	FUN_00615ed0	0x00615FE3	0x8	w	mov dword ptr [rcx + 8], 1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00615ED0	FUN_00615ed0	0x00615EFA	0x10	w	mov qword ptr [rcx + 0x10], rdx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295BA	0x10	w	movups xmmword ptr [rax - 0x70], xmm1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x80	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DEAD	0x14	r	movups xmm1, xmmword ptr [rbx + 0x14]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615EFE	0x18	w	mov dword ptr [rcx + 0x18], edx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00615ED0	FUN_00615ed0	0x00615F01	0x1C	w	mov qword ptr [rcx + 0x1c], 1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295C2	0x20	w	movups xmmword ptr [rax - 0x60], xmm0	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x80	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F09	0x24	w	mov qword ptr [rcx + 0x24], rdx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00615ED0	FUN_00615ed0	0x00615FEA	0x24	w	mov dword ptr [rcx + 0x24], 1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x0061DE20	FUN_0061de20	0x0061DEBE	0x24	r	movsd xmm0, qword ptr [rbx + 0x24]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F0D	0x2C	w	mov dword ptr [rcx + 0x2c], 1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x0061DE20	FUN_0061de20	0x0061DF73	0x2C	addr	lea rdx, [rbx + 0x2c]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00629580	FUN_00629580	0x00629603	0x2C	w	mov dword ptr [rdi + 0x2c], 1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F14	0x30	w	mov dword ptr [rcx + 0x30], 1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295CA	0x30	w	movups xmmword ptr [rax - 0x50], xmm1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x80	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F1B	0x34	w	mov qword ptr [rcx + 0x34], 2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x0062960A	0x34	w	mov dword ptr [rdi + 0x34], 8	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F23	0x3C	w	mov word ptr [rcx + 0x3c], 0xffff	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00615ED0	FUN_00615ed0	0x00615F29	0x40	w	movups xmmword ptr [rcx + 0x40], xmm1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295D2	0x40	w	movups xmmword ptr [rax - 0x40], xmm0	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x80	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F35	0x50	w	movups xmmword ptr [rcx + 0x50], xmm1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295DA	0x50	w	movups xmmword ptr [rax - 0x30], xmm1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x80	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F39	0x60	w	mov qword ptr [rcx + 0x60], rdx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x0061DE20	FUN_0061de20	0x0061DF1A	0x60	addr	lea rdx, [rbx + 0x60]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00629580	FUN_00629580	0x006295E2	0x60	w	movups xmmword ptr [rax - 0x20], xmm0	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x80	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F3D	0x68	w	movups xmmword ptr [rcx + 0x68], xmm3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295EA	0x70	w	movups xmmword ptr [rax - 0x10], xmm1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x80	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F8C	0x78	w	movups xmmword ptr [rcx + 0x78], xmm2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295A1	0x80	addr	lea rax, [rax + 0x80]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00629580	FUN_00629580	0x006295B2	0x80	w	movups xmmword ptr [rax - 0x80], xmm0	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x100	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F49	0x88	w	movups xmmword ptr [rcx + 0x88], xmm3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295BA	0x90	w	movups xmmword ptr [rax - 0x70], xmm1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x100	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F90	0x98	w	movups xmmword ptr [rcx + 0x98], xmm2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295C2	0xA0	w	movups xmmword ptr [rax - 0x60], xmm0	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x100	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F58	0xA8	w	movups xmmword ptr [rcx + 0xa8], xmm3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295CA	0xB0	w	movups xmmword ptr [rax - 0x50], xmm1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x100	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F97	0xB8	w	movups xmmword ptr [rcx + 0xb8], xmm2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295D2	0xC0	w	movups xmmword ptr [rax - 0x40], xmm0	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x100	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F69	0xC8	w	movups xmmword ptr [rcx + 0xc8], xmm3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295DA	0xD0	w	movups xmmword ptr [rax - 0x30], xmm1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x100	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F9E	0xD8	w	movups xmmword ptr [rcx + 0xd8], xmm2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295E2	0xE0	w	movups xmmword ptr [rax - 0x20], xmm0	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x100	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F70	0xE8	w	movups xmmword ptr [rcx + 0xe8], xmm3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295EA	0xF0	w	movups xmmword ptr [rax - 0x10], xmm1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x100	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615FA5	0xF8	w	movups xmmword ptr [rcx + 0xf8], xmm2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295A1	0x100	addr	lea rax, [rax + 0x80]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x80	host 0x0060A410
+0x00629580	FUN_00629580	0x006295B2	0x100	w	movups xmmword ptr [rax - 0x80], xmm0	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x180	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F77	0x108	w	movups xmmword ptr [rcx + 0x108], xmm3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295BA	0x110	w	movups xmmword ptr [rax - 0x70], xmm1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x180	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615FAC	0x118	w	movups xmmword ptr [rcx + 0x118], xmm2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295C2	0x120	w	movups xmmword ptr [rax - 0x60], xmm0	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x180	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F7E	0x128	w	movups xmmword ptr [rcx + 0x128], xmm3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295CA	0x130	w	movups xmmword ptr [rax - 0x50], xmm1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x180	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615FB3	0x138	w	movups xmmword ptr [rcx + 0x138], xmm2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295D2	0x140	w	movups xmmword ptr [rax - 0x40], xmm0	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x180	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615F85	0x148	w	movups xmmword ptr [rcx + 0x148], xmm3	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295DA	0x150	w	movups xmmword ptr [rax - 0x30], xmm1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x180	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615FBA	0x158	w	movups xmmword ptr [rcx + 0x158], xmm2	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x00629580	FUN_00629580	0x006295E2	0x160	w	movups xmmword ptr [rax - 0x20], xmm0	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x180	host 0x0060A410
+0x00615ED0	FUN_00615ed0	0x00615FC1	0x168	w	mov qword ptr [rcx + 0x168], rdx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x005FD050
+0x0061DE20	FUN_0061de20	0x0061DE4C	0x168	r	cmp qword ptr [rcx + 0x168], 0	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DE5F	0x168	addr	lea r8, [rbx + 0x168]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DE7E	0x168	r	mov rcx, qword ptr [rbx + 0x168]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x006227D0	FUN_006227d0	0x0062280B	0x168	r	mov rdx, qword ptr [rbx + 0x1c0]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x-58	host 0x0060A410
+0x0062BA30	FUN_0062ba30	0x0062BA3F	0x168	r	mov rcx, qword ptr [rcx + 0x168]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410 0x0079EDD0
+0x0062BA30	FUN_0062ba30	0x0062BA51	0x168	w	mov qword ptr [rbx + 0x168], rdi	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x0060A410 0x0079EDD0
+0x00615ED0	FUN_00615ed0	0x00615FC8	0x170	w	mov qword ptr [rcx + 0x170], rdx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x005FD050
+0x0061DE20	FUN_0061de20	0x0061DE9F	0x170	r	cmp qword ptr [rbx + 0x170], 0	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DED3	0x170	addr	lea r8, [rbx + 0x170]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DEF7	0x170	r	cmp qword ptr [rbx + 0x170], 0	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x006227D0	FUN_006227d0	0x00622830	0x170	r	mov r8, qword ptr [rbx + 0x1c8]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x-58	host 0x0060A410
+0x00629580	FUN_00629580	0x006295EA	0x170	w	movups xmmword ptr [rax - 0x10], xmm1	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x180	host 0x0060A410
+0x0062BA30	FUN_0062ba30	0x0062BA58	0x170	r	mov rcx, qword ptr [rbx + 0x170]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410 0x0079EDD0
+0x0062BA30	FUN_0062ba30	0x0062BA6A	0x170	w	mov qword ptr [rbx + 0x170], rdi	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x0060A410 0x0079EDD0
+0x00615ED0	FUN_00615ed0	0x00615FCF	0x178	w	mov qword ptr [rcx + 0x178], rdx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x005FD050
+0x0061DE20	FUN_0061de20	0x0061DF5E	0x178	r	cmp qword ptr [rbx + 0x178], 0	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DF77	0x178	addr	lea r8, [rbx + 0x178]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DF92	0x178	r	mov rcx, qword ptr [rbx + 0x178]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x006227D0	FUN_006227d0	0x0062287C	0x178	r	mov rdx, qword ptr [rbx + 0x1d0]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x-58	host 0x0060A410
+0x0062BA30	FUN_0062ba30	0x0062BA8A	0x178	r	mov rcx, qword ptr [rbx + 0x178]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410 0x0079EDD0
+0x0062BA30	FUN_0062ba30	0x0062BA9C	0x178	w	mov qword ptr [rbx + 0x178], rdi	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x0060A410 0x0079EDD0
+0x00615ED0	FUN_00615ed0	0x00615FD6	0x180	w	mov qword ptr [rcx + 0x180], rdx	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x005FD050
+0x0061DE20	FUN_0061de20	0x0061DF05	0x180	r	cmp qword ptr [rbx + 0x180], 0	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DF1E	0x180	addr	lea r8, [rbx + 0x180]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DF3D	0x180	r	mov rcx, qword ptr [rbx + 0x180]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x006227D0	FUN_006227d0	0x0062284F	0x180	r	mov rdx, qword ptr [rbx + 0x1d8]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x-58	host 0x0060A410
+0x00629580	FUN_00629580	0x006295A1	0x180	addr	lea rax, [rax + 0x80]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x100	host 0x0060A410
+0x0062BA30	FUN_0062ba30	0x0062BA71	0x180	r	mov rcx, qword ptr [rbx + 0x180]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410 0x0079EDD0
+0x0062BA30	FUN_0062ba30	0x0062BA83	0x180	w	mov qword ptr [rbx + 0x180], rdi	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x0060A410 0x0079EDD0
+0x00615ED0	FUN_00615ed0	0x00615FDD	0x188	w	mov byte ptr [rcx + 0x188], dl	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x0	host 0x005FD050
+0x006227D0	FUN_006227d0	0x0062288F	0x188	r	movzx r8d, byte ptr [rbx + 0x1e0]	route-seeded EMBED RenderPrimitivePass1E8 +0x058 <- STATIC 0x02CC0410 base+0x-58	host 0x0060A410

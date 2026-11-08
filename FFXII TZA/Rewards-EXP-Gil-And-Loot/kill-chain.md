@@ -46,7 +46,10 @@ null actor, for a missing stats record or one whose byte `+0x05` is not 1 (`0x00
 of byte `+0x28` of the actor's `[actor+0xE68]` record is set (`0x00317F09`).
 
 It compares the enemy's class byte `actor+0x56` with the previous kill's class at `0x022C3168`
-(`0x00317F21`). The class byte is the class record's type byte; the shipped areas use sixty-four values.
+(`0x00317F21`). The class byte is the class row's byte `+0x05`, not its type byte `+0x04`
+([Bestiary](../Enemy-Spawning/bestiary.md)). Word bank 14 names 64 classes; the 954 class rows of
+the shipped areas use 55 of those values (0 to 63 apart from 9, 21, 47 to 52 and 60), a count of the shipped
+data and not a limit of the engine.
 
 ### First kill
 

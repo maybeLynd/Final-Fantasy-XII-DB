@@ -44,7 +44,7 @@ id-specific rules (`0x003018DD`-`0x00301AA5`); every other id passes:
 | `handler` | the function in the order table's slot, or `00000000` for an empty slot |
 | `operation` | what the handler does for this id |
 | `value` | the id-derived value (status number, effect number, bit, index) or where the parameter comes from |
-| `name` | for status orders the status name from `battle_pack.bin`'s status-name table; for effect orders the effect's help text from `listhelp_ability.bin` where it has one |
+| `name` | for status orders the status name from `battle_pack.bin`'s status-name table; for augment orders the augment's name in the database, the `term` column of the [augment list](../Damage-And-Battle-Formulas/augment-list.md) (its license's name or the modding community's name, not the game's stored name or help text) |
 
 ## Data
 

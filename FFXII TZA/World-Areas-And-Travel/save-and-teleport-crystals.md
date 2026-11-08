@@ -470,4 +470,4 @@ position, and `facing` gives the heading in radians. All 81 entries carry a spot
 - [Chocobos and airships](chocobos-and-airships.md): the dismount the teleport performs.
 - [Game over](game-over.md): what a party wipe does instead.
 - [`group-persistent-bank-accesses.tsv`](group-persistent-bank-accesses.tsv): every access to the group
-  persistent bank `0x02099FF0` (`0x200` bytes): its copy out to the save (`0x0025D8E0`) and back (`0x00269A20`) (18 rows).
+  persistent bank `0x02099FF0` (`0x200` bytes): its copy out to the save (`0x0025D8E0`) and back (`0x00269A20`) (70 rows).

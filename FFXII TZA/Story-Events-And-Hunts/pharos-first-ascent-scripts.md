@@ -314,8 +314,8 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 91,862 |
-| empty | 9,421 |
+| `resolved` | 101,177 |
+| empty | 106 |
 | `does not ship`, with the fact | 1 |
 
 The one `does not ship` row is a `motionread` call in `rbl_c0101` that reads entry 2 of `rbl_c0101.mot`, an empty entry.

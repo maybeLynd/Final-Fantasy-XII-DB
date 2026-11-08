@@ -1,2 +1,2 @@
 function	name	site	disp	kind	instruction	route	note
-0x0028E290	FUN_0028e290	0x0028E43D	0x0	addr	lea rcx, [rbx + 0xa0d0]	route-seeded EMBED ManagerSub0209BE80_A0D0 +0x0 stride=0x110 count=2 base+0x-A0D0	
+0x0028E290	FUN_0028e290	0x0028E43D	0x0	addr	lea rcx, [rbx + 0xa0d0]	route-seeded EMBED ManagerSub0209BE80_A0D0 +0x0 stride=0x110 count=2 <- PTR 0x0209BE80 base+0x-A0D0	host: this function

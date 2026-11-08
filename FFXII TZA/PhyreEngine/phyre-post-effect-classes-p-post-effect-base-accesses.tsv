@@ -1,53 +1,53 @@
 function	name	site	disp	kind	instruction	route	note
-0x00646590	FUN_00646590	0x006465A9	0x0	w	mov qword ptr [rcx], rax	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00646590	FUN_00646590	0x006465C6	0x0	w	mov qword ptr [rbx], rax	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00646600	FUN_00646600	0x00646619	0x0	w	mov qword ptr [rcx], rax	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00657150	FUN_00657150	0x0065715A	0x0	r	mov rax, qword ptr [rcx]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x0065B400	FUN_0065b400	0x0065B43B	0x0	r	mov rax, qword ptr [rcx]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x0065B400	FUN_0065b400	0x0065B472	0x0	r	mov rax, qword ptr [rbx]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x0065B8F0	FUN_0065b8f0	0x0065B90F	0x0	r	mov rax, qword ptr [rcx]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00653B10	FUN_00653b10	0x00653B10	0x10	r	mov rax, qword ptr [rcx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00654B00	FUN_00654b00	0x00654B6A	0x10	r	mov rdx, qword ptr [rbx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x006571C0	FUN_006571c0	0x006571C0	0x10	r	mov rax, qword ptr [rcx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x006572C0	FUN_006572c0	0x006572C6	0x10	r	mov rax, qword ptr [rcx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x006572C0	FUN_006572c0	0x006572F3	0x10	r	mov rax, qword ptr [rbx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x006575E0	FUN_006575e0	0x006575E0	0x10	r	mov rax, qword ptr [rcx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x0065B400	FUN_0065b400	0x0065B44F	0x10	r	mov rax, qword ptr [rbx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x0065B400	FUN_0065b400	0x0065B47B	0x10	r	mov rax, qword ptr [rbx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x006572C0	FUN_006572c0	0x006572F9	0x18	w	mov qword ptr [rbx + 0x18], rax	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x006575E0	FUN_006575e0	0x006575E4	0x18	w	mov qword ptr [rcx + 0x18], rax	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x0065B400	FUN_0065b400	0x0065B453	0x18	r	cmp rax, qword ptr [rbx + 0x18]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x006572C0	FUN_006572c0	0x0065730B	0x20	w	mov qword ptr [rbx + 0x20], rax	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x006575E0	FUN_006575e0	0x006575F1	0x20	w	mov qword ptr [rcx + 0x20], rax	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x0065B400	FUN_0065b400	0x0065B462	0x20	r	cmp rcx, qword ptr [rbx + 0x20]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x006572C0	FUN_006572c0	0x00657318	0x28	w	mov qword ptr [rbx + 0x28], rcx	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x006575E0	FUN_006575e0	0x006575FE	0x28	w	mov qword ptr [rcx + 0x28], rax	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x006575E0	FUN_006575e0	0x00657605	0x28	w	mov qword ptr [rcx + 0x28], 0	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x0065B400	FUN_0065b400	0x0065B468	0x28	r	mov rax, qword ptr [rbx + 0x28]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00646590	FUN_00646590	0x006465C9	0x30	r	mov ecx, dword ptr [rbx + 0x30]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00646590	FUN_00646590	0x006465F5	0x30	w	mov dword ptr [rbx + 0x30], eax	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00654B00	FUN_00654b00	0x00654B9A	0x30	r	mov edx, dword ptr [rbx + 0x30]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00654B00	FUN_00654b00	0x00654B9D	0x30	addr	lea rax, [rbx + 0x30]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00659EC0	FUN_00659ec0	0x0065A353	0x30	addr	lea rax, [rbx + 0x30]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00659EC0	FUN_00659ec0	0x0065A555	0x30	addr	lea rax, [rbx + 0x30]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x0065A960	FUN_0065a960	0x0065B1D4	0x30	addr	lea rax, [rdi + 0x30]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00646590	FUN_00646590	0x006465E0	0x38	r	mov rcx, qword ptr [rbx + 0x38]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00646590	FUN_00646590	0x006465F1	0x38	w	mov qword ptr [rbx + 0x38], rax	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00654B00	FUN_00654b00	0x00654BB8	0x38	r	mov rcx, qword ptr [rax + 8]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x30	
-0x00654B00	FUN_00654b00	0x00654BC0	0x38	addr	lea rcx, [rax + 8]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x30	
-0x00655AC0	FUN_00655ac0	0x00655B5C	0x40	w	mov byte ptr [rdi + 0x40], 1	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00655DC0	FUN_00655dc0	0x00655E15	0x40	w	mov byte ptr [rsi + 0x40], 1	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00657690	FUN_00657690	0x0065769F	0x40	r	cmp byte ptr [rcx + 0x40], 0	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x0065B400	FUN_0065b400	0x0065B414	0x40	r	cmp byte ptr [rcx + 0x40], 0	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x0065B8F0	FUN_0065b8f0	0x0065B8F4	0x40	r	cmp byte ptr [rcx + 0x40], 0	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x006571C0	FUN_006571c0	0x006571CF	0x41	r	cmp byte ptr [rcx + 0x41], 0	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00653CD0	FUN_00653cd0	0x00653CD0	0x44	r	mov eax, dword ptr [rcx + 0x44]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00655AC0	FUN_00655ac0	0x00655B53	0x44	w	mov dword ptr [rdi + 0x44], r14d	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00655DC0	FUN_00655dc0	0x00655E12	0x44	w	mov dword ptr [rsi + 0x44], edi	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00657680	FUN_00657680	0x00657680	0x44	w	mov dword ptr [rcx + 0x44], edx	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00657690	FUN_00657690	0x006576B6	0x44	w	mov dword ptr [rbx + 0x44], esi	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00653B20	FUN_00653b20	0x00653B20	0x48	r	mov eax, dword ptr [rcx + 0x48]	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00655AC0	FUN_00655ac0	0x00655B59	0x48	w	mov dword ptr [rdi + 0x48], ebx	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00655DC0	FUN_00655dc0	0x00655E08	0x48	w	mov dword ptr [rsi + 0x48], ebx	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00657680	FUN_00657680	0x00657685	0x48	w	mov dword ptr [rcx + 0x48], r8d	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
-0x00657690	FUN_00657690	0x006576BB	0x48	w	mov dword ptr [rbx + 0x48], edi	route-seeded EMBED PDeferredLightingBase +0x000 base+0x0	
+0x00646590	FUN_00646590	0x006465A9	0x0	w	mov qword ptr [rcx], rax	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 | EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host 0x00647260 0x006472C0
+0x00646590	FUN_00646590	0x006465C6	0x0	w	mov qword ptr [rbx], rax	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 | EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host 0x00647260 0x006472C0
+0x00646600	FUN_00646600	0x00646619	0x0	w	mov qword ptr [rcx], rax	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host 0x00647260
+0x00657150	FUN_00657150	0x0065715A	0x0	r	mov rax, qword ptr [rcx]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 base+0x0	host: this function
+0x0065B400	FUN_0065b400	0x0065B43B	0x0	r	mov rax, qword ptr [rcx]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x0065B400	FUN_0065b400	0x0065B472	0x0	r	mov rax, qword ptr [rbx]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x0065B8F0	FUN_0065b8f0	0x0065B90F	0x0	r	mov rax, qword ptr [rcx]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 base+0x0	host: this function
+0x00653B10	FUN_00653b10	0x00653B10	0x10	r	mov rax, qword ptr [rcx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host 0x006572C0
+0x00654B00	FUN_00654b00	0x00654B6A	0x10	r	mov rdx, qword ptr [rbx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host 0x006572C0
+0x006571C0	FUN_006571c0	0x006571C0	0x10	r	mov rax, qword ptr [rcx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 | EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x006572C0	FUN_006572c0	0x006572C6	0x10	r	mov rax, qword ptr [rcx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x006572C0	FUN_006572c0	0x006572F3	0x10	r	mov rax, qword ptr [rbx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x006575E0	FUN_006575e0	0x006575E0	0x10	r	mov rax, qword ptr [rcx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 base+0x0	host: this function
+0x0065B400	FUN_0065b400	0x0065B44F	0x10	r	mov rax, qword ptr [rbx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x0065B400	FUN_0065b400	0x0065B47B	0x10	r	mov rax, qword ptr [rbx + 0x10]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x006572C0	FUN_006572c0	0x006572F9	0x18	w	mov qword ptr [rbx + 0x18], rax	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x006575E0	FUN_006575e0	0x006575E4	0x18	w	mov qword ptr [rcx + 0x18], rax	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 base+0x0	host: this function
+0x0065B400	FUN_0065b400	0x0065B453	0x18	r	cmp rax, qword ptr [rbx + 0x18]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x006572C0	FUN_006572c0	0x0065730B	0x20	w	mov qword ptr [rbx + 0x20], rax	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x006575E0	FUN_006575e0	0x006575F1	0x20	w	mov qword ptr [rcx + 0x20], rax	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 base+0x0	host: this function
+0x0065B400	FUN_0065b400	0x0065B462	0x20	r	cmp rcx, qword ptr [rbx + 0x20]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x006572C0	FUN_006572c0	0x00657318	0x28	w	mov qword ptr [rbx + 0x28], rcx	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x006575E0	FUN_006575e0	0x006575FE	0x28	w	mov qword ptr [rcx + 0x28], rax	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 base+0x0	host: this function
+0x006575E0	FUN_006575e0	0x00657605	0x28	w	mov qword ptr [rcx + 0x28], 0	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 base+0x0	host: this function
+0x0065B400	FUN_0065b400	0x0065B468	0x28	r	mov rax, qword ptr [rbx + 0x28]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x00646590	FUN_00646590	0x006465C9	0x30	r	mov ecx, dword ptr [rbx + 0x30]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 | EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host 0x00647260 0x006472C0
+0x00646590	FUN_00646590	0x006465F5	0x30	w	mov dword ptr [rbx + 0x30], eax	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 | EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host 0x00647260 0x006472C0
+0x00654B00	FUN_00654b00	0x00654B9A	0x30	r	mov edx, dword ptr [rbx + 0x30]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host 0x006572C0
+0x00654B00	FUN_00654b00	0x00654B9D	0x30	addr	lea rax, [rbx + 0x30]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host 0x006572C0
+0x00659EC0	FUN_00659ec0	0x0065A353	0x30	addr	lea rax, [rbx + 0x30]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host 0x0065B400
+0x00659EC0	FUN_00659ec0	0x0065A555	0x30	addr	lea rax, [rbx + 0x30]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host 0x0065B400
+0x0065A960	FUN_0065a960	0x0065B1D4	0x30	addr	lea rax, [rdi + 0x30]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host 0x0065B400
+0x00646590	FUN_00646590	0x006465E0	0x38	r	mov rcx, qword ptr [rbx + 0x38]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 | EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host 0x00647260 0x006472C0
+0x00646590	FUN_00646590	0x006465F1	0x38	w	mov qword ptr [rbx + 0x38], rax	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 | EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host 0x00647260 0x006472C0
+0x00654B00	FUN_00654b00	0x00654BB8	0x38	r	mov rcx, qword ptr [rax + 8]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x30	host 0x006572C0
+0x00654B00	FUN_00654b00	0x00654BC0	0x38	addr	lea rcx, [rax + 8]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x30	host 0x006572C0
+0x00655AC0	FUN_00655ac0	0x00655B5C	0x40	w	mov byte ptr [rdi + 0x40], 1	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x00655DC0	FUN_00655dc0	0x00655E15	0x40	w	mov byte ptr [rsi + 0x40], 1	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 base+0x0	host: this function
+0x00657690	FUN_00657690	0x0065769F	0x40	r	cmp byte ptr [rcx + 0x40], 0	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x0065B400	FUN_0065b400	0x0065B414	0x40	r	cmp byte ptr [rcx + 0x40], 0	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x0065B8F0	FUN_0065b8f0	0x0065B8F4	0x40	r	cmp byte ptr [rcx + 0x40], 0	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 base+0x0	host: this function
+0x006571C0	FUN_006571c0	0x006571CF	0x41	r	cmp byte ptr [rcx + 0x41], 0	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 | EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x00653CD0	FUN_00653cd0	0x00653CD0	0x44	r	mov eax, dword ptr [rcx + 0x44]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 | EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x00655AC0	FUN_00655ac0	0x00655B53	0x44	w	mov dword ptr [rdi + 0x44], r14d	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x00655DC0	FUN_00655dc0	0x00655E12	0x44	w	mov dword ptr [rsi + 0x44], edi	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 base+0x0	host: this function
+0x00657680	FUN_00657680	0x00657680	0x44	w	mov dword ptr [rcx + 0x44], edx	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 base+0x0	host: this function
+0x00657690	FUN_00657690	0x006576B6	0x44	w	mov dword ptr [rbx + 0x44], esi	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x00653B20	FUN_00653b20	0x00653B20	0x48	r	mov eax, dword ptr [rcx + 0x48]	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 | EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x00655AC0	FUN_00655ac0	0x00655B59	0x48	w	mov dword ptr [rdi + 0x48], ebx	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function
+0x00655DC0	FUN_00655dc0	0x00655E08	0x48	w	mov dword ptr [rsi + 0x48], ebx	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 base+0x0	host: this function
+0x00657680	FUN_00657680	0x00657685	0x48	w	mov dword ptr [rcx + 0x48], r8d	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61EA0 base+0x0	host: this function
+0x00657690	FUN_00657690	0x006576BB	0x48	w	mov dword ptr [rbx + 0x48], edi	route-seeded EMBED PDeferredLightingBase +0x000 <- VTABLE 0x00D61F40 base+0x0	host: this function

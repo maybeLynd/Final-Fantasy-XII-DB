@@ -175,8 +175,8 @@ The module objects, their entry points and how many functions belong to each (th
 | `PHierarchy` | `0x01F47550` | `0x0016D5B0` | `0x01CDA1F8` | `0x0087AE00` | `0x0087AE80` | `0x008C1580` | 100 |
 | `PDeveloperExtensions` | `0x01F47570` | `0x0016D610` | `0x01CDA228` | stub | stub | `0x008C15E0` | 0 |
 
-"Stub" is `0x005C5230`, which returns 0. The namespaces without a module object are `PFramework` (628 functions), `PGameplay` (147)
-and `PVision` (74).
+"Stub" is `0x005C5230`, which returns 0. The namespaces without a module object
+are `PFramework` (628 functions), `PGameplay` (147), `PVision` (74) and `PProfiling` (6).
 
 [`phyre-modules-attribution.tsv`](phyre-modules-attribution.tsv) attributes to a module every function that a
 PhyreEngine class holds or that PhyreEngine code calls or references, 12,360 in all: by the class it belongs to
@@ -268,7 +268,9 @@ The members below are the ones the code of this page's classes uses or the refle
 ## Operations
 
 - Start: `0x005A08E0`, once, from the framework start-up, before the window exists.
-- Stop: `0x005A0840`, once, after the message loop; then each module's `atexit` destructor.
+- Stop: `0x005A0840`, once, after the message loop. Each module's `atexit` destructor runs only when the run-time
+  `exit` is reached; the normal quit ends in `ExitProcess(0)` before that
+  ([static initialisation and teardown](../Compiler-And-C-Runtime/static-initialisation-and-teardown.md)).
 - Enumerate: walk from `0x02CACC90` through `+0x08`; `+0x10` names each module.
 
 ## State

@@ -89,15 +89,17 @@ an 8-byte record `x, y, w:12, h:12`):
 | destination pictures (all nine `tex2pack_ys.bin`) | `mini_face_c`, `partytop_8_c` and `battle_4_c` are TEX0 format `0x13`, image type 5, CLUT type 3 |
 | destination CLUT colours | `mini_face_c` 256; `partytop_8_c` 4,608; `battle_4_c` 27,648 (`us`, `fr`, `es`) or 27,392 |
 
-Every copy and every cell, measured with the layouts above; the cells table lists each distinct content once, with
-the folders that hold it. The destination pictures' rows are in
+Every copy and every cell, measured with the layouts above. The cells table has one row per cell within each
+distinct whole-file variant, with the folders that hold that variant, so the same cell bytes can appear in more
+than one row: `mini_guest_face.bin` cells 0 to 7 are the same in the `us` and the `es`/`fr` variants, and cell 8
+differs. The destination pictures' rows are in
 [`ps2data-bin-families-packfiles-rows.tsv`](ps2data-bin-families-packfiles-rows.tsv) (`tex2pack_ys.bin` entries 0, 4
 and 6).
 
 | table | rows | one row per |
 |---|---:|---|
 | [`binmenu-images-files-rows.tsv`](binmenu-images-files-rows.tsv) | 162 | copy: folder, size, SHA-256, the folders with the same bytes, the index values used, and the 2 x 2 test and first bytes (`face_guest`) or the bytes in which the two cells differ (`map_efe`) |
-| [`binmenu-images-cells-rows.tsv`](binmenu-images-cells-rows.tsv) | 59 | cell: offset, size, the guest or area flag it serves, SHA-256, index values used, zero bytes, smallest and largest index |
+| [`binmenu-images-cells-rows.tsv`](binmenu-images-cells-rows.tsv) | 59 | cell of a distinct whole-file variant: offset, size, the guest or area flag it serves, SHA-256, index values used, zero bytes, smallest and largest index |
 
 ## Loader behaviour
 

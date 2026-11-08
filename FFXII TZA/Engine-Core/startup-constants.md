@@ -10,10 +10,14 @@ addresses: "0x0022A0B0, 0x0022BDF0, 0x001EDDC0, 0x0017D8F0, 0x00229F10, 0x0022A4
 Two launches of the game roll the same numbers until a save is loaded; loading a save reseeds the
 generator from the system clock, so from then on the two launches roll differently. A player who
 sets the frame limit to 60 sees every authored duration keep its wall-clock length. Whether Circle
-or Cross confirms is settled once, at start, into two masks every menu reads. The game's whole
-working memory, a quarter of a gigabyte in eleven blocks, is claimed before the first screen
-appears. The frame-rate constant, the two button masks and the memory blocks stay as set until the
-next launch.
+or Cross confirms is set at start into two masks every menu reads, and set again when the Config
+screen's confirm button option changes. The game's whole working memory, a quarter of a gigabyte
+in eleven blocks, is claimed before the first screen appears.
+
+Some of these values change later in the same launch: the Config screen rewrites the two button
+masks, the ticks-per-frame constant is rewritten when an area unloads and by the script command
+`mainloopallsyncv`, the 4 MiB block of arena 11 is freed and taken again at a new size, and arenas
+13 and 14 are freed and registered again each time an area's managers are bound.
 
 ## How it works
 
@@ -122,7 +126,7 @@ it returns.
 `0x0023E194`). It repeats step 3: it reads DecideButton through `0x0017E210` (`0x0022A4F4`), stores whether it is non-zero
 at `0x01FD4A64` (`0x0022A510`), and stores `0x4000` / `0x2000` to the confirm and cancel masks, swapped when DecideButton
 is zero, as 16-bit stores (`0x0022A526`, `0x0022A51F`), like the boot fixer's (`0x0022A119`, `0x0022A10C`). The masks are read
-at 86 places, 47 for the confirm mask and 39 for the cancel mask; the engine never asks the setting again.
+at 86 places, 47 for the confirm mask and 39 for the cancel mask; none of those readers asks the setting itself.
 
 `0x0017E270` turns the language string the settings object names
 (`[0x01DF0030 + 8 * [0x01F82D20][0]]`) into an index: `jp` 10, `en` 1, `fr` 2, `de` 3, `it` 4, `es` 5,
@@ -421,7 +425,10 @@ The countdown slots, field by field:
   FrameLimit at run time without rewriting all four cells leaves the engine inconsistent.
 - The masks are read as masks against the pad word; swapping them is the whole of the confirm
   button setting.
-- The arenas are fixed at boot; only id 11 is re-sized, by `0x0037B3D0`.
+- Arenas 2 to 9 keep their boot blocks. Arena 11 is re-sized by `0x0037B3D0`. Arenas 13 and 14 are freed and
+  registered again, from arena 5 blocks of `0x100000` and `0x19000` bytes, by `0x0025A990` and `0x0025AA30`, which
+  the manager bind `0x0026C8C0` calls (`0x0026CA29`, `0x0026CA39`). Arena 12 is registered by the script command
+  `setexpandvoicememory` (`0x0395`, `0x003E9AA0`, `0x003E9AEF`).
 
 ## Related
 
@@ -438,3 +445,5 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Gameplay: `0x00304440` calls `0x0030D9A0`; those functions are documented on
   [frame update order](frame-update-order.md).
+- Story event quest hunt: `0x0026C8C0` calls `0x00377440`; those functions are documented on
+  [actor managers](../Characters-And-Objects/actor-managers.md).

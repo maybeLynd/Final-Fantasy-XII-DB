@@ -30,10 +30,12 @@ is unloaded. An event script that loads an animation set waits until it is in me
    ([resource ownership and disposal](resource-ownership-and-disposal.md#effect-contexts),
    [resource ownership and disposal](resource-ownership-and-disposal.md#borrowed-views)).
 6. **Move.** Compaction can move a movable block. Its handle keeps its value and resolves to the new address, while a
-   raw pointer a consumer kept still points at the old one; an effect that borrows the source is repaired against
-   the new address when it is next advanced
-   ([resource arena and relocation](resource-arena-and-relocation.md#the-mover),
-   [resource ownership and disposal](resource-ownership-and-disposal.md#after-a-source-moves)).
+   raw pointer a consumer kept still points at the old one
+   ([resource arena and relocation](resource-arena-and-relocation.md#the-mover)).
+
+   An effect that borrows the source is repaired against the new address when a cue of one of its instances is next
+   started (`0x003B3C00` runs `0x003B3480` before `0x0024FE70`)
+   ([resource ownership and disposal](resource-ownership-and-disposal.md#after-a-source-moves)).
 7. **Disposal.** `0x0041E490` detaches the source in a fixed order: the render records that point at it are cleared,
    the entry's effect ticket is cancelled with its contexts and instances, and the bank entry is reset and removed
    ([resource ownership and disposal](resource-ownership-and-disposal.md#disposal-order)).

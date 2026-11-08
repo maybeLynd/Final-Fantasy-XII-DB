@@ -403,8 +403,11 @@ A kind outside `0x50` to `0x55` returns 0 without a node (`0x003AA4DA`, `0x003AA
 
 Its arms build each kind with the same constructor as the first store but a loader of its own (`0x003AA4FD`–`0x003AA5E1`);
 for kinds `0x54` and `0x55` the loader is the first store's, reached through the one-jump thunks `0x0043D8E0` and
-`0x00503D40`. A new node is appended to the list: the old last node's encoded link `+0` names it, its own `+4` names the
-old last node (both 0 for a first node), the list's `+8` points at it and the count word `+0x18` goes up by one
+`0x00503D40`.
+
+A new node is appended to the list: the old last node's encoded link `+0` names it, its own `+4` names the old last
+node (both 0 for a first node), the list's `+8` points at it (for a first node the list's head `+0` as well,
+`0x003AA5F6`, where the search starts, `0x003AA487`) and the count word `+0x18` goes up by one
 (`0x003AA5E9`–`0x003AA678`). The store returns the loader's result.
 
 A match is reloaded through `0x00500A60`, which dispatches on the kind byte to the same loaders for kinds `0x50` to

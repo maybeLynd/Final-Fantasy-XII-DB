@@ -9,8 +9,12 @@ addresses: "0x00625830, 0x00623320, 0x00624F70, 0x006250C0, 0x00625210, 0x00623B
 
 The window the game draws into, its back buffer and depth buffer, and every texture and constant
 the shaders read are made by the code on this page. The swap chain is created windowed, in
-`R8G8B8A8_UNORM`, with the refresh rate of the screen's current mode, and the device is refused
-unless the adapter reaches Direct3D feature level 11.0.
+`R8G8B8A8_UNORM`, and the device is refused unless the adapter reaches Direct3D feature level 11.0.
+
+The swap chain starts at the refresh rate of the last mode, on the first output of the first adapter,
+whose size is the screen's current size, or at 60/1 when none matches or the lookup fails
+([The screen refresh rate](#the-screen-refresh-rate)). Later mode switches are a separate step
+([Screen mode and aspect](../Graphics/screen-mode-and-aspect.md)).
 
 Each finished frame is shown either in step with the screen's refresh (vsync) or held to the game's frame rate
 by sleeping until the frame is due. With VSync setting 2 in full screen, vsync is dropped while the average GPU
@@ -54,8 +58,8 @@ adapter page under Related). It works on the render context, the static object `
    `0x1C`, refresh rate 60/1, the sample count clamped to 1–16, usage `0x20` (render-target output),
    the buffer count from `+0x184C`, the window, windowed, swap effect 0 and flag 2 (allow mode switch).
 3. `EnumDisplaySettingsA` reads the current mode, and `0x00623320` replaces the refresh rate with that
-   of the mode matching the screen size; `+0x18A4` takes the rate as a whole number and the values are logged
-   (`Init Fresh rate x = %d, y = %d %d  get fresh = %d`).
+   of the last mode matching the screen size, keeping 60/1 without one; `+0x18A4` takes the rate as a whole
+   number and the values are logged (`Init Fresh rate x = %d, y = %d %d  get fresh = %d`).
 4. `D3D11CreateDeviceAndSwapChain` is called with the levels `0xB000`, `0xA100`, `0xA000` and no flags;
    it stores the swap chain at `+0x118`, the device at `+0x108`, the immediate context at `+0x110`
    and the level at `+0x168`. A failure is logged (`R != S_OK %d!`, `m_d3dDevice error!!` and the like)
@@ -139,7 +143,7 @@ A texture names its format through a pointer at `+0x00` to one of 35 static form
 name, code, flags, five DXGI formats)`; `0x00616210` runs `0x0062CD40` and stores the five formats at
 `+0x20`–`+0x30`.
 
-`0x0062CD40(object, name, code, flags)` stores the name at `+0x00`, a zero qword at `+0x08` and the code at
+`0x0062CD40(object, name, code, flags)` stores the name at `+0x00`, 0 at `+0x08` (the registry link) and the code at
 `+0x10` (`0x0062CD43`-`0x0062CD4A`), returns the object, and derives from the code:
 
 - the bits per pixel at `+0x14`, from a switch over the code; the codes `0x19`–`0x1C` and every code above
@@ -560,7 +564,7 @@ with the size `+0x120`, `+0x124`), and returns 1.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `void*` | name | for example RGBA8 |
-| `+0x08` | `u64` | zero | 0 |
+| `+0x08` | `void*` | next | registry link: 0 from `0x0062CD40`, the old head on insert (`0x0062D152`), 0 on unlink (`0x0062D72C`) |
 | `+0x10` | `u32` | code | engine format code |
 | `+0x14` | `u32` | bitsPerPixel | from `0x0062CD40` |
 | `+0x18` | `u32` | flags | 1 block-compressed, 2 depth, 4 float; channel mask; argument bits |

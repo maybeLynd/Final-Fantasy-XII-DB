@@ -271,8 +271,8 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 25,261 |
-| empty | 86 |
+| `resolved` | 25,276 |
+| empty | 71 |
 | `does not ship`, with the fact | 2 |
 
 The two `does not ship` rows are `motionread` calls that read an empty entry: entry 1 of `rwg_a0180.mot` and entry 1

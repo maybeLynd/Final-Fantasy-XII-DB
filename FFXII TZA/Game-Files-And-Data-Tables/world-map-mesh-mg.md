@@ -195,8 +195,8 @@ That function builds a matrix with `0x00555A70` (scale half of `[0x01F2CAC0]`, a
 into its packet behind it.
 
 The packet is a VIF chunk in the GS command buffer: an UNPACK header for the block (`0x00271100`, `0x6C008000`: V4-32,
-two 16-byte quads per vertex, the count in the bits from `0x10000` up), the block of `vtxCount`, the matrix and the vertices, then
-FLUSHE and MSCAL `0x2E95` (`0x005557B9`-`0x005557DD`).
+two 16-byte quads per vertex, the count in the bits from `0x10000` up), the block of `vtxCount`, the matrix and the
+vertices, then FLUSHE, FLUSHA, MSCAL `0x2E95` and FLUSHE (`0x005557B9`-`0x005557DD`).
 
 Nothing on this port decodes that buffer
 ([graphics thread handshake](../Graphics/graphics-thread-handshake.md)); the tiles reach the screen
@@ -297,7 +297,8 @@ Nothing in the file is validated:
 - Sub-mesh 0's `s` and `t` are fractions of the texture size, so a replacement `w_mainN.tm2` of another
   size keeps the same mapping.
 - Each slot run in sub-mesh 1 must start with an index that has bit `0x8000` set: the path creates its first
-  packet only on a restart, and a run that starts without one reads through a null pointer.
+  packet only on a restart. A run that starts without one copies its first vertex through a packet cursor that
+  was never set (`0x00555E33`-`0x00555E48`) and then reads the colour factors through a null pointer (`0x00555E79`).
 - Vertex indices are the bits under mask `0x7FFF`, and nothing compares them with `vtxCount`; keep them inside the array.
 - Sub-mesh 1 cannot carry texture coordinates; its texture is spread over the view by screen position.
 - The file is read whole into a buffer of the size the file-size table gives for kind 7 id `0xA8`; a

@@ -204,8 +204,8 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 17,454 |
-| empty | 650 |
+| `resolved` | 18,061 |
+| empty | 43 |
 | `does not ship`, with the fact | 1 |
 
 The one `does not ship` row is a `motionread` call in `glf_a01` that reads entry 3 of `glf_a01.mot`, an empty entry. A

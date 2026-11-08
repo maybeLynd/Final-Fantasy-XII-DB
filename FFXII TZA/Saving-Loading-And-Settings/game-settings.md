@@ -501,7 +501,7 @@ the record:
 - [`game-setting-key-name-accesses.tsv`](game-setting-key-name-accesses.tsv): the reads of the key table at
   `0x01DFD050` (31 entries of 8 bytes), all in the serialiser `0x001DEE90` (3 rows).
 - [`game-setting-value-name-row-accesses.tsv`](game-setting-value-name-row-accesses.tsv): the read of the value-name
-  rows at `0x01DFD150` (31 rows of `0x48` bytes) in `0x001DEE90` (1 row).
+  rows at `0x01DFD150` (31 rows of `0x48` bytes) in `0x001DEE90` (4 rows).
 - [`game-settings-command-table.tsv`](game-settings-command-table.tsv): the Config commands that have a handler, one
   row per command id; the other 16 ids from 4 to 38 fall to the default arms `0x0024095E` and `0x00240512` (19 rows).
 

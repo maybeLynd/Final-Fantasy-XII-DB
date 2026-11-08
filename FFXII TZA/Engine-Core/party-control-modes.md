@@ -352,14 +352,14 @@ leader; the two source bytes.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): the transition record.
 - [`party-control-modes-manager-0209ac60-accesses.tsv`](party-control-modes-manager-0209ac60-accesses.tsv): the
   accesses to the menu state block `0x0209AC60` (`0xE00` bytes, [menu screens](../Menus-And-HUD/menu-screens.md)) at its address
-  or through the pointer `[0x0209AC30]` with a fixed displacement, each at its loop's first pass (964 rows).
+  or through the pointer `[0x0209AC30]` with a fixed displacement, each at its loop's first pass (1,027 rows).
 
   Not listed: the accesses that add an index register (the pointers from `+0xAC8`, the bytes from `+0xB2E`, the slots
   at `+0x170`, `+0x290`, `+0x2B8` and `+0x2C8`), the clear at `0x002800FA` and later loop passes.
 - [`party-control-modes-manager-sub-0209ac60-02f8-accesses.tsv`](party-control-modes-manager-sub-0209ac60-02f8-accesses.tsv):
   every access to the description window that the block's `+0x2F8` points to (83 rows).
 - [`party-control-modes-manager-sub-0209ac60-02f8-00c0-accesses.tsv`](party-control-modes-manager-sub-0209ac60-02f8-00c0-accesses.tsv):
-  every access to the object at that window's `+0xC0` (90 rows).
+  every access to the object at that window's `+0xC0` (128 rows).
 - [`party-control-modes-party-selection-registry-ptrs-022c8388-accesses.tsv`](party-control-modes-party-selection-registry-ptrs-022c8388-accesses.tsv):
   the two stores of the party rebuild `0x0035BC50` to the four actor record pointers of the party slots at `0x022C8388`
   ([party list](../Menus-And-HUD/party-list.md)) (2 rows).

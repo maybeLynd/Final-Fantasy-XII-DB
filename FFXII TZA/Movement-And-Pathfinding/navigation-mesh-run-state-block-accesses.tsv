@@ -1,66 +1,97 @@
 function	name	site	disp	kind	instruction	route	note
-0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383AAD	0x6	r	cmp r12w, word ptr [rcx + 6]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383C18	0x6	r	movzx eax, word ptr [rcx + 6]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x003830F4	0xA	r	movzx eax, word ptr [r8 + 0xa]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x00383150	0xA	r	movzx r8d, word ptr [r8 + 0xa]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x003832AA	0xA	r	movzx r8d, word ptr [rax + 0xa]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x00383381	0xA	r	movzx edx, word ptr [rcx + 0xa]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383850	Navigation_EvaluatePortalTraversalCost	0x00383883	0xA	r	movzx r10d, word ptr [r11 + 0xa]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383C90	Navigation_AdjustPortalWaypointForClearance	0x00383D0D	0xA	r	movzx edx, word ptr [rcx + 0xa]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00382D10	Navigation_IsPointInsideIndexedPolygonXZ	0x00382D6B	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00382D10	Navigation_IsPointInsideIndexedPolygonXZ	0x00382D86	0xC	r	mov ecx, dword ptr [rcx + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00382D10	Navigation_IsPointInsideIndexedPolygonXZ	0x00382DA9	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00382D10	Navigation_IsPointInsideIndexedPolygonXZ	0x00382DC4	0xC	r	mov ecx, dword ptr [rcx + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00382D10	Navigation_IsPointInsideIndexedPolygonXZ	0x00382DE7	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00382D10	Navigation_IsPointInsideIndexedPolygonXZ	0x00382E08	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x003833A6	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x003833D2	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383850	Navigation_EvaluatePortalTraversalCost	0x0038391C	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383850	Navigation_EvaluatePortalTraversalCost	0x00383942	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383B0B	0xC	r	mov ecx, dword ptr [rcx + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383B26	0xC	r	mov ecx, dword ptr [rcx + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383B49	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383B64	0xC	r	mov ecx, dword ptr [rcx + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383B87	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383BAF	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383C90	Navigation_AdjustPortalWaypointForClearance	0x00383D31	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383C90	Navigation_AdjustPortalWaypointForClearance	0x00383D5C	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00384160	Navigation_BindAndRebaseDataset	0x00384196	0xC	w	mov dword ptr [rcx + 0xc], eax	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383AC0	0x10	r	mov ecx, dword ptr [rcx + 0x10]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383ADE	0x10	r	mov ecx, dword ptr [rax + 0x10]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383F10	Navigation_FindRegionForPointXZ	0x003840B5	0x10	r	mov ecx, dword ptr [rax + 0x10]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00384160	Navigation_BindAndRebaseDataset	0x00384199	0x10	r	mov ecx, dword ptr [rcx + 0x10]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00384160	Navigation_BindAndRebaseDataset	0x003841B6	0x10	w	mov dword ptr [rcx + 0x10], eax	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x00383385	0x14	r	mov ecx, dword ptr [rcx + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x003833BE	0x14	r	mov ecx, dword ptr [rax + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383850	Navigation_EvaluatePortalTraversalCost	0x003838A4	0x14	r	mov ecx, dword ptr [r11 + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383850	Navigation_EvaluatePortalTraversalCost	0x00383905	0x14	r	mov ecx, dword ptr [rax + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383850	Navigation_EvaluatePortalTraversalCost	0x0038392E	0x14	r	mov ecx, dword ptr [rax + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383C90	Navigation_AdjustPortalWaypointForClearance	0x00383D11	0x14	r	mov ecx, dword ptr [rcx + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383C90	Navigation_AdjustPortalWaypointForClearance	0x00383D48	0x14	r	mov ecx, dword ptr [rax + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00384160	Navigation_BindAndRebaseDataset	0x003841B9	0x14	r	mov ecx, dword ptr [rcx + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00384160	Navigation_BindAndRebaseDataset	0x003841D6	0x14	w	mov dword ptr [rcx + 0x14], eax	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383F10	Navigation_FindRegionForPointXZ	0x0038406D	0x18	r	mov ecx, dword ptr [rax + 0x18]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383F10	Navigation_FindRegionForPointXZ	0x00384097	0x18	r	mov ecx, dword ptr [rax + 0x18]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383F10	Navigation_FindRegionForPointXZ	0x003840DA	0x18	r	mov ecx, dword ptr [rax + 0x18]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00384160	Navigation_BindAndRebaseDataset	0x003841D9	0x18	r	mov ecx, dword ptr [rcx + 0x18]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00384160	Navigation_BindAndRebaseDataset	0x003841F6	0x18	w	mov dword ptr [rcx + 0x18], eax	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x00383372	0x1C	r	mov ecx, dword ptr [rax + 0x1c]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383850	Navigation_EvaluatePortalTraversalCost	0x00383874	0x1C	r	mov ecx, dword ptr [rax + 0x1c]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383C90	Navigation_AdjustPortalWaypointForClearance	0x00383CE6	0x1C	r	mov ecx, dword ptr [rax + 0x1c]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00384160	Navigation_BindAndRebaseDataset	0x003841F9	0x1C	r	mov ecx, dword ptr [rcx + 0x1c]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00384160	Navigation_BindAndRebaseDataset	0x00384216	0x1C	w	mov dword ptr [rcx + 0x1c], eax	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383740	Navigation_GetWorldBoundsXZ	0x00383771	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383740	Navigation_GetWorldBoundsXZ	0x00383794	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383740	Navigation_GetWorldBoundsXZ	0x003837B2	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383740	Navigation_GetWorldBoundsXZ	0x003837C5	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383740	Navigation_GetWorldBoundsXZ	0x003837EA	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383740	Navigation_GetWorldBoundsXZ	0x003837FD	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00383F10	Navigation_FindRegionForPointXZ	0x00383F23	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00384160	Navigation_BindAndRebaseDataset	0x00384219	0x20	r	mov ecx, dword ptr [rcx + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00384160	Navigation_BindAndRebaseDataset	0x00384236	0x20	w	mov dword ptr [rcx + 0x20], eax	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00384160	Navigation_BindAndRebaseDataset	0x0038425F	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00384160	Navigation_BindAndRebaseDataset	0x00384271	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00384160	Navigation_BindAndRebaseDataset	0x00384298	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00384160	Navigation_BindAndRebaseDataset	0x003842AA	0x28	r	mov ecx, dword ptr [rax + 0x28]	route-seeded PTR 0x02AEDFB0 base+0x0	
-0x00384160	Navigation_BindAndRebaseDataset	0x003842CC	0x28	w	mov dword ptr [rcx + 0x28], eax	route-seeded PTR 0x02AEDFB0 base+0x0	
+0x00335180	FUN_00335180	0x00335293	0x6	r	cmp bp, word ptr [rax + 6]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00335180	FUN_00335180	0x003354A3	0x6	r	movzx eax, word ptr [r14 + 6]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383AAD	0x6	r	cmp r12w, word ptr [rcx + 6]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383C18	0x6	r	movzx eax, word ptr [rcx + 6]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D4AE	0xA	r	cmp ax, word ptr [rbp + 0xa]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D4DA	0xA	r	movzx ecx, word ptr [rbp + 0xa]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D5DB	0xA	r	movzx eax, word ptr [rbp + 0xa]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D5F5	0xA	r	movzx eax, word ptr [rbp + 0xa]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x003830F4	0xA	r	movzx eax, word ptr [r8 + 0xa]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x00383150	0xA	r	movzx r8d, word ptr [r8 + 0xa]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x003832AA	0xA	r	movzx r8d, word ptr [rax + 0xa]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x00383381	0xA	r	movzx edx, word ptr [rcx + 0xa]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383850	Navigation_EvaluatePortalTraversalCost	0x00383883	0xA	r	movzx r10d, word ptr [r11 + 0xa]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383C90	Navigation_AdjustPortalWaypointForClearance	0x00383D0D	0xA	r	movzx edx, word ptr [rcx + 0xa]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00335180	FUN_00335180	0x003352FA	0xC	r	mov ecx, dword ptr [r14 + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00335180	FUN_00335180	0x00335303	0xC	r	mov ecx, dword ptr [r14 + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00335180	FUN_00335180	0x00335325	0xC	r	mov ecx, dword ptr [r14 + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00335180	FUN_00335180	0x0033532E	0xC	r	mov ecx, dword ptr [r14 + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00335180	FUN_00335180	0x00335350	0xC	r	mov ecx, dword ptr [r14 + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00335180	FUN_00335180	0x0033536C	0xC	r	mov ecx, dword ptr [r14 + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00335180	FUN_00335180	0x003353D0	0xC	r	mov ecx, dword ptr [r14 + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00335180	FUN_00335180	0x003353ED	0xC	r	mov ecx, dword ptr [r14 + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00335180	FUN_00335180	0x00335427	0xC	r	mov ecx, dword ptr [r14 + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00335180	FUN_00335180	0x00335444	0xC	r	mov ecx, dword ptr [r14 + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D53F	0xC	r	mov ecx, dword ptr [rbp + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D55E	0xC	r	mov ecx, dword ptr [rbp + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D582	0xC	r	mov ecx, dword ptr [rbp + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D5A2	0xC	r	mov ecx, dword ptr [rbp + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00382D10	Navigation_IsPointInsideIndexedPolygonXZ	0x00382D6B	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00382D10	Navigation_IsPointInsideIndexedPolygonXZ	0x00382D86	0xC	r	mov ecx, dword ptr [rcx + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00382D10	Navigation_IsPointInsideIndexedPolygonXZ	0x00382DA9	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00382D10	Navigation_IsPointInsideIndexedPolygonXZ	0x00382DC4	0xC	r	mov ecx, dword ptr [rcx + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00382D10	Navigation_IsPointInsideIndexedPolygonXZ	0x00382DE7	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00382D10	Navigation_IsPointInsideIndexedPolygonXZ	0x00382E08	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x003833A6	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x003833D2	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383850	Navigation_EvaluatePortalTraversalCost	0x0038391C	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383850	Navigation_EvaluatePortalTraversalCost	0x00383942	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383B0B	0xC	r	mov ecx, dword ptr [rcx + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383B26	0xC	r	mov ecx, dword ptr [rcx + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383B49	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383B64	0xC	r	mov ecx, dword ptr [rcx + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383B87	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383BAF	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383C90	Navigation_AdjustPortalWaypointForClearance	0x00383D31	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383C90	Navigation_AdjustPortalWaypointForClearance	0x00383D5C	0xC	r	mov ecx, dword ptr [rax + 0xc]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00384160	Navigation_BindAndRebaseDataset	0x00384196	0xC	w	mov dword ptr [rcx + 0xc], eax	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00335180	FUN_00335180	0x003352A5	0x10	r	mov ecx, dword ptr [r14 + 0x10]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00335180	FUN_00335180	0x003352AE	0x10	r	mov ecx, dword ptr [r14 + 0x10]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383AC0	0x10	r	mov ecx, dword ptr [rcx + 0x10]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383A30	Navigation_IsPointInsideRegionPolygonXZ	0x00383ADE	0x10	r	mov ecx, dword ptr [rax + 0x10]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383F10	Navigation_FindRegionForPointXZ	0x003840B5	0x10	r	mov ecx, dword ptr [rax + 0x10]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00384160	Navigation_BindAndRebaseDataset	0x00384199	0x10	r	mov ecx, dword ptr [rcx + 0x10]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00384160	Navigation_BindAndRebaseDataset	0x003841B6	0x10	w	mov dword ptr [rcx + 0x10], eax	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D4F3	0x14	r	mov ecx, dword ptr [rbp + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D515	0x14	r	mov ecx, dword ptr [rbp + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D534	0x14	r	mov ecx, dword ptr [rbp + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D57A	0x14	r	mov ecx, dword ptr [rbp + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x00383385	0x14	r	mov ecx, dword ptr [rcx + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x003833BE	0x14	r	mov ecx, dword ptr [rax + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383850	Navigation_EvaluatePortalTraversalCost	0x003838A4	0x14	r	mov ecx, dword ptr [r11 + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383850	Navigation_EvaluatePortalTraversalCost	0x00383905	0x14	r	mov ecx, dword ptr [rax + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383850	Navigation_EvaluatePortalTraversalCost	0x0038392E	0x14	r	mov ecx, dword ptr [rax + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383C90	Navigation_AdjustPortalWaypointForClearance	0x00383D11	0x14	r	mov ecx, dword ptr [rcx + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383C90	Navigation_AdjustPortalWaypointForClearance	0x00383D48	0x14	r	mov ecx, dword ptr [rax + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00384160	Navigation_BindAndRebaseDataset	0x003841B9	0x14	r	mov ecx, dword ptr [rcx + 0x14]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00384160	Navigation_BindAndRebaseDataset	0x003841D6	0x14	w	mov dword ptr [rcx + 0x14], eax	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383F10	Navigation_FindRegionForPointXZ	0x0038406D	0x18	r	mov ecx, dword ptr [rax + 0x18]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383F10	Navigation_FindRegionForPointXZ	0x00384097	0x18	r	mov ecx, dword ptr [rax + 0x18]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383F10	Navigation_FindRegionForPointXZ	0x003840DA	0x18	r	mov ecx, dword ptr [rax + 0x18]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00384160	Navigation_BindAndRebaseDataset	0x003841D9	0x18	r	mov ecx, dword ptr [rcx + 0x18]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00384160	Navigation_BindAndRebaseDataset	0x003841F6	0x18	w	mov dword ptr [rcx + 0x18], eax	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D4D2	0x1C	r	mov ecx, dword ptr [rbp + 0x1c]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	0x00383372	0x1C	r	mov ecx, dword ptr [rax + 0x1c]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383850	Navigation_EvaluatePortalTraversalCost	0x00383874	0x1C	r	mov ecx, dword ptr [rax + 0x1c]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383C90	Navigation_AdjustPortalWaypointForClearance	0x00383CE6	0x1C	r	mov ecx, dword ptr [rax + 0x1c]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00384160	Navigation_BindAndRebaseDataset	0x003841F9	0x1C	r	mov ecx, dword ptr [rcx + 0x1c]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00384160	Navigation_BindAndRebaseDataset	0x00384216	0x1C	w	mov dword ptr [rcx + 0x1c], eax	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383740	Navigation_GetWorldBoundsXZ	0x00383771	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383740	Navigation_GetWorldBoundsXZ	0x00383794	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383740	Navigation_GetWorldBoundsXZ	0x003837B2	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383740	Navigation_GetWorldBoundsXZ	0x003837C5	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383740	Navigation_GetWorldBoundsXZ	0x003837EA	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383740	Navigation_GetWorldBoundsXZ	0x003837FD	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00383F10	Navigation_FindRegionForPointXZ	0x00383F23	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00384160	Navigation_BindAndRebaseDataset	0x00384219	0x20	r	mov ecx, dword ptr [rcx + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00384160	Navigation_BindAndRebaseDataset	0x00384236	0x20	w	mov dword ptr [rcx + 0x20], eax	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00384160	Navigation_BindAndRebaseDataset	0x0038425F	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00384160	Navigation_BindAndRebaseDataset	0x00384271	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00384160	Navigation_BindAndRebaseDataset	0x00384298	0x20	r	mov ecx, dword ptr [rax + 0x20]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00392740	FUN_00392740	0x00392909	0x24	r	cmp dword ptr [rax + 0x24], edx	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00392740	FUN_00392740	0x0039290C	0x24	r	cmovb edx, dword ptr [rax + 0x24]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00384160	Navigation_BindAndRebaseDataset	0x003842AA	0x28	r	mov ecx, dword ptr [rax + 0x28]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00384160	Navigation_BindAndRebaseDataset	0x003842CC	0x28	w	mov dword ptr [rcx + 0x28], eax	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00391410	Navigation_TestSegmentAgainstAuxObstaclesXZ	0x00391597	0x28	r	mov ecx, dword ptr [r13 + 0x28]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function
+0x00392740	FUN_00392740	0x00392920	0x28	r	mov ecx, dword ptr [r15 + 0x28]	route-seeded PTR 0x02AEDFB0 base+0x0	host: this function

@@ -1,4 +1,4 @@
 function	name	site	disp	kind	instruction	route	note
-0x004ADD10	FUN_004add10	0x004ADE04	0x1C	r	movzx eax, word ptr [rbx + 0x3c]	route-seeded STATIC 0x02064E30 base+0x-20	
-0x004ADD10	FUN_004add10	0x004ADDA9	0x80	r	movsd xmm0, qword ptr [rbx + 0xa0]	route-seeded STATIC 0x02064E30 base+0x-20	
-0x004ADD10	FUN_004add10	0x004ADDFB	0x88	r	mov eax, dword ptr [rbx + 0xa8]	route-seeded STATIC 0x02064E30 base+0x-20	
+0x004ADD10	FUN_004add10	0x004ADE04	0x1C	r	movzx eax, word ptr [rbx + 0x3c]	route-seeded STATIC 0x02064E30 base+0x-20	host: this function
+0x004ADD10	FUN_004add10	0x004ADDA9	0x80	r	movsd xmm0, qword ptr [rbx + 0xa0]	route-seeded STATIC 0x02064E30 base+0x-20	host: this function
+0x004ADD10	FUN_004add10	0x004ADDFB	0x88	r	mov eax, dword ptr [rbx + 0xa8]	route-seeded STATIC 0x02064E30 base+0x-20	host: this function

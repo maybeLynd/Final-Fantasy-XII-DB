@@ -95,8 +95,8 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 12,142 |
-| empty | 33 |
+| `resolved` | 12,167 |
+| empty | 8 |
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb without arguments). Its `addresses`, `timing` and `sync` cells carry what they give

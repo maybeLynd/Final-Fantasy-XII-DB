@@ -35,9 +35,13 @@ names each.
   (`ラバナスタ用１` to `バーフォン用３`), `客` (passengers) and `カメラマン`.
 - Its two lines are Japanese choice lists in the `us` tree: `民間飛空艇発着イベントカメラ` with `何もしない`,
   `離陸カメラ` and `着カメラ`, and a second list with `もう一度` and `やめる`.
-- The director `監督.main` asks its choice lists with `aask` ([verb table](../Scripts-And-Script-Commands/verb-table.md)); that
-  is the scene's one row in [aerodrome-airship-scripts.tsv](aerodrome-airship-scripts.tsv), whose columns are those of the zone
-  scripts tables. No function of the scene gives an item, writes a flag or the story counter, or jumps.
+- Both lines are stored developer-menu strings, and the scene's script shows neither. No message call names the
+  camera menu. The director `監督.main` names the "again / stop" list in two `aask` calls
+  ([verb table](../Scripts-And-Script-Commands/verb-table.md)), but its first step jumps past both to a switch on
+  `event_global_flag[3]` that plays the departure or the arrival (`pas_z0000` lines 83, 117-121 and 131).
+- That function is the scene's one row in [aerodrome-airship-scripts.tsv](aerodrome-airship-scripts.tsv), whose
+  columns are those of the zone scripts tables. No function of the scene gives an item, writes a flag or the story
+  counter, or jumps.
 
 ### Columns of aerodrome-airship-scripts.tsv
 
@@ -48,7 +52,7 @@ The columns are those of the zone scripts tables (defined on
 |---|---|
 | `trigger` | the function's slot (`talk`, `touch`, `touchon`, `across`, `main`, `mapjump`), `init`, or `requested by` and the functions that request it; `-` when neither applies: `main` here |
 | `speaker` | who speaks each line, in line order: a name, `???`, `no name shown` or `system message`; for an actor with a `setnpcname` call, the second names of its pairs: `no name shown` here |
-| `line_text` | the `us` text of the entries in `lines`, in the same order, separated by ` / `; a choice list is written `(choices: ...)`: here the two choice lists |
+| `line_text` | the `us` text of the entries in `lines`, in the same order, separated by ` / `; a choice list is written `(choices: ...)`: here the one list a call names, `(choices: もう一度 / やめる)` (the scene stores two entries) |
 | `flags_released` | the story flag ids the function releases, each with the first sentence of its explanation on [story flag ids](story-flag-ids.md); `-` here |
 | `flags_tested` | the story flag ids the function tests, in the same form; `-` here |
 | `counter_tested` | each comparison of the story counter, as the relation and the decimal value; `-` here |
@@ -78,12 +82,9 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 1,332 |
-| empty | 2 |
+| `resolved` | 1,334 |
 
-A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
-script writes them (`-` for a verb without arguments). In this table such a row has `-` in its `addresses`, `timing` and
-`sync` cells.
+No step has an empty `resolution` cell.
 
 A scene reads from top to bottom in its director's function. In `pas_z0000` (event `214`), `監督.main` switches on
 `event_global_flag[3]`: at 1 it files `民間飛空艇発着イベント選択.離陸`, at 2 `民間飛空艇発着イベント選択.到着`, waiting until it ends, and fades

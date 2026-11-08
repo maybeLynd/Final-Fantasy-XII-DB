@@ -311,7 +311,9 @@ Licd board:
 
 The header fields are listed access by access in
 [`authored-data-tables-header-accesses.tsv`](authored-data-tables-header-accesses.tsv), and the slot
-references in [`authored-data-tables-slot-accesses.tsv`](authored-data-tables-slot-accesses.tsv).
+references in [`authored-data-tables-slot-accesses.tsv`](authored-data-tables-slot-accesses.tsv). In the
+header table, `route` names the registry slot whose pointer the function loads before the access, one slot
+on each of the 1,800 rows, and `note` names the function that loads it, on every row the accessing function.
 
 ## Shipped data
 

@@ -584,9 +584,9 @@ centre, each body's placement, accumulators, counters and pair bitmap.
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the per-slot step that consumes the push.
 - [Area flags and navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md): the cell attributes.
 - [`movement-bodies-accesses.tsv`](movement-bodies-accesses.tsv): every access to the movement bodies
-  (`MovementBody`, 128 of `0x130` bytes at `0x02B4E4C0`) through a register holding the pool's address (8 rows).
+  (`MovementBody`, 128 of `0x130` bytes at `0x02B4E4C0`) through a register holding the pool's address (71 rows).
 - [`movement-bodies-separation-candidate-scratch-accesses.tsv`](movement-bodies-separation-candidate-scratch-accesses.tsv):
   the one access to the candidate set `0x02B57EE0` through a register holding its address (1 row).
 - [`movement-bodies-separation-cell-masks-accesses.tsv`](movement-bodies-separation-cell-masks-accesses.tsv): every
   access to the sector masks `0x02B57CE0` (32 sectors, two words each) through a register holding their
-  address (19 rows).
+  address (81 rows).

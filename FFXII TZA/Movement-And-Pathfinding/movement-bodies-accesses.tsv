@@ -1,9 +1,72 @@
 function	name	site	disp	kind	instruction	route	note
-0x003DA8A0	FUN_003da8a0	0x003DA93D	0x0	w	mov word ptr [rcx], dx	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	
-0x003DAD00	FUN_003dad00	0x003DAD90	0x0	w	mov word ptr [rdx], ax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	
-0x003DAD00	FUN_003dad00	0x003DADD1	0x0	w	mov word ptr [rdx], ax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	
-0x003DAC70	FUN_003dac70	0x003DACD8	0x2	r	movzx eax, word ptr [rbx + 2]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	
-0x003DAC70	FUN_003dac70	0x003DACA4	0x4	r	movzx eax, word ptr [rbx + 4]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	
-0x003DAC70	FUN_003dac70	0x003DACAF	0x120	r	mov ecx, dword ptr [rbx + 0x120]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	
-0x003DAC70	FUN_003dac70	0x003DACC8	0x128	r	movss xmm0, dword ptr [rbx + 0x128]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	
-0x003DAC70	FUN_003dac70	0x003DACBD	0x12C	r	movss xmm1, dword ptr [rbx + 0x12c]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	
+0x003DA8A0	FUN_003da8a0	0x003DA910	0x0	w	mov word ptr [rcx], r9w	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DA8A0	FUN_003da8a0	0x003DA91B	0x0	w	mov word ptr [rdi], r9w	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DA8A0	FUN_003da8a0	0x003DA93D	0x0	w	mov word ptr [rcx], dx	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DAD00	FUN_003dad00	0x003DAD90	0x0	w	mov word ptr [rdx], ax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DAD00	FUN_003dad00	0x003DADD1	0x0	w	mov word ptr [rdx], ax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DAE30	FUN_003dae30	0x003DAE61	0x0	w	mov word ptr [rdx], ax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DA8A0	FUN_003da8a0	0x003DA8E7	0x2	r	movzx r8d, word ptr [rdi + 2]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DA8A0	FUN_003da8a0	0x003DA91F	0x2	w	mov word ptr [rdi + 2], ax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DAC70	FUN_003dac70	0x003DACD8	0x2	r	movzx eax, word ptr [rbx + 2]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DAD00	FUN_003dad00	0x003DAD6B	0x2	w	mov word ptr [r8 + 2], ax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DAE30	FUN_003dae30	0x003DAE69	0x2	w	mov word ptr [rdx + 2], ax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DAC70	FUN_003dac70	0x003DACA4	0x4	r	movzx eax, word ptr [rbx + 4]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DAE30	FUN_003dae30	0x003DAE5D	0x4	w	mov word ptr [rdx + 4], cx	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DA8A0	FUN_003da8a0	0x003DA99C	0x6	w	mov byte ptr [rdi + 6], sil	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DAA40	FUN_003daa40	0x003DAA9F	0x7	w	mov byte ptr [rdx + 7], r8b	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DAE30	FUN_003dae30	0x003DAF09	0x7	w	mov byte ptr [rdx + 7], r8b	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DA8A0	FUN_003da8a0	0x003DA98E	0x8	w	mov dword ptr [rdi + 8], 0x3f800000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DA8A0	FUN_003da8a0	0x003DA9A0	0x10	w	mov qword ptr [rdi + 0x10], rsi	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0 zeroclear	host: this function
+0x003DAE30	FUN_003dae30	0x003DAE6D	0x10	w	mov qword ptr [rdx + 0x10], r8	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DA8A0	FUN_003da8a0	0x003DA9A4	0x18	w	mov qword ptr [rdi + 0x18], rsi	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0 zeroclear	host: this function
+0x003DA8A0	FUN_003da8a0	0x003DA9A8	0x20	w	mov qword ptr [rdi + 0x20], rsi	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0 zeroclear	host: this function
+0x00380B80	FUN_00380b80	0x00380BE6	0x30	w	mov qword ptr [rcx], rax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x003DA8A0	FUN_003da8a0	0x003DA947	0x30	addr	lea rcx, [rdi + 0x30]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DA8A0	FUN_003da8a0	0x003DA958	0x30	w	mov qword ptr [rdi + 0x30], rsi	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0 zeroclear	host: this function
+0x003DA8A0	FUN_003da8a0	0x003DA95C	0x30	addr	lea rcx, [rdi + 0x30]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x00380B80	FUN_00380b80	0x00380BE9	0x38	w	mov dword ptr [rcx + 8], eax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x003DA8A0	FUN_003da8a0	0x003DA960	0x38	w	mov qword ptr [rdi + 0x38], rsi	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0 zeroclear	host: this function
+0x00380B80	FUN_00380b80	0x00380BEC	0x3C	w	mov qword ptr [rcx + 0xc], 0x3f800000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380BF4	0x44	w	mov dword ptr [rcx + 0x14], eax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380BF7	0x48	w	mov dword ptr [rcx + 0x18], 0x3f800000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380BFE	0x4C	w	mov dword ptr [rcx + 0x1c], 0x3f800000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380C05	0x50	w	mov dword ptr [rcx + 0x20], 0x3f800000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380C0C	0x54	w	mov dword ptr [rcx + 0x24], 0x3f800000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380C13	0x58	w	mov dword ptr [rcx + 0x28], 0x3f800000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380C1A	0x5C	w	mov dword ptr [rcx + 0x2c], 0x3f800000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380C21	0x60	w	mov dword ptr [rcx + 0x30], 0x3f800000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380C28	0x64	w	mov dword ptr [rcx + 0x34], 0x3f800000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380C2F	0x68	w	mov dword ptr [rcx + 0x38], 0x3f800000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380C36	0x6C	w	mov dword ptr [rcx + 0x3c], 0x3f800000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380B97	0x80	w	mov word ptr [rcx + 0x50], ax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380B87	0x82	w	mov word ptr [rcx + 0x52], ax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x003DA8A0	FUN_003da8a0	0x003DA967	0x82	w	mov word ptr [rdi + 0x82], ax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x00380B80	FUN_00380b80	0x00380B8B	0x86	w	mov word ptr [rcx + 0x56], ax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380B8F	0x88	w	mov word ptr [rcx + 0x58], ax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x003DA8A0	FUN_003da8a0	0x003DA96E	0x88	w	mov word ptr [rdi + 0x88], si	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x00380B80	FUN_00380b80	0x00380B93	0x8A	w	mov word ptr [rcx + 0x5a], ax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380B80	0x90	rw	and dword ptr [rcx + 0x60], 0xffffffe0	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380BB1	0x94	w	mov dword ptr [rcx + 0x64], 0x3f000000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380BB8	0x98	w	mov dword ptr [rcx + 0x68], 0x3f000000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380BBF	0x9C	w	mov dword ptr [rcx + 0x6c], 0x40000000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380BC6	0xA0	w	mov dword ptr [rcx + 0x70], 0x3f000000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380BCD	0xA4	w	mov dword ptr [rcx + 0x74], 0x3f000000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380BD4	0xA8	w	mov qword ptr [rcx + 0x78], 0x40000000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380B9D	0xB0	w	mov qword ptr [rcx + 0x80], rax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380BA4	0xC0	w	mov dword ptr [rcx + 0x90], eax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380BDC	0xC8	w	mov dword ptr [rcx + 0x98], 0x41900000	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x00380B80	FUN_00380b80	0x00380BAA	0xD0	w	mov qword ptr [rcx + 0xa0], rax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x30	host 0x003DA8A0
+0x003DA8A0	FUN_003da8a0	0x003DA9C6	0xE8	w	mov qword ptr [rdi + 0xe8], rsi	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DA830	FUN_003da830	0x003DA832	0xF0	w	mov dword ptr [rcx], 0x3727c5ac	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0xF0	host 0x003DA8A0
+0x003DA8A0	FUN_003da8a0	0x003DA981	0xF0	addr	lea rcx, [rdi + 0xf0]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DA830	FUN_003da830	0x003DA83B	0xF4	w	mov qword ptr [rcx + 4], 0x3727c5ac	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0xF0	host 0x003DA8A0
+0x003DA830	FUN_003da830	0x003DA838	0xFC	w	mov dword ptr [rcx + 0xc], eax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0xF0	host 0x003DA8A0
+0x003DA8A0	FUN_003da8a0	0x003DA97A	0x100	w	mov qword ptr [rdi + 0x100], rsi	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DA8A0	FUN_003da8a0	0x003DA9B9	0x100	w	mov qword ptr [rdi + 0x100], rsi	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DA8A0	FUN_003da8a0	0x003DA988	0x108	w	mov dword ptr [rdi + 0x108], esi	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DA8A0	FUN_003da8a0	0x003DA9C0	0x108	w	mov dword ptr [rdi + 0x108], esi	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DA8A0	FUN_003da8a0	0x003DA9CD	0x110	w	mov qword ptr [rdi + 0x110], rsi	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DA8A0	FUN_003da8a0	0x003DA995	0x118	w	mov word ptr [rdi + 0x118], si	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DAC70	FUN_003dac70	0x003DACAF	0x120	r	mov ecx, dword ptr [rbx + 0x120]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DAC70	FUN_003dac70	0x003DACC8	0x128	r	movss xmm0, dword ptr [rbx + 0x128]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function
+0x003DAC70	FUN_003dac70	0x003DACBD	0x12C	r	movss xmm1, dword ptr [rbx + 0x12c]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	host: this function

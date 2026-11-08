@@ -240,8 +240,8 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 46,067 |
-| empty | 424 |
+| `resolved` | 46,455 |
+| empty | 36 |
 | `does not ship`, with the fact | 9 |
 
 The nine `does not ship` rows are `motionread` calls: five in `dst_a06`, whose motion file `dst_a06.mot` is not in the

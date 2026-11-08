@@ -144,12 +144,9 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 788 |
-| empty | 19 |
+| `resolved` | 807 |
 
-A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
-script writes them (`-` for a verb without arguments). In this table such a row has `-` in its `addresses`, `timing` and
-`sync` cells.
+No step has an empty `resolution` cell.
 
 A function reads from top to bottom. In `pre_z0000`, `制御.init` stores 0 in `g_com_debug_flag`, switches on the story
 counter to set the conversation stage, counts the key items held, sets the boss states, switches on the story counter

@@ -1,91 +1,129 @@
 function	name	site	disp	kind	instruction	route	note
-0x00244830	FUN_00244830	0x00244869	0x0	r	mov rax, qword ptr [rcx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244EE3	0x0	r	mov rax, qword ptr [rbx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244F00	FUN_00244f00	0x00244F25	0x0	r	mov rax, qword ptr [rcx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00245020	FUN_00245020	0x00245044	0x0	r	mov rax, qword ptr [rdi]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246BF7	0x0	r	mov rax, qword ptr [rbx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002473F0	FUN_002473f0	0x0024743E	0x0	r	mov rax, qword ptr [r8]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00247510	FUN_00247510	0x0024753A	0x0	r	mov rax, qword ptr [rcx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x002483A0	0x0	r	mov rax, qword ptr [rdi]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x002483CE	0x0	w	mov qword ptr [rdi], 0	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x002483CA	0x8	r	mov rbx, qword ptr [rdi + 8]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246AE5	0x10	r	cmp qword ptr [rdx + 0x10], 0	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00248220	FUN_00248220	0x00248267	0x10	w	mov qword ptr [rdx + 0x10], rbx	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x00248308	0x10	r	mov rax, qword ptr [rdi + 0x10]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002448D0	FUN_002448d0	0x002448E0	0x18	r	mov rbx, qword ptr [rcx + 0x18]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00245020	FUN_00245020	0x00245047	0x18	r	mov rbx, qword ptr [rdi + 0x18]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002473F0	FUN_002473f0	0x00247414	0x18	r	mov rbx, qword ptr [r8 + 0x18]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00248220	FUN_00248220	0x0024827A	0x18	r	mov rdi, qword ptr [rdx + 0x18]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x002482EE	0x18	r	mov rcx, qword ptr [rcx + 0x18]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x00248315	0x20	r	mov rcx, qword ptr [rdi + 0x20]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00248220	FUN_00248220	0x00248260	0x28	w	mov qword ptr [rdx + 0x28], rcx	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x00248311	0x28	r	mov rdx, qword ptr [rdi + 0x28]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244830	FUN_00244830	0x00244865	0x40	rw	and dword ptr [rcx + 0x40], 0xffffffef	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244E17	0x40	r	mov edx, dword ptr [rbx + 0x40]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244E50	0x40	w	mov dword ptr [rbx + 0x40], edx	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244F00	FUN_00244f00	0x00244F0A	0x40	rw	or dword ptr [rcx + 0x40], 0x40	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244F00	FUN_00244f00	0x00244F11	0x40	r	mov eax, dword ptr [rcx + 0x40]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00245020	FUN_00245020	0x00245072	0x40	r	test byte ptr [rdi + 0x40], 0x20	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00245020	FUN_00245020	0x00245091	0x40	r	mov eax, dword ptr [rdi + 0x40]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00245020	FUN_00245020	0x0024509B	0x40	w	mov dword ptr [rdi + 0x40], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246ADE	0x40	rw	and dword ptr [rdx + 0x40], 0xffffffbf	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246AEA	0x40	r	mov eax, dword ptr [rdx + 0x40]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246AF2	0x40	w	mov dword ptr [rdx + 0x40], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246B06	0x40	w	mov dword ptr [rdx + 0x40], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246B18	0x40	w	mov dword ptr [rdx + 0x40], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246B72	0x40	r	test dword ptr [rbx + 0x40], 0x8000	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246B95	0x40	rw	or dword ptr [rbx + 0x40], 0x200	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246BA3	0x40	r	test dword ptr [rbx + 0x40], 0x8000	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002473F0	FUN_002473f0	0x0024741F	0x40	r	mov ecx, dword ptr [r8 + 0x40]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002473F0	FUN_002473f0	0x0024743A	0x40	w	mov dword ptr [r8 + 0x40], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00248220	FUN_00248220	0x00248271	0x40	rw	or dword ptr [rdx + 0x40], 0x20	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00248220	FUN_00248220	0x002482B9	0x40	r	test byte ptr [rsi + 0x40], 2	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x002483B4	0x40	rw	and dword ptr [rdi + 0x40], 0xfffffbff	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x002483C7	0x40	r	mov eax, dword ptr [rdi + 0x40]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x002483F0	0x40	w	mov dword ptr [rdi + 0x40], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00293110	FUN_00293110	0x00293146	0x40	r	mov eax, dword ptr [rax + 0x40]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0	
-0x00244DD0	FUN_00244dd0	0x00244E80	0x48	r	mov rcx, qword ptr [rbx + 0x48]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246BAC	0x48	r	mov rcx, qword ptr [rbx + 0x48]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00247570	FUN_00247570	0x00247583	0x48	w	mov qword ptr [rcx + 0x48], rax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x00248334	0x50	r	mov eax, dword ptr [rdi + 0x50]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x00248343	0x50	w	mov dword ptr [rdi + 0x50], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x00248377	0x50	r	mov eax, dword ptr [rdi + 0x50]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x0024833E	0x60	r	cmp qword ptr [rdi + 0x60], 0	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x00248360	0x60	r	mov rax, qword ptr [rdi + 0x60]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x0024838A	0x60	r	mov rcx, qword ptr [rdi + 0x60]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x00248398	0x60	w	mov qword ptr [rdi + 0x60], 0	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244E88	0x68	w	mov qword ptr [rbx + 0x68], rcx	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246BB0	0x68	w	mov qword ptr [rbx + 0x68], rcx	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244E6A	0x70	w	mov dword ptr [rbx + 0x70], ecx	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed zeroclear	
-0x00244DD0	FUN_00244dd0	0x00244E75	0x70	r	sub eax, dword ptr [rbx + 0x70]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244ED4	0x70	w	mov dword ptr [rbx + 0x70], edx	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246B7B	0x70	w	mov dword ptr [rbx + 0x70], 0	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246B8A	0x70	r	sub eax, dword ptr [rbx + 0x70]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246BEC	0x70	w	mov dword ptr [rbx + 0x70], edx	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244E78	0x74	r	sub eax, dword ptr [rbx + 0x74]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244E7B	0x74	w	mov dword ptr [rbx + 0x74], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244E92	0x74	w	mov dword ptr [rbx + 0x74], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246B8D	0x74	r	sub eax, dword ptr [rbx + 0x74]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246B90	0x74	w	mov dword ptr [rbx + 0x74], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246BBA	0x74	w	mov dword ptr [rbx + 0x74], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244E95	0x78	w	mov dword ptr [rbx + 0x78], 0x3f800000	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246BBD	0x78	w	mov dword ptr [rbx + 0x78], 0	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244E1F	0x7C	rw	and dword ptr [rbx + 0x7c], 0xfffffff1	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244E23	0x7C	rw	or dword ptr [rbx + 0x7c], 1	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244E2C	0x7C	r	mov ecx, dword ptr [rbx + 0x7c]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244EAA	0x7C	r	mov eax, dword ptr [rbx + 0x7c]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244EBC	0x7C	w	mov dword ptr [rbx + 0x7c], edi	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244ED7	0x7C	rw	and dword ptr [rbx + 0x7c], 0xfffffff4	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244EDB	0x7C	rw	or dword ptr [rbx + 0x7c], 4	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244EDF	0x7C	rw	or dword ptr [rbx + 0x7c], 0x30	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246B51	0x7C	r	mov edx, dword ptr [rbx + 0x7c]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246BD4	0x7C	w	mov dword ptr [rbx + 0x7c], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246BEF	0x7C	rw	and dword ptr [rbx + 0x7c], 0xffffffd2	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246BF3	0x7C	rw	or dword ptr [rbx + 0x7c], 0x12	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x002482E0	FUN_002482e0	0x002483BE	0x7C	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00293170	FUN_00293170	0x0029328F	0x7C	r	test byte ptr [rcx + 0x7c], 0x20	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0	
-0x002482E0	FUN_002482e0	0x002483E9	0xA2	w	mov byte ptr [rdi + 0xa2], 0	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244DE1	0xB8	w	mov dword ptr [rcx + 0xb8], 0x3f800000	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00244DD0	FUN_00244dd0	0x00244E0F	0xB8	w	movss dword ptr [rbx + 0xb8], xmm1	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246B1B	0xB8	w	mov dword ptr [rbx + 0xb8], 0x3f800000	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
-0x00246AD0	FUN_00246ad0	0x00246B49	0xB8	w	movss dword ptr [rbx + 0xb8], xmm1	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 base+0x0 exposed	
+0x00244830	FUN_00244830	0x00244869	0x0	r	mov rax, qword ptr [rcx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x00244DD0	FUN_00244dd0	0x00244EE3	0x0	r	mov rax, qword ptr [rbx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00244F00	FUN_00244f00	0x00244F25	0x0	r	mov rax, qword ptr [rcx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x00245020	FUN_00245020	0x00245044	0x0	r	mov rax, qword ptr [rdi]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x00246AD0	FUN_00246ad0	0x00246BF7	0x0	r	mov rax, qword ptr [rbx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x002473F0	FUN_002473f0	0x0024743E	0x0	r	mov rax, qword ptr [r8]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00247510	FUN_00247510	0x0024753A	0x0	r	mov rax, qword ptr [rcx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x002482E0	FUN_002482e0	0x002483A0	0x0	r	mov rax, qword ptr [rdi]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x002482E0	FUN_002482e0	0x002483CE	0x0	w	mov qword ptr [rdi], 0	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x002482E0	FUN_002482e0	0x002483CA	0x8	r	mov rbx, qword ptr [rdi + 8]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x00246AD0	FUN_00246ad0	0x00246AE5	0x10	r	cmp qword ptr [rdx + 0x10], 0	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00248220	FUN_00248220	0x00248267	0x10	w	mov qword ptr [rdx + 0x10], rbx	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x002482E0	FUN_002482e0	0x00248308	0x10	r	mov rax, qword ptr [rdi + 0x10]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x0024A680	FUN_0024a680	0x0024A6DD	0x10	r	mov rcx, qword ptr [rbx + 0x10]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x002D7960
+0x002448D0	FUN_002448d0	0x002448E0	0x18	r	mov rbx, qword ptr [rcx + 0x18]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x00245020	FUN_00245020	0x00245047	0x18	r	mov rbx, qword ptr [rdi + 0x18]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x002473F0	FUN_002473f0	0x00247414	0x18	r	mov rbx, qword ptr [r8 + 0x18]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00248220	FUN_00248220	0x0024827A	0x18	r	mov rdi, qword ptr [rdx + 0x18]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x002482E0	FUN_002482e0	0x002482EE	0x18	r	mov rcx, qword ptr [rcx + 0x18]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x0024A680	FUN_0024a680	0x0024A6EF	0x18	r	mov rcx, qword ptr [rbx + 0x18]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x002D7960
+0x002482E0	FUN_002482e0	0x00248315	0x20	r	mov rcx, qword ptr [rdi + 0x20]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x002D6990	FUN_002d6990	0x002D6A01	0x20	r	mov rcx, qword ptr [r10 + 0x20]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0	host: this function
+0x002D6990	FUN_002d6990	0x002D6A92	0x20	r	mov r8, qword ptr [r10 + 0x20]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0	host: this function
+0x00248220	FUN_00248220	0x00248260	0x28	w	mov qword ptr [rdx + 0x28], rcx	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x002482E0	FUN_002482e0	0x00248311	0x28	r	mov rdx, qword ptr [rdi + 0x28]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x0028E690	FUN_0028e690	0x0028E6A5	0x28	r	movzx eax, word ptr [rcx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x28	host 0x002814E0
+0x0028E690	FUN_0028e690	0x0028E6C4	0x2A	r	movzx ecx, word ptr [rcx + 2]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x28	host 0x002814E0
+0x0028E690	FUN_0028e690	0x0028E72F	0x2A	r	movzx ecx, word ptr [rbx + 2]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x28	host 0x002814E0
+0x0028E690	FUN_0028e690	0x0028E75A	0x2C	r	movsx eax, word ptr [rbx + 4]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x28	host 0x002814E0
+0x0024A680	FUN_0024a680	0x0024A6CE	0x38	r	mov eax, dword ptr [rbx + 0x38]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x002D7960
+0x0024A680	FUN_0024a680	0x0024A6F8	0x38	rw	and dword ptr [rbx + 0x38], 0xffffffdf	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x002D7960
+0x00244830	FUN_00244830	0x00244865	0x40	rw	and dword ptr [rcx + 0x40], 0xffffffef	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x00244DD0	FUN_00244dd0	0x00244E17	0x40	r	mov edx, dword ptr [rbx + 0x40]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00244DD0	FUN_00244dd0	0x00244E50	0x40	w	mov dword ptr [rbx + 0x40], edx	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00244F00	FUN_00244f00	0x00244F0A	0x40	rw	or dword ptr [rcx + 0x40], 0x40	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x00244F00	FUN_00244f00	0x00244F11	0x40	r	mov eax, dword ptr [rcx + 0x40]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x00245020	FUN_00245020	0x00245072	0x40	r	test byte ptr [rdi + 0x40], 0x20	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x00245020	FUN_00245020	0x00245091	0x40	r	mov eax, dword ptr [rdi + 0x40]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x00245020	FUN_00245020	0x0024509B	0x40	w	mov dword ptr [rdi + 0x40], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x00246AD0	FUN_00246ad0	0x00246ADE	0x40	rw	and dword ptr [rdx + 0x40], 0xffffffbf	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246AEA	0x40	r	mov eax, dword ptr [rdx + 0x40]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246AF2	0x40	w	mov dword ptr [rdx + 0x40], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246B06	0x40	w	mov dword ptr [rdx + 0x40], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246B18	0x40	w	mov dword ptr [rdx + 0x40], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246B72	0x40	r	test dword ptr [rbx + 0x40], 0x8000	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246B95	0x40	rw	or dword ptr [rbx + 0x40], 0x200	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246BA3	0x40	r	test dword ptr [rbx + 0x40], 0x8000	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x002473F0	FUN_002473f0	0x0024741F	0x40	r	mov ecx, dword ptr [r8 + 0x40]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x002473F0	FUN_002473f0	0x0024743A	0x40	w	mov dword ptr [r8 + 0x40], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00248220	FUN_00248220	0x00248271	0x40	rw	or dword ptr [rdx + 0x40], 0x20	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00248220	FUN_00248220	0x002482B9	0x40	r	test byte ptr [rsi + 0x40], 2	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x002482E0	FUN_002482e0	0x002483B4	0x40	rw	and dword ptr [rdi + 0x40], 0xfffffbff	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x002482E0	FUN_002482e0	0x002483C7	0x40	r	mov eax, dword ptr [rdi + 0x40]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x002482E0	FUN_002482e0	0x002483F0	0x40	w	mov dword ptr [rdi + 0x40], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x00293110	FUN_00293110	0x00293146	0x40	r	mov eax, dword ptr [rax + 0x40]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0	host: this function
+0x00228130	FUN_00228130	0x00228295	0x48	rw	or dword ptr [rax + 8], 0x1000	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x40	host: this function
+0x00244DD0	FUN_00244dd0	0x00244E80	0x48	r	mov rcx, qword ptr [rbx + 0x48]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246BAC	0x48	r	mov rcx, qword ptr [rbx + 0x48]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00247570	FUN_00247570	0x00247583	0x48	w	mov qword ptr [rcx + 0x48], rax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00280140	FUN_00280140	0x00280453	0x48	w	mov byte ptr [rax + 8], 0	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x40	host: this function
+0x002482E0	FUN_002482e0	0x00248334	0x50	r	mov eax, dword ptr [rdi + 0x50]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x002482E0	FUN_002482e0	0x00248343	0x50	w	mov dword ptr [rdi + 0x50], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x002482E0	FUN_002482e0	0x00248377	0x50	r	mov eax, dword ptr [rdi + 0x50]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x002482E0	FUN_002482e0	0x0024833E	0x60	r	cmp qword ptr [rdi + 0x60], 0	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x002482E0	FUN_002482e0	0x00248360	0x60	r	mov rax, qword ptr [rdi + 0x60]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x002482E0	FUN_002482e0	0x0024838A	0x60	r	mov rcx, qword ptr [rdi + 0x60]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x002482E0	FUN_002482e0	0x00248398	0x60	w	mov qword ptr [rdi + 0x60], 0	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x00244DD0	FUN_00244dd0	0x00244E88	0x68	w	mov qword ptr [rbx + 0x68], rcx	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246BB0	0x68	w	mov qword ptr [rbx + 0x68], rcx	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00244DD0	FUN_00244dd0	0x00244E6A	0x70	w	mov dword ptr [rbx + 0x70], ecx	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00244DD0	FUN_00244dd0	0x00244E75	0x70	r	sub eax, dword ptr [rbx + 0x70]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00244DD0	FUN_00244dd0	0x00244ED4	0x70	w	mov dword ptr [rbx + 0x70], edx	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246B7B	0x70	w	mov dword ptr [rbx + 0x70], 0	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246B8A	0x70	r	sub eax, dword ptr [rbx + 0x70]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246BEC	0x70	w	mov dword ptr [rbx + 0x70], edx	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00244DD0	FUN_00244dd0	0x00244E78	0x74	r	sub eax, dword ptr [rbx + 0x74]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00244DD0	FUN_00244dd0	0x00244E7B	0x74	w	mov dword ptr [rbx + 0x74], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00244DD0	FUN_00244dd0	0x00244E92	0x74	w	mov dword ptr [rbx + 0x74], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246B8D	0x74	r	sub eax, dword ptr [rbx + 0x74]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246B90	0x74	w	mov dword ptr [rbx + 0x74], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246BBA	0x74	w	mov dword ptr [rbx + 0x74], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00244DD0	FUN_00244dd0	0x00244E95	0x78	w	mov dword ptr [rbx + 0x78], 0x3f800000	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246BBD	0x78	w	mov dword ptr [rbx + 0x78], 0	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00244DD0	FUN_00244dd0	0x00244E1F	0x7C	rw	and dword ptr [rbx + 0x7c], 0xfffffff1	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00244DD0	FUN_00244dd0	0x00244E23	0x7C	rw	or dword ptr [rbx + 0x7c], 1	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00244DD0	FUN_00244dd0	0x00244E2C	0x7C	r	mov ecx, dword ptr [rbx + 0x7c]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00244DD0	FUN_00244dd0	0x00244EAA	0x7C	r	mov eax, dword ptr [rbx + 0x7c]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00244DD0	FUN_00244dd0	0x00244EBC	0x7C	w	mov dword ptr [rbx + 0x7c], edi	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00244DD0	FUN_00244dd0	0x00244ED7	0x7C	rw	and dword ptr [rbx + 0x7c], 0xfffffff4	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00244DD0	FUN_00244dd0	0x00244EDB	0x7C	rw	or dword ptr [rbx + 0x7c], 4	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00244DD0	FUN_00244dd0	0x00244EDF	0x7C	rw	or dword ptr [rbx + 0x7c], 0x30	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246B51	0x7C	r	mov edx, dword ptr [rbx + 0x7c]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246BD4	0x7C	w	mov dword ptr [rbx + 0x7c], eax	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246BEF	0x7C	rw	and dword ptr [rbx + 0x7c], 0xffffffd2	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246BF3	0x7C	rw	or dword ptr [rbx + 0x7c], 0x12	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x002482E0	FUN_002482e0	0x002483BE	0x7C	rw	and dword ptr [rdi + 0x7c], 0xfffffff0	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x00293170	FUN_00293170	0x0029328F	0x7C	r	test byte ptr [rcx + 0x7c], 0x20	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0	host: this function
+0x002482E0	FUN_002482e0	0x002483E9	0xA2	w	mov byte ptr [rdi + 0xa2], 0	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10
+0x00283270	FUN_00283270	0x00283490	0xB0	r	movsx ecx, word ptr [rdx + 0x60]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x50	host: this function
+0x00244DD0	FUN_00244dd0	0x00244DE1	0xB8	w	mov dword ptr [rcx + 0xb8], 0x3f800000	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00244DD0	FUN_00244dd0	0x00244E0F	0xB8	w	movss dword ptr [rbx + 0xb8], xmm1	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00292B10 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246B1B	0xB8	w	mov dword ptr [rbx + 0xb8], 0x3f800000	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00246AD0	FUN_00246ad0	0x00246B49	0xB8	w	movss dword ptr [rbx + 0xb8], xmm1	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x0 exposed	host 0x00293170
+0x00280B70	FUN_00280b70	0x00280BC0	0x710	r	mov rax, qword ptr [rdx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x710	host: this function
+0x00280B70	FUN_00280b70	0x00280C33	0x710	r	mov rdx, qword ptr [r8]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x710	host: this function
+0x00281ED0	FUN_00281ed0	0x00282410	0x710	r	mov rax, qword ptr [rdx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x710	host: this function
+0x00282650	FUN_00282650	0x002826A0	0x710	r	mov r9, qword ptr [rcx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x710	host: this function
+0x00282D90	FUN_00282d90	0x00282DA0	0x710	r	mov r9, qword ptr [r8]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x710	host: this function
+0x00282E10	FUN_00282e10	0x00282E24	0x710	r	mov rax, qword ptr [r8]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x710	host: this function
+0x00282FC0	FUN_00282fc0	0x00282FF0	0x710	r	mov rax, qword ptr [rcx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x710	host: this function
+0x00282FC0	FUN_00282fc0	0x00283050	0x710	r	mov rax, qword ptr [rcx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x710	host: this function
+0x00282FC0	FUN_00282fc0	0x00283053	0x710	r	mov r9, qword ptr [rcx + r10]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x710	host: this function
+0x002830A0	FUN_002830a0	0x002830F0	0x710	r	mov rax, qword ptr [rcx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x710	host: this function
+0x002830A0	FUN_002830a0	0x0028315F	0x710	addr	lea rsi, [rdx + rax*8]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x710	host: this function
+0x002830A0	FUN_002830a0	0x0028316C	0x710	r	mov rax, qword ptr [rdx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x710	host: this function
+0x002830A0	FUN_002830a0	0x0028319D	0x710	r	mov rax, qword ptr [rsi]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x710	host: this function
+0x002830A0	FUN_002830a0	0x0028320D	0x710	r	mov rax, qword ptr [rdx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x710	host: this function
+0x00283620	FUN_00283620	0x00283640	0x710	r	mov rax, qword ptr [r8]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x710	host: this function
+0x00284970	FUN_00284970	0x002849B0	0x710	r	mov rax, qword ptr [r9]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x710	host: this function
+0x0027F150	FUN_0027f150	0x0027F170	0x990	r	movzx edx, word ptr [rax]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0x990	host: this function
+0x0027EDA0	FUN_0027eda0	0x0027EDB8	0xA28	r	movsx ebx, word ptr [rcx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0xA28	host 0x00557A40 0x0055AE00
+0x0027EDA0	FUN_0027eda0	0x0027EDE2	0xA28	r	movsx eax, word ptr [r14]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0xA28	host 0x00557A40 0x0055AE00
+0x0027EDA0	FUN_0027eda0	0x0027EE24	0xA28	r	movsx eax, word ptr [r14]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0xA28	host 0x00557A40 0x0055AE00
+0x0027EDA0	FUN_0027eda0	0x0027EE52	0xA28	w	mov word ptr [r14], bx	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0xA28	host 0x00557A40 0x0055AE00
+0x0027F430	FUN_0027f430	0x0027F44A	0xA28	r	movsx r9d, word ptr [rcx]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0xA28	host 0x00557A90 0x0055B840
+0x0027F430	FUN_0027f430	0x0027F4D6	0xA28	r	movsx eax, word ptr [r14]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0xA28	host 0x00557A90 0x0055B840
+0x0027F430	FUN_0027f430	0x0027F4E9	0xA28	r	movsx eax, word ptr [r14]	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0xA28	host 0x00557A90 0x0055B840
+0x0027F430	FUN_0027f430	0x0027F516	0xA28	w	mov word ptr [r14], di	route-seeded CHAIN ManagerSub0209AC60_02F8 +0xC0 <- PTR 0x0209AC30 base+0xA28	host 0x00557A90 0x0055B840

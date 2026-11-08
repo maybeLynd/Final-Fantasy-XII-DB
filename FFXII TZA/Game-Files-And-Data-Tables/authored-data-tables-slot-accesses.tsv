@@ -1,6 +1,15 @@
 function	name	site	disp	kind	instruction	route	note
-0x003845F0	AreaData_BindAndRebaseSectionDescriptor	0x003845F4	0x0	w	mov qword ptr [rcx], rdx	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0 exposed	
-0x003845F0	AreaData_BindAndRebaseSectionDescriptor	0x00384611	0x0	r	mov r8, qword ptr [rcx]	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0 exposed	
-0x003845F0	AreaData_BindAndRebaseSectionDescriptor	0x00384622	0x0	r	mov r8, qword ptr [rcx]	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0 exposed	
-0x003845F0	AreaData_BindAndRebaseSectionDescriptor	0x00384633	0x0	r	mov r8, qword ptr [rcx]	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0 exposed	
-0x003845F0	AreaData_BindAndRebaseSectionDescriptor	0x00384644	0x0	r	mov rdi, qword ptr [rcx]	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0 exposed	
+0x00233E00	FUN_00233e00	0x00233E40	0x0	r	cmp qword ptr [rcx - 8], r10	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0	host: this function
+0x00233E00	FUN_00233e00	0x00233E4C	0x0	r	cmp qword ptr [rcx], r10	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0	host: this function
+0x00233E00	FUN_00233e00	0x00233E55	0x0	r	cmp qword ptr [rcx + 8], r10	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0	host: this function
+0x00233E00	FUN_00233e00	0x00233E5F	0x0	r	cmp qword ptr [rcx + 0x10], r10	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0	host: this function
+0x00233E00	FUN_00233e00	0x00233E69	0x0	r	cmp qword ptr [rcx + 0x18], r10	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0	host: this function
+0x00233E00	FUN_00233e00	0x00233E75	0x0	r	mov rdx, qword ptr [rcx + 0x20]	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0	host: this function
+0x002368D0	BattleStorage_InitializeWorkArrays	0x00236A01	0x0	w	rep stosq qword ptr [rdi], rax	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0	host: this function
+0x003845F0	AreaData_BindAndRebaseSectionDescriptor	0x003845F4	0x0	w	mov qword ptr [rcx], rdx	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0 exposed	host 0x00236C30 0x00237FC0 0x00238160 0x00238880 0x0023A160 0x003847B0
+0x003845F0	AreaData_BindAndRebaseSectionDescriptor	0x00384611	0x0	r	mov r8, qword ptr [rcx]	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0 exposed	host 0x00236C30 0x00237FC0 0x00238160 0x00238880 0x0023A160 0x003847B0
+0x003845F0	AreaData_BindAndRebaseSectionDescriptor	0x00384622	0x0	r	mov r8, qword ptr [rcx]	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0 exposed	host 0x00236C30 0x00237FC0 0x00238160 0x00238880 0x0023A160 0x003847B0
+0x003845F0	AreaData_BindAndRebaseSectionDescriptor	0x00384633	0x0	r	mov r8, qword ptr [rcx]	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0 exposed	host 0x00236C30 0x00237FC0 0x00238160 0x00238880 0x0023A160 0x003847B0
+0x003845F0	AreaData_BindAndRebaseSectionDescriptor	0x00384644	0x0	r	mov rdi, qword ptr [rcx]	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0 exposed	host 0x00236C30 0x00237FC0 0x00238160 0x00238880 0x0023A160 0x003847B0
+0x003846F0	FUN_003846f0	0x00384709	0x0	w	mov dword ptr [rdi], eax	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0	host 0x00236C30 0x0023A160
+0x003846F0	FUN_003846f0	0x00384725	0x0	r	mov ecx, dword ptr [rdi]	route-seeded ARRAY 0x02EBF008 stride=0x8 count=64 base+0x0	host 0x00236C30 0x0023A160

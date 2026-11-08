@@ -183,8 +183,18 @@ two-handed weapons take nothing in the off hand.
 | `25` | 5 | 8 | -1 | Onion Shot, Silent Shot, Aqua Shot |
 | `26` | 5 | 8 | -1 | Onion Bombs, Poison Bombs, Stun Bombs |
 
-The rows count ids `0x1000`-`0x11A3`, and the names are each row's own name word. Rows 420-556 are unused
-placeholder rows named "NOT USED" and "Reserve".
+The rows count ids `0x1000`-`0x11A3`, and the names are each row's own name word. Rows 420-556, named "NOT USED"
+and "Reserve", lie past the inventory's counts, so the party cannot hold them, but 124 of them are equipped.
+
+- Enemies: 958 of the 1,146 enemy definitions put one of 97 rows in the main hand `+0x16`, and 36 put one of 12
+  other rows in the off hand `+0x1C`; `0x0023AC80` installs both (`0x0023ADA8`, `0x0023ADBA`).
+- Guests: Lamont, Larsa and Reddas carry rows 468, 469, 484 and 485 from the party table (`+0x0A`-`+0x13`,
+  `0x0023AE8C`-`0x0023AEDA`) and the scenario presets (`+0x04`-`+0x0D`, `0x00239C62`-`0x00239CBF`).
+- Espers: the 13 "Reserve" rows 544-556 are the body pieces of the 13 Espers, one each, and Shemhazai holds row
+  459 in the off hand.
+- Rows 440, 444-449, 462-464, 486, 490 and 491 have no reference in the area files, `battle_pack.bin` (party
+  table, scenario presets, shops, bazaar, reward packages and selectors, licenses, starting inventory), the
+  chests and other records of the shipped scripts, or an immediate of the executable.
 
 | Field | Values in rows 0-419 |
 |---|---|

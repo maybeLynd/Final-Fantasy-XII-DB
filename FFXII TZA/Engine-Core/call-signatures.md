@@ -7,7 +7,7 @@ addresses: "0x0079D730, 0x00311CD0, 0x00197710, 0x0085DDE0, 0x00325EA0, 0x0030FE
 
 ## What it lists
 
-One row for each of the executable's 39,108 functions, from `0x00121000` to `0x008C15E0` and from one-instruction
+One row for each of the executable's 39,107 functions, from `0x00121000` to `0x008C15E0` and from one-instruction
 stubs (a `ret` or a `jmp`) to a body of 6,492 instructions (`0x004B1190`): the integer and float argument registers each function reads,
 its argument count (the highest argument position it reads), the arguments its entry stores in their home slots,
 and the stack arguments it reads. A second table lists every call and tail call, including those in `__except` blocks, with its target and the argument
@@ -109,15 +109,15 @@ so that its first argument is that class's `this`:
 
 | Fact | Value |
 |---|---|
-| Functions | 39,108 |
-| Arity 0 / 1 / 2 / 3 / 4 | 10,661 / 8,214 / 11,173 / 4,772 / 4,288 |
+| Functions | 39,107 |
+| Arity 0 / 1 / 2 / 3 / 4 | 10,661 / 8,214 / 11,172 / 4,772 / 4,288 |
 | Read a float argument register | 1,314 |
 | Store an argument in its home slot | 1,334 |
 | Leave a position below their arity unread | 7,058 |
 | Read a stack argument | 1,670 |
 | Read their own stack through a loop-advanced pointer | 59 |
 | Call and tail-call sites | 137,603 |
-| Sit in a class's virtual table | 6,883 |
+| Sit in a class's virtual table | 6,882 |
 
 `0x0053DD10` (`mov eax, 1; ret`) is held by 24 virtual tables. It is also called directly: `0x002DDC50()` answers
 whether `0x0053DD10()` returns 1, so it always answers 1, and every test on it in its eleven callers passes. They

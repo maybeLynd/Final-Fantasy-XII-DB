@@ -1,13 +1,124 @@
 function	name	site	disp	kind	instruction	route	note
-0x00615720	FUN_00615720	0x00615736	0x0	w	mov qword ptr [rcx], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
-0x00615840	FUN_00615840	0x00615AC8	0x0	addr	lea rcx, [rbp + 0xb50]	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x-B50	
-0x00615720	FUN_00615720	0x00615739	0x8	w	mov qword ptr [rcx + 8], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
-0x00615720	FUN_00615720	0x0061575E	0x10	w	mov qword ptr [rbx + 0x10], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
-0x00615720	FUN_00615720	0x00615762	0x18	w	mov qword ptr [rbx + 0x18], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
-0x00615720	FUN_00615720	0x00615766	0x20	w	mov qword ptr [rbx + 0x20], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
-0x00615720	FUN_00615720	0x0061576A	0x28	w	mov qword ptr [rbx + 0x28], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
-0x00615720	FUN_00615720	0x0061576E	0x30	w	mov qword ptr [rbx + 0x30], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
-0x00615720	FUN_00615720	0x00615772	0x38	w	mov qword ptr [rbx + 0x38], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
-0x00615720	FUN_00615720	0x00615776	0x40	w	mov qword ptr [rbx + 0x40], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
-0x00615720	FUN_00615720	0x0061577A	0x48	w	mov qword ptr [rbx + 0x48], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x0 zeroclear	
-0x00616560	FUN_00616560	0x006165B9	0x50	addr	lea rcx, [rdi + 0xba0]	route-seeded EMBED RenderContext02CC0410 +0x0B50 base+0x-B50	
+0x00615720	FUN_00615720	0x00615736	0x0	w	mov qword ptr [rcx], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x005FD050
+0x00615840	FUN_00615840	0x00615AC8	0x0	addr	lea rcx, [rbp + 0xb50]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x-B50	host 0x005FD050
+0x0061E760	FUN_0061e760	0x0061E79A	0x0	r	mov rdx, qword ptr [rsi]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061E760	FUN_0061e760	0x0061E80A	0x0	r	mov rdx, qword ptr [rsi]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061E760	FUN_0061e760	0x0061E9CD	0x0	r	mov rax, qword ptr [rsi]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061E760	FUN_0061e760	0x0061E9F9	0x0	r	mov rax, qword ptr [rsi]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00624C30	FUN_00624c30	0x00624E72	0x0	r	mov rcx, qword ptr [rsi]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0079F150
+0x00625830	FUN_00625830	0x00625D44	0x0	addr	lea rcx, [r14 + 0xb50]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x-B50	host 0x0079F150
+0x0062B340	FUN_0062b340	0x0062B3FB	0x0	r	mov rcx, qword ptr [r14]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0079EDD0
+0x0062B340	FUN_0062b340	0x0062B409	0x0	w	mov qword ptr [r14], rbp	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x0079EDD0
+0x0062B5A0	FUN_0062b5a0	0x0062B62B	0x0	addr	lea rcx, [rbx + 0xb50]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x-B50	host 0x0079EDD0
+0x00615720	FUN_00615720	0x00615739	0x8	w	mov qword ptr [rcx + 8], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x005FD050
+0x0061E760	FUN_0061e760	0x0061E94F	0x8	r	mov rdx, qword ptr [rsi + 8]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00624C30	FUN_00624c30	0x00624C4E	0x8	addr	lea rbx, [rcx + 8]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0079F150
+0x00624C30	FUN_00624c30	0x00624C81	0x8	r	cmp qword ptr [rbx], 0	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x8	host 0x0079F150
+0x0062B340	FUN_0062b340	0x0062B3C7	0x8	r	mov rcx, qword ptr [r14 + 8]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0079EDD0
+0x0062B340	FUN_0062b340	0x0062B3D6	0x8	w	mov qword ptr [r14 + 8], rbp	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x0079EDD0
+0x00615720	FUN_00615720	0x0061575E	0x10	w	mov qword ptr [rbx + 0x10], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x005FD050
+0x0061E760	FUN_0061e760	0x0061E985	0x10	r	mov rdx, qword ptr [rsi + rax*8 + 0x10]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061E760	FUN_0061e760	0x0061E996	0x10	r	mov rdx, qword ptr [rsi + 0x10]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00624C30	FUN_00624c30	0x00624C92	0x10	addr	lea rbx, [rsi + 0x10]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0079F150
+0x00624C30	FUN_00624c30	0x00624E08	0x10	r	cmp qword ptr [rbx], rbp	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x10	host 0x0079F150
+0x0062B340	FUN_0062b340	0x0062B3DA	0x10	addr	lea rbx, [r14 + 0x10]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0079EDD0
+0x0062B340	FUN_0062b340	0x0062B3E0	0x10	r	mov rcx, qword ptr [rbx]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x10	host 0x0079EDD0
+0x0062B340	FUN_0062b340	0x0062B3EE	0x10	w	mov qword ptr [rbx], rbp	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x10 zeroclear	host 0x0079EDD0
+0x00615720	FUN_00615720	0x00615762	0x18	w	mov qword ptr [rbx + 0x18], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x005FD050
+0x00624C30	FUN_00624c30	0x00624CC2	0x18	addr	lea rcx, [rsi + 0x18]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0079F150
+0x0062B340	FUN_0062b340	0x0062B3E0	0x18	r	mov rcx, qword ptr [rbx]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x18	host 0x0079EDD0
+0x0062B340	FUN_0062b340	0x0062B3EE	0x18	w	mov qword ptr [rbx], rbp	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x18 zeroclear	host 0x0079EDD0
+0x00615720	FUN_00615720	0x00615766	0x20	w	mov qword ptr [rbx + 0x20], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x005FD050
+0x00624C30	FUN_00624c30	0x00624CEE	0x20	addr	lea rcx, [rsi + 0x20]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0079F150
+0x0062B340	FUN_0062b340	0x0062B3E0	0x20	r	mov rcx, qword ptr [rbx]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x20	host 0x0079EDD0
+0x0062B340	FUN_0062b340	0x0062B3EE	0x20	w	mov qword ptr [rbx], rbp	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x20 zeroclear	host 0x0079EDD0
+0x00615720	FUN_00615720	0x0061576A	0x28	w	mov qword ptr [rbx + 0x28], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x005FD050
+0x00624C30	FUN_00624c30	0x00624D1A	0x28	addr	lea rcx, [rsi + 0x28]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0079F150
+0x0062B340	FUN_0062b340	0x0062B3E0	0x28	r	mov rcx, qword ptr [rbx]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x28	host 0x0079EDD0
+0x0062B340	FUN_0062b340	0x0062B3EE	0x28	w	mov qword ptr [rbx], rbp	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x28 zeroclear	host 0x0079EDD0
+0x00615720	FUN_00615720	0x0061576E	0x30	w	mov qword ptr [rbx + 0x30], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x005FD050
+0x00624C30	FUN_00624c30	0x00624D46	0x30	addr	lea rcx, [rsi + 0x30]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0079F150
+0x0062B340	FUN_0062b340	0x0062B3E0	0x30	r	mov rcx, qword ptr [rbx]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x30	host 0x0079EDD0
+0x0062B340	FUN_0062b340	0x0062B3EE	0x30	w	mov qword ptr [rbx], rbp	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x30 zeroclear	host 0x0079EDD0
+0x00615720	FUN_00615720	0x00615772	0x38	w	mov qword ptr [rbx + 0x38], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x005FD050
+0x00624C30	FUN_00624c30	0x00624D72	0x38	addr	lea rcx, [rsi + 0x38]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0079F150
+0x0062B340	FUN_0062b340	0x0062B3E0	0x38	r	mov rcx, qword ptr [rbx]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x38	host 0x0079EDD0
+0x0062B340	FUN_0062b340	0x0062B3EE	0x38	w	mov qword ptr [rbx], rbp	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x38 zeroclear	host 0x0079EDD0
+0x00615720	FUN_00615720	0x00615776	0x40	w	mov qword ptr [rbx + 0x40], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x005FD050
+0x00624C30	FUN_00624c30	0x00624D9E	0x40	addr	lea rcx, [rsi + 0x40]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0079F150
+0x0062B340	FUN_0062b340	0x0062B3E0	0x40	r	mov rcx, qword ptr [rbx]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x40	host 0x0079EDD0
+0x0062B340	FUN_0062b340	0x0062B3EE	0x40	w	mov qword ptr [rbx], rbp	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x40 zeroclear	host 0x0079EDD0
+0x00615720	FUN_00615720	0x0061577A	0x48	w	mov qword ptr [rbx + 0x48], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0 zeroclear	host 0x005FD050
+0x00624C30	FUN_00624c30	0x00624DCA	0x48	addr	lea rcx, [rsi + 0x48]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0079F150
+0x0062B340	FUN_0062b340	0x0062B3E0	0x48	r	mov rcx, qword ptr [rbx]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x48	host 0x0079EDD0
+0x0062B340	FUN_0062b340	0x0062B3EE	0x48	w	mov qword ptr [rbx], rbp	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x48 zeroclear	host 0x0079EDD0
+0x00616560	FUN_00616560	0x006165B9	0x50	addr	lea rcx, [rdi + 0xba0]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x-B50	host 0x008ADDD0
+0x0061E760	FUN_0061e760	0x0061E839	0x50	rw	or dword ptr [rbx + 0x50], 4	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061E760	FUN_0061e760	0x0061E83D	0x50	addr	lea rcx, [rbx + 0x50]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061E760	FUN_0061e760	0x0061E847	0x50	rw	or dword ptr [rbx + 0x50], 4	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061E760	FUN_0061e760	0x0061E8B6	0x50	addr	lea rcx, [rbx + 0x50]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061E760	FUN_0061e760	0x0061E8D1	0x50	addr	lea rcx, [rsi + 0x50]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00624C30	FUN_00624c30	0x00624E9F	0x50	rw	or dword ptr [rbx - 0x2c], 2	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x7C	host 0x0079F150
+0x00624C30	FUN_00624c30	0x00624EAB	0x50	rw	or dword ptr [rbx - 0x2c], 4	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x7C	host 0x0079F150
+0x00624C30	FUN_00624c30	0x00624EBD	0x50	rw	or dword ptr [rbx - 0x2c], 4	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x7C	host 0x0079F150
+0x00624C30	FUN_00624c30	0x00624EC9	0x50	rw	or dword ptr [rbx - 0x2c], 4	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x7C	host 0x0079F150
+0x0061DE20	FUN_0061de20	0x0061DE5B	0x54	addr	lea rdx, [rbx + 4]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DEA9	0x54	r	movups xmm0, xmmword ptr [rbx + 4]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DEAD	0x64	r	movups xmm1, xmmword ptr [rbx + 0x14]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DEBE	0x74	r	movsd xmm0, qword ptr [rbx + 0x24]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DF73	0x7C	addr	lea rdx, [rbx + 0x2c]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x00624C30	FUN_00624c30	0x00624E91	0x7C	addr	lea rbx, [rsi + 0x7c]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0079F150
+0x00624C30	FUN_00624c30	0x00624EAF	0x7C	w	mov dword ptr [rbx], 1	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x7C	host 0x0079F150
+0x00624C30	FUN_00624c30	0x00624EC6	0x80	w	mov dword ptr [rbx + 4], eax	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x7C	host 0x0079F150
+0x00624C30	FUN_00624c30	0x00624EB5	0x84	w	mov qword ptr [rbx + 8], 8	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x7C	host 0x0079F150
+0x0061E760	FUN_0061e760	0x0061E84B	0x88	w	mov dword ptr [rbx + 0x88], 1	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x0061E760	FUN_0061e760	0x0061E855	0x8C	w	mov word ptr [rbx + 0x8c], 0xffff	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00624C30	FUN_00624c30	0x00624ED6	0x8C	w	mov word ptr [rbx + 0x10], 0xffff	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x7C	host 0x0079F150
+0x0061E760	FUN_0061e760	0x0061E868	0x90	w	mov dword ptr [rbx + 0x90], 3	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00624C30	FUN_00624c30	0x00624EEA	0x90	w	mov dword ptr [rbx + 0x14], 1	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x7C	host 0x0079F150
+0x0061E760	FUN_0061e760	0x0061E872	0x94	w	mov dword ptr [rbx + 0x94], 3	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00624C30	FUN_00624c30	0x00624EF1	0x94	w	mov dword ptr [rbx + 0x18], 1	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x7C	host 0x0079F150
+0x0061E760	FUN_0061e760	0x0061E87C	0x98	w	mov dword ptr [rbx + 0x98], 3	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00624C30	FUN_00624c30	0x00624EF8	0x98	w	mov dword ptr [rbx + 0x1c], 1	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x7C	host 0x0079F150
+0x0061E760	FUN_0061e760	0x0061E85E	0x9C	w	mov dword ptr [rbx + 0x9c], 8	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00624C30	FUN_00624c30	0x00624EE0	0x9C	w	mov dword ptr [rbx + 0x20], 8	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x7C	host 0x0079F150
+0x0061E760	FUN_0061e760	0x0061E890	0xA0	w	mov dword ptr [rbx + 0xa0], 3	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00624C30	FUN_00624c30	0x00624F06	0xA0	w	mov dword ptr [rbx + 0x24], 1	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x7C	host 0x0079F150
+0x0061E760	FUN_0061e760	0x0061E89A	0xA4	w	mov dword ptr [rbx + 0xa4], 3	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00624C30	FUN_00624c30	0x00624F0D	0xA4	w	mov dword ptr [rbx + 0x28], 1	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x7C	host 0x0079F150
+0x0061E760	FUN_0061e760	0x0061E8A4	0xA8	w	mov dword ptr [rbx + 0xa8], 3	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00624C30	FUN_00624c30	0x00624F14	0xA8	w	mov dword ptr [rbx + 0x2c], 1	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x7C	host 0x0079F150
+0x0061E760	FUN_0061e760	0x0061E886	0xAC	w	mov dword ptr [rbx + 0xac], 8	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410
+0x00624C30	FUN_00624c30	0x00624EFF	0xAC	w	mov dword ptr [rbx + 0x30], 8	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x7C	host 0x0079F150
+0x0061DE20	FUN_0061de20	0x0061DF1A	0xB0	addr	lea rdx, [rbx + 0x60]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x00624C30	FUN_00624c30	0x00624EA6	0xD4	w	mov byte ptr [rbx + 0x58], al	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x7C	host 0x0079F150
+0x0061DE20	FUN_0061de20	0x0061DE4C	0x1B8	r	cmp qword ptr [rcx + 0x168], 0	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DE5F	0x1B8	addr	lea r8, [rbx + 0x168]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DE7E	0x1B8	r	mov rcx, qword ptr [rbx + 0x168]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0062B340	FUN_0062b340	0x0062B370	0x1B8	r	mov rcx, qword ptr [rbx - 8]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x1C0	host 0x0079EDD0
+0x0062B340	FUN_0062b340	0x0062B37F	0x1B8	w	mov qword ptr [rbx - 8], rbp	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x1C0 zeroclear	host 0x0079EDD0
+0x0062BA30	FUN_0062ba30	0x0062BA3F	0x1B8	r	mov rcx, qword ptr [rcx + 0x168]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0062BA30	FUN_0062ba30	0x0062BA51	0x1B8	w	mov qword ptr [rbx + 0x168], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50 zeroclear	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DE9F	0x1C0	r	cmp qword ptr [rbx + 0x170], 0	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DED3	0x1C0	addr	lea r8, [rbx + 0x170]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DEF7	0x1C0	r	cmp qword ptr [rbx + 0x170], 0	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0062B340	FUN_0062b340	0x0062B35F	0x1C0	addr	lea rbx, [rcx + 0x1c0]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0079EDD0
+0x0062B340	FUN_0062b340	0x0062B383	0x1C0	r	mov rcx, qword ptr [rbx]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x1C0	host 0x0079EDD0
+0x0062B340	FUN_0062b340	0x0062B391	0x1C0	w	mov qword ptr [rbx], rbp	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x1C0 zeroclear	host 0x0079EDD0
+0x0062BA30	FUN_0062ba30	0x0062BA58	0x1C0	r	mov rcx, qword ptr [rbx + 0x170]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0062BA30	FUN_0062ba30	0x0062BA6A	0x1C0	w	mov qword ptr [rbx + 0x170], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50 zeroclear	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DF5E	0x1C8	r	cmp qword ptr [rbx + 0x178], 0	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DF77	0x1C8	addr	lea r8, [rbx + 0x178]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DF92	0x1C8	r	mov rcx, qword ptr [rbx + 0x178]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0062B340	FUN_0062b340	0x0062B3A7	0x1C8	r	mov rcx, qword ptr [rbx + 8]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x1C0	host 0x0079EDD0
+0x0062B340	FUN_0062b340	0x0062B3B6	0x1C8	w	mov qword ptr [rbx + 8], rbp	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x1C0 zeroclear	host 0x0079EDD0
+0x0062BA30	FUN_0062ba30	0x0062BA8A	0x1C8	r	mov rcx, qword ptr [rbx + 0x178]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0062BA30	FUN_0062ba30	0x0062BA9C	0x1C8	w	mov qword ptr [rbx + 0x178], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50 zeroclear	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DF05	0x1D0	r	cmp qword ptr [rbx + 0x180], 0	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DF1E	0x1D0	addr	lea r8, [rbx + 0x180]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0061DE20	FUN_0061de20	0x0061DF3D	0x1D0	r	mov rcx, qword ptr [rbx + 0x180]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0062B340	FUN_0062b340	0x0062B394	0x1D0	r	mov rcx, qword ptr [rbx + 0x10]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x1C0	host 0x0079EDD0
+0x0062B340	FUN_0062b340	0x0062B3A3	0x1D0	w	mov qword ptr [rbx + 0x10], rbp	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x1C0 zeroclear	host 0x0079EDD0
+0x0062BA30	FUN_0062ba30	0x0062BA71	0x1D0	r	mov rcx, qword ptr [rbx + 0x180]	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50	host 0x0060A410
+0x0062BA30	FUN_0062ba30	0x0062BA83	0x1D0	w	mov qword ptr [rbx + 0x180], rdi	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x50 zeroclear	host 0x0060A410
+0x0061E760	FUN_0061e760	0x0061E841	0x1D8	w	mov byte ptr [rbx + 0x1d8], al	route-seeded EMBED RenderContext02CC0410 +0x0B50 <- STATIC 0x02CC0410 base+0x0	host 0x0060A410

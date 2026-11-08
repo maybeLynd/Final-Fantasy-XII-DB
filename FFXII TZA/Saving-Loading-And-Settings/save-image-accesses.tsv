@@ -1,54 +1,690 @@
 function	name	site	disp	kind	instruction	route	note
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF597	0x0	r	movups xmm0, xmmword ptr [rax]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5A5	0x0	w	movups xmmword ptr [rcx - 0x80], xmm0	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6B8	0x0	r	movups xmm0, xmmword ptr [rcx]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6C6	0x0	w	movups xmmword ptr [r8 - 0x80], xmm0	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x00253690	GameState_GetGil	0x00253697	0x8	r	mov eax, dword ptr [rax + 8]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0 exposed	
-0x00254EE0	GameState_SetGil	0x00254EF1	0x8	r	sub edx, dword ptr [rax + 8]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x00254EE0	GameState_SetGil	0x00254F1F	0x8	w	mov dword ptr [rax + 8], ecx	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x002536D0	FUN_002536d0	0x002536DC	0xC	r	mov eax, dword ptr [rax + 0xc]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x00254E80	FUN_00254e80	0x00254E90	0xC	w	mov dword ptr [rcx + 0xc], eax	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x00254CC0	FUN_00254cc0	0x00254CF8	0x10	rw	add qword ptr [rdi + 0x10], rcx	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x00254CC0	FUN_00254cc0	0x00254D27	0x10	r	mov r8, qword ptr [rdi + 0x10]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x00254CC0	FUN_00254cc0	0x00254D3A	0x10	w	mov qword ptr [rdi + 0x10], r8	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF59A	0x10	r	movups xmm1, xmmword ptr [rax + 0x10]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5AD	0x10	w	movups xmmword ptr [rcx - 0x70], xmm1	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6BB	0x10	r	movups xmm1, xmmword ptr [rcx + 0x10]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6CF	0x10	w	movups xmmword ptr [r8 - 0x70], xmm1	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002536B0	FUN_002536b0	0x002536B7	0x18	r	movzx eax, word ptr [rdx + 0x18]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x00254C90	FUN_00254c90	0x00254C97	0x18	r	movzx eax, word ptr [r9 + 0x18]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x00254CC0	FUN_00254cc0	0x00254DBF	0x18	w	mov word ptr [rdi + 0x18], r8w	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x002536B0	FUN_002536b0	0x002536BE	0x1A	r	movzx eax, byte ptr [rdx + 0x1a]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x00254C90	FUN_00254c90	0x00254C9E	0x1A	r	movzx eax, byte ptr [r9 + 0x1a]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x00254CC0	FUN_00254cc0	0x00254D9E	0x1A	w	mov byte ptr [rdi + 0x1a], cl	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x002536B0	FUN_002536b0	0x002536C7	0x1B	r	movzx ecx, byte ptr [rdx + 0x1b]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x00254C90	FUN_00254c90	0x00254CA5	0x1B	r	movzx eax, byte ptr [r9 + 0x1b]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x00254CC0	FUN_00254cc0	0x00254D63	0x1B	w	mov byte ptr [rdi + 0x1b], cl	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5A9	0x20	r	movups xmm0, xmmword ptr [rax - 0x60]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5B5	0x20	w	movups xmmword ptr [rcx - 0x60], xmm0	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6CB	0x20	r	movups xmm0, xmmword ptr [rcx - 0x60]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6D8	0x20	w	movups xmmword ptr [r8 - 0x60], xmm0	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5B1	0x30	r	movups xmm1, xmmword ptr [rax - 0x50]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5BD	0x30	w	movups xmmword ptr [rcx - 0x50], xmm1	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6D4	0x30	r	movups xmm1, xmmword ptr [rcx - 0x50]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6E1	0x30	w	movups xmmword ptr [r8 - 0x50], xmm1	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5B9	0x40	r	movups xmm0, xmmword ptr [rax - 0x40]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5C5	0x40	w	movups xmmword ptr [rcx - 0x40], xmm0	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6DD	0x40	r	movups xmm0, xmmword ptr [rcx - 0x40]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6EA	0x40	w	movups xmmword ptr [r8 - 0x40], xmm0	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5C1	0x50	r	movups xmm1, xmmword ptr [rax - 0x30]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5CD	0x50	w	movups xmmword ptr [rcx - 0x30], xmm1	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6E6	0x50	r	movups xmm1, xmmword ptr [rcx - 0x30]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6F3	0x50	w	movups xmmword ptr [r8 - 0x30], xmm1	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5C9	0x60	r	movups xmm0, xmmword ptr [rax - 0x20]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5D5	0x60	w	movups xmmword ptr [rcx - 0x20], xmm0	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6EF	0x60	r	movups xmm0, xmmword ptr [rcx - 0x20]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6FC	0x60	w	movups xmmword ptr [r8 - 0x20], xmm0	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5D1	0x70	r	movups xmm1, xmmword ptr [rax - 0x10]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5D9	0x70	w	movups xmmword ptr [rcx - 0x10], xmm1	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6F8	0x70	r	movups xmm1, xmmword ptr [rcx - 0x10]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF701	0x70	w	movups xmmword ptr [r8 - 0x10], xmm1	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x80	
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF590	0x80	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF59E	0x80	addr	lea rax, [rax + 0x80]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6B1	0x80	addr	lea r8, [r8 + 0x80]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
-0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6BF	0x80	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 | STATIC 0x02211000 | STATIC 0x022676C0 | PTR 0x02092758 base+0x0	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C57	0x0	r	movups xmm0, xmmword ptr [rbx]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C61	0x0	w	movups xmmword ptr [rax - 0x80], xmm0	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF597	0x0	r	movups xmm0, xmmword ptr [rax]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5A5	0x0	w	movups xmmword ptr [rcx - 0x80], xmm0	route-seeded STATIC 0x022676C0 base+0x80	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6B8	0x0	r	movups xmm0, xmmword ptr [rcx]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6C6	0x0	w	movups xmmword ptr [r8 - 0x80], xmm0	route-seeded STATIC 0x02211000 base+0x80	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E357	0x0	r	movups xmm0, xmmword ptr [rax]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E361	0x0	w	movups xmmword ptr [rdx - 0x80], xmm0	route-seeded STATIC 0x02211000 base+0x80	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E3BF	0x0	w	mov dword ptr [rsi], eax	route-seeded STATIC 0x02211000 base+0x0	host: this function
+0x00580CD0	FUN_00580cd0	0x00580DB7	0x0	r	movups xmm0, xmmword ptr [r9]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00581DA0	SaveSlotTransaction_StateMachine	0x00581E0E	0x0	w	mov qword ptr [rdi], rax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00581DA0	SaveSlotTransaction_StateMachine	0x00581FB4	0x0	w	mov dword ptr [rdi], eax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C41	0x0	w	movups xmmword ptr [rax - 0x80], xmm0	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583CE7	0x0	r	movups xmm0, xmmword ptr [rax]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E3C7	0x4	w	mov dword ptr [rsi + 4], 1	route-seeded STATIC 0x02211000 base+0x0	host: this function
+0x00581DA0	SaveSlotTransaction_StateMachine	0x00581FBA	0x4	w	mov dword ptr [rdi + 4], 1	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00253690	GameState_GetGil	0x00253697	0x8	r	mov eax, dword ptr [rax + 8]	route-seeded PTR 0x02092758 base+0x0 exposed	host: this function
+0x00254EE0	GameState_SetGil	0x00254EF1	0x8	r	sub edx, dword ptr [rax + 8]	route-seeded PTR 0x02092758 base+0x0	host: this function
+0x00254EE0	GameState_SetGil	0x00254F1F	0x8	w	mov dword ptr [rax + 8], ecx	route-seeded PTR 0x02092758 base+0x0	host: this function
+0x003BB220	CRC32_Compute	0x003BB230	0x8	r	movzx r8d, byte ptr [rcx]	route-seeded STATIC 0x02164280 base+0x8	host 0x0057E310 0x00583D60
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E3AE	0x8	addr	lea rcx, [rax + 8]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583F86	0x8	addr	lea rcx, [rax + 8]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x003BB220	CRC32_Compute	0x003BB234	0x9	addr	lea rcx, [rcx + 1]	route-seeded STATIC 0x02164280 base+0x8	host 0x0057E310 0x00583D60
+0x002536D0	FUN_002536d0	0x002536DC	0xC	r	mov eax, dword ptr [rax + 0xc]	route-seeded PTR 0x02092758 base+0x0	host: this function
+0x00254E80	FUN_00254e80	0x00254E90	0xC	w	mov dword ptr [rcx + 0xc], eax	route-seeded PTR 0x02092758 base+0x0	host: this function
+0x002CF940	FUN_002cf940	0x002CFA9B	0xC	r	mov ecx, dword ptr [r14 + 0xc]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x005842DC	0xC	w	mov dword ptr [rdi + 0xc], esi	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058431A	0xC	w	mov dword ptr [rdi + 0xc], eax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C65	0x10	r	movups xmm1, xmmword ptr [rbx - 0x70]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C69	0x10	w	movups xmmword ptr [rax - 0x70], xmm1	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x00254CC0	FUN_00254cc0	0x00254CF8	0x10	rw	add qword ptr [rdi + 0x10], rcx	route-seeded PTR 0x02092758 base+0x0	host: this function
+0x00254CC0	FUN_00254cc0	0x00254D27	0x10	r	mov r8, qword ptr [rdi + 0x10]	route-seeded PTR 0x02092758 base+0x0	host: this function
+0x00254CC0	FUN_00254cc0	0x00254D3A	0x10	w	mov qword ptr [rdi + 0x10], r8	route-seeded PTR 0x02092758 base+0x0	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF59A	0x10	r	movups xmm1, xmmword ptr [rax + 0x10]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5AD	0x10	w	movups xmmword ptr [rcx - 0x70], xmm1	route-seeded STATIC 0x022676C0 base+0x80	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6BB	0x10	r	movups xmm1, xmmword ptr [rcx + 0x10]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6CF	0x10	w	movups xmmword ptr [r8 - 0x70], xmm1	route-seeded STATIC 0x02211000 base+0x80	host: this function
+0x00394130	FUN_00394130	0x003942B9	0x10	w	mov qword ptr [rax + 0x10], rcx	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E365	0x10	r	movups xmm1, xmmword ptr [rax - 0x70]	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E369	0x10	w	movups xmmword ptr [rdx - 0x70], xmm1	route-seeded STATIC 0x02211000 base+0x80	host: this function
+0x00580CD0	FUN_00580cd0	0x00580DC1	0x10	r	movups xmm1, xmmword ptr [r9 + 0x10]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C49	0x10	w	movups xmmword ptr [rax - 0x70], xmm1	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583CF5	0x10	r	movups xmm1, xmmword ptr [rax - 0x70]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584255	0x10	r	mov rax, qword ptr [rdi + 0x10]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x005842CB	0x10	w	mov qword ptr [rdi + 0x10], rsi	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x005842FD	0x10	w	mov qword ptr [rdi + 0x10], rax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x002536B0	FUN_002536b0	0x002536B7	0x18	r	movzx eax, word ptr [rdx + 0x18]	route-seeded PTR 0x02092758 base+0x0	host: this function
+0x00254C90	FUN_00254c90	0x00254C97	0x18	r	movzx eax, word ptr [r9 + 0x18]	route-seeded PTR 0x02092758 base+0x0	host: this function
+0x00254CC0	FUN_00254cc0	0x00254DBF	0x18	w	mov word ptr [rdi + 0x18], r8w	route-seeded PTR 0x02092758 base+0x0	host: this function
+0x002CF940	FUN_002cf940	0x002CF9A5	0x18	r	movzx ebx, word ptr [rax + 0x18]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00394130	FUN_00394130	0x003942BD	0x18	w	mov dword ptr [rax + 0x18], ecx	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00581DA0	SaveSlotTransaction_StateMachine	0x00581EC9	0x18	r	movzx r8d, word ptr [rdi + 0x18]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058425D	0x18	r	movzx eax, word ptr [rdi + 0x18]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x005842CF	0x18	w	mov dword ptr [rdi + 0x18], esi	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584305	0x18	w	mov word ptr [rdi + 0x18], ax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x002536B0	FUN_002536b0	0x002536BE	0x1A	r	movzx eax, byte ptr [rdx + 0x1a]	route-seeded PTR 0x02092758 base+0x0	host: this function
+0x00254C90	FUN_00254c90	0x00254C9E	0x1A	r	movzx eax, byte ptr [r9 + 0x1a]	route-seeded PTR 0x02092758 base+0x0	host: this function
+0x00254CC0	FUN_00254cc0	0x00254D9E	0x1A	w	mov byte ptr [rdi + 0x1a], cl	route-seeded PTR 0x02092758 base+0x0	host: this function
+0x002CF940	FUN_002cf940	0x002CF9A9	0x1A	r	movzx r15d, byte ptr [rax + 0x1a]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00581DA0	SaveSlotTransaction_StateMachine	0x00581EC4	0x1A	r	movzx r9d, byte ptr [rdi + 0x1a]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584265	0x1A	r	movzx eax, byte ptr [rdi + 0x1a]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058430D	0x1A	w	mov byte ptr [rdi + 0x1a], al	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x002536B0	FUN_002536b0	0x002536C7	0x1B	r	movzx ecx, byte ptr [rdx + 0x1b]	route-seeded PTR 0x02092758 base+0x0	host: this function
+0x00254C90	FUN_00254c90	0x00254CA5	0x1B	r	movzx eax, byte ptr [r9 + 0x1b]	route-seeded PTR 0x02092758 base+0x0	host: this function
+0x00254CC0	FUN_00254cc0	0x00254D63	0x1B	w	mov byte ptr [rdi + 0x1b], cl	route-seeded PTR 0x02092758 base+0x0	host: this function
+0x002CF940	FUN_002cf940	0x002CF9AE	0x1B	r	movzx r12d, byte ptr [rax + 0x1b]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00581DA0	SaveSlotTransaction_StateMachine	0x00581EBE	0x1B	r	movzx eax, byte ptr [rdi + 0x1b]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058426C	0x1B	r	movzx eax, byte ptr [rdi + 0x1b]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584314	0x1B	w	mov byte ptr [rdi + 0x1b], al	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C6D	0x20	r	movups xmm0, xmmword ptr [rbx - 0x60]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C71	0x20	w	movups xmmword ptr [rax - 0x60], xmm0	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5A9	0x20	r	movups xmm0, xmmword ptr [rax - 0x60]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5B5	0x20	w	movups xmmword ptr [rcx - 0x60], xmm0	route-seeded STATIC 0x022676C0 base+0x80	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6CB	0x20	r	movups xmm0, xmmword ptr [rcx - 0x60]	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6D8	0x20	w	movups xmmword ptr [r8 - 0x60], xmm0	route-seeded STATIC 0x02211000 base+0x80	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E36D	0x20	r	movups xmm0, xmmword ptr [rax - 0x60]	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E371	0x20	w	movups xmmword ptr [rdx - 0x60], xmm0	route-seeded STATIC 0x02211000 base+0x80	host: this function
+0x00580CD0	FUN_00580cd0	0x00580DCA	0x20	r	movups xmm0, xmmword ptr [r9 + 0x20]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C51	0x20	w	movups xmmword ptr [rax - 0x60], xmm0	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583CFD	0x20	r	movups xmm0, xmmword ptr [rax - 0x60]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C75	0x30	r	movups xmm1, xmmword ptr [rbx - 0x50]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C79	0x30	w	movups xmmword ptr [rax - 0x50], xmm1	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5B1	0x30	r	movups xmm1, xmmword ptr [rax - 0x50]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5BD	0x30	w	movups xmmword ptr [rcx - 0x50], xmm1	route-seeded STATIC 0x022676C0 base+0x80	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6D4	0x30	r	movups xmm1, xmmword ptr [rcx - 0x50]	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6E1	0x30	w	movups xmmword ptr [r8 - 0x50], xmm1	route-seeded STATIC 0x02211000 base+0x80	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E375	0x30	r	movups xmm1, xmmword ptr [rax - 0x50]	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E379	0x30	w	movups xmmword ptr [rdx - 0x50], xmm1	route-seeded STATIC 0x02211000 base+0x80	host: this function
+0x00580CD0	FUN_00580cd0	0x00580DD3	0x30	r	movups xmm1, xmmword ptr [r9 + 0x30]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C59	0x30	w	movups xmmword ptr [rax - 0x50], xmm1	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583D05	0x30	r	movups xmm1, xmmword ptr [rax - 0x50]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C7D	0x40	r	movups xmm0, xmmword ptr [rbx - 0x40]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C81	0x40	w	movups xmmword ptr [rax - 0x40], xmm0	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5B9	0x40	r	movups xmm0, xmmword ptr [rax - 0x40]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5C5	0x40	w	movups xmmword ptr [rcx - 0x40], xmm0	route-seeded STATIC 0x022676C0 base+0x80	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6DD	0x40	r	movups xmm0, xmmword ptr [rcx - 0x40]	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6EA	0x40	w	movups xmmword ptr [r8 - 0x40], xmm0	route-seeded STATIC 0x02211000 base+0x80	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E37D	0x40	r	movups xmm0, xmmword ptr [rax - 0x40]	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E381	0x40	w	movups xmmword ptr [rdx - 0x40], xmm0	route-seeded STATIC 0x02211000 base+0x80	host: this function
+0x00580CD0	FUN_00580cd0	0x00580DDC	0x40	r	movups xmm0, xmmword ptr [r9 + 0x40]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C61	0x40	w	movups xmmword ptr [rax - 0x40], xmm0	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583D0D	0x40	r	movups xmm0, xmmword ptr [rax - 0x40]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C85	0x50	r	movups xmm1, xmmword ptr [rbx - 0x30]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C89	0x50	w	movups xmmword ptr [rax - 0x30], xmm1	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5C1	0x50	r	movups xmm1, xmmword ptr [rax - 0x30]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5CD	0x50	w	movups xmmword ptr [rcx - 0x30], xmm1	route-seeded STATIC 0x022676C0 base+0x80	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6E6	0x50	r	movups xmm1, xmmword ptr [rcx - 0x30]	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6F3	0x50	w	movups xmmword ptr [r8 - 0x30], xmm1	route-seeded STATIC 0x02211000 base+0x80	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E385	0x50	r	movups xmm1, xmmword ptr [rax - 0x30]	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E389	0x50	w	movups xmmword ptr [rdx - 0x30], xmm1	route-seeded STATIC 0x02211000 base+0x80	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E3DD	0x50	w	mov dword ptr [rsi + 0x50], eax	route-seeded STATIC 0x02211000 base+0x0	host: this function
+0x0057FE80	FUN_0057fe80	0x0057FFA1	0x50	r	mov eax, dword ptr [r13 + 0x50]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x0057FE80	FUN_0057fe80	0x005800C8	0x50	r	mov eax, dword ptr [r13 + 0x50]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00580CD0	FUN_00580cd0	0x00580D8E	0x50	w	mov dword ptr [r9 + 0x50], eax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00580CD0	FUN_00580cd0	0x00580DE5	0x50	r	movups xmm1, xmmword ptr [r9 + 0x50]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x005819F0	SaveSlotScan_ControllerCallback	0x00581AAE	0x50	r	mov eax, dword ptr [rax + 0x50]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00581B70	SaveSlotProbe_StorageCompletionCallback	0x00581D2B	0x50	w	mov dword ptr [rax + 0x50], ecx	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C69	0x50	w	movups xmmword ptr [rax - 0x30], xmm1	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583D15	0x50	r	movups xmm1, xmmword ptr [rax - 0x30]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058423A	0x57	r	movzx eax, byte ptr [rdi + 0x57]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058436D	0x57	rw	and byte ptr [rbx + 0x57], 0xfe	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x005843E0	WorldTransitionSnapshot_RestorePersistencePairForActiveSlot	0x00584404	0x57	r	movzx ebx, byte ptr [rbx + 0x57]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00253A80	SaveRuntime_InitializeHeaderAndImageBackedState	0x00253AB8	0x58	w	mov dword ptr [rax + 0x58], ebx	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00253A80	SaveRuntime_InitializeHeaderAndImageBackedState	0x00253AC7	0x5C	w	mov dword ptr [rax + 0x5c], ebx	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C8D	0x60	r	movups xmm0, xmmword ptr [rbx - 0x20]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C91	0x60	w	movups xmmword ptr [rax - 0x20], xmm0	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x00253A80	SaveRuntime_InitializeHeaderAndImageBackedState	0x00253AD6	0x60	w	mov dword ptr [rax + 0x60], ebx	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5C9	0x60	r	movups xmm0, xmmword ptr [rax - 0x20]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5D5	0x60	w	movups xmmword ptr [rcx - 0x20], xmm0	route-seeded STATIC 0x022676C0 base+0x80	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6EF	0x60	r	movups xmm0, xmmword ptr [rcx - 0x20]	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6FC	0x60	w	movups xmmword ptr [r8 - 0x20], xmm0	route-seeded STATIC 0x02211000 base+0x80	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E38D	0x60	r	movups xmm0, xmmword ptr [rax - 0x20]	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E391	0x60	w	movups xmmword ptr [rdx - 0x20], xmm0	route-seeded STATIC 0x02211000 base+0x80	host: this function
+0x00580CD0	FUN_00580cd0	0x00580DEE	0x60	r	movups xmm0, xmmword ptr [r9 + 0x60]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C71	0x60	w	movups xmmword ptr [rax - 0x20], xmm0	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583D1D	0x60	r	movups xmm0, xmmword ptr [rax - 0x20]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00253A80	SaveRuntime_InitializeHeaderAndImageBackedState	0x00253AE5	0x64	w	mov dword ptr [rax + 0x64], ebx	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00253A80	SaveRuntime_InitializeHeaderAndImageBackedState	0x00253AED	0x68	w	mov dword ptr [rax + 0x68], 0x131f3ea	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00255260	SaveImage_ValidateRuntimeFormatHeader	0x00255265	0x68	r	mov eax, dword ptr [rcx]	route-seeded STATIC 0x02164280 base+0x68	host 0x00280140 0x00394130
+0x00280140	FUN_00280140	0x0028036E	0x68	addr	lea rcx, [rax + 0x68]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00394130	FUN_00394130	0x003941D8	0x68	addr	lea rcx, [rax + 0x68]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00253A80	SaveRuntime_InitializeHeaderAndImageBackedState	0x00253AFB	0x6C	w	mov dword ptr [rax + 0x6c], 0x4818	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00255260	SaveImage_ValidateRuntimeFormatHeader	0x0025526B	0x6C	r	cmp dword ptr [rcx + 4], eax	route-seeded STATIC 0x02164280 base+0x68	host 0x00280140 0x00394130
+0x00255260	SaveImage_ValidateRuntimeFormatHeader	0x0025527C	0x6C	r	cmp dword ptr [rcx + 4], 0x4818	route-seeded STATIC 0x02164280 base+0x68	host 0x00280140 0x00394130
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C95	0x70	r	movups xmm1, xmmword ptr [rbx - 0x10]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C99	0x70	w	movups xmmword ptr [rax - 0x10], xmm1	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5D1	0x70	r	movups xmm1, xmmword ptr [rax - 0x10]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF5D9	0x70	w	movups xmmword ptr [rcx - 0x10], xmm1	route-seeded STATIC 0x022676C0 base+0x80	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6F8	0x70	r	movups xmm1, xmmword ptr [rcx - 0x10]	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF701	0x70	w	movups xmmword ptr [r8 - 0x10], xmm1	route-seeded STATIC 0x02211000 base+0x80	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E395	0x70	r	movups xmm1, xmmword ptr [rax - 0x10]	route-seeded STATIC 0x021BA940 base+0x80	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E399	0x70	w	movups xmmword ptr [rdx - 0x10], xmm1	route-seeded STATIC 0x02211000 base+0x80	host: this function
+0x00580CD0	FUN_00580cd0	0x00580DF7	0x70	r	movups xmm0, xmmword ptr [r9 + 0x70]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C79	0x70	w	movups xmmword ptr [rax - 0x10], xmm1	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583D25	0x70	r	movups xmm1, xmmword ptr [rax - 0x10]	route-seeded STATIC 0x02164280 base+0x80	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584259	0x70	w	mov qword ptr [rbx + 0x70], rax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x005842F9	0x70	r	mov rax, qword ptr [rbx + 0x70]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584261	0x78	w	mov word ptr [rbx + 0x78], ax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584301	0x78	r	movzx eax, word ptr [rbx + 0x78]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584269	0x7A	w	mov byte ptr [rbx + 0x7a], al	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584309	0x7A	r	movzx eax, byte ptr [rbx + 0x7a]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584270	0x7B	w	mov byte ptr [rbx + 0x7b], al	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584310	0x7B	r	movzx eax, byte ptr [rbx + 0x7b]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584278	0x7C	w	mov dword ptr [rbx + 0x7c], eax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584317	0x7C	r	mov eax, dword ptr [rbx + 0x7c]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058431D	0x7C	r	mov ecx, dword ptr [rbx + 0x7c]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C50	0x80	addr	lea rax, [rax + 0x80]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C5A	0x80	addr	lea rbx, [rbx + 0x80]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF590	0x80	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x022676C0 base+0x0	host: this function
+0x002EF570	SaveImage_BackupActiveRuntimeBuffer	0x002EF59E	0x80	addr	lea rax, [rax + 0x80]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6B1	0x80	addr	lea r8, [r8 + 0x80]	route-seeded STATIC 0x02211000 base+0x0	host: this function
+0x002EF690	SaveImage_CopyCaptureToWriteSubmissionBuffer	0x002EF6BF	0x80	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E350	0x80	addr	lea rdx, [rdx + 0x80]	route-seeded STATIC 0x02211000 base+0x0	host: this function
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E35A	0x80	addr	lea rax, [rax + 0x80]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x00580CD0	FUN_00580cd0	0x00580E00	0x80	r	movups xmm1, xmmword ptr [r9 + 0x80]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C30	0x80	addr	lea rax, [rax + 0x80]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583CEA	0x80	addr	lea rax, [rax + 0x80]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584281	0x80	w	mov dword ptr [rbx + 0x80], eax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584325	0x80	r	mov eax, dword ptr [rbx + 0x80]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058428D	0x84	w	mov dword ptr [rbx + 0x84], eax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584338	0x84	r	mov eax, dword ptr [rbx + 0x84]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584299	0x88	w	mov dword ptr [rbx + 0x88], eax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584344	0x88	r	mov eax, dword ptr [rbx + 0x88]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x005842A5	0x8C	w	mov dword ptr [rbx + 0x8c], eax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584350	0x8C	r	mov eax, dword ptr [rbx + 0x8c]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00580CD0	FUN_00580cd0	0x00580E0F	0x90	r	movups xmm0, xmmword ptr [r9 + 0x90]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x005842B1	0x90	w	mov dword ptr [rbx + 0x90], eax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058435C	0x90	r	mov eax, dword ptr [rbx + 0x90]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x002EF2D0	FUN_002ef2d0	0x002EF2E1	0x200	addr	lea rcx, [rax + 0x200]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x0046B0B0	FUN_0046b0b0	0x0046B0B9	0x1240	r	mov eax, dword ptr [rax + 0x1040]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0046B290	FUN_0046b290	0x0046B2C9	0x1240	r	cmp dword ptr [rax + 0x1040], 0xffff	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0046B290	FUN_0046b290	0x0046B2DA	0x1240	rw	inc dword ptr [rax + 0x1040]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314530	WorldTransition_RequeueCurrentFieldForRestore	0x0031456F	0x1244	r	mov edx, dword ptr [rax + 0x1044]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x003145E0	WorldTransition_StageFieldTransition	0x0031466E	0x1244	r	mov ecx, dword ptr [rbx + 0x1044]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x003145E0	WorldTransition_StageFieldTransition	0x00314685	0x1244	w	mov dword ptr [rax + 0x1044], esi	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x003148F0	WorldTransition_GetActiveOrPendingFieldId	0x003148FB	0x1244	r	mov eax, dword ptr [rax + 0x1044]	route-seeded STATIC 0x02164280 base+0x200 exposed	host: this function
+0x00314970	WorldTransition_ResetState	0x0031498D	0x1244	w	mov dword ptr [rax + 0x1044], 0xffffffff	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314DC0	WorldTransition_SetActiveOrPendingFieldId	0x00314DCD	0x1244	w	mov dword ptr [rax + 0x1044], ebx	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058427B	0x1244	r	mov eax, dword ptr [rbx + 0x1244]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584332	0x1244	w	mov dword ptr [rbx + 0x1244], eax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x003145E0	WorldTransition_StageFieldTransition	0x00314698	0x1248	r	mov ecx, dword ptr [rbx + 0x1048]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x003145E0	WorldTransition_StageFieldTransition	0x003146A9	0x1248	w	mov dword ptr [rax + 0x1048], edi	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x003148B0	WorldTransition_GetDestinationParameter	0x003148B9	0x1248	r	mov eax, dword ptr [rax + 0x1048]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314970	WorldTransition_ResetState	0x0031499C	0x1248	w	mov dword ptr [rax + 0x1048], 0xffffffff	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314D80	WorldTransition_SetDestinationParameter	0x00314D8D	0x1248	w	mov dword ptr [rax + 0x1048], ebx	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584287	0x1248	r	mov eax, dword ptr [rbx + 0x1248]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x005842B7	0x1248	w	mov dword ptr [rbx + 0x1248], esi	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058433E	0x1248	w	mov dword ptr [rbx + 0x1248], eax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x003145E0	WorldTransition_StageFieldTransition	0x00314674	0x124C	w	mov dword ptr [rax + 0x104c], ecx	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314870	WorldTransition_GetPreviousFieldId	0x00314879	0x124C	r	mov eax, dword ptr [rax + 0x104c]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314970	WorldTransition_ResetState	0x003149AB	0x124C	w	mov dword ptr [rax + 0x104c], 0	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584293	0x124C	r	mov eax, dword ptr [rbx + 0x124c]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058434A	0x124C	w	mov dword ptr [rbx + 0x124c], eax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x003145E0	WorldTransition_StageFieldTransition	0x0031469E	0x1250	w	mov dword ptr [rax + 0x1050], ecx	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314850	WorldTransition_GetPreviousDestinationParameter	0x00314859	0x1250	r	mov eax, dword ptr [rax + 0x1050]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314970	WorldTransition_ResetState	0x003149BA	0x1250	w	mov dword ptr [rax + 0x1050], 0	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058429F	0x1250	r	mov eax, dword ptr [rbx + 0x1250]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584356	0x1250	w	mov dword ptr [rbx + 0x1250], eax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x003145E0	WorldTransition_StageFieldTransition	0x003146B6	0x1254	w	mov dword ptr [rax + 0x1054], ebp	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x003148D0	WorldTransition_GetOptions	0x003148D9	0x1254	r	mov eax, dword ptr [rax + 0x1054]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314970	WorldTransition_ResetState	0x003149C9	0x1254	w	mov dword ptr [rax + 0x1054], 0	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314DA0	WorldTransition_SetOptions	0x00314DAD	0x1254	w	mov dword ptr [rax + 0x1054], ebx	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x005842AB	0x1254	r	mov eax, dword ptr [rbx + 0x1254]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584362	0x1254	w	mov dword ptr [rbx + 0x1254], eax	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x003145E0	WorldTransition_StageFieldTransition	0x003146C8	0x1258	w	mov dword ptr [rax + 0x1058], ebx	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314530	WorldTransition_RequeueCurrentFieldForRestore	0x00314586	0x125C	w	mov dword ptr [rax + 0x105c], edx	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x003145E0	WorldTransition_StageFieldTransition	0x003146D3	0x125C	w	mov dword ptr [rax + 0x105c], esi	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314910	WorldTransition_GetTransitionFieldId	0x00314919	0x125C	r	mov eax, dword ptr [rax + 0x105c]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0025ACA0	FUN_0025aca0	0x0025ACC1	0x1260	r	movsx ebx, byte ptr [rax + 0x1060]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x002620E0	FUN_002620e0	0x00262123	0x1260	r	movsx eax, byte ptr [rax + 0x1060]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x002620E0	FUN_002620e0	0x0026214E	0x1260	r	movsx eax, byte ptr [rax + 0x1060]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x002620E0	FUN_002620e0	0x0026217C	0x1260	r	movsx eax, byte ptr [rax + 0x1060]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00265920	FUN_00265920	0x0026593B	0x1260	r	movsx eax, byte ptr [rax + 0x1060]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0x0026D95E	0x1260	w	mov byte ptr [rax + 0x1060], dil	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0x0026D96F	0x1260	r	movsx ecx, byte ptr [rax + 0x1060]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0x0026D9BB	0x1260	r	movzx r9d, byte ptr [rax + 0x1060]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00268320	WorldPersistence_ResetBanksAndMarkInitializationState	0x0026836C	0x1261	w	mov byte ptr [rax + 0x1061], 1	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0026D8F0	FUN_0026d8f0	0x0026D8F9	0x1261	w	mov byte ptr [rax + 0x1061], 1	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0x0026D951	0x1261	r	cmp byte ptr [rax + 0x1061], bl	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0x0026DA92	0x1261	w	mov byte ptr [rax + 0x1061], 0	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00280140	FUN_00280140	0x00280213	0x1261	w	mov byte ptr [rax + 0x1061], dil	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0026DB30	WorldPersistence_ResetBanksForFieldTransition	0x0026DBF4	0x1262	r	test byte ptr [rax + 0x1062], 0x20	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314530	WorldTransition_RequeueCurrentFieldForRestore	0x00314563	0x1262	rw	or byte ptr [rax + 0x1062], 0x20	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x003145E0	WorldTransition_StageFieldTransition	0x003146DE	0x1262	rw	and byte ptr [rax + 0x1062], 0xdf	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x003149E0	WorldTransition_ClearFlag1062_Bit04	0x003149E9	0x1262	rw	and byte ptr [rax + 0x1062], 0xfb	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314A00	FUN_00314a00	0x00314A09	0x1262	rw	and byte ptr [rax + 0x1062], 0xfe	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314A00	FUN_00314a00	0x00314A15	0x1262	rw	and byte ptr [rax + 0x1062], 0xfd	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314A00	FUN_00314a00	0x00314A21	0x1262	rw	and byte ptr [rax + 0x1062], 0xbf	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314A00	FUN_00314a00	0x00314A2D	0x1262	rw	and byte ptr [rax + 0x1062], 0x7f	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314A60	FUN_00314a60	0x00314A69	0x1262	r	movzx eax, byte ptr [rax + 0x1062]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314A80	FUN_00314a80	0x00314A89	0x1262	r	movzx eax, byte ptr [rax + 0x1062]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314AA0	FUN_00314aa0	0x00314AA9	0x1262	r	movzx eax, byte ptr [rax + 0x1062]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314B00	FUN_00314b00	0x00314B09	0x1262	r	movzx eax, byte ptr [rax + 0x1062]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314B20	FUN_00314b20	0x00314B29	0x1262	r	movzx eax, byte ptr [rax + 0x1062]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314B40	FUN_00314b40	0x00314B49	0x1262	r	movzx eax, byte ptr [rax + 0x1062]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314B60	FUN_00314b60	0x00314B69	0x1262	r	movzx eax, byte ptr [rax + 0x1062]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314B80	FUN_00314b80	0x00314B8D	0x1262	rw	and byte ptr [rax + 0x1062], 0xfe	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314B80	FUN_00314b80	0x00314B99	0x1262	rw	or byte ptr [rax + 0x1062], cl	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314BB0	FUN_00314bb0	0x00314BBD	0x1262	rw	and byte ptr [rax + 0x1062], 0xbf	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314BB0	FUN_00314bb0	0x00314BCC	0x1262	rw	or byte ptr [rax + 0x1062], cl	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314BE0	FUN_00314be0	0x00314BF1	0x1262	rw	and byte ptr [rax + 0x1062], 0x7f	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314BE0	FUN_00314be0	0x00314C0F	0x1262	rw	or byte ptr [rax + 0x1062], 0x80	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314C70	FUN_00314c70	0x00314C7D	0x1262	rw	and byte ptr [rax + 0x1062], 0xf7	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314C70	FUN_00314c70	0x00314C8C	0x1262	rw	or byte ptr [rax + 0x1062], cl	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314CA0	FUN_00314ca0	0x00314CAD	0x1262	rw	and byte ptr [rax + 0x1062], 0xef	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314CA0	FUN_00314ca0	0x00314CBC	0x1262	rw	or byte ptr [rax + 0x1062], cl	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314CD0	FUN_00314cd0	0x00314CDD	0x1262	rw	and byte ptr [rax + 0x1062], 0xfd	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314CD0	FUN_00314cd0	0x00314CEB	0x1262	rw	or byte ptr [rax + 0x1062], cl	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314D00	FUN_00314d00	0x00314D0D	0x1262	rw	and byte ptr [rax + 0x1062], 0xfb	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314D00	FUN_00314d00	0x00314D1C	0x1262	rw	or byte ptr [rax + 0x1062], cl	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0025D9E0	ActorManager_RunFieldRuntimePass	0x0025DBA8	0x1263	r	test byte ptr [rax + 0x1063], 0x40	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00261F90	FUN_00261f90	0x0026201B	0x1263	r	test byte ptr [rax + 0x1063], 0x40	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x002628B0	FUN_002628b0	0x00262A6A	0x1263	rw	and byte ptr [rax + 0x1063], 0xbf	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0026A720	FUN_0026a720	0x0026A731	0x1263	rw	and byte ptr [rax + 0x1063], 0xbf	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0026A720	FUN_0026a720	0x0026A74F	0x1263	rw	or byte ptr [rax + 0x1063], 0x40	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0026DE20	FUN_0026de20	0x0026DE33	0x1263	r	test byte ptr [rax + 0x1063], 0x40	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314A00	FUN_00314a00	0x00314A39	0x1263	rw	and byte ptr [rax + 0x1063], 0xcf	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314A00	FUN_00314a00	0x00314A45	0x1263	rw	and byte ptr [rax + 0x1063], 0xfc	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314A00	FUN_00314a00	0x00314A51	0x1263	rw	and byte ptr [rax + 0x1063], 0xf3	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314AC0	FUN_00314ac0	0x00314AC9	0x1263	r	movzx eax, byte ptr [rax + 0x1063]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314AE0	FUN_00314ae0	0x00314AE9	0x1263	r	movzx eax, byte ptr [rax + 0x1063]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314BE0	FUN_00314be0	0x00314BFD	0x1263	rw	and byte ptr [rax + 0x1063], 0xcf	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314BE0	FUN_00314be0	0x00314C21	0x1263	rw	and byte ptr [rax + 0x1063], 0xcf	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314BE0	FUN_00314be0	0x00314C28	0x1263	rw	or byte ptr [rax + 0x1063], bl	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314C40	FUN_00314c40	0x00314C50	0x1263	rw	and byte ptr [rax + 0x1063], 0xfc	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00314C40	FUN_00314c40	0x00314C57	0x1263	rw	or byte ptr [rax + 0x1063], bl	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0025D9E0	ActorManager_RunFieldRuntimePass	0x0025DBB6	0x1734	r	movzx esi, byte ptr [rax + 0x1534]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x00261F90	FUN_00261f90	0x00262029	0x1734	r	movzx edi, byte ptr [rax + 0x1534]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x002628B0	FUN_002628b0	0x00262A76	0x1734	w	mov byte ptr [rax + 0x1534], bpl	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0026A720	FUN_0026a720	0x0026A73D	0x1734	w	mov byte ptr [rax + 0x1534], 0	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0026A720	FUN_0026a720	0x0026A75B	0x1734	w	mov byte ptr [rax + 0x1534], bl	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x0026DE20	FUN_0026de20	0x0026DE41	0x1734	r	movzx ebx, byte ptr [rax + 0x1534]	route-seeded STATIC 0x02164280 base+0x200	host: this function
+0x002EF370	FUN_002ef370	0x002EF37D	0x1735	w	mov byte ptr [rax + 0x1735], bl	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BA2	0x2200	w	movups xmmword ptr [rax - 0x80], xmm0	route-seeded STATIC 0x02164280 base+0x2280	host: this function
+0x00235AF0	FUN_00235af0	0x00235B00	0x2200	addr	lea rdx, [rax + 0x2200]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00235AF0	FUN_00235af0	0x00235B1C	0x2200	r	cmp dword ptr [rdx], ecx	route-seeded STATIC 0x02164280 base+0x2200	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x00584515	0x2200	addr	lea rax, [rdi + 0x2200]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x00584532	0x2200	w	movups xmmword ptr [rax - 0x80], xmm0	route-seeded STATIC 0x02164280 base+0x2280	host: this function
+0x00235AF0	FUN_00235af0	0x00235B24	0x2204	r	cmp dword ptr [rdx + 4], ecx	route-seeded STATIC 0x02164280 base+0x2200	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BAA	0x2210	w	movups xmmword ptr [rax - 0x70], xmm1	route-seeded STATIC 0x02164280 base+0x2280	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x0058453A	0x2210	w	movups xmmword ptr [rax - 0x70], xmm1	route-seeded STATIC 0x02164280 base+0x2280	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BB2	0x2220	w	movups xmmword ptr [rax - 0x60], xmm0	route-seeded STATIC 0x02164280 base+0x2280	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x00584542	0x2220	w	movups xmmword ptr [rax - 0x60], xmm0	route-seeded STATIC 0x02164280 base+0x2280	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BBA	0x2230	w	movups xmmword ptr [rax - 0x50], xmm1	route-seeded STATIC 0x02164280 base+0x2280	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x0058454A	0x2230	w	movups xmmword ptr [rax - 0x50], xmm1	route-seeded STATIC 0x02164280 base+0x2280	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BC2	0x2240	w	movups xmmword ptr [rax - 0x40], xmm0	route-seeded STATIC 0x02164280 base+0x2280	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x00584552	0x2240	w	movups xmmword ptr [rax - 0x40], xmm0	route-seeded STATIC 0x02164280 base+0x2280	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BCA	0x2250	w	movups xmmword ptr [rax - 0x30], xmm1	route-seeded STATIC 0x02164280 base+0x2280	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x0058455A	0x2250	w	movups xmmword ptr [rax - 0x30], xmm1	route-seeded STATIC 0x02164280 base+0x2280	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BD2	0x2260	w	movups xmmword ptr [rax - 0x20], xmm0	route-seeded STATIC 0x02164280 base+0x2280	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x00584562	0x2260	w	movups xmmword ptr [rax - 0x20], xmm0	route-seeded STATIC 0x02164280 base+0x2280	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BDA	0x2270	w	movups xmmword ptr [rax - 0x10], xmm1	route-seeded STATIC 0x02164280 base+0x2280	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x0058456A	0x2270	w	movups xmmword ptr [rax - 0x10], xmm1	route-seeded STATIC 0x02164280 base+0x2280	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229B91	0x2280	addr	lea rax, [rax + 0x80]	route-seeded STATIC 0x02164280 base+0x2200	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x00584521	0x2280	addr	lea rax, [rax + 0x80]	route-seeded STATIC 0x02164280 base+0x2200	host: this function
+0x00235AF0	FUN_00235af0	0x00235B41	0x7D12	r	cmp word ptr [rdx + 0x5b12], ax	route-seeded STATIC 0x02164280 base+0x2200	host: this function
+0x00235AF0	FUN_00235af0	0x00235B31	0x7D42	r	cmp byte ptr [rdx + 0x5b42], al	route-seeded STATIC 0x02164280 base+0x2200	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229CDF	0xE240	addr	lea rcx, [rdi + 0xe240]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D901	0xE240	w	movups xmmword ptr [rcx - 0x80], xmm0	route-seeded STATIC 0x021BA940 base+0xE2C0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A37	0xE240	r	movups xmm0, xmmword ptr [rcx]	route-seeded STATIC 0x02164280 base+0xE240	host 0x00584210 0x005843E0
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058432B	0xE240	addr	lea rcx, [rbx + 0xe240]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x005843E0	WorldTransitionSnapshot_RestorePersistencePairForActiveSlot	0x00584428	0xE240	addr	lea rcx, [rdi + 0xe240]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x005844DA	0xE240	addr	lea rcx, [rax + 0xe240]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584580	WorldTransitionSnapshot_CapturePersistencePairForActiveSlot	0x00584597	0xE240	addr	lea rcx, [rbx + 0xe240]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D909	0xE250	w	movups xmmword ptr [rcx - 0x70], xmm1	route-seeded STATIC 0x021BA940 base+0xE2C0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A45	0xE250	r	movups xmm1, xmmword ptr [rcx - 0x70]	route-seeded STATIC 0x02164280 base+0xE2C0	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D911	0xE260	w	movups xmmword ptr [rcx - 0x60], xmm0	route-seeded STATIC 0x021BA940 base+0xE2C0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A4D	0xE260	r	movups xmm0, xmmword ptr [rcx - 0x60]	route-seeded STATIC 0x02164280 base+0xE2C0	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D919	0xE270	w	movups xmmword ptr [rcx - 0x50], xmm1	route-seeded STATIC 0x021BA940 base+0xE2C0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A55	0xE270	r	movups xmm1, xmmword ptr [rcx - 0x50]	route-seeded STATIC 0x02164280 base+0xE2C0	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D921	0xE280	w	movups xmmword ptr [rcx - 0x40], xmm0	route-seeded STATIC 0x021BA940 base+0xE2C0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A5D	0xE280	r	movups xmm0, xmmword ptr [rcx - 0x40]	route-seeded STATIC 0x02164280 base+0xE2C0	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D929	0xE290	w	movups xmmword ptr [rcx - 0x30], xmm1	route-seeded STATIC 0x021BA940 base+0xE2C0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A65	0xE290	r	movups xmm1, xmmword ptr [rcx - 0x30]	route-seeded STATIC 0x02164280 base+0xE2C0	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D931	0xE2A0	w	movups xmmword ptr [rcx - 0x20], xmm0	route-seeded STATIC 0x021BA940 base+0xE2C0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A6D	0xE2A0	r	movups xmm0, xmmword ptr [rcx - 0x20]	route-seeded STATIC 0x02164280 base+0xE2C0	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D939	0xE2B0	w	movups xmmword ptr [rcx - 0x10], xmm1	route-seeded STATIC 0x021BA940 base+0xE2C0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A75	0xE2B0	r	movups xmm1, xmmword ptr [rcx - 0x10]	route-seeded STATIC 0x02164280 base+0xE2C0	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D8F0	0xE2C0	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x021BA940 base+0xE240	host 0x00229B40 0x00584580
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D901	0xE2C0	w	movups xmmword ptr [rcx - 0x80], xmm0	route-seeded STATIC 0x021BA940 base+0xE340	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A37	0xE2C0	r	movups xmm0, xmmword ptr [rcx]	route-seeded STATIC 0x02164280 base+0xE2C0	host 0x00584210 0x005843E0
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A3A	0xE2C0	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x02164280 base+0xE240	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D909	0xE2D0	w	movups xmmword ptr [rcx - 0x70], xmm1	route-seeded STATIC 0x021BA940 base+0xE340	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A45	0xE2D0	r	movups xmm1, xmmword ptr [rcx - 0x70]	route-seeded STATIC 0x02164280 base+0xE340	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D911	0xE2E0	w	movups xmmword ptr [rcx - 0x60], xmm0	route-seeded STATIC 0x021BA940 base+0xE340	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A4D	0xE2E0	r	movups xmm0, xmmword ptr [rcx - 0x60]	route-seeded STATIC 0x02164280 base+0xE340	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D919	0xE2F0	w	movups xmmword ptr [rcx - 0x50], xmm1	route-seeded STATIC 0x021BA940 base+0xE340	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A55	0xE2F0	r	movups xmm1, xmmword ptr [rcx - 0x50]	route-seeded STATIC 0x02164280 base+0xE340	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D921	0xE300	w	movups xmmword ptr [rcx - 0x40], xmm0	route-seeded STATIC 0x021BA940 base+0xE340	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A5D	0xE300	r	movups xmm0, xmmword ptr [rcx - 0x40]	route-seeded STATIC 0x02164280 base+0xE340	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D929	0xE310	w	movups xmmword ptr [rcx - 0x30], xmm1	route-seeded STATIC 0x021BA940 base+0xE340	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A65	0xE310	r	movups xmm1, xmmword ptr [rcx - 0x30]	route-seeded STATIC 0x02164280 base+0xE340	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D931	0xE320	w	movups xmmword ptr [rcx - 0x20], xmm0	route-seeded STATIC 0x021BA940 base+0xE340	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A6D	0xE320	r	movups xmm0, xmmword ptr [rcx - 0x20]	route-seeded STATIC 0x02164280 base+0xE340	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D939	0xE330	w	movups xmmword ptr [rcx - 0x10], xmm1	route-seeded STATIC 0x021BA940 base+0xE340	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A75	0xE330	r	movups xmm1, xmmword ptr [rcx - 0x10]	route-seeded STATIC 0x02164280 base+0xE340	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D8F0	0xE340	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x021BA940 base+0xE2C0	host 0x00229B40 0x00584580
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D901	0xE340	w	movups xmmword ptr [rcx - 0x80], xmm0	route-seeded STATIC 0x021BA940 base+0xE3C0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A37	0xE340	r	movups xmm0, xmmword ptr [rcx]	route-seeded STATIC 0x02164280 base+0xE340	host 0x00584210 0x005843E0
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A3A	0xE340	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x02164280 base+0xE2C0	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D909	0xE350	w	movups xmmword ptr [rcx - 0x70], xmm1	route-seeded STATIC 0x021BA940 base+0xE3C0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A45	0xE350	r	movups xmm1, xmmword ptr [rcx - 0x70]	route-seeded STATIC 0x02164280 base+0xE3C0	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D911	0xE360	w	movups xmmword ptr [rcx - 0x60], xmm0	route-seeded STATIC 0x021BA940 base+0xE3C0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A4D	0xE360	r	movups xmm0, xmmword ptr [rcx - 0x60]	route-seeded STATIC 0x02164280 base+0xE3C0	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D919	0xE370	w	movups xmmword ptr [rcx - 0x50], xmm1	route-seeded STATIC 0x021BA940 base+0xE3C0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A55	0xE370	r	movups xmm1, xmmword ptr [rcx - 0x50]	route-seeded STATIC 0x02164280 base+0xE3C0	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D921	0xE380	w	movups xmmword ptr [rcx - 0x40], xmm0	route-seeded STATIC 0x021BA940 base+0xE3C0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A5D	0xE380	r	movups xmm0, xmmword ptr [rcx - 0x40]	route-seeded STATIC 0x02164280 base+0xE3C0	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D929	0xE390	w	movups xmmword ptr [rcx - 0x30], xmm1	route-seeded STATIC 0x021BA940 base+0xE3C0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A65	0xE390	r	movups xmm1, xmmword ptr [rcx - 0x30]	route-seeded STATIC 0x02164280 base+0xE3C0	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D931	0xE3A0	w	movups xmmword ptr [rcx - 0x20], xmm0	route-seeded STATIC 0x021BA940 base+0xE3C0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A6D	0xE3A0	r	movups xmm0, xmmword ptr [rcx - 0x20]	route-seeded STATIC 0x02164280 base+0xE3C0	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D939	0xE3B0	w	movups xmmword ptr [rcx - 0x10], xmm1	route-seeded STATIC 0x021BA940 base+0xE3C0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A75	0xE3B0	r	movups xmm1, xmmword ptr [rcx - 0x10]	route-seeded STATIC 0x02164280 base+0xE3C0	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D8F0	0xE3C0	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x021BA940 base+0xE340	host 0x00229B40 0x00584580
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D901	0xE3C0	w	movups xmmword ptr [rcx - 0x80], xmm0	route-seeded STATIC 0x021BA940 base+0xE440	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A37	0xE3C0	r	movups xmm0, xmmword ptr [rcx]	route-seeded STATIC 0x02164280 base+0xE3C0	host 0x00584210 0x005843E0
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A3A	0xE3C0	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x02164280 base+0xE340	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D909	0xE3D0	w	movups xmmword ptr [rcx - 0x70], xmm1	route-seeded STATIC 0x021BA940 base+0xE440	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A45	0xE3D0	r	movups xmm1, xmmword ptr [rcx - 0x70]	route-seeded STATIC 0x02164280 base+0xE440	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D911	0xE3E0	w	movups xmmword ptr [rcx - 0x60], xmm0	route-seeded STATIC 0x021BA940 base+0xE440	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A4D	0xE3E0	r	movups xmm0, xmmword ptr [rcx - 0x60]	route-seeded STATIC 0x02164280 base+0xE440	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D919	0xE3F0	w	movups xmmword ptr [rcx - 0x50], xmm1	route-seeded STATIC 0x021BA940 base+0xE440	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A55	0xE3F0	r	movups xmm1, xmmword ptr [rcx - 0x50]	route-seeded STATIC 0x02164280 base+0xE440	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D921	0xE400	w	movups xmmword ptr [rcx - 0x40], xmm0	route-seeded STATIC 0x021BA940 base+0xE440	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A5D	0xE400	r	movups xmm0, xmmword ptr [rcx - 0x40]	route-seeded STATIC 0x02164280 base+0xE440	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D929	0xE410	w	movups xmmword ptr [rcx - 0x30], xmm1	route-seeded STATIC 0x021BA940 base+0xE440	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A65	0xE410	r	movups xmm1, xmmword ptr [rcx - 0x30]	route-seeded STATIC 0x02164280 base+0xE440	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D931	0xE420	w	movups xmmword ptr [rcx - 0x20], xmm0	route-seeded STATIC 0x021BA940 base+0xE440	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A6D	0xE420	r	movups xmm0, xmmword ptr [rcx - 0x20]	route-seeded STATIC 0x02164280 base+0xE440	host 0x00584210 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D939	0xE430	w	movups xmmword ptr [rcx - 0x10], xmm1	route-seeded STATIC 0x021BA940 base+0xE440	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A75	0xE430	r	movups xmm1, xmmword ptr [rcx - 0x10]	route-seeded STATIC 0x02164280 base+0xE440	host 0x00584210 0x005843E0
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229CEB	0xE440	addr	lea rcx, [rdi + 0xe440]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233530	0xE440	w	mov word ptr [rbx], ax	route-seeded STATIC 0x021BA940 base+0xE440	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x002335B9	0xE440	r	movzx eax, word ptr [rcx]	route-seeded STATIC 0x02164280 base+0xE440	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D8F0	0xE440	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x021BA940 base+0xE3C0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A3A	0xE440	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x02164280 base+0xE3C0	host 0x00584210 0x005843E0
+0x005843E0	WorldTransitionSnapshot_RestorePersistencePairForActiveSlot	0x00584434	0xE440	addr	lea rcx, [rdi + 0xe440]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584580	WorldTransitionSnapshot_CapturePersistencePairForActiveSlot	0x005845A3	0xE440	addr	lea rcx, [rbx + 0xe440]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x0023353A	0xE442	w	mov word ptr [rbx + 2], ax	route-seeded STATIC 0x021BA940 base+0xE440	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x002335C3	0xE442	r	movzx eax, word ptr [rcx + 2]	route-seeded STATIC 0x02164280 base+0xE440	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233468	0xE450	addr	lea rdx, [rbx + 0x10]	route-seeded STATIC 0x021BA940 base+0xE440	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233481	0xE450	w	movups xmmword ptr [rdx - 0x80], xmm0	route-seeded STATIC 0x021BA940 base+0xE4D0	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x0023355C	0xE450	addr	lea rdx, [rcx + 0x10]	route-seeded STATIC 0x02164280 base+0xE440	host 0x005843E0
+0x00233550	SpawnKeep_RestorePersistenceBank	0x0023356D	0xE450	r	movups xmm0, xmmword ptr [rdx]	route-seeded STATIC 0x02164280 base+0xE450	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233489	0xE460	w	movups xmmword ptr [rdx - 0x70], xmm1	route-seeded STATIC 0x021BA940 base+0xE4D0	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x0023357B	0xE460	r	movups xmm1, xmmword ptr [rdx - 0x70]	route-seeded STATIC 0x02164280 base+0xE4D0	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233491	0xE470	w	movups xmmword ptr [rdx - 0x60], xmm0	route-seeded STATIC 0x021BA940 base+0xE4D0	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x00233583	0xE470	r	movups xmm0, xmmword ptr [rdx - 0x60]	route-seeded STATIC 0x02164280 base+0xE4D0	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233499	0xE480	w	movups xmmword ptr [rdx - 0x50], xmm1	route-seeded STATIC 0x021BA940 base+0xE4D0	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x0023358B	0xE480	r	movups xmm1, xmmword ptr [rdx - 0x50]	route-seeded STATIC 0x02164280 base+0xE4D0	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334A1	0xE490	w	movups xmmword ptr [rdx - 0x40], xmm0	route-seeded STATIC 0x021BA940 base+0xE4D0	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x00233593	0xE490	r	movups xmm0, xmmword ptr [rdx - 0x40]	route-seeded STATIC 0x02164280 base+0xE4D0	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334A9	0xE4A0	w	movups xmmword ptr [rdx - 0x30], xmm1	route-seeded STATIC 0x021BA940 base+0xE4D0	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x0023359B	0xE4A0	r	movups xmm1, xmmword ptr [rdx - 0x30]	route-seeded STATIC 0x02164280 base+0xE4D0	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334B1	0xE4B0	w	movups xmmword ptr [rdx - 0x20], xmm0	route-seeded STATIC 0x021BA940 base+0xE4D0	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x002335A3	0xE4B0	r	movups xmm0, xmmword ptr [rdx - 0x20]	route-seeded STATIC 0x02164280 base+0xE4D0	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334B9	0xE4C0	w	movups xmmword ptr [rdx - 0x10], xmm1	route-seeded STATIC 0x021BA940 base+0xE4D0	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x002335AB	0xE4C0	r	movups xmm1, xmmword ptr [rdx - 0x10]	route-seeded STATIC 0x02164280 base+0xE4D0	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233470	0xE4D0	addr	lea rdx, [rdx + 0x80]	route-seeded STATIC 0x021BA940 base+0xE450	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x00233570	0xE4D0	addr	lea rdx, [rdx + 0x80]	route-seeded STATIC 0x02164280 base+0xE450	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334CF	0x1E450	addr	lea rcx, [rbx + 0x10010]	route-seeded STATIC 0x021BA940 base+0xE440	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334E7	0x1E450	w	movups xmmword ptr [rcx - 0x80], xmm0	route-seeded STATIC 0x021BA940 base+0x1E4D0	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334EF	0x1E460	w	movups xmmword ptr [rcx - 0x70], xmm1	route-seeded STATIC 0x021BA940 base+0x1E4D0	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334F7	0x1E470	w	movups xmmword ptr [rcx - 0x60], xmm0	route-seeded STATIC 0x021BA940 base+0x1E4D0	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334FF	0x1E480	w	movups xmmword ptr [rcx - 0x50], xmm1	route-seeded STATIC 0x021BA940 base+0x1E4D0	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233507	0x1E490	w	movups xmmword ptr [rcx - 0x40], xmm0	route-seeded STATIC 0x021BA940 base+0x1E4D0	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x0023350F	0x1E4A0	w	movups xmmword ptr [rcx - 0x30], xmm1	route-seeded STATIC 0x021BA940 base+0x1E4D0	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233517	0x1E4B0	w	movups xmmword ptr [rcx - 0x20], xmm0	route-seeded STATIC 0x021BA940 base+0x1E4D0	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x0023351F	0x1E4C0	w	movups xmmword ptr [rcx - 0x10], xmm1	route-seeded STATIC 0x021BA940 base+0x1E4D0	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334D6	0x1E4D0	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x021BA940 base+0x1E450	host 0x00584580
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229CCA	0x2E450	addr	lea rcx, [rdi + 0x2e450]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D901	0x2E450	w	movups xmmword ptr [rcx - 0x80], xmm0	route-seeded STATIC 0x021BA940 base+0x2E4D0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A37	0x2E450	r	movups xmm0, xmmword ptr [rcx]	route-seeded STATIC 0x02164280 base+0x2E450	host 0x005843E0
+0x005843E0	WorldTransitionSnapshot_RestorePersistencePairForActiveSlot	0x0058444B	0x2E450	addr	lea rcx, [rdi + 0x2e450]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584580	WorldTransitionSnapshot_CapturePersistencePairForActiveSlot	0x005845CE	0x2E450	addr	lea rcx, [rbx + 0x2e450]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D909	0x2E460	w	movups xmmword ptr [rcx - 0x70], xmm1	route-seeded STATIC 0x021BA940 base+0x2E4D0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A45	0x2E460	r	movups xmm1, xmmword ptr [rcx - 0x70]	route-seeded STATIC 0x02164280 base+0x2E4D0	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D911	0x2E470	w	movups xmmword ptr [rcx - 0x60], xmm0	route-seeded STATIC 0x021BA940 base+0x2E4D0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A4D	0x2E470	r	movups xmm0, xmmword ptr [rcx - 0x60]	route-seeded STATIC 0x02164280 base+0x2E4D0	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D919	0x2E480	w	movups xmmword ptr [rcx - 0x50], xmm1	route-seeded STATIC 0x021BA940 base+0x2E4D0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A55	0x2E480	r	movups xmm1, xmmword ptr [rcx - 0x50]	route-seeded STATIC 0x02164280 base+0x2E4D0	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D921	0x2E490	w	movups xmmword ptr [rcx - 0x40], xmm0	route-seeded STATIC 0x021BA940 base+0x2E4D0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A5D	0x2E490	r	movups xmm0, xmmword ptr [rcx - 0x40]	route-seeded STATIC 0x02164280 base+0x2E4D0	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D929	0x2E4A0	w	movups xmmword ptr [rcx - 0x30], xmm1	route-seeded STATIC 0x021BA940 base+0x2E4D0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A65	0x2E4A0	r	movups xmm1, xmmword ptr [rcx - 0x30]	route-seeded STATIC 0x02164280 base+0x2E4D0	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D931	0x2E4B0	w	movups xmmword ptr [rcx - 0x20], xmm0	route-seeded STATIC 0x021BA940 base+0x2E4D0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A6D	0x2E4B0	r	movups xmm0, xmmword ptr [rcx - 0x20]	route-seeded STATIC 0x02164280 base+0x2E4D0	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D939	0x2E4C0	w	movups xmmword ptr [rcx - 0x10], xmm1	route-seeded STATIC 0x021BA940 base+0x2E4D0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A75	0x2E4C0	r	movups xmm1, xmmword ptr [rcx - 0x10]	route-seeded STATIC 0x02164280 base+0x2E4D0	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D8F0	0x2E4D0	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x021BA940 base+0x2E450	host 0x00229B40 0x00584580
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D901	0x2E4D0	w	movups xmmword ptr [rcx - 0x80], xmm0	route-seeded STATIC 0x021BA940 base+0x2E550	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A37	0x2E4D0	r	movups xmm0, xmmword ptr [rcx]	route-seeded STATIC 0x02164280 base+0x2E4D0	host 0x005843E0
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A3A	0x2E4D0	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x02164280 base+0x2E450	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D909	0x2E4E0	w	movups xmmword ptr [rcx - 0x70], xmm1	route-seeded STATIC 0x021BA940 base+0x2E550	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A45	0x2E4E0	r	movups xmm1, xmmword ptr [rcx - 0x70]	route-seeded STATIC 0x02164280 base+0x2E550	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D911	0x2E4F0	w	movups xmmword ptr [rcx - 0x60], xmm0	route-seeded STATIC 0x021BA940 base+0x2E550	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A4D	0x2E4F0	r	movups xmm0, xmmword ptr [rcx - 0x60]	route-seeded STATIC 0x02164280 base+0x2E550	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D919	0x2E500	w	movups xmmword ptr [rcx - 0x50], xmm1	route-seeded STATIC 0x021BA940 base+0x2E550	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A55	0x2E500	r	movups xmm1, xmmword ptr [rcx - 0x50]	route-seeded STATIC 0x02164280 base+0x2E550	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D921	0x2E510	w	movups xmmword ptr [rcx - 0x40], xmm0	route-seeded STATIC 0x021BA940 base+0x2E550	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A5D	0x2E510	r	movups xmm0, xmmword ptr [rcx - 0x40]	route-seeded STATIC 0x02164280 base+0x2E550	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D929	0x2E520	w	movups xmmword ptr [rcx - 0x30], xmm1	route-seeded STATIC 0x021BA940 base+0x2E550	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A65	0x2E520	r	movups xmm1, xmmword ptr [rcx - 0x30]	route-seeded STATIC 0x02164280 base+0x2E550	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D931	0x2E530	w	movups xmmword ptr [rcx - 0x20], xmm0	route-seeded STATIC 0x021BA940 base+0x2E550	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A6D	0x2E530	r	movups xmm0, xmmword ptr [rcx - 0x20]	route-seeded STATIC 0x02164280 base+0x2E550	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D939	0x2E540	w	movups xmmword ptr [rcx - 0x10], xmm1	route-seeded STATIC 0x021BA940 base+0x2E550	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A75	0x2E540	r	movups xmm1, xmmword ptr [rcx - 0x10]	route-seeded STATIC 0x02164280 base+0x2E550	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D8F0	0x2E550	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x021BA940 base+0x2E4D0	host 0x00229B40 0x00584580
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D901	0x2E550	w	movups xmmword ptr [rcx - 0x80], xmm0	route-seeded STATIC 0x021BA940 base+0x2E5D0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A37	0x2E550	r	movups xmm0, xmmword ptr [rcx]	route-seeded STATIC 0x02164280 base+0x2E550	host 0x005843E0
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A3A	0x2E550	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x02164280 base+0x2E4D0	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D909	0x2E560	w	movups xmmword ptr [rcx - 0x70], xmm1	route-seeded STATIC 0x021BA940 base+0x2E5D0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A45	0x2E560	r	movups xmm1, xmmword ptr [rcx - 0x70]	route-seeded STATIC 0x02164280 base+0x2E5D0	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D911	0x2E570	w	movups xmmword ptr [rcx - 0x60], xmm0	route-seeded STATIC 0x021BA940 base+0x2E5D0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A4D	0x2E570	r	movups xmm0, xmmword ptr [rcx - 0x60]	route-seeded STATIC 0x02164280 base+0x2E5D0	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D919	0x2E580	w	movups xmmword ptr [rcx - 0x50], xmm1	route-seeded STATIC 0x021BA940 base+0x2E5D0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A55	0x2E580	r	movups xmm1, xmmword ptr [rcx - 0x50]	route-seeded STATIC 0x02164280 base+0x2E5D0	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D921	0x2E590	w	movups xmmword ptr [rcx - 0x40], xmm0	route-seeded STATIC 0x021BA940 base+0x2E5D0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A5D	0x2E590	r	movups xmm0, xmmword ptr [rcx - 0x40]	route-seeded STATIC 0x02164280 base+0x2E5D0	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D929	0x2E5A0	w	movups xmmword ptr [rcx - 0x30], xmm1	route-seeded STATIC 0x021BA940 base+0x2E5D0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A65	0x2E5A0	r	movups xmm1, xmmword ptr [rcx - 0x30]	route-seeded STATIC 0x02164280 base+0x2E5D0	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D931	0x2E5B0	w	movups xmmword ptr [rcx - 0x20], xmm0	route-seeded STATIC 0x021BA940 base+0x2E5D0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A6D	0x2E5B0	r	movups xmm0, xmmword ptr [rcx - 0x20]	route-seeded STATIC 0x02164280 base+0x2E5D0	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D939	0x2E5C0	w	movups xmmword ptr [rcx - 0x10], xmm1	route-seeded STATIC 0x021BA940 base+0x2E5D0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A75	0x2E5C0	r	movups xmm1, xmmword ptr [rcx - 0x10]	route-seeded STATIC 0x02164280 base+0x2E5D0	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D8F0	0x2E5D0	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x021BA940 base+0x2E550	host 0x00229B40 0x00584580
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D901	0x2E5D0	w	movups xmmword ptr [rcx - 0x80], xmm0	route-seeded STATIC 0x021BA940 base+0x2E650	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A37	0x2E5D0	r	movups xmm0, xmmword ptr [rcx]	route-seeded STATIC 0x02164280 base+0x2E5D0	host 0x005843E0
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A3A	0x2E5D0	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x02164280 base+0x2E550	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D909	0x2E5E0	w	movups xmmword ptr [rcx - 0x70], xmm1	route-seeded STATIC 0x021BA940 base+0x2E650	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A45	0x2E5E0	r	movups xmm1, xmmword ptr [rcx - 0x70]	route-seeded STATIC 0x02164280 base+0x2E650	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D911	0x2E5F0	w	movups xmmword ptr [rcx - 0x60], xmm0	route-seeded STATIC 0x021BA940 base+0x2E650	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A4D	0x2E5F0	r	movups xmm0, xmmword ptr [rcx - 0x60]	route-seeded STATIC 0x02164280 base+0x2E650	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D919	0x2E600	w	movups xmmword ptr [rcx - 0x50], xmm1	route-seeded STATIC 0x021BA940 base+0x2E650	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A55	0x2E600	r	movups xmm1, xmmword ptr [rcx - 0x50]	route-seeded STATIC 0x02164280 base+0x2E650	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D921	0x2E610	w	movups xmmword ptr [rcx - 0x40], xmm0	route-seeded STATIC 0x021BA940 base+0x2E650	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A5D	0x2E610	r	movups xmm0, xmmword ptr [rcx - 0x40]	route-seeded STATIC 0x02164280 base+0x2E650	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D929	0x2E620	w	movups xmmword ptr [rcx - 0x30], xmm1	route-seeded STATIC 0x021BA940 base+0x2E650	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A65	0x2E620	r	movups xmm1, xmmword ptr [rcx - 0x30]	route-seeded STATIC 0x02164280 base+0x2E650	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D931	0x2E630	w	movups xmmword ptr [rcx - 0x20], xmm0	route-seeded STATIC 0x021BA940 base+0x2E650	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A6D	0x2E630	r	movups xmm0, xmmword ptr [rcx - 0x20]	route-seeded STATIC 0x02164280 base+0x2E650	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D939	0x2E640	w	movups xmmword ptr [rcx - 0x10], xmm1	route-seeded STATIC 0x021BA940 base+0x2E650	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A75	0x2E640	r	movups xmm1, xmmword ptr [rcx - 0x10]	route-seeded STATIC 0x02164280 base+0x2E650	host 0x005843E0
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229CD6	0x2E650	addr	lea rcx, [rdi + 0x2e650]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233530	0x2E650	w	mov word ptr [rbx], ax	route-seeded STATIC 0x021BA940 base+0x2E650	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x002335B9	0x2E650	r	movzx eax, word ptr [rcx]	route-seeded STATIC 0x02164280 base+0x2E650	host 0x005843E0
+0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	0x0025D8F0	0x2E650	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x021BA940 base+0x2E5D0	host 0x00229B40 0x00584580
+0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A3A	0x2E650	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x02164280 base+0x2E5D0	host 0x005843E0
+0x005843E0	WorldTransitionSnapshot_RestorePersistencePairForActiveSlot	0x00584457	0x2E650	addr	lea rcx, [rdi + 0x2e650]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584580	WorldTransitionSnapshot_CapturePersistencePairForActiveSlot	0x005845DA	0x2E650	addr	lea rcx, [rbx + 0x2e650]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x0023353A	0x2E652	w	mov word ptr [rbx + 2], ax	route-seeded STATIC 0x021BA940 base+0x2E650	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x002335C3	0x2E652	r	movzx eax, word ptr [rcx + 2]	route-seeded STATIC 0x02164280 base+0x2E650	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233468	0x2E660	addr	lea rdx, [rbx + 0x10]	route-seeded STATIC 0x021BA940 base+0x2E650	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233481	0x2E660	w	movups xmmword ptr [rdx - 0x80], xmm0	route-seeded STATIC 0x021BA940 base+0x2E6E0	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x0023355C	0x2E660	addr	lea rdx, [rcx + 0x10]	route-seeded STATIC 0x02164280 base+0x2E650	host 0x005843E0
+0x00233550	SpawnKeep_RestorePersistenceBank	0x0023356D	0x2E660	r	movups xmm0, xmmword ptr [rdx]	route-seeded STATIC 0x02164280 base+0x2E660	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233489	0x2E670	w	movups xmmword ptr [rdx - 0x70], xmm1	route-seeded STATIC 0x021BA940 base+0x2E6E0	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x0023357B	0x2E670	r	movups xmm1, xmmword ptr [rdx - 0x70]	route-seeded STATIC 0x02164280 base+0x2E6E0	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233491	0x2E680	w	movups xmmword ptr [rdx - 0x60], xmm0	route-seeded STATIC 0x021BA940 base+0x2E6E0	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x00233583	0x2E680	r	movups xmm0, xmmword ptr [rdx - 0x60]	route-seeded STATIC 0x02164280 base+0x2E6E0	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233499	0x2E690	w	movups xmmword ptr [rdx - 0x50], xmm1	route-seeded STATIC 0x021BA940 base+0x2E6E0	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x0023358B	0x2E690	r	movups xmm1, xmmword ptr [rdx - 0x50]	route-seeded STATIC 0x02164280 base+0x2E6E0	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334A1	0x2E6A0	w	movups xmmword ptr [rdx - 0x40], xmm0	route-seeded STATIC 0x021BA940 base+0x2E6E0	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x00233593	0x2E6A0	r	movups xmm0, xmmword ptr [rdx - 0x40]	route-seeded STATIC 0x02164280 base+0x2E6E0	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334A9	0x2E6B0	w	movups xmmword ptr [rdx - 0x30], xmm1	route-seeded STATIC 0x021BA940 base+0x2E6E0	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x0023359B	0x2E6B0	r	movups xmm1, xmmword ptr [rdx - 0x30]	route-seeded STATIC 0x02164280 base+0x2E6E0	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334B1	0x2E6C0	w	movups xmmword ptr [rdx - 0x20], xmm0	route-seeded STATIC 0x021BA940 base+0x2E6E0	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x002335A3	0x2E6C0	r	movups xmm0, xmmword ptr [rdx - 0x20]	route-seeded STATIC 0x02164280 base+0x2E6E0	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334B9	0x2E6D0	w	movups xmmword ptr [rdx - 0x10], xmm1	route-seeded STATIC 0x021BA940 base+0x2E6E0	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x002335AB	0x2E6D0	r	movups xmm1, xmmword ptr [rdx - 0x10]	route-seeded STATIC 0x02164280 base+0x2E6E0	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233470	0x2E6E0	addr	lea rdx, [rdx + 0x80]	route-seeded STATIC 0x021BA940 base+0x2E660	host 0x00584580
+0x00233550	SpawnKeep_RestorePersistenceBank	0x00233570	0x2E6E0	addr	lea rdx, [rdx + 0x80]	route-seeded STATIC 0x02164280 base+0x2E660	host 0x005843E0
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334CF	0x3E660	addr	lea rcx, [rbx + 0x10010]	route-seeded STATIC 0x021BA940 base+0x2E650	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334E7	0x3E660	w	movups xmmword ptr [rcx - 0x80], xmm0	route-seeded STATIC 0x021BA940 base+0x3E6E0	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334EF	0x3E670	w	movups xmmword ptr [rcx - 0x70], xmm1	route-seeded STATIC 0x021BA940 base+0x3E6E0	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334F7	0x3E680	w	movups xmmword ptr [rcx - 0x60], xmm0	route-seeded STATIC 0x021BA940 base+0x3E6E0	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334FF	0x3E690	w	movups xmmword ptr [rcx - 0x50], xmm1	route-seeded STATIC 0x021BA940 base+0x3E6E0	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233507	0x3E6A0	w	movups xmmword ptr [rcx - 0x40], xmm0	route-seeded STATIC 0x021BA940 base+0x3E6E0	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x0023350F	0x3E6B0	w	movups xmmword ptr [rcx - 0x30], xmm1	route-seeded STATIC 0x021BA940 base+0x3E6E0	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x00233517	0x3E6C0	w	movups xmmword ptr [rcx - 0x20], xmm0	route-seeded STATIC 0x021BA940 base+0x3E6E0	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x0023351F	0x3E6D0	w	movups xmmword ptr [rcx - 0x10], xmm1	route-seeded STATIC 0x021BA940 base+0x3E6E0	host 0x00584580
+0x00233440	SpawnKeep_SerializePersistenceBanks	0x002334D6	0x3E6E0	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x021BA940 base+0x3E660	host 0x00584580
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229CF7	0x4E660	addr	lea rcx, [rdi + 0x4e660]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x002EF540	FUN_002ef540	0x002EF547	0x4E660	w	movups xmmword ptr [rcx], xmm0	route-seeded STATIC 0x021BA940 base+0x4E660	host 0x00229B40
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584371	0x4E660	addr	lea rcx, [rbx + 0x4e660]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x005843E0	WorldTransitionSnapshot_RestorePersistencePairForActiveSlot	0x0058441C	0x4E660	addr	lea rcx, [rdi + 0x4e660]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x005843E0	WorldTransitionSnapshot_RestorePersistencePairForActiveSlot	0x00584471	0x4E660	r	movzx eax, byte ptr [rdi + 0x4e660]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x005844F0	0x4E660	addr	lea rcx, [rax + 0x4e660]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00584580	WorldTransitionSnapshot_CapturePersistencePairForActiveSlot	0x005845AF	0x4E660	addr	lea rcx, [rbx + 0x4e660]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x00584580	WorldTransitionSnapshot_CapturePersistencePairForActiveSlot	0x005845C2	0x4E660	w	mov dword ptr [rbx + 0x4e660], eax	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x00584580	WorldTransitionSnapshot_CapturePersistencePairForActiveSlot	0x005845E6	0x4E660	addr	lea rcx, [rbx + 0x4e660]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x00584580	WorldTransitionSnapshot_CapturePersistencePairForActiveSlot	0x00584603	0x4E660	w	mov dword ptr [rbx + 0x4e660], eax	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x002EF3C0	SaveTransitionMetadata_CaptureToRecord	0x002EF3C9	0x4E664	w	mov dword ptr [rcx + 4], eax	route-seeded STATIC 0x021BA940 base+0x4E660	host 0x00584580
+0x003145E0	WorldTransition_StageFieldTransition	0x00314731	0x4E664	w	mov dword ptr [rax + 0x4e664], ecx	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x002EF3C0	SaveTransitionMetadata_CaptureToRecord	0x002EF3DA	0x4E668	w	movups xmmword ptr [rcx + 8], xmm0	route-seeded STATIC 0x021BA940 base+0x4E660	host 0x00584580
+0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF420	0x4E668	r	movups xmm0, xmmword ptr [rcx + 8]	route-seeded STATIC 0x02164280 base+0x4E660	host 0x00584210 0x005843E0
+0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF45D	0x4E668	r	test byte ptr [rbx + 8], 1	route-seeded STATIC 0x02164280 base+0x4E660	host 0x00584210 0x005843E0
+0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF463	0x4E66C	r	movss xmm0, dword ptr [rbx + 0xc]	route-seeded STATIC 0x02164280 base+0x4E660	host 0x00584210 0x005843E0
+0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF46D	0x4E670	r	movss xmm0, dword ptr [rbx + 0x10]	route-seeded STATIC 0x02164280 base+0x4E660	host 0x00584210 0x005843E0
+0x002EF540	FUN_002ef540	0x002EF551	0x4E670	w	movups xmmword ptr [rcx + 0x10], xmm1	route-seeded STATIC 0x021BA940 base+0x4E660	host 0x00229B40
+0x002EF3C0	SaveTransitionMetadata_CaptureToRecord	0x002EF3EC	0x4E678	w	movups xmmword ptr [rcx + 0x18], xmm0	route-seeded STATIC 0x021BA940 base+0x4E660	host 0x00584580
+0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF43B	0x4E678	r	test byte ptr [rcx + 0x18], 2	route-seeded STATIC 0x02164280 base+0x4E660	host 0x00584210 0x005843E0
+0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF441	0x4E678	r	movups xmm0, xmmword ptr [rcx + 0x18]	route-seeded STATIC 0x02164280 base+0x4E660	host 0x00584210 0x005843E0
+0x002EF510	SaveTransitionMetadata_RefreshSubsetToRecord	0x002EF51E	0x4E678	w	movups xmmword ptr [rcx + 0x18], xmm0	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 base+0x4E660	host 0x005844A0 0x00584580
+0x002EF510	SaveTransitionMetadata_RefreshSubsetToRecord	0x002EF522	0x4E678	r	test byte ptr [rcx + 0x18], 2	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 base+0x4E660	host 0x005844A0 0x00584580
+0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF453	0x4E680	r	movss xmm0, dword ptr [rcx + 0x20]	route-seeded STATIC 0x02164280 base+0x4E660	host 0x00584210 0x005843E0
+0x002EF540	FUN_002ef540	0x002EF55D	0x4E680	w	movsd qword ptr [rcx + 0x20], xmm0	route-seeded STATIC 0x021BA940 base+0x4E660	host 0x00229B40
+0x002EF3C0	SaveTransitionMetadata_CaptureToRecord	0x002EF3FD	0x4E688	w	mov dword ptr [rdx + 0x28], ecx	route-seeded STATIC 0x021BA940 base+0x4E660	host 0x00584580
+0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF432	0x4E688	r	mov edx, dword ptr [rcx + 0x28]	route-seeded STATIC 0x02164280 base+0x4E660	host 0x00584210 0x005843E0
+0x002EF510	SaveTransitionMetadata_RefreshSubsetToRecord	0x002EF528	0x4E688	rw	and dword ptr [rcx + 0x28], 0xfffffffe	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 base+0x4E660	host 0x005844A0 0x00584580
+0x002EF510	SaveTransitionMetadata_RefreshSubsetToRecord	0x002EF52D	0x4E688	rw	or dword ptr [rcx + 0x28], 1	route-seeded STATIC 0x02164280 | STATIC 0x021BA940 base+0x4E660	host 0x005844A0 0x00584580
+0x002EF540	FUN_002ef540	0x002EF568	0x4E688	w	mov dword ptr [rcx + 0x28], eax	route-seeded STATIC 0x021BA940 base+0x4E660	host 0x00229B40
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229B81	0x4E68C	addr	lea rdx, [rax + 0x4e68c]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229B98	0x4E68C	r	movups xmm0, xmmword ptr [rcx]	route-seeded STATIC 0x02164280 base+0x4E68C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BE4	0x4E68C	addr	lea rax, [rdi + 0x4e68c]	route-seeded STATIC 0x021BA940 base+0x0	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BF7	0x4E68C	r	movups xmm0, xmmword ptr [rdx]	route-seeded STATIC 0x02164280 base+0x4E68C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C01	0x4E68C	w	movups xmmword ptr [rax - 0x80], xmm0	route-seeded STATIC 0x021BA940 base+0x4E70C	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x00584504	0x4E68C	addr	lea rbx, [rax + 0x4e68c]	route-seeded STATIC 0x02164280 base+0x0	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x0058450B	0x4E68C	r	cmp byte ptr [rbx], 0	route-seeded STATIC 0x02164280 base+0x4E68C	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x00584528	0x4E68C	r	movups xmm0, xmmword ptr [rbx]	route-seeded STATIC 0x02164280 base+0x4E68C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BA6	0x4E69C	r	movups xmm1, xmmword ptr [rcx - 0x70]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C05	0x4E69C	r	movups xmm1, xmmword ptr [rdx - 0x70]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C09	0x4E69C	w	movups xmmword ptr [rax - 0x70], xmm1	route-seeded STATIC 0x021BA940 base+0x4E70C	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x00584536	0x4E69C	r	movups xmm1, xmmword ptr [rbx - 0x70]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BAE	0x4E6AC	r	movups xmm0, xmmword ptr [rcx - 0x60]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C0D	0x4E6AC	r	movups xmm0, xmmword ptr [rdx - 0x60]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C11	0x4E6AC	w	movups xmmword ptr [rax - 0x60], xmm0	route-seeded STATIC 0x021BA940 base+0x4E70C	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x0058453E	0x4E6AC	r	movups xmm0, xmmword ptr [rbx - 0x60]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BB6	0x4E6BC	r	movups xmm1, xmmword ptr [rcx - 0x50]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C15	0x4E6BC	r	movups xmm1, xmmword ptr [rdx - 0x50]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C19	0x4E6BC	w	movups xmmword ptr [rax - 0x50], xmm1	route-seeded STATIC 0x021BA940 base+0x4E70C	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x00584546	0x4E6BC	r	movups xmm1, xmmword ptr [rbx - 0x50]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BBE	0x4E6CC	r	movups xmm0, xmmword ptr [rcx - 0x40]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C1D	0x4E6CC	r	movups xmm0, xmmword ptr [rdx - 0x40]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C21	0x4E6CC	w	movups xmmword ptr [rax - 0x40], xmm0	route-seeded STATIC 0x021BA940 base+0x4E70C	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x0058454E	0x4E6CC	r	movups xmm0, xmmword ptr [rbx - 0x40]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BC6	0x4E6DC	r	movups xmm1, xmmword ptr [rcx - 0x30]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C25	0x4E6DC	r	movups xmm1, xmmword ptr [rdx - 0x30]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C29	0x4E6DC	w	movups xmmword ptr [rax - 0x30], xmm1	route-seeded STATIC 0x021BA940 base+0x4E70C	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x00584556	0x4E6DC	r	movups xmm1, xmmword ptr [rbx - 0x30]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BCE	0x4E6EC	r	movups xmm0, xmmword ptr [rcx - 0x20]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C2D	0x4E6EC	r	movups xmm0, xmmword ptr [rdx - 0x20]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C31	0x4E6EC	w	movups xmmword ptr [rax - 0x20], xmm0	route-seeded STATIC 0x021BA940 base+0x4E70C	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x0058455E	0x4E6EC	r	movups xmm0, xmmword ptr [rbx - 0x20]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BD6	0x4E6FC	r	movups xmm1, xmmword ptr [rcx - 0x10]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C35	0x4E6FC	r	movups xmm1, xmmword ptr [rdx - 0x10]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C39	0x4E6FC	w	movups xmmword ptr [rax - 0x10], xmm1	route-seeded STATIC 0x021BA940 base+0x4E70C	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x00584566	0x4E6FC	r	movups xmm1, xmmword ptr [rbx - 0x10]	route-seeded STATIC 0x02164280 base+0x4E70C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229B9B	0x4E70C	addr	lea rcx, [rcx + 0x80]	route-seeded STATIC 0x02164280 base+0x4E68C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BF0	0x4E70C	addr	lea rax, [rax + 0x80]	route-seeded STATIC 0x021BA940 base+0x4E68C	host: this function
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229BFA	0x4E70C	addr	lea rdx, [rdx + 0x80]	route-seeded STATIC 0x02164280 base+0x4E68C	host: this function
+0x005844A0	SaveTransition_PrepareRuntimeImageForCapture	0x0058452B	0x4E70C	addr	lea rbx, [rbx + 0x80]	route-seeded STATIC 0x02164280 base+0x4E68C	host: this function
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B702	0x53E54	addr	lea rax, [rcx + 0x57c8]	route-seeded STATIC 0x02164280 base+0x4E68C	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B710	0x53E54	w	mov qword ptr [rax], r11	route-seeded STATIC 0x02164280 base+0x53E54 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B713	0x53E5C	w	mov qword ptr [rax + 8], r11	route-seeded STATIC 0x02164280 base+0x53E54 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B717	0x53E64	w	mov qword ptr [rax + 0x10], r11	route-seeded STATIC 0x02164280 base+0x53E54 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B71F	0x53E6C	w	mov qword ptr [rax - 0x28], r11	route-seeded STATIC 0x02164280 base+0x53E94 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B723	0x53E74	w	mov qword ptr [rax - 0x20], r11	route-seeded STATIC 0x02164280 base+0x53E94 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B727	0x53E7C	w	mov qword ptr [rax - 0x18], r11	route-seeded STATIC 0x02164280 base+0x53E94 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B72B	0x53E84	w	mov qword ptr [rax - 0x10], r11	route-seeded STATIC 0x02164280 base+0x53E94 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B72F	0x53E8C	w	mov qword ptr [rax - 8], r11	route-seeded STATIC 0x02164280 base+0x53E94 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B710	0x53E94	w	mov qword ptr [rax], r11	route-seeded STATIC 0x02164280 base+0x53E94 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B71B	0x53E94	addr	lea rax, [rax + 0x40]	route-seeded STATIC 0x02164280 base+0x53E54	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B713	0x53E9C	w	mov qword ptr [rax + 8], r11	route-seeded STATIC 0x02164280 base+0x53E94 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B717	0x53EA4	w	mov qword ptr [rax + 0x10], r11	route-seeded STATIC 0x02164280 base+0x53E94 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B71F	0x53EAC	w	mov qword ptr [rax - 0x28], r11	route-seeded STATIC 0x02164280 base+0x53ED4 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B723	0x53EB4	w	mov qword ptr [rax - 0x20], r11	route-seeded STATIC 0x02164280 base+0x53ED4 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B727	0x53EBC	w	mov qword ptr [rax - 0x18], r11	route-seeded STATIC 0x02164280 base+0x53ED4 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B72B	0x53EC4	w	mov qword ptr [rax - 0x10], r11	route-seeded STATIC 0x02164280 base+0x53ED4 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B72F	0x53ECC	w	mov qword ptr [rax - 8], r11	route-seeded STATIC 0x02164280 base+0x53ED4 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B710	0x53ED4	w	mov qword ptr [rax], r11	route-seeded STATIC 0x02164280 base+0x53ED4 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B71B	0x53ED4	addr	lea rax, [rax + 0x40]	route-seeded STATIC 0x02164280 base+0x53E94	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B713	0x53EDC	w	mov qword ptr [rax + 8], r11	route-seeded STATIC 0x02164280 base+0x53ED4 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B717	0x53EE4	w	mov qword ptr [rax + 0x10], r11	route-seeded STATIC 0x02164280 base+0x53ED4 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B71F	0x53EEC	w	mov qword ptr [rax - 0x28], r11	route-seeded STATIC 0x02164280 base+0x53F14 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B723	0x53EF4	w	mov qword ptr [rax - 0x20], r11	route-seeded STATIC 0x02164280 base+0x53F14 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B727	0x53EFC	w	mov qword ptr [rax - 0x18], r11	route-seeded STATIC 0x02164280 base+0x53F14 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B72B	0x53F04	w	mov qword ptr [rax - 0x10], r11	route-seeded STATIC 0x02164280 base+0x53F14 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B72F	0x53F0C	w	mov qword ptr [rax - 8], r11	route-seeded STATIC 0x02164280 base+0x53F14 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B710	0x53F14	w	mov qword ptr [rax], r11	route-seeded STATIC 0x02164280 base+0x53F14 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B71B	0x53F14	addr	lea rax, [rax + 0x40]	route-seeded STATIC 0x02164280 base+0x53ED4	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B713	0x53F1C	w	mov qword ptr [rax + 8], r11	route-seeded STATIC 0x02164280 base+0x53F14 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B717	0x53F24	w	mov qword ptr [rax + 0x10], r11	route-seeded STATIC 0x02164280 base+0x53F14 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B71F	0x53F2C	w	mov qword ptr [rax - 0x28], r11	route-seeded STATIC 0x02164280 base+0x53F54 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B723	0x53F34	w	mov qword ptr [rax - 0x20], r11	route-seeded STATIC 0x02164280 base+0x53F54 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B727	0x53F3C	w	mov qword ptr [rax - 0x18], r11	route-seeded STATIC 0x02164280 base+0x53F54 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B72B	0x53F44	w	mov qword ptr [rax - 0x10], r11	route-seeded STATIC 0x02164280 base+0x53F54 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B72F	0x53F4C	w	mov qword ptr [rax - 8], r11	route-seeded STATIC 0x02164280 base+0x53F54 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B710	0x53F54	w	mov qword ptr [rax], r11	route-seeded STATIC 0x02164280 base+0x53F54 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B71B	0x53F54	addr	lea rax, [rax + 0x40]	route-seeded STATIC 0x02164280 base+0x53F14	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B713	0x53F5C	w	mov qword ptr [rax + 8], r11	route-seeded STATIC 0x02164280 base+0x53F54 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B717	0x53F64	w	mov qword ptr [rax + 0x10], r11	route-seeded STATIC 0x02164280 base+0x53F54 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B71F	0x53F6C	w	mov qword ptr [rax - 0x28], r11	route-seeded STATIC 0x02164280 base+0x53F94 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B723	0x53F74	w	mov qword ptr [rax - 0x20], r11	route-seeded STATIC 0x02164280 base+0x53F94 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B727	0x53F7C	w	mov qword ptr [rax - 0x18], r11	route-seeded STATIC 0x02164280 base+0x53F94 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B72B	0x53F84	w	mov qword ptr [rax - 0x10], r11	route-seeded STATIC 0x02164280 base+0x53F94 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B72F	0x53F8C	w	mov qword ptr [rax - 8], r11	route-seeded STATIC 0x02164280 base+0x53F94 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B710	0x53F94	w	mov qword ptr [rax], r11	route-seeded STATIC 0x02164280 base+0x53F94 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B71B	0x53F94	addr	lea rax, [rax + 0x40]	route-seeded STATIC 0x02164280 base+0x53F54	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B713	0x53F9C	w	mov qword ptr [rax + 8], r11	route-seeded STATIC 0x02164280 base+0x53F94 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B717	0x53FA4	w	mov qword ptr [rax + 0x10], r11	route-seeded STATIC 0x02164280 base+0x53F94 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B71F	0x53FAC	w	mov qword ptr [rax - 0x28], r11	route-seeded STATIC 0x02164280 base+0x53FD4 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B723	0x53FB4	w	mov qword ptr [rax - 0x20], r11	route-seeded STATIC 0x02164280 base+0x53FD4 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B727	0x53FBC	w	mov qword ptr [rax - 0x18], r11	route-seeded STATIC 0x02164280 base+0x53FD4 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B72B	0x53FC4	w	mov qword ptr [rax - 0x10], r11	route-seeded STATIC 0x02164280 base+0x53FD4 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B72F	0x53FCC	w	mov qword ptr [rax - 8], r11	route-seeded STATIC 0x02164280 base+0x53FD4 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B710	0x53FD4	w	mov qword ptr [rax], r11	route-seeded STATIC 0x02164280 base+0x53FD4 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B71B	0x53FD4	addr	lea rax, [rax + 0x40]	route-seeded STATIC 0x02164280 base+0x53F94	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B713	0x53FDC	w	mov qword ptr [rax + 8], r11	route-seeded STATIC 0x02164280 base+0x53FD4 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B717	0x53FE4	w	mov qword ptr [rax + 0x10], r11	route-seeded STATIC 0x02164280 base+0x53FD4 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B71F	0x53FEC	w	mov qword ptr [rax - 0x28], r11	route-seeded STATIC 0x02164280 base+0x54014 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B723	0x53FF4	w	mov qword ptr [rax - 0x20], r11	route-seeded STATIC 0x02164280 base+0x54014 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B727	0x53FFC	w	mov qword ptr [rax - 0x18], r11	route-seeded STATIC 0x02164280 base+0x54014 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B72B	0x54004	w	mov qword ptr [rax - 0x10], r11	route-seeded STATIC 0x02164280 base+0x54014 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B72F	0x5400C	w	mov qword ptr [rax - 8], r11	route-seeded STATIC 0x02164280 base+0x54014 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B710	0x54014	w	mov qword ptr [rax], r11	route-seeded STATIC 0x02164280 base+0x54014 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B71B	0x54014	addr	lea rax, [rax + 0x40]	route-seeded STATIC 0x02164280 base+0x53FD4	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B713	0x5401C	w	mov qword ptr [rax + 8], r11	route-seeded STATIC 0x02164280 base+0x54014 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B717	0x54024	w	mov qword ptr [rax + 0x10], r11	route-seeded STATIC 0x02164280 base+0x54014 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B71F	0x5402C	w	mov qword ptr [rax - 0x28], r11	route-seeded STATIC 0x02164280 base+0x54054 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B723	0x54034	w	mov qword ptr [rax - 0x20], r11	route-seeded STATIC 0x02164280 base+0x54054 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B727	0x5403C	w	mov qword ptr [rax - 0x18], r11	route-seeded STATIC 0x02164280 base+0x54054 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B72B	0x54044	w	mov qword ptr [rax - 0x10], r11	route-seeded STATIC 0x02164280 base+0x54054 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B72F	0x5404C	w	mov qword ptr [rax - 8], r11	route-seeded STATIC 0x02164280 base+0x54054 zeroclear	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B71B	0x54054	addr	lea rax, [rax + 0x40]	route-seeded STATIC 0x02164280 base+0x54014	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B739	0x54054	addr	lea rax, [r10 + 0x59c8]	route-seeded STATIC 0x02164280 base+0x4E68C	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B750	0x54054	rw	and byte ptr [rax], 0xf8	route-seeded STATIC 0x02164280 base+0x54054	host 0x00233C10 0x00238A80
+0x0030B6A0	InventoryRuntime_RebaseClassDescriptorsAndClearDerivedState	0x0030B753	0x54055	addr	lea rax, [rax + 1]	route-seeded STATIC 0x02164280 base+0x54054	host 0x00233C10 0x00238A80

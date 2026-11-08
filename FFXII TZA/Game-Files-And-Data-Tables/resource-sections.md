@@ -209,13 +209,14 @@ Descriptor:
 | `+0x50` | `u32` |  | row mask |
 | `+0x54` | `u32` | capacity |  |
 
-The shared name buffer is listed in
-[`resource-sections-name-scratch-accesses.tsv`](resource-sections-name-scratch-accesses.tsv).
+The 13 instructions that read or write the shared name buffer, in `0x00409210` and `0x00409C30`, are listed in
+[`resource-sections-name-scratch-accesses.tsv`](resource-sections-name-scratch-accesses.tsv). The name itself is
+copied in by the C library's `strncpy`, which `0x00409210` calls (`0x0040922E`).
 
 ## Operations
 
-Per search: one name copy and at most `count` header compares. Per row lookup: two handle decodes and
-one multiply.
+Per search: one name copy and at most `count` + 1 header compares (the container's own header, then each
+section). Per row lookup: two handle decodes and one multiply.
 
 ## State
 

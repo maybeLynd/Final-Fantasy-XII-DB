@@ -26,7 +26,7 @@ and 256 KiB of scratch each.
 - `0x006CE5B0` returns the pool held in `0x02E5C930` when that is set (`0x006CE5C9`), else builds the static once under
   the guard `0x02E5C968` with `0x006AA180(pool, 0, 0)`, so its worker count and capacity are 0 (`0x006CE614`), writes
   the vtable (`0x006CE620`), stores the static in `0x02E5C930` (`0x006CE640`) and returns it.
-- `0x006BA940` writes the vtable `0x00D81200`, runs the stop `0x006BAED0` a second time (`0x006BA95C`), destroys the two
+- `0x006BA940` writes the vtable `0x00D81200`, runs the stop `0x006BAED0` (`0x006BA95C`), destroys the two
   semaphore record pairs with the `ret 0` stub `0x0016D6A0` as each record's destructor (`0x006BA976`, `0x006BA990`) and
   tail-jumps to the base destructor `0x006AA200` (`0x006BA99E`), which writes `0x00D7C860` and calls `0x006AA600`.
 
@@ -189,8 +189,11 @@ record's created byte (`0x006BAF9C`-`0x006BAFBF`). The two range arrays are one 
 freeing `+0x98` frees both; `+0x80` and `+0x98` are nulled and `+0xA0` keeps its old pointer (`0x006BAFDB`,
 `0x006BAFE6`).
 
-The exit destructor `0x006BA940` runs `0x006BAED0` again after the shutdown's slot 3; with `+0x30`, `+0x98` and the
-worker array already null, only the stub calls and `0x006AA600` run then, and `0x006AA600` finds every pointer null.
+The exit destructor `0x006BA940` runs only when the run-time `exit` runs the teardowns; the normal quit ends in
+`ExitProcess(0)` before that
+([static initialisation and teardown](../Compiler-And-C-Runtime/static-initialisation-and-teardown.md)).
+When it runs, it runs `0x006BAED0` again after the shutdown's slot 3; with `+0x30`, `+0x98` and the worker array
+already null, only the stub calls and `0x006AA600` run then, and `0x006AA600` finds every pointer null.
 
 ### The immediate pool
 

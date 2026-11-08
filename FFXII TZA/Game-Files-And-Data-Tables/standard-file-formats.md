@@ -51,7 +51,9 @@ The game reads only the width and height; it assumes the rest (no id field, 24-b
 
 ### CSV tables
 
-All seventeen are CRLF text without quoting or a byte-order mark.
+All seventeen are CRLF text without a byte-order mark. Only one holds quotes: the header line of
+`jsondata/parametersmanageruisizestruct.csv` puts its fifth and sixth field names, a tab followed by `min` and a
+tab followed by `max`, in double quotes.
 
 ```
 opt.csv               MapName,ForceMSAAOff,FlipMapOpaqueOrder,SMAA,ForceNoOpaqueChrFirst
@@ -322,9 +324,10 @@ sets `0x02092700` to -1 (`0x0024CBD0`) ([startup constants](../Engine-Core/start
   `0x0024F2F4`), and it stops when the byte two past a CR is 0 (`0x0024F381`).
 - `0x0024EF90` keeps lines with exactly five fields, copies the map name, reads GroupId with `"%d,"`,
   and, when that succeeds, writes the next 4-byte entry of `0x02F8F340`: GroupId, UseSoftParticle not
-  `N`, factor with `"%d"`. Each time the map name differs from the previous row's, it appends a
-  16-byte record (name, first row) to `0x02F93340`. The row count goes to `0x02092714` and the map count
-  to `0x02092718`. VFXName is not stored.
+  `N`, factor with `"%d"`.
+- Each time the map name differs from the previous kept row's, `0x0024EF90` appends a 16-byte record (name, first
+  row) to `0x02F93340`. The kept-row count goes to `0x02092714` and the record count, one per run of rows with the
+  same map name, to `0x02092718` (433 records for the 418 shipped maps). VFXName is not stored.
 
 [`standard-file-formats-softparticle-rows.tsv`](standard-file-formats-softparticle-rows.tsv) lists the 853
 effect rows of the four per-type tables and
@@ -559,9 +562,10 @@ record and texture of `icon1.ico`, each with the code that reads it.
 ### The boot descriptor
 
 `ps2data/cdi/in/system.cnf` is kind 0, id 0: entry 0 of the array `0x01E461F0`, which `0x002DF9A0`
-stores at `0x0215F000`. Every `.fst` sizes it at 57 bytes. It is the first of seven kind-0 paths; the
-other six, the PS2 executable `SLPM_667.50` and the modules `ioprp300.img`, `mcman.irx`, `mcserv.irx`,
-`dbcman.irx` and `libsd.irx`, ship nowhere in the archive.
+stores at `0x0215F000`. Every `.fst` sizes it at 57 bytes. It is the first of twelve kind-0 paths (ids 0 to 6, 10,
+11 and 14 to 16; the slots for ids 7 to 9, 12, 13 and 17 are null). The other eleven, the PS2 executable
+`SLPM_667.50`, the path `PS2Data\pad2` and the modules `ioprp300.img`, `mcman.irx`, `mcserv.irx`, `dbcman.irx`,
+`libsd.irx`, `sio2d.irx`, `sio2man.irx`, `iopsound.irx` and `pad2\ds2o.irx`, ship nowhere in the archive.
 
 Its three lines are the PS2 console's boot settings: `BOOT2` names the program the console starts,
 `cdrom0:\SLPM_667.50;1` (the disc file `SLPM_667.50`, file version 1), `VER` is the disc version 0.01 and `VMODE`
@@ -600,8 +604,10 @@ No string in the executable, ASCII or UTF-16, in any case, names `monstertoweapo
 
 The six `.h` files are C headers that the developers' converters (`CnvWorldMap`, `CnvSubLocation`, `CnvQuestData`)
 wrote from the spreadsheets `ff12worldmapdata.xls` and `ff12menuquest.xls`.
-[`standard-file-formats-header-rows.tsv`](standard-file-formats-header-rows.tsv) lists their 136 `#define` lines and the 48 rows of the debug
-offset table, with an English reading of every Japanese comment.
+[`standard-file-formats-header-rows.tsv`](standard-file-formats-header-rows.tsv) lists 136 of their 146 `#define`
+lines, all but the six include guards and the four `NgDebMap_GetLocaMapOffsetX`/`Y` accessor macros of
+`menumap_world_debug.h` (lines 76, 77, 81 and 82), and the 48 rows of the debug offset table, with an English
+reading of every Japanese comment.
 
 - Where the shipped data counts the same thing, the TSV gives that count beside the define. 12 region slots,
   39 areas, 60 World Map routes (45 normal, 15 special), 18 Strahl destinations and 48 sub-location files all

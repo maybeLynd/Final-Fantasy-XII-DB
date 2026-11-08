@@ -70,8 +70,9 @@ Port scenes](balfonheim-port-scenes.md).
   `var_z01`. Rikken (`NPC_PIRATE_0.talk`) points the way to Giruvegan, and `HUNTxx.talkClient` holds a petitioner's
   lines on the Pylraster.
 - Saccio Lane: `CTRL_RUNNING.main` runs the race ("Let the tier [value] race begin! (Press `{icon:I:82}` and
-  `{icon:@:82}` alternately to run.)"); a first place gives one of a hundred reward packages, picked by a script
-  counter of the races run, from a Potion to 10000 gil, two Elixirs and an Unpurified Ether.
+  `{icon:@:82}` alternately to run.)"); a first place gives one of a hundred reward packages, picked by the race
+  tier (global byte `0x73C`: 1 at the first race, one higher after each first place, up to 100), from a Potion to
+  10000 gil, two Elixirs and an Unpurified Ether; byte `0x73D` makes the tier-100 prize a one-time reward.
 - `var_z01`: `常駐監督.main` loads scenes `var_z0100` (event 393), `var_z0102` (event 395) and `var_z0101` (event 394),
   writes 4100, 5150 and 6100, and jumps back to Saccio Lane, field `826`.
 - Gallerina Marketplace and Quayside Court: the shop counters show the shop names and their greetings (Waterfront
@@ -247,8 +248,8 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 66,564 |
-| empty | 6,747 |
+| `resolved` | 73,177 |
+| empty | 134 |
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb without arguments). Its `addresses`, `timing` and `sync` cells carry what they give

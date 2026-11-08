@@ -21,8 +21,11 @@ the user's allies and the user's foes, each allowed or not by a flag of the acti
   for an action that may target Stone (Stona, Gold Needle). For any other action, a KO'd, stoned or X-Zoned ally is listed but greyed
   out.
 - Once the action is chosen, the character walks toward the target; the distance is not tested
-  again. The action is called off when its target can no longer be affected - for example the
-  target is KO'd and the action cannot target KO'd units - or for the other reasons below.
+  again. The action is called off for the reasons below.
+- **A target that falls.** The list pairs each permission with its own status (KO with KO, Stone with
+  Stone). Once the action is under way, a KO'd, stoned or X-Zoned target calls it off only when the action
+  has neither permission, so Stona and Gold Needle (Stone, not KO) are not called off by this test when their
+  target is KO'd. The other reasons still apply, and the test says nothing about what the action does then.
 
 ## How it works
 
@@ -230,10 +233,11 @@ No other instruction reaches these two.
 
 - The 24-unit limit is the float at `0x00D1081C` (576.0, the square of the range); it applies, through
   `0x00322490`, to every living candidate that has a battle unit (`0x00322BA6`-`0x00322BAF`).
-- The KO and Stone permissions are bits `0x40` and `0x80` of the action row's word `+0x2C`; they also keep
-  `0x002FFA60` from cancelling the action when its target is KO'd, stoned or X-Zoned. In the shipped
-  `battle_pack.bin`, bit `0x40` is set on 10 action rows (Raise twice, Arise, Phoenix Down, Revive, Cry for
-  Help, Necromancy, Divide twice, Spawn) and bit `0x80` on 2 (Stona, Gold Needle).
+- The KO and Stone permissions are bits `0x40` and `0x80` of the action row's word `+0x2C`. The menu pairs
+  each with its own status (`0x00322B67`-`0x00322B82`); in `0x002FFA60` either bit alone keeps the action from
+  being cancelled when its target is KO'd, stoned or X-Zoned (`0x002FFAF5`, `0x002FFB30`).
+- In the shipped `battle_pack.bin`, bit `0x40` is set on 10 action rows (Raise twice, Arise, Phoenix Down,
+  Revive, Cry for Help, Necromancy, Divide twice, Spawn) and bit `0x80` on 2 (Stona, Gold Needle).
 - Allies, foes and self are bits `0x4`, `0x8` and `0x1` of the row's flag word `+0x0C`; bits `0x20` and `0x40` choose how
   the default cursor is placed.
 

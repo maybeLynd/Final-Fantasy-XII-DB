@@ -257,7 +257,7 @@ No other instruction reaches these globals. The handles' address is taken only b
 - [Config screen](../Menus-And-HUD/config-screen.md) - the Vibration Function row.
 - [`vibration-recorded-handles-022c8030-accesses.tsv`](vibration-recorded-handles-022c8030-accesses.tsv) - the
   instructions that reach the eight recorded handles at `0x022C8030` through a pointer that walks them, one row per
-  instruction (8 rows).
+  instruction (51 rows).
 
 In this access table, `function`, `name` and `site` give the function, its name and the instruction's address,
 `disp` the offset from the handle the pointer has reached (0 in every row), `kind` a read (`r`) or a write (`w`),

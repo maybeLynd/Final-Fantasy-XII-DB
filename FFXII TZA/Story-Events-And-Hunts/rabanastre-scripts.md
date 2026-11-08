@@ -443,8 +443,8 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 95,955 |
-| empty | 256 |
+| `resolved` | 96,020 |
+| empty | 191 |
 | `does not ship`, with the fact | 2 |
 
 The two `does not ship` rows are `motionread` calls that read an empty entry: entry 0 of `rbn_a14.mot` and entry 2 of

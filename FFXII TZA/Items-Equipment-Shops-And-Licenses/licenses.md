@@ -10,7 +10,9 @@ addresses: "0x00323EC0, 0x00323C60, 0x00323BB0, 0x002F8FA0, 0x00323890, 0x00323D
 - A character can use an ability or wear a piece of equipment only after buying a square that grants it; one
   square is enough even when several grant the same thing.
 - Guests, Espers and enemies never need licenses, and some abilities and items need no license for anyone.
-- Each Quickening square bought opens the character's next Quickening and adds an MP bar, up to three.
+- Each Quickening square bought opens the character's next Quickening and raises the character's MP bars, the
+  number of Mist charges the character can hold, to the number of Quickening squares owned, up to three; an
+  Esper square raises them to the Mist charges that Esper needs.
 - An Esper square can be bought by one character only, and only once that Esper has been obtained.
 - Buying a square costs LP; the squares a character starts with cost nothing.
 
@@ -90,9 +92,14 @@ non-party record and an invalid node (`0x00323930`-`0x00323953`). With `set`:
 3. The bit is set (`0x003239E7`-`0x00323A29`); without `set` it is cleared.
 4. For a Quickening square, the Quickening in the member's list at the new count is granted through
    `0x00300B80(id, 1)`, the id from the action row's `+0x22` (`0x00323A58`-`0x00323B0D`).
-5. The record's MP bars, byte `+0x20`, are raised to the number of Quickening squares owned, or for an Esper square
-   to the Mist charges the Esper's action needs (`0x00308FF0`), at most 3 (`0x00323B12`-`0x00323B7C`).
-6. The stats are rebuilt with `0x0030FED0(record, 0x97)` (`0x00323B7F`-`0x00323B87`).
+5. The record's MP bars, byte `+0x20`, the number of Mist charges the member can hold, are raised when lower
+   to the number of Quickening squares owned, or for an Esper square to the Mist charges the Esper's action
+   needs (`0x00308FF0`: the action row's byte `+0x0A` for a category `+0x1E` of 5 or 6, else 0), at most 3
+   (`0x00323B12`-`0x00323B7C`).
+6. The stats are rebuilt with `0x0030FED0(record, 0x97)` (`0x00323B7F`-`0x00323B87`). The rebuild copies the MP bars,
+   at most 3, to the battle stats' `+0x37` (`0x002FF89F`, from `0x003103AD`) and keeps the Mist pool `+0x06` at
+   most max MP times `+0x37` (`0x00310541`-`0x0031058E`); the Mist charges `+0x4E` are the pool divided by max MP
+   (`0x0030E0B5`-`0x0030E0BD`).
 
 Setting or clearing node 229, Brawler, also refreshes the unit's held model and cancels its current action
 (`0x00323A30`-`0x00323A48`, `0x00324470`). `0x00324470` removes the unit with `0x00300E40(unit, 0)` when it has no stats

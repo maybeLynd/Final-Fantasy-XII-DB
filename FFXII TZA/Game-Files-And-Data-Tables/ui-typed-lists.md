@@ -101,7 +101,7 @@ Items are variable-length and say their own length, so the walk steps over any t
 |---|---|---|---|
 | `+0x00` | `u8` |  | item length in bytes |
 | `+0x01` | `u8` |  | type, 1-9 |
-| `+0x02` | `u8` |  | read by no instruction: the decoder reads `+0x00` and `+0x01` (`0x00243379`, `0x00243340`) and bit `0x10` of `+0x03` (`0x00243329`), the six constructors it calls (`0x0029F4C0`, `0x0029FEB0`, `0x0029ED40`, `0x0029F130`, `0x0029F930`, `0x0029ECB0`) read nothing at `+0x02`, and the relocator `0x002A00F0` touches no item |
+| `+0x02` | `u8` |  | no bit of it is used: the decoder reads `+0x00` and `+0x01` (`0x00243379`, `0x00243340`) and takes the low four bits of `+0x01` and bit `0x10` of `+0x03` from the item's first dword (`0x002433EE`, `0x002433F9`), the six constructors it calls (`0x0029F4C0`, `0x0029FEB0`, `0x0029ED40`, `0x0029F130`, `0x0029F930`, `0x0029ECB0`) read nothing at `+0x02`, and the relocator `0x002A00F0` touches no item |
 | `+0x03` | `u8` |  | bit `0x10` (bit `0x10000000` of the first dword): drawn |
 | `+0x04` | `i16` | x |  |
 | `+0x06` | `i16` | y |  |
@@ -318,9 +318,9 @@ its block.
   `0x0020E620(0)` (`0x0029FECA`-`0x0029FECF`). It puts the low ten bits of item `+0x12` in node bits `0xFFC0`
   (`0x0029FF08`-`0x0029FF17`), which the mode test reads, and zeroes `+0x2D` and `+0x2F` (`0x0029FF3A`-`0x0029FF3E`).
 - Type 7 (`0x0029F130`) builds a bar: the atlas at `+0x28`, the six strip pieces unpacked into `+0x4C`-`+0x7F`,
-  opacities `+0x44`/`+0x45`, lengths `+0x48`/`+0x4A`, colours `+0x64`/`+0x88`, a value of 0 at `+0x18` against a
-  maximum of 100 at `+0x1C`, and, with an overlay atlas, its slot at `+0x90` and `+0x0A` = `rand()` modulo the
-  overlay sub-image's width.
+  palette selectors `+0x44`/`+0x45`, lengths `+0x48`/`+0x4A`, colours `+0x64`/`+0x88`, a value of 0 at `+0x18`
+  against a maximum of 100 at `+0x1C`, and, with an overlay atlas, its slot at `+0x90`, its palette selector at
+  `+0x46` and `+0x0A` = `rand()` modulo the overlay sub-image's width.
 - Type 8 (`0x0029F930`) creates a grid widget through `0x002D14E0`: columns × rows cells, each the size of the
   referenced record's width and height, with an inner widget sized to the whole grid. It decodes the referenced
   record into the inner widget with no parent, clears bit `0x1` of the inner list's header, copies the item
@@ -355,10 +355,11 @@ bits `0x3C`. Types 1, 3, 6 and 8 have no arm.
   `x = max(c[+0x48] + +0x0C, c[+0x48])`, `y = max(c[+0x4A] + +0x0E, c[+0x4A])`, `w = +0x10` and that `h`;
   then `w = c[+0x48] + c[+0x4C] - x` when `x + w > c[+0x48] + c[+0x4C]`, and `h = c[+0x4A] + c[+0x4E] - y` when
   `y + h > c[+0x4A] + c[+0x4E]`. `0x00249FD0` runs only when `w > 0` and `h > 0` (`0x0029FC91`-`0x0029FD78`).
-- In that case a text whose scaled width exceeds the node's width `+0x10` scrolls (`cmp ebp, ebx`, `0x0029FD81`):
-  with `r = +0x0A - +0x10` (`+0x0A` less that width, `0x0029FD96`-`0x0029FD9A`), the field under mask `0xFFC0`
-  becomes the absolute value of `([0x0208F574] / 4) mod 2r - r`, and x is the node's x less it
-  (`0x0029FD85`-`0x0029FDC8`). A text that fits is centred in the node's width (`0x0029FDCC`-`0x0029FDDB`).
+- With `+0x2D` bit `0x4` set, whether or not `0x00249FD0` ran, a text whose scaled width exceeds the node's width
+  `+0x10` scrolls (`cmp ebp, ebx`, `0x0029FD81`): with `r = +0x0A - +0x10` (`+0x0A` less that width,
+  `0x0029FD96`-`0x0029FD9A`), the field under mask `0xFFC0` becomes the absolute value of
+  `([0x0208F574] / 4) mod 2r - r`, and x is the node's x less it (`0x0029FD85`-`0x0029FDC8`).
+- A text that fits is centred in the node's width (`0x0029FDCC`-`0x0029FDDB`).
 - Type 7 goes to `0x0029ED50`. It clamps the value into 0 to maximum, draws the background strip at full length,
   then the fill strip at `fill length × value / maximum`, then the overlay over the fill.
 - `0x002A0180` draws a strip of length `len` as left cap `L`, middle `len − L − R` and right cap `R` (the pieces' `s16` widths at `+0x04`
@@ -409,8 +410,9 @@ own rectangle moved by dx and dy (`0x0029F63B`-`0x0029F675`) with `0x002D8D10(dr
   count, and `0x00394660(widget, i)` returns a type 1 node's child widget `+0x18`, or 0. `0x00285F40(widget, i)`
   returns node i of `+0x60` with no count test, or 0 for a null widget; ten on-screen keyboard functions from `0x00286010` to `0x00288A60` and `0x00559E30` call it.
 - `0x00394800(widget, i, a, b)` and `0x00394850(widget, i, j, a, b)` write a number (`0x0029F6E0`) into node i, or,
-  when node i is type 1, into node 0 or node j of its child widget; the Clan Primer, quest and Save pages call
-  them (`0x0056FCB0`, `0x005789D0`, `0x0057EFE0`).
+  when node i is type 1, into node 0 or node j of its child widget. `0x00394800` is called from `0x0056FCB0`,
+  `0x00573BE0`, `0x0057E6D0` and `0x0057EFE0`, and `0x00394850` from `0x0056F470` (twice), `0x00578860`, `0x005789D0` and
+  `0x0057EFE0`.
 - `0x0029F480(node, colour, which)` writes a colour to `+0x88` and `+0x64` for which 0, `+0x88` alone for 1 and
   `+0x64` alone for 2; the party list (`0x002986E0`), the battle menu (`0x0029A930`) and `0x00570530`, `0x00581490`,
   `0x00581930` use it.
@@ -427,7 +429,8 @@ own rectangle moved by dx and dy (`0x0029F63B`-`0x0029F675`) with `0x002D8D10(dr
   item's bit `0x10000000` for a drawn node, else 0 (`0x00407450`, `0x00407720`).
 - `0x00243260(list, i, out)` copies node i's x, y, width and height (`+0x0C`-`+0x12`) into `out` and returns
   1, or returns 0 when i reaches the header's count. The verb `fsmenu_getrectlist` (`0x701D`, through
-  `0x005685B0`) and `0x0056C490`, `0x0056D940`, `0x00579230` and `0x0057AC10` use it.
+  `0x005685B0`) and `0x0023BD40`, `0x0023CE10`, `0x0023D890`, `0x0023DD10`, `0x0023EA10`, `0x0023ED80`, `0x0023FBE0`, `0x0029A0A0`,
+  `0x002D2DB0`, `0x002D4330`, `0x0056C490`, `0x0056D940`, `0x00579230` and `0x0057AC10` use it.
 - `0x00243580(list)` clears the drawn bit `0x1` of every node; the gambit screen (`0x00568BB0`), `0x003FCFE0`, `0x003FDDE0`
   and five other callers use it. `0x00243E90(list)` gives every node its item's bit `0x10000000` back as the drawn bit
   (`0x00283E40`, `0x00292390`, `0x002D28E0`).
@@ -530,9 +533,10 @@ slot's descriptor at `+0x30`; slot 63 is never visited, and clearing bit `0x80` 
 - [`ui-typed-lists-atlas-name-records.tsv`](ui-typed-lists-atlas-name-records.tsv): one row per distinct name in the
   shipped atlas name records, with how many files declare it and which items use it (49 rows).
 
-In the item table, `file` is the file (`#unitNN` for a unit of `mrppack_ys.bin`), `rec` and `item` the list record
-and the item's index in it, `type` the item type, `atlas_idx` the index at `+0x0C` and `name` the name of that
-record, and `idx2` and `name2` the same for a type-7 item's overlay index at `+0x40` (`-` for type 2).
+In the item table, `file` is the file (`#unitNN` for a unit of `mrppack_ys.bin`), `rec` the list record, `item`
+the item's index in the whole file or unit, counted on across its records, `type` the item type, `atlas_idx` the
+index at `+0x0C` and `name` the name of that record, and `idx2` and `name2` the same for a type-7 item's overlay
+index at `+0x40`, in hex (`0xffff` and `-` when there is no overlay; `-` for type 2).
 
 In the name table, `declared_files` is the number of files whose name records hold the name, `referenced` `yes` when
 an item selects it, `ref_files` the files of those items, and `class` `i` for the 25 names the executable itself
@@ -546,3 +550,5 @@ Calls between the functions this page cites and code in other parts of the progr
 - Actor entity: `0x0036A100` is called by `0x00330310`, `0x003306E0`; those functions are documented on
   [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
   [ps2data bin families](ps2data-bin-families.md).
+- Platform online achievements: `0x0056F470` calls `0x00315390`, `0x003166F0`; those functions are documented on
+  [shops](../Items-Equipment-Shops-And-Licenses/shops.md), [gil](../Rewards-EXP-Gil-And-Loot/gil.md).

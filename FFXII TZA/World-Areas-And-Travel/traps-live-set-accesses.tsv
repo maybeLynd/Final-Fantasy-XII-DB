@@ -1,13 +1,13 @@
 function	name	site	disp	kind	instruction	route	note
-0x002F8060	BattleUnit_TryTriggerNearbyAuthoredFieldAction	0x002F8160	0x0	r	cmp dword ptr [rcx], r12d	route-seeded STATIC 0x02EC3EA0 base+0x0	
-0x002F82F0	FUN_002f82f0	0x002F8380	0x0	r	cmp dword ptr [rdx], eax	route-seeded STATIC 0x02EC3EA0 base+0x0	
-0x002FA740	FUN_002fa740	0x002FA896	0x0	r	cmp dword ptr [rax], r13d	route-seeded STATIC 0x02EC3EA0 base+0x0	
-0x002FB3B0	FUN_002fb3b0	0x002FB3C0	0x0	r	cmp dword ptr [r9], edx	route-seeded STATIC 0x02EC3EA0 base+0x0	
-0x002FB3B0	FUN_002fb3b0	0x002FB3CF	0x24	r	movsxd rax, dword ptr [r10 + 0x24]	route-seeded STATIC 0x02EC3EA0 base+0x0	
-0x002FB3B0	FUN_002fb3b0	0x002FB3DC	0x24	r	movsxd rax, dword ptr [r10 + 0x24]	route-seeded STATIC 0x02EC3EA0 base+0x0	
-0x002FB3B0	FUN_002fb3b0	0x002FB3F1	0x24	r	mov ecx, dword ptr [r10 + 0x24]	route-seeded STATIC 0x02EC3EA0 base+0x0	
-0x002FB3B0	FUN_002fb3b0	0x002FB409	0x24	w	mov dword ptr [r10 + 0x24], ecx	route-seeded STATIC 0x02EC3EA0 base+0x0	
-0x002FB3B0	FUN_002fb3b0	0x002FB3B5	0x28	r	mov ecx, dword ptr [rcx + 0x28]	route-seeded STATIC 0x02EC3EA0 base+0x0	
-0x002FB3B0	FUN_002fb3b0	0x002FB3ED	0x28	rw	inc dword ptr [r10 + 0x28]	route-seeded STATIC 0x02EC3EA0 base+0x0	
-0x002FB3B0	FUN_002fb3b0	0x002FB405	0x28	r	mov eax, dword ptr [r10 + 0x28]	route-seeded STATIC 0x02EC3EA0 base+0x0	
-0x002FB3B0	FUN_002fb3b0	0x002FB417	0x28	w	mov dword ptr [r10 + 0x28], eax	route-seeded STATIC 0x02EC3EA0 base+0x0	
+0x002F8060	BattleUnit_TryTriggerNearbyAuthoredFieldAction	0x002F8160	0x0	r	cmp dword ptr [rcx], r12d	route-seeded STATIC 0x02EC3EA0 base+0x0	host: this function
+0x002F82F0	FUN_002f82f0	0x002F8380	0x0	r	cmp dword ptr [rdx], eax	route-seeded STATIC 0x02EC3EA0 base+0x0	host: this function
+0x002FA740	FUN_002fa740	0x002FA896	0x0	r	cmp dword ptr [rax], r13d	route-seeded STATIC 0x02EC3EA0 base+0x0	host: this function
+0x002FB3B0	FUN_002fb3b0	0x002FB3C0	0x0	r	cmp dword ptr [r9], edx	route-seeded STATIC 0x02EC3EA0 base+0x0	host 0x002F8060
+0x002FB3B0	FUN_002fb3b0	0x002FB3CF	0x24	r	movsxd rax, dword ptr [r10 + 0x24]	route-seeded STATIC 0x02EC3EA0 base+0x0	host 0x002F8060
+0x002FB3B0	FUN_002fb3b0	0x002FB3DC	0x24	r	movsxd rax, dword ptr [r10 + 0x24]	route-seeded STATIC 0x02EC3EA0 base+0x0	host 0x002F8060
+0x002FB3B0	FUN_002fb3b0	0x002FB3F1	0x24	r	mov ecx, dword ptr [r10 + 0x24]	route-seeded STATIC 0x02EC3EA0 base+0x0	host 0x002F8060
+0x002FB3B0	FUN_002fb3b0	0x002FB409	0x24	w	mov dword ptr [r10 + 0x24], ecx	route-seeded STATIC 0x02EC3EA0 base+0x0	host 0x002F8060
+0x002FB3B0	FUN_002fb3b0	0x002FB3B5	0x28	r	mov ecx, dword ptr [rcx + 0x28]	route-seeded STATIC 0x02EC3EA0 base+0x0	host 0x002F8060
+0x002FB3B0	FUN_002fb3b0	0x002FB3ED	0x28	rw	inc dword ptr [r10 + 0x28]	route-seeded STATIC 0x02EC3EA0 base+0x0	host 0x002F8060
+0x002FB3B0	FUN_002fb3b0	0x002FB405	0x28	r	mov eax, dword ptr [r10 + 0x28]	route-seeded STATIC 0x02EC3EA0 base+0x0	host 0x002F8060
+0x002FB3B0	FUN_002fb3b0	0x002FB417	0x28	w	mov dword ptr [r10 + 0x28], eax	route-seeded STATIC 0x02EC3EA0 base+0x0	host 0x002F8060

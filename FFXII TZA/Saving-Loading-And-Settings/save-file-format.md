@@ -329,7 +329,7 @@ file of the kind.
 - [Gil: storage, the gil cap, every way gil changes, and the Plunderer and Spendthrift counters](../Rewards-EXP-Gil-And-Loot/gil.md)
 - [`save-image-accesses.tsv`](save-image-accesses.tsv): every access through a register holding the address
   of one of the four image buffers (`0x02164280`, `0x021BA940`, `0x02211000`, `0x022676C0`) or loaded from `[0x02092758]`, one
-  row per instruction (53 rows).
+  row per instruction (689 rows).
 - [`save-header-accesses.tsv`](save-header-accesses.tsv): every access to the header fields at the start of
   the image (`+0x0` to `+0xB0`), one row per instruction, by 25 functions (199 rows). Its columns are those of the
   access tables on [Save data fields](save-data-fields.md#related), with `disp` measured from the start of the image;

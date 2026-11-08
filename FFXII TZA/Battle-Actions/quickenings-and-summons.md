@@ -14,8 +14,10 @@ Quickenings, the Concurrences, and mounting and dismounting a chocobo.
 
 - **One at a time.** There is a single scene for all of them. A unit whose action needs it while
   another is running waits and tries again every frame until the first one has ended.
-- **The battle pauses around it.** While the scene plays, the animation events of the battle units
-  (hits, reactions, ends of actions) are not processed.
+- **The battle pauses around it.** While the scene plays, the battle units' animation events (hits,
+  reactions, ends of actions) are passed over under two different conditions: an actor's timeline events
+  while the scene plays or is being closed, for a unit without flag bit `0x2`, and an action's timeline
+  events while the scene plays ([What pauses](#what-pauses)).
 - **Quickenings during a scene.** A Quickening or Concurrence that comes while a scene is playing
   does not start a scene of its own; it goes ahead without one.
 - **Esper attacks.** The results of an Esper's finishing attack are worked out when its scene
@@ -137,7 +139,8 @@ it does not resolve.
 `0x00306BB0` returns 1 in states 5 and 6, and `0x00306BA0` in state 5 only. While they do:
 
 - the actor timeline handler `0x00319F50` treats every event of a battle unit without bit `0x2` as handled
-  without processing it (`0x00319FAC`-`0x00319FB3`, `0x00306BB0`);
+  without processing it (`0x00319FAC`-`0x00319FB3`, `0x00306BB0`); for a unit with bit `0x2` it returns 0 before
+  that test, in every state (`0x00319FA3`-`0x00319FA6`);
 - the frame orchestrator skips its `0x002371B0`/`0x00237140` checks (`0x002345F8`, `0x00306BB0`);
 - the action timeline handler `0x00325260` treats every event as handled without processing it
   (`0x00325290`, `0x00306BA0`);

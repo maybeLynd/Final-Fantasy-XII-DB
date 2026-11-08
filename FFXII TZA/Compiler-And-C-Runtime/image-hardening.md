@@ -7,10 +7,14 @@ addresses: "0x00808EE4, 0x00809B8C, 0x00808C40, 0x00809654, 0x00809620, 0x008097
 
 ## What the player sees
 
-Nothing in normal play. The game always loads at the same address, so an address found once (in a
-cheat table, a trainer or this database) is valid on every machine and every launch. If something
-overruns a protected stack buffer, the game closes at once with no error box and no crash dump of its
-own.
+Nothing in normal play. The executable does not ask for address randomisation, so Windows loads it at
+`0x00120000`, and an address in this database is the address in the running game unless mandatory ASLR
+(Exploit Protection's "Force randomization for images", `ForceRelocateImages`), switched on for the system or
+for the game, loads it elsewhere: the image ships its relocations, so that setting can move it.
+
+Then every address moves by the same amount: an address in the running game is the module base plus
+(address - `0x00120000`). If something overruns a protected stack buffer, the game closes at once with no
+error box and no crash dump of its own.
 
 ## How it works
 
@@ -18,13 +22,15 @@ own.
 
 The optional header asks for image base `0x00120000`. `DllCharacteristics` is `0x8120`:
 `HIGH_ENTROPY_VA` (`0x0020`), `NX_COMPAT` (`0x0100`) and `TERMINAL_SERVER_AWARE` (`0x8000`).
-`DYNAMIC_BASE` (`0x0040`) is clear, so the loader maps the image at its preferred base and
-`HIGH_ENTROPY_VA` has no effect. Every address in this database is `0x00120000` plus the RVA and is the
-address in the running game.
+`DYNAMIC_BASE` (`0x0040`) is clear, so the image does not opt in to ASLR: the loader maps it at its preferred
+base unless mandatory ASLR is forced, and `HIGH_ENTROPY_VA` has no effect. Every address in this database is
+`0x00120000` plus the RVA; in the running game an RVA lies at the module base plus the RVA, the same address
+while the image is at its preferred base.
 
 The file header's `Characteristics` is `0x0022`, so `RELOCS_STRIPPED` is clear, and the base-relocation
-directory (`0x39360` bytes) is shipped. The image could be rebased by a tool; the Windows loader has no
-reason to rebase it.
+directory (`0x39360` bytes) is shipped: 506 blocks with 114,962 64-bit entries (type 10) and 182 padding
+entries (type 0). With them the loader can rebase the image: when mandatory ASLR is forced
+(`ForceRelocateImages`), or when the range at `0x00120000` is not free.
 
 ### Data execution prevention
 
@@ -80,7 +86,8 @@ zero (`0x00808C4A`). On either failure it jumps to `__report_gsfailure` (`0x0080
 first on the second path (`0x00808C58`).
 
 `__report_gsfailure` asks `IsProcessorFeaturePresent(23)` and, when fast fail is available, executes
-`int 0x29` with code 2 (`0x00809670`): the process ends with no exception raised. Otherwise it builds a
+`int 0x29` with code 2 (`0x00809670`): the process ends with a non-continuable `0xC0000409` exception whose first
+parameter is the code, and the process's own exception handlers are bypassed. Otherwise it builds a
 `0xC0000409` exception record and calls `0x00809620`, which first calls `SetUnhandledExceptionFilter(NULL)`
 (`0x0080962B`), then `UnhandledExceptionFilter`, then `TerminateProcess(GetCurrentProcess(), 0xC0000409)`.
 Either way the game's own crash filter never runs.
@@ -124,8 +131,10 @@ where `desc` holds the element count, the source stride, the destination stride 
 the two field offsets read from the context, and converts `count` elements, four per loop pass. The
 pairing follows from the arithmetic:
 
-- every conversion to an 8-bit integer is the one byte copy `0x00595C00` (20 pairs), to a 16-bit integer
-  `0x00593980` (14), to a 32-bit integer `0x005939F0` (10);
+- a conversion to an 8-bit integer from an integer, `bool` or character source is the one byte copy `0x00595C00`
+  (20 pairs), to a 16-bit integer from an integer source at least 16 bits wide `0x00593980` (14), to a 32-bit
+  integer from one at least 32 bits wide `0x005939F0` (10); float sources and widening conversions use other
+  routines ([scalar-conversion registrars](image-hardening-scalar-conversion-registrars.tsv));
 - `0x00594EB0` converts `double` to `float` (`cvtpd2ps`) and `0x00594350` `float` to `double`
   (`cvtps2pd`). Both add `[[context + 0x10] + 0x48]` to the source base and `[[context + 8] + 8]` to the
   destination base, swapped when the byte `desc + 0xC` is set (`0x00594363`-`0x00594396`,

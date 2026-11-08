@@ -80,9 +80,11 @@ The exit stores the PC into the wait slot (`0x00261DD3`) and returns 0 when the 
 ### The value stack
 
 `0x02099AC0` is one static stack for every script: depth at `+0`, a tag byte per entry at `+4`
-(1 int, 2 float), a kind byte at `+0x44` (6 for every interpreter push), a reserved dword at
+(1 int, 2 float), a kind byte at `+0x44` (below), a reserved dword at
 `+0x84` and the 32-bit value at `+0x184`, 64 entries. `0x00267F90` pushes an int and `0x00267F60` a
-float, both refusing silently at depth 63.
+float, both refusing silently at depth 63, and both store kind 6 (`0x00267F9D`, `0x00267F78`). The
+reference push `PUSHP` (`0x00268100`) stores the element's width nibble instead, its descriptor shifted
+right by 28 (`0x00268150`-`0x00268185`; [References](script-variables.md#references)).
 
 `0x00267E10` pops as an int, truncating a float entry;
 `0x00267DB0` pops as a float, widening an int entry. On an empty stack the int pop returns 0

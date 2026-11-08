@@ -362,7 +362,7 @@ The framework's other classes sit beside `PApplication` in `.rdata`:
 | `0x01CB26B8` | `PInputDevicePadSteamController` | 7 |
 
 [phyre-application-p-application-accesses.tsv](phyre-application-p-application-accesses.tsv) lists
-1,076 instructions in 62 functions that read or write fields of the application object.
+1,183 instructions in 62 functions that read or write fields of the application object.
 
 ### Reflected members
 

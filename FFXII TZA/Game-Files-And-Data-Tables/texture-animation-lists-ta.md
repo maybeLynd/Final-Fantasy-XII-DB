@@ -125,8 +125,13 @@ The frame comes from the map-draw pass `0x002F4520(map, ...)`. Its inputs:
   `0x60`-byte entries (`0x002F4A23`-`0x002F4A48`).
 
 It computes `frame = trunc(v) - 1` and `i = clamp(frame + w, 0, count - 1)` (`0x002F4A1B`–`0x002F4A3F`), and calls
-`0x001807F0(object, frame)` only when entry `i`'s `u16 +0x0C` equals `frame` (`0x002F4A44`–`0x002F4A5D`). The pass
+`0x001807F0(o, frame)` only when entry `i`'s `u16 +0x0C` equals `frame` (`0x002F4A44`–`0x002F4A5D`). The pass
 clamps and never wraps.
+
+`o` is not the object that holds the float but the entry `0x00180320(id)` returns (`0x002F49E3`): the qword at index
+`id × 2 + s` of the array `+0x88` of the map-art context `0x001A9930()` (`0x001A7600`), where `s` is 1 when byte
+`+0x1C` of the render manager `0x00189120()` is non-zero, or 0 when that array is null or `id` is not below its
+count `+0x20`. A null `o` skips the item's whole draw (`0x002F49EF`).
 
 The float is the value of a map animation track bound on channel 9 (`0x00466420`'s arm at `0x00466488`
 stores the track at `+0x90`: the pointer to the track's value it is given, as a qword; a channel above 20

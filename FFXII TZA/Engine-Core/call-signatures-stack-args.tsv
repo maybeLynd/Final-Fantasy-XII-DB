@@ -28115,7 +28115,6 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00786D00	1	-	-	-	-
 0x00786DD0	1	-	-	-	-
 0x00786F10	1	-	-	-	-
-0x00786F42	2	-	-	-	-
 0x00786F70	1	-	-	-	-
 0x00787080	4	-	-	-	-
 0x007871F0	3	-	-	-	-

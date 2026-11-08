@@ -1,2 +1,5 @@
 function	name	site	disp	kind	instruction	route	note
-0x001DEE90	GameSettingConfig_SerializeText	0x001DEF67	0x0	r	cmp qword ptr [rax], 0	route-seeded ARRAY 0x01DFD150 stride=0x48 count=31 base+0x0	
+0x001DEE90	GameSettingConfig_SerializeText	0x001DEF67	0x0	r	cmp qword ptr [rax], 0	route-seeded ARRAY 0x01DFD150 stride=0x48 count=31 base+0x0	host: this function
+0x001DEE90	GameSettingConfig_SerializeText	0x001DF04A	0x0	r	mov rdx, qword ptr [rdi + rbx*8]	route-seeded ARRAY 0x01DFD150 stride=0x48 count=31 base+0x0	host: this function
+0x001DF350	GameSettingConfig_ParseOneSettingValue	0x001DF3B1	0x0	addr	lea rsi, [rsi + rax*8]	route-seeded ARRAY 0x01DFD150 stride=0x48 count=31 base+0x0	host: this function
+0x001DF350	GameSettingConfig_ParseOneSettingValue	0x001DF5E2	0x0	r	mov rdx, qword ptr [rsi]	route-seeded ARRAY 0x01DFD150 stride=0x48 count=31 base+0x0	host: this function

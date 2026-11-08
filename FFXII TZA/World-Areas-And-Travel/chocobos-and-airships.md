@@ -24,8 +24,9 @@ nothing gives them back before the next mount.
 
 At an aerodrome counter the player buys a ticket for the leisure craft or a private cabin. With the leisure craft the
 party sees the departure scene and spends the flight aboard, starting in the Observation Parlour. A private cabin
-takes it straight to the other aerodrome, with the departure scene only until a story arrival scene has played. Now
-and then a monster attacks the airship in flight, and the party is taken to the Sky Saloon.
+takes it straight to the other aerodrome. Until a story arrival scene has played, either ticket shows the departure
+scene; after that a private cabin skips it, while the leisure craft still shows it. Now and then a monster attacks
+the airship in flight, and the party is taken to the Sky Saloon, with a private cabin as well.
 
 ## How it works
 
@@ -566,10 +567,11 @@ departure watcher (`発着イベント監視`) actors, with its own price ids an
 3. `subgill(price)`; a fade; the same dismount steps as `sumcho_byebye`, written out in `イベント再生とマップジャンプ`; scene 214
    (`eventread_e8(0, 214)`, `eventplay_ec(0)`). A party that books a private cabin (the counter's second answer) after
    the arrival scene in `alc_e01` has set `event_global_flag[2]` skips the scene: the counter's `高速移動時のマップジャンプ` fades,
-   runs `sumcho_byebye` and jumps at once;
-4. the jump, always `mapjump(field, entrance, 1)`: with the attack, `setmapjumpgroupflag(94)` and field 125
-   (`asp_a02`, the Sky Saloon); for a private cabin, the destination aerodrome by route code (`0x314`/4, `0x320`/3,
-   `0x317`/7, `0x31A`/7, `0x31D`/7); otherwise `setmapjumpgroupflag(94)` and field 124 (`asp_a01`, the Observation
+   runs `sumcho_byebye` and jumps at once (steps 4 and 5);
+4. the jump, always `mapjump(field, entrance, 1)`, in both functions: with the attack, tested first and for either
+   ticket, `setmapjumpgroupflag(94)` and field 125 (`asp_a02`, the Sky Saloon);
+5. without it, for a private cabin the destination aerodrome by route code (`0x314`/4, `0x320`/3, `0x317`/7,
+   `0x31A`/7, `0x31D`/7); otherwise `setmapjumpgroupflag(94)` and field 124 (`asp_a01`, the Observation
    Parlour), which leads on to `asp_a02` or the Air Deck; `asp_a02` jumps to the destination by the same code.
 
 Each route has its own clerk, who is placed and can be talked to only from a story counter value. The clerk's talk

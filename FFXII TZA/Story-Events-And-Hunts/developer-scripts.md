@@ -222,9 +222,9 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 76,296 |
+| `resolved` | 76,982 |
 | `does not ship` | 63 |
-| empty | 1,712 |
+| empty | 1,026 |
 
 A script that no path array names has no motion or sound entry there. For these scripts the steps read the `.mot` and
 `.snd` in the script's own folder, when one ships there, and the `resolution` cell says so. Only `evt_t0005` and

@@ -15,7 +15,9 @@ Each page title names the topic and then what the page covers. Each category's R
 with a one-sentence summary of what you will find on each.
 
 Addresses are virtual addresses in the shipping `FFXII_TZA.exe` (SHA-256
-`73461D0896204B1C259C52F61AEF4EFBC95A2FFC388CADB36493D5D1D89721F8`), image base included.
+`73461D0896204B1C259C52F61AEF4EFBC95A2FFC388CADB36493D5D1D89721F8`), image base included. The image loads at
+its preferred base `0x00120000` unless mandatory ASLR moves it; then each address is at the module base plus
+(address - `0x00120000`).
 
 A function is identified by its address. Where a page also gives a function a name such as
 `ImageAddress_ResolveRuntimePointer`, the name is this database's label for it: the executable
@@ -35,7 +37,8 @@ Many tables list the instructions that read or write one object, one row per ins
   use them.
 - `instruction`: the instruction as disassembled.
 - `route`: how the object reached the register the instruction addresses through (below).
-- `note`: a remark on the row, where it has one.
+- `note`: a remark on the row, where it has one; in a route-seeded row, the host the access descends from
+  (below).
 - `width`, in some tables: the size of the access, in bytes or as `byte`, `word`, `dword` or `qword`.
 
 ### Reading a route cell
@@ -63,10 +66,20 @@ The opening word names how the search found the object:
   for a PhyreEngine class descriptor, which is in `rcx`.
 - `call-seeded 0x001D50D0`: at each call to that function, with the object its return value in `rax`.
 - `static-seeded 0x02B3F570`: the object is at that address; at each instruction that puts the address in a register.
+- `ctor 0x005049E0` after `route-seeded`, alone or as one of the alternatives: the search also started at that
+  function, the one this database lists as the type's constructor, with the object in `rcx`. It names no host.
 - `seeded on proven entry points:` and a list of functions: at each listed function, with the object in `rcx`.
+  Without the colon, `seeded on proven entry point` or `entry points` names only the listed functions whose
+  search reached the row's access.
 
 From these starting points the search follows the object into the functions it is passed to as an argument, so a
 row's function can be several calls away from the start.
+
+A route-seeded row whose `note` names a host lists in its route cell only the alternatives whose search reached
+the row's access. The host is where such an alternative yields the object: `host: this function` is the row's
+own function, and `host` with addresses names the functions the access descends from, such as the function that
+loads the route's pointer, a method of its virtual function table, the function its `ARG` names or a caller of
+its `FN`.
 
 Other tables name their starting point in one of these forms:
 
@@ -111,6 +124,10 @@ decimal number or the name of the member that holds the count:
   the start of an array of such objects.
 - `VTABLE 0xADDR`: the object is reached through virtual calls: each function in the virtual function table at ADDR
   receives it in `rcx`.
+- `RELOFF Type +0xOFF`: the object starts at an object of type `Type` plus the 32-bit value stored at its offset
+  OFF.
+- `PKREF 0xFN Parent +0xOFF`: the 32-bit value at offset OFF of `Parent` (a type, or an address that holds the
+  object) is a pack offset, and the function at FN turns it into the object's address.
 - `ARG rcx 0xADDR`: the object is in that register when the function at ADDR starts.
 - `DYNAMIC` and a description: the object's place is computed while the game runs, and the text says how. A search
   does not start from it; it starts from the cell's other routes.
@@ -118,7 +135,11 @@ decimal number or the name of the member that holds the count:
 Within a route:
 
 - Two or more routes separated by a vertical bar are alternatives: the object can be reached each way, and the
-  search started from each one it could use. The cell does not say which one reached the row's access.
+  search started from each one it could use. When the row's `note` names a host, the cell lists only those that
+  reached the row's access; otherwise it does not say which one did.
+- A route, ` <- ` and a second route, as in `CHAIN Manager0209AC60 +0x2F8 <- PTR 0x0209AC30`: the first places
+  the object in or behind a member of another object, and the second is the route of the outermost such object,
+  where the search started. The rows are the accesses that fall in this object.
 - Text after ` - ` or ` -> ` describes that route, as in `-> the object itself (vtable written there by 0x0015BC40)`.
 - Names such as `SlowReaderRecordBank`, `RenderContext02CC0410` or `PApplication*` are this database's labels for
   object types: the executable does not contain them. The symbol index lists each as a structure; a trailing `*`
@@ -165,7 +186,7 @@ the page that explains it. Every row is copied from a page or table of the datab
 
 ## Categories
 
-- [Engine core](FFXII%20TZA/Engine-Core/README.md) - The main loop and per-frame update, startup and the values fixed at boot, the developer tuning console, logging, the object model and the engine's shared state.
+- [Engine core](FFXII%20TZA/Engine-Core/README.md) - The main loop and per-frame update, startup and the values set at boot, the developer tuning console, logging, the object model and the engine's shared state.
 - [Scripts and script commands](FFXII%20TZA/Scripts-And-Script-Commands/README.md) - How area and event scripts run: the script virtual machine, its instructions, and every native command a script can call.
 - [Game files and data tables](FFXII%20TZA/Game-Files-And-Data-Tables/README.md) - How game files are found, loaded and read: archives, file tables, the battle and game data tables and the image formats.
 - [World, areas and travel](FFXII%20TZA/World-Areas-And-Travel/README.md) - Areas and zone changes, the per-area map information table, weather, save crystals, teleports, chocobos and airships.

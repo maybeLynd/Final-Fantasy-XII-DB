@@ -11,8 +11,12 @@ addresses: "0x003E7650, 0x02B59D80, 0x00320BB0, 0x0046FD00, 0x0046FFA0, 0x004700
   Blind, Poison, Silence, Sap, Oil, Disable, Disease, HP Critical. Curing the top one brings up the next.
 - Poison, Silence, Sap, Disable and Disease share one look, a pulsing darkening that pulls green down most. Blind is a
   plain pulsing darkening and Oil a much deeper one.
-- A look fades in over ten frames and must fade out completely before the next one appears; Stone appears and goes at
-  once.
+- A look must finish leaving before the next one appears. Blind, the shared look, Oil and Berserk fade in and out
+  over ten frames.
+- The other looks keep their own timing: Stone appears and goes at once, Petrify arrives and leaves over six
+  frames (and goes at once when Stone replaces it), Doom has its own faster glow and flash, and HP Critical leaves
+  only at the end of its beat.
+- These frame counts are at 30 fps; at 60 fps they double and keep their length in seconds.
 - Doom glows a dull red and flashes each time its count ticks; Petrify looks like Stone with a dip of the light on
   each tick; HP Critical flashes red once a second; Berserk turns red and dark on the side facing the camera.
 - Invisible makes a character see-through, and an enemy more so than a party member. Slow and Immobilize colour the

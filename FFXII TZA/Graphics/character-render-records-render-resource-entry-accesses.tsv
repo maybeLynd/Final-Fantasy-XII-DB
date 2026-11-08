@@ -1,38 +1,38 @@
 function	name	site	disp	kind	instruction	route	note
-0x00409710	FUN_00409710	0x00409715	0x0	w	mov word ptr [rcx], dx	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409600	ResourceEntry_GetResolvedBasePointer	0x00409616	0x4	r	mov ecx, dword ptr [rcx + 4]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409710	FUN_00409710	0x00409718	0x4	w	mov dword ptr [rcx + 4], eax	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409780	ResourceEntry_FindSectionIndexAndOffset	0x004097D7	0x4	r	mov ecx, dword ptr [rbx + 4]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409A60	FUN_00409a60	0x00409A96	0x4	w	mov dword ptr [r14 + 4], ebp	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409600	ResourceEntry_GetResolvedBasePointer	0x00409648	0x10	addr	lea rcx, [rbx + 0x10]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409780	ResourceEntry_FindSectionIndexAndOffset	0x00409805	0x10	addr	lea rcx, [rbx + 0x10]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409A60	FUN_00409a60	0x00409BAF	0x10	addr	lea rcx, [r14 + 0x10]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409A60	FUN_00409a60	0x00409BBE	0x10	addr	lea rcx, [r14 + 0x10]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409A60	FUN_00409a60	0x00409BD0	0x10	addr	lea rcx, [r14 + 0x10]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x0051EE10	FUN_0051ee10	0x0051EE1A	0x10	w	mov dword ptr [rcx], eax	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x0051F020	FUN_0051f020	0x0051F035	0x10	r	mov edx, dword ptr [rcx]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x0051EE00	FUN_0051ee00	0x0051EE00	0x18	r	mov rcx, qword ptr [rcx + 8]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x0051EE10	FUN_0051ee10	0x0051EE1C	0x18	w	mov qword ptr [rcx + 8], rax	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x0051EF90	FUN_0051ef90	0x0051EFE9	0x18	r	mov rcx, qword ptr [rdi + 8]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x0051F020	FUN_0051f020	0x0051F044	0x18	w	mov qword ptr [rdi + 8], rax	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x0051F020	FUN_0051f020	0x0051F055	0x18	r	mov rcx, qword ptr [rdi + 8]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x006B5C70	FUN_006b5c70	0x006B5C70	0x18	r	mov rax, qword ptr [rcx + 8]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x0051EE10	FUN_0051ee10	0x0051EE20	0x20	w	mov dword ptr [rcx + 0x10], eax	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x0051EF90	FUN_0051ef90	0x0051EFAA	0x20	r	mov ecx, dword ptr [rcx + 0x10]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x0051F020	FUN_0051f020	0x0051F048	0x20	w	mov dword ptr [rdi + 0x10], esi	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x0051EE10	FUN_0051ee10	0x0051EE12	0x24	w	mov qword ptr [rcx + 0x14], 0x800	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x0051EF90	FUN_0051ef90	0x0051EFBC	0x24	r	mov r9d, dword ptr [rdi + 0x14]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x0051EF90	FUN_0051ef90	0x0051EFB0	0x28	r	mov r9d, dword ptr [rdi + 0x18]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x0051EF90	FUN_0051ef90	0x0051EFF2	0x28	r	add eax, dword ptr [rdi + 0x18]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x0051EF90	FUN_0051ef90	0x0051F002	0x28	rw	add dword ptr [rdi + 0x18], esi	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409600	ResourceEntry_GetResolvedBasePointer	0x0040962B	0x30	r	mov rcx, qword ptr [rbx + 0x30]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409710	FUN_00409710	0x0040971B	0x30	w	mov qword ptr [rcx + 0x30], rax	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409780	ResourceEntry_FindSectionIndexAndOffset	0x004097F0	0x30	r	mov rcx, qword ptr [rbx + 0x30]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409A60	FUN_00409a60	0x00409B9E	0x30	w	mov qword ptr [r14 + 0x30], r15	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409600	ResourceEntry_GetResolvedBasePointer	0x00409634	0x38	w	mov qword ptr [rbx + 0x38], rax	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409600	ResourceEntry_GetResolvedBasePointer	0x0040963E	0x38	r	mov rax, qword ptr [rbx + 0x38]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409780	ResourceEntry_FindSectionIndexAndOffset	0x004097F9	0x38	w	mov qword ptr [rbx + 0x38], rax	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409780	ResourceEntry_FindSectionIndexAndOffset	0x004097FF	0x38	r	mov r10, qword ptr [rbx + 0x38]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409710	FUN_00409710	0x0040971F	0x40	w	mov dword ptr [rcx + 0x40], eax	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409A60	FUN_00409a60	0x00409BF1	0x40	w	mov dword ptr [r14 + 0x40], eax	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409710	FUN_00409710	0x00409722	0x44	w	mov dword ptr [rcx + 0x44], edx	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
+0x00409710	FUN_00409710	0x00409715	0x0	w	mov word ptr [rcx], dx	seeded on proven entry point 0x00409710	
+0x00409600	ResourceEntry_GetResolvedBasePointer	0x00409616	0x4	r	mov ecx, dword ptr [rcx + 4]	seeded on proven entry point 0x00409600	
+0x00409710	FUN_00409710	0x00409718	0x4	w	mov dword ptr [rcx + 4], eax	seeded on proven entry point 0x00409710	
+0x00409780	ResourceEntry_FindSectionIndexAndOffset	0x004097D7	0x4	r	mov ecx, dword ptr [rbx + 4]	seeded on proven entry point 0x00409A30	
+0x00409A60	FUN_00409a60	0x00409A96	0x4	w	mov dword ptr [r14 + 4], ebp	seeded on proven entry point 0x00409A60	
+0x00409600	ResourceEntry_GetResolvedBasePointer	0x00409648	0x10	addr	lea rcx, [rbx + 0x10]	seeded on proven entry point 0x00409600	
+0x00409780	ResourceEntry_FindSectionIndexAndOffset	0x00409805	0x10	addr	lea rcx, [rbx + 0x10]	seeded on proven entry point 0x00409A30	
+0x00409A60	FUN_00409a60	0x00409BAF	0x10	addr	lea rcx, [r14 + 0x10]	seeded on proven entry point 0x00409A60	
+0x00409A60	FUN_00409a60	0x00409BBE	0x10	addr	lea rcx, [r14 + 0x10]	seeded on proven entry point 0x00409A60	
+0x00409A60	FUN_00409a60	0x00409BD0	0x10	addr	lea rcx, [r14 + 0x10]	seeded on proven entry point 0x00409A60	
+0x0051EE10	FUN_0051ee10	0x0051EE1A	0x10	w	mov dword ptr [rcx], eax	seeded on proven entry point 0x00409710	
+0x0051F020	FUN_0051f020	0x0051F035	0x10	r	mov edx, dword ptr [rcx]	seeded on proven entry point 0x00409A60	
+0x0051EE00	FUN_0051ee00	0x0051EE00	0x18	r	mov rcx, qword ptr [rcx + 8]	seeded on proven entry point 0x00409600	
+0x0051EE10	FUN_0051ee10	0x0051EE1C	0x18	w	mov qword ptr [rcx + 8], rax	seeded on proven entry point 0x00409710	
+0x0051EF90	FUN_0051ef90	0x0051EFE9	0x18	r	mov rcx, qword ptr [rdi + 8]	seeded on proven entry point 0x00409A60	
+0x0051F020	FUN_0051f020	0x0051F044	0x18	w	mov qword ptr [rdi + 8], rax	seeded on proven entry point 0x00409A60	
+0x0051F020	FUN_0051f020	0x0051F055	0x18	r	mov rcx, qword ptr [rdi + 8]	seeded on proven entry point 0x00409A60	
+0x006B5C70	FUN_006b5c70	0x006B5C70	0x18	r	mov rax, qword ptr [rcx + 8]	seeded on proven entry point 0x00409A60	
+0x0051EE10	FUN_0051ee10	0x0051EE20	0x20	w	mov dword ptr [rcx + 0x10], eax	seeded on proven entry point 0x00409710	
+0x0051EF90	FUN_0051ef90	0x0051EFAA	0x20	r	mov ecx, dword ptr [rcx + 0x10]	seeded on proven entry point 0x00409A60	
+0x0051F020	FUN_0051f020	0x0051F048	0x20	w	mov dword ptr [rdi + 0x10], esi	seeded on proven entry point 0x00409A60	
+0x0051EE10	FUN_0051ee10	0x0051EE12	0x24	w	mov qword ptr [rcx + 0x14], 0x800	seeded on proven entry point 0x00409710	
+0x0051EF90	FUN_0051ef90	0x0051EFBC	0x24	r	mov r9d, dword ptr [rdi + 0x14]	seeded on proven entry point 0x00409A60	
+0x0051EF90	FUN_0051ef90	0x0051EFB0	0x28	r	mov r9d, dword ptr [rdi + 0x18]	seeded on proven entry point 0x00409A60	
+0x0051EF90	FUN_0051ef90	0x0051EFF2	0x28	r	add eax, dword ptr [rdi + 0x18]	seeded on proven entry point 0x00409A60	
+0x0051EF90	FUN_0051ef90	0x0051F002	0x28	rw	add dword ptr [rdi + 0x18], esi	seeded on proven entry point 0x00409A60	
+0x00409600	ResourceEntry_GetResolvedBasePointer	0x0040962B	0x30	r	mov rcx, qword ptr [rbx + 0x30]	seeded on proven entry point 0x00409600	
+0x00409710	FUN_00409710	0x0040971B	0x30	w	mov qword ptr [rcx + 0x30], rax	seeded on proven entry point 0x00409710	
+0x00409780	ResourceEntry_FindSectionIndexAndOffset	0x004097F0	0x30	r	mov rcx, qword ptr [rbx + 0x30]	seeded on proven entry point 0x00409A30	
+0x00409A60	FUN_00409a60	0x00409B9E	0x30	w	mov qword ptr [r14 + 0x30], r15	seeded on proven entry point 0x00409A60	
+0x00409600	ResourceEntry_GetResolvedBasePointer	0x00409634	0x38	w	mov qword ptr [rbx + 0x38], rax	seeded on proven entry point 0x00409600	
+0x00409600	ResourceEntry_GetResolvedBasePointer	0x0040963E	0x38	r	mov rax, qword ptr [rbx + 0x38]	seeded on proven entry point 0x00409600	
+0x00409780	ResourceEntry_FindSectionIndexAndOffset	0x004097F9	0x38	w	mov qword ptr [rbx + 0x38], rax	seeded on proven entry point 0x00409A30	
+0x00409780	ResourceEntry_FindSectionIndexAndOffset	0x004097FF	0x38	r	mov r10, qword ptr [rbx + 0x38]	seeded on proven entry point 0x00409A30	
+0x00409710	FUN_00409710	0x0040971F	0x40	w	mov dword ptr [rcx + 0x40], eax	seeded on proven entry point 0x00409710	
+0x00409A60	FUN_00409a60	0x00409BF1	0x40	w	mov dword ptr [r14 + 0x40], eax	seeded on proven entry point 0x00409A60	
+0x00409710	FUN_00409710	0x00409722	0x44	w	mov dword ptr [rcx + 0x44], edx	seeded on proven entry point 0x00409710	

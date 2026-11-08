@@ -30,8 +30,9 @@ the object. Reading every locator in `.rdata` this way yields 2,286 vtables for 
 102 of the 2,350 type descriptors in the image name types that have no vtable, and 28 names own
 two or more vtables (18 own two, 10 own three; 38 vtables beyond each name's first).
 
-The virtual slots of a vtable are the run of `.text` addresses that follows it: 25,801 slots in all,
-pointing at 6,886 distinct functions.
+The virtual slots of a vtable are the qwords after it that hold function entries, up to the first that does
+not: 25,797 slots in all, pointing at 6,882 distinct functions. Four vtables are followed by a short string
+whose first 8 bytes look like a `.text` address ([vtable methods](vtable-methods.md)).
 
 ### What the classes are
 
@@ -86,7 +87,7 @@ at `+8` for `IBatchMergerEvent` (`0x00D86AD0`, one slot), and the `std` stream c
 for their virtual bases.
 
 A derived class copies every base method it does not override, so one function appears in many
-vtables: 2,611 of the 6,886 functions sit in more than one class and 4,275 in exactly one. The
+vtables: 2,611 of the 6,882 functions sit in more than one class and 4,271 in exactly one. The
 linker also folded identical bodies across unrelated classes: `0x005C5230` (`return 0`) fills 2,514
 slots, `0x0016D6A0` (`ret`, also the Control Flow Guard stub, [jump thunks](jump-thunks.md)) 1,386
 and `0x0016D680` (`return this`) 1,349. A method is attributable to a class only when it appears in
@@ -130,8 +131,8 @@ vtable      ptr slot[0..n-1], each into .text
 |---|---|
 | vtables / class names | 2,286 / 2,248, in [class-hierarchy.tsv](class-hierarchy.tsv): vtable, decorated name, class (filled for the 626 rows without template arguments; the others are named by decorated), namespace, offset in the object, slots, base count, and the bases in base-array order joined by ` < `, some in decorated form |
 | primary vtables / secondary | 2,242 / 44 (34 classes) |
-| virtual slots / distinct functions | 25,801 / 6,886 |
-| functions in exactly one class | 4,275 ([vtable methods](vtable-methods.md)) |
+| virtual slots / distinct functions | 25,797 / 6,882 |
+| functions in exactly one class | 4,271 ([vtable methods](vtable-methods.md)) |
 | vtables stamped by a `lea` in code | 2,282 at 5,786 sites |
 | largest vtables | `PPFX::IGPUDevice` 77, the `SQEX::Sd::Driver` sound family 44; of the game's own `PrimitiveRendererD3D11` 45, `GameApplication` 31, `CharacterRenderObject` 31 |
 
@@ -162,6 +163,6 @@ qword.
 
 ## Related
 
-- [Vtable methods](vtable-methods.md): the 25,801 slots as a table.
+- [Vtable methods](vtable-methods.md): the 25,797 slots as a table.
 - [Game application](game-application.md): the `GameApplication` object and its managers.
 - [Jump thunks](jump-thunks.md): the shared `ret` stub and the thunks that vtables name.

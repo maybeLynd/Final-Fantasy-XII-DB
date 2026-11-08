@@ -363,8 +363,8 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 103,831 |
-| empty | 9,056 |
+| `resolved` | 112,704 |
+| empty | 183 |
 | `does not ship`, with the fact | 2 |
 
 The two `does not ship` rows are `motionread` calls in `EventDirector.init` of `dor_a07` and `dor_a18`, whose motion

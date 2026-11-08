@@ -1,16 +1,16 @@
 function	name	site	disp	kind	instruction	route	note
-0x00264ED0	MapRef_GetAreaArdFieldResourceIndex	0x00264EE9	0x4	r	movsxd rcx, dword ptr [r8 + 4]	route-seeded DYNAMIC [0x02099D88] - a loaded image pointer, guarded by [0x02099D90]; no fixed base exists | PTR 0x02099D88 base+0x0	
-0x00264F10	MapRef_GetPrimaryFieldValue	0x00264F29	0x4	r	movsxd rcx, dword ptr [r8 + 4]	route-seeded DYNAMIC [0x02099D88] - a loaded image pointer, guarded by [0x02099D90]; no fixed base exists | PTR 0x02099D88 base+0x0	
-0x00264F40	MapRef_GetAuxValue0	0x00264F59	0x4	r	movsxd rcx, dword ptr [r8 + 4]	route-seeded DYNAMIC [0x02099D88] - a loaded image pointer, guarded by [0x02099D90]; no fixed base exists | PTR 0x02099D88 base+0x0	
-0x00264F90	MapRef_GetPersistenceGroupId	0x00264FA9	0x4	r	movsxd rcx, dword ptr [r8 + 4]	route-seeded DYNAMIC [0x02099D88] - a loaded image pointer, guarded by [0x02099D90]; no fixed base exists | PTR 0x02099D88 base+0x0	
-0x00264FD0	MapRef_GetAuxValue1	0x00264FE9	0x4	r	movsxd rcx, dword ptr [r8 + 4]	route-seeded DYNAMIC [0x02099D88] - a loaded image pointer, guarded by [0x02099D90]; no fixed base exists | PTR 0x02099D88 base+0x0	
-0x0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0x0026D998	0x4	r	movsxd rcx, dword ptr [rdx + 4]	route-seeded DYNAMIC [0x02099D88] - a loaded image pointer, guarded by [0x02099D90]; no fixed base exists | PTR 0x02099D88 base+0x0	
-0x0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0x0026D9D9	0x4	r	movsxd rcx, dword ptr [r8 + 4]	route-seeded DYNAMIC [0x02099D88] - a loaded image pointer, guarded by [0x02099D90]; no fixed base exists | PTR 0x02099D88 base+0x0	
-0x0026DB30	WorldPersistence_ResetBanksForFieldTransition	0x0026DBA2	0x4	r	movsxd rax, dword ptr [rcx + 4]	route-seeded DYNAMIC [0x02099D88] - a loaded image pointer, guarded by [0x02099D90]; no fixed base exists | PTR 0x02099D88 base+0x0	
-0x0026DB30	WorldPersistence_ResetBanksForFieldTransition	0x0026DBD7	0x4	r	movsxd rax, dword ptr [rcx + 4]	route-seeded DYNAMIC [0x02099D88] - a loaded image pointer, guarded by [0x02099D90]; no fixed base exists | PTR 0x02099D88 base+0x0	
-0x00264F40	MapRef_GetAuxValue0	0x00264F6E	0x8	r	movsxd rcx, dword ptr [r8 + 8]	route-seeded DYNAMIC [0x02099D88] - a loaded image pointer, guarded by [0x02099D90]; no fixed base exists | PTR 0x02099D88 base+0x0	
-0x00264FD0	MapRef_GetAuxValue1	0x00264FFE	0x8	r	movsxd rcx, dword ptr [r8 + 8]	route-seeded DYNAMIC [0x02099D88] - a loaded image pointer, guarded by [0x02099D90]; no fixed base exists | PTR 0x02099D88 base+0x0	
-0x0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0x0026D9F2	0x8	r	movsxd rcx, dword ptr [r8 + 8]	route-seeded DYNAMIC [0x02099D88] - a loaded image pointer, guarded by [0x02099D90]; no fixed base exists | PTR 0x02099D88 base+0x0	
-0x0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0x0026DA10	0x10	r	movsxd rcx, dword ptr [r8 + 0x10]	route-seeded DYNAMIC [0x02099D88] - a loaded image pointer, guarded by [0x02099D90]; no fixed base exists | PTR 0x02099D88 base+0x0	
-0x002678A0	MapRef_OnPrimaryResourceLoaded	0x002678A7	0x14	r	movsxd rcx, dword ptr [rax + 0x14]	route-seeded DYNAMIC [0x02099D88] - a loaded image pointer, guarded by [0x02099D90]; no fixed base exists | PTR 0x02099D88 base+0x0	
-0x0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0x0026DA6D	0x18	r	movsxd rcx, dword ptr [rax + 0x18]	route-seeded DYNAMIC [0x02099D88] - a loaded image pointer, guarded by [0x02099D90]; no fixed base exists | PTR 0x02099D88 base+0x0	
+0x00264ED0	MapRef_GetAreaArdFieldResourceIndex	0x00264EE9	0x4	r	movsxd rcx, dword ptr [r8 + 4]	route-seeded PTR 0x02099D88 base+0x0	host: this function
+0x00264F10	MapRef_GetPrimaryFieldValue	0x00264F29	0x4	r	movsxd rcx, dword ptr [r8 + 4]	route-seeded PTR 0x02099D88 base+0x0	host: this function
+0x00264F40	MapRef_GetAuxValue0	0x00264F59	0x4	r	movsxd rcx, dword ptr [r8 + 4]	route-seeded PTR 0x02099D88 base+0x0	host: this function
+0x00264F90	MapRef_GetPersistenceGroupId	0x00264FA9	0x4	r	movsxd rcx, dword ptr [r8 + 4]	route-seeded PTR 0x02099D88 base+0x0	host: this function
+0x00264FD0	MapRef_GetAuxValue1	0x00264FE9	0x4	r	movsxd rcx, dword ptr [r8 + 4]	route-seeded PTR 0x02099D88 base+0x0	host: this function
+0x0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0x0026D998	0x4	r	movsxd rcx, dword ptr [rdx + 4]	route-seeded PTR 0x02099D88 base+0x0	host: this function
+0x0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0x0026D9D9	0x4	r	movsxd rcx, dword ptr [r8 + 4]	route-seeded PTR 0x02099D88 base+0x0	host: this function
+0x0026DB30	WorldPersistence_ResetBanksForFieldTransition	0x0026DBA2	0x4	r	movsxd rax, dword ptr [rcx + 4]	route-seeded PTR 0x02099D88 base+0x0	host: this function
+0x0026DB30	WorldPersistence_ResetBanksForFieldTransition	0x0026DBD7	0x4	r	movsxd rax, dword ptr [rcx + 4]	route-seeded PTR 0x02099D88 base+0x0	host: this function
+0x00264F40	MapRef_GetAuxValue0	0x00264F6E	0x8	r	movsxd rcx, dword ptr [r8 + 8]	route-seeded PTR 0x02099D88 base+0x0	host: this function
+0x00264FD0	MapRef_GetAuxValue1	0x00264FFE	0x8	r	movsxd rcx, dword ptr [r8 + 8]	route-seeded PTR 0x02099D88 base+0x0	host: this function
+0x0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0x0026D9F2	0x8	r	movsxd rcx, dword ptr [r8 + 8]	route-seeded PTR 0x02099D88 base+0x0	host: this function
+0x0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0x0026DA10	0x10	r	movsxd rcx, dword ptr [r8 + 0x10]	route-seeded PTR 0x02099D88 base+0x0	host: this function
+0x002678A0	MapRef_OnPrimaryResourceLoaded	0x002678A7	0x14	r	movsxd rcx, dword ptr [rax + 0x14]	route-seeded PTR 0x02099D88 base+0x0	host: this function
+0x0026D910	WorldField_InitializeCurrentFieldRuntimeParameters	0x0026DA6D	0x18	r	movsxd rcx, dword ptr [rax + 0x18]	route-seeded PTR 0x02099D88 base+0x0	host: this function

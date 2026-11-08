@@ -168,12 +168,9 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 3,359 |
-| empty | 125 |
+| `resolved` | 3,484 |
 
-A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
-script writes them (`-` for a verb without arguments). In this table such a row has `-` in its `addresses`, `timing` and
-`sync` cells.
+No step has an empty `resolution` cell.
 
 A function reads from top to bottom. In `bts_a01`, `setup.battle` calls `btlAtelSetupActorStart` and
 `system_expandcharmotionmemory`, stores 0, 25 and 30 in three script variables, passes them to

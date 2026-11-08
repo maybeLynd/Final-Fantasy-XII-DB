@@ -630,15 +630,16 @@ No other instruction reaches these cells. The focus stack's base `0x0208EAC0` is
 `0x002448D0` and `0x00247AE0` only, the matrix `0x0208ECD0` by `0x00245E60` and `0x00247AE0` only, the matrices `0x0208EC10` and
 `0x0208EC50` by the functions in their rows.
 
-The post-load widget `0x00394130` ([loading a save](../Saving-Loading-And-Settings/loading-a-save.md)) keeps itself in
-`0x02AEE4D0`. The End handler of verb `0x705D` reaches it through `0x00394640` (a jump at `0x00512130`), which builds the
-`0xF0`-byte widget with `0x00244F50(0xF0, 0x00394130, 0)` only while `0x02AEE4D0` is 0, so a second load cannot make a
-second widget. On message `0x12` the widget frees the title asset kept at `0x02AEE4C0`, when there is one
+The new-game widget `0x00394130` ([loading a save](../Saving-Loading-And-Settings/loading-a-save.md)) keeps itself in
+`0x02AEE4D0`. The result callback of verb `0x705D`, `fsttl_newgamestart`, reaches it through `0x00394640` (a
+jump at `0x00512130`), which builds the `0xF0`-byte widget with `0x00244F50(0xF0, 0x00394130, 0)` only while `0x02AEE4D0`
+is 0, so a second call cannot make a second widget. On message `0x12` the widget frees the title asset kept at
+`0x02AEE4C0`, when there is one
 (`0x00244F00`), clears `0x02AEE4D0` (`0x00394155`-`0x00394168`) and passes the message on to `0x005C5230`.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02AEE4D0` | `void*` | 0 (zero-filled tail of `.data`) | the post-load widget while it lives | `0x00394130`: itself on message 1 (`0x003942B2`), 0 on message `0x12` (`0x00394168`) | `0x00394640` (`0x00394640`), from the End handler of verb `0x705D` (`0x00512130`) |
+| `0x02AEE4D0` | `void*` | 0 (zero-filled tail of `.data`) | the new-game widget while it lives | `0x00394130`: itself on message 1 (`0x003942B2`), 0 on message `0x12` (`0x00394168`) | `0x00394640` (`0x00394640`), from the End handler of verb `0x705D` (`0x00512130`) |
 
 ## Modding notes
 

@@ -136,9 +136,10 @@ all of this: it tail-jumps to `0x00423B10(record, [arg + 0x10], dword [arg + 0x2
 applies its own test for slot `0x10A` and sets channel 1 to 0 at once when the bits are clear, so the
 piece arrives hidden.
 
-For a piece in slot `0x10A` it reads the record that the owner's word `+0x2C8` names (`0x003326C0`). When that
-record's kind is `0x11` to `0x15`, the piece is tied to it instead of the owner, and channel 1 is set to 0
-after the tie when bits `0x3` of the owner's `+0x40B` are both clear (`0x0042F956`-`0x0042F9CD`,
+For a piece in slot `0x10A` it reads the record that the owner's word `+0x2C8` names (`0x003326C0`), with no null
+test before reading its kind (`0x0042F98A`). When that record's kind is `0x11` to `0x15`, the piece is tied to it
+instead of the owner, and channel 1 is set to 0 after the tie when bits `0x3` of the owner's `+0x40B` are both
+clear (`0x0042F956`-`0x0042F9CD`,
 `0x0042FA2E`-`0x0042FA3E`). An owner word `+0x2C8` of -1 ends the handler before the tie (`0x0042F97C`). Unlike
 `0x0042E1F0` it does not look at `+0x284` bit `0x8000000` or the event index.
 

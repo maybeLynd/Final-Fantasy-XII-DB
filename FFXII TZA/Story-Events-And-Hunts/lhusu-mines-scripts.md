@@ -259,8 +259,8 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 32,320 |
-| empty | 2,800 |
+| `resolved` | 35,029 |
+| empty | 91 |
 | `does not ship`, with the fact | 1 |
 
 The one `does not ship` row is a `motionread` call in `lus_a04`, whose motion file `lus_a04.mot` is not in the archive.

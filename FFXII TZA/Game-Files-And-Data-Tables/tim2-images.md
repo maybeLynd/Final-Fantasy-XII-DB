@@ -123,7 +123,7 @@ through `paletteOff` (`0x0029F65E`-`0x0029F6B4`) and writes the palette number t
 (`0x0029F6BC`).
 
 The set count in `index[0]` is read only as set 0's start: neither the code nor the frame is checked against
-the table. The tag and the three dwords after it are read by none of the 59 functions that compute a record
+the table. The tag and the three dwords after it are read by none of the 87 functions that compute a record
 address.
 
 ## Shipped data
@@ -152,10 +152,10 @@ address.
 | named by no path array | 45: `title_logo_fore3.tm2` in `us`, `de`, `es`, `fr`, `it` and `in` (526,496 bytes each), and the 39 `in_sdver/tm2_menu` files. `0x002DF9A0` points kind 7 ids at the `in_sdver` paths only when its second argument is 0 (`0x002DFF86`-`0x002E03EE`); the word it passes, `[0x01E0280C]`, ships as 1 ([Asset paths](asset-paths.md)) |
 | named but not shipped | kind 7 id 141, `logo_s_c.tm2`: every language's array names it in its own folder, and the `in_sdver` entries name an `in_sdver` copy; no folder ships it and no size table sizes the id |
 | pack directories | the six `packfiles` packs' directories hold offsets, not names ([PS2Data bin families](ps2data-bin-families.md)); no pack entry has the bytes of a `.tm2` file |
-| `.nfs` | 4-bit, no CLUT, TEX0 zero, widths 16 to 640 (not powers of two), a game block whose first dword ends `0x2F41` |
+| `.nfs` | 4-bit, no CLUT, TEX0 zero, widths 16 to 640 (16 in `es` and `fr`; 24, 360, 504, 520 and 640, not powers of two, in the others), a game block whose first dword ends `0x2F41` |
 | gate value (low nibble of file `+0x40`) | 5 in 417, 0 in 19, `0xC` in 10, 1 in 10: the nine `.nfs` and `in_sdver/tm2_menu/w_line01.tm2`, whose `0x30`-byte header puts pixel bytes `01 01 01 01` there |
-| embedded TIM2 (under `ps2data/`) | `.mpk` 21,419 in 459 files, `.dat` 6,767 in 2,795, `.ebp` 5,430 in 4,695, `.bin` 3,267 in 492; all at 16-byte-aligned offsets |
-| embedded glyph sheets | block tag `0x2F41`: `.ebp` 2,150, `.dat` 74, `.bin` 36; tag `0xAF41`: `.ebp` 569 |
+| embedded TIM2 (under `ps2data/`) | `.mpk` 21,419 in 459 files, `.dat` 6,767 in 2,795, `.ebp` 5,430 in 4,695, `.bin` 3,703 in 492 (all under `image/ff12/myoshiok`); all at 16-byte-aligned offsets; the last TIM2 of each of the 436 `worldmap/menumap_sub*.bin` files ends 448 to 960 bytes past the end of its file, inside its CLUT |
+| embedded glyph sheets | block tag `0x2F41`: `.ebp` 2,150, `.dat` 74, `.bin` 36; tag `0xAF41`: `.ebp` 664 pictures in 664 files, 569 of them the first picture |
 | font pack (`packfiles/fontpack_it.bin`, 6 languages) | directory dwords 0 to 5 are offsets, 6 and 7 are `0xFFFFFFFF`; entry 0 a two-picture 4-bit sheet 640 wide (225 rows `us`, 1,646 `cn`), entry 1 a 32 x 16 picture of image type 3 |
 | script glyph sheets (`us`) | 67 scripts carry a TIM2 in section 6: 58 with one picture, 9 with two; version 4 in 66 and `0xD8` in one; all 4-bit (`imageType` 4); first picture 24 x 23 in 55; gate nibble 1 in all 67 |
 
@@ -265,7 +265,7 @@ also written by the font-pack completion `0x0039C150`.
   `0x02AEE868` (`0x0039C467`).
 - That completion fills an empty slot 0 with the pack's directory entry 0, and an empty slot 7 with entry 6 when
   entry 6 is not `0xFFFFFFFF` and the language test `0x00254A10` is false. It then calls `0x0039BF50` and sets the
-  ready byte `0x02AEE890`.
+  ready flag `0x02AEE890`, a dword (`0x0039C3C6`).
 - `0x0029CAC0(buffer)` (from `0x00330060`) keeps a six-entry `{pointer, count}` table at `0x0209C320`: a buffer
   already there has its count raised and is not registered again (`0x0029CAD0`, `0x0029CB03`); a new one takes the
   first empty entry with count 1 and goes to `0x0039BEC0` as a tail jump (`0x0029CAF4`-`0x0029CAFE`); with six in use
@@ -319,7 +319,8 @@ A script container (`.ebp`) can carry a glyph sheet in directory slot 6
 1. stores it at `0x022C6CF0[g]` and in the area record (`0x0026C860`, `0x02098EC0 + g × 0x288`);
 2. clears pending bit `0x40` of `0x022C6E48[g]`;
 3. hands it to the text layer (`0x0017F790` → `0x001B47A0`, which gives it to the first waiting font entry whose
-   id matches the packed value, or logs a load failure and attaches nothing when no entry matches);
+   id matches the packed value; when no entry matches it attaches nothing, and its failure message goes to the
+   no-op `0x0016D6A0`, so nothing is logged);
 4. registers it through `0x0029CAC0`.
 
 `0x001B4590(font, entry)` is that attach (`0x001B483F`): it places the entry in the first empty of the font's

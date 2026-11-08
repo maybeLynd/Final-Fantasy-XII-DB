@@ -44,8 +44,9 @@ next to it light one after another, and a notice may announce a new Esper, a new
    answer 0 ([licenses](licenses.md#buying-a-square), [licenses](licenses.md#why-a-square-is-refused)).
 8. **The LP and the bit.** The node's cost is taken from the member's LP, kept between 0 and 99,999, and the owned
    bit is set ([licenses](licenses.md#buying-a-square), [licenses](licenses.md#the-test)).
-9. **Quickenings and Mist.** A Quickening square grants the member's next Quickening, and the MP bars rise with the
-   Quickening squares owned or the Esper's Mist charges, at most 3
+9. **Quickenings and Mist.** A Quickening square grants the member's next Quickening, and the MP bars, the number
+   of Mist charges the member can hold, rise when lower to the Quickening squares owned or the Esper's Mist
+   charges, at most 3
    ([licenses](licenses.md#buying-a-square), [licenses](licenses.md#quickenings)).
 10. **The stats.** `0x0030FED0(record, 0x97)` rebuilds the stats and augments
     ([licenses](licenses.md#buying-a-square), [augments](../Damage-And-Battle-Formulas/augments.md#the-rebuild)).

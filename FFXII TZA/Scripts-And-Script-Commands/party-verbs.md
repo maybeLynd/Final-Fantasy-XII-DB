@@ -168,10 +168,11 @@ The body returns at once for a null actor (`0x002E6BD3`) and then works on the p
    returns there.
 3. Otherwise it drops one count from the lane and one from lane 0 in the actor's binding
    (presentation dword `+4`) with `0x002EB890` (`0x002E6C63`, `0x002E6C6D`), which decrements each lane's
-   count word and writes no group word, and queues the lane for unload when nothing holds it
-   (`0x002E3F00`, `0x002E6C94`); with a third argument of 1, not a lane that
+   count word and writes no group word.
+4. It queues the lane, then lane 0, for unload when nothing holds it (`0x002E3F00`, `0x002E6C94`; lane 0 at
+   `0x002E3FAC` to `0x002E3FED`); with a third argument of 1, not a lane that
    `0x002E9C60(presentation +0x8, lane)` reports held (`0x002E6C79` to `0x002E6C8D`).
-4. It sets the lane byte to `0xFF` (`0x002E6CAC`) and, for a render record found as in step 1 (index
+5. It sets the lane byte to `0xFF` (`0x002E6CAC`) and, for a render record found as in step 1 (index
    not −1, `+0x284` non-zero), stores `0x0020E620(0)`, the encoded null address, in `+0x42C` and
    `+0x430` (`0x002E6CDA`, `0x002E6D0D`) and clears its `+0x284` bit `0x40000` (`0x002E6D3A`).
 

@@ -154,8 +154,10 @@ calls the device's slot 2 (`+0x10`, `0x005FEA95`), which is `0x00600D20`, the po
 tables `0x00D498F0` and `0x00D49930`. When even a block at the base would pass the end, it leaves the cursor at
 the base, writes nothing and returns `0xD` (`0x005FEB11`).
 
-Other render-thread callbacks are posted the same way; each is called with the block, whose `+0x10` holds the
-value posted:
+Three of the callbacks below are posted the same way, through `0x005FEA50`. Each is called with the three-qword
+frame the decoder `0x0060A410` builds (below), not the block; the frame's `+0x10` holds a copy of the value
+posted, loaded from the block's `+0x10` (`0x0060A8CA`). `0x00185A90` instead adds `0x0017ECC0` and its pointer to
+one of four vectors at `+0xC38`, and `0x00186230` calls it with the pointer itself (`0x00186277`):
 
 | Callback | Posted by | Does |
 |---|---|---|
@@ -216,8 +218,11 @@ members' destructors.
 `0x0060A410` fetches the render context once (`0x0060A46A`: `0x00624670` → `0x005FD050`, which returns the
 static `0x02CC0410`, constructing it with `0x00615840` on first use, a guarded static, and registering
 `0x008ADDD0`, which runs `0x00616560` on `0x02CC0410`, with `atexit`, `0x005FD0AD`) and walks the range 0x80 bytes at
-a time. For opcode `0x2F` it builds a three-qword frame `{context, &local, block+0x10}` on its stack
-and calls `block+0x08` with it (`0x0060A8BD`–`0x0060A8D6`). `0x001F4A10` takes the device as
+a time.
+
+For opcode `0x2F` `0x0060A410` builds a three-qword frame on its stack: the context, the address of a local and
+the qword at the block's `+0x10`, the posted value itself (`0x0060A8CA`), and calls `block+0x08` with it
+(`0x0060A8BD`–`0x0060A8D6`). `0x001F4A10` takes the device as
 `context + 0x18C0` (`0x00624660`) and tail-jumps the command's slot 1 with it (`0x001F4A35`).
 
 Before the walk `0x0060A410` also lays a 0x50-byte record on its stack with `0x00615D50(record,
@@ -465,14 +470,14 @@ Tables beside this page:
 
 ### Columns of the slot tables and the opcode table
 
-In gi-render-commands-geometry-instance-vtable-slots.tsv (144 rows) and
+In gi-render-commands-geometry-instance-vtable-slots.tsv (145 rows) and
 gi-render-commands-render-object-vtable-slots.tsv (29 rows) each row is one vtable slot; its `body` is the
-pointer at `vtable + 8 × slot` on all 173 rows.
+pointer at `vtable + 8 × slot` on all 174 rows.
 
 | Column | Holds |
 |---|---|
-| `role` | what the body does: `calls A,B,C +N` names its first three distinct direct callees in call order, and `+N` how many more it has (72 rows); `leaf` and the body's first instruction for a body with no call (61 rows); `no-op ret stub (folded)` for the shared body `0x0016D6A0`, a lone `ret` (20 rows); `dtor + free` for a destructor that frees through `0x00809950` (7 rows); `scalar-deleting dtor via` and the destructor it calls (2 rows); `setter this[+0xN] = arg` for a body that stores its argument at that offset (11 rows) |
-| `cite` | one instruction of the body that shows the role: a call or tail jump on the `calls` rows (the first one in 69 of 72), the body's start on the `leaf` rows |
+| `role` | what the body does: `calls A,B,C +N` names its first three distinct direct callees in call order, and `+N` how many more it has (73 rows); `leaf` and the body's first instruction for a body with no call (61 rows); `no-op ret stub (folded)` for the shared body `0x0016D6A0`, a lone `ret` (20 rows); `dtor + free` for a destructor that frees through `0x00809950` (7 rows); `scalar-deleting dtor via` and the destructor it calls (2 rows); `setter this[+0xN] = arg` for a body that stores its argument at that offset (11 rows) |
+| `cite` | one instruction of the body that shows the role: a call or tail jump on the `calls` rows (the first one in 70 of 73), the body's start on the `leaf` rows |
 
 In gi-render-commands-render-block-opcode-isa.tsv each row is one block opcode, 47 rows: `level` 1 for the seven
 that `0x0060A410` handles, 2 for the 40 it passes to `0x00607410`.

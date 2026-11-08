@@ -5290,7 +5290,6 @@ addr	name	derived_arity	int_regs	classes	class_names	slots
 0x00786CA0	FUN_00786ca0	3	rcx,rdx,r8	4	PPFX::IGPUBaseTexture;PPFX::IGPUCubeTexture;PPFX::IGPUTexture;PPFX::IGPUVolumeTexture	19
 0x00786D00	FUN_00786d00	1	rcx	1	PPFX::IGPUTexture	7
 0x00786DD0	FUN_00786dd0	1	rcx	1	PPFX::IGPUTexture	8
-0x00786F42	FUN_00786f42	2	rcx,rdx	1	btBoxShape	28
 0x00787080	FUN_00787080	4	rcx,rdx,r9	1	PPFX::IGPUTexture	9
 0x007871F0	FUN_007871f0	3	rcx,rdx,r8	1	PPFX::IGPUTexture	20
 0x00787230	FUN_00787230	3	rcx,rdx,r8	1	PPFX::IGPUTexture	21

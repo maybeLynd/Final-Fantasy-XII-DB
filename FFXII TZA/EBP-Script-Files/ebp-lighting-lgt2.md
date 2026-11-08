@@ -153,11 +153,14 @@ The rows, once per light set (the nine trees carry the same bytes):
 Map packs carry the same section as their slot 17 ([map_ctrl pack](../World-Areas-And-Travel/mpk-map-pack.md)): 212 light
 sets with `+0x08` 0 in all, chunk type 7 in 20 of them, and their own rows beside that page.
 
-Each of the 20 type-7 chunks is 28 bytes, three sets for the selectors 0 to 2. The sets are listed only when the section
-has no type-0 range (Which records are lit, below), and 16 of the 20 have one, so only the map light sets of `gil0102`,
-`mfr0105`, `mnt0109` and `wdl0107` change their lights with the weather.
-[`mpk-map-pack-lgt2-lit-by-slot.tsv`](../World-Areas-And-Travel/mpk-map-pack-lgt2-lit-by-slot.tsv) gives the records group 0
-lists on entry for each map and weather slot.
+Each of the 20 type-7 chunks is 28 bytes, three sets for the selectors 0 to 2. The sets are listed only when the
+section has no type-0 range (Which records are lit, below), and 16 of the 20 have one, so only the map light sets
+of `gil0102`, `mfr0105`, `mnt0109` and `wdl0107` change their lights with the weather slot. In play `mfr0105` does
+not: each of its two maps (fields 545 and 1211) has one slot that the roll reaches and none that a setup script
+sets.
+
+[`mpk-map-pack-lgt2-lit-by-slot.tsv`](../World-Areas-And-Travel/mpk-map-pack-lgt2-lit-by-slot.tsv) gives the records
+group 0 lists on entry for each map and weather slot, and how each slot occurs.
 
 ### Columns of the light set tables
 

@@ -69,8 +69,19 @@ load the slot (`script@pc`) and the number of steps that play from it.
 
 ### Columns of the package and slot tables
 
-Lists of slot numbers, entries and ids are in ascending order and separated by spaces. Where such a column has
-nothing to list, the cell holds `-` instead.
+List cells are separated by spaces, and a list column with nothing to list holds `-`. Each list column keeps one
+of two orders, read from the package bytes:
+
+- Ascending, with no repeats: `slots_used` (the slots whose directory pair is not `{0, 0}`, in directory order),
+  `slots_loaded`, `slots_never_loaded`, `loads_of_empty_slots`, `list_slots`, `list_slots_never_loaded`,
+  `cue_entries` and `loaded_by` (by script name, then step offset). `same_bytes_in` is in alphabetical order,
+  `fst_kind_id` by kind, then id, and `member_tags` by tag, which is also the members' order in each `@FRP`
+  offset table.
+- In the order the file stores them: `part_sizes` (part 0, then part 1, as stored after the count), `spp1_ids`
+  (position *i* is list entry *i*), `sesep_ids` (the `SeSep` records in walk order, the same order as
+  `spp1_ids`) and `bank_names` (one per cue, in cue-table order). In 189 rows, 21 lists in each of the nine
+  folders, `spp1_ids` is not ascending, such as `606195 606196 606164 606171 606186 606197` in slot 0 of
+  `alc_z0104`.
 
 | Column | Holds |
 |---|---|
@@ -99,10 +110,11 @@ nothing to list, the cell holds `-` instead.
 | `cue_entries` | the distinct entries those cue words name; the placeholder where `cue_sites` is 0 |
 | `format_page` | the page that describes the payload's format |
 | `split_count` | in pkfl-snd-slots-rows.tsv, the part count of the two-part container in slots 0 to 7: 2 on all 18,432 such rows; empty on the 2,682 `WD` rows |
+| `part_sizes` | the two part sizes stored after the count, part 0 then part 1; `0 0` when both parts are empty; empty on `WD` rows |
 | `split_end_equals_size` | `yes` when the second part ends at the slot's size (18,423 rows); `no 0x100` on the 9 rows of slot 6 of `bhm_c0102`, the list with no records part |
 | `spp1_magic` | `SPP1` when the first part is a sound list (4,095 rows), empty otherwise |
 | `spp1_count` | the list's id count (`+0x04`); 0 when the slot holds no list, empty on `WD` rows |
-| `spp1_ids` | the list's ids |
+| `spp1_ids` | the list's ids in stored order: the id at position *i* is list entry *i* (`+0x20 + 4 × i`), the entry a play step names |
 | `bank_length` | the list's `bankLength` (`+0x08`), the bytes of `SeSep` records to open |
 | `has_map_no` | the list's `hasMapNo` (`+0x10`): 1 on 2,871 rows, 0 on 1,224 |
 | `map_no` | the list's `mapNo` (`+0x12`): a map number, or 65535 (`0xFFFF`) on 1,215 rows |

@@ -18,9 +18,20 @@ the C runtime that Windows provides, not by code inside the executable.
 ### Scalar maths comes from the system C runtime
 
 The executable imports 45 functions from `api-ms-win-crt-math-l1-1-0.dll`, the API-set name the
-Windows loader resolves to the system's universal C runtime, so their algorithms and coefficients
-are those of the installed runtime. 34 of them have an import stub in the run at `0x00861E90` (for
-example `sqrtf` at `0x00861F14`, slot `0x008C2BB8`); the other 11 are called only through their slot.
+Windows loader resolves to the system's universal C runtime, `ucrtbase.dll`. 34 of them have an import stub in
+the run at `0x00861E90` (for example `sqrtf` at `0x00861F14`, slot `0x008C2BB8`); the other 11 are called only
+through their slot.
+
+27 of the 45 are approximations, so the low bits of their results are those of the installed runtime's
+version: `sinf`, `cosf`, `tanf`, `asinf`, `acosf`, `atanf`, `atan2f`, `expf`, `logf`, `log2f`, `log10f`,
+`powf`, `_hypotf`, `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `atan2`, `exp`, `log`, `log10`, `pow`, `sinh`,
+`cosh` and `tanh`.
+
+The other 18 give the same result on every runtime: `sqrt` and `sqrtf` are correctly rounded, as IEEE 754
+requires; `floor`, `floorf`, `ceil`, `ceilf`, `fmod`, `fmodf`, `modf`, `modff`, `frexp` and `ldexp` are exact;
+`_dtest`, `_fdtest`, `_fdclass`, `_isnan` and `_finite` classify a value; `__setusermatherr` installs a
+handler.
+
 Together they are reached from 1,563 call or jump sites:
 
 | Routine | Sites | Routine | Sites |
@@ -202,8 +213,9 @@ the three: the probe's own reads are its loads of `0x02EAED88` (`0x008094B2`) an
 
 - Hooking the `sqrtf` slot `0x008C2BB8` sees every scalar square root the game computes except the four
   `sqrtss` sites; it does not see the sound engine's four-wide routines.
-- The scalar results come from the installed C runtime, so a replacement routine has to match that
-  runtime's results, not a textbook formula, to keep identical low bits.
+- The 27 approximating imports return the installed runtime's results, so a replacement for one of them has to
+  match that runtime's version, not a textbook formula, to keep identical low bits; `sqrtf`, `sqrt`, `floor`,
+  `ceil` and the other 14 give the same result on every runtime.
 - Write facing values in radians and keep them within ±4pi, or wrap them yourself: above that
   `0x0033CB70` can return an angle outside [-pi, pi].
 - Range tests built on `0x004686D0` and `0x003A1960` are cylinders; a replacement that includes height

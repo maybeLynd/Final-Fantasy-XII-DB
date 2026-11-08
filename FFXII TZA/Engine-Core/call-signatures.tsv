@@ -28115,7 +28115,6 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x00786D00	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	52
 0x00786DD0	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	73
 0x00786F10	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	18
-0x00786F42	2	rcx,rdx	-	-	-	8
 0x00786F70	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	71
 0x00787080	4	rcx,rdx,r9	-	-	r8,xmm0,xmm1,xmm2,xmm3	99
 0x007871F0	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	16

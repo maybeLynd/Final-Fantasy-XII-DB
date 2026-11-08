@@ -289,8 +289,8 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 10,632 |
-| empty | 33 |
+| `resolved` | 10,641 |
+| empty | 24 |
 | `does not ship`, with the fact | 2 |
 
 The two `does not ship` rows are `motionread` calls that read entry 1 of `frs_d01.mot`, an empty entry. A row whose

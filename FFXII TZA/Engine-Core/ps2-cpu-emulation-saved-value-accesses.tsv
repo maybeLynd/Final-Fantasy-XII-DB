@@ -1,3 +1,2 @@
 function	name	site	disp	kind	instruction	route	note
-0x0036D8E0	FUN_0036d8e0	0x0036D906	0x0	r	movups xmm0, xmmword ptr [r9 + rcx*8 + 0x2da0800]	image-base-relative ARRAY 0x02EC0800 stride=0x10 count=32 base+0x0 (r9 = 0x00120000 from 0x0036D8EE, rcx = 2 x entry)	restore: reads each saved value and stores it to the saved address (0x0036D90F)
-0x0036D930	FUN_0036d930	0x0036D977	0x0	w	movups xmmword ptr [r9 - 0x10], xmm0	route-seeded ARRAY 0x02EC0800 stride=0x10 count=32 base+0x10	
+0x0036D930	FUN_0036d930	0x0036D977	0x0	w	movups xmmword ptr [r9 - 0x10], xmm0	route-seeded ARRAY 0x02EC0800 stride=0x10 count=32 base+0x0	host: this function

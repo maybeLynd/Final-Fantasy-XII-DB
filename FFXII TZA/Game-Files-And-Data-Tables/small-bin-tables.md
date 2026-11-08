@@ -75,15 +75,15 @@ The button legend host is the `0x3F8`-byte widget kept at `0x0209C498` with proc
 | `+0x0CC` | `u16` | openMs | the pane's opening time in milliseconds, 200 on construction (`0x0029E293`, a dword store with `+0xCE`), set by `0x0029E750` (`0x0029E75C`); `0x0029E3B0` writes it into the new pane's run length (`0x0029E43D`-`0x0029E453`) and the pane turns it into frames, ms x 60 / 1000 (`0x0029D634`-`0x0029D648`) |
 | `+0x0CE` | `u16` | closeMs | the pane's closing time in milliseconds, 200 on construction (`0x0029E293`), set by `0x0029E6B0` (`0x0029E6BC`); `0x0029DF20` writes it into the closing pane's run (`0x0029DF3C`-`0x0029DF55`) and the pane turns it into frames (`0x0029D6B6`-`0x0029D6CA`) |
 | `+0x0D0` | `u16` | showDelay | frames before the procedure's tick shows the legend of scene `+0xD2` through `0x0029E330` (`0x0029E217`-`0x0029E23F`); 0 on construction (`0x0029E29D`) and set by no function, so the countdown never runs |
-| `+0x0D2` | `u16` | showScene | the scene the delayed show passes to `0x0029E330` (`0x0029E238`); written by no function |
+| `+0x0D2` | `u16` | showScene | the scene the delayed show passes to `0x0029E330` (`0x0029E238`); zeroed with the rest of the `0x3F8` bytes by the constructor `0x002465F0` (memset at `0x00246626`); written by no other function |
 | `+0x0D4` | `u16` | paneCloseDelay | frames before the tick closes the open pane with `0x0029DF20` (`0x0029E1F9`-`0x0029E212`); 0 on construction with `+0xD6` (`0x0029E2A4`) and set by no function |
 | `+0x0D6` | `u16` | closeDelay | frames before the tick closes the whole host (`0x0029E1BE`-`0x0029E1E7`); 0 on construction (`0x0029E2A4`) and set by no function |
-| `+0x0D8` | `u8[128]` | gap0D8 | read and written by no function; nothing fixes its width |
+| `+0x0D8` | `u8[128]` | gap0D8 | zeroed with the rest of the `0x3F8` bytes by the constructor `0x002465F0` (memset at `0x00246626`); read by no function; nothing fixes its width |
 | `+0x158` | `void*` | openPane | the pane showing the legend, one of the two at `+0x160` and `+0x2A8`: `0x0029E3B0` picks `+0x160` + `0x148` x `+0x3F0` (`0x0029E414`-`0x0029E434`); `0x0029DCE0` places it (`0x0029DCFC`); `0x0029DDF0` compares the new legend with its `+0xD0` (`0x0029DE09`, `0x0029DE47`); `0x0029DF20` closes it and clears this (`0x0029DF30`-`0x0029DF6C`); `0x0029DFB0` and `0x0029E6D0` read it (`0x0029DFCE`, `0x0029E6DF`); 0 on construction and when the host closes (`0x0029E2AA`, `0x0029E197`) |
 | `+0x160` | `u8[328]` | pane0 | the first legend pane, a `0x148`-byte widget with procedure `0x0029D550` that `0x0029D4D0` builds in place through `0x00245000`; asked to close when the host closes (message 15, `0x0029E16F`-`0x0029E176`) |
 | `+0x2A8` | `u8[328]` | pane1 | the second legend pane, built and closed as `+0x160` (`0x0029E17B`-`0x0029E189`) |
 | `+0x3F0` | `u8` | nextPane | which pane opens next, 0 or 1: 0 on construction (`0x0029E2B6`); `0x0029DF20` flips it when it closes a pane (`0x0029DF77`-`0x0029DF81`); `0x0029E3B0` reads it (`0x0029E41B`) |
-| `+0x3F1` | `u8[7]` | tail3F1 | read and written by no function; nothing fixes its width |
+| `+0x3F1` | `u8[7]` | tail3F1 | zeroed with the rest of the `0x3F8` bytes by the constructor `0x002465F0` (memset at `0x00246626`); read by no function; nothing fixes its width |
 
 ### The small tables
 
@@ -317,8 +317,12 @@ window with sub-selector 7, beside kinds 4, 6 and 7 with sub-selectors 3, 5 and 
   read through the 32-bit sums (`0x0029DA8D`, `0x0029DAA4`, `0x0029DB08`, `0x0029DBF6`, `0x0029DC5E`), so they reach
   the file only while its buffer lies below 4 GB.
 - **Showing.** `0x0029E330(scene)` returns at once while the host `0x0209C498` or the file `0x0209C4A0` is null
-  (`0x0029E349`-`0x0029E35B`). Otherwise it builds the legend on its stack (`0x0029DA70`) and `0x0029DDF0` copies it
-  into the HUD object `[0x0209C498] + 0x158` at `+0xD0` only when it differs.
+  (`0x0029E349`-`0x0029E35B`). Otherwise it builds the legend on its stack (`0x0029DA70`) and hands it to `0x0029DDF0`,
+  which closes the open pane (`0x0029DF20`) when the legend has no entries.
+- **Same legend.** When `a`, `b`, the entry count, each entry's name and bit `0x4` of its flags equal those of the
+  legend at `+0xD0` of the open pane `[0x0209C498] + 0x158`, `0x0029DDF0` only copies each entry's label, flags and
+  byte `+0x13` into it (`0x0029DE62`-`0x0029DEE5`). Any other legend, and any legend while no pane is open, goes to
+  `0x0029E3B0`, which opens the other pane.
 - **Placing.** `0x0029E330` then clears the host's `+0xC4` and `+0xC6` with one dword store and places the
   pane with `0x0029DCE0` (`0x0029E381`, `0x0029E387`). Its callers are menu screens (`0x00295D20`, `0x0029E110`,
   `0x002B7B80`, `0x002BAF80`, `0x002D5EB0`, `0x005789D0`).
@@ -344,14 +348,16 @@ window with sub-selector 7, beside kinds 4, 6 and 7 with sub-selectors 3, 5 and 
   object's panes, `[0x0209C498] + 0x160 + 0x148 x [+0x3F0]`, under it (`0x00246AD0`). It copies up to four entries,
   their two strings, flags `& 0x3FFF` and byte `+0x13`, and measures the names (`0x0029CD90`) for the widest,
   `+0xC1`, while the pane's `+0xC0` is 0.
-- **Repeats.** An entry whose two strings equal one of the old legend's gets bit `0x8000`, and the old one bit
-  `0x4000`, before `0x0029DCE0` runs. `0x0029DFB0()`, from `0x0029DCE0`, returns the smallest difference between the
-  first entry's width, with the argument of a leading `0F 5` code (`0x003FFAB0`), and each entry's width.
+- **Repeats.** `0x0029E3B0` walks the new legend and the old pane's legend from their last entries in step,
+  skipping entries whose flags have bit `0x4`; when the two entries of a step have equal strings, the new one gets
+  bit `0x8000` and the old one bit `0x4000` (`0x0029E5CD`-`0x0029E67F`), before `0x0029DCE0` runs.
+- **Widths.** `0x0029DFB0()`, from `0x0029DCE0`, returns the smallest difference between the first entry's width,
+  with the argument of a leading `0F 5` code (`0x003FFAB0`), and each entry's width.
 - **Colours.** `0x0029D9D0(pane, entry, node)`, from the pane's `0x0029D550`, colours a node by the entry's flags:
   bit `0x1` colour 3, bit `0x2` colour 7, bit `0x8` colour `0x106`, else 0 (`0x002DD7E0`); unless bit `0x8000` is set
   it scales the alpha by the pane's `+0x140` / 128, `a = (a * [pane + 0x140]) >> 7` (`0x0029DA44`-`0x0029DA56`).
 - `0x0029E770(a, b)` writes the two words at `[0x0209C498] + 0xC0` and `+0xC2`; the location map `0x002BA700`, the
-  special-attack window `0x002D5EB0` and `0x0055E9E0` call it.
+  special-attack window `0x002D5EB0`, the quest list `0x005789D0` and `0x0055E9E0` call it.
 
 ### Quest window texts
 
@@ -374,15 +380,18 @@ with a higher priority (`0x003B538C`-`0x003B5392`). The winner's actor word is t
 
 `0x003B4B60(actor, id)` fills entry 0 when `id` is the first id of the table `0x01EEBAA0` (`0x002EA030(0)`), and entry 1
 when it is the second. The entry gets the actor, the effect from byte `+0xCD` (entry 0) or `+0xCE` (entry 1) of the
-actor's `0x003E56C0` record, the id as its priority byte and state 1. Before entry 1 takes a new actor, the old actor's
-effect ends (`0x003E6AA0(record, 2)`) and the state becomes 2. Each routine compares the winning entry before and after
-it runs, reading each entry as one qword with `cmove`/`cmovb`, and calls `0x003B4FD0` when the winner changed.
+actor's `0x003E56C0` record, the id as its priority byte and state 1, but only when the actor is not −1, its record
+is live and that byte is non-zero (`0x003B4BF4`-`0x003B4C31`, `0x003B4CCA`-`0x003B4CFD`).
+
+Before entry 1 takes a new actor, the old actor's effect ends (`0x003E6AA0(record, 2)`) and the state becomes 2.
+Each routine compares the winning entry before and after it runs, reading each entry as one qword with
+`cmove`/`cmovb`, and calls `0x003B4FD0` when the winner changed.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x02B40509` | `u8` | 0 (zero-filled tail of `.data`) | entry 0's priority: the id `0x003B4B60` was given | `0x003B4B60` (`0x003B4C4A`); with the word at `0x02B40508`: `0x003B53C0`, 0 (`0x003B53DA`), `0x003B4DA0` (`0x003B4DEF`), `0x003B5180` (`0x003B5222`) | only as part of the qword at `0x02B40508` (`0x003B4B8A`, `0x003B4D3F`, `0x003B4E7D`, `0x003B4F7B`, `0x003B51A7`, `0x003B52BA`, `0x003B536F`, `0x003B55FC`) |
-| `0x02B4050A` | `u8` | 0 (zero-filled tail of `.data`) | entry 0's state: 0 clear, 1 active, 2 ended | `0x003B53C0`, 0 (`0x003B53E3`); `0x003B4B60`, 1 (`0x003B4C51`); `0x003B4DA0` (`0x003B4DF6`); `0x003B4E50` (`0x003B4F01`); `0x003B4FD0`, 2 (`0x003B5047`); `0x003B5180` (`0x003B5229`); `0x003B5520`, 2 (`0x003B557D`) | `0x003B4B60` (`0x003B4B6A`, `0x003B4BD6`, `0x003B4D24`); `0x003B4E50` (`0x003B4E56`, `0x003B4F55`); `0x003B4FD0` (`0x003B4FF2`); `0x003B5180` (`0x003B518A`, `0x003B52A1`); `0x003B5340` (`0x003B5354`); `0x003B5470` (`0x003B549A`); `0x003B5520` (`0x003B5528`, `0x003B55E4`); and as part of the qword at `0x02B40508` (`0x003B4B8A`, `0x003B4D3F`, `0x003B4E7D`, `0x003B4F7B`, `0x003B51A7`, `0x003B52BA`, `0x003B536F`, `0x003B55FC`) |
-| `0x02B4050C` | `i32` | 0 (zero-filled tail of `.data`) | entry 0's actor, −1 no actor | `0x003B53C0`, −1 (`0x003B53D0`); `0x003B4B60`, the actor (`0x003B4C37`); `0x003B4DA0`, −1 (`0x003B4DE5`); `0x003B5180`, −1 (`0x003B5218`) | `0x003B4B60`, the whole word (`0x003B4BCC`); its low 16 bits as the actor index: `0x003B4DA0` (`0x003B4DA6`), `0x003B4E50` (`0x003B4EAF`), `0x003B4FD0` (`0x003B4FFB`), `0x003B5180` (`0x003B51E2`), `0x003B5520` (`0x003B5531`); and as part of the qword at `0x02B40508`, as for `0x02B40509` |
+| `0x02B4050A` | `u8` | 0 (zero-filled tail of `.data`) | entry 0's state: 0 clear, 1 active, 2 ended | `0x003B53C0`, 0 (`0x003B53E3`); `0x003B4B60`, 1 (`0x003B4C51`); `0x003B54C0`, 2 (`0x003B54FE`, `0x003B5508`), through the entry address `0x003B4B60` passes it (`0x003B4BE8`); `0x003B4DA0` (`0x003B4DF6`); `0x003B4E50` (`0x003B4F01`); `0x003B4FD0`, 2 (`0x003B5047`); `0x003B5180` (`0x003B5229`); `0x003B5520`, 2 (`0x003B557D`) | `0x003B4B60` (`0x003B4B6A`, `0x003B4BD6`, `0x003B4D24`); `0x003B4E50` (`0x003B4E56`, `0x003B4F55`); `0x003B4FD0` (`0x003B4FF2`); `0x003B5180` (`0x003B518A`, `0x003B52A1`); `0x003B5340` (`0x003B5354`); `0x003B5470` (`0x003B549A`); `0x003B5520` (`0x003B5528`, `0x003B55E4`); and as part of the qword at `0x02B40508` (`0x003B4B8A`, `0x003B4D3F`, `0x003B4E7D`, `0x003B4F7B`, `0x003B51A7`, `0x003B52BA`, `0x003B536F`, `0x003B55FC`) |
+| `0x02B4050C` | `i32` | 0 (zero-filled tail of `.data`) | entry 0's actor, −1 no actor | `0x003B53C0`, −1 (`0x003B53D0`); `0x003B4B60`, the actor (`0x003B4C37`); `0x003B4DA0`, −1 (`0x003B4DE5`); `0x003B5180`, −1 (`0x003B5218`) | `0x003B4B60`, the whole word (`0x003B4BCC`); its low 16 bits as the actor index: `0x003B4DA0` (`0x003B4DA6`), `0x003B54C0` (`0x003B54C6`, through the entry address `0x003B4B60` passes it at `0x003B4BE8`), `0x003B4E50` (`0x003B4EAF`), `0x003B4FD0` (`0x003B4FFB`), `0x003B5180` (`0x003B51E2`), `0x003B5520` (`0x003B5531`); and as part of the qword at `0x02B40508`, as for `0x02B40509` |
 | `0x02B40511` | `u8` | 0 (zero-filled tail of `.data`) | entry 1's priority: the id `0x003B4B60` was given | `0x003B4B60` (`0x003B4D16`); with the word at `0x02B40510`: `0x003B53C0`, 0 (`0x003B53F7`), `0x003B4DA0` (`0x003B4E37`), `0x003B5180` (`0x003B5284`) | `0x003B4B60` (`0x003B4BA0`, `0x003B4D55`); `0x003B4E50` (`0x003B4E8F`, `0x003B4F8D`); `0x003B5180` (`0x003B51BD`, `0x003B529A`); `0x003B5340` (`0x003B538C`); `0x003B5520` (`0x003B5610`); and as part of the qword at `0x02B40510` (`0x003B4BAB`, `0x003B4D60`, `0x003B4E9A`, `0x003B4F98`, `0x003B51C8`, `0x003B52D0`, `0x003B5392`, `0x003B5616`) |
 | `0x02B40512` | `u8` | 0 (zero-filled tail of `.data`) | entry 1's state: 0 clear, 1 active, 2 ended | `0x003B53C0`, 0 (`0x003B5400`); `0x003B4B60`, 2 (`0x003B4CC3`) and 1 (`0x003B4D1D`); `0x003B4DA0` (`0x003B4E3E`); `0x003B4E50` (`0x003B4F5F`); `0x003B4FD0`, 2 (`0x003B509F`); `0x003B5180` (`0x003B528B`); `0x003B5520` (`0x003B55DE`) | `0x003B4B60` (`0x003B4B92`, `0x003B4C79`, `0x003B4D47`); `0x003B4E50` (`0x003B4E5E`, `0x003B4EF7`); `0x003B4FD0` (`0x003B504E`); `0x003B5180` (`0x003B51AF`, `0x003B5293`); `0x003B5340` (`0x003B5377`); `0x003B5470` (`0x003B547A`); `0x003B5520` (`0x003B5584`, `0x003B5684`); and as part of the qword at `0x02B40510`, as for `0x02B40511` |
 | `0x02B40514` | `i32` | 0 (zero-filled tail of `.data`) | entry 1's actor, −1 no actor | `0x003B53C0`, −1 (`0x003B53ED`); `0x003B4B60`, the actor (`0x003B4D03`); `0x003B4DA0`, −1 (`0x003B4E2D`); `0x003B5180`, −1 (`0x003B5278`) | `0x003B4B60`, the whole word (`0x003B4C6F`) and its low 16 bits (`0x003B4C8D`); its low 16 bits as the actor index: `0x003B4DA0` (`0x003B4DDE`), `0x003B4E50` (`0x003B4F0D`), `0x003B4FD0` (`0x003B5057`), `0x003B5180` (`0x003B523E`), `0x003B5520` (`0x003B5590`); and as part of the qword at `0x02B40510`, as for `0x02B40511` |

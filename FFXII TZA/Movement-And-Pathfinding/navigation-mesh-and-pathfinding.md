@@ -490,13 +490,13 @@ obstacle grid's records, occupancy bytes, mask scratch, count and actor list.
 - [Battle unit fields](../Characters-And-Objects/battle-unit-fields.md): the unit's class byte and blocks.
 - [Movement bodies and separation](movement-bodies-and-separation.md): the collision radii.
 - [`navigation-mesh-run-state-block-accesses.tsv`](navigation-mesh-run-state-block-accesses.tsv): every access to the
-  navigation dataset's header through its pointer `[0x02AEDFB0]` (65 rows).
+  navigation dataset's header through its pointer `[0x02AEDFB0]` (96 rows).
 - [`navigation-mesh-vertex-accesses.tsv`](navigation-mesh-vertex-accesses.tsv): every access to its
-  vertices (from `+0x0C`) (26 rows).
+  vertices (from `+0x0C`) (40 rows).
 - [`navigation-mesh-triangle-accesses.tsv`](navigation-mesh-triangle-accesses.tsv): every access to its
-  triangles (from `+0x10`) (8 rows).
+  triangles (from `+0x10`) (9 rows).
 - [`navigation-mesh-portal-record-accesses.tsv`](navigation-mesh-portal-record-accesses.tsv): every access
-  to its portals (from `+0x14`) (9 rows).
+  to its portals (from `+0x14`) (13 rows).
 - [`navigation-mesh-region-record-accesses.tsv`](navigation-mesh-region-record-accesses.tsv): every access
   to its regions (from `+0x18`) (3 rows).
 - [`navigation-mesh-broad-phase-header-accesses.tsv`](navigation-mesh-broad-phase-header-accesses.tsv): every

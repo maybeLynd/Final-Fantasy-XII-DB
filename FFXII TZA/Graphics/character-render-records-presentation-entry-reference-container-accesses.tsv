@@ -1,23 +1,23 @@
 function	name	site	disp	kind	instruction	route	note
-0x0051F170	PresentationEntryReferenceContainer_InitializeGenericList	0x0051F17A	0x0	w	mov dword ptr [rcx], eax	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F2D0	FUN_0051f2d0	0x0051F2DA	0x0	w	mov dword ptr [rcx], eax	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F170	PresentationEntryReferenceContainer_InitializeGenericList	0x0051F170	0x4	rw	and dword ptr [rcx + 4], 0xfffffffd	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F170	PresentationEntryReferenceContainer_InitializeGenericList	0x0051F176	0x4	rw	or dword ptr [rcx + 4], 1	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F580	PresentationEntryReferenceContainer_ForEachActive	0x0051F5A7	0x4	r	mov ecx, dword ptr [rcx + 4]	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F620	PresentationEntryReferenceContainer_RebaseResolvedPointers	0x0051F637	0x4	r	mov ecx, dword ptr [rcx + 4]	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F170	PresentationEntryReferenceContainer_InitializeGenericList	0x0051F182	0x8	w	mov qword ptr [rcx + 8], r8	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F2D0	FUN_0051f2d0	0x0051F2E3	0x8	w	mov qword ptr [rcx + 8], rax	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F580	PresentationEntryReferenceContainer_ForEachActive	0x0051F5BD	0x8	r	mov rdi, qword ptr [rbx + 8]	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F580	PresentationEntryReferenceContainer_ForEachActive	0x0051F5C3	0x8	r	mov rcx, qword ptr [rbx + 8]	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F620	PresentationEntryReferenceContainer_RebaseResolvedPointers	0x0051F64D	0x8	r	mov rdi, qword ptr [rbx + 8]	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F620	PresentationEntryReferenceContainer_RebaseResolvedPointers	0x0051F653	0x8	r	mov rcx, qword ptr [rbx + 8]	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F170	PresentationEntryReferenceContainer_InitializeGenericList	0x0051F17F	0x10	w	mov dword ptr [rcx + 0x10], edx	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F2D0	FUN_0051f2d0	0x0051F2DC	0x10	w	mov qword ptr [rcx + 0x10], rax	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F580	PresentationEntryReferenceContainer_ForEachActive	0x0051F594	0x10	r	cmp dword ptr [rcx + 0x10], 0	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F620	PresentationEntryReferenceContainer_RebaseResolvedPointers	0x0051F62A	0x10	r	cmp dword ptr [rcx + 0x10], 0	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F170	PresentationEntryReferenceContainer_InitializeGenericList	0x0051F17C	0x14	w	mov dword ptr [rcx + 0x14], eax	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F2D0	FUN_0051f2d0	0x0051F2E0	0x18	w	mov dword ptr [rcx + 0x18], eax	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F2D0	FUN_0051f2d0	0x0051F2D2	0x1C	w	mov qword ptr [rcx + 0x1c], 0xffffffffffffffff	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F580	PresentationEntryReferenceContainer_ForEachActive	0x0051F5CF	0x1C	r	mov eax, dword ptr [rbx + 0x1c]	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051F620	PresentationEntryReferenceContainer_RebaseResolvedPointers	0x0051F65F	0x1C	r	mov eax, dword ptr [rbx + 0x1c]	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
-0x0051B9D0	PresentationEntryReferenceContainer_InitializeStorage	0x0051B9D0	0x30	addr	lea r8, [rcx + 0x30]	seeded on proven entry points: 0x0051BA20, 0x0051B9F0, 0x0051B9D0, 0x0051B970	
+0x0051F170	PresentationEntryReferenceContainer_InitializeGenericList	0x0051F17A	0x0	w	mov dword ptr [rcx], eax	seeded on proven entry point 0x0051B9D0	
+0x0051F2D0	FUN_0051f2d0	0x0051F2DA	0x0	w	mov dword ptr [rcx], eax	seeded on proven entry point 0x0051BA20	
+0x0051F170	PresentationEntryReferenceContainer_InitializeGenericList	0x0051F170	0x4	rw	and dword ptr [rcx + 4], 0xfffffffd	seeded on proven entry point 0x0051B9D0	
+0x0051F170	PresentationEntryReferenceContainer_InitializeGenericList	0x0051F176	0x4	rw	or dword ptr [rcx + 4], 1	seeded on proven entry point 0x0051B9D0	
+0x0051F580	PresentationEntryReferenceContainer_ForEachActive	0x0051F5A7	0x4	r	mov ecx, dword ptr [rcx + 4]	seeded on proven entry points 0x0051B970, 0x0051B9F0	
+0x0051F620	PresentationEntryReferenceContainer_RebaseResolvedPointers	0x0051F637	0x4	r	mov ecx, dword ptr [rcx + 4]	seeded on proven entry point 0x0051B9F0	
+0x0051F170	PresentationEntryReferenceContainer_InitializeGenericList	0x0051F182	0x8	w	mov qword ptr [rcx + 8], r8	seeded on proven entry point 0x0051B9D0	
+0x0051F2D0	FUN_0051f2d0	0x0051F2E3	0x8	w	mov qword ptr [rcx + 8], rax	seeded on proven entry point 0x0051BA20	
+0x0051F580	PresentationEntryReferenceContainer_ForEachActive	0x0051F5BD	0x8	r	mov rdi, qword ptr [rbx + 8]	seeded on proven entry points 0x0051B970, 0x0051B9F0	
+0x0051F580	PresentationEntryReferenceContainer_ForEachActive	0x0051F5C3	0x8	r	mov rcx, qword ptr [rbx + 8]	seeded on proven entry points 0x0051B970, 0x0051B9F0	
+0x0051F620	PresentationEntryReferenceContainer_RebaseResolvedPointers	0x0051F64D	0x8	r	mov rdi, qword ptr [rbx + 8]	seeded on proven entry point 0x0051B9F0	
+0x0051F620	PresentationEntryReferenceContainer_RebaseResolvedPointers	0x0051F653	0x8	r	mov rcx, qword ptr [rbx + 8]	seeded on proven entry point 0x0051B9F0	
+0x0051F170	PresentationEntryReferenceContainer_InitializeGenericList	0x0051F17F	0x10	w	mov dword ptr [rcx + 0x10], edx	seeded on proven entry point 0x0051B9D0	
+0x0051F2D0	FUN_0051f2d0	0x0051F2DC	0x10	w	mov qword ptr [rcx + 0x10], rax	seeded on proven entry point 0x0051BA20	
+0x0051F580	PresentationEntryReferenceContainer_ForEachActive	0x0051F594	0x10	r	cmp dword ptr [rcx + 0x10], 0	seeded on proven entry points 0x0051B970, 0x0051B9F0	
+0x0051F620	PresentationEntryReferenceContainer_RebaseResolvedPointers	0x0051F62A	0x10	r	cmp dword ptr [rcx + 0x10], 0	seeded on proven entry point 0x0051B9F0	
+0x0051F170	PresentationEntryReferenceContainer_InitializeGenericList	0x0051F17C	0x14	w	mov dword ptr [rcx + 0x14], eax	seeded on proven entry point 0x0051B9D0	
+0x0051F2D0	FUN_0051f2d0	0x0051F2E0	0x18	w	mov dword ptr [rcx + 0x18], eax	seeded on proven entry point 0x0051BA20	
+0x0051F2D0	FUN_0051f2d0	0x0051F2D2	0x1C	w	mov qword ptr [rcx + 0x1c], 0xffffffffffffffff	seeded on proven entry point 0x0051BA20	
+0x0051F580	PresentationEntryReferenceContainer_ForEachActive	0x0051F5CF	0x1C	r	mov eax, dword ptr [rbx + 0x1c]	seeded on proven entry points 0x0051B970, 0x0051B9F0	
+0x0051F620	PresentationEntryReferenceContainer_RebaseResolvedPointers	0x0051F65F	0x1C	r	mov eax, dword ptr [rbx + 0x1c]	seeded on proven entry point 0x0051B9F0	
+0x0051B9D0	PresentationEntryReferenceContainer_InitializeStorage	0x0051B9D0	0x30	addr	lea r8, [rcx + 0x30]	seeded on proven entry point 0x0051B9D0	

@@ -114,7 +114,7 @@ are not weighted:
 | 3 | 2, then 1, then stay at 3 | no |
 | 2, or any value other than 1 and 3 (only the debug override can give one, `0x0025ABAA`-`0x0025ABB6`) | `r < 50`: 3, then 1, then stay at 2; `r >= 50`: 1, then 3, then stay at 2 | yes, once, before any probability is read (`0x0025ABB8`) |
 
-Three consequences follow. With `{0, 0, 0}` nothing is eligible and the weather never changes. From
+Three consequences follow. With `{0, 0, 0}` nothing is eligible and the roll never changes the weather. From
 slot 1 or 3 the choice is deterministic and slot 2 wins whenever it is eligible. The draw count per
 roll is 0, 1 or 2 depending on the branch, and a reimplementation must draw the same number of times.
 
@@ -147,8 +147,9 @@ the restore flag dropped the request: after the setup actor's `setweatherslot` a
 of the same zone start, when it lands elsewhere, publishes one slot's combat wind under another slot's
 sky.
 
-Shipped data reaches this: 41 scripted zones author `100, 0, 0`, so a scripted slot 2 or 3 is
-moved to slot 1 by `0x0025ABA0` and the wind class is read from slot 1's entry.
+Shipped data reaches this: 41 zone scripts author `100, 0, 0` and call `setweatherslot`, and 40 of them can set
+slot 2 or 3. The roll then asks for slot 1 (`0x0025ABA0`), the request is dropped, slot 2 or 3 stays with its sky,
+and the wind class is read from slot 1's entry.
 
 ### The environment variant in map_ref.bin
 
@@ -316,7 +317,8 @@ Three readers take the published classes into combat:
   terrain class (`0x003210E0`) or the wind class 2 (`0x00263E20`); the weather and terrain element
   scaling page gives the rule table.
 - `0x003895D0` scales `0x02AEDFE0` by 0.8 and `0x00389610` by 0.5 when the wind class is 2 and bit `0x4` of
-  the action's `+0x1A` is clear.
+  the wielder's formula context `+0x1A` (augment 2, Accuracy Boost) is clear (`0x003895D4`;
+  [Weapon formulas](../Damage-And-Battle-Formulas/weapon-formulas.md)).
 - The AI selector `0x00301AD0` compares the environment class with an operand for equality
   (`0x00303059`-`0x00303063`).
 
@@ -378,27 +380,36 @@ non-zero, so each row carries three per-slot enable bytes at `+8`, `+9` and `+0x
 - the rows of channels 0 and 31 that the slot makes, and how many of them some other slot does not make;
 - the element types their records play, as `0x002FBA60` names them;
 - the pictures those elements draw, and the screen surfaces they sample;
-- the slot's chance from `weather_probability`. A slot whose chance is 0 is never selected by the roll.
+- the slot's chance from `weather_probability`. A slot whose chance is 0 is never selected by the roll; it
+  occurs only when the zone's setup script sets it with `setweatherslot`, which happens for 87 slots in 84 maps
+  (The verbs).
 
 The chain from a row to its pictures is on
 [effect element runtime](../Graphics/effect-element-runtime.md).
 [`weather-class-effects.tsv`](weather-class-effects.tsv) counts the slot-limited rows per combat class and wind class,
-over all slots and over the slots a map can select:
+over all slots, over the slots the roll can move to (chance above 0), and over the slots of chance 0 that the
+zone's setup script sets with `setweatherslot`, which the roll then leaves in place:
 
-- Combat class 0 (fire x0.5, lightning x1.2): 82 of its 90 slots play `NhElementType_VRAIN2`, 67 of the 75 a map can
-  select. It is drawn as untextured lines, 48, 100, 200 or 300 drops an element. The other 8 slots belong to fields
-  that load no bank. 11 slots (10 selectable) also draw four thin white jagged branching vertical lines on black.
-- Combat class 1 (earth x1.2): all 11 play `TsElementType_VMODEL02` with a grey cloudy blotch (8 selectable).
-- Combat class 2 (ice x1.2): all 20 play `TsElementType_SPRITE` (9 selectable). 18 slots (9 selectable) draw
-  scattered white and grey specks and a grey-white cloudy blotch.
-- Combat class 3 (water x1.2): 253 of 352 slots play `TsElementType_VMODEL03` and `TsElementType_VMODEL04` with orange,
-  blue and black marbled swirls, 187 of the 199 a map can select. 88 slots make no zone-start element, 10 of them
-  selectable.
+- Combat class 0 (fire x0.5, lightning x1.2): 82 of its 90 slots play `NhElementType_VRAIN2`, 67 of the 75 the roll
+  can move to and all 4 of chance 0 that a setup script sets. It is drawn as untextured lines, 48, 100, 200 or 300
+  drops an element. The other 8 slots belong to fields that load no bank. 11 slots (10 the roll can move to) also
+  draw four thin white jagged branching vertical lines on black.
+- Combat class 1 (earth x1.2): all 11 play `TsElementType_VMODEL02` with a grey cloudy blotch (8 the roll can move
+  to; no setup script sets one of chance 0).
+- Combat class 2 (ice x1.2): all 20 play `TsElementType_SPRITE`: 9 the roll can move to, and 9 of chance 0 that
+  setup scripts set. Those 18 draw scattered white and grey specks and a grey-white cloudy blotch.
+- Combat class 3 (water x1.2): 253 of 352 slots play `TsElementType_VMODEL03` and `TsElementType_VMODEL04` with
+  orange, blue and black marbled swirls, 187 of the 199 the roll can move to; no setup script sets one of chance
+  0. 88 slots make no zone-start element, 10 of them with a chance above 0.
 - Combat class 4 (no rule): 266 of 1,651 slots have a slot-limited element, 197 of them `TsElementType_VLENSFLARE`.
-  Among the 666 a map can select, it is 177, with 142.
-- Wind class 2 (fire x1.2, water x0.5, wind x1.2): 131 of 203 slots have a slot-limited element, `TsElementType_SPRITE`
-  in 77 and `NhElementType_VRAIN2` in 65. Among the 149 a map can select, it is 99, with 58 and 58.
-- Wind classes 0 and 1 (no rule): 2 of 504 and 508 of 1,417 slots; 2 of 176 and 349 of 632 selectable.
+  Among the 666 the roll can move to, it is 177, with 142; among the 74 of chance 0 that setup scripts set, 34, all
+  `TsElementType_VLENSFLARE`.
+- Wind class 2 (fire x1.2, water x0.5, wind x1.2): 131 of 203 slots have a slot-limited element,
+  `TsElementType_SPRITE` in 77 and `NhElementType_VRAIN2` in 65. Among the 149 the roll can move to, it is 99, with
+  58 and 58; all 13 of chance 0 that setup scripts set have one, `TsElementType_SPRITE` in 11 and
+  `NhElementType_VRAIN2` in 4.
+- Wind classes 0 and 1 (no rule): 2 of 504 and 508 of 1,417 slots; 2 of 176 and 349 of 632 the roll can move to;
+  0 of 13 and 34 of 61 of chance 0 that setup scripts set.
 
 None of the 410 shipped banks names 90 of the 708 fields in `fields_own` or `fields_block`, so those fields' slots
 make no zone-start element.
@@ -440,6 +451,14 @@ actor `setup` of 122 zone scripts and none of the 345 event scripts calls it, so
 changes during a visit. Cutscenes change the map wind instead: 152 event scripts call `setmapwind` 168
 times, and zone `wdl_b01` calls it after its boss; that sets the wind preset and direction through
 `0x002E3D40` mode 1 and leaves the slot and the combat classes alone.
+
+366 of the 1,744 calls set a slot whose chance is 0 in their zone, in 85 zone scripts. 135 of them cannot run:
+127 sit under two tests of one value that exclude each other, and 8 under a test of `nowmap()` against another
+map's id. The other 231, in 84 scripts, set 87 slots of chance 0 in 84 maps (for example Fading Vale, field 463,
+`pbc_a01`, chances 30, 50, 0: `setweatherslot(3)` at offset `0x036C0` when the story counter is outside `0x079E`
+to `0x07B8`, the party comes from one of four maps and a draw of 1 to 100 is above 70).
+
+Such a slot stays for the visit: the verb arms the restore flag, so the roll that follows is dropped.
 
 ### The Giza Plains seasons
 
@@ -550,14 +569,14 @@ The three files row by row, decoded with the layouts above:
 | table | rows | what each row holds |
 |---|---:|---|
 | [`weather-fields.tsv`](weather-fields.tsv) | 1,315 | one field of `map_ref.bin` (row n is field n): its selector, block, area and group, the group's terrain class, and for each weather slot the lane's four bytes, its environment index, the combat class and terrain flag the two lookup tables give it (0 out of range, as the code reads), and the MWeather wind preset, wind class, azimuth sector and elevation class of that selector and slot |
-| [`weather-maps.tsv`](weather-maps.tsv) | 708 | one map with a zone script, by field id: its map and region name, the script, its three chances (`weatherProbability`, the same in all ten language copies), what the roll on entering does from each slot (`0x0025ACA0`, `0x0025ABA0`), each slot's environment index, combat class and wind class from the field's row, and what those classes do to magick damage by element in that slot ([Elements](../Damage-And-Battle-Formulas/elements.md#weather-and-terrain-scaling), before the target's terrain class, and not with Weatherproof). The roll starts from the slot the zone's setup actor leaves, so a script that sets the slot first decides the start |
+| [`weather-maps.tsv`](weather-maps.tsv) | 708 | one map with a zone script, by field id: its map and region name, the script, its three chances (`weatherProbability`, the same in all ten language copies), what the roll on entering does from each slot (`0x0025ACA0`, `0x0025ABA0`), each slot's environment index, combat class and wind class from the field's row, and what those classes do to magick damage by element in that slot ([Elements](../Damage-And-Battle-Formulas/elements.md#weather-and-terrain-scaling), before the target's terrain class, and not with Weatherproof). The roll columns give the roll alone: a slot the zone's setup actor sets stays, whatever its chance, because the roll after it is dropped (`0x0026D951`) |
 | [`weather-mweather-entries.tsv`](weather-mweather-entries.tsv) | 2,328 | every selector 0 to 775 and slot 1 to 3 of `gramap_weatherinfo.bin`: the entry number, its 9 bits, the wind preset, the azimuth sector and the elevation class |
 | [`weather-test-area-ref.tsv`](weather-test-area-ref.tsv) | 321 | one value of `test_area_ref.bin`: the area index, its offset, the area's first and last field and its field count |
 | [`weather-terrain-groups.tsv`](weather-terrain-groups.tsv) | 32 | the `+0x14` table, the terrain class per field group: 0 for 17 groups, 1 for one, 2 for two, 3 for three and 4 for nine |
 | [`weather-sky-instances.tsv`](weather-sky-instances.tsv) | 999 | one sky instance (flag `0x10000000`) of a map pack, over 195 packs: the scene drawn (five packs use another map's scene through `0x01EF9490`), the instance number, flag word and weather slots, the mesh instance and mesh, segments, indices and indexed vertices, `m_extraFlag`, material, effect variant, `TextureSampler` texture and the file it loads; 11 instances have no mesh instance in the scene |
 | [`weather-sky-textures.tsv`](weather-sky-textures.tsv) | 1,052 | one texture binding of a material that a sky instance draws or that binds a texture named `sky`: the scene, material, effect variant, parameter, texture, the file it loads, and how many sky and other instances draw the material |
 | [`weather-slot-effects.tsv`](weather-slot-effects.tsv) | 2,124 | one map of [`weather-maps.tsv`](weather-maps.tsv) and slot: the slot's chance, its environment index, combat and wind class, the effect banks the field loads, the rows of channels 0 and 31 the slot makes and how many other slots do not make, the element types they play with a count (and, for types without a picture, how they draw), the pictures drawn with a count, and the screen surfaces sampled |
-| [`weather-class-effects.tsv`](weather-class-effects.tsv) | 8 | one combat class (0 to 4) or wind class (0 to 2): its combat rule, its slots, how many make a zone-start element and a slot-limited one, and per element type and picture the number of slots whose slot-limited rows play or draw it; then for the slots a map can select (chance above 0), their count, how many make a zone-start element and a slot-limited one, and the element types of those |
+| [`weather-class-effects.tsv`](weather-class-effects.tsv) | 8 | one combat class (0 to 4) or wind class (0 to 2): its combat rule, its slots, how many make a zone-start element and a slot-limited one, and per element type and picture the number of slots whose slot-limited rows play or draw it; then the same four counts (slots, those with a zone-start element, those with a slot-limited one, and the element types of those) for the slots the roll can move to (chance above 0) and for the slots of chance 0 that the zone's setup script sets |
 
 The zone scripts (`ps2data/plan_master/us/plan_map/<area>/<zone>/global/<zone>.ebp`, 769 files,
 the script section at `+0x80`, its `+0x64` section a count of 3 then three bytes) author 17
@@ -572,13 +591,18 @@ distinct probability triples:
 | 0, 0, 100 | 35 | slots 1 and 2 move to 3 |
 | 0, 60, 30 | 24 | from 2 a 60 % keep, else 3; from 3 a 30 % keep, else 2 |
 | 0, 50, 50 | 10 | from 2 and 3, a coin toss between keeping and the other |
-| 30, 50, 0 or 30, 50, 20 | 9 each | the only triples where slot 1 can be kept by a draw |
+| 30, 50, 0 or 30, 50, 20 | 9 each | slot 1 kept 30 %, else 2; 2 kept 50 % |
 | 80, 10, 5 | 5 | slot 1 kept 80 %, else 2; 2 kept 10 %, else the draw between 3 and 1 |
 | 1, 1, 1 | 4 | all three eligible, each kept 1 % |
-| seven others | 1 to 4 | 0, 70, 30 (4); 0, 40, 60; 0, 20, 80; 90, 10, 0; 30, 10, 40; 30, 10, 10 |
+| six others | 1 to 4 | 0, 70, 30 (4); 0, 40, 60; 0, 20, 80; 90, 10, 0; 30, 10, 40; 30, 10, 10 |
 
-296 zones give slot 1 a probability below 100, so about two in five areas can be in a weather other
-than their first slot.
+A roll that starts in slot 1 can keep it by a draw under seven triples, those whose first chance is 1 to 99:
+30, 50, 0; 30, 50, 20; 80, 10, 5; 1, 1, 1; 90, 10, 0; 30, 10, 40 and 30, 10, 10.
+
+296 zones give slot 1 a probability below 100, so the roll can leave slot 1 in them. Of the 473 that give it
+100, 40 of the `100, 0, 0` zones can set slot 2 or 3 from their setup script, and the 43 of `100, 100, 100` keep
+whatever slot they are entered with (25 of them also set slots from `setup`). The table gives what the roll does;
+a slot the setup script sets stays, whatever its triple.
 
 ## Operations
 
@@ -657,7 +681,8 @@ in-image routes to `0x0026D910` are the boot setup, the field runtime pass and t
   `gramap_weatherinfo.bin` (9 bits per selector and slot). Changing one without the other gives a
   weather that never rolls or a roll that never shows.
 - A probability of 0 does not force a change; it makes the slot ineligible when coming from another
-  slot and sends the roll to the alternates when it is current. `{0, 0, 0}` freezes the weather.
+  slot and sends the roll to the alternates when it is current. `{0, 0, 0}` stops the roll. A slot the setup
+  script sets stays even at 0, because the roll after it is dropped.
 - Slot requests saturate silently: `setweatherslot(0)` and `setweatherslot(1)` both select slot 1,
   `setweatherslot(9)` slot 3.
 - The strong-wind combat class is any wind preset of 4 or more; editing a preset across that line

@@ -119,8 +119,8 @@ outside the fit and the constructor.
 
 The constructor `0x001DC5C0` first stores its defaults (`0x001DC5C6`-`0x001DC630`): mode 0, `+0x04` and `+0x08`
 1.0, `+0x0C` and the fitted size 0, one display mode (`+0x20` 1, `+0x24` 0), 60 Hz at `+0x30`, `+0x34` 1,
-`+0x50` 1, zero at `+0x28`, `+0x38`, `+0x40`, `+0x48`, `+0x4C`, `+0x58`, `+0x5C` and `+0x78`, the
-settings' `+0x68` (Monitor) at `+0x60` and the settings' `+0x08` (ScreenMode) at `+0x18`.
+`+0x50` 1, zero at `+0x1C`, `+0x28`, `+0x38`, `+0x40`, `+0x48`, `+0x4C`, `+0x54`, `+0x58`, `+0x5C` and
+`+0x78`, the settings' `+0x68` (Monitor) at `+0x60` and the settings' `+0x08` (ScreenMode) at `+0x18`.
 
 It then calls `0x001DD170` (`0x001DC636`), which enumerates the adapters into a table
 of `0x140`-byte entries at `+0x78` (count `+0x50`), takes `+0x4C` as the adapter `+0x48`, and stores that
@@ -236,7 +236,9 @@ DXGI_MODE_DESC (`0x1C`):
   divides changes nothing on screen.
 - To allow shapes wider than 48:9, raise the float at `0x00900A0C`; the clamp is the only limit.
 - Display modes below 1280 × 720, or at a refresh rate other than 29, 30, 59 or 60 Hz, never
-  appear in the resolution list.
+  appear in the display-mode list. The window-size list still adds the current WindowSize, which the
+  settings parser keeps at 640 × 360 or more ([Game settings](../Saving-Loading-And-Settings/game-settings.md)),
+  and with no usable mode the display-mode list is one entry of the Resolution size at 60/1 Hz.
 
 ## Related
 

@@ -148,9 +148,13 @@ copies seven characters of the name to `+0x34`, terminates it, stores the tag at
 clear (`0x0036C673`-`0x0036C684`), and returns the payload on every path (`0x0036C6A4`). The copy is
 `strncpy(header + 0x34, name, 7)` and the terminator is the byte `+0x3B` (`0x0036C686`-`0x0036C696`).
 
-`0x00369860(payload, caller)` frees a block. A payload whose header lacks the magic, or whose `+0x3E` is
-non-zero, makes it format a dump of `0xB0` header bytes and `0xD0` caller bytes, record the arena in
-`0x022D89BC`, call `0x0036A570(arena, 0xB)` and `exit(1)`.
+`0x00369860(payload, caller)` frees a block. A payload whose header lacks the magic makes it format a dump of `0xB0`
+header bytes and `0xD0` caller bytes; a header whose `+0x3E` is non-zero makes it format
+`TkFreeMain:MCB Broken:from %p` with the caller. Both then record the arena in `0x022D89BC`, call `0x0036A570(arena, 0xB)`
+and `exit(1)` (`0x003698D5`-`0x00369A79`, `0x00369A80`-`0x00369AB7`).
+
+A payload with tag bits and a block whose `+0x14` bit `0x1` is clear get a formatted line from `0x00369860` and are not
+freed (`0x00369892`, `0x00369ABE`).
 
 `0x0036A570(arena, flags, category)` walks an enabled arena and prints nothing. Per flag bit it follows
 the blocks from the heap start `+0x10` (bit `0x1`, building a state label from each header's flags and
@@ -188,10 +192,10 @@ offsets. Four helpers link a header `b` beside a header `a`:
   null pointer (`0x0036C9EB`-`0x0036CA4B`, `0x0036CA52`-`0x0036CAAB`). It takes no arena record, so the free chain's
   ends `+0x90` and `+0x98` are left to its callers.
 
-The carving in `0x0036BC60` uses all of them: it takes the chosen free block off both chains, puts the
-allocation and the remainder on the address chain where the old block was, and puts the remainder on
-the free chain beside the old block's free neighbours. The free `0x00369860`, the resize helpers
-`0x0036C290` and `0x0036C380` (from `0x0036CB00`), `0x0036B2C0` and `0x0036B980` call them too.
+The carving in `0x0036BC60` uses all of them: it takes the chosen free block off both chains, puts the allocation and
+the remainder on the address chain where the old block was, and puts the remainder on the free chain beside the old
+block's free neighbours. The free `0x00369860`, the resize `0x0036CB00` and its helpers `0x0036C290` and `0x0036C380`,
+`0x0036B2C0` and `0x0036B980` call them too.
 
 ### The 32-bit address encoding
 
@@ -276,8 +280,9 @@ hang off `+0x48`.
 - `0x0036C6C0` tests the handle's low 32 bits (`0x0036C6CF`-`0x0036C6DF`), takes the slot as those bits with the
   tag bits cleared, and writes nothing when the slot's header pointer `+0x08` is null (`0x0036C6F2`-`0x0036C6F9`).
   It returns the handle on every path (`0x0036C735`).
-- `0x0036CAD0(payload, size)` resizes a block in the current arena through `0x0036D050`: a size of 0 frees
-  it, a null payload allocates (`0x0036BFE0`), and any other goes to `0x0036CB00`.
+- `0x0036CAD0(payload, size)` resizes a block through `0x0036D050`: a size of 0 frees it, a null payload allocates in the
+  current arena `0x022D89BC` (`0x0036BFE0`), and any other goes to `0x0036CB00` in the arena named by the header's byte
+  `+0x03` (`0x0036D0C6`).
 - In `0x0036D050` a size of 0 frees a non-null payload with `0x00369860(payload, 0)` and returns 0
   (`0x0036D05A`-`0x0036D06E`). A null payload goes straight to the pressure path `0x0036BFE0` (`0x0036D075`-`0x0036D08F`),
   so the pressure callback, when one is set, and a compaction run before its first try.
@@ -530,7 +535,7 @@ Block header (payload `+0x40`):
 | `+0x24` | `...` | encoded tree link | one of the three encoded tree links |
 | `+0x28` | `...` | encoded tree link | one of the three encoded tree links |
 | `+0x2C` | `...` | encoded tree link | one of the three encoded tree links |
-| `+0x30` | `...` | encoded link | `0x0020E620`(0), the encoding of a null pointer, written by `0x0036A490` (`0x0036A54D`), `0x0036A100` (`0x0036A167`), `0x0036A190` (`0x0036A20E`), `0x0036B160` (`0x0036B1D6`) and the free `0x00369860` (`0x00369B4C`); the mover `0x0036A2A0` saves and restores it (`0x0036A302`, `0x0036A3FC`), as the resize `0x0036CB00` does (`0x0036CD07`, `0x0036CF64`; `0x0036CDEA`, `0x0036CEB3`, `0x0036CFC4`), and the split `0x0036B980` gives each piece the block's value (`0x0036BACA`, `0x0036BBC4`-`0x0036BBD9`). No other arena instruction writes it. Apart from those copies only the walk `0x0036A570` reads it, and it decodes the value and drops it (`0x0036A6C0`-`0x0036A6C3`) |
+| `+0x30` | `...` | encoded link | `0x0020E620`(0), the encoding of a null pointer, written by `0x0036A490` (`0x0036A54D`), `0x0036A100` (`0x0036A167`), `0x0036A190` (`0x0036A20E`), `0x0036B160` (`0x0036B1D6`) and the free `0x00369860` (`0x00369B4C`); the mover `0x0036A2A0` saves and restores it (`0x0036A302`, `0x0036A3FC`), as the resize `0x0036CB00` does (`0x0036CD07`, `0x0036CF64`; `0x0036CDEA`, `0x0036CEB3`, `0x0036CFC4`), and the split `0x0036B980` copies the block's dword into each piece (`0x0036BB5B`-`0x0036BB5E`) and, after `0x0036A490`, gives the piece the block's value again (`0x0036BACA`, `0x0036BBC4`-`0x0036BBD9`). No other arena instruction writes it. Apart from those copies only the walk `0x0036A570` reads it, and it decodes the value and drops it (`0x0036A6C0`-`0x0036A6C3`) |
 | `+0x34` | `char[8]` | label |  |
 | `+0x3E` | `u16` | guardWord | must be 0 on free |
 | `+0x40` | `...` | payload |  |

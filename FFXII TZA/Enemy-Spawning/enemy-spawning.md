@@ -404,7 +404,7 @@ Initialised .data:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x01F004E0` | `f32[32768]` |  | sine table, table[i] = sin(2 pi i / 32768); entry `0x2000` at `0x01F084E0` = 1.0 |
+| `0x01F004E0` | `f32[32768]` |  | sine table, table[i] = sin(2 pi i / 32768) rounded to f32, except entry 0 = 1.0e-12, entry `0x4000` = 7.9e-13 and entry `0x4001`, one f32 step nearer 0; entry `0x2000` at `0x01F084E0` = 1.0 |
 
 .rdata:
 

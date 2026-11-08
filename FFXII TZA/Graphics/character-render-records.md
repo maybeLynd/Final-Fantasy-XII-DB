@@ -328,6 +328,9 @@ is -1, the parent record is null or either record's model instance (`0x002ED570`
 is -1 (`0x0042F956`-`0x0042F97C`). For such a piece whose `+0x2C8` record (`0x003326C0`) has a kind of `0x11` to
 `0x15`, that record takes the parent's place (`0x0042F982`-`0x0042F9CD`).
 
+When that `+0x2C8` record's `+0x284` is 0, `0x003326C0` answers 0, and the kind read `0x003E5CF0` reads byte
+`+0x6A0` through it with no null test (`0x0042F98A`).
+
 Before the tie it calls `0x0020E600` with the dword at `[0x022C6F28] + 0x48830` and leaves the result unused
 (`0x0042F944`-`0x0042F951`). A child whose word `+0x06` is not the new parent's id and whose own record is live gets
 `0x004288B0(child, -1)` (`0x0042F9D0`-`0x0042FA01`), and a child with a parent (`+0x06` not -1) gets bit `0x40` of

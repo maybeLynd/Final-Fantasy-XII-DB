@@ -207,8 +207,8 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 31,943 |
-| empty | 54 |
+| `resolved` | 31,965 |
+| empty | 32 |
 | `does not ship`, with the fact | 1 |
 
 The one `does not ship` row is a `motionread` call in `bul_a01` that reads entry 1 of `bul_a01.mot`, an empty entry. A

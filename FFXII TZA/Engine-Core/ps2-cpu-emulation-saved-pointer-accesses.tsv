@@ -1,3 +1,2 @@
 function	name	site	disp	kind	instruction	route	note
-0x0036D8E0	FUN_0036d8e0	0x0036D8FE	0x0	r	mov rax, qword ptr [r9 + rax*8 + 0x2da0a00]	image-base-relative ARRAY 0x02EC0A00 stride=0x8 count=32 base+0x0 (r9 = 0x00120000 from 0x0036D8EE)	restore: reads each saved address, entries 0 to the depth word 0x022D8F08 minus 1
-0x0036D930	FUN_0036d930	0x0036D969	0x0	w	mov qword ptr [r8], rax	route-seeded ARRAY 0x02EC0A00 stride=0x8 count=32 base+0x0	
+0x0036D930	FUN_0036d930	0x0036D969	0x0	w	mov qword ptr [r8], rax	route-seeded ARRAY 0x02EC0A00 stride=0x8 count=32 base+0x0	host: this function

@@ -227,8 +227,8 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 30,992 |
-| empty | 108 |
+| `resolved` | 31,040 |
+| empty | 60 |
 | `does not ship`, with the fact | 1 |
 
 The one `does not ship` row is a `motionread` call in `slm_a0381` that reads entry 2 of `slm_a0381.mot`, an empty

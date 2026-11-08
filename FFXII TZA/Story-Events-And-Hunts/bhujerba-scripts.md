@@ -318,8 +318,8 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 82,190 |
-| empty | 130 |
+| `resolved` | 82,265 |
+| empty | 55 |
 | `does not ship`, with the fact | 12 |
 
 The twelve `does not ship` rows are `motionread` calls that read an empty entry: entry 1 of `byu_a04.mot`, entry 1 of

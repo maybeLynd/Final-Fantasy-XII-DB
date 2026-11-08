@@ -35,6 +35,6 @@ address	size	role	evidence
 0x00416FB0	347	post-step B — called on the non-halfrate arm; calls 0x001ED0D0	call-signature
 0x0046D160	147	param helper inside 0x0040AAD0 (with 0x00202C70)	call-signature
 0x0046D200	149	param helper inside 0x0040AAD0 (with 0x00202C70)	call-signature
-0x0046FAE0	84	mode setter — pure leaf, writes from the r13 nibble map (0->0, 1->2, 2->1)	full body (84 B)
+0x0046FAE0	84	easing-curve weight sampler — pure leaf: returns entry (int)(t x (count - 1)), clamped, of curve a x 3 + b at 0x01F20E60 (count 0x01F20A98) and writes nothing; the caller 0x0040ACF0 maps the rig nibble 0->0, 1->2, 2->1 into its curve arguments (0x0040B0BC-0x0040B0D9)	full body (84 B)
 0x0054B1F0	423	parameter-install API — writes amplitude/speed floats into 0x50-stride arrays + record +0x20/+0x24/+0x28, runs 0x0040AA20 and conditionally 0x0040FEF0	body read in full (423 B)
 0x00861F56	6	data row inside the 0x00861F14 math family (not a function)	non-function
