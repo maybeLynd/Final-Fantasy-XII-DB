@@ -127,6 +127,10 @@ For each member, `0x002F88B0` reads the licence count `L` (`0x00324020`) and the
 With three members and Mist Charge offered, Mist Charge is drawn 1 time in 8, and each of the `L` Quickenings
 `7 / (8 × L)` of the time. Without Mist Charge each Quickening is drawn `1 / L` of the time.
 
+These shares are nominal. `rand` is the C runtime's (import `0x008C3098`) and returns 0 to 32,767, so `% 8`, `% 2` and
+`% 1` divide its range evenly, while `% 3` gives remainders 0 and 1 a share of 10,923 in 32,768 and remainder 2 a
+share of 10,922.
+
 `0x002F88B0` also finds the largest `L` among the members first, but the value is dropped before it is read
 (`0x002F88E0`-`0x002F891E`, `0x002F8977`, `0x002F8A94`).
 

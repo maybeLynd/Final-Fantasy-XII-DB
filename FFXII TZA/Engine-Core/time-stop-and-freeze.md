@@ -127,9 +127,9 @@ it tail-jumps to `0x002260A0` (`0x002544E1`), which cancels 22 when its bit is s
 (`0x002544FA`). `0x00252D90()` does the same for the current UI mode `0x02092730` (`0x00252DBE`, `0x00252DB2`) and then
 zeroes `0x02092730` and `0x02092734` on every path (`0x00252DC5`, `0x00252DCB`).
 
-The field-hold bodies run `0x00263560` first (`0x002634B0`, `0x0026A214`). `0x0026A1D0(on, flag)` stores `on` in `0x02099DE6`
-and the flag in `0x02099DE7`, a negative flag with `on` set becoming `0x00377700() == 0` (`0x0026A1EB`-`0x0026A20B`), and then
-raises 5 with the flag `0x02099DE7` = 0, fade -1 and the apply (`0x0026A23C`, `0x0026A250`) or cancels as the table says.
+`0x00263480` runs `0x00263560` before its raise or cancel (`0x002634B0`). `0x0026A1D0(on, flag)` stores `on` in `0x02099DE6`
+and the flag in `0x02099DE7`, a negative flag with `on` set becoming `0x00377700() == 0` (`0x0026A1EB`-`0x0026A20B`), runs
+`0x00263560`, which so reads the new `0x02099DE6` (`0x0026A214`), and then raises 5 with the flag `0x02099DE7` = 0, fade -1 and the apply (`0x0026A23C`, `0x0026A250`) or cancels as the table says.
 
 The mask verbs do more than the request. `0x002E2440(a, b)` passes `a ≠ 0`, with `0x10` ORed in when `b` is
 non-zero, to `0x0029D290`, starts 16 through `0x002274E0`, sets the bits `0x100203` of action-availability row 4

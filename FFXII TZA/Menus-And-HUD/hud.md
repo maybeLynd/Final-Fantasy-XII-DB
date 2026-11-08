@@ -419,6 +419,33 @@ each truncated toward zero, `v = (int)(v0 + (v1 - v0) * f)` with `f = (blend << 
 pair; the later key's curve picks the same blends as a 0-256 ratio, and `0x002752E0` blends the three `i16`
 values into a word and two bytes at `out`.
 
+### The picture popup and selection marker keys
+
+`0x0028A790` reads the five keys at `0x00915F68` with `0x00271AB0(out, keys, 5, t)` (`0x0028A81C`, `0x0028A827`), in the 12-byte
+layout above, at the entry's time `+0x10`:
+
+| Key | Time | x | y | a | b | Curve | w |
+|---|---|---|---|---|---|---|---|
+| 0 | 0 | 0 | 8 | 0 | 128 | 0 | 256 |
+| 1 | 32 | 0 | -8 | 128 | 128 | 1 | 256 |
+| 2 | 128 | 0 | -16 | 128 | 128 | 0 | 256 |
+| 3 | 196 | 0 | -24 | 255 | 255 | 0 | 256 |
+| 4 | 256 | 0 | -32 | 0 | 128 | 2 | 256 |
+
+`b` goes to the sprite's three colour channels (`0x0028A93D`-`0x0028A94D`). `a` times the alpha factor becomes its alpha
+(`0x0028A950`-`0x0028A964`). `x` and `y` less half the picture's cell, times `w / 256`, give one corner,
+and the same with the whole cell added gives the opposite corner (`0x0028A9B5`-`0x0028AA5A`). `w` is 256 on every key, so
+the picture keeps its cell's size.
+
+`0x0028CB90` reads the four 8-byte keys at `0x00915FB0`, for the selection marker:
+
+| Key | Time | Value | First byte | Second byte | Curve |
+|---|---|---|---|---|---|
+| 0 | 0 | 512 | 128 | 0 | 0 |
+| 1 | 64 | 384 | 255 | 128 | 2 |
+| 2 | 128 | 256 | 128 | 128 | 1 |
+| 3 | 256 | 256 | 128 | 128 | 0 |
+
 ### Vector helpers
 
 The HUD parts and the screens around them share a few small vector helpers:

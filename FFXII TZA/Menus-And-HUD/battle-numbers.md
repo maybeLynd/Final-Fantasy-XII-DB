@@ -130,9 +130,11 @@ writes into the next of 64 `0x130`-byte entries on the stack, advanced by what `
 
 1. The opacity is `age x 16` up to age 30. After that it is the colour's alpha byte `+0x0F` less
    `(((a - a/7) / 2 + a/7) / 4) x (age - 30)`, 18 a frame for `a` = 128, and it never rises above that alpha byte.
-2. The size is `6 / distance + 0.3` clamped to 0.8-1.2, times the scale `0x00D22800[min(age, 17)]` (18 floats, 1.8
-   falling to 1.0).
-3. The height comes from `0x00D227E8[min(age + 4, 17)]`.
+2. The size is `6 / distance + 0.3` clamped to 0.8-1.2, times a scale from the 18 floats at `0x00D22800`: x uses index
+   `min(age, 17)` and y and z use `min(age + 4, 17)` (`0x00505620`, `0x00505641`, `0x005057F0`, `0x00505815`). The floats are
+   1.8, 1.7, 1.6, 1.5, 1.4, 1.35, 1.3, 1.25, 1.2, 1.15, 1.1, 1.05, then 1.0 for indices 12 to 17.
+3. The height comes from `0x00D227E8[min(age + 4, 17)]`, 18 signed bytes (`0x00505800`): 0, 2, 10, 18, 25, 30, 32, 30,
+   25, 18, 10, 2, 1, then 0 for indices 13 to 17.
 4. Its four corners alternate the two colours.
 
 ## Layouts
