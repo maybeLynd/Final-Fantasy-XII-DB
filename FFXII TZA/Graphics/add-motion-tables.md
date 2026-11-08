@@ -229,6 +229,24 @@ and its progress value at `+0x30`, past the row (`0x0037CE1E`, `0x0037CE30`). `0
 described with the binding verbs in [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
 against the [story progress](../Story-Events-And-Hunts/story-progress.md) word.
 
+### The individual records
+
+| Table | Rows | One row per |
+|---|---|---|
+| [`add-motion-tables-groups.tsv`](add-motion-tables-groups.tsv) | 382 | group header of a track |
+| [`add-motion-tables-records.tsv`](add-motion-tables-records.tsv) | 3,553 | bone record of a group |
+
+| Column | Table | Meaning |
+|---|---|---|
+| `file`, `track`, `group`, `offset` | both | the `.adm`, the track, the group, and where the item starts in the file |
+| `kind`, `angle`, `bone_or_slot` | groups | the track's kind, its angle (`-` for kind 1) and the driving bone or sequencer slot |
+| `key_or_angles`, `bytes_0c_17`, `id`, `raw` | groups | the three key floats as hex, bytes `+0x0C` to `+0x17`, the `+0x18` word in decimal, and the whole header |
+| `record`, `bone` | records | the position in the group and the bone |
+| `angles_bits`, `angles_degrees` | records | the three rotation floats, as stored and in decimal |
+| `second_triple_bits` | records | the floats at `+0x10`, which the parser copies and the pose code does not read |
+
+`Database/Tools/catalogues/pose_records.py` writes these tables. Every `.adm` ends exactly at its last record.
+
 ## Modding notes
 
 - End every line of `add_motion_list.txt`, the last one included, with CRLF, and end the file with

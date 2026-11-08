@@ -77,6 +77,59 @@ It clears the bit `0x40` mark of every emitter, and `0x00362850` then clears bit
 bit `0x8` of emitter `i` (`0x00362DC0`), so a bit `0x4` emitter plays for that pass; the map pack's switch records call it
 from `0x003E8440` and `0x003E8690`.
 
+### What an emitter is reached by
+
+`0x00362850` walks two lists each update. The first is the list of the listener's cell in the grid at `SP1 +0x08`
+(`0x00362B5E`-`0x00362B76`). The second, at `SP1 +0x10`, is walked on every pass when that offset is not 0
+(`0x00362B84`-`0x00362BB7`).
+
+`0x00362E50` turns the listener's x and z into a column and a row, and returns no list when the point lies outside the
+grid (`0x00362E8D`-`0x00362EE8`). The cell's word holds the list's offset in the section, and 0 means no list
+(`0x00362F35`-`0x00362F3C`).
+
+```python
+column = (x - min_x) / cell_x, from 0 to columns - 1    0x00362EEA-0x00362F17
+row = (z - min_z) / cell_z, from 0 to rows - 1          0x00362EEE-0x00362F27
+cell = column + row * [+0x14]                           0x00362F2B-0x00362F2F
+```
+
+### Shape, distance and volume
+
+`0x003631B0` moves the listener's position to the emitter's nearest point by shape, and `0x00361810` then measures from
+that point. Each line below gives the step and its instructions, with `L` the listener and `P` the point:
+
+```python
+h = L.y - P.y  # 0x00361883, 0x003618C5
+height below 0: h is left out  # 0x00361950-0x0036196E
+h > 0 and below height: h = 0;  h > 0 and not below: h = h - height  # 0x00361970-0x0036197F
+D = sqrt(dx^2 + dz^2 + h^2) - inset, at least 0  # 0x003619A4-0x003619B5
+R = record +0x10, or 0.01 when that is 0 or less  # 0x00361A7A-0x00361A86
+percent = byte +0x0C + weather slot - 1  # 0x00361A8F-0x00361A98
+v = (near - far) * (R - D) / R + far  # 0x00361AA9-0x00361AD4
+volume = v * percent / 100, from 0 to 127  # 0x00361AD6-0x00361AEA
+```
+
+The volume is 0 when the weather byte is 0 or `D` is above `R` (`0x00361A9E`-`0x00361AA7`). The arc comes first: while
+`+0x58` is below pi, a bearing from the point to the listener that is `+0x58` or more away from `+0x54` gives
+volume 0 and pan 64 (`0x0036189E`-`0x0036193F`). `0x00361810` returns `D`, or 1.0 from the arc path (`0x00361B9A`,
+`0x0036192C`).
+
+| Shape | Point | `inset` | `height` | Arc |
+|---|---|---|---|---|
+| 0 ellipse | `0x00361DE0`, extents `+0x30`, `+0x34`, angle `+0x50` | 0 | `+0x38` | `+0x54`, `+0x58` |
+| 1 rectangle | `0x003623C0`, the same fields | 0 | `+0x38` | `+0x54`, `+0x58` |
+| 2 segments | `0x00362230`, nearest of the `+0x14` segments | `+0x30` | `+0x38` | none (4.1415930 passed) |
+| other | the listener's own position (`0x0036327D`-`0x00363283`) | 0 | -1.0 | none (4.1415930 passed) |
+
+Bit `0x80` of the shape byte is cleared for the dispatch. `0x00361B22` reads it: a byte of `0x80` or more skips the pan
+reversal for a sound behind the listener.
+
+An emitter whose `+0x1A` is not negative is a reverb level and starts no sound: `0x003638B0` returns the value without
+reading the list (`0x003638DC`-`0x003638E3`). `0x003631B0` keeps a returned value only when `D` is exactly 0, so only inside
+the shape (`0x00363349`-`0x00363350`). The second list runs after the first and starts from its result, so a level from
+the second list replaces one from the cell's. With no level found, the update starts from the last one sent,
+`0x022CBA80` (`0x00362870`).
+
 ### Reverb
 
 `0x00362850` also sets the reverb level. It takes the value `0x003631B0` returns from the emitters, or the locked value
@@ -250,6 +303,43 @@ Each id entry, `Spp1Id`, 4 bytes:
 The magic, `+0x10`-`+0x18` and `+0x1C` are read by none of the binder, the unbinder, the two verbs, the emitter
 reader and the weather pick.
 
+### The emitter record
+
+A record is 64 bytes for shape 3, 96 for shapes 0 and 1, and `0x40 + count * 0x20` for shape 2.
+
+| Offset | Type | Field | Read by |
+|---|---|---|---|
+| `+0x00` | `i32` | list index | `0x003638B0` (`0x0036397F`) |
+| `+0x04` | `u32` | handle while it plays | `0x003638B0` (`0x003638F6`) |
+| `+0x08` | `u8` | flag bits, set at run time | `0x003638B0` (`0x003638C7`) |
+| `+0x09` | `u8` | shape, low 7 bits | `0x003631B0` (`0x0036326A`), `0x002DE800` (`0x002DE854`) |
+| `0A`, `0B` | `u8` | volume at distance 0 and at the range | `0x00361810` (`0x00361AB1`, `0x00361AA9`) |
+| `+0x0C` | `u8[3]` | one byte per weather slot, out of 100 | `0x00361810` (`0x00361A98`), `0x002DE800` (`0x002DE83D`) |
+| `+0x10` | `f32` | range | `0x00361810` (`0x00361A7A`), `0x002DE800` (`0x002DE887`) |
+| `+0x14` | `i32` | segment count | `0x00362230` (`0x00362264`), `0x002DE800` (`0x002DE8F7`) |
+| `+0x18` | `u8` | third argument's low byte, stored at a play | `0x003638B0` (`0x003639E2`-`0x003639F1`) |
+| `+0x19` | `u8` | volume last sent | `0x003638B0` (`0x00363942`-`0x00363956`) |
+| `+0x1A` | `i8` | negative: a sound; otherwise a reverb level | `0x003638B0` (`0x003638D5`-`0x003638E0`) |
+| `+0x1B` | `u8` | pan width, out of 100 | `0x00361810` (`0x00361891`) |
+| `+0x20` | `f32[4]` | position or centre | `0x00361DE0`, `0x003623C0`, `0x003638B0` (`0x003639A2`) |
+| `30`, `34` | `f32` | extents of shapes 0 and 1; `30` is the inset of shape 2 | `0x00361DE0`, `0x003623C0`, `0x00362230` |
+| `+0x38` | `f32` | height allowance | `0x003631B0` (`0x003632DB`) |
+| `+0x40` | `f32[8]` each` | shape 2: start and direction of each segment | `0x00362230` (`0x00362241`), `0x002DE800` (`0x002DE8F0`) |
+| `+0x50` | `f32` | shapes 0 and 1: rotation | `0x00361DE0`, `0x003623C0`, `0x002DE800` (`0x002DEACD`) |
+| `54`, `58` | `f32` | shapes 0 and 1: arc centre and half-width | `0x003631B0` (`0x003632D6`, `0x003632D1`) |
+
+The listener grid at `SP1 +0x08`, read by `0x00362E50`:
+
+| Offset | Type | Field |
+|---|---|---|
+| `00`, `04` | `f32` | cell size in x and z |
+| `08`, `0C` | `f32` | smallest x and z |
+| `10`, `14` | `i32` | columns and rows |
+| `+0x20` | `u16[]` | one list offset per cell |
+
+A list holds `u16` entries, each an index into the emitter index, with bit `0x8000` on the last
+(`0x00363244`-`0x0036335C`).
+
 ## Shipped data
 
 | | |
@@ -277,6 +367,64 @@ by entry 24 of the ten kind 1 arrays. It lists the eleven ambience ids 1,001 to 
 - Every id's bank ships, `se001/se001001` to `se001/se001011`. The map lists of 11 `frs` zones name 1,004, of 14
   `mic`, `nal` and `slm` zones 1,005, and of 10 `sav` and `tri` zones 1,007; no zone's list names the other eight.
 - [`map-sounds-env99-spp-rows.tsv`](map-sounds-env99-spp-rows.tsv) gives every field and record with its offset.
+
+### Shipped emitters
+
+[`map-sounds-emitters.tsv`](map-sounds-emitters.tsv) decodes all 2,326 emitters of the 456 `SP1` sections by shape.
+[`map-sounds-emitter-segments.tsv`](map-sounds-emitter-segments.tsv) has the 621 segments of the 400 shape 2 emitters.
+[`map-sounds-listener-grids.tsv`](map-sounds-listener-grids.tsv) has one grid per section, and
+[`map-sounds-listener-cells.tsv`](map-sounds-listener-cells.tsv) the 77,656 cells that hold a list.
+`Database/Tools/catalogues/sp1_emitters.py` produces all four.
+
+The emitters come from a field's own pack and the list from its block pack: mode 1 keeps slot 16, and only mode 0
+keeps slot 10 (`0x00378BC0`). Each of the 456 own packs has one block pack. At the 1,865 listed emitters the own
+pack's slot 10 gives the same id, so the first word's meaning does not change between the two lists.
+
+| | |
+|---|---|
+| shapes | 1,364 ellipses, 108 rectangles, 400 segment chains, 454 of shape 3 |
+| sounds | 1,876: 1,865 name a list entry (318 distinct ids, each with a bank), 11 have index -1 |
+| reverb levels | 450 in 449 packs: 447 of shape 3 in the second list and 3 in cell lists; 10 distinct values from 0 to 40 |
+| shape 3 | 447 reverb levels and 7 sounds with index -1 |
+| lists | 454 sections have a second list of one entry, a shape 3 emitter; `lus0115` and `ozm0106` have offset 0 |
+| cell lists | 1,872 emitters are reached only through cells; 1,870 of them are listed in the cell holding their position |
+| grids | 16 columns and 16 rows in all 456 |
+| fields | `+0x04`, `+0x08`, `+0x18` and `+0x19` are 0 in every record |
+| shapes 0 and 1 | rotation 0, arc centre 0 and arc half-width pi in all 1,472, so the arc test does not run |
+| extents | a zero extent in 456 ellipses and 25 rectangles, so their point is the centre |
+| bytes `+0x0C` to `+0x0E` | `100 100 100` in 2,315 records, `100 0 0` in 10 and `90 0 0` in one |
+| shape byte | `0x82` in `bog0106` at `0x4E0`, the only one with bit `0x80` |
+
+`mrm0102` holds a level in both lists, so the second list's level is the one sent.
+
+| Column | Meaning |
+|---|---|
+| `own_pack`, `block_pack` | the pack holding the emitter and the pack giving the list |
+| `record_offset`, `record_bytes` | the record's offset in the `SP1` section and its length |
+| `index_entries` | the emitter index's entries that name the record |
+| `walk`, `cells` | `grid` or `always` (the second list), and the cells whose list names it |
+| `role` | `sound` or `reverb`, from `+0x1A` |
+| `list_index`, `list_count` | the first word, and the entries of the block pack's list |
+| `list_state` | `listed`, `negative`, or `not_read` for a reverb level |
+| `sound_id`, `bank` | the list's id, and its bank under `sead_data_win`; `-` when no entry is read |
+| `shape_byte`, `shape` | the byte as stored, and the name of its low 7 bits |
+| `volume_near`, `volume_far` | `+0x0A` and `+0x0B` |
+| `weather_percent` | the three bytes at `+0x0C` |
+| `range`, `reverb_level`, `pan_width`, `float_1c` | `+0x10`, `+0x1A` for a reverb level, `+0x1B` and the float `+0x1C` |
+| `x`, `y`, `z` | `+0x20` to `+0x28` |
+| `extent_a`, `extent_b`, `rotation` | `+0x30`, `+0x34`, `+0x50`, for shapes 0 and 1 |
+| `height` | `+0x38`, except for shape 3, which is passed -1.0 |
+| `arc_centre`, `arc_half` | `+0x54` and `+0x58`, for shapes 0 and 1 |
+| `radius`, `segments` | `+0x30` and `+0x14`, for shape 2 |
+| `record_hex` | the whole record |
+| segments: `segment`, `segment_offset` | the number, and the offset in the section |
+| segments: `start_*`, `dir_*`, `end_*` | the start, the direction, and their sum |
+| segments: `bits` | the 32 bytes as stored |
+| grids: `grid_offset`, `cell_x`, `cell_z`, `min_x`, `min_z`, `columns`, `rows` | the fields above |
+| grids: `word_18`, `word_1c` | the two words after the row count |
+| grids: `cells_with_list`, `lists` | cells with a list, and distinct lists among them |
+| grids: `always_offset`, `always_entries` | the second list's offset and its indices |
+| cells: `column`, `row`, `cell`, `list_offset`, `entries` | the cell and its list's offset and indices |
 
 ### Event sound lists
 

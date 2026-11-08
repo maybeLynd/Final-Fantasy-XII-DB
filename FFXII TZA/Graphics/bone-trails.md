@@ -247,6 +247,39 @@ Measured over the 1,066 `.cm` models in the archive; the model block is the `@FC
 | colour alpha | the third and fourth colours have alpha 0 in 236 trails |
 | pool | 16 entries; the image 64 × 64 with a 256-entry palette |
 
+[`bone-trail-descriptors.tsv`](bone-trail-descriptors.tsv) lists all 238 descriptors, and
+[`bone-trail-commands.tsv`](bone-trail-commands.tsv) all 10,617 authored commands `0x11`, one row each. Both are
+produced by `Database/Tools/catalogues/bone_trails.py`.
+
+A descriptor's image reference is byte `+0`. When it is not 0, the draw reads an image header at section
+`+0x10` + count × `0x50`, right after the descriptors, with the pixel and palette offsets of words `+2` and `+4` and
+the sizes of bytes `+0xA` to `+0xF` (`0x0051BE6A`-`0x0051BF4A`). The byte is 0 in all 238, and every section ends at its
+last descriptor (`section_span` = `0x10` + count × `0x50`), so every shipped trail draws the engine's image.
+
+`bone` indexes the skeleton's `0x290`-byte node records (`0x003711D0`), one for each `@FTR` node, so it is a `node` of
+[`model-files-cm-ca-ftr-nodes.tsv`](model-files-cm-ca-ftr-nodes.tsv), and each bone is below that model's node
+count.
+
+The commands sit only in `.ca` files: 4,516 under `monster`, 4,064 under `npc`, 1,737 under `chara` and 300 under
+`summon`, 4,254 with value 1 and 6,363 with value 0. The `weapon` and `gadget` folders hold no `.ca`, so their
+`commands_in_folder` is 0: a weapon's trails are reached through the character holding it (`0x00425E70`, `0x0042EF90`).
+
+| Column | Meaning |
+|---|---|
+| `path`, `trail`, `trails` | the model, the descriptor's place, and the section's count `+0` |
+| `section_span` | the section's bytes, to the next `@FCP` section or the payload's end |
+| `file_offset`, `own_image`, `byte_01` | the descriptor's offset in the file, its byte `+0`, its byte `+1` |
+| `bone`, `bone_key`, `bone_parent` | word `+2`, the node's key as `0x00409250` reads it, and its parent (`-` for none) |
+| `owner_word` | word `+4` as stored; at run time `0x003E6770` overwrites it with the owner's record index |
+| `float_08_bits`, `float_08` | float `+8`, its bits and value |
+| `float_0c_bits`, `float_0c` | float `+0xC`, its bits and value |
+| `colour0` to `colour3` | the four colours of `+0x10`, four components each, as stored |
+| `section_head` | the twelve bytes between the count and the first descriptor, hex |
+| `commands_in_folder`, `on_commands_in_folder` | rows of the command table from the model's own folder; those not 0 |
+| `path`, `fmc`, `name` | the `.ca` file; its `@FMC` entry's number in the file and name (command table) |
+| `record`, `sub_record`, `key` | the place in the `@FMC`, and the sub-record's key |
+| `file_offset`, `value`, `command_bytes` | the command's offset, byte `+2` (1 on, 0 off), the whole command in hex |
+
 ## State
 
 - `[0x02CA8420]`: the sixteen entries; `0x02CA8400`-`0x02CA8410` the header.

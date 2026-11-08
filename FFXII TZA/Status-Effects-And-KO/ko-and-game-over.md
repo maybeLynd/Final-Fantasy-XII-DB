@@ -93,6 +93,7 @@ posts `0x0B` when `0x002371B0` is 1, else `0x18` when `0x00237140` is 1, through
 main loop through `0x00254E50` (`0x0022AC73`, `0x00254E61`). It posts Game Over when `0x002805D0` allows it: Game Over is
 armed (`0x022C83E8` bit `0x2`, `0x0035C740`), the screen object's `+0xD4` is 0, and the mode `0x02092730` is 6, 10,
 `0x0F`, `0x11`, `0x12` or `0x13`, or 2 with its `+0xC4` state outside `0x40` to `0x42` (`0x00280630`-`0x0028063C`).
+For mode 2 that state is the screen parameter: 0 for Triangle, `0x21` for Select or L3.
 
 It then also runs `0x00252B40(0x0B)`. It calls `0x0035C7B0(0x0B, 0)` (`0x0027EFC8`), so `0x0035C7B0` skips its
 `0x002E1B10` write (`0x0035C815`).
@@ -122,8 +123,9 @@ Bit `0x200000000` has a second setter: `0x00319F50` sets it on actor timeline co
 not down to 0 (`0x00300520`), unless it is carrying out Revive on itself (`0x0031A042`-`0x0031A0AA`).
 
 Timeline codes reach `0x00319F50` through `0x002EB740` from two senders: the battle effect program `0x003B8670`
-(`0x003B887D`, `0x003B8988`, `0x003B8A1C`, `0x003B9208`), and `0x002FC010`, which sends the queued codes of a finished entry
-of the list `0x02EC3D60` and then code 0 (`0x002FC103`, `0x002FC158`).
+(`0x003B887D`, `0x003B8988`, `0x003B8A1C`, `0x003B9208`), and `0x002FC010`, which sends each queued value of a finished entry
+of the list `0x02EC3D60` with timeline code 0 (`0x002FC085`, `0x002FC103`) and then timeline code 1 with the value 0
+(`0x002FC12D`, `0x002FC158`).
 
 The fall also starts an effect. On action timeline events 2 and 6, a unit with KO, Stone or X-Zone starts battle
 effect `0x78` on itself and keeps its handle in `+0x74`, unless it is an enemy whose class row byte

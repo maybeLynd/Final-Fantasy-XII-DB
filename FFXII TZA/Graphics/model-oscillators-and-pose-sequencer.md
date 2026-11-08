@@ -394,6 +394,28 @@ One row per function, 39 rows, in address order.
 | last frame's end action | stop 67, hold 414, loop 67 |
 | the NPC events (54 blocks) | event 0: snap to 0, 2→1→0 over three ticks each, or 0→2→0; event 1: snap to 2, or 0→1→2; event 2: wait 10, 60 or 250 ticks, then 0→2→0 one tick a step |
 
+The counts above are for variant 0. Up to 12 variants are stored per event, by the spacing of the event offsets, and
+67 models have an enabled record. Only variants 0 to 7 are enabled:
+variants 1 to 7 in 34, 34, 29, 7, 4, 1 and 1 models.
+
+| Table | Rows | One row per |
+|---|---|---|
+| [`model-oscillators-and-pose-sequencer-events.tsv`](model-oscillators-and-pose-sequencer-events.tsv) | 10,200 | event record of each model and variant, enabled or not |
+| [`model-oscillators-and-pose-sequencer-sequences.tsv`](model-oscillators-and-pose-sequencer-sequences.tsv) | 1,408 | choice of a record with a choice table |
+| [`model-oscillators-and-pose-sequencer-rectangles.tsv`](model-oscillators-and-pose-sequencer-rectangles.tsv) | 524 | rectangle table of a record with a choice table |
+
+| Column | Table | Meaning |
+|---|---|---|
+| `path`, `event`, `variant` | all | the `.cm`, the event 0 to 7, and the variant, which the record's sequencer entry keeps |
+| `offset` | events, sequences, rectangles | where the item starts, from the `@FCP` payload |
+| `slot`, `pick`, `rel`, `enabled`, `raw` | events | record bytes `+0x00`, `+0x01`, word `+0x02`, byte `+0x04` and the whole 6 bytes |
+| `source_slot`, `destination_slot`, `choice_table_bytes`, `rectangles`, `choices` | events | the choice table's two texture slots, its bytes `+0x02` to `+0x0B`, the rectangle table's offset from the choice table, and the choice count; `-` when `rel` is 0 or `0xFFFF` |
+| `choice`, `frames`, `steps`, `after` | sequences | the choice, its frame count, each frame as `duration:end action:value`, and the two bytes after the last frame |
+| `destination_x`, `destination_y`, `width`, `height` | rectangles | the rectangle's first four words |
+| `raw_08_0d`, `sources` | rectangles | bytes `+0x08` to `+0x0D`, and the source position of each value the choices use, as `x,y` |
+
+`Database/Tools/catalogues/pose_records.py` writes these tables.
+
 ## Operations
 
 Per frame and model: two phase steps and, per enabled entry, the stages and one apply. A settle of `n`

@@ -365,6 +365,74 @@ The handovers are `0x007CF4F0` (volume, slot 26, `0x007EE500`), `0x007CF4A0` (pi
 (panning, slot 28, `0x007EDE90`) and `0x007CF370` (low-pass ramp `+0x140`, `0x007EDD20`); the filter flag `+0x204` goes to
 `0x007EA9C0`.
 
+## Layouts
+
+A section's offset table follows its name. It holds the layers, then the meters (`0x007D03B0`, `0x007D0400`), then the
+custom point lists (`0x007D0120`) and, after `+0x06` more entries, the volume automation (`0x007D06B0`).
+
+| Offset | Type | Section field | Read at |
+|---|---|---|---|
+| `00`, `01` | `u8` | version, own index | `0x007C5BCF`, `0x007C5B8E` |
+| `02`, `04` | `u16`, `u8` | table offset, name length | `0x007D03CF`, `0x007D03BA` |
+| `+5` | `u8` | layer count | `0x007C5AF1` |
+| `+6` | `u16` | entries between the meters and the automation | `0x007D06D2` |
+| `+8` | `u32` | start sample, kept at music `+0x6BC` | `0x007C4681`, `0x007C4704` |
+| `+12` | `u32` | end sample: the last meter's end and the exit point | `0x007F3ACD`, `0x007C5B9A` |
+| `10`, `14` | `u32` | loop start and loop end, in samples | `0x007C5BE1`-`0x007C5C0B` |
+| `+24` | `u16` | meter count | `0x007C61AE` |
+| `+26` | `u16` | the meter reloaded at a loop | `0x007C1C81`, `0x007C7BA2`-`0x007C7BC2` |
+| `+28` | `i16` | transition instrument | `0x007C2B9F` |
+| `+30` | `u16` | automation point count | `0x007C61C9` |
+| `+32` | `u8` | sync type | `0x007CAB80` |
+| `+33` | `u8` | fade type, kept at `+0x6D4` | `0x007C467C`, `0x007CE283` |
+| `+34` | `i8` | next section; its own index means it loops | `0x007C5B8A`-`0x007C5B92` |
+| `+35` | `i8` | byte tested against the current section | `0x007C2AEF`-`0x007C2AFD` |
+| `+36` | `f32` | fade seconds, kept at `+0x6C4` | `0x007C469D`, `0x007CE291` |
+| `+40` | `f32` | fade start, kept at `+0x6C8` | `0x007C4690`, `0x007CE269` |
+| `+44` | `bar, beat, tick` | end timing | `0x007F3AD7` |
+| `+48` | `f32` | volume | `0x007CE79D` |
+| `+52` | `bar, beat, tick` | loop start timing | `0x007C1CC5`, `0x007CADF1` |
+
+A timing is `i16` bar, `u8` beat and `u8` tick. Each section has its layers as records:
+
+| Offset | Type | Layer field | Read at |
+|---|---|---|---|
+| `+0x04` | `u16` | material in the `mtrl` chunk | `0x007CF860` |
+| `+0x06` | `u16` | 1 when the layer's material loops | `0x007C5B7C` |
+| `+0x08` | `u32` | start, in samples of the section | `0x007C5B5C` |
+| `+0x0C` | `u32` | end, in samples of the section | `0x007C5B9D` |
+
+| Offset | Type | Meter field | Read at |
+|---|---|---|---|
+| `+0x01` | `u8` | flags: `0x1` has a tempo and a start, `0x2` has its own signature | `0x007F39D0`-`0x007F39E1` |
+| `+0x04` | `u8` | flag `0x2` clear: start beat; set: ticks per beat | `0x007F3A07`, `0x007F3B3E` |
+| `+0x05` | `u8` | flag `0x2` clear: start tick; set: ticks per bar | `0x007F3A20`, `0x007F3B29` |
+| `+0x06` | `u16` | start bar | `0x007F39ED` |
+| `+0x08` | `f32` | tempo | `0x007F3B0A` |
+| `+0x0C` | `u32` | start sample | `0x007F39E4` |
+
+A meter without flag `0x2` takes its signature from the nearest earlier meter with it (`0x007F3B4F`-`0x007F3C80`).
+A meter's end is the next meter's start, and the last one's end is section `+0x0C` and `+0x2C`
+(`0x007F3ACD`-`0x007F3AE9`).
+
+### Samples and time
+
+```python
+seconds = samples / rate                                  0x007C2B41-0x007C2B5C, rate is music +0x44 (0x007C6FFC)
+samples per tick = (1 / ticksPerBeat) * (60 / tempo) * rate    0x007F3CD4-0x007F3CF5
+samples per beat = (60 / tempo) * rate                    0x007F3CEE-0x007F3CFC
+samples per bar = ticksPerBar * (60 / tempo) * (1 / ticksPerBeat) * rate    0x007F3CFF-0x007F3D1A
+```
+
+### Three ways music repeats or moves on
+
+- A material loop belongs to the voice. A layer with `+0x06` 1 plays its material with the loop flag, and the feed
+  wraps over the material's `+0x0C` to `+0x10` ([Sound engine](sound-engine.md)).
+- A section loop belongs to the music. When `+0x22` is the section's own index, `0x007C5AC0` brings the position
+  back into `+0x10` to `+0x14` for a layer with flag 0 (`0x007C5B86`-`0x007C5C1D`), and `0x007CC880` restarts it.
+- A request moves between sections. It comes through `0x007C23C0` and lands at a sync point, not at a loop bound
+  (Requests above).
+
 ## Shipped data
 
 Over the 116 `.mab` banks, each with one music:
@@ -379,6 +447,52 @@ Over the 116 `.mab` banks, each with one music:
 
 So the three sections are the three music versions, the mode change has no other mode to go to, and with any shipped music
 commands `0x27` and `0x28` fail their method checks.
+
+### Sections, loops and meters
+
+[`music-sections.tsv`](music-sections.tsv) has one row for each of the 348 sections, and
+[`music-section-meters.tsv`](music-section-meters.tsv) one row for each of their 4,827 meters.
+`Database/Tools/catalogues/music_sections.py` produces both.
+
+| | |
+|---|---|
+| rate | 48,000 in every music and material |
+| sections | version 10, one layer each, sync type 7 |
+| looping sections | 294 with `+0x22` their own index; each has a layer with flag 1 and a material with a loop region |
+| sections that end | 54 with next section -1, none with a loop region |
+| loop bounds | the section's loop region is the material's plus the layer's start in all 294 |
+| layer start | 0 except `bgm_070s`, 19,484 |
+| layer end | equal to the section's end in 317 of 348 |
+| section start | above 0 in 151 |
+| fades | 0.5 seconds and start 0 in all; type 0 in 344, type 1 in 2, type 3 in 2 |
+| empty fields | `+0x06` and `+0x1E` are 0 and `+0x1C` is -1 in all 348 |
+| meters | 759 with their own signature and 4,068 that use an earlier one; tempo from 25.2144985 to 250 |
+
+The meter named by `+0x1A` holds the loop start in all 294. Through that meter, `+0x34` is the timing of the loop
+start's sample in 290 of them, and one tick earlier in the other 4.
+
+| Column | Meaning |
+|---|---|
+| `track`, `section`, `name` | the bank's number, the section and its name |
+| `file_offset`, `version` | the section header's offset in the file, and its version |
+| `sample_rate` | music `+0x44` |
+| `start_sample`, `end_sample`, `loop_start`, `loop_end` | `+0x08`, `+0x0C`, `+0x10`, `+0x14` |
+| `loops_itself`, `next_section` | 1 when `+0x22` is the section's own index, and `+0x22` |
+| `sync_type`, `fade_type`, `fade_seconds`, `fade_start`, `volume` | `+0x20`, `+0x21`, `+0x24`, `+0x28`, `+0x30` |
+| `end_bar`, `end_beat`, `end_tick` | `+0x2C` |
+| `loop_bar`, `loop_beat`, `loop_tick` | `+0x34` |
+| `meters`, `loop_meter` | `+0x18`, `+0x1A` |
+| `word_06`, `automation_points`, `instrument`, `byte_23` | `+0x06`, `+0x1E`, `+0x1C`, `+0x23` |
+| `layer_offset`, `material`, `layer_loops`, `layer_start`, `layer_end` | the layer's offset and fields |
+| `material_offset`, `channels`, `codec`, `material_rate` | the material's offset, `+0x04`, `+0x05`, `+0x08` |
+| `material_loop_start`, `material_loop_end`, `data_bytes` | the material's `+0x0C`, `+0x10`, `+0x18` |
+| `start_seconds`, `end_seconds`, `loop_start_seconds`, `loop_end_seconds` | the four sample fields over the rate |
+| `section_hex`, `layer_hex`, `material_hex` | the records as stored |
+| meters: `meter`, `file_offset`, `flags`, `record_hex` | the number, the offset, `+0x01`, the record as stored |
+| meters: `start_sample`, `end_sample`, `start_seconds` | `+0x0C`, the end as above, and the start over the rate |
+| meters: `start_bar`, `start_beat`, `start_tick`, `end_bar`, `end_beat`, `end_tick` | the timings as above |
+| meters: `tempo`, `ticks_per_beat`, `ticks_per_bar`, `meter_source` | `+0x08`, the signature, and the meter it comes from |
+| meters: `samples_per_tick`, `samples_per_beat`, `samples_per_bar` | the formulas above, in whole samples |
 
 ## Modding notes
 

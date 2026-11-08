@@ -290,8 +290,93 @@ streams and each container's own `@FRM` table:
 | present profiles | all 11,200 have both `moveFrames` and `turnFrames` non-zero, durations 1 to 30 frames, curves inside the file |
 | modes authored | 0-7, 9-12, 16, 21, 22; commonest 12 (2,344), 16 (2,145), 6 (1,908) |
 | blocks | `attack` 4,495, `avoid` 1,216, then `magic`, `ev_treasure`, `ability`, `steal`, `pary_weapon`, `pary_shield` at 608 each |
-| scale | small floats near `5e-6` (`0x36C19F01` in 2,782 profiles), so a `u16` curve value times the scale is a per-frame share below 0.4 |
+| scale | small floats near `5e-6` (`0x36C19F01` in 2,782 profiles), so a `u16` curve value times the scale is a per-frame share of at most 1.0 |
 | pool | 128 entries of `0x60` bytes; the serial wraps at `0xFFFFFF` |
+
+### Every table, profile and command
+
+`Database/Tools/catalogues/animation_movement_profiles.py` reads the 3,164 `.ca` containers and writes three tables:
+
+- [`animation-movement-containers.tsv`](animation-movement-containers.tsv): one row per container, with its shape
+  and every table word.
+- [`animation-movement-profiles.tsv`](animation-movement-profiles.tsv): one row per present profile, 13,267, with
+  the raw samples.
+- [`animation-movement-commands.tsv`](animation-movement-commands.tsv): one row per `0x1A` command, 12,876, with
+  the slot it selects.
+
+| `@FRM` `+8` holds | Containers | Read by |
+|---|---|---|
+| a table of 24 words | 1,195: 607 with profiles from `+0x60`, 588 with every slot empty | modes 0 to `0x15` |
+| one profile, with no table | 1,652, each with one `0x1A` command, of mode `0x16` | mode `0x16` |
+| 0 | 317, with no `0x1A` command | none of the shipped commands |
+
+A table's word `0x16` is 0 in all 1,195, since mode `0x16` does not read the table (`0x003AEFF8`-`0x003AF005`). Its word
+`0x17` is `0x125` in all 1,195, and no command names mode `0x17`.
+
+The step scales with the target distance, and the frame's total is limited by the body's collision radius:
+
+```python
+frames with a step = min(duration, moveFrames) * [0x01DFE0B4]  # 0x003AF064, 0x003AF08A
+step = direction * speed[counter / [0x01DFE0B4]] * distance * scale * [0x01DFE0BC]                 0x003AF0A6-0x003AF0F5
+frame total = min(maxStep, |sum of the steps|)            # 0x003AF220
+share_full = sum of speed[i] * scale                         the curve's share of the distance
+```
+
+`[0x01DFE0B4]` is 1 and `[0x01DFE0BC]` 1.0 at 30 frames a second, and 2 and 0.5 at 60
+([startup constants](../Engine-Core/startup-constants.md)): each sample runs twice at half size, so
+`share_full` does not change with the rate. A mode's direction comes from the builder: modes 3, 4 and `0x10` step
+away from the target (`0x003E63DB`, `0x003E643A`), and every other authored mode goes to the reach point.
+
+A command on an empty slot reads the table's head as its profile. All 24 such commands are in containers whose
+first table word is 0, so the duration is 0 and the entry is freed on its first step (`0x003AF06F`-`0x003AF072`).
+
+| `selected_by` | Profiles | Meaning |
+|---|---|---|
+| `command` | 6,115 | a `0x1A` command of the same container names the slot |
+| `own` | 1,652 | the single profile, named by that container's mode `0x16` command |
+| `knockback` | 1,214 | slots 14 and 15, in all 607 filled tables: modes `0xE` and `0xF` of `0x00323350` |
+| `named_elsewhere` | 1,963 | its own container has no command for the slot; other containers do name that mode |
+| `reserve` | 2,323 | slots 8, 13, 17 and 18: filled, but no `0x1A` command names those modes |
+
+The Reserve row rests on the commands table, which lists all 12,876 authored commands. Nothing limits the mode at
+the table read (`0x003AF043`), so an authored command could select those slots. Slots 19 and 20 hold no profile in any
+table.
+
+| Fact | Value |
+|---|---|
+| distinct profile contents | 123 of the 13,267 rows, by `content_id` |
+| slots sharing an offset | 4 rows, two pairs in one table each |
+| largest fields | duration 105, `moveFrames` 80, `turnFrames` 105 |
+| durations | 1 to 30 in profiles named by a slot command, 6 to 105 in single profiles |
+| `share_full` of the 123 | 12 are 0, 105 lie between 0.99 and 1.01, 6 from 0.399749195 to 1.99992372 |
+| `moveFrames` 1 | 12 of the 123, the same 12 with `share_full` 0: they turn and do not step |
+| per-frame share | largest speed times scale: 1.0 in `monster/m12/m1278/m1278_10.ca` slot 16 |
+
+### Columns of the three tables
+
+| column | what it holds |
+|---|---|
+| containers: `path`, `name`, `frm_offset`, `frm_bytes` | the file, the entry name, its offset and length |
+| containers: `byte_01`, `word_00`, `word_04`, `word_0c`, `word_10` | body `+0x01`, and body dwords as stored |
+| containers: `table_offset`, `shape` | body `+8`, and the shape above |
+| containers: `profiles`, `empty_slots` | present and empty slots among the 22 table modes |
+| containers: `commands`, `commands_on_empty_slots` | its `0x1A` commands, and those on empty slots |
+| containers: `table_words` | the 24 table words in hexadecimal, `-` for no table |
+| profiles: `path`, `shape`, `slot` | the file, the shape, and the mode, or `own` |
+| profiles: `table_word`, `file_offset` | the word as stored, and the profile's offset in the file |
+| profiles: `shared_slots` | every slot of the table with this offset |
+| profiles: `content_id`, `same_content_rows` | a hash of the profile's bytes, and the rows with that hash |
+| profiles: `duration`, `move_frames`, `turn_frames` | `+0x00`, `+0x04`, `+0x06` |
+| profiles: `scale_bits`, `scale`, `speed_offset` | `+0x08` as bits and as a float, and `+0x0C` |
+| profiles: `speed`, `rate0`, `rate1` | the raw `u16` curves, in frame order |
+| profiles: `share_full` | the sum defined in the code block above |
+| profiles: `commands`, `selected_by` | the same container's commands for the slot, and the table above |
+| commands: `path`, `fmc`, `name` | the file, the `@FMC` entry's offset and its block name |
+| commands: `record`, `sub_record`, `key`, `file_offset` | the place in the block, and the command's offset |
+| commands: `mode`, `direction` | word `+2`, and `away` or `reach_point` |
+| commands: `target`, `profile_offset` | `slot`, `own_profile` or `empty_slot`, and the profile's file offset |
+| commands: `table_head_word` | an empty slot only: the first table word, read as the duration |
+| commands: `command_bytes` | the command as stored |
 
 ## Operations
 

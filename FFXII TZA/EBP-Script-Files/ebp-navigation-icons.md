@@ -68,6 +68,48 @@ free runs only when `0x005C5230(5)` returns non-zero (`0x003318A2`-`0x003318A9`)
 | layout checks | every kind's entries follow the directory or the previous kind with no gap, and the bytes after the last entry are zero |
 | languages | the same in every tree except four maps (`bhm_a02`, `gil_i01`, `gil_i02`, `naf_b04`), which differ in `ch`, `cn`, `de`, `es`, `in` and `kr`; `de`, `es`, `in`, `kr`, `ch` and `cn` carry 649 entries |
 
+[`ebp-navigation-icon-entries.tsv`](ebp-navigation-icon-entries.tsv) lists every entry of section 4 in all nine
+language trees, 5,844 rows, 650 of them in `us`. Every block sits in a script named `global/<zone>.ebp`, so a zone has
+one block per language. A row keeps the entry's own coordinates apart from those of the object it names.
+
+The object comes from section 0 of the same `.ebp`, the zone script that manager 0 loads (`0x00314020`). In `us` 366
+entries name an object. Another 195, kinds 3 and 5, ask for an entry at or past the count of their list, and
+`0x002649B0` returns null for those (`0x002649D1`).
+
+The status column applies the tests that do not depend on the save: `0x00400550` lists kinds 5, 8, 3 and 4, and
+`0x00400CF0` needs an object, an icon that is not negative, 0 or 14, and a gate other than 1. Of the 650 `us` entries
+154 pass: 121 with gate 0, and 33 that show only once their gate passes. The others are 195 without an object,
+131 with gate 1, 81 with icon 14 and 89 of kinds 6 and 9.
+
+No file has more than 6 entries that pass. The list holds 64 icons, and the actors' entries come first in it
+(`0x003C5130`), so what fits depends on how many actors are present.
+
+The minimap's sprite is a record of `battle_4_c`, entry 0 of `tex2pack_ys.bin`: set 4, group 0, frame = the icon's low
+byte (`0x0040043B`-`0x0040046E`). In `us`, group 0 holds 19 frames, so a higher icon number reads the records of the
+groups after it. The location map draws the same icon numbers from another atlas
+([map menu files](../Game-Files-And-Data-Tables/menu-map-files.md)).
+
+The table is produced by `Database/Tools/catalogues/navi_icons.py`.
+
+| Column | Meaning |
+|---|---|
+| `tree`, `script` | the language tree, and the path under it |
+| `kind`, `entry`, `file_offset` | the kind, the entry's number in it, and its offset in the file |
+| `from_x`, `from_y`, `at_x`, `at_y` | the words at `+0x00` to `+0x07` |
+| `icon`, `gate`, `bytes_0c` | the words `+0x08` and `+0x0A`, and the four bytes at `+0x0C` in hex |
+| `gate_kind` | as `0x0032A8A0` reads the gate: `always`, `never`, `primary` (a flag of the Primary bank) or `schedule` |
+| `gate_id` | for `primary` the `id`, for `schedule` the `encoded_id` of the tables on [story flag ids](../Story-Events-And-Hunts/story-flag-ids.md) and [story flags](../Story-Events-And-Hunts/story-flags.md); `-` otherwise |
+| `list`, `list_count` | the list the kind reads, and that list's count in this file; `-` for a kind with no list |
+| `object_state` | `object`, `past_list`, `older_table` for kind 6 (`0x003DFAC0`), or `no_resolver` for kinds 4, 7 and 9 |
+| `object_offset` | the object's offset in the file |
+| `object_x`, `object_y`, `object_z`, `object_w` | the object's four floats; the minimap draws at `object_x`, `object_z` |
+| `object_bits`, `object_tail` | the same four floats as stored, then the object's other 16 bytes, in hex |
+| `minimap_static` | `eligible`, or the first test the entry fails: `kind_not_listed`, `no_object`, `icon_negative`, `gate_never`, `icon_14`, `icon_zero` |
+| `needs_gate` | 1 when an `eligible` entry still needs its gate at run time |
+| `sprite` | x, y, width and height of its sprite record; `-` for a kind the minimap does not list or a negative icon |
+
+Four `primary` ids, `0x005D`, `0x009C`, `0x00C4` and `0x00C5`, have no row on the story flag ids table.
+
 ## Loader behaviour
 
 ### The accessors

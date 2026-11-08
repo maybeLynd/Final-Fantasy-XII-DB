@@ -841,7 +841,8 @@ the segment chain are written out as expressions in
 `0x00361810` gets, with `[0x022CBA8C]`, the record's `+0x38`, `+0x54` and `+0x58` for shapes 0 and 1, `+0x38`, 0 and
 4.1415930 for shape 2, and -1.0, 0 and 4.1415930 for the other shapes (`0x003632D1`-`0x00363320`).
 `0x003638B0(record, the two values 0x00361810 wrote, current, &position)` runs for every walked entry (`0x00363344`).
-`current` takes its return only when the volume `0x00361810` returned is exactly 0.0 (`0x00363349`-`0x00363350`), and the
+`current` takes its return only when the distance `0x00361810` returned is exactly 0.0 (`0x00361B9A`,
+`0x00363349`-`0x00363350`), and the
 walk returns `current` (`0x00363367`).
 
 `0x00363B40` builds the per-weather-slot ambient list from the `SPP1` section's `u16 +0x1A` offset

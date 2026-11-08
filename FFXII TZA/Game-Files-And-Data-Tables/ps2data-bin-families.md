@@ -298,7 +298,27 @@ The ten `st2e` headers read as `{tag, rows, row bytes, data offset}`:
 
 `basic_skill_basic_skill_name.bin` and `growth_rate_growth_rate_name.bin` hold one UTF-16LE string per
 row of their `st2e` sibling (1,345 and 128), Japanese designer labels such as `LEVEL-00基本値` and
-`テスト成長値`. `logicpack.bin` has the same count-and-offsets frame over 1,310 records.
+`テスト成長値`. `logicpack.bin` has the same count-and-offsets frame over 1,310 records: the count, then 1,311 `u32`
+offsets, the last one the file's length, and the first record at `0x1480`. Records run from 56 to 3,008 bytes, and
+1,057 of the 1,310 are distinct.
+
+Each record of these four files is listed whole. Nothing shipped asks for them, so no code reads the fields and
+the tables give each record as raw hex instead of naming fields.
+
+| File | Table | Records | sha256 of the `cn` and `kr` copies |
+|---|---|---|---|
+| `basic_skill.bin` | [`ps2data-bin-families-test-battle-basic-skill.tsv`](ps2data-bin-families-test-battle-basic-skill.tsv) | 1,345 | `ebf9bceb8a57291dac44fc04ed338ec04a4df41f374656f7bc5ac97393e7fa20` |
+| `growth_rate.bin` | [`ps2data-bin-families-test-battle-growth-rate.tsv`](ps2data-bin-families-test-battle-growth-rate.tsv) | 128 | `08fded8cd596096c840f13b261c35e3028aa2add5bee2bedd7c633c587660702` |
+| `unit_data.bin` | [`ps2data-bin-families-test-battle-unit-data.tsv`](ps2data-bin-families-test-battle-unit-data.tsv) | 495 | `b76bea473c4708cc211d4c6e7c1683d42a65b80f19c1e88dd69ab5909a63b3d7` |
+| `logicpack.bin` | [`ps2data-bin-families-test-battle-logicpack.tsv`](ps2data-bin-families-test-battle-logicpack.tsv) | 1,310 | `e258cadd0ea78235be45b69c16dc886dd84e0f3a9df6e83972110ae072a817a1` |
+
+| Column | Meaning |
+|---|---|
+| `row`, `record` | the record's index |
+| `offset` | where it starts in the file |
+| `name` | the row's label from the name table (`basic_skill.bin` and `growth_rate.bin` only) |
+| `bytes`, `sha256_16` | `logicpack.bin` only: the record's length and the first 16 digits of its sha256 |
+| `raw` | the whole record as hex, in file order |
 
 The `ashd` scheme of `katano/event.bin`, decoded by the measurement script:
 

@@ -299,8 +299,11 @@ The A+D handler `0x0020FCA0` keeps the data qword at `0x01FC3608` and the regist
 Its jump table (`0x0020FCF1`) then honours PRIM (a tail jump to `0x0020FE70`), TEX0_1, TEX0_2, CLAMP_1, CLAMP_2, TEXA
 (`0x3B`, stored at `0x01E027B8`), FOGCOL (`0x3D`, its three low bytes to `0x01FC3604` to `0x01FC3606`), TEXFLUSH (`0x3F`, a
 tail jump to device slot `+0x128`), ALPHA_1, ALPHA_2 (`0x42`, `0x43`), TEST_1, TEST_2 (`0x47`, `0x48`) and ZBUF_1,
-ZBUF_2 (`0x4E`, `0x4F`). The numbers 1 to 5 (RGBAQ, ST, UV, XYZF2, XYZ2) and every number above `0x4F` reach no arm,
-so an A+D write of them stores only the two words (`0x0020FCE1`).
+ZBUF_2 (`0x4E`, `0x4F`).
+
+The numbers 1 to 5 (RGBAQ, ST, UV, XYZF2, XYZ2) and every number above `0x4F` reach no arm
+(the table for 1 to 5, `0x0020FCE1` above `0x4F`). An A+D write of 1 to 5 stores only the two words; one above `0x4F`
+also flushes the batch and sets `0x01FC3603` (`0x0020FCC3`, `0x0020FCD6`).
 
 Twenty registers in all; FRAME, SCISSOR, XYOFFSET, TEX1, PRMODE, COLCLAMP, DTHE, FBA, PABE, DIMX, TEXCLUT, MIPTBP and
 PRIM's AA1 bit `0x80` are ignored.

@@ -313,11 +313,13 @@ not name is given by its offsets, as hex bytes.
 | [`model-files-cm-ca-ca-slots.tsv`](model-files-cm-ca-ca-slots.tsv) | 63,836 | non-empty slot of a version-1 `.ca`: its row and column and the entry's tag |
 | [`model-files-cm-ca-heads.tsv`](model-files-cm-ca-heads.tsv) | 1,066 | `.cm`: the header fields of its `@FCP`, `@FTR`, `@FOR`, `@FDM` and `@FTE` entries |
 | [`model-files-cm-ca-fcp-sections.tsv`](model-files-cm-ca-fcp-sections.tsv) | 6,454 | present `@FCP` section: offset, span and length |
+| [`model-files-cm-ca-fcp-attachment-slots.tsv`](model-files-cm-ca-fcp-attachment-slots.tsv) | 19,296 | one slot of `@FCP` section 3: bone, position, angles and scale ([character render records](character-render-records.md)) |
 | [`model-files-cm-ca-special-bones.tsv`](model-files-cm-ca-special-bones.tsv) | 740 | `.cm` outside `weapon`: its special-id bones |
 | [`model-files-cm-ca-ftr-nodes.tsv`](model-files-cm-ca-ftr-nodes.tsv) | 27,561 | `@FTR` node: key, parent, flags and pool indices |
 | [`model-files-cm-ca-for-records.tsv`](model-files-cm-ca-for-records.tsv) | 1,275 | `@FOR` record: key, selectors per part and scale |
 | [`model-files-cm-ca-fdm-keys.tsv`](model-files-cm-ca-fdm-keys.tsv) | 30,023 | `@FDM` key: its position in the key table |
 | [`model-files-cm-ca-fte-textures.tsv`](model-files-cm-ca-fte-textures.tsv) | 2,127 | `@FTE` texture: sizes, format and pixel data offset |
+| [`model-files-cm-ca-ftr-values.tsv`](model-files-cm-ca-ftr-values.tsv) | 27,561 | `@FTR` node of every `.cm`: the stored pool values of its bind matrix, translation and angles |
 | [`model-files-cm-ca-fct-palettes.tsv`](model-files-cm-ca-fct-palettes.tsv) | 1,972 | `@FCT` palette: sizes, data offset, grey pages, the largest channel spread of each page and the SHA-256 of its colours |
 | [`model-files-cm-ca-fct-palette-colours.tsv`](model-files-cm-ca-fct-palette-colours.tsv) | 1,377,728 | one colour of one page of one distinct palette content |
 | [`model-files-cm-ca-fct-palette-contents.tsv`](model-files-cm-ca-fct-palette-contents.tsv) | 1,512 | one distinct palette content: its SHA-256, sizes and how many palettes use it |
@@ -342,10 +344,21 @@ not name is given by its offsets, as hex bytes.
 | `fdm_30`, `fdm_keys_offset`, `fdm_keys`, `fdm_34_4f` | heads | `@FDM` `+0x30`, `+0x32`, the key count, and the bytes from `+0x34` to the key table |
 | `fte_always_slots` | heads | the texture slots listed after the count at `@FTE` `+0x30` |
 | `section`, `offset`, `span`, `length` | fcp-sections | the section, its offset in the payload, the bytes to the next section or the payload's end, and the length for section 2 (`+0x24`) and section 8 (`0x10` + count × `0x1D0`) |
+| `section_offset`, `slot`, `bone` | fcp-attachment-slots | section 3's offset in the payload, the slot from 0 to 31, and the stored `u16` bone |
+| `bone_state`, `ftr_nodes` | fcp-attachment-slots | `none` for `0xFFFF`, `node` below the model's `@FTR` node count, `past_nodes` at or past it, and that count |
+| `bone_key`, `bone_parent` | fcp-attachment-slots | the node's key and parent as in ftr-nodes; `-` when `bone_state` is not `node` |
+| `position`, `position_bits` | fcp-attachment-slots | section `+0x40` for the slot: three floats, then their stored bits in hex |
+| `angles`, `angles_bits` | fcp-attachment-slots | section `+0x240` for the slot: three floats, then their stored bits in hex |
+| `scale`, `scale_bits` | fcp-attachment-slots | section `+0x1C0` for the slot: the float, then its stored bits in hex |
 | `special_bones_0_31`, `special_bones_104_106` | special-bones | as in [`weapon-bones.tsv`](weapon-bones.tsv): the set entries of section 1's table at `+0x14C` and of `+0x3A`–`+0x3E`, as "id: bone", or `-` when every entry is `0xFFFF` |
 | `node`, `number`, `record` | ftr-nodes | the node's position, the node number of its `+0x40` table word, and its record offset in the entry |
 | `key`, `parent`, `byte_03`, `flags` | ftr-nodes | the key as `0x00409250` reads it, the parent (`-` for no parent), record byte `+0x03` and the flags `+0x04` |
 | `pool_indices`, `pool_index_list` | ftr-nodes | the record's u16 pool indices in stored order: one for each of flag bits `0x80000000`, `0x400000` and `0x20000000`, sixteen for `0x200000`, and one for each translation and angle bit; the list fills every record |
+| `key`, `parent`, `flags`, `inline_id` | ftr-values | as in ftr-nodes; `key` is the inline id when flag bit `0x40000000` is set, `inline_id` that word, `-` without the bit |
+| `bind_matrix` | ftr-values | the sixteen pool dwords for flag bit `0x200000` (`0x004094D0`), in stored order, as hex; `-` without the bit. They are the stored values, not a matrix rebuilt from the other columns |
+| `translation`, `angles` | ftr-values | for nodes with flag bits `0x200100` both set: the pool dwords that `0x00409300` reads for x, y and z (bits `0x800000` to `0x2000000`) and for the three angles (bits `0x4000000` to `0x10000000`), hex, `-` for a clear bit |
+| `index_400000`, `index_20000000` | ftr-values | the pool dword named by the index for that flag bit, hex. `0x004092A0` returns the first; the second is the value as stored |
+| `index_80000000` | ftr-values | the u16 stored for flag bit `0x80000000`, as hex. `0x00409300` and `0x004094D0` step past it, and it can exceed the pool, so neither routine uses it as a pool index |
 | `record`, `key`, `selectors_0`, `selectors_1`, `selectors_2` | for-records | the record's position, its key, and the selector counts of parts 0, 1 and 2 at `+0x05`, `+0x06` and `+0x07` |
 | `scale`, `part_0`, `part_1`, `part_2` | for-records | float `+0x18`, and the selector bytes of parts 0, 1 and 2 at `+0x20`, `+0x40` and `+0x60`, as many as the part's selector count, separated by spaces; `-` when the count is 0 (815 rows for part 1) |
 | `bytes_01_04`, `bytes_08_17`, `bytes_1c_1f`, `bytes_80_df` | for-records | record bytes `+0x01`–`+0x04`, `+0x08`–`+0x17`, `+0x1C`–`+0x1F` and `+0x80`–`+0xDF` (`-` when all zero) |

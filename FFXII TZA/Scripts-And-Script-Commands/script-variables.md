@@ -144,7 +144,15 @@ Descriptor table [slot+`0x78`]:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | count |  |
-| `+0x04` | `...` | variables | then u64 per variable (dword 0 = the descriptor above) |
+| `+0x04` | `...` | variables | then 8 bytes per variable: `+0x00`  u32  the descriptor above `+0x04`  u32  image offset of the initializer, 0 for none |
+
+Initializer (image + offset):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` |  | actor ordinal (`0x00358940`) |
+| `+0x04` | `u32` |  | byte count |
+| `+0x08` | `...` |  | the bytes |
 
 Array header (image + offset):
 
@@ -340,6 +348,86 @@ The reasons:
 | `values_written` | every value the scripts store in it |
 | `scripts` | the scripts that use it: their count and names, then, where developer test scripts also use it, "developer scripts" with their count and names |
 | `sites` | how many uses read it (copies, verb arguments and references passed to verbs), not counting stores and `sysDVAR` |
+
+### Every descriptor and its uses
+
+[`script-variables-descriptors.tsv`](script-variables-descriptors.tsv) has one row for each of the 43,466
+descriptors of the 1,114 decoded `us` scripts, keyed by `script` and `index`.
+`Database/Tools/catalogues/script_variables.py` produces it. Of the 1,115 `us` `.ebp` files, `event/evt_t/evt_t0020`
+is the one that is not an `EBP2` image.
+
+Uses come from the script's own bytecode, over every function its actors list. Actors that share a function's
+start share its uses: they count once, and each such actor is credited.
+
+- `PUSHV` is a read, `POPV` a store, `PUSHP` a reference and `PUSHDBG` a debug resolve.
+- A store is literal when the instruction before `POPV` pushes a constant, and computed otherwise.
+- A test is a `PUSHV` right before `POPXCJMP` or `POPXNCJMP`, the same with `OPNOT` between them, or a `PUSHV`
+  and a constant, in either order, before a comparison and one of those jumps.
+- A `PUSHV` right before `POPY` is a switch. A read inside any longer expression counts in `reads` only.
+
+### Initial values
+
+The binder `0x0026C8C0` sets slot `+0x13` to 1 (`0x0026CC6C`). `0x0026CE60` goes on only while slot `+0x10` has flag `0x1`
+clear and `+0x13` is not 0 (`0x0026CE94`-`0x0026CEA2`). It clears `+0x13`, calls `0x0026D3E0` with the slot and the image
+and then sets the flag (`0x0026D2D9`-`0x0026D305`), so the initializers run once for each bind.
+The teardown `0x002628B0` clears both again (`0x00262DA8`, `0x00262DB3`).
+
+`0x0026D3E0` walks every record and skips those with second dword 0 (`0x0026D422`-`0x0026D42C`). An array is replaced by
+its element descriptor (`0x0026D43F`-`0x0026D452`). The class picks the base as in the resolvers, a local through the
+actor the record names (`0x0026D456`-`0x0026D45F`, `0x0026D46F`-`0x0026D4BB`), and the bytes are copied to base plus
+offset (`0x0026D4BD`-`0x0026D4D5`).
+
+An initializer exists only for file and local storage in the shipped scripts. The file area itself ships as zero in
+all 128,044 bytes that file variables cover, so a file variable with no initializer starts from zero bytes.
+
+| `lifetime` | Storage | Rule |
+|---|---|---|
+| `save` | `global` | bytes of the save payload, saved and loaded with it |
+| `image` | `file`, `local` | inside the script image; gone when the area's scripts unload |
+| `field` | `scratch1` | zeroed on every field transition (`0x0026DB80`), and by `0x00268320` and `0x002695A0` |
+| `group` | `scratch2` | zeroed when the persistence group changes (`0x0026DC11`) or by option `0x8` (`0x0026DC1B`) |
+
+An array has the lifetime of its element storage. `scratch2` also rides the save image (`0x0025D8E0`, `0x00269A20`).
+
+| Fact | Value |
+|---|---|
+| scalar types | `u8` 10,649, `s8` 10,279, `u16` 299, `s16` 4,105, `s32` 7,075, `f32` 7,437 |
+| float flag | set on the 7,437 `f32` scalars and on no other |
+| array headers | 3,622: 3,430 with one dimension, 192 with two, `+0x06` 0 in all |
+| array elements | file 2,138, global 881, local 499, scratch2 95, scratch1 9 |
+| uses | reads 519,529, stores 402,381, references 6,465, debug resolves 9,108 |
+| of the reads | tests 87,094, switches 18,527 |
+| of the stores | literal 297,790, computed 104,591 |
+| rows with no use in their own script | global 1,002, local 607, array 34, file 15 |
+| local scalars | 13,256 used by one actor, 1,903 by several |
+| rows with a declared name | 9,923, all with global storage |
+| initializers | 806 rows and 2,922 bytes: file 460, local 284, array 62 (31 file, 31 local) |
+
+No initializer runs past the end of its variable. The 210 local initializers whose variable a function uses each
+name an actor that uses it. The other 105 are on variables that no function uses.
+
+### Columns of script-variables-descriptors.tsv
+
+| column | what it holds |
+|---|---|
+| `script`, `index` | the script, and the variable index that the opcodes carry |
+| `descriptor` | the raw record dword |
+| `initializer_offset` | the record's second dword, as stored |
+| `class`, `class_name`, `offset` | the descriptor's storage class, its name and its offset |
+| `width`, `type`, `float` | the width nibble, its type and the float flag |
+| `dimensions`, `elements` | an array's sizes and their product, `-` otherwise |
+| `array_word_06` | an array header's `+0x06` |
+| `element_descriptor`, `element_class` | an array header's `+0x00`, and that descriptor's storage |
+| `element_offset`, `element_type` | the element storage's offset and type |
+| `lifetime` | from the table above |
+| `reads`, `stores`, `references`, `debug_resolves` | the uses by kind |
+| `tests`, `tested_values` | tests, and the constants they compare with |
+| `switches` | reads that feed a switch |
+| `literal_stores`, `literal_values`, `computed_stores` | stores by kind, and the constants stored |
+| `actors`, `functions` | the actors that use the variable, and how many actor functions do |
+| `file_area_hex` | file storage only: the variable's bytes in the image at `+[+0x38]` plus the offset |
+| `initializer_actor`, `initializer_bytes`, `initializer_hex` | the initializer's actor, byte count and bytes |
+| `symbol_names` | global storage: the names the debug companions give this descriptor |
 
 ### Columns of script-variables-by-script.tsv
 

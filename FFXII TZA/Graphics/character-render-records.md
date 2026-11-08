@@ -240,15 +240,38 @@ start `0x00424D80` re-places both through `0x0041F010(record, child)`, which `0x
    at its start), it ties the child to that bone with `0x004211B0`, which links the two skeletons
    with `0x0046E640` when the child's skeleton entry has bit `0x80` of its first byte and sets the child's
    parent word `+0x06`;
-3. still in mode 0, it copies the slot's offset (section `+0x240 + 12 × slot`) to the child's
+3. still in mode 0, it copies the slot's angles (section `+0x240 + 12 × slot`) to the child's
    `+0x130` with 1.0 at `+0x13C`, and stores at `+0x150` the record's three scales (`+0x160`,
-   `+0x260` and `+0x26C`) times the slot's scale at section `+0x40 + 12 × slot`;
+   `+0x260` and `+0x26C`) times the slot's position at section `+0x40 + 12 × slot`;
 4. in mode 1, or without a section bone, it ties the child to the record's bone for the child's
    `@FCP` word `+0x36` (`0x003E5AD0`, bone 0 when it names no bone) and, when the section exists, zeroes
-   the offset and the scale;
-5. with a section, it writes the slot's value at `+0x1C0 + 4 × slot` to the child's `+0x170`,
+   the angles and the position;
+5. with a section, it writes the slot's scale at `+0x1C0 + 4 × slot` to the child's `+0x170`,
    `+0x174` and `+0x178`, and 1.0 at `+0x15C` and `+0x17C`;
 6. it stores the child's id at `+0x2C8` or `+0x2CA`.
+
+`0x00420A40` builds the child's local matrix from what these steps stored: the rotation from the angles `+0x130` through
+`0x0046D380` (`0x00420AF5`-`0x00420B02`), `+0x170` to `+0x178` on its diagonal (`0x00420AB9`-`0x00420AF0`) and
+`+0x150` to `+0x158` as its translation (`0x00420B18`-`0x00420B3A`).
+
+[`model-files-cm-ca-fcp-attachment-slots.tsv`](model-files-cm-ca-fcp-attachment-slots.tsv) lists section 3 of all 603
+models that have it, 32 slots each. A child's slot is byte `+0x38` of its own `@FCP` payload (`0x00420601`); shipped
+values run up to 31, and 41 models hold 23 or more. The section is 960 bytes, read by `0x0041EE40` and `0x0041F010`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x000` | `u16[32]` |  | bone, `0xFFFF` for none |
+| `+0x040` | `f32[3][32]` | position |  |
+| `+0x1C0` | `f32[32]` | scale |  |
+| `+0x240` | `f32[3][32]` | angles |  |
+
+A slot with bone `0xFFFF` takes the fallback of step 4, and its scale is still written. 2,746 slots name a bone below
+the model's `@FTR` node count and 16,497 name none.
+
+The other 53, all in seven models under `high/`, name a bone at or past that count. The bone becomes the child
+skeleton's word `+0x14` (`0x003731F7`), and `0x00373F40` indexes the parent's `0x290`-byte node records with it without
+testing the count (`0x00373FC5`-`0x00373FD7`). The table is produced by
+`Database/Tools/catalogues/fcp_attachment_slots.py`.
 
 Small record setters beside them: `0x00420CF0(record, x, y, z)` keeps the angles `+0x120`–`+0x128` at
 `+0x250`–`+0x258` and stores the new ones, and `0x00420F20(record, x, y, z)` stores `+0x140`–`+0x148`;

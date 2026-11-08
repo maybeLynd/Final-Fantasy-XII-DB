@@ -73,11 +73,22 @@ also posts it with sub-id 0 from mode `0x18`.
 Arming sets availability bit `0x1` through `0x00254850(1)` (`0x0035C870`, `0x0035C8D7`). The arbiter returns while Game
 Over is armed (`0x00253C97`), and the drain drops a pending id 2 when that bit is set (`0x002E0C5E`-`0x002E0C65`).
 
-The code leaves one order open: the screen opening first and the arming landing later in the same step. After the
-drain (`0x0031427D`) the tick runs `0x00359800` (`0x00314282`), whose disposal tears down a unit already down (`0x00233EE9`,
-`0x00300E40`), and `0x00300FC0` arms when the whole roster is down (`0x00301063`-`0x00301080`). The new task's `+0xD4` is
-still 0 (`0x00246626`, `0x0027FC09`), so `0x002805D0` would answer 1 for a sub-id below `0x40`. The code does not settle
-whether such a disposal ever falls in the same step as a mode-2 open.
+The one order that works is the screen opening first and the arming landing later in the same step. Opening mode 2
+sets the main-loop state to 4 (`0x002E0D39`), and `0x00254E50` runs only in state 2, so only the check later in that step
+(`0x0022AC73`) can see the new screen.
+
+Between the drain (`0x0031427D`) and that check, `0x00258D70` (`0x0022AC65`, when `0x00358340()` is non-zero) can land a hit:
+`0x002FC010` sends each queued value with timeline code 0 to `0x00319F50`, and its target step `0x003191B0` (`0x0031A022`)
+runs the applier `0x00307300` (`0x00319362`). A hit that fells the last main character reaches `0x00300FC0`, which arms
+(`0x00301063`-`0x00301080`).
+
+The new task's `+0xD4` is then still 0 (`0x00246626`): only its second update can raise it (`0x0027FC09`), and its first
+only moves `+0xD0` from 0 to 1 (`0x0027FD47`). So `0x002805D0` answers 1 when Triangle, sub-id 0, opens the menu in the
+step that hit lands, and the game goes to Game Over before the menu appears.
+
+This route is read from the code. The coincidence of the open and the killing hit in one step has not been observed
+in play, and `0x00358340` depends on bit `0x4` of `0x022C7F92`, which the `movieend` body writes through `0x00358650`
+(`0x0035B953`).
 
 That body fades (`0x002EFA70(3, 0, 1, 0)` when `0x002EFD20(3)` is
 non-zero), calls `0x0035C7B0(0x0B, 0)` and `0x00252B40(0x0B, 1)`, writes 2 to the area controller's `+0xC8`
@@ -516,3 +527,13 @@ actors' halt class `0x16`; `0x022C3158` to `0x022C3178` after a crystal touch.
 - [The thirty-two statuses](../Status-Effects-And-KO/statuses.md): KO's row and the status groups.
 - [Boss fights](../Battle-Actions/boss-fights.md): the jump lock that keeps a party in a fight.
 - [The screen-fade layers](../Graphics/screen-fades.md): `0x002EFA70`.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat formula: `0x00307300` calls `0x002FEE20`, `0x00300CE0`, `0x0030DAE0`, `0x003112F0`, `0x00320A40`, `0x00385F60`; `0x00319F50`
+  calls `0x00300520`, `0x00385F60`; those functions are documented on
+  [area of effect](../Battle-Actions/area-of-effect.md),
+  [save and teleport crystals](save-and-teleport-crystals.md), [traps](traps.md),
+  [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
