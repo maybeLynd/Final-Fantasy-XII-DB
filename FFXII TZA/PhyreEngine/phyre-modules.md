@@ -97,10 +97,13 @@ is started by the walk alone.
    `0x005A08B0`); with `0x01F7F5B8` null it skips both (`0x005A089E`). It then stores 0 in `0x01F7F5B8` and clears
    `0x02CACCA0` (`0x005A08BA`, `0x005A08C5`).
 
-The start-up calls it directly when the message loop ends; the `atexit` call that follows finds the byte clear
-and does nothing.
+The start-up calls it directly when the message loop ends (`0x007986D5`), and the normal quit then ends in
+`ExitProcess(0)` without running the `atexit` table. A start-up step that returns non-zero calls it at `0x00798886`
+instead and returns (`0x007985FD`-`0x00798621`); the run-time `exit` then runs the table, whose entry finds the byte
+clear and does nothing.
 
-At process exit each module's `atexit` destructor writes the base vtable back and unlinks the object.
+When the run-time `exit` runs the teardowns, each module's `atexit` destructor writes the base vtable back and
+unlinks the object.
 Slot 0, `0x005A0CB0`, does the same: it writes `0x00D26BC0` into the object (`0x005A0CC0`), walks from `0x02CACC90` to the
 link that holds the object, and only when it finds it there stores the object's `+0x08` in that link and clears the
 object's own `+0x08` (`0x005A0CCA`-`0x005A0CF4`); an object not on the list stays as it is. It frees the object's

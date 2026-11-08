@@ -79,6 +79,21 @@ the record's byte `+0x14` is at or above `0x80` (`0x00265A83`-`0x00265ACE`). `0x
 verb `setfreetargettype` (`0x265`, `0x003528D6`) and for a battle unit's `+0x58` (`0x00238E3E`). `0x00267CC0` writes 4
 and `0x002659A0` writes 5.
 
+Being left out of those classes is what lets an ordinary talk partner run its script: no actor with
+`function talk(2)` in the `us` scripts calls `set_force_ignore_timestop`. Those 4,771 actors are 3,159 of type 6,
+1,281 of type 1, 239 of type 5, 68 of type 0 and 24 of type 7. The table at `0x01E0C328` sets the class: types 1 and
+2 are class 1, types 5 to 7 class 3 (`0x00267B0A`-`0x00267B13`).
+
+Type 6 gets nibble 5 from `0x00265FF0`, or 4 after `npc_to_gimmick` (1,994 actors) or `setfreetargettype(4)` (98
+actors), the only value a talk actor passes it. Type 1 gets 4. Type 0 has class 0, which `0x00265FF0` gives no nibble.
+All 24 of type 7 are units placed by the `btlAtel` verbs that call `btlAtelSetUnitType(1)`: unit `+0x58` becomes 5
+(table `0x01E09EE8`, `0x002396D6`), and `btlAtelSetUnitFinish` writes it as the nibble over `0x00265A20`'s 1 (`0x0023A499`,
+`0x00238E3E`).
+
+Of type 5, 238 actors are in scene scripts, whose managers 1 to 3 `0x00265A20` skips (`0x00265A70`), so they keep
+nibble 5. The other is in the `wdl_b01` zone script and its `talk` only returns. This count reads each actor's own
+script in `us`; the nibble one actor holds at one moment can still change as above.
+
 Request 7 also puts its bit in `+0x10C` for nibbles 4 and 5. The field hold takes it for a talk partner whose byte
 `+0x0C` has bit `0x80` set (`0x00268E0A`-`0x00268E30`), and its one-entry list releases only that partner.
 

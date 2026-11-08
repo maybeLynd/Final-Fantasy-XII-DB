@@ -21,8 +21,8 @@ and 256 KiB of scratch each.
 - with a worker count (`0x01F2EB30`) below 2, the `PThreadPoolImmediate` static `0x02E5C938`
   (`0x006CE5B0`, vtable `0x00D8A730`, exit destructor `0x008B70D0`);
 - otherwise the `PThreadPoolWorkStealing` static `0x02E4E610`, built on first use by
-  `0x006BA880(pool, workers, capacity)` with `0x01F2EB30` and `0x01F2EB3C`, and destroyed at exit by
-  `0x008B41F0` through `0x006BA940`.
+  `0x006BA880(pool, workers, capacity)` with `0x01F2EB30` and `0x01F2EB3C`, and destroyed by `0x008B41F0` through
+  `0x006BA940` only when the run-time `exit` runs the teardowns; the normal quit ends in `ExitProcess(0)` before that.
 - `0x006CE5B0` returns the pool held in `0x02E5C930` when that is set (`0x006CE5C9`), else builds the static once under
   the guard `0x02E5C968` with `0x006AA180(pool, 0, 0)`, so its worker count and capacity are 0 (`0x006CE614`), writes
   the vtable (`0x006CE620`), stores the static in `0x02E5C930` (`0x006CE640`) and returns it.

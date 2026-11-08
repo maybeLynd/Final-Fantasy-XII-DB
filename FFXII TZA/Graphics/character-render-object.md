@@ -95,7 +95,7 @@ pointers from `+0x30`; with one it copies the template.
 
 It then writes defaults into the parameter block: `sunIndex` -1, `fresnelRefEnabled` and `eCameraLightEnabled` 1, `PS2ZBiasEnabled`,
 `PS2ZBiasOriginal`, `PS2ZBiasInstance` and `paletteEnabled` 0, among others. A descriptor's word
-`+0x10` is the byte offset into the block and `+0x12 & 0x1FFF` its size; every write checks it fits.
+`+0x10` is the byte offset into the block and `+0x12 & 0x1FFF` its size; every default written here checks it fits.
 The offset of each name is in [the shader binding record's table](character-render-object-shader-binding-record-0x318-slots.tsv).
 
 ### Columns of character-render-object-shader-binding-record-0x318-slots.tsv
@@ -123,8 +123,9 @@ object at `[0x01F7F598]` (`0x00189120`):
 
 `0x001FAD50(object, part)`, called per part by the draw `0x001F5D70`, reads the bank chosen by byte `+0x1D`
 of the same object and writes `PS2ZBiasOriginal` = `a`, `PS2ZBiasInstance` = `b`, the three matrices to
-`PS2WHMatrix`, `PS2HSMatrix` and `InvPS2WHSMatrix`, and the fog colour to `PS2FogVec`. Slot 9
-(`0x001F9A80`) takes the fog colour as 0..255 values and stores each channel divided by 255, alpha
+`PS2WHMatrix`, `PS2HSMatrix` and `InvPS2WHSMatrix`, and the fog colour to `PS2FogVec`. Each of the six stores is
+skipped when its descriptor in the part record is null (`0x001FAD9C`-`0x001FAF80`); none tests the size at `+0x12`.
+Slot 9 (`0x001F9A80`) takes the fog colour as 0..255 values and stores each channel divided by 255, alpha
 clamped to 0..1.
 
 ### The draw

@@ -76,7 +76,7 @@ column gives each set's callers. These counts cover the 1,114 `us` scripts with 
 | `sites` | the scenario row's file offset in `battle_pack.bin`, and how many preset rows it has |
 | `loaded_by` | each script, step and story point, or the new game, that asks for the set ("Which scripts ask for a set" above), or `not loaded` with the reason |
 | `item_ids` | each entry of `items` as its encoded id and count, from the words at `+0x10` and the bytes at `+0x90` of the scenario row, `-` for none |
-| `gear_ids` | each member's name, level and the five encoded gear ids at `+0x04` of the preset row, `-` for an empty slot, or `-` alone for a set with no preset rows |
+| `gear_ids` | each member's preset row number, member slot (byte `+0x01` of the row), name, level and the five encoded gear ids at `+0x04` of the row, `-` for an empty slot, or `-` alone for a set with no preset rows |
 
 Scenario rows are section 60 (50 × 208 bytes, bound to `0x02EBF030` at `0x00236FA2`); preset rows are section 59
 (226 × 44 bytes, bound to `0x02EBF028` at `0x00236FBC`). Names come from each id's class table and text bank.

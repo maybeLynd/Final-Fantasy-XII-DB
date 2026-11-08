@@ -62,8 +62,22 @@ other case answers 0 (`0x00280648`).
 
 The sub-id test subtracts `0x40` and compares unsigned with 2 (`0x00280636`-`0x0028063C`), so a sub-id below `0x40`
 passes it as one above `0x42` does. The task takes the sub-id from the screen request's second dword
-(`0x0027FDE1`), and the 98 calls `openfullscreenmenu_48d(2, n)` in the `us` scripts pass values of `n` from 0 to 56,
-all below `0x40`.
+(`0x0027FDE1`). `openfullscreenmenu_48d(2, n)` opens mode `0x0A`, not mode 2 (`0x002E0DA0`, `0x002E0DD8`), and that mode
+answers 1 with no sub-id test. The ids the scripts pass are 2, 4, 6, `0x8000` and `0x8004` to `0x8006`, and none
+maps to mode 2.
+
+Mode 2 comes from the input arbiter, with sub-id 0 on Triangle (`0x00253D78`) and on Select or L3 with `0x21`
+(`0x00253EE6`, `0x00253F53`) or, once story flag `0x5E` is set, `0x00264640(2)`, 1 when that is 0 (`0x00253F44`). `0x0035D750`
+also posts it with sub-id 0 from mode `0x18`.
+
+Arming sets availability bit `0x1` through `0x00254850(1)` (`0x0035C870`, `0x0035C8D7`). The arbiter returns while Game
+Over is armed (`0x00253C97`), and the drain drops a pending id 2 when that bit is set (`0x002E0C5E`-`0x002E0C65`).
+
+The code leaves one order open: the screen opening first and the arming landing later in the same step. After the
+drain (`0x0031427D`) the tick runs `0x00359800` (`0x00314282`), whose disposal tears down a unit already down (`0x00233EE9`,
+`0x00300E40`), and `0x00300FC0` arms when the whole roster is down (`0x00301063`-`0x00301080`). The new task's `+0xD4` is
+still 0 (`0x00246626`, `0x0027FC09`), so `0x002805D0` would answer 1 for a sub-id below `0x40`. The code does not settle
+whether such a disposal ever falls in the same step as a mode-2 open.
 
 That body fades (`0x002EFA70(3, 0, 1, 0)` when `0x002EFD20(3)` is
 non-zero), calls `0x0035C7B0(0x0B, 0)` and `0x00252B40(0x0B, 1)`, writes 2 to the area controller's `+0xC8`

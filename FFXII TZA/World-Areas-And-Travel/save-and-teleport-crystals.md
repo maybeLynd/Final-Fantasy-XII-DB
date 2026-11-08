@@ -261,7 +261,7 @@ true. The test:
    `0x003B0AD0`, 7 to `0x003B2510`, 8 to `0x00375AE0`, anything else gives 0;
 2. a result of 2 or 3 means the effect is still playing, provided `0x0024E210(handle, 3)`, bit `0x80` of
    the effect record's `+0x36A`, is still 0 (`0x0036E6C3`-`0x0036E6D7`); any other result ends the wait;
-   - `0x0024E210(handle, s)` looks the record up in the list `[0x01F710F0 + 8 × top nibble]`, following
+   - `0x0024E210(handle, s)` looks the record up in the list `[0x020910F0 + 8 × top nibble]`, following
      `+0x348`, as the one whose words `+0x04` and `+0x06` equal the handle's low and high 16 bits
      (`0x0024E225`-`0x0024E24F`). Selector `s` 0 to 5 gives bit `0x20`, `0x40`, `0x100`, `0x80`,
      `0x200` or `0x400` of `+0x36A` as 0 or 1 (`0x0024E269`-`0x0024E2BC`);
