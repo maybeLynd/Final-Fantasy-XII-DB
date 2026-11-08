@@ -55,6 +55,15 @@ handle at `+4`, the owner at `+0x08`, the targets at `+0x10` with the count in `
 slot's context at `+0x340`, `+0x3AC` = 1 and the number at `+0x3AE`. It sets state 6 and returns
 the handle, or 0.
 
+Each id's weight is the `load_weight` column of the [effect file list](effect-file-list.md). The sum reads the
+slot's id alone (`0x002FCD60`-`0x002FCD68`), so an id weighs the same in kind 11 and kind 38.
+
+The same weights are tested against 24 before an effect plays. In state 3, `0x002FC4A0` adds the id's weight to the
+weights of the slots in states 5 to 7; above 24 it returns with the slot still in state 3, and the next step tries
+again (`0x002FC4E0`-`0x002FC51C`). `0x002FCAC0` makes the same test over states 1, 2, 3 and 5 for the action's effect
+answer ([action phases](../Battle-Actions/action-phases.md)). A weight-24 id passes only when every other counted
+slot weighs 0.
+
 `0x002EAD00(owner, count, targets, handle)` returns 0 for no targets; otherwise it counts
 `0x02CA4EDC` up (`0x0042FCB0`) and plays through `0x002FCCC0`. Its caller `0x00319E40(unit)` gathers the
 ids of the unit's targets (list `+0x780`, count `+0x77C`) whose actors exist and plays on them the

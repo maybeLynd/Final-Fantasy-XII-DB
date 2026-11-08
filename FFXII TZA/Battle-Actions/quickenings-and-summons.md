@@ -102,6 +102,48 @@ to `+0x695` when free, posts `0x003299B0(unit, 0x003098D0(), 0)` when row byte `
 Then it clears bits `0x100` and `0x200` of every battle unit's flags, starts scene manager 3 (`0x00332130(3)`) and
 sets state 5 (`0x00306ADF`).
 
+### The chain's choices (`0x002F88B0`)
+
+During a Quickening chain, `0x00309C40` gives each member a set of choices and draws one of them for the member.
+
+`0x0030D600` picks the members in two passes. The first keeps the party slots 0 to 3 (`0x0031B810`) whose unit has a
+combat stats record with `+0x05` 0 and a party-table row `+0x04` of at most 6 (Vaan to Reks, the main characters;
+guests from row 7 are left out). A record with any of the status bits `0x80000003` in `+0x64 | +0x3C` is kept
+only when `0x00377C20` passes it (`0x0030D634`-`0x0030D693`, the list at `0x022C1788`).
+
+The second pass keeps those whose `+0x64 | +0x3C` holds none of the bits `0x8800203B` and whose licence count
+`0x00324020` is above 0, in the list at `0x022C24C0` (`0x0030D6B0`-`0x0030D6EA`). That list and its count are what
+`0x00309C40` hands to `0x002F88B0` (`0x00309C6B`-`0x00309C8C`), so `L` below is at least 1 for every member.
+
+For each member, `0x002F88B0` reads the licence count `L` (`0x00324020`) and the member's three Quickening slots, the
+`u8[3]` at `+0x04` of its party table row.
+
+1. When the member's MP bars `+0x37` are above its charges `+0x4E`, Mist Charge (action 244) is offered first,
+   then the `L` Quickenings (`0x002F895A`-`0x002F8A0F`). The draw is Mist Charge when `rand() % (n + 5)` is 0, `n`
+   being the number of members (`0x002F8A14`-`0x002F8A2A`).
+2. Otherwise only the `L` Quickenings are offered (`0x002F8A86`-`0x002F8B22`).
+3. Whenever Mist Charge is not drawn, the choice is slot `rand() % L` (`0x002F8B43`-`0x002F8B59`).
+
+With three members and Mist Charge offered, Mist Charge is drawn 1 time in 8, and each of the `L` Quickenings
+`7 / (8 × L)` of the time. Without Mist Charge each Quickening is drawn `1 / L` of the time.
+
+`0x002F88B0` also finds the largest `L` among the members first, but the value is dropped before it is read
+(`0x002F88E0`-`0x002F891E`, `0x002F8977`, `0x002F8A94`).
+
+`0x00309C40` keeps one 24-byte entry per member:
+
+| Offset | Holds |
+|---|---|
+| `+0x00` | the unit's id (`0x00309D07`) |
+| `+0x04` | the drawn choice (`0x00309D0A`) |
+| `+0x06` | up to six offered choices (`0x00309D90`-`0x00309DAE`) |
+| `+0x12` | how many were offered (`0x00309DB0`) |
+| `+0x13` | the drawn action's charge cost, its row `+0x0A`, when its kind `+0x1E` is 5 or 6; else 0 (`0x00309D72`-`0x00309D85`) |
+| `+0x14` | bit `0x1` set when that cost is above the member's charges `+0x4E` (`0x00309DB3`-`0x00309DCF`) |
+
+A Quickening of level 1, 2 or 3 costs 1, 2 or 3 charges ([action list](action-list.md), rows 208-225); Mist Charge
+costs none.
+
 ### Esper attack damage
 
 `0x0030EC00(unit, id)` resolves the action against every target in the list

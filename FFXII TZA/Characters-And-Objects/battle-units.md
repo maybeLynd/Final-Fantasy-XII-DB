@@ -38,7 +38,7 @@ construction](battle-unit-construction.md), [kill
 chain](../Rewards-EXP-Gil-And-Loot/kill-chain.md)).
 
 A unit is `0xF50` (3,920) bytes; `0x00236850` returns the count and `0x00236820(i)` returns
-`0x0208E688 + i * 0xF50` for `0 <= i < count` and null otherwise. `0x002367A0(selector)` scans the pool
+`[0x0208E688] + i * 0xF50` for `0 <= i < count` and null otherwise. `0x002367A0(selector)` scans the pool
 for a unit whose stats record `+0x698` has the word `+0x04` equal to the selector, after
 `0x00322C50(2, selector)` admits it; a selector of `0xFF` is compared as `0xFFFF`, so it matches that
 word value rather than every unit.

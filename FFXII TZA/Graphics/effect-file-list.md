@@ -155,6 +155,7 @@ straight to the pops (`0x003B06EC`).
 | `text_languages` | for kinds 12 and 7, the folder each text language's array names for this id, grouped by folder; `jp: all` when every language takes the `jp` file |
 | `effect_number` | for kind 12, the script's effect number and variant letter: `e n`, `l n` or `q n` |
 | `fallback` | what loads when the file is missing: the substitute magic id, `l0000` or `q0000`, or a failed request |
+| `load_weight` | for kinds 11 and 38, the id's weight in the battle effect limits of 24 and 36 ([Effect file loading](effect-file-loading.md)): the low five bits of its byte at `0x01EEBB10` (`0x002FC200`), 0 for ids 401-511 |
 | `requested_by` | the actions whose effect id or cinematic id is this id, the verbs and variant for an event effect, the start-up builder for the common bank, or the models bound to a character effect |
 | `chunks` | the chunk counts by type, then the `0xB00` record counts by kind |
 | `elements` | the `0xA00` element records by element type ([Effect element types](effect-element-types.md)) |

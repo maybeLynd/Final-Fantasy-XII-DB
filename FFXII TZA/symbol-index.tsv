@@ -20936,7 +20936,7 @@ function	0x002F8060	BattleUnit_TryTriggerNearbyAuthoredFieldAction	World-Areas-A
 function	0x002F82F0	-	World-Areas-And-Travel/traps.md	-	7
 function	0x002F83E0	-	Game-Files-And-Data-Tables/battle-text-tables.md	-	9
 function	0x002F8410	BattleAction_ComputeChargeLimitTicks	Random-Numbers/which-roll-uses-which-generator.md	-	12
-function	0x002F88B0	BattleSpecialSequence_BuildRandomizedCandidateActions	Random-Numbers/which-roll-uses-which-generator.md	-	7
+function	0x002F88B0	BattleSpecialSequence_BuildRandomizedCandidateActions	Battle-Actions/quickenings-and-summons.md	-	7
 function	0x002F8B90	-	Menus-And-HUD/menu-screens.md	-	3
 function	0x002F8BB0	Reward_ComputeExperienceForRecipient	Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md	-	17
 function	0x002F8D60	BattleSpecialSequence_SelectActionByAuthoredThreshold	Battle-Actions/concurrence-list.md	-	6
@@ -21001,7 +21001,7 @@ function	0x002FBA60	-	Graphics/effect-element-types.md	-	6
 function	0x002FBEF0	-	Graphics/effect-element-runtime.md	-	3
 function	0x002FBFA0	-	Graphics/effect-anchors-and-targets.md	-	3
 function	0x002FC010	-	Graphics/effect-element-runtime.md	-	4
-function	0x002FC200	-	Engine-Core/startup-constants.md	-	6
+function	0x002FC200	-	Engine-Core/startup-constants.md	-	7
 function	0x002FC340	-	Graphics/effect-lifecycle.md	-	6
 function	0x002FC350	-	Graphics/effect-file-loading.md	-	3
 function	0x002FC3C0	-	Graphics/effect-file-loading.md	-	12
@@ -21010,7 +21010,7 @@ function	0x002FC830	-	Graphics/effect-file-loading.md	-	4
 function	0x002FC860	-	Graphics/effect-file-list.md	-	10
 function	0x002FC9B0	-	Graphics/effects-on-actors-and-scripts.md	-	3
 function	0x002FCA00	-	World-Areas-And-Travel/save-and-teleport-crystals.md	-	4
-function	0x002FCAC0	-	Battle-Actions/action-phases.md	-	5
+function	0x002FCAC0	-	Graphics/effect-file-loading.md	-	6
 function	0x002FCB40	-	Battle-Actions/action-phases.md	-	4
 function	0x002FCB60	-	Graphics/effects-on-actors-and-scripts.md	-	7
 function	0x002FCBF0	-	Graphics/effect-file-list.md	-	5
@@ -21273,7 +21273,7 @@ function	0x0030CFB0	BattleAction_AcquirePresentationSlot	Battle-Actions/action-p
 function	0x0030D070	-	Battle-Actions/action-phases.md	-	3
 function	0x0030D160	Battle_BuildActionTargetSet	Battle-Actions/area-of-effect.md	-	17
 function	0x0030D550	-	Battle-Actions/quickenings-and-summons.md	-	4
-function	0x0030D600	-	Scripts-And-Script-Commands/party-during-scenes.md	-	5
+function	0x0030D600	-	Battle-Actions/quickenings-and-summons.md	-	6
 function	0x0030D720	-	Battle-Actions/quickenings-and-summons.md	-	4
 function	0x0030D810	-	Battle-Actions/quickenings-and-summons.md	-	4
 function	0x0030D8B0	-	Engine-Core/party-control-modes.md	-	10
@@ -21575,7 +21575,7 @@ function	0x0031B750	-	Characters-And-Objects/battle-unit-fields.tsv	-	4
 function	0x0031B760	-	Enemy-Spawning/enemy-spawning.md	-	24
 function	0x0031B770	BattleUnit_FindByCombatantId	Enemy-AI-And-Gambits/gambit-conditions.md	-	11
 function	0x0031B7E0	-	Engine-Core/identifier-spaces.md	-	25
-function	0x0031B810	BattleUnit_FindMappedDefinitionSelectorByIndex	Party/party-slots.md	-	28
+function	0x0031B810	BattleUnit_FindMappedDefinitionSelectorByIndex	Party/party-slots.md	-	29
 function	0x0031B860	BattleStats_FindOwningBattleUnit	Battle-Actions/weapon-motion-list.md	-	34
 function	0x0031B8C0	-	Status-Effects-And-KO/ko-and-game-over.md	-	6
 function	0x0031B8E0	-	Graphics/field-camera.md	-	5
@@ -21735,7 +21735,7 @@ function	0x00323BB0	-	Items-Equipment-Shops-And-Licenses/licenses.md	-	6
 function	0x00323C60	BattleStats_HasRequiredLicenseForEquipment	Items-Equipment-Shops-And-Licenses/equipping-an-item.md	-	20
 function	0x00323D10	BattleStats_CheckLicenseNodeAcquireReason	Items-Equipment-Shops-And-Licenses/licenses.md	-	19
 function	0x00323EC0	BattleStats_HasRequiredLicenseForAction	Battle-Actions/command-availability.md	-	21
-function	0x00324020	-	Characters-And-Objects/party-member-status-record.md	-	10
+function	0x00324020	-	Battle-Actions/quickenings-and-summons.md	-	11
 function	0x00324100	BattleStats_ComputeLicenseDerivedRank	Characters-And-Objects/battle-unit-construction.md	-	9
 function	0x003241D0	-	Items-Equipment-Shops-And-Licenses/licenses.md	-	5
 function	0x00324280	BattleStats_AnyEligibleRosterRecordHasLicenseNode	Items-Equipment-Shops-And-Licenses/licenses.md	-	6
@@ -24424,7 +24424,7 @@ function	0x00377B60	-	World-Areas-And-Travel/area-flags-navimapdata.md	-	65
 function	0x00377B90	-	World-Areas-And-Travel/mpk-map-pack.md	-	8
 function	0x00377BA0	-	World-Areas-And-Travel/area-flags-navimapdata.md	-	8
 function	0x00377C10	-	Game-Files-And-Data-Tables/small-bin-tables.md	-	7
-function	0x00377C20	-	Scripts-And-Script-Commands/party-during-scenes.md	-	58
+function	0x00377C20	-	Scripts-And-Script-Commands/party-during-scenes.md	-	59
 function	0x00377C70	-	World-Areas-And-Travel/area-flags-navimapdata.md	-	10
 function	0x00377CC0	-	World-Areas-And-Travel/mpk-map-pack.md	-	7
 function	0x00377DB0	-	Story-Events-And-Hunts/opening-setup-scripts.md	-	15
@@ -59333,6 +59333,7 @@ data	0x00D27930	-	Game-Files-And-Data-Tables/file-path-resolution.md	-	0
 data	0x00D27948	-	Game-Files-And-Data-Tables/file-path-resolution.md	-	0
 data	0x00D27DC0	-	PhyreEngine/phyre-modules.md	-	0
 data	0x00D28030	-	PhyreEngine/phyre-lua-bindings.md	-	0
+data	0x00D29A38	-	PhyreEngine/phyre-reflection.md	-	0
 data	0x00D29BF0	-	PhyreEngine/phyre-reflection.md	-	0
 data	0x00D29E90	-	PhyreEngine/phyre-reflection.md	-	0
 data	0x00D2B298	-	PhyreEngine/phyre-asset-files.md	-	0
@@ -60017,7 +60018,7 @@ data	0x01EEBAA0	-	Game-Files-And-Data-Tables/small-bin-tables.md	-	1
 data	0x01EEBAAC	-	Menus-And-HUD/clan-primer.md	-	0
 data	0x01EEBAB0	-	Menus-And-HUD/clan-primer.md	-	0
 data	0x01EEBB00	-	Battle-Actions/battle-log.md	-	0
-data	0x01EEBB10	-	Engine-Core/startup-constants.md	-	1
+data	0x01EEBB10	-	Engine-Core/startup-constants.md	-	2
 data	0x01EEBCC0	-	Engine-Core/item-and-ability-ids.md	-	3
 data	0x01EEBCD0	-	Scripts-And-Script-Commands/reward-verbs.md	-	0
 data	0x01EEBCF8	-	Game-Files-And-Data-Tables/authored-data-tables.md	-	1
@@ -60584,7 +60585,7 @@ data	0x022BED93	-	Battle-Actions/action-commit.md	-	0
 data	0x022BEDA4	-	Battle-Actions/action-phases.md	-	1
 data	0x022BEFC0	-	Characters-And-Objects/battle-unit-fields.md	-	1
 data	0x022C1740	-	Damage-And-Battle-Formulas/unit-stats-fields.md	-	6
-data	0x022C1788	-	Battle-Actions/action-commit.md	-	5
+data	0x022C1788	-	Battle-Actions/action-commit.md	-	6
 data	0x022C17B0	-	Battle-Actions/action-phases.md	-	0
 data	0x022C17D0	-	Graphics/effect-file-loading.md	-	0
 data	0x022C1DB0	-	Scripts-And-Script-Commands/battle-verbs.md	-	1
@@ -60592,6 +60593,7 @@ data	0x022C1DB8	-	Scripts-And-Script-Commands/battle-verbs.md	-	2
 data	0x022C1F58	-	Battle-Actions/quickenings-and-summons.md	-	0
 data	0x022C1F60	-	Battle-Actions/quickenings-and-summons.md	-	0
 data	0x022C21B8	-	Battle-Actions/quickenings-and-summons.md	-	0
+data	0x022C24C0	-	Battle-Actions/quickenings-and-summons.md	-	0
 data	0x022C24E0	-	Engine-Core/debug-menu.md	-	1
 data	0x022C257C	-	Party/party-members.md	-	2
 data	0x022C25B1	-	Party/party-slots.md	-	0

@@ -273,7 +273,7 @@ packet:
 | 8 | `0x003BB9B0(name, descriptors, count)` | command 2 with up to 5 descriptors of `0x38` bytes, runs `0x003BAEB0` |
 | 9 | `0x003BB440(name, 0, buffer, size)` | the read of `size` bytes |
 | `0xA` | `0x003BB4C0` | copies a `0xB8`-byte record to `0x02B40FF0`, command 6, runs `0x003BA990` |
-| `0xB` | `0x003BB2F0` | command 7, runs `0x003BA5F0` (its states 0, 1 and `0xC` reach `0x00862130`); the packet's name is not passed on (below) |
+| `0xB` | `0x003BB2F0` | command 7, runs `0x003BA5F0`, whose step 1 calls `0x00862130`; the name is not passed on (below) |
 | `0xC` | `0x003BB380` | the format command |
 
 `0x00582040(queue)` returns 0 and starts nothing when the queue is null, holds no packet (`+0x398` = 0) or its

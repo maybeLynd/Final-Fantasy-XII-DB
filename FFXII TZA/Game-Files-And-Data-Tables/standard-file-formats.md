@@ -406,13 +406,15 @@ one). `TrackingMapScreenRateX`/`Y` and `TrackingMapScreenSuperWideMul`/`Plus`, w
 ([Clan Primer](../Menus-And-HUD/clan-primer.md)).
 
 `0x001C7360` and `0x001C7520`, both called from the developer menu `0x001D1660`, are the only writers: when
-`init.json` has the key, they store new tracking values in `0x01F813C8` and write the whole document
+the key holds a non-null value, they store new tracking values in `0x01F813C8` and write the whole document
 back to `JsonData/init.json` through an output file stream (`0x00202930`).
 
 - `0x001C7360(x, y)` looks up `TrackingMapScreenRateX` and tests its tag (`0x001FF740`, `0x00200BE0`) twice, the
-  first result unused, and returns when the key is absent (`0x001C73BC`). It then stores `x` and `y` as doubles
+  first result unused, and returns when its value is null (`0x001C73BC`). It then stores `x` and `y` as doubles
   in `TrackingMapScreenRateX` and `TrackingMapScreenRateY` (`0x001FEE10`, `0x001C73E1`, `0x001C7406`); only the
   first key is tested.
+- The lookup adds an absent key to `0x01F813C8` with a null value (`0x001FF4F0`, `0x001FF5E1`), so that early return
+  leaves the key in the document as null without writing the file.
 - `0x001C7520(mul, plus)` does the same with `TrackingMapScreenSuperWideMul`, which it tests (`0x001C757C`), and
   `TrackingMapScreenSuperWidePlus` (`0x001C75A1`, `0x001C75C6`).
 - Both build the path string `JsonData/init.json` (18 bytes through `memmove`, `0x001C74AA`, `0x001C766A`) and

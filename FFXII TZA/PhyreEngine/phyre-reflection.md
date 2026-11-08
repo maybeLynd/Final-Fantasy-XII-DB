@@ -422,8 +422,8 @@ starts that far into the object.
 
 ### Teardown
 
-The `atexit` thunk `0x008A8E20` restores the class's descriptor vtable and jumps to `0x00633390`, the
-base destructor:
+The `atexit` thunk `0x008A8E20` puts back the `PClassDescriptorForType` vtable `0x00D29A38` and jumps to
+`0x00633390`, the base destructor:
 
 1. It installs the `PClassDescriptor` vtable and, when its index at `+0xE8` is the last one handed
    out, decrements `0x02CF8260`.
