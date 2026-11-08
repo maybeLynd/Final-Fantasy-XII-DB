@@ -211,8 +211,9 @@ the three: the probe's own reads are its loads of `0x02EAED88` (`0x008094B2`) an
 
 ## Modding notes
 
-- Hooking the `sqrtf` slot `0x008C2BB8` sees every scalar square root the game computes except the four
-  `sqrtss` sites; it does not see the sound engine's four-wide routines.
+- The `sqrtf` slot `0x008C2BB8` serves 570 call and jump sites through the stub `0x00861F14`, and the `sqrt` slot
+  `0x008C2C60` 36 call sites through `0x00861F5C`. The four `sqrtss` sites and the sound engine's four-wide routines
+  use neither.
 - The 27 approximating imports return the installed runtime's results, so a replacement for one of them has to
   match that runtime's version, not a textbook formula, to keep identical low bits; `sqrtf`, `sqrt`, `floor`,
   `ceil` and the other 14 give the same result on every runtime.

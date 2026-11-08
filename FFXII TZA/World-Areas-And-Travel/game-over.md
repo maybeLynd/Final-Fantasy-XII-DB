@@ -60,6 +60,11 @@ which asks `0x002805D0`: when `0x0035C740()` is non-zero, a mode-screen task is 
 `0x0028065C` (index mode − 2, `0x00280609`-`0x0028062E`), and the sub-id is the task's dword `+0xC4` (`0x00280630`); every
 other case answers 0 (`0x00280648`).
 
+The sub-id test subtracts `0x40` and compares unsigned with 2 (`0x00280636`-`0x0028063C`), so a sub-id below `0x40`
+passes it as one above `0x42` does. The task takes the sub-id from the screen request's second dword
+(`0x0027FDE1`), and the 98 calls `openfullscreenmenu_48d(2, n)` in the `us` scripts pass values of `n` from 0 to 56,
+all below `0x40`.
+
 That body fades (`0x002EFA70(3, 0, 1, 0)` when `0x002EFD20(3)` is
 non-zero), calls `0x0035C7B0(0x0B, 0)` and `0x00252B40(0x0B, 1)`, writes 2 to the area controller's `+0xC8`
 (`[[0x0209AC30] + 0xC0] + 0xC8`, `0x0027EFE8`, read with no null test, so a null controller faults there), releases

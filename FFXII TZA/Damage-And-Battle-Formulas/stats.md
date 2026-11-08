@@ -210,7 +210,7 @@ After the sums, the rebuild limits and stores each value (`0x002FF780`-`0x002FF9
 | `+0x31-0x34` | innate, weapon, shield and magick evade | 0 to 100 |
 | `+0x35` | Evade: innate + weapon + shield evade, plus `+0x1E` for an enemy | 0 to 100 |
 | `+0x36` | Magick Evade: magick evade, plus `+0x20` for an enemy | 0 to 100 |
-| `+0x37` | MP bars, a party member's stats `+0x20` | at most 3 |
+| `+0x37` | MP bars, the number of Mist charges the unit can hold; a party member's stats `+0x20` | at most 3 |
 
 The 9,999 and 1,000,000,000 are literals that one `cmove` picks by the party byte (`0x002FF7BD`-`0x002FF7C8`).
 

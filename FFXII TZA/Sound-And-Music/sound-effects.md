@@ -228,8 +228,8 @@ No other instruction reaches these three. The queue's addresses are taken by `0x
 ## Modding notes
 
 - A sound's pan byte above `0x7F` puts it behind the listener.
-- Flag bit `0x20` of a slot cross-fades it over 4.8 s against the playing sounds whose flags have bit `0x40`; bit `0x8` makes
-  it wait for slot 7.
+- Flag bit `0x20` of a slot cross-fades it over 4.8 s against the playing sounds whose flags have bit `0x40`;
+  bit `0x8` keeps it from starting while slot 7 of its bank plays, except for slot 7 itself.
 - Changing a voice fade's shape needs a curve argument other than 0 at its `0x007CA560` call; no data selects it for
   voice volume, pan, pitch or stop ramps.
 - Stop a sound by the handle its play call returned.

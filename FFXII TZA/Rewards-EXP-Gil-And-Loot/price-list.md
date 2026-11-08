@@ -1,5 +1,5 @@
 ---
-title: "Price list: every script price id with its gil amount and the scripts that ask for it"
+title: "Price list: every script price id with its gil amount or sale count and the scripts that ask for it"
 kind: "reference"
 category: "Rewards: EXP, LP, gil and loot"
 addresses: "0x02EBF060, 0x0031C5D0, 0x0031D7B0, 0x0034B000, 0x0032A880, 0x0030A0F0"
@@ -42,6 +42,7 @@ from the steps of the function that asks for the price, and where the seller sta
 
 | Column | Holds |
 |---|---|
+| `gil` | the price `+0x00`: gil, except on the 31 `trophy trade limit` rows, where it is the number of times the package sells, 1 on each |
 | `detail` | what the price buys, by the kind in `buys`: a map's key item id and name (`0x8002 Bhujerba`); an airship route with its destination and route code (`to Archades (route 1)`); a trophy trade package id and its contents, or for a sale limit `how many times package 0x90FF sells`; for the other kinds, the purchase in words with the line that asks for the price in single quotes, `[value]` standing for the price |
 | `map_name`, `region` | where the seller stands: the map name and region of the script's zone in [`zone-asset-list.tsv`](../World-Areas-And-Travel/zone-asset-list.tsv), as the location line shows them (117 rows); the two scene scripts `ald_a0180` and `alc_a0280`, which have no row there, read Alley of Muted Sighs (Old Archades) and Nilbasse (Archades) |
 

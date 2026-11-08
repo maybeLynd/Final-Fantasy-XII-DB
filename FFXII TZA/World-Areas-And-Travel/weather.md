@@ -613,7 +613,7 @@ Entering an area with the triple 0, 30, 70 while the saved slot is 2:
 3. Otherwise `0x0025ABA0(2)` draws again: `r < 50` tries 3 (eligible, 70) and returns 3; `r >= 50`
    tries 1 (0, not eligible) then 3 and returns 3.
 4. `0x0026D910(3)` commits slot 3, publishes the lane-3 variant and the wind class of selector's entry
-   3, and refreshes the sky from the same entry.
+   3, and refreshes the map wind from the same entry.
 5. `0x002620E0` instantiates the effect rows enabled for slot 3, binds the slot's models, textures and
    lighting through `0x00379290`, and sets its latch bit.
 
@@ -622,7 +622,7 @@ A zone script choosing the weather:
 1. The bind sets manager `+0x12`; the start pass runs `setup`, whose `map()` picks a slot (from
    `lastmap()`, the story counter and the save global `mp_last_weather`, payload `+0x940`) and calls
    `setweatherslot(n)`.
-2. `0x0026D910(n)` commits slot n, publishes its combat classes and refreshes the sky; `0x0026D8F0` arms
+2. `0x0026D910(n)` commits slot n, publishes its combat classes and refreshes the map wind; `0x0026D8F0` arms
    the restore flag.
 3. `0x0025DB79` clears `+0x12`, and `0x002620E0` rolls: the result is dropped (`0x0026D951`), slot n stays,
    the flag is cleared (`0x0026DA92`), and effects, models, textures and lighting are bound to slot n.
@@ -686,7 +686,7 @@ in-image routes to `0x0026D910` are the boot setup, the field runtime pass and t
 - Slot requests saturate silently: `setweatherslot(0)` and `setweatherslot(1)` both select slot 1,
   `setweatherslot(9)` slot 3.
 - The strong-wind combat class is any wind preset of 4 or more; editing a preset across that line
-  changes damage, not only the sky.
+  changes damage, not only the sway of hair, cloth and hanging gear.
 - The combat class comes from the requested slot and the sky from the committed one, so a lane edit
   that changes only one of them shows up as mismatched combat and sky after a forced weather.
 - `0x02099DB0` (lane byte `+2`) has no reader and is 0 in every shipped lane.
@@ -705,7 +705,7 @@ in-image routes to `0x0026D910` are the boot setup, the field runtime pass and t
 ## Related
 
 - [Weather and terrain element scaling](../Damage-And-Battle-Formulas/elements.md)
-- [Random number generators: the gameplay Mersenne Twister, the shared gameplay LCG, the graphics-noise Mersenne Twister, the C runtime rand, the presentation bit-feedback generator, the counter hash and the PPFX xorshift, with their constants, seeds and states](../Random-Numbers/random-number-generators.md)
+- [Random number generators: the gameplay Mersenne Twister, the shared gameplay LCG, the graphics-noise Mersenne Twister, the C runtime rand, the presentation bit-feedback generator, the emulated VU1 generator, the counter hash and the PPFX xorshift, with their constants, seeds and states](../Random-Numbers/random-number-generators.md)
 - [Zone changes: mapjump and the other jump verbs, the loading flags, the moment the new zone is ready and what names a map](zone-changes-and-mapjump.md)
 - [Doors, gates and map changes: the override table the setmapid verbs write, what its floor, wall and mj bits block, the show and hide model masks and when a new map clears them](doors-gates-and-map-changes.md)
 - [The map ctrl pack](mpk-map-pack.md)

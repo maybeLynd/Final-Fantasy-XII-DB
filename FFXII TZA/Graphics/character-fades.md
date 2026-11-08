@@ -366,7 +366,7 @@ arming call and on every unlatched call, also for a record without bit `0x800000
 - To fade a character from script without fighting the engine, use the channels it leaves alone:
   `rgbatrans` owns 6 to 9, and nothing but the clear writes channel 3.
 - Selector `0x0B` leaves channel 5 out; whatever reads it ignores Invisibility.
-- The glide's feel is the two constants in `0x00424080`: 0.83 per call and the 0.05 floor.
+- The glide's feel is the two constants in `0x00424080`: 0.83 per call and the speed of 0.05 that releases the latch.
 
 ## Related
 

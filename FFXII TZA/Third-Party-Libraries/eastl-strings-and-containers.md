@@ -370,7 +370,7 @@ with a string key at `+0x20` and a value at `+0x40` that it passes to `0x002001F
 ## Modding notes
 
 - Never free or write through a string whose capacity end is `0x02EBA2E1`: that is the shared empty
-  byte every empty string points at.
+  byte a string built empty points at. A string emptied after it held text keeps its block (`0x0020A760`).
 - Every non-empty string owns a heap block; there is no short-string storage to overflow into.
 - Replacing the allocator vtable's slots `+0x10` and `+0x18` redirects every EASTL allocation. The
   container names are not passed through, so a hook cannot tell containers apart by name.

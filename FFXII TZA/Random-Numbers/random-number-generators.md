@@ -1,8 +1,8 @@
 ---
-title: "Random number generators: the gameplay Mersenne Twister, the shared gameplay LCG, the graphics-noise Mersenne Twister, the C runtime rand, the presentation bit-feedback generator, the counter hash and the PPFX xorshift, with their constants, seeds and states"
+title: "Random number generators: the gameplay Mersenne Twister, the shared gameplay LCG, the graphics-noise Mersenne Twister, the C runtime rand, the presentation bit-feedback generator, the emulated VU1 generator, the counter hash and the PPFX xorshift, with their constants, seeds and states"
 kind: "system"
 category: "Random numbers"
-addresses: "0x00863BF0, 0x00863C80, 0x00866B90, 0x00866D60, 0x00863D30, 0x00328370, 0x00328D80, 0x0018EE20, 0x0018D740, 0x0015BCF0, 0x003D8E50, 0x004005E0, 0x006B05E0, 0x0074BDE0"
+addresses: "0x00863BF0, 0x00863C80, 0x00866B90, 0x00866D60, 0x00863D30, 0x00328370, 0x00328D80, 0x0018EE20, 0x0018D740, 0x0015BCF0, 0x003D8E50, 0x004005E0, 0x006B05E0, 0x0074BDE0, 0x004B97F0, 0x01E02828, 0x02064AFC"
 ---
 
 ## What the player sees
@@ -14,7 +14,8 @@ generators that start from a known number and step through a fixed sequence.
   reseeded from the clock every time a save is loaded, so reloading a save rerolls them.
 - Loot drops, the chain coin, where enemies appear and which action an AI picks come from a second
   generator that restarts from a counter every time an area is entered, counting from the moment
-  the game was started. A save load leaves it alone.
+  the game was started. A save load does not change it by itself; entering the saved area restarts it as any
+  area entry does ([seeding](#seeding-the-shared-gameplay-lcg)).
 - Noise textures and most other effects use generators of their own that never touch those two. Scripted
   camera shakes are the exception: each step of a shake draws sixteen floats from the first generator
   (`0x0037D1F0` calling `0x00379CE0`), so a shake moves the sequence that hits and chests use
@@ -174,6 +175,21 @@ at 0 it leaves `0x01EF93E8` as it is and takes 1.0 from `0x01CEBBA8` as the samp
 returns 0.0. On both paths it stores the sample at `0x022D92E0` (`0x00400625`), copies the 16 bytes
 `0x022D92E0`-`0x022D92EF` to `0x022D8F90` (`0x0040062D`-`0x00400634`) and returns `sample − 1.0` (`0x00400647`).
 
+### The emulated VU1 generator
+
+The emulated VU1 programs ([PS2 VIF1 and VU1 emulation](../Engine-Core/ps2-vif1-vu1-emulation.md)) use a
+register of their own at `0x01E02828`, 1.0 in the image, with the presentation generator's step:
+
+```python
+feedback = (((state >> 18) ^ state) >> 4) & 1;
+state = (((state & 0x003FFFFF) | 0x1FC00000) << 1) | feedback;  # 0x004B9808-0x004B9823
+```
+
+`0x004B97F0` returns the new state read as a float, in [1.0, 2.0). While the switch `0x02064AFC` is 0 it returns 1.0
+(`0x01CEBBA8`) and leaves the state as it is (`0x004B97F0`-`0x004B9801`). `0x004B9C50`, `0x004B9CA0` and `0x004B9CF0` do the
+same and store the result in lane x, y or z of their argument. The VU1 programs store to the switch at `0x0047C6B4`,
+`0x004884F3`, `0x00482B24` and `0x004EC23A`.
+
 ### The counter hash
 
 `0x006B05E0` is the script method `GenerateRandomFloat01` of `PRandomGenerator`: `0x006B04B0` registers the name (`0x00632FB0` at `0x006B052B`) and stores the address in its float caller record (`0x006B059F`-`0x006B05A6`), its only reference. It is not a recurrence: it increments the counter `0x02E50260` and hashes it:
@@ -250,6 +266,7 @@ RIP-relative. `0x02EB4235` to `0x02EB423F` have no RIP-relative reference.
 | `0x0015BCF0`, `0x0018D680` | graphics-noise MT: seed at process start, seed mixer |
 | `0x003D8E50`, `0x004005E0` | presentation generator: scaled draw, unit draw |
 | `0x00259180` | presentation generator: seed |
+| `0x004B97F0`, `0x004B9C50`, `0x004B9CA0`, `0x004B9CF0` | emulated VU1 generator: next float in [1.0, 2.0), or 1.0 while switched off |
 | `0x006B05E0` | counter hash, `PRandomGenerator` method `GenerateRandomFloat01` |
 | `0x0074BDE0` | PPFX xorshift kernel builder |
 
@@ -268,6 +285,8 @@ RIP-relative. `0x02EB4235` to `0x02EB423F` have no RIP-relative reference.
 | `0x01F7FFD0` | `u32` | graphics seed call counter | `0x0018D680` |
 | `0x01EF93E8` | `u32` | presentation generator state | `0x00259180`, the ten functions above |
 | `0x022D9138` | `u32` | presentation generator enable | `0x00259180` |
+| `0x01E02828` | `u32` | emulated VU1 generator state, 1.0 in the image | `0x004B97F0`, `0x004B9C50`, `0x004B9CA0`, `0x004B9CF0` |
+| `0x02064AFC` | `u32` | emulated VU1 generator switch: 0 leaves the state and gives 1.0 | `0x0047C6B4`, `0x004884F3`, `0x00482B24`, `0x004EC23A` |
 | `0x02E50260` | `u32` | counter hash counter | `0x006B05E0` |
 | `0x01F3CD6C` | `u32` | PPFX kernel counter | `0x0074BDE0` |
 

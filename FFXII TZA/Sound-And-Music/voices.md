@@ -129,7 +129,7 @@ when the old one ends.
 | `voicedispose(slot)` | `0x08C` | stops every line of the slot and frees it | 628, and 11 in field maps |
 | `voicepan(cue, pan)`, `voicechangepan(cue, frames, pan)` | `0x0B1`, `0x0B4` | pan, at once or over frames, once the line has started | 10, 8 |
 | `voicevolume(cue, volume)`, `voicechangevolume(cue, frames, volume)` | `0x0B2`, `0x0B3` | volume, likewise | 0, 1 |
-| `voicestopall` | `0x580` | stops every voice and every battle shout (`0x002DF690(-1)`) | 2, and 1,522 in field maps |
+| `voicestopall` | `0x580` | stops every voice and every battle shout (`0x002DF690(-1)`); its result callback `0x00346670` writes nothing to the call record, so the script gets 0 (`0x0026227A`) | 2, and 1,522 in field maps |
 | `setexpandvoicememory(heap, size)` | `0x395` | a larger voice heap (`0x003E9AA0`) | 2 |
 
 The speaker argument of `voiceplay_28b` and `voiceplay_28c` has no effect: `0x003EA180` writes only through slot field
@@ -147,8 +147,10 @@ through `0x003EA2A0` for 0 (`0x0035824B`-`0x00358257`).
 
 ### Stopping, pan and volume
 
-`0x002DF690(id)` destroys the stream bank with that id, or every one for -1 (`0x0021D840`); only when that finds no bank
-does it go on to the battle-voice banks (`0x0021C870`). Pan and volume go through the sound-effect setters `0x002256F0` and `0x002257E0`
+`0x002DF690(id)` first tries the stream banks (`0x0021D840`). An id other than -1 destroys the bank with that id and
+returns 1, or returns 0 when no bank has it. For -1 it destroys every stream bank and still returns 0 (`0x0021D8BC`).
+`0x00211280` goes on to the battle-voice banks (`0x0021C870`) when the result is 0 (`0x00211298`-`0x002112A2`), so -1 stops
+both kinds. Pan and volume go through the sound-effect setters `0x002256F0` and `0x002257E0`
 ([Sound effects](sound-effects.md)). Every voice bank's sound has category 3, so the Config Voice row scales it
 (`0x002DE310`).
 

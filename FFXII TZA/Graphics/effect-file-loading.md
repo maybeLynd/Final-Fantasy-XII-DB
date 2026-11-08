@@ -64,6 +64,11 @@ again (`0x002FC4E0`-`0x002FC51C`). `0x002FCAC0` makes the same test over states 
 answer ([action phases](../Battle-Actions/action-phases.md)). A weight-24 id passes only when every other counted
 slot weighs 0.
 
+The id that answer tests is `0x0030A190(row)` (`0x0030C8F1`-`0x0030C8F8`): the action row's word `+0x24`, the `effect_id`
+of the [action list](../Battle-Actions/action-list.md), or -1 when that word is `0xFFFF` or has bit `0x8000`, or
+when the row's `+0x0C` has bit `0x40000000` (`0x0030A213`-`0x0030A238`). For rows `0xD0` to `0xF1` while `0x022C2160` is
+5 or 6 it is the row's word `+0x28` instead (`0x0030A1CB`-`0x0030A209`).
+
 `0x002EAD00(owner, count, targets, handle)` returns 0 for no targets; otherwise it counts
 `0x02CA4EDC` up (`0x0042FCB0`) and plays through `0x002FCCC0`. Its caller `0x00319E40(unit)` gathers the
 ids of the unit's targets (list `+0x780`, count `+0x77C`) whose actors exist and plays on them the

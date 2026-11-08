@@ -276,7 +276,8 @@ once it is full stops the music over the fade (slot 2).
 ### Bar, beat and tick
 
 A timing is a bar (`i16`), a beat (`i8`) and a tick (`i8`); a meter gives the ticks per bar (`+0x20`) and per beat
-(`+0x21`). Every helper works on the total tick count and splits it back:
+(`+0x21`; `0x007F2EA0`-`0x007F2ECB`, `0x007F30F2`-`0x007F310B`). Every helper works on the total tick count and splits
+it back:
 
 ```python
 total = bar * ticksPerBar + beat * ticksPerBeat + tick

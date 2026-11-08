@@ -117,7 +117,9 @@ when full); the entry's third word is the record's whole qword at `+0x18`, the b
 
 Each frame the pump runs `0x001A1310(manager)`: under the same lock it copies the vector to the stack and
 empties it, then calls every non-null callback with its argument on the main thread. A callback that
-files a new request therefore sees it finish in a later frame.
+files a new request with byte `+0x18` clear therefore sees it finish in a later frame; with the byte set, the new
+request's callback runs on the thread that ran it (`0x001A0846`-`0x001A0853`), before the filing call returns when
+`now` is set.
 
 ### PS2 file reads
 

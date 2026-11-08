@@ -1,5 +1,5 @@
 ---
-title: "World lock: the stop request that freezes everyone but the scene or the talk, the field hold, and event time stop"
+title: "World lock: the stop request that holds the world still for a scene or a talk, the field hold, and event time stop"
 kind: "system"
 category: "Scripts and script commands"
 addresses: "0x0034DC30, 0x00263230, 0x00263050, 0x00263480, 0x00226BE0, 0x00225CD0, 0x00377700, 0x00314A60, 0x02099DE7, 0x02099DB4"
@@ -7,8 +7,8 @@ addresses: "0x0034DC30, 0x00263230, 0x00263050, 0x00263480, 0x00226BE0, 0x00225C
 
 ## What the player sees
 
-While a talk or scene runs, the rest of the world holds still: nobody else starts a conversation and nothing else
-moves.
+While a talk or scene runs, the rest of the world holds still: nobody else starts a conversation, and every actor
+the stop request locks stops moving.
 
 ## How it works
 
@@ -65,8 +65,22 @@ Every request locks every actor of managers 0 to 2 and then releases the configu
 party leader always, the other party members only when the flag is 0, and the non-party types by
 their configuration. A locked actor keeps the request's bit in `+0x10C`, and the interpreter gate
 refuses its script every frame unless the actor's byte `+0x0B` has bit `0x20` set
-([script interpreter](script-interpreter.md)), which is why townspeople stand still while the player
-talks.
+([script interpreter](script-interpreter.md)). Only the verb `set_force_ignore_timestop` (`0x497`) sets that bit
+(`0x003506D0`).
+
+Among actors outside the party, requests 6 and 4 put their bit in `+0x10C` only for class nibbles 1, 2, 7 and 3
+(`0x00263BE0`, `0x00227137`-`0x0022729C`; [time stop and freeze](../Engine-Core/time-stop-and-freeze.md)).
+`0x00265FF0` gives a new class-1 actor nibble 4 and a class-3 actor nibble 5. While an actor keeps either nibble,
+these requests leave its `+0x10C` clear and its movement free, and are no reason for the interpreter to refuse
+its script.
+
+The nibble can change later. `0x00265A20` gives nibble 1 to up to 32 records of a manager whose `+0x28` is 0, when
+the record's byte `+0x14` is at or above `0x80` (`0x00265A83`-`0x00265ACE`). `0x00269FE0` stores a new nibble for the
+verb `setfreetargettype` (`0x265`, `0x003528D6`) and for a battle unit's `+0x58` (`0x00238E3E`). `0x00267CC0` writes 4
+and `0x002659A0` writes 5.
+
+Request 7 also puts its bit in `+0x10C` for nibbles 4 and 5. The field hold takes it for a talk partner whose byte
+`+0x0C` has bit `0x80` set (`0x00268E0A`-`0x00268E30`), and its one-entry list releases only that partner.
 
 Request 6 itself names no actor and no list (`0x00226BE0(6, 0, 0, 0, 4, flag)`), so it releases
 no one beyond the configured rows; the field hold's requests 5, 4 and 7, below, are the ones that carry

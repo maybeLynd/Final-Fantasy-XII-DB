@@ -43,8 +43,9 @@ nothing else touches them (`0x002541D4`-`0x00254258`):
 4. The latch is cleared on release only while the override is 0 (`0x00254241`-`0x00254249`).
 5. The toggle is passed to the applier `0x00252B60` (`0x00254250`-`0x00254258`).
 
-So one press flips the toggle once. After step 2 the latch is still set, so the next press clears the override but
-does not flip the toggle.
+So one press of the bound keyboard key flips the toggle once. With R2 on a pad, step 2 holds the toggle at 1 while
+R2 is held, and step 3 clears it on release. After step 2 the latch is still set, so the next press clears the
+override but does not flip the toggle.
 
 ### The applier
 

@@ -8,7 +8,9 @@ addresses: "0x0032E620, 0x0032E400, 0x0036A100, 0x0036A190, 0x0036BFE0, 0x0041E4
 ## What the player sees
 
 Models, motions and effects appear once their data has loaded and vanish cleanly when the scene that loaded them
-is unloaded. An event script that loads an animation set waits until it is in memory, plays it, and frees it.
+is unloaded. An event script that loads an animation set waits while its read is armed or in flight, plays it, and
+frees it. The wait also ends when the read was held back or could not be set up, so its end alone does not mean
+the set loaded ([Script motion slots](resource-ownership-and-disposal.md#script-motion-slots)).
 
 ## Stages
 
