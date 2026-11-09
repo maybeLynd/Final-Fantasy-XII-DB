@@ -116,8 +116,24 @@ Three lists hold up to 32 units by position and not by slot: the target list at 
 `+0x988` and the noticed list at `+0xBC0`. Their capacity is separate from the pool's.
 
 The spawn keep banks follow the 64-record spawn limit. `0x00233440` writes both to the save, `0x9400` bytes each, and
-`0x00233550` restores bank 2. No save writer that reads the unit pool is located yet: the save writers' direct calls
-reach neither a function that loads the pool nor an accessor.
+`0x00233550` restores bank 2. No save writer that reads the unit pool is located yet.
+
+The `saved_state` cells rest on one search. The save image is `0x56690` bytes at `0x02164280` (`0x002EF640`). The save
+closure is the 145 functions that direct and tail calls reach from the capture functions `0x00229B40`, `0x00584580`,
+`0x005844A0`, `0x00233440`, `0x0025D8E0`, `0x002EF540`, `0x002EF510`, `0x002EF3C0`, `0x00583D60`, `0x002EF570`, `0x00234ED0` and the
+restore functions `0x005843E0`, `0x00233550`, `0x00269A20`, `0x00584210`, `0x002EF410`, `0x002EF4A0`, `0x002EF7C0`, `0x002EF740`,
+`0x00235AF0`. A call through a pointer ends the walk.
+
+A row's functions are the code references to its address, or the rows of its field in
+[`battle-unit-fields.tsv`](../Characters-And-Objects/battle-unit-fields.tsv). A payload write is a `w` or `rw` row of the
+accessor tables of [save data fields](../Saving-Loading-And-Settings/save-data-fields.md). Each write's source registers
+were followed back through the function's linear code, ten definitions at most, stopping at a call for a volatile
+register. A cell that says a write takes no value from the dependency reports that walk.
+
+`0x005844A0` and `0x00583D60` reach battle code only through `0x00283270`, which calls `0x00320040` at `0x00283368`, which
+calls `0x00329220` at `0x0032008D`. None of the 33 functions that lie only behind `0x00283270` has a payload write. Without
+it the closure has 112 functions and none of the battle functions `0x00236820`, `0x00236850`, `0x00263E30`, `0x0031B7E0`,
+`0x0031B860`, `0x00387090`, `0x002FEAD0`, `0x0030C0E0`, `0x0031FDA0`, `0x00329220`.
 
 ### Which compares and bit tests are about units
 
@@ -139,7 +155,7 @@ many fields it uses. 357 of them are not in the site table: they depend on the r
 | `dependency`, `kind` | the structure, and whether it is storage, a count, an index, a mask, a state bit or a list held by position |
 | `capacity`, `what_a_slot_or_entry_holds` | its size and what each part holds |
 | `set_or_sized_at`, `read_or_used_at`, `reset_at` | the instructions that size or set it, use it and clear it |
-| `saved_state` | what the save does with it; `-` where no save reading was looked for |
+| `saved_state` | what the save does with it and at which site, or how far the search for a save writer went (the search is described above) |
 | `page` | the page that describes it |
 
 ### Columns of native-limits-battle-unit-site-classes.tsv
@@ -256,3 +272,18 @@ Calls between the functions this page cites and code in other parts of the progr
   [battle units](../Characters-And-Objects/battle-units.md).
 - RNG random selection: `0x002395A0` calls `0x00328370`; those functions are documented on
   [force fight mode](force-fight-mode.md).
+- Input: `0x00320040` is called by `0x00253C70`; those functions are documented on
+  [force fight mode](force-fight-mode.md).
+- Rewards progression economy: `0x0031B860` is called by `0x002F8BB0`, `0x0030C650`; `0x00329220` calls `0x002F8F20`; those
+  functions are documented on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md).
+- Status periodic terminal: `0x00263E30` is called by `0x00386860`; `0x0031B860` is called by `0x002F9400`, `0x0030E360`,
+  `0x0030F690`, `0x0030FED0`, `0x00386860`.
+- Status periodic terminal: those functions are documented on
+  [status timers](../Status-Effects-And-KO/status-timers.md),
+  [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md), [force fight mode](force-fight-mode.md),
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md); and on
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
+- Story event quest hunt: `0x00583D60` calls `0x0032A8A0`; those functions are documented on
+  [identifier spaces](identifier-spaces.md).

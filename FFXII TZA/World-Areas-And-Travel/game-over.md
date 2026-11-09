@@ -66,9 +66,20 @@ passes it as one above `0x42` does. The task takes the sub-id from the screen re
 answers 1 with no sub-id test. The ids the scripts pass are 2, 4, 6, `0x8000` and `0x8004` to `0x8006`, and none
 maps to mode 2.
 
-Mode 2 comes from the input arbiter, with sub-id 0 on Triangle (`0x00253D78`) and on Select or L3 with `0x21`
-(`0x00253EE6`, `0x00253F53`) or, once story flag `0x5E` is set, `0x00264640(2)`, 1 when that is 0 (`0x00253F44`). `0x0035D750`
-also posts it with sub-id 0 from mode `0x18`.
+Mode 2 comes from the input arbiter, with sub-id 0 on Triangle (`0x00253D78`), and `0x0035D750` also posts it with
+sub-id 0 from mode `0x18`. The verb `debug_open_triangle_menu2` (id 2037, `0x0050DAB0`) tail-jumps to the post with
+its script argument, and no `us` listing calls it.
+
+Select or L3 sets the byte `0x02092750` to 1 (`0x00253E94`) when `0x00236760` is 0, `0x003BFDF0` is not negative, `0x002501A0`
+is 0, and `0x002500F0(mask, 2)` and `0x00250130` are non-zero; L3 also needs availability bit `0x800` clear and `0x00250200`
+non-zero. A press while the byte is 1 or 2 clears it instead (`0x00253EFA`).
+
+With the byte at 1, on that call or a later one, the arbiter posts mode 2 with sub-id `0x21` (`0x00253EE6`) when
+`0x003CB3E0` is non-zero, `0x002B9FC0` and `0x002B66D0` are 0, `0x003BFDF0` is not negative, availability bit `0x800` is clear
+and `0x00236760` is 0.
+
+Select alone has a second post (`0x00253F01`-`0x00253F18`, the same bit clear and `0x00236760` 0): sub-id `0x21` while story
+flag `0x5E` is clear (`0x00253F53`), and once it is set `0x00264640(2)`, 1 when that is 0 (`0x00253F44`).
 
 Arming sets availability bit `0x1` through `0x00254850(1)` (`0x0035C870`, `0x0035C8D7`). The arbiter returns while Game
 Over is armed (`0x00253C97`), and the drain drops a pending id 2 when that bit is set (`0x002E0C5E`-`0x002E0C65`).

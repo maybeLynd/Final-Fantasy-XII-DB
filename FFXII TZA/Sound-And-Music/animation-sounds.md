@@ -53,8 +53,10 @@ playback](../Graphics/model-effects-and-motion-commands.md). `owner_status` says
 | `no_block_for_group` | 199 | the model has no block for the group, so `0x002E9D90` gives -1 |
 | `explicit` | 5 | modes 1 and 4: the sound number in `se000` |
 
-`playable` and `not_playable` split the variants by the sound table. Only one model's block is a fixed fact: which
-variant plays is drawn as above.
+`playable` and `not_playable` split the variants by the block index rule of [Sound banks](sound-banks.md): a sound
+is playable when its slot exists and its byte `+0x04` is set. A `footstep_set` row lists all 44 numbers
+`soundfoottable.bin` names, 0 to 43, and `not_playable` holds those the bank has no playable sound for. Only one
+model's block is a fixed fact: which variant plays is drawn as above.
 
 Mode 4 (552 occurrences, numbers 101 to 104) resolves to registry slot 0, the first block to register. `0x003A13F0`
 requests blocks 0, 1 and 2 in that order (`0x003A14AD`, `0x003A152C`, `0x003A15AB`), and those numbers exist only in

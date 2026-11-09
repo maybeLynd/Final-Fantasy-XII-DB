@@ -2,16 +2,16 @@ function	read_at	used_at	use	instruction	array_base_loaded_at	pages
 0x00234480	0x002344E0	0x002344E0	field used directly	mov byte ptr [rbx + 0xea9], dil	-	battle-unit-fields battle-units effect-anchors-and-targets identifier-spaces native-limits painting-a-line-of-text-into-a-render-target party-during-scenes world-lock
 0x00236300	0x0023630A	0x00236314	stored	mov byte ptr [rcx + 0x1f7], al	-	battle-units effect-anchors-and-targets enemy-spawning frame-update-order heading-speed-to-position-delta ko-and-game-over party-during-scenes
 0x0023A570	0x0023A9EC	0x0023AA04	argument r8	call 0x328ff0	-	action-list battle-text-tables battle-units bazaar bestiary binmenu-images concurrence-list drawing-a-line-character-by-character effect-file-loading enemy-names-on-screen enemy-respawning enemy-spawning equipment-list equipping-an-item exp-lp-and-level-ups identifier-spaces item-list key-item-list license-board-screen loot-list party-control-modes party-slots party-table spawn-record-fields steal strong-and-weak-mode text-area-tables text-word-bank unit-stats-fields
-0x002F9400	0x002F945A	0x002F9468	scaled by shift 6	shl rsi, 6	-	area-flags-navimapdata mp status-timers weapon-motion-list
-0x002F9400	0x002F945A	0x002F946C	added to a base	add rsi, rax	0x002F9461 lea rax, [0x0208DE80]	area-flags-navimapdata mp status-timers weapon-motion-list
-0x002F9400	0x002F945A	0x002F9474	field of the indexed element	movss xmm0, dword ptr [rsi + 0x18]	-	area-flags-navimapdata mp status-timers weapon-motion-list
-0x002F9400	0x002F945A	0x002F95A6	field of the indexed element	movss dword ptr [rsi + 0x18], xmm7	-	area-flags-navimapdata mp status-timers weapon-motion-list
+0x002F9400	0x002F945A	0x002F9468	scaled by shift 6	shl rsi, 6	-	area-flags-navimapdata mp native-limits status-timers weapon-motion-list
+0x002F9400	0x002F945A	0x002F946C	added to a base	add rsi, rax	0x002F9461 lea rax, [0x0208DE80]	area-flags-navimapdata mp native-limits status-timers weapon-motion-list
+0x002F9400	0x002F945A	0x002F9474	field of the indexed element	movss xmm0, dword ptr [rsi + 0x18]	-	area-flags-navimapdata mp native-limits status-timers weapon-motion-list
+0x002F9400	0x002F945A	0x002F95A6	field of the indexed element	movss dword ptr [rsi + 0x18], xmm7	-	area-flags-navimapdata mp native-limits status-timers weapon-motion-list
 0x002FA290	0x002FA2F0	0x002FA2FE	scaled by shift 6	shl rbx, 6	-	-
 0x002FA290	0x002FA2F0	0x002FA302	added to a base	add rbx, rax	0x002FA2F7 lea rax, [0x0208DE80]	-
 0x002FA290	0x002FA2F0	0x002FA315	compare	test rbx, rbx	-	-
 0x002FA290	0x002FA2F0	0x002FA352	field of the indexed element	mov ecx, dword ptr [rbx + 0xc]	-	-
 0x002FA290	0x002FA340	0x002FA355	bit test or set	bt ecx, eax	-	-
-0x002FEAD0	0x002FEB3A	0x002FEB41	compare	cmp edx, eax	-	party-member-status-record
+0x002FEAD0	0x002FEB3A	0x002FEB41	compare	cmp edx, eax	-	native-limits party-member-status-record
 0x00304850	0x00304E0B	0x00304E24	argument r9	call 0x30cfb0	-	action-phases action-range battle-units identifier-spaces quickenings-and-summons the-widget-tree-draw-pass
 0x00305230	0x00305316	0x00305323	shift by the slot	shl r8d, cl	-	identifier-spaces model-files-cm-ca party-during-scenes script-censuses
 0x00307300	0x00307503	0x0030750D	shift by the slot	shl eax, cl	-	action-results animation-driven-movement animation-sounds area-of-effect battle-numbers battle-unit-fields battle-units combos command-availability effect-anchors-and-targets game-over hud item-use model-files-cm-ca mp party-during-scenes script-censuses spatial-sound spawn-record-fields the-blinking-icon-and-its-atlas
@@ -32,7 +32,6 @@ function	read_at	used_at	use	instruction	array_base_loaded_at	pages
 0x00311CF0	0x00311D93	0x00311DA5	array index x4	mov byte ptr [rax + rcx*4], bpl	0x00311D9E lea rax, [0x022C1DB8]	battle-menu battle-verbs model-files-cm-ca party-during-scenes script-censuses statuses
 0x00311CF0	0x00311D93	0x00311DE8	argument rcx	call 0x317e60	-	battle-menu battle-verbs model-files-cm-ca party-during-scenes script-censuses statuses
 0x00312FA0	0x00313088	0x003130B2	array index x4	mov word ptr [rdx + rcx*4], ax	0x0031308F lea rdx, [0x022C1DB0]	action-commit battle-numbers battle-unit-fields battle-units battle-verbs enemy-respawning frame-update-order identifier-spaces model-files-cm-ca party-during-scenes script-censuses
-0x00312FA0	0x00313088	0x003130C7	array index x4	mov dword ptr [rdx + rcx*4 + 4], eax	0x0031308F lea rdx, [0x022C1DB0]	action-commit battle-numbers battle-unit-fields battle-units battle-verbs enemy-respawning frame-update-order identifier-spaces model-files-cm-ca party-during-scenes script-censuses
 0x00312FA0	0x003130B6	0x003130C7	array index x4	mov dword ptr [rdx + rcx*4 + 4], eax	0x0031308F lea rdx, [0x022C1DB0]	action-commit battle-numbers battle-unit-fields battle-units battle-verbs enemy-respawning frame-update-order identifier-spaces model-files-cm-ca party-during-scenes script-censuses
 0x00317670	0x0031768F	0x0031769C	compare	cmp eax, 0x1f	-	enemy-ai enemy-respawning quickenings-and-summons
 0x00317670	0x0031768F	0x003176A1	array index x4	lea rcx, [rcx + rax*4]	-	enemy-ai enemy-respawning quickenings-and-summons
@@ -94,6 +93,7 @@ function	read_at	used_at	use	instruction	array_base_loaded_at	pages
 0x00385680	0x00385701	0x0038579C	field of the indexed element	movzx r14d, byte ptr [rbx + 0x12]	-	action-results combos damage-formula formula-recipes formula-slots
 0x00385680	0x00385701	0x003857A3	field of the indexed element	movzx r15d, word ptr [rbx + 0x10]	-	action-results combos damage-formula formula-recipes formula-slots
 0x00385680	0x00385701	0x003857AB	field of the indexed element	mov qword ptr [rbx], rax	-	action-results combos damage-formula formula-recipes formula-slots
+0x00385680	0x00385701	0x003857AE	field of the indexed element	mov qword ptr [rbx + 8], rax	-	action-results combos damage-formula formula-recipes formula-slots
 0x00385680	0x00385701	0x003857B2	field of the indexed element	mov dword ptr [rbx + 0x10], eax	-	action-results combos damage-formula formula-recipes formula-slots
 0x00385680	0x00385701	0x003857D1	field of the indexed element	and byte ptr [rbx + 0x12], 0xf	-	action-results combos damage-formula formula-recipes formula-slots
 0x00385680	0x00385701	0x003857D9	field of the indexed element	or byte ptr [rbx + 0x12], r14b	-	action-results combos damage-formula formula-recipes formula-slots
@@ -113,22 +113,23 @@ function	read_at	used_at	use	instruction	array_base_loaded_at	pages
 0x00385F60	0x00385FCC	0x00386402	field of the indexed element	and byte ptr [rdi + 0x12], 0xfe	-	action-definition-row action-results area-of-effect damage-formula equipment-row formula-recipes formula-slots game-over quickenings-and-summons steal weapon-formulas
 0x00385F60	0x003862E9	0x003862FE	bit test or set	bt eax, ecx	-	action-definition-row action-results area-of-effect damage-formula equipment-row formula-recipes formula-slots game-over quickenings-and-summons steal weapon-formulas
 0x00385F60	0x0038632D	0x00386342	bit test or set	bt eax, ecx	-	action-definition-row action-results area-of-effect damage-formula equipment-row formula-recipes formula-slots game-over quickenings-and-summons steal weapon-formulas
-0x00386860	0x003868A6	0x003868B4	scaled by shift 6	shl rbx, 6	-	character-se-tables-chse status-timers statuses weapon-motion-list
-0x00386860	0x003868A6	0x003868B8	added to a base	add rbx, rax	0x003868AD lea rax, [0x0208DE94]	character-se-tables-chse status-timers statuses weapon-motion-list
-0x00386860	0x003868A6	0x003868C2	compare	test rbx, rbx	-	character-se-tables-chse status-timers statuses weapon-motion-list
-0x00386860	0x003868A6	0x00386A2C	field of the indexed element	mov word ptr [rbx], r15w	-	character-se-tables-chse status-timers statuses weapon-motion-list
-0x00386860	0x003868A6	0x003869A2	field of the indexed element	movzx eax, word ptr [rbx]	-	character-se-tables-chse status-timers statuses weapon-motion-list
-0x00386860	0x003868A6	0x00386A27	field of the indexed element	inc word ptr [rbx]	-	character-se-tables-chse status-timers statuses weapon-motion-list
+0x00386860	0x003868A6	0x003868B4	scaled by shift 6	shl rbx, 6	-	character-se-tables-chse native-limits status-timers statuses weapon-motion-list
+0x00386860	0x003868A6	0x003868B8	added to a base	add rbx, rax	0x003868AD lea rax, [0x0208DE94]	character-se-tables-chse native-limits status-timers statuses weapon-motion-list
+0x00386860	0x003868A6	0x003868C2	compare	test rbx, rbx	-	character-se-tables-chse native-limits status-timers statuses weapon-motion-list
+0x00386860	0x003868A6	0x00386A2C	field of the indexed element	mov word ptr [rbx], r15w	-	character-se-tables-chse native-limits status-timers statuses weapon-motion-list
+0x00386860	0x003868A6	0x003869A2	field of the indexed element	movzx eax, word ptr [rbx]	-	character-se-tables-chse native-limits status-timers statuses weapon-motion-list
+0x00386860	0x003868A6	0x00386A27	field of the indexed element	inc word ptr [rbx]	-	character-se-tables-chse native-limits status-timers statuses weapon-motion-list
 0x00386C10	0x00386C3F	0x00386C4D	scaled by shift 6	shl rax, 6	-	status-timers
 0x00386C10	0x00386C3F	0x00386C51	added to a base	add rax, rcx	0x00386C46 lea rcx, [0x0208DE80]	status-timers
 0x00386C10	0x00386C3F	0x00386C54	compare	test rax, rax	-	status-timers
 0x00386C10	0x00386C3F	0x00386C5B	field of the indexed element	mov qword ptr [rax], rcx	-	status-timers
+0x00386C10	0x00386C3F	0x00386C5E	field of the indexed element	mov qword ptr [rax + 8], rcx	-	status-timers
 0x00386C10	0x00386C3F	0x00386C62	field of the indexed element	mov qword ptr [rax + 0x10], rcx	-	status-timers
 0x00386C10	0x00386C3F	0x00386C66	field of the indexed element	mov qword ptr [rax + 0x18], rcx	-	status-timers
-0x00387090	0x003870D0	0x003870DE	scaled by shift 6	shl rbx, 6	-	action-phases area-of-effect party-member-status-record
-0x00387090	0x003870D0	0x003870E2	added to a base	add rbx, rax	0x003870D7 lea rax, [0x0208DE80]	action-phases area-of-effect party-member-status-record
-0x00387090	0x003870D0	0x003870FB	compare	test rbx, rbx	-	action-phases area-of-effect party-member-status-record
-0x00387090	0x003870D0	0x0038710E	field of the indexed element	movzx eax, word ptr [rbx + 0x10]	-	action-phases area-of-effect party-member-status-record
+0x00387090	0x003870D0	0x003870DE	scaled by shift 6	shl rbx, 6	-	action-phases area-of-effect native-limits party-member-status-record
+0x00387090	0x003870D0	0x003870E2	added to a base	add rbx, rax	0x003870D7 lea rax, [0x0208DE80]	action-phases area-of-effect native-limits party-member-status-record
+0x00387090	0x003870D0	0x003870FB	compare	test rbx, rbx	-	action-phases area-of-effect native-limits party-member-status-record
+0x00387090	0x003870D0	0x0038710E	field of the indexed element	movzx eax, word ptr [rbx + 0x10]	-	action-phases area-of-effect native-limits party-member-status-record
 0x00387A50	0x00387A90	0x00387A9E	scaled by shift 6	shl rbx, 6	-	action-phases
 0x00387A50	0x00387A90	0x00387AA2	added to a base	add rbx, rax	0x00387A97 lea rax, [0x0208DE80]	action-phases
 0x00387A50	0x00387A90	0x00387AC6	compare	test rbx, rbx	-	action-phases

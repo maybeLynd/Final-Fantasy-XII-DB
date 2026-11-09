@@ -2547,7 +2547,7 @@ selection	model	model_path	mode	type	group	source	bank	variants	sound_numbers	pl
 0x006E0000/0/7	0x006E0000	npc/n10/n1059/n1059	0	7	2	no_block_for_group	-	-	-	-	-	-
 0x006E0001/0/1	0x006E0001	npc/n10/n1060/n1060	0	1	1	footstep_set	se215	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 32 33 34 35 36 37 38 39 40 41 42 43	19 20 21 22 23 24 25 26 27 28 29 30 31	ground type via soundfoottable.bin, set A or set B by the weather flag
 0x006E0001/0/7	0x006E0001	npc/n10/n1060/n1060	0	7	2	no_block_for_group	-	-	-	-	-	-
-0x006E0002/0/1	0x006E0002	npc/n10/n1018/n1018	0	1	1	footstep_set	se241	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30	-	ground type via soundfoottable.bin, set A or set B by the weather flag
+0x006E0002/0/1	0x006E0002	npc/n10/n1018/n1018	0	1	1	footstep_set	se241	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18	19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	ground type via soundfoottable.bin, set A or set B by the weather flag
 0x006E0002/0/11	0x006E0002	npc/n10/n1018/n1018	0	11	0	attached_model_block0	-	14	14	-	-	the bank is block0 of the model in the actor's first attach slot
 0x006E0002/0/12	0x006E0002	npc/n10/n1018/n1018	0	12	0	attached_model_block0	-	15	15	-	-	the bank is block0 of the model in the actor's first attach slot
 0x006E0002/0/2	0x006E0002	npc/n10/n1018/n1018	0	2	0	attached_model_block0	-	0 1 2 3 4 5 6 7 8 9 12 13	0 1 2 3 4 5 6 7 8 9 12 13	-	-	the bank is block0 of the model in the actor's first attach slot
@@ -2843,7 +2843,7 @@ selection	model	model_path	mode	type	group	source	bank	variants	sound_numbers	pl
 0x006E002B/0/4	0x006E002B	npc/n10/n1056/n1056	0	4	2	own_block	se331	0 1 2 6 7	0 1 2 6 7	0 1 2 6 7	-	-
 0x006E002B/0/5	0x006E002B	npc/n10/n1056/n1056	0	5	2	own_block	se331	3 4 5	3 4 5	3 4 5	-	-
 0x006E002B/0/6	0x006E002B	npc/n10/n1056/n1056	0	6	2	own_block	se331	8 9	8 9	8 9	-	-
-0x006E002B/0/7	0x006E002B	npc/n10/n1056/n1056	0	7	2	own_block	se331	10 11 12	10 11 12	10 11 12	-	-
+0x006E002B/0/7	0x006E002B	npc/n10/n1056/n1056	0	7	2	own_block	se331	10 11 12	10 11 12	-	10 11 12	-
 0x006E002B/0/8	0x006E002B	npc/n10/n1056/n1056	0	8	2	own_block	se331	21 22	21 22	21 22	-	-
 0x006E002C/0/1	0x006E002C	npc/n11/n1114/n1114	0	1	1	footstep_set	se215	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 32 33 34 35 36 37 38 39 40 41 42 43	19 20 21 22 23 24 25 26 27 28 29 30 31	ground type via soundfoottable.bin, set A or set B by the weather flag
 0x006E002C/0/7	0x006E002C	npc/n11/n1114/n1114	0	7	2	no_block_for_group	-	-	-	-	-	-
@@ -3098,7 +3098,7 @@ selection	model	model_path	mode	type	group	source	bank	variants	sound_numbers	pl
 0x006E005A/0/1	0x006E005A	npc/n11/n1154/n1154	0	1	1	footstep_set	se201	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 32 33 34 35 36 37 38 39 40 41 42 43	19 20 21 22 23 24 25 26 27 28 29 30 31	ground type via soundfoottable.bin, set A or set B by the weather flag
 0x006E005A/0/7	0x006E005A	npc/n11/n1154/n1154	0	7	2	no_block_for_group	-	-	-	-	-	-
 0x006E0061/0/1	0x006E0061	npc/n11/n1131/n1131	0	1	1	footstep_set	se215	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 32 33 34 35 36 37 38 39 40 41 42 43	19 20 21 22 23 24 25 26 27 28 29 30 31	ground type via soundfoottable.bin, set A or set B by the weather flag
-0x006E0062/0/1	0x006E0062	npc/n11/n1143/n1143	0	1	1	footstep_set	se241	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30	-	ground type via soundfoottable.bin, set A or set B by the weather flag
+0x006E0062/0/1	0x006E0062	npc/n11/n1143/n1143	0	1	1	footstep_set	se241	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18	19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	ground type via soundfoottable.bin, set A or set B by the weather flag
 0x006E0062/0/11	0x006E0062	npc/n11/n1143/n1143	0	11	0	attached_model_block0	-	14	14	-	-	the bank is block0 of the model in the actor's first attach slot
 0x006E0062/0/12	0x006E0062	npc/n11/n1143/n1143	0	12	0	attached_model_block0	-	15	15	-	-	the bank is block0 of the model in the actor's first attach slot
 0x006E0062/0/2	0x006E0062	npc/n11/n1143/n1143	0	2	0	attached_model_block0	-	0 1 2 3 4 5 6 7 8 9 12 13	0 1 2 3 4 5 6 7 8 9 12 13	-	-	the bank is block0 of the model in the actor's first attach slot
@@ -3108,7 +3108,7 @@ selection	model	model_path	mode	type	group	source	bank	variants	sound_numbers	pl
 0x006E0062/0/6	0x006E0062	npc/n11/n1143/n1143	0	6	2	own_block	se329	8 9	8 9	8 9	-	-
 0x006E0062/0/7	0x006E0062	npc/n11/n1143/n1143	0	7	2	own_block	se329	10 11 12	10 11 12	-	10 11 12	-
 0x006E0062/0/8	0x006E0062	npc/n11/n1143/n1143	0	8	2	own_block	se329	21 22	21 22	21 22	-	-
-0x006E0063/0/1	0x006E0063	npc/n11/n1144/n1144	0	1	1	footstep_set	se241	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30	-	ground type via soundfoottable.bin, set A or set B by the weather flag
+0x006E0063/0/1	0x006E0063	npc/n11/n1144/n1144	0	1	1	footstep_set	se241	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18	19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	ground type via soundfoottable.bin, set A or set B by the weather flag
 0x006E0063/0/11	0x006E0063	npc/n11/n1144/n1144	0	11	0	attached_model_block0	-	14	14	-	-	the bank is block0 of the model in the actor's first attach slot
 0x006E0063/0/12	0x006E0063	npc/n11/n1144/n1144	0	12	0	attached_model_block0	-	15	15	-	-	the bank is block0 of the model in the actor's first attach slot
 0x006E0063/0/2	0x006E0063	npc/n11/n1144/n1144	0	2	0	attached_model_block0	-	0 1 2 3 4 5 6 7 8 9 12 13	0 1 2 3 4 5 6 7 8 9 12 13	-	-	the bank is block0 of the model in the actor's first attach slot
@@ -3119,7 +3119,7 @@ selection	model	model_path	mode	type	group	source	bank	variants	sound_numbers	pl
 0x006E0063/0/7	0x006E0063	npc/n11/n1144/n1144	0	7	2	own_block	se333	10 11 12	10 11 12	-	10 11 12	-
 0x006E0064/0/1	0x006E0064	npc/n11/n1130/n1130	0	1	1	footstep_set	se215	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 32 33 34 35 36 37 38 39 40 41 42 43	19 20 21 22 23 24 25 26 27 28 29 30 31	ground type via soundfoottable.bin, set A or set B by the weather flag
 0x006E0064/0/7	0x006E0064	npc/n11/n1130/n1130	0	7	2	no_block_for_group	-	-	-	-	-	-
-0x006E0066/0/1	0x006E0066	npc/n11/n1133/n1133	0	1	1	footstep_set	se241	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30	-	ground type via soundfoottable.bin, set A or set B by the weather flag
+0x006E0066/0/1	0x006E0066	npc/n11/n1133/n1133	0	1	1	footstep_set	se241	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18	19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	ground type via soundfoottable.bin, set A or set B by the weather flag
 0x006E0066/0/11	0x006E0066	npc/n11/n1133/n1133	0	11	0	attached_model_block0	-	14	14	-	-	the bank is block0 of the model in the actor's first attach slot
 0x006E0066/0/12	0x006E0066	npc/n11/n1133/n1133	0	12	0	attached_model_block0	-	15	15	-	-	the bank is block0 of the model in the actor's first attach slot
 0x006E0066/0/2	0x006E0066	npc/n11/n1133/n1133	0	2	0	attached_model_block0	-	0 1 2 3 4 5 6 7 8 9 12 13	0 1 2 3 4 5 6 7 8 9 12 13	-	-	the bank is block0 of the model in the actor's first attach slot
@@ -3186,7 +3186,7 @@ selection	model	model_path	mode	type	group	source	bank	variants	sound_numbers	pl
 0x006E0074/0/7	0x006E0074	npc/n10/n1085/n1085	0	7	2	own_block	se409	10 11 12	10 11 12	-	10 11 12	-
 0x006E0075/0/1	0x006E0075	npc/n11/n1169/n1169	0	1	1	no_block_for_group	-	-	-	-	-	-
 0x006E0075/0/7	0x006E0075	npc/n11/n1169/n1169	0	7	2	no_block_for_group	-	-	-	-	-	-
-0x006E0076/0/1	0x006E0076	npc/n11/n1171/n1171	0	1	1	footstep_set	se241	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30	-	ground type via soundfoottable.bin, set A or set B by the weather flag
+0x006E0076/0/1	0x006E0076	npc/n11/n1171/n1171	0	1	1	footstep_set	se241	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18	19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	ground type via soundfoottable.bin, set A or set B by the weather flag
 0x006E0076/0/11	0x006E0076	npc/n11/n1171/n1171	0	11	0	attached_model_block0	-	14	14	-	-	the bank is block0 of the model in the actor's first attach slot
 0x006E0076/0/12	0x006E0076	npc/n11/n1171/n1171	0	12	0	attached_model_block0	-	15	15	-	-	the bank is block0 of the model in the actor's first attach slot
 0x006E0076/0/2	0x006E0076	npc/n11/n1171/n1171	0	2	0	attached_model_block0	-	0 1 2 3 4 5 6 7 8 9 12 13	0 1 2 3 4 5 6 7 8 9 12 13	-	-	the bank is block0 of the model in the actor's first attach slot
@@ -3395,7 +3395,7 @@ selection	model	model_path	mode	type	group	source	bank	variants	sound_numbers	pl
 0x006E008C/0/6	0x006E008C	npc/n11/n1193/n1193	0	6	2	own_block	se312	8 9	8 9	8 9	-	-
 0x006E008C/0/7	0x006E008C	npc/n11/n1193/n1193	0	7	2	own_block	se312	10 11 12	10 11 12	10 11 12	-	-
 0x006E008C/0/8	0x006E008C	npc/n11/n1193/n1193	0	8	2	own_block	se312	21 22	21 22	21 22	-	-
-0x006E008D/0/1	0x006E008D	npc/n11/n1194/n1194	0	1	1	footstep_set	se241	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30	-	ground type via soundfoottable.bin, set A or set B by the weather flag
+0x006E008D/0/1	0x006E008D	npc/n11/n1194/n1194	0	1	1	footstep_set	se241	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18	19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	ground type via soundfoottable.bin, set A or set B by the weather flag
 0x006E008D/0/11	0x006E008D	npc/n11/n1194/n1194	0	11	0	attached_model_block0	-	14	14	-	-	the bank is block0 of the model in the actor's first attach slot
 0x006E008D/0/12	0x006E008D	npc/n11/n1194/n1194	0	12	0	attached_model_block0	-	15	15	-	-	the bank is block0 of the model in the actor's first attach slot
 0x006E008D/0/2	0x006E008D	npc/n11/n1194/n1194	0	2	0	attached_model_block0	-	0 1 2 3 4 5 6 7 8 9 12 13	0 1 2 3 4 5 6 7 8 9 12 13	-	-	the bank is block0 of the model in the actor's first attach slot
@@ -3499,7 +3499,7 @@ selection	model	model_path	mode	type	group	source	bank	variants	sound_numbers	pl
 0x006E0099/0/6	0x006E0099	npc/n12/n1206/n1206	0	6	2	own_block	se334	8 9	8 9	8 9	-	-
 0x006E0099/0/7	0x006E0099	npc/n12/n1206/n1206	0	7	2	own_block	se334	10 11 12	10 11 12	-	10 11 12	-
 0x006E0099/0/8	0x006E0099	npc/n12/n1206/n1206	0	8	2	own_block	se334	21 22	21 22	21 22	-	-
-0x006E009A/0/1	0x006E009A	npc/n12/n1207/n1207	0	1	1	footstep_set	se241	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30	-	ground type via soundfoottable.bin, set A or set B by the weather flag
+0x006E009A/0/1	0x006E009A	npc/n12/n1207/n1207	0	1	1	footstep_set	se241	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18	19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	ground type via soundfoottable.bin, set A or set B by the weather flag
 0x006E009A/0/11	0x006E009A	npc/n12/n1207/n1207	0	11	0	attached_model_block0	-	14	14	-	-	the bank is block0 of the model in the actor's first attach slot
 0x006E009A/0/12	0x006E009A	npc/n12/n1207/n1207	0	12	0	attached_model_block0	-	15	15	-	-	the bank is block0 of the model in the actor's first attach slot
 0x006E009A/0/2	0x006E009A	npc/n12/n1207/n1207	0	2	0	attached_model_block0	-	0 1 2 3 4 5 6 7 8 9 12 13	0 1 2 3 4 5 6 7 8 9 12 13	-	-	the bank is block0 of the model in the actor's first attach slot
@@ -3517,7 +3517,7 @@ selection	model	model_path	mode	type	group	source	bank	variants	sound_numbers	pl
 0x006E009B/0/4	0x006E009B	npc/n12/n1208/n1208	0	4	2	own_block	se331	0 1 2 6 7	0 1 2 6 7	0 1 2 6 7	-	-
 0x006E009B/0/5	0x006E009B	npc/n12/n1208/n1208	0	5	2	own_block	se331	3 4 5	3 4 5	3 4 5	-	-
 0x006E009B/0/6	0x006E009B	npc/n12/n1208/n1208	0	6	2	own_block	se331	8 9	8 9	8 9	-	-
-0x006E009B/0/7	0x006E009B	npc/n12/n1208/n1208	0	7	2	own_block	se331	10 11 12	10 11 12	10 11 12	-	-
+0x006E009B/0/7	0x006E009B	npc/n12/n1208/n1208	0	7	2	own_block	se331	10 11 12	10 11 12	-	10 11 12	-
 0x006E009B/0/8	0x006E009B	npc/n12/n1208/n1208	0	8	2	own_block	se331	21 22	21 22	21 22	-	-
 0x006E009C/0/1	0x006E009C	npc/n12/n1209/n1209	0	1	1	footstep_set	se238	by ground	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 32 33 34 35 36 37 38 39 40 41 42 43	19 20 21 22 23 24 25 26 27 28 29 30 31	ground type via soundfoottable.bin, set A or set B by the weather flag
 0x006E009C/0/11	0x006E009C	npc/n12/n1209/n1209	0	11	0	attached_model_block0	-	14	14	-	-	the bank is block0 of the model in the actor's first attach slot

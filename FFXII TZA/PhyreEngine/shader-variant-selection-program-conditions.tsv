@@ -2457,7 +2457,7 @@ sha256	line	instruction	operand	decided_by
 52fb8cd1bf001b01947931f7aa92ce7c6b65ebcf6674c621606f3e1adfbab0c1	89	if_nz	r0.y	t:tLinDepth t:tNormal v:TEXCOORD1
 52fb8cd1bf001b01947931f7aa92ce7c6b65ebcf6674c621606f3e1adfbab0c1	117	if_nz	r2.z	c:g_FocalLen c:g_HBAOResolution c:g_NumSteps c:g_RChr c:g_RSce c:g_maskBorder t:tLinDepth t:tNormal v:TEXCOORD1
 52fb8cd1bf001b01947931f7aa92ce7c6b65ebcf6674c621606f3e1adfbab0c1	237	breakc_nz	r8.z	c:g_FocalLen c:g_HBAOResolution c:g_NumDir c:g_NumSteps c:g_RChr c:g_RSce c:g_maskBorder t:tLinDepth t:tNormal v:TEXCOORD1
-52fb8cd1bf001b01947931f7aa92ce7c6b65ebcf6674c621606f3e1adfbab0c1	263	breakc_nz	r11.y	c:g_FocalLen c:g_HBAOResolution c:g_NumSteps c:g_RChr c:g_RSce c:g_maskBorder t:tLinDepth t:tNormal v:TEXCOORD1
+52fb8cd1bf001b01947931f7aa92ce7c6b65ebcf6674c621606f3e1adfbab0c1	263	breakc_nz	r11.y	c:g_FocalLen c:g_HBAOResolution c:g_NumDir c:g_NumSteps c:g_RChr c:g_RSce c:g_maskBorder t:tLinDepth t:tNormal v:TEXCOORD1
 52fb8cd1bf001b01947931f7aa92ce7c6b65ebcf6674c621606f3e1adfbab0c1	287	if_nz	r11.z	c:g_FocalLen c:g_HBAOResolution c:g_NumDir c:g_NumSteps c:g_RChr c:g_RSce c:g_maskBorder t:tLinDepth t:tNormal t:tRandom v:SV_POSITION0 v:TEXCOORD1
 52fb8cd1bf001b01947931f7aa92ce7c6b65ebcf6674c621606f3e1adfbab0c1	294	if_nz	r7.y	c:g_AngleBiasChr c:g_AngleBiasSce c:g_FocalLen c:g_HBAOResolution c:g_NumDir c:g_NumSteps c:g_RChr c:g_RSce c:g_maskBorder t:tLinDepth t:tNormal t:tRandom v:SV_POSITION0 v:TEXCOORD1
 5350227f1c87dcce253f06b38b5592e91f4fadf4a6f3ce0bb72ac7cd95cd7c77	370	discard_nz	r0.x	c:FarPlane v:TEXCOORD6

@@ -4,7 +4,7 @@ zone	name	opens	arrival_zone	source_zone	way_kind	actor_function	step	variable	e
 335	gil_g04	4230	gil_g01	gil_f05	event	warp.talk	131	file_var_s8_8	5	1 2 3 4 5 6 9 24	4	line 3069 = 4	yes	nowmap() == 0x03a2	yes	joined	joined	-
 336	gil_g05	4230	gil_g01	gil_f05	event	warp.talk	131	file_var_s8_8	2	1 2 3 4 5 6 9 24	4	line 3069 = 4	yes	nowmap() == 0x03a2	yes	joined	joined	-
 337	gil_g06	4230	gil_g05	gil_g01	walk	__MJ_CTRL001.mapjump	33	scratch2_var_13	2	1 2 3 4 5 6	11	line 3420 = 11	yes	nowmap() == 0x014c	yes	joined	joined	-
-406	rwg_b01	1180	rwg_a01	enw_b02	walk	__MJ_CTRL000.mapjump	101	local_var_s1f1_2	2	-	1 6	line 231 = 1; line 235 = 6	-	if:else; if:if (シナリオフラグ > 0x054b)	yes	joined	joined	-
+406	rwg_b01	1180	rwg_a01	enw_b02	walk	__MJ_CTRL000.mapjump	101	local_var_s1f1_2	2	-	1 6	line 231 = 1; line 235 = 6	-	if:if (シナリオフラグ > 0x054b); if:else	yes	joined	joined	-
 511	rwf_a03	5150	rwf_a01	pla_a06	strahl	ym_shutoraljump.shtjump	97	regI0	1	-	3	line 751 = 3	-	case 509 of switch (file_var_s5_1)	yes	joined	joined	a register of the Strahl handler
 622	gil_e02	4230	gil_e01	gil_c02	event	gil0204_warp_flg.talk	88	file_var_s10_5	5	1 2 3 4 5 6 9 20	4	line 1216 = 4	yes	if:if (local_var_s10f2_3 == 0)	yes	joined	joined	-
 623	gil_e03	4230	gil_e02	gil_e01	walk	__MJ_CTRL004.mapjump	33	scratch2_var_16	3	1 2 3 4 5 6	8	line 1244 = 8	yes	nowmap() == 0x026d	yes	joined	joined	-

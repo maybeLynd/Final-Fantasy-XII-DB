@@ -103,7 +103,8 @@ is already open, with that way, its condition and what the date rests on. The re
 The 100 Trial Mode stages, `tri_a01` (field 1155) to `tri_t05`, belong to Trial Mode, not to the story, and carry
 no date ([Trial Mode scripts](../Story-Events-And-Hunts/trial-mode-scripts.md)).
 
-A way is one of these:
+[`zone-ways-in.tsv`](zone-ways-in.tsv) lists every map change with its trigger, arrival, gate and wall state. A way
+is one of these:
 
 - a map jump in a zone script whose condition holds at that counter
   ([Zone changes and map jumps](zone-changes-and-mapjump.md)). A crystal teleport is not a way in: it leads only to

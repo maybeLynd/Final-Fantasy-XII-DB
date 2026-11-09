@@ -95,7 +95,7 @@ jump. A function calling itself directly is counted in `direct_recursion` above.
 | Column | Holds |
 |---|---|
 | `addr` | the function |
-| `rcx_use`, `rdx_use`, `r8_use`, `r9_use` | the range of offsets read and written through the argument, counted when a path into the instruction holds it; `indexed at` the same for a base with an index register or a `lea` with one, at the fixed part of the offset; whether it is used as an array index; its width when below 8 bytes; and the constants it is compared with or tested against |
+| `rcx_use`, `rdx_use`, `r8_use`, `r9_use` | the range of offsets read and written through the argument, counted when a path into the instruction holds it, with a pointer stepped around a loop counted at its first-pass offset and a path left out when a 64-bit `cmp` of the value with that same offset of the argument sends it away; other tests, such as a flag or a null check, do not narrow the count, so a counted access can sit on a path such a test excludes; `indexed at` the same for a base with an index register or a `lea` with one, at the fixed part of the offset; whether it is used as an array index; its width when below 8 bytes; and the constants it is compared with or tested against |
 | `return_values` | what `rax` holds at each `ret`: a number, an argument, a global, a load, or the result of a named call; `?` where the trace stops |
 | `zero_guards` | an argument tested against zero, with what is returned on that path when no call comes first |
 | `callers_use_return` | across call sites, how many test the result against zero, use it as an address, store it or otherwise compare it |

@@ -329,12 +329,47 @@ that say where the change starts and what it tests, and these:
 | `status` | `entry`; `index past the list: zeros`; `entrance chosen at run time`; or `destination is not one zone` |
 | `arrival_x`, `arrival_y`, `arrival_z`, `arrival_angle` | the record's four floats, for `entry` rows |
 
-11,819 rows land on a record. 61 take their entrance from a value the script works out, and 565 have no single
+11,772 rows land on a record. 12 take their entrance from a value the script works out, and 661 have no single
 destination: 551 return to the field the party came from, 10 name a field with no `us` zone file, 3 reload the
-current map and 1 names field 64, which has no map. On the 199 rows past the list `0x00264B90` gives zeros; the
-destination's script can still place the party with `setmapjumppos`. The list is the same for every language.
+current map, 1 names field 64, which has no map, and 96 name several zones (77 debug menus, 13 Strahl flights and
+6 script functions). On the 199 rows past the list `0x00264B90` gives zeros; the destination's script can still place
+the party with `setmapjumppos`. The list is the same for every language.
 
 `Database/Tools/catalogues/door_arrivals.py` writes this table.
+
+### One row per way in
+
+[`zone-ways-in.tsv`](zone-ways-in.tsv) has one row for each map change and destination, 14,532 in all, so that a
+way's trigger, exit, destination, arrival, gate and walls are on one line. It starts from the step tables' `mapjump`
+rows. An exit the door table lists keeps that table's 12,644 branches, including the 2,025 of the crystal teleports,
+whose 25 steps are one shared template. The other 1,871 rows are calls the door table does not list, and each takes
+its destination from its step's `addresses` cell.
+
+| Column | Meaning |
+|---|---|
+| `destination_zone` | the zone script the change loads; `-` when the row names no single zone |
+| `destination_field`, `destination_map` | the field and map as the door table or the step gives them; `destination_map` says which value holds a field that a script works out |
+| `entrance`, `entrance_resolved`, `entries_in_list` | the entrance argument, the entry number after the aliases and the size of the destination's list, as above |
+| `mode` | the third argument of `mapjump` |
+| `arrival_status` | a `status` value of the table above, `field outside the zone list`, or `field held in a variable; zone named by zone-openings` |
+| `arrival_x`, `arrival_y`, `arrival_z`, `arrival_angle` | the entrance record's four floats, for `entry` rows |
+| `source_script`, `script_kind` | the script that makes the jump, and `zone` or `developer (evt_t)` |
+| `source_field`, `source_place` | that script's field and map name; `-` for a developer script |
+| `trigger` | the door table's exit kind; a call the door table does not list gets the kind that its actor and function names give, the rule that reproduces all 10,619 non-crystal rows of that table |
+| `actor`, `function`, `step`, `line` | where the call is: the step number in the step tables and the `us` listing line |
+| `exit_group` | the argument of `setmapjumpgroup` in the actor's own `init`; `-` for an actor with none |
+| `gate`, `gate_text`, `tests` | the door table's condition, its wording and the kinds of test; a call the door table does not list has the step's condition, and `-` in the other two |
+| `opens` | the story counter value of [zone-openings.tsv](zone-openings.tsv), on a row that is the way dating `destination_zone`; `-` on every other row |
+| `wall_state` | on a way that dates a zone, the verdict of [zone-openings-wall-verdicts.tsv](zone-openings-wall-verdicts.tsv), the result of [zone-openings-wall-gates.tsv](zone-openings-wall-gates.tsv) and the arrival of [zone-openings-saved-arrivals.tsv](zone-openings-saved-arrivals.tsv), or that its basis names no wall; on another row, the number of `setmapidwall` steps in the source script, since a walk with walls is worked out only for the way that dates a zone |
+
+13,412 rows land on an entrance record. 832 name no single zone, 231 are past the list, 12 take their entrance at run
+time and 28 name one of 11 fields outside the zone list. In 17 rows a way dates a zone through a field held in a
+variable: the step has no row for that zone, so the table adds one, named by zone-openings, with no arrival.
+
+Crystal teleports are map changes here and do not date a zone. 576 rows carry `opens`: the 566 ways that date a zone
+and 10 further branches of those ways. `script_kind` marks the 1,910 developer rows.
+
+`Database/Tools/catalogues/zone_ways_in.py` writes this table.
 
 ## Layouts
 
