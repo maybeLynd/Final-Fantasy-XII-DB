@@ -157,6 +157,56 @@ more than once is written once in the record tables, and `slots` joins each occu
 
 The tables are written by `Database/Tools/catalogues/motion_entries.py`.
 
+### Script motions and their models
+
+A container row names the script that loads a package, which does not say who plays it.
+[`motion-playback-sites.tsv`](motion-playback-sites.tsv) has one row for each of the 15,954 script cues, and
+[`motion-playback-fmn.tsv`](motion-playback-fmn.tsv) one row for each of the 77,400 `@FMN` occurrences in script
+packages and the 567 action containers with no owner.
+
+A cue word's top byte less `0x10` is the package slot and its low 24 bits the entry, which for these version-0
+packages is the `@FMC` slot (`0x004090D0`, `0x00409122`-`0x00409136`). The rows of the `@FMN` table follow the `0x09`
+commands of those `@FMC` slots.
+
+`motionplay` and `motionplay_bb` play on the issuing actor or on the actor named before the dot, through `0x003DD8D0`
+and `0x002EB0D0(actor +0xC0)`, so they drive the actor's main model. `puppetmotionplay` plays on the puppet in slot
+`d` of the table at `0x02B5EA20`, through `0x003EB720` and `0x003DD980`.
+
+The main model comes from the `bindp` verbs (`0x00342640`, `0x002E28E0`). `bindh` and `bindc` attach a second model
+(`0x002E3110`), and no `bindh` or `bindc` model in the scripts has a row in `highmodelreplace.bin`, the case in which
+poll `0x003409F0` would bind it as main. A capture (`0x00262F90`) gives the script actor the body of another actor, and
+sets `+0x18`, so `bindp2_d4` then skips (`0x0033F39A`).
+
+| `status` of a cue | Sites | Meaning |
+|---|---|---|
+| `one_bind` | 8,485 | the script binds one model to this actor |
+| `bind_before_cue` | 4 | several models, and the nearest bind in the cue's function comes first on every path |
+| `puppet_one_bind` | 415 | the script binds one model to this puppet slot |
+| `puppet_bind_before_cue` | 30 | several models, and the nearest bind in the cue's function comes first on every path |
+| `several_binds` | 3,457 | several models bound; which one holds depends on the branch taken |
+| `captured_party` | 2,472 | the body is a party or battle member, chosen by the party in play |
+| `captured_zone_actor` | 623 | the body is a named actor of script manager 0, the zone in play |
+| `captured_and_bound` | 276 | the actor both captures and binds; the order is decided at run time |
+| `no_bind_found` | 118 | no bind and no capture on this actor in this script |
+| `puppet_several` | 60 | several models bound to this puppet slot |
+| `puppet_variable_id` | 14 | the puppet slot is a script variable |
+
+An `@FMN` row is `resolved_one_model` (46,737), `resolved_several_models` (270), `partly_resolved` (558),
+`no_fixed_model` (24,687) or `no_cue_site` (5,148), and `reason` says what stops it. The 567 action rows are
+`action_no_model_row`: `0x003DCA30` looks a kind-30 motion up in `pc_skillmotion.bin`, `.ard` slot 7 and script
+section 19 slot 7, and no row of those three names these ids. Their file names assign no model.
+
+`bone_check` compares the track keys with that model's `@FTR` nodes as `0x00373540` does, one claim per node with flag
+`0x100`. A track with no such node gets no row (`0x0041C0A6`), so that bone stays out of the motion. `name_search_fmw`
+and `positional_fmw` are both kept, with their channel counts, and `content` joins the track and channel tables,
+which keep the constant and absent channels.
+
+`one_bind` means the only model this script binds to that actor, and a cue that runs before the bind plays on no
+model of its own. `bind_before_cue` follows only the cue's own function. For `captured_zone_actor` the game finds
+the actor by name in the script of manager 0, and which zone that is depends on the play session, so the rows name
+no candidate. `bone_check` shows a wrong pairing only when it is gross, because bones share common keys across
+models; the pairing rests on the bind reading.
+
 ## Loader behaviour
 
 ### Binding @FEF

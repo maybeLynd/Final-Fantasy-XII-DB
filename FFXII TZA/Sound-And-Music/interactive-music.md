@@ -393,7 +393,7 @@ custom point lists (`0x007D0120`) and, after `+0x06` more entries, the volume au
 | `+48` | `f32` | volume | `0x007CE79D` |
 | `+52` | `bar, beat, tick` | loop start timing | `0x007C1CC5`, `0x007CADF1` |
 
-A timing is `i16` bar, `u8` beat and `u8` tick. Each section has its layers as records:
+A timing is `i16` bar, `i8` beat and `i8` tick (read signed, `0x007F2EAD`-`0x007F2EC0`). Each section has its layers as records:
 
 | Offset | Type | Layer field | Read at |
 |---|---|---|---|

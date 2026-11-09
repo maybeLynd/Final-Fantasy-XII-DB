@@ -484,9 +484,12 @@ step is then claimed as well. With the leader animating a move it answers 0 at o
 (`0x0033C298`-`0x0033C2A5`).
 
 `0x00334950(ctx)` is the length from the unit's position along the route's waypoints, region by region from the
-start region `+0x184`, until the region holding the leader position `+0x60` (`0x00384130`), the goal region
-`+0x188` or a `0xFF` link, 128 at most (`cmp esi, 0x80`, `0x00334A2F`), plus the last leg to the leader position
-(`0x003349AA`-`0x00334A44`): `L = d(p, w[r0]) + d(w[r0], w[r1]) + ... + d(w[last], leader)`, with `d` the flat
+start region `+0x184` of the object at context `+0x108` (`0x00334987`, `0x003349B4`; `+0x188`, `+0x190` and `+0x210`
+below are in the same object), until the region holding the leader position, context `+0x60` (`0x00384130`), the goal
+region `+0x188` or a `0xFF` link, 128 at most (`cmp esi, 0x80`, `0x00334A2F`), plus the last leg to the leader position
+(`0x003349AA`-`0x00334A44`).
+
+`L = d(p, w[r0]) + d(w[r0], w[r1]) + ... + d(w[last], leader)`, with `d` the flat
 distance `0x004686D0`, `w[r]` the route's x and z at `+0x210 + 8 × r` and the next region the byte `+0x190 + r`
 (`0x003349C2`-`0x00334A35`).
 

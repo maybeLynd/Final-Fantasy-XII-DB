@@ -1,0 +1,143 @@
+function	read_at	used_at	use	instruction	array_base_loaded_at	pages
+0x00234480	0x002344E0	0x002344E0	field used directly	mov byte ptr [rbx + 0xea9], dil	-	battle-unit-fields battle-units effect-anchors-and-targets identifier-spaces painting-a-line-of-text-into-a-render-target party-during-scenes world-lock
+0x00236300	0x0023630A	0x00236314	stored	mov byte ptr [rcx + 0x1f7], al	-	battle-units effect-anchors-and-targets enemy-spawning frame-update-order heading-speed-to-position-delta ko-and-game-over party-during-scenes
+0x0023A570	0x0023A9EC	0x0023AA04	argument r8	call 0x328ff0	-	action-list battle-text-tables battle-units bazaar bestiary binmenu-images concurrence-list drawing-a-line-character-by-character effect-file-loading enemy-names-on-screen enemy-respawning enemy-spawning equipment-list equipping-an-item exp-lp-and-level-ups identifier-spaces item-list key-item-list license-board-screen loot-list party-control-modes party-slots party-table spawn-record-fields steal strong-and-weak-mode text-area-tables text-word-bank unit-stats-fields
+0x002F9400	0x002F945A	0x002F9468	scaled by shift 6	shl rsi, 6	-	area-flags-navimapdata mp status-timers weapon-motion-list
+0x002F9400	0x002F945A	0x002F946C	added to a base	add rsi, rax	0x002F9461 lea rax, [0x0208DE80]	area-flags-navimapdata mp status-timers weapon-motion-list
+0x002F9400	0x002F945A	0x002F9474	field of the indexed element	movss xmm0, dword ptr [rsi + 0x18]	-	area-flags-navimapdata mp status-timers weapon-motion-list
+0x002FA290	0x002FA2F0	0x002FA2FE	scaled by shift 6	shl rbx, 6	-	-
+0x002FA290	0x002FA2F0	0x002FA302	added to a base	add rbx, rax	0x002FA2F7 lea rax, [0x0208DE80]	-
+0x002FA290	0x002FA2F0	0x002FA315	compare	test rbx, rbx	-	-
+0x002FA290	0x002FA2F0	0x002FA352	field of the indexed element	mov ecx, dword ptr [rbx + 0xc]	-	-
+0x002FA290	0x002FA340	0x002FA355	bit test or set	bt ecx, eax	-	-
+0x002FEAD0	0x002FEB3A	0x002FEB41	compare	cmp edx, eax	-	party-member-status-record
+0x00304850	0x00304E0B	0x00304E24	argument r9	call 0x30cfb0	-	action-phases action-range battle-units identifier-spaces quickenings-and-summons the-widget-tree-draw-pass
+0x00305230	0x00305316	0x00305323	shift by the slot	shl r8d, cl	-	identifier-spaces model-files-cm-ca party-during-scenes script-censuses
+0x00307300	0x00307503	0x0030750D	shift by the slot	shl eax, cl	-	action-results animation-driven-movement animation-sounds area-of-effect battle-numbers battle-unit-fields battle-units combos command-availability effect-anchors-and-targets game-over hud item-use model-files-cm-ca mp party-during-scenes script-censuses spatial-sound spawn-record-fields the-blinking-icon-and-its-atlas
+0x00308270	0x003082A3	0x003082AE	array index x4	movzx eax, word ptr [rcx + rdx*4]	0x0030829C lea rcx, [0x022C1DB0]	action-commit action-phases battle-unit-fields battle-units battle-verbs frame-update-order gambits
+0x00308270	0x003082A3	0x003082B9	array index x4	mov eax, dword ptr [rcx + rdx*4 + 4]	0x0030829C lea rcx, [0x022C1DB0]	action-commit action-phases battle-unit-fields battle-units battle-verbs frame-update-order gambits
+0x00308270	0x003082A3	0x003082C6	argument rdx	call 0x30eda0	-	action-commit action-phases battle-unit-fields battle-units battle-verbs frame-update-order gambits
+0x0030C210	0x0030C26B	0x0030C272	compare	cmp ebx, eax	-	character-status-visuals enmity equipping-an-item model-files-cm-ca party-during-scenes referenced-code-the-list-never-had script-censuses subsystem-update-flags
+0x0030EC00	0x0030ED11	0x0030ED1B	array index x8	mov qword ptr [r15 + rax*8 + 8], rdi	0x0030EC61 lea r15, [0x022C1F50]	action-results enemy-ai unit-stats-fields
+0x0030EC00	0x0030ED20	0x0030ED2F	array index x8	add dword ptr [r15 + r8*8 + 0x10], edx	0x0030EC61 lea r15, [0x022C1F50]	action-results enemy-ai unit-stats-fields
+0x0030EC00	0x0030ED20	0x0030ED89	argument r8	call 0x808c40	-	action-results enemy-ai unit-stats-fields
+0x0030EEA0	0x0030EEE3	0x0030EF00	argument r9	call 0x30cfb0	-	action-phases identifier-spaces
+0x0030F760	0x0030F878	0x0030F88A	array index x4	movzx eax, byte ptr [rax + rcx*4]	0x0030F883 lea rax, [0x022C1DB8]	area-of-effect battle-units character-status-visuals enemy-ai equipping-an-item gambits identifier-spaces model-files-cm-ca native-limits party-during-scenes script-censuses
+0x0030F760	0x0030F940	0x0030F94C	shift by the slot	shl edx, cl	-	area-of-effect battle-units character-status-visuals enemy-ai equipping-an-item gambits identifier-spaces model-files-cm-ca native-limits party-during-scenes script-censuses
+0x003105D0	0x0031068C	0x00310698	shift by the slot	shl edx, cl	-	action-commit action-phases area-of-effect battle-unit-fields battle-units battle-verbs character-status-visuals combos effect-file-loading enemy-ai enmity equipping-an-item frame-update-order identifier-spaces item-list ko-and-game-over loot-list stats status-changes
+0x003105D0	0x0031068C	0x003106A4	argument rcx	call 0x236850	-	action-commit action-phases area-of-effect battle-unit-fields battle-units battle-verbs character-status-visuals combos effect-file-loading enemy-ai enmity equipping-an-item frame-update-order identifier-spaces item-list ko-and-game-over loot-list stats status-changes
+0x00310780	0x003107C5	0x003107D7	shift by the slot	shl edx, cl	-	action-commit action-phases battle-units equipping-an-item frame-update-order identifier-spaces ko-and-game-over
+0x00311CF0	0x00311D93	0x00311DA5	array index x4	mov byte ptr [rax + rcx*4], bpl	0x00311D9E lea rax, [0x022C1DB8]	battle-menu battle-verbs model-files-cm-ca party-during-scenes script-censuses statuses
+0x00311CF0	0x00311D93	0x00311DE8	argument rcx	call 0x317e60	-	battle-menu battle-verbs model-files-cm-ca party-during-scenes script-censuses statuses
+0x00312FA0	0x00313088	0x003130B2	array index x4	mov word ptr [rdx + rcx*4], ax	0x0031308F lea rdx, [0x022C1DB0]	action-commit battle-numbers battle-unit-fields battle-units battle-verbs enemy-respawning frame-update-order identifier-spaces model-files-cm-ca party-during-scenes script-censuses
+0x00312FA0	0x00313088	0x003130C7	array index x4	mov dword ptr [rdx + rcx*4 + 4], eax	0x0031308F lea rdx, [0x022C1DB0]	action-commit battle-numbers battle-unit-fields battle-units battle-verbs enemy-respawning frame-update-order identifier-spaces model-files-cm-ca party-during-scenes script-censuses
+0x00312FA0	0x003130B6	0x003130C7	array index x4	mov dword ptr [rdx + rcx*4 + 4], eax	0x0031308F lea rdx, [0x022C1DB0]	action-commit battle-numbers battle-unit-fields battle-units battle-verbs enemy-respawning frame-update-order identifier-spaces model-files-cm-ca party-during-scenes script-censuses
+0x00317670	0x0031768F	0x0031769C	compare	cmp eax, 0x1f	-	enemy-ai enemy-respawning quickenings-and-summons
+0x00317670	0x0031768F	0x003176A1	array index x4	lea rcx, [rcx + rax*4]	-	enemy-ai enemy-respawning quickenings-and-summons
+0x00317670	0x0031768F	0x003176AE	field of the indexed element	mov dword ptr [rcx], r9d	-	enemy-ai enemy-respawning quickenings-and-summons
+0x003191B0	0x0031920E	0x0031922A	compare	cmp eax, 0x1f	-	enemy-respawning game-over target-selection
+0x003191B0	0x0031920E	0x0031922F	field of the indexed element	lea rdx, [rax + 0x375]	-	enemy-respawning game-over target-selection
+0x003191B0	0x0031920E	0x00319236	array index x4	lea rdx, [rdi + rdx*4]	0x003191F1 mov rdi, rax	enemy-respawning game-over target-selection
+0x003191B0	0x0031920E	0x0031923A	compare	test rdx, rdx	-	enemy-respawning game-over target-selection
+0x003191B0	0x0031920E	0x0031923F	field of the indexed element	mov dword ptr [rdx], ecx	-	enemy-respawning game-over target-selection
+0x0031B750	0x0031B750	-	no use within reach	movzx eax, byte ptr [rcx + 0xea9]	-	-
+0x00322630	0x0032263F	0x0032264B	shift by the slot	shl ebx, cl	-	target-selection
+0x003247F0	0x00324A2F	0x00324A36	bit test or set	bt esi, ecx	-	bestiary character-se-tables-chse character-status-visuals enemy-ai enemy-respawning equipping-an-item frame-update-order mpk-map-pack native-limits spawn-record-fields weapon-motion-list
+0x003247F0	0x00324A92	0x00324A9E	shift by the slot	shl eax, cl	-	bestiary character-se-tables-chse character-status-visuals enemy-ai enemy-respawning equipping-an-item frame-update-order mpk-map-pack native-limits spawn-record-fields weapon-motion-list
+0x003247F0	0x00324B6B	0x00324B72	bit test or set	bt esi, ecx	-	bestiary character-se-tables-chse character-status-visuals enemy-ai enemy-respawning equipping-an-item frame-update-order mpk-map-pack native-limits spawn-record-fields weapon-motion-list
+0x003247F0	0x00324BCD	0x00324BD9	shift by the slot	shl eax, cl	-	bestiary character-se-tables-chse character-status-visuals enemy-ai enemy-respawning equipping-an-item frame-update-order mpk-map-pack native-limits spawn-record-fields weapon-motion-list
+0x003247F0	0x00324C9F	0x00324CAC	shift by the slot	shl r8d, cl	-	bestiary character-se-tables-chse character-status-visuals enemy-ai enemy-respawning equipping-an-item frame-update-order mpk-map-pack native-limits spawn-record-fields weapon-motion-list
+0x003247F0	0x00324D90	0x00324D97	compare	cmp eax, 0x1f	-	bestiary character-se-tables-chse character-status-visuals enemy-ai enemy-respawning equipping-an-item frame-update-order mpk-map-pack native-limits spawn-record-fields weapon-motion-list
+0x003247F0	0x00324D90	0x00324DA2	array index x4	lea rax, [rdi + rax*4]	0x0032481B mov rdi, rcx	bestiary character-se-tables-chse character-status-visuals enemy-ai enemy-respawning equipping-an-item frame-update-order mpk-map-pack native-limits spawn-record-fields weapon-motion-list
+0x003247F0	0x00324D90	0x00324DA6	compare	test rax, rax	-	bestiary character-se-tables-chse character-status-visuals enemy-ai enemy-respawning equipping-an-item frame-update-order mpk-map-pack native-limits spawn-record-fields weapon-motion-list
+0x003247F0	0x00324D90	0x00324DAB	field of the indexed element	mov eax, dword ptr [rax]	-	bestiary character-se-tables-chse character-status-visuals enemy-ai enemy-respawning equipping-an-item frame-update-order mpk-map-pack native-limits spawn-record-fields weapon-motion-list
+0x003247F0	0x00324DF7	0x00324DFE	bit test or set	bt esi, ecx	-	bestiary character-se-tables-chse character-status-visuals enemy-ai enemy-respawning equipping-an-item frame-update-order mpk-map-pack native-limits spawn-record-fields weapon-motion-list
+0x00324F20	0x00324F45	0x00324F4F	compare	cmp eax, dword ptr [rip + 0x1f9d623]	-	character-se-tables-chse character-status-visuals enemy-ai equipping-an-item native-limits weapon-motion-list
+0x00324F20	0x00324FB3	0x00324FBF	shift by the slot	shl eax, cl	-	character-se-tables-chse character-status-visuals enemy-ai equipping-an-item native-limits weapon-motion-list
+0x0032A4D0	0x0032A4F6	0x0032A507	shift by the slot	shl eax, cl	-	enemy-ai geometry-primitives mpk-map-pack native-limits party-during-scenes
+0x0032A4D0	0x0032A509	0x0032A510	array index x4	mov edx, dword ptr [r14 + rcx*4]	0x0032A4EF lea r14, [0x022C26A0]	enemy-ai geometry-primitives mpk-map-pack native-limits party-during-scenes
+0x0032A4D0	0x0032A509	0x0032A51D	array index x4	test dword ptr [r14 + rcx*4 + 0x80], eax	0x0032A4EF lea r14, [0x022C26A0]	enemy-ai geometry-primitives mpk-map-pack native-limits party-during-scenes
+0x0032A4D0	0x0032A538	0x0032A546	shift by the slot	shl eax, cl	-	enemy-ai geometry-primitives mpk-map-pack native-limits party-during-scenes
+0x0032A4D0	0x0032A53F	0x0032A548	array index x4	or dword ptr [r14 + rdx*4], eax	0x0032A4EF lea r14, [0x022C26A0]	enemy-ai geometry-primitives mpk-map-pack native-limits party-during-scenes
+0x0032A4D0	0x0032A53F	0x0032A588	argument rdx	call 0x263940	-	enemy-ai geometry-primitives mpk-map-pack native-limits party-during-scenes
+0x0032A4D0	0x0032A5E4	0x0032A5F4	shift by the slot	shl eax, cl	-	enemy-ai geometry-primitives mpk-map-pack native-limits party-during-scenes
+0x0032A4D0	0x0032A5ED	0x0032A5F6	array index x4	or dword ptr [r14 + rdx*4 + 0x80], eax	0x0032A4EF lea r14, [0x022C26A0]	enemy-ai geometry-primitives mpk-map-pack native-limits party-during-scenes
+0x0032A4D0	0x0032A600	0x0032A60E	shift by the slot	shl eax, cl	-	enemy-ai geometry-primitives mpk-map-pack native-limits party-during-scenes
+0x0032A4D0	0x0032A607	0x0032A610	array index x4	or dword ptr [r14 + rdx*4 + 0x80], eax	0x0032A4EF lea r14, [0x022C26A0]	enemy-ai geometry-primitives mpk-map-pack native-limits party-during-scenes
+0x0032A4D0	0x0032A607	0x0032A62C	argument rdx	call 0x808c40	-	enemy-ai geometry-primitives mpk-map-pack native-limits party-during-scenes
+0x003357B0	0x003357E8	0x003357F9	argument rcx	call 0x236820	-	battle-locomotion bestiary equipping-an-item navigation-mesh-and-pathfinding party-during-scenes weapon-motion-list why-the-unowned-code-has-no-owner
+0x003377C0	0x00337837	0x00337845	argument rcx	call 0x236820	-	battle-locomotion bestiary equipping-an-item loot-pickups party-during-scenes the-blinking-icon-and-its-atlas weapon-motion-list
+0x00338490	0x00338672	0x00338679	stored	mov byte ptr [rdi - 0x20], al	-	animation-playback battle-locomotion bestiary cutscene-name-slots-and-the-depth-of-field-sidecar effect-anchors-and-targets equipping-an-item glossary license-board-screen party-during-scenes party-leader script-censuses skeleton-entries-and-bones spatial-sound the-blinking-icon-and-its-atlas the-second-icon-drawer-and-what-it-adds the-widget-tree-draw-pass treasure-chests weapon-motion-list which-roll-uses-which-generator
+0x00338490	0x00339051	0x0033905F	argument rcx	call 0x236820	-	animation-playback battle-locomotion bestiary cutscene-name-slots-and-the-depth-of-field-sidecar effect-anchors-and-targets equipping-an-item glossary license-board-screen party-during-scenes party-leader script-censuses skeleton-entries-and-bones spatial-sound the-blinking-icon-and-its-atlas the-second-icon-drawer-and-what-it-adds the-widget-tree-draw-pass treasure-chests weapon-motion-list which-roll-uses-which-generator
+0x00339A60	0x00339A9D	0x00339AB4	compare	cmp byte ptr [rax], dl	-	party-during-scenes party-leader treasure-chests
+0x0033C310	0x0033C463	0x0033C472	argument rcx	call 0x236820	-	animation-playback battle-locomotion bestiary effect-anchors-and-targets equipping-an-item escape force-fight-mode the-widget-tree-draw-pass weapon-motion-list
+0x0033CB10	0x0033CB46	0x0033CB54	scaled by shift 6	shl rax, 6	-	equipment weapon-formulas weapon-motion-list
+0x0033CB10	0x0033CB46	0x0033CB58	added to a base	add rax, rcx	0x0033CB4D lea rcx, [0x0208DE80]	equipment weapon-formulas weapon-motion-list
+0x0033CB10	0x0033CB46	0x0033CB5B	compare	test rax, rax	-	equipment weapon-formulas weapon-motion-list
+0x0033CB10	0x0033CB46	0x0033CB60	field of the indexed element	or dword ptr [rax + 0x1c], 1	-	equipment weapon-formulas weapon-motion-list
+0x0033D890	0x0033D935	0x0033D943	scaled by shift 6	shl rbx, 6	-	animation-playback battle-locomotion effect-anchors-and-targets equipment skeleton-entries-and-bones the-blinking-icon-and-its-atlas weapon-formulas weapon-motion-list
+0x0033D890	0x0033D935	0x0033D947	added to a base	add rbx, rax	0x0033D93C lea rax, [0x0208DE80]	animation-playback battle-locomotion effect-anchors-and-targets equipment skeleton-entries-and-bones the-blinking-icon-and-its-atlas weapon-formulas weapon-motion-list
+0x0033D890	0x0033D935	0x0033D94A	compare	test rbx, rbx	-	animation-playback battle-locomotion effect-anchors-and-targets equipment skeleton-entries-and-bones the-blinking-icon-and-its-atlas weapon-formulas weapon-motion-list
+0x0033D890	0x0033D935	0x0033D953	field of the indexed element	test byte ptr [rbx + 0x1c], 1	-	animation-playback battle-locomotion effect-anchors-and-targets equipment skeleton-entries-and-bones the-blinking-icon-and-its-atlas weapon-formulas weapon-motion-list
+0x00384F40	0x00385097	0x003850A3	compare	cmp edi, ecx	-	action-definition-row action-results effect-anchors-and-targets effect-element-runtime equipping-an-item party-during-scenes spatial-sound spawn-record-fields target-selection the-blinking-icon-and-its-atlas
+0x00385680	0x00385701	0x0038570F	scaled by shift 6	shl rbx, 6	-	action-results combos damage-formula formula-recipes formula-slots
+0x00385680	0x00385701	0x00385713	added to a base	add rbx, rax	0x00385708 lea rax, [0x0208DE80]	action-results combos damage-formula formula-recipes formula-slots
+0x00385680	0x00385701	0x00385797	compare	test rbx, rbx	-	action-results combos damage-formula formula-recipes formula-slots
+0x00385680	0x00385701	0x0038579C	field of the indexed element	movzx r14d, byte ptr [rbx + 0x12]	-	action-results combos damage-formula formula-recipes formula-slots
+0x00385680	0x00385701	0x003857A3	field of the indexed element	movzx r15d, word ptr [rbx + 0x10]	-	action-results combos damage-formula formula-recipes formula-slots
+0x00385680	0x00385701	0x003857AB	field of the indexed element	mov qword ptr [rbx], rax	-	action-results combos damage-formula formula-recipes formula-slots
+0x00385680	0x00385701	0x003857B2	field of the indexed element	mov dword ptr [rbx + 0x10], eax	-	action-results combos damage-formula formula-recipes formula-slots
+0x00385680	0x00385701	0x003857D1	field of the indexed element	and byte ptr [rbx + 0x12], 0xf	-	action-results combos damage-formula formula-recipes formula-slots
+0x00385680	0x00385701	0x003857D9	field of the indexed element	or byte ptr [rbx + 0x12], r14b	-	action-results combos damage-formula formula-recipes formula-slots
+0x00385680	0x00385701	0x003857DD	field of the indexed element	or byte ptr [rbx + 0x12], 1	-	action-results combos damage-formula formula-recipes formula-slots
+0x00385680	0x00385701	0x003857E1	field of the indexed element	mov word ptr [rbx + 0x10], r15w	-	action-results combos damage-formula formula-recipes formula-slots
+0x00385680	0x00385A69	0x00385A7D	shift by the slot	shl eax, cl	-	action-results combos damage-formula formula-recipes formula-slots
+0x00385680	0x00385AAC	0x00385ABE	shift by the slot	shl edi, cl	-	action-results combos damage-formula formula-recipes formula-slots
+0x00385F60	0x00385FCC	0x00385FDA	scaled by shift 6	shl rdi, 6	-	action-definition-row action-results area-of-effect damage-formula equipment-row formula-recipes formula-slots game-over quickenings-and-summons steal weapon-formulas
+0x00385F60	0x00385FCC	0x00385FDE	added to a base	add rdi, rax	0x00385FD3 lea rax, [0x0208DE80]	action-definition-row action-results area-of-effect damage-formula equipment-row formula-recipes formula-slots game-over quickenings-and-summons steal weapon-formulas
+0x00385F60	0x00385FCC	0x00385FF2	compare	test rdi, rdi	-	action-definition-row action-results area-of-effect damage-formula equipment-row formula-recipes formula-slots game-over quickenings-and-summons steal weapon-formulas
+0x00385F60	0x00385FCC	0x00385FF7	field of the indexed element	movzx ebp, word ptr [rdi + 0x10]	-	action-definition-row action-results area-of-effect damage-formula equipment-row formula-recipes formula-slots game-over quickenings-and-summons steal weapon-formulas
+0x00385F60	0x003862E9	0x003862FE	bit test or set	bt eax, ecx	-	action-definition-row action-results area-of-effect damage-formula equipment-row formula-recipes formula-slots game-over quickenings-and-summons steal weapon-formulas
+0x00385F60	0x0038632D	0x00386342	bit test or set	bt eax, ecx	-	action-definition-row action-results area-of-effect damage-formula equipment-row formula-recipes formula-slots game-over quickenings-and-summons steal weapon-formulas
+0x00386860	0x003868A6	0x003868B4	scaled by shift 6	shl rbx, 6	-	character-se-tables-chse status-timers statuses weapon-motion-list
+0x00386860	0x003868A6	0x003868B8	added to a base	add rbx, rax	0x003868AD lea rax, [0x0208DE94]	character-se-tables-chse status-timers statuses weapon-motion-list
+0x00386860	0x003868A6	0x003868C2	compare	test rbx, rbx	-	character-se-tables-chse status-timers statuses weapon-motion-list
+0x00386C10	0x00386C3F	0x00386C4D	scaled by shift 6	shl rax, 6	-	status-timers
+0x00386C10	0x00386C3F	0x00386C51	added to a base	add rax, rcx	0x00386C46 lea rcx, [0x0208DE80]	status-timers
+0x00386C10	0x00386C3F	0x00386C54	compare	test rax, rax	-	status-timers
+0x00386C10	0x00386C3F	0x00386C5B	field of the indexed element	mov qword ptr [rax], rcx	-	status-timers
+0x00386C10	0x00386C3F	0x00386C62	field of the indexed element	mov qword ptr [rax + 0x10], rcx	-	status-timers
+0x00386C10	0x00386C3F	0x00386C66	field of the indexed element	mov qword ptr [rax + 0x18], rcx	-	status-timers
+0x00387090	0x003870D0	0x003870DE	scaled by shift 6	shl rbx, 6	-	action-phases area-of-effect party-member-status-record
+0x00387090	0x003870D0	0x003870E2	added to a base	add rbx, rax	0x003870D7 lea rax, [0x0208DE80]	action-phases area-of-effect party-member-status-record
+0x00387090	0x003870D0	0x003870FB	compare	test rbx, rbx	-	action-phases area-of-effect party-member-status-record
+0x00387090	0x003870D0	0x0038710E	field of the indexed element	movzx eax, word ptr [rbx + 0x10]	-	action-phases area-of-effect party-member-status-record
+0x00387A50	0x00387A90	0x00387A9E	scaled by shift 6	shl rbx, 6	-	action-phases
+0x00387A50	0x00387A90	0x00387AA2	added to a base	add rbx, rax	0x00387A97 lea rax, [0x0208DE80]	action-phases
+0x00387B00	0x00387B43	0x00387B51	scaled by shift 6	shl rbx, 6	-	augment-list elements
+0x00387B00	0x00387B43	0x00387B55	added to a base	add rbx, rax	0x00387B4A lea rax, [0x0208DE80]	augment-list elements
+0x00387B00	0x00387B43	0x00387B58	compare	test rbx, rbx	-	augment-list elements
+0x00387B00	0x00387B43	0x00387B97	field of the indexed element	or dword ptr [rbx + 0xc], eax	-	augment-list elements
+0x00387B00	0x00387B7E	0x00387B95	shift by the slot	shl eax, cl	-	augment-list elements
+0x00388660	0x003886CF	0x003886DD	scaled by shift 6	shl rdi, 6	-	action-results bestiary combos damage-formula treasure-chests which-roll-uses-which-generator
+0x00388660	0x003886CF	0x003886E1	added to a base	add rdi, rax	0x003886D6 lea rax, [0x0208DE80]	action-results bestiary combos damage-formula treasure-chests which-roll-uses-which-generator
+0x00388D50	0x00388DA6	0x00388DB4	scaled by shift 6	shl rsi, 6	-	weapon-formulas
+0x00388D50	0x00388DA6	0x00388DB8	added to a base	add rsi, rax	0x00388DAD lea rax, [0x0208DE80]	weapon-formulas
+0x00389C60	0x00389CA4	0x00389CB2	scaled by shift 6	shl rbx, 6	-	treasure-chests weapon-formulas
+0x00389C60	0x00389CA4	0x00389CB6	added to a base	add rbx, rax	0x00389CAB lea rax, [0x0208DE80]	treasure-chests weapon-formulas
+0x00389C60	0x00389CA4	0x00389D1F	compare	test rbx, rbx	-	treasure-chests weapon-formulas
+0x00389C60	0x00389CA4	0x00389D24	field of the indexed element	test byte ptr [rbx + 0x12], 1	-	treasure-chests weapon-formulas
+0x0038DA00	0x0038DA2F	0x0038DA3D	scaled by shift 6	shl rdx, 6	-	weapon-formulas
+0x0038DA00	0x0038DA2F	0x0038DA41	added to a base	add rdx, rax	0x0038DA36 lea rax, [0x0208DE80]	weapon-formulas
+0x0038DA00	0x0038DA2F	0x0038DA44	compare	test rdx, rdx	-	weapon-formulas
+0x0038DA00	0x0038DA2F	0x0038DA49	field of the indexed element	test byte ptr [rdx + 0x12], 1	-	weapon-formulas
+0x0038DA00	0x0038DA2F	0x0038DA5D	field of the indexed element	mov dword ptr [rdx], eax	-	weapon-formulas
+0x0038DA00	0x0038DA2F	0x0038DA68	field of the indexed element	mov eax, dword ptr [rdx]	-	weapon-formulas
+0x0038EBE0	0x0038EC1C	0x0038EC2A	scaled by shift 6	shl rbx, 6	-	weapon-formulas
+0x0038EBE0	0x0038EC1C	0x0038EC2E	added to a base	add rbx, rax	0x0038EC23 lea rax, [0x0208DE80]	weapon-formulas
+0x0038EBE0	0x0038EC1C	0x0038EC31	compare	test rbx, rbx	-	weapon-formulas
+0x0038EBE0	0x0038EC1C	0x0038EC3A	field of the indexed element	test byte ptr [rbx + 0x12], 1	-	weapon-formulas
+0x0038EBE0	0x0038EC1C	0x0038ECD5	field of the indexed element	mov dword ptr [rbx], eax	-	weapon-formulas
+0x0038ED40	0x0038ED86	0x0038ED94	scaled by shift 6	shl rbx, 6	-	weapon-formulas
+0x0038ED40	0x0038ED86	0x0038ED98	added to a base	add rbx, rax	0x0038ED8D lea rax, [0x0208DE80]	weapon-formulas
+0x0038ED40	0x0038ED86	0x0038EDD6	field of the indexed element	mov eax, dword ptr [rbx]	-	weapon-formulas

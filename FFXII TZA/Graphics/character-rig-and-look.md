@@ -578,6 +578,11 @@ and a script's or a motion's request is on top of what these tables show.
 
 ### Columns of the rig tables
 
+The tables are [`model-rig-headers.tsv`](model-rig-headers.tsv),
+[`model-rig-controllers.tsv`](model-rig-controllers.tsv), [`model-rig-entries.tsv`](model-rig-entries.tsv),
+[`model-rig-fields.tsv`](model-rig-fields.tsv) and
+[`model-rig-oscillator-records.tsv`](model-rig-oscillator-records.tsv).
+
 | column | what it holds |
 |---|---|
 | headers: `path`, `name` | the model, and its `@FCP` entry name |

@@ -157,7 +157,7 @@ Each handler takes the render record and the command:
 | `0x2F` | `0x00520E30` | sends event word `+2` with bit `0x2000` set to the child sub-tree (`0x0042EF90`, `0x00521000`) |
 | `0x34` | `0x00520800` | the shadow command, below |
 | `0x3F` | `0x00520510` | on a record with no parent, applies `0x00520E90` to it and its sub-tree with a bone (word `+2`), a direction (floats `+4` to `+0xC`), a preset (word `+0x10 & 0xFFF`, 0 when the bone is -1) and a flag (bit `0x8000` of word `+0x10`) |
-| `0x48` | `0x005205B0` | as `0x3F`, with the target found by name (`0x00372800`) |
+| `0x48` | `0x005205B0` | as `0x3F`, with the bone found by the low 16 bits of dword `+0x10` (`0x00372800`), and the preset (low 12 bits) and flag (bit `0x8000`) in word `+2` |
 
 `0x00426870(index, fn, arg)` calls `fn(record, arg)` on the record at `[0x022C6F28] + index x 0x740` at once
 (`0x00426880`-`0x004268A3`) and, when its first child `+8` is not -1, walks the children with `0x0042EF90`, which
@@ -342,6 +342,24 @@ The slot's other fields, from the take `0x003B56D0`, the builder `0x003B62D0`, t
 | `0x02B40528` | the first shadow pool, `0x8C00` bytes allocated once by `0x003B6890` |
 | `0x02B40520` | the pool's generation counter |
 | `0x02B40524` | the pool gate: `0x003B6930(v)` keeps the gate bits that `v >> 2` keeps and adds `v & 3`; its callers give it 4 or 6, which clear or set bit `0x2` (hide), so bit `0x1` stays clear |
+
+### Every use of these commands
+
+[`fmc-resource-occurrences-1.tsv`](fmc-resource-occurrences-1.tsv) has one row for each use of the commands that
+name something else: 224,124 rows. `decoded` spells the operand, `link_kind` and `link` give what it names, and
+`owner_status` and `owners` give the playing models, as for the [sound rows](../Sound-And-Music/animation-sounds.md).
+
+| `id` | Rows | `link_kind` | `link` |
+|---|---|---|---|
+| `0x09` | 155,855 | `fmn_slot` | the `@FMN` slot the command starts; `finish_flag` in `decoded` is bit `0x1` of the word (`0x004185AA`) |
+| `0x11` | 10,617 | `bone_trail_commands` | the file's rows in [`bone-trail-commands.tsv`](bone-trail-commands.tsv) |
+| `0x18` | 30,769 | `effect_by_ground` | the table from ground type to effect id, because the effect follows the ground |
+| `0x1A` | 12,876 | `profile_row` | the row of the file's movement profile table for the mode |
+| `0x3F`, `0x48` | 7,617 | `preset_row` | the row of the table at `0x01EFFA30` (`0x0040ACA3`) |
+| `0x48` | 6,390 | `no_preset` | preset 0, which sets nothing (`0x0040AC2E`) |
+
+The effect ids of `0x18` (`0x64` to `0x67` and `0x94`) are not joined to files, and the ground under the actor picks
+among them while the game runs. `0x09`'s `finish_flag` is the word the playback page uses for bit `0x4` of `+0x96`.
 
 ## Modding notes
 

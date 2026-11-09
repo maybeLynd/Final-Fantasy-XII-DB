@@ -364,6 +364,23 @@ without an extension. Of the `.bin` files, 1,437 are under `ps2data/image/ff12`,
 from patterns, as the [prefetch lists](prefetch-manifests.md) do. A `-` or a 0 in these columns says that those lists
 do not hold the path. It does not say that the game never reads the file.
 
+[`archive-file-references.tsv`](archive-file-references.tsv) lists the archive paths that a file's own bytes spell
+out: 7,185 rows from 1,962 files, naming 6,985 files. The `.ah` lists and the `prefetchdata` lists are left out,
+because the [prefetch tables](prefetch-manifests.md) already give each of their references. So is `phyremaps.txt`,
+whose pairs are given on [Phyre asset files](../PhyreEngine/phyre-asset-files.md).
+
+| Column | Meaning |
+|---|---|
+| `file`, `names` | the file that holds the text, and the archive path the text names |
+| `form` | `path` (98), the full path; `path under gamedata/d3d11/ + .phyre` (6,425), the remastered file of the path in the text; `name only, one file has it` (662), a bare file name that one archive file alone has |
+| `first_offset`, `count` | where the text first occurs, in hex, and how many times it occurs |
+
+The scan reads plain ASCII text and takes each run of path characters whole. A reference built from numbers, held in
+compressed data or written in UTF-16 has no row. Neither has a bare name that several archive files have, a name
+with any other character, such as the `#` of the 80 shader files in `artdata/shaders`, or a path with a path
+character directly before it. A file has no row for its own name, and a file with no row can still name others.
+`Database/Tools/catalogues/archive_refs.py` writes the table.
+
 ## Operations
 
 At start-up: one 12 MB read, one MD5 over it and one tree insert per entry. Per file open: one MD5 of

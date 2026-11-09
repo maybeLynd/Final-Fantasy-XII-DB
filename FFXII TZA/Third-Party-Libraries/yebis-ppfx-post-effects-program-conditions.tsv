@@ -1,0 +1,18 @@
+program	line	instruction	operand	decided_by
+24	37	discard_nz	r0.x	c:cb0[154] c:cb0[210] c:cb0[211] c:cb0[50] t:t0 t:t1 t:t2 v:v0 v:v1 v:v2
+24	42	discard_nz	r0.x	c:cb0[154] c:cb0[210] c:cb0[211] c:cb0[50] t:t0 t:t1 t:t2 v:v0 v:v1 v:v2
+25	41	discard_nz	r0.x	c:cb0[154] c:cb0[210] c:cb0[211] c:cb0[50] t:t0 t:t1 t:t2 v:v0 v:v1 v:v2
+25	46	discard_nz	r0.x	c:cb0[154] c:cb0[210] c:cb0[211] c:cb0[50] t:t0 t:t1 t:t2 v:v0 v:v1 v:v2
+26	46	discard_nz	r0.x	c:cb0[154] c:cb0[210] c:cb0[211] c:cb0[50] t:t0 t:t1 t:t2 v:v0 v:v1 v:v2
+26	51	discard_nz	r0.x	c:cb0[154] c:cb0[210] c:cb0[211] c:cb0[50] t:t0 t:t1 t:t2 v:v0 v:v1 v:v2
+27	51	discard_nz	r0.x	c:cb0[154] c:cb0[210] c:cb0[211] c:cb0[50] t:t0 t:t1 t:t2 v:v0 v:v1 v:v2
+27	56	discard_nz	r0.x	c:cb0[154] c:cb0[210] c:cb0[211] c:cb0[50] t:t0 t:t1 t:t2 v:v0 v:v1 v:v2
+28	35	discard_nz	r0.w	c:cb0[154] c:cb0[210] c:cb0[211] c:cb0[50] t:t0 t:t1 t:t2 v:v0 v:v1 v:v2
+28	45	discard_nz	r0.z	c:cb0[154] c:cb0[210] c:cb0[211] c:cb0[50] t:t0 t:t1 t:t2 v:v0 v:v1 v:v2
+29	39	discard_nz	r0.w	c:cb0[154] c:cb0[210] c:cb0[211] c:cb0[50] t:t0 t:t1 t:t2 v:v0 v:v1 v:v2
+29	49	discard_nz	r0.z	c:cb0[154] c:cb0[210] c:cb0[211] c:cb0[50] t:t0 t:t1 t:t2 v:v0 v:v1 v:v2
+30	44	discard_nz	r0.w	c:cb0[154] c:cb0[210] c:cb0[211] c:cb0[50] t:t0 t:t1 t:t2 v:v0 v:v1 v:v2
+30	54	discard_nz	r0.z	c:cb0[154] c:cb0[210] c:cb0[211] c:cb0[50] t:t0 t:t1 t:t2 v:v0 v:v1 v:v2
+31	49	discard_nz	r0.w	c:cb0[154] c:cb0[210] c:cb0[211] c:cb0[50] t:t0 t:t1 t:t2 v:v0 v:v1 v:v2
+31	59	discard_nz	r0.z	c:cb0[154] c:cb0[210] c:cb0[211] c:cb0[50] t:t0 t:t1 t:t2 v:v0 v:v1 v:v2
+2607	17	discard_nz	r0.x	c:cb0[154] t:t0 t:t1 v:v0 v:v1

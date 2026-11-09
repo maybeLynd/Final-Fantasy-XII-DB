@@ -1,0 +1,34 @@
+part	offset	type	field	readers	writers	status
+head	+0x00	u16	records	0x003E6D2C, 0x0051CE2A loop end 0x0051D071, 0x0051D361, 0x0051DB87	-	proven
+head	+0x02	u16	offset of the first record	0x0051CE2A, 0x0051D32E, 0x0051DB74	-	proven
+head	+0x04	u16	0x12 in all 28	-	-	no reader located yet: the seven routines that take the copy do not read it
+head	+0x06	u8	on; the authored byte does not survive	0x0051CE5F, 0x0051D337	0x0051D2C0, 0x0051D2D4 (bind clears), 0x0051DB7C (on), 0x00519720 (off)	proven
+head	+0x07	u8	bit 0x1 no update, bit 0x2 no draw	0x0051CE69, 0x0051D341	0x0051D2F0 (from 0x00421280, 0x004213E0), 0x0051DB7C clears	proven
+head	+0x08	u32	render record index; read as a word	0x0051CE30, 0x0051D390	0x0041F5F3	proven
+head	+0x0C	f32	alpha factor from render record +0x49C	0x0051D146	0x0051DBE0 (from 0x0042CE2C, 0x0042D17E)	proven
+record	+0x00	u32	sample count, 0 to 16	0x0051D43B; VU cell 0x13 at 0x002F0465	0x0051D455, 0x0051DBA0	proven, run-time
+record	+0x04	u16	sprite steps of the draw loop	VU 0x002F08A2, loop 0x002F161E	-	proven
+record	+0x08	u16	sprites in phase B; the phase changes when the remaining count equals it	VU 0x002F08A8, 0x002F0900	-	proven
+record	+0x0C	u32	bone key	0x0051D404 -> 0x00421D70 -> 0x00372800	-	proven
+record	+0x10	f32	sprite spacing along the path	0x0051DA6F; draw 0x0051D121 x +0x1C0; VU 0x002F160C	0x0051DAFA, 0x0051DBB2	proven, run-time
+record	+0x14	f32	alpha multiplier; the draw multiplies it by head +0x0C, or its square root at 60 fps	draw 0x0051D146-0x0051D175; VU 0x002F03F2, 0x002F0946	0x0051DB97 (1.0)	proven, run-time
+record	+0x18	f32	phase A colour step per sprite	VU 0x002F0423	-	proven
+record	+0x1C	f32	phase B colour step per sprite	VU 0x002F09D1	-	proven
+record	+0x20..+0x28	f32[3]	phase A first corner S, T, Q	VU 0x002F0E14, 0x002F101A	-	proven
+record	+0x2C	f32	phase A half size, x 0x003E5770	draw 0x0051D0F9; VU 0x002F0E48	-	proven
+record	+0x30..+0x38	f32[3]	phase A second corner S, T, Q	VU 0x002F0E2A, 0x002F114A	-	proven
+record	+0x3C	f32	spacing decay per update	0x0051DAB1-0x0051DABA	-	proven
+record	+0x40..+0x48	f32[3]	phase B first corner S, T, Q	VU, cell +2 after 0x002F090D	-	proven
+record	+0x4C	f32	phase B half size, x 0x003E5770	draw 0x0051D110-0x0051D129	-	proven
+record	+0x50..+0x58	f32[3]	phase B second corner S, T, Q	VU, cell +2 after 0x002F090D	-	proven
+record	+0x5C	f32	spacing cap	0x0051DAC2-0x0051DAD3	-	proven
+record	+0x60, +0x70	u32[4] x 2	phase A start and end RGBA	VU 0x002F0375, 0x002F0387	-	proven
+record	+0x80, +0x90	u32[4] x 2	phase B start and end RGBA	VU 0x002F0927, 0x002F0932	-	proven
+record	+0xA0..+0x19F	f32[16][4]	history, newest first; xyz the world point, w the distance moved	VU 0x002F04A3-0x002F04C1; 0x0051D480-0x0051D62B	0x0051D640-0x0051D8DD, 0x0051D929; 0x0051DB90 zeroes	proven, run-time
+record	+0x1A0..+0x1A8	f32[3]	point in the bone's space	0x0051D3BF	-	proven
+record	+0x1AC	f32	0 in all 53; replaced by 1.0 in the stack copy	0x0051D3BF, 0x0051D3CC	-	proven
+record	+0x1B0..+0x1B8	f32[3]	vector of the camera-side test	0x0051D689	-	read; the rows it is multiplied by are not written by this routine
+record	+0x1BC	f32	0 in all 53; loaded with +0x1B0, not used	0x0051D689	-	no use located yet
+record	+0x1C0	f32	spacing scale	draw 0x0051D131	-	proven
+record	+0x1C4	u32	update alternator	0x0051D429, 0x0051D457	0x0051D473, 0x0051DBA8	proven, run-time
+record	+0x1C8..+0x1CF	bytes	0 in all 53	-	-	no reader located yet

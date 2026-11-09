@@ -278,6 +278,19 @@ A row names its texture and palette in three bytes: `+0x71` indexes the kind-`0x
 texture handles (`+0x28`, kind `0x52`), `+0x72` names the palette source, a kind-`0x53` handle from
 `+0x30` when bit `0x80` is set and the texture itself otherwise, and `+0x73` picks the palette slot.
 
+The record in the file is read by `0x00502CB0`: a `u16` row count, the `u8` texture and palette counts, a `u32`, then
+`0x70`-byte rows, then one slot byte per texture and per palette. The `u32` is the number of rows with bit `0x1`, in
+all 4,321 records. The slot bytes name kind-`0x52` and kind-`0x53` records of key 0, all in the same stream.
+
+A file row's last four bytes, `+0x6C` to `+0x6F`, land at `+0x70` to `+0x73`. Bit `0x1` of the flags makes the row
+selectable by `0x00502EA0` (`0x00502EF3`). Bit `0x2` stops the row walks (`0x0050223A`, `0x00502BDE`) and is on the final
+row of every record. The palette slot is 0 on all 6,998 rows, and a row without bit `0x80` has its texture index as
+its source byte, so `0x005030F0` replaces the palette word only for the 1,234 rows with a palette source.
+
+[`effect-sprite-records.tsv`](effect-sprite-records.tsv) has one row per record and
+[`effect-sprite-rows.tsv`](effect-sprite-rows.tsv) one per row of each distinct content. These tables hold the
+selectors. A row's corners and coordinates, its bytes `+0x00` to `+0x6B`, stay in the record.
+
 - `0x00502F30(record, n, first, count)` finds the `n`-th enabled row and returns its index and the
   number of rows up to the next enabled one; it fails for `n` above the row count `+0x38`.
 - `0x005030F0(record, row, out)` copies the texture's 16-byte register pair (`+0x10`) and, for a
@@ -359,9 +372,21 @@ palette of its first sprite row (`0x00503000`).
 
 ### Frame sequences: the kind-0x51 record
 
-A kind-`0x51` record holds `+0x10` entries of 16 bytes at `+0x18`. An entry's byte `+8` is its
-opcode: 0 shows a frame for byte `+9` ticks, 1 jumps to the entry in word `+0xC`, and 2 ends the
-sequence. `0x005039A0(sequence, time, mode)` returns the frame entry at `time`; at the end, mode 0
+A kind-`0x51` record holds `+0x10` entries of 16 bytes at `+0x18`, read by `0x00503880` from a `u16` count and the
+entries after it. An entry's byte `+8` is its opcode: 0 shows a frame for byte `+9` ticks, 1 jumps to the entry in
+word `+0xC`, and 2 ends the sequence. Word `+0xA` is the sprite row. The floats at `+0` and `+4` are stored at the
+draw's `+0x30` and `+0x34` and added to each corner's x and y (`0x004494DB`, `0x00501C18`, `0x00501C27`). No reader of
+word `+0xE` is located yet.
+
+The shipped entries have 939 shows and 2 jumps, each back to entry 0, and no opcode 2. Their floats and word `+0xE`
+are 0. 109 of the 111 distinct contents end on a show, so the end of the list stops them. In 34 of the 6,208 pairs
+of a sequence with the sprite record its owner names beside it, the sequence's largest row is at or above
+`selectable_rows`, and there `0x00502EA0` applies its mode.
+
+[`effect-frame-sequences.tsv`](effect-frame-sequences.tsv) has one row per record and
+[`effect-frame-entries.tsv`](effect-frame-entries.tsv) one per entry of each distinct content.
+
+`0x005039A0(sequence, time, mode)` returns the frame entry at `time`; at the end, mode 0
 keeps the last frame, mode 1 starts over with the time reduced, and mode 2 returns 0.
 `0x00503A80(sequence, cursor)` does the same from a four-byte cursor (entry, time, last frame,
 mode) that it updates, for type `0x02`'s draw `0x004490D0`.

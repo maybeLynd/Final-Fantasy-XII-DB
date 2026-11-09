@@ -259,7 +259,7 @@ the layout unit from [Menu screens](../Menus-And-HUD/menu-screens.md); `-` where
 
 | Table | Rows | One row per |
 |---|---:|---|
-| [`ui-typed-lists-item-sprites.tsv`](ui-typed-lists-item-sprites.tsv) | 22,069 | sprite an item draws: one for type 2 (20,181), six for the strip pieces of a type 7 bar and one for its overlay (1,888) |
+| [`ui-typed-lists-item-sprites.tsv`](ui-typed-lists-item-sprites.tsv) | 22,069 | sprite an item draws: one for type 2 (20,181), six for the strip pieces of a type 7 bar and one for its overlay (1,888), with the four corner colours of each type 2 item |
 | [`ui-typed-lists-item-text.tsv`](ui-typed-lists-item-text.tsv) | 4,484 | type 5 item: rectangle, `drawn`, `colour`, `scale`, `text_mode`, `flag_bits`, `string_id`, and the text it resolves to |
 | [`ui-typed-lists-item-bars.tsv`](ui-typed-lists-item-bars.tsv) | 278 | type 7 item: the offsets, lengths, heights and colours of its background and fill, and its overlay |
 | [`ui-typed-lists-item-links.tsv`](ui-typed-lists-item-links.tsv) | 3,540 | type 1 or 8 item: the `list_record` it shows, and `columns` and `rows` for type 8 |
@@ -271,6 +271,12 @@ In the sprite table, `role` is `sprite`, `background left`, `background middle`,
 is the record they select, and `x`, `y`, `width` and `height` are that record's rectangle in the picture.
 `selector` is the item's palette field, and `palette` the number the draw gets from it, by
 [Finding a sprite](../Menus-And-HUD/menu-sprites.md).
+
+`colour_top_left`, `colour_top_right`, `colour_bottom_left` and `colour_bottom_right` are the item's four words at
+`+0x14`, each as `red,green,blue,alpha`, in the order `0x002D9380` writes the corners and their bytes
+(`0x002D95CE`-`0x002D96E6`). Rows of other types have `-` there. Of the 20,181 type 2 items, 15,290 hold 128 in every
+byte of all four words and 4,891 hold something else; the words as stored are in the `type_fields_hex` column of
+[`ui-typed-lists-items-rows.tsv`](ui-typed-lists-items-rows.tsv).
 
 A type 7 strip has one selector, and `0xFF` takes byte 7 of its left
 piece (`0x0029F1CE`-`0x0029F1EB`, `0x0029F2A1`-`0x0029F2B9`). A fill with bit `0x2` of `fill_palette_flag` keeps the

@@ -360,10 +360,38 @@ Uses come from the script's own bytecode, over every function its actors list. A
 start share its uses: they count once, and each such actor is credited.
 
 - `PUSHV` is a read, `POPV` a store, `PUSHP` a reference and `PUSHDBG` a debug resolve.
-- A store is literal when the instruction before `POPV` pushes a constant, and computed otherwise.
+- A store is literal when the instruction before `POPV` pushes a constant, and computed otherwise. A store to an array
+  counts as computed, because the script pushes its subscripts after the value (`0x00267E7F`).
 - A test is a `PUSHV` right before `POPXCJMP` or `POPXNCJMP`, the same with `OPNOT` between them, or a `PUSHV`
   and a constant, in either order, before a comparison and one of those jumps.
 - A `PUSHV` right before `POPY` is a switch. A read inside any longer expression counts in `reads` only.
+
+### Every use
+
+[`script-variables-uses-1.tsv`](script-variables-uses-1.tsv), [`-2`](script-variables-uses-2.tsv) and
+[`-3`](script-variables-uses-3.tsv) have one row for each of the 937,483 uses, in script order, and a script is never
+split between two parts. `Database/Tools/catalogues/script_variable_uses.py` produces them, over the same functions as
+the counts above, and each descriptor's rows add up to its `reads`, `stores`, `references` and `debug_resolves`.
+
+| column | what it holds |
+|---|---|
+| `script`, `index` | the descriptor, as in the descriptor table |
+| `pc` | the instruction's offset in section 0 |
+| `actor`, `function`, `other_actors` | the first actor and function by name, and how many others share this start |
+| `operation` | `read` (519,529), `store` (402,381), `reference` (6,465) or `debug_resolve` (9,108) |
+| `shape` | `test`, `switch`, `expression`, `literal_store`, `computed_store` or `array_store`, by the rules above; `-` for the other two operations |
+| `value` | the constant compared with or stored, when there is one; an array store has none, because its subscripts are pushed after the value |
+| `guard_pc`, `guard_jump` | the jump whose condition decides whether this use runs |
+| `guard_condition` | when the use runs: `v` and an index is that variable of the same script, named without any array subscript |
+
+A guard is the innermost forward `POPXCJMP` or `POPXNCJMP` whose skipped range holds the use, or the else arm of one,
+which runs from the jump's target to a forward jump just before it. A range that another jump enters at or before the
+use does not count for that use, and the next one out is taken. `POPXCJMP` jumps on non-zero and `POPXNCJMP` on
+zero, so the skipped code runs on the opposite. 499,686 uses have a guard.
+
+A condition is written out for the shapes that count as a test. Any other reads `computed before` the jump's offset
+and says whether that value must be zero or non-zero. The arms of a switch (the `POPCMPY` jumps) are not guards
+here, so a use inside one shows the nearest `POPXCJMP` or `POPXNCJMP` around the switch, or `-`.
 
 ### Initial values
 

@@ -249,12 +249,16 @@ points back at its source bytes. A stream shared by several files is written onc
 | [`effect-definitions.tsv`](effect-definitions.tsv) | 40,861 | `0xA00` record |
 | [`effect-references.tsv`](effect-references.tsv) | 74,479 | texture, mesh or other `0xB00` record an emitter or definition names |
 | [`effect-resources.tsv`](effect-resources.tsv) | 33,024 | `0xB00` record |
+| [`effect-sprite-records.tsv`](effect-sprite-records.tsv) | 4,321 | kind-`0x50` record: its counts and slot numbers |
+| [`effect-sprite-rows.tsv`](effect-sprite-rows.tsv) | 6,998 | sprite row of a distinct record: its selectors |
+| [`effect-frame-sequences.tsv`](effect-frame-sequences.tsv) | 3,622 | kind-`0x51` record: its entry counts and total ticks |
+| [`effect-frame-entries.tsv`](effect-frame-entries.tsv) | 941 | entry of a distinct sequence |
 | [`effect-expressions-700.tsv`](effect-expressions-700.tsv) | 47,823 | expression with an operand, in a `0x700` record |
 | [`effect-expressions-800.tsv`](effect-expressions-800.tsv) | 571,893 | the same in a `0x800` record |
 | [`effect-expressions-a00-part1.tsv`](effect-expressions-a00-part1.tsv) | 442,442 | the same in a `0xA00` record, first part |
 | [`effect-expressions-a00-part2.tsv`](effect-expressions-a00-part2.tsv) | 441,803 | the same, second part |
 | [`effect-expression-readers.tsv`](effect-expression-readers.tsv) | 974 | direct call of an expression evaluator |
-| [`effect-expression-field-forms.tsv`](effect-expression-field-forms.tsv) | 586 | expression field, with the evaluators that read it |
+| [`effect-expression-field-forms.tsv`](effect-expression-field-forms.tsv) | 767 | expression field, with the evaluators that read it |
 
 `Database/Tools/catalogues/efx_all.sh` writes them all.
 
@@ -309,7 +313,11 @@ fields have no operand and are left out. `field` is the offset in the record's p
 
 The values are the stored bits, because the same field layout holds integers and floats. The reader decides which:
 `effect-expression-readers.tsv` lists each call of the integer `0x004314E0`, float `0x004309C0`, RGBA `0x0042FDB0` and RGB
-`0x00430B90` evaluators with the field it passes, where that was resolved. `effect-expression-field-forms.tsv` totals
+`0x00430B90` evaluators with the field it passes, where that was resolved (858 of the 974 calls; `register` and
+`field` are `-` on the other 116, 37 of them RGB). For the RGB form they follow its second argument, the source
+record, because its first is the output buffer.
+
+`effect-expression-field-forms.tsv` totals
 them by definition type or emitter. A field with two forms was reached by more than one reader within two calls of
 that type's methods, and the reader table has each site.
 
@@ -329,6 +337,41 @@ Every value below matches the 410 shipped `.efb` files; each holds one blob.
 | `rows_end_at_file_end` | `yes` when the rows, read from the end of the last blob at `0xA0` bytes per type-3 row and `0x60` per type-1 row, end exactly at the file's end; `yes` in all 410 |
 | `weather_1`, `weather_2`, `weather_3` | in the row table, the row's enable bytes for weather slots 1 to 3, row bytes `+0x08`, `+0x09` and `+0x0A`: 1 runs the row in that slot, 0 skips it (slot 1: 2,374 rows 1, 241 rows 0; slot 2: 2,268 and 347; slot 3: 2,171 and 444) |
 | `row_hex` | the row's `0xA0` (160) bytes in file order as 320 hex digits |
+
+### Columns of effect-sprite-records.tsv and effect-frame-sequences.tsv
+
+`stream` and `chunk` join to `effect-resources.tsv`; `key` and `slot` repeat it. `content` joins to the row or entry
+table.
+
+| Column | Holds |
+|---|---|
+| `rows`, `textures`, `palettes` | the counts at `+0`, `+2` and `+3` |
+| `selectable_rows` | the `u32` at `+4` |
+| `texture_slots`, `palette_slots` | the slot numbers of the kind-`0x52` and kind-`0x53` records; `-` when there are none |
+| `entries`, `shown`, `jumps` | the entry count, and how many show and jump |
+| `ticks` | the ticks of the show entries added up |
+| `bytes` | the record's size, as in `effect-resources.tsv` |
+
+### Columns of effect-sprite-rows.tsv
+
+| Column | Holds |
+|---|---|
+| `content`, `row` | the record's content and the row number from 0 |
+| `flags` | the byte at file `+0x6C`, in hex |
+| `selectable`, `ends_walk` | its bits `0x1` and `0x2` |
+| `texture_index` | byte `+0x6D`; `texture_slot` is the slot number it picks |
+| `palette_source` | `palette` when byte `+0x6E` has bit `0x80`, else `texture` |
+| `palette_index`, `palette_resource_slot` | that byte's low 7 bits and the slot number they pick; `-` for `texture` |
+| `palette_slot` | byte `+0x6F` |
+
+### Columns of effect-frame-entries.tsv
+
+| Column | Holds |
+|---|---|
+| `content`, `entry` | the sequence's content and the entry number from 0 |
+| `action` | `show` or `jump`; the shipped entries use no other |
+| `ticks`, `sprite_row` | bytes `+9` and word `+0xA` of a `show`; `-` otherwise |
+| `jump_to` | word `+0xC` of a `jump`; `-` otherwise |
 
 ## Loader behaviour
 

@@ -507,7 +507,7 @@ not name is given by its offsets, as hex bytes.
   calls `0x0051D220` on it. The first call ever builds a 64 × 64 8-bit texture and a 256-colour
   palette from the image embedded at `0x01F2B340` (`0x00184140`, `0x001837A0`); every call clears the
   copy's byte `+0x06` and `0x02CA8428`.
-- The record-system reset `0x00425DC0` runs `0x0051D1D0` first: it zeroes the 16 KiB of emulated VU
+- The section 8 draw stage `0x00425DC0` runs `0x0051D1D0` first: it zeroes the 16 KiB of emulated VU
   memory at `0x02064E30`, calls `0x00258EE0(3)`, and binds the embedded texture and palette to GS
   addresses `0x2A00` and `0x2E00` (`0x002D7E00`).
 - The image's three statics: `0x02CA842C` is 1 once it is made, which `0x0051D220` tests (`0x0051D226`) and
@@ -519,6 +519,74 @@ not name is given by its offsets, as hex bytes.
   = 1, `0x100` bytes at `+0xA0` zeroed); off runs `0x00519720`.
 - `0x0051D2F0(copy, value)` keeps the low two bits of `value` in byte `+0x07` and masks the byte's
   other bits with `value >> 2`; `0x00421280` passes 4 or 6.
+
+### Section 8: sprites along a bone point's path
+
+Section 8 is in 28 models. A record draws a chain of textured sprites that follow the recent path of a point on one
+bone. The bind turns the copy on for every model that has one (`0x0042001D`). Command `0x1F` can also switch it, and no
+shipped command does: none of the 1,583,764 has that id.
+
+[`fcp-section8-records.tsv`](fcp-section8-records.tsv) has the 53 records, and
+[`fcp-section8-fields.tsv`](fcp-section8-fields.tsv) has each field with its readers and writers, and
+[`fcp-section8-models.tsv`](fcp-section8-models.tsv) has the 28 models.
+
+Head, `0x10` bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u16` |  | record count |
+| `+0x02` | `u16` |  | first record, `0x10` in all 28 |
+| `+0x04` | `u16` |  | `0x12` in all 28; no reader located yet |
+| `+0x06` | `u8` |  | on; the authored byte is cleared at bind (`0x0051D2C0`) |
+| `+0x07` | `u8` |  | bit `0x1` no update, bit `0x2` no draw |
+| `+0x08` | `u32` |  | render record index (`0x0041F5F3`) |
+| `+0x0C` | `f32` |  | alpha factor, from render record `+0x49C` (`0x0051DBE0`) |
+
+Record, `0x1D0` bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x000` | `u32` |  | sample count, 0 to 16 at run time |
+| `+0x004` | `u16` |  | sprite steps (`0x002F08A2`) |
+| `+0x008` | `u16` |  | phase B steps (`0x002F08A8`) |
+| `+0x00C` | `u32` |  | bone key, matched on nodes with flag `0x100` (`0x00372800`) |
+| `+0x010` | `f32` |  | sprite spacing at run time (`0x0051DAFA`) |
+| `+0x014` | `f32` |  | alpha multiplier, 1.0 at switch-on (`0x0051DB97`) |
+| `+0x018` | `f32` |  | phase A colour step |
+| `+0x01C` | `f32` |  | phase B colour step |
+| `+0x020` | `f32[3]` |  | phase A first corner S, T, Q |
+| `+0x02C` | `f32` |  | phase A half size |
+| `+0x030` | `f32[3]` |  | phase A second corner S, T, Q |
+| `+0x03C` | `f32` |  | spacing decay per update (`0x0051DABA`) |
+| `+0x040` | `f32[3]` |  | phase B first corner S, T, Q |
+| `+0x04C` | `f32` |  | phase B half size |
+| `+0x050` | `f32[3]` |  | phase B second corner S, T, Q |
+| `+0x05C` | `f32` |  | spacing cap (`0x0051DAD3`) |
+| `+0x060` | `u32[4]x2` |  | phase A colour, start and end |
+| `+0x080` | `u32[4]x2` |  | phase B colour, start and end |
+| `+0x0A0` | `f32[16][4]` |  | history at run time: world point, w the distance moved |
+| `+0x1A0` | `f32[3]` |  | the point, in the bone's space |
+| `+0x1B0` | `f32[3]` |  | vector of the spacing test (`0x0051D689`) |
+| `+0x1C0` | `f32` |  | spacing scale (`0x0051D131`) |
+| `+0x1C4` | `u32` |  | update alternator at run time |
+| `+0x1C8` | `u8[8]` |  | zero in all 53; no reader located yet |
+
+Each update shifts the sixteen history rows and adds the bone point, and the sample count rises to at most 16. The
+spacing grows by the newest distance when the test on `+0x1B0` passes. It is then multiplied by the decay and capped
+at `+0x5C` and at the path's total length (`0x0051DA60`-`0x0051DAFA`).
+
+The draw sends the record's first `0x1A0` bytes to VU program `0x002F0280`. The program places `+0x04` sprites at equal
+spacing along a curve through the samples. The first `+0x04 - +0x08` use phase A and the rest phase B, and in each
+the colour moves from start to end by its step per sprite. In all 53 records each step is 1 / (phase steps - 1), or
+0 for a phase of one sprite. Sizes are scaled by the render record (`0x003E5770`), and the spacing by `+0x1C0`.
+
+`+0x1BC` is zero in all 53 and loaded with `+0x1B0` without being used. Which texels of the embedded image a sprite
+shows follows from its S, T and Q and is outside these tables.
+
+The rows `+0x1B0` is tested against are read from `0x022D9360`-`0x022D938B` (`0x0051D6E7`-`0x0051D73F`), which `0x0051D310`,
+`0x00421D70`, `0x004220F0` and `0x003710E0` do not write. They hold what other routines left (`0x0040BD35`, `0x00535767` and
+`0x0054290E` among the stores), so the test is given as code. The distance the update subtracts comes from `0x022D904C`,
+whose only reference is that read (`0x0051D930`) and which lies in zero-filled `.data`.
 
 ### @FTR
 

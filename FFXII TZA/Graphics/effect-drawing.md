@@ -23,7 +23,7 @@ and `0x002EF030()` is 1, each request behind `0x003583F0(0)` or `0x00358350(0)` 
 [frame update order](../Engine-Core/frame-update-order.md)). It never asks for layer 6.
 
 Two more requests ask for layer 3 alone: the bone-trail draw `0x0051BC70` (`0x0051BC9E`), which ends the render root's
-model pass `0x0041E4D0` ([bone trails](bone-trails.md)), and `0x0051D1D0`, which the record-system reset `0x00425DC0`
+model pass `0x0041E4D0` ([bone trails](bone-trails.md)), and `0x0051D1D0`, which the section 8 draw stage `0x00425DC0`
 runs first (`0x0051D1ED`, [model files](model-files-cm-ca.md)).
 
 | Layer | Marker | Work |

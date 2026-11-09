@@ -73,24 +73,32 @@ also posts it with sub-id 0 from mode `0x18`.
 Arming sets availability bit `0x1` through `0x00254850(1)` (`0x0035C870`, `0x0035C8D7`). The arbiter returns while Game
 Over is armed (`0x00253C97`), and the drain drops a pending id 2 when that bit is set (`0x002E0C5E`-`0x002E0C65`).
 
-The one order that works is the screen opening first and the arming landing later in the same step. Opening mode 2
+The one order left is the screen opening first and the arming landing later in the same step. Opening mode 2
 sets the main-loop state to 4 (`0x002E0D39`), and `0x00254E50` runs only in state 2, so only the check later in that step
-(`0x0022AC73`) can see the new screen.
+(`0x0022AC73`) can see the new screen. The new task's `+0xD4` is then still 0 (`0x00246626`): only its second update can
+raise it (`0x0027FC09`), and its first only moves `+0xD0` from 0 to 1 (`0x0027FD47`).
 
-Between the drain (`0x0031427D`) and that check, `0x00258D70` (`0x0022AC65`, when `0x00358340()` is non-zero) can land a hit:
-`0x002FC010` sends each queued value with timeline code 0 to `0x00319F50`, and its target step `0x003191B0` (`0x0031A022`)
-runs the applier `0x00307300` (`0x00319362`). A hit that fells the last main character reaches `0x00300FC0`, which arms
-(`0x00301063`-`0x00301080`).
+The open shuts the route through a queued hit. `0x00280A60` calls `0x00252B40`, whose tail `0x00254740` raises freeze
+request 13 for mode 2 (`0x002552E0`, `0x0025479D`) and applies it at once (`0x002547A2`). Its A record clears bit
+`0x2000000` ([time stop](../Engine-Core/time-stop-and-freeze.md)), so the apply starts the effect mask at 0
+(`0x00226334`-`0x00226339`), and what it adds later, `0x76`, `0x2`, `0x108` or the `0x10C` case, leaves bit `0x1` clear.
+That mask goes to `0x0209215E` (`0x00226474`).
 
-The new task's `+0xD4` is then still 0 (`0x00246626`): only its second update can raise it (`0x0027FC09`), and its first
-only moves `+0xD0` from 0 to 1 (`0x0027FD47`). So `0x002805D0` answers 1 when Triangle, sub-id 0, opens the menu in the
-step that hit lands, and the game goes to Game Over before the menu appears.
+Between the drain (`0x0031427D`) and the check, `0x00258D70` (`0x0022AC65`, when `0x00358340()` is non-zero; that value
+depends on bit `0x4` of `0x022C7F92`, which the `movieend` body writes through `0x00358650`, `0x0035B953`) runs the effect
+passes. With bit `0x1` clear, the kind 1 pass (`0x00258DF8`, `0x0024BA07`) skips every instance outside state 1
+(`0x0024BB54`-`0x0024BB64`), and an instance in state 1 takes its paused step and leaves (`0x0024BB9D`,
+`0x0024BD05`-`0x0024BD17`).
+The state 3 arm that calls `0x002FC010` (`0x0024BD80`) does not run, so a queued value does not reach the applier
+`0x00307300` that way.
 
-This route is read from the code. The coincidence of the open and the killing hit in one step has not been observed
-in play, and `0x00358340` depends on bit `0x4` of `0x022C7F92`, which the `movieend` body writes through `0x00358650`
-(`0x0035B953`).
+The other caller of `0x002FC010`, the deferred list at `0x02092170` (`0x0024B5EC`), reads no kind mask. On this step
+`0x0024B4F0` reaches it at `0x0022AED7`, after the loop that holds the check (`0x0022AD69`). Direct-call chains from the
+field frame after the drain also reach `0x00300FC0` through `0x00300E40`, among them `0x00359800`, `0x0035A590`, `0x00233F50`,
+and `0x0037C1A0`, `0x0037B4D0`, `0x00233AD0`, `0x00324450`, `0x003243F0`. This rules out only the hit route; no route with
+every gate true is located yet, and the sub-id test stays as written above.
 
-That body fades (`0x002EFA70(3, 0, 1, 0)` when `0x002EFD20(3)` is
+The body of `0x0027EFA0` fades (`0x002EFA70(3, 0, 1, 0)` when `0x002EFD20(3)` is
 non-zero), calls `0x0035C7B0(0x0B, 0)` and `0x00252B40(0x0B, 1)`, writes 2 to the area controller's `+0xC8`
 (`[[0x0209AC30] + 0xC0] + 0xC8`, `0x0027EFE8`, read with no null test, so a null controller faults there), releases
 the mode-screen task `[0x0209AC30] + 0xB8` through `0x00245020` (`0x0027F000`; it returns at once for a null task),

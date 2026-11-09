@@ -278,14 +278,18 @@ These steps use a phase stepping by `0.033 × [0x01DFE0BC]` and an envelope movi
   and returns 1 (`0x0051E0D8`-`0x0051E0F3`); it keeps no phase and leaves `+0x304` alone.
 - Slow, `0x0051E170`, while render record `+0x114` holds a shadow: with `s = (0.5 + 0.3p) × envelope`, the shadow's
   colour = `(128s, 32s, 8s)` as integers, and the vector `(1 + 0.1p, 1 - 0.1p, 1 - 0.1p, 1)` goes to `0x001F1600`, which
-  stores it at `0x02CB8390`; then `0x0051E510(record, 1)`.
+  stores it at `0x02CB8390`; then `0x0051E510(word +0 of the record, 1)`.
+- Slow's phase goes back to 0 when it reaches 1
+  (`0x0051E1AC`-`0x0051E1B6`); its envelope rises to 1 while byte `+0x32` is 0 (`0x0051E28B`-`0x0051E29A`) and falls while it
+  is set, the leaving path below running at 0 or below (`0x0051E1D2`-`0x0051E1E6`).
 - Immobilize, `0x0051DE30`: the same with `s = (0.7 + 0.3p) × envelope`, colour `(128s, 16s, 4s)`, vector
   `(1 + 0.3p, 1 - 0.3p, 1 - 0.3p, 1)`, and the shadow's `+0xC` = `1 + (1.5 + 0.5p) × envelope`.
 - Leaving, Slow and Immobilize restore the shadow's `+0xC` to 1.0, its colour to 0, store `(0, 0, 0, 1)` at
-  `0x02CB8390`, call `0x0051E510(record, 0)`, clear the step `+0x40` and return 1 (`0x0051E1EC`, `0x0051E281`; `0x0051DEAF`,
+  `0x02CB8390`, call `0x0051E510(word +0 of the record, 0)`, clear the step `+0x40` and return 1 (`0x0051E1EC`, `0x0051E281`; `0x0051DEAF`,
   `0x0051DF44`).
 
-`0x0051E510` walks the record and every record attached under it and calls the method at offset `0xC8` of each render
+`0x0051E510(index, flag)` takes the render-record index (`0x0051E529`-`0x0051E536`), walks that record and every record
+attached under it and calls the method at offset `0xC8` of each render
 object (record `+0x6B8`) with 1 or 0. The shadow pool is 160 entries of `0xE0` bytes at `[0x02B40528]`; `0x003B6B10` and
 `0x003B6B30` write only when the handle matches the entry's `+0x10`.
 

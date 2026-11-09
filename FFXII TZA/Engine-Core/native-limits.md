@@ -66,6 +66,44 @@ operand is a unit index.
 
 `Database/Tools/catalogues/battle_unit_deps.py` writes the table.
 
+### What uses a unit's slot number
+
+A unit's slot number is its byte `+0xEA9`, stored once by the allocator `0x00234480` (`0x002344E0`). Raising the limit
+past 32 has to widen everything that number indexes.
+[`native-limits-battle-unit-index-uses.tsv`](native-limits-battle-unit-index-uses.tsv) follows each of its 69 reads,
+in 45 functions, to what the same function does with the value. `0x0031B750` only returns it, and its two callers are
+the first row of the table below.
+
+| Column | Meaning |
+|---|---|
+| `function`, `read_at` | the function and the instruction that reads the byte |
+| `used_at`, `instruction` | the later instruction that uses the value |
+| `use` | `shift by the slot` or `bit test or set`, a mask of one bit per unit; `array index`, `scaled by shift`, `added to a base` and `field of the indexed element`, a table indexed by unit; `compare`; `stored`; `argument`, the register still holds the number at a call, and only `0x00236820` and `0x00328FF0` read it; `field used directly`, the allocator's store; `no use within reach`, `0x0031B750` |
+| `array_base_loaded_at` | where the table's base address was loaded, when the use names one |
+| `pages` | the pages that cite the function; `-` for none |
+
+The trace reads forward from each read inside its function, follows direct jumps and takes the first branch path, so
+a use after a conditional jump may be missing.
+
+The tables it indexes:
+
+| Storage | Per slot | What it holds |
+|---|---|---|
+| `0x02B59D80` | `0x150` bytes, 32 records | the presentation records ([Status visuals](../Graphics/character-status-visuals.md)): `0x0031B750`'s callers `0x002E28E0` and `0x002E3AF0` pass the number to `0x003E7500` and `0x003E7D50` |
+| unit `+0xDD4` | one `u32`, 32 in all, cleared by `0x003176C0` | one entry per other unit, which the being-hit check reads ([Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md)) |
+| `0x0208DE80` | `0x40` bytes | the slot record the damage code picks ([Damage formula](../Damage-And-Battle-Formulas/damage-formula.md)) |
+| `0x022C1DB0` | 12 bytes, `0x180` in all, cleared by `0x0030C3F0` | what a battle verb saves and restores ([Battle verbs](../Scripts-And-Script-Commands/battle-verbs.md)) |
+| `0x022C1F50` | 16 bytes, indexed at `+8` and `+0x10` | the deferred HP list ([Quickenings and summons](../Battle-Actions/quickenings-and-summons.md)) |
+| `0x022C26A0`, `0x022C2720` | one `u32` each, `0x100` in all | the AI's mask of pairs already tested and of pairs found clear ([Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md)) |
+
+A `u32` mask holds one bit per unit, so 32 units fill it. 23 of the rows shift or test such a bit, in 13 functions.
+The three masks of [the result record](../Status-Effects-And-KO/status-timers.md) are among them (`0x00385A7F`,
+`0x00385AC0`, `0x00387B97`).
+This table covers the slot number only. Saved structures are not in it, and neither are the lists of up to 32 units
+held by position: the target list at unit `+0x780`, its bounce slots at `+0x988` and the noticed list at `+0xBC0`.
+
+`Database/Tools/catalogues/battle_unit_index.py` writes the table.
+
 ## Related
 
 - [Memory and allocation](../Compiler-And-C-Runtime/memory-and-allocation.md): the allocators behind the pools
@@ -114,3 +152,11 @@ Calls between the functions this page cites and code in other parts of the progr
   [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md).
 - World area: `0x003247F0` calls `0x00313F60`; those functions are documented on
   [frame update order](frame-update-order.md).
+- Combat formula: `0x00236820` is called by `0x0031B860`, `0x0031E800`; those functions are documented on
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
+- Gameplay: `0x00236820` is called by `0x0030C210`; those functions are documented on
+  [enmity](../Enemy-AI-And-Gambits/enmity.md).
+- Items equipment shops license: `0x00236820` is called by `0x0031A300`; those functions are documented on
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
+- Spawn encounter lifecycle: `0x00236820` is called by `0x00308D90`; those functions are documented on
+  [battle units](../Characters-And-Objects/battle-units.md).

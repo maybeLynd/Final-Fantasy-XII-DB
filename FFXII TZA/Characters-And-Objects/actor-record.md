@@ -256,7 +256,7 @@ Every record address and interior pointer is valid only until that release.
 ### What else the teardown resets
 
 Besides the record pool, `0x002628B0(slot)` resets state that other systems keep per manager slot,
-and on slot 0 state that belongs to the field. Among its calls, in order:
+and on slot 0 state that belongs to the field. Among its calls, in order (rows after `0x003DC710` run only while the slot is bound, `0x00262930`):
 
 | Call | Runs for | What it clears |
 |---|---|---|

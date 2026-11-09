@@ -176,9 +176,11 @@ bit, lowers the count at `+0x1E4` of the actor's manager and stores the sum of t
 `0x02099DB8` (`0x0025B558`); at 0 or below it cancels 18 and clears action-availability row 13 (`0x002E1CD0(1, 13)`,
 `0x0025B573`).
 
-Around 19, `0x002678C0` runs `0x00238B00(1)`, `0x002509A0(0, 0)` with `0x02099DA7` set to 1 when it was 0, sets
+Around 19, `0x002678C0` runs `0x00238B00(1)`, then only while `0x02099DA7` is 0 `0x002509A0(0, 0)` and `0x02099DA7` = 1
+(`0x002678D5`-`0x002678E0`), sets
 action-availability row 0 (`0x002E1CD0(0, 0)`) and busy bit `0x1000` (`0x003601B0(0xC)`) before its start, and
-`0x0025D580` runs `0x00238B00(0)`, `0x00250960(0, 0)` with `0x02099DA7` cleared when it was set, clears row 0
+`0x0025D580` runs `0x00238B00(0)`, then only while `0x02099DA7` is set `0x00250960(0, 0)` and `0x02099DA7` = 0
+(`0x0025D58B`-`0x0025D59D`), clears row 0
 (`0x002E1CD0(1, 0)`) and the busy bit (`0x003601C0(0xC)`) before its cancel.
 
 The records each id builds, read as the categories each set stops (F the party leader, P the

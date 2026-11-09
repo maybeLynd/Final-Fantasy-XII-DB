@@ -13,6 +13,41 @@ its argument count (the highest argument position it reads), the arguments its e
 and the stack arguments it reads. A second table lists every call and tail call, including those in `__except` blocks, with its target and the argument
 registers that reach it unchanged. Return values are not in these tables.
 
+### What the code shows beyond the arguments
+
+[`call-signatures-contract-evidence.tsv`](call-signatures-contract-evidence.tsv) has one row per function
+with what its bytes and its direct callers show about the rest of its contract. Each function is read straight
+through in address order, so a value is followed along the layout of the code and each path is not followed on its
+own. Decoding steps over a jump table inside a function and any bytes that do not decode, and it resumes at the
+next address a table or a direct jump names. A count is evidence for a contract and is not a prototype.
+
+| Column | Meaning |
+|---|---|
+| `ret_sites` | the `ret` instructions in the function, with the `repz` and `bnd` forms |
+| `return_register_at_ret` | for each `ret`, the last write to `rax` or `xmm0` above it in the layout, at any width: `none`, `after a call` when a call comes first, and `tail` for a jump to another function, which returns that function's value; `-` when the function has neither, 463 rows of which 378 end in a jump through a register or memory |
+| `callers` | the direct `call` sites of the function |
+| `caller_reads_rax` | how many of them read the return register before writing it, by the width first read (`rax`, `eax`, `ax`, `al`) |
+| `caller_reads_xmm0` | how many read `xmm0` before writing it |
+| `writes_through_arg` | for each argument register, how many different offsets the function stores to through it, directly, through a `lea` of it or after reloading it from its stack home slot: an output or a changed record |
+| `arg_kept_in_memory` | an argument's full 64-bit value stored in a global (`global`) or in a record that is not the stack (`record`), so the callee may keep the pointer |
+| `direct_recursion` | calls of the function from its own body |
+| `global_writes` | instructions that write global memory through `rip`, into a writable section |
+| `instructions` | the function's length in instructions, without `int3` padding |
+
+Of the functions with a direct caller, 6,385 have a caller that reads an integer return and 418 one that reads a
+float.
+10,885 functions store through an argument, 951 keep one in memory, 5,706 write globals and 103 call themselves.
+22,195 have no direct `call` site, so their caller columns are 0. A table, a pointer or a tail jump can still reach
+them.
+
+The return's width is the width callers read, because `return_register_at_ret` gives only the last write in the
+layout: above the `ret` of `0x003AA280` that is `xor eax, eax` (`0x003AA2CD`), and all 40 callers read the full `rax`.
+Types,
+the meaning of each argument, the thread a function runs on and what must be set up first are on the system pages
+and cannot be read from these counts.
+
+`Database/Tools/catalogues/call_contracts.py` writes the table.
+
 ### Positions, not register counts
 
 The x64 convention gives each argument a position: `rcx` or `xmm0` is the first, `rdx` or `xmm1`

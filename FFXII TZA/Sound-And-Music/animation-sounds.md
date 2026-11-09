@@ -29,10 +29,44 @@ through `0x0046CC70(emitter, mode, type, volume)`:
 | `0x29` | `0x00520D00` | mode 0, type 1, volume the signed word `+2` out of 128 |
 | `0x19` | `0x00520CE0` | mode 0, type 1, volume 0 for full: the footstep with no volume word |
 
+### Every occurrence
+
+[`fmc-sound-occurrences-1.tsv`](fmc-sound-occurrences-1.tsv) has one row for each of the 166,242 uses of `0x05` and
+`0x29`: one `@FMC` slot of one container, by one command. `container`, `path`, `package_slot`, `fmc_slot`, `name`
+and `content` name the block, and `stream`, `group`, `frame`, `command`, `offset` and `operand_hex` the command, as
+in the [motion tables](../Graphics/model-effects-and-motion-commands.md). `mode`, `type` and
+`volume` decode the operand word as above. No sound command sits in a `0xFFFF` block.
+
+`owners` are the models that play the block. A lane, an action motion and a model's own file name their owner; a
+script package takes the models of the cues that name the entry, from [motion
+playback](../Graphics/model-effects-and-motion-commands.md). `owner_status` says which, and
+`reason` says what stops it.
+
+[`fmc-sound-selections.tsv`](fmc-sound-selections.tsv) has one row for each model, mode and type used, keyed by
+`selection` (`model/mode/type`). `source` gives where the sound comes from:
+
+| `source` | Rows | Meaning |
+|---|---|---|
+| `own_block` | 1,765 | group 2: the `bank` from the model's `block2`, with the `variants` the type picks |
+| `footstep_set` | 316 | type 1: the `bank` from `block1`, sounds picked by ground and weather |
+| `attached_model_block0` | 1,498 | group 0: `block0` of the model in the first attach slot |
+| `no_block_for_group` | 199 | the model has no block for the group, so `0x002E9D90` gives -1 |
+| `explicit` | 5 | modes 1 and 4: the sound number in `se000` |
+
+`playable` and `not_playable` split the variants by the sound table. Only one model's block is a fixed fact: which
+variant plays is drawn as above.
+
+Mode 4 (552 occurrences, numbers 101 to 104) resolves to registry slot 0, the first block to register. `0x003A13F0`
+requests blocks 0, 1 and 2 in that order (`0x003A14AD`, `0x003A152C`, `0x003A15AB`), and those numbers exist only in
+`se000`. Group 0 takes its block from the model in the actor's first attach slot, and type 1 picks the sound by the
+ground under the actor, so those rows give the bank or the variants and not the one sound. Authored does not mean
+played: `0x0046CC70` has the gates listed above.
+
 ### The sound types
 
 The animation containers (`.ca` under `obj_finish`) hold 23,783 `0x05` and 47,472 `0x29` commands; no `.ca` under `ps2data` authors `0x19`. Only modes 0 and 4
-are authored, and mode-0 types are 1-12:
+are authored in the `.ca` files. One `.cm`, `obj_finish/in/treasure/t0006.cm`, adds mode 1 in FMC slot 8
+`treasure_open`: type 68, which is `0x003A1180(68)`, `se000` sound 68 (`0x0046CFE6`-`0x0046CFE8`). Mode-0 types are 1-12:
 
 | Type | Commands | Authored in blocks | Heard from |
 |---:|---:|---|---|
@@ -168,3 +202,7 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Resource: `0x002EDBD0` calls `0x00409660`, `0x00409F50`; `0x00421E20` calls `0x002ED570`; those functions are documented on
   [resource sections](../Game-Files-And-Data-Tables/resource-sections.md).
+- Rewards progression economy: `0x003A1180` is called by `0x0030C650`; those functions are documented on
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
+- World area: `0x003A13F0` is called by `0x00266D10`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).

@@ -172,7 +172,7 @@ Expression record (`0x10`):
 |---|---|---|---|
 | `+0x00` | `u32` |  | operand A payload (reference or curve address, encoded) |
 | `+0x04` | `u32` |  | operand B payload |
-| `+0x08` | `u16` |  | operand A curve period (0 = no curve) |
+| `+0x08` | `u16` |  | operand A curve period (0 = no wrap; the curve is still evaluated) |
 | `+0x0A` | `u16` |  | operand B curve period |
 | `+0x0C` | `u8` |  | operand A kind (0 absent, 1 reference, 2+ curve pair count) |
 | `+0x0D` | `u8` |  | operand B kind |

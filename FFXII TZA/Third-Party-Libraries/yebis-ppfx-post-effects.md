@@ -305,11 +305,42 @@ then the effect name `TexUtil_D3D11` and a newline-separated technique list that
 | [`yebis-ppfx-post-effects-techniques.tsv`](yebis-ppfx-post-effects-techniques.tsv) | 2,624 | technique: `index`, `technique`, `vertex_shader`, `vertex_program`, `pixel_shader`, `pixel_program` |
 | [`yebis-ppfx-post-effects-parameters.tsv`](yebis-ppfx-post-effects-parameters.tsv) | 35 | global parameter: `index`, `name`, and the two stored numbers `field_2` and `field_3` |
 | [`yebis-ppfx-post-effects-programs.tsv`](yebis-ppfx-post-effects-programs.tsv) | 2,621 | program: `index`, `name`, `profile` (`vs_4_0` 37, `ps_4_0` 2,584), both offsets, `bytes`, `sha256`, and `same_bytes_as`, the earlier program with the same bytes (68 rows) |
-| [`yebis-ppfx-post-effects-program-listing.tsv`](yebis-ppfx-post-effects-program-listing.tsv) | 249,452 | profile line, declaration or instruction of each of the 2,553 distinct programs: `program`, `line`, `text`, as `D3DDisassemble` of `d3dcompiler_47.dll` prints it |
+| [`yebis-ppfx-post-effects-program-outputs.tsv`](yebis-ppfx-post-effects-program-outputs.tsv) | 6,087 | each output of each distinct program: `program`, `profile`, `register`, `components`, `semantic`, `computed_from` (`c:cb0[n]` constant registers, `t:` textures, `v:` inputs), `decided_by`. These programs carry no names, so registers stand for them |
+| [`yebis-ppfx-post-effects-program-samples.tsv`](yebis-ppfx-post-effects-program-samples.tsv) | 32,442 | every texture read: `program`, `line`, `instruction`, `texture`, `sampler`, `level`, `coordinate_from`, `decided_by`. 31,770 read by derivatives, 30,636 of them with a fixed texel offset, and 672 at an explicit level |
+| [`yebis-ppfx-post-effects-program-conditions.tsv`](yebis-ppfx-post-effects-program-conditions.tsv) | 17 | every `discard`: `program`, `line`, `instruction`, `operand`, `decided_by`. The programs have no other branch |
+| [`yebis-ppfx-post-effects-program-listing.tsv`](yebis-ppfx-post-effects-program-listing.tsv) | 249,452 | profile line, declaration or instruction of each of the 2,553 distinct programs: `program`, `line`, `text`, as `D3DDisassemble` of `d3dcompiler_47.dll` prints it, `container_byte`, the byte offset of the instruction's first word in the DXBC container; `token`, its index in the bytecode words, where word 0 is the version word; `dwords`, its length in 32-bit words; and `immediates`, the exact words of each `l(...)` operand as hexadecimal, operands apart by a space and `-` when it has none. `add r1.x, r1.x, l(0.000000)` in program 51 is the word `0x34800000` |
+| [`yebis-ppfx-post-effects-reflection-variables.tsv`](yebis-ppfx-post-effects-reflection-variables.tsv) | 81,088 | constant of each program's reflection data, 2,534 programs: `program`, `buffer`, `slot`, `buffer_bytes`, `variable`, `offset`, `bytes`, `register`, `class`, `base`, `rows`, `columns`, `elements`, `stored_used`, `instructions`, `default_words` (hexadecimal) and `default_value`, or `none` for no stored default |
+| [`yebis-ppfx-post-effects-reflection-resources.tsv`](yebis-ppfx-post-effects-reflection-resources.tsv) | 7,590 | bound resource of each program: `program`, `name`, `kind`, `return`, `dimension`, `samples`, `slot`, `count`, `flags`, `instructions` |
+| [`yebis-ppfx-post-effects-parameter-handles.tsv`](yebis-ppfx-post-effects-parameter-handles.tsv) | 35 | global parameter: `parameter`, `handle_field` (its place in the effect set), `looked_up_at`, `stored_at`, `setter_calls` |
+| [`yebis-ppfx-post-effects-parameter-setter-calls.tsv`](yebis-ppfx-post-effects-parameter-setter-calls.tsv) | 260 | call or tail jump that sets a parameter on the effect: `parameter`, `slot` of `IGPUEffect`, `slot_function`, `site`, `function`, and for a staged upload its `staging_buffer` and `vector_count` |
 
 A technique's two program numbers are the positions of `TexUtil_D3D11\<shader>.vso` and `.pso` in the records,
 in all 2,624.
 These tables give what the block stores. Which technique a frame runs is the library's choice at run time.
+
+A variable's `register` follows from its byte offset: `fParam_ScreenSpaceScale` at byte 80, eight bytes, is
+`cb0[5].xy`. Every program was compiled by `Microsoft (R) HLSL Shader Compiler 9.29.952.3111`, and `$Globals` is
+4,096 bytes in each of the 2,534 that have it. Three things are kept apart:
+
+- `default_words` is what the program's container stores: for `fParam_ScreenSpaceScale`, `0x3F800000,0xBF800000`,
+  which are (1, -1).
+- `stored_used` is the compiler's own flag, and `instructions` counts the program's instructions that read a
+  register and component the variable occupies. The two agree on all 81,088 rows: 9,840 are used and 71,248 are not.
+- What the game writes at run time is neither of those. It is whatever the setter calls below pass.
+
+`0x0072A320` looks up 34 of the 35 parameters by name through slot `+0x48`. 31 are single handles stored in the effect
+set (`0x0072A4CB`-`0x0072A7C5`). Each setter then takes the handle back from that field, which ties the name to the
+call. All 67 rows of [the constant uploads](yebis-ppfx-post-effects-constant-uploads.tsv) join to a parameter this
+way.
+
+The three sampler arrays go through `0x0072EC00`, which looks up one name per index and stores each handle in the next
+4-byte field (`0x0072ED75`, `0x0072ED78`): `asamp2D_Texture` 16 from `+0x10`, `asamp3D_Texture` 16 from `+0x50`,
+`asamp2D_VertexTexture` 4 from `+0x90`. `asamp2D_Texture[0]` and `[1]` are also stored at `+0x08` and `+0x0C`
+(`0x0072D10F`, `0x0072D124`). Slot `+0xB8` binds textures with handles from these fields, in 107 calls.
+
+`m44_ModelViewProject` is the one with no lookup, and no program reads it: `stored_used` is 0 in all 2,534.
+`Database/Tools/catalogues/yebis_handles.py` and `dxbc_tokens.py` write these tables.
+
 `Database/Tools/catalogues/yebis_effects.py` writes them.
 
 `0x0078A530` copies the whole block into a `malloc` buffer in eight runs of `0x1D1D40` bytes (sources
@@ -909,7 +940,7 @@ slot `+0x98` of `IGPUEffect` (vtable `0x00DAF1B8`, built by `0x00789900`):
 | Buffer | Size | Filled by | Handed over by |
 |---|---|---|---|
 | A, `0x02EA1A50` | `0x100` bytes, up to the next static `0x02EA1B50` | the loops below and direct stores | 25 calls |
-| B, `0x02EA1C50` | 16 vectors: `0x0074AB30` and `0x0074B6A6` hand over 16 | the loops below and direct stores | 38 calls |
+| B, `0x02EA1C50` | 16 vectors: `0x0074AB30` and `0x0074B6A6` hand over 16 | the loops below and direct stores | 40 calls |
 | `0x02EA1B50` | 3 vectors | `0x00737740`, `0x00737A30` | `0x0073792C`, `0x00737C86` |
 
 `0x00789D50`, the setter, adds 1 to `0x02EA40B8` and the vector count to `0x02EA40BC`, then calls the effect it wraps
@@ -936,7 +967,7 @@ The loops that write the buffers through a pointer:
 
 | Column | Holds |
 |---|---|
-| `count_set_at` | the address of the instruction that writes the vector count into `r9d`, the setter's fourth argument, before the call at `site`: a `mov` on 57 of the 65 rows, `lea` on 5, and `add`, `cmovl` and `sar` on one each. It lies in the same function, 4 to 336 bytes before the call |
+| `count_set_at` | the address of the instruction that writes the vector count into `r9d`, the setter's fourth argument, before the call at `site`: a `mov` on 59 of the 67 rows, `lea` on 5, and `add`, `cmovl` and `sar` on one each. It lies in the same function, 4 to 336 bytes before the call |
 
 ### Lookup tables built on first call
 
