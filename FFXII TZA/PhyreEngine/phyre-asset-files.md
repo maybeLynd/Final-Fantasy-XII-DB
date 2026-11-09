@@ -659,8 +659,9 @@ dump of data under 32 bytes) and the load goes on.
 - It then hands, from the next 8-byte boundary, `+0x02` `PAnimationClipBindingDataBlockCache` records
   through slot `+0x10`; the second location is `(e + a - 1) & ~(a - 1)`, the end of the two arrays rounded up to
   the alignment a the visitor's `+0x08` object answers for that type (its slot `+0x18`, `0x005BFFF8`-`0x005C0058`),
-  with e = `8 + 2 × ((+0x06 + 3) & ~3) + 4 × (+0x02 + +0x04)`; both are offsets from the record
-  (`0x005C0008`-`0x005C0049`).
+  with e = `8 + 2 × ((+0x06 + 3) & ~3) + 4 × (+0x02 + +0x04)`.
+- The first location is an address rounded up to 8 (`0x005C002F`-`0x005C0041`); the second is an offset rounded up and
+  added to the record (`0x005C002C`-`0x005C0049`).
 - `0x005FE350` serves `PParameterBuffer` (`0x20` bytes), and does nothing when slot `+0x18` answers true:
   for each of the `+0x10` (mask `0x7FFFFFFF`) `PShaderParameterDefinition` records at `+0x18`, `0x18` bytes
   each, it hands one parameter to slot `+0x10` at the record's `+0x10` offset into the buffer

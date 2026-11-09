@@ -149,7 +149,8 @@ and 6).
   set (`0x00249580`), files the request through `0x00249210` (`0x003C999B`), closes the set (`0x00249410`), stores the
   request's buffer (its `+8`) at `+0xD0` and sets bit `0x8` of `+0xC4` (`0x003C99AF`).
 - No null return is tested there. With all twelve menu sets in use `0x00249580` returns 0 (`0x002495A0`), and for
-  a file with a size `0x00249210` then adds to the count at address `0x18` (`0x002492F8`); with all 48 request
+  a file with a size `0x00249210` then adds to the count at address `0x18` (`0x002492F8`), and for any other file the close
+  `0x00249410` writes address 0 (`0x00249425`); with all 48 request
   entries in use `0x00249210` stores through a null entry (`0x0024928D`). Each of these faults.
 - `0x003C9E50` copies `2h` rows of `w` bytes into `battle_4_c` from the sub-image's top-left corner, writing `w` to
   `0x01EFE384` and `2h` to `0x01EFE388`. It re-uploads the picture and frees the buffer. It returns at once while

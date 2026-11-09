@@ -185,8 +185,9 @@ otherwise the three fields keep their last values. Row 246's `0x00308E80(i)` tak
 Row 264 prints `0x001DCD30`'s `%d X %d ,%dHz, %dHz` and then `Screen Resolution :%dx%d` from `GetSystemMetrics`
 (`SM_CXSCREEN` by `SM_CYSCREEN`, called at `0x001CD53F` and `0x001CD535`; format `0x008FFAB8`).
 
-`0x001DCD30` fills the first with the configured resolution (`[0x01F82D20]` `+0x04` / `+0x06` with `+0x08` set, else
-`+0x2C` / `+0x2E`), then the selected mode's rate, the mode record `m = [+0x28] + [+0x24] × 0x1C` of the `0x001DDAB0`
+`0x001DCD30` fills the first with the configured resolution (`[0x01F82D20]` `+0x06` by `+0x04` with `+0x08` set,
+else `+0x2E` by `+0x2C`; the two `%d` take them in that order, `0x001DCD8D`-`0x001DCDA7`), then the selected
+mode's rate, the mode record `m = [+0x28] + [+0x24] × 0x1C` of the `0x001DDAB0`
 object with its `+0x08` divided by its `+0x0C`, the unsigned `[m + 0x08] / [m + 0x0C]` (`0x001DCD68`-`0x001DCD80`), then
 the desktop's refresh rate (`EnumDisplaySettingsW(0, -1)`, its `dmDisplayFrequency`); it writes the text into the
 object's `+0x80` and returns that buffer.

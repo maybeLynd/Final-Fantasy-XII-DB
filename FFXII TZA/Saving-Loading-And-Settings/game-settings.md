@@ -252,6 +252,11 @@ as a `u16` (`0x002408DF`).
 sends to the exit, 7, 15, 18, 22-27 and 31-37 (`0x00240512`), leave that 0. Every other id stores its getter's
 result from the table below, the music version's `u16` zero-extended (`0x002404B2`).
 
+Some getters do more than read the field. `0x002DDD70` (id 11) returns the word `0x0215E6DC` `& 1` when that word is
+non-zero, and the inverted bit `0x1000` only when it is 0 (`0x002DDD70`-`0x002DDD8F`). `0x002DDCA0` (id 17) writes 1 to
+`+0x0E` when the field is 2 and `0x0017E490` answers with bit `0x1` clear (`0x002DDCAB`-`0x002DDCC7`). `0x002DDC70`,
+`0x002DDDE0` and `0x002DDE40` (ids 19-21) write 100 back to a volume above 100 (`0x002DDC83`, `0x002DDDF3`, `0x002DDE53`).
+
 The in-game options are an `0x28`-byte record inside the save image: `0x002DDE60` sets `0x0215E6E0`
 to `0x002536A0() + 8`, writes the template `{0x00000035, 0x00620400}` and patches it (bit `0x20000` of
 dword 0 from `0x005C5230() == 2`; bit `0x1000` of dword 0 set for locale ids 1 and 6; bit `0x400` of dword 1
@@ -307,7 +312,7 @@ While that bit is set the effect step `0x0024B9B0` sets bit `0x4` of the effect 
 In Wait mode the time stop of id 0 also sets bit `0x2` of the input manager's movement-key mode byte (`0x00182D10`,
 reached from `0x00227680` at `0x002277FD`), and its cancel clears it (`0x00182DA0`, from `0x00225CD0` at `0x00225E81` and from
 `0x00225EB0` at `0x00226052`); in Active mode neither call runs ([Time stop and freeze](../Engine-Core/time-stop-and-freeze.md)).
-The Config painter `0x002403F0` shows the bit's value (`0x0024041E`).
+The Config getter `0x002403F0` reads the bit through `0x002DDC30` (`0x0024041E`) and stores it at `out`.
 
 ### The FF12CONFIG file
 

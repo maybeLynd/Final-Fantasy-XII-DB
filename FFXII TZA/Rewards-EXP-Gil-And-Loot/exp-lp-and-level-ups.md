@@ -187,7 +187,8 @@ level 21 at 61,056, level 31 at 223,374, level 51 at 1,249,590, level 71 at 4,07
 - An enemy's EXP, LP and gil come from its two reward rows (`+0x34`, `+0x2F`, `+0x30`), base plus
   per-level times `level - stats.b[+0x88]`. Edit the rows in the tables behind registry slots
   `0x02EBF148` and `0x02EBF140`, or point the enemy definition's `+0x22` / `+0x24` at other rows.
-- The level curve is code, not data: `0.4` at `0x009153EC` and the `12` step built from `0x18` and `+0xC`
+- The level curve is code, not data: `0.4` at `0x009153EC` and the `12` step built from
+  `0x18` (the immediate `0x16` plus 2, `0x002F8F46`) and `+0xC`
   in `0x002F8F20`; the level cap is the `cmp eax, 0x62` there.
 - The EXP and LP caps per kill (999,999 and 999) and the totals' caps (99,999,999 and 99,999) are
   immediates in `0x00312280`.

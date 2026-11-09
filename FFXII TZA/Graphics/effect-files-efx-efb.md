@@ -228,6 +228,95 @@ that does not apply to the chunk's type is empty):
 | `tex_format`, `tex_bit_0x40`, `tex_bit_0x80` | kind-`0x52` `0xB00`: the low six bits of payload byte `+0`, and 1 when its bit `0x40` or bit `0x80` is set |
 | `tex_palettes`, `tex_reference`, `tex_size` | kind-`0x52` `0xB00`: the palette count byte `+2`, the reference size words `+4` and `+6`, and the width and height words `+8` and `+0x0A` |
 
+### What each effect stream holds
+
+These tables decode the 4,229 streams of the `.efx`, `.efb`, `.cm` and `.mpk` files, 3,087 of them different. A stream
+is named by the first 12 hex digits of the SHA-1 of its bytes, and `chunk` is a chunk's offset inside it, so every row
+points back at its source bytes. A stream shared by several files is written once.
+
+| Table | Rows | One row per |
+|---|---:|---|
+| [`effect-streams.tsv`](effect-streams.tsv) | 3,087 | different stream |
+| [`effect-stream-files.tsv`](effect-stream-files.tsv) | 4,664 | place a stream is stored, with each effect list entry that names that file |
+| [`effect-timeline-records.tsv`](effect-timeline-records.tsv) | 5,303 | `0x600` record |
+| [`effect-timeline-entries.tsv`](effect-timeline-entries.tsv) | 10,088 | `0x610` chunk |
+| [`effect-timeline-events.tsv`](effect-timeline-events.tsv) | 50,518 | `0x620` chunk, one timeline event |
+| [`effect-program-commands.tsv`](effect-program-commands.tsv) | 11,506 | command of a subtype 2 event |
+| [`effect-program-opcodes.tsv`](effect-program-opcodes.tsv) | 49 | command number the shipped files use |
+| [`effect-sound-commands.tsv`](effect-sound-commands.tsv) | 292 | sound bank a command `0x1F` can choose |
+| [`effect-emitters.tsv`](effect-emitters.tsv) | 45,475 | `0x800` record |
+| [`effect-emitter-spawns.tsv`](effect-emitter-spawns.tsv) | 5,299 | used spawn slot of an emitter |
+| [`effect-definitions.tsv`](effect-definitions.tsv) | 40,861 | `0xA00` record |
+| [`effect-references.tsv`](effect-references.tsv) | 74,479 | texture, mesh or other `0xB00` record an emitter or definition names |
+| [`effect-resources.tsv`](effect-resources.tsv) | 33,024 | `0xB00` record |
+| [`effect-expressions-700.tsv`](effect-expressions-700.tsv) | 47,823 | expression with an operand, in a `0x700` record |
+| [`effect-expressions-800.tsv`](effect-expressions-800.tsv) | 571,893 | the same in a `0x800` record |
+| [`effect-expressions-a00-part1.tsv`](effect-expressions-a00-part1.tsv) | 442,442 | the same in a `0xA00` record, first part |
+| [`effect-expressions-a00-part2.tsv`](effect-expressions-a00-part2.tsv) | 441,803 | the same, second part |
+| [`effect-expression-readers.tsv`](effect-expression-readers.tsv) | 974 | direct call of an expression evaluator |
+| [`effect-expression-field-forms.tsv`](effect-expression-field-forms.tsv) | 586 | expression field, with the evaluators that read it |
+
+`Database/Tools/catalogues/efx_all.sh` writes them all.
+
+#### From a use to its parts
+
+[The effect file list](effect-file-list.md) gives the actions, models and script verbs
+that request each kind and id. `list_kind` and `list_id` of `effect-stream-files.tsv` are those keys. A language copy
+takes the row of its file name, and `language_folder` says which copy it is. Rows with `-` there are the map banks,
+whose rows are in `effect-banks-efb-rows.tsv`, the models, the zone packs and `h0000.efx`.
+
+From `stream`, a timeline event names an emitter and a definition by their `id` in the same stream. A definition or
+emitter names its textures and meshes through `effect-references.tsv`, and its `chunk` is the `0xB00` record in
+`effect-resources.tsv`. All 74,479 references find their record in their own stream. An emitter starts others through
+`effect-emitter-spawns.tsv`.
+
+#### Timelines
+
+`start_entries` and `signal_entries` of a record are the bytes `+1` to `+7` and `+0x0A` to `+0x14`.
+An event's `start` and `end` are frames (`+8`, `+0x0C`), and `bytes` is its whole body. Subtype 1 starts an emitter:
+`emitter` is `+0x10`, `definition` is `+0x12` and `flag_14` is `+0x14`. Subtype 3 is 912 rows of controller vibration.
+Subtype 2 is a command list for `0x003B8670`: `+0x10` is the command count, and each command at `+0x14` is 16 bytes,
+`u8` number, a byte the code does not read, `u16` frame and 12 bytes of `operands`.
+
+#### Commands
+
+`effect-program-opcodes.tsv` gives each number's handler, the operands its code reads and the functions
+it calls, and says what it does where that has been read. Sounds come two ways. Command `0x1F` picks a bank slot,
+operand `+4`, or operand `+8` when that is non-zero and `0x003A6E60(2)` returns 1. It finds the kind-`0x59` record of
+that slot through `0x003AA280` and loads its `sabf` data through `0x002DF660`. All 292 slots are in their own stream.
+Commands `0x05` and `0x27` play a sound by id through `0x003B99D0`, and operand `+8` chooses the position it plays from.
+
+#### Expressions
+
+Each row is one
+[authored expression](../Game-Files-And-Data-Tables/authored-expressions.md), 1,503,961 in all. Another 1,720,531
+fields have no operand and are left out. `field` is the offset in the record's payload.
+
+| `form` | Rows | Meaning |
+|---|---:|---|
+| `E` | 330,566 | a single expression |
+| `G0` to `G2` | 526,523 | r, g, b of a float RGB group (`0x00430B90`) |
+| `C0` to `C3` | 645,087 | r, g, b, a of an integer colour (`0x0042FDB0`) |
+| `P` | 1,785 | the expression at `+0x90` or `+0xE0` of a [draw-source block](effect-element-types.md#draw-source-blocks), rebased by `0x00431770` |
+
+| Column | Meaning |
+|---|---|
+| `a_kind`, `b_kind` | operand kinds, bytes `+0x0C` and `+0x0D`: 0 absent, 1 a reference, 2 or more the number of curve points |
+| `a_address`, `b_address` | where the operand's data is in the stream: payload offset + stored dword + chunk bias |
+| `a_data`, `b_data` | the reference's dword in hex, or the curve's `x:y` points in order, `x` in decimal and `y` in hex |
+| `a_period`, `b_period`, `a_mode`, `b_mode`, `operator` | the words `+8` and `+0x0A`, and `+0x0E` split into 2, 2 and 4 bits |
+| `group_modes_or_scale` | the mode bytes `+0x30` to `+0x32` of a group or `+0x40` of a colour, which set the shared-draw rules |
+
+The values are the stored bits, because the same field layout holds integers and floats. The reader decides which:
+`effect-expression-readers.tsv` lists each call of the integer `0x004314E0`, float `0x004309C0`, RGBA `0x0042FDB0` and RGB
+`0x00430B90` evaluators with the field it passes, where that was resolved. `effect-expression-field-forms.tsv` totals
+them by definition type or emitter. A field with two forms was reached by more than one reader within two calls of
+that type's methods, and the reader table has each site.
+
+A field the load function reaches only under a condition is read only when the record's own bytes meet it. Type 2's
+colour at `+0x190` needs byte `+0x4E` to be 1 (`0x00538B48`). One record is long enough to hold that colour and has
+another byte there, so its four fields are left out.
+
 ### Columns of effect-banks-efb-files-rows.tsv and effect-banks-efb-rows.tsv
 
 Every value below matches the 410 shipped `.efb` files; each holds one blob.

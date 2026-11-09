@@ -41,6 +41,9 @@ Each operand is one of three kinds:
 With B present the result is the operator applied to A and B: `0x00431350` for integers, `0x004307C0` for
 floats.
 
+Every expression the shipped effect streams hold, with its operands, curve points and owner, is listed under
+[What each effect stream holds](../Graphics/effect-files-efx-efb.md#what-each-effect-stream-holds).
+
 ### The operators
 
 The operator is bits `0xF0` of the word `+0x0E`. `f(n)` is a random value in `[0, n)` for positive `n`,
@@ -56,7 +59,7 @@ and in `(n, 0]` for negative `n` (below).
 | 5 | `b == a ? a : a + f(b − a)` | a value from `a` towards `b` |
 
 When `b` is 0 every operator returns `a`, except operator 5, which then returns `a + f(−a)`: a value
-in `[1, a]` for positive `a`.
+in `[1, a]` for a positive integer `a` and in `(0, a]` for a positive float.
 
 ### The random draw
 
@@ -198,7 +201,7 @@ None of its own; each draw advances the presentation generator `0x01EF93E8`.
 - Start every linear curve at an `x` no larger than the smallest input it will see.
 - A curve's period only wraps inputs above it; an input equal to the period is not wrapped.
 - Operator 3 with spread `b` gives `a − b` up to just under `a + b`.
-- Operator 5 with `b` = 0 is not a constant: it rolls in `[1, a]`.
+- Operator 5 with `b` = 0 is not a constant: it rolls in `[1, a]` for integers and `(0, a]` for floats.
 - Colour components are packed from their low bytes after a cap at 255; keep them non-negative.
 
 ## Related

@@ -1,0 +1,587 @@
+owner	field	forms
+emitter	20	integer:1
+emitter	30	float:1
+emitter	40	float:1
+emitter	50	float:1
+emitter	60	float:8
+emitter	230	rgba integer:1
+emitter	2DC	float:5
+emitter	2EC	float:4 integer:1
+emitter	2FC	float:3
+emitter	30C	float:2
+emitter	35C	float:1
+definition 0	0	float:1
+definition 1	0	float:1
+definition 1	30	integer:2
+definition 1	80	rgba integer:1
+definition 1	D0	integer:1
+definition 2	0	float:1
+definition 2	30	integer:2
+definition 2	80	rgba integer:1
+definition 2	150	integer:1
+definition 3	0	float:1
+definition 3	30	integer:2
+definition 3	180	integer:1
+definition 3	190	rgba integer:1
+definition 3	1E0	rgba integer:1
+definition 4	0	float:1
+definition 4	140	float:1
+definition 4	150	float:1
+definition 4	160	float:1
+definition 4	170	float:1
+definition 4	180	float:1
+definition 4	190	integer:1
+definition 4	1A0	integer:1
+definition 4	2A0	float:1
+definition 40	0	float:1
+definition 40	30	integer:1
+definition 40	D0	rgba integer:1
+definition 41	0	float:1
+definition 42	0	float:1
+definition 5	0	float:1
+definition 5	30	integer:1
+definition 5	80	rgba integer:1
+definition 5	190	float:1
+definition 5	1A0	integer:1
+definition 6	0	float:1
+definition 6	30	integer:1
+definition 6	140	float:1
+definition 6	150	float:1
+definition 6	160	float:1
+definition 6	170	float:1
+definition 6	180	float:1
+definition 6	190	float:1
+definition 6	1A0	float:1
+definition 6	1B0	float:1
+definition 6	1C0	float:1
+definition 6	1D0	float:1
+definition 6	1E0	float:1
+definition 6	1F0	integer:1
+definition 6	200	integer:1
+definition 6	210	integer:1
+definition 60	0	float:1
+definition 60	30	integer:2
+definition 60	180	rgba integer:1
+definition 60	1D0	rgba integer:1
+definition 60	220	rgba integer:1
+definition 60	270	float:1
+definition 60	280	float:1
+definition 60	290	integer:1
+definition 61	0	float:1
+definition 61	30	integer:3
+definition 61	140	rgba integer:1
+definition 61	190	rgba integer:1
+definition 61	1E0	rgba integer:1
+definition 61	230	float:1
+definition 61	240	float:1
+definition 61	250	float:1
+definition 61	260	integer:1
+definition 62	0	float:1
+definition 62	30	integer:3
+definition 62	180	rgba integer:1
+definition 62	1D0	rgba integer:1
+definition 62	220	rgba integer:1
+definition 62	270	float:1
+definition 62	280	float:1
+definition 62	290	integer:1
+definition 65	0	float:1
+definition 65	30	integer:1
+definition 65	1D0	rgba integer:1
+definition 65	4F0	float:1
+definition 65	500	float:1
+definition 65	510	float:1
+definition 65	520	float:1
+definition 65	530	float:1
+definition 65	540	float:1
+definition 65	550	float:1
+definition 65	560	float:1
+definition 65	570	float:1
+definition 65	580	float:1
+definition 65	590	float:1
+definition 65	5A0	integer:1
+definition 65	5B0	integer:1
+definition 65	5C0	integer:1
+definition 65	5D0	float:1
+definition 66	0	float:1
+definition 66	30	integer:1
+definition 66	1D0	rgba integer:1
+definition 66	4F0	float:1
+definition 66	500	float:1
+definition 66	510	float:1
+definition 66	520	float:1
+definition 66	530	float:1
+definition 66	540	float:1
+definition 66	550	float:1
+definition 66	560	float:1
+definition 66	570	float:1
+definition 66	580	float:1
+definition 66	590	float:1
+definition 66	5A0	float:1
+definition 66	5B0	float:1
+definition 66	5C0	float:1
+definition 66	5D0	float:1
+definition 66	5E0	float:1
+definition 66	5F0	float:1
+definition 66	600	integer:1
+definition 66	610	integer:1
+definition 66	620	integer:1
+definition 66	630	float:1
+definition 67	0	float:1
+definition 68	0	float:1
+definition 68	80	integer:1
+definition 68	110	float:1
+definition 68	120	float:1
+definition 68	130	float:1
+definition 68	140	float:1
+definition 68	150	float:1
+definition 68	160	float:1
+definition 68	170	rgba integer:1
+definition 68	1C0	rgba integer:2
+definition 68	210	rgba integer:1
+definition 68	260	rgba integer:1
+definition 68	2B0	rgba integer:1
+definition 68	300	rgba integer:1
+definition 68	350	rgba integer:1
+definition 68	3A0	rgba integer:1
+definition 68	3F0	rgba integer:1
+definition 68	440	float:1
+definition 68	450	float:1
+definition 68	460	float:1
+definition 68	470	float:1
+definition 68	480	float:1
+definition 69	0	float:1
+definition 69	80	integer:1
+definition 69	90	rgba integer:1
+definition 69	E0	rgba integer:2
+definition 69	130	rgba integer:1
+definition 69	180	rgba integer:1
+definition 69	1D0	rgba integer:1
+definition 69	220	rgba integer:1
+definition 69	270	rgba integer:1
+definition 69	2C0	rgba integer:1
+definition 69	310	rgba integer:1
+definition 69	360	float:1
+definition 69	370	float:1
+definition 69	380	float:1
+definition 69	390	float:1
+definition 69	3A0	float:1
+definition 69	3B0	float:1
+definition 69	3C0	float:1
+definition 69	3D0	float:1
+definition 69	3E0	float:1
+definition 6A	0	float:1
+definition 6A	80	integer:1
+definition 6A	90	float:1
+definition 6A	A0	float:1
+definition 6A	B0	float:1
+definition 6A	C0	float:1
+definition 6A	D0	rgba integer:1
+definition 6A	250	float:1
+definition 6A	260	float:1
+definition 6A	270	float:1
+definition 6A	380	float:1
+definition 6A	390	float:1
+definition 6A	3A0	float:1
+definition 6A	3B0	float:1
+definition 6A	3C0	integer:1
+definition 6B	0	float:1
+definition 6B	140	float:1
+definition 6B	150	float:1
+definition 6B	160	float:1
+definition 6B	1B0	integer:1
+definition 6B	1C0	rgba integer:1
+definition 6B	210	rgba integer:1
+definition 6B	260	rgba integer:1
+definition 6B	2B0	rgba integer:1
+definition 6B	300	rgba integer:1
+definition 6B	350	rgba integer:1
+definition 6B	3A0	rgba integer:1
+definition 6B	3F0	rgba integer:1
+definition 6B	440	rgba integer:1
+definition 6B	490	float:1
+definition 6B	4A0	float:1
+definition 6B	4B0	float:1
+definition 6B	4C0	float:1
+definition 6B	4D0	float:1
+definition 6B	4E0	float:1
+definition 6B	4F0	float:1
+definition 6B	500	float:1
+definition 6B	510	float:1
+definition 6B	520	float:1
+definition 6B	530	float:1
+definition 6B	540	float:1
+definition 7	0	float:1
+definition 7	30	integer:2
+definition 7	140	float:1
+definition 7	150	float:1
+definition 7	160	float:1
+definition 7	170	float:1
+definition 7	180	float:1
+definition 7	190	float:1
+definition 7	1A0	float:1
+definition 7	1B0	float:1
+definition 7	1E0	float:1
+definition 7	1F0	integer:1
+definition 71	0	float:1
+definition 71	140	float:1
+definition 71	150	float:1
+definition 71	160	float:1
+definition 71	180	rgba integer:1
+definition 71	1D0	rgba integer:1
+definition 71	220	rgba integer:1
+definition 71	270	rgba integer:1
+definition 71	2C0	rgba integer:1
+definition 71	310	rgba integer:1
+definition 71	360	rgba integer:1
+definition 71	3B0	rgba integer:1
+definition 71	400	rgba integer:1
+definition 71	450	float:1
+definition 71	460	float:1
+definition 71	470	float:1
+definition 71	480	float:1
+definition 71	490	float:1
+definition 71	4A0	float:1
+definition 71	4B0	float:1
+definition 71	4C0	float:1
+definition 71	4D0	float:1
+definition 71	4E0	float:1
+definition 71	4F0	float:1
+definition 71	500	float:1
+definition 71	510	float:1
+definition 71	520	float:1
+definition 71	530	float:1
+definition 71	540	float:1
+definition 71	550	float:1
+definition 71	560	float:1
+definition 72	0	float:1
+definition 72	D0	float:1
+definition 72	E0	float:1
+definition 72	F0	float:1
+definition 72	100	float:1
+definition 72	110	float:1
+definition 72	120	rgba integer:1
+definition 72	170	rgba integer:1
+definition 72	1C0	rgba integer:1
+definition 72	210	rgba integer:1
+definition 72	260	rgba integer:1
+definition 72	2B0	rgba integer:1
+definition 72	300	rgba integer:1
+definition 72	350	rgba integer:1
+definition 72	3A0	rgba integer:1
+definition 72	3F0	float:2
+definition 72	400	float:2
+definition 72	410	float:2
+definition 72	420	float:2
+definition 72	430	float:2
+definition 72	440	float:1
+definition 72	450	float:1
+definition 72	460	float:1
+definition 72	470	float:1
+definition 72	480	float:1
+definition 72	490	float:1
+definition 72	4A0	float:1
+definition 72	4B0	float:1
+definition 72	4C0	float:1
+definition 72	4D0	float:1
+definition 72	4E0	float:1
+definition 72	4F0	float:1
+definition 72	500	float:1
+definition 72	510	float:1
+definition 72	5F0	float:1
+definition 72	600	float:1
+definition 72	6E0	float:1
+definition 72	6F0	float:1
+definition 73	0	float:1
+definition 73	80	integer:2
+definition 73	90	rgba integer:1
+definition 73	E0	rgba integer:1
+definition 73	130	rgba integer:1
+definition 73	180	float:1
+definition 73	1D0	float:1
+definition 73	220	float:1
+definition 73	270	float:1
+definition 73	2C0	float:1
+definition 73	310	float:1
+definition 73	320	float:1
+definition 73	330	float:1
+definition 73	340	float:1
+definition 73	350	float:1
+definition 73	360	float:1
+definition 73	370	float:1
+definition 73	380	float:1
+definition 73	390	float:1
+definition 74	0	float:1
+definition 74	80	integer:2
+definition 74	90	rgba integer:1
+definition 74	E0	rgba integer:1
+definition 74	130	rgba integer:1
+definition 74	180	float:1
+definition 74	1D0	float:1
+definition 74	220	float:1
+definition 74	270	float:1
+definition 74	2C0	float:1
+definition 74	310	float:1
+definition 74	320	float:1
+definition 74	330	float:1
+definition 74	340	float:1
+definition 74	350	float:1
+definition 74	360	float:1
+definition 74	370	float:1
+definition 8	0	float:1
+definition 8	30	integer:1
+definition 8	1C0	float:1
+definition 8	1D0	float:1
+definition 8	2C0	integer:1
+definition 8	2D0	integer:1
+definition 8	2E0	integer:1
+definition 80	0	float:1
+definition 80	30	integer:2
+definition 80	140	rgba integer:1
+definition 80	190	rgba integer:1
+definition 80	1E0	float:1
+definition 80	1F0	integer:2
+definition 81	0	float:1
+definition 81	30	integer:2
+definition 81	180	rgba integer:1
+definition 81	1D0	rgba integer:1
+definition 81	220	float:1
+definition 81	230	float:1
+definition 81	240	integer:1
+definition 82	0	float:1
+definition 82	30	integer:3
+definition 82	140	rgba integer:1
+definition 82	190	rgba integer:1
+definition 82	1E0	float:1
+definition 82	1F0	integer:2
+definition 83	0	float:1
+definition 83	30	integer:3
+definition 83	140	rgba integer:1
+definition 83	190	rgba integer:1
+definition 83	1E0	float:1
+definition 83	1F0	integer:2
+definition 84	0	float:1
+definition 84	30	integer:2
+definition 84	140	rgba integer:1
+definition 84	1A0	float:1
+definition 84	1B0	integer:1
+definition 85	0	float:1
+definition 85	30	integer:3
+definition 85	1C0	integer:1
+definition 85	1D0	rgba integer:1
+definition 85	220	rgba integer:1
+definition 85	270	float:1
+definition 86	0	float:1
+definition 86	30	integer:3
+definition 86	140	rgba integer:1
+definition 86	190	rgba integer:1
+definition 86	1E0	integer:2
+definition 86	1F0	float:1
+definition 86	200	float:2
+definition 86	210	float:2
+definition 86	220	float:2
+definition 87	0	float:1
+definition 87	30	integer:2
+definition 87	140	rgba integer:1
+definition 87	190	rgba integer:1
+definition 87	1E0	integer:2
+definition 87	1F0	float:1
+definition 87	200	float:2
+definition 87	210	float:2
+definition 88	0	float:1
+definition 88	30	integer:2
+definition 88	140	float:1
+definition 88	150	float:1
+definition 88	160	float:1
+definition 88	170	float:1
+definition 88	180	rgba integer:1
+definition 88	1D0	rgba integer:1
+definition 88	220	integer:1
+definition 88	230	float:1
+definition 88	240	float:1
+definition 88	250	float:1
+definition 89	0	float:1
+definition 89	30	integer:2
+definition 89	140	float:1
+definition 89	150	float:1
+definition 89	160	float:1
+definition 89	170	float:1
+definition 89	180	float:1
+definition 89	190	float:1
+definition 89	1A0	float:1
+definition 89	1B0	float:1
+definition 89	1C0	integer:1
+definition 89	1D0	rgba integer:1
+definition 89	220	rgba integer:1
+definition 8A	0	float:1
+definition 8A	30	integer:2
+definition 8A	140	float:1
+definition 8A	150	float:1
+definition 8A	160	float:1
+definition 8A	170	float:1
+definition 8A	180	float:1
+definition 8A	190	integer:1
+definition 8A	1A0	rgba integer:1
+definition 8A	1F0	rgba integer:1
+definition 8B	0	float:1
+definition 8B	30	integer:2
+definition 8B	140	float:1
+definition 8B	150	float:1
+definition 8B	160	integer:1
+definition 8B	170	rgba integer:1
+definition 8C	0	float:1
+definition 8C	30	integer:2
+definition 8C	80	rgba integer:1
+definition 8C	190	integer:1
+definition 8C	1A0	float:1
+definition 8C	1B0	float:1
+definition 8C	1E0	rgba integer:1
+definition 8D	0	float:1
+definition 8D	30	integer:2
+definition 8D	80	rgba integer:1
+definition 8D	210	float:1
+definition 8D	220	float:1
+definition 8D	230	integer:1
+definition 8D	280	rgba integer:1
+definition 8D	2D0	float:1
+definition 8E	0	float:1
+definition 8E	30	integer:2
+definition 8E	80	rgba integer:1
+definition 8E	190	integer:1
+definition 8E	1E0	rgba integer:1
+definition 8F	0	float:1
+definition 8F	30	integer:5
+definition 8F	80	rgba integer:1
+definition 8F	190	integer:1
+definition 8F	1A0	float:2
+definition 8F	1B0	float:2
+definition 8F	1E0	rgba integer:2
+definition 8F	290	float:2
+definition 8F	2A0	float:2
+definition 8F	2D0	rgba integer:2
+definition 90	0	float:1
+definition 90	30	integer:3
+definition 90	80	rgba integer:1
+definition 90	190	integer:1
+definition 90	1A0	float:1
+definition 90	1B0	float:1
+definition 90	1E0	rgba integer:1
+definition 90	290	float:1
+definition 90	2A0	float:1
+definition 90	2D0	rgba integer:1
+definition 91	0	float:1
+definition 91	30	integer:2
+definition 91	80	rgba integer:1
+definition 91	190	float:1
+definition 91	1A0	integer:1
+definition 91	1B0	float:1
+definition 91	1C0	float:1
+definition 91	1F0	rgba integer:1
+definition 91	240	float:1
+definition 92	0	float:1
+definition 92	30	integer:2
+definition 92	80	rgba integer:1
+definition 92	190	float:1
+definition 92	1A0	integer:1
+definition 92	1B0	float:1
+definition 92	1C0	float:1
+definition 92	1F0	rgba integer:1
+definition 94	0	float:1
+definition 94	30	integer:1
+definition 94	80	rgba integer:1
+definition 94	190	integer:1
+definition 95	0	float:1
+definition 95	30	integer:1
+definition 95	80	rgba integer:1
+definition 95	190	integer:1
+definition 96	0	float:1
+definition 96	30	integer:2
+definition 96	140	rgba integer:1
+definition 96	1A0	float:1
+definition 96	1B0	integer:1
+definition 97	0	float:1
+definition 97	30	integer:1
+definition 97	80	rgba integer:1
+definition 97	190	integer:1
+definition A	0	float:1
+definition A	30	integer:3
+definition A	1C0	integer:1
+definition A	1D0	rgba integer:1
+definition A	220	rgba integer:1
+definition A	270	float:1
+definition A0	0	float:1
+definition A0	30	integer:2
+definition A0	80	integer:1
+definition A0	90	float:1
+definition A0	A0	float:1
+definition A0	B0	float:1
+definition A0	C0	rgba integer:1
+definition A0	110	rgba integer:1
+definition A1	0	float:1
+definition A1	30	integer:1
+definition A1	C0	rgba integer:1
+definition A2	0	float:1
+definition A2	80	rgba integer:1
+definition A3	0	float:1
+definition A3	80	rgba integer:2
+definition A3	D0	rgba integer:1
+definition A4	0	float:1
+definition A4	80	rgba integer:1
+definition A4	D0	rgba integer:1
+definition A4	120	rgba integer:1
+definition A4	170	rgba integer:1
+definition A4	200	float:1
+definition A4	2D0	rgba integer:1
+definition A4	380	integer:1
+definition A4	390	float:1
+definition A4	3A0	float:1
+definition A5	0	float:1
+definition A6	0	float:1
+definition A6	80	rgba integer:1
+definition A6	D0	rgba integer:1
+definition A6	120	rgba integer:1
+definition A6	170	rgba integer:1
+definition A6	1C0	rgba integer:1
+definition A6	210	rgba integer:1
+definition A6	260	rgba integer:1
+definition A6	2B0	rgba integer:1
+definition A6	300	rgba integer:1
+definition A7	0	float:1
+definition A7	80	integer:1
+definition A7	D0	float:1
+definition A7	E0	float:1
+definition A7	F0	float:1
+definition A7	100	float:1
+definition A7	110	float:1
+definition A7	120	float:1
+definition A7	130	rgba integer:1
+definition A7	180	rgba integer:1
+definition A7	210	rgba integer:1
+definition A8	0	float:1
+definition A8	80	rgba integer:1
+definition A8	D0	rgba integer:1
+definition A8	120	rgba integer:1
+definition A8	170	rgba integer:1
+definition A8	1C0	rgba integer:1
+definition A8	210	rgba integer:1
+definition A8	260	rgba integer:1
+definition A8	2B0	rgba integer:1
+definition A8	300	rgba integer:1
+definition A9	0	float:1
+definition A9	80	rgba integer:1
+definition A9	D0	rgba integer:1
+definition A9	120	rgba integer:1
+definition AA	0	float:1
+definition AA	80	integer:1
+definition AA	110	float:1
+definition AA	120	float:1
+definition AA	130	float:1
+definition AA	140	float:1
+definition AA	150	float:1
+definition AA	160	rgba integer:1
+definition AA	1B0	rgba integer:1
+definition AA	240	rgba integer:1
+definition AB	0	float:1
+definition D0	0	float:1
+definition D1	0	float:1
+definition D1	180	float:1
+definition D1	190	float:1
