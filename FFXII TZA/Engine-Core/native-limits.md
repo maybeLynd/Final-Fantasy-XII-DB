@@ -47,6 +47,25 @@ The engine handles one past the limit in five ways, and the `past_it` column say
 | `past_it` | what the engine does with one more, or with a value past the end |
 | `page` | the page that explains the mechanism, by its path in the database |
 
+### The battle-unit limit in the code
+
+[`native-limits-battle-unit-sites.tsv`](native-limits-battle-unit-sites.tsv) has one row for each of the 204 code
+sites, in 77 functions, that use the limit directly.
+
+| Column | Meaning |
+|---|---|
+| `function`, `site` | the function that holds the instruction, and the instruction's address |
+| `kind` | what the instruction uses: the slot count `0x0208E6A0`, the pool `0x0208E688`, the per-slot table `0x02B59D80`, a call of an accessor, the stride `0xF50` (`imul`, `add` or `lea`), the size `0xF50` of a clear, the product `0xEA7900`, a compare with 32 or 31, a count of 32 before a `rep stos` or for a loop counted down, or a bit operation whose bit number is in a register |
+| `instruction` | the instruction as disassembled |
+| `pages` | the pages that cite the function; `-` for none |
+
+The pool is 32 records of `0xF50` bytes. The two keep banks allocated beside it hold 64 spawn records of `0x250`
+each, so they follow the spawn limit and are not listed. A function that receives a unit pointer from its caller
+is not listed unless it also uses one of these directly, or clears the 32 entries at unit `+0xDD4` as `0x003176C0` does.Compare and bit rows are the operations of that kind in a listed function; a row does not by itself say the
+operand is a unit index.
+
+`Database/Tools/catalogues/battle_unit_deps.py` writes the table.
+
 ## Related
 
 - [Memory and allocation](../Compiler-And-C-Runtime/memory-and-allocation.md): the allocators behind the pools

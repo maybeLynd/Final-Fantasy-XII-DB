@@ -367,6 +367,48 @@ Columns of [voices-cues.tsv](voices-cues.tsv):
 | `length` | the cue's length in seconds, from the `.vpc` (the `.vpcjp` for the one cue played only with Japanese voices); `0.04 s, a silent stub` for the 67 cues whose `.vpc` bank is the silent stub |
 | `join` | how the line was joined, or why it was not: what the cue's clock holds, a silent stub, or a line of another speaker |
 
+### Every recording
+
+Two settings decide what is heard and what is read, and they are separate. The voice language is the options bit of
+"The language" above: it picks the `.vpc` or the `.vpcjp`. The text locale is the build's language folder, and it
+picks the dialogue table. The `.vpcjp` is identical in every folder, and so is the `.vpc` but for the two cues below,
+so a locale changes the lines on screen and not the recordings.
+
+`Database/Tools/catalogues/voice_recordings.py` reads every pack of the nine folders and writes two tables:
+
+- [`voices-recordings.tsv`](voices-recordings.tsv): one row per recording, 5,110. That is the 2,554 cues in both
+  extensions, and two more rows for the two cues whose `.vpc` bank differs by folder.
+- [`voices-cue-dialogue.tsv`](voices-cue-dialogue.tsv): one row per cue joined to a line, 1,608, with the line
+  in all nine locales. The join is the one above.
+
+The two cues with two versions are `var_z0100` sub-file 5 cue 1 (`ve393_023BF` in `us`, `de`, `es`, `fr` and `it`,
+`ve393_023Re` in `in`, `kr`, `cn` and `ch`) and `var_z0102` sub-file 0 cue 4 (`ve395_004AS`, and `ve395_005AS`).
+
+| Fact | Value |
+|---|---|
+| recordings with no bank | 3 cues in each extension, with `-` in the sound columns |
+| silent recordings in the `.vpc` | 89, of 2 HCA frames each; 67 are named by a script |
+| silent recordings in the `.vpcjp` | 7, of 47 HCA frames each, all named by a script, so those lines are voiced only in English |
+| cues no cue word names | 58 in each extension: `named_by_script` is `no` and `association` says so |
+
+A recording counts as silent when every one of its HCA frames holds the `0xFFFF` sync word, zeros and the checksum.
+Those 58 cues have a name and a length here and no line, because nothing in a script joins them to one.
+
+| column | what it holds |
+|---|---|
+| recordings, cue-lines: `event`, `sub_file`, `index` | the event, and the cue's place in its pack |
+| recordings: `cue_word` | the word a script uses for that cue, in hexadecimal |
+| recordings: `extension`, `voice_language` | `vpc` and `english`, or `vpcjp` and `japanese` |
+| recordings: `folders` | the language folders that hold this bank |
+| recordings: `bank_offset`, `bank_size`, `bank_sha256_16` | the offset in the sub-file in hexadecimal, the size in bytes, and the first 16 hexadecimal digits of the bank's SHA-256 |
+| recordings: `sound` | the name in the bank's `snd ` record |
+| recordings: `channels`, `codec`, `rate` | the material record's values: codec 7 is HCA and 3 is Ogg Vorbis |
+| recordings: `samples`, `seconds` | the sample count, and that over the rate to three decimal places |
+| recordings: `hca_frames`, `silent` | the HCA frame count, `-` for Ogg, and `yes` or `no` by the test above |
+| recordings: `named_by_script`, `line_index`, `association` | whether a cue word names the cue, the joined line, and the `join` text of [voices-cues.tsv](voices-cues.tsv) |
+| cue-lines: `sound`, `speaker`, `line_index` | as in voices-cues.tsv |
+| cue-lines: `us`, `de`, `es`, `fr`, `it`, `in`, `kr`, `cn`, `ch` | the line in each language folder, in the text codes of the dialogue tables |
+
 ## State
 
 The eight picks at `0x02B5EC70` are one `i32` per group, the candidate the search gave it. `0x003EBD30`, `0x003EBD70`,

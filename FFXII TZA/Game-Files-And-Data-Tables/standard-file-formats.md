@@ -477,8 +477,8 @@ application object's auto-test byte `+0x10D4` is set (`0x001C2F7C`), which retai
    and stores 1 through a null pointer (`0x001C3339`, `rbx` 0), which stops the game.
 4. A fade that starts on a layer whose last fade had finished arms both words. `0x002EFA70` sets each to 1 when it is
    0, and `0x022BDD50` to 0 ([Screen fades](../Graphics/screen-fades.md)).
-5. The `eventsync` verbs' begins `0x00355F60` (`0x00ED`) and `0x00355970` (`0x00EE`) set the arrival word to 1 when the
-   auto-test byte reads 1 (`0x001C3370`).
+5. The `eventsync` verbs' polls `0x00355F60` (`0x00ED`) and `0x00355970` (`0x00EE`) set the arrival word to 1 when the
+   auto-test byte is non-zero (`0x001C3370`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -585,8 +585,9 @@ file's SHA-256.
 last dot, formats `"%s%s.webm"` with the prefix `/GameData/D3D11/ArtData/video/` (`0x01DF6E28`), and
 opens it with `0x0067A480` on the player object at its `+0x678`. A null path entry stops the movie.
 
-- Before the path it starts the reading thread (`0x0067A350`) and, when that fails, sets the state `+0x04`
-  to 0 and returns (`0x001B7F6A`, `0x001B80B5`).
+- Before the path it starts the reading thread (`0x0067A350`). The arm that sets the state `+0x04` to 0 and
+  returns when that call answers 0 (`0x001B7F6A`, `0x001B80B5`) is never taken: `0x0067A350` has one exit, returns 1
+  (`0x0067A3FF`) and drops the result of the thread start `0x005CD1E0` (`0x0067A3F5`).
 - The name is found with `strrchr` for `\` and `.` (`0x001B7FB4`, `0x001B7FC5`) and copied with `strncpy` into
   a zeroed 32-byte buffer, the count being the last dot less the character after the backslash
   (`0x001B7FD0`-`0x001B7FF7`). With no dot after the last backslash that count wraps around and `strncpy`

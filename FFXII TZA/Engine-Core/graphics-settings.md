@@ -52,8 +52,10 @@ The constructor then runs the first two again on the block images inside the two
 `+0xA78` (a slot is `0x598` bytes and carries the block image at its `+0x110`, so the copies sit
 at `+0x5F0` and `+0xB88`), so that the first frame's comparison has something to compare against.
 It also writes its own `+0x42C` to `+0x468` values into each image at the same offsets (`0x005DC818`-`0x005DC849`).
+
 The defaults are immediates in those three bodies; the table
-[graphics-settings.tsv](graphics-settings.tsv) carries every one.
+[graphics-settings.tsv](graphics-settings.tsv) carries every one except `+0x0B4`, which `0x005DC580` sets to 4
+(`0x005DC695`) and which has no row.
 
 The first `0x190` bytes are the tunables the developer menu steps ([debug menu](debug-menu.md)):
 `0x001D1660`'s arms touch 86 addresses in the block, 84 of them below `+0x190`. 78 floats are stepped with
@@ -566,7 +568,7 @@ The block's `+0x1010` is the vector of callbacks `0x0060B720` appends to, `0x001
 |---|---|
 | block fields with a shader constant | 276, in [graphics-settings.tsv](graphics-settings.tsv) |
 | fields with a scene-config key | 30 in the block (25 below `+0x190`), 13 in the second run |
-| constructor defaults | 108 fields; `mMapAmbientColor` 1, 1, 1; `chrFresnelSpecularIntensity` 3.9; `mCubemapIntensity` 0.6; `mDebugWaterSpecFactor` 3.59; `+0x0C0` / `+0x0C4` 1920 and 1080 |
+| constructor defaults | 108 fields in the table, and `+0x0B4` = 4 outside it; `mMapAmbientColor` 1, 1, 1; `chrFresnelSpecularIntensity` 3.9; `mCubemapIntensity` 0.6; `mDebugWaterSpecFactor` 3.59; `+0x0C0` / `+0x0C4` 1920 and 1080 |
 | shadow matrices | 8 of 64 bytes, block stride 64, object stride `0xD8` |
 | developer-menu arms on the block | 86 addresses, 84 below `+0x190` |
 

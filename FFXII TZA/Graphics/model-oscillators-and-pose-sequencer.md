@@ -118,7 +118,8 @@ the record's byte `+0x1A` for the entry to be switched at all.
   differs.
 
 `0x0040ED90(record, entry, flag)` walks the entry's chains (count byte `+0x00`, `0x40` bytes a chain)
-and, for every bone named after a chain's first link (`0x50` bytes a link, `0xFFFF` skipped), sets bit `0x2` of the bone's
+and, over the chain's links except the last, up to the first whose bone is `0xFFFF` (`0x50` bytes a link,
+`0x0040EDDE`-`0x0040EE3B`), sets bit `0x2` of the bone's
 `+0x28A` to the flag and clears bit `0x4` of its `+0x28B`.
 
 `0x003E4140(rig, x, y, z)`, from `0x0042C410` and `0x0042C8F0` with the record's three scale factors
@@ -317,6 +318,28 @@ entry +0x02  u8   0 skips the entry
 entry +0x20  f32  weight
 entry +0x29  u8   low nibble: weighted apply
 entry +0x2A  u8   bit 0x1: apply at full weight
+```
+
+### The oscillator tree in a model file
+
+`0x0040EEA0` turns these offsets into encoded pointers. Each is an offset from the oscillator record.
+
+Record   `+0x00` u32 entries      `+0x04` u8 entry count entry    `0x30` bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00` | `u8` | chains | at [`+0x08`], `0x40` bytes each |
+| `+0x03` | `u8` | pairs | at [`+0x0C`], `0x20` bytes each |
+| `+0x04` | `u8` | list a | at [`+0x10`], `0x40` bytes each |
+| `+0x05` | `u8` | list b | at [`+0x14`], `0x50` bytes each |
+| `+0x06` | `u8` | list c | at [`+0x18`], `0x50` bytes each |
+| `+0x07` | `u8` | list d | at [`+0x1C`], `0x60` bytes each |
+| `+0x28` | `u8` | list e | at [`+0x24`], `0x40` bytes each |
+
+```
+chain    +0x03 u8 links   at [+0x04], 0x50 bytes each; link +0x00 u16 bone (0x0040ED90)
+a, b, c, e   +0x03 u8 sub-records      at [+0x08], 0x10 bytes each
+d            +0x0C u32 sub-records     at [+0x08], 0x10 bytes each
 ```
 
 ### Section 7 of @FCP

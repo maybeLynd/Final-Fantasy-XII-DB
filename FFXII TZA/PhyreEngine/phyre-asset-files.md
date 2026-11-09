@@ -358,8 +358,36 @@ Each `chr/` and `chr_shadow/` segment joined to the shader variant it draws with
 |---|---:|---|
 | [`phyre-asset-files-mesh-segment-variants-chr.tsv`](phyre-asset-files-mesh-segment-variants-chr.tsv) | 12,908 | mesh segment: its material and the name the file exports it under, the variant the material imports, the render data types of its vertex blocks and of the file's dynamic streams, the variant's render passes, how many of them its streams satisfy, and each pass and type left open |
 | [`phyre-asset-files-mesh-materials-chr.tsv`](phyre-asset-files-mesh-materials-chr.tsv) | 29,538 | `PMaterial`: exported name, variant, and the mesh default-set slots that hold it |
+| [`phyre-asset-files-mesh-material-bindings-chr.tsv`](phyre-asset-files-mesh-material-bindings-chr.tsv) | 29,538 | `PMaterial`: its parameter buffer object, and the sets of values and samplers it holds |
+| [`phyre-asset-files-mesh-material-textures-chr.tsv`](phyre-asset-files-mesh-material-textures-chr.tsv) | 29,508 | texture slot of a parameter buffer that names a file |
+| [`phyre-asset-files-mesh-parameter-sets-chr.tsv`](phyre-asset-files-mesh-parameter-sets-chr.tsv) | 5 | distinct list of numeric parameter values |
+| [`phyre-asset-files-mesh-sampler-sets-chr.tsv`](phyre-asset-files-mesh-sampler-sets-chr.tsv) | 2 | distinct list of sampler states |
+| [`phyre-asset-files-mesh-parameter-definitions-chr.tsv`](phyre-asset-files-mesh-parameter-definitions-chr.tsv) | 214 | distinct parameter definition in the buffers |
+| [`phyre-asset-files-mesh-vertex-streams-chr.tsv`](phyre-asset-files-mesh-vertex-streams-chr.tsv) | 103,232 | stream of a vertex data block |
+| [`phyre-asset-files-mesh-block-digests-chr.tsv`](phyre-asset-files-mesh-block-digests-chr.tsv) | 103,232 | vertex data block: the digest of its bytes |
+| [`phyre-asset-files-mesh-segment-indices-chr.tsv`](phyre-asset-files-mesh-segment-indices-chr.tsv) | 12,908 | mesh segment: its index count, the lowest and highest index, and the digest of its index bytes |
 | [`phyre-asset-files-mesh-dynamic-blocks-chr.tsv`](phyre-asset-files-mesh-dynamic-blocks-chr.tsv) | 24 | dynamic data block with its stream, or dynamic stream, of the three `chr_shadow/` dynamic meshes, with their modifier |
 | [`phyre-asset-files-shader-pass-streams-chr.tsv`](phyre-asset-files-shader-pass-streams-chr.tsv) | 150 | render pass of the ten variants the segments draw with: its shader's stream definitions, in order |
+
+| Column | Tables | Meaning |
+|---|---|---|
+| `parameter_buffer` | material-bindings, material-textures | the `PParameterBuffer` object as list and element, so two materials sharing a block of buffers stay apart |
+| `parameter_set`, `sampler_set` | material-bindings | the row of the two set tables |
+| `slot`, `type`, `texture` | material-textures | the sampler parameter's name, its texture type, and the file it imports |
+| `sampler` | material-textures | the slot's sampler state as min filter/mag filter/wrap S/wrap T/wrap R/LOD bias/max anisotropy/border colour/base level/max level/flags; `-` for none |
+| `values` | parameter-sets | `name=value` for each parameter; a value whose size has no typed form is `#` and its bytes as hex |
+| `samplers` | sampler-sets | `name:state`, the state as in `sampler` |
+| `name`, `parameter_type`, `data_type`, `size`, `count`, `uses` | parameter-definitions | the definition's fields, and how many buffers hold it |
+| `block`, `stream`, `offset`, `type`, `render_data_type`, `stream_set` | vertex-streams | the data block, the stream's place in it and its `PVertexStream` fields |
+| `sha1` | block-digests, segment-indices | digest of the block's bytes, or of the segment's index bytes in stored order |
+
+A file's bytes after the scene data are the index data and then the vertex data, each at the offsets its
+records store. All 12,908 segments' index ranges equal their stored bounds. Vertex bytes stay in the game files: a
+row identifies them by file, offset, stream layout and digest.
+
+The bindings are the values a file stores. Of 945,216 texture slots in the buffers, 29,508 name a file, 29,506 of
+them `TextureSampler` and 2 `irrCubeMap0`; the slots with no file are named in the definitions table. Six files hold
+no material. A value the renderer sets at draw time is not a stored value and is not in these tables.
 
 - A segment draws with the material at its `m_materialIndex` in its mesh's default set, and every instance's `m_materialSet` is its own mesh's set. Those materials are named `<name>-Skinned-VertexColor` (12,304 in `chr/`, 585 in `chr_shadow/`) or `<name>-VertexColor` (the 16 of `chr/global/materialsphere` and the three dynamic `chr_shadow/` meshes).
 - Each file also exports a material under the base name, which no mesh's set holds: 16,042 in `chr/` and 588 in `chr_shadow/`. Each of them imports a variant that declares the rigid types `Color`, `Vertex`, `Normal`, `ST`, `Tangent` and `Binormal`, so a skinned mesh's streams match the variant of its `-Skinned-` material and not the one its base material imports.
@@ -417,6 +445,45 @@ named by at least one of the 914 map asset lists. `0x001A9940` reads it for the 
 - [`phyre-asset-files-shared-maps-rows.tsv`](phyre-asset-files-shared-maps-rows.tsv) gives every `phyremaps.txt`
   pair with its line, whether its key is the carried id or an `idmaps.txt` key (with that line), the row of the
   carried id's own pair, and how many map asset lists name the path.
+
+### Bones and skin weights of the `chr/` meshes
+
+| Table | Rows | One row per |
+|---|---:|---|
+| [`phyre-asset-files-mesh-bones-chr.tsv`](phyre-asset-files-mesh-bones-chr.tsv) | 27,612 | bone of a mesh (26,593), or `@FTR` node its mesh does not hold (1,019) |
+| [`phyre-asset-files-mesh-skin-bones-chr.tsv`](phyre-asset-files-mesh-skin-bones-chr.tsv) | 67,532 | `PSkinBoneRemap`, in the order of its segment's list |
+
+| Column | Tables | Meaning |
+|---|---|---|
+| `path`, `cm` | bones | the `.dae.phyre` file and the `.cm` of the same name under `obj_finish`, `-` when there is none |
+| `mesh`, `bone` | both | the mesh's place in the file, and the bone's place in `m_matrixNames`; `-` for a node only the `.cm` holds |
+| `name`, `parent`, `parent_name` | both, bones | the bone's name, and the bone `m_matrixParents` gives, `-` for the root |
+| `ftr_node`, `ftr_key` | both, bones | the `@FTR` node number in the bone's `s<N>_` name, and that node's key |
+| `parent_agrees` | bones | whether node N's parent is the node of the mesh parent |
+| `skeleton_matrix` | both | the bone's place in `m_skeletonMatrices`, `-` for a bone without one |
+| `default_pose`, `skeleton_values` | bones | the bone's matrix relative to its parent, and its skeleton matrix, 16 values each |
+| `bounds_min`, `bounds_size` | bones | the `PSkeletonJointBounds` of the bone |
+| `cm_matrix` | bones | what the node's stored matrix equals within 0.005: `skeleton`, `chain` (the inverse of the default poses multiplied up to the root), `both` |
+| `segment`, `position` | skin-bones | the mesh segment, and the place in its list that a vertex's `SkinIndices` value names |
+| `vertices` | skin-bones | the vertices of the segment |
+| `weighted_vertices`, `weight_sum` | skin-bones | how many of them give this position a weight above 0, and the sum of those weights |
+
+A bone named `s<N>_...` is node N of the `@FTR` of the `.cm` of the same name. All 26,439 such bones have the
+parent that node has, or for 10 of them a `fosterParent` bone where the node is a root. The node's stored matrix is
+the bone's inverse bind matrix:
+
+- All 24,372 bones with a skeleton matrix have a stored matrix equal to it.
+- The 2,067 others, which no vertex is skinned to, equal the inverse of their chained default poses.
+- That chain also equals the stored matrix for 24,343 of the 24,372. In the other 29, in 10 files, the default pose
+  differs from the bind pose. `cm_matrix` is `skeleton` for those.
+
+The other bones are 144 in the six files with no `.cm` of their name (`c1014` to `c1017`, `hn1021_01`, `hn1081_01`)
+and 10 named `__UNKNOWN_REF_NODE_fosterParent1` or `_UNKNOWN_REF_NODE_fosterParent1`, one a file. Of the `.cm` nodes,
+1,019 in 512 files have no bone in the mesh, and none of them is the parent of one that does.
+
+Each `PSkinBoneRemap` names a bone and a skeleton matrix, and that matrix's `PSkeletonJointBounds` names the same bone
+in all 67,532. Each of the 1,341,188 vertices has `SkinWeights` that sum to 1, every position with a weight is inside
+its segment's list, and every position has a weighted vertex.
 
 ## Loader behaviour
 

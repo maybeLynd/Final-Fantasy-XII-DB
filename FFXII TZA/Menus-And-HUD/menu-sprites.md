@@ -63,6 +63,10 @@ record = T + u16[T + 0x10] + (u16[groups + group x 2] + frame) x 8
 palette = u8[T + u16[T + 0x12] + (record byte 7 >> 4)] + (record byte 7 & 0xF)
 ```
 
+Every record, with its rectangle and palette, is in the sprite table of
+[TIM2 images](../Game-Files-And-Data-Tables/tim2-images.md), and each item's selection is joined to it on
+[Typed UI lists](../Game-Files-And-Data-Tables/ui-typed-lists.md).
+
 `0x0024B0C0(atlas, set << 8 | group, frame)` returns the record. Every helper below repeats the same arithmetic with its
 set and group fixed, and writes the palette byte to the widget's `+0x5C`. For an 8-bit atlas the draw adds that byte
 to the texture descriptor as the palette number (`0x002DB8C5`-`0x002DB8D3`).

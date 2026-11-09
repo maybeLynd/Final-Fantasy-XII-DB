@@ -70,14 +70,20 @@ manager's `+0x100` table by `0x00263F80`; a small number is mapped by `0x002EB7A
 `0x002FB560(i, x, z)` places the marker: `0x003EC5B0(i)` (`0x003EB200(i, 0x02B5EC94, 0, 1, 0)` for `i`
 below 16 outside a town while a marker resource is loaded, `0x003EC5B8`-`0x003EC5DD`), `0x003EC720(i, x, h, z)`
 with the ground height `h` that `0x0026E350` resolves (through `0x0032A790`, `0x002FB5BE`), or the 1.0 that
-`0x002FB5B7` seeds when the point lies on no cell or the cell's plane has `ny` at most 0.001 (`0x0026E388`,
-`0x00231849`), and
+`0x002FB5B7` seeds when the point lies on no cell, or only over planes with `ny` at most 0.001 (`0x002319E3`,
+`0x0026E388`), and
 `0x003EC770(i, angle, hit, 0)` with the slope angle from the collision-mesh query (`0x003355A0`, `0x0033CBF0`,
 `atanf`).
 
+The same 1.0 stays when no collision part is loaded (`0x0026E361`, `0x0026E372`). The query below then faults on the null
+part at `0x00231926`.
+
 The query takes the collision part `0x0026E500(0)`, the polygon `0x00231900(part, &(x, h, z), 1)` and
 `0x00231F20(part, out, polygon)` (`0x002FB5E0`-`0x002FB605`). The polygon index is not sign-tested before `0x00231F20`
-(`0x002FB5FA`-`0x002FB605`), so a point on no cell copies the 16 bytes before the plane table. `hit` is what `0x003355A0` gives for the axis
+(`0x002FB5FA`-`0x002FB605`), so a point on no cell passes index -1 and copies the 16 bytes
+that start `0x20` before the plane table (`0x00231F28`).
+
+`hit` is what `0x003355A0` gives for the axis
 `(0, 0, 1)` at `0x01F004C0` and `(out.x, 0, out.z)` (`0x002FB641`). `0x0033CBF0` turns `out` by minus `hit`
 (`0x002FB65B`), and `angle` is `atanf` of the turned `z` over the turned `y`, or 0 when that `y` is 0
 (`0x002FB660`-`0x002FB67A`).

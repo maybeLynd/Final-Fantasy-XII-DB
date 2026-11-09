@@ -1,0 +1,70 @@
+function	branch	scope	story_progress	event_count	cut_frame	map	cut_name	cut_assets	name_field	match	name	assets	frame_test	adjustment	sites
+0x001ED020	1	event	0x15AE	1	-	-	-	-	model	substring	g0111	1	-	+0.5 added to the frame (0x00419334)	0x001ED065 0x001ED06D 0x001ED072 0x001ED087
+0x001ED020	2	event	0x15E0	15	-	-	-	-	model	substring	c1006	25	-	-1.0 added to the frame (0x00419334)	0x001ED095 0x001ED09D 0x001ED0A2 0x001ED0B7
+0x001ED0D0	1	outside event	-	-	-	-	-	-	model	substring	hc1006	3	the word from record +0x2A shifted right by 4 is 0x57	weight 0 in place of 0.5 (0x00417012)	0x001ED0F2 0x001ED107 0x001ED11B
+0x001ED240	1	event	0xD70	2	-	-	-	-	model	substring	g0999	1	|frame - 81.5| < 0.5001	frame rounded down (floorf, 0x004192FE)	0x001ED2BA 0x001ED2C6 0x001ED2CB 0x001ED2E7 0x001ED305
+0x001ED240	2	event	0xD70	2	-	-	-	-	model	substring	g0999	1	|frame - 95.5| < 0.5001	frame rounded down (floorf, 0x004192FE)	0x001ED2BA 0x001ED312
+0x001ED240	3	event	0xD70	10	-	-	-	-	-	-	-	-	|frame - 301| < 0.5001	frame rounded down (floorf, 0x004192FE)	0x001ED33B 0x001ED340 0x001ED35A
+0x001ED240	4	event	0xD70	19	-	-	-	-	-	-	-	-	-	frame rounded down (floorf, 0x004192FE)	0x001ED373
+0x001ED240	5	event	0xD48	12	-	-	-	-	model	substring	g0999	1	|frame - 179.5| < 0.0001	frame rounded down (floorf, 0x004192FE)	0x001ED384 0x001ED390 0x001ED3A5 0x001ED3B1 0x001ED3B9
+0x001ED240	6	event	0xD48	13	-	-	-	-	model	substring	g0999	1	|frame - 101| < 0.5001	frame rounded down (floorf, 0x004192FE)	0x001ED3DC 0x001ED3EC 0x001ED3FB
+0x001ED240	7	event	0xD48	12	0x167	-	-	-	model	substring	c1019	25	-	frame rounded down (floorf, 0x004192FE)	0x001ED415 0x001ED42E 0x001ED437
+0x001ED240	8	event	0x177	7	-	-	-	-	model	substring	c1004	26	|frame - 414.5| < 0.0001	frame rounded down (floorf, 0x004192FE)	0x001ED44B 0x001ED453 0x001ED45C 0x001ED47C
+0x001ED240	9	event	0x222	7	0x101	-	-	-	model	substring	c1005	25	-	frame rounded down (floorf, 0x004192FE)	0x001ED489 0x001ED491 0x001ED49A 0x001ED4A6
+0x001ED240	10	event	0x262	5	-	-	-	-	model	substring	c1005	25	-	frame rounded down (floorf, 0x004192FE)	0x001ED4A6 0x001ED5CF 0x001ED5D7
+0x001ED240	11	event	0x560	6	-	-	-	-	-	-	-	-	-	frame rounded down (floorf, 0x004192FE)	0x001ED4C4 0x001ED4CC
+0x001ED240	12	event	0x6DC	5	-	-	-	-	model	substring	c1005	25	|frame - 322.5| < 0.5001	frame rounded down (floorf, 0x004192FE)	0x001ED4DA 0x001ED4E2 0x001ED4FB 0x001ED50B 0x001ED513
+0x001ED240	13	event	0x7CE	3	-	-	-	-	model	substring	n1018	27	|frame - 38| < 1.0001	frame rounded down (floorf, 0x004192FE)	0x001ED520 0x001ED528 0x001ED531 0x001ED54A 0x001ED564
+0x001ED240	14	event	0x7C2	13	-	-	-	-	model	substring	n1210	7	|frame - 421.5| < 0.5001	frame rounded down (floorf, 0x004192FE)	0x001ED574 0x001ED57C 0x001ED585 0x001ED5BA 0x001ED5C2
+0x001ED240	15	event	0x7C2	13	-	-	-	-	model	substring	c1021	27	|frame - 421.5| < 0.5001	frame rounded down (floorf, 0x004192FE)	0x001ED574 0x001ED59A 0x001ED5BA
+0x001ED240	16	event	0x33E	8	-	-	-	-	model	substring	c1021	27	|frame - 80.5| < 0.0001	frame rounded down (floorf, 0x004192FE)	0x001ED5DF 0x001ED5EB 0x001ED5F0 0x001ED610 0x001ED623
+0x001ED240	17	event	0x33E	8	-	-	-	-	model	substring	c1021	27	|frame - 151.5| < 0.0001	frame rounded down (floorf, 0x004192FE)	0x001ED5DF 0x001ED63C
+0x001ED240	18	event	0x33E	10	-	-	-	-	model	substring	c1021	27	|frame - 346.5| < 0.0001	frame rounded down (floorf, 0x004192FE)	0x001ED650 0x001ED655 0x001ED675
+0x001ED240	19	event	0x33E	21	-	-	-	-	-	-	-	-	|frame - 79.5| < 0.0001	frame rounded down (floorf, 0x004192FE)	0x001ED682 0x001ED68E
+0x001ED240	20	event	0x33E	26	-	-	-	-	-	-	-	-	|frame - 129.5| < 0.0001	frame rounded down (floorf, 0x004192FE)	0x001ED69B 0x001ED6AB
+0x001ED240	21	event	0x15AE	2	0x11	-	-	-	-	-	-	-	-	frame rounded down (floorf, 0x004192FE)	0x001ED6B8 0x001ED6C0 0x001ED6C9 0x001ED6CC 0x001ED6D7
+0x001ED240	22	event	0x15AE	2	0x13	-	-	-	-	-	-	-	-	frame rounded down (floorf, 0x004192FE)	0x001ED6B8 0x001ED6C0 0x001ED6C9 0x001ED6CC 0x001ED6D7
+0x001ED240	23	event	0x15AE	2	0x15	-	-	-	-	-	-	-	-	frame rounded down (floorf, 0x004192FE)	0x001ED6B8 0x001ED6C0 0x001ED6C9 0x001ED6CC 0x001ED6D7
+0x001ED240	24	event	0x15E0	19	-	-	-	-	model	substring	c1006	25	|frame - 342.5| < 0.0001	frame rounded down (floorf, 0x004192FE)	0x001ED6E5 0x001ED6ED 0x001ED6F6 0x001ED716
+0x001ED240	25	event	0x1AF4	7	0x61	-	-	-	-	-	-	-	-	frame rounded down (floorf, 0x004192FE)	0x001ED723 0x001ED72B 0x001ED730
+0x001ED240	26	event	0x1AF4	8	0x4D	-	-	-	-	-	-	-	-	frame rounded down (floorf, 0x004192FE)	0x001ED73E 0x001ED743
+0x001ED240	27	event	0x1AF4	15	-	-	-	-	-	-	-	-	-	frame rounded down (floorf, 0x004192FE)	0x001ED751
+0x001ED240	28	event	0x1AF4	24	-	-	-	-	-	-	-	-	-	frame rounded down (floorf, 0x004192FE)	0x001ED75A
+0x001ED240	29	event	0	22	0xF	0x112	-	-	-	-	-	-	-	frame rounded down (floorf, 0x004192FE)	0x001ED76C 0x001ED775 0x001ED77E
+0x001ED240	30	event	any progress not listed above; progress 0x7CE when its test fails on count or name; progress 0 outside map 0x112	2	-	-	mrm_g0100	1	-	-	-	-	-	frame rounded down (floorf, 0x004192FE)	0x001ED795 0x001ED7DB 0x001ED7DE
+0x001ED240	31	event	any progress not listed above; progress 0x7CE when its test fails on count or name; progress 0 outside map 0x112	3	-	-	mrm_g0100	1	-	-	-	-	-	frame rounded down (floorf, 0x004192FE)	0x001ED795 0x001ED7DB 0x001ED7DE
+0x001ED240	32	event	any progress not listed above; progress 0x7CE when its test fails on count or name; progress 0 outside map 0x112	2	-	-	bds_f0100	1	model	substring	n1150	16	|frame - 11| < 0.5001	frame rounded down (floorf, 0x004192FE)	0x001ED7F5 0x001ED83B 0x001ED844 0x001ED864 0x001ED86C
+0x001ED240	33	event	any progress not listed above; progress 0x7CE when its test fails on count or name; progress 0 outside map 0x112	5	-	-	sum_j0001	1	-	-	-	-	-	frame rounded down (floorf, 0x004192FE)	0x001ED882 0x001ED8C8 0x001ED8CB
+0x001ED240	34	event	any progress not listed above; progress 0x7CE when its test fails on count or name; progress 0 outside map 0x112	6	-	-	sum_j0001	1	-	-	-	-	-	frame rounded down (floorf, 0x004192FE)	0x001ED882 0x001ED8C8 0x001ED8CB
+0x001ED240	35	event	any progress not listed above; progress 0x7CE when its test fails on count or name; progress 0 outside map 0x112	4	-	-	sum_a0001	1	model	substring	s0002	4	|frame - 17.5| < 0.0001	frame rounded down (floorf, 0x004192FE)	0x001ED8E2 0x001ED928 0x001ED931 0x001ED951
+0x001ED240	36	event	any progress not listed above; progress 0x7CE when its test fails on count or name; progress 0 outside map 0x112	6	above 0x1C	-	sum_f0001	1	-	-	-	-	-	frame rounded down (floorf, 0x004192FE)	0x001ED967 0x001ED9AD 0x001ED9B6
+0x001ED240	37	event	any progress not listed above; progress 0x7CE when its test fails on count or name; progress 0 outside map 0x112	5	-	-	sum_i0001	1	-	-	-	-	-	frame rounded down (floorf, 0x004192FE)	0x001ED9CD 0x001EDA17
+0x001ED240	38	event	any progress not listed above; progress 0x7CE when its test fails on count or name; progress 0 outside map 0x112	6	0x34 to 0x3E	-	sum_i0001	1	-	-	-	-	-	frame rounded down (floorf, 0x004192FE)	0x001EDA20 0x001EDA29 0x001EDA2C
+0x001ED240	39	outside event	-	-	-	-	-	-	motion	exact	n1120_32	1	frame = 10.5	frame rounded down (floorf, 0x004192FE)	0x001EDA36 0x001EDA41
+0x001ED240	40	outside event	-	-	-	-	-	-	motion	substring	n1129	22	frame = 10.5	frame rounded down (floorf, 0x004192FE)	0x001EDA36 0x001EDA58
+0x001ED240	41	outside event	-	-	-	-	-	-	motion	exact	m1072_10	1	|frame - 21| < 0.6	frame rounded down (floorf, 0x004192FE)	0x001EDA71 0x001EDA8B 0x001EDA98
+0x001EC6B0	1	any	-	-	-	-	-	-	motion	substring	m1009	7	frame = word +0x16 - one frame step (0x01DFE0BC)	frame rounded down (floorf, 0x004192FE)	0x001EC6C6
+0x001EC6B0	2	any	-	-	-	-	-	-	motion	substring	m1266	3	frame = word +0x16 - one frame step (0x01DFE0BC)	frame rounded down (floorf, 0x004192FE)	0x001EC6E3
+0x001EC6B0	3	any	-	-	-	-	-	-	motion	substring	m1222	7	frame = word +0x16 - one frame step (0x01DFE0BC)	frame rounded down (floorf, 0x004192FE)	0x001EC6F8
+0x001EC6B0	4	any	-	-	-	-	-	-	motion	substring	m1223	7	frame = word +0x16 - one frame step (0x01DFE0BC)	frame rounded down (floorf, 0x004192FE)	0x001EC70D
+0x001EC6B0	5	any	-	-	-	-	-	-	motion	substring	m1151	7	frame = word +0x16 - one frame step (0x01DFE0BC)	frame rounded down (floorf, 0x004192FE)	0x001EC722
+0x001EC6B0	6	any	-	-	-	-	-	-	motion	substring	m1267	3	frame = word +0x16 - one frame step (0x01DFE0BC)	frame rounded down (floorf, 0x004192FE)	0x001EC737
+0x001EDAD0	1	event	-	7	odd	-	sum_j0001	1	-	-	-	-	-	answer 1 to 0x003D91AC	0x001EDB2D 0x001EDB77 0x001EDB7C 0x001EDB8B
+0x001EDBB0	1	event	-	-	0x39F	-	spc_z0000	1	-	-	-	-	0x01EF9218 is 8	answer 1 to 0x002F2CBA	0x001EDBF6 0x001EDC40 0x001EDC49
+0x001EDBB0	2	outside event	-	-	-	-	-	-	-	-	-	-	argument 2 is 1, argument 3 is 0x14A, bit 0x1 of argument 1 set	answer 1 to 0x002F2CBA	0x001EDC58 0x001EDC5D 0x001EDC65
+0x001EDCD0	1	event	0x6DC	-	-	-	-	-	-	-	-	-	-	answer 1 to 0x0040AF58	0x001EDCFB
+0x001EDCD0	2	event	0x190	-	-	-	-	-	-	-	-	-	-	answer 1 to 0x0040AF58	0x001EDD03
+0x001EDCD0	3	event	0x294	-	-	-	-	-	-	-	-	-	-	answer 1 to 0x0040AF58	0x001EDD0B
+0x001EDCD0	4	event	0x37A	-	-	-	-	-	-	-	-	-	-	answer 1 to 0x0040AF58	0x001EDD13
+0x001EDCD0	5	event	0x3E8	-	-	-	-	-	-	-	-	-	-	answer 1 to 0x0040AF58	0x001EDD1B
+0x001EDCD0	6	event	0x618	-	-	-	-	-	-	-	-	-	-	answer 1 to 0x0040AF58	0x001EDD23
+0x001EDCD0	7	event	0x67C	-	-	-	-	-	-	-	-	-	-	answer 1 to 0x0040AF58	0x001EDD2B
+0x001EDCD0	8	event	0x6D1	-	-	-	-	-	-	-	-	-	-	answer 1 to 0x0040AF58	0x001EDD33
+0x001EDCD0	9	event	0x712	-	-	-	-	-	-	-	-	-	-	answer 1 to 0x0040AF58	0x001EDD3B
+0x001EDCD0	10	event	0xFD2	-	-	-	-	-	-	-	-	-	-	answer 1 to 0x0040AF58	0x001EDD43
+0x001EDCD0	11	event	0x1086	-	-	-	-	-	-	-	-	-	-	answer 1 to 0x0040AF58	0x001EDD4B
+0x001EDCD0	12	event	0x8F2	-	-	-	-	-	-	-	-	-	-	answer 1 to 0x0040AF58	0x001EDD53
+0x001EDCD0	13	event	0x76C	-	-	-	-	-	-	-	-	-	-	answer 1 to 0x0040AF58	0x001EDD5B
+0x001EDCD0	14	event	0xDC	-	-	-	-	-	-	-	-	-	-	answer 1 to 0x0040AF58	0x001EDD63
+0x001EDCD0	15	event	0xE1	-	-	-	-	-	-	-	-	-	-	answer 1 to 0x0040AF58	0x001EDD6B
+0x001EDCD0	16	outside event	-	-	-	-	-	-	model	substring	m1126	8	-	answer 1 to 0x0040AF58	0x001EDD7E

@@ -382,6 +382,10 @@ content once, with the folders that hold it; the four `_e3` sloc files are inclu
 the define names of the shipped `menumap_world.h`. Guide lines are decoded with the font of each folder's language,
 and `{expansion glyph N}` marks glyph N of the guide file's own picture.
 
+Text with those marks joined through `fontguide.dat` is in the resolved-text table of
+[Font expansion lists](../Menus-And-HUD/fonts-expansion-lists.md), for `menumap_guide00.bin`, the only guide file the
+schedule requests.
+
 | table | rows | one row per |
 |---|---:|---|
 | [`menu-map-files-files-rows.tsv`](menu-map-files-files-rows.tsv) | 507 | shipped file: folder, size, SHA-256, the folders with the same bytes, magic and header fields |

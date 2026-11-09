@@ -341,6 +341,29 @@ The reader's own records and banks are listed field by field in
 | top folders | `gamedata` 39,653, `ps2data` 39,578, `prefetchdata` 9,351, `jsondata` 832 |
 | extensions | `.phyre` 35,984, `.txt` 10,253, `.ebp` 10,045, `.sab` 4,609, `.mot` 4,392, `.efx` 3,288, `.ca` 3,164, `.dat` 2,948, `.ah` 2,564, `.snd` 2,304 |
 
+### Every file
+
+[`archive-files.tsv`](archive-files.tsv) has one row for each of the 89,414 files, read from the extracted archive,
+all present and hashed.
+
+| Column | Meaning |
+|---|---|
+| `path`, `bytes`, `sha256` | the file's lower-case archive path, its size and its SHA-256 |
+| `extension`, `first_bytes` | the part after the last dot (`-` without one), and the first four bytes as hex (`-` for an empty file) |
+| `format_pages` | the pages that declare this extension in their `archive_formats` |
+| `tables`, `table_names` | how many of the database's tables name this path, and up to four of them |
+| `exe_kind_id` | the kind and id whose path array holds this path ([asset paths](asset-paths.md)), `-` when none does |
+| `ah_lists` | how many prefetch lists name it ([prefetch manifests](prefetch-manifests.md)) |
+
+The extension has a format page for 87,957 files. The 1,457 others are 1,439 `.bin` files, 16 `.sav` files and 2
+without an extension. Of the `.bin` files, 1,437 are under `ps2data/image/ff12`, which
+[the `.bin` families](ps2data-bin-families.md) describes, and two are the
+[add-motion tables](../Graphics/add-motion-tables.md).
+
+31,864 paths are in a kind's path array. A path in no array can still be read, because the game also builds paths
+from patterns, as the [prefetch lists](prefetch-manifests.md) do. A `-` or a 0 in these columns says that those lists
+do not hold the path. It does not say that the game never reads the file.
+
 ## Operations
 
 At start-up: one 12 MB read, one MD5 over it and one tree insert per entry. Per file open: one MD5 of

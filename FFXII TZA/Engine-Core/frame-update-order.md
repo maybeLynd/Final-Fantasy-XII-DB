@@ -147,6 +147,19 @@ particular scenes, picked during an event (`0x001EC560`) by the cut-scene name (
 story progress (`0x00265270`) and the frame counter `0x01F832C4`, and outside one by the values `0x0024DE30` reports; it
 returns 1 otherwise.
 
+[`frame-update-order-pass-count.tsv`](frame-update-order-pass-count.tsv) lists every case, 31 rows with 108 frames.
+
+- In an event the frame is `0x01F832C4` + 1, and `slot_count` is the count at `0x01F832B0` for the slot `0x01DFE40C`.
+- The names are tested in the order of the rows, and a name that occurs in the cut-scene name decides: a miss
+  on its other columns answers 1.
+- `other` is reached when `spc_z0000` to `hne_e0100` all miss. `story` `0x548` or `0x157C` with another slot count
+  answers 1, and `0x1AF4` or `0x13B` with another count goes on to `wdl_b0101`.
+- Outside an event a case needs `0x0024DE30`'s kind to be 1 and its id to be `instance_id`, and the frame is its third
+  value. Those answers also add 1 (answer 0) or -1 (answer 2) to the instance's `+0x3A2` through `0x0024FCE0`
+  (`0x001ECFEE`-`0x001ECFFF`).
+
+`Database/Tools/catalogues/pass_count_branches.py` writes the table.
+
 Before the pad, once per `0x01E02824` with `0x00264610(0)` non-null, the flag is cleared and the deferred
 `0x0026B730(0x01E02808 & 0xFFFF)` runs unless `0x01E02808` is -1 (`0x0022A7A6`-`0x0022A7BB`). Each pass of the loop then:
 

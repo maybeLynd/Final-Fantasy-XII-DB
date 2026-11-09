@@ -59,19 +59,106 @@ Measured over all 10,036 EBP2 containers in the nine language trees.
 | letters per language | `n` 3,100, `g` 1,287, `c` 819, `C` 440, `t` 410, `m` 348, `w` 157, `N` 131, `b` 39, `s` 32, `S` 8; no `M` |
 | letter high byte | 0 in every entry |
 | distinct numbers (`us`) | `n` 112 (0 to 174), `g` 97 (0 to 103), `N` 66 (1 to 86), `m` 57 (1 to 253), `w` 54 (1 to 321), `C` 40 (0 to 46), `c` 16 (0 to 21), `s` 13, `b` 12, `t` 10, `S` 5 (0 to 4) |
-| number plus 1000 names an `obj_finish` model stem | `m` 50 of 57, `n` 76 of 112, `c` 5 of 16 distinct numbers |
-| number names a stem directly | `g` 77 of 97, `w` 14 of 54, `b` 10 of 12, `s` 10 of 13, `t` 8 of 10 |
+| a stem built as number plus 1000 is the name of some `obj_finish` model | `m` 50 of 57, `n` 76 of 112, `c` 5 of 16 distinct numbers |
+| a built stem is the file the game loads for that number | 2 of the 482 pairs, `c` 5 and `m` 76 |
+| a stem built from the number itself is the name of some model | `g` 77 of 97, `w` 14 of 54, `b` 10 of 12, `s` 10 of 13, `t` 8 of 10 |
 | high-detail models | `obj_finish/in/high` ships 47 `hc*.cm`, 80 `hn*.cm` and 5 `hs*.cm` files |
 
 The per-number table is [`ebp-actor-manifest-ids.tsv`](ebp-actor-manifest-ids.tsv) beside this page: letter, number,
-the model
-stem by the rules above, whether that stem ships, and how many `us` containers use the pair.
+a stem
+built by the rules above, whether a model of that name ships, and how many `us` containers use the pair.
 
 ### Columns of ebp-actor-manifest-ids.tsv
 
 | Column | Holds |
 |---|---|
-| `resolves` | `yes` when a model file with the stem in `model_stem` ships, `no` when it does not: `yes` on 250 of the 482 rows, the per-letter counts in the two stem rows of the table above; `no` on all rows of the letters `C`, `N` and `S` |
+| `model_stem` | a name built from the number by the rules above; the game does not read it, and the file of each entry is in the table below |
+| `resolves` | `yes` when a model file with the name in `model_stem` ships, `no` when none does, which says nothing of the entry's own file: `yes` on 250 of the 482 rows, the per-letter counts in the two stem rows of the table above; `no` on all rows of the letters `C`, `N` and `S` |
+
+### Every entry and what names it
+
+`Database/Tools/catalogues/script_model_bindings.py` reads the `us` scripts and writes three tables:
+
+- [`ebp-actor-manifest-entries.tsv`](ebp-actor-manifest-entries.tsv): one row per entry, 6,771, with its file.
+- [`ebp-actor-manifest-calls.tsv`](ebp-actor-manifest-calls.tsv): one row per call that names an entry, 25,316, with
+  its actor and the blocks around it.
+- [`ebp-actor-manifest-header-references.tsv`](ebp-actor-manifest-header-references.tsv): one row per header field
+  that names an entry, 1,083.
+
+An entry's file is the one the executable's path array names. `0x002ED6F0` gives the resource kind and the file index,
+and the array holds the path. All 6,771 entries have a path there and the file ships. Entry `c` 0 is
+`chara\c10\c1004\c1004.cm`, for example, and the name built from its number, `c1000`, is no file at all.
+
+A verb names an entry with a constant of this form:
+
+```python
+reference = 0x3000000 + entry        the argument 0x002E9A60 receives
+```
+
+All 25,316 model arguments in the `us` scripts have this form, and each entry is below its table's count. The calls
+come from the instruction stream. The argument text and the blocks come from the decompiled listing of the same file.
+In every function the two list the same verbs and the same constants of `0x1000000` and above, in the same order.
+
+| Verb | Calls | Model argument | Resolved at |
+|---|---|---|---|
+| `bindp2_d4` | 9,877 | first of three | `0x0033F378` |
+| `modelread` | 4,539 | only | `0x00340FB7` |
+| `modelreadsync` | 4,531 | only | `0x003414B3` |
+| `bindp2` | 2,061 | only | `0x0033F378`, entered from `0x00340380` |
+| `bindc` | 1,561 | second of three | `0x00343B42` |
+| `modeldispose` | 1,319 | only | `0x0034234E` |
+| `bindh` | 706 | only | `0x00344F1F` |
+| `settrapresource` | 390 | only | `0x0035540E` |
+| `puppetbind` | 285 | second of four | `0x00343A99` |
+| `puppetbind_41d` | 24 | second of two | `0x00343A99`, entered from `0x00345AE0` |
+| `bindp2_d6` | 22 | first of two | `0x0033F378`, entered from `0x0033FC60` |
+| `unkCall_5cb` | 1 | only | `0x0033F378`, entered from `0x00340380` |
+
+The image header names entries in two more places. Both are in `header-references`:
+
+- The chest word at `+0x88`, read by `0x0026E060` for `setuptreasure` while manager 0 is current. All 385 words at or
+  above 0 name a letter `t` entry: entry 0 in 364 scripts, 4 in 19 and 5 in 2. All 1,966 `setuptreasure` calls are in
+  zone scripts.
+- The list at `+0x80`, in 141 zone scripts, 698 pairs, each id a reference of the form above. `0x0035A270`
+  (`0x0035A2E7`) and `0x0035AB50` (`0x0035ABC7`) walk it, and `0x0037C3F0` reads one id (`0x0037C50B`).
+
+| `named_by` | Entries | Meaning |
+|---|---|---|
+| `calls` | 5,663 | at least one verb call in the script's code |
+| `calls+list` | 617 | verb calls, and the `+0x80` list |
+| `chest` | 385 | the chest word only |
+| `list` | 81 | the `+0x80` list only |
+| `no_call_found` | 25 | 23 in event scripts and 2 in zone scripts |
+
+`no_call_found` reports the end of this reading: no call in that script's code and no header field names the entry.
+It does not say that the game never binds it. Of the entries with calls, 537 have only loading or release verbs in
+their script, with no bind verb; the `verbs` column shows which.
+
+A call's `conditions` are the blocks around it in its function. What requests that function is not followed. The
+rows are from the `us` scripts, and the manifests are the same in all nine trees, as the table above says.
+
+### Columns of the three tables
+
+| column | what it holds |
+|---|---|
+| all: `script`, `kind` | the script's path under `plan_master/us`, and `zone` or `event` |
+| all: `entry`, `bound_id`, `letter`, `number` | the position in the table, its dword in hexadecimal, and the two parts |
+| all: `path` | the file as the executable writes it |
+| entries: `reference` | the constant that names the entry, in hexadecimal |
+| entries: `resource_kind`, `file_index` | what `0x002ED6F0` gives, the kind in hexadecimal |
+| entries: `constructed_stem` | `model_stem` of the ids table, the built name |
+| entries: `stem_is_file` | `yes` when the built name is the name of the file in `path` |
+| entries: `calls`, `verbs` | the number of calls, and the count for each verb |
+| entries: `actors`, `named_by` | the actors holding those calls, and the table above |
+| calls: `actor`, `actor_index`, `function` | where the call is; the index is the actor's place in the directory |
+| calls: `symlink_actors` | actors that run the same code under their own names, `-` for none |
+| calls: `code_offset` | the call instruction's offset in the code section, in hexadecimal |
+| calls: `verb`, `verb_id`, `arguments` | the verb and the argument text |
+| calls: `conditions` | the enclosing blocks, outermost first, `-` for none |
+| header: `source`, `position` | `chest_word` and `0x88`, or `list_80` and the pair's place |
+| header: `raw` | the word with the reference form applied, or the list's id, in hexadecimal |
+| header: `mask` | the pair's second dword, in hexadecimal, `-` for the chest word |
+| header: `setuptreasure_calls` | the script's `setuptreasure` calls, `-` for a list pair |
 
 ## Loader behaviour
 
@@ -111,7 +198,8 @@ Arguments up to `0xFFFFFF` skip the table and go through `0x002EB7A0`. The bind 
 ## Modding notes
 
 - A script refers to entry `k` by position, so append new models at the end; inserting or removing
-  an entry renumbers every later reference in that script.
+  an entry renumbers every later reference in that script, which includes its chest word and its
+  `+0x80` list.
 - Keep `count` equal to the number of entries and pad the section with zeros to its 64-byte slot.
 - Use a letter `0x002ED6F0` knows (`b`, `c`, `g`, `m`, `n`, `s`, `t`, `w`, `C`, `M`, `N`, `S`) and keep
   the high byte 0, as every shipped entry does; any other letter loads from resource kind 1.

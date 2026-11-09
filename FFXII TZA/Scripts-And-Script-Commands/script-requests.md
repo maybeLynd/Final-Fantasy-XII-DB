@@ -52,9 +52,10 @@ a call of `0x008620C0` (`0x002688A8`), which jumps to the bare `ret 0` stub `0x0
 `0x8000` set in the function id or the target refuses with 0 (`0x00268944`) before the program counter or a
 descriptor is written.
 
-The target word is either `(manager << 16) | ordinal` when bit `0x4000` is set, or an ordinal in the
-requester's own manager (`[slot + 0x28]`); `0x003587C0` resolves it against the manager's pool
-(null pool, negative ordinal or ordinal at or above the count give null).
+With bit `0x4000` set in the target word, its high half (arithmetic shift) names the manager and its whole low
+word, bit `0x4000` included, is the index (`0x002689CB`-`0x002689D0`). With the bit clear the word is the index in the
+requester's own manager (`[slot + 0x28]`). `0x003587C0` resolves the index against the manager's pool without
+masking it (null pool, negative index or index at or above the count give null, `0x003587D2`-`0x003587DD`).
 
 The handler then
 advances the requester's program counter past the instruction and stores it back into the wait

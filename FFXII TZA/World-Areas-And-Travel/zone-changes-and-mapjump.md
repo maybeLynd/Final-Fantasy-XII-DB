@@ -315,6 +315,27 @@ The `MapRef` resource (kind 9, loaded by `0x00268750`) has 8 bytes per field id;
 its `+6` word, the persistence group written to the transition record. The music table `0x003EAA70` is the
 third.
 
+### Where each map change lands
+
+[`zone-changes-and-mapjump-arrivals.tsv`](zone-changes-and-mapjump-arrivals.tsv) has one row for each of the 12,644
+map changes of the [door table](../Story-Events-And-Hunts/script-censuses.md), with the columns of that table
+that say where the change starts and what it tests, and these:
+
+| Column | Meaning |
+|---|---|
+| `destination_zone` | the zone script the change loads; `-` when the census names no single zone |
+| `entrance_resolved` | the entry number after the aliases: −1 or any other negative uses `entryDefault`, −2 `entryMinus2`, −3 `entryMinus3` |
+| `entries_in_list` | how many records the destination's list `entryPointsA` holds |
+| `status` | `entry`; `index past the list: zeros`; `entrance chosen at run time`; or `destination is not one zone` |
+| `arrival_x`, `arrival_y`, `arrival_z`, `arrival_angle` | the record's four floats, for `entry` rows |
+
+11,819 rows land on a record. 61 take their entrance from a value the script works out, and 565 have no single
+destination: 551 return to the field the party came from, 10 name a field with no `us` zone file, 3 reload the
+current map and 1 names field 64, which has no map. On the 199 rows past the list `0x00264B90` gives zeros; the
+destination's script can still place the party with `setmapjumppos`. The list is the same for every language.
+
+`Database/Tools/catalogues/door_arrivals.py` writes this table.
+
 ## Layouts
 
 `ZoneTransitionRecord` (`0x20` bytes, offsets from the start of the payload+0x1044):

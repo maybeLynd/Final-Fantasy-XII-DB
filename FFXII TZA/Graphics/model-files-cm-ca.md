@@ -113,10 +113,14 @@ Entry 0 of every `.cm`. The payload starts at entry `+0x30`; offsets are from th
 ```
 section 1 +0x14C u16[32]  bone for special ids 0 to 31 (0x003E5AD0)
 section 2        copied verbatim after the skeleton core (0x00372820)
+section 5        per palette a u16 offset of a list; each list is u16 offsets ending at 0, each naming a 0x30-byte
+                 animation entry; every offset is from the section (0x003E7210)
+section 6        16-byte points, for ids 0x300 up: u16 bone, a u16 that is 0 in every model, three f32 (0x003E5B30)
 section 7        the pose sequencer's events (model-oscillators-and-pose-sequencer.md)
 section 8        a 0x10-byte head starting with a u16 count, then count x 0x1D0 bytes (0x003E6D10);
                  copied into the record's block by 0x0041F340
 section 9        f32 / u32 slots read through property ids
+section 10       a block taken by 0x003AF340: f32 +0x08 and byte +0x10 are read; see the values below
 ```
 
 A property id is `SS VV DD FF`: `SS & 0x1F` is the section, `SS >> 5` the mode, `VV` the lowest
@@ -158,6 +162,44 @@ record's per-axis scale (`+0x260`–`+0x268` × `+0x160`–`+0x168` × `+0x26C`)
   focus point `+0x670`. `0x003E56E0` reads property `0x62060A2D` (`0x004FE2F0`).
 - `0x003E6D40(record)` returns the arena address of the block at `+0x2FC` plus the offset `+0x300`, or 0
   when the offset is 0 (`0x003AB7F0`).
+
+### @FCP values per model
+
+Each model's value for a property is what the getters above return for it. The block is at payload
+version `0x0A` in all 1,066 models, so a stored value is used whenever the section is present, and the
+default otherwise. No property slot reads past its section in shipped data.
+
+`0x003E6150` scales at run time, so the tables keep the stored value and the `scale` column says what the
+site does to it. The same property read through `0x004FE270` is not scaled: `0x09001D1E` is scaled at
+`0x002E2EC9` and not at `0x0046C7EE`.
+
+`0x003204E0(unit, index, out)` reads a property chosen by index, 0 to `0x21`. The id comes from the table at
+`0x01EED320` and the handling from the byte table at `0x003205F0`: a float through `0x002ECE50`, the same float
+multiplied or divided by the third output of `0x00265240`, or an integer through `0x002ECE80`. Index `0x1C` holds
+`0x40000000`, the one id `0x004FE2F0` answers with payload byte `+0x01` (`0x004FE2F6`-`0x004FE2FE`). `0x003045CA` calls
+it with index 1, and `0x00320DC8` with an index from the table at `0x01EED288`.
+
+Town selections are made in code. Where `0x00377C20` is non-zero, `0x002E2E9D`-`0x002E2EA7` read `0x01002D4F` and
+`0x01002E50`; elsewhere `0x002E2EAE`-`0x002E2EB8` read `0x01002143` and `0x01002244`. `0x002E9681`-`0x002E968D` makes
+the same choice between `0x01002D4F` and `0x01002143`. The town pair's default is −1.0, and all 1,066 models
+store a value of 0 or more for both, so the default is not used by a shipped model.
+
+Section 5 is in 7 models. `0x003E7210(record, palette, sub)` takes list `palette` and passes each named entry to
+`0x00504D30`, or only entry `sub` when `sub` is not `0xFFFF` (`0x003E7235`). Presentation command `0x16` sets the
+palette, the choice between this call and `0x003E69E0`, and `sub`, then calls `0x0042B550`.
+
+Section 6 holds 16 points in every model; 5,837 of the 17,056 name a bone and the rest hold `0xFFFF`. `0x003E5B30`
+takes id `0x30B` from the active presentation entry or the rig and not from this section (`0x003E5B43`), as
+[skeleton entries and bones](skeleton-entries-and-bones.md) describes. The stored point `0x0B` names a bone in 719
+models.
+
+Section 10 is 48 bytes in all 613 models that have it. `0x003E6E40` is the path to it, called at `0x003AF3B0`:
+`0x003AF340` stores float `+0x08` divided by byte `+0x10` in the second-pool entry's `+0x18`
+([character lighting and shadows](character-lighting-and-shadows.md)). The other 43 bytes are kept as stored. Float
+`+0x08` is 75 in 578 models, 60 in 22, 50 in 11 and 120 in 2; byte
+`+0x10` is 8 in 609 and 16 in 4.
+
+`Database/Tools/catalogues/fcp_tables.py` writes the `fcp-` tables named in the table list below.
 
 ### @FTR, the skeleton
 
@@ -314,6 +356,15 @@ not name is given by its offsets, as hex bytes.
 | [`model-files-cm-ca-heads.tsv`](model-files-cm-ca-heads.tsv) | 1,066 | `.cm`: the header fields of its `@FCP`, `@FTR`, `@FOR`, `@FDM` and `@FTE` entries |
 | [`model-files-cm-ca-fcp-sections.tsv`](model-files-cm-ca-fcp-sections.tsv) | 6,454 | present `@FCP` section: offset, span and length |
 | [`model-files-cm-ca-fcp-attachment-slots.tsv`](model-files-cm-ca-fcp-attachment-slots.tsv) | 19,296 | one slot of `@FCP` section 3: bone, position, angles and scale ([character render records](character-render-records.md)) |
+| [`model-files-cm-ca-fcp-section-bytes.tsv`](model-files-cm-ca-fcp-section-bytes.tsv) | 6,454 | present `@FCP` section: every byte as hex |
+| [`model-files-cm-ca-fcp-slots.tsv`](model-files-cm-ca-fcp-slots.tsv) | 176,008 | dword of section 1 or 9 of a model |
+| [`model-files-cm-ca-fcp-property-values.tsv`](model-files-cm-ca-fcp-property-values.tsv) | 60,762 | model and property id: the value the getter returns |
+| [`model-files-cm-ca-fcp-property-sites.tsv`](model-files-cm-ca-fcp-property-sites.tsv) | 46 | code site passing a property id |
+| [`model-files-cm-ca-fcp-property-selector.tsv`](model-files-cm-ca-fcp-property-selector.tsv) | 34 | index of `0x003204E0` and the property it reads |
+| [`model-files-cm-ca-fcp-direct-readers.tsv`](model-files-cm-ca-fcp-direct-readers.tsv) | 30 | code site reading a section's offset through the record's payload |
+| [`model-files-cm-ca-fcp-points.tsv`](model-files-cm-ca-fcp-points.tsv) | 17,056 | section 6 point of a model |
+| [`model-files-cm-ca-fcp-block10.tsv`](model-files-cm-ca-fcp-block10.tsv) | 613 | section 10 block of a model |
+| [`model-files-cm-ca-fcp-palette-variants.tsv`](model-files-cm-ca-fcp-palette-variants.tsv) | 60 | section 5 animation entry of a model |
 | [`model-files-cm-ca-special-bones.tsv`](model-files-cm-ca-special-bones.tsv) | 740 | `.cm` outside `weapon`: its special-id bones |
 | [`model-files-cm-ca-ftr-nodes.tsv`](model-files-cm-ca-ftr-nodes.tsv) | 27,561 | `@FTR` node: key, parent, flags and pool indices |
 | [`model-files-cm-ca-for-records.tsv`](model-files-cm-ca-for-records.tsv) | 1,275 | `@FOR` record: key, selectors per part and scale |
@@ -343,6 +394,18 @@ not name is given by its offsets, as hex bytes.
 | `for_table_a_bytes`, `for_table_b_bytes` | heads | the bytes of table A and of table B, up to the next table |
 | `fdm_30`, `fdm_keys_offset`, `fdm_keys`, `fdm_34_4f` | heads | `@FDM` `+0x30`, `+0x32`, the key count, and the bytes from `+0x34` to the key table |
 | `fte_always_slots` | heads | the texture slots listed after the count at `@FTE` `+0x30` |
+| `path`, `section`, `offset`, `bytes`, `hex` | fcp-section-bytes | the model, the section, its offset in the payload, its span, and its bytes |
+| `slot`, `offset`, `bits`, `float` | fcp-slots | the dword's number in the section, its offset in the payload, its bits, and the same bits as a float. A slot holding words or an integer keeps its bits here |
+| `property`, `origin`, `bits`, `value` | fcp-property-values | the id; `stored` or `default`; the dword used; the value as a float, an integer, or the byte the id selects, before any run-time scale |
+| `site`, `call`, `getter` | fcp-property-sites | where the id is loaded, the call that takes it, and the getter or wrapper called |
+| `mode`, `section`, `byte`, `min_version`, `default_slot`, `slot` | fcp-property-sites | the id's fields as above; `byte` is the byte of a mode 3 id |
+| `default_bits`, `default_value` | fcp-property-sites | the default table's entry for the id |
+| `index`, `after` | fcp-property-selector | the index of `0x003204E0` and what it does to the float it reads; the other columns are as in fcp-property-sites |
+| `scale`, `use` | fcp-property-sites | what `0x003E6150` does with the value (`-` for a getter that does not scale), and what the value is for, with the page that says so; `-` where no page names a use |
+| `site`, `section`, `fields` | fcp-direct-readers | where the section's offset word is read, the section, and the field offsets taken from it in the same run of code; `-` where the code passes the address on |
+| `point`, `id`, `bone`, `word_02`, `position_bits`, `position` | fcp-points | the point, its id, its bone, the word `+0x02`, and the three floats as stored and in decimal |
+| `bits_08`, `float_08`, `byte_10`, `ratio`, `raw` | fcp-block10 | float `+0x08`, byte `+0x10`, their quotient as `0x003AF44A` stores it, and the whole block |
+| `palette`, `variant`, `list_slot`, `entry_offset`, `entry_in_section`, `entry` | fcp-palette-variants | the palette, the position in its list, both payload offsets, whether all `0x30` bytes lie in the section, and the entry's bytes |
 | `section`, `offset`, `span`, `length` | fcp-sections | the section, its offset in the payload, the bytes to the next section or the payload's end, and the length for section 2 (`+0x24`) and section 8 (`0x10` + count × `0x1D0`) |
 | `section_offset`, `slot`, `bone` | fcp-attachment-slots | section 3's offset in the payload, the slot from 0 to 31, and the stored `u16` bone |
 | `bone_state`, `ftr_nodes` | fcp-attachment-slots | `none` for `0xFFFF`, `node` below the model's `@FTR` node count, `past_nodes` at or past it, and that count |
@@ -355,7 +418,7 @@ not name is given by its offsets, as hex bytes.
 | `key`, `parent`, `byte_03`, `flags` | ftr-nodes | the key as `0x00409250` reads it, the parent (`-` for no parent), record byte `+0x03` and the flags `+0x04` |
 | `pool_indices`, `pool_index_list` | ftr-nodes | the record's u16 pool indices in stored order: one for each of flag bits `0x80000000`, `0x400000` and `0x20000000`, sixteen for `0x200000`, and one for each translation and angle bit; the list fills every record |
 | `key`, `parent`, `flags`, `inline_id` | ftr-values | as in ftr-nodes; `key` is the inline id when flag bit `0x40000000` is set, `inline_id` that word, `-` without the bit |
-| `bind_matrix` | ftr-values | the sixteen pool dwords for flag bit `0x200000` (`0x004094D0`), in stored order, as hex; `-` without the bit. They are the stored values, not a matrix rebuilt from the other columns |
+| `bind_matrix` | ftr-values | the sixteen pool dwords for flag bit `0x200000` (`0x004094D0`), in stored order, as hex; `-` without the bit. They are the stored values, not a matrix rebuilt from the other columns. The matrix is the node's inverse bind matrix, equal to the skeleton matrix of the mesh's bone [`s<N>_`](../PhyreEngine/phyre-asset-files.md) |
 | `translation`, `angles` | ftr-values | for nodes with flag bits `0x200100` both set: the pool dwords that `0x00409300` reads for x, y and z (bits `0x800000` to `0x2000000`) and for the three angles (bits `0x4000000` to `0x10000000`), hex, `-` for a clear bit |
 | `index_400000`, `index_20000000` | ftr-values | the pool dword named by the index for that flag bit, hex. `0x004092A0` returns the first; the second is the value as stored |
 | `index_80000000` | ftr-values | the u16 stored for flag bit `0x80000000`, as hex. `0x00409300` and `0x004094D0` step past it, and it can exceed the pool, so neither routine uses it as a pool index |
@@ -565,7 +628,7 @@ with `0x00504450`: a `{0x10000000, 0}` record, then the flip `0x003A1DB0`. `0x00
   `index` (below `+0x0C` and 16), keeps it in the row's 16 slots at `+0x140`, and, when the pair
   `(index << 4) | sub` is not yet in the row's 20-byte map at `+0x180` and the map has a free byte, records it
   there.
-  - For such a new pair it also files the caller's `0x50`-byte animation entry on that palette through `0x003CCC20` (`0x00504E3C`; one of
+  - For such a new pair it also files the caller's `0x30`-byte animation entry on that palette through `0x003CCC20` (`0x00504E3C`; one of
   128 slots at `[0x02B47798]`, linked into the palette's record by its priority byte `+2`) and keeps the returned
   handle at `+0x194 + 4n` (`0x00504E41`).
   - It returns at once for a row without `@FCT` (offset `+0x21C` of −1, `0x00504D5A`) or a `sub` of 16 or
@@ -662,3 +725,43 @@ removes one operation from its record.
 - [Model effects and motion commands](model-effects-and-motion-commands.md): `@FEF` and the motion entries.
 - [Add-motion tables](add-motion-tables.md): the skeleton mapping matched against a model's name.
 - [Model oscillators and the pose sequencer](model-oscillators-and-pose-sequencer.md): `@FCP` section 7 and the sway section.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat AI: `0x00377C20` is called by `0x003014C0`, `0x00301AD0`, `0x00305AB0`; those functions are documented on
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
+  [glossary](../Engine-Core/glossary.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
+- Combat action: `0x003204E0` is called by `0x00320D70`; `0x00377C20` is called by `0x002FFA60`, `0x002FFCF0`, `0x002FFF50`,
+  `0x00305110`, `0x00305230`, `0x00305430`, `0x00307300`, `0x0030C010`, `0x0030D160`, `0x0030D600`, `0x0030DA30`, `0x0030F760`;
+  `0x00377C20` is also called by `0x00311B20`, `0x00311CF0`, `0x00312FA0`, `0x00313CD0`, `0x00313DB0`.
+- Combat action: those functions are documented on
+  [action definition row](../Battle-Actions/action-definition-row.md),
+  [quickenings and summons](../Battle-Actions/quickenings-and-summons.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md),
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md).
+- Combat action: and on [action phases](../Battle-Actions/action-phases.md),
+  [game over](../World-Areas-And-Travel/game-over.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [identifier spaces](../Engine-Core/identifier-spaces.md).
+- Combat action: and on [call signatures](../Engine-Core/call-signatures.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
+- Gameplay: `0x00377C20` is called by `0x00307D10`, `0x0030A8A0`, `0x0030C210`, `0x0030D9A0`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md), [enmity](../Enemy-AI-And-Gambits/enmity.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Input: `0x00377C20` is called by `0x00253C70`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Items equipment shops license: `0x00377C20` is called by `0x00309FB0`, `0x0030FD10`; those functions are documented on
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
+- Rewards progression economy: `0x00377C20` is called by `0x00312280`; those functions are documented on
+  [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md).
+- Status periodic terminal: `0x00377C20` is called by `0x0030E360`, `0x0030F690`, `0x00310DB0`; those functions are documented
+  on [force fight mode](../Engine-Core/force-fight-mode.md),
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- World area: `0x00377C20` calls `0x003148F0`; `0x00377C20` is called by `0x002342F0`; those functions are documented on
+  [party control modes](../Engine-Core/party-control-modes.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md).

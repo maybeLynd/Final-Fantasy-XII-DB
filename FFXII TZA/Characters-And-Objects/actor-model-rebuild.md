@@ -69,7 +69,7 @@ record is gone (the entry's `+0x1E` is negative, `0x002E4C37`) or its stamp `+0x
 | 2 | waits for the main entry; then `0x002EBC90(actor, 0, 0)`, the variant bytes from `0x0031C540(0x003589B0(actor))` (1 and 0 when it fails) into `0x0026D610`, the bind `0x002E28E0`, `0x002681D0`, `0x002E5C70` with the three floats at `[actor + 0xB8]`, `0x002EAC90`, `0x002E49B0(actor, 0)`, `0x002E4A40`, `0x002E8450(actor, 0x00321380(0x003589B0(actor)) or 0)` (`0x0037B76B`-`0x0037B80D`) | 3 |
 | 3 | — | 4 |
 | 4 | releases the actor's pool entry at `+0x20` (`0x0036EC10`), looks up the new pool id (`0x002ED910`) and acquires an entry (`0x0036F0F0`) into `+0x20`; a negative id leaves the released index in `+0x20`, so the next rebuild releases it again | 5; 7 when the id is negative |
-| 5 | waits until the pool entry's state byte is 3 (`0x0036ECA0`) | 6 |
+| 5 | waits until the pool entry's state byte is 3 (`0x0036ECA0`); a negative index in `+0x20`, when `0x0036F0F0` returned -1, skips the wait (`0x0037B8B3`) | 6 |
 | 6 | — | 7 |
 | 7-9 | part 0 in the slot at context `+0x30`: when its id changes, detaches it (`0x002E3C20(actor, 0, 0)`) and releases the old entry; a new id is requested (actor `+0x23` bit `0x2`), waited on, and attached (`0x002EBC90(actor, 2, 0)` at `0x0037B99D`, `0x002E3110(actor, 0, 0, entry)` with link `0x0031BE30`) | 10 |
 | 10-12 | the same for part 1 in the slot at `+0x60` (bit `0x4`, `0x002E3110(actor, 1, …)`) | 13 |

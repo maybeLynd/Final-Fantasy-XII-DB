@@ -1,0 +1,35 @@
+index	call	getter	after	property	mode	section	byte	min_version	default_slot	slot	default_bits	default_value	scale
+0x00	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09000000	0	9	-	0	0	0	3D88888D	0.0666667	multiply by +0x26C
+0x01	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09000202	0	9	-	0	2	2	3E4CCCCD	0.2	multiply by +0x26C
+0x02	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09000101	0	9	-	0	1	1	3E0887A9	0.13333	multiply by +0x26C
+0x03	0x00320538	0x002ECE50 float	none	0x09000303	0	9	-	0	3	3	3DD67770	0.10472	none
+0x04	0x00320538	0x002ECE50 float	none	0x09000404	0	9	-	0	4	4	3DD67770	0.10472	none
+0x05	0x00320538	0x002ECE50 float	none	0x09052B2F	0	9	-	5	43	47	3DBEA2EE	0.0930842	none
+0x06	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09000505	0	9	-	0	5	5	00000000	0	multiply by +0x26C
+0x07	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09000606	0	9	-	0	6	6	3D88888D	0.0666667	multiply by +0x26C
+0x08	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09000808	0	9	-	0	8	8	3E4CCCCD	0.2	multiply by +0x26C
+0x09	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09000707	0	9	-	0	7	7	3E0887A9	0.13333	multiply by +0x26C
+0x0A	0x00320538	0x002ECE50 float	none	0x09000909	0	9	-	0	9	9	3DD67770	0.10472	none
+0x0B	0x00320538	0x002ECE50 float	none	0x09000A0A	0	9	-	0	10	10	3DD67770	0.10472	none
+0x0C	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09000D0E	0	9	-	0	13	14	3F800000	1	multiply by +0x26C
+0x0D	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09000E0F	0	9	-	0	14	15	00000000	0	multiply by +0x26C
+0x0E	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09000F10	0	9	-	0	15	16	3F800000	1	multiply by +0x26C
+0x0F	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09001011	0	9	-	0	16	17	00000000	0	multiply by +0x26C
+0x10	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09001112	0	9	-	0	17	18	00000000	0	multiply by +0x26C
+0x11	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09001213	0	9	-	0	18	19	00000000	0	multiply by +0x26C
+0x12	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09001314	0	9	-	0	19	20	3F800000	1	multiply by +0x26C
+0x13	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09001415	0	9	-	0	20	21	00000000	0	multiply by +0x26C
+0x14	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09001516	0	9	-	0	21	22	3F800000	1	multiply by +0x26C
+0x15	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09001617	0	9	-	0	22	23	00000000	0	multiply by +0x26C
+0x16	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09001718	0	9	-	0	23	24	3F800000	1	multiply by +0x26C
+0x17	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x09001819	0	9	-	0	24	25	00000000	0	multiply by +0x26C
+0x18	0x0032058B	0x002ECE80 integer	none	0x29010229	1	9	-	1	2	41	00000000	0	-
+0x19	0x00320538	0x002ECE50 float	none	0x09012726	0	9	-	1	39	38	3DD67770	0.10472	none
+0x1A	0x0032058B	0x002ECE80 integer	none	0x29010128	1	9	-	1	1	40	00000001	1	-
+0x1B	0x00320538	0x002ECE50 float	none	0x09012827	0	9	-	1	40	39	3F490FD8	0.785398	none
+0x1C	0x0032058B	0x002ECE80 integer	none	0x40000000	2	-	-	-	-	-	-	-	payload byte +0x01 (0x004FE2F6-0x004FE2FE)
+0x1D	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x01002143	0	1	-	0	33	67	3F000000	0.5	multiply by +0x26C
+0x1E	0x00320538	0x002ECE50 float	multiplied by the third output of 0x00265240	0x01002244	0	1	-	0	34	68	3F000000	0.5	multiply by +0x26C
+0x1F	0x0032058B	0x002ECE80 integer	none	0x29081031	1	9	-	8	16	49	0000003C	60	-
+0x20	0x00320538	0x002ECE50 float	none	0x09082C32	0	9	-	8	44	50	3F490FDA	0.785398	none
+0x21	0x00320538	0x002ECE50 float	divided by the third output of 0x00265240	0x09001E1F	0	9	-	0	30	31	42700000	60	divide by +0x26C

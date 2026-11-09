@@ -101,6 +101,15 @@ Every count is per language tree; section 11 is byte-identical in all nine trees
 | slot use, k = 0 to 31 | 74, 38, 76, 33, 138, 79, 139, 62, 37, 16, 37, 13, 106, 72, 105, 66, 160, 93, 157, 73, 46, 11, 46, 7, 31, 13, 31, 11, 23, 12, 23, 11 |
 | curve checks | every length is `0x18 + 0x24 * keys`, every curve's spans sum to 1.0, each key starts at the previous key's end value (3,264 of 3,264 joints), and the chain ends on the zero padding |
 
+### Every shake and call
+
+The camera tables' catalogue covers these sections too: [`ebp-camera-shakes.tsv`](ebp-camera-shakes.tsv) has one row
+per shake, 299, and [`ebp-camera-rows.tsv`](ebp-camera-rows.tsv) has the 300 rows of section 10 with `list` `shake`.
+Section 11's curves are in [`ebp-camera-curves.tsv`](ebp-camera-curves.tsv) and
+[`ebp-camera-curve-keys.tsv`](ebp-camera-curve-keys.tsv) with `section` 11, and
+[`ebp-camera-calls.tsv`](ebp-camera-calls.tsv) has the 328 `camerashakestart_1a3` calls. The columns are on
+[EBP camera tables](ebp-camera-tables.md).
+
 ## Loader behaviour
 
 ### SHK1 at load

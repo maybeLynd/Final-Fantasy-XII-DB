@@ -167,6 +167,112 @@ Every count is per language tree; the CAM7 sections are byte-identical in all ni
 | ease curves, paths | 15,350 and 1,682; each used by exactly one segment word; every curve's spans sum to 1.0 |
 | layout checks | every stream ends at its record length, the three arrays end on zero padding, and `first` is `0x20` |
 
+### Every shot, shake and call
+
+`Database/Tools/catalogues/camera_shots.py` reads sections 8 to 11 of the `us` scripts and their code and writes ten
+tables. Sections 8 to 11 are byte-identical in all nine trees, so the rows hold for every language. They cover the
+script sections only. A camera stored in a map's art files is a different source and has no row here.
+
+| Table | Rows | One row per |
+|---|---|---|
+| [`ebp-camera-rows.tsv`](ebp-camera-rows.tsv) | 4,233 | row of a section 8 or section 10 list |
+| [`ebp-camera-shots.tsv`](ebp-camera-shots.tsv) | 3,942 | shot, with its attachment and timing |
+| [`ebp-camera-keys.tsv`](ebp-camera-keys.tsv) | 7,614 | key of a shot |
+| [`ebp-camera-segments.tsv`](ebp-camera-segments.tsv) | 3,654 | segment of a shot |
+| [`ebp-camera-curves.tsv`](ebp-camera-curves.tsv) | 17,189 | ease curve of section 9 (15,350) or shake curve of section 11 (1,839) |
+| [`ebp-camera-curve-keys.tsv`](ebp-camera-curve-keys.tsv) | 37,283 | key of a curve |
+| [`ebp-camera-paths.tsv`](ebp-camera-paths.tsv) | 1,682 | path, with its arc table |
+| [`ebp-camera-path-segments.tsv`](ebp-camera-path-segments.tsv) | 7,948 | segment of a path |
+| [`ebp-camera-shakes.tsv`](ebp-camera-shakes.tsv) | 299 | shake |
+| [`ebp-camera-calls.tsv`](ebp-camera-calls.tsv) | 4,660 | script call that names a row |
+
+A script names a row, and the row picks a record, so the tables keep the two apart. In the 11 files with two shots of
+one name, 22 shots have `shots_with_name` 2. In each pair the row points at the later shot, and the earlier one has
+`rows` `-` and 0 calls. Those 11 are the only records no call names: every other shot, all 299 shakes and all 4,233
+rows have at least one. Three rows hold -1, two in the shot lists and one in the shake lists.
+
+The row argument is a constant of this form, and the verbs read only the row part (`0x0034F976`, `0x0034F32B`,
+`0x0034EDE9`, `0x00349FF3`, `0x00349776`):
+
+```python
+reference = 0x02000000 + row        camera verbs, and one shake call in frs_b0201
+reference = 0x0D000000 + row        the other 327 shake calls
+```
+
+| Verb | Calls | List | Row argument | Channel argument |
+|---|---|---|---|---|
+| `camerastart_7e` | 3,833 | shot | second of two | first |
+| `camerastart` | 450 | shot | only | none, channel 0 |
+| `camerastart_7d` | 39 | shot | second of three | first |
+| `camerahitcheck` | 8 | shot | only | none |
+| `behindtoeventcamera` | 2 | shot | first of four | none |
+| `camerashakestart_1a3` | 328 | shake | second of two | first |
+
+The calls come from the instruction stream, and the argument text and the blocks come from the decompiled listing of
+the same file. In every function the two list the same verbs in the same order. A call's `conditions` are the blocks
+around it in its function. What requests that function is not followed.
+
+In 22 calls the script's file has no section 8, so `row_name` and `record` are `-`: seven in `evt_t0005` and 15 in
+six `global` map scripts. `0x003DA400` returns at once when the manager's list is null (`0x003DA426`).
+
+An attachment names an actor by number. `0x00257AD0` counts the manager's records whose class is 3 and takes the one at
+the number less one (`0x00257355`, `0x00257B0A`). Sequences 5, 6 and 7 have class 3 (`0x01E0C328`), and a directory entry's
+type word is its sequence. In all 1,114 scripts with code the directory is sorted by that word and the header's
+per-sequence counts equal it, so record `i` is directory entry `i`, and the name in `eye_actor_name` follows.
+
+For manager 4 the number is looked up in the manager whose index is at `0x02096504` (`0x0025737C`, `0x0025738A`). The
+tables give the name from the script's own directory.
+
+`eye_models` and `target_models` are the files named by bind verbs in that actor's own code, from
+[`ebp-actor-manifest-calls.tsv`](ebp-actor-manifest-calls.tsv). `-` means that actor's code holds no bind verb.
+All 132 sides with attach mode 2 have one such file, and in all 132 the joint is the key of an `@FTR` node of that
+file, whose number is in `eye_joint_node` or `target_joint_node`. Mode 1 takes another lookup and has `-` there.
+
+### Columns of the ten tables
+
+| column | what it holds |
+|---|---|
+| all: `script` | the script's path under `plan_master/us` |
+| rows, shots, shakes, calls: `kind` | `zone` or `event` |
+| rows: `list`, `row` | `shot` for section 8 or `shake` for section 10, and the row's position |
+| rows: `name_offset`, `name` | the name's offset from the section start in hexadecimal, and the name |
+| rows: `record`, `record_name`, `names_match` | the stored record number, -1 for none, that record's name, and whether the two names are equal |
+| rows: `records_with_name` | how many records of the section hold the row's name |
+| rows: `word_08`, `word_0c` | the row's two words as stored, in hexadecimal |
+| rows, shots, shakes: `calls` | the calls that name that row, or that name a row picking that record |
+| shots: `shot`, `name`, `shots_with_name`, `rows` | the record number, its name, how many shots hold that name, and the rows that pick it |
+| shots: `word_00`, `length`, `attach` | the first word and the attachment word in hexadecimal, and the record length |
+| shots: `eye_actor`, `target_actor` | the actor number from `attach`, 0 for no actor; the side's other columns are then `-` |
+| shots: `eye_actor_name`, `target_actor_name` | the directory name of that actor |
+| shots: `eye_mode`, `target_mode` | the attach mode: 0 the actor's position, 1 and 2 a joint |
+| shots: `eye_turn`, `eye_hold_height`, `eye_hold_ground` and the same for `target_` | the three attachment flags, `yes` or `no` |
+| shots: `eye_angle_from_joint`, `eye_fov_from_joint` | flags `0x200` and `0x400` of `attach` |
+| shots: `eye_joint`, `target_joint` | the stored joint words in hexadecimal, read for modes 1 and 2 |
+| shots: `stream`, `keys`, `segments`, `frames` | the commands in order (`K`, `S`, `E`), the counts, and the sum of the segment durations |
+| keys, segments: `shot`, `position`, `offset` | the shot, the command's place in its stream, and its offset from the record start in hexadecimal |
+| keys: `key`, `eye`, `target`, `angle`, `fov` | the key's place among the shot's keys, the two points as `x y z`, and the two values |
+| keys: `follow_a`, `follow_b`, `follow_lead` | the three path-follow values |
+| keys, segments: `raw` | all the command's bytes, in hexadecimal |
+| segments: `segment`, `duration`, `kind`, `absolute` | the segment's place among the shot's segments and the stored values |
+| segments: `timing_raw`, `timing` | the 13 words, as stored and read: `c` and a curve number, or `f` and a frame count |
+| segments: `eye_path_raw`, `eye_path`, `target_path_raw`, `target_path` | the words as stored, and the path number, `distance` when progress is a distance, `-` for no path |
+| curves, curve-keys: `section`, `curve` | 9 or 11, and the curve's number in its section |
+| curves: `length`, `keys`, `start`, `start_value`, `end`, `end_value` | the stored header |
+| curves, paths: `used_by` | the segment word or shake slot that names it |
+| curve-keys: `key`, `first_16_bytes`, `a`, `b`, `c`, `d`, `span` | the key's place, its first 16 bytes in hexadecimal, and the five values `0x003CC5F0` reads |
+| paths: `path`, `length`, `word_02`, `segments`, `arcs` | the path number and the stored header, `word_02` in hexadecimal |
+| paths: `start`, `end`, `arc_table` | the two points as `x y z`, and each arc as `distance:parameter` |
+| path-segments: `segment`, `x_a` to `z_d`, `span`, `word_34` | the segment's place, the three cubics, the span, and its last word in hexadecimal |
+| shakes: `shake`, `name`, `shakes_with_name`, `rows` | as for shots |
+| shakes: `duration`, `word_1c`, `curve_slots`, `curves` | the duration, the next word in hexadecimal, the 32 slots as stored, and the slots in use |
+| calls: `actor`, `actor_index`, `function`, `symlink_actors` | where the call is; the index is the actor's place in the directory; `symlink_actors` are the actors that run the same code |
+| calls: `code_offset`, `verb`, `verb_id`, `arguments`, `channel` | the call's offset in the code section in hexadecimal, the verb, its argument text, and the channel argument, `-` for none |
+| calls: `list`, `reference`, `row`, `row_name` | the list named, the row argument in hexadecimal, the row, and the row's name |
+| calls: `record`, `record_name` | what the row picks, -1 for no record, `-` when the file has no such list |
+| calls: `conditions` | the enclosing blocks, outermost first, `-` for none |
+
+Floats are written with nine significant digits, which keeps each stored value exact.
+
 ## Loader behaviour
 
 ### CAM7 at load
@@ -200,7 +306,7 @@ decodes each shot's `attach` word:
 
 | Field | Eye | Target |
 |---|---|---|
-| actor | mask `0x1FF`: the n-th type-3 actor of the manager, n - 1 (`0x00257AD0`), 0 for no actor | mask `0x1FF0000` |
+| actor | mask `0x1FF`: number n, the n-th class-3 record of the manager (`0x00257AD0`, `0x00358960`), 0 for no actor | mask `0x1FF0000` |
 | attach mode | mask `0x6000` | mask `0x60000000` |
 | turn with the actor | `0x8000` | `0x80000000` |
 | hold height | `0x800` | `0x8000000` |

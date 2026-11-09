@@ -430,6 +430,97 @@ tables of Layouts and Shipped data.
 | `bank_sounds_without_slot` | the bank's sounds, empty ones included, that no present slot names (slot n names sound n), 0 to 21. It equals `bank_sounds` less `slots_present` except where slots run past the bank: 1 on `se007` (sound 0), 12 on `se228` and `se241` (sounds 19 to 30) and 8 on `se353` (sounds 13 to 20), as in the table of The block banks |
 | `slots_past_bank` | the slots whose number is the bank's sound count or above: 1 on `se007`, 12 on `se228` and `se241`, 2 on `se353`, 0 on the other 244 rows |
 
+### Every sound in every bank
+
+`Database/Tools/catalogues/sound_members.py` reads all 4,609 `.sab` banks and all 248 `.seb` indexes and writes three
+tables:
+
+| Table | Rows | One row per |
+|---|---:|---|
+| [`sound-sounds.tsv`](sound-sounds.tsv) | 13,177 | sound of a bank, 13,150, or index slot past the end of its bank, 27 |
+| [`sound-block-users.tsv`](sound-block-users.tsv) | 943 | block id in a `charseinfo` row |
+| [`sound-selections.tsv`](sound-selections.tsv) | 7,049 | script call of `sebsoundplay`, 6,821, or native call that builds a sound id, 228 |
+
+| `family` | Banks | Sounds | Playable | Empty |
+|---|---:|---:|---:|---:|
+| `block` | 248 | 6,395 | 4,410 | 1,985 |
+| `six_digit` | 4,097 | 4,097 | 4,097 | 0 |
+| `voice` | 264 | 2,658 | 2,658 | 0 |
+
+An empty sound has a `snd ` record of 112 bytes with no name and `playable` 0, and `0x007A8CF0` refuses it (`0x007A8DE3`).
+It has no sequence, track or material, so those columns hold `-`.
+
+Three questions stay in separate columns. The row says the sound is in the bank. `index_state` says whether the
+block's index reaches it. The selection columns say what names it: `charseinfo_rows`, `footstep_surfaces`,
+`animation_types`, `script_calls` and `native_literals`. A sound can hold a slot and be named by none of them.
+
+| `index_state` | Rows | Meaning |
+|---|---:|---|
+| `slot` | 4,377 | the block's index has this slot; 4,376 are playable, and one is empty, `se301` sound 21 |
+| `no_slot` | 2,018 | the index has no such slot; 1,984 are empty and 34 playable |
+| `past_bank` | 27 | the index has this slot and the bank ends before it, so the sound columns hold `-` |
+| `-` | 6,755 | a six-digit or voice bank, which has no index |
+
+Below the `snd ` record the links are the ones every shipped bank holds, and the generator stops if one fails. The
+first playable sound has the first `seq ` and `trk ` records, the second the second, and so on. A sequence's `u16`
+`+0x04` equals its track's `u16` `+0x08`. In a block or voice bank a track's `u16` `+0x0A` is the position of its
+material. A six-digit bank has one material and that word holds other values.
+
+A track's own number, `u16` `+0x04`, equals its position except in five tracks: position 5 of `se000` holds 124, and
+positions 13 to 16 of `se353` hold 15, 16, 13 and 14. Two materials of `se000`, positions 5 and 123, belong to no
+track. They are the two codec-0 materials.
+
+What names a sound:
+
+- `charseinfo_rows` counts the rows that name the bank in each block field, as `group0=` and so on, or `voice=` for
+  the battle-voice field of a voice bank. The block ids go to banks by the table under "Block banks and the block
+  index". All 252 group 0 rows are in the weapon table `w`.
+- `footstep_surfaces` lists, for a bank named in group 1, each ground type whose entry in `soundfoottable.bin` is
+  this sound: `3:a` is surface 3 in set A, and `3:b` in set B, read when the weather flag `0x02099DBC` is 1 (`0x002E9F29`,
+  `0x002E9F0A`).
+- `animation_types` lists the types of [Animation sounds](animation-sounds.md) whose variants are this sound, for
+  a bank named in that type's group. The variant is the sound's number (`0x002E9FB2`, `0x003A1240`). Types 8, 9 and
+  10 list two sounds each, and the second is played when the weather flag is 1 (`0x002E9FA7`).
+- In a `.win.sab` voice bank `animation_types` lists the group 2 types whose variant is below 10, which take the
+  sound straight from the actor's loaded voice bank (`0x002E9F73`-`0x002E9F9E`).
+- `script_calls` counts the `sebsoundplay` calls with this block and sound, and `native_literals` the native call
+  sites with a constant number. Neither counts a number the code computes.
+
+`sebsoundplay` takes the block's selector and the sound (`0x0035708C`, `0x00357080`). A selector of 1 is `se007`, 2 is
+`se002`, and any other is `se000` (`0x00357093`-`0x003570AB`). In the `us` scripts all 6,821 calls give constants, 6,729
+for `se000` and 92 for `se007`, and each names a playable sound that has a slot. No `us` script calls
+`sebsoundplay_2c1`. The script rows come from the instruction stream, with the listing's argument text and blocks.
+
+The 228 native rows are the call and jump sites of `0x003A1180`, `0x003A11F0`, `0x003A1100`, `0x003A1070`, `0x00249C60` and
+`0x00249CA0`. Of those, 152 load a constant into `ecx` on the one path to the call; all are `se000` and each names a
+playable sound that has a slot. The other 76 compute the number, or reach the call by another path, and have `-` in
+`sound`. Two of the 76 are jumps in code with no unwind record, `0x002D2D5F` and `0x002D2D9C`.
+
+A six-digit bank has no index and no sound number to choose: `bank_named_by` gives what opens it, one `SeSep` record
+or more, and `bank_used` the state from the bank tables.
+
+| column | what it holds |
+|---|---|
+| sounds: `family`, `bank`, `file_kind`, `language`, `path` | the bank's family, its file stem, `win` or `orb`, `us` or `jp` for a voice bank, and the path |
+| sounds: `sound`, `name`, `number`, `playable` | the record's position, its name, `u16` `+0x08`, and byte `+0x04` |
+| sounds: `index_state`, `slot_flags` | as above, and the slot's flag byte `+0x04` in the `.seb` |
+| sounds: `sequence`, `sequence_number` | the position of the `seq ` record and its `u16` `+0x04` |
+| sounds: `track_number`, `trk_06`, `trk_08`, `trk_0a` | the `trk ` record's `u16` at `+0x04`, `+0x06` in hexadecimal, `+0x08` and `+0x0A` |
+| sounds: `material`, `channels`, `codec`, `rate` | the material's position and its values: codec 7 is HCA and 4 is the `.orb` codec |
+| sounds: `loop_a`, `loop_b` | the loop region, `+0x0C` and `+0x10` of the material, in hexadecimal |
+| sounds: `codec_header_size`, `data_size` | `+0x14` and `+0x18` of the material, in bytes |
+| sounds: `samples`, `seconds` | the HCA header's sample count, and that over the rate to three decimal places; `-` for codec 4 |
+| sounds: `snd_05` to `snd_51` | the `snd ` record's other fields that vary, as stored, the name giving the offset; `snd_0a` is a `u16`, `snd_0c` and `snd_24` `u32` in hexadecimal, the rest bytes |
+| sounds: `seq_28`, `seq_2a`, `seq_2c` | the `seq ` record's fields, as stored: two `u16`, and a `u32` in hexadecimal |
+| sounds: `bank_named_by`, `bank_used` | the `named_by` or `referenced_by` cell and the `used` cell of the bank's row in [sound-se-bank-files.tsv](sound-se-bank-files.tsv) or [sound-voice-bank-files.tsv](sound-voice-bank-files.tsv) |
+| block-users: `bank`, `block_id`, `group` | the `.seb` the id reaches, the stored id, and the field: 0, 1 or 2 |
+| block-users: `letter`, `number` | the `charseinfo` table and the row, which is the model of that letter and number |
+| selections: `source`, `offset` | `script` with the offset in the code section, or `native` with the call's address |
+| selections: `script`, `actor`, `function` | where a script call is, under `plan_master/us` |
+| selections: `called`, `arguments` | the verb and its argument text, or the native function called |
+| selections: `bank`, `sound` | the block named and the sound number, `-` when the code computes it |
+| selections: `conditions` | the enclosing blocks, outermost first; what requests that function is not followed |
+
 ## Loader behaviour
 
 1. `0x007CFF90` accepts a bank only when its first four bytes equal `sabf`, the constant at `0x00D115B4`, and refuses a

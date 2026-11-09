@@ -63,6 +63,7 @@ commands themselves are the authored presentation commands
 | `+0x0C` | `u32` |  | record count |
 | `+0x10` | `char[32]` |  | the motion's name |
 | `+0x50` | `u16` |  | duration in frames |
+| `+0x54` | `u32` |  | offset of the constant pool, from the entry: f32 values to the end of the entry |
 | `+0xF0` | `...` |  | records (the start `0x00409190` picks for both kinds), 22 bytes each: |
 | `+0x00` | `u16` |  | node key |
 | `+0x02` | `u16` |  | mask `0x1FF` channel mask, mask `0x7E00` record length (22) |
@@ -122,6 +123,39 @@ blocks fill the first `80 × rows` slots and `@FRM` is the last slot.
 | `@FMW` form | packed in 110 `.cm` and 17,576 `.ca` entries, table form in 1 `.cm` and 727 `.ca` |
 | frame counts | the first byte of each of the 1,446,602 packed channel descriptors equals the paired `@FMN` duration's low byte |
 | `@FRM` payload | byte `+0x01` 1 in 2,977, 2 in 169, 4 in 18; second region present in 2,847 |
+
+### The individual records
+
+Every `@FMC`, `@FMN`, `@FMW` and `@FRM` of the shipped `.ca` and `.cm` files and of every used `.mot` slot is listed.
+Records are keyed by source file, package slot, entry slot and offset, never by name. An entry whose bytes occur
+more than once is written once in the record tables, and `slots` joins each occurrence to it through `content`.
+
+| Table | Rows | One row per |
+|---|---|---|
+| [`model-effects-and-motion-commands-containers.tsv`](model-effects-and-motion-commands-containers.tsv) | 13,118 | `@FRP` container with any of these entries: `path`, `.mot` `package_slot`, `offset` in the file, `bytes`, `sha256_16`, `version`, the version-1 `columns` and `rows`, `slots`, and the count of each tag |
+| [`model-effects-and-motion-commands-slots.tsv`](model-effects-and-motion-commands-slots.tsv) | 314,261 | `@FMC` (109,560), `@FMN` (95,814), `@FMW` (95,814) and `@FRM` (13,073) slot: `container`, `slot`, `tag`, `offset`, `kind`, `length`, `count`, `name`, `content`, and `links` |
+| [`part 1`](model-effects-and-motion-commands-commands-part1.tsv) [`part 2`](model-effects-and-motion-commands-commands-part2.tsv) | 1,583,764 | command of each distinct `@FMC` (24,309): `stream`, `stream_kind`, `stream_offset`, `group`, `frame` (`0xFFFF` for the block the walker runs first), `command` order in the group, `offset`, `id`, `length`, and `operands` as stored |
+| [`model-effects-and-motion-commands-fmn-part1.tsv`](model-effects-and-motion-commands-fmn-part1.tsv) | 15,805 | distinct `@FMN`: `kind`, `duration`, `tracks`, `track_start`, `pool_offset`, `header` (the bytes from `+0x30` to the records) and `pool` (the constant values as stored) |
+| [`part 1`](model-effects-and-motion-commands-tracks-part1.tsv) [`part 2`](model-effects-and-motion-commands-tracks-part2.tsv) | 730,977 | track of each distinct `@FMN`: `record`, `offset`, `node_key`, `channel_mask`, `length`, and `words`, the nine channel words as stored |
+| [`model-effects-and-motion-commands-fmw-part1.tsv`](model-effects-and-motion-commands-fmw-part1.tsv) | 24,540 | distinct `@FMW`: `channels`, `form` (1 packed, 0 table), `stream_base`, `header` |
+| [`part 1`](model-effects-and-motion-commands-channels-part1.tsv) [`part 2`](model-effects-and-motion-commands-channels-part2.tsv) [`part 3`](model-effects-and-motion-commands-channels-part3.tsv) [`part 4`](model-effects-and-motion-commands-channels-part4.tsv) [`part 5`](model-effects-and-motion-commands-channels-part5.tsv) [`part 6`](model-effects-and-motion-commands-channels-part6.tsv) [`part 7`](model-effects-and-motion-commands-channels-part7.tsv) [`part 8`](model-effects-and-motion-commands-channels-part8.tsv) [`part 9`](model-effects-and-motion-commands-channels-part9.tsv) [`part 10`](model-effects-and-motion-commands-channels-part10.tsv) [`part 11`](model-effects-and-motion-commands-channels-part11.tsv) [`part 12`](model-effects-and-motion-commands-channels-part12.tsv) [`part 13`](model-effects-and-motion-commands-channels-part13.tsv) [`part 14`](model-effects-and-motion-commands-channels-part14.tsv) [`part 15`](model-effects-and-motion-commands-channels-part15.tsv) [`part 16`](model-effects-and-motion-commands-channels-part16.tsv) [`part 17`](model-effects-and-motion-commands-channels-part17.tsv) [`part 18`](model-effects-and-motion-commands-channels-part18.tsv) | 2,057,091 | channel of each distinct `@FMW`: `flags`, `frame_descriptors`, `value_descriptors`, `descriptor`, `frame_runs`, `value_runs`, `keys`, `first_frame`, `last_frame`, `first_value`, `last_value`, `keys_sha16` |
+| [`model-effects-and-motion-commands-associations.tsv`](model-effects-and-motion-commands-associations.tsv) | 13,118 | link from a container to what names it: `relation` (`model file`, `model lane`, `action motion` or `script package`), `owner` (the model's bound id, or the script position that loads the slot), `selector` (lane, action-motion id or package slot), `evidence`, and `copies`, the containers with the same bytes |
+
+- A link is one the game's own tables or a script's load makes: the model list, the action-motion array, or the
+  package's load site. It does not say a motion would work on a different skeleton. Containers with equal bytes
+  (1,101 contents occur more than once, in the language folders) stay separate rows.
+- `links` of an `@FMC` slot lists the `@FMN` slots its `0x09` commands start. `links` of an `@FMN` slot gives two
+  `@FMW` slots: the one the name search finds, then the one at the same position in the `@FMW` run.
+- `frame_runs` and `value_runs` are the stored runs of each stream, as hex in file order, one group per stream.
+  `descriptor` is the channel's whole descriptor. The frames and values follow from them by
+  [Stepping a channel](#stepping-a-channel).
+- `first_value` and `last_value` are the channel's first and last keys as `binary32` bits, high byte first.
+  `keys_sha16` is the first 16 digits of the sha1 of the key frames as `u16` followed by the values as `binary32`,
+  both little-endian.
+- `n1168_e1.ca` is the only container with two `@FMN` of one name: both `idle0`, slots 80 and 88. The name search
+  gives slot 89 for both, a section with no channels, so the channel data at slot 97 is not what that search finds.
+
+The tables are written by `Database/Tools/catalogues/motion_entries.py`.
 
 ## Loader behaviour
 
@@ -201,6 +235,18 @@ ticket (`0x003B3B10`, `0x0040A1C4`).
 - `0x0041CA70` picks the command block `0x004090D0(container, +0x31A, +0x31C & 0xFFF)` into `+0x368`, and
   `0x0041CD30` positions each track on its first record, keeping the `0xFFFF` block apart.
 
+Command `0x09` (`0x00417F40`) starts a motion. For a command block with `+0x04 & 3` non-zero, the case of every shipped
+block, the motion is the `@FMN` at slot `(word +2 >> 1) + +0x2A` of the entry's container (`0x0041805C`-`0x00418087`). The
+block with `+0x04 & 3` of 0 would take a name at the command's `+2` instead (`0x00417FF3`-`0x00418057`).
+
+`+0x2A` comes from `0x0041CC90`, or from the record's first-`@FMC` slot `+0x2FA` for a motion number with bits above
+`0xFFF` (`0x00423E24`-`0x00423E3A`). In the shipped data the slot is an `@FMN` for all 155,630 commands of the `.ca`
+and `.mot` files with no base, and for all 225 of the `.cm` files with the file's first `@FMC` slot as the base.
+
+When the `@FMN`'s kind has `& 3` and `>> 4 & 3` both 1, it binds the channels (`0x0041849B`-`0x00418561`). The `@FMW` is
+found by the `@FMN`'s name: `0x00409930` returns the first slot with that tag and name (`0x00409780`), and when there is
+none `0x00409FA0` searches the bank (`0x004184C5`-`0x004184FB`).
+
 The model binder `0x0041FCF0` also keeps the model's own first `@FMC` index at record `+0x2FA`
 (`0x0041FE83`), which the event map in [model files](model-files-cm-ca.md) adds to.
 
@@ -226,6 +272,9 @@ The model binder `0x0041FCF0` also keeps the model's own first `@FMC` index at r
   takes one (`0x0041B5B9`-`0x0041B5BD`, `0x0041B603`-`0x0041B60F`).
 - The `@FMN` duration goes to the descriptor's `+0x16`, and to `+0x18` unless state `+0x96` bit `0x40` is
   set.
+- `0x00418880` applies the `@FMN`'s constant values. The pool is the entry plus its `+0x54` (`0x004189CB`-`0x004189D7`). For
+  a channel with its mask bit clear, or with slot frame `+0x04` of `0xFFFF`, and only while `+0x54` is non-zero, it
+  writes `pool[word & 0x7FFF]`, keeping it at the slot's `+0x0C` (`0x00418ADD`-`0x00418B1F`).
 - `0x0041B650` starts a channel and `0x0041A470(slot, @FMW, frame)` moves its pair of keys forward until
   the next key's frame is past the requested frame.
 - The values are written to the bone and every bone linked through `+0x278`: `0x00418650` into bone
@@ -250,6 +299,8 @@ when its element reaches the length.
   the next stream of the channel at the end of one; in the table form `0x0041B920` and `0x0041BB00` do
   the same, with `0x0041B460` decoding a frame delta and `0x0041B3A0` a value (`literal × scale +
   previous`).
+- The value steps are `binary32`: the literal goes through `cvtdq2ps`, then `mulss` and `addss`
+  (`0x0041B427`-`0x0041B434`, `0x0041BD1D`-`0x0041BD2B`), so a stored value is the result of those rounded steps.
 - `0x0041A7F0(slot, @FMW)` reads the first frame delta of a channel; a delta of 0 marks the channel as
   a single key (`+0x04` = `0xFFFF`).
 - `0x0041A8E0(slot, @FMW, frame)` moves the key pair forward until the next key is past `frame`, and
@@ -264,24 +315,54 @@ work each frame for a playing entry (bit `0x2` of `+0x08`) whose word `+0x0A` is
 from the model's bone array (`0x0020E600` of model `+0x84`, `0x290` bytes a bone) and the channel rows
 from the owner's `+0x2B8` block (`0x108` bytes a row, count `+0x2BC`).
 
-`0x00418880` adds `0x001ED020(name, …)` to the frame it applies, `name` being the text at `+0x3C` of
-the block the stream's `+0x2E0` points to. The answer is 0 except in 60 fps mode (`0x01F82E38`)
-during an event (`0x001EC560`): 0.5 at story progress `0x15AE` (`0x00265270`) with the marked event
-slot's count (`0x01DFE40C`, `0x01F832B0`) at 1 and `g0111` in the name, and −1.0 at progress `0x15E0`
-with the count at 15 and `c1006` in the name.
+On a non-zero frame (`0x004189F9`) `0x00418880` can adjust the frame in two steps, both only in 60 fps mode
+(`0x01F82E38`). `name` is the model name at `+0x3C` of the render record the stream's `+0x2E0` points to, and
+`motion` is the stream's section name `+0x2EC`.
 
-`0x00418880` also rounds the frame down to a whole frame (`floorf`, `0x004192FE`) in two cases, both only in 60 fps
-mode (`0x01F82E38`):
+- It first rounds the frame down to a whole frame (`floorf`, `0x004192FE`) when `0x001ED240(name, motion, id, frame)`
+  answers 1 (`0x004192C9`), or when the frame is exactly one frame step (`0x01DFE0BC`) before the end `+0x16` and
+  `0x001EC6B0(motion)` answers 1 (`0x004192F5`).
+- It then adds `0x001ED020(name, …)` to the frame (`0x00419329`, `0x00419334`). The answer is 0 except in the two
+  branches the table lists.
 
-- `0x001ED240(name, motion, id, frame)` answers 1 (`0x004192C9`), with `motion` the stream's text `+0x2EC`. Outside
-  an event (`0x001EC560`) it does so at frame 10.5 of `n1120_32` or a `n1129` name and at frame 21 of `m1072_10`.
-  During one it checks a fixed list of story progress values (`0x00265270`: `0x177`, `0x222`, `0x262`, `0x33E`,
-  `0x560`, `0x6DC`, `0x7C2`, `0x7CE`, `0xD48`, `0xD70`, `0x15AE`, `0x15E0`, `0x1AF4`).
-- With those it checks the event slot counts (`0x01DFE40C`, `0x01F832B0`, `0x01F832C4`), names and frames, and, in the
-  progress-0 field `0x112` and elsewhere, the effect names `mrm_g0100`, `bds_f0100`, `sum_j0001`, `sum_a0001`,
-  `sum_f0001` and `sum_i0001` (`0x001C50C0`).
-- The frame is one frame step (`0x01DFE0BC`) before the end `+0x16` and `0x001EC6B0(motion)` finds `m1009`, `m1266`,
-  `m1222`, `m1223`, `m1151` or `m1267` in the motion's name.
+Each branch of those functions, and of four others that test a name in the same way, is a row of the table
+below. A row's conditions all hold together. An event is `0x001EC560` answering non-zero, which needs the marked
+slot `0x01DFE40C` at 4 or below with a non-zero count at `0x01F832B0`, and `0x00265680` answering 0.
+
+`0x001ED240` tests the story progress values in one list, and a value in the list settles the answer with two
+exceptions. Progress `0x7CE` goes on to the cut-scene names when the count is not 3 or `n1018` is not in the
+name, and progress 0 does so outside map `0x112`. So does every progress value not in the list. The cut-scene
+names are tried in the table's order, and the first one found settles the answer, so a later name is not tried.
+Outside an event the frame test is made first, 10.5 and then 21. Every `|frame - x|` test is strict.
+
+The code holds the conditions only. Nothing in the exe says why a branch exists.
+
+| Table | Rows | One row per |
+|---|---|---|
+| [`model-effects-and-motion-commands-exceptions.tsv`](model-effects-and-motion-commands-exceptions.tsv) | 69 | branch that gives an adjustment or an answer of 1 |
+| [`model-effects-and-motion-commands-exception-assets.tsv`](model-effects-and-motion-commands-exception-assets.tsv) | 260 | name and shipped file it reaches |
+
+| Column | Table | Meaning |
+|---|---|---|
+| `function`, `branch` | exceptions | the function, and the row's number within it |
+| `scope` | exceptions | `event`, `outside event`, or `any` for a function that makes no event test |
+| `story_progress` | exceptions | the value `0x00265270` must return |
+| `event_count` | exceptions | the marked slot's count at `0x01F832B0` (0 when `0x01DFE40C` is above 4) |
+| `cut_frame` | exceptions | the value of the cut-scene frame counter `0x01F832C4` |
+| `map` | exceptions | the value of the loaded map `0x00314910()` |
+| `cut_name`, `cut_assets` | exceptions | text that must be inside the current cut-scene name (`0x001C50C0`, `strstr`), and the cut-scene files it reaches |
+| `name_field`, `match`, `name`, `assets` | exceptions | whether the model or the motion name is tested; `substring` (`strstr`) or `exact` (`strcmp`); the text; and the files it reaches |
+| `frame_test` | exceptions | what the frame must satisfy, or, where the cell says so, another value |
+| `adjustment` | exceptions | what the answer does |
+| `sites` | exceptions | the instructions that decide the row |
+| `kind`, `match`, `name`, `path` | exception-assets | `model`, `motion` or `cut scene`; the test; the text; and a shipped file whose name passes it |
+
+`0x001ED0D0` gives the weight `0x00417012` uses, 0.5 unless its row applies. `0x001EDAD0` is used at `0x003D91AC` and
+`0x001EDBB0` at `0x002F2CBA` ([element types](effect-element-types.md), [element runtime](effect-element-runtime.md)).
+`0x001EDCD0` decides the branch at `0x0040AF5A`. `0x001EC760` also tests cut-scene names, for the number of passes a frame
+runs, and has no rows here ([frame update order](../Engine-Core/frame-update-order.md)).
+
+`Database/Tools/catalogues/playback_exceptions.py` writes these tables.
 
 At frame 0 `0x00418880` writes, for each row with a bone, the first value of each of the nine
 channels the record's mask names and that has data (`0x0041A7F0`, then `0x00418650`, `0x00418700` or
@@ -367,3 +448,15 @@ vector times the matrix's `+0x3C` into its translation row, with or without w.
 - [Resource sections](../Game-Files-And-Data-Tables/resource-sections.md): the `@FRP` child selector `0x004090D0`.
 - [Authored presentation commands](authored-presentation-commands.md): the commands inside `@FMC`.
 - [Effect files](effect-files-efx-efb.md): the `EFX0010` format.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Party: `0x00265680` is called by `0x00358CB0`, `0x00358F90`; those functions are documented on
+  [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md),
+  [player movement](../Movement-And-Pathfinding/player-movement.md).
+- Save load settings: `0x00314910` calls `0x002EF2B0`; those functions are documented on
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
+- Status periodic terminal: `0x00265680` is called by `0x00310DB0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).

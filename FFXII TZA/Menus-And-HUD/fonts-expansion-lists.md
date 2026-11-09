@@ -21,6 +21,29 @@ Each list belongs to one scene or map folder, or to one Bestiary text bundle. Wh
 each character number in the text picks an entry of the list, and that entry names the glyph to draw from the font's
 `.dat` of the same name.
 
+### Text read through a screen's font
+
+The guide and quest screens draw expansion glyphs from their own fonts, not from a list. Their tables keep each
+glyph as `{expansion glyph N}`, because N means a different character in each font.
+[`fonts-resolved-text.tsv`](fonts-resolved-text.tsv) keeps that text and gives the readable text beside it.
+
+| Column | Meaning |
+|---|---|
+| `table`, `file`, `folder`, `row`, `column` | where the text is: the table, the game file, the language folder, the row's own fields, and the column |
+| `font` | the font used, `fontguide.dat` or `fontquest.dat`; `-` when no font applies |
+| `tokens`, `kept` | how many marks the text holds, and how many stay as written |
+| `text`, `resolved` | the text as the source table has it, and with each joined mark replaced by its character |
+
+The `kr`, `ch` and `cn` folders use the font folder of their own name, and `in` uses `jp`, whose `fontquest.dat` has
+the 121 records of the `in` sheet. `de`, `es`, `fr`, `it` and `us` use `us` (`0x001B44A0`). A mark joins on the record
+whose key is N.
+
+Every mark in `menumap_guide00.bin` and in the quest files joins. Marks in `menumap_guide01.bin` to `04` stay as
+written: the schedule never requests those files, so no font is bound to their pictures, and the `us` font
+folder, which `es`, `fr`, `it` and `us` read, has no `fontguide.dat`.
+
+`Database/Tools/catalogues/expansion_text.py` writes this table.
+
 ### The path of a list
 
 A list's key is `0x00674A00` of a name (`0x001B6350`): for a `fontex_expand` or `fontex_subtitle` list a path

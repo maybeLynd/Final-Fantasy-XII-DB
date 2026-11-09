@@ -727,7 +727,7 @@ The table holds 200 entries at `0x02B407C0`; slot `n` is entry `n` (`0x003BB3E0`
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `i32` | field | the destination field id (`0x001C1720`) |
-| `+0x04` | `i32` | story | 0 any story counter; otherwise the counter it must equal; -2 matches only while battle-state bit `0x1000` is set |
+| `+0x04` | `i32` | story | 0 any; otherwise the counter it must equal; -2 only while bit `0x1000` of [`0x02EBF190`]+4 is set |
 | `+0x08` | `i32` | entrance | 0 any entrance; otherwise the entrance it must equal |
 | `+0x0C` | `i32` | variable | 0 no variable; otherwise the row also matches while `0x002EF390`(variable) is true |
 
@@ -742,7 +742,7 @@ Measured from `gamedata/disableautosavelist/disableautosavelist.txt` in the arch
 | Field only, always excluded | 21 rows: fields 12, 13, 50, 769, 854, 858, 860, 862, 864, 866, 867, 868, 869, 910, 912, 914, 918, 922, 924, 1113, 1147 |
 | Field and entrance | 1 row: field 1140, entrance 9 |
 | Field and story counter | 28 rows, story values 16 to 6750 (for example `48,301`) |
-| Story -2 (battle-state bit `0x1000`) | 10 rows: fields 1155 to 1299 in steps of 16 |
+| Story -2 (bit `0x1000` of the dword at `[0x02EBF190] + 4`) | 10 rows: fields 1155 to 1299 in steps of 16 |
 | Story -1 with a variable | 13 rows, variables 15 to 56; two of them (field 1124) also name entrance 5 or 4 |
 | Empty second column | 1 row, `1113,,5303`, which parses as field 1113 alone |
 
@@ -751,8 +751,8 @@ columns, the field's zone, map name and region, the story stage a story value na
 and the boss whose fight it tracks, and the rule in words. What the rows show:
 
 - The ten story -2 rows are the Trial Mode stages 1, 11, 21 and so on to 91 (fields 1155 to 1299, `tri_a01` to
-  `tri_s01`): the story value -2 stands for battle-state bit `0x1000` (`0x00236760`), so entering those stages in
-  Trial Mode does not autosave.
+  `tri_s01`): the story value -2 stands for bit `0x1000` of the dword at `[0x02EBF190] + 4` (`0x00236760`), so
+  entering those stages in Trial Mode does not autosave.
 - Each of the 13 variable rows names a boss flag (`g_btl_...`). The zone scripts set it to 1 when the fight is
   waiting and to 2 once it is won, so the area change skips the autosave only while that boss is still to be
   fought: for example field 441 (Cloister of Solace) while Humbaba Mistant waits (variable 15, image byte

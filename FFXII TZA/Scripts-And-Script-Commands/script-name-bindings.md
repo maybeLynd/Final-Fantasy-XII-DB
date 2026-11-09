@@ -494,6 +494,11 @@ detaches nothing. Every path ends in the refresh, a tail jump to `0x002E8FD0(act
 | `bindp` | `0x00C` | `0x00340380`, `0x003409F0`, `0x00342640` | pushes 1 and 0, then runs `bindp2_d4` |
 | `bindp2_d4` | `0x0D4` | `0x0033F330`, `0x00342330` → `0x003409F0`, `0x00343760` → `0x00342640` | binds a model and its body replacement |
 | `unkCall_5cb` | `0x5CB` | `0x00340380`, `0x003418B0`, `0x00343760` → `0x00342640` | `bindp` without the body replacement |
+| `bindp2` | `0x0BD` | `0x00340380`, `0x00342330` → `0x003409F0`, `0x00343760` → `0x00342640` | enters as `bindp` does |
+| `bindp2_d6` | `0x0D6` | `0x0033FC60`, `0x00342330` → `0x003409F0`, `0x00343760` → `0x00342640` | pushes 0 (`0x0033FC85`), then `bindp2_d4`'s begin |
+| `modeldispose` | `0x0C1` | result `0x00342340` | passes the bound id to `0x002E3E90` (`0x00342359`) |
+| `settrapresource` | `0x53B` | result `0x00355400` | passes the bound id to `0x003EC630` (`0x00355419`), on [traps](../World-Areas-And-Travel/traps.md) |
+| `lockcharresource` | `0x538` | result `0x00354990` | passes the bound id and its second argument to `0x002EBD60` (`0x003549C4`) |
 | `bindh` | `0x0D7` | `0x00344F00`, `0x00342330` → `0x003409F0`, `0x00345A60` | attaches a model at `+0x90` (kind 2) |
 | `bindhoff` | `0x0D8` | result `0x003460F0` | detaches `+0x90`, then reattaches the body replacement |
 | `bindc` | `0x200` | `0x00343B00`, `0x00342330` → `0x003409F0`, `0x00344550` | attaches at `+0xC0` or `+0xF0` (kind 3) |
@@ -770,16 +775,20 @@ other    -> 0x01, n,      1      (kind 1 adds 0x33 to the index)
 | `bindp2_d4` | 9,877 |
 | `modelread` | 4,539 |
 | `modelreadsync` | 4,531 |
+| `bindp2` | 2,061 |
 | `stdmotionreadsync` | 1,989 |
 | `setuptreasure` | 1,966 |
 | `bindc` | 1,561 |
+| `modeldispose` | 1,319 |
 | `bindhoff` | 774 |
 | `bindh` | 706 |
+| `settrapresource` | 390 |
 | `charcachedispose` | 289 |
 | `puppetbind` | 285 |
 | `puppetbind_41d` | 24 |
+| `bindp2_d6` | 22 |
 | `unkCall_5cb` | 1 |
-| `bindp`, `puppetbind_41c`, `charcachedisposeall`, `debug_bindp` | 0 |
+| `bindp`, `puppetbind_41c`, `charcachedisposeall`, `debug_bindp`, `lockcharresource` | 0 |
 
 ## Operations
 

@@ -1,0 +1,32 @@
+path	scene_name	scene_word	story	slot_count	instance_id	frames_answering_0	frames_answering_2
+event	spc_z0000	1	-	-	-	539 541	540 542
+event	spc_z0000	3	-	-	-	159 201 217 257 303	160 202 218 258 304
+event	spc_z0000	4	-	-	-	219 461	220 462
+event	spc_z0000	5	-	-	-	261 431 733	262 432 734
+event	spc_z0000	7	-	-	-	625	626
+event	spc_z0000	8	-	-	-	243 385 721	244 386 722
+event	spc_z0000	10	-	-	-	519 591	520 592
+event	spc_z0000	12	-	-	-	193 301 381	194 302 382
+event	spc_z0000	14	-	-	-	299 429 599 649 839	300 430 600 650 840
+event	spc_z0000	15	-	-	-	141	142
+event	spc_z0000	16	-	-	-	323 659	324 660
+event	spc_z0000	17	-	-	-	441 605	442 606
+event	sum_m0001	-	-	7	-	285 407	286 408
+event	sum_l0001	-	-	14	-	273	274
+event	sum_l0001	-	-	15	-	119	120
+event	sum_h0001	-	-	4	-	93	94
+event	hne_e0100	-	-	5	-	203	204
+event	hne_e0100	-	-	6	-	1	2
+event	other	-	1352	3	-	139	140
+event	other	-	5500	11	-	125	126
+event	other	-	6900	12	-	1	2
+event	other	-	315	3	-	249	250
+event	wdl_b0101	-	-	3	-	195	196
+outside an event	-	-	-	-	213	440	441
+outside an event	-	-	-	-	378	286	287
+outside an event	-	-	-	-	380	754	755
+outside an event	-	-	-	-	381	470	471
+outside an event	-	-	-	-	392	190 1260	191 1261
+outside an event	-	-	-	-	394	774	775
+outside an event	-	-	-	-	395	98 240	99 241
+outside an event	-	-	-	-	396	338 1044	339 1045

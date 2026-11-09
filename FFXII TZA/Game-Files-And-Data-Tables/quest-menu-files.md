@@ -246,6 +246,8 @@ pictures.
 - The 19 group-0 entries hold `not use.` in eight languages; in `in` they hold Japanese titles such as `DOG
   TEN COMMANDMENTS`, 14 of them starting with expansion glyph 117 of the quest sheet, written `{expansion
   glyph N}` in the TSV with 118 to 120. Quests 50 and 51 of group 2 share one empty string.
+- The same rows with those marks read through each language's `fontquest.dat` are in the resolved-text table of
+  [Font expansion lists](../Menus-And-HUD/fonts-expansion-lists.md).
 - Each file has 66 entries naming the 66 `menuquest.dat` quests once each, its strings start right after the
   directory at `0x220`, the pad bytes and the threshold bytes' high nibbles are 0, and the 99 to 133 bytes
   of the string area that no entry reaches are all zero.

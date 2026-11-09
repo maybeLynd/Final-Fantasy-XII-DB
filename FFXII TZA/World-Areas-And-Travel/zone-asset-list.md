@@ -126,7 +126,7 @@ set-up `pre_z0000` sets to 1. A value is there from the lowest counter at which 
 under its own condition; a store before the test in the same function counts where its own path holds. A key item a
 condition tests is there from the step of the scene or script that gives it.
 
-566 rows are `dated`, from 0 to 7150 over 57 values; the commonest are 4230 (81 zones), 1475 (75) and 100 (47). The
+567 rows are `dated`, from 0 to 7150 over 57 values; the commonest are 4230 (81 zones), 1475 (75) and 100 (47). The
 highest is `ttl_b01` at 7150, reached by an event in `bhm_d01`. 50 rows name a battle in `basis`, and without that
 battle's store their date moves later: 40 the Zodiark battle (`hne_e01` step 137) and 10 the Firemane battle
 (`grm_d01` step 155). The other rows:
@@ -134,16 +134,44 @@ battle's store their date moves later: 40 the Zodiark battle (`hne_e01` step 137
 - 100 `Trial Mode`;
 - 39 `no way in`: 38 Draklor Laboratory rooms (`dor_`) and the title map `ttl_c01`. No way the table reads leads
   into them;
-- 2 `title screen map`: `ttl_a01` and `ttl_d01` ([Title scripts](../Story-Events-And-Hunts/titles-scripts.md));
-- 1 `not dated`: `grm_f01` (No. 1 Cloaca). Its way in from `grm_e08` needs four saved values, `global_var_2`,
-  `global_var_3`, `global_var_5` and `global_var_6`, the sluice gate states, all at 1 (closed). The table names the
-  way and gives no counter, because the reading leaves those four values free.
+- 2 `title screen map`: `ttl_a01` and `ttl_d01` ([Title scripts](../Story-Events-And-Hunts/titles-scripts.md)).
+
+`grm_f01` (No. 1 Cloaca) is dated 1540. Its way in from `grm_e08` needs four sluice gate states, saved bytes `0x09E0`,
+`0x09E1`, `0x09E3` and `0x09E4`, all at 1 (closed). Entering `grm_e09` stores 1 in `0x09E0`, and entering `grm_e12` stores
+1 in `0x09E1`, each from its `Mapdirector.init`. A switch in each room stores the other two: `grm_e09` `0x09E4` and
+`grm_e12` `0x09E3`. Those switches are talk actors with no condition. Both rooms open at 1540, so the date is theirs.
+
+`grm_e13`, open from 290, has switches that store 1 or 0 in `0x09E0` and `0x09E1` too, and they do not move the date.
+`mic_d01` stores 0 in all four, from `Map_Director.ガラムサイズフラグリセット`.
 
 In 102 rows `basis` also names the walls the way's source zone switches on (`setmapidwall` kind 5, value 0) under a
 condition that is not false at the date. The date does not take them into account: it counts the way open past
 them. Kind 6 writes, which never change where a walking body stops, and writes that switch a wall off are not listed.
 In 67 rows the arrival entrance of a way is held in a saved value; the date then counts the exit group reachable from
 that arrival.
+
+[`zone-openings-wall-gates.tsv`](zone-openings-wall-gates.tsv) tests those 102 rows on the source zone's walk mesh.
+The walls of a row are the wall records of its groups, taken as the unit solids of
+[Geometry primitives](../Movement-And-Pathfinding/geometry-primitives.md); no group in these rows holds a type-1
+polygon. `result` says whether the arrival still reaches the exit's floor. The floor is flooded in steps of 0.1, and
+a point is blocked inside a solid at 0.05 above the floor:
+
+| `result` | Rows |
+|---|---:|
+| `joined`: the mesh joins them with the walls standing | 86 |
+| `separated`: the walls cut every path on the mesh | 12 |
+| `joined from some arrivals`: an arrival held in a saved value, joined from some of the zone's entrances | 1 |
+| `no walk-mesh basis`: the row's date does not rest on the walk mesh | 3 |
+
+A `separated` row does not make its date wrong. The wall's condition, in `basis_text`, may be false when the party
+arrives. The test is on the mesh alone, and `result` leaves out the body's radius. `result_radius_0.5` repeats it for
+a radius of 0.5, and only `mfr_a03` differs, `separated`.
+
+`dor_b01`, `grm_b05` and `alc_b04` are `joined` with no solid tested: the groups their sources switch on hold no
+wall record or wall polygon, so `wall_records` and `edges_met` are 0.
+
+`wall_polygons`, `wall_records` and `edges_met` give what was tested; `edges_met` counts the floor edges a solid
+meets 1.0 above the floor. `Database/Tools/catalogues/wall_gates.py` writes the table.
 
 A `gate_text` or `basis_text` cell names each saved value it tests by a label, `the value of <label> (stored as the
 <label> rows of saved-value-stores.tsv give)`. [saved-value-stores.tsv](saved-value-stores.tsv) gives every store of
@@ -192,7 +220,7 @@ a music run except field 869, `alc_z04` ([Music table](../Sound-And-Music/music-
 |---|---|
 | `zone`, `name`, `map_name` | the zone number, its script's name and its map name, as in [zone-asset-list.tsv](zone-asset-list.tsv); `map_name` is `-` for the four `ttl` zones |
 | `opens` | the story counter value at which the zone opens; `-` when the row is not dated |
-| `status` | `dated`, `Trial Mode`, `title screen map`, `no way in`, or `not dated` with the saved values its way in tests |
+| `status` | `dated`, `Trial Mode`, `title screen map` or `no way in` |
 | `way_in` | the way: the zone it leads from, its kind (`walk` for an exit group's map jump, `event` for a map jump elsewhere in the zone's scripts, `strahl` for a Strahl destination), then the actor, function and step of the map jump in the step tables; `new game start` for `naf_a01` |
 | `gate` | the way's condition at that step, in the step tables' notation; `-` for a way with no condition |
 | `basis` | what the date rests on, one clause per `; `: how the walk mesh joins the arrival to the exit, an arrival held in a saved value, the battle the date needs and the walls the source zone switches on |

@@ -533,6 +533,72 @@ Render-record fields:
 | `+0x680` | `f32[4]` | second |  |
 | `+0x690` | `f32[3]` | lastKind0 |  |
 
+### What each model file holds
+
+`Database/Tools/catalogues/rig_controllers.py` reads `@FCP` section 2 of the 1,066 `.cm` models. The slots are offsets
+from the section until `0x003E1C50` binds them, and a controller's inner table offset is from the controller.
+
+| Slot | Table, count | Entry bytes | Bones | Read at |
+|---|---|---|---|---|
+| 1 | `+0x30`, `u8 +0x34` | `0x50` | `u32` entry `+0x0C` | `0x005124D0`, `0x005129EA` |
+| 2 | `+0x00`, `u8 +0x04` | `0x60` | `u32` entry `+0x00` | `0x00514F20`, `0x0051541B` |
+| 3, 13 | `+0x00`, `u32 +0x04` | `0x50` | `u32` entry `+0x00` | `0x00471E40`, `0x0047235A` |
+| 5 | `+0x10`, `u8 +0x14` | `0x70` | `u16` entry `+0x00` | `0x0051AA30`, `0x0051AF4D` |
+| 10 | `+0x00`, `u32 +0x04` | `0x10` | `u32` entry `+0x00` | `0x00518D50`, `0x00518E1E` |
+| 11 | `+0x00`, `u16 +0x04` | `0x60` | `u32` entry `+0x00` | `0x00519170`, `0x005196A7` |
+| 8 | none | - | `u32 +0x88`, `+0x8C` | `0x00516970` |
+| 9 | none | - | `u32 +0x80`, `+0x84` | `0x005186A0` |
+| 14 | none | - | `u32 +0xC0`, `+0xC4`, `+0xC8` | `0x0051A280` |
+| 15 | none | - | `u32 +0x5C`, `+0x9C`, `+0xDC` | `0x00472CD0` |
+| 16 | none | - | `u16 +0x32` | `0x0051B330` |
+| 6, 7, 12 | none | - | special bone `0x104`, `@FCP` payload `+0x3A` | `0x003E5AD0`, `0x004717E0`, `0x00471230` |
+
+A bone is a position in the model's `@FTR` nodes. Every bone in the tables is below that node count or is the
+no-bone value. The oscillator tree is on [model oscillators](model-oscillators-and-pose-sequencer.md).
+
+| Fact | Value |
+|---|---|
+| models with no controller | 471 of 1,066 |
+| controllers | 3,816 |
+| models per slot, 0 to 8 | 364, 101, 374, 315, 52, 14, 471, 471, 56 |
+| models per slot, 9 to 16 | 109, 110, 21, 344, 387, 13, 224, 390 |
+| bones | 10,640 named, 3,456 the no-bone value |
+| of the no-bone values | 3,347 oscillator links, 107 at slot 9 `+0x84`, 2 at slot 9 `+0x80` |
+| oscillator entries, chains, links | 1,449, 3,729, 9,284 |
+| oscillator pairs, lists a to e | 8,462; 1,567, 38, 1,624, 2,677, 79 |
+| oscillator sub-records, lists a to e | 3,809, 142, 3,734, 8,312, 312 |
+
+Slot 4 holds bytes in 52 models, and no controller reads them through the slot: `0x003E1C50` binds every other slot,
+and entry 4 of both switch tables goes to the exit (`0x003E15C8`, `0x003E1888`). In all 52 the bytes start with the
+offset `0x20` and a `u32` count, and their span is `0x20 + count * 0x50`.
+[`model-rig-controllers.tsv`](model-rig-controllers.tsv) keeps them.
+
+The tables hold what the file stores. The file does not hold the state that binding sets (`0x0040EEA0`, `0x003E1C50`),
+and a script's or a motion's request is on top of what these tables show.
+
+### Columns of the rig tables
+
+| column | what it holds |
+|---|---|
+| headers: `path`, `name` | the model, and its `@FCP` entry name |
+| headers: `section_offset`, `section_bytes` | section 2's file offset, and payload `+0x24` |
+| headers: `controllers`, `first_controller` | non-zero slots, and the lowest slot offset |
+| headers: `slots`, `tail_hex` | the 17 slot dwords, and the bytes from `+0x44` to the first controller |
+| headers: `special_bone_104` | `@FCP` payload `+0x3A` |
+| controllers: `path`, `slot`, `controller` | the model, the slot and the name from the table above |
+| controllers: `section_offset`, `file_offset`, `span` | the slot's value, the file offset, bytes to the next one |
+| controllers: `bound` | `no` for slot 4, `yes` otherwise |
+| controllers: `table_offset`, `entries`, `entry_bytes` | the inner table, for slots that have one |
+| controllers: `raw_hex` | the controller's bytes as stored |
+| entries: `path`, `slot`, `controller`, `entry`, `field` | the place, and the bone field's offset |
+| entries: `bone`, `bone_key`, `bone_parent` | the node position or `none`, its key and its parent |
+| entries: `file_offset`, `entry_hex` | the file offset, and the entry's bytes, `-` for a bone in the controller |
+| fields: `path`, `slot`, `controller`, `entry` | the place, `-` for a controller's own field |
+| fields: `field`, `type`, `name`, `read_at`, `value` | the offset, the type, its use, a reader, the stored value |
+| oscillator: `path`, `entry`, `kind`, `index`, `owner` | the place in the tree above |
+| oscillator: `file_offset`, `bytes`, `count`, `raw_hex` | the record's offset, size, count byte and bytes |
+| oscillator: `bone`, `bone_key`, `bone_parent` | a link's bone, as in the entries table |
+
 ## Shipped data
 
 Counts of the talking-head verbs in the 1,114 decompiled `us` scripts

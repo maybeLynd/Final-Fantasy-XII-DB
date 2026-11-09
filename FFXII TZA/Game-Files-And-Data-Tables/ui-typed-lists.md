@@ -250,6 +250,49 @@ Measured over every `.mrp` file and every `mrppack_ys.bin` unit in the archive.
 | sub-images | 14 of the 28 referenced names have a same-named file in the locale's `tm2_menu` folder; all 1,298 lookups into those land inside the picture header's `eXt` block |
 | `tm2_menu` images | 396 files; 366 carry `eXt` at buffer `+0x40`; 390 are 8-bit indexed (`0x13`), 6 are 4-bit (`0x14`) |
 
+### The items, decoded
+
+Each table has `carrier`, `unit`, `record`, `item` and `type`, the keys of
+[`ui-typed-lists-items-rows.tsv`](ui-typed-lists-items-rows.tsv), then `list_file` and `screen`.
+`screen` is the requester of the file from [Menu resource packages](mrp-menu-resource-packages.md), or what reads
+the layout unit from [Menu screens](../Menus-And-HUD/menu-screens.md); `-` where neither page names one.
+
+| Table | Rows | One row per |
+|---|---:|---|
+| [`ui-typed-lists-item-sprites.tsv`](ui-typed-lists-item-sprites.tsv) | 22,069 | sprite an item draws: one for type 2 (20,181), six for the strip pieces of a type 7 bar and one for its overlay (1,888) |
+| [`ui-typed-lists-item-text.tsv`](ui-typed-lists-item-text.tsv) | 4,484 | type 5 item: rectangle, `drawn`, `colour`, `scale`, `text_mode`, `flag_bits`, `string_id`, and the text it resolves to |
+| [`ui-typed-lists-item-bars.tsv`](ui-typed-lists-item-bars.tsv) | 278 | type 7 item: the offsets, lengths, heights and colours of its background and fill, and its overlay |
+| [`ui-typed-lists-item-links.tsv`](ui-typed-lists-item-links.tsv) | 3,540 | type 1 or 8 item: the `list_record` it shows, and `columns` and `rows` for type 8 |
+
+Types 4 and 6 have no fields to decode: nothing past a type 4 header is read, and type 6 has no constructor.
+
+In the sprite table, `role` is `sprite`, `background left`, `background middle`, `background right`, `fill left`,
+`fill middle`, `fill right` or `overlay`. `code`, `set`, `group` and `frame` are what the item stores. `sprite_record`
+is the record they select, and `x`, `y`, `width` and `height` are that record's rectangle in the picture.
+`selector` is the item's palette field, and `palette` the number the draw gets from it, by
+[Finding a sprite](../Menus-And-HUD/menu-sprites.md).
+
+A type 7 strip has one selector, and `0xFF` takes byte 7 of its left
+piece (`0x0029F1CE`-`0x0029F1EB`, `0x0029F2A1`-`0x0029F2B9`). A fill with bit `0x2` of `fill_palette_flag` keeps the
+background's palette (`0x0029EE96`), so its `palette` comes from the background's selector and its `selector` is
+still its own field.
+
+`status` is `ok` in 21,999 rows. The other 70 are:
+
+- 20 rows `past the picture's records`: frames 33 and 37 of `s_font_c` set 0 group 0, in unit 4 of all ten folders.
+- 20 rows of `quest.mrp` naming `q_img_c`, which is filled at run time from the sheets `q_c00` to `q_c05`
+  (`0x00579AF0`), so the rectangle depends on the hunt.
+- 30 rows naming `logo_s_c` (`e3_logo.mrp`) or `nowload_c` (`nowload.mrp`): no file or pack entry of either
+  name ships.
+
+In the text table, `group` is `string_id / 10000`, and `text_file` and `text_index` are the row of that group whose
+own id equals `string_id`, as `0x002F9920` finds it. `text_us` is that row's string from
+[String tables](../Menus-And-HUD/text-string-tables.md), which gives the other languages at the same `text_file` and
+`text_index`.
+The 1,625 items with an id, 97 different ids, all resolve; `status` is `no text` for the 2,859 items with id -1.
+
+The tables are written by `Database/Tools/catalogues/ui_sprites.py`.
+
 ## Loader behaviour
 
 ### Measuring

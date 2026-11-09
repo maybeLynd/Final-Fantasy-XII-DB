@@ -130,6 +130,59 @@ Every value below matches the shipped `.mh` and `.webm` files; the `.webm` files
 | `printed_by` | the zone script, the function that prints the line, and the step in that function |
 | what each movie shows | one row per shipped `.webm` in [`movies-contents.tsv`](movies-contents.tsv), 40 rows: the `movie_id`, the `movie` code, the `webm` file, its length in `seconds` (the duration the file states), what it `shows`, written from twelve frames spread evenly over the movie with the seconds of the frames each phrase rests on, and the `first_line` of its subtitles from [`movies-subtitle-lines.tsv`](movies-subtitle-lines.tsv) (`-` for the 26 movies whose opening script prints no line) |
 
+### Subtitle timing by voice language
+
+Subtitle timing depends on the voice language as well as the movie, so a script may hold one function per language.
+`getff12lang` returns 1 for English voices and 0 for Japanese (`0x0034B650`, `0x002DEBB0`). The text locale is separate:
+`unkCall_59c` returns the locale id, with `KR`, `CH`, `IN` and `CN` (7, 8, 10 and 11) read as 0 (`0x0034BA00`).
+
+`Database/Tools/catalogues/voice_recordings.py` writes two tables from the script listings:
+
+- [`movies-subtitle-steps.tsv`](movies-subtitle-steps.tsv): one row per statement, 6,216, of the 165 functions in 30
+  scripts that test `getmovieframe` or are started from one that does.
+- [`movies-subtitle-dialogue.tsv`](movies-subtitle-dialogue.tsv): one row per line those functions print, 274, in all
+  nine locales.
+
+In all 30 scripts the instruction streams of these functions are the same in every language tree that holds them,
+with each pushed constant compared by value.
+
+| `kind` | Rows | Statement |
+|---|---|---|
+| `frame_check` | 545 | a test of `getmovieframe`; in 184 the frame is a variable, and `frame_values` gives what the function stores in it |
+| `poll` | 554 | the `wait` inside such a loop |
+| `wait` | 593 | any other `wait` of a constant |
+| `print` | 359 | a message call; `line_index` is its line |
+| `other` | 4,165 | every other statement, verbatim |
+
+| `voice_branch` | Rows | Meaning |
+|---|---|---|
+| `english` | 1,499 | the blocks around the row, or around the request of its function, select `getff12lang` not 0 |
+| `japanese` | 1,481 | they select `getff12lang` 0 |
+| `both` | 9 | the function is requested under both |
+| `tests_disagree` | 186 | the blocks test the voice language twice with different answers |
+| `-` | 3,041 | no block tests it |
+
+Each test reads the option afresh, so a `tests_disagree` row runs only if the option changes between the two tests.
+
+`after_frame` and `waits_since_check` state the timing of a row. A row follows the last frame check by the waits since
+it. They are read in listing order, and only a row in the same blocks as that check has a count; the others have `-`.
+
+| column | what it holds |
+|---|---|
+| steps, text: `script` | the script's path under `plan_master/us`; `ttl_a01_e3` is only in the `cn` and `kr` folders and is read from `cn` |
+| steps: `movie_ids` | the `moviestandby` constants of the script |
+| steps: `actor`, `function`, `step` | the function and the statement's place in it |
+| steps: `started_from` | `-` for a function that tests the frame, else the function that first starts it |
+| steps: `statement`, `conditions` | the statement, and the blocks around it, outermost first |
+| steps: `frame_test`, `frame`, `frame_values` | the comparison, the frame in decimal or the variable's name, and the values stored in that variable with the blocks around each store |
+| steps: `wait` | the frames of a `wait` |
+| steps: `message`, `line_index` | the message id in hexadecimal, and the line of section 2 it opens |
+| steps: `requested_by` | each function that requests this one, with the blocks around the request |
+| steps: `text_tests` | the blocks around the row that test `unkCall_59c`, outermost first |
+| text: `line_index` | the line of section 2 |
+| text: `us`, `de`, `es`, `fr`, `it`, `in`, `kr`, `cn`, `ch` | the line in each language folder, in the text codes of the dialogue tables |
+| text: `printed_by`, `voice_branch` | the functions that print it, and the values of `voice_branch` on those rows |
+
 ## Loader behaviour
 
 ### The .mh is never read
@@ -153,8 +206,9 @@ the magic.
 6. queues `0x001B7F30` as a job on the `AsyncJobManager` (`0x00199F10`, `0x0019A000`), through a tail jump
    (`0x001B83A3`).
 
-The job `0x001B7F30` starts the reading thread (`0x0067A350`), fetches entry `2m`, and opens the WebM. When
-the thread does not start it sets state 0 and returns without a reset (`0x001B7F6A`, `0x001B80B5`). A
+The job `0x001B7F30` starts the reading thread (`0x0067A350`), fetches entry `2m`, and opens the WebM.
+`0x0067A350` always returns 1 (`0x0067A3FF`) and drops the result of the thread start `0x005CD1E0` (`0x0067A3F5`), so
+the arm that sets state 0 and returns without a reset (`0x001B7F6A`, `0x001B80B5`) is never taken. A
 null entry resets the player (`0x001B7690`): id -1, position and duration 0, state 0. A failed open
 sets state 0 and resets (`0x001B8030`-`0x001B803A`), and so does a path with no backslash (`0x001B7FCE`).
 
