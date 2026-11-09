@@ -1,0 +1,215 @@
+family	function	name	route	fields	reads	writes	other	uses_the_limit_directly
+spawn-records	0x00233440	FUN_00233440	0x0208E698	1	0	0	1	yes
+spawn-records	0x00233550	FUN_00233550	0x0208E698	1	0	0	1	yes
+spawn-records	0x00233780	Spawn_SwapOrPushBanks	0x0208E690; 0x0208E698	1	0	0	4	yes
+spawn-records	0x00233AD0	BattleUnit_ActivateAppliedDefinitionRuntime	unit +0x6A0	1	1	1	0	no
+spawn-records	0x00234200	ActorSystem_ReleaseBattleUnitSlotForActor	unit +0x6A0	3	1	3	0	no
+spawn-records	0x002350C0	SpawnLifecycle_CheckAndRetireByNativeRange	unit +0x6A0	1	2	1	0	no
+spawn-records	0x00235360	Spawn_SelectContinuousEntry	0x0208E698; 0x0208E690	2	3	0	1	yes
+spawn-records	0x002354F0	Spawn_SelectPreviousMapEntry	0x0208E690	1	1	0	0	yes
+spawn-records	0x002355A0	Spawn_PrepareRandomCandidateForCurrentEntry	0x0208E690	2	0	2	0	yes
+spawn-records	0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x0208E690	7	5	2	0	yes
+spawn-records	0x00235EF0	SpawnEntry_GetDeathLimit	0x0208E690	1	1	0	0	yes
+spawn-records	0x00235F50	SpawnEntry_GetDeathCount	0x0208E690	1	1	0	0	yes
+spawn-records	0x00235FB0	SpawnEntry_GetElapsedTicksSinceLastDeath	0x0208E690	1	1	0	0	yes
+spawn-records	0x00236030	FUN_00236030	0x0208E690	1	0	0	1	yes
+spawn-records	0x00236140	SpawnEntry_GetScriptSelection	0x0208E690	1	1	0	0	yes
+spawn-records	0x00236670	SpawnEntry_QueryRangeReentryPending	0x0208E690	1	1	0	0	yes
+spawn-records	0x002366E0	SpawnEntry_GetRespawnCooldownTicks	0x0208E690	1	1	0	0	yes
+spawn-records	0x00236860	SpawnEntry_ResetTransientState	0x0208E690	4	1	4	0	yes
+spawn-records	0x002368D0	FUN_002368d0	0x0208E690; 0x0208E698	1	0	2	0	yes
+spawn-records	0x00237080	SpawnEntry_ClearSelectionTransientStateForTeardown	arg0	4	1	4	0	no
+spawn-records	0x00237430	FUN_00237430	unit +0x6A0	1	1	0	0	no
+spawn-records	0x00237D80	FUN_00237d80	unit +0x6A0	1	1	1	0	no
+spawn-records	0x00238BF0	BattleUnit_RefreshActorRuntimeFromDefinition	unit +0x6A0	2	2	0	0	no
+spawn-records	0x002391C0	SpawnEntry_SetRangeRetireInhibitTag	unit +0x6A0	2	2	4	0	no
+spawn-records	0x00239210	FUN_00239210	unit +0x6A0	1	0	1	0	no
+spawn-records	0x002392D0	FUN_002392d0	unit +0x6A0	1	1	0	0	no
+spawn-records	0x00239410	SpawnEntry_SetCurrentCandidateState	0x0208E690	2	0	2	0	yes
+spawn-records	0x002394C0	FUN_002394c0	unit +0x6A0	1	1	0	0	no
+spawn-records	0x002395A0	SpawnEntry_ResetFromTable	0x0208E690	7	1	6	0	yes
+spawn-records	0x002396B0	BattleUnit_SetRuntimeUnitCategoryMode	unit +0x6A0	1	2	2	0	no
+spawn-records	0x00239840	SpawnUnit_BindEntryAndMarkCapTracked	0x0208E690	4	4	3	0	yes
+spawn-records	0x002398F0	FUN_002398f0	unit +0x6A0	1	1	0	0	no
+spawn-records	0x0023A200	SpawnEntry_ConfigureFreshLifecycleFloatMode	unit +0x6A0	2	5	7	0	no
+spawn-records	0x0023A2E0	SpawnUnit_SetEntryMapAndResetTransientEntries	0x0208E690	6	2	5	0	yes
+spawn-records	0x0023A410	SpawnUnit_FinalizeSpawnEntryActivation	unit +0x6A0	4	6	3	1	no
+spawn-records	0x0023A570	BattleUnit_ApplyUnitDefinition	0x0208E690; lane map	3	6	10	0	yes
+spawn-records	0x0023AC80	BattleStats_InitializeDefinitionRecord	arg0+0x80	6	1	6	0	no
+spawn-records	0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	arg0+0x80	41	43	36	2	no
+spawn-records	0x002FFCF0	BattleAction_CheckActionAvailabilityReason	unit +0x6A0	1	2	0	0	no
+spawn-records	0x002FFF50	BattleTarget_ComputeEligibilityBlockMask	unit +0x6A0	1	2	0	0	no
+spawn-records	0x00300310	BattleUnit_PublishLocomotionPosition	arg1+0x60; unit +0x6A0	4	9	2	0	no
+spawn-records	0x003003F0	BattleUnit_PublishLocomotionPositionAndFacing	unit +0x6A0	1	0	1	0	no
+spawn-records	0x00300530	BattleStats_ModifyHPAndProcessLethalState	arg0+0x80; unit +0x6A0	6	10	3	0	no
+spawn-records	0x00300BC0	BattleStats_ModifySecondaryResource	arg0+0x80	5	8	1	0	no
+spawn-records	0x00300CE0	BattleStats_ModifyPrimaryResource	arg0+0x80	4	6	1	0	no
+spawn-records	0x003014C0	AiOrder_EvaluateAndResolveActionTarget	unit +0x6A0	1	2	0	0	no
+spawn-records	0x00301AD0	AiOrder_EvaluateTargetSelector	unit +0x6A0	2	2	0	0	no
+spawn-records	0x00307300	Battle_ProcessActionTarget	unit +0x6A0	3	1	3	0	no
+spawn-records	0x00308040	BattleUnit_HasNonPartyEngagementEvidence	unit +0x6A0	2	3	0	0	no
+spawn-records	0x0030C470	FUN_0030c470	arg0+0x80	16	8	13	0	no
+spawn-records	0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	arg0+0x80	9	15	7	0	no
+spawn-records	0x0030DA30	FUN_0030da30	unit +0x6A0	1	1	0	0	no
+spawn-records	0x0030E060	FUN_0030e060	arg0+0x80	4	4	1	0	no
+spawn-records	0x0030E130	BattleStats_ModifyStatusLayerStateAndProcessSideEffects	arg0+0x80	2	8	3	0	no
+spawn-records	0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	arg0+0x80	5	13	7	0	no
+spawn-records	0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	arg0+0x80	6	12	0	0	no
+spawn-records	0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	arg0+0x80	6	15	0	0	no
+spawn-records	0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	arg0+0x80; unit +0x6A0	26	40	12	3	no
+spawn-records	0x003112F0	BattleFormula_ApplyTargetResult	unit +0x6A0	6	17	17	0	no
+spawn-records	0x00311F70	FUN_00311f70	unit +0x6A0	2	0	2	0	no
+spawn-records	0x003125E0	BattleUnit_ComputePresentationSuppressionMask	unit +0x6A0	1	1	0	0	no
+spawn-records	0x00312730	FUN_00312730	unit +0x6A0	1	0	0	1	no
+spawn-records	0x00312B40	FUN_00312b40	unit +0x6A0	1	1	0	0	no
+spawn-records	0x00312DF0	FUN_00312df0	arg0+0x50	1	1	0	0	no
+spawn-records	0x00312EE0	FUN_00312ee0	unit +0x6A0	1	2	2	0	no
+spawn-records	0x00317930	Equipment_CheckItemEligibleForSlot	arg0+0x80; arg1+0xD0	3	4	0	0	no
+spawn-records	0x00318B40	Equipment_ReconcilePrimarySecondarySlotCompatibility	arg0+0xD0	2	6	3	0	no
+spawn-records	0x0031A630	BattleStats_SetEquipmentSlotDirect	arg0+0x80	2	0	0	3	no
+spawn-records	0x0031FDA0	FUN_0031fda0	unit +0x6A0	1	1	0	0	no
+spawn-records	0x0031FE10	FUN_0031fe10	unit +0x6A0	1	1	0	0	no
+spawn-records	0x003208C0	FUN_003208c0	arg2+0x64	1	0	1	0	no
+spawn-records	0x00321530	BattleEnmity_UpdatePeriodicDecay	unit +0x6A0	1	1	1	1	no
+spawn-records	0x003215C0	BattleEnmity_ReadForCombatantId	unit +0x6A0	2	1	0	1	no
+spawn-records	0x00321630	BattleEnmity_GetHighestRelevant	unit +0x6A0	2	1	0	1	no
+spawn-records	0x00321770	BattleEnmity_AnyAboveThreshold	unit +0x6A0	2	1	0	1	no
+spawn-records	0x00321810	FUN_00321810	unit +0x6A0	1	0	1	1	no
+spawn-records	0x00321850	BattleEnmity_WriteForCombatantId	unit +0x6A0	2	2	1	2	no
+spawn-records	0x003219D0	BattleEnmity_PropagateToPerceivingFoes	unit +0x6A0	2	1	0	1	no
+spawn-records	0x00321B00	BattleEnmity_AdjustOtherRelevantCombatants	unit +0x6A0	2	2	1	2	no
+spawn-records	0x00321D30	BattleEnmity_WriteAllCombatantIds	unit +0x6A0	1	0	0	1	no
+spawn-records	0x00321DC0	FUN_00321DC0	arg0+0x19	1	0	1	0	no
+spawn-records	0x00321E40	BattleEnmity_ClampAndStore	arg0+0x19	1	0	2	0	no
+spawn-records	0x00323790	FUN_00323790	arg0+0x80	1	1	2	0	no
+spawn-records	0x00323910	BattleStats_SetLicenseNodeStateAndApplySideEffects	arg0+0x80	4	4	2	0	no
+spawn-records	0x00323C60	BattleStats_HasRequiredLicenseForEquipment	arg0+0x80	2	2	0	0	no
+spawn-records	0x00323D10	BattleStats_CheckLicenseNodeAcquireReason	arg0+0x80	2	1	0	1	no
+spawn-records	0x003247F0	BattleUnit_RebuildPerceptionCandidateCache	unit +0x6A0	1	1	0	0	no
+spawn-records	0x00327CB0	GambitConfig_LoadAuthoredPresetAndRebuildRuntimeOrders	arg0+0x80	6	3	5	1	no
+spawn-records	0x00327DE0	GambitRuntime_RebuildOrderSetForStatsRecord	arg0+0x80	1	1	0	0	no
+spawn-records	0x00329220	FUN_00329220	unit +0x6A0	2	2	0	0	no
+spawn-records	0x00384F40	FUN_00384f40	unit +0x6A0	1	2	0	0	no
+spawn-records	0x00385BA0	BattleFormula_ApplyResultMetadata	unit +0x6A0	1	3	3	0	no
+spawn-records	0x00390390	FUN_00390390	unit +0x6A0	1	3	0	0	no
+spawn-records	0x004686D0	Vector3_ComputeXZDistance	arg1+0x50	2	2	0	0	no
+spawn-records	0x0046A690	FUN_0046a690	arg0+0x80	1	1	0	0	no
+memory-arenas	0x0022A0B0	-	0x00369D30 arena ? x3; 0x00369D30 arena 3 x1; 0x00369D30 arena 5 x1; 0x00369D30 arena 6 x1	-	-	-	9	no
+memory-arenas	0x00249210	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x002497B0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x002497E0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x00249810	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x0024A1D0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x0024C970	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x00251010	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x002561C0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x00258D70	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x00258E40	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x00258EB0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x00259030	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x002590F0	-	0x0036C1D0 arena ? x2	-	-	-	2	no
+memory-arenas	0x00259180	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x00259DF0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x0025A990	-	0x0036C1D0 arena 5 x1; 0x00369D30 arena ? x1	-	-	-	2	no
+memory-arenas	0x0025AA30	-	0x0036C1D0 arena 5 x1; 0x00369D30 arena ? x1	-	-	-	2	no
+memory-arenas	0x00267930	-	0x0036C1D0 arena 5 x1	-	-	-	1	no
+memory-arenas	0x00267990	-	0x0036C1D0 arena 5 x1	-	-	-	1	no
+memory-arenas	0x00267BB0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x00267C20	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x00268750	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x0026FAD0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x0026FB90	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x00270150	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x00271420	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x002E60F0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x002E6700	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x002E6EB0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x002EA320	-	0x0036C5A0 arena 6 x1; 0x0036C5A0 arena 10 x1	-	-	-	2	yes
+memory-arenas	0x002EA530	-	0x0036C1D0 arena 5 x1	-	-	-	1	no
+memory-arenas	0x002FBEF0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x002FC200	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x002FCB60	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x002FCBF0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x002FCCC0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x002FD0C0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x0032E7C0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x0032F430	-	0x0036C1D0 arena 5 x1	-	-	-	1	no
+memory-arenas	0x0032F850	-	0x0036C1D0 arena ? x2; 0x0036C1D0 arena 5 x1	-	-	-	3	no
+memory-arenas	0x0032FCA0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003306E0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003319D0	-	0x0036C1D0 arena 5 x4	-	-	-	4	no
+memory-arenas	0x003325D0	-	0x0036C1D0 arena 6 x1	-	-	-	1	no
+memory-arenas	0x00360C70	-	0x0036C1D0 arena 5 x1	-	-	-	1	no
+memory-arenas	0x0036D8B0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x0036ED50	-	0x0036C1D0 arena ? x2	-	-	-	2	no
+memory-arenas	0x00377DC0	-	0x0036C1D0 arena ? x2	-	-	-	2	no
+memory-arenas	0x00378030	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x00378540	-	0x0036C1D0 arena ? x6	-	-	-	6	no
+memory-arenas	0x003788F0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003789A0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x00378BC0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x00379E90	-	0x0036C1D0 arena 5 x1	-	-	-	1	no
+memory-arenas	0x0037B3D0	-	0x00369D30 arena 11 x1	-	-	-	1	no
+memory-arenas	0x0037DA90	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x00384420	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x00384510	-	0x0036C1D0 arena 4 x1	-	-	-	1	no
+memory-arenas	0x00384580	-	0x0036C1D0 arena 4 x1	-	-	-	1	no
+memory-arenas	0x00393590	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x0039CD50	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003A13F0	-	0x0036C1D0 arena ? x3	-	-	-	3	no
+memory-arenas	0x003A3670	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003AB8B0	-	0x0036C1D0 arena 6 x1	-	-	-	1	no
+memory-arenas	0x003AC890	-	0x0036C1D0 arena 6 x1	-	-	-	1	no
+memory-arenas	0x003AF2B0	-	0x0036C1D0 arena 6 x1	-	-	-	1	no
+memory-arenas	0x003AFFB0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003B02A0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003B0660	-	0x0036C1D0 arena ? x2	-	-	-	2	no
+memory-arenas	0x003B0770	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003B0820	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003B1260	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003B1310	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003B16B0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003B1710	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003B18E0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003B1A80	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003B1BA0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003B2830	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003B29B0	-	0x0036C1D0 arena ? x2	-	-	-	2	no
+memory-arenas	0x003B2D80	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003B3160	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003B3550	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003B38B0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003B3C00	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003B4790	-	0x0036C1D0 arena 6 x1	-	-	-	1	no
+memory-arenas	0x003B6890	-	0x0036C1D0 arena 6 x1	-	-	-	1	no
+memory-arenas	0x003CD6E0	-	0x0036C1D0 arena 6 x2	-	-	-	2	no
+memory-arenas	0x003DC5B0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003DCBC0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003DD4C0	-	0x0036C1D0 arena ? x2	-	-	-	2	no
+memory-arenas	0x003DF440	-	0x0036C1D0 arena 5 x1; 0x0036C1D0 arena ? x1	-	-	-	2	no
+memory-arenas	0x003E9AA0	-	0x0036C1D0 arena ? x1; 0x00369D30 arena ? x1	-	-	-	2	no
+memory-arenas	0x003E9F80	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003EA820	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003EACA0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003EBE70	-	0x0036C1D0 arena 5 x1	-	-	-	1	no
+memory-arenas	0x003EC8D0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003EC910	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x003EDAD0	-	0x0036C1D0 arena ? x6	-	-	-	6	no
+memory-arenas	0x003EFCD0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x0045FD50	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x004745D0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x00504350	-	0x0036C1D0 arena 10 x1; 0x0036C1D0 arena 8 x1	-	-	-	2	no
+memory-arenas	0x005043F0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x0050D8F0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x0050DAD0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x0051C270	-	0x0036C1D0 arena 6 x1	-	-	-	1	no
+memory-arenas	0x0051ED10	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+memory-arenas	0x0051F9F0	-	0x0036C1D0 arena 6 x1	-	-	-	1	no
+memory-arenas	0x005211F0	-	0x0036C1D0 arena ? x1	-	-	-	1	no
+save-slots	0x0057F280	-	0x003BB3E0 x1	-	-	-	1	yes
+save-slots	0x0057F8C0	-	0x003BB3E0 x1	-	-	-	1	yes
+save-slots	0x0057FE80	-	0x003BB3E0 x3; 0x003BB600 x1	-	-	-	4	yes
+save-slots	0x00580840	-	0x003BB600 x1	-	-	-	1	yes
+save-slots	0x00580CD0	-	0x003BB600 x1; 0x003BB3E0 x1	-	-	-	2	yes
+save-slots	0x00582040	-	0x003BB6A0 x1	-	-	-	1	yes
+save-slots	0x00583040	-	0x003BB3E0 x1	-	-	-	1	yes

@@ -61,6 +61,11 @@ action's target list, at action state `+0xC8` (the action state, [battle unit fi
    in X and Z) (`0x0030D2D2`-`0x0030D2E7`). The row's byte `+0x07` is kept as a width and, times
    2 pi / 360 (`0x01CEBC78`, `0x00902438`), as an angle (`0x0030D2EC`-`0x0030D308`).
 
+What the gatherer needs and leaves is in
+[`call-signatures-contracts.tsv`](../Engine-Core/call-signatures-contracts.tsv). It stores neither the
+unit nor the list in memory. The list keeps each hit unit's `+0x10` value. It writes up to four unit pointers at
+`0x022C1788` when bit `0x2` of the row's `+0xC` is set (`0x0030D4B8`), and takes no lock to do so.
+
 ### Candidates
 
 Every slot from 0 to `0x00236850()` whose unit has bit `0x10` of its first byte set (`0x00321170`) is a

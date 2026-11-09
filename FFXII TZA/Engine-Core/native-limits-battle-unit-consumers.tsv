@@ -1,0 +1,414 @@
+function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_slot_number
+0x00233A20	FUN_00233a20	arg0	3	5	0	0	no	no
+0x00233AD0	BattleUnit_ActivateAppliedDefinitionRuntime	0x0031B760	3	10	3	0	no	no
+0x00233EA0	FUN_00233ea0	arg0	5	7	2	0	no	no
+0x00233F70	BattleUnit_UpdateLifecycleAndCombatFrame	0x0031B760	6	11	1	1	no	no
+0x00234200	ActorSystem_ReleaseBattleUnitSlotForActor	0x00263E30	5	6	2	0	yes	no
+0x00234480	BattleUnit_AllocateSlotAndBindActor	0x0208E688 (the slot acquire)	5	3	7	0	yes	yes
+0x00234590	BattleSystem_RunFieldFrameOrchestrator	0x0031B770	1	1	0	0	no	no
+0x00234A00	FUN_00234a00	arg0	1	0	1	0	no	no
+0x002350C0	SpawnLifecycle_CheckAndRetireByNativeRange	0x0031B760	6	8	0	0	no	no
+0x00235360	Spawn_SelectContinuousEntry	0x0031B760	1	1	0	0	no	no
+0x002354F0	Spawn_SelectPreviousMapEntry	0x0031B760	1	1	1	0	no	no
+0x002355A0	Spawn_PrepareRandomCandidateForCurrentEntry	0x0031B760	4	4	1	0	no	no
+0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x0031B760	2	3	1	0	no	no
+0x00235EF0	SpawnEntry_GetDeathLimit	0x0031B760	1	1	0	0	no	no
+0x00235F50	SpawnEntry_GetDeathCount	0x0031B760	1	1	0	0	no	no
+0x00235FB0	SpawnEntry_GetElapsedTicksSinceLastDeath	0x0031B760	1	1	0	0	no	no
+0x00236030	SpawnEntry_GetCandidateUnitId	0x0031B760	2	2	0	0	no	no
+0x00236140	SpawnEntry_GetScriptSelection	0x0031B760	1	1	0	0	no	no
+0x002361B0	FUN_002361b0	arg0	2	2	0	0	no	no
+0x00236210	FUN_00236210	arg0	3	4	0	0	no	no
+0x00236300	BattleUnit_SnapshotWorldActorRuntimeState	arg0	18	15	11	6	no	yes
+0x00236670	SpawnEntry_QueryRangeReentryPending	0x0031B760	2	2	0	0	no	no
+0x002366E0	SpawnEntry_GetRespawnCooldownTicks	0x0031B760	1	1	0	0	no	no
+0x00236860	SpawnEntry_ResetTransientState	0x0031B760	1	1	0	0	no	no
+0x002368D0	FUN_002368d0	0x0208E688	1	0	1	0	yes	no
+0x00236A60	BattleUnit_ResetStateForReuse	arg0	51	6	49	4	no	no
+0x002373A0	FUN_002373a0	0x0031B760	1	1	0	0	no	no
+0x002373C0	FUN_002373c0	0x0031B770	1	1	0	0	no	no
+0x00237650	ActorWork_HasAppliedUnitDefinition	0x0031B760	1	1	0	0	no	no
+0x00237D80	FUN_00237d80	0x0031B760	3	4	0	0	no	no
+0x00238AB0	FUN_00238ab0	0x0031B760	1	0	1	0	no	no
+0x00238B40	FUN_00238b40	0x0031B760	1	2	2	0	no	no
+0x00238B70	FUN_00238b70	0x0208E688	2	2	0	0	yes	no
+0x00238BF0	BattleUnit_RefreshActorRuntimeFromDefinition	arg0	7	32	2	0	no	no
+0x00238FA0	FUN_00238fa0	0x0031B760	1	1	1	0	no	no
+0x00238FC0	BattleUnit_SetNativeLifecycleMode	0x0031B760	3	0	3	0	no	no
+0x00239040	BattleUnit_SelectAiOrderSetVariantFromAuthoredUnit	0x0031B760	2	1	2	0	no	no
+0x002390B0	FUN_002390b0	0x0031B760	2	0	2	0	no	no
+0x00239170	FUN_00239170	0x0031B760	2	2	3	0	no	no
+0x002391C0	SpawnEntry_SetRangeRetireInhibitTag	0x0031B760	1	4	0	0	no	no
+0x00239210	FUN_00239210	0x0031B760	1	1	0	0	no	no
+0x002392D0	FUN_002392d0	0x0031B760	4	5	3	1	no	no
+0x002393E0	SpawnUnit_SetLaneCandidateTable	0x0031B760	2	1	2	0	no	no
+0x00239410	SpawnEntry_SetCurrentCandidateState	0x0031B760	3	3	1	0	no	no
+0x002394C0	FUN_002394c0	0x0031B760	3	3	2	0	no	no
+0x002396B0	BattleUnit_SetRuntimeUnitCategoryMode	0x0031B760	2	3	1	0	no	no
+0x00239710	SpawnGroup_ConfigureUnitMembershipAndMode	0x0031B760	1	0	1	0	no	no
+0x00239820	FUN_00239820	0x0031B760	1	0	1	0	no	no
+0x00239840	SpawnUnit_BindEntryAndMarkCapTracked	0x0031B760	3	2	2	0	no	no
+0x002398F0	FUN_002398f0	0x0031B760	2	2	0	0	no	no
+0x00239E10	FUN_00239e10	arg0	22	11	9	10	no	no
+0x0023A070	BattleUnit_ApplyMovementIntentToWorldActor	arg0	6	9	0	0	no	no
+0x0023A120	FUN_0023a120	0x0031B760	1	2	2	0	no	no
+0x0023A200	SpawnEntry_ConfigureFreshLifecycleFloatMode	0x0031B760	2	9	2	0	no	no
+0x0023A2E0	SpawnUnit_SetEntryMapAndResetTransientEntries	0x0031B760	1	2	1	0	no	no
+0x0023A410	SpawnUnit_FinalizeSpawnEntryActivation	0x0031B760	5	12	0	0	no	no
+0x0023A570	BattleUnit_ApplyUnitDefinition	arg0	21	13	25	0	no	yes
+0x0023B040	PartyControl_RecomputeSuppressionFromLeaderBattleState	0x0031B770	1	1	0	0	no	no
+0x00265020	Actor_GetWorldPosition	arg1+0xE0; arg2+0xE4; arg3+0xE8	3	0	6	0	no	no
+0x00265A20	FUN_00265a20	actor +0x30	1	0	0	1	yes	no
+0x002E3AF0	FUN_002e3af0	actor +0x30	1	0	0	1	no	no
+0x002E5610	FUN_002e5610	actor +0x30	1	0	0	1	no	no
+0x002F8060	BattleUnit_TryTriggerNearbyAuthoredFieldAction	arg0	2	2	0	0	no	no
+0x002F8410	BattleAction_ComputeChargeLimitTicks	arg0	2	16	0	0	no	no
+0x002F8BB0	Reward_ComputeExperienceForRecipient	arg1	3	7	0	0	no	no
+0x002F8E90	FUN_002f8e90	0x0031B860	1	1	0	0	no	no
+0x002F90C0	Reward_ComputeLicensePointsForRecipient	arg1	3	3	0	0	no	no
+0x002F91A0		arg1; arg0	1	3	0	0	no	no
+0x002F9240		arg0; arg1	1	6	0	0	no	no
+0x002F9400	BattleUnit_ResolvePeriodicPrimaryResourceRecoveryStep	arg0; 0x0031B860	2	4	0	0	no	yes
+0x002F95D0	BattleAction_ComputeModifiedResourceCostAmount	arg0	1	5	0	0	no	no
+0x002F9820	BattleUnit_UsesGilActionCostChannel	arg0	1	2	0	0	no	no
+0x002F9C00	BattleAction_ComputeChargeProgressStep	arg0	1	6	0	0	no	no
+0x002FA140	FUN_002fa140	arg0	1	2	0	0	no	no
+0x002FA1A0	FUN_002fa1a0	arg0	1	1	0	0	no	no
+0x002FA290	FUN_002fa290	arg1; 0x0031B860; arg2	2	7	0	0	no	yes
+0x002FB150	Loot_FindOverlappingPickupIndex	arg0	1	2	0	0	no	no
+0x002FB6C0	BattleAction_LookupPrimaryResourceGainFactorByHpDamage	arg0	1	2	0	0	no	no
+0x002FE950	FUN_002fe950	arg0	5	6	3	0	no	no
+0x002FEAB0	FUN_002feab0	arg0	1	0	1	0	no	no
+0x002FEAD0	FUN_002fead0	arg0	5	10	6	0	no	yes
+0x002FEB80	BattleAction_ComputeEffectiveRangeBands	arg0; arg1; arg3+0x6DC	3	5	1	0	no	no
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x0031B860	12	9	9	0	no	no
+0x002FFA60	BattleAction_IsTargetEligibleForCurrentAction	arg1	1	1	0	0	no	no
+0x002FFB60	BattleAction_CheckCurrentActionInterruptReason	arg0	7	9	1	0	no	no
+0x002FFCF0	BattleAction_CheckActionAvailabilityReason	arg1	3	6	0	0	no	no
+0x002FFF50	BattleTarget_ComputeEligibilityBlockMask	arg0	3	5	0	0	no	no
+0x00300140	BattleUnit_ResetActionControlForStatusTransition	arg0	10	6	9	0	no	no
+0x00300280	BattleAction_RefundReservedExecutionResources	arg0	3	3	2	0	no	no
+0x00300310	BattleUnit_PublishLocomotionPosition	arg1+0x140; arg0	9	15	3	0	no	no
+0x003003F0	BattleUnit_PublishLocomotionPositionAndFacing	arg0	5	3	2	0	no	no
+0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x0031B860	8	10	1	1	no	no
+0x00300CE0	BattleStats_ModifyPrimaryResource	0x0031B860	1	1	0	0	no	no
+0x00300E40	BattleUnit_TeardownAndDespawn	arg0	18	21	17	0	no	no
+0x00300FC0	FUN_00300fc0	arg0	5	8	2	0	no	no
+0x00301140	BattleUnit_RecoverFromTerminalStatusSetIfClear	arg0	18	22	21	1	no	no
+0x00301310	FUN_00301310	arg0	1	2	0	0	no	no
+0x003014C0	AiOrder_EvaluateAndResolveActionTarget	arg0; 0x0031B760	8	9	0	1	no	no
+0x00301830	AiOrder_CheckActionPreconditions	arg0	13	12	2	2	no	no
+0x00301AD0	AiOrder_EvaluateTargetSelector	0x00236820; arg0	21	80	0	4	yes	no
+0x003037A0	FUN_003037a0	arg0	2	2	0	0	no	no
+0x00303830	BattleAction_EvaluateTargetPreviews	arg0; 0x0031B760	6	8	1	1	no	no
+0x00303A00	BattleAction_EvaluateTargetPreviewRecursive	0x0031B860	3	1	2	0	no	no
+0x00303BD0	BattleAction_CheckExecutionResourceAvailability	arg0	2	2	0	0	no	no
+0x00304850	BattleUnit_AdvanceStandardActionState	arg0; 0x0031B7E0	38	87	54	10	no	yes
+0x00305110	FUN_00305110	0x0031B7E0; arg0	5	4	1	1	no	no
+0x00305230	FUN_00305230	arg0; 0x0031B7E0	4	4	0	2	no	yes
+0x00305430	FUN_00305430	0x0031B7E0; arg0	3	4	1	0	no	no
+0x00305640	BattleAction_ConsumeExecutionResources	arg0	4	5	2	0	no	no
+0x003057D0	FUN_003057d0	arg0	4	8	2	0	no	no
+0x00305AB0	BattleUnit_SelectAndCommitNextAction	arg0	10	13	5	1	no	no
+0x00305CC0	BattleUnit_TrySelectAndCommitAiOrderFromSet	arg0	3	3	0	0	no	no
+0x00305E70	FUN_00305e70	arg0	6	5	1	0	yes	no
+0x00306010	FUN_00306010	arg0; 0x0031B760	3	5	0	1	no	no
+0x00306760	BattleAction_UpdateSpecialPresentationSequence	arg0; 0x00236820	10	13	5	4	yes	no
+0x00306B10	FUN_00306b10	arg0	1	1	0	0	no	no
+0x00306D90	FUN_00306d90	0x0031B760	1	1	0	0	no	no
+0x00306E60	SpawnGroup_UpdateExpectedMemberLaneMask	arg0	4	4	0	0	no	no
+0x00306F00	SpawnGroup_RecordMemberDeathAndHandleCompletion	arg0	6	8	2	0	no	no
+0x00307110	SpawnGroup_MarkCompletionPendingAfterReaction	arg0	2	2	1	0	no	no
+0x00307300	Battle_ProcessActionTarget	arg2 (the target unit, in rbx; arg1	16	46	10	4	no	yes
+0x00307B60	BattleUnit_AdvanceActionState	sweep	2	2	0	0	no	no
+0x00307BE0	BattleUnit_AdvanceActionState	arg0	7	8	2	0	no	no
+0x00307C70	FUN_00307c70	arg0	3	5	3	0	no	no
+0x00307D10	BattleUnit_UpdateEngagementStateFlag	arg0	4	9	5	0	no	no
+0x00307DF0	BattleUnit_UpdatePartyCombatStanceState	arg0	2	4	0	0	no	no
+0x00308010	BattleUnit_ShouldEnterEngagedActionState	arg0	1	1	0	0	no	no
+0x00308040	BattleUnit_HasNonPartyEngagementEvidence	arg0	4	4	0	1	no	no
+0x00308130	BattleUnit_ComputePartyBattleStance	arg0	3	4	0	0	no	no
+0x003081E0	BattleUnit_SeedPartyCombatStanceRecheckTimer	arg0	2	2	1	0	no	no
+0x00308270	FUN_00308270	arg0	7	4	6	0	no	yes
+0x003082F0	FUN_003082f0	arg0	8	7	2	2	no	no
+0x003083A0	FUN_003083a0	arg0	1	2	2	0	no	no
+0x003083B0	BattleAction_CheckTargetEligibility	arg1; 0x00236820	4	17	0	0	yes	no
+0x00308610	BattleUnit_UpdateCombatFrame	arg0	11	16	2	2	no	no
+0x003087E0	AiOrder_SelectFinalTargetFromCandidates	0x0031B760; arg0	1	0	0	2	no	no
+0x00308C20	AiOrder_ComputeBoundedSelectorScalar	arg1; 0x00236820	3	7	0	0	yes	no
+0x00308D90	Spawn_CountActiveCapTrackedActors	0x00236820	1	1	0	0	yes	no
+0x00309060	BattleAction_ComputeGilCost	arg0	1	1	0	0	no	no
+0x00309230	BattleSpecialSequence_DeriveActionPresentationCode	arg0	1	1	0	0	no	no
+0x003098D0	BattleAction_SelectGlobalSequencePresentationEvent	arg0	1	1	0	0	no	no
+0x00309990	FUN_00309990	0x0031B7E0	11	1	11	2	no	no
+0x0030A130	BattleUnit_GetNavigationClearanceRadius	arg0	1	1	0	0	no	no
+0x0030AB40	BattleTarget_ClassifyRelationshipClass	arg1; arg0	3	7	0	0	no	no
+0x0030AD90	FUN_0030ad90	arg0	3	3	0	0	no	no
+0x0030AF30	BattleAction_CheckAndHandleExecutionTimeout	arg0	15	12	9	0	no	no
+0x0030B050	BattleUnit_HasRelationshipClass2PlusInTrackedActorList	arg0	2	3	0	1	no	no
+0x0030B7F0	BattleTarget_ComputeUnitEligibilityMask	arg0	3	4	0	0	no	no
+0x0030BA30	WorldActor_HasActiveBattleActionOrUnitFlag14	0x0031B760	3	3	0	0	no	no
+0x0030BA80	CombatantId_HasActiveBattleActionOrUnitFlag14	0x0031B770	3	3	0	0	no	no
+0x0030BB30	BattleUnit_HasCurrentFocusEngagementEvidence	arg0	2	2	0	0	no	no
+0x0030BC40	FUN_0030bc40	arg0	3	5	1	0	no	no
+0x0030BCD0	FUN_0030bcd0	arg0	1	1	0	0	no	no
+0x0030BD00	BattleTarget_MatchesRelationMode	arg1; arg0	6	14	0	0	no	no
+0x0030BE80	FUN_0030be80	arg0	2	2	0	0	no	no
+0x0030BEB0	FUN_0030beb0	0x0031B760	2	2	0	0	no	no
+0x0030BEF0	FUN_0030bef0	0x0031B7E0	1	1	0	0	no	no
+0x0030BFB0	WorldActor_QueryCombatStanceState	0x0031B760	2	3	0	0	no	no
+0x0030C010	FUN_0030c010	arg0; 0x0031B7E0	6	7	0	0	no	no
+0x0030C0E0	FUN_0030c0e0	0x00236820	5	7	0	0	yes	no
+0x0030C210	BattleUnit_HasRelationshipClass2PlusInSlotMask	arg0	4	5	0	0	yes	yes
+0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0031B860	2	3	0	1	no	no
+0x0030CA50	FUN_0030ca50	arg0	1	1	0	0	no	no
+0x0030CA80	BattleAction_CheckPresentationSlotReady	arg1	1	1	0	0	no	no
+0x0030CBE0	FUN_0030cbe0	0x0031B7E0	1	2	1	0	no	no
+0x0030CE10	BattleAction_TryEnterGlobalSpecialSequence	arg0	1	3	2	0	no	no
+0x0030CFB0	BattleAction_AcquirePresentationSlot	arg0+0x690	1	1	1	0	no	no
+0x0030D160	Battle_BuildActionTargetSet	arg0; 0x0031B7E0; arg3+0x778	6	5	1	6	yes	no
+0x0030DA30	FUN_0030da30	arg0	6	8	0	0	no	no
+0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0031B860	5	8	4	0	no	no
+0x0030EC00	BattleAction_ResolveSpecialSequenceTargets	arg0; 0x0031B760	4	8	0	1	no	yes
+0x0030EDA0	BattleUnit_RestoreSuspendedActionState	arg0	17	1	15	1	no	no
+0x0030EF20	BattleAction_PrepareExecutionResources	arg0	3	1	2	0	no	no
+0x0030EFF0	BattleUnit_SnapshotAndSuspendActionState	arg0	20	19	2	3	no	no
+0x0030F130	AiOrder_BuildCandidateTargetBufferFromStoredRangeAndStatus	arg0; 0x0031B760	16	17	0	5	no	no
+0x0030F2D0	FUN_0030f2d0	0x0031B760	5	3	4	0	no	no
+0x0030F690	BattleStats_RemoveStatusesFromMaskAndRecompute	0x0031B860	2	2	1	0	no	no
+0x0030F760	BattleUnit_CommitAction	arg0; 0x00236820; arg1+0xBA0	24	25	19	2	yes	yes
+0x0030FA00	BattleAction_TryContinueComboSequence	arg0	6	5	3	0	no	no
+0x0030FE10	BattleAction_DispatchResolvedPresentationEvent	arg0	3	2	3	0	no	no
+0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031B860	2	10	0	0	no	no
+0x003105D0	BattleUnit_CancelAndResetCurrentAction	arg0; 0x00236820	30	13	27	2	yes	yes
+0x00310780	BattleUnit_ReleaseTargetRelationAndActionState	arg0; 0x0031B7E0	9	9	4	1	no	yes
+0x00310DB0	BattleUnit_RunPeriodicCombatMaintenance	arg0; 0x0031B770	7	20	3	0	no	no
+0x003112F0	BattleFormula_ApplyTargetResult	0x0031B860	4	23	3	0	no	no
+0x00311CF0	BattleUnit_IssueCommand	arg0	11	9	8	0	no	yes
+0x00311F50	FUN_00311f50	0x0031B760	1	1	1	0	no	no
+0x00311F70	FUN_00311f70	arg1	8	9	5	0	no	no
+0x00312130	FUN_00312130	0x0031B760	1	2	2	0	no	no
+0x00312280	BattleUnit_ProcessDefeatRewardsAndLoot	arg1	6	8	0	0	no	no
+0x003125E0	BattleUnit_ComputePresentationSuppressionMask	arg0	4	7	0	0	no	no
+0x00312700	FUN_00312700	arg0	1	1	0	0	no	no
+0x00312730	BattleLocomotion_DecodeOrderGoal	0x0031B7E0	1	1	0	1	yes	no
+0x00312B40	FUN_00312b40	0x0031B7E0	1	0	0	1	yes	no
+0x00312DF0	FUN_00312df0	arg0+0xD0	1	1	0	0	no	no
+0x00312FA0	BattleUnit_TryCommitEngageAutoAttack	arg0; 0x0031B7E0	7	12	3	0	no	yes
+0x00313120	FUN_00313120	0x0031B7E0	7	5	4	3	no	no
+0x00313400	BattleUnit_EnterPartyCombatStance	arg0	5	4	4	0	no	no
+0x00313500	FUN_00313500	arg0	3	4	3	1	no	no
+0x00313B30	BattleUnit_BroadcastPartyCombatTargetRelation	arg0; arg1	2	4	0	0	no	no
+0x00313CD0	BattleUnit_ProcessPendingActionSelectionQueue	0x0031B7E0	2	3	1	0	no	no
+0x00313DB0	FUN_00313db0	0x0031B7E0	3	6	2	0	no	no
+0x00313F20	BattleUnit_ApplyPartyCombatStanceTransition	arg0	3	4	0	0	no	no
+0x00313F70	FUN_00313f70	arg0	1	1	1	0	no	no
+0x00316CD0	BattleTargetBuffer_TryAppendActorWork	arg0+0x778	2	3	2	0	no	no
+0x00316CF0	BattleTargetBuffer_ResetPreservingFlag0	arg0+0x778	2	3	4	0	no	no
+0x00316D30	FUN_00316d30	arg0+0xBC0	2	4	5	0	no	no
+0x00316D70	BattleTargetBuffer_FindActorWorkIndex	arg0+0x778	2	2	0	1	no	no
+0x00317090	FUN_00317090	arg0	3	3	0	0	no	no
+0x003171C0	FUN_003171c0	arg0	3	4	0	0	no	no
+0x00317400	FUN_00317400	0x0031B770	1	1	0	0	no	no
+0x00317670	FUN_00317670	arg0; arg1	2	1	0	1	no	yes
+0x003176C0	FUN_003176c0	arg0	1	0	1	1	yes	no
+0x003176E0	Battle_EmitReactionPresentationForSlot	arg0; 0x00263E30	5	10	0	0	no	no
+0x00317810	FUN_00317810	arg0	3	1	3	0	no	no
+0x003178C0	FUN_003178c0	0x00263E30	2	2	0	0	no	no
+0x00317BC0	FUN_00317bc0	arg1	1	2	0	0	no	no
+0x00317C80	FUN_00317c80	arg0	1	1	0	0	no	no
+0x00317E60	FUN_00317e60	0x00263E30	2	2	1	1	no	no
+0x00317ED0	EnemyChain_UpdateOnDefeat	arg0	3	6	0	0	no	no
+0x003180F0	Loot_RollDropEntries	arg0	1	1	0	0	no	no
+0x00318A90	FUN_00318a90	0x00263E30	1	1	0	0	no	no
+0x00318CD0	FUN_00318cd0	arg0	2	8	0	0	no	no
+0x00319090	FUN_00319090	0x00263E30	3	5	1	0	no	no
+0x00319110	BattleLocomotion_SetApproachAndReferenceTargets	arg0+0x80	3	2	2	2	no	no
+0x00319140	FUN_00319140	arg0	2	2	0	0	no	no
+0x003191B0	Battle_ProcessActionTargetEntry	arg0; arg1; 0x00263E30	9	13	1	5	no	yes
+0x00319420	FUN_00319420	arg0+0x6B0	1	1	1	0	no	no
+0x00319490	FUN_00319490	0x00263E30	1	1	0	0	no	no
+0x00319E40	FUN_00319e40	arg0; 0x00263E30	3	6	0	1	no	no
+0x00319F50	BattleUnit_HandleActorTimelineEvent	0x00263E30	9	21	6	2	no	no
+0x0031A300	BattleStats_ClearAllEquipmentSlotsByMappedId	0x00236820	3	3	0	0	yes	no
+0x0031AA30	FUN_0031aa30	arg0	3	6	0	0	no	no
+0x0031AC90	Vector3_ComputeXZHeadingOrFallback	arg1+0xE0; arg0+0xE0	2	4	0	0	no	no
+0x0031ACC0	FUN_0031acc0	0x00263E30	2	2	0	0	no	no
+0x0031AD90	FUN_0031ad90	arg0	1	0	0	1	no	no
+0x0031ADB0	FUN_0031adb0	arg0; 0x00263E30	15	34	0	2	no	no
+0x0031B5A0	FUN_0031b5a0	0x002367A0	3	3	0	0	yes	no
+0x0031B690	FUN_0031b690	0x00236820	1	4	0	0	yes	no
+0x0031B750	FUN_0031b750	arg0	1	1	0	0	no	yes
+0x0031B770	BattleUnit_FindByCombatantId	0x00236820	1	1	0	0	yes	no
+0x0031B860	BattleStats_FindOwningBattleUnit	0x00236820; arg1; arg2	1	3	0	0	yes	no
+0x0031B9A0	FUN_0031b9a0	arg0	3	3	0	0	no	no
+0x0031BD80	FUN_0031bd80	0x00263E30	1	1	0	0	no	no
+0x0031BE30	FUN_0031be30	0x00263E30	2	2	0	0	no	no
+0x0031BEC0	FUN_0031bec0	0x00263E30	1	1	0	0	no	no
+0x0031C000	FUN_0031c000	arg2	3	5	0	0	no	no
+0x0031C0F0	FUN_0031c0f0	0x00236820	1	1	0	0	yes	no
+0x0031C200	FUN_0031c200	0x00263E30	1	1	0	0	no	no
+0x0031C250	FUN_0031c250	0x00263E30	1	1	0	0	no	no
+0x0031E630	FUN_0031e630	0x00263E30	2	2	0	0	no	no
+0x0031E6F0	BattleTarget_ComputeSurfaceDistanceBetweenUnits	arg1; arg0	1	0	0	2	no	no
+0x0031E760	BattleTarget_ComputeSurfaceDistanceToPosition	arg0	1	0	0	1	no	no
+0x0031E7B0	FUN_0031e7b0	0x002367A0	1	1	0	0	yes	no
+0x0031E800	BattleStats_GetOwningActorHandle	0x00236820	1	1	0	0	yes	no
+0x0031E880	FUN_0031e880	0x00263E30	2	2	0	0	no	no
+0x0031EB20	BattleMenu_BuildCommandEntryList	0x00236820	3	17	0	0	yes	no
+0x0031FBD0	FUN_0031fbd0	0x00263E30	1	1	0	0	no	no
+0x0031FC10	FUN_0031fc10	0x00263E30	1	1	0	0	no	no
+0x0031FC70	FUN_0031fc70	0x00263E30	1	1	0	0	no	no
+0x0031FDA0	FUN_0031fda0	arg0	3	4	0	0	no	no
+0x0031FE10	FUN_0031fe10	0x00263E30	3	3	0	0	no	no
+0x0031FEC0	FUN_0031fec0	0x00263E30	1	2	0	0	no	no
+0x0031FF70	FUN_0031ff70	0x00263E30	1	2	0	0	no	no
+0x00320170	FUN_00320170	0x00263E30	1	1	0	0	no	no
+0x003202F0	FUN_003202f0	0x0031B860	1	1	0	0	no	no
+0x00320450	BattleUnit_TakeAndClearPrimaryResourceRecoveryAccumulator	arg0	3	3	1	0	no	no
+0x003204D0	FUN_003204d0	arg0	1	1	0	0	no	no
+0x003204E0	FUN_003204e0	arg2+0x164; arg2+0x168; arg2+0x16C; arg2+0x170	10	30	50	0	no	no
+0x00320640	FUN_00320640	0x00263E30	1	1	0	0	no	no
+0x003206E0	FUN_003206e0	0x00263E30	1	1	0	0	no	no
+0x00320790	FUN_00320790	0x00263E30	1	1	0	0	no	no
+0x00320A00	FUN_00320a00	0x00263E30	1	1	0	0	no	no
+0x00320A30	FUN_00320a30	arg0	1	1	0	0	no	no
+0x00320A70	BattleStats_ResolveByActorHandle	0x00263E30	1	1	0	0	no	no
+0x00320BB0	FUN_00320bb0	0x00236820	4	6	0	0	yes	no
+0x00320C60	FUN_00320c60	0x00263E30	1	1	0	0	no	no
+0x00320CA0	FUN_00320ca0	0x00263E30	1	1	0	0	no	no
+0x00320CF0	FUN_00320cf0	0x00236820	2	2	0	0	yes	no
+0x00320D70	BattleAction_GetAuthoredRangeBandComponent	arg0	1	1	0	0	no	no
+0x00320E10	FUN_00320e10	arg0	4	5	0	1	no	no
+0x00321060	FUN_00321060	0x00263E30	1	1	0	0	no	no
+0x003210E0	FUN_003210e0	arg0	1	1	0	0	no	no
+0x00321170	BattleUnit_GetBySlotIndexIfUnitFlag4Set	0x00236820	1	1	0	0	yes	no
+0x003212E0	FUN_003212e0	0x00263E30	2	2	0	0	no	no
+0x00321320	BattleUnit_GetPrimaryFormulaResourceByte26	arg0	1	1	0	0	no	no
+0x00321380	ActorHandle_GetPrimaryFormulaResourceByte26	0x00263E30	1	1	0	0	no	no
+0x00321530	BattleEnmity_UpdatePeriodicDecay	arg0	2	2	0	0	no	no
+0x00321630	BattleEnmity_GetHighestRelevant	arg0	1	1	0	0	no	no
+0x003216E0	BattleEnmity_ApplyActionParameters	arg0	1	1	0	0	no	no
+0x00321770	BattleEnmity_AnyAboveThreshold	arg0	1	1	0	0	no	no
+0x00321810	FUN_00321810	arg0	1	1	0	0	no	no
+0x00321850	BattleEnmity_WriteForCombatantId	arg0	2	4	0	0	no	no
+0x003219D0	BattleEnmity_PropagateToPerceivingFoes	arg2; 0x00236820	5	9	0	2	yes	no
+0x00321B00	BattleEnmity_AdjustOtherRelevantCombatants	arg0	2	5	0	0	no	no
+0x00321D30	BattleEnmity_WriteAllCombatantIds	arg0	2	2	0	0	no	no
+0x00322050	FUN_00322050	arg0	4	1	3	0	no	no
+0x00322080	FUN_00322080	0x00263E30	4	1	3	0	no	no
+0x003220E0	FUN_003220e0	0x00263E30	1	1	0	0	no	no
+0x00322360	BattleUnit_TestActorViewFrustumAtCurrentPosition	arg0	1	1	0	0	no	no
+0x00322490	FUN_00322490	0x00263E30	1	1	0	0	no	no
+0x00322710	FUN_00322710	0x00263E30	1	1	0	0	no	no
+0x00322760	FUN_00322760	0x00263E30	5	5	0	1	no	no
+0x00322850	FUN_00322850	0x00263E30	1	1	0	0	no	no
+0x003229A0	FUN_003229a0	0x00263E30	1	1	0	0	no	no
+0x003229E0	FUN_003229e0	0x00263E30	1	1	0	0	no	no
+0x00322A80	FUN_00322a80	arg0; 0x00236820	1	5	0	0	yes	no
+0x003230E0	FUN_003230e0	0x00236820; arg0	1	2	0	0	yes	no
+0x00323350		arg1; arg0	6	13	0	0	no	no
+0x00324380	FUN_00324380	0x00236820	3	3	0	0	yes	no
+0x003243F0	FUN_003243f0	arg0	3	5	0	0	no	no
+0x00324450	FUN_00324450	arg0	1	2	1	0	no	no
+0x00324470	FUN_00324470	arg0	3	8	1	0	no	no
+0x003247F0	BattleUnit_RebuildPerceptionCandidateCache	arg0; 0x00236820	15	59	6	2	yes	yes
+0x00324F20	BattlePerception_RefreshCandidateCacheGeneration	arg0; 0x00236820	8	18	5	2	yes	yes
+0x00325090	FUN_00325090	0x00263E30	1	1	0	0	no	no
+0x003250F0	BattleUnit_HandleReactionAnimationEvent	0x00263E30	4	6	4	0	no	no
+0x00325260	BattleUnit_HandleActionTimelineEvent	0x00263E30	11	23	3	2	no	no
+0x003257D0	FUN_003257d0	arg0	4	10	0	1	no	no
+0x00325A20	FUN_00325a20	arg0	2	3	0	0	no	no
+0x00325AD0	FUN_00325ad0	arg0	1	1	0	0	no	no
+0x00325B40	FUN_00325b40	arg0	3	3	0	0	no	no
+0x00325BB0	BattleUnit_UpdateCombatNavigationStep	arg0	15	18	12	9	no	no
+0x00325D90	BattleUnit_CanAdvanceCombatNavigation	arg0	8	9	0	0	no	no
+0x003261D0	PartyConfiguration_ReconcileRosterFromCurrentSelectors	0x00236820	3	4	0	0	yes	no
+0x00326500	PartyFocus_SelectAndRequestDefaultActor	0x0031B770	2	3	0	0	yes	no
+0x003266C0	BattleGroup_RefreshFourActorDefinitions	0x00263E30	3	10	2	0	no	no
+0x00326BB0	FUN_00326bb0	0x00263E30	4	6	0	0	yes	no
+0x00326D60	FUN_00326d60	0x00236820	2	4	0	0	yes	no
+0x00327150	FUN_00327150	0x00236820	1	1	0	0	yes	no
+0x003272A0	BattleUnit_GetPartyLeader	0x00263E30	1	1	0	0	no	no
+0x003273D0	PartyConfiguration_SetSelectorsAndReconcileRoster	0x00236820	3	5	0	0	yes	no
+0x003278D0	FUN_003278d0	0x00236820	2	1	0	1	yes	no
+0x003283D0	FUN_003283d0	arg0	2	3	0	0	no	no
+0x00328480	BattleUnit_SubmitResultReactionMode	arg0	1	2	0	0	no	no
+0x003284D0	FUN_003284d0	arg0	1	2	0	0	no	no
+0x00328530	FUN_00328530	arg1	1	3	0	0	no	no
+0x00328640	FUN_00328640	0x00263E30	4	1	4	0	no	no
+0x00328DB0	PartyConfiguration_ReconcileRuntimeRosterFirstThreeFromRequestedSelectors	0x002367A0	1	1	0	0	yes	no
+0x00328FB0	FUN_00328fb0	0x002367A0	1	1	0	0	yes	no
+0x003291B0	BattleLocomotion_ResetPathAndSetTargets	arg0+0x80	3	2	2	2	no	no
+0x00329220	FUN_00329220	0x00236820	2	2	0	0	yes	no
+0x003299B0	BattleUnit_DispatchActorPresentationEvent	arg0	3	1	3	0	no	no
+0x00329A20	BattleUnit_AddPrimaryResourceRecoveryAccumulator	arg0	3	3	1	0	no	no
+0x00329A80	FUN_00329a80	0x00263E30	3	3	1	0	no	no
+0x00329B00	FUN_00329b00	0x00263E30	2	2	3	0	no	no
+0x00329B70	FUN_00329b70	0x00263E30	1	1	0	0	no	no
+0x00329F70		arg0	1	1	0	0	no	no
+0x00329F80	FUN_00329f80	arg0	4	4	1	1	no	no
+0x0032A060	FUN_0032a060	0x00236820	4	5	0	0	yes	no
+0x0032A170	FUN_0032a170	0x00263E30	3	1	3	0	no	no
+0x0032A4D0	BattlePerception_TestCachedSpatialVisibilityPair	arg0; arg1	5	16	0	0	no	yes
+0x00335760	FUN_00335760	arg0	2	2	0	0	no	no
+0x003357B0	BattleLocomotion_QueryDynamicActorObstruction	0x00236820	5	6	0	0	yes	yes
+0x00336710	BattleLocomotion_BuildSolverContext	arg1+0x80; 0x00236820	23	27	0	0	yes	no
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	arg1+0x80	8	0	8	0	no	no
+0x003377C0	FUN_003377c0	0x00236820	2	2	0	0	yes	yes
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00236820	1	1	0	0	yes	no
+0x00338490	PartyFollow_SolveFormation	0x00236820	4	4	0	0	yes	yes
+0x00339C40	BattleLocomotion_ComputeStepDistance	sweep	2	2	0	0	no	no
+0x0033A240	FUN_0033a240	arg0+0x80	4	0	4	0	no	no
+0x0033C310	FUN_0033c310	0x00236820	3	3	0	0	yes	yes
+0x0033CB10	FUN_0033cb10	arg0; 0x0031B860	2	3	0	0	no	yes
+0x0033CEF0	FUN_0033cef0	0x00236820	2	2	0	0	yes	no
+0x0033D890	FUN_0033d890	0x0031B860	1	1	0	0	no	yes
+0x00359B80	FUN_00359b80	actor +0x30	1	0	0	1	no	no
+0x00382FF0	Navigation_FindPathAndBuildPortalWaypoints	arg2+0x200	10	4	18	3	no	no
+0x00383620	Navigation_BuildOrReusePathXZ	arg0+0xD0; arg1+0x100	4	4	0	0	no	no
+0x00383670	Navigation_SelectNextWaypointXZ	arg0+0xE0; arg2+0xF0; arg3+0x200	8	5	4	0	no	no
+0x003839C0	FUN_003839c0	arg0+0x200	2	0	1	2	no	no
+0x003839F0	Navigation_ResetPathPredecessors	arg0+0x200	2	0	1	2	no	no
+0x00383C90	Navigation_AdjustPortalWaypointForClearance	arg0+0x200	1	0	1	2	no	no
+0x00384130	Navigation_FindRegionForPositionXZ	arg0+0xE0	2	2	0	0	no	no
+0x003847C0	BattleFormula_BuildEvaluationContext	0x0031B860	1	1	0	0	no	no
+0x00384E50	FUN_00384e50	0x0031B860	1	2	0	0	no	no
+0x00384F40	FUN_00384f40	0x0031B860	2	4	0	0	yes	yes
+0x00385680	BattleFormula_EvaluateTargetPreview	0x0031B860	5	7	0	0	no	yes
+0x00385BA0	BattleFormula_ApplyResultMetadata	0x0031B860	1	3	0	0	no	no
+0x00385F60	BattleFormula_ResolveTargetResult	0x0031B860	1	3	0	0	no	yes
+0x00386860	BattleFormula_BuildRuntimeCounterPeriodicHpCredit	0x00263E30	4	6	0	1	no	yes
+0x00386AE0	BattleFormula_BuildRandomElementStatusTransitionResult	0x0031B860	1	1	0	0	no	no
+0x00386C10	BattleRuntime_ResetPersistentStatePrefix	0x0031B860	1	1	0	0	no	yes
+0x00387090	BattleRuntime_GetEffectiveActionId	0x0031B860	2	2	0	0	no	yes
+0x003879C0	FUN_003879c0	0x0031B860	2	4	0	0	no	no
+0x00387A50	BattleRuntime_ResolveAndCacheEffectiveActionId	0x0031B860	1	1	0	0	no	yes
+0x00387B00	BattleRuntime_MarkTargetHistoryBit	0x0031B860	1	2	0	0	no	yes
+0x00387FD0	BattleFormula_RollSpecialGuardOutcome	0x0031B860	1	1	0	0	no	no
+0x003884F0	BattleFormula_RollGuardParryMode	0x0031B860	1	1	0	0	no	no
+0x00388660	BattleFormula_RollAndStoreComboCount	0x0031B860	4	4	0	0	no	yes
+0x00388D50	FUN_00388d50	0x0031B860	2	2	0	0	no	yes
+0x003896B0	BattleFormula_RollAvoidGuardParryOutcome	0x0031B860	1	1	0	0	no	no
+0x00389820	FUN_00389820	0x0031B860	1	1	0	0	no	no
+0x00389950	FUN_00389950	0x0031B860	1	1	0	0	no	no
+0x00389C60	FUN_00389c60	0x0031B860	1	1	0	0	no	yes
+0x0038D400	FUN_0038d400	0x0031B860	1	1	0	0	no	no
+0x0038DA00	FUN_0038da00	0x0031B860	1	1	0	0	no	yes
+0x0038EBE0	FUN_0038ebe0	0x0031B860	1	1	0	0	no	yes
+0x0038ED40	FUN_0038ed40	0x0031B860	2	3	0	0	no	yes
+0x00390390	FUN_00390390	0x0031B860	3	5	0	0	no	no
+0x00390680	BattleFormula_SelectPoachRewardItem95_5	0x0031B860	1	4	0	0	no	no
+0x00390AB0	BattleFormula_ApplyPreResolutionTargetGates	0x0031B860	2	8	0	0	no	no
+0x003911D0	FUN_003911d0	0x00263E30	1	1	0	0	no	no
+0x003A1960	Vector3_ComputeSquaredXZDistance	arg0+0xE0; arg1+0xE0	2	4	0	0	no	no
+0x003DA710	FloatPair_CopyToOptionalOutputs	arg1+0x18C; arg2+0x190	2	0	2	0	no	no
+0x004686D0	Vector3_ComputeXZDistance	arg0+0xE0; arg1+0xE0	2	4	0	0	no	no
+0x00469570	FUN_00469570	0x0031B860	1	4	0	0	no	no
+0x004698C0	FUN_004698c0	0x0031B860	3	3	0	0	no	no
+0x00469EC0	BattleFormula_DispatchPostResultEvents	0x0031B860	3	6	0	0	no	no
+0x0046A870	FUN_0046a870	0x0031B860	2	2	0	0	no	no
+0x0046AB10	FUN_0046ab10	0x0031B860	1	1	0	0	no	no
+0x005102D0	FUN_005102d0	0x0031B760	1	1	1	0	no	no
+0x00536310	FUN_00536310	0x0031B860	2	2	0	0	no	no
+0x005369C0	FUN_005369c0	0x0031B860	1	5	0	0	no	no

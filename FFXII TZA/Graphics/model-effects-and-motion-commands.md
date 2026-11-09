@@ -203,9 +203,68 @@ which keep the constant and absent channels.
 
 `one_bind` means the only model this script binds to that actor, and a cue that runs before the bind plays on no
 model of its own. `bind_before_cue` follows only the cue's own function. For `captured_zone_actor` the game finds
-the actor by name in the script of manager 0, and which zone that is depends on the play session, so the rows name
-no candidate. `bone_check` shows a wrong pairing only when it is gross, because bones share common keys across
-models; the pairing rests on the bind reading.
+the actor by name in the script of manager 0, and which zone that is depends on the play session, so these rows name
+no candidate; the table below lists candidates by name. `bone_check` shows a wrong pairing only when it is gross,
+because bones share common keys across models; the pairing rests on the bind reading.
+
+### The model behind each motion
+
+[`motion-playback-models.tsv`](motion-playback-models.tsv) folds the `@FMN` occurrences into 9,167 rows, one for
+each `@FMN` of a package and one for each ownerless action container. The nine language folders hold the same
+`content` for a package's `@FMN`, and `occurrences` counts them. `use_status` says who plays the motion, or what
+stops that being fixed.
+
+| `use_status` | Rows | Occurrences | Meaning |
+|---|---|---|---|
+| `fixed_one_model` | 5,193 | 46,737 | every cue plays on the one model its script binds |
+| `fixed_by_cue` | 30 | 270 | every cue is fixed, and different cues name different models |
+| `bind_branch` | 1,464 | 13,176 | several models are bound to the actor or puppet slot, and the branch taken decides |
+| `capture_or_bind` | 158 | 1,422 | the actor both captures and binds (`0x0033F39A` skips a bind while the capture holds) |
+| `party_member_named` | 52 | 468 | a `capturebattleid` with a literal selector names the character |
+| `party_slot_at_run_time` | 604 | 5,436 | the capture takes a party or guest slot, the controlled character, or a variable selector |
+| `zone_actor_named` | 320 | 2,880 | the capture names an actor of the zone in play, and actors of that name are listed |
+| `zone_actor_no_candidate` | 39 | 351 | the capture names an actor that no other script binds or places |
+| `no_body_source` | 75 | 675 | the actor has no bind and no capture in this script |
+| `puppet_slot_variable` | 4 | 36 | the puppet slot is a script variable |
+| `mixed_run_time` | 27 | 243 | the cues are of more than one of these kinds |
+| `part_fixed_` and a kind | 62 | 558 | some cues are fixed by a bind, and the others are of that kind |
+| `no_literal_cue` | 572 | 5,148 | no cue in the script's listing names an `@FMC` entry that starts it |
+| `ownerless_action` | 567 | 567 | an action container with no owner row |
+
+`models` holds the models the binds fix and `candidates` those the script leaves open. For `party_member_named` the
+candidate is the model in the [party table](../Party/party-table.md) row of the selector ([verb
+arguments](../Scripts-And-Script-Commands/verb-arguments.md), verb `03E9`), and the capture happens only when the
+roster holds that member (`0x003509E0`). `party_slot_at_run_time` lists the models of party-table rows 0 to 16.
+
+A captured zone actor is found by name in the script of manager 0. Its candidates are the models other scripts bind
+to an actor of that name, and the models of the enemy placements whose `function` is that name, through `model_id`
+of the [bestiary](../Enemy-Spawning/bestiary.md). When any candidate is in the area of the capturing
+script only those are listed, and `evidence` names each source.
+
+The cue arguments of all 15,954 sites are literals, so `no_literal_cue` means that no motion verb in the script's
+listing starts that entry. An `ownerless_action` row names no model and no candidate.
+
+`keyed_channels` counts channels with their mask bit set and `constant_channels` those with it clear. All these
+`@FMN` have a non-zero `+0x54`, so `0x00418880` writes each clear channel from the pool (`0x00418ADD`-`0x00418B1F`).
+`keyed_over_fmw` counts keyed channels past the end of the section the name search finds. It is 0 in every row, and
+the 149 rows whose `name_search_fmw_channels` is 0 have no keyed channel.
+
+`bone_check` gives `model:on_bones/no_bone/bones_without_track` for each model in `models` and `candidates`, by the
+claim rule of `0x00373540`. A bone without a track gets no row from this motion. Whether it then shows its rest pose
+depends on its byte `+0x28A` while the game runs (`0x0041D6F0`). `skeletons` counts the distinct bone sets among those
+models.
+
+`exact_fit` lists the tested models whose bones are exactly the track keys, and `same_bones` every model in [the
+asset list](model-asset-list.tsv) with those bones (eight, then `+n`). They show the skeleton a motion was made on,
+not the body it plays on: a capture of party slot 0 plays on whoever holds that slot. Of the 5,193 `fixed_one_model`
+rows, 3,378 have such a model, and in 3,307 the bound model is one of them.
+
+Its columns are `path`, `package_slot` (`-` for an action container), `fmn_slot`, `name`, `content`, `occurrences`,
+`name_search_fmw`, `name_search_fmw_channels`, `tracks`, `keyed_channels`, `keyed_over_fmw`, `constant_channels`,
+`cue_sites`, `use_status`, `models`, `candidates`, `skeletons`, `bone_check`, `exact_fit`, `same_bones`, `evidence`
+and `reason`.
+
+`Database/Tools/catalogues/motion_playback_models.py` writes the table.
 
 ## Loader behaviour
 

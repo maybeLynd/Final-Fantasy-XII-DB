@@ -99,10 +99,104 @@ The tables it indexes:
 A `u32` mask holds one bit per unit, so 32 units fill it. 23 of the rows shift or test such a bit, in 13 functions.
 The three masks of [the result record](../Status-Effects-And-KO/status-timers.md) are among them (`0x00385A7F`,
 `0x00385AC0`, `0x00387B97`).
-This table covers the slot number only. Saved structures are not in it, and neither are the lists of up to 32 units
-held by position: the target list at unit `+0x780`, its bounce slots at `+0x988` and the noticed list at `+0xBC0`.
+This table covers the slot number only.
 
 `Database/Tools/catalogues/battle_unit_index.py` writes the table.
+
+### What depends on the limit
+
+[`native-limits-battle-unit-dependencies.tsv`](native-limits-battle-unit-dependencies.tsv) has one row for each of
+the 16 structures tied to the limit: the pool and its count, the slot number, the per-slot tables, the masks and the
+lists held by position, with where each is sized, used and cleared and whether it is saved.
+
+The count `0x0208E6A0` is set once, to the constant `0x20` (`0x002368FE`). `0x00324F20` does not use it: it walks the pool
+with the constant 32, stepping `0xF50` from `0x00236820(0)` (`0x00325012`, `0x00325042`).
+
+Three lists hold up to 32 units by position and not by slot: the target list at unit `+0x778`, its bounce slots at
+`+0x988` and the noticed list at `+0xBC0`. Their capacity is separate from the pool's.
+
+The spawn keep banks follow the 64-record spawn limit. `0x00233440` writes both to the save, `0x9400` bytes each, and
+`0x00233550` restores bank 2. No save writer that reads the unit pool is located yet: the save writers' direct calls
+reach neither a function that loads the pool nor an accessor.
+
+### Which compares and bit tests are about units
+
+[`native-limits-battle-unit-site-classes.tsv`](native-limits-battle-unit-site-classes.tsv) sorts the 46 compare, bit
+and loop rows of the site table by what the operand is. 25 are tied to the limit, 18 are status bits or bits of
+another field, and 3 were not followed to a source.
+
+### Who reaches a unit through a pointer
+
+[`native-limits-battle-unit-consumers.tsv`](native-limits-battle-unit-consumers.tsv) has the 413 functions of
+[`battle-unit-fields.tsv`](../Characters-And-Objects/battle-unit-fields.tsv), with the route each reaches a unit by and how
+many fields it uses. 357 of them are not in the site table: they depend on the record's layout and not on the count.
+43 read the slot number.
+
+### Columns of native-limits-battle-unit-dependencies.tsv
+
+| Column | Holds |
+|---|---|
+| `dependency`, `kind` | the structure, and whether it is storage, a count, an index, a mask, a state bit or a list held by position |
+| `capacity`, `what_a_slot_or_entry_holds` | its size and what each part holds |
+| `set_or_sized_at`, `read_or_used_at`, `reset_at` | the instructions that size or set it, use it and clear it |
+| `saved_state` | what the save does with it; `-` where no save reading was looked for |
+| `page` | the page that describes it |
+
+### Columns of native-limits-battle-unit-site-classes.tsv
+
+`function`, `site`, `kind` and `instruction` repeat the site table. `class` is `slot number`, `unit loop`, `unit
+mask`, `unit storage`, `table loop`, `list capacity`, `status`, `other` or `not followed`. `what_the_operand_is`
+says why.
+
+### Columns of native-limits-battle-unit-consumers.tsv
+
+| Column | Holds |
+|---|---|
+| `function`, `name` | the function and its name in the field table |
+| `route` | how it reaches a unit: an accessor's address, or `arg0` for a unit passed in |
+| `fields`, `reads`, `writes`, `other` | how many offsets it uses, and how many accesses of each kind |
+| `uses_the_limit_directly`, `reads_the_slot_number` | `yes` when it is in the site table, or in the slot-number table |
+
+### Spawn records, memory arenas and save slots
+
+[`native-limits-family-dependencies.tsv`](native-limits-family-dependencies.tsv) has one row for each of the 22
+structures tied to these three limits, with where each is sized, used and cleared and whether it is saved.
+
+The 64-record spawn limit is shared by the two keep banks, the 2 x 64 counters, the lane maps' slot bytes and the
+bank scan `0x00235360`. `0x002395A0` seeds records from a count in its argument and does not test it against 64
+(`0x0023967E`, `0x00239685`). `0x00233440` writes both banks to the save. No save writer that reads the counters or their
+bank byte is located yet: the writers' direct calls do not reach the functions that use them.
+
+The 15 arenas each have a record, a bit in the enabled mask `0x022D89B8` and a byte in the table `0x022D89A8`. A block's
+header names its arena in byte `+0x03`. The arena stack stops at depth 31 by jumping to itself (`0x0036C20B`).
+
+The 200 save slots are carried by five structures: the status table `0x02B407C0`, a bit set at controller `+0x568`,
+the row table at `+0xEF`, the header cache and the file listing `0x02B41140`. The file name has three decimal digits.
+
+[`native-limits-family-sites.tsv`](native-limits-family-sites.tsv) sorts each family's code sites by what the
+operand is. [`native-limits-family-consumers.tsv`](native-limits-family-consumers.tsv) has the functions that reach
+a family's records through a pointer or an accessor.
+
+### Columns of the family tables
+
+All three start with `family`: `spawn-records`, `memory-arenas` or `save-slots`.
+
+`native-limits-family-dependencies.tsv` has the columns of
+[`native-limits-battle-unit-dependencies.tsv`](native-limits-battle-unit-dependencies.tsv).
+
+`native-limits-family-sites.tsv` has `function`, `site`, `kind` and `instruction`, then `class` and
+`what_the_operand_is`. `class` is `storage`, `accessor`, `stride`, `size`, `limit`, `slot number`, `slot loop`,
+`slot bit`, `arena number`, `mask`, `unrelated` or `not followed`.
+
+`native-limits-family-consumers.tsv` has `function`, `name`, `route`, `fields`, `reads`, `writes`, `other` and
+`uses_the_limit_directly`. `route` says how the function reaches a record, or which accessor it calls and how often.
+`fields`, `reads`, `writes` and `other` are `-` where no field table covers the function.
+
+In `route`, `arena ?` is a call whose arena number the table does not follow back to a constant. 90 of the 112
+`memory-arenas` rows have one.
+
+`Database/Tools/catalogues/native_limit_unit_tables.py`, `native_limit_family_sites.py` and
+`native_limit_family_tables.py` write these tables.
 
 ## Related
 
@@ -160,3 +254,5 @@ Calls between the functions this page cites and code in other parts of the progr
   [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
 - Spawn encounter lifecycle: `0x00236820` is called by `0x00308D90`; those functions are documented on
   [battle units](../Characters-And-Objects/battle-units.md).
+- RNG random selection: `0x002395A0` calls `0x00328370`; those functions are documented on
+  [force fight mode](force-fight-mode.md).

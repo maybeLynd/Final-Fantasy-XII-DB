@@ -1,0 +1,68 @@
+zone	name	opens	arrival_zone	source_zone	way_kind	actor_function	step	variable	exit_group	wall_groups	entrances	stores	destination_matches	store_conditions	every_entrance_reaches	reach_no_walls	reach_with_walls	note
+333	gil_g02	4230	gil_g01	gil_f05	event	warp.talk	131	file_var_s8_8	3	1 2 3 4 5 6 9 24	4	line 3069 = 4	yes	-	yes	joined	joined	-
+334	gil_g03	4230	gil_g02	gil_g01	walk	__MJ_CTRL002.mapjump	33	scratch2_var_14	3	1 2 3 4 5 6	10	line 3421 = 10	yes	-	yes	joined	joined	-
+335	gil_g04	4230	gil_g01	gil_f05	event	warp.talk	131	file_var_s8_8	5	1 2 3 4 5 6 9 24	4	line 3069 = 4	yes	-	yes	joined	joined	-
+336	gil_g05	4230	gil_g01	gil_f05	event	warp.talk	131	file_var_s8_8	2	1 2 3 4 5 6 9 24	4	line 3069 = 4	yes	-	yes	joined	joined	-
+337	gil_g06	4230	gil_g05	gil_g01	walk	__MJ_CTRL001.mapjump	33	scratch2_var_13	2	1 2 3 4 5 6	11	line 3420 = 11	yes	-	yes	joined	joined	-
+406	rwg_b01	1180	rwg_a01	enw_b02	walk	__MJ_CTRL000.mapjump	101	local_var_s1f1_2	2	-	1 6	line 231 = 1; line 235 = 6	-	if:else; if:if (シナリオフラグ > 0x054b)	yes	joined	joined	-
+511	rwf_a03	5150	rwf_a01	pla_a06	strahl	ym_shutoraljump.shtjump	97	regI0	1	-	3	line 751 = 3	-	case 509 of switch (file_var_s5_1)	yes	joined	joined	a register of the Strahl handler
+622	gil_e02	4230	gil_e01	gil_c02	event	gil0204_warp_flg.talk	88	file_var_s10_5	5	1 2 3 4 5 6 9 20	4	line 1216 = 4	yes	if:if (local_var_s10f2_3 == 0)	yes	joined	joined	-
+623	gil_e03	4230	gil_e02	gil_e01	walk	__MJ_CTRL004.mapjump	33	scratch2_var_16	3	1 2 3 4 5 6	8	line 1244 = 8	yes	-	yes	joined	joined	-
+624	gil_e04	4230	gil_e03	gil_e02	walk	__MJ_CTRL002.mapjump	33	scratch2_var_14	5	1 2 3 4 5 6	7	line 1457 = 7	yes	-	yes	joined	joined	-
+625	gil_e05	4230	gil_e01	gil_c02	event	gil0204_warp_flg.talk	88	file_var_s10_5	2	1 2 3 4 5 6 9 20	4	line 1216 = 4	yes	if:if (local_var_s10f2_3 == 0)	yes	joined	joined	-
+626	gil_e06	4230	gil_e01	gil_c02	event	gil0204_warp_flg.talk	88	file_var_s10_5	1	1 2 3 4 5 6 9 20	4	line 1216 = 4	yes	if:if (local_var_s10f2_3 == 0)	yes	joined	joined	-
+691	gil_b02	4230	gil_b01	gil_a02	event	gil0102_warp.talk	89	file_var_s7_5	1	-	1	line 1308 = 1	yes	if:if (local_var_s8f2_3 == 0)	yes	joined	joined	-
+888	gil_h01	4230	gil_l02	gil_l01	walk	__MJ_CTRL002.mapjump	33	scratch2_var_14	1	1 2 3 4 5 6	10	line 7829 = 10	yes	-	yes	joined	joined	-
+927	gil_f02	4230	gil_f01	gil_e04	event	warp.talk	131	file_var_s8_8	3	1 2 3 4 5 6 9	4	line 1766 = 4	yes	-	yes	joined	joined	-
+928	gil_f03	4230	gil_f01	gil_e04	event	warp.talk	131	file_var_s8_8	4	1 2 3 4 5 6 9	4	line 1766 = 4	yes	-	yes	joined	joined	-
+929	gil_f04	4230	gil_f01	gil_e04	event	warp.talk	131	file_var_s8_8	5	1 2 3 4 5 6 9	4	line 1766 = 4	yes	-	yes	joined	joined	-
+930	gil_f05	4230	gil_f04	gil_f01	walk	__MJ_CTRL004.mapjump	33	scratch2_var_16	5	1 2 3 4 5 6 22	8	line 2352 = 8	yes	-	yes	joined	joined	-
+940	gil_i02	4230	gil_i01	gil_e06	event	warp.talk	131	file_var_s8_8	1	1 2 3 4 5 6 9	16	line 2099 = 16	yes	-	yes	joined	joined	-
+941	gil_i03	4230	gil_i02	gil_i01	walk	__MJ_CTRL000.mapjump	36	scratch2_var_12	1	1 2 3 4 5 6 9 22 24	9	line 1224 = 9	yes	-	yes	joined	joined	-
+942	gil_i04	4230	gil_i02	gil_i01	walk	__MJ_CTRL000.mapjump	36	scratch2_var_12	6	1 2 3 4 5 6 9 22 24	9	line 1224 = 9	yes	-	yes	joined	joined	-
+943	gil_i05	4230	gil_i03	gil_i02	walk	__MJ_CTRL000.mapjump	36	scratch2_var_13	5	1 2 3 4 5 6	9	line 1603 = 9	yes	-	yes	joined	joined	-
+944	gil_i06	4230	gil_i02	gil_i01	walk	__MJ_CTRL000.mapjump	36	scratch2_var_12	5	1 2 3 4 5 6 9 22 24	9	line 1224 = 9	yes	-	yes	joined	joined	-
+945	gil_i07	4230	gil_i02	gil_i01	walk	__MJ_CTRL000.mapjump	36	scratch2_var_12	2	1 2 3 4 5 6 9 22 24	9	line 1224 = 9	yes	-	yes	joined	joined	-
+946	gil_i08	4230	gil_i02	gil_i01	walk	__MJ_CTRL000.mapjump	36	scratch2_var_12	4	1 2 3 4 5 6 9 22 24	9	line 1224 = 9	yes	-	yes	joined	joined	-
+949	gil_i11	4230	gil_i09	gil_j22	event	warp_up.talk	131	file_var_s8_8	3	1 2 3 4 5 6 9	6	line 5073 = 6	yes	-	yes	joined	joined	-
+954	gil_j03	4230	gil_j01	gil_i07	event	warp_up.talk	131	file_var_s8_8	5	1 2 3 4 5 6 9	4	line 2043 = 4	yes	-	yes	joined	joined	-
+955	gil_j04	4230	gil_j02	gil_i06	event	warp_up.talk	131	file_var_s8_8	2	1 2 3 4 5 6 9	13	line 1951 = 13	yes	-	yes	joined	joined	-
+956	gil_j05	4230	gil_j03	gil_j01	walk	__MJ_CTRL004.mapjump	36	scratch2_var_16	6	1 2 3 4 5 6	8	line 2538 = 8	yes	-	yes	joined	joined	-
+957	gil_j06	4230	gil_j04	gil_j02	walk	__MJ_CTRL001.mapjump	36	scratch2_var_13	5	1 2 3 4 5 6 18	9	line 2656 = 9	yes	-	yes	joined	joined	-
+958	gil_j07	4230	gil_j01	gil_i07	event	warp_up.talk	131	file_var_s8_8	2	1 2 3 4 5 6 9	4	line 2043 = 4	yes	-	yes	joined	joined	-
+959	gil_j08	4230	gil_j02	gil_i06	event	warp_up.talk	131	file_var_s8_8	5	1 2 3 4 5 6 9	13	line 1951 = 13	yes	-	yes	joined	joined	-
+960	gil_j09	4230	gil_j07	gil_j01	walk	__MJ_CTRL001.mapjump	36	scratch2_var_13	1	1 2 3 4 5 6 17	12	line 2535 = 12	yes	-	yes	joined	joined	-
+961	gil_j10	4230	gil_j08	gil_j02	walk	__MJ_CTRL004.mapjump	36	scratch2_var_16	1	1 2 3 4 5 6	8	line 2659 = 8	yes	-	yes	joined	joined	-
+962	gil_j11	4230	gil_j09	gil_j07	walk	__MJ_CTRL000.mapjump	36	scratch2_var_12	5	1 2 3 4 5 6	9	line 3221 = 9	yes	-	yes	joined	joined	-
+963	gil_j12	4230	gil_j10	gil_j08	walk	__MJ_CTRL000.mapjump	36	scratch2_var_12	3	1 2 3 4 5 6	11	line 3348 = 11	yes	-	yes	joined	joined	-
+964	gil_j13	4230	gil_j11	gil_j09	walk	__MJ_CTRL004.mapjump	36	scratch2_var_16	5	1 2 3 4 5 6 24	7	line 3451 = 7	yes	-	yes	joined	joined	-
+965	gil_j14	4230	gil_j12	gil_j10	walk	__MJ_CTRL002.mapjump	36	scratch2_var_14	3	1 2 3 4 5 6	7	line 3567 = 7	yes	-	yes	joined	joined	-
+966	gil_j15	4230	gil_j11	gil_j09	walk	__MJ_CTRL004.mapjump	36	scratch2_var_16	6	1 2 3 4 5 6 24	7	line 3451 = 7	yes	-	yes	joined	joined	-
+967	gil_j16	4230	gil_j12	gil_j10	walk	__MJ_CTRL002.mapjump	36	scratch2_var_14	2	1 2 3 4 5 6	7	line 3567 = 7	yes	-	yes	joined	joined	-
+968	gil_j17	4230	gil_j15	gil_j11	walk	__MJ_CTRL005.mapjump	36	scratch2_var_17	6	1 2 3 4 5 6	10	line 3716 = 10	yes	-	yes	joined	joined	-
+969	gil_j18	4230	gil_j17	gil_j15	walk	__MJ_CTRL005.mapjump	36	scratch2_var_17	5	1 2 3 4 5 6 20 22	8	line 4185 = 8	yes	-	yes	joined	joined	-
+970	gil_j19	4230	gil_j17	gil_j15	walk	__MJ_CTRL005.mapjump	36	scratch2_var_17	4	1 2 3 4 5 6 20 22	8	line 4185 = 8	yes	-	yes	joined	joined	-
+971	gil_j20	4230	gil_j18	gil_j17	walk	__MJ_CTRL004.mapjump	36	scratch2_var_16	4	1 2 3 4 5 6	8	line 4476 = 8	yes	-	yes	joined	joined	-
+973	gil_j22	4230	gil_j21	gil_k08	event	warp_up.talk	131	file_var_s8_8	5	1 2 3 4 5 6 9	2	line 6305 = 2	yes	-	yes	joined	joined	-
+980	gil_k02	4230	gil_k01	gil_j20	event	warp_up.talk	131	file_var_s8_8	3	1 2 3 4 5 6 9	2	line 4859 = 2	yes	-	yes	joined	joined	-
+981	gil_k03	4230	gil_k01	gil_j20	event	warp_up.talk	131	file_var_s8_8	1	1 2 3 4 5 6 9	2	line 4859 = 2	yes	-	yes	joined	joined	-
+982	gil_k04	4230	gil_k02	gil_k01	walk	__MJ_CTRL002.mapjump	36	scratch2_var_14	5	1 2 3 4 5 6 19 22 24	8	line 5252 = 8	yes	-	yes	joined	joined	-
+983	gil_k05	4230	gil_k03	gil_k01	walk	__MJ_CTRL000.mapjump	36	scratch2_var_12	2	1 2 3 4 5 6 22	11	line 5250 = 11	yes	-	yes	joined	joined	-
+984	gil_k06	4230	gil_k04	gil_k02	walk	__MJ_CTRL004.mapjump	36	scratch2_var_16	5	1 2 3 4 5 6	7	line 5370 = 7	yes	-	yes	joined	joined	-
+985	gil_k07	4230	gil_k05	gil_k03	walk	__MJ_CTRL001.mapjump	36	scratch2_var_13	2	1 2 3 4 5 6	12	line 5563 = 12	yes	-	yes	joined	joined	-
+986	gil_k08	4230	gil_k06	gil_k04	walk	__MJ_CTRL004.mapjump	36	scratch2_var_16	6	1 2 3 4 5 6 20	7	line 5777 = 7	yes	-	yes	joined	joined	-
+987	gil_k09	4230	gil_k07	gil_k05	walk	__MJ_CTRL001.mapjump	36	scratch2_var_13	4	1 2 3 4 5 6 18	9	line 5946 = 9	yes	-	yes	joined	joined	-
+988	gil_k10	4230	gil_k04	gil_k02	walk	__MJ_CTRL004.mapjump	36	scratch2_var_16	4	1 2 3 4 5 6	7	line 5370 = 7	yes	-	yes	joined	joined	-
+989	gil_k11	4230	gil_k05	gil_k03	walk	__MJ_CTRL001.mapjump	36	scratch2_var_13	3	1 2 3 4 5 6	12	line 5563 = 12	yes	-	yes	joined	joined	-
+990	gil_k12	4230	gil_k10	gil_k04	walk	__MJ_CTRL003.mapjump	36	scratch2_var_15	3	1 2 3 4 5 6 24	11	line 5776 = 11	yes	-	yes	joined	joined	-
+991	gil_k13	4230	gil_k11	gil_k05	walk	__MJ_CTRL002.mapjump	36	scratch2_var_14	3	1 2 3 4 5 6 20	7	line 5947 = 7	yes	-	yes	joined	joined	-
+992	gil_k14	4230	gil_k01	gil_j20	event	warp_up.talk	131	file_var_s8_8	2	1 2 3 4 5 6 9	2	line 4859 = 2	yes	-	yes	joined	joined	-
+993	gil_k15	4230	gil_k05	gil_k03	walk	__MJ_CTRL001.mapjump	36	scratch2_var_13	5	1 2 3 4 5 6	12	line 5563 = 12	yes	-	yes	joined	joined	-
+994	gil_k16	4230	gil_k04	gil_k02	walk	__MJ_CTRL004.mapjump	36	scratch2_var_16	2	1 2 3 4 5 6	7	line 5370 = 7	yes	-	yes	joined	joined	-
+995	gil_k17	4230	gil_k15	gil_k05	walk	__MJ_CTRL004.mapjump	36	scratch2_var_16	5	1 2 3 4 5 6 22 24	8	line 5949 = 8	yes	-	yes	joined	joined	-
+996	gil_k18	4230	gil_k17	gil_k15	walk	__MJ_CTRL004.mapjump	36	scratch2_var_16	4	1 2 3 4 5 6	8	line 7217 = 8	yes	-	yes	joined	joined	-
+1003	gil_l02	4230	gil_l01	gil_k18	event	warp_up.talk	131	file_var_s8_8	3	1 2 3 4 5 6 9	6	line 7736 = 6	yes	-	yes	joined	joined	-
+1004	gil_l03	4230	gil_l02	gil_l01	walk	__MJ_CTRL002.mapjump	33	scratch2_var_14	2	1 2 3 4 5 6	10	line 7829 = 10	yes	-	yes	joined	joined	-
+1005	gil_l04	4230	gil_l02	gil_l01	walk	__MJ_CTRL002.mapjump	33	scratch2_var_14	6	1 2 3 4 5 6	10	line 7829 = 10	yes	-	yes	joined	joined	-
+1116	rbl_d02	5303	rbl_d01	rbl_a01	event	warp.talk	89	file_var_s18_5	1	1	2	line 2723 = 2	yes	if:if (g_btl_ゲンブ == 2); if:if (local_var_s18f2_3 == 0)	yes	joined	joined	-
+1134	rbl_k01	5303	rbl_a03	rbl_f02	event	warp.talk	88	file_var_s8_5	2	-	4	line 1386 = 4	yes	if:if (local_var_s8f2_3 == 0)	yes	joined	joined	-

@@ -126,7 +126,7 @@ set-up `pre_z0000` sets to 1. A value is there from the lowest counter at which 
 under its own condition; a store before the test in the same function counts where its own path holds. A key item a
 condition tests is there from the step of the scene or script that gives it.
 
-567 rows are `dated`, from 0 to 7150 over 57 values; the commonest are 4230 (81 zones), 1475 (75) and 100 (47). The
+567 rows are `dated`, from 0 to 7150 over 61 values; the commonest are 4230 (81 zones), 1475 (75) and 3050 (53). The
 highest is `ttl_b01` at 7150, reached by an event in `bhm_d01`. 50 rows name a battle in `basis`, and without that
 battle's store their date moves later: 40 the Zodiark battle (`hne_e01` step 137) and 10 the Firemane battle
 (`grm_d01` step 155). The other rows:
@@ -145,10 +145,14 @@ battle's store their date moves later: 40 the Zodiark battle (`hne_e01` step 137
 `mic_d01` stores 0 in all four, from `Map_Director.ガラムサイズフラグリセット`.
 
 In 102 rows `basis` also names the walls the way's source zone switches on (`setmapidwall` kind 5, value 0) under a
-condition that is not false at the date. The date does not take them into account: it counts the way open past
-them. Kind 6 writes, which never change where a walking body stops, and writes that switch a wall off are not listed.
-In 67 rows the arrival entrance of a way is held in a saved value; the date then counts the exit group reachable from
-that arrival.
+condition that is not false at the date. The search behind a date counts the way open past them, unless the wall's
+switch or door sets the date, as in the 28 rows of Barheim Passage and the Lhusu Mines below. Kind 6 writes, which
+never change where a walking body stops, and writes that switch a wall off are not listed.
+
+In 67 rows the arrival entrance of a way is held in a saved value. The source zone's script stores that value just
+before the jump, so the entrance is fixed per way, and
+[`zone-openings-saved-arrivals.tsv`](zone-openings-saved-arrivals.tsv) gives it with its store. In all 67 it reaches
+the exit group the date counts, with no walls and with every wall the row names standing.
 
 [`zone-openings-wall-gates.tsv`](zone-openings-wall-gates.tsv) tests those 102 rows on the source zone's walk mesh.
 The walls of a row are the wall records of its groups, taken as the unit solids of
@@ -163,9 +167,38 @@ a point is blocked inside a solid at 0.05 above the floor:
 | `joined from some arrivals`: an arrival held in a saved value, joined from some of the zone's entrances | 1 |
 | `no walk-mesh basis`: the row's date does not rest on the walk mesh | 3 |
 
-A `separated` row does not make its date wrong. The wall's condition, in `basis_text`, may be false when the party
-arrives. The test is on the mesh alone, and `result` leaves out the body's radius. `result_radius_0.5` repeats it for
-a radius of 0.5, and only `mfr_a03` differs, `separated`.
+A `separated` row does not make its date wrong by itself. The wall's condition, in `basis_text`, may be false when
+the party arrives, or a lift may run on the arrival side. `result` leaves out the body's radius, and
+`result_radius_0.5` repeats it for a radius of 0.5; only `mfr_a03` differs, `separated`.
+
+[`zone-openings-wall-verdicts.tsv`](zone-openings-wall-verdicts.tsv) joins these rows to their cutting wall, its
+condition, its lift and the arrival position:
+
+| Verdict | Rows |
+|---|---:|
+| the date moves | 4 |
+| the named way is shut at the date | 2 |
+| the date rests on a step the listings do not place | 1 |
+| the date stands | 3 |
+| the date stands, with one step the listings do not place | 4 |
+
+In Barheim Passage the walls follow the power and door switches. `mic_a06` opens at 321, when `0x9C1` can reach 5
+(`mic_a01` lines 950, 1495). The rooms on the way to `mic_c02` open at 323, the counter stored on first entering
+`mic_a06` (line 292), and so do the zones reached through them: 16 rows in all carry a Barheim date from this.
+`mic_e03` follows `mic_e02` at 323. The cart that takes its wall down is placed by the point the party turns to
+face, on the far side of the wall from the arrival, so that one step is not placed.
+
+The far half of the Lhusu Mines opens at 1982, through the Site 3 door in `lus_b02`. The door answers from that
+counter and needs the Site 3 Key (`鉱区の扉.main` line 655, `.talk` line 754). The point the party turns to at the
+Transitway and `lus_b02` switches lies on the far side of their walls, so those switches do not open the way in.
+`lus_b02` opens at 660, when the near half of `lus_b01` leads to it (below `0x0294` that exit leads to another map).
+
+`lus_b03` opens at 1982, through that door. `lus_d03` opens at 3050: its door needs the Site 11 Key, given at
+`fon_b01`, which opens at 3050, and the `lus_d01` switch that takes wall 1 down is on the `lus_d03` side of that
+wall. `lus_e01` and `lus_f01` to `lus_f05` follow it. 12 rows carry a Lhusu date from this. The side of a switch
+rests on the point the party turns to at it, because the listings give no position for its talk rect.
+
+`mfr_a03` is not decided by the radius. Its wall is down from the Zodiark battle, on which the date already rests.
 
 `dor_b01`, `grm_b05` and `alc_b04` are `joined` with no solid tested: the groups their sources switch on hold no
 wall record or wall polygon, so `wall_records` and `edges_met` are 0.

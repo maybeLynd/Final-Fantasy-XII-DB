@@ -48,6 +48,69 @@ and cannot be read from these counts.
 
 `Database/Tools/catalogues/call_contracts.py` writes the table.
 
+### Ownership, threads, failure and re-entry
+
+[`call-signatures-contract-flow.tsv`](call-signatures-contract-flow.tsv) has one row for each of the 39,107
+functions, measured along each function's control flow. A value is followed from an argument, a call's result or a
+constant to where it is used.
+
+[`call-signatures-contracts.tsv`](call-signatures-contracts.tsv) has 14 functions read by hand, whole: what each
+takes, returns and keeps, what it reads and writes, what happens when it fails, its locks and recursion, and where
+the evidence for it stops.
+
+The flow table reaches 1,824,544 of the 1,831,499 instructions counted above. 552 indirect jumps end a path, among
+them tail calls through a pointer.
+
+#### Thread starts
+
+The game creates its threads at nine sites: four `_beginthreadex` calls and five `CreateThread` calls.
+[`call-signatures-thread-starts.tsv`](call-signatures-thread-starts.tsv) lists the 21 start functions and the
+process entry, with the creating call and how the start reaches it.
+
+Ten starts go through `0x005CD1E0`, which runs them from the trampoline `0x005CCBA0`. Four go through `0x008636E0`, whose
+object's slot 1, `0x00863410`, calls the descriptor's function. Three share the trampoline `0x007A5550`.
+
+`thread_starts` lists the starts that reach a function by direct and tail calls. 1,951 functions have one. Code
+entered through a pointer is not followed, so `-` says only that no start reaches the function by direct calls.
+
+#### Locks
+
+[`call-signatures-locks.tsv`](call-signatures-locks.tsv) has the 372 calls that take a lock, in 201 functions: 286
+`EnterCriticalSection`, 9 `TryEnterCriticalSection`, 15 slim reader/writer locks, 61 of the PhyreEngine lock
+`0x005CD4F0` and one of its re-entrant form `0x005CD370`. 309 name a lock the trace could follow.
+
+The PhyreEngine lock `0x005CD4F0` keeps no owner: its state goes from 0 to 1, so a thread that already holds it waits
+with no time-out (`0x005CD473`, `0x005CD482`). `0x005CD370` stores the owner's thread id and only raises the hold count
+for that thread (`0x005CD3BE`, `0x005CD435`).
+
+#### Call groups
+
+`call_group` numbers the 33 groups of two or more functions that can reach each other by direct calls, and gives the
+group's size. They hold 443 functions; the largest has 160. A function calling itself directly is counted in
+`direct_recursion` above.
+
+#### Columns of call-signatures-contract-flow.tsv
+
+| Column | Holds |
+|---|---|
+| `addr` | the function |
+| `rcx_use`, `rdx_use`, `r8_use`, `r9_use` | the range of offsets read and written through the argument, whether it is used as an array index, its width when below 8 bytes, and the constants it is compared with or tested against |
+| `return_values` | what `rax` holds at each `ret`: a number, an argument, a global, a load, or the result of a named call; `?` where the trace stops |
+| `zero_guards` | an argument tested against zero, with what is returned on that path when no call comes first |
+| `callers_use_return` | across call sites, how many test the result against zero, use it as an address, store it or otherwise compare it |
+| `releases` | the arguments, or fields of arguments, passed to a release on at least one path, including through other functions |
+| `returns_new_from` | the allocator a returned block came from |
+| `fatal_calls` | the fatal exits the function calls directly |
+| `locks` | the locks it takes directly |
+| `thread_starts` | the starts that reach it by direct and tail calls |
+| `call_group` | its call group and that group's size |
+
+The releases are `free`, `_aligned_free` and `0x00369860`. The allocators are `malloc`, `calloc`, `_aligned_malloc`,
+`realloc`, `0x0036A100`, `0x0036A190` and `0x0036B160`. Both sets are followed through the functions that forward to them.
+
+A `-` or a `?` in these columns says where the trace stops. It does not say the function has no such use.
+`Database/Tools/catalogues/call_flow.py`, `call_flow_tables.py` and `call_contracts_read.py` write these tables.
+
 ### Positions, not register counts
 
 The x64 convention gives each argument a position: `rcx` or `xmm0` is the first, `rdx` or `xmm1`
@@ -174,3 +237,27 @@ Calls between the functions this page cites and code in other parts of the progr
 - Audio: `0x00121000` calls `0x00121DB0`, `0x00124350`; `0x00121000` is called by `0x007AC4F0`; those functions are documented
   on [media decoder libraries](../Third-Party-Libraries/media-decoder-libraries.md),
   [audio effects](../Sound-And-Music/audio-effects.md).
+- Platform: `0x005CD4F0` is called by `0x0019CC50`; those functions are documented on [debug menu](debug-menu.md).
+- Resource: `0x0036A100` is called by `0x00249210`, `0x0024EF90`, `0x0024F240`; `0x0036A190` is called by `0x00249210`,
+  `0x0024A1D0`, `0x00259DF0`, `0x0032E7C0`, `0x00379E90`, `0x00384420`, `0x0051ED10`; `0x005CD1E0` is called by `0x001DAAC0`;
+  `0x005CD4F0` is called by `0x001A0A90`, `0x001A0BB0`, `0x001A0C50`, `0x001A1240`, `0x001D9DA0`, `0x001D9FD0`, `0x001DA220`,
+  `0x001DA970`, `0x001DADC0`, `0x0020B680`, `0x0020B9A0`, `0x0020BE50`.
+- Resource: `0x005CD4F0` is also called by `0x0020BFA0`, `0x0020C1B0`, `0x002121C0`, `0x00212600`, `0x00675460`, `0x00676450`,
+  `0x00676A70`, `0x00676BD0`, `0x00677BA0`.
+- Resource: those functions are documented on
+  [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md),
+  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md),
+  [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md),
+  [startup constants](startup-constants.md).
+- Resource: and on
+  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md),
+  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md),
+  [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md).
+- Resource: and on [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md),
+  [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md),
+  [audio manager](../Sound-And-Music/audio-manager.md),
+  [memory and allocation](../Compiler-And-C-Runtime/memory-and-allocation.md).
+- Resource: and on [phyre asset files](../PhyreEngine/phyre-asset-files.md),
+  [phyre reflection](../PhyreEngine/phyre-reflection.md).
+- World area: `0x0036A190` is called by `0x00378540`; those functions are documented on
+  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).

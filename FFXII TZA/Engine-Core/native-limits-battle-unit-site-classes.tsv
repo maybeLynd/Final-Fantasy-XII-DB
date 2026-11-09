@@ -1,0 +1,47 @@
+function	site	kind	instruction	class	what_the_operand_is
+0x00234990	0x002349D5	bit test or set by a register	bt edi, eax	other	not the slot number: the bit number is the unit's byte +0xE98
+0x00234A10	0x00234A4B	bit test or set by a register	bt edi, ecx	other	not the slot number: the bit number is the unit's byte +0xE98
+0x00234A80	0x00234ABB	bit test or set by a register	bt edi, ecx	other	not the slot number: the bit number is the unit's byte +0xE98
+0x00265A20	0x00265A8F	compare with 32	cmp edi, 0x20	not followed	guards the only call of the allocator 0x00234480 (0x00265A9F); what edi counts is not followed past 0x00265B21
+0x00301AD0	0x00301C7E	bit test or set by a register	bt eax, esi	other	not the slot number: the bit number is the row's word +0xA (0x00301B1F), tested on a value a call wrote (0x00301C4A)
+0x00301AD0	0x003021B3	bit test or set by a register	bt ecx, edi	status	not the slot number: a bit of the status words +0x64 and +0x3C
+0x00301AD0	0x003021FB	bit test or set by a register	bt eax, edi	other	not the slot number: a bit of the unit's word +0x52
+0x00301AD0	0x003023B7	shift by a register	shl eax, cl	other	not the slot number: a bit of the record's byte +0x40
+0x00301AD0	0x003023DB	shift by a register	shl eax, cl	other	not the slot number: a bit of the record's byte +0x41
+0x00301AD0	0x00302492	shift by a register	shl edx, cl	other	not the slot number: a bit of the byte array at the record's +0x68
+0x00301AD0	0x003024B0	compare with 32	cmp edi, 0x20	other	not the slot number: a bound on edi, the bit number the neighbouring cases use (0x003021B3, 0x003023B7)
+0x00301AD0	0x00302618	bit test or set by a register	bt ecx, ebp	status	not the slot number: a bit of the status words +0x64 and +0x3C
+0x00301AD0	0x0030309C	bit test or set by a register	bt eax, esi	other	not the slot number: the bit number is the row's word +0xA (0x00301B1F), tested on a value a call wrote (0x0030307C)
+0x00301AD0	0x003034F5	compare with 32	cmp r15d, 0x20	unit loop	a loop over the unit slots: the same counter goes to 0x00236820 at 0x0030338F
+0x003083B0	0x0030855C	compare with 32	cmp r14d, 0x20	unit loop	a loop over the unit slots: the same counter goes to 0x00236820 at 0x0030852B
+0x003083B0	0x003085D9	compare with 32	cmp edi, 0x20	unit loop	a loop over the unit slots: the same counter goes to 0x00236820 at 0x003085AA
+0x00308C20	0x00308D49	compare with 32	cmp edi, 0x20	unit loop	a loop over the unit slots: the same counter goes to 0x00236820 at 0x00308D1B
+0x0030C210	0x0030C266	bit test or set by a register	bt eax, ebx	unit mask	the slot mask +0xEA4, tested with the loop counter, which goes to 0x00236820 at 0x0030C281
+0x0030C210	0x0030C29B	compare with 32	cmp ebx, 0x20	unit loop	a loop over the unit slots: the same counter goes to 0x00236820 at 0x0030C281
+0x0030F760	0x0030F94C	shift by a register	shl edx, cl	slot number	the slot number: the operand is the unit's byte +0xEA9
+0x003105D0	0x00310698	shift by a register	shl edx, cl	slot number	the slot number: the operand is the unit's byte +0xEA9
+0x003176C0	0x003176CE	count of 32 before rep stosd	mov ecx, 0x20	unit storage	the 32 u32 entries at unit +0xDD4, cleared by rep stosd
+0x0031EB20	0x0031F1E3	bit test or set by a register	bt eax, ecx	other	not the slot number: a bit of the dword at +0x10 of the record in r9
+0x0031EB20	0x0031F85E	shift by a register	shl eax, cl	other	not the slot number: a bit of the byte array at +0x194
+0x00320CF0	0x00320D1E	bit test or set by a register	bt ecx, eax	status	not the slot number: a bit of the status words +0x64 and +0x3C
+0x003247F0	0x0032496A	compare with 32	cmp r12d, 0x20	unit loop	a loop over the unit slots: the same counter goes to 0x00236820 at 0x00324923
+0x003247F0	0x00324A36	bit test or set by a register	bt esi, ecx	slot number	the slot number: the operand is the unit's byte +0xEA9
+0x003247F0	0x00324A9E	shift by a register	shl eax, cl	slot number	the slot number: the operand is the unit's byte +0xEA9
+0x003247F0	0x00324B72	bit test or set by a register	bt esi, ecx	slot number	the slot number: the operand is the unit's byte +0xEA9
+0x003247F0	0x00324BD9	shift by a register	shl eax, cl	slot number	the slot number: the operand is the unit's byte +0xEA9
+0x003247F0	0x00324CAC	shift by a register	shl r8d, cl	slot number	the slot number: the operand is the unit's byte +0xEA9
+0x003247F0	0x00324D78	shift by a register	shl ebx, cl	unit loop	a one-bit mask built from the loop counter; the counter goes to 0x00236820 (0x00324D70, 0x00324D7E)
+0x003247F0	0x00324D97	compare with 31	cmp eax, 0x1f	slot number	the slot number: the operand is the unit's byte +0xEA9
+0x003247F0	0x00324DFE	bit test or set by a register	bt esi, ecx	slot number	the slot number: the operand is the unit's byte +0xEA9
+0x003247F0	0x00324EA2	compare with 32	cmp ecx, 0x20	list capacity	the count +0xBC4 of the noticed list at unit +0xBC0
+0x00324F20	0x00324FBF	shift by a register	shl eax, cl	slot number	the slot number: the operand is the unit's byte +0xEA9
+0x00324F20	0x00325012	loop count 32	mov r9d, 0x20	unit loop	32 passes that step a unit pointer by 0xF50 from 0x00236820(0) (0x00324FFD, 0x00325042); it uses the constant, not the count 0x0208E6A0
+0x00324F20	0x00325029	compare with 32	cmp ecx, 0x20	list capacity	the count +0xBC4 of the noticed list at unit +0xBC0
+0x00328DB0	0x00328E60	bit test or set by a register	bts ebx, esi	not followed	a mask built from esi when the unit 0x002367A0 returns has bit 0x1 of +0; esi is not the byte +0xEA9
+0x00328DB0	0x00328E73	bit test or set by a register	bts ebx, esi	not followed	as 0x00328E60
+0x00328DB0	0x00328ED6	bit test or set by a register	bts ebx, ecx	other	not the slot number: ecx is below 3 here (0x00328ED1)
+0x00329220	0x0032950B	bit test or set by a register	bt eax, ecx	status	not the slot number: a bit of the status words +0x64 and +0x3C
+0x00329220	0x00329536	compare with 32	cmp edx, 0x20	status	a loop over the 32 status numbers
+0x003E75A0	0x003E75B6	loop count 32	mov edi, 0x20	table loop	a loop over the 32 records of 0x02B59D80
+0x003E7650	0x003E7C50	compare with 32	cmp esi, 0x20	table loop	a loop over the 32 records of 0x02B59D80
+0x003E7CD0	0x003E7CF9	compare with 32	cmp eax, 0x20	table loop	a loop over the 32 records of 0x02B59D80

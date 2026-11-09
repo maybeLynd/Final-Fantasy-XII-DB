@@ -1,0 +1,224 @@
+family	function	site	kind	instruction	class	what_the_operand_is
+spawn-records	0x00233440	0x00233456	history bank pointer	mov rax, qword ptr [rip + 0x1e5b23b]	storage	a reference to the family's storage
+spawn-records	0x00233440	0x002334C3	live bank pointer	mov rax, qword ptr [rip + 0x1e5b1c6]	storage	a reference to the family's storage
+spawn-records	0x00233550	0x00233550	history bank pointer	mov rax, qword ptr [rip + 0x1e5b141]	storage	a reference to the family's storage
+spawn-records	0x00233780	0x0023378D	live bank pointer	cmp qword ptr [rip + 0x1e5aefb], 0	storage	a reference to the family's storage
+spawn-records	0x00233780	0x0023379B	history bank pointer	cmp qword ptr [rip + 0x1e5aef5], 0	storage	a reference to the family's storage
+spawn-records	0x00233780	0x00233809	history bank pointer	mov rax, qword ptr [rip + 0x1e5ae88]	storage	a reference to the family's storage
+spawn-records	0x00233780	0x00233873	live bank pointer	mov rcx, qword ptr [rip + 0x1e5ae16]	storage	a reference to the family's storage
+spawn-records	0x00233780	0x00233933	counter bank byte	xor byte ptr [rip + 0x1e59b1a], 1	storage	a reference to the family's storage
+spawn-records	0x00233780	0x0023393F	live bank pointer	mov rcx, qword ptr [rip + 0x1e5ad4a]	storage	a reference to the family's storage
+spawn-records	0x00233780	0x0023394B	history bank pointer	mov rax, qword ptr [rip + 0x1e5ad46]	storage	a reference to the family's storage
+spawn-records	0x00233780	0x002339AA	size 0x9400	mov r8d, 0x9400	size	the size of the whole structure
+spawn-records	0x00233780	0x002339B5	counter bank byte	movzx eax, byte ptr [rip + 0x1e59a98]	storage	a reference to the family's storage
+spawn-records	0x00233780	0x002339BC	load of 0x40	mov ecx, 0x40	limit	the 64 u16 counters of one bank, filled by rep stosw (0x002339E2)
+spawn-records	0x00233780	0x002339C6	counter bank byte	mov byte ptr [rip + 0x1e59a88], al	storage	a reference to the family's storage
+spawn-records	0x00233780	0x002339CC	spawn counters	lea rax, [rip + 0x1e59981]	storage	a reference to the family's storage
+spawn-records	0x00235360	0x00235364	history bank pointer	cmp qword ptr [rip + 0x1e5932c], 0	storage	a reference to the family's storage
+spawn-records	0x00235360	0x002353BD	history bank pointer	mov rbp, qword ptr [rip + 0x1e592d4]	storage	a reference to the family's storage
+spawn-records	0x00235360	0x002353C7	live bank pointer	mov r14, qword ptr [rip + 0x1e592c2]	storage	a reference to the family's storage
+spawn-records	0x00235360	0x002353EE	stride 0x250	imul rcx, rcx, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x00235360	0x00235428	stride 0x250	add rax, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x00235360	0x0023542E	compare with 0x40	cmp rdx, 0x40	limit	the bank walk, stepping one record (0x00235428) for 64 passes
+spawn-records	0x002354F0	0x00235527	live bank pointer	mov rdi, qword ptr [rip + 0x1e59162]	storage	a reference to the family's storage
+spawn-records	0x002354F0	0x00235550	stride 0x250	imul r8, r8, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x002355A0	0x00235668	stride 0x250	imul rsi, rdx, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x002355A0	0x0023566F	live bank pointer	add rsi, qword ptr [rip + 0x1e5901a]	storage	a reference to the family's storage
+spawn-records	0x00235720	0x0023588B	stride 0x250	imul r14, rcx, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x00235720	0x00235894	live bank pointer	add r14, qword ptr [rip + 0x1e58df5]	storage	a reference to the family's storage
+spawn-records	0x00235EF0	0x00235F2A	stride 0x250	imul rcx, rax, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x00235EF0	0x00235F31	live bank pointer	add rcx, qword ptr [rip + 0x1e58758]	storage	a reference to the family's storage
+spawn-records	0x00235F50	0x00235F8A	stride 0x250	imul rcx, rax, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x00235F50	0x00235F91	live bank pointer	add rcx, qword ptr [rip + 0x1e586f8]	storage	a reference to the family's storage
+spawn-records	0x00235FB0	0x00235FEA	stride 0x250	imul rbx, rax, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x00235FB0	0x00235FF1	live bank pointer	add rbx, qword ptr [rip + 0x1e58698]	storage	a reference to the family's storage
+spawn-records	0x00236030	0x00236078	stride 0x250	imul rcx, rcx, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x00236030	0x0023607F	live bank pointer	add rcx, qword ptr [rip + 0x1e5860a]	storage	a reference to the family's storage
+spawn-records	0x00236100	0x00236126	stride 0x250	imul rax, rax, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x00236100	0x0023612D	live bank pointer	add rax, qword ptr [rip + 0x1e5855c]	storage	a reference to the family's storage
+spawn-records	0x00236140	0x0023617A	stride 0x250	imul rcx, rax, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x00236140	0x00236181	live bank pointer	add rcx, qword ptr [rip + 0x1e58508]	storage	a reference to the family's storage
+spawn-records	0x00236670	0x002366AA	stride 0x250	imul rcx, rax, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x00236670	0x002366B1	live bank pointer	add rcx, qword ptr [rip + 0x1e57fd8]	storage	a reference to the family's storage
+spawn-records	0x002366E0	0x0023671A	stride 0x250	imul rcx, rax, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x002366E0	0x00236721	live bank pointer	add rcx, qword ptr [rip + 0x1e57f68]	storage	a reference to the family's storage
+spawn-records	0x00236860	0x0023689A	stride 0x250	imul rcx, rax, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x00236860	0x002368A1	live bank pointer	add rcx, qword ptr [rip + 0x1e57de8]	storage	a reference to the family's storage
+spawn-records	0x002368D0	0x0023695E	live bank pointer	mov qword ptr [rip + 0x1e57d2b], rax	storage	a reference to the family's storage
+spawn-records	0x002368D0	0x00236965	size 0x9400	mov r8d, 0x9400	size	the size of the whole structure
+spawn-records	0x002368D0	0x00236989	history bank pointer	mov qword ptr [rip + 0x1e57d08], rax	storage	a reference to the family's storage
+spawn-records	0x002368D0	0x00236990	size 0x9400	mov r8d, 0x9400	size	the size of the whole structure
+spawn-records	0x00237DF0	0x00237E6B	counter bank byte	mov byte ptr [rip + 0x1e555e2], 0	storage	a reference to the family's storage
+spawn-records	0x00239410	0x0023945D	stride 0x250	imul rcx, rax, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x00239410	0x00239464	live bank pointer	add rcx, qword ptr [rip + 0x1e55225]	storage	a reference to the family's storage
+spawn-records	0x002395A0	0x002395CA	live bank pointer	mov rcx, qword ptr [rip + 0x1e550bf]	storage	a reference to the family's storage
+spawn-records	0x002395A0	0x0023960E	live bank pointer	mov rcx, qword ptr [rip + 0x1e5507b]	storage	a reference to the family's storage
+spawn-records	0x002395A0	0x0023963C	live bank pointer	mov rcx, qword ptr [rip + 0x1e5504d]	storage	a reference to the family's storage
+spawn-records	0x002395A0	0x0023967E	stride 0x250	add rdi, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x00239840	0x00239895	stride 0x250	imul rdx, rax, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x00239840	0x0023989C	live bank pointer	add rdx, qword ptr [rip + 0x1e54ded]	storage	a reference to the family's storage
+spawn-records	0x0023A2E0	0x0023A309	live bank pointer	mov r10, qword ptr [rip + 0x1e54380]	storage	a reference to the family's storage
+spawn-records	0x0023A2E0	0x0023A33B	stride 0x250	imul rax, rcx, 0x250	stride	a record index scaled or stepped in a function that uses the storage
+spawn-records	0x0023A570	0x0023A776	record by lane 0x00236100	call 0x236100	accessor	a call of the family's accessor
+spawn-records	0x0023A570	0x0023A7FE	counter bank byte	movzx eax, byte ptr [rip + 0x1e52c4f]	storage	a reference to the family's storage
+spawn-records	0x0023A570	0x0023A823	counter bank byte	movzx ecx, byte ptr [rip + 0x1e52c2a]	storage	a reference to the family's storage
+spawn-records	0x00306E60	0x00306EA9	slot by lane 0x002360D0	call 0x2360d0	accessor	a call of the family's accessor
+spawn-records	0x00306E60	0x00306ECE	shift by a register	shl edx, cl	unrelated	a bit of the table at 0x02EC13C0, not a spawn record
+spawn-records	0x00306F00	0x00306F4B	slot by lane 0x002360D0	call 0x2360d0	accessor	a call of the family's accessor
+spawn-records	0x00306F00	0x00306F74	shift by a register	shl eax, cl	unrelated	a bit of the table at 0x02EC13C0, not a spawn record
+save-slots	0x003BA990	0x003BA9A8	slot status table	lea rbx, [rip + 0x2785e11]	storage	a reference to the family's storage
+save-slots	0x003BA990	0x003BA9ED	size 0x640	mov r8d, 0x640	size	the size of the whole structure
+save-slots	0x003BA990	0x003BAA48	load of 0xC8	mov r9d, 0xc8	limit	the count 200 passed to the file listing 0x008621E0, per the page
+save-slots	0x003BB3E0	0x003BB3E0	compare with 0xC7	cmp ecx, 0xc7	slot number	the slot argument, unsigned
+save-slots	0x003BB3E0	0x003BB3EB	slot status table	lea rcx, [rip + 0x27853ce]	storage	a reference to the family's storage
+save-slots	0x003BB600	0x003BB600	compare with 0xC7	cmp ecx, 0xc7	slot number	the slot argument, unsigned
+save-slots	0x003BB600	0x003BB60B	slot status table	lea r8, [rip + 0x27851ae]	storage	a reference to the family's storage
+save-slots	0x003BB6A0	0x003BB6A4	compare with 0xC7	cmp ecx, 0xc7	slot number	the slot argument, unsigned
+save-slots	0x003BB6A0	0x003BB6AF	slot status table	lea r10, [rip + 0x278510a]	storage	a reference to the family's storage
+save-slots	0x0057F280	0x0057F297	compare with 0xC8	cmp ebx, 0xc8	slot loop	the start of the search from the slot byte +0xCF (0x0057F28D)
+save-slots	0x0057F280	0x0057F2A2	slot status entry 0x003BB3E0	call 0x3bb3e0	accessor	a call of the family's accessor
+save-slots	0x0057F280	0x0057F2C7	compare with 0xC8	cmp ebx, 0xc8	slot loop	a loop over the 200 slot numbers
+save-slots	0x0057F280	0x0057F2CF	compare with 0xC8	cmp ebx, 0xc8	slot loop	the test that the search ran to the end
+save-slots	0x0057F8C0	0x0057F900	slot status entry 0x003BB3E0	call 0x3bb3e0	accessor	a call of the family's accessor
+save-slots	0x0057F8C0	0x0057F9DE	load of 0xC7	mov ebx, 0xc7	not followed	0xC7 is compared with r14d; r14d is not followed to its source
+save-slots	0x0057FE80	0x0057FFBA	compare with 0xC8	cmp edi, 0xc8	slot loop	a loop over the 200 slot numbers
+save-slots	0x0057FE80	0x0057FFDC	compare with 0xC8	cmp dil, 0xc8	slot loop	the guard before the bit test of +0x568
+save-slots	0x0057FE80	0x0057FFF6	shift by a register	shl edx, cl	slot bit	the slot's bit in the controller's 200-bit set +0x568
+save-slots	0x0057FE80	0x00580019	slot status writer 0x003BB600	call 0x3bb600	accessor	a call of the family's accessor
+save-slots	0x0057FE80	0x00580020	slot status entry 0x003BB3E0	call 0x3bb3e0	accessor	a call of the family's accessor
+save-slots	0x0057FE80	0x005800F8	compare with 0xC8	cmp edi, 0xc8	slot loop	a loop over the 200 slot numbers
+save-slots	0x0057FE80	0x00580441	slot status entry 0x003BB3E0	call 0x3bb3e0	accessor	a call of the family's accessor
+save-slots	0x0057FE80	0x00580516	slot status entry 0x003BB3E0	call 0x3bb3e0	accessor	a call of the family's accessor
+save-slots	0x00580840	0x0058094A	slot status writer 0x003BB600	call 0x3bb600	accessor	a call of the family's accessor
+save-slots	0x00580840	0x00580962	compare with 0xC8	cmp al, 0xc8	slot number	the slot byte +0xEB, tested below 200 before the bit is set
+save-slots	0x00580840	0x00580980	bit test or set by a register	bts ecx, eax	slot bit	the slot's bit in the controller's 200-bit set +0x568
+save-slots	0x00580CD0	0x00580E44	slot status writer 0x003BB600	call 0x3bb600	accessor	a call of the family's accessor
+save-slots	0x00580CD0	0x00580E52	slot status entry 0x003BB3E0	call 0x3bb3e0	accessor	a call of the family's accessor
+save-slots	0x00580CD0	0x00580E79	compare with 0xC8	cmp edi, 0xc8	slot loop	a loop over the 200 slot numbers
+save-slots	0x00582040	0x0058213F	slot status writer 0x003BB6A0	call 0x3bb6a0	accessor	a call of the family's accessor
+save-slots	0x00583040	0x005830C8	slot status entry 0x003BB3E0	call 0x3bb3e0	accessor	a call of the family's accessor
+save-slots	0x00583040	0x005830F5	compare with 0xC8	cmp edi, 0xc8	slot loop	a loop over the 200 slot numbers
+memory-arenas	0x002EA320	0x002EA4F3	arena callback store 0x0036C5A0	call 0x36c5a0	accessor	a call of the family's accessor
+memory-arenas	0x002EA320	0x002EA504	arena callback store 0x0036C5A0	call 0x36c5a0	accessor	a call of the family's accessor
+memory-arenas	0x00369760	0x00369764	arena global 0x022D89B8	mov eax, dword ptr [rip + 0x1f6f24e]	storage	a reference to the family's storage
+memory-arenas	0x00369760	0x00369772	bit test or set by a register	bt eax, r9d	mask	the arena's bit in the enabled mask 0x022D89B8
+memory-arenas	0x00369760	0x00369778	compare with 0xE	cmp r9d, 0xe	arena number	the arena number, tested before it indexes the 15 records
+memory-arenas	0x00369760	0x0036977E	stride 0xA8	imul rcx, r9, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x00369760	0x00369785	arena records	lea rax, [rip + 0x1f6e844]	storage	a reference to the family's storage
+memory-arenas	0x003697C0	0x003697C0	arena global 0x022D89B8	mov eax, dword ptr [rip + 0x1f6f1f2]	storage	a reference to the family's storage
+memory-arenas	0x003697C0	0x003697C6	bit test or set by a register	bt eax, ecx	mask	the arena's bit in the enabled mask 0x022D89B8
+memory-arenas	0x003697C0	0x003697CB	compare with 0xE	cmp ecx, 0xe	arena number	the arena number, tested before it indexes the 15 records
+memory-arenas	0x003697C0	0x003697D3	stride 0xA8	imul rcx, rax, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x003697C0	0x003697DA	arena records	lea rax, [rip + 0x1f6e7ef]	storage	a reference to the family's storage
+memory-arenas	0x00369860	0x00369945	compare with 0xF	cmp al, 0xf	unrelated	the low nibble of a byte in a hex dump
+memory-arenas	0x00369860	0x00369A05	compare with 0xF	cmp al, 0xf	unrelated	the low nibble of a byte in a hex dump
+memory-arenas	0x00369860	0x00369A65	current arena number	mov dword ptr [rip + 0x1f6ef51], ecx	storage	a reference to the family's storage
+memory-arenas	0x00369860	0x00369AA3	current arena number	mov dword ptr [rip + 0x1f6ef13], ecx	storage	a reference to the family's storage
+memory-arenas	0x00369860	0x00369AE6	compare with 0xF	cmp eax, 0xf	arena number	the arena number in a block header, tested below 15 before it indexes the records
+memory-arenas	0x00369860	0x00369AEB	stride 0xA8	imul rdi, rax, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x00369860	0x00369AF2	arena records	lea rax, [rip + 0x1f6e4d7]	storage	a reference to the family's storage
+memory-arenas	0x00369C60	0x00369C66	arena global 0x022D89B8	mov eax, dword ptr [rip + 0x1f6ed4c]	storage	a reference to the family's storage
+memory-arenas	0x00369C60	0x00369C6E	bit test or set by a register	bt eax, ecx	mask	the arena's bit in the enabled mask 0x022D89B8
+memory-arenas	0x00369C60	0x00369C87	compare with 0xE	cmp ecx, 0xe	arena number	the arena number, tested before it indexes the 15 records
+memory-arenas	0x00369C60	0x00369C8F	stride 0xA8	imul rdi, rax, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x00369C60	0x00369C96	arena records	lea rax, [rip + 0x1f6e333]	storage	a reference to the family's storage
+memory-arenas	0x00369CF0	0x00369CF0	arena global 0x022D89B8	mov eax, dword ptr [rip + 0x1f6ecc2]	storage	a reference to the family's storage
+memory-arenas	0x00369CF0	0x00369CF6	bit test or set by a register	bt eax, ecx	mask	the arena's bit in the enabled mask 0x022D89B8
+memory-arenas	0x00369CF0	0x00369CFE	compare with 0xE	cmp ecx, 0xe	arena number	the arena number, tested before it indexes the 15 records
+memory-arenas	0x00369CF0	0x00369D06	stride 0xA8	imul rcx, rax, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x00369CF0	0x00369D0D	arena records	lea rax, [rip + 0x1f6e2bc]	storage	a reference to the family's storage
+memory-arenas	0x00369D30	0x00369D47	compare with 0xE	cmp esi, 0xe	arena number	the arena number, tested before it indexes the 15 records
+memory-arenas	0x00369D30	0x00369D50	arena global 0x022D89B8	mov r9d, dword ptr [rip + 0x1f6ec61]	storage	a reference to the family's storage
+memory-arenas	0x00369D30	0x00369D73	current arena number	mov dword ptr [rip + 0x1f6ec43], esi	storage	a reference to the family's storage
+memory-arenas	0x00369D30	0x00369D91	arena global 0x022D89C0	mov qword ptr [rip + 0x1f6ec28], r8	storage	a reference to the family's storage
+memory-arenas	0x00369D30	0x00369DA8	compare with 0xF	cmp eax, 0xf	limit	the 15 bytes at 0x022D89A8, filled with 0 to 14
+memory-arenas	0x00369D30	0x00369DD5	shift by a register	shl eax, cl	mask	1 << arena, or'd into the enabled mask (0x00369DDC, 0x00369DE7)
+memory-arenas	0x00369D30	0x00369DE7	arena global 0x022D89B8	mov dword ptr [rip + 0x1f6ebca], r9d	storage	a reference to the family's storage
+memory-arenas	0x00369D30	0x00369E02	stride 0xA8	imul rbx, rsi, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x00369D30	0x00369E1C	arena records	lea rax, [rip + 0x1f6e1ad]	storage	a reference to the family's storage
+memory-arenas	0x0036A000	0x0036A04F	compare with 0xF	cmp eax, 0xf	arena number	the arena number in a block header, tested below 15 before it indexes the records
+memory-arenas	0x0036A000	0x0036A054	stride 0xA8	imul rcx, rax, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x0036A000	0x0036A05B	arena records	lea rax, [rip + 0x1f6df6e]	storage	a reference to the family's storage
+memory-arenas	0x0036A100	0x0036A113	current arena number	mov ecx, dword ptr [rip + 0x1f6e8a3]	storage	a reference to the family's storage
+memory-arenas	0x0036A100	0x0036A11F	allocate from arena 0x0036BC60	call 0x36bc60	accessor	a call of the family's accessor
+memory-arenas	0x0036A100	0x0036A12E	current arena number	mov ecx, dword ptr [rip + 0x1f6e888]	storage	a reference to the family's storage
+memory-arenas	0x0036A100	0x0036A149	allocate after compaction 0x0036BFE0	call 0x36bfe0	accessor	a call of the family's accessor
+memory-arenas	0x0036A1A0	0x0036A1C0	current arena number	mov ecx, dword ptr [rip + 0x1f6e7f6]	storage	a reference to the family's storage
+memory-arenas	0x0036A1A0	0x0036A1C9	allocate from arena 0x0036BC60	call 0x36bc60	accessor	a call of the family's accessor
+memory-arenas	0x0036A1A0	0x0036A1D8	current arena number	mov ecx, dword ptr [rip + 0x1f6e7de]	storage	a reference to the family's storage
+memory-arenas	0x0036A1A0	0x0036A1F0	allocate after compaction 0x0036BFE0	call 0x36bfe0	accessor	a call of the family's accessor
+memory-arenas	0x0036A2A0	0x0036A3BB	allocate from arena 0x0036BC60	call 0x36bc60	accessor	a call of the family's accessor
+memory-arenas	0x0036A570	0x0036A58E	arena global 0x022D89B8	mov eax, dword ptr [rip + 0x1f6e424]	storage	a reference to the family's storage
+memory-arenas	0x0036A570	0x0036A597	bit test or set by a register	bt eax, ecx	mask	the arena's bit in the enabled mask 0x022D89B8
+memory-arenas	0x0036A570	0x0036A5AA	compare with 0xE	cmp ecx, 0xe	arena number	the arena number, tested before it indexes the 15 records
+memory-arenas	0x0036A570	0x0036A5B2	stride 0xA8	imul rdi, rax, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x0036A570	0x0036A5B9	arena records	lea rax, [rip + 0x1f6da10]	storage	a reference to the family's storage
+memory-arenas	0x0036A9C0	0x0036A9EB	compare with 0xF	cmp eax, 0xf	arena number	byte +4 of rcx, tested below 15 and then scaled by 0xA8 (0x0036A9F0)
+memory-arenas	0x0036A9C0	0x0036A9F0	stride 0xA8	imul rcx, rax, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x0036A9C0	0x0036A9F7	arena records	lea rax, [rip + 0x1f6d5d2]	storage	a reference to the family's storage
+memory-arenas	0x0036AF20	0x0036AF42	compare with 0xE	cmp ecx, 0xe	arena number	the arena number, tested before it indexes the 15 records
+memory-arenas	0x0036AF20	0x0036AF4A	stride 0xA8	imul rbx, rax, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x0036AF20	0x0036AF51	arena records	lea rax, [rip + 0x1f6d078]	storage	a reference to the family's storage
+memory-arenas	0x0036B060	0x0036B060	compare with 0xE	cmp ecx, 0xe	arena number	the arena number, tested before it indexes the 15 records
+memory-arenas	0x0036B060	0x0036B068	arena records	lea rcx, [rip + 0x1f6cf61]	storage	a reference to the family's storage
+memory-arenas	0x0036B060	0x0036B06F	stride 0xA8	imul rax, rax, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x0036B080	0x0036B084	arena global 0x022D89B8	mov eax, dword ptr [rip + 0x1f6d92e]	storage	a reference to the family's storage
+memory-arenas	0x0036B080	0x0036B08A	bit test or set by a register	bt eax, ecx	mask	the arena's bit in the enabled mask 0x022D89B8
+memory-arenas	0x0036B080	0x0036B09F	compare with 0xE	cmp ecx, 0xe	arena number	the arena number, tested before it indexes the 15 records
+memory-arenas	0x0036B080	0x0036B0A7	stride 0xA8	imul rbx, rax, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x0036B080	0x0036B0AE	arena records	lea rax, [rip + 0x1f6cf1b]	storage	a reference to the family's storage
+memory-arenas	0x0036B160	0x0036B16F	current arena number	mov ebx, dword ptr [rip + 0x1f6d847]	storage	a reference to the family's storage
+memory-arenas	0x0036B160	0x0036B181	allocate from arena 0x0036BC60	call 0x36bc60	accessor	a call of the family's accessor
+memory-arenas	0x0036B160	0x0036B1A4	allocate after compaction 0x0036BFE0	call 0x36bfe0	accessor	a call of the family's accessor
+memory-arenas	0x0036B200	0x0036B200	arena global 0x022D89B8	mov edx, dword ptr [rip + 0x1f6d7b2]	storage	a reference to the family's storage
+memory-arenas	0x0036B200	0x0036B208	bit test or set by a register	bt edx, ecx	mask	the arena's bit in the enabled mask 0x022D89B8
+memory-arenas	0x0036B670	0x0036B690	current arena number	mov ecx, dword ptr [rip + 0x1f6d326]	storage	a reference to the family's storage
+memory-arenas	0x0036B730	0x0036B750	current arena number	mov ecx, dword ptr [rip + 0x1f6d266]	storage	a reference to the family's storage
+memory-arenas	0x0036B7F0	0x0036B810	current arena number	mov ecx, dword ptr [rip + 0x1f6d1a6]	storage	a reference to the family's storage
+memory-arenas	0x0036B8B0	0x0036B8D0	current arena number	mov ecx, dword ptr [rip + 0x1f6d0e6]	storage	a reference to the family's storage
+memory-arenas	0x0036B980	0x0036B9EF	compare with 0xF	cmp eax, 0xf	arena number	the arena number in a block header, tested below 15 before it indexes the records
+memory-arenas	0x0036B980	0x0036B9F4	stride 0xA8	imul r15, rax, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x0036B980	0x0036B9FB	arena records	lea rax, [rip + 0x1f6c5ce]	storage	a reference to the family's storage
+memory-arenas	0x0036BC60	0x0036BC7E	arena global 0x022D89C0	cmp dword ptr [rip + 0x1f6cd3b], r8d	storage	a reference to the family's storage
+memory-arenas	0x0036BC60	0x0036BCA1	compare with 0xE	cmp ecx, 0xe	arena number	the arena number, tested before it indexes the 15 records
+memory-arenas	0x0036BC60	0x0036BCA9	arena records	lea rax, [rip + 0x1f6c320]	storage	a reference to the family's storage
+memory-arenas	0x0036BC60	0x0036BCB0	stride 0xA8	imul rbx, rcx, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x0036BC60	0x0036BCD2	arena global 0x022D89B8	mov eax, dword ptr [rip + 0x1f6cce0]	storage	a reference to the family's storage
+memory-arenas	0x0036BC60	0x0036BCD8	bit test or set by a register	bt eax, ecx	mask	the arena's bit in the enabled mask 0x022D89B8
+memory-arenas	0x0036BFE0	0x0036BFF0	arena global 0x022D89B8	mov eax, dword ptr [rip + 0x1f6c9c2]	storage	a reference to the family's storage
+memory-arenas	0x0036BFE0	0x0036BFF8	bit test or set by a register	bt eax, ecx	mask	the arena's bit in the enabled mask 0x022D89B8
+memory-arenas	0x0036BFE0	0x0036C007	arena records	lea r14, [rip + 0x1f6bfc2]	storage	a reference to the family's storage
+memory-arenas	0x0036BFE0	0x0036C013	current arena number	movsxd rcx, dword ptr [rip + 0x1f6c9a2]	storage	a reference to the family's storage
+memory-arenas	0x0036BFE0	0x0036C01A	compare with 0xE	cmp ecx, 0xe	arena number	the current arena 0x022D89BC, tested before it indexes the 15 records
+memory-arenas	0x0036BFE0	0x0036C01F	stride 0xA8	imul rdx, rcx, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x0036BFE0	0x0036C03D	current arena number	mov ecx, dword ptr [rip + 0x1f6c979]	storage	a reference to the family's storage
+memory-arenas	0x0036BFE0	0x0036C049	arena global 0x022D89B8	mov eax, dword ptr [rip + 0x1f6c969]	storage	a reference to the family's storage
+memory-arenas	0x0036BFE0	0x0036C04F	bit test or set by a register	bt eax, ecx	mask	the arena's bit in the enabled mask 0x022D89B8
+memory-arenas	0x0036BFE0	0x0036C054	compare with 0xE	cmp ecx, 0xe	arena number	the arena number, tested before it indexes the 15 records
+memory-arenas	0x0036BFE0	0x0036C05C	stride 0xA8	imul rbx, rax, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x0036BFE0	0x0036C08B	current arena number	mov ecx, dword ptr [rip + 0x1f6c92b]	storage	a reference to the family's storage
+memory-arenas	0x0036BFE0	0x0036C0A9	allocate from arena 0x0036BC60	call 0x36bc60	accessor	a call of the family's accessor
+memory-arenas	0x0036C140	0x0036C140	arena global 0x022D89C0	mov eax, dword ptr [rip + 0x1f6c87a]	storage	a reference to the family's storage
+memory-arenas	0x0036C140	0x0036C161	arena global 0x022D89C0	mov dword ptr [rip + 0x1f6c859], eax	storage	a reference to the family's storage
+memory-arenas	0x0036C140	0x0036C16B	current arena number	mov dword ptr [rip + 0x1f6c84b], eax	storage	a reference to the family's storage
+memory-arenas	0x0036C1F0	0x0036C213	current arena number	movzx eax, word ptr [rip + 0x1f6c7a2]	storage	a reference to the family's storage
+memory-arenas	0x0036C1F0	0x0036C27F	current arena number	mov dword ptr [rip + 0x1f6c737], eax	storage	a reference to the family's storage
+memory-arenas	0x0036C4B0	0x0036C4D3	compare with 0xE	cmp ecx, 0xe	arena number	the arena number, tested before it indexes the 15 records
+memory-arenas	0x0036C4B0	0x0036C4DB	stride 0xA8	imul rbx, rax, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x0036C4B0	0x0036C4E2	arena records	lea rax, [rip + 0x1f6bae7]	storage	a reference to the family's storage
+memory-arenas	0x0036C5A0	0x0036C5A0	compare with 0xE	cmp ecx, 0xe	arena number	the arena number, tested before it indexes the 15 records
+memory-arenas	0x0036C5A0	0x0036C5A8	stride 0xA8	imul rcx, rax, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x0036C5A0	0x0036C5AF	arena records	lea rax, [rip + 0x1f6ba1a]	storage	a reference to the family's storage
+memory-arenas	0x0036CAD0	0x0036CAE6	current arena number	mov ecx, dword ptr [rip + 0x1f6bed0]	storage	a reference to the family's storage
+memory-arenas	0x0036CB00	0x0036CB57	current arena number	mov dword ptr [rip + 0x1f6be5e], r12d	storage	a reference to the family's storage
+memory-arenas	0x0036CB00	0x0036CB81	current arena number	mov dword ptr [rip + 0x1f6be34], r12d	storage	a reference to the family's storage
+memory-arenas	0x0036CB00	0x0036CF0C	allocate from arena 0x0036BC60	call 0x36bc60	accessor	a call of the family's accessor
+memory-arenas	0x0036D050	0x0036D08F	allocate after compaction 0x0036BFE0	call 0x36bfe0	accessor	a call of the family's accessor
+memory-arenas	0x0036D050	0x0036D0D2	compare with 0xF	cmp eax, 0xf	arena number	the arena number in a block header, tested below 15 before it indexes the records
+memory-arenas	0x0036D050	0x0036D0D7	stride 0xA8	imul rbx, rax, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x0036D050	0x0036D0DE	arena records	lea rax, [rip + 0x1f6aeeb]	storage	a reference to the family's storage
+memory-arenas	0x0036D160	0x0036D165	shift by a register	shl eax, cl	mask	~(1 << arena), and'd into the enabled mask (0x0036D169)
+memory-arenas	0x0036D160	0x0036D169	arena global 0x022D89B8	and dword ptr [rip + 0x1f6b849], eax	storage	a reference to the family's storage
+memory-arenas	0x0036D170	0x0036D1B5	compare with 0xF	cmp eax, 0xf	arena number	the arena number in a block header, tested below 15 before it indexes the records
+memory-arenas	0x0036D170	0x0036D1BA	stride 0xA8	imul rcx, rax, 0xa8	stride	a record index scaled or stepped in a function that uses the storage
+memory-arenas	0x0036D170	0x0036D1C1	arena records	lea rax, [rip + 0x1f6ae08]	storage	a reference to the family's storage
