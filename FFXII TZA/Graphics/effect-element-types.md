@@ -288,8 +288,21 @@ row of every record. The palette slot is 0 on all 6,998 rows, and a row without 
 its source byte, so `0x005030F0` replaces the palette word only for the 1,234 rows with a palette source.
 
 [`effect-sprite-records.tsv`](effect-sprite-records.tsv) has one row per record and
-[`effect-sprite-rows.tsv`](effect-sprite-rows.tsv) one per row of each distinct content. These tables hold the
-selectors. A row's corners and coordinates, its bytes `+0x00` to `+0x6B`, stay in the record.
+[`effect-sprite-rows.tsv`](effect-sprite-rows.tsv) one per row of each distinct content, with the selectors.
+[`effect-sprite-row-values.tsv`](effect-sprite-row-values.tsv) has the same rows' other stored values.
+
+`0x00502CB0` copies file bytes `+0x00` to `+0x63` to the same offsets and file `+0x64` to `+0x6B` to row `+0x68` to
+`+0x6F` (`0x00502D68`), and does not write row `+0x64` to `+0x67`.
+
+| Row bytes | Holds | Read at |
+|---|---|---|
+| `+0x00` to `+0x3F` | four corners, each x, y, z and w | copied whole (`0x00501C00`-`0x00501CD1`); the frame offsets are added to x and y, and bits `0x10` and `0x20` of the draw's byte `+0x46` negate every x and every y (`0x00501D20`-`0x00501D8A`) |
+| `+0x40` to `+0x5F` | four texture coordinate pairs | the sprite drawer `0x0039CCB0` (`0x0050207F`); `0x00431830` subtracts the first pair from the last (`0x0043197E`-`0x00431993`) |
+| `+0x60` to `+0x63` | a colour | passed to `0x0026EE00` (`0x00501DB7`, `0x00502866`) |
+| `+0x68` to `+0x6F` | a blend word | stored in `0x02AEE908` with blend mode 6 when bits `0xE` of a mode byte are `0xC`: the draw's `+0x46` (`0x00501D8F`, `0x0050283F`) or the caller's record `+0x60` in `0x00502160` (`0x00502194`) |
+
+On all 6,998 rows z is 0 and w is 1. The blend word is an entry of `0x01EFAC20` on every row: `0x80000000A8` on 3,512
+rows, `0x48` on 2,553, `0x44` on 894, `0x42` on 37 and `0x49` on 2.
 
 - `0x00502F30(record, n, first, count)` finds the `n`-th enabled row and returns its index and the
   number of rows up to the next enabled one; it fails for `n` above the row count `+0x38`.

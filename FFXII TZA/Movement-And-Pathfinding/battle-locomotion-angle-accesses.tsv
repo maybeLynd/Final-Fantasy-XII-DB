@@ -333,7 +333,11 @@ function	name	site	disp	kind	instruction	route	note
 0x0033BED0	BattleLocomotion_SolveDefaultStep	0x0033BEED	ctx+0xF8	r	mov rdx, qword ptr [rbx + 0xf8]	solver	
 0x0033BED0	BattleLocomotion_SolveDefaultStep	0x0033BEF4	ctx+0xF0	r	mov rcx, qword ptr [rbx + 0xf0]	solver	
 0x0033BED0	BattleLocomotion_SolveDefaultStep	0x0033BF00	ctx+0xB0	w	mov dword ptr [rbx + 0xb0], 0	solver	
+0x0033BED0	BattleLocomotion_SolveDefaultStep	0x0033BF1D	ctx+0xCC	rw	and dword ptr [rbx + 0xcc], 0xffffff7f	solver	
+0x0033BED0	BattleLocomotion_SolveDefaultStep	0x0033BF2A	ctx+0xB0	w	movss dword ptr [rbx + 0xb0], xmm0	solver	
 0x0033BED0	BattleLocomotion_SolveDefaultStep	0x0033BF47	0x0	r	test dword ptr [rdi], 0x7fe0	solver->st@0x0033BEDA	
+0x0033BED0	BattleLocomotion_SolveDefaultStep	0x0033BF52	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	solver	
+0x0033BED0	BattleLocomotion_SolveDefaultStep	0x0033BF59	0x40	r	cmp dword ptr [rax + 0x40], 1	solver->st@0x0033BF52	
 0x0033C9B0	FUN_0033c9b0	0x0033C9D9	ctx+0x0	addr	lea rcx, [rsp + 0x20]	ctx-stack-0x128	
 0x0033CDE0	BattleLocomotion_ApplySimpleHeadingLimit	0x0033CDE6	ctx+0xB0	r	movss xmm2, dword ptr [rcx + 0xb0]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A0A6	
 0x0033CDE0	BattleLocomotion_ApplySimpleHeadingLimit	0x0033CE01	ctx+0x108	r	mov rdx, qword ptr [rcx + 0x108]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A0A6	

@@ -350,12 +350,13 @@ all present and hashed.
 |---|---|
 | `path`, `bytes`, `sha256` | the file's lower-case archive path, its size and its SHA-256 |
 | `extension`, `first_bytes` | the part after the last dot (`-` without one), and the first four bytes as hex (`-` for an empty file) |
-| `detected_format` | the first four bytes as text when they are printable and nine or more files open with them, `text` for other plain text, `-` otherwise |
+| `detected_format` | the first four bytes as text when they are printable and nine or more files open with them, `text` for other plain text, `empty` for a file of 0 bytes, a label from a constant a format page states at a fixed offset, `-` otherwise |
 | `format_pages` | the pages that declare this extension in their `archive_formats` |
-| `tables`, `table_names` | how many of the database's tables name this path, and up to four of them; [`archive-file-tables.tsv`](archive-file-tables.tsv) names them all for the 28,015 files with more than four |
+| `tables`, `table_names` | how many of the database's tables name this file, by its path or by the folder, name or parent folder a table keys on, and up to four of them; a key that fits files of different content credits none; [`archive-file-tables.tsv`](archive-file-tables.tsv) names them all for the 28,096 files with more than four |
 | `exe_kind_id` | the kind and id whose path array holds this path ([asset paths](asset-paths.md)), `-` when none does |
 | `ah_lists` | how many prefetch lists name it ([prefetch manifests](prefetch-manifests.md)) |
 | `named_by_files`, `names_files` | how many rows of `archive-file-references.tsv` name this file, and how many it holds |
+| `content_status` | the extension's status in [`archive-format-status.tsv`](archive-format-status.tsv) when a table measured for that extension holds this file, `no per-file row` when the extension is parsed in part and none does |
 
 The extension has a format page for 87,957 files. The 1,457 others are 1,439 `.bin` files, 16 `.sav` files and 2
 without an extension. Of the `.bin` files, 1,437 are under `ps2data/image/ff12`, which
@@ -366,9 +367,10 @@ The `.sav` files are on [the save file format](../Saving-Loading-And-Settings/sa
 extension, `ps2data/debglobal.bin/file1` is on [the `.bin` families](ps2data-bin-families.md) and
 `ps2data/square_ff12/ff12config` on [game settings](../Saving-Loading-And-Settings/game-settings.md).
 
-[`archive-file-signatures.tsv`](archive-file-signatures.tsv) counts the files for each `detected_format`, with their
-extensions. It reads the opening bytes only, so a text file's label is the start of its first line: `/Gam` opens a
-path in an `.ah` list, and `lus0` the first texture name in a `proceduraltextureconfigs.txt`.
+[`archive-file-signatures.tsv`](archive-file-signatures.tsv) counts the files for each `detected_format`, with what
+the label rests on and their extensions. It reads the opening bytes only, so a text file's label is the start of its
+first line: `/Gam` opens a path in an `.ah` list, and `lus0` the first texture name in a
+`proceduraltextureconfigs.txt`. `count 32` and `version 100` are constant fields of `.mpk` and `.nmb`, not tags.
 
 31,864 paths are in a kind's path array. A path in no array can still be read, because the game also builds paths
 from patterns, as the [prefetch lists](prefetch-manifests.md) do. A `-` or a 0 in these columns says that those lists
@@ -412,7 +414,9 @@ or a reference not located yet, stays distinct from non-use.
 | `fields_held_raw` | the parts of the format kept as bytes or with no stated meaning, with the page section |
 | `status` | `parsed`, `parsed in part` or `listed only`, as above |
 
-`Database/Tools/catalogues/archive_format_status.py` writes the table.
+`Database/Tools/catalogues/archive_format_status.py` writes the table and, after `archive_files.py`, the
+`content_status` column of `archive-files.tsv`. `fields_held_raw` stays per extension: it names fields of a format's
+layout, which are the same for each of its files.
 
 ## Operations
 

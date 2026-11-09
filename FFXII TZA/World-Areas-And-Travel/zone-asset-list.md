@@ -144,17 +144,18 @@ battle's store their date moves later: 40 the Zodiark battle (`hne_e01` step 137
 `grm_e13`, open from 290, has switches that store 1 or 0 in `0x09E0` and `0x09E1` too, and they do not move the date.
 `mic_d01` stores 0 in all four, from `Map_Director.ガラムサイズフラグリセット`.
 
-In 102 rows `basis` also names the walls the way's source zone switches on (`setmapidwall` kind 5, value 0) under a
+In 101 rows `basis` also names the walls the way's source zone switches on (`setmapidwall` kind 5, value 0) under a
 condition that is not false at the date. The search behind a date counts the way open past them, unless the wall's
 switch or door sets the date, as in the 28 rows of Barheim Passage and the Lhusu Mines below. Kind 6 writes, which
 never change where a walking body stops, and writes that switch a wall off are not listed.
 
-In 67 rows the arrival entrance of a way is held in a saved value. The source zone's script stores that value just
-before the jump, so the entrance is fixed per way, and
+In 67 rows the arrival entrance of a way is held in a saved value. In 59 of them the source zone's script stores that
+value when the zone starts up, in the branch for that map, which `store_conditions` names; in the other 8 it stores
+the value in the function that makes the jump. The entrance is fixed per way, and
 [`zone-openings-saved-arrivals.tsv`](zone-openings-saved-arrivals.tsv) gives it with its store. In all 67 it reaches
 the exit group the date counts, with no walls and with every wall the row names standing.
 
-[`zone-openings-wall-gates.tsv`](zone-openings-wall-gates.tsv) tests those 102 rows on the source zone's walk mesh.
+[`zone-openings-wall-gates.tsv`](zone-openings-wall-gates.tsv) tests those 101 rows on the source zone's walk mesh.
 The walls of a row are the wall records of its groups, taken as the unit solids of
 [Geometry primitives](../Movement-And-Pathfinding/geometry-primitives.md); no group in these rows holds a type-1
 polygon. `result` says whether the arrival still reaches the exit's floor. The floor is flooded in steps of 0.1, and
@@ -163,7 +164,7 @@ a point is blocked inside a solid at 0.05 above the floor:
 | `result` | Rows |
 |---|---:|
 | `joined`: the mesh joins them with the walls standing | 86 |
-| `separated`: the walls cut every path on the mesh | 12 |
+| `separated`: the walls cut every path on the mesh | 11 |
 | `joined from some arrivals`: an arrival held in a saved value, joined from some of the zone's entrances | 1 |
 | `no walk-mesh basis`: the row's date does not rest on the walk mesh | 3 |
 
@@ -182,16 +183,28 @@ condition, its lift and the arrival position:
 | the date stands | 3 |
 | the date stands, with one step the listings do not place | 4 |
 
+The `lus_a04` row there tests arrival entrance 1, the near side; the date rests on entrance 5, which the wall-gates
+table tests, so that row is `joined`. [`zone-openings-wall-points.tsv`](zone-openings-wall-points.tsv)
+gives the entrances, exit groups and listed points each wall state joins, by the same flood;
+`Database/Tools/catalogues/wall_points.py` writes it.
+
 In Barheim Passage the walls follow the power and door switches. `mic_a06` opens at 321, when `0x9C1` can reach 5
 (`mic_a01` lines 950, 1495). The rooms on the way to `mic_c02` open at 323, the counter stored on first entering
 `mic_a06` (line 292), and so do the zones reached through them: 16 rows in all carry a Barheim date from this.
 `mic_e03` follows `mic_e02` at 323. The cart that takes its wall down is placed by the point the party turns to
 face, on the far side of the wall from the arrival, so that one step is not placed.
 
+That point shows where the party faces. The Lhusu switches below also answer only from a counter test at `0x7BE`,
+which settles those rows; the cart's talk has no test, so its row keeps the date. `mic_e04` and `mic_d01` take their
+date from `mic_e03`.
+
 The far half of the Lhusu Mines opens at 1982, through the Site 3 door in `lus_b02`. The door answers from that
 counter and needs the Site 3 Key (`鉱区の扉.main` line 655, `.talk` line 754). The point the party turns to at the
 Transitway and `lus_b02` switches lies on the far side of their walls, so those switches do not open the way in.
 `lus_b02` opens at 660, when the near half of `lus_b01` leads to it (below `0x0294` that exit leads to another map).
+
+The Site 3 Key is given at `byu_a17` during quest 165 (lines 1953, 2027). Its speaker tests clan rank 5 or more and
+story counter 1982 or more (line 1855), so the door also rests on a clan rank the story counter does not hold.
 
 `lus_b03` opens at 1982, through that door. `lus_d03` opens at 3050: its door needs the Site 11 Key, given at
 `fon_b01`, which opens at 3050, and the `lus_d01` switch that takes wall 1 down is on the `lus_d03` side of that

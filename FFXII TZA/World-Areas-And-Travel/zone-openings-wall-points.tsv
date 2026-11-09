@@ -1,0 +1,278 @@
+zone	walls_standing	kind	subject	x	y	z	polygon	reached_from_entrances
+mic_c02	1	entrance	0	39.310	0.000	18.568	47	-
+mic_c02	1	entrance	1	23.377	1.799	11.000	0	-
+mic_c02	1	entrance	2	38.747	-0.000	44.565	74	-
+mic_c02	1	entrance	3	39.310	0.000	18.568	47	-
+mic_c02	1	entrance	4	39.310	0.000	18.568	47	-
+mic_c02	1	exit group	1	-	-	-	-	0 1 2 3 4
+mic_c02	1	exit group	2	-	-	-	-	0 1 2 3 4
+mic_c01	1	entrance	0	38.997	0.000	59.614	196	-
+mic_c01	1	entrance	1	38.997	0.000	59.614	196	-
+mic_c01	1	exit group	2	-	-	-	-	0 1
+mic_e02	1	entrance	0	42.498	20.826	53.983	41	-
+mic_e02	1	entrance	1	42.498	20.826	53.983	41	-
+mic_e02	1	entrance	2	12.395	0.000	341.152	1401	-
+mic_e02	1	entrance	3	28.002	0.000	341.619	579	-
+mic_e02	1	exit group	1	-	-	-	-	0 1
+mic_e02	1	exit group	2	-	-	-	-	2
+mic_e02	1	exit group	3	-	-	-	-	3
+mic_e02	1	point	cart, the point the party turns to	16.000	-150.000	287.800	459	2
+frs_d01	1	entrance	0	27.335	5.000	34.575	462	-
+frs_d01	1	entrance	1	27.537	6.903	34.680	503	-
+frs_d01	1	entrance	2	104.877	-0.000	79.326	300	-
+frs_d01	1	exit group	1	-	-	-	-	0 1
+frs_d01	1	exit group	2	-	-	-	-	2
+frs_d01	1	point	foreman and party at the lift scene	70.207	5.003	42.199	40	0 1
+frs_d01	1	point	foreman and party at the lift scene	67.841	5.003	43.508	39	0 1
+frs_b02	1	entrance	0	166.335	0.000	164.191	1239	-
+frs_b02	1	entrance	1	25.744	0.000	97.182	250	-
+frs_b02	1	entrance	2	61.791	0.000	49.273	942	-
+frs_b02	1	entrance	3	143.280	0.000	157.346	778	-
+frs_b02	1	entrance	4	103.707	-0.000	119.778	294	-
+frs_b02	1	exit group	1	-	-	-	-	0 3 4
+frs_b02	1	exit group	2	-	-	-	-	0 3 4
+frs_b02	1	exit group	3	-	-	-	-	1 2
+frs_b02	1	exit group	4	-	-	-	-	1 2
+frs_b02	1	exit group	5	-	-	-	-	0 3 4
+frs_b02	1	point	party placed after the Bomb King	117.770	2.188	133.322	296	0 3 4
+mrm_d04	4	entrance	0	231.500	-64.000	88.003	317	-
+mrm_d04	4	entrance	1	231.500	-64.000	88.000	317	-
+mrm_d04	4	entrance	2	177.997	-64.000	124.485	322	-
+mrm_d04	4	entrance	3	188.027	-64.000	43.121	118	-
+mrm_d04	4	entrance	4	188.000	-61.000	211.009	361	-
+mrm_d04	4	exit group	1	-	-	-	-	2
+mrm_d04	4	exit group	2	-	-	-	-	0 1 3 4
+mrm_d04	4	point	hidden passage rect	179.645	-	120.291	-	-
+mrm_d04	4	point	hidden passage rect	179.645	-	120.991	-	-
+mrm_d04	4	point	hidden passage rect	179.645	-150.000	121.691	323	2
+mrm_d04	4	point	hidden passage rect	179.645	-150.000	122.391	323	2
+mrm_d04	4	point	hidden passage rect	179.645	-150.000	123.091	323	2
+mrm_d04	4	point	hidden passage rect	179.645	-150.000	123.791	323	2
+mrm_d04	4	point	hidden passage rect	179.645	-150.000	124.491	323	2
+mrm_d04	4	point	hidden passage rect	179.645	-150.000	125.191	323	2
+mrm_d04	4	point	hidden passage rect	179.645	-150.000	125.891	323	2
+mrm_d04	4	point	hidden passage rect	179.645	-150.000	126.591	323	2
+mrm_d04	4	point	hidden passage rect	179.645	-150.000	127.291	323	2
+mrm_d04	4	point	hidden passage rect	179.645	-150.000	127.991	323	2
+mrm_d04	4	point	hidden passage rect	179.645	-	128.691	-	-
+mrm_d04	4	point	hidden passage rect	180.045	-150.000	120.291	269	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.045	-150.000	120.991	319	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.045	-150.000	121.691	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.045	-150.000	122.391	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.045	-150.000	123.091	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.045	-150.000	123.791	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.045	-150.000	124.491	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.045	-150.000	125.191	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.045	-150.000	125.891	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.045	-150.000	126.591	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.045	-150.000	127.291	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.045	-150.000	127.991	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.045	-150.000	128.691	318	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.445	-150.000	120.291	320	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.445	-150.000	120.991	319	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.445	-150.000	121.691	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.445	-150.000	122.391	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.445	-150.000	123.091	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.445	-150.000	123.791	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.445	-150.000	124.491	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.445	-150.000	125.191	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.445	-150.000	125.891	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.445	-150.000	126.591	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.445	-150.000	127.291	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.445	-150.000	127.991	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.445	-150.000	128.691	318	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.845	-150.000	120.291	271	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.845	-150.000	120.991	319	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.845	-150.000	121.691	319	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.845	-150.000	122.391	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.845	-150.000	123.091	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.845	-150.000	123.791	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.845	-150.000	124.491	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.845	-150.000	125.191	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.845	-150.000	125.891	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.845	-150.000	126.591	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.845	-150.000	127.291	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.845	-150.000	127.991	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	180.845	-150.000	128.691	318	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.245	-150.000	120.291	271	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.245	-150.000	120.991	319	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.245	-150.000	121.691	319	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.245	-150.000	122.391	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.245	-150.000	123.091	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.245	-150.000	123.791	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.245	-150.000	124.491	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.245	-150.000	125.191	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.245	-150.000	125.891	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.245	-150.000	126.591	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.245	-150.000	127.291	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.245	-150.000	127.991	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.245	-150.000	128.691	318	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.645	-150.000	120.291	271	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.645	-150.000	120.991	319	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.645	-150.000	121.691	319	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.645	-150.000	122.391	319	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.645	-150.000	123.091	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.645	-150.000	123.791	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.645	-150.000	124.491	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.645	-150.000	125.191	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.645	-150.000	125.891	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.645	-150.000	126.591	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.645	-150.000	127.291	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.645	-150.000	127.991	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	181.645	-150.000	128.691	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	182.045	-150.000	120.291	319	0 1 3 4
+mrm_d04	4	point	hidden passage rect	182.045	-150.000	120.991	319	0 1 3 4
+mrm_d04	4	point	hidden passage rect	182.045	-150.000	121.691	319	0 1 3 4
+mrm_d04	4	point	hidden passage rect	182.045	-150.000	122.391	319	0 1 3 4
+mrm_d04	4	point	hidden passage rect	182.045	-150.000	123.091	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	182.045	-150.000	123.791	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	182.045	-150.000	124.491	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	182.045	-150.000	125.191	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	182.045	-150.000	125.891	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	182.045	-150.000	126.591	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	182.045	-150.000	127.291	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	182.045	-150.000	127.991	321	0 1 3 4
+mrm_d04	4	point	hidden passage rect	182.045	-150.000	128.691	321	0 1 3 4
+lus_b01	-	entrance	0	111.702	0.000	139.739	135	-
+lus_b01	-	entrance	1	115.061	0.000	46.667	119	-
+lus_b01	-	entrance	2	108.952	0.000	46.579	155	-
+lus_b01	-	entrance	3	67.079	0.000	26.486	533	-
+lus_b01	-	entrance	4	60.953	0.000	26.675	608	-
+lus_b01	-	entrance	5	115.056	-0.000	145.519	179	-
+lus_b01	-	entrance	6	108.988	-0.000	145.507	104	-
+lus_b01	-	entrance	7	67.004	-0.000	165.448	612	-
+lus_b01	-	entrance	8	61.027	-0.000	165.488	548	-
+lus_b01	-	exit group	1	-	-	-	-	0 1 2 5 6
+lus_b01	-	exit group	2	-	-	-	-	0 1 2 5 6
+lus_b01	-	exit group	3	-	-	-	-	0 1 2 5 6
+lus_b01	-	exit group	4	-	-	-	-	0 1 2 5 6
+lus_b01	-	exit group	5	-	-	-	-	3 4 7 8
+lus_b01	-	exit group	6	-	-	-	-	3 4 7 8
+lus_b01	-	exit group	7	-	-	-	-	3 4 7 8
+lus_b01	-	exit group	8	-	-	-	-	3 4 7 8
+lus_b02	-	entrance	0	208.642	-0.000	229.776	679	-
+lus_b02	-	entrance	1	214.787	-0.000	232.130	676	-
+lus_b02	-	entrance	2	208.171	-0.000	229.582	678	-
+lus_b02	-	entrance	3	171.303	-0.000	189.378	384	-
+lus_b02	-	entrance	4	164.564	-0.000	189.397	394	-
+lus_b02	-	entrance	5	178.127	9.705	146.161	1301	-
+lus_b02	-	entrance	6	186.941	10.344	125.882	2053	-
+lus_b02	-	exit group	1	-	-	-	-	0 1 2 3 4 5 6
+lus_b02	-	exit group	2	-	-	-	-	0 1 2 3 4 5 6
+lus_b02	-	exit group	3	-	-	-	-	0 1 2 3 4 5 6
+lus_b02	-	exit group	4	-	-	-	-	0 1 2 3 4 5 6
+lus_b02	-	exit group	5	-	-	-	-	0 1 2 3 4 5 6
+lus_b02	-	exit group	6	-	-	-	-	0 1 2 3 4 5 6
+lus_b02	1	entrance	0	208.642	-0.000	229.776	679	-
+lus_b02	1	entrance	1	214.787	-0.000	232.130	676	-
+lus_b02	1	entrance	2	208.171	-0.000	229.582	678	-
+lus_b02	1	entrance	3	171.303	-0.000	189.378	384	-
+lus_b02	1	entrance	4	164.564	-0.000	189.397	394	-
+lus_b02	1	entrance	5	178.127	9.705	146.161	1301	-
+lus_b02	1	entrance	6	186.941	10.344	125.882	2053	-
+lus_b02	1	exit group	1	-	-	-	-	0 1 2 6
+lus_b02	1	exit group	2	-	-	-	-	0 1 2 6
+lus_b02	1	exit group	3	-	-	-	-	3 4 5
+lus_b02	1	exit group	4	-	-	-	-	3 4 5
+lus_b02	1	exit group	5	-	-	-	-	3 4 5
+lus_b02	1	exit group	6	-	-	-	-	0 1 2 6
+lus_b03	-	entrance	0	163.200	10.420	145.923	1266	-
+lus_b03	-	entrance	1	163.200	10.420	145.923	1266	-
+lus_b03	-	entrance	2	167.883	10.420	123.095	150	-
+lus_b03	-	exit group	1	-	-	-	-	0 1 2
+lus_b03	-	exit group	2	-	-	-	-	0 1 2
+lus_g01	-	entrance	0	208.642	-0.000	229.776	679	-
+lus_g01	-	entrance	1	214.787	-0.000	232.130	676	-
+lus_g01	-	entrance	2	208.171	-0.000	229.582	678	-
+lus_g01	-	entrance	3	171.303	-0.000	189.378	384	-
+lus_g01	-	entrance	4	164.564	-0.000	189.397	394	-
+lus_g01	-	entrance	5	178.127	9.705	146.161	1301	-
+lus_g01	-	entrance	6	186.941	10.344	125.882	2053	-
+lus_g01	-	exit group	1	-	-	-	-	0 1 2 3 4 5 6
+lus_g01	-	exit group	2	-	-	-	-	0 1 2 3 4 5 6
+lus_g01	-	exit group	3	-	-	-	-	0 1 2 3 4 5 6
+lus_g01	-	exit group	4	-	-	-	-	0 1 2 3 4 5 6
+lus_g01	-	exit group	5	-	-	-	-	0 1 2 3 4 5 6
+lus_g01	-	exit group	6	-	-	-	-	0 1 2 3 4 5 6
+lus_g01	1 2	entrance	0	208.642	-0.000	229.776	679	-
+lus_g01	1 2	entrance	1	214.787	-0.000	232.130	676	-
+lus_g01	1 2	entrance	2	208.171	-0.000	229.582	678	-
+lus_g01	1 2	entrance	3	171.303	-0.000	189.378	384	-
+lus_g01	1 2	entrance	4	164.564	-0.000	189.397	394	-
+lus_g01	1 2	entrance	5	178.127	9.705	146.161	1301	-
+lus_g01	1 2	entrance	6	186.941	10.344	125.882	2053	-
+lus_g01	1 2	exit group	1	-	-	-	-	0 1 2
+lus_g01	1 2	exit group	2	-	-	-	-	0 1 2
+lus_g01	1 2	exit group	3	-	-	-	-	3 4 5
+lus_g01	1 2	exit group	4	-	-	-	-	3 4 5
+lus_g01	1 2	exit group	5	-	-	-	-	3 4 5
+lus_g01	1 2	exit group	6	-	-	-	-	6
+lus_g03	1	entrance	0	272.690	0.000	109.196	565	-
+lus_g03	1	entrance	1	272.694	0.000	109.196	565	-
+lus_g03	1	entrance	2	272.614	0.000	115.255	550	-
+lus_g03	1	entrance	3	221.481	0.000	26.129	649	-
+lus_g03	1	entrance	4	215.506	0.000	26.122	635	-
+lus_g03	1	entrance	5	163.004	0.000	58.581	910	-
+lus_g03	1	entrance	6	156.983	0.000	58.487	980	-
+lus_g03	1	entrance	7	88.592	-0.000	157.000	2069	-
+lus_g03	1	entrance	8	88.537	-0.000	162.948	398	-
+lus_g03	1	entrance	10	135.583	1.500	163.117	2073	-
+lus_g03	1	exit group	1	-	-	-	-	0 1 2 3 4
+lus_g03	1	exit group	2	-	-	-	-	0 1 2 3 4
+lus_g03	1	exit group	3	-	-	-	-	0 1 2 3 4
+lus_g03	1	exit group	4	-	-	-	-	0 1 2 3 4
+lus_g03	1	exit group	5	-	-	-	-	5 6 7 8 10
+lus_g03	1	exit group	6	-	-	-	-	5 6 7 8 10
+lus_g03	1	exit group	7	-	-	-	-	5 6 7 8 10
+lus_g03	1	exit group	8	-	-	-	-	5 6 7 8 10
+lus_g02	-	entrance	0	111.702	0.000	139.739	135	-
+lus_g02	-	entrance	1	115.061	0.000	46.667	119	-
+lus_g02	-	entrance	2	108.952	0.000	46.579	155	-
+lus_g02	-	entrance	3	67.079	0.000	26.486	533	-
+lus_g02	-	entrance	4	60.953	0.000	26.675	608	-
+lus_g02	-	entrance	5	115.056	-0.000	145.519	179	-
+lus_g02	-	entrance	6	108.988	-0.000	145.507	104	-
+lus_g02	-	entrance	7	67.004	-0.000	165.448	612	-
+lus_g02	-	entrance	8	61.027	-0.000	165.488	548	-
+lus_g02	-	exit group	1	-	-	-	-	0 1 2 5 6
+lus_g02	-	exit group	2	-	-	-	-	0 1 2 5 6
+lus_g02	-	exit group	3	-	-	-	-	0 1 2 5 6
+lus_g02	-	exit group	4	-	-	-	-	0 1 2 5 6
+lus_g02	-	exit group	5	-	-	-	-	3 4 7 8
+lus_g02	-	exit group	6	-	-	-	-	3 4 7 8
+lus_g02	-	exit group	7	-	-	-	-	3 4 7 8
+lus_g02	-	exit group	8	-	-	-	-	3 4 7 8
+lus_g02	1	entrance	0	111.702	0.000	139.739	135	-
+lus_g02	1	entrance	1	115.061	0.000	46.667	119	-
+lus_g02	1	entrance	2	108.952	0.000	46.579	155	-
+lus_g02	1	entrance	3	67.079	0.000	26.486	533	-
+lus_g02	1	entrance	4	60.953	0.000	26.675	608	-
+lus_g02	1	entrance	5	115.056	-0.000	145.519	179	-
+lus_g02	1	entrance	6	108.988	-0.000	145.507	104	-
+lus_g02	1	entrance	7	67.004	-0.000	165.448	612	-
+lus_g02	1	entrance	8	61.027	-0.000	165.488	548	-
+lus_g02	1	exit group	1	-	-	-	-	0 1 2 5 6
+lus_g02	1	exit group	2	-	-	-	-	0 1 2 5 6
+lus_g02	1	exit group	3	-	-	-	-	0 1 2 5 6
+lus_g02	1	exit group	4	-	-	-	-	0 1 2 5 6
+lus_g02	1	exit group	5	-	-	-	-	3 4 7 8
+lus_g02	1	exit group	6	-	-	-	-	3 4 7 8
+lus_g02	1	exit group	7	-	-	-	-	3 4 7 8
+lus_g02	1	exit group	8	-	-	-	-	3 4 7 8
+lus_g02	1 2	entrance	0	111.702	0.000	139.739	135	-
+lus_g02	1 2	entrance	1	115.061	0.000	46.667	119	-
+lus_g02	1 2	entrance	2	108.952	0.000	46.579	155	-
+lus_g02	1 2	entrance	3	67.079	0.000	26.486	533	-
+lus_g02	1 2	entrance	4	60.953	0.000	26.675	608	-
+lus_g02	1 2	entrance	5	115.056	-0.000	145.519	179	-
+lus_g02	1 2	entrance	6	108.988	-0.000	145.507	104	-
+lus_g02	1 2	entrance	7	67.004	-0.000	165.448	612	-
+lus_g02	1 2	entrance	8	61.027	-0.000	165.488	548	-
+lus_g02	1 2	exit group	1	-	-	-	-	0 1 2 5 6
+lus_g02	1 2	exit group	2	-	-	-	-	0 1 2 5 6
+lus_g02	1 2	exit group	3	-	-	-	-	0 1 2 5 6
+lus_g02	1 2	exit group	4	-	-	-	-	0 1 2 5 6
+lus_g02	1 2	exit group	5	-	-	-	-	3 4 7 8
+lus_g02	1 2	exit group	6	-	-	-	-	3 4 7 8
+lus_g02	1 2	exit group	7	-	-	-	-	3 4 7 8
+lus_g02	1 2	exit group	8	-	-	-	-	3 4 7 8

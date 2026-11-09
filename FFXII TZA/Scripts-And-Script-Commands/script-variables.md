@@ -424,8 +424,8 @@ An array has the lifetime of its element storage. `scratch2` also rides the save
 | array headers | 3,622: 3,430 with one dimension, 192 with two, `+0x06` 0 in all |
 | array elements | file 2,138, global 881, local 499, scratch2 95, scratch1 9 |
 | uses | reads 519,529, stores 402,381, references 6,465, debug resolves 9,108 |
-| of the reads | tests 87,094, switches 18,527 |
-| of the stores | literal 297,790, computed 104,591 |
+| of the reads | tests 87,090, switches 18,527 |
+| of the stores | literal 273,679, computed 128,702 (34,276 of them to arrays) |
 | rows with no use in their own script | global 1,002, local 607, array 34, file 15 |
 | local scalars | 13,256 used by one actor, 1,903 by several |
 | rows with a declared name | 9,923, all with global storage |

@@ -54,7 +54,7 @@ and cannot be read from these counts.
 functions, measured along each function's control flow. A value is followed from an argument, a call's result or a
 constant to where it is used.
 
-[`call-signatures-contracts.tsv`](call-signatures-contracts.tsv) has 14 functions read by hand, whole: what each
+[`call-signatures-contracts.tsv`](call-signatures-contracts.tsv) has 54 functions read by hand, whole: what each
 takes, returns and keeps, what it reads and writes, what happens when it fails, its locks and recursion, and where
 the evidence for it stops.
 
@@ -71,7 +71,7 @@ Ten starts go through `0x005CD1E0`, which runs them from the trampoline `0x005CC
 object's slot 1, `0x00863410`, calls the descriptor's function. Three share the trampoline `0x007A5550`.
 
 `thread_starts` lists the starts that reach a function by direct and tail calls. 1,951 functions have one. Code
-entered through a pointer is not followed, so `-` says only that no start reaches the function by direct calls.
+entered through a pointer is not followed, so `-` says only that no start reaches the function by those calls.
 
 #### Locks
 
@@ -85,22 +85,23 @@ for that thread (`0x005CD3BE`, `0x005CD435`).
 
 #### Call groups
 
-`call_group` numbers the 33 groups of two or more functions that can reach each other by direct calls, and gives the
-group's size. They hold 443 functions; the largest has 160. A function calling itself directly is counted in
-`direct_recursion` above.
+`call_group` numbers the 33 groups of two or more functions that can reach each other by direct and tail calls,
+conditional tail jumps included, and gives the group's size. They hold 443 functions; the largest has 160. Over calls
+alone there are 29 groups holding 257 functions, the largest 77, and the other 186 are in a group only through a tail
+jump. A function calling itself directly is counted in `direct_recursion` above.
 
 #### Columns of call-signatures-contract-flow.tsv
 
 | Column | Holds |
 |---|---|
 | `addr` | the function |
-| `rcx_use`, `rdx_use`, `r8_use`, `r9_use` | the range of offsets read and written through the argument, whether it is used as an array index, its width when below 8 bytes, and the constants it is compared with or tested against |
+| `rcx_use`, `rdx_use`, `r8_use`, `r9_use` | the range of offsets read and written through the argument, counted when a path into the instruction holds it; `indexed at` the same for a base with an index register or a `lea` with one, at the fixed part of the offset; whether it is used as an array index; its width when below 8 bytes; and the constants it is compared with or tested against |
 | `return_values` | what `rax` holds at each `ret`: a number, an argument, a global, a load, or the result of a named call; `?` where the trace stops |
 | `zero_guards` | an argument tested against zero, with what is returned on that path when no call comes first |
 | `callers_use_return` | across call sites, how many test the result against zero, use it as an address, store it or otherwise compare it |
 | `releases` | the arguments, or fields of arguments, passed to a release on at least one path, including through other functions |
 | `returns_new_from` | the allocator a returned block came from |
-| `fatal_calls` | the fatal exits the function calls directly |
+| `fatal_calls` | the fatal exits the function calls or tail-jumps to, by import name: `exit` (also `_exit` and `ExitProcess`), `TerminateProcess`, `abort`, `terminate` (also `__std_terminate`), `pure call`, `invalid parameter`, `bad alloc`, `length error`, `out of range`, `regex error`, `invalid argument`, `throw` |
 | `locks` | the locks it takes directly |
 | `thread_starts` | the starts that reach it by direct and tail calls |
 | `call_group` | its call group and that group's size |

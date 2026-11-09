@@ -1,4 +1,4 @@
-start	how	created_at	created_by	functions_reached_by_direct_calls
+start	how	created_at	created_by	functions_reached_by_direct_and_tail_calls
 0x00808EE4	process entry point in the PE header	-	-	624
 0x00171370	_beginthreadex, start in r8	0x00171718	0x00171480	45
 0x005CCAB0	CreateThread, start in r8	0x005CD03D	0x005CCD00	20

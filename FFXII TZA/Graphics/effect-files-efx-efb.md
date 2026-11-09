@@ -251,6 +251,7 @@ points back at its source bytes. A stream shared by several files is written onc
 | [`effect-resources.tsv`](effect-resources.tsv) | 33,024 | `0xB00` record |
 | [`effect-sprite-records.tsv`](effect-sprite-records.tsv) | 4,321 | kind-`0x50` record: its counts and slot numbers |
 | [`effect-sprite-rows.tsv`](effect-sprite-rows.tsv) | 6,998 | sprite row of a distinct record: its selectors |
+| [`effect-sprite-row-values.tsv`](effect-sprite-row-values.tsv) | 6,998 | the same rows: corners, texture coordinates, colour and blend word |
 | [`effect-frame-sequences.tsv`](effect-frame-sequences.tsv) | 3,622 | kind-`0x51` record: its entry counts and total ticks |
 | [`effect-frame-entries.tsv`](effect-frame-entries.tsv) | 941 | entry of a distinct sequence |
 | [`effect-expressions-700.tsv`](effect-expressions-700.tsv) | 47,823 | expression with an operand, in a `0x700` record |
@@ -363,6 +364,18 @@ table.
 | `palette_source` | `palette` when byte `+0x6E` has bit `0x80`, else `texture` |
 | `palette_index`, `palette_resource_slot` | that byte's low 7 bits and the slot number they pick; `-` for `texture` |
 | `palette_slot` | byte `+0x6F` |
+
+### Columns of effect-sprite-row-values.tsv
+
+File offsets of each row, from its first byte.
+
+| Column | Holds |
+|---|---|
+| `content`, `row` | as in `effect-sprite-rows.tsv` |
+| `corner0_x` to `corner3_w` | the four corners at `+0x00` to `+0x3F`, floats |
+| `u0`, `v0` to `u3`, `v3` | the four texture coordinate pairs at `+0x40` to `+0x5F`, floats |
+| `colour` | the word at `+0x60`, in hex |
+| `blend_word` | the eight bytes at `+0x64`, as a little-endian word in hex |
 
 ### Columns of effect-frame-entries.tsv
 

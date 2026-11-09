@@ -93,10 +93,26 @@ The state 3 arm that calls `0x002FC010` (`0x0024BD80`) does not run, so a queued
 `0x00307300` that way.
 
 The other caller of `0x002FC010`, the deferred list at `0x02092170` (`0x0024B5EC`), reads no kind mask. On this step
-`0x0024B4F0` reaches it at `0x0022AED7`, after the loop that holds the check (`0x0022AD69`). Direct-call chains from the
-field frame after the drain also reach `0x00300FC0` through `0x00300E40`, among them `0x00359800`, `0x0035A590`, `0x00233F50`,
-and `0x0037C1A0`, `0x0037B4D0`, `0x00233AD0`, `0x00324450`, `0x003243F0`. This rules out only the hit route; no route with
-every gate true is located yet, and the sub-id test stays as written above.
+`0x0024B4F0` reaches it at `0x0022AED7`, after the loop that holds the check (`0x0022AD69`), too late for that check. In
+the effect passes only kind 1 reaches `0x002FC010`: the state 3 table at `0x0024BD5B` sends every other kind elsewhere.
+
+Effect programs send timeline codes to `0x00319F50` through `0x002EB740`, and only codes 0 (`0x00319FD8`) and 2
+(`0x0031A042`) have a direct-call path to `0x0030E360`. The 347 shipped commands that send them, `0x03` and `0x22`, are
+all in magic files, and those play as kind 1 (`0x002FCCC0`). A held kind 1 instance runs only `0x003A7EE0` and
+`0x003A93F0`, which have no direct-call path to `0x003B8670`, and no shipped command uses `0x11`, the signal to a kind 1
+instance (`0x003B8CB2`).
+
+Two direct-call chains from the field frame after the drain still reach `0x00300FC0` through `0x00300E40`. `0x00359800`
+goes through `0x00359A30`, `0x0035A590`, `0x00233F50` and `0x00233EA0` only in dispose state 1, which the `disposeentry`
+begin sets (`0x0035A64F`) and the same tick ends (`0x00359B01`). `0x0037C1A0` goes through `0x0037B4D0`, `0x00233AD0`,
+`0x00324450` and `0x003243F0` only for a slot of the mask that `partystdmotionrecover` fills (`0x0037CFD0`).
+
+Each chain tears down a unit whose record is already down or that has none (`0x00233ED7`-`0x00233EF7`, `0x00324420`), so
+neither changes what `0x002372E0` reads. Either arms Game Over only when that test is already true while bit `0x2` of
+`0x022C83E8` is clear. A KO with a unit arms at the KO (`0x0030E877`), so that state needs another cause, such as a KO
+on a record with no unit (`0x0030E729`). This rules out the hit route and, over direct calls and for magic files their
+action requesters play, the effect programs; no route with every gate true is located yet, and the sub-id test stays
+as written above.
 
 The body of `0x0027EFA0` fades (`0x002EFA70(3, 0, 1, 0)` when `0x002EFD20(3)` is
 non-zero), calls `0x0035C7B0(0x0B, 0)` and `0x00252B40(0x0B, 1)`, writes 2 to the area controller's `+0xC8`
@@ -213,6 +229,8 @@ nothing in `0x003EFAA0` (`0x003EFAFA`); `0x003EF770` and `0x003EF680` move the t
 1. State 1 waits until the image slot is ready (image task state 3) and message `0x10` has
    arrived (`+0xF0`). It then spawns the logo task `0x003EF4A0` (`0xD0` bytes) at `+0xE0`, starts music track 7
    at full volume with `0x002DECE0(7)` (`0x003EFC69`; [Music](../Sound-And-Music/music.md)) and goes to state 2.
+   - The music and step 2 below run only when the image task's state byte reads 3 again after the spawn
+     (`0x003EFC5B`-`0x003EFC62`); otherwise the task goes to state 2 without them (`0x003EFCA9`, `0x003EFCAE`).
    - The logo task's widget is entry 0 of the `gameover.mrp` file its create record names
      (`0x002432B0(self + 0x50, file, 0, self)`, `0x003EF4E2`); the animation descriptor at `0x00D11CA8` goes to
      `0x00247570` (`0x003EF539`).

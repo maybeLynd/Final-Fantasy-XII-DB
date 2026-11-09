@@ -82,8 +82,8 @@ the first row of the table below.
 | `array_base_loaded_at` | where the table's base address was loaded, when the use names one |
 | `pages` | the pages that cite the function; `-` for none |
 
-The trace reads forward from each read inside its function, follows direct jumps and takes the first branch path, so
-a use after a conditional jump may be missing.
+The trace reads forward from each read inside its function and follows direct jumps and both paths of a conditional
+jump, up to 48 instructions on a path.
 
 The tables it indexes:
 

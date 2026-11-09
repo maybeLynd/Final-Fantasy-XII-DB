@@ -334,7 +334,7 @@ palette 2 stop after 64 colours of page 0, where their entry ends. `0x005044D0` 
 | `@FCP` byte `+0x01` | 1 in 127 (81 monsters, 26 summons, 20 NPCs), 0 elsewhere |
 | `@FCP` event map | all zero in 723; `7F`×6 in 298; `3D 36 35 01 81 7F` in 29 weapons; `08 01 05 00 7F 7F` in 16 treasures |
 | `@FTR` | kind 2 in all; 27,561 nodes; one root per file, always node 0; every other parent below its child |
-| `@FTR` flags | bit `0x100` set and top byte `0xFF` in all 27,561 nodes |
+| `@FTR` nodes | byte `+0x03` is `0xFF` and flags word `+0x04` has bit `0x100` set in all 27,561 nodes |
 | `@FTR` `+0x38` | equals the `@FDM` key count in all 1,045; up to 1,188 (`m1208`) |
 | `@FOR` | in all 1,066; one record in 1,000, up to 12; keys 1 to n in 1,062 |
 | `@FOR` LOD | no distance in 751, one in 179, two in 136; 32,767 cm (no switch) in 59: the only distance in 54 one-distance files, the second in 5 two-distance files |

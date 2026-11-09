@@ -1,70 +1,85 @@
-files	detected_format	extensions
-35984	RYHP	phyre:35984
-10314	PKFL	mot:4392 snd:2304 vpc:1809 vpcjp:1809
-10036	EBP2	ebp:10036
-8754	PS2D	txt:8752 sys:2
-4609	sabf	sab:4609
-4230	@FRP	ca:3164 cm:1066
-3288	EFX0	efx:3288
-2721	himg	dat:2721
-2605	/Gam	ah:2559 ta:45 txt:1
-1619	-	mpk:550 nmb:332 bin:291 mrp:116 dat:63 json:55 webm:40 adm:39 ker:34 as7:18 fex:14 sav:12 btm:12 ebp:9 dbg:8 msb:8 sbn:8 tga:2 -:2 ico:2 mg:2 spp:1 config:1
-1393	text	json:775 txt:596 csv:8 h:6 ah:5 bin:2 cnf:1
-579	##To	txt:579
-456	TIM2	tm2:447 nfs:9
-436	sloc	bin:436
-410	EFB0	efb:410
-407	st2e	bin:407
-336	FF12	ard:332 sav:4
-248	SeBl	seb:248
-116	mabf	mab:116
-101	hdat	dat:101
-54	hctg	bin:54
-54	hchk	dat:54
-52	licd	bin:52
-43	.mhe	mh:43
-35	gmap	bin:35
-26	BGnp	txt:26
-24	rbl0	txt:24
-22	CLT2	cl2:20 bin:2
-18	ene0	txt:18
-18	FLAG	bin:18
-18	CCdd	bin:18
-17	sav0	txt:17
-16	lus0	txt:16
-16	mic0	txt:16
-16	CHSE	bin:16
-15	grm0	txt:15
-15	hne0	txt:15
-15	mrm0	txt:15
-13	fon0	txt:13
-12	pla0	txt:12
-11	alc0	txt:11
-11	bog0	txt:11
-11	dst0	txt:11
-11	gil0	txt:11
-10	dor0	txt:10
-10	gol0	txt:10
-10	rui0	txt:10
-10	ztc0	txt:10
-9	byu0	txt:9
-9	frs0	txt:9
-9	pbc0	txt:9
-9	srb0	txt:9
-9	rbn1	txt:9
-9	##Ph	txt:9
-9	274,	csv:9
-9	NPC0	bin:9
-9	PLMN	bin:9
-9	QST1	bin:9
-9	//22	bin:9
-9	sign	bin:9
-9	bwin	bin:9
-9	hcom	bin:9
-9	hodr	bin:9
-9	qstd	dat:9
-9	qstl	lst:9
-9	amap	bin:9
-9	cmap	bin:9
-9	lmap	bin:9
-9	wmap	bin:9
+files	detected_format	rests_on	extensions
+35984	RYHP	its first four bytes as text, shared by nine or more files	phyre:35984
+10314	PKFL	its first four bytes as text, shared by nine or more files	mot:4392 snd:2304 vpc:1809 vpcjp:1809
+10036	EBP2	its first four bytes as text, shared by nine or more files	ebp:10036
+8754	PS2D	its first four bytes as text, shared by nine or more files	txt:8752 sys:2
+4609	sabf	its first four bytes as text, shared by nine or more files	sab:4609
+4230	@FRP	its first four bytes as text, shared by nine or more files	ca:3164 cm:1066
+3288	EFX0	its first four bytes as text, shared by nine or more files	efx:3288
+2721	himg	its first four bytes as text, shared by nine or more files	dat:2721
+2605	/Gam	its first four bytes as text, shared by nine or more files	ah:2559 ta:45 txt:1
+1422	text	plain text: no NUL and no control byte but tab, LF and CR in the first block read	json:804 txt:596 csv:8 h:6 ah:5 bin:2 cnf:1
+579	##To	its first four bytes as text, shared by nine or more files	txt:579
+550	count 32	the u32 at +0, a slot count of 32 in all 550 packs (0x0036B980 rejects a larger one), stated in ../World-Areas-And-Travel/mpk-map-pack.md; a constant, not a tag	mpk:550
+486	-	the opening bytes are neither text shared by nine files nor a constant a page states	bin:282 dat:63 adm:39 ker:34 fex:14 sav:12 btm:12 dbg:8 msb:8 sbn:8 tga:2 -:2 mg:2
+456	TIM2	its first four bytes as text, shared by nine or more files	tm2:447 nfs:9
+436	sloc	its first four bytes as text, shared by nine or more files	bin:436
+410	EFB0	its first four bytes as text, shared by nine or more files	efb:410
+407	st2e	its first four bytes as text, shared by nine or more files	bin:407
+336	FF12	its first four bytes as text, shared by nine or more files	ard:332 sav:4
+332	version 100	the u16 at +2, version 100, stated in ard-area-battle-data.md; the u16 at +0 is the entry count	nmb:332
+248	SeBl	its first four bytes as text, shared by nine or more files	seb:248
+116	MRP	the magic MRP at +0 stated in mrp-menu-resource-packages.md	mrp:116
+116	mabf	its first four bytes as text, shared by nine or more files	mab:116
+101	hdat	its first four bytes as text, shared by nine or more files	dat:101
+54	hctg	its first four bytes as text, shared by nine or more files	bin:54
+54	hchk	its first four bytes as text, shared by nine or more files	dat:54
+52	licd	its first four bytes as text, shared by nine or more files	bin:52
+43	.mhe	its first four bytes as text, shared by nine or more files	mh:43
+40	EBML	the public EBML header id 1A 45 DF A3; standard-file-formats.md, WebM header	webm:40
+35	gmap	its first four bytes as text, shared by nine or more files	bin:35
+26	BGnp	its first four bytes as text, shared by nine or more files	txt:26
+26	empty	a file of 0 bytes	json:26
+24	rbl0	its first four bytes as text, shared by nine or more files	txt:24
+22	CLT2	its first four bytes as text, shared by nine or more files	cl2:20 bin:2
+18	ene0	its first four bytes as text, shared by nine or more files	txt:18
+18	FLAG	its first four bytes as text, shared by nine or more files	bin:18
+18	A7	the two bytes A7 at +0 stated in as7-menu-graphics.md	as7:18
+18	CCdd	its first four bytes as text, shared by nine or more files	bin:18
+17	sav0	its first four bytes as text, shared by nine or more files	txt:17
+16	lus0	its first four bytes as text, shared by nine or more files	txt:16
+16	mic0	its first four bytes as text, shared by nine or more files	txt:16
+16	CHSE	its first four bytes as text, shared by nine or more files	bin:16
+15	grm0	its first four bytes as text, shared by nine or more files	txt:15
+15	hne0	its first four bytes as text, shared by nine or more files	txt:15
+15	mrm0	its first four bytes as text, shared by nine or more files	txt:15
+13	fon0	its first four bytes as text, shared by nine or more files	txt:13
+12	pla0	its first four bytes as text, shared by nine or more files	txt:12
+11	alc0	its first four bytes as text, shared by nine or more files	txt:11
+11	bog0	its first four bytes as text, shared by nine or more files	txt:11
+11	dst0	its first four bytes as text, shared by nine or more files	txt:11
+11	gil0	its first four bytes as text, shared by nine or more files	txt:11
+10	dor0	its first four bytes as text, shared by nine or more files	txt:10
+10	gol0	its first four bytes as text, shared by nine or more files	txt:10
+10	rui0	its first four bytes as text, shared by nine or more files	txt:10
+10	ztc0	its first four bytes as text, shared by nine or more files	txt:10
+9	byu0	its first four bytes as text, shared by nine or more files	txt:9
+9	frs0	its first four bytes as text, shared by nine or more files	txt:9
+9	pbc0	its first four bytes as text, shared by nine or more files	txt:9
+9	srb0	its first four bytes as text, shared by nine or more files	txt:9
+9	rbn1	its first four bytes as text, shared by nine or more files	txt:9
+9	##Ph	its first four bytes as text, shared by nine or more files	txt:9
+9	274,	its first four bytes as text, shared by nine or more files	csv:9
+9	NPC0	its first four bytes as text, shared by nine or more files	bin:9
+9	PLMN	its first four bytes as text, shared by nine or more files	bin:9
+9	QST1	its first four bytes as text, shared by nine or more files	bin:9
+9	//22	its first four bytes as text, shared by nine or more files	bin:9
+9	sign	its first four bytes as text, shared by nine or more files	bin:9
+9	bwin	its first four bytes as text, shared by nine or more files	bin:9
+9	hcom	its first four bytes as text, shared by nine or more files	bin:9
+9	hodr	its first four bytes as text, shared by nine or more files	bin:9
+9	qstd	its first four bytes as text, shared by nine or more files	dat:9
+9	qstl	its first four bytes as text, shared by nine or more files	lst:9
+9	amap	its first four bytes as text, shared by nine or more files	bin:9
+9	cmap	its first four bytes as text, shared by nine or more files	bin:9
+9	lmap	its first four bytes as text, shared by nine or more files	bin:9
+9	wmap	its first four bytes as text, shared by nine or more files	bin:9
+9	0x80000007	the first word of the nine headerless evt_t0020 files, stated in ../EBP-Script-Files/ebp-script-container.md	ebp:9
+3	NAV	the tag NAV and byte 2 stated in ../World-Areas-And-Travel/area-flags-navimapdata.md	bin:3
+2	MRF	the magic MRF and version byte 2 stated in ../World-Areas-And-Travel/weather.md	bin:2
+2	MUS0	the magic MUS0 stated in ../Sound-And-Music/music-table.md	bin:2
+2	PS2 icon	the file id 0x00010000 stated in standard-file-formats.md	ico:2
+1	VIB0	the tag VIB0 stated in small-bin-tables.md	bin:1
+1	ashd	the magic ashd stated in ps2data-bin-families.md	bin:1
+1	SPP1	the section name SPP1 stated in ../World-Areas-And-Travel/mpk-map-pack.md, slot 10	spp:1
+1	scnf	the magic scnf compared at 0x007AE410, stated in ../Sound-And-Music/sound-engine-config.md	config:1

@@ -825,7 +825,7 @@ passes their addresses to; no image-base-relative reference or disp32 displaceme
   solver context, followed from its builder `0x00336710`, one row per instruction (67 rows).
 - [`battle-locomotion-angle-accesses.tsv`](battle-locomotion-angle-accesses.tsv): the accesses to the
   locomotion block (unit `+0x80`) and the solver context in the navigation step, the builder and the solvers, one
-  row per instruction (486 rows).
+  row per instruction (490 rows).
 
 In the corridor table, `function`, `name` and `site` give the function, its name and the instruction's address,
 `disp` the offset the instruction reaches from the start of the solver context, `kind` a read (`r`), a write (`w`)

@@ -609,8 +609,9 @@ At 0 the key `+0x37C` goes to every player that is set, and the bit is cleared (
 
 `0x003A7050(dt)` runs those countdowns first, then the emitter step `0x003A8390(dt)` (`0x003A71D3`). It adds `dt`
 to the float `+0x84` of the `+0x130` block, steps the players, and stores the whole part of `+0x84` in
-`+0x80` (`0x003A71D8`–`0x003A726F`). It returns 1 when a player's step returned non-zero or the first node
-`+8` of the `+0x1B8` block is set, and 0 otherwise (`0x003A7275`–`0x003A728D`).
+`+0x80` (`0x003A71D8`–`0x003A726F`). It returns 1 when any of the sixteen slots held a player at its step, whether that
+step returned non-zero or returned 0 and the player was freed (`0x003A720E`, `0x003A721A`, `0x003A7247`), or when the
+first node `+8` of the `+0x1B8` block is set, and 0 otherwise (`0x003A7275`–`0x003A728D`).
 
 ### Moving the owner actor
 

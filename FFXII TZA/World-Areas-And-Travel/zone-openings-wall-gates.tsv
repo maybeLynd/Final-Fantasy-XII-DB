@@ -22,9 +22,8 @@ zone	name	opens	way_in	source_zone	entrance	exit_group	wall_groups	wall_polygons
 337	gil_g06	4230	gil_g05 walk __MJ_CTRL001.mapjump step 33	gil_g05	held in a saved value	2	1 2 3 4 5 6	0	12	146	joined	joined
 345	wdl_a01	100	rbn_a19 walk __MJ_CTRL000.mapjump step 27	rbn_a19	1	1	3	0	1	4	joined	joined
 358	lus_a02	520	lus_a01 walk __MJ_CTRL001.mapjump step 29	lus_a01	1	2	1 2	0	3	170	joined	joined
-360	lus_a04	1982	lus_a03 walk __MJ_CTRL006.mapjump step 27	lus_a03	1	7	1 2	0	2	132	separated	separated
+360	lus_a04	1982	lus_a03 walk __MJ_CTRL006.mapjump step 27	lus_a03	5	7	1 2	0	2	132	joined	joined
 365	lus_b01	520	lus_a03 walk __MJ_CTRL002.mapjump step 29	lus_a03	1	3	1 2	0	2	132	joined	joined
-367	lus_b03	1982	lus_b02 walk __MJ_CTRL004.mapjump step 27	lus_b02	3	5	1 2	0	2	88	joined	joined
 374	lus_d03	3050	lus_d01 walk __MJ_CTRL002.mapjump step 27	lus_d01	1	3	1 3 4	0	5	80	separated	separated
 483	fon_a06	3050	frs_d01 walk __MJ_CTRL001.mapjump step 27	frs_d01	1	2	1	0	2	44	separated	separated
 541	mfr_a03	1475	hne_c04 walk __MJ_CTRL002.mapjump step 27	hne_c04	1	3	5	0	2	82	joined	separated
