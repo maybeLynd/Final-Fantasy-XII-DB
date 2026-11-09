@@ -21559,7 +21559,7 @@ function	0x0031A990	-	Battle-Actions/area-of-effect.md	-	4
 function	0x0031AA30	-	Enemy-Spawning/bestiary.md	-	10
 function	0x0031AB80	-	Battle-Actions/area-of-effect.md	-	6
 function	0x0031ABE0	-	Movement-And-Pathfinding/battle-locomotion.md	-	5
-function	0x0031ABF0	-	Engine-Core/debug-menu.md	-	8
+function	0x0031ABF0	-	Engine-Core/debug-menu.md	-	9
 function	0x0031AC00	-	Party/party-data.md	-	10
 function	0x0031AC90	Vector3_ComputeXZHeadingOrFallback	Enemy-Spawning/enemy-spawning.md	-	7
 function	0x0031ACC0	-	Characters-And-Objects/battle-units.md	-	4

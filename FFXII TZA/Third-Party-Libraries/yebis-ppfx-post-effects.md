@@ -289,6 +289,29 @@ image, starting at `0x00E21F90`. It begins with text fields: `.tfxo file`, three
 then the effect name `TexUtil_D3D11` and a newline-separated technique list that starts with
 `tech_AlchemySsao_T1_S16`.
 
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x00000` | `char[16]` |  | value ".tfxo file" |
+| `+0x00010` | `char[16]` |  | decimal: the block's size less `0x40` (`15264130`) |
+| `+0x00020` | `char[16]` |  | decimal: the size of the text at `+0x40` (313026) |
+| `+0x00030` | `char[8]` |  | decimal: the program count (2621) |
+| `+0x00038` | `char[8]` |  | value "hlsl" |
+| `+0x00040` | `text` |  | effect name; technique count; one line per technique: name, vertex shader, its program, pixel shader, its program; "GlobalParameter:"; parameter count; one line per parameter |
+| `+0x4C702` | `record[]` |  | 256 bytes each, one per program: name, decimal offset, decimal size, NUL-separated |
+| `+0xF0402` | `DXBC[]` |  | the programs end to end; each record's offset is from here |
+
+| Table | Rows | One row per |
+|---|---:|---|
+| [`yebis-ppfx-post-effects-techniques.tsv`](yebis-ppfx-post-effects-techniques.tsv) | 2,624 | technique: `index`, `technique`, `vertex_shader`, `vertex_program`, `pixel_shader`, `pixel_program` |
+| [`yebis-ppfx-post-effects-parameters.tsv`](yebis-ppfx-post-effects-parameters.tsv) | 35 | global parameter: `index`, `name`, and the two stored numbers `field_2` and `field_3` |
+| [`yebis-ppfx-post-effects-programs.tsv`](yebis-ppfx-post-effects-programs.tsv) | 2,621 | program: `index`, `name`, `profile` (`vs_4_0` 37, `ps_4_0` 2,584), both offsets, `bytes`, `sha256`, and `same_bytes_as`, the earlier program with the same bytes (68 rows) |
+| [`yebis-ppfx-post-effects-program-listing.tsv`](yebis-ppfx-post-effects-program-listing.tsv) | 249,452 | profile line, declaration or instruction of each of the 2,553 distinct programs: `program`, `line`, `text`, as `D3DDisassemble` of `d3dcompiler_47.dll` prints it |
+
+A technique's two program numbers are the positions of `TexUtil_D3D11\<shader>.vso` and `.pso` in the records,
+in all 2,624.
+These tables give what the block stores. Which technique a frame runs is the library's choice at run time.
+`Database/Tools/catalogues/yebis_effects.py` writes them.
+
 `0x0078A530` copies the whole block into a `malloc` buffer in eight runs of `0x1D1D40` bytes (sources
 `0x00E21F90` to `0x01ADEC50`, the last run shorter) and returns it. Its only caller is
 `TEXSHADERSET::CreateEffect()` (`0x0072A320`, named by its log lines), which on its first call

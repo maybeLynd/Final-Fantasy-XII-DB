@@ -242,8 +242,8 @@ and, when the bit changes:
   and 2.0 under FrameLimit 1, times 10.0;
 - with the debug-menu byte `+0xE1E` set (`0x0017D3A0`; row 230, "Enable infinite chocobo turbo time") it sets the
   count back to 3 (`0x00303FDD` `or 0xC`), otherwise it stores the count less one (`0x00303FED`-`0x00303FFD`);
-- it requests animation `0x2010` on the chocobo (`0x0030401A`, `0x00329A10`); off requests `0x2001`; either way bit `0x2`
-  is toggled (`0x00304026`-`0x0030403B`).
+- it requests animation `0x2010` on the chocobo (`0x0030401A`, `0x00329A10`); off requests `0x2001`; no request is made
+  when `0x0031ABF0(3)` returns null (`0x00304003`-`0x00304006`); either way bit `0x2` is toggled (`0x00304026`-`0x0030403B`).
 
 The count is written only by the mounts (`0x00303DC6` and the special presentation's `0x00306A23`, both `or 0xC`),
 by turbo, by the reset `0x00304680` (`0x00304726`, cleared) and by the transition restore `0x002EF410` (below), so a ride
