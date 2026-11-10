@@ -42,8 +42,12 @@ Each loot id has a sold tally, one byte in the inventory at `+0x57C8 + loot`, ke
 ([Inventory](inventory.md)). A sale through `0x00310870` takes the loot from the inventory, adds the gil (`0x003108AB`-`0x003108BD`), adds the
 quantity to the tally (`0x003108D1`-`0x003108E8`) and then runs the refresh `0x0030B270` (`0x003108ED`), its only caller.
 
-`0x00310870(id, quantity, price, flags)` removes the loot with `0x003008A0(id, -quantity, 0, 1, flags)`, sets the gil
-to the old gil plus `price`, floored at 0, `new = max(old + price, 0)` (`0x003108A6`-`0x003108BD`), and adds the
+`0x00310870(id, quantity, price, flags)` removes the loot with `0x003008A0(id, -quantity, 0, 1, flags)` and hands the
+gil setter `0x00254EE0` the old gil plus `price`, floored at 0, `new = max(old + price, 0)` (`0x003108A6`-`0x003108BD`);
+the setter meters `new - old` as gil gained or spent (`0x00316A50` kind 6 or 7, `0x00254EF1`-`0x00254F02`) and stores
+`new` capped at 99,999,999 (`0x00254F09`-`0x00254F1F`; [Gil](../Rewards-EXP-Gil-And-Loot/gil.md)).
+
+It adds the
 quantity to the tally with
 `0x003008A0(id, quantity, 0, 3, 0)` (`0x003108D1`-`0x003108E8`). With `flags` bit `0x1` it also posts the gain
 notification `0x00469E80(new - old)` (`0x003108C2`-`0x003108CC`); the shop's transaction function gives it `flags` 0

@@ -22,9 +22,10 @@ that the pause screen sets: while it is set the field frame and the UI tick run 
 
 `GameApplication` is the static object at `0x01F7E350`, `0x1140` (4,416) bytes. Its static
 initialiser `0x0015BC40` runs the base constructor `0x00792350`, installs the vtable `0x008C5760`,
-clears the word at `+0x113C` (the latch and the run-once byte), registers the object with
-`0x007A1190(app, 0x9CA5)`, initialises two framework singletons (`0x01F2CDF8` and `0x01F2CE20` through
-their vtable slot 1 while `0x01F2CDF0` is clear) and registers the destructor `0x008A6970` with
+clears the word at `+0x113C` (the latch and the run-once byte), stores the icon resource id `0x9CA5` at `+0x10D0`
+through `0x007A1190(app, 0x9CA5)`, calls vtable slot 1 of `0x01F2CDF8` and of `0x01F2CE20` only while the byte `0x01F2CDF0`
+is clear (that byte is 1 in the image and every instruction naming it only compares it, so neither call runs,
+`0x0015BC82`-`0x0015BCB3`) and registers the destructor `0x008A6970` with
 `atexit`.
 
 The deleting destructor, slot 0 (`0x0017CC70`), re-installs the vtable, runs the base
@@ -631,7 +632,7 @@ The render manager (`0xDD8` bytes at `[0x01F7F598]`, built by `0x00184F20`, its 
 |---|---|
 | object size | `0x1140` = 4,416 bytes, the immediate of the sized delete in slot 0 |
 | archive path | `"../FFXII_TZA.vbf"` after `"../../.."` |
-| registration key | `0x9CA5` in the static initialiser |
+| icon resource id | `0x9CA5` in the static initialiser |
 | vtable | 31 slots; 18 overridden, 10 inherited, 3 stubs |
 | base RTTI | `.?AVPApplication@PFramework@Phyre@@` at `0x01F47628` |
 | singleton classes | `AsyncJobManager`, `AsyncLoadManager`, `Phyre::PCameraPerspective` (the movie player's camera), `SaveloadManager`, `MultipleDebugDisplay`, from the vtables their constructors install |

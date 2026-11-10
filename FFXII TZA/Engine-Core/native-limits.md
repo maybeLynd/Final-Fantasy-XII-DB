@@ -123,7 +123,7 @@ The `saved_state` cells rest on one search. The save image is `0x56690` bytes at
 closure is the 145 functions that direct and tail calls reach from the capture functions `0x00229B40`, `0x00584580`,
 `0x005844A0`, `0x00233440`, `0x0025D8E0`, `0x002EF540`, `0x002EF510`, `0x002EF3C0`, `0x00583D60`, `0x002EF570`, `0x00234ED0` and the
 restore functions `0x005843E0`, `0x00233550`, `0x00269A20`, `0x00584210`, `0x002EF410`, `0x002EF4A0`, `0x002EF7C0`, `0x002EF740`,
-`0x00235AF0`. A call through a pointer ends the walk.
+`0x00235AF0`. A call or jump through a pointer ends the walk.
 
 A row's functions are the code references to its address, or the rows of its field in
 [`battle-unit-fields.tsv`](../Characters-And-Objects/battle-unit-fields.tsv). A payload write is a `w` or `rw` row of the
@@ -138,7 +138,7 @@ A count covers direct accesses only,
 and no cell takes it as proof that a save writer does not exist.
 
 `0x005844A0` and `0x00583D60` reach battle code only through `0x00283270`, which calls `0x00320040` at `0x00283368`, which
-calls `0x00329220` at `0x0032008D`. None of the 33 functions that lie only behind `0x00283270` has a payload write. Without
+jumps to `0x00329220` at `0x0032008D`. None of the 33 functions that lie only behind `0x00283270` has a payload write. Without
 it the closure has 112 functions and none of the battle functions `0x00236820`, `0x00236850`, `0x00263E30`, `0x0031B7E0`,
 `0x0031B860`, `0x00387090`, `0x002FEAD0`, `0x0030C0E0`, `0x0031FDA0`, `0x00329220`.
 

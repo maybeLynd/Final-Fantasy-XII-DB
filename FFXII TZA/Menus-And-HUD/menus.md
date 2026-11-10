@@ -102,7 +102,7 @@ delivery overwrites the first and still answers 1 (`0x002E1B35`-`0x002E1B47`).
 
 | Poster | Posts |
 |---|---|
-| the input arbiter | id 2 on Triangle (`0x00253D78`); id 2 on Select and L3 with `0x21`, the location map (`0x00253EE6`, `0x00253F53`), or, once story flag `0x5E` is set, with `0x00264640(2)` (`0x00253F44`) |
+| the input arbiter | id 2 on Triangle (`0x00253D78`); id 2 on Select and L3 with `0x21`, the location map (`0x00253EE6`, `0x00253F53`), or, once story flag `0x5E` is set, with `0x00264640(2)`, or 1 when that is 0 (`0x00253F2C`-`0x00253F44`) |
 | `0x0035C81E` | id 11, game over |
 | `0x0035D750` | id 2, after the party-fallen notice |
 | `0x002E1A60` | a script selector, below |

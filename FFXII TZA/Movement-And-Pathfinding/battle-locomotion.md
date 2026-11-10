@@ -469,7 +469,7 @@ move position, the chosen heading byte `+0x2C`, the two move headings and both z
 
 The low nibble of `+0x38` becomes 1 when `rand() % 3` is 1, else 0 (`0x0033E29C`-`0x0033E2B9`), so the too-far bit
 `0x2`, the within-reach bit `0x4` and the turning flag `0x8` are cleared and the detour side bits under mask
-`0xC0` stay. Three `rand()` calls are made, four for a mode 2 unit (`0x0033E22A`, `0x0033E28F`, `0x0033E2BC`).
+`0xC0` stay. Two `rand()` calls are made (`0x0033E28F`, `0x0033E2BC`), three for a mode 2 unit (`0x0033E22A` first).
 
 Besides `0x0033C870` (`0x0033C8F5`) it runs from the block reset `0x0033C9B0(block)`, which builds a context with
 `0x00336710(ctx, block, 0)` and calls it (`0x0033C9D4`-`0x0033C9DE`).

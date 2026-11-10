@@ -373,7 +373,9 @@ owner's record has `+0x284` 0, `0x00421FF0` finds no bone or `0x003E6F70` finds 
 `0x003B5BE2`). The bone is `+0x3C`, not the anchor in use `+0x38` (`0x003B59D9`), and its point is the 16 bytes at
 `+0x30` of what `0x00421FF0` returns (`0x003B5A68`); `d` is `sqrtf` of the absolute sum (`0x003B5B47`-`0x003B5B55`).
 
-The body works in `0x022D91B0`-`0x022D91DF`, stores `d` at `0x022D9198` and copies the 16 bytes from `0x022D91C0`, which start
+The body works in `0x022D91B0`-`0x022D91DF`, stores `d` at `0x022D9198`, the weighted sum of the x and y squares at
+`0x022D91AC` (`0x003B5B37`) and the sum of `0x01EF93FC` and `0x01EF93F0` at `0x022D91F0` (`0x003B5B85`), and copies the 16 bytes
+from `0x022D91C0`, which start
 with the result, to `0x022D8FB0` (`0x003B5B7D`, `0x003B5BBA`-`0x003B5BC9`).
 
 `0x003AF460`, from the character pass `0x00426090`, advances the second pool's ramps: for each of the 32

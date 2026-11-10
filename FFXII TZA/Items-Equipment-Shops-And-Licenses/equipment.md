@@ -52,7 +52,12 @@ the slot did not change (`0x0031A607`-`0x0031A60C`).
 
 `0x0031A510` also
 re-records the fighting units and reloads their models (`0x00324380`) unless `flags` bit `0x1` is set (`0x0031A5F5`-`0x0031A610`);
-the five-slot callers `0x0031A710` and `0x0031A300` pass bit `0x1` and do that once at the end.
+the five-slot callers `0x0031A710` and `0x0031A300` pass bit `0x1` (`0x0031A740`, `0x0031A34D`) and do that once at the end
+only when their own `flags` bit `0x1` is clear and at least one slot was set (`0x0031A772`-`0x0031A780`,
+`0x0031A382`-`0x0031A3E0`).
+
+All four of their call sites set that bit (`0x003FF848`, `0x003FF87D`, `0x0030FB98`, `0x0030FC1A`); the takeaway and giveback
+verbs call `0x00324380` themselves after their loops (`0x0030FC3B`, `0x0030FBAC`).
 
 The worn counts are kept only while the member is in the party: joining adds an owned and a worn copy of every
 piece, and leaving removes them ([Party members](../Party/party-members.md)). So the starting gear and the
@@ -130,7 +135,7 @@ Equipping draws on three other parts of the game. The piece's row says which slo
 with, the inventory must hold a copy nobody is wearing, and a main character must own a License Board square that
 grants it. When the slot changes, the game rebuilds the character's stats.
 
-The slot check `0x0031794A` belongs to the eligibility test, so `0x0031A510` stores `0xFFFF` without it: `0x0031A581`
+The slot check `0x0031794A` belongs to the eligibility test, so `0x0031A510` stores `0xFFFF` without it: `0x0031A584`
 jumps past `0x00317930` to the read of the slot's old word (`0x0031A5A5`). Every caller that stores `0xFFFF` through
 `0x0031A510` gives a slot from 0 to 4:
 

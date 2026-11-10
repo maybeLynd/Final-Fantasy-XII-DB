@@ -7,37 +7,36 @@ zone	name	opens	way_in	source_zone	entrance	exit_group	wall_groups	wall_polygons
 162	frs_c01	105	frs_b02 walk __MJ_CTRL000.mapjump step 27	frs_b02	3	3	1	0	3	76	separated	separated
 163	frs_c02	105	frs_b02 walk __MJ_CTRL001.mapjump step 27	frs_b02	3	4	1	0	3	76	separated	separated
 218	mnt_b04	105	mnt_d01 walk __MJ_CTRL000.mapjump step 27	mnt_d01	1	1	1 2	0	5	156	joined	joined
-219	mnt_b05	105	mnt_b04 walk __MJ_CTRL001.mapjump step 27	mnt_b04	3	2	1	0	4	314	separated	separated
+219	mnt_b05	105	mnt_b04 walk __MJ_CTRL001.mapjump step 27	mnt_b04	1	2	1	0	4	314	joined	joined
 254	sav_d02	1475	sav_d01 walk __MJ_CTRL001.mapjump step 27	sav_d01	1	2	1	0	3	60	joined	joined
 255	sav_d03	1475	sav_d01 walk __MJ_CTRL003.mapjump step 27	sav_d01	1	3	1	0	3	60	joined	joined
 260	sav_e01	1475	sav_d01 walk __MJ_CTRL002.mapjump step 27	sav_d01	1	4	1	0	3	60	joined	joined
 275	naf_a02	0	naf_a01 walk __MJ_CTRL000.mapjump step 27	naf_a01	-	-	1	0	1	52	no walk-mesh basis	-
 286	dor_b01	3330	dor_c12 walk __MJ_CTRL000.mapjump step 27	dor_c12	2	1	1 2	0	0	0	joined	joined
-322	grm_b05	100	grm_b04 walk __MJ_CTRL002.mapjump step 27	grm_b04	6	2	1 2 11 12	0	0	0	joined	joined
-326	grm_c01	100	grm_b02 walk __MJ_CTRL001.mapjump step 27	grm_b02	2	3	4 5 7	0	3	36	joined	joined
+322	grm_b05	257	grm_b04 walk __MJ_CTRL002.mapjump step 27	grm_b04	6	2	1 2 11 12	0	0	0	joined	joined
+326	grm_c01	257	grm_b02 walk __MJ_CTRL001.mapjump step 27	grm_b02	2	3	4 5 7	0	3	36	joined	joined
 333	gil_g02	4350	gil_g01 walk __MJ_CTRL002.mapjump step 33	gil_g01	held in a saved value	3	1 2 3 4 5 6 9 24	0	17	168	joined	joined
 334	gil_g03	4350	gil_g02 walk __MJ_CTRL002.mapjump step 33	gil_g02	held in a saved value	3	1 2 3 4 5 6	0	12	146	joined	joined
 335	gil_g04	4350	gil_g01 walk __MJ_CTRL004.mapjump step 33	gil_g01	held in a saved value	5	1 2 3 4 5 6 9 24	0	17	168	joined	joined
 336	gil_g05	4350	gil_g01 walk __MJ_CTRL001.mapjump step 33	gil_g01	held in a saved value	2	1 2 3 4 5 6 9 24	0	17	168	joined	joined
 337	gil_g06	4350	gil_g05 walk __MJ_CTRL001.mapjump step 33	gil_g05	held in a saved value	2	1 2 3 4 5 6	0	12	146	joined	joined
 345	wdl_a01	100	rbn_a19 walk __MJ_CTRL000.mapjump step 27	rbn_a19	1	1	3	0	1	4	joined	joined
-358	lus_a02	520	lus_a01 walk __MJ_CTRL001.mapjump step 29	lus_a01	1	2	1 2	0	3	170	joined	joined
+358	lus_a02	610	lus_a01 walk __MJ_CTRL001.mapjump step 29	lus_a01	1	2	1 2	0	3	170	joined	joined
 360	lus_a04	1982	lus_a03 walk __MJ_CTRL006.mapjump step 27	lus_a03	5	7	1 2	0	2	132	joined	joined
-365	lus_b01	520	lus_a03 walk __MJ_CTRL002.mapjump step 29	lus_a03	1	3	1 2	0	2	132	joined	joined
+365	lus_b01	610	lus_a03 walk __MJ_CTRL002.mapjump step 29	lus_a03	1	3	1 2	0	2	132	joined	joined
 374	lus_d03	3050	lus_d01 walk __MJ_CTRL002.mapjump step 27	lus_d01	1	3	1 3 4	0	5	80	separated	separated
 483	fon_a06	3050	frs_d01 walk __MJ_CTRL001.mapjump step 27	frs_d01	1	2	1	0	2	44	separated	separated
-541	mfr_a03	1475	hne_c04 walk __MJ_CTRL002.mapjump step 27	hne_c04	1	3	5	0	2	82	joined	separated
 577	ztc_a02	1180	ztc_c01 walk __MJ_CTRL004.mapjump step 27	ztc_c01	2	3	1	0	1	76	joined	joined
 586	ztc_c02	1180	ztc_c01 walk __MJ_CTRL001.mapjump step 27	ztc_c01	-	-	1	0	1	76	no walk-mesh basis	-
 590	ztc_d01	1180	ztc_c01 walk __MJ_CTRL002.mapjump step 27	ztc_c01	-	-	1	0	1	76	no walk-mesh basis	-
-608	mrm_d03	1475	mrm_d04 walk __MJ_CTRL000.mapjump step 27	mrm_d04	2	2	1 2 3 4	0	7	56	separated	separated
+608	mrm_d03	2057	mrm_d01 walk __MJ_CTRL002.mapjump step 27	mrm_d01	2	3	1	0	4	826	separated	separated
 622	gil_e02	4350	gil_e01 walk __MJ_CTRL004.mapjump step 33	gil_e01	held in a saved value	5	1 2 3 4 5 6 9 20	0	17	192	joined	joined
 623	gil_e03	4350	gil_e02 walk __MJ_CTRL002.mapjump step 33	gil_e02	held in a saved value	3	1 2 3 4 5 6	0	12	146	joined	joined
 624	gil_e04	4350	gil_e03 walk __MJ_CTRL004.mapjump step 33	gil_e03	held in a saved value	5	1 2 3 4 5 6	0	12	146	joined	joined
 625	gil_e05	4350	gil_e01 walk __MJ_CTRL001.mapjump step 33	gil_e01	held in a saved value	2	1 2 3 4 5 6 9 20	0	17	192	joined	joined
 626	gil_e06	4350	gil_e01 walk __MJ_CTRL000.mapjump step 33	gil_e01	held in a saved value	1	1 2 3 4 5 6 9 20	0	17	192	joined	joined
-641	alc_b04	3050	ald_a01 walk __MJ_CTRL002.mapjump step 27	ald_a01	1	3	1	0	0	0	joined	joined
-730	hne_d01	1475	hne_c04 walk __MJ_CTRL001.mapjump step 27	hne_c04	1	2	5	0	2	82	joined	joined
+641	alc_b04	3220	ald_a01 walk __MJ_CTRL002.mapjump step 27	ald_a01	1	3	1	0	0	0	separated	separated
+730	hne_d01	4400	hne_c04 walk __MJ_CTRL001.mapjump step 27	hne_c04	1	2	5	0	2	82	joined	joined
 838	grm_e01	290	grm_e03 walk __MJ_CTRL001.mapjump step 33	grm_e03	3	1	1	0	1	14	joined	joined
 843	grm_e06	290	grm_e13 walk __MJ_CTRL012.mapjump step 33	grm_e13	15	13	9	0	13	80	joined	joined
 844	grm_e07	290	grm_e13 walk __MJ_CTRL012.mapjump step 64	grm_e13	15	13	9	0	13	80	joined	joined

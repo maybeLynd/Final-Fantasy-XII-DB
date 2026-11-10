@@ -247,13 +247,15 @@ kind byte `+5` is 0 (`0x00328CDC`-`0x00328CF5`). It calls `0x00326030` and `0x00
 
 ### The quest result window
 
-`questresultwindow(n)` (`0x037C`, begin `0x00344C60`) resolves the quest row (`0x00473C90`, falling back to row 0).
+`questresultwindow(n)` (`0x037C`, begin `0x00344C60`) turns n into an id with `0x00473C90`, falling back to the id of row
+0.
 `0x00473C90(n)` returns −1 when n is at or past the count at `[0x02CA6C60] + 4`; a negative n is not refused, because that
-test is signed (`0x00473C9A`), and reads the dword at `[0x02CA6C60] + 8 + 4n`, and a null `[0x02CA6C60]` faults at
-`0x00473C97`. On a negative row the verb calls `0x00473C90(0)` (`0x00344C8B`) and passes its result on untested.
+test is signed (`0x00473C9A`), and returns `((dword >> 13) & 0x1FFF) + 0xA000` of the dword at `[0x02CA6C60] + 8 + 4n`,
+and a null `[0x02CA6C60]` faults at `0x00473C97`. On a negative result the verb calls `0x00473C90(0)` (`0x00344C8B`) and
+passes its result on untested.
 
 It takes action availability row 3 (`0x002E1CD0(0, 3)`, which sets the mask `0x139203` in dword 3 of the capability
-table `0x0215F1C0`, `0x002E1CFA`), opens the window through `0x00290130(n, row)` (the jump `0x002E1A50`, called at `0x00344C9A`)
+table `0x0215F1C0`, `0x002E1CFA`), opens the window through `0x00290130(n, id)` (the jump `0x002E1A50`, called at `0x00344C9A`)
 and raises busy bit `0x2000` (`0x003601B0(0xD)`).
 
 `0x00290130` grants at once, when the window opens: it builds the reward bundle (`0x003F8C60`, `0x0029014D`) and, when that

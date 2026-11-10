@@ -118,11 +118,17 @@ goes through `0x00359A30`, `0x0035A590`, `0x00233F50` and `0x00233EA0` only in d
 begin sets (`0x0035A64F`) and the same tick ends (`0x00359B01`). `0x0037C1A0` goes through `0x0037B4D0`, `0x00233AD0`,
 `0x00324450` and `0x003243F0` only for a slot of the mask that `partystdmotionrecover` fills (`0x0037CFD0`).
 
-Each chain tears down a unit whose record is already down or that has none (`0x00233ED7`-`0x00233EF7`, `0x00324420`), so
-neither changes what `0x002372E0` reads. Either arms Game Over only when that test is already true while bit `0x2` of
-`0x022C83E8` is clear. A KO with a unit arms at the KO (`0x0030E877`), so that state needs another cause, such as a KO
-on a record with no unit (`0x0030E729`). This rules out the hit route and, over direct calls and for magic files their
-action requesters play, the effect programs, and the sub-id test stays as written above.
+Each chain tears down a unit whose record is already down (`0x00233ED7`-`0x00233EF7`, `0x00324420`), so neither changes
+what `0x002372E0` reads. Either arms Game Over only when that test is already true while bit `0x2` of `0x022C83E8` is
+clear. A KO with a unit arms at the KO (`0x0030E877`).
+
+A reserve member has no unit, and an action aimed at it through the RESERVE target list sets its statuses without
+arming (`0x00307436`, `0x0030E729`). That write is refused once every counted member of the four is down, because battle
+flag `0x200` or `0x800` is then set and `0x0030B9B0` refuses every HP and status change (`0x0030109D`, `0x003010CE`,
+`0x0030B78C`-`0x0030B7DA`). Before that, a member of the four is still up and arms at its own KO.
+
+This rules out the hit route and, over direct calls and for magic files their action requesters play, the effect
+programs, and the sub-id test stays as written above.
 
 The body of `0x0027EFA0` fades (`0x002EFA70(3, 0, 1, 0)` when `0x002EFD20(3)` is
 non-zero), calls `0x0035C7B0(0x0B, 0)` and `0x00252B40(0x0B, 1)`, writes 2 to the area controller's `+0xC8`

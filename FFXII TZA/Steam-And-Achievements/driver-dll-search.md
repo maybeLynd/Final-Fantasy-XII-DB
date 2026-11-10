@@ -171,7 +171,7 @@ the load (`0x00159AE7`); a non-null name whose string cannot be built returns 0 
 
 `0x00159580` clears the last error (`0x0015958C`), allocates the size `GetSystemDirectoryW` asks for, and
 frees it and returns 0 when the second call returns 0 or a length larger than the buffer (`0x001595C1`,
-`0x001595C5`).
+`0x001595C5`). It returns 0 with nothing to free when the allocation fails (`0x001595B4`).
 
 ### String helpers
 

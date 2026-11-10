@@ -248,7 +248,9 @@ hang off `+0x48`.
   `0x00369860(header + 0x40, 0)` (`0x00369824`-`0x00369846`).
 - `0x0036A9C0(slot)` does nothing for a null slot or one whose in-use byte `+0x05` is 0 (`0x0036A9C3`,
   `0x0036A9D5`). It takes the record of the slot's arena byte `+0x04`, null for 15 or more
-  (`0x0036A9EB`-`0x0036AA03`). It unlinks the slot from the used chain (indices `+0x00` next and `+0x02`
+  (`0x0036A9EB`-`0x0036AA03`); nothing tests that null, and the unlink's first access to the record faults on it
+  (`0x0036AA1C`, `0x0036AA32` or `0x0036AA3E`).
+- `0x0036A9C0` then unlinks the slot from the used chain (indices `+0x00` next and `+0x02`
   previous, `0xFFFF` at a chain end; head `+0x48`) and pushes it at the head of the free chain `+0x40`
   (`0x0036AA06`-`0x0036AA77`).
 - When the slot's header is non-null, `0x0036A9C0` clears its `+0x15` bit `0x4` and zeroes `+0x3E`. When bit

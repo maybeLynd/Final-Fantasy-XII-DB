@@ -252,7 +252,7 @@ Struct SaveTransitionRecord base=payload+`0x4E460` size=`0x2C`:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `i32` | mode | `0x0208D455` as a dword (`0x00584580`) |
-| `+0x04` | `u32` | stamp | `0x021B28E4` (`0x002EF3C0`); `0x003145E0` writes the destination field here (`0x00314731`) when bit `0x1000` is clear and the field is not 12, and `0x00584580`'s `0x002EF3C0` overwrites it unless `0x003145E0` returned early |
+| `+0x04` | `u32` | stamp | `0x021B28E4` (`0x002EF3C0`); `0x003145E0` writes the destination field into the active buffer's record (`0x002EF640`, `0x00314726`-`0x00314731`) when bit `0x1000` is clear and the field is not 12; `0x00584580`'s `0x002EF3C0` writes the staging buffer's record instead (`0x002EF620`, `0x00584586`, `0x005845B0`-`0x005845B6`) |
 | `+0x08` | `u8[16]` | blockA | party block `+0x5AE0`-`+0x5AEF` (`0x002EF3C0`) |
 | `+0x18` | `u8[16]` | blockB | party block `+0x5AD0`-`+0x5ADF` (`0x002EF3C0`, `0x002EF510`) |
 | `+0x28` | `u32` | flags | party block `+0x5B04` (`0x002EF3C0`); `0x002EF510` sets bit `0x1` from bit `0x2` of `+0x18` |

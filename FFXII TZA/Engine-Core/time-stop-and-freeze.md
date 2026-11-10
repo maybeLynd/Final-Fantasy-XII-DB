@@ -490,7 +490,7 @@ masks and the fade ramp; the source bytes.
 - [Game settings](../Saving-Loading-And-Settings/game-settings.md): the options bit that chooses
   between UI requests 1 and 4.
 - [`time-stop-and-freeze-registry-accesses.tsv`](time-stop-and-freeze-registry-accesses.tsv): every access
-  to the request record block at `0x01FD4160`, taken as a whole (57 rows).
+  to the request record block at `0x01FD4160`, taken as a whole (113 rows).
 - [`time-stop-and-freeze-record-accesses.tsv`](time-stop-and-freeze-record-accesses.tsv): every access to
   its `0x18`-byte records: records A and B of the twenty-eight request ids (from `0x01FD4160` and `0x01FD4400`) and the
   two after them, at the block's `+0x540` (256 rows).

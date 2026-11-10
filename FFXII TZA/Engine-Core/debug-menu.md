@@ -165,7 +165,7 @@ Several rows print a live value that the renderer `0x001CD0E0` gathers itself:
 | Row | Label | What the renderer prints |
 |---|---|---|
 | 2 | (information) | the frame rates and the background, with the loaded map `0x00314910()` (payload `+0x105C`, [zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)) and the story-progress word `0x00265270()` as its `(%d/%d)`, and, while the marked slot's queued count at `0x01F832B0` is non-zero, `event:` with the slot's name from `0x001C5110` (the name at `0x01F832F0 + slot × 0x20`) |
-| 7 | (information) | `CutSceneName: %s Cut: %d(id: %d) Frame: %d`: the slot name (`0x001C5110`), its queued count, the last entry of its vector `0x01F83390`, and the counter `0x01F832C4` |
+| 7 | (information) | `CutSceneName: %s Cut: %d(id: %d) Frame: %d`: the slot name (`0x001C5110`, an empty string when no slot is marked: `0x01DFE40C` above 4, unsigned, `0x001C512D`, `0x001C517F`-`0x001C51B8`), its queued count, the last entry of its vector `0x01F83390`, and the counter `0x01F832C4` |
 | 8 | (information) | for the picked object of `0x001C0DA0()` while its byte `+9` is set and the information page is open: its name (`0x001C0330`: `Disabled`, `NULL` or its own), its mesh texture (`0x001C0540`), its procedural texture (`0x001C0480`) and its tiling and blending values |
 | 57 | Operate cube map | `0x001AD440()` `+0x168` through `0x0017F5E0` (-1 without the object), marked `NOT EDITABLE` unless its `+0x40` is 1 |
 | 59 | Recapture cube maps | the status string `0x001AC7A0` picks: `+0x204 + [+0x200] × 0x20` of the cube-map object |
@@ -199,9 +199,11 @@ temperature, which stays 0 when no provider answers (`0x001DCBBF`); it writes th
 returns that buffer.
 
 For row 8, `0x001C0540(object, out)` asks the map-art context `0x001A9930()`:
-`0x001A74A0(context, out, [object + 0x10])` finds the `+0x260` of the object's `+0x10` in the map at
-`+0x448`, takes the name at the entry's `+0x40`, and keeps the part after the last `/` minus its
-last ten characters. While the object's byte `+9` is 0, or its `+0x10` is 0, `0x001C0540` returns an empty string
+`0x001A74A0(context, out, [object + 0x10])` finds the `+0x260` of the object's `+0x10` in the map at `+0x448`, inserting
+a default record with an empty name when the key is absent (`0x001A2F70`, `0x001A3089`), takes the name at the entry's
+`+0x40`, and keeps the part after the last `/` minus its last ten characters, or all of that part when it is shorter
+than ten (`0x001A758A`, `0x001A9E7F`). While the object's byte `+9` is 0, or its `+0x10` is 0, `0x001C0540` returns an empty
+string
 instead (`0x001C0557`, `0x001C05B1`).
 
 `0x001C0480` copies, with `0x001BE660`, the string that `+0x80` of the first entry of the `+0x18` list of the

@@ -127,11 +127,10 @@ set-up `pre_z0000` sets to 1. A value is there from the lowest counter at which 
 under its own condition; a store before the test in the same function counts where its own path holds. A key item a
 condition tests is there from the step of the scene or script that gives it.
 
-567 rows are `dated`, from 0 to 7150 over 63 values; the commonest are 1475 and 4350 (75 zones each) and 3050 (53).
-The highest is `ttl_b01` at 7150, reached by an event in `bhm_d01`. 129 rows name a battle in `basis`: 40 the Zodiark
-battle (`hne_e01` step 137), 10 the Firemane battle (`grm_d01` step 155), 75 the Tyrant battle (`gil_c02`
-`ボス登場.touch` line 795) and 4 the Daedalus battle (`gil_a02` `ボス登場.touch` line 681). Without the Zodiark or
-Firemane store the date moves later.
+567 rows are `dated`, from 0 to 7150 over 79 values; the commonest are 4350 (75 zones), 100 (43) and 3050 (43).
+The highest is `ttl_b01` at 7150, reached by an event in `bhm_d01`. 89 rows name a battle in `basis`: 10 the Firemane
+battle (`grm_d01` step 155), 75 the Tyrant battle (`gil_c02` `ボス登場.touch` line 795) and 4 the Daedalus battle
+(`gil_a02` `ボス登場.touch` line 681). Without the Firemane store the date moves later.
 
 The Tyrant and Daedalus rows lie behind a Giruvegan device that the battle's own store enables first. That store runs
 with the party's control off, so these rows take the counter the battle's function stores as it hands control back:
@@ -153,7 +152,7 @@ The other rows:
 `grm_e13`, open from 290, has switches that store 1 or 0 in `0x09E0` and `0x09E1` too, and they do not move the date.
 `mic_d01` stores 0 in all four, from `Map_Director.ガラムサイズフラグリセット`.
 
-In 101 rows `basis` also names the walls the way's source zone switches on (`setmapidwall` kind 5, value 0) under a
+In 100 rows `basis` also names the walls the way's source zone switches on (`setmapidwall` kind 5, value 0) under a
 condition that is not false at the date. The search behind a date counts the way open past them, unless the wall's
 switch or door sets the date, as in the 28 rows of Barheim Passage and the Lhusu Mines below. Kind 6 writes, which
 never change where a walking body stops, and writes that switch a wall off are not listed.
@@ -164,33 +163,35 @@ the value in the function that makes the jump. The entrance is fixed per way, an
 [`zone-openings-saved-arrivals.tsv`](zone-openings-saved-arrivals.tsv) gives it with its store. In all 67 it reaches
 the exit group the date counts, with no walls and with every wall the row names standing.
 
-[`zone-openings-wall-gates.tsv`](zone-openings-wall-gates.tsv) tests those 101 rows on the source zone's walk mesh.
+[`zone-openings-wall-gates.tsv`](zone-openings-wall-gates.tsv) tests those 100 rows on the source zone's walk mesh.
 The walls of a row are the wall records of its groups, taken as the unit solids of
 [Geometry primitives](../Movement-And-Pathfinding/geometry-primitives.md); no group in these rows holds a type-1
-polygon. `result` says whether the arrival still reaches the exit's floor. The floor is flooded in steps of 0.1, and
-a point is blocked inside a solid at 0.05 above the floor:
+polygon.
+
+`result` says whether the arrival still reaches the exit's floor with the walls standing: the floor that
+stands with the row's wall is shut with it, and the verdict rows state the date. The floor is flooded in
+steps of 0.1, and a point is blocked inside a solid at 0.05 above the floor:
 
 | `result` | Rows |
 |---|---:|
-| `joined`: the mesh joins them with the walls standing | 86 |
+| `joined`: the mesh joins them with the walls standing | 85 |
 | `separated`: the walls cut every path on the mesh | 11 |
 | `joined from some arrivals`: an arrival held in a saved value, joined from some of the zone's entrances | 1 |
 | `no walk-mesh basis`: the row's date does not rest on the walk mesh | 3 |
 
 A `separated` row does not make its date wrong by itself. The wall's condition, in `basis_text`, may be false when
 the party arrives, or a lift may run on the arrival side. `result` leaves out the body's radius, and
-`result_radius_0.5` repeats it for a radius of 0.5; only `mfr_a03` differs, `separated`.
+`result_radius_0.5` repeats it for a radius of 0.5, and no row differs. Six rows also shut the floor groups
+that their listing shuts with the walls or at the row's date, as the table `ROW_STATE` in `wall_gates.py` gives.
 
 [`zone-openings-wall-verdicts.tsv`](zone-openings-wall-verdicts.tsv) joins these rows to their cutting wall, its
 condition, its lift and the arrival position:
 
 | Verdict | Rows |
 |---|---:|
-| the date moves | 4 |
+| the date moves | 7 |
 | the named way is shut at the date | 2 |
-| the date rests on a step the listings do not place | 1 |
-| the date stands | 3 |
-| the date stands, with one step the listings do not place | 4 |
+| the date stands | 7 |
 
 The `lus_a04` row there tests arrival entrance 1, the near side; the date rests on entrance 5, which the wall-gates
 table tests, so that row is `joined`. [`zone-openings-wall-points.tsv`](zone-openings-wall-points.tsv)
@@ -200,16 +201,15 @@ gives the entrances, exit groups and listed points each wall state joins, by the
 In Barheim Passage the walls follow the power and door switches. `mic_a06` opens at 321, when `0x9C1` can reach 5
 (`mic_a01` lines 950, 1495). The rooms on the way to `mic_c02` open at 323, the counter stored on first entering
 `mic_a06` (line 292), and so do the zones reached through them: 16 rows in all carry a Barheim date from this.
-`mic_e03` follows `mic_e02` at 323. The cart that takes its wall down is placed by the point the party turns to
-face, on the far side of the wall from the arrival, so that one step is not placed.
 
-That point shows where the party faces. The Lhusu switches below also answer only from a counter test at `0x7BE`,
-which settles those rows; the cart's talk has no test, so its row keeps the date. `mic_e04` and `mic_d01` take their
-date from `mic_e03`.
+`mic_e03` follows `mic_e02` at 323. The cart's touch and talk regions are its field sign records, and the
+arrival entrances reach both while its wall stands, so the party can take the wall down from the arrival side.
+`mic_e04` and `mic_d01` take their date from `mic_e03`.
 
 The far half of the Lhusu Mines opens at 1982, through the Site 3 door in `lus_b02`. The door answers from that
-counter and needs the Site 3 Key (`鉱区の扉.main` line 655, `.talk` line 754). The point the party turns to at the
-Transitway and `lus_b02` switches lies on the far side of their walls, so those switches do not open the way in.
+counter and needs the Site 3 Key (`鉱区の扉.main` line 655, `.talk` line 754). The talk regions of the
+Transitway and `lus_b02` switches are reached only from the far side of their walls, so those switches do not open
+the way in.
 `lus_b02` opens at 660, when the near half of `lus_b01` leads to it (below `0x0294` that exit leads to another map).
 
 The Site 3 Key is given at `byu_a17` during quest 165 (lines 1953, 2027). Its speaker tests clan rank 5 or more and
@@ -217,12 +217,44 @@ story counter 1982 or more (line 1855), so the door also rests on a clan rank th
 
 `lus_b03` opens at 1982, through that door. `lus_d03` opens at 3050: its door needs the Site 11 Key, given at
 `fon_b01`, which opens at 3050, and the `lus_d01` switch that takes wall 1 down is on the `lus_d03` side of that
-wall. `lus_e01` and `lus_f01` to `lus_f05` follow it. 12 rows carry a Lhusu date from this. The side of a switch
-rests on the point the party turns to at it, because the listings give no position for its talk rect.
+wall. `lus_e01` and `lus_f01` to `lus_f05` follow it. 12 rows carry a Lhusu date from this. A switch's talk
+region is its field sign record, tested on the walk mesh with its wall standing and its floor group shut.
 
-`mfr_a03` is not decided by the radius. Its wall is down from the Zodiark battle, on which the date already rests.
+The hub door of Henne Mines moves five dates. `hne_c01`, `hne_c02`, `hne_c03`, `hne_d01` and `hne_e01` open at 4400:
+floor group 2 of `hne_b01` is shut unless bit `0x2` of `g_com_マップ通行制限フラグ[1]` is set (`Map_Director.init`, lines 638
+to 644), and outside developer scripts only `ガリフ族工芸家03.talk` in `glf_a02` sets it. That talk needs ten of the
+Espers `0xC012` to `0xC01E`. Zodiark lies behind the door, so the tenth of the other twelve fixes the date: Shemhazai,
+at 4400.
 
-`dor_b01`, `grm_b05` and `alc_b04` are `joined` with no solid tested: the groups their sources switch on hold no
+The Golmore barrier moves 22 more. Floor group 1 of `gol_a01` and `gol_a02` is shut, on foot and riding, without
+key item `0x80B7`, Lente's Tear. Scene `vic_a0300` gives it, and `イベント管理.姉と妹_再生` in `vic_a01` stores 1950
+as it plays, so the zones past the barrier open at 1950: `gol_a03` to `gol_d02`, the `pbc_` zones, `mfr_a01` to
+`mfr_a04`, `mrm_a01`, `mrm_a02` and `hne_c04`.
+
+Beyond them, `bul_b02`, `bul_b01`, `bul_a03` and `bul_a01` open at 1976, 1982, 1984 and 1986, one forced store on
+each arrival. `mrm_b01` opens at 2050, because `DOOR.talk` is disabled below that value, and ten zones past it
+open at 2057, which `mrm_b01` stores on arrival.
+
+Three floors move dates. `alc_b04` opens at 3220: floor group 1 of `ald_a01` is shut below that value, its wall group
+holds no solid, and `NPC_JULES.talk` stores 3220 before it takes the party through. The nine zones reached through
+`alc_b04` follow it. `lus_a02` opens at 610: floor group 3 of `lus_a01` is shut below that value, and `lus_a03`,
+`lus_b01` and `lus_g01` follow it. `grm_c01` opens at 257: floor group 4 of `grm_b02` is shut below 249, and the
+touch rect that reopens it leads to the store of 257. `grm_b03`, `grm_b05` and `grm_d01` follow it.
+
+Floors move seven more dates, on rows with no wall. `glf_a02` opens at 1625 and `glf_a03` at 1628, when the events
+that store those values reopen floor group 1 of `glf_a01` and `glf_a02`. `nal_c01` opens at 310 and `rsn_b02` at 930,
+when the touch rect that reopens floor group 31 leads to the store of that value. `naf_b01` opens at 16, stored just
+before the door of `naf_a02` reopens. `mfr_c01` opens at 4200, stored after the battle that reopens floor group 1 of
+`mfr_b01`. `vic_a03` opens at 1700, when the hidden passage of `gol_a02` opens.
+
+The zones reached through those ways follow them: `nal_d01`; `rsn_b03`, `rsn_b04`, `rsn_c01`, `rsn_d01` and `rsn_y01`;
+`mfr_c02` and `mfr_c03`; `naf_b02` and `naf_b04`; `vic_a01` and `vic_a02`.
+
+The `gil_` rows and `rbl_e01` keep their results with floors their listings open during play: every floor a `gil_`
+source shuts is reopened by that listing, `floor_check.main` among them, and in `rbl_d02` the touch rect of
+`mfloor_ctrl_finish01` opens floors 10 and 11.
+
+`dor_b01` and `grm_b05` are `joined` with no solid tested: the groups their sources switch on hold no
 wall record or wall polygon, so `wall_records` and `edges_met` are 0.
 
 `wall_polygons`, `wall_records` and `edges_met` give what was tested; `edges_met` counts the floor edges a solid

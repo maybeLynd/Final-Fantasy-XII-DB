@@ -205,8 +205,9 @@ With bit `0x4` of the list's `+0x5A0` set, `0x0056AC50` takes only the entry who
 entry, and every entry while `+0x59C` is `0xFFFF`, answers 0 with no message (`0x0056AC5A`-`0x0056AC7E`). The list
 kind `+0x588` is 1 for conditions (`0x0056AC80`).
 
-A state not in the table answers 0 with no message (`0x0056ACD7`);
-a missing message text shows nothing (`0x0056ACB4`). The message is timed by `+0x580` = 180 and shown through
+A state not in the table answers 0 with no message (`0x0056ACD7`). `0x002F9860` returns a missing text as the empty
+string `0x01CEB638` (`0x002F987E`), so the null test at `0x0056ACB4` does not stop the calls below and the empty text is
+shown. The message is timed by `+0x580` = 180 and shown through
 `0x00291D80` and `0x00291D70(1)` (`0x0056ACBB`-`0x0056ACD2`). An entry with state 0 goes to `0x0056A1D0` with the list's
 `+0xC8` and `+0xD0`, the kind, -1 and the entry's id, and its answer is returned (`0x0056AD1A`-`0x0056AD3A`).
 

@@ -471,7 +471,9 @@ The samples come from the executable with sha256
 ## Modding notes
 
 - The order of the colour looks is the bit order of the list; moving a status means changing the index its arm passes.
-- The look colours are immediates in the switch of `0x0046FD00` and in the steps, not data.
+- The look colours of the switch in `0x0046FD00` and the steps' colour factors are `.rdata` constants (`0x0046FE34`,
+  `0x0046FE50`, `0x00470C50`, `0x004702B3`, `0x00471041`); the flash frames' `+0x5D8` value is an immediate (`0x00470CF9`,
+  `0x0047033E`).
 - A status light is exempt from the light scale only while its byte `+5` is `0x80` or more.
 - Durations are frame counts scaled by `0x01DFE0B4`, so they keep their length in seconds at 60 fps.
 

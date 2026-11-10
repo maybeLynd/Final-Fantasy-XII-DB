@@ -55,4 +55,60 @@ function	name	site	disp	kind	instruction	route	note
 0x00226B30	FUN_00226b30	0x00226B87	0x284	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x270	host: this function
 0x00226B30	FUN_00226b30	0x00226B80	0x288	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x288	host: this function
 0x00226B30	FUN_00226b30	0x00226B87	0x29C	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x288	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x2A0	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x2A0	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x2B4	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x2A0	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x2B8	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x2B8	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x2CC	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x2B8	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x2D0	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x2D0	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x2E4	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x2D0	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x2E8	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x2E8	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x2FC	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x2E8	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x300	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x300	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x314	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x300	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x318	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x318	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x32C	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x318	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x330	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x330	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x344	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x330	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x348	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x348	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x35C	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x348	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x360	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x360	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x374	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x360	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x378	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x378	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x38C	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x378	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x390	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x390	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x3A4	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x390	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x3A8	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x3A8	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x3BC	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x3A8	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x3C0	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x3C0	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x3D4	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x3C0	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x3D8	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x3D8	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x3EC	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x3D8	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x3F0	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x3F0	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x404	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x3F0	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x408	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x408	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x41C	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x408	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x420	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x420	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x434	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x420	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x438	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x438	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x44C	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x438	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x450	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x450	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x464	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x450	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x468	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x468	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x47C	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x468	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x480	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x480	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x494	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x480	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x498	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x498	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x4AC	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x498	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x4B0	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x4B0	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x4C4	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x4B0	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x4C8	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x4C8	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x4DC	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x4C8	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x4E0	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x4E0	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x4F4	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x4E0	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x4F8	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x4F8	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x50C	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x4F8	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x510	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x510	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x524	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x510	host: this function
+0x00226B30	FUN_00226b30	0x00226B80	0x528	w	mov qword ptr [rax], 0xffffffffffffffff	route-seeded STATIC 0x01FD4160 base+0x528	host: this function
+0x00226B30	FUN_00226b30	0x00226B87	0x53C	w	mov byte ptr [rax + 0x14], 0	route-seeded STATIC 0x01FD4160 base+0x528	host: this function
 0x00226BE0	FUN_00226be0	0x00226C27	0x2A0	addr	lea r12, [rax + 0x2a0]	route-seeded STATIC 0x01FD4160 base+0x0 exposed	host: this function

@@ -165,11 +165,14 @@ Script verb `0x5D6` `resetJobs(member)` calls `0x00328BD0` for main characters 0
    - With a match it stores 0 in the bank-8 entries `w + 0x4D` and `3 × w + 0x53` to `3 × w + 0x55`, w being the
      matched word `+0x60` (`0x002527B0(8, index, 0)`, `0x00559786`, `0x005597A3`): the dwords at `[0x020927C0] + 0x90`. The
      last three are the member's Quickening order the [license board](../Menus-And-HUD/license-board-screen.md) shows.
-4. It rebuilds the stats with `0x0030FED0(record, 0x97)` (`0x00328C5E`-`0x00328C66`), reloads its gambit preset
-   and banks (`0x00327CB0`, `0x00326030`, `0x00327DE0`), clears the record's bytes `+0x68`-`+0x87`, the MP bars and the
-   Mist charges, and sets both boards and the byte `+0x1C5` back to empty (`0x00328CA3`-`0x00328D5D`).
-5. For Vaan and Penelo, rows 0 and 5, it also raises the gambit block's slot count `+0xBA` by one, at most 12
-   (`0x00328CB4`-`0x00328CF5`), when the record's kind byte `+5` is 0 (`0x00328CDC`).
+4. It rebuilds the stats with `0x0030FED0(record, 0x97)` (`0x00328C5E`-`0x00328C66`) and reloads its gambit preset
+   (`0x00327CB0`, `0x00328CA3`-`0x00328CAA`).
+5. For Vaan and Penelo, rows 0 and 5, it raises the gambit block's slot count `+0xBA` by one, at most 12
+   (`0x00328CB4`-`0x00328CF5`), when the record's kind byte `+5` is 0 (`0x00328CDC`); the banks copy this raised count
+   (dword `+0xB8`, `0x0032608E`).
+6. It reloads the banks (`0x00326030`, `0x00327DE0`), clears the record's bytes `+0x68`-`+0x87`, the MP bars and the
+   Mist charges, calls `0x00283270(1)` (`0x00328D4D`), and sets both boards and the byte `+0x1C5` back to empty
+   (`0x00328CFB`-`0x00328D5D`).
 
 ## Layouts
 
@@ -242,3 +245,8 @@ Calls between the functions this page cites and code in other parts of the progr
 - Presentation: `0x002527B0` is called by `0x00579420`; `0x00300E40` calls `0x003125E0`; those functions are documented on
   [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md),
   [battle units](../Characters-And-Objects/battle-units.md).
+- Platform online achievements: `0x00283270` is called by `0x00316930`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Save load settings: `0x00283270` is called by `0x00582860`, `0x005844A0`; those functions are documented on
+  [game application](../Engine-Core/game-application.md),
+  [native limits](../Engine-Core/native-limits.md).

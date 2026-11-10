@@ -115,9 +115,13 @@ only records whose word `+0x22` is 1 or 7) and kind 2 every node with flag bit `
 ### Tying bones to another skeleton
 
 `0x0046E640(bank, child, parent, slot)` ties a kind-2 skeleton to another (`0x00370390`, which jumps to
-`0x00373160`): the child's `+0x08` takes the parent's index, and slot −1 stores the child's index in
-the parent's `+0x10` while any other slot goes to the child's word `+0x14`. Every listed child bone
-saves its parent link `+0x270` in `+0x28E`. With slot −1, a bone whose node has flag bit `0x100` and whose
+`0x00373160`), which does nothing when the child's `+0xA0` decodes to null (`0x00373181`): the child's `+0x08` takes the
+parent's index, and slot −1 stores the child's index in
+the parent's `+0x10` while any other slot goes to the child's word `+0x14`.
+
+Every listed child bone
+saves its parent link `+0x270` in `+0x28E`. With slot −1 and a parent of kind 2 (`0x0037326A`; any other kind ties no
+bone), a bone whose node has flag bit `0x100` and whose
 key names a listed bone of the parent is then tied to that bone:
 
 - the parent's bone gets the child bone's address at `+0x278` and its node number at `+0x27C`, so

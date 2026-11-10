@@ -37,7 +37,8 @@ options stored in the save take effect: the Config screen's options are the ones
    - It binds only while the pointer is empty, and then runs the battle reset `0x00237DF0` twice (`0x00233C3F`,
      `0x00233C48`).
    - With the pointer set it checks the magic `0x05071901` (`0x00233C4D`): a wrong magic runs `0x00237DF0`
-     (`0x00233C59`), and a match keeps the loaded block and runs the steps listed on
+     (`0x00233C59`), and a match keeps the block, whose first `0x6000` bytes the prelude `0x00235AF0` (`0x00233C14`,
+     `0x00235B76`) has replaced with the image's copy at `+0x2200` when the two differ, and runs the steps listed on
      [party data](../Party/party-data.md).
 6. **`YsSaveRam_CallBackInit()`.** `0x002CFD10` (`0x00285E92`, whose argument it ignores) clears entry 4 of the menu
    cursor bank 6 (`0x002527B0(6, 4, 0)`) and the battle menu's cursor block, `[0x0209BE80] + 0xAA60`, `0xC4` bytes

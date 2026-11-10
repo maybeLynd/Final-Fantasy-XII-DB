@@ -97,7 +97,7 @@ page `p` is in file `textBundles + pageMap[p]`.
 | `+0x00` | `char[4]` | magic | "hchk"; the loaders ignore it |
 | `+0x04` | `u32` | version | 103; not read |
 | `+0x08` | `u16` | count | records; `0x00577550` walks this many |
-| `+0x0A` | `u8[2]` | unused | 18 or 0; read by no function: the six tables, manager `+0xC8` to `+0xF0`, are read only by `0x00577550` (`0x005775C1`, `0x00577660`), which walks the records with `0x00575E80`, and neither reads `+0x0A`; nothing fixes its width |
+| `+0x0A` | `u8[2]` | unused | 18 or 0; read by no function: the six tables, manager `+0xC8` to `+0xF0`, are read by `0x00577550` (`0x005775C1`, `0x00577660`), which walks families 0-4 with `0x00575E80` and the Bestiary with `0x005768E0` and `0x00576860`, and the Bestiary's table `+0xF0` also by `0x00576860`, `0x005768E0` and `0x00576E30` (`0x00576870`, `0x005768EA`, `0x00576E73`); none of them reads `+0x0A`; nothing fixes its width |
 | `+0x0C` | `rec[count]` |  | 8 bytes each, 16 for the Bestiary |
 
 Families 0-4, 8 bytes per entry, evaluated by `0x00575E80`, which answers 1 when every test holds and 0 at the
@@ -446,7 +446,9 @@ hold the same rules). Of the 15 entries a rule opens, the one with mode 0 slots 
 - `0x005778F0(entry)` opens an entry: `0x00575D10` asks slot 1 for the record's `bundle` with the entry
   number, then `0x00575DD0` asks slot 2 for the record's `page`, and it returns 1. It returns 0 and asks nothing
   while the manager is cancelling (`+0x100` bit `0x40`, `0x0057790D`), or when slot 0's family is `0xFF`, its
-  catalog is not loaded, or the entry is negative or not below `entryCount` (`0x00577922`-`0x0057795F`).
+  catalog is not loaded, or the entry is negative or not below `entryCount` (`0x00577922`-`0x0057795F`), and with no
+manager at `0x02CA9738` (`0x00577903`). After `0x00575D10` it reads slot 0 again and returns 0 without asking slot 2 if
+those catalog tests no longer pass (`0x0057796E`-`0x005779B3`).
 - `0x00575D10(manager, family, entry)` acts only when slot 1 exists, the catalog is loaded and the entry is below
   `entryCount` (`0x00575D1A`-`0x00575D66`). It clears slot 1's bit `0x100` of the manager's `+0x100` (`0x00575D8B`)
   and, when slot 1 already holds that bundle (`0x00575A50` answers 1), sends the manager message `0x10` with 1 at

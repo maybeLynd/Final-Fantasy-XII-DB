@@ -268,11 +268,11 @@ packet:
 | 3 | `0x003BB2C0` | command 5, busy flag clear, no driver |
 | 4 | `0x003BB3B0` | command 4, busy flag clear, no driver |
 | 5 | `0x003BB740` | copies the name to `0x02B4055C`, sets busy, runs `0x003BAC90` |
-| 6 | `0x003BB6A0(index < 200, ptr, name)` | stores `ptr` at `0x02B407C0[index]`, command 8, runs `0x003BA720` |
+| 6 | `0x003BB6A0(index < 200, ptr, name)` | stores the 8 bytes at `ptr` in `0x02B407C0[index]`, command 8, runs `0x003BA720` |
 | 7 | `0x003BB920(name, 0, buffer, size)` | command 2, runs the worker `0x003BAEB0`; refused for a zero size |
 | 8 | `0x003BB9B0(name, descriptors, count)` | command 2 with up to 5 descriptors of `0x38` bytes, runs `0x003BAEB0` |
 | 9 | `0x003BB440(name, 0, buffer, size)` | the read of `size` bytes |
-| `0xA` | `0x003BB4C0` | copies a `0xB8`-byte record to `0x02B40FF0`, command 6, runs `0x003BA990` |
+| `0xA` | `0x003BB4C0` | copies a `0x138`-byte record to `0x02B40FF0`, command 6, runs `0x003BA990` |
 | `0xB` | `0x003BB2F0` | command 7, runs `0x003BA5F0`, whose step 1 calls `0x00862130`; the name is not passed on (below) |
 | `0xC` | `0x003BB380` | the format command |
 
@@ -377,7 +377,7 @@ The handlers keep their own words beside the command:
 | `0x02B40FE0` | `i32` | 0 (zero-filled tail of `.data`) | the number of descriptors | `0x003BB920`, 1 (`0x003BB981`, an 8-byte store that also zeroes the index); `0x003BB9B0`, its count (`0x003BB9D3`); `0x003BB4C0`, 0 (`0x003BB53B`) | `0x003BB9B0` (`0x003BBA1B`, its copy loop); `0x003BAEB0` (`0x003BB169`) |
 | `0x02B40FE4` | `i32` | 0 (zero-filled tail of `.data`) | the descriptor the worker is on | `0x003BAEB0`, 1 more (`0x003BB170`); 0 from `0x003BB9B0` (`0x003BBA48`) and the other starters (`0x003BB2D2` to `0x003BB77A`, 9 sites); `0x003BB920`, with the count (`0x003BB981`) | `0x003BAEB0` (`0x003BAEBA`), which picks the descriptor `0x02B40EC8 + 0x38 x index` |
 | `0x02B40FE8` | `void*` | 0 (zero-filled tail of `.data`) | the cache row of the file being read: `0x02B40EF0` plus the slot times the row size `0x02B40EF8` | `0x003BA990` (`0x003BAB72`) | `0x003BA990` (`0x003BABA9`), as the buffer of the read `0x00862590` |
-| `0x02B41128` | `u8` | 0 (zero-filled tail of `.data`) | the save and load screen's mode as the listing command receives it: the controller's byte `+0xC1`, 0 when the screen was opened to save and 1 otherwise | `0x003BB4C0`, its second argument (`0x003BB4CE`, `0x003BB5B5`), which `0x00582040` passes from `[0x02CA99B8] + 0xC1` (`0x005821E0`, `0x005821E7`) | no reader: no RIP-relative, image-base-relative or address-forming reference reads it, the record copy that `0x003BB4C0` makes from `0x02B40FF0` ends `0xB8` bytes on, and no 8-byte pointer or 4-byte RVA in the image holds its address |
+| `0x02B41128` | `u8` | 0 (zero-filled tail of `.data`) | the save and load screen's mode as the listing command receives it: the controller's byte `+0xC1`, 0 when the screen was opened to save and 1 otherwise | `0x003BB4C0`, its second argument (`0x003BB4CE`, `0x003BB5B5`), which `0x00582040` passes from `[0x02CA99B8] + 0xC1` (`0x005821E0`, `0x005821E7`) | no reader: no RIP-relative, image-base-relative or address-forming reference reads it, the record copy that `0x003BB4C0` makes to `0x02B40FF0` ends `0x138` bytes on, and no 8-byte pointer or 4-byte RVA in the image holds its address |
 | `0x02B4112C` | `f32` | 0 (zero-filled tail of `.data`) | the time the write has waited before its close | `0x003BAEB0`: 0 (`0x003BB074`, `0x003BB0F8`), and the frame time added (`0x003BB0BB`) | `0x003BAEB0` (`0x003BB0AB`, `0x003BB0E2`) |
 
 The controller's `+0xC1` comes from the screen's creation. The request dispatcher `0x0027F5D0` keeps its request's second

@@ -31,7 +31,7 @@ cases are VIF1 commands with VIF1's field layout:
 | `0x02` | OFFSET | `data & 0x3FF` to `0x02088E34`, clears bit `0x40` of the status word `0x02088E38`, copies BASE to TOPS `0x02064E28` |
 | `0x03` | BASE | `data & 0x3FF` to `0x02088E30` |
 | `0x14`, `0x15` | MSCAL, MSCALF | runs `0x0022C8D0`, then the program installed at the largest address not above the requested one, called with the callback and the context (`0x0022CB1E`); when the installed list is empty or holds no address at or below the requested one, the search keeps its start value 0 and the table entry for address 0 is called (`0x0022CADD`, `0x0022CAE5`); the test of the result against `0x10000` (`0x0022CB07`) never matches, since the list holds 16-bit addresses |
-| `0x4A` | MPG | the next 8 bytes are an x64 function pointer, stored at `0x02068E30 + imm16 × 8`; the address is appended to the list `0x02088E50` (count `0x02088E44`) |
+| `0x4A` | MPG | 4 bytes are skipped and the next 8 are an x64 function pointer, stored at `0x02068E30 + imm16 × 8`, so the command takes 16 bytes (`0x0022CA42`-`0x0022CA5D`); the address is appended to the list `0x02088E50` (count `0x02088E44`) |
 | `0x50`, `0x51` | DIRECT, DIRECTHL | calls the callback with the data pointer, the context and the flag, then skips `count × 16` bytes |
 | `0x60` to `0x7F` | UNPACK | `0x0022BFF0` with the format from the bits under mask `0xF000000`, the unsigned flag bit `0x4000`, the add-TOPS flag bit `0x8000`, NUM from the bits under mask `0xFF0000` and the address from the low ten bits; the mask flag bit `0x10000000` has no effect |
 | anything else | NOP, FLUSH, FLUSHE, FLUSHA, STMASK, STROW … | advances four bytes |
@@ -399,7 +399,7 @@ The working words below VU memory (`0x02064B00`, `0x330` bytes) that have a role
 
 ```python
 VIF command word     [31:24] code, [23:0] parameters
-MPG on this port     0x4A000000 | addr, then a u64 x64 function pointer (the console: NUM microcode words)
+MPG on this port     0x4A000000 | addr, 4 skipped bytes, u64 x64 function pointer (the console: NUM microcode words)
 UNPACK word          [27:24] format (vn << 2 | vl), bit 0x8000 add TOPS, bit 0x4000 unsigned, [23:16] NUM, [9:0] address
 program call         0x02068E30[ max { a in 0x02088E50 : a <= requested } ](callback, context)
 VU memory            0x02064E30 + cell * 16, cell 0..1023; TOP 0x02064E1C, TOPS 0x02064E28
@@ -517,7 +517,7 @@ integer words in `.data` at `0x02CA7F40` to `0x02CA7F78` instead of in the index
   TEX1 or PRMODE has that part ignored, which is where to look for PS2-versus-PC differences.
 - The templates are immediates in the builders; patching a word changes the packet every draw
   from that template sends.
-- An MPG word in a hand-built packet needs an x64 function pointer after it, not microcode.
+- An MPG word in a hand-built packet needs 4 skipped bytes and then an x64 function pointer, not microcode.
 - `0x0022C930` empties the installed list before each `GiVmax` runs, but not the program table: an MSCAL with no install
   at or below its address calls the table entry for address 0, which keeps the last program installed there by any
   list.

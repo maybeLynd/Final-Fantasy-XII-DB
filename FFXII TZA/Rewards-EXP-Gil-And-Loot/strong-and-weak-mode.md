@@ -140,9 +140,11 @@ The join catch-up `0x00317480` reads no mode bit, so a joiner's level is set as 
   (弱くてニューゲーム in the Japanese files).
 - No instruction in the executable tests header bit `0x2`: every test of byte `+0x57` reads bit `0x1` (`0x0057FB2A`,
   `0x0057FC12`, `0x00580C9E`, `0x00584241`, `0x00584410`) or bit `0x4` (`0x0057FBFC`).
-- On load, the load-complete call `0x00285E60` runs `0x00233C10` (`0x00285E86`). With the block bound and its magic in
-  place, that function touches only bit `0x1000` of the flag dword
-  (`0x00233C65`-`0x00233CA6`), so bits `0x2000` and `0x4000` stay as saved.
+- On load, the load-complete call `0x00285E60` runs `0x00233C10` (`0x00285E86`). Its prelude `0x00235AF0` (`0x00233C14`) first
+  copies the image's `0x6000`-byte copy at `+0x2200` over the block, flag dword included, when the block's first two
+  dwords, byte `+0x5B42` or word `+0x5B12` differ from the copy's (`0x00235B19`-`0x00235B48`, `0x00235B76`, `0x002EF4A0`).
+- With the block bound and its magic in place, `0x00233C10` itself writes only bit `0x1000` of the flag dword
+  (`0x00233C65`-`0x00233CA6`), so bits `0x2000` and `0x4000` keep the saved block's value or, after that copy, the copy's.
 - With a wrong magic `0x00233C10` runs the battle reset `0x00237DF0` instead (`0x00233C59`), and with an empty pointer
   it binds the block and runs that reset twice (`0x00233C3F`, `0x00233C48`). The reset's block clear `0x002370C0`
   (through `0x0023AF50`, `0x00237DF6`, `0x0023AF56`) zeroes the whole flag dword, these bits included.

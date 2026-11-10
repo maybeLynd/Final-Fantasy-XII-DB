@@ -108,7 +108,16 @@ None of the six is in a shop, bazaar good, treasure chest, enemy slot, reward pa
 
 ### The licence it needs
 
-`licence` names the licence squares whose node lists the equipment id among its grants ([`license-list.tsv`](license-list.tsv), `grant_ids`), by name and node. Owning any one of them lets a character equip it. The equip test `0x00317B70` calls `0x00317930`, which asks `0x00323C60` (`0x00317ADE`); that builds the node mask with `0x002F8FA0` ([Licenses](licenses.md), "The test"). `no licence needed` marks a row whose `+0x07` bit `0x10` is set, which `0x00323C60` passes without the board (`0x00323CDF`).
+`licence` names the licence squares whose node lists the equipment id among its grants ([`license-list.tsv`](license-list.tsv), `grant_ids`), by name and node. Owning any one of them answers the licence question.
+
+`0x00317930` also refuses an item whose slot is not the one asked (`0x00317A21`), an off-hand item whose `+9` is not
+`0x12` and does not match `+0x11` of the item in the loadout's first word (`0x00317A82`), and an item whose `+9` bit
+is set in the character's row of the table at `[0x02EBF130]` (`0x00317AD6`), and it passes a null record or one whose
+byte `+5` is not 0 before any of that table or licence test (`0x00317A87`, `0x00317A8F`).
+
+The equip test `0x00317B70` calls `0x00317930`, which asks `0x00323C60` (`0x00317ADE`); that builds the node mask with
+`0x002F8FA0` ([Licenses](licenses.md), "The test"). `no licence needed` marks a row whose `+0x07` bit `0x10` is set,
+which `0x00323C60` passes without the board (`0x00323CDF`).
 
 `0x00317B70(row, id, slot, flags)` runs `0x00317930` on the party record of row `row`, `[0x02EBF190] + 8 + row × 0x1C8`,
 with its slot words `+0x50` as the loadout and with the free-copy test when `flags` bit `0x1` is clear
