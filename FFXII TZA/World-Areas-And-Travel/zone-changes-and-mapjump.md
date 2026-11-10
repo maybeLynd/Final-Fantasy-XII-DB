@@ -317,7 +317,7 @@ third.
 
 ### Where each map change lands
 
-[`zone-changes-and-mapjump-arrivals.tsv`](zone-changes-and-mapjump-arrivals.tsv) has one row for each of the 12,644
+[`zone-changes-and-mapjump-arrivals.tsv`](zone-changes-and-mapjump-arrivals.tsv) has one row for each of the 12,626
 map changes of the [door table](../Story-Events-And-Hunts/script-censuses.md), with the columns of that table
 that say where the change starts and what it tests, and these:
 
@@ -339,9 +339,9 @@ the party with `setmapjumppos`. The list is the same for every language.
 
 ### One row per way in
 
-[`zone-ways-in.tsv`](zone-ways-in.tsv) has one row for each map change and destination, 14,532 in all, so that a
+[`zone-ways-in.tsv`](zone-ways-in.tsv) has one row for each map change and destination, 14,514 in all, so that a
 way's trigger, exit, destination, arrival, gate and walls are on one line. It starts from the step tables' `mapjump`
-rows. An exit the door table lists keeps that table's 12,644 branches, including the 2,025 of the crystal teleports,
+rows. An exit the door table lists keeps that table's 12,626 branches, including the 2,025 of the crystal teleports,
 whose 25 steps are one shared template. The other 1,871 rows are calls the door table does not list, and each takes
 its destination from its step's `addresses` cell.
 

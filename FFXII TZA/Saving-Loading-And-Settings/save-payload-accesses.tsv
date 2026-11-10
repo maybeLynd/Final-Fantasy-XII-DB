@@ -1067,23 +1067,14 @@ function	name	site	disp	kind	instruction	route	note
 0x00326030	GambitConfig_InitializeThreeBanksFromBasePairs	0x00326102	0x4E54C	r	mov eax, dword ptr [r8 + 0xb8]	arg0+0x4E48C<0x0023AC80@0x0023AF03	
 0x00326030	GambitConfig_InitializeThreeBanksFromBasePairs	0x00326109	0x54034	w	mov dword ptr [rcx + 0x5ba8], eax	arg0+0x4E48C<0x0023AC80@0x0023AF03	
 0x00327DE0	GambitRuntime_RebuildOrderSetForStatsRecord	0x00327DED	0x4E498	r	movzx eax, byte ptr [rcx + 4]	arg0+0x4E494<0x0023AC80@0x0023AF1D	
-0x00327DE0	GambitRuntime_RebuildOrderSetForStatsRecord	0x00327E27	0x557FC	r	movsxd rcx, dword ptr [rdx + rax*4 + 0x7370]	arg0+0x4E494<0x0023AC80@0x0023AF1D	idx
-0x00327DE0	GambitRuntime_RebuildOrderSetForStatsRecord	0x00327E2F	0x53F9C	addr	lea rdi, [rdx + 0x5b10]	arg0+0x4E494<0x0023AC80@0x0023AF1D	
-0x00327DE0	GambitRuntime_RebuildOrderSetForStatsRecord	0x00327E51	0x53FCC	addr	lea rax, [rdi + 0x30]	arg0+0x4E494<0x0023AC80@0x0023AF1D	
-0x00327DE0	GambitRuntime_RebuildOrderSetForStatsRecord	0x00327E60	0x53FCC	r	movzx eax, word ptr [rax]	arg0+0x4E494<0x0023AC80@0x0023AF1D	
-0x00327DE0	GambitRuntime_RebuildOrderSetForStatsRecord	0x00327E6B	0x53F9C	r	movzx ebp, word ptr [rdi]	arg0+0x4E494<0x0023AC80@0x0023AF1D	
-0x00327DE0	GambitRuntime_RebuildOrderSetForStatsRecord	0x00327E6E	0x53F9E	r	movzx r14d, word ptr [rdi + 2]	arg0+0x4E494<0x0023AC80@0x0023AF1D	
 0x00385680	BattleFormula_EvaluateTargetPreview	0x0038588F	0x4E499	r	cmp byte ptr [rsi + 5], 1	arg2+0x4E494<0x00303830@0x00303910	
 0x00385680	BattleFormula_EvaluateTargetPreview	0x00385895	0x4E4F8	r	mov eax, dword ptr [rsi + 0x64]	arg2+0x4E494<0x00303830@0x00303910	
 0x00385680	BattleFormula_EvaluateTargetPreview	0x00385898	0x4E4D0	r	or eax, dword ptr [rsi + 0x3c]	arg2+0x4E494<0x00303830@0x00303910	
-0x0030D9A0	BattleRuntime_GetMode0To5FromFlagsAndFieldBit15	0x0030D9AB	0x53F90	r	mov ecx, dword ptr [rax + 0x5b04]	arg0+0x4E48C<0x00303F00@0x00303F82	
-0x0030D9A0	BattleRuntime_GetMode0To5FromFlagsAndFieldBit15	0x0030D9E9	0x53F90	r	mov ecx, dword ptr [rax + 0x5b04]	arg0+0x4E48C<0x00303F00@0x00303F82	
 0x003060E0	BattleAction_CheckDefinitionCategoryAvailability	0x00306129	0x4E499	r	movzx eax, byte ptr [rdi + 5]	arg1+0x4E494<0x003064F0@0x0030651F	
 0x003060E0	BattleAction_CheckDefinitionCategoryAvailability	0x00306203	0x4E499	r	movzx r8d, byte ptr [rdi + 5]	arg1+0x4E494<0x003064F0@0x0030651F	
 0x003060E0	BattleAction_CheckDefinitionCategoryAvailability	0x00306211	0x4E498	r	movzx eax, byte ptr [rdi + 4]	arg1+0x4E494<0x003064F0@0x0030651F	
 0x003060E0	BattleAction_CheckDefinitionCategoryAvailability	0x00306224	0x4E498	r	movzx eax, byte ptr [rdi + 4]	arg1+0x4E494<0x003064F0@0x0030651F	
 0x003060E0	BattleAction_CheckDefinitionCategoryAvailability	0x0030625A	0x4E498	r	movzx edi, byte ptr [rdi + 4]	arg1+0x4E494<0x003064F0@0x0030651F	
-0x00327810	FUN_00327810	0x00327836	0x53F30	w	mov dword ptr [rax + 0x5aa4], ecx	arg1+0x4E48C<0x00306760@0x0030696F	
 0x00385F60	BattleFormula_ResolveTargetResult	0x00386091	0x4E499	r	movzx eax, byte ptr [rsi + 5]	arg2+0x4E494<0x00307300@0x00307419	
 0x00385F60	BattleFormula_ResolveTargetResult	0x0038609A	0x4E4F8	r	mov eax, dword ptr [rsi + 0x64]	arg2+0x4E494<0x00307300@0x00307419	
 0x00385F60	BattleFormula_ResolveTargetResult	0x0038609D	0x4E4D0	r	or eax, dword ptr [rsi + 0x3c]	arg2+0x4E494<0x00307300@0x00307419	
@@ -1177,7 +1168,6 @@ function	name	site	disp	kind	instruction	route	note
 0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF95B	0x4E4C7	w	mov byte ptr [rsi + 0xf], cl	arg0+0x4E494<0x0030A4E0@0x0030A6B7	
 0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF96D	0x4E4C8	w	mov byte ptr [rsi + 0x10], al	arg0+0x4E494<0x0030A4E0@0x0030A6B7	
 0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FF982	0x4E4D0	r	mov eax, dword ptr [rsi + 0x18]	arg0+0x4E494<0x0030A4E0@0x0030A6B7	
-0x00320890	FUN_00320890	0x003208A3	0x53ED4	r	cmp byte ptr [r8 + rax*2 + 0x5a48], dl	arg2+0x4E48C<0x0030A970@0x0030A9DF	idx
 0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F34E	0x4E4D0	r	mov eax, dword ptr [rcx + 0x3c]	arg0+0x4E494<0x0030C470@0x0030C5A5	
 0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F354	0x4E4F8	r	or eax, dword ptr [rcx + 0x64]	arg0+0x4E494<0x0030C470@0x0030C5A5	
 0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F367	0x4E4DC	r	mov eax, dword ptr [rcx + 0x48]	arg0+0x4E494<0x0030C470@0x0030C5A5	
@@ -1328,11 +1318,11 @@ function	name	site	disp	kind	instruction	route	note
 0x003202F0	FUN_003202f0	0x0032035E	0x51336	r	cmp word ptr [rbx + 0x52], ax	arg0+0x512E4<0x00320230@0x00320285	
 0x003202F0	FUN_003202f0	0x00320364	0x5134D	r	test byte ptr [rbx + 0x69], 2	arg0+0x512E4<0x00320230@0x00320285	
 0x003202F0	FUN_003202f0	0x0032036A	0x5135D	r	test byte ptr [rbx + 0x79], 2	arg0+0x512E4<0x00320230@0x00320285	
-0x003202F0	FUN_003202f0	0x00320319	0x4E491	r	cmp byte ptr [rcx + 5], 1	arg0+0x4E48C<0x00320230@0x003202CE	
-0x003202F0	FUN_003202f0	0x0032034B	0x4E4DC	r	movzx ecx, word ptr [rbx + 0x50]	arg0+0x4E48C<0x00320230@0x003202CE	
-0x003202F0	FUN_003202f0	0x0032035E	0x4E4DE	r	cmp word ptr [rbx + 0x52], ax	arg0+0x4E48C<0x00320230@0x003202CE	
-0x003202F0	FUN_003202f0	0x00320364	0x4E4F5	r	test byte ptr [rbx + 0x69], 2	arg0+0x4E48C<0x00320230@0x003202CE	
-0x003202F0	FUN_003202f0	0x0032036A	0x4E505	r	test byte ptr [rbx + 0x79], 2	arg0+0x4E48C<0x00320230@0x003202CE	
+0x003202F0	FUN_003202f0	0x00320319	0x4E499	r	cmp byte ptr [rcx + 5], 1	arg0+0x4E494<0x00320230@0x003202CE	
+0x003202F0	FUN_003202f0	0x0032034B	0x4E4E4	r	movzx ecx, word ptr [rbx + 0x50]	arg0+0x4E494<0x00320230@0x003202CE	
+0x003202F0	FUN_003202f0	0x0032035E	0x4E4E6	r	cmp word ptr [rbx + 0x52], ax	arg0+0x4E494<0x00320230@0x003202CE	
+0x003202F0	FUN_003202f0	0x00320364	0x4E4FD	r	test byte ptr [rbx + 0x69], 2	arg0+0x4E494<0x00320230@0x003202CE	
+0x003202F0	FUN_003202f0	0x0032036A	0x4E50D	r	test byte ptr [rbx + 0x79], 2	arg0+0x4E494<0x00320230@0x003202CE	
 0x00323D10	BattleStats_CheckLicenseNodeAcquireReason	0x00323D31	0x4E49A	addr	lea eax, [rcx + 6]	arg0+0x4E494<0x00323910@0x0032396D	
 0x00323D10	BattleStats_CheckLicenseNodeAcquireReason	0x00323E13	0x4E624	r	cmp eax, dword ptr [rbp + 0x190]	arg0+0x4E494<0x00323910@0x0032396D	
 0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316DFE	0x4E494	r	test byte ptr [rcx], 0x10	arg0+0x4E494<0x00326110@0x003261A6	
@@ -1359,11 +1349,6 @@ function	name	site	disp	kind	instruction	route	note
 0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00317054	0x4E4DC	r	mov eax, dword ptr [rdi + 0x48]	arg0+0x4E494<0x00326110@0x003261A6	
 0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x0031705E	0x4E494	rw	or dword ptr [rdi], 0x18	arg0+0x4E494<0x00326110@0x003261A6	
 0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00317066	0x4E4DC	w	mov dword ptr [rdi + 0x48], eax	arg0+0x4E494<0x00326110@0x003261A6	
-0x00327150	FUN_00327150	0x0032715D	0x53F30	r	movzx eax, byte ptr [rdx + 0x5aa4]	arg2+0x4E48C<0x003261D0@0x00326233	
-0x00327150	FUN_00327150	0x0032716B	0x4E494	addr	lea rdi, [rdx + 8]	arg2+0x4E48C<0x003261D0@0x00326233	
-0x0030D9A0	BattleRuntime_GetMode0To5FromFlagsAndFieldBit15	0x0030D9AB	0x53F90	r	mov ecx, dword ptr [rax + 0x5b04]	arg1+0x4E48C<0x003135C0@0x003135C4	
-0x0030D9A0	BattleRuntime_GetMode0To5FromFlagsAndFieldBit15	0x0030D9E9	0x53F90	r	mov ecx, dword ptr [rax + 0x5b04]	arg1+0x4E48C<0x003135C0@0x003135C4	
-0x00326500	PartyFocus_SelectAndRequestDefaultActor	0x00326542	0x53F30	r	movzx ebx, byte ptr [rax + 0x5aa4]	arg1+0x4E48C<0x00327810@0x0032783C	
 0x00328140	GambitRuntime_RebuildOrderSetFromConfig	0x0032814D	0x4E498	r	movzx eax, byte ptr [rcx + 4]	arg0+0x4E494<0x003282D0@0x0032834A	
 0x00328140	GambitRuntime_RebuildOrderSetFromConfig	0x0032817B	0x53FCC	addr	lea rax, [rdx + 0x30]	arg1+0x53F9C<0x003282D0@0x0032834A	
 0x00328140	GambitRuntime_RebuildOrderSetFromConfig	0x003281A0	0x53FCC	r	movzx eax, word ptr [rax]	arg1+0x53F9C<0x003282D0@0x0032834A	
@@ -1378,37 +1363,6 @@ function	name	site	disp	kind	instruction	route	note
 0x00323540	DefinitionRuntime_DeactivateAndRemoveConfiguredItems	0x003235A3	0x4E494	rw	and dword ptr [rdi], 0xffffffef	arg0+0x4E494<0x003288F0@0x0032897C	
 0x00328990	FUN_00328990	0x00328AC2	0x4E624	r	mov ecx, dword ptr [r14 + 0x190]	arg0+0x4E494<0x00328BD0@0x00328C23	
 0x00328990	FUN_00328990	0x00328AF2	0x4E624	w	mov dword ptr [r14 + 0x190], edx	arg0+0x4E494<0x00328BD0@0x00328C23	
-0x00323540	DefinitionRuntime_DeactivateAndRemoveConfiguredItems	0x0032354A	0x4E491	r	cmp byte ptr [rcx + 5], 0	arg0+0x4E48C<0x00329080@0x0032910C	
-0x00323540	DefinitionRuntime_DeactivateAndRemoveConfiguredItems	0x00323553	0x4E490	r	cmp byte ptr [rcx + 4], 6	arg0+0x4E48C<0x00329080@0x0032910C	
-0x00323540	DefinitionRuntime_DeactivateAndRemoveConfiguredItems	0x00323559	0x4E48C	r	test byte ptr [rcx], 0x10	arg0+0x4E48C<0x00329080@0x0032910C	
-0x00323540	DefinitionRuntime_DeactivateAndRemoveConfiguredItems	0x00323572	0x4E4DC	addr	lea rsi, [rcx + 0x50]	arg0+0x4E48C<0x00329080@0x0032910C	
-0x00323540	DefinitionRuntime_DeactivateAndRemoveConfiguredItems	0x00323580	0x4E4DC	r	movzx ebx, word ptr [rsi]	arg0+0x4E48C<0x00329080@0x0032910C	
-0x00323540	DefinitionRuntime_DeactivateAndRemoveConfiguredItems	0x00323599	0x4E4DE	addr	lea rsi, [rsi + 2]	arg0+0x4E48C<0x00329080@0x0032910C	
-0x00323540	DefinitionRuntime_DeactivateAndRemoveConfiguredItems	0x003235A3	0x4E48C	rw	and dword ptr [rdi], 0xffffffef	arg0+0x4E48C<0x00329080@0x0032910C	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316DFE	0x4E48C	r	test byte ptr [rcx], 0x10	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316E2E	0x4E48C	r	test byte ptr [rdi], 8	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316E42	0x4E491	r	movzx eax, byte ptr [rdi + 5]	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316E54	0x4E490	r	movzx ecx, byte ptr [rdi + 4]	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316E87	0x4E4DC	addr	lea rsi, [rdi + 0x50]	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316E90	0x4E4DC	r	movzx ebx, word ptr [rsi]	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316EA9	0x4E4DE	addr	lea rsi, [rsi + 2]	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316EB3	0x4E48C	r	test byte ptr [rdi], 8	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316EC3	0x4E514	addr	lea r14, [rdi + 0x88]	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316ECF	0x4E546	addr	lea r15, [r14 + 0x32]	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316ED5	0x4E546	r	cmp byte ptr [r15], bl	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316EE9	0x4E544	addr	lea r12, [r14 + 0x30]	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316EF0	0x4E544	r	movzx eax, word ptr [r12]	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316EFD	0x4E514	r	movzx ecx, word ptr [r14]	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316F0C	0x4E491	r	cmp byte ptr [rdi + 5], bl	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316F11	0x4E490	r	movzx eax, byte ptr [rdi + 4]	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316F4A	0x4E516	r	movzx r8d, word ptr [r14 + 2]	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316F84	0x4E546	r	movzx eax, byte ptr [r15]	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00316FD0	0x4E490	r	movzx ecx, byte ptr [rdi + 4]	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00317048	0x4E4F0	r	mov eax, dword ptr [rdi + 0x64]	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x0031704B	0x4E4C8	r	or eax, dword ptr [rdi + 0x3c]	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00317054	0x4E4D4	r	mov eax, dword ptr [rdi + 0x48]	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x0031705E	0x4E48C	rw	or dword ptr [rdi], 0x18	arg0+0x4E48C<0x00329080@0x0032916A	
-0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	0x00317066	0x4E4D4	w	mov dword ptr [rdi + 0x48], eax	arg0+0x4E48C<0x00329080@0x0032916A	
 0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A37	0xE040	r	movups xmm0, xmmword ptr [rcx]	arg0+0xE040<0x00584210@0x00584368	
 0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A3A	0xE0C0	addr	lea rcx, [rcx + 0x80]	arg0+0xE040<0x00584210@0x00584368	
 0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A45	0xE050	r	movups xmm1, xmmword ptr [rcx - 0x70]	arg0+0xE040<0x00584210@0x00584368	
@@ -1419,18 +1373,13 @@ function	name	site	disp	kind	instruction	route	note
 0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A6D	0xE0A0	r	movups xmm0, xmmword ptr [rcx - 0x20]	arg0+0xE040<0x00584210@0x00584368	
 0x00269A20	WorldPersistence_ImportGroupPersistentBank	0x00269A75	0xE0B0	r	movups xmm1, xmmword ptr [rcx - 0x10]	arg0+0xE040<0x00584210@0x00584368	
 0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF420	0x4E468	r	movups xmm0, xmmword ptr [rcx + 8]	arg0+0x4E460<0x00584210@0x00584378	
-0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF424	0x53F6C	w	movups xmmword ptr [rax + 0x5ae0], xmm0	arg0+0x4E460<0x00584210@0x00584378	
 0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF432	0x4E488	r	mov edx, dword ptr [rcx + 0x28]	arg0+0x4E460<0x00584210@0x00584378	
-0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF435	0x53F90	w	mov dword ptr [rax + 0x5b04], edx	arg0+0x4E460<0x00584210@0x00584378	
 0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF43B	0x4E478	r	test byte ptr [rcx + 0x18], 2	arg0+0x4E460<0x00584210@0x00584378	
 0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF441	0x4E478	r	movups xmm0, xmmword ptr [rcx + 0x18]	arg0+0x4E460<0x00584210@0x00584378	
-0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF44C	0x53F5C	w	movups xmmword ptr [rax + 0x5ad0], xmm0	arg0+0x4E460<0x00584210@0x00584378	
 0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF453	0x4E480	r	movss xmm0, dword ptr [rcx + 0x20]	arg0+0x4E460<0x00584210@0x00584378	
 0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF45D	0x4E468	r	test byte ptr [rbx + 8], 1	arg0+0x4E460<0x00584210@0x00584378	
 0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF463	0x4E46C	r	movss xmm0, dword ptr [rbx + 0xc]	arg0+0x4E460<0x00584210@0x00584378	
 0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF46D	0x4E470	r	movss xmm0, dword ptr [rbx + 0x10]	arg0+0x4E460<0x00584210@0x00584378	
-0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF47E	0x53F90	rw	or dword ptr [rax + 0x5b04], 2	arg0+0x4E460<0x00584210@0x00584378	
-0x002EF410	SaveTransitionMetadata_RestoreFromRecord	0x002EF48C	0x53F90	rw	and dword ptr [rax + 0x5b04], 0xfffffffe	arg0+0x4E460<0x00584210@0x00584378	
 0x00233550	SpawnKeep_RestorePersistenceBank	0x0023355C	0xE250	addr	lea rdx, [rcx + 0x10]	arg0+0xE240<0x005843E0@0x0058443B	
 0x00233550	SpawnKeep_RestorePersistenceBank	0x0023356D	0xE250	r	movups xmm0, xmmword ptr [rdx]	arg0+0xE240<0x005843E0@0x0058443B	
 0x00233550	SpawnKeep_RestorePersistenceBank	0x00233570	0xE2D0	addr	lea rdx, [rdx + 0x80]	arg0+0xE240<0x005843E0@0x0058443B	
@@ -1465,11 +1414,8 @@ function	name	site	disp	kind	instruction	route	note
 0x00233550	SpawnKeep_RestorePersistenceBank	0x002335B9	0x2E450	r	movzx eax, word ptr [rcx]	arg0+0x2E450<0x005843E0@0x0058445E	
 0x00233550	SpawnKeep_RestorePersistenceBank	0x002335C3	0x2E452	r	movzx eax, word ptr [rcx + 2]	arg0+0x2E450<0x005843E0@0x0058445E	
 0x002EF3C0	SaveTransitionMetadata_CaptureToRecord	0x002EF3C9	0x4E464	w	mov dword ptr [rcx + 4], eax	arg0+0x4E460<0x00584580@0x005845B6	
-0x002EF3C0	SaveTransitionMetadata_CaptureToRecord	0x002EF3D3	0x53F6C	r	movups xmm0, xmmword ptr [rax + 0x5ae0]	arg0+0x4E460<0x00584580@0x005845B6	
 0x002EF3C0	SaveTransitionMetadata_CaptureToRecord	0x002EF3DA	0x4E468	w	movups xmmword ptr [rcx + 8], xmm0	arg0+0x4E460<0x00584580@0x005845B6	
-0x002EF3C0	SaveTransitionMetadata_CaptureToRecord	0x002EF3E5	0x53F5C	r	movups xmm0, xmmword ptr [rax + 0x5ad0]	arg0+0x4E460<0x00584580@0x005845B6	
 0x002EF3C0	SaveTransitionMetadata_CaptureToRecord	0x002EF3EC	0x4E478	w	movups xmmword ptr [rcx + 0x18], xmm0	arg0+0x4E460<0x00584580@0x005845B6	
-0x002EF3C0	SaveTransitionMetadata_CaptureToRecord	0x002EF3F7	0x53F90	r	mov ecx, dword ptr [rax + 0x5b04]	arg0+0x4E460<0x00584580@0x005845B6	
 0x002EF3C0	SaveTransitionMetadata_CaptureToRecord	0x002EF3FD	0x4E488	w	mov dword ptr [rdx + 0x28], ecx	arg0+0x4E460<0x00584580@0x005845B6	
 0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E404	0x4E4D0	r	mov eax, dword ptr [rsi + 0x3c]	arg0+0x4E494<0x0030E990@0x0030E9A9	
 0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0030E407	0x4E4F8	r	or eax, dword ptr [rsi + 0x64]	arg0+0x4E494<0x0030E990@0x0030E9A9	
@@ -1515,8 +1461,6 @@ function	name	site	disp	kind	instruction	route	note
 0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C806	0x4E656	r	movzx r8d, byte ptr [rdi + 0x1c2]	arg0+0x4E494<0x0030C470@0x0030C56E	
 0x003847C0	BattleFormula_BuildEvaluationContext	0x0038485F	0x4E4F8	r	mov eax, dword ptr [rdi + 0x64]	arg3+0x4E494<0x00385680@0x00385885	
 0x003847C0	BattleFormula_BuildEvaluationContext	0x00384865	0x4E4D0	r	or eax, dword ptr [rdi + 0x3c]	arg3+0x4E494<0x00385680@0x00385885	
-0x00385BA0	BattleFormula_ApplyResultMetadata	0x00385BD1	0x53F9A	w	mov byte ptr [rax + 0x5b0e], cl	arg2+0x4E494<0x003112F0@0x0031137A	
-0x00385BA0	BattleFormula_ApplyResultMetadata	0x00385BEA	0x53F8C	w	mov dword ptr [rax + 0x5b00], ecx	arg2+0x4E494<0x003112F0@0x0031137A	
 0x00300BC0	BattleStats_ModifySecondaryResource	0x00300C10	0x4E49A	r	movsx eax, word ptr [rdi + 6]	arg0+0x4E494<0x0030F5A0@0x0030F617	
 0x00300BC0	BattleStats_ModifySecondaryResource	0x00300C1F	0x4E500	r	movzx r9d, byte ptr [rdi + 0x6c]	arg0+0x4E494<0x0030F5A0@0x0030F617	
 0x00300BC0	BattleStats_ModifySecondaryResource	0x00300C29	0x4E510	r	cmp byte ptr [rdi + 0x7c], cl	arg0+0x4E494<0x0030F5A0@0x0030F617	
@@ -1537,8 +1481,6 @@ function	name	site	disp	kind	instruction	route	note
 0x0030E130	BattleStats_ModifyStatusLayerStateAndProcessSideEffects	0x0030E24E	0x4E4FC	w	mov byte ptr [rbx + 0x68], al	arg0+0x4E494<0x0030FED0@0x00310378	
 0x0030E130	BattleStats_ModifyStatusLayerStateAndProcessSideEffects	0x0030E269	0x4E4FC	r	test byte ptr [rbx + 0x68], sil	arg0+0x4E494<0x0030FED0@0x00310378	
 0x0030E130	BattleStats_ModifyStatusLayerStateAndProcessSideEffects	0x0030E26F	0x4E50C	r	test byte ptr [rbx + 0x78], sil	arg0+0x4E494<0x0030FED0@0x00310378	
-0x0030D9A0	BattleRuntime_GetMode0To5FromFlagsAndFieldBit15	0x0030D9AB	0x53F90	r	mov ecx, dword ptr [rax + 0x5b04]	arg1+0x4E494<0x00311F70@0x00311FAB	
-0x0030D9A0	BattleRuntime_GetMode0To5FromFlagsAndFieldBit15	0x0030D9E9	0x53F90	r	mov ecx, dword ptr [rax + 0x5b04]	arg1+0x4E494<0x00311F70@0x00311FAB	
 0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x003005EF	0x4E4DC	r	mov eax, dword ptr [rsi + 0x48]	arg0+0x4E494<0x0030F340@0x0030F3DC	
 0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x00300621	0x4E4F8	r	mov eax, dword ptr [rsi + 0x64]	arg0+0x4E494<0x0030F340@0x0030F3DC	
 0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x00300624	0x4E4D0	r	or eax, dword ptr [rsi + 0x3c]	arg0+0x4E494<0x0030F340@0x0030F3DC	
@@ -1556,7 +1498,6 @@ function	name	site	disp	kind	instruction	route	note
 0x00300CE0	BattleStats_ModifyPrimaryResource	0x00300D93	0x4E510	r	cmp byte ptr [rsi + 0x7c], dil	arg0+0x4E494<0x0030F5A0@0x0030F5FD	
 0x00300CE0	BattleStats_ModifyPrimaryResource	0x00300D99	0x4E4BC	r	movsx edi, word ptr [rsi + 0x28]	arg0+0x4E494<0x0030F5A0@0x0030F5FD	
 0x00300CE0	BattleStats_ModifyPrimaryResource	0x00300E00	0x4E4E0	w	mov word ptr [rsi + 0x4c], di	arg0+0x4E494<0x0030F5A0@0x0030F5FD	
-0x00236740	FUN_00236740	0x00236747	0x4E490	r	mov eax, dword ptr [rax + 4]	arg2+0x4E48C<0x00316DF0@0x00316E14	
 0x0030E060	FUN_0030e060	0x0030E089	0x4E4BC	r	movzx ecx, word ptr [rdi + 0x28]	arg0+0x4E494<0x0030FED0@0x0031059C	
 0x0030E060	FUN_0030e060	0x0030E0A3	0x4E4E2	r	movzx esi, byte ptr [rdi + 0x4e]	arg0+0x4E494<0x0030FED0@0x0031059C	
 0x0030E060	FUN_0030e060	0x0030E0AF	0x4E4CB	r	cmp byte ptr [rdi + 0x37], r14b	arg0+0x4E494<0x0030FED0@0x0031059C	
@@ -1567,42 +1508,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0031BDC0	FUN_0031bdc0	0x0031BE0B	0x4E4E6	r	movzx eax, word ptr [rbx + 2]	arg0+0x4E4E4<0x0031C000@0x0031C0B9	
 0x0031C500	BattleAction_ComputeActiveTargetStatusIntersection	0x0031C51B	0x4E4F8	r	mov ecx, dword ptr [rbx + 0x64]	arg1+0x4E494<0x00322A80@0x00322BFF	
 0x0031C500	BattleAction_ComputeActiveTargetStatusIntersection	0x0031C51E	0x4E4D0	r	or ecx, dword ptr [rbx + 0x3c]	arg1+0x4E494<0x00322A80@0x00322BFF	
-0x00236740	FUN_00236740	0x00236747	0x4E490	r	mov eax, dword ptr [rax + 4]	arg0+0x4E494<0x00316DF0@0x00316E14	
 0x00317480	FUN_00317480	0x003174C8	0x4E498	r	movzx ecx, byte ptr [r14 + 4]	arg0+0x4E494<0x00316DF0@0x00316E20	
-0x00317480	FUN_00317480	0x00317548	0x4E494	r	test byte ptr [rax], 0x10	arg0+0x4E494<0x00316DF0@0x00316E20	
-0x00317480	FUN_00317480	0x0031754D	0x4E499	r	cmp byte ptr [rax + 5], dil	arg0+0x4E494<0x00316DF0@0x00316E20	
-0x00317480	FUN_00317480	0x00317553	0x4E498	r	cmp byte ptr [rax + 4], 6	arg0+0x4E494<0x00316DF0@0x00316E20	
-0x00317480	FUN_00317480	0x00317580	0x4E656	r	cmp byte ptr [rax + 0x1c2], cl	arg0+0x4E494<0x00316DF0@0x00316E20	
-0x00236740	FUN_00236740	0x00236747	0x4E490	r	mov eax, dword ptr [rax + 4]	arg3+0x4E494<0x00316DF0@0x00316E14	
-0x00327200	FUN_00327200	0x00327207	0x53F30	r	movzx edx, byte ptr [r8 + 0x5aa4]	arg0+0x53EE8<0x00304650@0x00304650	
-0x00327200	FUN_00327200	0x00327220	0x53ED4	r	cmp byte ptr [r8 + rax*2 + 0x5a48], dl	arg0+0x53EE8<0x00304650@0x00304650	idx
-0x00236740	FUN_00236740	0x00236747	0x4E490	r	mov eax, dword ptr [rax + 4]	arg0+0x4E48C<0x00316DF0@0x00316E14	
-0x00317480	FUN_00317480	0x003174C8	0x4E490	r	movzx ecx, byte ptr [r14 + 4]	arg0+0x4E48C<0x00316DF0@0x00316E20	
-0x00317480	FUN_00317480	0x00317548	0x4E494	r	test byte ptr [rax], 0x10	arg0+0x4E48C<0x00316DF0@0x00316E20	
-0x00317480	FUN_00317480	0x0031754D	0x4E499	r	cmp byte ptr [rax + 5], dil	arg0+0x4E48C<0x00316DF0@0x00316E20	
-0x00317480	FUN_00317480	0x00317553	0x4E498	r	cmp byte ptr [rax + 4], 6	arg0+0x4E48C<0x00316DF0@0x00316E20	
-0x00317480	FUN_00317480	0x00317580	0x4E656	r	cmp byte ptr [rax + 0x1c2], cl	arg0+0x4E48C<0x00316DF0@0x00316E20	
-0x0030C470	FUN_0030c470	0x0030C488	0x4E491	r	movzx eax, byte ptr [rcx + 5]	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C48E	0x4E490	r	movzx r14d, byte ptr [rcx + 4]	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C496	0x4E64E	w	mov byte ptr [rcx + 0x1c2], dil	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C4B1	0x4E514	w	mov byte ptr [rcx + 0x88], r8b	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C500	0x4E494	w	mov dword ptr [rbx + 8], eax	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C507	0x4E498	w	mov word ptr [rbx + 0xc], ax	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C516	0x4E49C	w	movss dword ptr [rbx + 0x10], xmm0	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C526	0x4E4A0	w	movss dword ptr [rbx + 0x14], xmm1	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C536	0x4E4A4	w	movss dword ptr [rbx + 0x18], xmm0	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C546	0x4E4A8	w	movss dword ptr [rbx + 0x1c], xmm1	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C54F	0x4E4AC	w	mov byte ptr [rbx + 0x20], al	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C55F	0x4E4AC	w	mov byte ptr [rbx + 0x20], al	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C586	0x4E618	w	mov dword ptr [rbx + 0x18c], eax	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C5BB	0x4E4F8	r	cmp byte ptr [rbx + 0x6c], dil	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C5C1	0x4E508	r	cmp byte ptr [rbx + 0x7c], dil	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C5C7	0x4E4B4	r	movsx edi, word ptr [rbx + 0x28]	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C5CB	0x4E4D8	w	mov word ptr [rbx + 0x4c], di	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C5D1	0x4E4F8	r	cmp byte ptr [rbx + 0x6c], dil	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C5D7	0x4E508	r	cmp byte ptr [rbx + 0x7c], dil	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C5DD	0x4E4B4	r	movsx edi, word ptr [rbx + 0x28]	arg0+0x4E48C<0x00316DF0@0x00316E3D	
-0x0030C470	FUN_0030c470	0x0030C5F9	0x4E4D8	w	mov word ptr [rbx + 0x4c], dx	arg0+0x4E48C<0x00316DF0@0x00316E3D	
 0x00387730	BattleStatus_ComputeDefaultDwordParameter	0x003877BA	0x4E4C0	r	movzx r14d, byte ptr [rsi + 0x2c]	arg1+0x4E494<0x0030E360@0x0030E581	
 0x0046A690	FUN_0046a690	0x0046A6BF	0x4E656	r	movzx eax, byte ptr [rcx + 0x1c2]	arg0+0x4E494<0x0030C650@0x0030C7E4	
 0x00469EC0	BattleFormula_DispatchPostResultEvents	0x0046A09D	0x4E4DC	r	mov ecx, dword ptr [r14 + 0x48]	arg2+0x4E494<0x00385BA0@0x00385C85	
@@ -1623,100 +1529,4 @@ function	name	site	disp	kind	instruction	route	note
 0x0030EA40	BattleStats_UpdateStatusAuxiliaryValue	0x0030EAB9	0x4E610	w	mov word ptr [rsi + rax*2 + 0x17c], di	arg0+0x4E494<0x0030E130@0x0030E264	idx
 0x003279B0	GambitConfig_AdjustAvailableEntryCountByStatsRecord	0x003279BB	0x4E499	r	cmp byte ptr [rcx + 5], 0	arg0+0x4E494<0x0030E130@0x0030E317	
 0x003279B0	GambitConfig_AdjustAvailableEntryCountByStatsRecord	0x003279D0	0x4E498	r	movzx ecx, byte ptr [r9 + 4]	arg0+0x4E494<0x0030E130@0x0030E317	
-0x003279B0	GambitConfig_AdjustAvailableEntryCountByStatsRecord	0x003279E7	0x53FCE	r	movzx eax, byte ptr [rdx + 0x5b42]	arg0+0x4E494<0x0030E130@0x0030E317	
-0x003279B0	GambitConfig_AdjustAvailableEntryCountByStatsRecord	0x00327A01	0x53FCE	w	mov byte ptr [rdx + 0x5b42], al	arg0+0x4E494<0x0030E130@0x0030E317	
 0x00322560	FUN_00322560	0x0032256A	0x4E4E4	r	movzx edi, word ptr [rcx]	arg0+0x4E4E4<0x0031BDC0@0x0031BDE9	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C66F	0x4E64E	r	movzx ecx, byte ptr [rcx + 0x1c2]	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C6CC	0x4E64E	r	cmp byte ptr [rdi + 0x1c2], 0x63	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C6D9	0x4E491	r	cmp byte ptr [rdi + 5], 0	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C716	0x4E490	r	movzx ecx, byte ptr [rdi + 4]	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C723	0x4E64E	r	movzx ecx, byte ptr [rdi + 0x1c2]	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C72D	0x4E494	r	mov edx, dword ptr [rdi + 8]	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C735	0x4E498	r	movsx edx, word ptr [rdi + 0xc]	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C73C	0x4E64E	r	movzx ecx, byte ptr [rdi + 0x1c2]	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C743	0x4E494	w	mov dword ptr [rdi + 8], eax	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C74B	0x4E49C	r	movss xmm0, dword ptr [rdi + 0x10]	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C753	0x4E498	w	mov word ptr [rdi + 0xc], ax	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C760	0x4E49C	w	movss dword ptr [rdi + 0x10], xmm0	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C76C	0x4E4A0	r	movss xmm0, dword ptr [rdi + 0x14]	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C776	0x4E4A0	w	movss dword ptr [rdi + 0x14], xmm0	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C782	0x4E4A4	r	movss xmm0, dword ptr [rdi + 0x18]	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C78C	0x4E4A4	w	movss dword ptr [rdi + 0x18], xmm0	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C798	0x4E4A8	r	movss xmm0, dword ptr [rdi + 0x1c]	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C7A2	0x4E4A8	w	movss dword ptr [rdi + 0x1c], xmm0	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C7A7	0x4E64E	r	movzx eax, byte ptr [rdi + 0x1c2]	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C7BB	0x4E64E	w	mov byte ptr [rdi + 0x1c2], al	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C7DB	0x4E491	r	cmp byte ptr [rdi + 5], 0	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	0x0030C806	0x4E64E	r	movzx r8d, byte ptr [rdi + 0x1c2]	arg0+0x4E48C<0x0030C470@0x0030C56E	
-0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F34E	0x4E4C8	r	mov eax, dword ptr [rcx + 0x3c]	arg0+0x4E48C<0x0030C470@0x0030C5A5	
-0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F354	0x4E4F0	r	or eax, dword ptr [rcx + 0x64]	arg0+0x4E48C<0x0030C470@0x0030C5A5	
-0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F367	0x4E4D4	r	mov eax, dword ptr [rcx + 0x48]	arg0+0x4E48C<0x0030C470@0x0030C5A5	
-0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F375	0x4E4B0	r	mov eax, dword ptr [rcx + 0x24]	arg0+0x4E48C<0x0030C470@0x0030C5A5	
-0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F37C	0x4E4D4	r	mov ecx, dword ptr [rcx + 0x48]	arg0+0x4E48C<0x0030C470@0x0030C5A5	
-0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F383	0x4E491	r	cmp byte ptr [rbx + 5], 0	arg0+0x4E48C<0x0030C470@0x0030C5A5	
-0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F389	0x4E490	r	movzx eax, byte ptr [rbx + 4]	arg0+0x4E48C<0x0030C470@0x0030C5A5	
-0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F3AC	0x4E4C8	r	mov eax, dword ptr [rbx + 0x3c]	arg0+0x4E48C<0x0030C470@0x0030C5A5	
-0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F3AF	0x4E4F0	r	or eax, dword ptr [rbx + 0x64]	arg0+0x4E48C<0x0030C470@0x0030C5A5	
-0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F3B8	0x4E4D4	r	mov edx, dword ptr [rbx + 0x48]	arg0+0x4E48C<0x0030C470@0x0030C5A5	
-0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F3C2	0x4E4B0	r	mov edx, dword ptr [rbx + 0x24]	arg0+0x4E48C<0x0030C470@0x0030C5A5	
-0x0030F340	BattleStats_ReconcileCurrentHpToEffectiveMaximum	0x0030F3CD	0x4E4D4	r	sub edx, dword ptr [rbx + 0x48]	arg0+0x4E48C<0x0030C470@0x0030C5A5	
-0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F5AE	0x4E4F8	r	movzx eax, byte ptr [rcx + 0x6c]	arg0+0x4E48C<0x0030C470@0x0030C5AD	
-0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F5C0	0x4E508	r	cmp byte ptr [rcx + 0x7c], dil	arg0+0x4E48C<0x0030C470@0x0030C5AD	
-0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F5C6	0x4E4B4	r	movsx ecx, word ptr [rcx + 0x28]	arg0+0x4E48C<0x0030C470@0x0030C5AD	
-0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F5CE	0x4E4D8	r	movsx r8d, word ptr [rbx + 0x4c]	arg0+0x4E48C<0x0030C470@0x0030C5AD	
-0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F5E1	0x4E508	r	cmp byte ptr [rbx + 0x7c], dil	arg0+0x4E48C<0x0030C470@0x0030C5AD	
-0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F5E7	0x4E4B4	r	movsx esi, word ptr [rbx + 0x28]	arg0+0x4E48C<0x0030C470@0x0030C5AD	
-0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F602	0x4E492	r	movsx eax, word ptr [rbx + 6]	arg0+0x4E48C<0x0030C470@0x0030C5AD	
-0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F621	0x4E4F8	r	movzx edx, byte ptr [rbx + 0x6c]	arg0+0x4E48C<0x0030C470@0x0030C5AD	
-0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F629	0x4E508	r	cmp byte ptr [rbx + 0x7c], dil	arg0+0x4E48C<0x0030C470@0x0030C5AD	
-0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F62F	0x4E4C3	r	movzx eax, byte ptr [rbx + 0x37]	arg0+0x4E48C<0x0030C470@0x0030C5AD	
-0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F633	0x4E4B4	r	movsx ecx, word ptr [rbx + 0x28]	arg0+0x4E48C<0x0030C470@0x0030C5AD	
-0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F645	0x4E492	r	movsx r8d, word ptr [rbx + 6]	arg0+0x4E48C<0x0030C470@0x0030C5AD	
-0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F653	0x4E508	r	cmp byte ptr [rbx + 0x7c], dil	arg0+0x4E48C<0x0030C470@0x0030C5AD	
-0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F659	0x4E4C3	r	movzx eax, byte ptr [rbx + 0x37]	arg0+0x4E48C<0x0030C470@0x0030C5AD	
-0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	0x0030F65D	0x4E4B4	r	movsx edi, word ptr [rbx + 0x28]	arg0+0x4E48C<0x0030C470@0x0030C5AD	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0030FF1F	0x4E491	r	movzx eax, byte ptr [rcx + 5]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0030FF5E	0x4E490	r	movzx ecx, byte ptr [rbx + 4]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031001A	0x4E491	r	cmp byte ptr [rbx + 5], r13b	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310071	0x4E4DC	addr	lea rsi, [rbx + 0x50]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310080	0x4E4DC	r	movzx edx, word ptr [rsi]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003100BF	0x4E4DC	r	movzx r8d, word ptr [rsi]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310303	0x4E504	addr	lea r9, [rbx + 0x78]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310316	0x4E504	r	xor dl, byte ptr [r9]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310319	0x4E505	addr	lea r9, [r9 + 1]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310320	0x4E504	r	and dl, byte ptr [r9 - 1]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003103BB	0x4E491	r	cmp byte ptr [rbx + 5], r13b	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310415	0x4E491	r	cmp byte ptr [rbx + 5], r13b	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310443	0x4E4CC	w	mov byte ptr [rbx + 0x40], cl	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310451	0x4E4CD	w	mov byte ptr [rbx + 0x41], dl	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031045F	0x4E4CE	w	mov byte ptr [rbx + 0x42], cl	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031046D	0x4E4CF	w	mov byte ptr [rbx + 0x43], cl	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031047B	0x4E4D0	w	mov byte ptr [rbx + 0x44], cl	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310480	0x4E4CC	r	movzx eax, byte ptr [rbx + 0x40]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031048E	0x4E4CD	r	movzx eax, byte ptr [rbx + 0x41]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031049C	0x4E4CE	r	movzx eax, byte ptr [rbx + 0x42]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104AA	0x4E4CF	r	movzx eax, byte ptr [rbx + 0x43]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104B8	0x4E4D0	r	movzx eax, byte ptr [rbx + 0x44]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104BF	0x4E4F0	r	mov edx, dword ptr [rbx + 0x64]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104C2	0x4E4C8	r	or edx, dword ptr [rbx + 0x3c]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104D1	0x4E4D4	r	mov ecx, dword ptr [rbx + 0x48]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104DD	0x4E4B0	r	mov ecx, dword ptr [rbx + 0x24]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104E8	0x4E4D4	r	mov eax, dword ptr [rbx + 0x48]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x003104FD	0x4E4B0	r	mov eax, dword ptr [rbx + 0x24]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310508	0x4E4D4	w	mov dword ptr [rbx + 0x48], eax	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031050B	0x4E4F8	r	movzx edx, byte ptr [rbx + 0x6c]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310513	0x4E508	r	cmp byte ptr [rbx + 0x7c], r14b	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310519	0x4E4B4	r	movsx ecx, word ptr [rbx + 0x28]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310522	0x4E4D8	r	movsx eax, word ptr [rbx + 0x4c]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031052E	0x4E508	r	cmp byte ptr [rbx + 0x7c], r14b	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310534	0x4E4B4	r	movsx eax, word ptr [rbx + 0x28]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031053D	0x4E4D8	w	mov word ptr [rbx + 0x4c], ax	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310541	0x4E4F8	r	movzx edx, byte ptr [rbx + 0x6c]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310549	0x4E508	r	cmp byte ptr [rbx + 0x7c], r14b	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031054F	0x4E4C3	r	movzx eax, byte ptr [rbx + 0x37]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310553	0x4E4B4	r	movsx ecx, word ptr [rbx + 0x28]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310566	0x4E492	r	movsx eax, word ptr [rbx + 6]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310572	0x4E508	r	cmp byte ptr [rbx + 0x7c], r14b	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310578	0x4E4C3	r	movzx eax, byte ptr [rbx + 0x37]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031057C	0x4E4B4	r	movsx r14d, word ptr [rbx + 0x28]	arg0+0x4E48C<0x0030C650@0x0030C7CE	
-0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x00310594	0x4E492	w	mov word ptr [rbx + 6], r14w	arg0+0x4E48C<0x0030C650@0x0030C7CE	

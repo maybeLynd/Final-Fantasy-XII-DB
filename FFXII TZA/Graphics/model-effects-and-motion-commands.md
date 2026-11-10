@@ -222,8 +222,8 @@ stops that being fixed.
 | `capture_or_bind` | 158 | 1,422 | the actor both captures and binds (`0x0033F39A` skips a bind while the capture holds) |
 | `party_member_named` | 52 | 468 | a `capturebattleid` with a literal selector names the character |
 | `party_slot_at_run_time` | 604 | 5,436 | the capture takes a party or guest slot, the controlled character, or a variable selector |
-| `zone_actor_named` | 320 | 2,880 | the capture names an actor of the zone in play, and actors of that name are listed |
-| `zone_actor_no_candidate` | 39 | 351 | the capture names an actor that no other script binds or places |
+| `zone_actor_named` | 358 | 3,222 | the capture names an actor of the zone in play, and actors of that name are listed |
+| `zone_actor_no_candidate` | 1 | 9 | the capture names an actor that no other script binds or places |
 | `no_body_source` | 75 | 675 | the actor has no bind and no capture in this script |
 | `puppet_slot_variable` | 4 | 36 | the puppet slot is a script variable |
 | `mixed_run_time` | 27 | 243 | the cues are of more than one of these kinds |
@@ -237,9 +237,16 @@ arguments](../Scripts-And-Script-Commands/verb-arguments.md), verb `03E9`), and 
 roster holds that member (`0x003509E0`). `party_slot_at_run_time` lists the models of party-table rows 0 to 16.
 
 A captured zone actor is found by name in the script of manager 0. Its candidates are the models other scripts bind
-to an actor of that name, and the models of the enemy placements whose `function` is that name, through `model_id`
-of the [bestiary](../Enemy-Spawning/bestiary.md). When any candidate is in the area of the capturing
-script only those are listed, and `evidence` names each source.
+as the main model of an actor of that name, with a `bindp` verb (`0x00342640`, `0x002E28E0`), and the models of the enemy
+placements whose `function` is that name, through `model_id` of the
+[bestiary](../Enemy-Spawning/bestiary.md). When any candidate is in the area of the capturing script
+only those are listed, and `evidence` names each source.
+
+A handler's binds count for every name in its `symlink_actors`: a listing declares each such name as running that
+handler's code (`rbn_a01`: `symlink NPC02(NPC01)`). A name in `symlink_actors` has its own directory entry holding
+the same code, function, jump and footer offsets as the handler, with its own local storage offset (`+0x1C`) and
+copy number (`+0x20`); `0x00266530` builds each record from its entry (`0x00266795`-`0x002667CA`).
+`bindh` and `bindc` attach a second model (`0x002E3110`) and the load verbs bind nothing, so neither adds a candidate.
 
 The cue arguments of all 15,954 sites are literals, so `no_literal_cue` means that no motion verb in the script's
 listing starts that entry. An `ownerless_action` row names no model and no candidate.
@@ -569,3 +576,5 @@ Calls between the functions this page cites and code in other parts of the progr
   [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
 - Status periodic terminal: `0x00265680` is called by `0x00310DB0`; those functions are documented on
   [frame update order](../Engine-Core/frame-update-order.md).
+- Actor entity: `0x00266530` calls `0x00265B60`; those functions are documented on
+  [actor record](../Characters-And-Objects/actor-record.md).

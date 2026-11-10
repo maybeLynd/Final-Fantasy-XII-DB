@@ -2,7 +2,7 @@ function	site	kind	instruction	class	what_the_operand_is
 0x00234990	0x002349D5	bit test or set by a register	bt edi, eax	other	not the slot number: the bit number is the unit's byte +0xE98
 0x00234A10	0x00234A4B	bit test or set by a register	bt edi, ecx	other	not the slot number: the bit number is the unit's byte +0xE98
 0x00234A80	0x00234ABB	bit test or set by a register	bt edi, ecx	other	not the slot number: the bit number is the unit's byte +0xE98
-0x00265A20	0x00265A8F	compare with 32	cmp edi, 0x20	not followed	guards the only call of the allocator 0x00234480 (0x00265A9F); what edi counts is not followed past 0x00265B21
+0x00265A20	0x00265A8F	compare with 32	cmp edi, 0x20	unit loop	the count of this loop's calls of the allocator 0x00234480: edi starts at 0 (0x00265A36) and goes up only on a pass that reaches that call (0x00265A99-0x00265A9F, 0x00265B18-0x00265B21); at 32 the pass clears bit 0x10 of the record's byte +0x14 instead (0x00265B11-0x00265B13)
 0x00301AD0	0x00301C7E	bit test or set by a register	bt eax, esi	other	not the slot number: the bit number is the row's word +0xA (0x00301B1F), tested on a value a call wrote (0x00301C4A)
 0x00301AD0	0x003021B3	bit test or set by a register	bt ecx, edi	status	not the slot number: a bit of the status words +0x64 and +0x3C
 0x00301AD0	0x003021FB	bit test or set by a register	bt eax, edi	other	not the slot number: a bit of the unit's word +0x52
@@ -37,8 +37,8 @@ function	site	kind	instruction	class	what_the_operand_is
 0x00324F20	0x00324FBF	shift by a register	shl eax, cl	slot number	the slot number: the operand is the unit's byte +0xEA9
 0x00324F20	0x00325012	loop count 32	mov r9d, 0x20	unit loop	32 passes that step a unit pointer by 0xF50 from 0x00236820(0) (0x00324FFD, 0x00325042); it uses the constant, not the count 0x0208E6A0
 0x00324F20	0x00325029	compare with 32	cmp ecx, 0x20	list capacity	the count +0xBC4 of the noticed list at unit +0xBC0
-0x00328DB0	0x00328E60	bit test or set by a register	bts ebx, esi	not followed	a mask built from esi when the unit 0x002367A0 returns has bit 0x1 of +0; esi is not the byte +0xEA9
-0x00328DB0	0x00328E73	bit test or set by a register	bts ebx, esi	not followed	as 0x00328E60
+0x00328DB0	0x00328E60	bit test or set by a register	bts ebx, esi	other	a mask built from esi, the loop index 0 to 3 (0x00328E0B, 0x00328E7C), when the record at `+0x698` of the unit 0x002367A0 returns (0x00328E4F) has bit 0x1 of its byte +0 (0x00328E5B); esi is not the byte +0xEA9
+0x00328DB0	0x00328E73	bit test or set by a register	bts ebx, esi	other	the same esi bit, when that record at `+0x698` has byte +5 equal to 0 and byte +4 from 7 to 0x19 (0x00328E63-0x00328E71)
 0x00328DB0	0x00328ED6	bit test or set by a register	bts ebx, ecx	other	not the slot number: ecx is below 3 here (0x00328ED1)
 0x00329220	0x0032950B	bit test or set by a register	bt eax, ecx	status	not the slot number: a bit of the status words +0x64 and +0x3C
 0x00329220	0x00329536	compare with 32	cmp edx, 0x20	status	a loop over the 32 status numbers

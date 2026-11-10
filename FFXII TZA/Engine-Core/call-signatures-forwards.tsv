@@ -71344,6 +71344,10 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0056E880	0x0056E8C6	call	0x0057D5E0	-	-
 0x0056E880	0x0056E913	call	0x0057D610	-	-
 0x0056E880	0x0056E962	tail	0x0056E9A0	r8,r9,xmm0,xmm1,xmm2,xmm3	-
+0x0056E9A0	0x0056E9D5	tail	0x0057D610	r8,xmm0,xmm1,xmm2,xmm3	-
+0x0056E9A0	0x0056E9E2	tail	0x0057D610	r8,xmm0,xmm1,xmm2,xmm3	-
+0x0056E9A0	0x0056E9EF	tail	0x0057D610	r8,xmm0,xmm1,xmm2,xmm3	-
+0x0056E9A0	0x0056E9FC	tail	0x0057D610	r8,xmm0,xmm1,xmm2,xmm3	-
 0x0056EA40	0x0056EA74	tail	0x005C5230	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0056EA40	0x0056EA8B	call	0x00247510	r9,xmm0,xmm1,xmm2,xmm3	-
 0x0056EA40	0x0056EB6C	call	0x002D8C80	xmm0,xmm1,xmm2,xmm3	-
@@ -87945,6 +87949,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x00627CF0	0x00627D74	call	0x00584730	-	-
 0x00627DA0	0x00627DE8	call	0x0061D100	rcx,rdx,xmm0,xmm1,xmm2,xmm3	-
 0x00627DA0	0x00627E24	call	0x00584730	-	-
+0x00627E50	0x00627E57	tail	0x00627E60	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00627F10	0x00627F36	call	0x0061BF40	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x00627F10	0x00627F43	call	0x0061BF40	-	-
 0x00627F80	0x00627FA6	call	0x0061BF40	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
@@ -123142,6 +123147,7 @@ caller	site	kind	target	held_on_every_path	held_on_some_paths
 0x0080E200	0x0080E27C	call	0x00861EBA	-	r9,xmm0,xmm1,xmm2,xmm3
 0x0080E200	0x0080E2A2	call	0x00861EBA	-	r9,xmm0,xmm1,xmm2,xmm3
 0x0080E200	0x0080E2B8	call	0x00861EBA	-	-
+0x0080E300	0x0080E303	tail	0x0080E310	rcx,rdx,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0080E5F0	0x0080E5F3	tail	0x0080E910	rcx,rdx,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0080E910	0x0080E918	tail	0x0080E600	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	-
 0x0080E920	0x0080E926	tail	api-ms-win-crt-heap-l1-1-0.dll!malloc	r8,r9,xmm0,xmm1,xmm2,xmm3	-

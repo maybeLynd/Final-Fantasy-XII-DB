@@ -43,7 +43,7 @@ preparation slot that sets the attack value `0x02AEE058`, the defence value `0x0
 
 | Recipe | Weapon classes in the shipped rows | Preparation slot |
 |---:|---|---|
-| 20 | 1 (Broadsword), 2 (Claymore), 5 (Javelin), 13 (Rod); and rows the party cannot hold: 11 Reserve rows the Espers wield (class 0: 181, 183-185, 187-191; class 5: 179, 180) and 39 rows named `NOT USED` from 420 on (classes 1, 2, 5 and 6, row 455 among them), 34 of them enemy weapons, row 484 a weapon of Reddas's scenario presets and rows 440, 445, 446 and 486 with no reference found | 65 `0x0038AAF0` |
+| 20 | 1 (Broadsword), 2 (Claymore), 5 (Javelin), 13 (Rod); and rows the party cannot hold: 11 Reserve rows the Espers wield (class 0: 181, 183-185, 187-191; class 5: 179, 180) and 39 rows named `NOT USED` from 420 on (classes 1, 2, 5 and 6, row 455 among them), 34 of them enemy weapons, row 484 a weapon of Reddas's scenario presets, and four more (rows 440, 445, 446 and 486) | 65 `0x0038AAF0` |
 | 21 | 4 (Ashura), 12 (Dagger) | 66 `0x0038A110` |
 | 22 | 3 (Kotetsu), 14 (Oak Staff), 1 (Kumbha) | 67 `0x0038A1F0` |
 | 23 | 10 (Handaxe), 11 (Iron Hammer), 17 (Hornito); also one class-0 row named Reserve | 68 `0x0038A2D0` |

@@ -7,7 +7,7 @@ addresses: "0x0079D730, 0x00311CD0, 0x00197710, 0x0085DDE0, 0x00325EA0, 0x0030FE
 
 ## What it lists
 
-One row for each of the executable's 39,107 functions, from `0x00121000` to `0x008C15E0` and from one-instruction
+One row for each of the executable's 39,115 functions, from `0x00121000` to `0x008C15E0` and from one-instruction
 stubs (a `ret` or a `jmp`) to a body of 6,492 instructions (`0x004B1190`): the integer and float argument registers each function reads,
 its argument count (the highest argument position it reads), the arguments its entry stores in their home slots,
 and the stack arguments it reads. A second table lists every call and tail call, including those in `__except` blocks, with its target and the argument
@@ -24,7 +24,7 @@ next address a table or a direct jump names. A count is evidence for a contract 
 | Column | Meaning |
 |---|---|
 | `ret_sites` | the `ret` instructions in the function, with the `repz` and `bnd` forms |
-| `return_register_at_ret` | for each `ret`, the last write to `rax` or `xmm0` above it in the layout, at any width: `none`, `after a call` when a call comes first, and `tail` for a jump to another function, which returns that function's value; `-` when the function has neither, 463 rows of which 378 end in a jump through a register or memory |
+| `return_register_at_ret` | for each `ret`, the last write to `rax` or `xmm0` above it in the layout, at any width: `none`, `after a call` when a call comes first, and `tail` for a jump to another function, which returns that function's value; `-` when the function has neither, 462 rows of which 378 end in a jump through a register or memory |
 | `callers` | the direct `call` sites of the function |
 | `caller_reads_rax` | how many of them read the return register before writing it, by the width first read (`rax`, `eax`, `ax`, `al`) |
 | `caller_reads_xmm0` | how many read `xmm0` before writing it |
@@ -37,7 +37,7 @@ next address a table or a direct jump names. A count is evidence for a contract 
 Of the functions with a direct caller, 6,385 have a caller that reads an integer return and 418 one that reads a
 float.
 10,885 functions store through an argument, 951 keep one in memory, 5,706 write globals and 103 call themselves.
-22,195 have no direct `call` site, so their caller columns are 0. A table, a pointer or a tail jump can still reach
+22,203 have no direct `call` site, so their caller columns are 0. A table, a pointer or a tail jump can still reach
 them.
 
 The return's width is the width callers read, because `return_register_at_ret` gives only the last write in the
@@ -50,7 +50,7 @@ and cannot be read from these counts.
 
 ### Ownership, threads, failure and re-entry
 
-[`call-signatures-contract-flow.tsv`](call-signatures-contract-flow.tsv) has one row for each of the 39,107
+[`call-signatures-contract-flow.tsv`](call-signatures-contract-flow.tsv) has one row for each of the 39,115
 functions, measured along each function's control flow. A value is followed from an argument, a call's result or a
 constant to where it is used.
 
@@ -58,8 +58,14 @@ constant to where it is used.
 takes, returns and keeps, what it reads and writes, what happens when it fails, its locks and recursion, and where
 the evidence for it stops.
 
-The flow table reaches 1,824,544 of the 1,831,499 instructions counted above. 552 indirect jumps end a path, among
-them tail calls through a pointer.
+Along each function's control flow the flow table counts 1,831,216 instructions; the `instructions` column of the
+evidence table sums to 1,831,499 over the same 39,115 functions. The two are measured separately, and in some
+functions the flow reaches more than that function's count. 549 indirect jumps end a path, among them tail calls
+through a pointer.
+
+A function's code is what control flow reaches from its entry, up to the next function's entry. A jump to an address
+below that entry and not itself an entry stays in the function: `0x005CD2FF` in `0x005CD1E0` reaches its own epilogue
+at `0x005CD319`. A jump to another entry ends the path as a tail call.
 
 #### Thread starts
 
@@ -70,7 +76,7 @@ process entry, with the creating call and how the start reaches it.
 Ten starts go through `0x005CD1E0`, which runs them from the trampoline `0x005CCBA0`. Four go through `0x008636E0`, whose
 object's slot 1, `0x00863410`, calls the descriptor's function. Three share the trampoline `0x007A5550`.
 
-`thread_starts` lists the starts that reach a function by direct and tail calls. 1,951 functions have one. Code
+`thread_starts` lists the starts that reach a function by direct and tail calls. 1,953 functions have one. Code
 entered through a pointer is not followed, so `-` says only that no start reaches the function by those calls.
 
 #### Locks
@@ -120,7 +126,7 @@ the second, `r8` or `xmm2` the third, `r9` or `xmm3` the fourth. Arity is the hi
 (`0x0079D752 movd xmm0, [rcx+0x414]`), so its arguments are `rcx` and `rdx`, arity 2.
 
 A function can leave a lower position unread: `0x00197710` overwrites `ecx` with `movzx ecx, r8b`
-before any read and reads `dl`, `r8b` and `r9b`, so it lists `rdx,r8,r9` at arity 4. 7,058 functions
+before any read and reads `dl`, `r8b` and `r9b`, so it lists `rdx,r8,r9` at arity 4. 7,059 functions
 have such an unread position below their arity.
 
 ### Stack arguments
@@ -141,9 +147,10 @@ per pass; how far they reach is set by the loop's exit test.
 
 ### What a call receives
 
-[`call-signatures-forwards.tsv`](call-signatures-forwards.tsv) has one row for each of the 137,603 call and tail-call
-sites: 122,336 calls and 15,267 tail calls. 126,523 name a function, 3,802 an import, 441 a function pointer kept in
-a global, and 6,837 a register or memory operand. At 35,829 sites at least one argument register still holds the
+[`call-signatures-forwards.tsv`](call-signatures-forwards.tsv) has one row for each of the 137,609 call and tail-call
+sites: 122,336 calls and 15,273 tail calls. 126,527 name a function, 2 the instruction after the call (`call next`),
+3,802 an import, 441 a function pointer kept in
+a global, and 6,837 a register or memory operand. At 35,835 sites at least one argument register still holds the
 function's incoming value on every path to the site, so the callee receives that argument unchanged.
 
 ## Columns
@@ -208,14 +215,14 @@ so that its first argument is that class's `this`:
 
 | Fact | Value |
 |---|---|
-| Functions | 39,107 |
-| Arity 0 / 1 / 2 / 3 / 4 | 10,661 / 8,214 / 11,172 / 4,772 / 4,288 |
-| Read a float argument register | 1,314 |
+| Functions | 39,115 |
+| Arity 0 / 1 / 2 / 3 / 4 | 10,661 / 8,220 / 11,172 / 4,774 / 4,288 |
+| Read a float argument register | 1,316 |
 | Store an argument in its home slot | 1,334 |
-| Leave a position below their arity unread | 7,058 |
+| Leave a position below their arity unread | 7,059 |
 | Read a stack argument | 1,670 |
 | Read their own stack through a loop-advanced pointer | 59 |
-| Call and tail-call sites | 137,603 |
+| Call and tail-call sites | 137,609 |
 | Sit in a class's virtual table | 6,882 |
 
 `0x0053DD10` (`mov eax, 1; ret`) is held by 24 virtual tables. It is also called directly: `0x002DDC50()` answers

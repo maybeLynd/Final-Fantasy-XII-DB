@@ -59,6 +59,8 @@ in this category; the rest of this section covers the three small libraries.
 
 ### zlib
 
+Its member list is [`third-party-libraries-zlib.tsv`](third-party-libraries-zlib.tsv).
+
 The two banners are unreferenced constants, ` inflate 1.2.11 Copyright 1995-2017 Mark Adler `
 (`0x01CC9F50`) and ` deflate 1.2.11 Copyright 1995-2017 Jean-loup Gailly and Mark Adler `
 (`0x01CDA260`). The linker placed the library in two ranges:

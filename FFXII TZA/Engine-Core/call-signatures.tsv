@@ -2335,7 +2335,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x00195940	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	172
 0x00195BD0	1	rcx	-	-	-	14
 0x00195C10	1	rcx	-	-	-	23
-0x00195C70	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	36
+0x00195C70	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	35
 0x00195CF0	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	75
 0x00195DF0	1	rcx	-	-	rdx,r8,r9,xmm2,xmm3	122
 0x00196000	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	88
@@ -2690,7 +2690,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x001A7D50	1	rcx	-	-	xmm0,xmm1,xmm2,xmm3	47
 0x001A7E40	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	40
 0x001A7F10	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	800
-0x001A8BA0	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	259
+0x001A8BA0	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	258
 0x001A8F80	1	rcx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	54
 0x001A9050	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	153
 0x001A92C0	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	126
@@ -3456,7 +3456,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x001DF760	3	rcx,rdx,r8	-	-	xmm0,xmm1,xmm2,xmm3	33
 0x001DF7D0	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	64
 0x001DF8C0	1	rcx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	60
-0x001DF990	2	rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	30
+0x001DF990	2	rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	29
 0x001DFA00	1	rcx	-	-	-	6
 0x001DFA10	3	rdx,r8	-	-	rcx,r9,xmm0,xmm1,xmm2,xmm3	25
 0x001DFA70	1	rcx	-	-	-	3
@@ -4111,7 +4111,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x00203330	3	rcx,rdx,r8	-	rcx	r9,xmm0,xmm1,xmm2,xmm3	36
 0x002033C0	3	rcx,rdx,r8	-	rcx	r9,xmm0,xmm1,xmm2,xmm3	36
 0x00203450	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	15
-0x00203490	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	40
+0x00203490	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	39
 0x00203520	3	rcx,rdx,r8	-	-	-	44
 0x002035B0	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	110
 0x00203790	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	46
@@ -4163,8 +4163,8 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x00205330	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	125
 0x002054D0	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	211
 0x00205800	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	36
-0x00205890	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	186
-0x00205B40	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	63
+0x00205890	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	185
+0x00205B40	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	62
 0x00205C30	1	rcx	-	-	-	19
 0x00205C70	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	63
 0x00205D60	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	39
@@ -4198,7 +4198,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x00207E90	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	52
 0x00207F50	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	32
 0x00207FB0	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	69
-0x002080D0	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	71
+0x002080D0	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	70
 0x002081A0	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	42
 0x00208220	4	rcx,rdx,r8,r9	-	-	xmm1,xmm2,xmm3	104
 0x00208390	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	159
@@ -4223,9 +4223,9 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x00209530	1	rcx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	117
 0x00209780	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	51
 0x00209840	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	82
-0x00209950	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	36
-0x002099D0	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	36
-0x00209A50	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	37
+0x00209950	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	35
+0x002099D0	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	35
+0x00209A50	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	36
 0x00209AD0	3	rdx,r8	-	-	rcx,r9,xmm0,xmm1,xmm2,xmm3	31
 0x00209B50	3	rdx,r8	-	-	rcx,r9,xmm0,xmm1,xmm2,xmm3	31
 0x00209BC0	3	rdx,r8	-	-	rcx,r9,xmm0,xmm1,xmm2,xmm3	32
@@ -4311,7 +4311,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x0020D7B0	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	2
 0x0020D7C0	2	rcx,rdx	-	rcx,rdx	r8,r9,xmm0,xmm1,xmm2,xmm3	60
 0x0020D8A0	2	rcx,rdx	-	-	xmm0,xmm1,xmm2,xmm3	57
-0x0020D970	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	37
+0x0020D970	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	36
 0x0020D9F0	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	33
 0x0020DA50	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	33
 0x0020DAB0	1	rcx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	109
@@ -7274,6 +7274,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x002AB860	0	-	-	-	-	3
 0x002AB870	3	rcx,rdx,r8	-	-	-	42
 0x002AB8F0	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	68
+0x002ABA20	1	rcx	-	-	-	40
 0x002ABAA0	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	38
 0x002ABB20	1	rcx	-	-	xmm2,xmm3	194
 0x002ABEC0	1	rcx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	17
@@ -11762,7 +11763,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x00368AA0	2	rcx,rdx	-	-	-	9
 0x00368AC0	1	rcx	-	-	-	3
 0x00368AD0	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	2
-0x00368AE0	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	5
+0x00368AE0	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	4
 0x00368B00	0	-	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	60
 0x00368C10	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	19
 0x00368C70	0	-	-	-	-	2
@@ -17090,6 +17091,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x0056E840	1	rcx	-	-	-	8
 0x0056E860	1	rcx	-	-	-	8
 0x0056E880	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	69
+0x0056E9A0	3	rcx,rdx,r8	-	-	xmm0,xmm1,xmm2,xmm3	29
 0x0056EA40	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	111
 0x0056EC10	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	39
 0x0056ECC0	2	rcx,rdx	-	-	r9,xmm0,xmm1,xmm2,xmm3	78
@@ -20355,7 +20357,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x005FE9C0	2	rcx,rdx	-	-	xmm0,xmm1,xmm2,xmm3	37
 0x005FEA50	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	58
 0x005FEB30	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	96
-0x005FEC70	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	36
+0x005FEC70	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	35
 0x005FECF0	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	107
 0x005FEE80	3	rcx,rdx,r8	-	-	xmm0,xmm1,xmm2,xmm3	41
 0x005FEF00	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	41
@@ -21313,7 +21315,8 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x00627C60	2	rcx,rdx	-	-	r9,xmm0,xmm1,xmm2,xmm3	45
 0x00627CF0	2	rcx,rdx	-	-	xmm0,xmm1,xmm2,xmm3	58
 0x00627DA0	2	rcx,rdx	-	-	xmm0,xmm1,xmm2,xmm3	58
-0x00627E50	3	rcx,rdx,r8	-	-	-	53
+0x00627E50	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	2
+0x00627E60	3	rcx,rdx,r8	-	-	-	51
 0x00627F10	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	22
 0x00627F80	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	26
 0x00627FF0	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	26
@@ -24624,6 +24627,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x006AB740	1	rcx	-	-	r8,xmm0,xmm1,xmm2,xmm3	47
 0x006AB7E0	0	-	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	330
 0x006ABEC0	1	rcx	-	-	rdx,r9,xmm0,xmm1,xmm2,xmm3	38
+0x006ABF40	1	rcx	-	-	-	26
 0x006ABFA0	1	rcx	-	-	r9,xmm0,xmm1,xmm2,xmm3	83
 0x006AC0D0	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	55
 0x006AC1D0	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	75
@@ -27180,6 +27184,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x0071B4E0	3	rcx,rdx,r8	-	rcx,rdx	xmm1,xmm2,xmm3	26
 0x0071B550	1	rcx	-	-	-	49
 0x0071B670	2	rcx,rdx	-	-	-	21
+0x0071B6B0	1	rcx	-	-	-	22
 0x0071B740	1	rcx	-	-	-	18
 0x0071B780	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	19
 0x0071B7C0	1	rcx	-	-	-	16
@@ -28023,7 +28028,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x00781EA0	1	rcx	-	-	-	4
 0x00781EC0	1	rcx	-	-	xmm0,xmm1,xmm2,xmm3	188
 0x007821C0	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	156
-0x007823E0	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	57
+0x007823E0	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	56
 0x007824B0	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	265
 0x00782890	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	110
 0x00782A30	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	57
@@ -28043,7 +28048,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x00783AA0	4	rcx,rdx,r8,r9	-	rcx,r8	xmm0,xmm1,xmm2,xmm3	150
 0x00783CC0	2	rcx,rdx	-	rcx,rdx	r8,r9,xmm0,xmm1,xmm2,xmm3	50
 0x00783D80	2	rcx,rdx	-	-	xmm0,xmm1,xmm2,xmm3	36
-0x00783E10	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	36
+0x00783E10	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	35
 0x00783E90	3	rdx,r8	-	-	rcx,r9,xmm0,xmm1,xmm2,xmm3	31
 0x00783F00	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	41
 0x00783F90	2	rcx,rdx	-	-	-	71
@@ -28357,7 +28362,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x00790F10	2	rcx,rdx	-	-	xmm0,xmm1,xmm2,xmm3	36
 0x00790FA0	2	rcx,rdx	-	-	xmm0,xmm1,xmm2,xmm3	36
 0x00791030	2	rcx,rdx	-	-	xmm0,xmm1,xmm2,xmm3	36
-0x007910C0	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	36
+0x007910C0	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	35
 0x00791140	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	44
 0x007911D0	0	-	-	-	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	1
 0x007911E0	2	rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	24
@@ -30299,7 +30304,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x00809AB4	0	-	-	-	r9,xmm0,xmm1,xmm2,xmm3	13
 0x00809AF0	0	-	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	24
 0x00809B44	0	-	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	2
-0x00809B54	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	17
+0x00809B54	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	16
 0x00809B8C	0	-	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	39
 0x00809C38	0	-	-	-	-	2
 0x00809C40	0	-	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	2
@@ -30310,14 +30315,16 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x00809C88	0	-	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	21
 0x00809CD4	0	-	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	21
 0x00809D20	1	-	xmm0	-	-	19
+0x00809D70	1	-	xmm0	-	-	2
 0x00809D80	1	-	xmm0	-	-	127
+0x0080A000	1	-	xmm0	-	-	126
 0x0080A270	2	-	xmm0,xmm1	-	-	220
 0x0080A720	1	-	xmm0	-	-	453
 0x0080AFE0	1	-	xmm0	-	-	452
 0x0080B8A0	3	rcx,rdx,r8	-	-	-	602
 0x0080C440	1	rcx	-	-	r9,xmm0,xmm1,xmm2,xmm3	42
 0x0080C4E8	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	15
-0x0080C51C	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	36
+0x0080C51C	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	35
 0x0080C5A0	4	r9	-	r9	rcx,rdx,r8,xmm0,xmm1,xmm2,xmm3	6
 0x0080C5C0	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	100
 0x0080C720	1	rcx	-	-	-	7
@@ -30330,7 +30337,8 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x0080E130	1	rcx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	33
 0x0080E1C0	1	rcx	-	-	-	19
 0x0080E200	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	79
-0x0080E300	3	rcx,rdx,r8	-	-	-	206
+0x0080E300	3	r8	-	-	rcx,rdx,r9,xmm0,xmm1,xmm2,xmm3	2
+0x0080E310	3	rcx,rdx,r8	-	-	-	204
 0x0080E5F0	3	r8	-	-	rcx,rdx,r9,xmm0,xmm1,xmm2,xmm3	2
 0x0080E600	3	rcx,rdx,r8	-	-	-	192
 0x0080E910	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	5
@@ -30353,7 +30361,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x0080F690	3	rcx,rdx,r8	-	-	xmm0,xmm1,xmm2,xmm3	48
 0x0080F740	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	31
 0x0080F7B0	3	rcx,rdx,r8	-	-	xmm0,xmm1,xmm2,xmm3	16
-0x0080F7F0	0	-	-	-	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	3
+0x0080F7F0	0	-	-	-	rcx,rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	2
 0x0080F800	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	145
 0x0080FA30	2	rcx,rdx	-	-	-	12
 0x0080FA50	3	rcx,rdx,r8	-	-	xmm0,xmm1,xmm2,xmm3	60
@@ -30660,7 +30668,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x0081D280	3	rdx,r8	-	-	rcx,xmm0,xmm1,xmm2,xmm3	11
 0x0081D2B0	1	rcx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	42
 0x0081D350	3	rdx,r8	-	-	rcx,xmm0,xmm1,xmm2,xmm3	17
-0x0081D3A0	4	rcx,rdx,r8,r9	-	rdx,r8,r9	xmm0,xmm1,xmm2,xmm3	14
+0x0081D3A0	4	rcx,rdx,r8,r9	-	rdx,r8,r9	xmm0,xmm1,xmm2,xmm3	13
 0x0081D3E0	3	rcx,rdx,r8	-	-	xmm0,xmm1,xmm2,xmm3	84
 0x0081D520	1	rcx	-	-	-	2
 0x0081D530	1	rcx	-	-	-	2
@@ -30681,7 +30689,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x0081E050	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	35
 0x0081E100	2	rcx,rdx	-	-	r9,xmm0,xmm1,xmm2,xmm3	94
 0x0081E260	1	rcx	-	-	r9,xmm0,xmm1,xmm2,xmm3	28
-0x0081E2C0	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	35
+0x0081E2C0	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	34
 0x0081E350	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	60
 0x0081E420	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	36
 0x0081E4B0	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	72
@@ -30738,14 +30746,14 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x00820E90	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	62
 0x00820F60	3	rcx,rdx,r8	-	-	-	39
 0x00820FF0	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	47
-0x00821090	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	74
+0x00821090	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	73
 0x008211B0	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	237
 0x00821520	3	rcx,rdx,r8	-	-	xmm0,xmm1,xmm2,xmm3	82
 0x008216A0	3	rcx,r8	-	-	rdx,r9,xmm0,xmm1,xmm2,xmm3	1247
 0x008229F0	1	rcx	-	-	xmm0,xmm1,xmm2,xmm3	112
 0x00822BC0	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	78
-0x00822CE0	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	107
-0x00822E30	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	73
+0x00822CE0	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	106
+0x00822E30	3	rcx,rdx,r8	-	-	r9,xmm0,xmm1,xmm2,xmm3	72
 0x00822F10	3	rcx,rdx,r8	-	-	xmm0,xmm1,xmm2,xmm3	70
 0x00823030	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	132
 0x00823220	2	rcx,rdx	-	-	r9,xmm0,xmm1,xmm2,xmm3	31
@@ -31637,7 +31645,7 @@ addr	arity	int_regs	flt_regs	home_spill	call_passthrough	insns
 0x008633B0	2	rcx,rdx	-	-	r8,r9,xmm0,xmm1,xmm2,xmm3	27
 0x00863410	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	9
 0x00863430	4	rcx,rdx,r8,r9	-	-	xmm0,xmm1,xmm2,xmm3	51
-0x00863500	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	9
+0x00863500	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	8
 0x00863520	2	rdx	-	-	rcx,r8,r9,xmm0,xmm1,xmm2,xmm3	11
 0x00863540	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	25
 0x00863590	1	rcx	-	-	rdx,r8,r9,xmm0,xmm1,xmm2,xmm3	26

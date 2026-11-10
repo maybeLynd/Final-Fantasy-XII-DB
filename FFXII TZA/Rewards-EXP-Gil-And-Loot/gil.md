@@ -27,7 +27,13 @@ Gil is a signed 32-bit value at `+0x08` of the game-state block whose address is
 
 ### The setter
 
-Every change goes through `0x00254EE0(newValue)`:
+The setter is `0x00254EE0(newValue)`, and every row of Operations reaches it. The save header is the start of the
+save image at `0x02164280` (`0x0025397E` stores that address in `[0x02092758]`), and block writes of the image replace
+gil without the setter: `0x002EF650` and `0x002EF5F0` zero its `0x56690` bytes (`0x002EF663`, `0x002EF603`), `0x00253A80`
+zeroes its first `0x58` bytes (`0x00253A93`), `0x00583C00` copies `0xE240` bytes over it (`0x00583C30`-`0x00583C9D`), and
+`0x002EF300` requests a read of `0xE240` bytes of a file into it (`0x002EF317`-`0x002EF336`).
+
+The setter does this:
 
 ```c
 delta = newValue - gil;                         // 0x00254EF1, on the raw argument
@@ -182,7 +188,7 @@ verb `questresultwindow` (`0x37C`).
 
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
-| `[0x02092758] + 0x08` | `i32` | gil, 0-99,999,999 | `0x00254EE0` (`0x00254F1F`) |
+| `[0x02092758] + 0x08` | `i32` | gil, 0-99,999,999 by the setter | `0x00254EE0` (`0x00254F1F`); with the whole save image `0x002EF650`, `0x002EF5F0`, `0x00253A80`, `0x00583C00`, `0x002EF300` |
 | `[0x020927C0] + 0x3860` | `i32` | gil gained, saturating at `0x7FFFFFFF` | `0x00316BF0` for kind 6 |
 | `[0x020927C0] + 0x3864` | `i32` | gil spent, saturating at `0x7FFFFFFF` | `0x00316BF0` for kind 7 |
 | `[0x020927C0] + 0x3844` | bits | counters whose achievement has fired (bit `1 << kind`) | `0x00316A50`, `0x00315E90` |
@@ -215,3 +221,10 @@ verb `questresultwindow` (`0x37C`).
 - [EXP, LP and level-ups from kills: who receives them, the formulas, the split, the doublers and the EXP table](exp-lp-and-level-ups.md)
 - [Kill chain: chain count, chain level, the chain coin and resets](kill-chain.md)
 - [Loot drops: drop roll, item slots, quantities, drop tables and the chain bonus](loot-drops.md)
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Save load settings: `0x002EF650` is called by `0x00280140`; those functions are documented on
+  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).

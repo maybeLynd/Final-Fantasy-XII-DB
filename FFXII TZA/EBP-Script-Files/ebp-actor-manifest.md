@@ -134,7 +134,9 @@ The image header names entries in two more places. Both are in `header-reference
 It does not say that the game never binds it. Of the entries with calls, 537 have only loading or release verbs in
 their script, with no bind verb; the `verbs` column shows which.
 
-A call's `conditions` are the blocks around it in its function. What requests that function is not followed. The
+A call's `conditions` are the blocks around it in its function. A function runs when a request is filed for it
+([script requests](../Scripts-And-Script-Commands/script-requests.md)): by a REQ-family verb in another function, by
+the engine through `0x003DBB60`, or from the start list (`0x00266C50`). The
 rows are from the `us` scripts, and the manifests are the same in all nine trees, as the table above says.
 
 ### Columns of the three tables

@@ -127,10 +127,18 @@ set-up `pre_z0000` sets to 1. A value is there from the lowest counter at which 
 under its own condition; a store before the test in the same function counts where its own path holds. A key item a
 condition tests is there from the step of the scene or script that gives it.
 
-567 rows are `dated`, from 0 to 7150 over 61 values; the commonest are 4230 (81 zones), 1475 (75) and 3050 (53). The
-highest is `ttl_b01` at 7150, reached by an event in `bhm_d01`. 50 rows name a battle in `basis`, and without that
-battle's store their date moves later: 40 the Zodiark battle (`hne_e01` step 137) and 10 the Firemane battle
-(`grm_d01` step 155). The other rows:
+567 rows are `dated`, from 0 to 7150 over 63 values; the commonest are 1475 and 4350 (75 zones each) and 3050 (53).
+The highest is `ttl_b01` at 7150, reached by an event in `bhm_d01`. 129 rows name a battle in `basis`: 40 the Zodiark
+battle (`hne_e01` step 137), 10 the Firemane battle (`grm_d01` step 155), 75 the Tyrant battle (`gil_c02`
+`ボス登場.touch` line 795) and 4 the Daedalus battle (`gil_a02` `ボス登場.touch` line 681). Without the Zodiark or
+Firemane store the date moves later.
+
+The Tyrant and Daedalus rows lie behind a Giruvegan device that the battle's own store enables first. That store runs
+with the party's control off, so these rows take the counter the battle's function stores as it hands control back:
+4350 (`gil_c02` `ボス登場.touch` line 969) and 4300 (`gil_a02` `ボス登場.touch` line 854). The developer test script
+`evt_t0505` can place a party in some of these zones at its own counter values, and the dates do not count it.
+
+The other rows:
 
 - 100 `Trial Mode`;
 - 39 `no way in`: 38 Draklor Laboratory rooms (`dor_`) and the title map `ttl_c01`. No way the table reads leads

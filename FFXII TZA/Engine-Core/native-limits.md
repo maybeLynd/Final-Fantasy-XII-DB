@@ -116,7 +116,8 @@ Three lists hold up to 32 units by position and not by slot: the target list at 
 `+0x988` and the noticed list at `+0xBC0`. Their capacity is separate from the pool's.
 
 The spawn keep banks follow the 64-record spawn limit. `0x00233440` writes both to the save, `0x9400` bytes each, and
-`0x00233550` restores bank 2. No save writer that reads the unit pool is located yet.
+`0x00233550` restores bank 2. Direct and tail calls from `0x00229B40`, `0x00233440`, `0x00233550`, `0x00584580` and `0x005843E0`
+reach no function that loads the unit pool and no unit accessor.
 
 The `saved_state` cells rest on one search. The save image is `0x56690` bytes at `0x02164280` (`0x002EF640`). The save
 closure is the 145 functions that direct and tail calls reach from the capture functions `0x00229B40`, `0x00584580`,
@@ -130,6 +131,12 @@ accessor tables of [save data fields](../Saving-Loading-And-Settings/save-data-f
 were followed back through the function's linear code, ten definitions at most, stopping at a call for a volatile
 register. A cell that says a write takes no value from the dependency reports that walk.
 
+A field's rows run from its first byte to its last, and each is a direct access. A function that reaches a field
+through a copied pointer or a block copy has no row there: `0x0030EDA0` copies into `+0x6B0` to `+0xB9F`, nine passes
+of 0x80 bytes (`0x0030EDB1`) and then 0x70 more (`0x0030EE09`-`0x0030EE44`), and it has no row in `+0x778` to `+0x97F`.
+A count covers direct accesses only,
+and no cell takes it as proof that a save writer does not exist.
+
 `0x005844A0` and `0x00583D60` reach battle code only through `0x00283270`, which calls `0x00320040` at `0x00283368`, which
 calls `0x00329220` at `0x0032008D`. None of the 33 functions that lie only behind `0x00283270` has a payload write. Without
 it the closure has 112 functions and none of the battle functions `0x00236820`, `0x00236850`, `0x00263E30`, `0x0031B7E0`,
@@ -138,8 +145,8 @@ it the closure has 112 functions and none of the battle functions `0x00236820`, 
 ### Which compares and bit tests are about units
 
 [`native-limits-battle-unit-site-classes.tsv`](native-limits-battle-unit-site-classes.tsv) sorts the 46 compare, bit
-and loop rows of the site table by what the operand is. 25 are tied to the limit, 18 are status bits or bits of
-another field, and 3 were not followed to a source.
+and loop rows of the site table by what the operand is. 26 are tied to the limit and 20 are status bits or bits
+of another field.
 
 ### Who reaches a unit through a pointer
 
@@ -155,14 +162,13 @@ many fields it uses. 357 of them are not in the site table: they depend on the r
 | `dependency`, `kind` | the structure, and whether it is storage, a count, an index, a mask, a state bit or a list held by position |
 | `capacity`, `what_a_slot_or_entry_holds` | its size and what each part holds |
 | `set_or_sized_at`, `read_or_used_at`, `reset_at` | the instructions that size or set it, use it and clear it |
-| `saved_state` | what the save does with it and at which site, or how far the search for a save writer went (the search is described above) |
+| `saved_state` | what the save does with it and at which site, or where its accesses stand against the save closure (described above) |
 | `page` | the page that describes it |
 
 ### Columns of native-limits-battle-unit-site-classes.tsv
 
 `function`, `site`, `kind` and `instruction` repeat the site table. `class` is `slot number`, `unit loop`, `unit
-mask`, `unit storage`, `table loop`, `list capacity`, `status`, `other` or `not followed`. `what_the_operand_is`
-says why.
+mask`, `unit storage`, `table loop`, `list capacity`, `status` or `other`. `what_the_operand_is` says why.
 
 ### Columns of native-limits-battle-unit-consumers.tsv
 
@@ -175,13 +181,14 @@ says why.
 
 ### Spawn records, memory arenas and save slots
 
-[`native-limits-family-dependencies.tsv`](native-limits-family-dependencies.tsv) has one row for each of the 22
+[`native-limits-family-dependencies.tsv`](native-limits-family-dependencies.tsv) has one row for each of the 23
 structures tied to these three limits, with where each is sized, used and cleared and whether it is saved.
 
 The 64-record spawn limit is shared by the two keep banks, the 2 x 64 counters, the lane maps' slot bytes and the
 bank scan `0x00235360`. `0x002395A0` seeds records from a count in its argument and does not test it against 64
-(`0x0023967E`, `0x00239685`). `0x00233440` writes both banks to the save. No save writer that reads the counters or their
-bank byte is located yet: the writers' direct calls do not reach the functions that use them.
+(`0x0023967E`, `0x00239685`). `0x00233440` writes both banks to the save. Direct and tail calls from `0x00229B40`,
+`0x00233440`, `0x00233550`, `0x00584580` and `0x005843E0` do not reach the functions that use the counters or their bank
+byte.
 
 The 15 arenas each have a record, a bit in the enabled mask `0x022D89B8` and a byte in the table `0x022D89A8`. A block's
 header names its arena in byte `+0x03`. The arena stack stops at depth 31 by jumping to itself (`0x0036C20B`).
@@ -202,7 +209,7 @@ All three start with `family`: `spawn-records`, `memory-arenas` or `save-slots`.
 
 `native-limits-family-sites.tsv` has `function`, `site`, `kind` and `instruction`, then `class` and
 `what_the_operand_is`. `class` is `storage`, `accessor`, `stride`, `size`, `limit`, `slot number`, `slot loop`,
-`slot bit`, `arena number`, `mask`, `unrelated` or `not followed`.
+`slot bit`, `arena number`, `mask` or `unrelated`.
 
 `native-limits-family-consumers.tsv` has `function`, `name`, `route`, `fields`, `reads`, `writes`, `other` and
 `uses_the_limit_directly`. `route` says how the function reaches a record, or which accessor it calls and how often.

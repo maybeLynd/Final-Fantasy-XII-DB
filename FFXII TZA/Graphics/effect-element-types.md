@@ -388,8 +388,8 @@ palette of its first sprite row (`0x00503000`).
 A kind-`0x51` record holds `+0x10` entries of 16 bytes at `+0x18`, read by `0x00503880` from a `u16` count and the
 entries after it. An entry's byte `+8` is its opcode: 0 shows a frame for byte `+9` ticks, 1 jumps to the entry in
 word `+0xC`, and 2 ends the sequence. Word `+0xA` is the sprite row. The floats at `+0` and `+4` are stored at the
-draw's `+0x30` and `+0x34` and added to each corner's x and y (`0x004494DB`, `0x00501C18`, `0x00501C27`). No reader of
-word `+0xE` is located yet.
+draw's `+0x30` and `+0x34` and added to each corner's x and y (`0x004494DB`, `0x00501C18`, `0x00501C27`).
+Word `+0xE` is loaded with the element and no routine reads it.
 
 The shipped entries have 939 shows and 2 jumps, each back to entry 0, and no opcode 2. Their floats and word `+0xE`
 are 0. 109 of the 111 distinct contents end on a show, so the end of the list stops them. In 34 of the 6,208 pairs

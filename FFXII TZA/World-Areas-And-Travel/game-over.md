@@ -122,8 +122,7 @@ Each chain tears down a unit whose record is already down or that has none (`0x0
 neither changes what `0x002372E0` reads. Either arms Game Over only when that test is already true while bit `0x2` of
 `0x022C83E8` is clear. A KO with a unit arms at the KO (`0x0030E877`), so that state needs another cause, such as a KO
 on a record with no unit (`0x0030E729`). This rules out the hit route and, over direct calls and for magic files their
-action requesters play, the effect programs; no route with every gate true is located yet, and the sub-id test stays
-as written above.
+action requesters play, the effect programs, and the sub-id test stays as written above.
 
 The body of `0x0027EFA0` fades (`0x002EFA70(3, 0, 1, 0)` when `0x002EFD20(3)` is
 non-zero), calls `0x0035C7B0(0x0B, 0)` and `0x00252B40(0x0B, 1)`, writes 2 to the area controller's `+0xC8`

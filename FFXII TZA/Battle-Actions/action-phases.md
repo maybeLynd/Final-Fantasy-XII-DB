@@ -275,7 +275,9 @@ of these holds (`0x0030CB4C`-`0x0030CBA7`):
 
 - the row's `+0x2C` has bit `0x100`;
 - the effect id `+0x24` of the row is valid (not `0xFFFF`, not negative, row bit `0x40000000` clear) and
-  `0x002FCB40(id)`, bit `0x20` of the byte at `0x02EC19C4 + id * 8`, is 1;
+  `0x002FCB40(id)`, bit `0x20` of the byte at `0x02EC19C4 + id * 8`, is 1. No store sets that bit: the word is cleared
+  by the reset `0x002FC200` and written only there, with the value masked to `0x1F` (`0x002FC2E4`-`0x002FC2EE`), so this
+  case does not hold;
 - slot bit `0x1` is set.
 
 When `show` ends up 1 and `0x02089340` has bit `0x200`, `show` and the return are cleared (`0x0030CBA9`,

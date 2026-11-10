@@ -210,7 +210,9 @@ reference = 0x0D000000 + row        the other 327 shake calls
 
 The calls come from the instruction stream, and the argument text and the blocks come from the decompiled listing of
 the same file. In every function the two list the same verbs in the same order. A call's `conditions` are the blocks
-around it in its function. What requests that function is not followed.
+around it in its function. A function runs when a request is filed for it
+([script requests](../Scripts-And-Script-Commands/script-requests.md)): by a REQ-family verb in another function, by
+the engine through `0x003DBB60`, or from the start list (`0x00266C50`).
 
 In 22 calls the script's file has no section 8, so `row_name` and `record` are `-`: seven in `evt_t0005` and 15 in
 six `global` map scripts. `0x003DA400` returns at once when the manager's list is null (`0x003DA426`).

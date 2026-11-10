@@ -352,7 +352,7 @@ table). `line` is the listing line of the write or call.
 | `tests` | What the condition tests: story counter, file variable, global flag, party state, arrival or map, item or flag, exit lock, choice or local value, value stored by another map, other |
 | `destination_field`, `destination_map` | The field id, or the expression the call passes, and the map or maps it reaches: for `lastmap()` the corridor that jumps into the room, for the World Map picker the 18 destinations with their entrances, for Trial Mode and `dgl_n01` the map the computed or stored value gives; for the 191 developer debug-menu rows that name no field in the call, every field the menu's answer gives, or the current field (`nowmap()`) the menu reloads |
 | `entrance`, `mode` | The entrance and mode; `one of ...` when the stores do not pair them |
-| `resolved_from` | `literal`, or the store lines that give the field or entrance; on those 191 rows, the question whose answer leads to the jump (its line, choice count, answers and answer test line) and the tests that bound the field |
+| `resolved_from` | `literal`, or the store lines that give the field or entrance; on those 191 rows, the question whose answer leads to the jump (its line, choice count, answers and answer test line) and the tests that bound the field. A store in another function gives a jump a row unless the jump's own function stores the variable on every path to it |
 | `reach` | `reached` or `unreachable` |
 
 ### [`script-census-ai-verbs.tsv`](script-census-ai-verbs.tsv)

@@ -576,8 +576,8 @@ MP and max MP from the stats record's `i16` words `+0x4C` and `+0x28`, `0x0031B6
 The area-change step
 `0x002342F0` resets both entries through `0x003221B0` (`0x00234428`): slot -1, every other word 0. `0x0031B690` walks the two
 entries (`0x0031B6C0`-`0x0031B720`) and skips one whose class is 0. The one call of `0x00328FF0`, at `0x0023AA04`, registers
-entry 0, so entry 1 keeps slot -1 and class 0: no located code registers it, since the one registrar's one call passes
-entry 0 and nothing else forms the table's address (the walker `0x0031B690` and the reset only).
+entry 0, and nothing else forms the table's address but the walker `0x0031B690` and the reset, so entry 1 keeps slot -1
+and class 0.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

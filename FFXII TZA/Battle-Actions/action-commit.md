@@ -95,7 +95,12 @@ faults. A null acting unit counts as not party-side and becomes the one recipien
 
 To each recipient it posts a combat-relation event to its character record through
 `0x002ED2A0(recipient id, record)`, which resolves the recipient's actor (`0x003588B0`) and hands the
-record to `0x003E6B50`. The record holds:
+record to `0x003E6B50`. It does so only when the actor resolves, its `+0xC0` block is non-null with a first dword
+other than -1 and a first word other than `0xFFFF`, and the entry `[0x022C6F28] + word x 0x740` is non-zero with
+`+0x284` non-zero (`0x002ED2B1`-`0x002ED2F2`). Otherwise nothing is posted to that recipient and `0x00313B30` goes on
+to the next one.
+
+The record holds:
 
 - 1 when the recipient is the acting unit, 2 otherwise;
 - whether this is a removal;

@@ -536,7 +536,7 @@ Head, `0x10` bytes:
 |---|---|---|---|
 | `+0x00` | `u16` |  | record count |
 | `+0x02` | `u16` |  | first record, `0x10` in all 28 |
-| `+0x04` | `u16` |  | `0x12` in all 28; no reader located yet |
+| `+0x04` | `u16` |  | `0x12` in all 28; the seven routines that take the copy do not read it |
 | `+0x06` | `u8` |  | on; the authored byte is cleared at bind (`0x0051D2C0`) |
 | `+0x07` | `u8` |  | bit `0x1` no update, bit `0x2` no draw |
 | `+0x08` | `u32` |  | render record index (`0x0041F5F3`) |
@@ -569,7 +569,7 @@ Record, `0x1D0` bytes:
 | `+0x1B0` | `f32[3]` |  | vector of the spacing test (`0x0051D689`) |
 | `+0x1C0` | `f32` |  | spacing scale (`0x0051D131`) |
 | `+0x1C4` | `u32` |  | update alternator at run time |
-| `+0x1C8` | `u8[8]` |  | zero in all 53; no reader located yet |
+| `+0x1C8` | `u8[8]` |  | zero in all 53; moved by the load copy (`0x0041F5E7`); no routine reads them |
 
 Each update shifts the sixteen history rows and adds the bone point, and the sample count rises to at most 16. The
 spacing grows by the newest distance when the test on `+0x1B0` passes. It is then multiplied by the decay and capped

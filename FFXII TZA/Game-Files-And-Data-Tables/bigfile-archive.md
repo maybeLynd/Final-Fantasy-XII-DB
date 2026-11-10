@@ -396,8 +396,8 @@ character directly before it. A file has no row for its own name, and a file wit
 ### How far each format is read
 
 [`archive-format-status.tsv`](archive-format-status.tsv) has one row for each of the 48 extensions, most files
-first. A status says what the database holds for a format, not whether the game uses it. A path built at run time,
-or a reference not located yet, stays distinct from non-use.
+first. A status says what the database holds for a format, not whether the game uses it. A path built at run time
+stays distinct from non-use.
 
 | Status | Extensions | Files | Meaning |
 |---|---|---|---|

@@ -127,7 +127,7 @@ or "set invalid granular pitch value!!". `0x007EBA40` gives a time read from the
 `0x007EE450` pass two values on to it (`0x007E2660`, `0x007E2680`).
 
 The decoders read an in-memory material through three callbacks `Voice::Initialize` hands them: `0x007EE730` copies
-whole frames from the read position `+0x138`, `0x007EE7F0` sets that position and `0x007EE900` returns it. A streamed
+whole frames from the read position `+0x138`, `0x007EE7C0` sets that position and `0x007EE900` returns it. A streamed
 material is read through `0x007EE800`, which takes the bank's stream for this voice (`0x007E2EB0`, `0x007E31B0`).
 
 ### The HCA mixer

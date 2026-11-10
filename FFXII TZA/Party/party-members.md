@@ -150,7 +150,7 @@ Every membership verb raises bit `0x13` of the busy mask `0x022CB720` with `0x00
 | `0x35B` `addguestbattlemember(sel)` | `0x00352190`, `0x003506A0` | adds a guest with `0x003170E0` (`0x003521CD`-`0x003521DE`) |
 | `0x35C` `removeguestbattlemember(sel)` | `0x00352AF0`, `0x003506A0` | removes a guest with `0x003288F0` (`0x00352B0A`-`0x00352B1E`) |
 | `0x35E` `ispartymember(sel)` | `0x00353CB0` | a guest: in the fighting seats (`0x003596D0`); a main character: in the party (`0x00359740`) |
-| `0x361` `getpartymembermask` | `0x003542C0` | the bit mask of the seated selectors outside the guest range (`0x00359C00`) |
+| `0x361` `getpartymembermask` | `0x003542C0` | the bit mask of the seated selectors outside the guest range (`0x00359C00`), bit `selector & 31` of each (`0x00359C3A`) |
 
 The table lists the verbs that change membership and two that test it; `0x357` `getbattlemember` (`0x0034F5A0`) and
 `0x35D` `isbattlemember` (`0x00353780`) are further queries.
@@ -161,7 +161,8 @@ target group with `0x002ECD50(actor, 0)`, through its thunk `0x0026DC40` (`0x003
 ### Choosing who fights
 
 `setbattlemember(a, b, c)` takes three selectors in the order the script pushes them, `-1` for no selector
-(`0x0034D547`-`0x0034D57B`). When every one given is in the party (`0x00359C00`, `0x0034D57D`-`0x0034D58F`),
+(`0x0034D547`-`0x0034D57B`). When every one given has its bit, the selector modulo 32 (`0x0034D568`), among
+the main characters of the party (`0x00359C00`, `0x0034D57D`-`0x0034D58F`),
 `0x00328DB0(list, 3)` moves them into fighting seats 0-2:
 
 1. A fighting seat is held when its member's record has flag bit `0x1` set, the `setbattlememberlock` bit, or is a

@@ -519,7 +519,7 @@ or more, and `bank_used` the state from the bank tables.
 | selections: `script`, `actor`, `function` | where a script call is, under `plan_master/us` |
 | selections: `called`, `arguments` | the verb and its argument text, or the native function called |
 | selections: `bank`, `sound` | the block named and the sound number, `-` when the code computes it |
-| selections: `conditions` | the enclosing blocks, outermost first; what requests that function is not followed |
+| selections: `conditions` | the enclosing blocks, outermost first. A function runs when a request is filed for it ([script requests](../Scripts-And-Script-Commands/script-requests.md)): by a REQ-family verb in another function, by the engine through `0x003DBB60`, or from the start list (`0x00266C50`). |
 
 ## Loader behaviour
 

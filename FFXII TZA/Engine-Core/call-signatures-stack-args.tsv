@@ -7274,6 +7274,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x002AB860	0	-	-	-	-
 0x002AB870	3	-	-	-	-
 0x002AB8F0	1	-	-	-	-
+0x002ABA20	1	-	-	-	-
 0x002ABAA0	1	-	-	-	-
 0x002ABB20	1	-	-	-	-
 0x002ABEC0	1	-	-	-	-
@@ -17090,6 +17091,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0056E840	1	-	-	-	-
 0x0056E860	1	-	-	-	-
 0x0056E880	3	-	-	-	-
+0x0056E9A0	3	-	-	-	-
 0x0056EA40	2	-	-	-	-
 0x0056EC10	2	-	-	-	-
 0x0056ECC0	2	-	-	-	-
@@ -21313,7 +21315,8 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00627C60	2	-	-	-	-
 0x00627CF0	2	-	-	-	-
 0x00627DA0	2	-	-	-	-
-0x00627E50	3	-	-	-	-
+0x00627E50	1	-	-	-	-
+0x00627E60	3	-	-	-	-
 0x00627F10	4	-	-	-	-
 0x00627F80	4	5,6	6	0x00627FC7 mov ecx, dword ptr [rsp + 0x58]	-
 0x00627FF0	4	5,6	6	0x0062802B mov ecx, dword ptr [rsp + 0x58]	-
@@ -24624,6 +24627,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x006AB740	1	-	-	-	-
 0x006AB7E0	0	-	-	-	-
 0x006ABEC0	1	-	-	-	-
+0x006ABF40	1	-	-	-	-
 0x006ABFA0	1	-	-	-	-
 0x006AC0D0	2	-	-	-	-
 0x006AC1D0	2	-	-	-	-
@@ -27180,6 +27184,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0071B4E0	3	-	-	-	-
 0x0071B550	1	-	-	-	-
 0x0071B670	2	-	-	-	-
+0x0071B6B0	1	-	-	-	-
 0x0071B740	1	-	-	-	-
 0x0071B780	1	-	-	-	-
 0x0071B7C0	1	-	-	-	-
@@ -30310,7 +30315,9 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x00809C88	0	-	-	-	-
 0x00809CD4	0	-	-	-	-
 0x00809D20	1	-	-	-	-
+0x00809D70	1	-	-	-	-
 0x00809D80	1	-	-	-	-
+0x0080A000	1	-	-	-	-
 0x0080A270	2	-	-	-	-
 0x0080A720	1	-	-	-	-
 0x0080AFE0	1	-	-	-	-
@@ -30331,6 +30338,7 @@ addr	derived_arity	stack_positions	max_position	first_read	loop_reads
 0x0080E1C0	1	-	-	-	-
 0x0080E200	3	-	-	-	-
 0x0080E300	3	-	-	-	-
+0x0080E310	3	-	-	-	-
 0x0080E5F0	3	-	-	-	-
 0x0080E600	3	-	-	-	-
 0x0080E910	2	-	-	-	-

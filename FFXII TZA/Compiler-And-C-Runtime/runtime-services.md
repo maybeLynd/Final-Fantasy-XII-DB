@@ -288,7 +288,7 @@ image carries (`0x00D86C00`, loaded by `0x006CBD20`) reads `FeatureId = YEBIS_D3
 
 ### The C runtime routines in the image
 
-The 56 functions in [`runtime-services-msvc-runtime-tail.tsv`](runtime-services-msvc-runtime-tail.tsv) are C and C++ runtime code linked
+The 58 functions in [`runtime-services-msvc-runtime-tail.tsv`](runtime-services-msvc-runtime-tail.tsv) are C and C++ runtime code linked
 into the executable:
 
 - 13 formatted-output wrappers that fetch the options word through `0x0016D670` and call one
@@ -302,8 +302,8 @@ into the executable:
     destructor on it (`0x008B908F`);
   - the constructor stores the version GUID pointer `0x01CC7308`, and the string lookup `0x0019A510`
     passes the object to `GetHInstanceAt` (`0x0019A528`, `0x0019A576`);
-- 5 call-free SSE routines: `0x00809D20`, `0x00809D80`, `0x0080A720`, `0x0080AFE0`, and `0x008098C0`, which
-  jumps to `0x00809D70` or `0x00809D20` by a CPU-level global;
+- 7 call-free SSE routines: `0x00809D20`, `0x00809D70`, `0x00809D80`, `0x0080A000`, `0x0080A720`, `0x0080AFE0`, and
+  `0x008098C0`, which jumps to `0x00809D70` or `0x00809D20` by a CPU-level global;
 - 30 start-up, security-check and exception-support routines, among them `atexit` `0x00808B90`,
   `_alloca_probe` `0x00808F10`, the `/GS` handler checks `0x00808BA8`, `0x00808BC8` and `0x00808F64`,
   `__scrt_fastfail` `0x0080996C`, `capture_current_context` `0x008097D8` and `_Init_thread_abort`
@@ -315,11 +315,11 @@ into the executable:
 
 ### Columns of runtime-services-msvc-runtime-tail.tsv
 
-One row per function, 56 rows in address order.
+One row per function, 58 rows in address order.
 
 | Column | Holds |
 |---|---|
-| `entry` | the function's entry address, from `0x0016D670` to `0x008629C0`; the list above groups the 56 |
+| `entry` | the function's entry address, from `0x0016D670` to `0x008629C0`; the list above groups the 58 |
 
 ## Layouts
 

@@ -212,7 +212,8 @@ The list functions:
 ### Gil
 
 The purse is the dword at `+8` of the save header, `[0x02092758] + 8` (`0x00253690`-`0x00253697`). `0x00254EE0(new)` is its
-only writer instruction (`0x00254F1F`).
+setter (`0x00254F1F`). Block writes of the save image at `0x02164280` also replace the purse, without the setter;
+[the gil page](../Rewards-EXP-Gil-And-Loot/gil.md) names them.
 
 It first reports the difference to counter 6 for a gain or counter 7 for a
 loss (`0x00316A50`, `0x00254EF1`-`0x00254F02`), then keeps the value between 0 and 99,999,999 (`0x00254F07`-`0x00254F15`).

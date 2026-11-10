@@ -301,13 +301,13 @@ the save layer itself does to it:
 - [Steam integration and achievement catalogue](../Steam-And-Achievements/achievements.md).
 - [`image-backed-state-block-accesses.tsv`](image-backed-state-block-accesses.tsv): every access to the
   image-backed state block through its pointer `[0x020927C0]`, one row per instruction (32 rows).
-- [`save-payload-accesses.tsv`](save-payload-accesses.tsv): every access to the payload, one row per
-  instruction, with the way the payload's address reached it (1,721 rows).
+- [`save-payload-accesses.tsv`](save-payload-accesses.tsv): accesses to the payload, one row per
+  instruction, offset and way the payload's address reached it (1,531 rows).
 - [`spawn-keep-image-accesses.tsv`](spawn-keep-image-accesses.tsv): every access to the spawn-keep image at
   payload `+0xE240`, by its offset in the image (37 rows).
 
 [`save-payload-accesses.tsv`](save-payload-accesses.tsv) and [`save-data-fields.tsv`](save-data-fields.tsv) overlap:
-409 rows of each are the same accesses (site, offset, kind and instruction). The access table's other 1,312 rows
+409 rows of each are the same accesses (site, offset, kind and instruction). The access table's other 1,122 rows
 reach the party block (`+0x4E48C` to `+0x5589B`, 1,117 sites), which the companion table gives as one `range` row.
 The companion table's other 15 rows are ten block moves (six at the buffer `0x02164280`, four through the slot file)
 and five reads at `0x02164280`, which the access table does not follow.

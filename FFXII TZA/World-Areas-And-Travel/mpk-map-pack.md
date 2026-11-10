@@ -571,7 +571,7 @@ copies an entry whose weight is above 0.996 and blends one whose weight is above
 `0x003ED840(chunk, length)` is handed the chunk and its length in 16-byte units (`edx`, set at `0x002F6CB5`). It keeps the
 chunk at `0x02B5F1A0` and, when the length passes the last index entry, the bytes from there at `0x02B5F1B0`
 (`0x003ED840`-`0x003ED865`); `0x003ED820` clears both (`0x003ED823`, `0x003ED82E`). No RIP-relative reference reads
-`0x02B5F1A0` or `0x02B5F1B0`, and no 8-byte data pointer holds either address, so the entries have no located reader.
+`0x02B5F1A0` or `0x02B5F1B0`, and no 8-byte data pointer holds either address.
 
 `Ym00Tag27` (`0x4` bytes, offsets from the start of the chunk):
 

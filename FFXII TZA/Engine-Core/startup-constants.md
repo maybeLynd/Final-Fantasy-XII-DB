@@ -341,8 +341,8 @@ Globals written by the boot fixer:
 | `0x01F82E3C` | `u8` |  | timer period begun |
 | `0x01F82E40` | `u32` |  | the period |
 | `0x02064ACC` | `u32` |  | pacer ticks per frame: 2 / [`0x01DFE0B4`] |
-| `0x01E0C2A0` | `u32` |  | confirm mask |
-| `0x01E0C2A4` | `u32` |  | cancel mask |
+| `0x01E0C2A0` | `u16` |  | confirm mask |
+| `0x01E0C2A4` | `u16` |  | cancel mask |
 | `0x01FD4A64` | `u32` | DecideButton non-zero |  |
 | `0x01E02814` | `u32` |  | language index |
 | `0x01E0281C` | `u32` | 10 |  |

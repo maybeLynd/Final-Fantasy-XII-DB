@@ -80,7 +80,7 @@ save-slots	0x0057F280	0x0057F2A2	slot status entry 0x003BB3E0	call 0x3bb3e0	acce
 save-slots	0x0057F280	0x0057F2C7	compare with 0xC8	cmp ebx, 0xc8	slot loop	a loop over the 200 slot numbers
 save-slots	0x0057F280	0x0057F2CF	compare with 0xC8	cmp ebx, 0xc8	slot loop	the test that the search ran to the end
 save-slots	0x0057F8C0	0x0057F900	slot status entry 0x003BB3E0	call 0x3bb3e0	accessor	a call of the family's accessor
-save-slots	0x0057F8C0	0x0057F9DE	load of 0xC7	mov ebx, 0xc7	not followed	0xC7 is compared with r14d; r14d is not followed to its source
+save-slots	0x0057F8C0	0x0057F9DE	load of 0xC7	mov ebx, 0xc7	limit	the largest value of ebx: ebx takes the row's slot number, its byte at `+0xEF` (0x0057F8F2), when that is below 0xC7 (0x0057F9E3-0x0057F9E9), and goes to 0x00393160 as an argument (0x0057F9F1, 0x0057FA03)
 save-slots	0x0057FE80	0x0057FFBA	compare with 0xC8	cmp edi, 0xc8	slot loop	a loop over the 200 slot numbers
 save-slots	0x0057FE80	0x0057FFDC	compare with 0xC8	cmp dil, 0xc8	slot loop	the guard before the bit test of +0x568
 save-slots	0x0057FE80	0x0057FFF6	shift by a register	shl edx, cl	slot bit	the slot's bit in the controller's 200-bit set +0x568

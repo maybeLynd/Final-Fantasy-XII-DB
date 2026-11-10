@@ -267,7 +267,7 @@ function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_
 0x003202F0	FUN_003202f0	0x0031B860	1	1	0	0	no	no
 0x00320450	BattleUnit_TakeAndClearPrimaryResourceRecoveryAccumulator	arg0	3	3	1	0	no	no
 0x003204D0	FUN_003204d0	arg0	1	1	0	0	no	no
-0x003204E0	FUN_003204e0	arg2+0x164; arg2+0x168; arg2+0x16C; arg2+0x170	10	30	50	0	no	no
+0x003204E0	FUN_003204e0	arg2+0x164; arg2+0x168; arg2+0x16C; arg2+0x170; arg2+0x178; arg2+0x180; arg2+0x184; arg2+0x198; arg2+0x1AC; arg2+0x1B0	10	30	50	0	no	no
 0x00320640	FUN_00320640	0x00263E30	1	1	0	0	no	no
 0x003206E0	FUN_003206e0	0x00263E30	1	1	0	0	no	no
 0x00320790	FUN_00320790	0x00263E30	1	1	0	0	no	no

@@ -321,15 +321,16 @@ block out; releasing it puts it back.
 header's own links as they were. It acts by the header's decoded parent, left child and right child
 (`0x0036C7AC`-`0x0036C7D2`):
 
-- no parent and a right child: the right child becomes the root `+0x50` with a null parent link, and the
-  left subtree is inserted under it with `0x0036B4E0` (`0x0036C7E4`-`0x0036C804`);
-- no parent and only a left child: the left child becomes the root with a null parent link
-  (`0x0036C813`-`0x0036C823`); with no child the root becomes null (`0x0036C82C`);
+- no parent and a right child: the right child becomes the root `+0x50` with a null parent link and its
+  `+0x3E` zeroed, and the left subtree is inserted under it with `0x0036B4E0` (`0x0036C7E4`-`0x0036C804`);
+- no parent and only a left child: the left child becomes the root with a null parent link and its `+0x3E`
+  zeroed (`0x0036C813`-`0x0036C823`); with no child the root becomes null (`0x0036C82C`);
 - a parent and a right child: the left subtree is inserted under the right child (`0x0036B4E0`), the right
   child's parent link becomes the parent, the parent's `+0x24` or `+0x28` that held the header gets the
   right child, and both zero `+0x3E` (`0x0036C83C`-`0x0036C89A`);
 - a parent and no right child: `0x0036B490` or `0x0036B5A0` hangs the left child, which may be null, on the
-  parent's link that held the header (`0x0036C8A0`-`0x0036C8D7`).
+  parent's link that held the header and zeroes `+0x3E` on the parent and on a non-null left child
+  (`0x0036C8A0`-`0x0036C8D7`, `0x0036B4B4`, `0x0036B4C5`, `0x0036B5C4`, `0x0036B5D5`).
 
 ### Compaction
 

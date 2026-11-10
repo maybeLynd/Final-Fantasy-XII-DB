@@ -194,7 +194,7 @@ sign when no slot is live. The 12 callers of `0x003DF760` pass slots 1 to 7:
 - 4 and 5: `setfieldsignonce`;
 - 7: the area unload `0x002628B0`, a clear.
 
-No located caller passes slot 0, so slot 0 stays clear.
+None of them passes slot 0, so slot 0 stays clear.
 
 `0x003DF810` keeps a copy of the slot it shows: the text pointer at `0x02B59D00` (`0x003DF8B1`), the second pointer at
 `0x02B59D08` (`0x003DF8BD`), the live word at `0x02B59D10` (`0x003DF8D4`) and the first argument at `0x02B59D14`
@@ -216,7 +216,7 @@ party-focus actor (`0x003590D0`, resolved by `0x003588B0`) passes `0x002EA6A0`, 
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02B59C40` | `void*` | 0 (zero-filled tail of `.data`) | slot 0's text pointer | `0x003DF5B0`, 0 (`0x003DF656`), from the area unload `0x002628B0` (`0x00262CE5`) and the jump at `0x003DF6E0`; `0x003DF760`, through the slot index (`0x003DF76F`), for slot 0 from no located caller | `0x003DF810` (`0x003DF895`, through the slot index), when slot 0 is the highest live slot; it passes the pointer to `0x0029CAB0` |
+| `0x02B59C40` | `void*` | 0 (zero-filled tail of `.data`) | slot 0's text pointer | `0x003DF5B0`, 0 (`0x003DF656`), from the area unload `0x002628B0` (`0x00262CE5`) and the jump at `0x003DF6E0`; `0x003DF760` writes through the slot index (`0x003DF76F`), and its callers pass slots 1 to 7 | `0x003DF810` (`0x003DF895`, through the slot index), when slot 0 is the highest live slot; it passes the pointer to `0x0029CAB0` |
 | `0x02B59C48` | `void*` | 0 (zero-filled tail of `.data`) | slot 1's text pointer | `0x003DF5B0`, 0 (`0x003DF63A`); `0x003DF760`, through the slot index (`0x003DF76F`) | `0x003DF810` (`0x003DF895`, through the slot index), when slot 1 is the highest live slot |
 | `0x02B59C50` | `void*` | 0 (zero-filled tail of `.data`) | slot 2's text pointer | `0x003DF5B0`, 0 (`0x003DF62C`); `0x003DF760`, through the slot index (`0x003DF76F`) | `0x003DF810` (`0x003DF895`, through the slot index), when slot 2 is the highest live slot |
 | `0x02B59C58` | `void*` | 0 (zero-filled tail of `.data`) | slot 3's text pointer | `0x003DF5B0`, 0 (`0x003DF610`); `0x003DF760`, through the slot index (`0x003DF76F`) | `0x003DF810` (`0x003DF895`, through the slot index), when slot 3 is the highest live slot |

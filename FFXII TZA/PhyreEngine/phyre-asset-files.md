@@ -366,6 +366,27 @@ Each `chr/` and `chr_shadow/` segment joined to the shader variant it draws with
 | [`phyre-asset-files-mesh-vertex-streams-chr.tsv`](phyre-asset-files-mesh-vertex-streams-chr.tsv) | 103,232 | stream of a vertex data block |
 | [`phyre-asset-files-mesh-block-digests-chr.tsv`](phyre-asset-files-mesh-block-digests-chr.tsv) | 103,232 | vertex data block: the digest of its bytes |
 | [`phyre-asset-files-mesh-segment-indices-chr.tsv`](phyre-asset-files-mesh-segment-indices-chr.tsv) | 12,908 | mesh segment: its index count, the lowest and highest index, and the digest of its index bytes |
+| [`phyre-asset-files-mesh-vertex-data-chr-01-b0001-to-hc1042_02.tsv`](phyre-asset-files-mesh-vertex-data-chr-01-b0001-to-hc1042_02.tsv) | 20,032 | vertex data block of a `chr/` file: its bytes, assets `b0001` to `hc1042_02` |
+| [`phyre-asset-files-mesh-vertex-data-chr-02-hc1042_03-to-m1049.tsv`](phyre-asset-files-mesh-vertex-data-chr-02-hc1042_03-to-m1049.tsv) | 24,280 | the same, assets `hc1042_03` to `m1049` |
+| [`phyre-asset-files-mesh-vertex-data-chr-03-m1050-to-m1189.tsv`](phyre-asset-files-mesh-vertex-data-chr-03-m1050-to-m1189.tsv) | 9,232 | the same, assets `m1050` to `m1189` |
+| [`phyre-asset-files-mesh-vertex-data-chr-04-m1190-to-n1044.tsv`](phyre-asset-files-mesh-vertex-data-chr-04-m1190-to-n1044.tsv) | 11,688 | the same, assets `m1190` to `n1044` |
+| [`phyre-asset-files-mesh-vertex-data-chr-05-n1045-to-n1208.tsv`](phyre-asset-files-mesh-vertex-data-chr-05-n1045-to-n1208.tsv) | 20,944 | the same, assets `n1045` to `n1208` |
+| [`phyre-asset-files-mesh-vertex-data-chr-06-n1209-to-w8308.tsv`](phyre-asset-files-mesh-vertex-data-chr-06-n1209-to-w8308.tsv) | 12,352 | the same, assets `n1209` to `w8308` |
+| [`phyre-asset-files-mesh-vertex-data-chr_shadow-01-c1004-to-hc1025_02.tsv`](phyre-asset-files-mesh-vertex-data-chr_shadow-01-c1004-to-hc1025_02.tsv) | 384 | vertex data block of a `chr_shadow/` file: its bytes, assets `c1004` to `hc1025_02` |
+| [`phyre-asset-files-mesh-vertex-data-chr_shadow-02-hc1026_01-to-hn1061_02.tsv`](phyre-asset-files-mesh-vertex-data-chr_shadow-02-hc1026_01-to-hn1061_02.tsv) | 336 | the same, assets `hc1026_01` to `hn1061_02` |
+| [`phyre-asset-files-mesh-vertex-data-chr_shadow-03-hn1061_03-to-hn1172_02.tsv`](phyre-asset-files-mesh-vertex-data-chr_shadow-03-hn1061_03-to-hn1172_02.tsv) | 368 | the same, assets `hn1061_03` to `hn1172_02` |
+| [`phyre-asset-files-mesh-vertex-data-chr_shadow-04-hn1172_03-to-m1050.tsv`](phyre-asset-files-mesh-vertex-data-chr_shadow-04-hn1172_03-to-m1050.tsv) | 408 | the same, assets `hn1172_03` to `m1050` |
+| [`phyre-asset-files-mesh-vertex-data-chr_shadow-05-m1053-to-m1106.tsv`](phyre-asset-files-mesh-vertex-data-chr_shadow-05-m1053-to-m1106.tsv) | 360 | the same, assets `m1053` to `m1106` |
+| [`phyre-asset-files-mesh-vertex-data-chr_shadow-06-m1107-to-m1180.tsv`](phyre-asset-files-mesh-vertex-data-chr_shadow-06-m1107-to-m1180.tsv) | 536 | the same, assets `m1107` to `m1180` |
+| [`phyre-asset-files-mesh-vertex-data-chr_shadow-07-m1181-to-m1207.tsv`](phyre-asset-files-mesh-vertex-data-chr_shadow-07-m1181-to-m1207.tsv) | 208 | the same, assets `m1181` to `m1207` |
+| [`phyre-asset-files-mesh-vertex-data-chr_shadow-08-m1208-to-m1251.tsv`](phyre-asset-files-mesh-vertex-data-chr_shadow-08-m1208-to-m1251.tsv) | 352 | the same, assets `m1208` to `m1251` |
+| [`phyre-asset-files-mesh-vertex-data-chr_shadow-09-m1252-to-n1048.tsv`](phyre-asset-files-mesh-vertex-data-chr_shadow-09-m1252-to-n1048.tsv) | 424 | the same, assets `m1252` to `n1048` |
+| [`phyre-asset-files-mesh-vertex-data-chr_shadow-10-n1053-to-n1109.tsv`](phyre-asset-files-mesh-vertex-data-chr_shadow-10-n1053-to-n1109.tsv) | 400 | the same, assets `n1053` to `n1109` |
+| [`phyre-asset-files-mesh-vertex-data-chr_shadow-11-n1110-to-n1176.tsv`](phyre-asset-files-mesh-vertex-data-chr_shadow-11-n1110-to-n1176.tsv) | 432 | the same, assets `n1110` to `n1176` |
+| [`phyre-asset-files-mesh-vertex-data-chr_shadow-12-n1177-to-s0009.tsv`](phyre-asset-files-mesh-vertex-data-chr_shadow-12-n1177-to-s0009.tsv) | 392 | the same, assets `n1177` to `s0009` |
+| [`phyre-asset-files-mesh-vertex-data-chr_shadow-13-s0014-to-s0031.tsv`](phyre-asset-files-mesh-vertex-data-chr_shadow-13-s0014-to-s0031.tsv) | 104 | the same, assets `s0014` to `s0031` |
+| [`phyre-asset-files-mesh-index-data-chr.tsv`](phyre-asset-files-mesh-index-data-chr.tsv) | 12,320 | mesh segment of a `chr/` file: its index bytes in stored order |
+| [`phyre-asset-files-mesh-index-data-chr_shadow.tsv`](phyre-asset-files-mesh-index-data-chr_shadow.tsv) | 588 | mesh segment of a `chr_shadow/` file: its index bytes in stored order |
 | [`phyre-asset-files-mesh-dynamic-blocks-chr.tsv`](phyre-asset-files-mesh-dynamic-blocks-chr.tsv) | 24 | dynamic data block with its stream, or dynamic stream, of the three `chr_shadow/` dynamic meshes, with their modifier |
 | [`phyre-asset-files-shader-pass-streams-chr.tsv`](phyre-asset-files-shader-pass-streams-chr.tsv) | 150 | render pass of the ten variants the segments draw with: its shader's stream definitions, in order |
 
@@ -380,10 +401,18 @@ Each `chr/` and `chr_shadow/` segment joined to the shader variant it draws with
 | `name`, `parameter_type`, `data_type`, `size`, `count`, `uses` | parameter-definitions | the definition's fields, and how many buffers hold it |
 | `block`, `stream`, `offset`, `type`, `render_data_type`, `stream_set` | vertex-streams | the data block, the stream's place in it and its `PVertexStream` fields |
 | `sha1` | block-digests, segment-indices | digest of the block's bytes, or of the segment's index bytes in stored order |
+| `render_data_type`, `type`, `format`, `vertices`, `stride`, `source_offset`, `data` | vertex-data | the stream's fields, its little-endian element format, the vertex count, the bytes of one vertex, the block's offset in the file, and its bytes as hexadecimal |
+| `indices`, `index_width`, `source_offset`, `data` | index-data | the index count, the bytes of one index (2 or 4), the offset in the file, and the index bytes as hexadecimal |
 
 A file's bytes after the scene data are the index data and then the vertex data, each at the offsets its
-records store. All 12,908 segments' index ranges equal their stored bounds. Vertex bytes stay in the game files: a
-row identifies them by file, offset, stream layout and digest.
+records store. All 12,908 segments' index ranges equal their stored bounds. The vertex and index bytes of all 1,635
+meshes, 1,047 in `chr/` and 588 in `chr_shadow/`, are in the data tables above, and they hash to the digest tables.
+
+A segment's blocks are the next `vertex_blocks` of its file in block order: eight for a skinned segment, six for the
+16 of `global/materialsphere`. A block's `render_data_type` names its stream. In a skinned segment `SkinIndices`
+holds four `uint8` and `SkinWeights` four `float32` per vertex. In `chr/` an index is a `position` in the segment's
+list in the skin-bones table. That table holds `chr/` segments only; in `chr_shadow/` every index is below the
+segment's `skin_bones`.
 
 The bindings are the values a file stores. Of 945,216 texture slots in the buffers, 29,508 name a file, 29,506 of
 them `TextureSampler` and 2 `irrCubeMap0`; the slots with no file are named in the definitions table. Six files hold
