@@ -48,8 +48,9 @@ Message 12 takes three sub-commands:
   (`0x005659B0`) and stores the category (`0x002527B0(6, 1, id)`);
 - `0x8002`, cancel: it closes the screen's list and the open pane (`0x00563FC0`).
 
-`0x00563FC0(id)` closes a category's pane: it sets the pane's `+0x40` bit `0x40` and either hides it (`0x00244DD0`, when
-bits `0x1` and `0x20` are set) or sends it message `0x00915058` and releases it (`0x00245020`). Message 18 returns to the menu
+`0x00563FC0(id)` closes a category's pane unless the pane is null or has `+0x7C` bit `0x20` set: it sets the pane's
+`+0x40` bit `0x40` and either hides it (`0x00244DD0`, when bits `0x1` and `0x20` are set) or sends it message `0x00915058`
+and releases it (`0x00245020`). Message 18 returns to the menu
 (`0x002814E0(0x4B8)`) and clears `[0x0209AC30] + 0x168`.
 
 ### The tab panes
@@ -67,9 +68,9 @@ to the shared procedure `0x005651E0`. The pane of a category lives at `[0x0209AC
 `0x005639D0` and `0x00563C00` are the row callbacks the create records of `0x00563B10` and `0x00563D20` carry (`0x00563B59`,
 `0x00563D5B`), called as `(pane, element, _, n)`; both return 1:
 
-- without a row table `+0xE0`, they clear the element list (`0x00243580`) and show the text node (`[[element + 0x10] +
-  8]`, bit `0x1` of `+0x08`) with the string `0x002F9860(0x7D8)`, the colour `0x0020E620(0)`, x = the template's `+0x04` -
-  20 and y = its `+0x06`;
+- without a row table `+0xE0`, they hide every node of the element list (bit `0x1` of `+0x08`, `0x00243580`) and show
+  the text node (`[[element + 0x10] + 8]`, bit `0x1` of `+0x08`) with the string `0x002F9860(0x7D8)`, the colour
+  `0x0020E620(0)`, x = the template's `+0x04` - 20 and y = its `+0x06`;
 - with rows (`0x20` bytes from `+0xE0`), the icon node (`[[element + 0x10]]`) is shown when the row's byte `+0x0A` is
   not `0xFF`, with that cell and `+0x39` from the palette table, else hidden; the text node takes the row's string
   `+0x00`, `0x0020E620(0)`, the template position and, at `+0x24`, `0x002DD7E0(6)` when the pane's `+0x180` has bit
@@ -166,8 +167,9 @@ two for Abilities.
 ### The help line
 
 `0x00563F10(pane, row)` shows the help of the item under the cursor, `0x00293110(0x00D23962[tab], id << 16)`, unless the
-pane holds an item (`+0x180` bit `0x100`) or bits `0x4000000` or `0x20000000` are set; `0x00563DC0` does the same on focus and then shows the
-cursor. The tab of a pane is `0x00564380`.
+pane holds an item (`+0x180` bit `0x100`) or bits `0x4000000` or `0x20000000` are set. `0x00563DC0`, on focus, shows the
+same help for the row under the list's cursor when the pane has a row table and `+0x180` bit `0x40000000` is clear,
+then clears that bit and shows the cursor. The tab of a pane is `0x00564380`.
 
 ### The description box
 
@@ -197,7 +199,7 @@ Every caller, and the kind it passes. The id is in the high word unless the row 
 | `0x0056E5D0` (`0x0056E6C9`, through `0x00293100`) | shops | `0x00D235D8[help kind]`: help kinds 0 to 11 give 1, 3, 5, 2, 8, 7, 6, 9, 11, 12, 13 and 15 |
 | `0x003FDFE0` (`0x003FE2D5`) | Equip, the slot list | word `+2` of the slot's 4-byte record at `0x00D23988`: Weapon 1, Off-hand 3, Helm 4, Armor 4, Accessory 5 |
 | `0x003FF920` (`0x003FF973`) | Equip | `0x00292F60(slot)` |
-| `0x002C59D0` (`0x002C5E39`) | the Status pane | 14, with the status number (the entry's byte `+0xC8`) as the whole id rather than in the high word, the form every status lookup takes (`0x0031E137`); 0 and 0 when the entry fails `0x002D02A0` |
+| `0x002C59D0` (`0x002C5E39`) | the Status pane | 14, with the status number (byte 0 of the 4-byte list entry at the pane's `+0xC8` plus 4 times the list index, `0x002C5DE1`-`0x002C5E29`) as the whole id rather than in the high word, the form every status lookup takes (`0x0031E137`); 0 and 0 when the entry fails `0x002D02A0` |
 | `0x002C59D0` (`0x002C5D84`), `0x003FF360` (`0x003FF732`), `0x005651E0` (`0x0056531A`), `0x0056C850` (`0x0056C913`), `0x0056E140` (`0x0056E283`), `0x0057B6A0` (`0x0057B6C7`) | | 0 and 0, which closes the box |
 
 The shops' help kinds 8 and 10 (categories 12, 31 and 14) give kinds 11 and 13. Neither has a handler, so for those
@@ -215,8 +217,9 @@ the list's `+0xE0` and bit `0x80000` of its `+0xE4`, sets bit `0x100000` of `+0x
 - `0x00564E10` switches tabs on the buttons of `0x02F97368 & 0xCA0` (`0x00563EC0` one way, `0x00564300` the other), keeps the new tab's cursor (`0x002527B0(8, ...)`), rebuilds its rows (`0x005655F0`, `0x005674B0`) and
   plays sound 10. The extra button (bit `0x8000` of `0x02F9736A`) opens the sort bar (`0x005665B0`, sound 4), or plays sound 5
   on an empty tab ([Dialogs](dialogs.md)).
-- `0x005641F0(pane, row)` picks the row's item up: it stores the row at `+0x17C` and `+0x17A`, turns the list into move
-  mode (`+0xE4` bits `0x4`, `0x20000` and `0x40000`) and hides the tab arrows (`0x005670F0`).
+- `0x005641F0(pane, row)` picks the row's item up and returns 0. With no row table it returns 1, and when `0x00368240()`
+  is 2 it sets the list's byte `+0xFD` to 0xFF and returns 1. A pick-up stores the row at `+0x17C` and `+0x17A`, turns
+  the list into move mode (`+0xE4` bits `0x4`, `0x20000` and `0x40000`) and hides the tab arrows (`0x005670F0`).
 - `0x005641F0` picks nothing up and answers 1 while the pane's rows `+0xE0` are null, or, after setting the list's
   `+0xFD` to `0xFF`, while `0x00368240()` answers 2 (`0x005641FA`-`0x00564220`). Otherwise it sets the list's word `+0xE0`
   to the row, calls `0x005670F0([strip + 0xC0], 0)` only when the strip `+0xC8` is set, calls `0x00295D50(0)` and
@@ -283,8 +286,10 @@ next message 2 it decodes picture `id & 63` of sheet `id >> 6` and copies its `L
 pixels, 64 × 96 (`0x01E0C470`, `0x01E0C474`), into the `itemgra_c` atlas
 ([AS7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md)).
 
-After the copy it stores where that picture lies in an eight-column grid of such cells (`0x002928A9`-`0x002928FE`). The id is a signed `i16`; a negative id
-skips the update (`0x0029269D`), so the remainders below are taken of a non-negative id.
+After the copy it stores where that picture lies in an eight-column grid of such cells (`0x002928A9`-`0x002928FE`). The id
+is a signed `i16`; a negative id takes the branch that clears the cell instead (`0x0029269D`; [AS7 menu
+graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md)), so the remainders below are taken of a
+non-negative id.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

@@ -85,9 +85,13 @@ Every evaluator writes its words at the cursor, advances it by four per word and
 | `LOW_RES_PARTICLES` | `0x006B9050` (the base's) | 1 when the byte `+0x24` is non-zero, so always 0 |
 
 `LOD_BLEND` emits 0 when `a2+0x40` or `a3+0x20` is null; otherwise it reads the first float of the
-12-byte element `a3+0x30` of the array at `[a2+0x40]` (`+0x20` count, `+0x28` data). Any index is read: an
-index at or past a non-zero count reads past the data, and with a count of 0 the data pointer is null, so the
-read is at the address `12 * [a3+0x30]` (`0x006B90C7`-`0x006B90DC`). A NaN weight writes 1 (`0x006B90E4`, `0x006B90EF`).
+12-byte element `a3+0x30` of the array at `[a2+0x40]`, whose count is the dword `+0x20` with bit `0x80000000`
+masked (`0x006B90B5`-`0x006B90B8`): with a count above 1 the elements are at the pointer `+0x28` (`0x006B90C1`), with
+a count of 1 the one element is stored inline at `+0x28` itself (`0x006B90C9`), and with a count of 0 the data is
+null (`0x006B90CD`).
+
+Any index is read: an index at or past a non-zero count reads past the data, and with a count of 0 the read is at
+the address `12 * [a3+0x30]` (`0x006B90C7`-`0x006B90DC`). A NaN weight writes 1 (`0x006B90E4`, `0x006B90EF`).
 
 For a `PCamera` (members registered by `0x006784E0`), `+0x6C` is the last float of `m_projectionMatrix`, the 64-byte matrix at
 `+0x30`; an orthographic matrix has 1 there and a perspective one 0.

@@ -12,8 +12,8 @@ later, when the action's state machine reaches its target step, from where every
 moment.
 
 - **Radius.** An action with a radius of 0 hits only its target. Otherwise it hits units within that
-  distance on the ground (height is ignored). Fire, Cure and Protect have no radius; Fira has 8,
-  Cura and Protectga 10, and the -ja spells 100, which covers any battle area.
+  distance on the ground (height is ignored). Fire, Cure and Protect have no radius; Fira has 8, Cura, Curaja and Protectga 10, and the eight attack spells ending
+in -ja 100, which covers any battle area.
 - **Centre.** The circle is centred on the target, except for actions centred on the user, such as
   the cries and songs (Screech, Wail, Angelsong, the Soundwaves), with a radius from 6 to 100. Every
   one is in the table under [Shipped data](#shipped-data).
@@ -244,7 +244,7 @@ and cones.
 - 18 rows with radius 10 have bit `0x1000`: the 18 Quickenings, ids 208 to 225 (Red Spiral to
   Resplendence): the gatherer spreads them over the radius, while `0x0031A990` reports them
   as shape 0.
-- Raising the radius to 100 makes a spell cover the whole battle area, as the -ja spells do.
+- Raising the radius to 100 makes a spell cover the whole battle area, as the eight attack spells ending in -ja do.
 
 ## Related
 

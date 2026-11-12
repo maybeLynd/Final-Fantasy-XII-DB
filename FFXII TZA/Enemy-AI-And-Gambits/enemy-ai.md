@@ -33,7 +33,7 @@ has the whole cascade):
 |---|---|---|
 | `+0x6E8` | the re-plan set: `0x01EEC3C0` for a party record, `0x01EEC410` otherwise | `0x00313458`, `0x003134DA`, `0x002FED9E`, `0x002FEE05`, `0x0030126B`, `0x0030F331` |
 | `+0x6F8` | the issued command's set `0x01EEC2D0`, target in `+0x748` | `0x00311DD4`-`0x00311DE1` |
-| `+0x6E0` | the unit's own list, walked with its subgroup `+0x6B5` | the unit definition, orders `0x4112`-`0x4115` |
+| `+0x6E0` | the unit's own list, walked with its subgroup `+0x6B5` | the unit definition, orders `0x4112`-`0x4115`, the script verb `btlAtelSetDefaultLogic` (`0x00239081`), which keeps the subgroup |
 | `+0x6F0` | the default set `0x01E09350` | `0x0023ABA6`-`0x0023ABB5`, on the party-table path (`0x0023AB7E`) |
 
 An enemy-table unit never walks `+0x6F8`, because that step is for party records (`0x00305BE7`-`0x00305C03`), and

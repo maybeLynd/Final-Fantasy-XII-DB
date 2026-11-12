@@ -56,7 +56,7 @@ column gives each set's callers. These counts cover the 1,114 `us` scripts with 
 | level | the member's level, through the level writer `0x0030C470` | `0x00239BE3`-`0x00239BED` |
 | gambit preset | loaded into the member's gambits by `0x00327CB0` ([Gambits](../Enemy-AI-And-Gambits/gambits.md)) | `0x00239BF9`-`0x00239C00` |
 | MP bars | the record's byte `+0x20`, the MP bars source ([Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md)) | `0x00239BF2`-`0x00239BF6` |
-| License Points | added to the member's License Points `+0x190`, zeroed just before (65,535 for `0xFFFF`); for one of the six main characters a value other than `0xFFFF` also learns every license square whose row byte `+7` has the member's bit, through `0x00323910` ([Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md)) | `0x00239C05`-`0x00239D63` |
+| License Points | added to the member's License Points `+0x190`, zeroed just before (65,535 for `0xFFFF`); for party rows 0-6 (the six main characters and Reks; `0x00239C49`) a value other than `0xFFFF` also learns every license square whose row byte `+7` has the member's bit, through `0x00323910` ([Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md)) | `0x00239C05`-`0x00239D63` |
 | gear | the five equipment slots, each set with `0x0031A630` ([Equipment](../Items-Equipment-Shops-And-Licenses/equipment.md)) | `0x00239C62`-`0x00239CBF` |
 | MP share | current MP = max MP × share / 100, or 0 with augment 39 | `0x00239CC4`-`0x00239D7F` |
 | gambit mark | the member's record flag bit `0x4`, taken from bit `0x1` of the first byte of the **next** preset row | `0x00239D83`-`0x00239D94` |

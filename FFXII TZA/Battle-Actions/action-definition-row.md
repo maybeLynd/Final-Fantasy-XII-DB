@@ -120,7 +120,8 @@ list), and appends the id of each matching row as a `u16` to one array at `0x020
    and the three like it);
 3. kind 2, kind 5, kind 6 and kind 3.
 
-A kind 1 row whose value is 5, row 81, is in none of them, and so is every row of kind 4 or above 6.
+No kind 1 row has the value 5, so every magick is in one of the five. Row 81, the one row with that value, is kind
+255; it and every other row of kind 4 or above 6 are in none of the lists.
 
 Each list is a 16-byte entry: the address of its first id at `+0x00` and its `u16` count at `+0x08`, the 16-bit
 difference of two running totals (`0x0023781D`-`0x00237825` is one). Entry *k* of the table at `0x0208CD20` is the list of

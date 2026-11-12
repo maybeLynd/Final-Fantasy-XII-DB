@@ -121,8 +121,9 @@ integer path instead: `0x002ECE80(object, id)` hands the same character record i
 and -1 guards, to `0x003E6310` (`0x002ECE80`-`0x002ECEA0`), and `0x003204E0` stores the returned dword as it
 is (`0x00320580`-`0x00320590`).
 
-`0x002ECE50` passes the int that `[object+0xC0]` points to (returning 0.0 when the pointer is null or the
-int is -1) to `0x003E6150`. That reads the parameter from the character's parameter block (`0x004FE270`)
+`0x002ECE50` returns 0.0 when the object or `[object+0xC0]` is null or the dword there is -1 (`0x002ECE53`-`0x002ECE64`);
+otherwise it passes the low 16 bits of that dword, zero-extended (`0x002ECE66`), to `0x003E6150`, which keeps only
+those 16 bits (`0x003E615C`). That reads the parameter from the character's parameter block (`0x004FE270`)
 and multiplies it by the float at `+0x26C` of that character's `0x740`-byte record at `0x022C6F28`.
 
 ### Spacing

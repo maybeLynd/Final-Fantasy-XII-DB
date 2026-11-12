@@ -175,9 +175,10 @@ them for the strength at result `+0x1C` (`0x003AD6A3`-`0x003AD7D6`).
 
 ### The map's character-light settings
 
-Render-object slot 8, `0x001F9B20(object, block, f)`, copies the block into every part record's
-`lichtAmbient`, `lichtDir1`-`6`, `lichtColor1`-`6` and `sunIndex` (the `+0xD0` index when it is -1 to 5).
-Unless the settings flag at `0x001EBA40()` `+0x118` is set:
+Render-object slot 8, `0x001F9B20(object, block, f)`, writes the block to every part record's `lichtAmbient`,
+`lichtDir1`-`6`, `lichtColor1`-`6` and `sunIndex` (the `+0xD0` index when it is -1 to 5). Light k (0 to 5) takes its
+direction from the block's dwords n, n + 4 and n + 8, with n = k + 9 × (k / 3) in whole numbers, the first two negated
+and w = 1, and its colour from `+0x60 + 16k`. Unless the settings flag at `0x001EBA40()` `+0x118` is set:
 
 - the ambient becomes `rgb × mMapChrAmbientIntensity + mMapChrAmbientOffset` (`0x01F82ED8`, `0x01F82EE8`);
 - each light's colour is multiplied by `mMapChrDirLightColorIntensity` (`0x01F82EF8`);
@@ -334,19 +335,21 @@ offset multiplier `+0x44` and `0x003B6BB0(handle, v)` the float `+0x2C`; `0x0042
 scales 1, rotation 0, strength 1) and clears their steps and counters, the cross-fade and the values
 last built.
 
-When the authored motion command `0x09` (`0x00417F40`) starts a motion whose header carries a
-character block of kind 1, it passes the block to `0x003B5E20(handle, block)` and its anchor choice and
-base offset (`+0xA8`, `+0xA0`, `+0xA4` of the header) to `0x003B5CE0`. `0x003B5E20` keeps a motion's
-shadow overrides in the slot, flagged in byte `+0x40`:
+When the authored motion command `0x09` (`0x00417F40`) starts a motion whose header carries a character block of kind 1,
+it passes the block to `0x003B5E20(handle, block)` and its anchor choice and base offset (`+0xA8`, `+0xA0`, `+0xA4` of
+the header) to `0x003B5CE0`. `0x003B5E20` keeps a motion's shadow overrides in its slot, `[0x02B40528]` + `0xE0` × the
+handle's low byte, flagged in byte `+0x40`; it returns at once when the slot's dword `+0x10` is not the handle
+(`0x003B5E20`-`0x003B5E39`):
 
 - first, for each override flagged by the previous motion, it writes the kept value into the channel
   and its cross-fade copy and clears a counter: bit `0x2` the offset (`+0xA0`, `+0xA4`; counter `+0x00`),
   bit `0x4` the rotation (`+0xB0`; counter `+0x03`, the strength's), bit `0x8` the extent scales (`+0xA8`,
   `+0xAC`; counter `+0x02`), and bit `0x10` the base offset (`+0xB4`, `+0xB8` into `+0x48`, `+0x4C`);
-- then, when the block's word `+0x32` is non-zero, it keeps the new values (block `+0x4C`, `+0x50`;
-  `+0x10`, `+0x54`; `+0x58`, `+0x5C`; the rotation as `(word >> 6)` degrees, stored times π/180) and
-  copies the word's bits `0x1`, `0x2`, `0x8`, `0x4`, `0x10` and `0x20` into the flag bits `0x2`, `0x4`, `0x8`,
-  `0x10`, `0x20` and `0x40` (`0x003B5F58`-`0x003B5FF4`); it ends by clearing the four counters.
+- then, when the block's word `+0x32` is non-zero, it keeps the new values (block `+0x4C`, `+0x50`; `+0x10`, `+0x54`;
+  `+0x58`, `+0x5C`; the rotation as `(word >> 6)` degrees, stored times π/180; `0x003B5EF4`-`0x003B5F51`);
+- whatever the word holds, it copies the word's bits `0x1`, `0x2`, `0x8`, `0x4`, `0x10` and `0x20` into the flag bits
+  `0x2`, `0x4`, `0x8`, `0x10`, `0x20` and `0x40` (`0x003B5F58`-`0x003B5FF4`), so a zero word clears those six flags; it
+  ends by clearing the four counters.
 
 ### Each frame
 

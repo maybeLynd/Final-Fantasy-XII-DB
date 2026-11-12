@@ -422,7 +422,7 @@ Globals:
 |---|---|---|---|
 | `0x02AEDFB0` | `void*` |  | the navigation dataset (null when there is no dataset) |
 | `0x00915760` | `i32[6]` |  | class to override bit: {23, 25, 26, 27, -1, 24} |
-| `0x0209A3E0` | `u32[32][2]` |  | map-id overrides: dword 0 = override present, dword 1 = closed |
+| `0x0209A3E0` | `u32[80][2]` |  | map-id overrides, mask then value; cleared at map bind as 32, 32 and 16 (`0x0026EA05`-`0x0026EA55`) |
 | `0x00D10818` | `f32` |  | 1.4140000343, the clearance factor |
 | `0x00D112B0` | `i32[4]` |  | {0, 1, 2, 0}, the edge index table |
 | `0x02AEE060` | `u8[96]` |  | the obstacle grid's fields, up to the actor list at `0x02AEE0C0` (section above) |

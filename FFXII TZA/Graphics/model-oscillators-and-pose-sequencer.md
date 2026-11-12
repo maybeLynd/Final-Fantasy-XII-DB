@@ -122,10 +122,11 @@ and, over the chain's links except the last, up to the first whose bone is `0xFF
 `0x0040EDDE`-`0x0040EE3B`), sets bit `0x2` of the bone's
 `+0x28A` to the flag and clears bit `0x4` of its `+0x28B`.
 
-`0x003E4140(rig, x, y, z)`, from `0x0042C410` and `0x0042C8F0` with the record's three scale factors
-(`0x003E5770`, `0x003E5790`, `0x003E57B0`), gives the oscillator record their mean through `0x004158F0`,
-which stores it at `+0x10` and its reciprocal at `+0x14` and scales values kept in the entries' chains by it;
-it gives `z` to controller 8 (`0x005175B0`) and `y` to controller 6 (`0x004717D0`).
+`0x003E4140(rig, x, y, z)`, from `0x0042C410` and `0x0042C8F0` with the record's three scale factors (`0x003E5770`,
+`0x003E5790`, `0x003E57B0`), gives the oscillator record their mean through `0x004158F0`, which stores it at `+0x10` and its
+reciprocal at `+0x14` and scales values kept in the entries' chains by it, except that the innermost `0x50`-byte
+elements take `1 + (mean - 1) × 0.3` of their `+0x0C`; it gives `z` to controller 8 (`0x005175B0`) and `y` to controller
+6 (`0x004717D0`).
 
 At start-up `0x003E0720` calls `0x00512EF0` and `0x0040DB70`, which clears `0x02CA4390` and sets the global direction
 through `0x0040B430`. `0x00415A80(record, delta)` adds a delta to every encoded pointer of the record,

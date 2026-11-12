@@ -158,10 +158,12 @@ The action's effect slot `0x003908A0` does, by variant:
 A status is refused (`0x02AEDFBC` = 1) in any of these cases (`0x003908DF`-`0x003909E3`):
 
 - the target already has it (`+0x3C`);
-- the action's mask at `+8` holds the status while the status row's byte `+6` bit `0x20` is clear
-  (row in the status table `[0x02EBF118]`);
+- the target's statuses, `dword[+0x64] | dword[+0x3C]` as the formula context `0x003847C0` keeps them at `+8`
+  (`0x0038485F`-`0x00384868`; bit `0x1000`, or bits `0x811000`, cleared in two cases at `0x00384896` and `0x003848A6`),
+  hold the status while the status row's byte `+6` bit `0x20` is clear (row in the status table `[0x02EBF118]`,
+  `0x00390910`-`0x00390957`);
 - the target is not a party member (byte `+5` non-zero) and the row word `+6` bit `0x100` is set;
-- the action's mask at `+8` overlaps the row's dword `+0x20`.
+- those statuses overlap the row's dword `+0x20` (`0x003909DC`-`0x003909DF`).
 
 | Chain level | nothing | HP 10 % | MP 10 % | Protect (picker) | Protect (party) | Shell (picker) | Shell (party) |
 |---:|---:|---:|---:|---:|---:|---:|---:|

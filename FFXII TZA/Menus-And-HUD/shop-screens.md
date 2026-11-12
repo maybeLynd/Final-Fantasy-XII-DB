@@ -269,7 +269,7 @@ painter greys a row (`0x00392FC0`, or `0x00393240` on four labels in `0x0056CF10
 `0x0056D870(row, widgets, layout)` paints the common part: the icon frame `+0x0A` (no icon for `-1`), the name and the
 price. `0x0056DA80` paints the quantity window's row: the quantity and, when bit `0x4` is set, the price times the
 quantity (`0x0029FF60`). `0x0056D9D0(list, quantity)` stores the quantity at `+0xDC`, sets `+0xE4` bit `0x4` when
-`0x0056E700` refuses it and bit `0x8` when it is not 1, and passes both to the list.
+`0x0056E700` accepts it (answers 0) and bit `0x8` when it is not 1, and passes both to the list.
 
 ### Tabs and the help line
 
@@ -303,8 +303,9 @@ quantity (`0x0029FF60`). `0x0056D9D0(list, quantity)` stores the quantity at `+0
 ### Closing the window
 
 - `0x0056C850(list)` closes the quantity window and rebuilds the list (`0x0056E410`, `0x0056C490`); with no rows left it
-  clears the help and closes the screen (`+0x194` bit `0x4`, `0x00244F00`), otherwise it re-attaches the screen and redraws
-  the help (`0x0056E5D0`).
+clears the help and closes the screen (`+0x194` bit `0x4`, `0x00244F00`). Otherwise it re-attaches the screen when its
+state nibble (`+0x7C` mask `0xF`) is 1, and redraws the help (`0x0056E5D0`) when `0x0056E410` moved the cursor off a row
+that has gone.
 - `0x0056E580(screen, v)` returns from the equip offer (`0x0057ADCD`, `0x0057AFFA`, `0x0057C04B`): it sets `+0x194` bit `0x2` when
   `v` is 0, re-attaches the screen and runs `0x0056C850`.
 - `0x0056DD00(screen)` answers whether the screen may close: not while the shop window `[0x02CA9790]` and the part

@@ -47,7 +47,9 @@ otherwise it releases any body at `[+0xC0] + 0x138`, allocates one and stores th
 null included.
 
 It then runs the five consumers: `0x00269EC0(record, 0)` sets the layer byte `+6`;
-`0x002681D0`; `0x002682D0` copies the context's `+0x151` bits under mask `0x3` into the body's flags `+0x90`;
+`0x002681D0`, which for a class-3 actor writes a mode code from 0 to 5 to the body's `+0x80` and the
+context's `+0x153` (`0x002682A7`, `0x002682B5`; [Player movement](player-movement.md)); `0x002682D0`
+copies the context's `+0x151` bits under mask `0x3` into the body's flags `+0x90`;
 `0x002685F0` copies the context's float `+0x148` into the weight `+8`; `0x00268380` sizes the shape.
 Every consumer tests the chain and does nothing on a null body, so the 129th actor has no
 movement body and silently drops out of the pass.
@@ -458,7 +460,7 @@ the body's mask word `+0x110` (`0x002E9BB0`, `0x002EC5B0`) and, for a negative `
 | `+0x040` | `f32[4]` | orientation | the heading's direction pair, `+0x44` = 0, `+0x4C` = 1.0; `{0, 0, 1.0, 1.0}` at allocation (`0x00380B80`) |
 | `+0x060` | `f32[4]` | groundTint | vertex colours of the type-2 polygon underfoot, blended by `0x00231A90`; `0x0209A3A0` without one; four 1.0 (white) at allocation (`0x00380B80`) |
 | `+0x070` | `f32[4]` | displacement | the cell solver's push of the last move |
-| `+0x080` | `u16` | cellClass | the movement kind: the floor overrides' callers pass the word zero-extended to `0x00230A40` (`0x0022FB1F`, `0x00232EAE`, `0x002331B5`), `0x00380D30` reads its low byte (`0x00380D89`); `0xFFFF` at allocation (`0x00380B97`), 1 from `0x002681E0` (`0x002682A7`) |
+| `+0x080` | `u16` | cellClass | the movement kind: the floor overrides' callers pass the word zero-extended to `0x00230A40` (`0x0022FB1F`, `0x00232EAE`, `0x002331B5`), `0x00380D30` reads its low byte (`0x00380D89`); `0xFFFF` at allocation (`0x00380B97`); for a class-3 actor `0x002681D0` stores 0, 1, 2, 3 or 5 (`0x002682A7`), the same code as the context's `+0x153` (`0x002682B5`) |
 | `+0x082` | `i16` | cell | polygon underfoot, `-2` refused; -1 at allocation (`0x00380B80`) |
 | `+0x084` | `i16` | secondCell | the type-4 marker polygon |
 | `+0x086` | `u16` | floorGroup | attribute bits under mask `0x3E000`; `FFFF` at allocation (`0x00380B80`) |

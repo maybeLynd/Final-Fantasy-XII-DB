@@ -24,7 +24,7 @@ waits in the background until the event's claim is withdrawn.
 ### The level
 
 `0x0030D9A0()` reads the dword at `[0x02EBF190] + 0x5B04` and returns the first match: bit `0x8` gives 5, bit `0x4` gives
-4, the town flag `0x00377C20()` gives 3, bit `0x2` gives 2, and otherwise bit `0x1` gives 1 or 0; the word is reloaded
+4, the town flag `0x00377C20()` gives 3, bit `0x2` gives 2, and otherwise bit `0x1` gives 1 or 0; the dword is reloaded
 after the town call. Only the bits `0xF` are consulted.
 
 The town flag is authored data ([area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)): `0x00377C20` takes the
@@ -72,10 +72,10 @@ it rewrites a set bit, and for bit `0x1` runs `0x0035C620` again, for bit `0x2` 
   (which calls `0x00303D90(0)` first), state 1 of the task `0x0035CA70`
   ([chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md)).
 - bit `0x2`, also: the load step `0x005843E0` (called from `0x00582860`), which clears the bit itself (`0x0058446A`) when bit `0x1000` of
-  the dword at `[0x02EBF190] + 4` is set (`0x00236760`) and otherwise restores the word through `0x002EF410`.
+  the dword at `[0x02EBF190] + 4` is set (`0x00236760`) and otherwise restores the mode flags through `0x002EF410`.
 - bits `0x4` and `0x8`: only the verbs `seteventpartymode` (`0x00351B40` → `0x0037D120` → `0x00307240`) and
   `seteventparty2mode` (`0x00351E50` → `0x0037D110` → `0x00307200`); no engine path sets them.
-- the restore `0x002EF410` writes the whole word (below).
+- the restore `0x002EF410` writes the whole dword (below).
 
 ### The verbs
 
@@ -234,19 +234,19 @@ thunks; the level-1 predicate has 7 direct and 9 through its thunk. The ones rea
 ### Carried across an area change, restored and reset
 
 `0x002EF3C0(rec)` captures `0x021B28E4` at `rec+4`, the ride block `+0x5AE0..+0x5AEF` at `rec+8`, the
-summon block `+0x5AD0..+0x5ADF` at `rec+0x18` and the mode word at `rec+0x28`.
+summon block `+0x5AD0..+0x5ADF` at `rec+0x18` and the mode flags at `rec+0x28`.
 
 `0x002EF410(rec)`
-restores the ride block and the word unconditionally; the summon block only when `rec+0x18` has
+restores the ride block and the mode flags unconditionally; the summon block only when `rec+0x18` has
 bit `0x2` (the summon timer was running), restarting channel 2 from `rec+0x20`, never below 2.0 (`0x003139D0`);
 and when `rec+8` has bit `0x1` (the ride timers were armed) it restarts channel 1 from `rec+0xC`, never
 below 2.0 (`0x00304790`), and channel 2 from `rec+0x10` as it is (`0x003047C0`), then sets bit `0x2` and clears
-bit `0x1` of the word (`0x002EF47E`-`0x002EF48C`). When both apply, the ride's load of channel 2 comes last and
+bit `0x1` of the mode flags (`0x002EF47E`-`0x002EF48C`). When both apply, the ride's load of channel 2 comes last and
 stands.
 `+0x5B08` is not captured.
 
-`0x0030DA10` zeroes the word and `+0x5B08`; its only caller is the battle-storage reset `0x00237DF0`, which also runs
-`0x00313840`, the dismount `0x00304680`, and resets the speed index (`0x00229ED0(0)`, [frame update
+`0x0030DA10` zeroes the mode flags and `+0x5B08`; its only caller is the battle-storage reset `0x00237DF0`, which also
+runs `0x00313840`, the dismount `0x00304680`, and resets the speed index (`0x00229ED0(0)`, [frame update
 order](frame-update-order.md)). The save handover `0x00584210` clears bit `0x1` on both of its sides ([save data
 fields](../Saving-Loading-And-Settings/save-data-fields.md)): the stash at load mode 3 with the header flag `+0x57` bit
 `0x1` clear (`0x005842C4`) and the restore at any other mode with that flag set (`0x0058438C`).
@@ -274,7 +274,7 @@ Party block [`0x02EBF190`]:
 | `+0x5AE4` | `f32` |  | ride time |
 | `+0x5AE8` | `f32` |  | turbo time |
 | `+0x5AEC` | `u32` |  | last turbo argument |
-| `+0x5B04` | `u32` | mode word | bit `0x1` summon, bit `0x2` chocobo, bit `0x4` event party, bit `0x8` event party 2 |
+| `+0x5B04` | `u32` | mode flags | bit `0x1` summon, bit `0x2` chocobo, bit `0x4` event party, bit `0x8` event party 2 |
 | `+0x5B08` | `u32` | previous level | written by the dispatcher with commit |
 
 Globals:
@@ -301,7 +301,7 @@ Transition record:
 | `+0x04` | `...` |  | captured `0x021B28E4` |
 | `+0x08` | `u8[16]` | ride block | the ride block (16 bytes) |
 | `+0x18` | `u8[16]` | summon block | the summon block (16 bytes) |
-| `+0x28` | `...` |  | mode word |
+| `+0x28` | `...` |  | mode flags |
 
 ## Shipped data
 
@@ -323,7 +323,7 @@ first dispatcher run after it.
 
 ## State
 
-The mode word and the previous level; the summon block; the ride block; the five slot maps, the saved
+The mode flags and the previous level; the summon block; the ride block; the five slot maps, the saved
 leader; the two source bytes.
 
 ## Modding notes
@@ -331,14 +331,14 @@ leader; the two source bytes.
 - An area's town flag outranks a chocobo ride and a summon without any code change: every
   level-2 and level-1 reader stops matching, while the two event claims still win.
 - The two event claims come only from scripts; a script that sets one and never clears it leaves
-  the party in an event configuration across area changes, because the word is in the transition
+  the party in an event configuration across area changes, because the mode flags are in the transition
   record.
 - Level 5 has no row in the table: the level it replaces still runs its leave handler, but entering
   or leaving 5 itself runs nothing.
-- The `…bit` verbs read the word and the `…mode` verbs the level; a script that needs to know
+- The `…bit` verbs read the mode flags and the `…mode` verbs the level; a script that needs to know
   whether the party is physically mounted inside a town must use the bit.
 - A saved ride forces the chocobo bit on and the summon bit off when restored; a saved summon
-  survives only through the word itself and loses its bit at the save handover.
+  survives only through the mode flags themselves and loses its bit at the save handover.
 
 ## Related
 

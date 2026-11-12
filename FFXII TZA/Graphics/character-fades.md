@@ -174,8 +174,8 @@ outside, and 0 otherwise (`0x003B4064`-`0x003B4078`).
   `0x003EB960` writes it into bit `0x8` of `+0x304` and raises bit `0x40` of `+0x290`, whose processor
   `0x0042BCB0` copies that bit into bit `0x200000` of the children's `+0x284`.
 
-When `0x005C5230()` returns non-zero, or record `+0x6E0` is non-zero, the bits are cleared and no
-distance fade applies. A culled record gets channels 0 and 4 ramped to 0 over one frame. Otherwise
+When record `+0x6E0` is non-zero the bits are cleared and no distance fade applies; the other term of that test,
+`0x005C5230()`, returns 0. A culled record gets channels 0 and 4 ramped to 0 over one frame. Otherwise
 channel 0 ramps over one frame to 1.0 when `d ≤ start` and to `sin(((start + range − d) / range) ×
 π/2)` inside the band, `start` and `range` being tail `+0x1C` and `+0x24`.
 

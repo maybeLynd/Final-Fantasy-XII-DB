@@ -200,10 +200,10 @@ that ends without reaching the child, leaves the chain as it is, and only the ch
 Many setters broadcast a value the same way: they apply it to the record and its first child, then
 hand a small per-record body and an argument block to `0x0042EF90` for the rest of the tree.
 
-Most bodies first ask `0x00426220(record, source)` and skip the record when it answers true: a record other
-than the source is skipped when its `+0x284` bit `0x4000000` is clear and its word `+0x2F8` is −1; a record
-with bit `0x8000000` and an event below `0x1000` (`+0xCC`) is skipped when `0x004232D0` returns 0; otherwise a
-record whose name `+0x3C` starts with `h` is kept only when its next five characters equal the
+Most bodies first ask `0x00426220(record, source)` and skip the record when it answers true: a record other than the
+source is skipped when its `+0x284` bit `0x4000000` is clear and its word `+0x2F8` is −1; a record with bit
+`0x8000000` and an event below `0x1000` (`+0xCC`) is skipped when `0x004232D0` returns 0; past those tests the source
+itself is kept, a record whose name `+0x3C` starts with `h` is kept only when its next five characters equal the
 source's first five, and any other record is skipped when the source's name starts with `b`.
 
 | Body | Broadcast | What the body does to each record |
@@ -229,9 +229,11 @@ source's first five, and any other record is skipped when the source's name star
 
 `0x00426500`, from `0x00332440`, is one such walk: `0x00425FB0(0x0042D7A0, 0x0042CF70, records)`.
 
-A record keeps two attached children by id: word `+0x2C8` for the child whose slot byte `+0x6A0`
-is below `0x16`, and `+0x2CA` for the child of slot `0x16`. Unless `+0x40B` bit `0x10` is set, the event
-start `0x00424D80` re-places both through `0x0041F010(record, child)`, which `0x004215A0` also calls:
+A record keeps two attached children by id: word `+0x2C8` for the child whose slot byte `+0x6A0` is below `0x16`, and
+`+0x2CA` for the child of slot `0x16`. The event start `0x00424D80` clears `+0x40B` bit `0x10` and leaves the children
+in place when the low two bits of `+0x40B` equal its bits under mask `0xC`. Otherwise it sets bit `0x10` for an event
+of kind 0, or of kind 3 or 4 with number `0x35` or `0x36`, and leaves them in place for those as well. For any other
+event it re-places both through `0x0041F010(record, child)`, which `0x004215A0` also calls:
 
 1. it stores a slot below `0x16` at `+0x40C`, and takes the mode from the low two bits of `+0x40B`
    (0 while `+0x284` bit `0x8000000` is set) into the bits under mask `0xC` of `+0x40B` (`0x0041F080`-`0x0041F09A`);
@@ -297,11 +299,11 @@ With
 `+0x284` bit `0x100000` set or 0 frames it instead stops the alternate entry `+0xC8` (`+0x0C` bit `0x2`,
 `0x0041D790`) after `0x00426FA0` and returns `0x00424C40(record)`.
 
-`0x00424A40` is the same without `0x0041CFC0` and returns 0 at once when the current entry's `+0x24` is
-already 1. The child callback `0x0042DF10`, from `0x00429F70`, uses them on a child record that has no
-event of its own for the parent's event (`0x0041E5B0`): `0x00422E40` for a child whose `+0xCC` is below
-`0x1000`, otherwise `0x00422E50`, which first stops the child's alternate entry and then calls
-`0x00424A40(child, frames, 1)`.
+`0x00424A40` is the same without `0x0041CFC0` and returns 0 at once when the current entry's `+0x24` is already 1. The
+child callback `0x0042DF10`, from `0x00429F70`, does nothing for a child that `0x00426220(child, parent)` refuses. A child
+with `+0x06` not −1, `+0x2F2` not 0 and `+0x2F8` not −1 looks up its own event for the parent's event (`0x0041E5B0`) and
+goes to `0x00423FC0` when it has one. Every other child takes `0x00422E40` when its `+0xCC` is below `0x1000`, otherwise
+`0x00422E50`, which first stops the child's alternate entry and then calls `0x00424A40(child, frames, 1)`.
 
 `0x00423510(record, resource)` returns the payload of the resource's `@FRM` (`0x00408F90`, `0x00408F80`)
 plus the dword at its `+0x0C`, or 0 when the section is missing or that dword is 0; `0x003E6070`
@@ -493,10 +495,10 @@ A record plays motion events. Word `+0xCC` is the current event, `+0x60` the pre
 an alternate whose presentation entry is `+0xC8`; the current entry is `+0xC4`. An event word keeps a
 kind in the bits under mask `0xF000` and an index in the bits under mask `0xFFF`.
 
-`0x00424D80(record, resource, source, event, …, selector)` starts an event. A kinded event must pass
-`0x004235C0(record, event, selector)`. The stream is the resource's own entry in the render resource bank
-or, failing that, the model's `@FCM`, `@FRP` or `@FMN` section (`0x00409FA0`); the entry is admitted by
-`0x0051BA80`, its id stored in `+0xC4`, the event in `+0xCC` and the old event in `+0x60`.
+`0x00424D80(record, resource, source, event, …, selector)` starts an event. A kinded event must pass `0x004235C0(record,
+event, selector)`. The stream is the resource's own entry in the render resource bank or, failing that, the model's
+`@FMC`, `@FRP` or `@FMN` section (`0x00409FA0`); the entry is admitted by `0x0051BA80`, its id stored in `+0xC4`, the
+event in `+0xCC` and the old event in `+0x60`.
 
 `0x004235C0` returns 1 (allow) unless all of these hold:
 
@@ -550,11 +552,15 @@ and `0x39` and `0x3A` while its `+0xAC` is 2, which clears the source. `0x00422F
 event)`, asked by `0x00423B10`, holds when `+0x284` bit `0x10000` is set and the resource's entry for the
 event index (index 0 for kind 5, `0x00408F80`) has bit `0x10000` or `0x20000` of its `+0x04`.
 
-`motionplay_bb(motion, frames)` (`0x00BB`, `0x003DD8D0`) and `puppetmotionplay_41f` (`0x041F`,
-`0x003DD980`, for a puppet) post a kind-0 event: a motion id whose top byte is `0x10` to `0x1F` names
-slot `top − 0x10` of the script's manager slot. They act only when that slot is registered and pass the
-event `(area << 4 | slot) << 16 | (motion & 0xFFFFFF)` with the frame count to `0x002EB080` or `0x002EB0D0`; the actor
-form also stores the slot at actor `+0xF5`.
+`motionplay_bb(motion, frames)` (`0x00BB`, `0x0034AB50`, through `0x003DD8D0`) and `puppetmotionplay_41f` (`0x041F`,
+`0x00347B00`, through `0x003DD980`, for a puppet) post a kind-0 event: a motion id whose top byte is `0x10` to `0x1F`
+names slot `top − 0x10` of the script's manager slot.
+
+They act only when the skip byte of the actor's manager is clear (byte `+0x15` of the script context is the
+manager index, `0x0034AB8E`; `0x00267310` returns the byte `[0x02099011 + 0x288 × index]`) and that slot is registered,
+and pass the event
+`((area << 4) | slot) << 16 | (motion & 0xFFFFFF)`, an OR (`0x003DD949`-`0x003DD954`, `0x003DD9E1`-`0x003DD9F4`), with the
+frame count to `0x002EB080` or `0x002EB0D0`; the actor form also stores the slot at actor `+0xF5`.
 
 ### The skill-motion cache
 

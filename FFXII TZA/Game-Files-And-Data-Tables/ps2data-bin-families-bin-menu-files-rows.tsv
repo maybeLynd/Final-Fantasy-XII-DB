@@ -3,8 +3,8 @@ ps2data/image/ff12/myoshiok/ch/bin_menu/fontcolor.bin	ch	fontcolor.bin	fontcolor
 ps2data/image/ff12/myoshiok/in/bin_menu/fontcolor.bin	in	fontcolor.bin	fontcolor	2108	38780c89a18b03523902e2a43762cc90651d1666f4c445eb0324414535bb42b7	ch	07010000	count 263; 4 + 8 x count = 2108
 ps2data/image/ff12/myoshiok/ch/bin_menu/item_clut.bin	ch	item_clut.bin	item_clut	7168	e043576bd2c1bca60b43f1e5c421d92fb25a38c10f2cbaa08e9821a9873f9b66	in	00000080	1792 colours, 7 palettes of 1,024 bytes
 ps2data/image/ff12/myoshiok/in/bin_menu/item_clut.bin	in	item_clut.bin	item_clut	7168	e043576bd2c1bca60b43f1e5c421d92fb25a38c10f2cbaa08e9821a9873f9b66	ch	00000080	1792 colours, 7 palettes of 1,024 bytes
-ps2data/image/ff12/myoshiok/ch/bin_menu/license_chip.bin	ch	license_chip.bin	license_chip	23104	2bca3b3de52f3adb96b6213d2a84988f317de75377ce48633ea2418ce454129a	in	0x01000200	361 records of 64 bytes; first dword 0x00020001
-ps2data/image/ff12/myoshiok/in/bin_menu/license_chip.bin	in	license_chip.bin	license_chip	23104	2bca3b3de52f3adb96b6213d2a84988f317de75377ce48633ea2418ce454129a	ch	0x01000200	361 records of 64 bytes; first dword 0x00020001
+ps2data/image/ff12/myoshiok/ch/bin_menu/license_chip.bin	ch	license_chip.bin	license_chip	23104	2bca3b3de52f3adb96b6213d2a84988f317de75377ce48633ea2418ce454129a	in	01000200	361 records of 64 bytes; first dword 0x00020001
+ps2data/image/ff12/myoshiok/in/bin_menu/license_chip.bin	in	license_chip.bin	license_chip	23104	2bca3b3de52f3adb96b6213d2a84988f317de75377ce48633ea2418ce454129a	ch	01000200	361 records of 64 bytes; first dword 0x00020001
 ps2data/image/ff12/myoshiok/ch/bin_menu/menu_version.bin	ch	menu_version.bin	menu_version	16	e36b89279f236c4b2f7772975b5427b36ddc6c1941176b62c1bf71096bc0a19a	in	4d454e55	16 bytes
 ps2data/image/ff12/myoshiok/in/bin_menu/menu_version.bin	in	menu_version.bin	menu_version	16	e36b89279f236c4b2f7772975b5427b36ddc6c1941176b62c1bf71096bc0a19a	ch	4d454e55	16 bytes
 ps2data/image/ff12/myoshiok/ch/bin_menu/monotone_chr.bin	ch	monotone_chr.bin	monotone_chr	6528	2d20c27e2a6212ba53b203116f47471d54a44f4303e9da1a027b13e51e19de7d	in	434c5432	6 CLT2 palettes of 1,088 bytes

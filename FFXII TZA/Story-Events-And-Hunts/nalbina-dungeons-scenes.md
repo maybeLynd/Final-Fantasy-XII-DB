@@ -80,8 +80,8 @@ Calls between the functions this page cites and code in other parts of the progr
   [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).
 - Core runtime: `0x00354D00` calls `0x00229EA0`; those functions are documented on
   [frame update order](../Engine-Core/frame-update-order.md).
-- Party: `0x0034D4E0` calls `0x00263750`, `0x003271D0`, `0x00327850`, `0x00328DB0`, `0x00359C00`, `0x0035A050`; those functions are
-  documented on [debug menu](../Engine-Core/debug-menu.md),
+- Party: `0x0034D4E0` calls `0x00263750`, `0x0026DC40`, `0x003271D0`, `0x00327850`, `0x00328DB0`, `0x00359C00`, `0x0035A050`,
+  `0x003601B0`; those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
   [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
   [party control modes](../Engine-Core/party-control-modes.md).
 - Resource: `0x0032FCA0` calls `0x002DF980`, `0x0032E400`, `0x0032E620`; `0x00351880` calls `0x001D6A70`; `0x003529E0` calls

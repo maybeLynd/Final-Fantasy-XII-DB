@@ -44,24 +44,26 @@ its `menu_command.bin` id:
 | Quit `0x505` | `0x0027EBC0` (`0x00282196`) | `0x0027EA70` | |
 | Parameter Settings `0x53A` | `0x00240D60` (`0x002821B8`) | `0x00240AD0` | |
 
-Status and Equip share one screen procedure, `0x002C2320`, which hosts the equipment pane `0x003FF360`, its list
-`0x003FDFE0` ("Change equipment.", `0xCC9`) and the slot names Weapon, Off-hand, Helm, Armor and Accessory
-(`menu_expansion.bin` `0x4A99`, `0x4A9A`, `0x4A9C`-`0x4A9E`, `0x003FEE40`).
+Status and Equip share one screen procedure, `0x002C2320`. On Equip only (`0x002C25E9`-`0x002C267F`) it hosts the
+equipment pane `0x003FF360`, its list `0x003FDFE0` ("Change equipment.", `0xCC9`) and the slot names Weapon,
+Off-hand, Helm, Armor and Accessory (`menu_expansion.bin` `0x4A99`, `0x4A9A`, `0x4A9C`-`0x4A9E`, `0x003FEE40`).
 
 ### Command rows and first visits
 
-The Party Menu, the Status and Equip screen and the Inventory (`0x00565E00`) keep their command rows in a set
-at `+0xD0`: an `i16` count and, at `+0x08`, `0x20`-byte rows that start with the row's id and hold its
-widget at `+0x08`.
+The Party Menu (`0x00281AE0`), the Status and Equip screen (`0x002C2320`) and the Inventory (`0x00565E00`) keep their
+command rows in a set, at `+0xD0` on the Party Menu and `+0xC0` on the other two: an `i16` count and, at `+0x08`, a
+pointer to `0x20`-byte rows that start with the row's id and hold its widget at `+0x08`. The rows follow the set in
+the screen.
 
 - `0x002CD440(set, id)` returns the row with the id, or null.
 - `0x002C9F30(set, id, colour)` writes a colour to the widget's `+0xE4` for the row with the id, or row 0
   when no row has it; `0x002C9F80` does the same but changes nothing then, and `0x002C9FD0(set, colour)`
   colours every row. `0x002C9F20(row, colour)` and `0x002C9E60(row)` write and read one row's colour, grey
   `0x80808080` when it has no widget.
-- `0x002CA010(set, id, on)` sets or clears bit `0x2` of the widget's `+0xF0` for the row with the id, or for
-  every row with id -1; `0x002CA0C0(row, on)` does the same with bit `0x4`. `0x002CA0E0(row, dx, dy)` moves a
-  row's widget by (dx, dy) and keeps the offset at `+0xEC`, `+0xEE`.
+- `0x002CA010(set, id, on)` sets bit `0x2` of the widget's `+0xF0` when `on & 1` is set and clears it otherwise, for
+  the row with the id (row 0 when no row has it), or for every row with id -1, and skips a row with no widget
+  (`0x002CA03C`, `0x002CA09E`); `0x002CA0C0(row, on)` does the same for one row with bit `0x4` (`0x002CA0C7`).
+  `0x002CA0E0(row, dx, dy)` moves a row's widget by (dx, dy) and keeps the offset at `+0xEC`, `+0xEE`.
 
 Entries and Inventory categories remember a first visit in a save-wide flag:
 
@@ -235,7 +237,7 @@ widget and in place for the row (above):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | fadeFlags | bit `0x1`: running, set by every starter and cleared with bit `0x2` when the fade ends (`0x002CA34B`); bits `0x4`-`0x20`: the curve `0x00248F40` takes ((flags >> 2) & `0xF`, `0x002CA310`-`0x002CA31E`), `0x002CA3B0`'s curve argument (`0x002CA3C7`-`0x002CA3E3`) or 1 from the rows' starters (`0x45` at `0x002CA87E`, `0x002CA9C0`, `0x002CA635`, `0x002CA664`); bit `0x40`: set by every starter; bits `0x2` and `0x80` and above: kept by the starters' masks, no write in the table |
+| `+0x00` | `u32` | fadeFlags | bit `0x1`: running, set by every starter and cleared with bit `0x2` when the fade ends (`0x002CA34B`); bits `0x4`-`0x20`: the curve `0x00248F40` takes ((flags >> 2) & `0xF`, `0x002CA310`-`0x002CA31E`), `0x002CA3B0`'s curve argument (`0x002CA3C7`-`0x002CA3E3`) or 1 from the rows' starters (`0x45` at `0x002CA87E`, `0x002CA9C0`, `0x002CA635`, `0x002CA664`); bit `0x40`: set by every starter; bits `0x2` and `0x80`: cleared by every starter (`0x002CA3B0` ANDs with `0xFFFFFF41` at `0x002CA3C7`, the rows' starters with `0xFFFFFF45` at `0x002CA876`, `0x002CA9B8`, `0x002CA62D` and `0x002CA65C`); bits `0x100` and above: kept by those masks, no write in the table |
 | `+0x04` | `i16` | fadeFrom | the node's brightness `+0x3B` when the fade started (`0x002CA3EA`-`0x002CA3F2`, `0x002CA889`-`0x002CA890`) |
 | `+0x06` | `i16` | fadeNode | the node's index in the widget's list `+0x60`: `0x002CA3B0`'s argument (`0x002CA3FA`), 11 for the difference widget (`0x002CA8CC`, `0x002CB3FA`); 0 for the row (`0x002CA89E`, `0x002CA9E0`, `0x002CA641`, `0x002CA670`) |
 | `+0x08` | `i16` | fadeDelta | target minus fadeFrom (`0x002CA3EE`-`0x002CA402`, `0x002CA884`-`0x002CA897`) |
@@ -352,10 +354,10 @@ window (`0x00244F00`).
 The special-attack window `0x002D5EB0` shows one party member's entry (status record `0x0035BB20(+0x140)`) from a
 table of 24-byte entries:
 
-- `0x002D5280(window, entries, n, step)` finds the member's entry by its handle, keeps it at `+0x150`, picks the
-  current choice among its `+0x12` choices (`+0x06` words), sets `+0x142` bit `0x4` from the entry's `+0x14` unless
-  `step` is given, and shows the choice's action name (class `0x14`, `0x002B58B0`) in node 1; `0x002D54B0(window,
-  action)` shows a given action's name there.
+- `0x002D5280(window, entries, n, step)` finds the member's entry by its handle, keeps it at `+0x150`, picks the current
+  choice among its `+0x12` choices (`+0x06` words), sets `+0x142` bit `0x4` from bit `0x1` of the entry's `+0x14`, or
+  clears it when `step` is given, and shows the choice's action name (class `0x14`, `0x002B58B0`) in node 1;
+  `0x002D54B0(window, action)` shows a given action's name there.
 - `0x002D5170(window, kind, plain)` builds the title at `+0xC0`: text `0x4669`, `0x466A` or `0x466C` by kind, or
   `0x46B4` with `+0x142` bit `0x4` or `plain`, followed by the member's name (`0x00296600`).
 - `0x002D53F0(window, value, max)` writes value x 100 into node 1 (`0x0029F6E0`, grey `0x80808080`) and gives node
@@ -484,7 +486,7 @@ menu screens share.
 | `+0x0F8` | `void*` | memberList | the Party Menu's member list `0x00285290`: set when it opens (`0x002852F0`) and cleared when it closes (`0x0028562C`); its row widgets sit at its `+0xC0` + 8 x slot, which `0x002830A0`, `0x00280B70` and `0x00282FC0` walk beside memberSlots (`0x002830F3`, `0x00280BC3`, `0x00282FF3`) |
 | `+0x100` | `void*` | requestDispatcher | the request-screen dispatcher `0x0027F5D0` under the mode-screen task: set when it opens (`0x0027F738`) and cleared when it leaves (`0x0027F84F`) |
 | `+0x108` | `void*` | equipPane | the equipment pane `0x003FF360` of Status and Equip, built once by `0x003FF160` (`0x003FF192`-`0x003FF1BC`) and cleared by the pane (`0x003FF8E4`) |
-| `+0x110` | `void*` | statusPane | the Status and Equip pane `0x002C59D0` (mrppack unit 7 record 2), built once by the screen `0x002C2320` (`0x002C2692`-`0x002C26BE`) and cleared by the pane (`0x002C5E4B`) |
+| `+0x110` | `void*` | statusPane | the Status pane `0x002C59D0` (mrppack unit 7 record 2), built once by the screen `0x002C2320` on Status only (`0x002C25E9`, `0x002C2692`-`0x002C26BE`) and cleared by the pane (`0x002C5E4B`) |
 | `+0x118` | `void*` | namePanel | the Party Menu's current-member name panel `0x002C13C0` (mrppack unit 7 record 10): set when it opens (`0x002C150B`), cleared when it closes (`0x002C1770`) |
 | `+0x120` | `void*` | listPanel | the Party Menu's list panel `0x002C3560` (mrppack unit 7 record 12): set when it opens (`0x002C386F`), cleared when it closes (`0x002C35B1`) |
 | `+0x128` | `void*` | fourPanePanel | the Party Menu's four-pane panel `0x002C4460` (mrppack unit 7 record 11): set when it opens (`0x002C46DB`), cleared when it closes (`0x002C44B0`) |
@@ -533,7 +535,7 @@ menu screens share.
 | `+0x380` | `void*` | picExtraC | the picture extra_c, the tenth (label `0x01E0C280`), registered and bound by the same loops; the loops end at `+0x388` (`0x00280832`, `0x002806CA`) |
 | `+0x388` | `void*` | effectPicture | the TIM2 picture at the picture pack's u32 `+0x28` offset, set once by `0x00280670` (`0x002806D3`-`0x002806F4`); `0x002509D0` reads it (`0x00250B01`, `0x00250B6E`) (Script screen effects) |
 | `+0x390` | `void*` | colourTable0 | colour table 0: `0x00280AD0` points it at the colour-table file plus the file's u32 `+0x00` (`0x00280AE7`-`0x00280AF6`); read by `0x002509D0`, `0x00250E90`, `0x002C8EE0` and `0x002CEFD0` (CL2 menu colour tables) |
-| `+0x398` | `void*` | colourTable1 | colour table 1, the file plus its u32 `+0x04` (`0x00280B04`-`0x00280B1B`); `0x0035D530` returns it (`0x0035D537`) |
+| `+0x398` | `void*` | colourTable1 | colour table 1, the file plus its u32 `+0x04` (`0x00280B04`-`0x00280B1B`); `0x0035D530` returns it plus `0x40` (`0x0035D537`-`0x0035D53E`) |
 | `+0x3A0` | `void*` | colourTable2 | colour table 2, the file plus its u32 `+0x08` (`0x00280B29`-`0x00280B40`); `0x0035D520` returns it (`0x0035D527`) |
 | `+0x3A8` | `void*` | colourTable3 | colour table 3, the file plus its u32 `+0x0C` (`0x00280B4E`-`0x00280B65`); read by `0x002509D0` (`0x00250B40`) |
 | `+0x3B0` | `void*` | shopPicture | the shop picture shop_8_c, requested by `0x002CBD50` as kind 7, id `0x63` (`0x002CBD5B`-`0x002CBD91`) and released by `0x002CC5F0` (`0x002CC5FB`-`0x002CC618`) |
@@ -579,14 +581,14 @@ menu screens share.
 | `+0xDE4` | `u16` | warningItem | the item id the refreshers store with the code (`0x003FE9F8`, `0x003FECD0`); no instruction reads it (Stats) |
 | `+0xDE6` | `u8` | licenseZoom | the License Board's zoom: the grid view's scale `+0x8C` is 2.0 while this is 0 and 1.0 while it is 1 (table `0x00D23080`, `0x0055D0D7`-`0x0055D0FD`); the button `0x110` flips it and runs the scale change over 150 (`0x0055C9FC`-`0x0055CA69`); 0 again when menu request 16 runs (`0x0027FCF2`), from `0x00394460` (`0x00394470`) and when a script opens the License Board (`0x002D73A2`) |
 | `+0xDE7` | `u8` | partyMenuPage | the Party Menu's member page in `0x002C1A80`: 1 after it opens the list panel (`0x002C1C4C`-`0x002C1C58`), 2 after the four-pane panel (`0x002C1B2E`-`0x002C1B3A`), 0 when it closes them (`0x002C1C0C`); `0x002C1A80` answers non-zero while it is not 0 (`0x002C1C97`-`0x002C1CA0`) |
-| `+0xDE8` | `u8` | visitsMarked | set to 1 by `0x002CD510` after it marks Config, Status, Inventory and every unlocked entry and category as visited (`0x002CD514`-`0x002CD641`), from the Party Menu (`0x00281CB5`) and the Inventory (`0x00565E57`); read by no function |
+| `+0xDE8` | `u8` | visitsMarked | set to 1 by `0x002CD510` (`0x002CD641`) after it marks as visited Config, Status and Inventory, also World Map, Clan Primer and Licenses while the byte `0x0209A2A9` is set (`0x00264150`), and the categories `0x38`, `0x39`, `0x3A`, `0x3A`, `0x34`, `0x35`, `0x36` and `0x37` while the flags 1, 3, 2, 8, 5, 4, 7 and 6 of the bit array read by `0x00252D10` are set (`0x002CD56A`-`0x002CD635`), `0x002CD650` having set those flags first (`0x002CD514`); Party, Equip and Gambits are never marked. Called from the Party Menu (`0x00281CB5`) and the Inventory (`0x00565E57`); read by no function |
 | `+0xDE9` | `u8` | stepFlash | which step arrow flashes (the table below); `0x002CABF0` and `0x00566C10` take their bits and clear them |
 | `+0xDEA` | `u8` | panelsHidden | 1 while the License Board or the Clan Primer covers the Party Menu: `0x00561DC0` (from the License Board member pick `0x00560910`) and `0x005738D0` (Clan Primer, `0x00572F31` with 1, `0x00573A36` with 0) store it (`0x00561DCF`, `0x005738E1`) and hide or show the Party Menu's panels with it (`0x00247730`, `0x00561DE9`-`0x00561E50`); `0x0057A040` returns 0 at once while it is 0 (`0x0057A073`) |
 | `+0xDEB` | `u8` | commitGambits | set to 1 by the script verb fsmenu_registrestore while an area controller is open (`0x00511AA0`-`0x00511AB4`, `0x002D7D47`) and cleared by `0x002D6F90` (`0x002D6FE5`); while it is set, the gambit editor commits its gambits when it closes (`0x00569242`-`0x00569259`) (Gambits screen) |
 | `+0xDEC` | `u8` | blinkOff | non-zero stops the menu's pulsing marks: `0x002CC8D0` then returns the base value instead of base + amplitude x sin (`0x002CC8E5`-`0x002CC8F9`); the script verb fsmenu_blinkanchor writes its argument xor 1 (`0x00511B15`-`0x00511B24`, `0x002D7D37`); the auto window and the highlight window clear it around their own pulse and restore it (`0x002D684E`-`0x002D687D`, `0x002D6E2C`-`0x002D6E4D`) |
 | `+0xDED` | `u8` | startHold | the Start presses still to swallow after an event skip: the event-skip task sets 3 when it ends (`0x00228210`), and the Start handler `0x002287D0`, with no event-skip task and no area controller, takes one off and does nothing else while it is above 0 (`0x0022884B`-`0x0022885E`) |
 | `+0xDEE` | `u8` | savedMusicVolume | the music volume to bring back when the menu closes: the mode-screen task stores the volume `0x002DE350` reports when it opens a menu and, when it is above 50, fades the music to 50 over 60 frames (`0x002DEE50`; `0x0027FEC8`-`0x0027FEF6`, `0x0027FF1C`-`0x0027FF4A`), otherwise stores 0; the Party Menu (`0x00281206`-`0x0028122D`) and the return to the menu (`0x002815A2`-`0x002815C1`) fade it back and clear this; `0x0027EFA0` clears it for a game over (`0x0027F00C`) |
-| `+0xDEF` | `u8` | modeScreenOpening | 1 while a mode screen is opening: set by the mode-screen task (`0x0027FDC0`, `0x0027FFBC`) and `0x0027EFA0` (`0x0027F01F`), cleared by the area controller (`0x00280292`); `0x00254A70` answers 1 while it is 0 (`0x00254A77`) (Screen fades) |
+| `+0xDEF` | `u8` | modeScreenOpening | 1 while a mode screen is opening: set by the mode-screen task (`0x0027FDC0`, `0x0027FFBC`) and `0x0027EFA0` (`0x0027F01F`), cleared by the area controller (`0x00280292`); `0x00254A70` returns it (`0x00254A77`) (Screen fades) |
 | `+0xDF0` | `i32` | openLength | the length of the screen's opening run: the mode-screen task stores 1 when the request word has bit `0x8000` and `0x100000000000000000000000000000000000000000000000000` otherwise (`0x0027FD83`-`0x0027FDAB`, through `0x002CC9F0`); `0x002CC9B0` returns it for the location map, the World Map, `0x005542D0` and `0x00581310` (`0x002BB194`, `0x005529F2`, `0x0055491D`, `0x00581333`), which hand it to `0x002CC960` or `0x002CC9C0` |
 | `+0xDF4` | `i32` | shopArenaPending | 1 after the mode-screen task opens a shop (`0x0027FCCE`): the area controller's message `0x12` then puts arena 11 back to mode 0 through `0x0024AB60` and clears this (`0x0028018B`-`0x002801A4`) (Resource arena) |
 | `+0xDF8` | `i32` | chosenEntry | the Party Menu entry chosen last, its menu_command.bin id: the Party Menu writes it (`0x00280E30`, `0x002810FC`); the Equip comparisons test it for Equip, `0x4B6` (`0x00293791`, `0x002943CA`, `0x00294F3E`, `0x00295554`, `0x00295ACB`) (Menus) |
@@ -637,7 +639,7 @@ The layout units of `layoutUnits` and the functions that read them:
 | `0x2` | a guest is in the party (record flag bit `0x2`, `0x002833E0`-`0x002833ED`) | the guest portrait (`0x002CE998`, `0x002CEAEB`) |
 | `0x4` | the party is riding a chocobo (`0x00303EE0`, `0x002832DC`-`0x002832F8`) | the member list, which refuses party changes with "You cannot change party members while mounted" (`0x0BE1`, `0x00285DEB`-`0x00285DF5`; `0x00284CD4`) |
 | `0x8` | an Esper is summoned (`0x003135E0`, `0x002832FE`-`0x0028331A`) | the member list ("You cannot remove a summoner with an active Esper from the party", `0x0BE2`, `0x00285DFC`-`0x00285E06`; `0x00284CDC`), `0x002830A0` (`0x002830AB`) and `0x002CF710` (`0x002CF717`) |
-| `0x10` | a member pick shows only the six main characters: the License Board pick sets it when it opens and clears it when it leaves (`0x00560A4E`, `0x005609CB`), the member-record panel sets it from its creation record (`0x002CC07E`-`0x002CC097`), and the name panel saves, clears and restores it (`0x002C153A`-`0x002C1581`) | the member steps (`0x0027ED47`, `0x0027EDEA`, `0x0027F3A2`-`0x0027F3C7`, `0x0027F486`) and the panels `0x002CBC50`, `0x002CC2A0`, `0x002CC660` (`0x002CBCDF`, `0x002CC31F`, `0x002CC392`, `0x002CC6FF`), which skip guests and members past id 5 |
+| `0x10` | a member pick shows only the six main characters: the License Board pick sets it when it opens and clears it when it leaves (`0x00560A4E`, `0x005609CB`), the member-record panel writes it as the inverse of bit `0x8` of its creation record's `+0x10` word (`0x002CC07E`-`0x002CC097`), and the name panel saves, clears and restores it (`0x002C153A`-`0x002C1581`) | the member steps (`0x0027ED47`, `0x0027EDEA`, `0x0027F3A2`-`0x0027F3C7`, `0x0027F486`) and the panels `0x002CBC50`, `0x002CC2A0`, `0x002CC660` (`0x002CBCDF`, `0x002CC31F`, `0x002CC392`, `0x002CC6FF`), which skip guests and members past id 5 |
 | `0x20` | bit `0x400` of the combined action availability mask `0x002E0FA0()`, set in towns ([Action availability](../Controls-And-Input/action-availability.md); `0x0028332E`-`0x00283348`) | no instruction tests it |
 
 `stepFlash` (`+0xDE9`), which step arrow flashes for 4 frames:

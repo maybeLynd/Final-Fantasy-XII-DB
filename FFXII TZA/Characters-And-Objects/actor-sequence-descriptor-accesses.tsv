@@ -1,4 +1,7 @@
 function	name	site	disp	kind	instruction	route	note
+0x00266530	ActorStorage_InitializeRecord	0x00266588	0x1	r	movzx edx, byte ptr [r11 + rax*4 + 0x1cec329]	image base 0x00120000 + sequence*4	
+0x00266AD0	-	0x00266B83	0x1	r	cmp byte ptr [r9 + rax*4 + 0x1cec329], 1	image base 0x00120000 + sequence*4	
+0x002679F0	ActorStorage_AllocateAndInitializeRecords	0x00267A41	0x2	r	movzx ecx, word ptr [rdx]	array 0x01E0C32A reg	
 0x002679F0	ActorStorage_AllocateAndInitializeRecords	0x00267AD0	0x0	r	movzx eax, byte ptr [r8]	array 0x01E0C328 reg	
 0x002679F0	ActorStorage_AllocateAndInitializeRecords	0x00267B0A	0x0	r	movzx eax, byte ptr [r8]	array 0x01E0C328 reg	
 0x002679F0	ActorStorage_AllocateAndInitializeRecords	0x00267B16	0x2	r	movzx eax, word ptr [r8 + 2]	array 0x01E0C328 reg	

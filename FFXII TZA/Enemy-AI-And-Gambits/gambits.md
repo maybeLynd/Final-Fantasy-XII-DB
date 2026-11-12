@@ -273,7 +273,7 @@ The gambit bank, `0x34` bytes, three per party member:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16[24]` | lines | twelve (condition, action) pairs; `0xFFFF` = empty (`0x00327E6B`-`0x00327E80`) |
-| `+0x30` | `u16` | enabled | bit i set: line i is on (`0x00327E60`-`0x00327E65`) |
+| `+0x30` | `u16` | enabled | bit value `1 << i` set: line i is on (`0x00327E60`-`0x00327E65`) |
 | `+0x32` | `u8` | count | number of line slots the menu shows, 0-12; setgambit_slotmax adds to it (`0x00327930`) |
 | `+0x33` | `u8` | pad33 | read and written by no instruction on its own; nothing fixes its width. It moves only inside the dword copies of `+0x30`-`+0x33`: bank to stats record `0x00234ED0` (`0x00234F30`, `0x00234F88`, `0x00234FE1`, `0x0023503A`, `0x0023509B`), the save image to a bank `0x00235AF0` (`0x00235BF8`), stats record to the three banks `0x00326030` (`0x00326095`, `0x003260CF`, `0x00326109`), `0x00327BE0` and `0x00327C40` (its bank lookup starts at `0x00327C60`) to a caller's copy (`0x00327C29`, `0x00327C9D`), a copy back to a bank `0x003282D0` (`0x00328347`), and the gambit screen's copy `0x005691E0` (`0x005695D5`) |
 

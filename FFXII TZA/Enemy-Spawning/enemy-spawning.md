@@ -14,8 +14,10 @@ forward half-circle, but almost every zone that cares replaces the band with som
 tighter, 5 to 12 units being the commonest, so monsters in those zones appear close.
 
 The first monsters you meet on entering a zone can stand anywhere, including right next to you:
-the minimum distance is switched off for a monster that has never been alive on this visit. Once
-it has lived once, or the zone script says so, every later placement is pushed out to the minimum.
+the minimum distance is switched off until the battle unit holding the monster has been activated once. The mark
+stays while the unit stays taken: releasing the unit, as the actor teardown does for every record whose byte `+0x14`
+is at least `0x80`, or taking it for a new monster clears it. Once it is set, or the zone script says so, every later
+placement of that unit is pushed out to the minimum.
 
 Walk far enough from a monster and it vanishes. The default range is 43 units, just outside the
 band it appeared in, and the distance is measured flat on the ground to the character you are
@@ -62,8 +64,8 @@ Seven globals steer placement. All are BSS, zero at load, and installed at run t
 | `0x02089364` | maximum spawn distance (f32) | `0x0023A520`: 42.0; `0x0023A1D0` | `0x00235720` |
 | `0x02089368` | retire range (f32) | `0x0023A520`: 43.0; `0x0023A1D0` | `0x002350C0` |
 | `0x0208D457` | placement attempts (u8, read signed) | `0x0023A520`: 1; `0x00239020` (verb `0x3038`, clamped below 1) | `0x00235720` |
-| `0x0208D458` | active cap (u8, read signed) | `0x002342F0`: 28 at every area entry while the battle system's up flag `0x02089300` is non-zero (`0x002342F4`, `0x0023433C`); verb `0x304E` (`0x00510320`) | `0x00235720` |
-| `0x0208936C` | return window, seconds (i32) | `0x002368D0`: 300; `0x00235340` (verb `0x306C`, negative restores 300) | `0x00233780` |
+| `0x0208D458` | active cap (u8, read signed) | `0x002342F0`: 28 at every area entry while the battle system's up flag `0x02089300` is non-zero (`0x002342F4`, `0x0023433C`); verb `0x304E` (`0x00510320`) | `0x00235720`, `0x00510360` (verb `0x304F`) |
+| `0x0208936C` | return window, seconds (i32) | `0x002368D0`: 300; `0x00235340` (verb `0x306C`, negative restores 300) | `0x00233780`, `0x00235330` (verb handler `0x00510810`) |
 
 `0x0023A520` is nine instructions (`0x0023A520`-`0x0023A561`): the three floats from `0x009146EC`,
 `0x009146F0` and `0x009146F4`, the arc and the attempt byte. Its only entry is the jump at `0x00510710`,
@@ -75,8 +77,9 @@ the handler of verb `0x3053` `btlAtelSetupActorStart`. Verb `0x300B` `btlAtelSet
 word has bit `0x200000`, the bit the bind sets; verb `0x3050` returns
 it and `0x304F` the cap byte.
 
-A zone that never runs the reset has every float at 0: the candidate generator refuses an empty
-band on its first test, and the mode-1 retire fires for every monster on its first frame. The
+A zone that never runs the reset keeps the floats the last reset or override left. Only before the first reset since
+the game started are they 0: the candidate generator then refuses an empty band on its first test, and the mode-1
+retire fires for every monster on its first frame. The
 shipped scripts never get there (Shipped data).
 
 ### Automatic placement
@@ -104,11 +107,15 @@ result: the winning lane, or -1. The selector:
 8. on a win it stores the position at the record's `+0x50` and `+0x60` as whole 16-byte moves
    (`0x00235A08`, `0x00235A0F`), sets unit flag bit `0x4000000` and returns the lane.
 
-Bit `0x2000000000000` is set once per unit by the activation `0x00233AD0` (`0x00233B8C`) and never cleared, not even by
-the unit reset `0x00236A60` (mask `0xFFFF7FFDFFE7FFFD`, [battle units](../Characters-And-Objects/battle-units.md));
-bit `0x200000000000` is set by verb `0x304D` `btlAtelCanselInitialSpawnFlag` (`0x005102D0`), which the zone scripts
-call on the fresh-placement branch. So the minimum applies to a monster that has lived once or
-that the script declared not an arrival placement.
+Bit `0x2000000000000` is set once per unit by the activation `0x00233AD0` (`0x00233B8C`). The unit reset `0x00236A60`
+keeps it (mask `0xFFFF7FFDFFE7FFFD`, [battle units](../Characters-And-Objects/battle-units.md)), but the slot release
+`0x00234200` zeroes the whole `0xF50`-byte unit (`0x002342C3`-`0x002342D3`), and the acquire `0x00234480` zeroes the unit
+it takes before it sets bit `0x1` (`0x002344C7`-`0x002344D7`). The actor teardown `0x0025B070` releases the unit at
+`+0x30` of each record whose byte `+0x14` is at least `0x80` (`0x0025B205`-`0x0025B225`).
+
+Bit `0x200000000000` is set by verb `0x304D` `btlAtelCanselInitialSpawnFlag` (`0x005102D0`), which the zone scripts
+call on the fresh-placement branch. So the minimum applies to a unit that has been activated since it was taken,
+or that the script declared not an arrival placement.
 
 ### Generating a candidate
 
@@ -286,7 +293,7 @@ It also writes
 
 Among those writes is the placement-height
 byte `+0x1F6`: 1 for a kind-0 stats record; for any other
-kind, or no stats record, from the definition record's byte `+0x18` (`[unit + 0xE68]`): 8 when bit
+kind, or no stats record, from the class row's byte `+0x18` (`[unit + 0xE68]`): 8 when bit
 `0x10` is set, else 2 when bit `0x20` is set, else 1, with 4 added when bit `0x40` is set. For a kind-1 unit with
 the probe bit it also stores `0x00236210(unit)` at `+0x188`, the vertical lift; otherwise `+0x188` = 0.
 
@@ -353,13 +360,14 @@ The scripts of each language tree call it with `(1, 0, 0)` 4,937 times and
 
 ### Range retirement
 
-The per-unit frame `0x00233F70` (the record's `+0x38` callback, [field runtime](../Characters-And-Objects/field-runtime.md))
+The per-unit frame `0x00233F70` (the actor record's `+0x38` callback, [field
+runtime](../Characters-And-Objects/field-runtime.md))
 calls `0x002350C0(actor)` at `0x00234022` for a bound unit with flag bits `0x8` and `0x10` whose status gate passes (the
 actor is the pointer at unit `+0x10`, `0x0023401E`; the frame first needs `0x002671C0()`, a loaded navigation dataset and
 unit flag bit `0x10000` clear, `0x00233F91`-`0x00233FBD`).
 
-`0x002350C0` returns 0 unless the record's `+0x0D` bit `0x40` is set (`0x002672F0`, the drive loop's "scheduled this pass"
-bit), the unit exists with a non-zero mode `+0x50`, its stats record has a non-zero kind byte, unit flag bit `0x10` is
+`0x002350C0` returns 0 unless the actor record's `+0x0D` bit `0x40` is set (`0x002672F0`, the drive loop's "scheduled this
+pass" bit), the unit exists with a non-zero mode `+0x50`, its stats record has a non-zero kind byte, unit flag bit `0x10` is
 set, the status words pass the `0x80000003` gate or the field waives it, and the record's flag bit `0x10` is clear.
 Then:
 
@@ -430,7 +438,7 @@ BattleUnit fields this page uses:
 | `+0x1F6` | `u8` | height mode: bit 0x8 = probe |  |
 | `+0x698` | `void*` |  | stats record (`+0x05` kind) |
 | `+0x6A0` | `void*` | spawn record |  |
-| `+0xE68` | `void*` | definition record |  |
+| `+0xE68` | `void*` | class row |  |
 
 Field format-class-0 record (`0x003DFD00`(0, id, rec)):
 
@@ -444,7 +452,7 @@ Field format-class-0 record (`0x003DFD00`(0, id, rec)):
 
 ## Shipped data
 
-Over the 1,114 zone scripts, every one of the 502 that defines a unit and every one of the 258
+Over the 769 zone scripts, every one of the 502 that defines a unit and every one of the 258
 that runs the automatic selector calls `btlAtelSetupActorStart` first, exactly once (515 scripts in
 all; 13 install the defaults and spawn nothing). What the overriding zones author:
 
@@ -541,11 +549,12 @@ draw.
   enforce it before the unit's first activation.
 - The arc is halved with an integer divide, so an odd arc loses half a degree and 180 means plus or
   minus 90.
-- Height is decided by the definition's byte `+0x18` bit `0x10` and the lift the definition supplies;
+- Height is decided by the class row's byte `+0x18` bit `0x10` and the lift `0x00236210` supplies;
   a monster sunk in the floor is a definition problem, not a placement one. The candidate y is
   uninitialised until the probe runs, and a missed probe places the monster at world height 0.
-- The attempt byte is stored unclamped above 1 and read signed: 0 and 128 to 255 skip every
-  attempt, 256 stores 0. The cap byte is also compared signed.
+- The attempt byte is stored unclamped above 1 and read signed. At 0 no attempt runs and the candidate is rejected
+(256 stores 0). At 128 to 255 no attempt runs and the candidate counts as accepted, so the lane wins with whatever
+the position buffer at `rsp + 0x60` held. The cap byte is also compared signed.
 - The distance test measures the steered character only, and the random path consumes the shared gameplay generator.
 
 ## Related

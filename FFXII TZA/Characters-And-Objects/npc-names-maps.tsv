@@ -379,6 +379,7 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 415	0x019F	Garif Youth	Asdalu	glf_a02	glf_a02	752	Lull of the Land	Jahara	1	ガリフ族の青年02
 415	0x019F	Garif Youth	Asdalu	hne_a07	hne_a07	718	Staging Shaft	Henne Mines	1	ガリフ青年_MF
 416	0x01A0	War-chief Supinelu	War-chief Supinelu	glf_a02	glf_a02	752	Lull of the Land	Jahara	1	戦士長
+416	0x01A0	War-chief Supinelu	War-chief Supinelu	ztc_a03	ztc_a03	578	Hourglass Basin	Zertinan Caverns	1	THIRD_ガリフ
 417	0x01A1	Garif Herder	Garif Herder	glf_a02	glf_a02	752	Lull of the Land	Jahara	3	酪農ガリフ01, 酪農ガリフ02, 酪農ガリフ04
 418	0x01A2	Garif Elder	Low-chief Sugumu	glf_a03	glf_a03	753	The Elderknoll	Jahara	1	ガリフ老人01
 419	0x01A3	Garif Craftsman	Garif Craftsman	glf_a02	glf_a02	752	Lull of the Land	Jahara	1	ガリフ族工芸家01
@@ -412,7 +413,7 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 434	0x01B2	Treasure	Treasure	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
 434	0x01B2	Treasure	Treasure	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
 434	0x01B2	Treasure	Treasure	asp_a03	asp_a03	126	Air Deck	Skyferry	1	treasure_00
-434	0x01B2	Treasure	Treasure	bds_a01	bds_a01	421	Hall of Effulgent Light	Necrohol of Nabudis	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	bds_a01	bds_a01	421	Hall of Effulgent Light	Necrohol of Nabudis	9	monster_05, treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
 434	0x01B2	Treasure	Treasure	bds_a02	bds_a02	422	Cloister of Distant Song	Necrohol of Nabudis	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
 434	0x01B2	Treasure	Treasure	bds_b01	bds_b01	426	Cloister of the Highborn	Necrohol of Nabudis	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
 434	0x01B2	Treasure	Treasure	bds_c01	bds_c01	430	Hall of the Ivory Covenant	Necrohol of Nabudis	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
@@ -429,6 +430,8 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 434	0x01B2	Treasure	Treasure	bog_b03	bog_b03	177	The Fog Mutters	Nabreus Deadlands	3	treasure_00, treasure_01, treasure_02
 434	0x01B2	Treasure	Treasure	bog_b05	bog_b05	179	Lifeless Strand	Nabreus Deadlands	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
 434	0x01B2	Treasure	Treasure	bog_b06	bog_b06	180	Field of the Fallen Lord	Nabreus Deadlands	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	bts_h01	bts_h01	80	no zone-script entry, so no field loads the script	-	1	monster_16
+434	0x01B2	Treasure	Treasure	bts_y01	bts_y01	107	no zone-script entry, so no field loads the script	-	1	たからばこ
 434	0x01B2	Treasure	Treasure	bts_z01	bts_z01	108	no zone-script entry, so no field loads the script	-	16	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12, treasure_13, treasure_14, treasure_15
 434	0x01B2	Treasure	Treasure	bul_a03	bul_a03	738	Temple Grounds	Mt Bur-Omisace	1	treasure_00
 434	0x01B2	Treasure	Treasure	dor_b01	dor_b01	286	Energy Transitarium	Draklor Laboratory	2	treasure_00, treasure_01
@@ -516,8 +519,9 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 434	0x01B2	Treasure	Treasure	grm_e07	grm_e07	844	No. 10 Channel	Garamsythe Waterway	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
 434	0x01B2	Treasure	Treasure	grm_e09	grm_e09	846	No. 3 Cloaca Spur	Garamsythe Waterway	3	treasure_00, treasure_01, treasure_02
 434	0x01B2	Treasure	Treasure	grm_e12	grm_e12	849	No. 4 Cloaca Spur	Garamsythe Waterway	3	treasure_00, treasure_01, treasure_02
-434	0x01B2	Treasure	Treasure	hne_a04	hne_a04	715	Phase 1 Dig	Henne Mines	13	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12
+434	0x01B2	Treasure	Treasure	hne_a04	hne_a04	715	Phase 1 Dig	Henne Mines	14	monster_07, treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12
 434	0x01B2	Treasure	Treasure	hne_a05	hne_a05	716	Crossover A	Henne Mines	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	hne_a08	hne_a08	719	Crossover B	Henne Mines	2	monster_06, monster_07
 434	0x01B2	Treasure	Treasure	hne_c01	hne_c01	725	Phase 2 Dig	Henne Mines	15	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12, treasure_13, treasure_14
 434	0x01B2	Treasure	Treasure	hne_c02	hne_c02	726	Crossover C	Henne Mines	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
 434	0x01B2	Treasure	Treasure	hne_c04	hne_c04	728	Phase 2 Shaft	Henne Mines	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
@@ -525,15 +529,15 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 434	0x01B2	Treasure	Treasure	lus_a01	lus_a01	357	Shaft Entry	Lhusu Mines	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
 434	0x01B2	Treasure	Treasure	lus_a02	lus_a02	358	Oltam Span	Lhusu Mines	3	treasure_00, treasure_01, treasure_02
 434	0x01B2	Treasure	Treasure	lus_a03	lus_a03	359	Transitway 1	Lhusu Mines	3	treasure_00, treasure_01, treasure_02
-434	0x01B2	Treasure	Treasure	lus_b01	lus_b01	365	Shunia Twinspan	Lhusu Mines	3	treasure_00, treasure_01, treasure_02
-434	0x01B2	Treasure	Treasure	lus_b03	lus_b03	367	Site 3	Lhusu Mines	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	lus_b01	lus_b01	365	Shunia Twinspan	Lhusu Mines	5	monster_06, monster_07, treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	lus_b03	lus_b03	367	Site 3	Lhusu Mines	11	monster_01, monster_02, monster_03, treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
 434	0x01B2	Treasure	Treasure	lus_d01	lus_d01	372	Site 9	Lhusu Mines	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
-434	0x01B2	Treasure	Treasure	lus_d03	lus_d03	374	Site 11	Lhusu Mines	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	lus_d03	lus_d03	374	Site 11	Lhusu Mines	8	monster_07, treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
 434	0x01B2	Treasure	Treasure	lus_e01	lus_e01	376	Site 7	Lhusu Mines	1	treasure_00
 434	0x01B2	Treasure	Treasure	lus_f01	lus_f01	901	Lasche Span	Lhusu Mines	1	treasure_00
 434	0x01B2	Treasure	Treasure	lus_f02	lus_f02	902	Site 5	Lhusu Mines	12	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11
 434	0x01B2	Treasure	Treasure	lus_f03	lus_f03	903	Site 6 South	Lhusu Mines	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
-434	0x01B2	Treasure	Treasure	lus_f04	lus_f04	904	Site 6 North	Lhusu Mines	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	lus_f04	lus_f04	904	Site 6 North	Lhusu Mines	8	monster_00, monster_01, monster_02, monster_03, monster_04, monster_05, treasure_00, treasure_01
 434	0x01B2	Treasure	Treasure	lus_f05	lus_f05	905	Staging Area	Lhusu Mines	1	treasure_00
 434	0x01B2	Treasure	Treasure	lus_g01	lus_g01	933	Site 2	Lhusu Mines	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
 434	0x01B2	Treasure	Treasure	mfr_a01	mfr_a01	539	Walk of Flitting Rifts	The Feywood	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
@@ -550,14 +554,14 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 434	0x01B2	Treasure	Treasure	mic_a04	mic_a04	56	Special Op Sector 3	Barheim Passage	3	treasure_00, treasure_01, treasure_02
 434	0x01B2	Treasure	Treasure	mic_a05	mic_a05	57	Op Sector 37	Barheim Passage	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
 434	0x01B2	Treasure	Treasure	mic_a06	mic_a06	58	Op Sector 29	Barheim Passage	3	treasure_00, treasure_01, treasure_02
-434	0x01B2	Treasure	Treasure	mic_b01	mic_b01	61	Great Central Passage	Barheim Passage	4	treasure_00, treasure_01, treasure_02, treasure_03
-434	0x01B2	Treasure	Treasure	mic_b02	mic_b02	62	The Zeviah Subterrane	Barheim Passage	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	mic_b01	mic_b01	61	Great Central Passage	Barheim Passage	7	treasure_00, treasure_01, treasure_02, treasure_03, unique_00, unique_01, unique_02
+434	0x01B2	Treasure	Treasure	mic_b02	mic_b02	62	The Zeviah Subterrane	Barheim Passage	10	monster_02, treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
 434	0x01B2	Treasure	Treasure	mic_d01	mic_d01	71	Terminus No. 7	Barheim Passage	2	treasure_00, treasure_01
-434	0x01B2	Treasure	Treasure	mic_e01	mic_e01	891	East-West Bypass	Barheim Passage	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
-434	0x01B2	Treasure	Treasure	mic_e02	mic_e02	892	The Zeviah Span	Barheim Passage	12	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11
+434	0x01B2	Treasure	Treasure	mic_e01	mic_e01	891	East-West Bypass	Barheim Passage	8	monster_03, monster_04, monster_05, treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	mic_e02	mic_e02	892	The Zeviah Span	Barheim Passage	13	monster_00, treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11
 434	0x01B2	Treasure	Treasure	mic_e03	mic_e03	893	West Annex	Barheim Passage	13	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12
 434	0x01B2	Treasure	Treasure	mic_e04	mic_e04	894	Terminus No. 7 Adjunct	Barheim Passage	1	treasure_00
-434	0x01B2	Treasure	Treasure	mic_e05	mic_e05	895	Special Op Sector 5	Barheim Passage	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	mic_e05	mic_e05	895	Special Op Sector 5	Barheim Passage	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, unique_monster_00
 434	0x01B2	Treasure	Treasure	mnt_a01	mnt_a01	209	Southern Skirts	Mosphoran Highwaste	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
 434	0x01B2	Treasure	Treasure	mnt_a02	mnt_a02	210	Summit Path	Mosphoran Highwaste	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
 434	0x01B2	Treasure	Treasure	mnt_b01	mnt_b01	215	Rays of Ashen Light	Mosphoran Highwaste	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
@@ -580,7 +584,7 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 434	0x01B2	Treasure	Treasure	nal_c01	nal_c01	709	The Black Watch	Nalbina Dungeons	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
 434	0x01B2	Treasure	Treasure	nal_c02	nal_c02	710	The Confiscatory	Nalbina Dungeons	3	treasure_00, treasure_01, treasure_02
 434	0x01B2	Treasure	Treasure	ozm_a01	ozm_a01	525	Field of Fallen Wings	Ozmone Plain	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
-434	0x01B2	Treasure	Treasure	ozm_a02	ozm_a02	526	The Switchback	Ozmone Plain	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	ozm_a02	ozm_a02	526	The Switchback	Ozmone Plain	9	FH_ozm_ミミック, treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
 434	0x01B2	Treasure	Treasure	ozm_a03	ozm_a03	527	Haulo Green	Ozmone Plain	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
 434	0x01B2	Treasure	Treasure	ozm_b01	ozm_b01	530	Dagan Flats	Ozmone Plain	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
 434	0x01B2	Treasure	Treasure	ozm_b02	ozm_b02	531	Field of Light Winds	Ozmone Plain	2	treasure_00, treasure_01
@@ -606,7 +610,7 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 434	0x01B2	Treasure	Treasure	pre_a01	pre_a01	109	no zone-script entry, so no field loads the script	-	12	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11
 434	0x01B2	Treasure	Treasure	pre_b01	pre_b01	114	no zone-script entry, so no field loads the script	-	12	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11
 434	0x01B2	Treasure	Treasure	rbl_a01	rbl_a01	1101	The Wellspring	Pharos - First Ascent	2	treasure_00, treasure_01
-434	0x01B2	Treasure	Treasure	rbl_b01	rbl_b01	1111	Wellspring Labyrinth	Pharos - First Ascent	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	rbl_b01	rbl_b01	1111	Wellspring Labyrinth	Pharos - First Ascent	8	monster_05, treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
 434	0x01B2	Treasure	Treasure	rbl_d01	rbl_d01	1115	Wellspring Ravel - 1st Flight	Pharos - First Ascent	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
 434	0x01B2	Treasure	Treasure	rbl_d02	rbl_d02	1116	Wellspring Ravel - 2nd Flight	Pharos - First Ascent	4	treasure_00, treasure_01, treasure_02, treasure_03
 434	0x01B2	Treasure	Treasure	rbl_e01	rbl_e01	1118	Wellspring Ravel - 3rd Flight	Pharos - First Ascent	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
@@ -804,7 +808,7 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 443	0x01BB	Tomb Crystal	Tomb Crystal	rwg_a01	rwg_a01	403	Valley of the Dead	The Tomb of Raithwall	1	system_crystal_actor
 444	0x01BC	Mosphoran Crystal	Mosphoran Crystal	mnt_d01	mnt_d01	1151	Babbling Vale	Mosphoran Highwaste	1	system_crystal_actor
 445	0x01BD	Salika Crystal	Salika Crystal	frs_b01	frs_b01	157	Quietened Trace	The Salikawood	1	system_crystal_actor
-446	0x01BE	Nabreus Crystal	Nabreus Crystal	bog_b02	bog_b02	176	Succor Midst Sorrow	Nabreus Deadlands	1	system_crystal_actor
+446	0x01BE	Nabreus Crystal	Nabreus Crystal	bog_b02	bog_b02	176	Succor Midst Sorrow	Nabreus Deadlands	2	system_crystal_actor, unique_monster_00
 447	0x01BF	Jahara Crystal	Jahara Crystal	glf_a01	glf_a01	751	Banks of the Sogoht	Jahara	1	system_crystal_actor
 448	0x01C0	Henne Crystal	Henne Crystal	hne_a07	hne_a07	718	Staging Shaft	Henne Mines	1	system_crystal_actor
 449	0x01C1	Golmore Crystal	Golmore Crystal	gol_a04	gol_a04	450	The Parting Glade	Golmore Jungle	1	system_crystal_actor
@@ -818,6 +822,7 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 457	0x01C9	Archades Crystal	Archades Crystal	alc_c01	alc_c01	756	Tsenoble	Archades	1	system_crystal_actor
 458	0x01CA	Balfonheim Crystal	Balfonheim Crystal	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	1	system_crystal_actor
 459	0x01CB	Ridorana Crystal	Ridorana Crystal	rbl_a01	rbl_a01	1101	The Wellspring	Pharos - First Ascent	1	system_crystal_actor
+467	0x01D3	Life Crystal	Life Crystal	mrm_d03	mrm_d03	608	Walk of Revelation	Stilshrine of Miriam	1	Unique_00
 468	0x01D4	Urn	Urn	bog_a03	bog_a03	169	Vale of Lingering Sorrow	Nabreus Deadlands	1	死都ナブディス地図
 468	0x01D4	Urn	Urn	ene_a01	ene_a01	379	Platform 1 - East Tanks	Ogir-Yensa Sandsea	2	東エンサ地図ゲット宝壺, 西エンサ地図ゲット宝壺
 468	0x01D4	Urn	Urn	frs_a02	frs_a02	152	Trunkwall Road	The Salikawood	1	サリカ樹林地図
@@ -888,7 +893,7 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 469	0x01D5	Save Crystal	Save Crystal	rrp_a01	rrp_a01	567	Cellar Stores	Royal Palace	1	system_crystal_actor
 469	0x01D5	Save Crystal	Save Crystal	rsn_a01	rsn_a01	552	Port Launch	Dreadnought Leviathan	1	system_crystal_actor
 469	0x01D5	Save Crystal	Save Crystal	rsn_y01	rsn_y01	876	Brig No. 1	Dreadnought Leviathan	1	system_crystal_actor
-469	0x01D5	Save Crystal	Save Crystal	rui_a03	rui_a03	186	The Acolyte's Burden	Sochen Cave Palace	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	rui_a03	rui_a03	186	The Acolyte's Burden	Sochen Cave Palace	2	system_crystal_actor, unique_monster_00
 469	0x01D5	Save Crystal	Save Crystal	rwf_a01	rwf_a01	509	Footfalls of the Past	Ridorana Cataract	1	system_crystal_actor
 469	0x01D5	Save Crystal	Save Crystal	rwf_b02	rwf_b02	518	Path of Hidden Blessing	Ridorana Cataract	1	system_crystal_actor
 469	0x01D5	Save Crystal	Save Crystal	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	system_crystal_actor
@@ -1194,6 +1199,7 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 830	0x033E	Reddas Freewoman	Reddas Freewoman	var_a13	var_a13	835	Port Villa	Balfonheim Port	1	NPC01 (clip_show, person 4)
 831	0x033F	World-weary Woman	World-weary Woman	var_a14	var_a14	836	The Whitecap	Balfonheim Port	1	NPC01 (clip_show, person 13)
 832	0x0340	Bangaa in His Cups	Bangaa in His Cups	var_a14	var_a14	836	The Whitecap	Balfonheim Port	1	NPC01 (clip_show, person 9)
+833	0x0341	Viera Wayfarer	Viera Wayfarer	srb_b04	srb_b04	506	The Northsward	Cerobi Steppe	1	THIRD_ヴィエラ
 833	0x0341	Viera Wayfarer	Viera Wayfarer	var_a14	var_a14	836	The Whitecap	Balfonheim Port	1	NPC01 (clip_show, person 15)
 834	0x0342	Whitecap Wench	Whitecap Wench	var_a14	var_a14	836	The Whitecap	Balfonheim Port	1	NPC01 (clip_show, person 1)
 835	0x0343	Quay Rat	Quay Rat	var_a14	var_a14	836	The Whitecap	Balfonheim Port	1	NPC01 (clip_show, person 4)
@@ -1284,6 +1290,7 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 931	0x03A3	Archadian Ardent	Hopeful Writer	alc_b06	alc_b06	643	Bulward's Technicks	Archades	1	NPC01 (clip_show, person 3)
 932	0x03A4	Archadian Gentry	Hesitant Man	alc_b06	alc_b06	643	Bulward's Technicks	Archades	1	NPC01 (clip_show, person 4)
 933	0x03A5	Archadian Ardent	Insecure Seeq	alc_b06	alc_b06	643	Bulward's Technicks	Archades	1	NPC01 (clip_show, person 5)
+933	0x03A5	Archadian Ardent	Insecure Seeq	rui_a04	rui_a04	187	Doubt Abandoned	Sochen Cave Palace	1	THIRD_シーク
 934	0x03A6	Archadian Gentry	Eager Learner	alc_b06	alc_b06	643	Bulward's Technicks	Archades	1	NPC01 (clip_show, person 2)
 935	0x03A7	Archadian Gentry	Quiet Woman	alc_c01	alc_c01	756	Tsenoble	Archades	1	NPC_WEB_11
 938	0x03AA	Archadian Gentry	Imperious Man	alc_c01	alc_c01	756	Tsenoble	Archades	1	NPC_WEB_15
@@ -1514,6 +1521,7 @@ name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	
 1105	0x0451	Laid-back Seeq	Laid-back Seeq	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	情報屋02
 1106	0x0452	Well-informed Bangaa	Well-informed Bangaa	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	情報屋03
 1107	0x0453	Bhujerban	Bhujerban	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+1108	0x0454	???	???	grm_b02	grm_b02	319	East Sluice Control	Garamsythe Waterway	1	THIRD_アルマ
 1109	0x0455	Miners' Ender	Miners' Ender	byu_a03	byu_a03	805	Miners' End	Bhujerba	1	NPC01
 1110	0x0456	Miners' Ender Kid	Miners' Ender Kid	byu_a03	byu_a03	805	Miners' End	Bhujerba	1	NPC01
 1111	0x0457	Bhujerban Guru	Bhujerban Guru	byu_a03	byu_a03	805	Miners' End	Bhujerba	1	NPC01

@@ -287,7 +287,7 @@ body: +0x80 u16 animation mode   +0xC8 f32 animation rate   +0x110 u32 motion fl
 | dead zone, floor, band widths | 50.0; 0.1; 0.2, 0.7, 0.05, 1.0 (read from the image at `0x01EF9220`-`0x01EF9234`) |
 | frame scales | `0x01DFE0B8` = 1.0, `0x01DFE0BC` = 1.0, `0x01DFE0B4` = 1 in the image |
 | turn per tick | `pi/8` (`0.3927`), and 0.25 for the basis bearing |
-| `debug_setdebugpc`, `debug_TkRequireUCPCMoveLockStatus` | no calls in the 1,114 zone scripts |
+| `debug_setdebugpc`, `debug_TkRequireUCPCMoveLockStatus` | no calls in the 1,114 `us` scripts, zone and event |
 | `setuclockstatus` | 3 calls in 1 zone script |
 | `setucpcmovelockstatus` | 6 calls in 1 zone script |
 

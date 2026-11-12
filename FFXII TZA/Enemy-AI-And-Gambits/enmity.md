@@ -21,8 +21,8 @@ Every enemy remembers how much each party member has bothered it.
 - **Enemies act on it.** Enemy AI orders can pick the party member the enemy hates most.
 
 How much an action changes enmity is set in that action's own definition row: one number for the target, one spread to
-other enemies already holding a grudge, and one taken off the target's enmity toward the rest of the party. Only party
-members' actions create enmity, and only enemies hold it.
+other enemies already holding a grudge, and one taken off the target's enmity toward the rest of the party. Among actions, only party members' create enmity; an enemy's own orders `0x4163` and `0x4164` raise its enmity toward
+the active party too. Only enemies hold it.
 
 ## How it works
 
@@ -144,7 +144,8 @@ enemy is null or has no table (`0x0032163E`, `0x0032165B`), and when the list is
 - An action's enmity is the three bytes `+0x1D`, `+0x1F` and `+0x20` of its row; an action with all three
   at 0 leaves the table alone.
 - The decay step and interval are `-10` (`0x0032159F`) and the 30.0 at `0x008F8D80`, shared with other code.
-- Only party records generate enmity, and only enemy-table units hold it.
+- Of actions, only a party record's generate enmity; an enemy's orders `0x4163` and `0x4164` raise its own table, and
+  only enemy-table units hold one.
 
 ## Related
 

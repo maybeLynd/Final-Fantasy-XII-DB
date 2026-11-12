@@ -238,7 +238,7 @@ reads it.
 | `0x022CBB2C` | `u8` | 0 | 150: the percentage applied to a request's pan width `+0x1B` (`0x003618D4`-`0x003618EB`) | `0x00362F70` (`0x00363102`) | `0x00361810` (`0x00361868`) |
 
 `0x00361810` skips both behind-the-listener steps and uses 100 instead of `0x022CBB2C` while `0x002DEBF0` answers 2 (the
-word `0x0215EF48`, `0x00361858`-`0x00361866`, `0x00361B3B`-`0x00361B43`).
+dword `0x0215EF48`, `0x00361858`-`0x00361866`, `0x00361B3B`-`0x00361B43`).
 
 ### The listener's place
 

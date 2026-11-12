@@ -110,9 +110,10 @@ word `+0x30` the same way, and stores `+0x6E0` = `0x02089378 + index * 0x170`, `
 
 Both paths end with: `+0x48` = 0 (the HP floor), `+0x698` = the stats record, `+0x6A0` = the spawn
 record or null, `+0x18` = the name text, `+0x54` = `0xFF`, then `0x00237040(unit)` and
-`0x002FEAB0(unit)`. When the stats record is null, or its status words `+0x3C | +0x64` carry bits `0x1`, `0x2`
-or `0x80000000` outside a town (`0x00377C20`, tested by `0x002FEAB0` at `0x002FEAF3`), flag bit `0x4000000` is
-cleared and bit `0x2` set. Bit `0x4` is set and the
+`0x002FEAB0(unit)`, which clears the 8 bytes at `+0xEAC`. When the stats record is null, or the OR of its status words
+`+0x3C` and `+0x64` carries bits `0x1`, `0x2` or `0x80000000` outside a town (`0x0023AC29`-`0x0023AC49`, through the jump
+`0x00313F60`
+to `0x00377C20`), flag bit `0x4000000` is cleared and bit `0x2` set. Bit `0x4` is set and the
 installer returns 1.
 
 ### The fresh stats record
@@ -124,9 +125,9 @@ installer returns 1.
 2. kind 0 takes the party row and the level `max(row byte +0x2E, 1)`; kind 1 takes the enemy row and
    level 1; any other kind returns 0;
 3. `+0x04` = the whole id, so the byte `+0x05` is the kind by construction; then the level grower
-   `0x0030C470(record, level, kind)`;
+   `0x0030C470(record, level, baseLevel)`;
 4. kind 0: the LP `0x00323790(record, row word +0x44)`; for an index below 7, every licence entry of
-   `0x02EBF038` whose byte `+0x07` has bit `index` set is granted (`0x00323910(record, entry, 1)`);
+   `0x02EBF038` whose byte `+0x07` has the bit `1 << index` set is granted (`0x00323910(record, entry, 1, 1)`);
 5. kind 0: equipment slots 0-4 from the row's words `+0x0A`, `+0x0C`, `+0x0E`, `+0x10`, `+0x12`
    (`0x0031A630`); the gambit preset `0x00327CB0(record, row word +0x14)`, `0x00326030([0x02EBF190], index)`
    and `0x00327DE0([0x02EBF190] + 8 + index * 0x1C8)`; and record `+0x00` bit `0x4` when the row's byte
@@ -135,13 +136,15 @@ installer returns 1.
 
 ### The level grower
 
-`0x0030C470(record, level, kind)` starts from level 0 and grows up:
+`0x0030C470(record, level, baseLevel)` starts from level 0 and grows up:
 
-1. `+0x1C2` = 0; for kind 0 the base values come from the party row named by `+0x04`: `+0x08` =
-   word `+0x16`, `+0x0C` = word `+0x1A`, `+0x10`, `+0x14`, `+0x18`, `+0x1C` = the floats of bytes
-   `+0x1E`, `+0x21`, `+0x24`, `+0x27`, `+0x20` = the larger of byte `+0x46` and the licence rank
-   `0x00324100(record)`; for kind 1 only `+0x88` = the kind argument (1 from the initialiser); any
-   other kind returns;
+1. `+0x1C2` = 0, then by kind:
+   - kind 0: the base values come from the party row named by `+0x04`: `+0x08` = word `+0x16`, `+0x0C` = word
+     `+0x1A`, `+0x10`, `+0x14`, `+0x18`, `+0x1C` = the floats of bytes `+0x1E`, `+0x21`, `+0x24`, `+0x27`, `+0x20` =
+     the larger of byte `+0x46` and the licence rank `0x00324100(record)`;
+   - kind 1: only `+0x88` = `baseLevel` (1 from the initialiser, the minimum level from `0x002398F0`, 0 from the four
+     other callers);
+   - any other kind returns;
 2. `0x0030C650(record, level, 2)` grows to the level ([stat growth per level](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md));
 3. `+0x18C` = `min(0x002F8F20(level - 1), 99999999)`, the experience of the level reached
    ([EXP, LP and level ups](../Rewards-EXP-Gil-And-Loot/exp-lp-and-level-ups.md));

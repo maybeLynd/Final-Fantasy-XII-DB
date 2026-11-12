@@ -35,7 +35,7 @@ ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	48	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	48	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	50	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	2	400	32	yes	6854585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	50	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	108	2	256	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	51	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191522	19	menu_expansion.bin	288	{ex00}	ok
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	51	2	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	0	360	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	51	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191523	19	menu_expansion.bin	289	{ex00}	ok
@@ -47,7 +47,7 @@ ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	55	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	56	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	0	0	992	40	yes	80808080	100	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	57	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	32	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	57	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	-2	560	48	yes	80808080	100	19	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	58	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	-4	400	32	yes	6C54585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	58	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp	-	59	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	40	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
@@ -101,7 +101,7 @@ ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	3	7	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	3	9	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	652	88	64	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	3	10	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	216	168	102	40	yes	58808080	85	0	4	191009	19	menu_expansion.bin	209	{ex00}New	ok
 ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	3	12	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	396	164	272	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	798	175	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	798	175	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	3	14	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	720	175	18	40	yes	80808080	88	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	3	16	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	396	165	320	36	yes	80808080	100	0	0	23017	2	menu_message.bin	133	{color:83C0C0C0}You lack the necessary license.{color:809B}	ok
 ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	5	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	12	0	320	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -119,13 +119,13 @@ ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	9	6	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	10	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	10	6	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	666	26	80	32	yes	5A808080	70	16	4	190332	19	menu_expansion.bin	71	{ex00}PRICE	ok
 ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	11	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	52	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	12	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	0	376	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	12	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	457	9	150	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
-ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	12	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	770	9	176	40	yes	70808080	100	16	5	191416	19	menu_expansion.bin	264	{ex00}{ex-int:0769002C}	ok
-ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	654	9	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	654	9	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	13	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	0	376	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	13	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	598	9	160	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
 ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp	-	14	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	0	320	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -183,7 +183,7 @@ ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	48	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	48	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	50	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	2	400	32	yes	6854585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	50	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	108	2	256	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	51	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191522	19	menu_expansion.bin	288	{ex00}	ok
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	51	2	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	0	360	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	51	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191523	19	menu_expansion.bin	289	{ex00}	ok
@@ -195,7 +195,7 @@ ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	55	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	56	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	0	0	992	40	yes	80808080	100	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	57	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	32	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	57	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	-2	560	48	yes	80808080	100	19	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	58	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	-4	400	32	yes	6C54585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	58	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp	-	59	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	40	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
@@ -249,7 +249,7 @@ ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	3	7	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	3	9	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	652	88	64	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	3	10	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	216	168	102	40	yes	58808080	85	0	4	191009	19	menu_expansion.bin	209	{ex00}New	ok
 ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	3	12	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	396	164	272	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	798	175	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	798	175	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	3	14	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	720	175	18	40	yes	80808080	88	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	3	16	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	396	165	320	36	yes	80808080	100	0	0	23017	2	menu_message.bin	133	{color:83C0C0C0}You lack the necessary license.{color:809B}	ok
 ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	5	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	12	0	320	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -267,13 +267,13 @@ ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	9	6	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	10	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	10	6	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	666	26	80	32	yes	5A808080	70	16	4	190332	19	menu_expansion.bin	71	{ex00}PRICE	ok
 ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	11	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	52	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	12	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	0	376	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	12	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	457	9	150	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
-ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	12	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	770	9	176	40	yes	70808080	100	16	5	191416	19	menu_expansion.bin	264	{ex00}{ex-int:0769002C}	ok
-ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	654	9	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	654	9	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	13	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	0	376	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	13	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	598	9	160	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
 ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp	-	14	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	0	320	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -331,7 +331,7 @@ ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	48	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	48	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	50	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	2	400	32	yes	6854585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	50	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	108	2	256	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	51	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191522	19	menu_expansion.bin	288	{ex00}	ok
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	51	2	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	0	360	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	51	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191523	19	menu_expansion.bin	289	{ex00}	ok
@@ -343,7 +343,7 @@ ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	55	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	56	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	0	0	1112	40	yes	80808080	100	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	57	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	32	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	57	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	-2	560	48	yes	80808080	100	19	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	58	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	-4	400	32	yes	6C54585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	58	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp	-	59	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	40	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
@@ -397,7 +397,7 @@ ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	3	7	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	3	9	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	652	88	64	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	3	10	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	216	168	102	40	yes	58808080	85	0	4	191009	19	menu_expansion.bin	209	{ex00}New	ok
 ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	3	12	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	396	164	272	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	868	175	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	868	175	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	3	14	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	750	175	18	40	yes	80808080	88	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	3	16	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	396	165	320	36	yes	80808080	100	0	0	23017	2	menu_message.bin	133	{color:83C0C0C0}You lack the necessary license.{color:809B}	ok
 ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	5	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	12	0	320	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -415,13 +415,13 @@ ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	9	6	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	10	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	10	6	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	866	26	80	32	yes	5A808080	70	16	4	190332	19	menu_expansion.bin	71	{ex00}PRICE	ok
 ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	11	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	52	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	12	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	-4	376	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	680	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	680	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	12	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	487	9	150	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
-ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	680	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	680	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	12	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	800	9	176	40	yes	70808080	100	16	5	191416	19	menu_expansion.bin	264	{ex00}{ex-int:0769002C}	ok
-ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	684	7	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	684	7	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	13	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	-4	376	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	13	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	748	9	160	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
 ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp	-	14	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	-4	320	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -480,7 +480,7 @@ ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	48	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	48	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	50	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	2	400	32	yes	6854585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	50	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	108	2	256	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	51	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191522	19	menu_expansion.bin	288	{ex00}	ok
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	51	2	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	0	360	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	51	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191523	19	menu_expansion.bin	289	{ex00}	ok
@@ -492,7 +492,7 @@ ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	55	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	56	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	0	0	1112	40	yes	80808080	100	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	57	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	32	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	57	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	-2	560	48	yes	80808080	100	19	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	58	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	-4	400	32	yes	6C54585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	58	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp	-	59	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	40	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
@@ -546,7 +546,7 @@ ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	3	7	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	3	9	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	652	88	64	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	3	10	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	216	168	102	40	yes	58808080	85	0	4	191009	19	menu_expansion.bin	209	{ex00}New	ok
 ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	3	12	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	396	164	272	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	888	176	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	888	176	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	3	14	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	750	175	18	40	yes	80808080	88	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	3	16	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	160	165	800	36	yes	80808080	100	0	0	23017	2	menu_message.bin	133	{color:83C0C0C0}You lack the necessary license.{color:809B}	ok
 ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	5	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	12	0	320	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -564,13 +564,13 @@ ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	9	6	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	10	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	10	6	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	866	26	80	32	yes	5A808080	70	16	4	190332	19	menu_expansion.bin	71	{ex00}PRICE	ok
 ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	11	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	52	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	12	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	-4	376	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	680	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	680	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	12	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	487	9	150	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
-ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	680	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	680	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	12	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	800	9	176	40	yes	70808080	100	16	5	191416	19	menu_expansion.bin	264	{ex00}{ex-int:0769002C}	ok
-ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	684	7	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	684	7	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	13	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	-4	376	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	13	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	768	9	160	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
 ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp	-	14	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	-4	320	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -629,7 +629,7 @@ ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	48	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	48	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	50	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	2	400	32	yes	6854585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	50	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	108	2	256	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	51	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191522	19	menu_expansion.bin	288	{ex00}	ok
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	51	2	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	0	360	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	51	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191523	19	menu_expansion.bin	289	{ex00}	ok
@@ -641,7 +641,7 @@ ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	55	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	56	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	0	0	1112	40	yes	80808080	100	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	57	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	32	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	57	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	-2	560	48	yes	80808080	100	19	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	58	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	-4	400	32	yes	6C54585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	58	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp	-	59	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	40	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
@@ -695,7 +695,7 @@ ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	3	7	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	3	9	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	652	88	64	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	3	10	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	216	168	102	40	yes	58808080	85	0	4	191009	19	menu_expansion.bin	209	{ex00}New	ok
 ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	3	12	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	396	164	272	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	868	175	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	868	175	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	3	14	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	750	175	18	40	yes	80808080	88	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	3	16	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	396	165	320	36	yes	80808080	100	0	0	23017	2	menu_message.bin	133	{color:83C0C0C0}You lack the necessary license.{color:809B}	ok
 ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	5	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	12	0	320	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -713,13 +713,13 @@ ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	9	6	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	10	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	10	6	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	866	26	80	32	yes	5A808080	70	16	4	190332	19	menu_expansion.bin	71	{ex00}PRICE	ok
 ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	11	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	52	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	12	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	-4	376	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	680	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	680	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	12	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	487	9	150	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
-ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	680	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	680	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	12	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	800	9	176	40	yes	70808080	100	16	5	191416	19	menu_expansion.bin	264	{ex00}{ex-int:0769002C}	ok
-ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	684	7	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	684	7	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	13	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	-4	376	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	13	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	748	9	160	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
 ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp	-	14	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	-4	320	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -778,7 +778,7 @@ ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	48	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	48	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	50	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	2	400	32	yes	6854585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	50	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	108	2	256	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	51	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191522	19	menu_expansion.bin	288	{ex00}	ok
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	51	2	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	0	360	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	51	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191523	19	menu_expansion.bin	289	{ex00}	ok
@@ -790,7 +790,7 @@ ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	55	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	56	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	0	0	992	40	yes	80808080	100	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	57	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	32	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	57	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	-2	560	48	yes	80808080	100	19	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	58	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	-4	400	32	yes	6C54585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	58	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp	-	59	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	40	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
@@ -844,7 +844,7 @@ ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	3	7	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	3	9	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	652	88	64	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	3	10	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	216	168	102	40	yes	58808080	85	0	4	191009	19	menu_expansion.bin	209	{ex00}New	ok
 ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	3	12	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	396	164	272	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	798	175	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	798	175	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	3	14	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	720	175	18	40	yes	80808080	88	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	3	16	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	396	165	320	36	yes	80808080	100	0	0	23017	2	menu_message.bin	133	{color:83C0C0C0}You lack the necessary license.{color:809B}	ok
 ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	5	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	12	0	320	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -862,13 +862,13 @@ ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	9	6	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	10	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	10	6	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	666	26	80	32	yes	5A808080	70	16	4	190332	19	menu_expansion.bin	71	{ex00}PRICE	ok
 ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	11	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	52	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	12	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	0	376	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	12	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	457	9	150	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
-ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	12	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	770	9	176	40	yes	70808080	100	16	5	191416	19	menu_expansion.bin	264	{ex00}{ex-int:0769002C}	ok
-ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	654	9	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	654	9	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	13	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	0	376	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	13	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	598	9	160	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
 ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp	-	14	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	0	320	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -927,7 +927,7 @@ ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	48	0	5	party_book
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	48	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	126	0	200	16	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	50	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	2	1	200	16	yes	6854585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	50	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	54	1	128	16	yes	80808080	88	1	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	193	1	32	16	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	193	1	32	16	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	51	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	8	3	128	16	yes	785A5A5A	100	16	1	191522	19	menu_expansion.bin	288	{ex00}	ok
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	51	2	5	party_book.mrp	the Clan Primer back panel 0x00574E80	27	0	180	20	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	51	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	8	3	128	16	yes	785A5A5A	100	16	1	191523	19	menu_expansion.bin	289	{ex00}	ok
@@ -939,7 +939,7 @@ ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	55	0	5	party_book
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	56	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	0	0	394	20	yes	80808080	100	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	57	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	2	200	16	yes	64808080	88	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	57	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	26	1	128	16	yes	80808080	100	19	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	166	2	32	16	yes	74808080	100	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	166	2	32	16	yes	74808080	100	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	58	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	2	-2	200	16	yes	6C54585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	58	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	126	0	200	16	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp	-	59	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	20	2	200	16	yes	64808080	88	19	0	-1	-	-	-	-	no text
@@ -992,7 +992,7 @@ ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	3	7	5	shop_new.mrp	
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	3	9	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	326	44	32	20	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	3	10	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	108	80	51	20	yes	58808080	100	0	4	191009	19	menu_expansion.bin	209	{ex00}New	ok
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	3	12	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	179	80	136	20	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	334	80	30	20	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	334	80	30	20	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	3	14	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	325	80	9	20	yes	80808080	88	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	3	16	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	160	79	160	18	yes	80808080	100	0	0	23017	2	menu_message.bin	133	{color:83C0C0C0}You lack the necessary license.{color:809B}	ok
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	5	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	6	4	160	20	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -1010,13 +1010,13 @@ ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	9	6	5	shop_new.mrp	
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	10	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	33	13	40	16	yes	5A808080	100	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	10	6	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	289	13	40	16	yes	5A808080	100	16	4	190332	19	menu_expansion.bin	71	{ex00}PRICE	ok
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	11	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	23	0	160	20	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	174	2	24	20	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	174	2	24	20	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	12	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	23	0	188	20	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	230	2	21	20	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	230	2	21	20	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	12	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	164	2	50	20	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
-ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	230	2	21	20	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	230	2	21	20	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	12	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	246	2	88	20	yes	70808080	100	16	5	191416	19	menu_expansion.bin	264	{ex00}{ex-int:0769002C}	ok
-ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	230	2	21	20	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	230	2	21	20	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	13	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	23	0	188	20	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	13	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	174	2	80	20	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp	-	14	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	23	0	160	20	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -1072,7 +1072,7 @@ ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	48	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	48	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	50	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	2	400	32	yes	6854585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	50	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	108	2	256	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	51	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191522	19	menu_expansion.bin	288	{ex00}	ok
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	51	2	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	0	360	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	51	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191523	19	menu_expansion.bin	289	{ex00}	ok
@@ -1084,7 +1084,7 @@ ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	55	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	56	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	0	0	1112	40	yes	80808080	100	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	57	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	32	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	57	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	-2	560	48	yes	80808080	100	19	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	58	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	-4	400	32	yes	6C54585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	58	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp	-	59	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	40	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
@@ -1138,7 +1138,7 @@ ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	3	7	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	3	9	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	652	88	64	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	3	10	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	216	168	102	40	yes	58808080	85	0	4	191009	19	menu_expansion.bin	209	{ex00}New	ok
 ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	3	12	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	396	164	272	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	868	175	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	868	175	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	3	14	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	750	175	18	40	yes	80808080	88	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	3	16	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	196	165	320	36	yes	80808080	100	0	0	23017	2	menu_message.bin	133	{color:83C0C0C0}You lack the necessary license.{color:809B}	ok
 ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	5	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	12	0	320	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -1156,13 +1156,13 @@ ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	9	6	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	10	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	10	6	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	866	26	80	32	yes	5A808080	70	16	4	190332	19	menu_expansion.bin	71	{ex00}PRICE	ok
 ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	11	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	52	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	12	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	-4	376	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	12	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	457	9	150	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
-ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	12	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	770	9	176	40	yes	70808080	100	16	5	191416	19	menu_expansion.bin	264	{ex00}{ex-int:0769002C}	ok
-ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	654	7	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	654	7	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	13	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	-4	376	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	13	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	748	9	160	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
 ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp	-	14	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	-4	320	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -1221,7 +1221,7 @@ ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	48	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	48	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	50	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	2	400	32	yes	6854585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	50	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	108	2	256	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	51	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191522	19	menu_expansion.bin	288	{ex00}	ok
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	51	2	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	0	360	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	51	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191523	19	menu_expansion.bin	289	{ex00}	ok
@@ -1233,7 +1233,7 @@ ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	55	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	56	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	0	0	992	40	yes	80808080	100	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	57	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	32	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	57	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	-2	560	48	yes	80808080	100	19	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	58	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	-4	400	32	yes	6C54585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	58	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp	-	59	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	40	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
@@ -1287,7 +1287,7 @@ ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	3	7	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	3	9	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	652	88	64	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	3	10	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	216	168	102	40	yes	58808080	85	0	4	191009	19	menu_expansion.bin	209	{ex00}New	ok
 ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	3	12	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	396	164	272	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	798	175	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	798	175	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	3	14	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	720	175	18	40	yes	80808080	88	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	3	16	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	396	165	320	36	yes	80808080	100	0	0	23017	2	menu_message.bin	133	{color:83C0C0C0}You lack the necessary license.{color:809B}	ok
 ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	5	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	12	0	320	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -1305,13 +1305,13 @@ ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	9	6	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	10	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	10	6	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	666	26	80	32	yes	5A808080	70	16	4	190332	19	menu_expansion.bin	71	{ex00}PRICE	ok
 ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	11	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	52	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	12	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	0	376	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	12	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	457	9	150	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
-ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	650	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	12	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	770	9	176	40	yes	70808080	100	16	5	191416	19	menu_expansion.bin	264	{ex00}{ex-int:0769002C}	ok
-ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	654	9	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	654	9	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	13	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	0	376	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	13	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	598	9	160	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
 ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp	-	14	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	0	320	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -1369,7 +1369,7 @@ ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	48	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	48	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	50	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	2	400	32	yes	6854585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	50	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	108	2	256	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	50	4	5	party_book.mrp	the Clan Primer back panel 0x00574E80	386	2	64	32	yes	80808080	100	1	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	51	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191522	19	menu_expansion.bin	288	{ex00}	ok
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	51	2	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	0	360	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	51	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	16	6	256	32	yes	785A5A5A	100	16	1	191523	19	menu_expansion.bin	289	{ex00}	ok
@@ -1381,7 +1381,7 @@ ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	55	0	5	party_book.mrp	t
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	56	0	5	party_book.mrp	the Clan Primer back panel 0x00574E80	0	0	1112	40	yes	80808080	100	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	57	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	32	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	57	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	64	-2	560	48	yes	80808080	100	19	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	57	7	5	party_book.mrp	the Clan Primer back panel 0x00574E80	570	4	64	32	yes	74808080	104	19	5	180014	18	menu_command_template.bin	14	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	58	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	4	-4	400	32	yes	6C54585C	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	58	6	5	party_book.mrp	the Clan Primer back panel 0x00574E80	252	0	400	32	yes	80808080	88	1	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp	-	59	3	5	party_book.mrp	the Clan Primer back panel 0x00574E80	40	7	400	32	yes	4A808080	70	19	0	-1	-	-	-	-	no text
@@ -1435,7 +1435,7 @@ ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	3	7	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	3	9	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	652	88	64	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	3	10	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	216	168	102	40	yes	58808080	85	0	4	191009	19	menu_expansion.bin	209	{ex00}New	ok
 ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	3	12	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	396	164	272	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	868	175	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	3	13	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	868	175	60	40	yes	80808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	3	14	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	750	175	18	40	yes	80808080	88	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	3	16	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	196	165	600	36	yes	80808080	100	0	0	23017	2	menu_message.bin	133	{color:83C0C0C0}You lack the necessary license.{color:809B}	ok
 ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	5	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	12	0	320	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -1453,13 +1453,13 @@ ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	9	6	5	shop_new.mrp	the gr
 ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	10	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	10	6	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	866	26	80	32	yes	5A808080	70	16	4	190332	19	menu_expansion.bin	71	{ex00}PRICE	ok
 ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	11	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	52	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	11	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	494	10	70	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	12	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	-4	376	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	680	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	12	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	680	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	12	3	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	487	9	150	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
-ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	680	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	12	4	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	680	9	60	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	12	5	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	800	9	176	40	yes	70808080	100	16	5	191416	19	menu_expansion.bin	264	{ex00}{ex-int:0769002C}	ok
-ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	684	7	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0x0269002C}	ok
+ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	12	8	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	684	7	60	40	yes	70808080	100	16	5	191401	19	menu_expansion.bin	249	{ex00}{ex-int:0269002C}	ok
 ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	13	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	-4	376	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	13	2	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	748	9	160	40	yes	70808080	100	16	5	191406	19	menu_expansion.bin	254	{ex00}{ex-int:0569002C}	ok
 ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp	-	14	1	5	shop_new.mrp	the grant list 0x003F4840; 0x0057B780	46	-4	320	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
@@ -1623,11 +1623,11 @@ ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	8	3	0	5	unit 8	the list 
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	8	11	5	5	unit 8	the list item 0x00292390 and the equipment rows	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	8	11	6	5	unit 8	the list item 0x00292390 and the equipment rows	515	26	80	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	8	13	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	8	14	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	9	0	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	9	0	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	9	0	7	5	unit 9	the Inventory panes and rows	568	126	72	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
@@ -1639,11 +1639,11 @@ ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	9	2	7	5	unit 9	the Inven
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	9	3	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	9	3	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	9	20	1	5	unit 9	the Inventory panes and rows	48	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	9	21	1	5	unit 9	the Inventory panes and rows	48	0	400	42	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	9	22	1	5	unit 9	the Inventory panes and rows	48	0	400	42	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	9	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	9	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	9	23	1	5	unit 9	the Inventory panes and rows	48	0	400	42	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	10	5	6	5	unit 10	the gambit editor	404	116	64	64	yes	80808080	100	15	0	180030	18	menu_command_template.bin	30	{icon:C:82}	ok
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	10	5	7	5	unit 10	the gambit editor	718	116	64	64	yes	80808080	100	0	0	180033	18	menu_command_template.bin	33	{icon:E:82}	ok
@@ -1748,11 +1748,11 @@ ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	13	4	2	5	unit 13	0x0051E
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	2	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	2	3	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	3	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	400	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0x0169002C}:{ex-int:0x0269022C}:{ex-int:0x0269022C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0169002C}:{ex-int:0269022C}:{ex-int:0269022C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	15	2	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	15	2	3	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	15	3	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	16	0	1	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	18	240	24	yes	30000000	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	16	0	4	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	14	240	24	no	5A783A52	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	16	0	5	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	16	240	24	yes	6C808080	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
@@ -1931,11 +1931,11 @@ ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	8	3	0	5	unit 8	the list 
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	8	11	5	5	unit 8	the list item 0x00292390 and the equipment rows	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	8	11	6	5	unit 8	the list item 0x00292390 and the equipment rows	515	26	80	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	8	13	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	8	14	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	9	0	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	9	0	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	9	0	7	5	unit 9	the Inventory panes and rows	568	126	72	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
@@ -1947,11 +1947,11 @@ ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	9	2	7	5	unit 9	the Inven
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	9	3	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	9	3	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	9	20	1	5	unit 9	the Inventory panes and rows	48	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	9	21	1	5	unit 9	the Inventory panes and rows	48	0	400	42	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	9	22	1	5	unit 9	the Inventory panes and rows	48	0	400	42	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	9	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	9	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	9	23	1	5	unit 9	the Inventory panes and rows	48	0	400	42	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	10	5	6	5	unit 10	the gambit editor	404	116	64	64	yes	80808080	100	15	0	180030	18	menu_command_template.bin	30	{icon:C:82}	ok
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	10	5	7	5	unit 10	the gambit editor	718	116	64	64	yes	80808080	100	0	0	180033	18	menu_command_template.bin	33	{icon:E:82}	ok
@@ -2056,11 +2056,11 @@ ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	13	4	2	5	unit 13	0x0051E
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	2	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	2	3	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	3	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	400	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0x0169002C}:{ex-int:0x0269022C}:{ex-int:0x0269022C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0169002C}:{ex-int:0269022C}:{ex-int:0269022C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	15	2	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	15	2	3	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	15	3	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	16	0	1	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	18	240	24	yes	30000000	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	16	0	4	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	14	240	24	no	5A783A52	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	16	0	5	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	16	240	24	yes	6C808080	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
@@ -2239,11 +2239,11 @@ ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	8	3	0	5	unit 8	the list 
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	8	11	5	5	unit 8	the list item 0x00292390 and the equipment rows	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	8	11	6	5	unit 8	the list item 0x00292390 and the equipment rows	585	26	80	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	8	13	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	8	14	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	9	0	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	9	0	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	9	0	7	5	unit 9	the Inventory panes and rows	648	126	72	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
@@ -2255,11 +2255,11 @@ ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	9	2	7	5	unit 9	the Inven
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	9	3	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	9	3	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	9	20	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	9	21	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	9	22	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	9	23	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	10	5	6	5	unit 10	the gambit editor	404	116	64	64	yes	80808080	100	15	0	180030	18	menu_command_template.bin	30	{icon:C:82}	ok
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	10	5	7	5	unit 10	the gambit editor	718	116	64	64	yes	80808080	100	0	0	180033	18	menu_command_template.bin	33	{icon:E:82}	ok
@@ -2364,11 +2364,11 @@ ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	13	4	2	5	unit 13	0x0051E
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	2	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	2	3	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	3	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	400	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0x0169002C}:{ex-int:0x0269022C}:{ex-int:0x0269022C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0169002C}:{ex-int:0269022C}:{ex-int:0269022C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	15	2	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	15	2	3	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	15	3	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	16	0	1	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	18	240	24	yes	30000000	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	16	0	4	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	14	240	24	no	5A783A52	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	16	0	5	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	16	240	24	yes	6C808080	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
@@ -2547,11 +2547,11 @@ ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	8	3	0	5	unit 8	the list 
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	8	11	5	5	unit 8	the list item 0x00292390 and the equipment rows	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	8	11	6	5	unit 8	the list item 0x00292390 and the equipment rows	565	26	80	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	8	13	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	8	14	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	9	0	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	9	0	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	9	0	7	5	unit 9	the Inventory panes and rows	628	126	72	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
@@ -2563,11 +2563,11 @@ ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	9	2	7	5	unit 9	the Inven
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	9	3	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	9	3	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	9	20	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	9	21	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	9	22	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	9	23	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	10	5	6	5	unit 10	the gambit editor	404	116	64	64	yes	80808080	100	15	0	180030	18	menu_command_template.bin	30	{icon:C:82}	ok
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	10	5	7	5	unit 10	the gambit editor	718	116	64	64	yes	80808080	100	0	0	180033	18	menu_command_template.bin	33	{icon:E:82}	ok
@@ -2672,11 +2672,11 @@ ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	13	4	2	5	unit 13	0x0051E
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	2	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	2	3	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	3	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	400	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0x0169002C}:{ex-int:0x0269022C}:{ex-int:0x0269022C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0169002C}:{ex-int:0269022C}:{ex-int:0269022C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	15	2	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	15	2	3	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	15	3	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	16	0	1	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	18	240	24	yes	30000000	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	16	0	4	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	14	240	24	no	5A783A52	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	16	0	5	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	16	240	24	yes	6C808080	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
@@ -2855,11 +2855,11 @@ ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	8	3	0	5	unit 8	the list 
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	8	11	5	5	unit 8	the list item 0x00292390 and the equipment rows	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	8	11	6	5	unit 8	the list item 0x00292390 and the equipment rows	581	26	80	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	8	13	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	8	14	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	9	0	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	9	0	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	9	0	7	5	unit 9	the Inventory panes and rows	640	126	72	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
@@ -2871,11 +2871,11 @@ ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	9	2	7	5	unit 9	the Inven
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	9	3	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	9	3	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	9	20	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	9	21	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	9	22	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	9	23	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	10	5	6	5	unit 10	the gambit editor	404	116	64	64	yes	80808080	100	15	0	180030	18	menu_command_template.bin	30	{icon:C:82}	ok
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	10	5	7	5	unit 10	the gambit editor	718	116	64	64	yes	80808080	100	0	0	180033	18	menu_command_template.bin	33	{icon:E:82}	ok
@@ -2980,11 +2980,11 @@ ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	13	4	2	5	unit 13	0x0051E
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	2	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	2	3	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	3	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	400	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0x0169002C}:{ex-int:0x0269022C}:{ex-int:0x0269022C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0169002C}:{ex-int:0269022C}:{ex-int:0269022C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	15	2	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	15	2	3	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	15	3	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	16	0	1	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	18	240	24	yes	30000000	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	16	0	4	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	14	240	24	no	5A783A52	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	16	0	5	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	16	240	24	yes	6C808080	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
@@ -3163,11 +3163,11 @@ ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	8	3	0	5	unit 8	the list 
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	8	11	5	5	unit 8	the list item 0x00292390 and the equipment rows	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	8	11	6	5	unit 8	the list item 0x00292390 and the equipment rows	515	26	80	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	8	13	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	8	14	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	9	0	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	9	0	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	9	0	7	5	unit 9	the Inventory panes and rows	568	126	72	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
@@ -3179,11 +3179,11 @@ ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	9	2	7	5	unit 9	the Inven
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	9	3	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	9	3	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	9	20	1	5	unit 9	the Inventory panes and rows	48	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	9	21	1	5	unit 9	the Inventory panes and rows	48	0	400	42	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	9	22	1	5	unit 9	the Inventory panes and rows	48	0	400	42	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	9	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	9	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	9	23	1	5	unit 9	the Inventory panes and rows	48	0	400	42	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	10	5	6	5	unit 10	the gambit editor	404	116	64	64	yes	80808080	100	15	0	180030	18	menu_command_template.bin	30	{icon:C:82}	ok
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	10	5	7	5	unit 10	the gambit editor	718	116	64	64	yes	80808080	100	0	0	180033	18	menu_command_template.bin	33	{icon:E:82}	ok
@@ -3288,11 +3288,11 @@ ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	13	4	2	5	unit 13	0x0051E
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	2	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	2	3	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	3	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	400	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0x0169002C}:{ex-int:0x0269022C}:{ex-int:0x0269022C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0169002C}:{ex-int:0269022C}:{ex-int:0269022C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	15	2	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	15	2	3	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	15	3	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	16	0	1	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	18	240	24	yes	30000000	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	16	0	4	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	14	240	24	no	5A783A52	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	16	0	5	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	16	240	24	yes	6C808080	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
@@ -3461,11 +3461,11 @@ ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	8	3	0	5	unit 8	the
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	8	11	5	5	unit 8	the list item 0x00292390 and the equipment rows	33	13	40	16	yes	5A808080	100	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	8	11	6	5	unit 8	the list item 0x00292390 and the equipment rows	166	13	40	16	yes	5A808080	100	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	8	13	1	5	unit 8	the list item 0x00292390 and the equipment rows	23	0	124	20	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	182	2	21	20	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	159	2	13	20	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	182	2	21	20	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	159	2	13	20	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	8	14	1	5	unit 8	the list item 0x00292390 and the equipment rows	23	0	132	20	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	182	2	21	20	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	159	2	13	20	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	182	2	21	20	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	159	2	13	20	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	9	0	0	5	unit 9	the Inventory panes and rows	31	41	120	18	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	9	0	6	5	unit 9	the Inventory panes and rows	60	63	40	16	yes	5A808080	100	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	9	0	7	5	unit 9	the Inventory panes and rows	191	63	36	16	yes	5A808080	100	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
@@ -3477,11 +3477,11 @@ ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	9	2	7	5	unit 9	the
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	9	3	0	5	unit 9	the Inventory panes and rows	31	41	120	18	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	9	3	6	5	unit 9	the Inventory panes and rows	60	63	40	16	yes	5A808080	100	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	9	20	1	5	unit 9	the Inventory panes and rows	23	0	124	20	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	183	2	21	20	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	160	2	13	20	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	183	2	21	20	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	160	2	13	20	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	9	21	1	5	unit 9	the Inventory panes and rows	23	0	132	20	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	9	22	1	5	unit 9	the Inventory panes and rows	23	0	132	20	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	199	2	21	20	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	199	2	21	20	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	9	23	1	5	unit 9	the Inventory panes and rows	23	0	180	20	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	10	7	2	5	unit 10	the gambit editor	20	31	32	32	yes	80808080	100	0	0	180055	18	menu_command_template.bin	55	{indent+:8197}{size%:81E4}{baseline:8183}{icon:B:80}	ok
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	10	7	3	5	unit 10	the gambit editor	53	31	32	32	yes	80808080	100	0	0	180058	18	menu_command_template.bin	58	{indent+:8197}{size%:81E4}{baseline:8183}{icon:D:80}	ok
@@ -3542,11 +3542,11 @@ ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	13	4	2	5	unit 13	0
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	2	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	120	20	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	2	3	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	80	100	16	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	3	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	200	24	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	14	170	24	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0x0169002C}:{ex-int:0x0269022C}:{ex-int:0x0269022C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	14	170	24	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0169002C}:{ex-int:0269022C}:{ex-int:0269022C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	15	2	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	120	20	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	15	2	3	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	80	100	16	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	15	3	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	120	24	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	89	19	120	24	yes	80304E6E	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	89	19	120	24	yes	80304E6E	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	16	0	1	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	12	10	120	12	yes	30000000	106	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	16	0	4	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	10	7	120	12	no	5A783A52	106	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	16	0	5	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	10	7	120	12	yes	6C808080	106	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
@@ -3700,11 +3700,11 @@ ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	8	3	0	5	unit 8	the list 
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	8	11	5	5	unit 8	the list item 0x00292390 and the equipment rows	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	8	11	6	5	unit 8	the list item 0x00292390 and the equipment rows	575	26	80	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	8	13	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	8	14	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	9	0	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	9	0	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	9	0	7	5	unit 9	the Inventory panes and rows	638	126	72	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
@@ -3716,11 +3716,11 @@ ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	9	2	7	5	unit 9	the Inven
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	9	3	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	9	3	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	9	20	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	9	21	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	9	22	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	9	23	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	10	5	6	5	unit 10	the gambit editor	404	116	64	64	yes	80808080	100	15	0	180030	18	menu_command_template.bin	30	{icon:C:82}	ok
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	10	5	7	5	unit 10	the gambit editor	718	116	64	64	yes	80808080	100	0	0	180033	18	menu_command_template.bin	33	{icon:E:82}	ok
@@ -3825,11 +3825,11 @@ ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	13	4	2	5	unit 13	0x0051E
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	2	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	2	3	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	3	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	400	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0x0169002C}:{ex-int:0x0269022C}:{ex-int:0x0269022C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0169002C}:{ex-int:0269022C}:{ex-int:0269022C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	15	2	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	15	2	3	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	15	3	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	16	0	1	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	18	240	24	yes	30000000	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	16	0	4	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	14	240	24	no	5A783A52	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	16	0	5	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	16	240	24	yes	6C808080	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
@@ -4008,11 +4008,11 @@ ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	8	3	0	5	unit 8	the list 
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	8	11	5	5	unit 8	the list item 0x00292390 and the equipment rows	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	8	11	6	5	unit 8	the list item 0x00292390 and the equipment rows	515	26	80	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	8	13	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	8	14	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	9	0	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	9	0	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	9	0	7	5	unit 9	the Inventory panes and rows	568	126	72	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
@@ -4024,11 +4024,11 @@ ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	9	2	7	5	unit 9	the Inven
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	9	3	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	9	3	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	9	20	1	5	unit 9	the Inventory panes and rows	48	0	400	40	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	12	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	12	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	9	21	1	5	unit 9	the Inventory panes and rows	48	0	400	42	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	9	22	1	5	unit 9	the Inventory panes and rows	48	0	400	42	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	9	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	9	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	9	23	1	5	unit 9	the Inventory panes and rows	48	0	400	42	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	10	5	6	5	unit 10	the gambit editor	404	116	64	64	yes	80808080	100	15	0	180030	18	menu_command_template.bin	30	{icon:C:82}	ok
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	10	5	7	5	unit 10	the gambit editor	718	116	64	64	yes	80808080	100	0	0	180033	18	menu_command_template.bin	33	{icon:E:82}	ok
@@ -4133,11 +4133,11 @@ ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	13	4	2	5	unit 13	0x0051E
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	2	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	2	3	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	3	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	400	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0x0169002C}:{ex-int:0x0269022C}:{ex-int:0x0269022C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0169002C}:{ex-int:0269022C}:{ex-int:0269022C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	15	2	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	15	2	3	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	15	3	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	16	0	1	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	18	240	24	yes	30000000	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	16	0	4	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	14	240	24	no	5A783A52	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	16	0	5	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	16	240	24	yes	6C808080	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
@@ -4316,11 +4316,11 @@ ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	8	3	0	5	unit 8	the list 
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	8	11	5	5	unit 8	the list item 0x00292390 and the equipment rows	56	26	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	8	11	6	5	unit 8	the list item 0x00292390 and the equipment rows	575	26	80	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	8	13	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	8	13	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	8	13	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	8	14	1	5	unit 8	the list item 0x00292390 and the equipment rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	8	14	2	5	unit 8	the list item 0x00292390 and the equipment rows	548	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	8	14	3	5	unit 8	the list item 0x00292390 and the equipment rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	9	0	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	9	0	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	9	0	7	5	unit 9	the Inventory panes and rows	638	126	72	32	yes	5A808080	70	16	4	190303	19	menu_expansion.bin	42	{ex00}EQUIPPED/TOTAL	ok
@@ -4332,11 +4332,11 @@ ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	9	2	7	5	unit 9	the Inven
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	9	3	0	5	unit 9	the Inventory panes and rows	64	78	240	36	yes	80808080	85	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	9	3	6	5	unit 9	the Inventory panes and rows	110	126	80	32	yes	5A808080	70	16	4	190302	19	menu_expansion.bin	41	{ex00}NAME	ok
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	9	20	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0x0169002C}	ok
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	9	20	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	9	20	3	5	unit 9	the Inventory panes and rows	500	10	26	40	yes	70808080	100	16	5	191400	19	menu_expansion.bin	248	{ex00}{ex-int:0169002C}	ok
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	9	21	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	9	22	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	9	22	2	5	unit 9	the Inventory panes and rows	546	10	42	40	yes	70808080	100	16	5	191402	19	menu_expansion.bin	250	{ex00}{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	9	23	1	5	unit 9	the Inventory panes and rows	48	-4	400	52	yes	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	10	5	6	5	unit 10	the gambit editor	404	116	64	64	yes	80808080	100	15	0	180030	18	menu_command_template.bin	30	{icon:C:82}	ok
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	10	5	7	5	unit 10	the gambit editor	718	116	64	64	yes	80808080	100	0	0	180033	18	menu_command_template.bin	33	{icon:E:82}	ok
@@ -4441,11 +4441,11 @@ ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	13	4	2	5	unit 13	0x0051E
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	2	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	2	3	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	3	0	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	400	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0x0169002C}:{ex-int:0x0269022C}:{ex-int:0x0269022C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	3	2	5	unit 14	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	128	28	340	48	yes	80407280	100	16	1	191412	19	menu_expansion.bin	260	{ex00}{ex-int:0169002C}:{ex-int:0269022C}:{ex-int:0269022C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	15	2	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	40	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	15	2	3	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	160	200	32	no	80808080	100	0	0	-1	-	-	-	-	no text
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	15	3	0	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	0	0	240	48	yes	80808080	100	0	0	-1	-	-	-	-	no text
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0x0269022C}	ok
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	15	3	2	5	unit 15	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	178	38	240	48	yes	80506280	100	16	1	191413	19	menu_expansion.bin	261	{ex00}{ex-int:0369002C}.{ex-int:0269022C}	ok
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	16	0	1	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	18	240	24	yes	30000000	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	16	0	4	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	14	240	24	no	5A783A52	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	16	0	5	5	unit 16	0x0051EDC0(n), which returns unit 13 + n (0x0051EDC0-0x0051EDF0), called from 0x00406A60 and 0x00406E80	64	16	240	24	yes	6C808080	100	16	1	190014	19	menu_expansion.bin	14	{ex00}BOSS	ok

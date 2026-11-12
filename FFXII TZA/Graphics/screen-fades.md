@@ -127,9 +127,9 @@ The alpha `colourAlpha × f` is truncated to an integer (`0x00374186`). The full
 (`0x00374196`), which leaves the screen as it is under blends 0 to 5 of the table below. At a counter
 of 0 a fade-in draws the full colour and a fade-out the four zero bytes (`0x00374117`-`0x0037411F`).
 
-It returns without drawing in two cases. One is the first test of `0x00374060` (below): `0x00254A70`
-answers 0, bit `0x800` of `0x020926E4` is set and the record's handle is not `0x002EF9F0(3)`, layer 3's
-(`0x003740B9`-`0x003740DD`). The other is bit `0x10` of draw 1's pass mask set (`0x003583F0(1)`,
+It returns without drawing in two cases. One is the first test of `0x00374060` (below, `0x00374069`-`0x0037408D`),
+made again here: `0x00254A70` returns 0, bit `0x800` of `0x020926E4` is set and the record's handle is not
+`0x002EF9F0(3)`, layer 3's (`0x003740B9`-`0x003740DD`). The other is bit `0x10` of draw 1's pass mask set (`0x003583F0(1)`,
 `0x003740E8`) while the draw byte `0x022C7F98` is 0 (`0x00358320`, `0x003740F1`).
 
 It writes the four corners, the colour as four floats (`+0x40`-`+0x4C`) and the blend word (`+0x50`)

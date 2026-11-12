@@ -393,7 +393,7 @@ Globals:
 ## Shipped data
 
 - Every spawned unit's entry preamble calls `btlAtelSetEventFlagGroup` right after its level is
-  set: 6,746 calls in 502 of the 1,114 zone scripts, 6,206 of them `(0, 0)`. The group argument is
+  set: 6,746 calls in 502 of the 769 zone scripts, 6,206 of them `(0, 0)`. The group argument is
   0-5 and the mode 0-2. Group 0 means no group: both group table paths skip it before indexing.
 - All 1,765 `btlAtelGetRespawnTime` calls are `btlAtelGetElapseTime(i) > btlAtelGetRespawnTime(i)`
   with the same lane; 1,737 add `|| btlAtelGetDeadCountNow(i) == 0` and 28 add
@@ -401,9 +401,9 @@ Globals:
 - No story script calls `btlAtelSetMapJumoKeep`, so in story play the window is the native 300 seconds; only the
   developer Battle Plan Menu (`bin/btlctrl`) sets it, to 300 or 0.
 - Of the 239 scripts that import the completed-group word, 236 park on it with `waitv`.
-- [`enemy-group-completions.tsv`](enemy-group-completions.tsv) gives the 248 groups that hold a placement: 563
+- [`enemy-group-completions.tsv`](enemy-group-completions.tsv) gives the 248 groups that hold a placement: 540
   placements in 235 scripts, read from the `btlAtelSetEventFlagGroup` call of each placement's `entryNN` function.
-  Group 1 holds 235 of them. Each row names the group's members, its mode, and what the script runs when the group is
+  Group 1 is 235 of the 248 groups. Each row names the group's members, its mode, and what the script runs when the group is
   wiped out:
   - the steps after the `waitv` on the completed-group word, read in words: lines, story counter and game-wide words
     set, items and reward packages given, scenes played, fields the party is moved to, battle verbs, music and the

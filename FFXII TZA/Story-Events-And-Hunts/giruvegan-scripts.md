@@ -335,8 +335,10 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 ### Every step
 
 The steps table has one row for each step of every function of the ninety-five scripts, in the order the function runs
-them: each call, request, store, branch, loop, case and return. It has 621,315 rows, in four files split between
-scripts:
+them: each call, request, store, branch, loop, case and return. It has 621,315 rows. That leaves out the 1,719
+functions in the spawn groups of the scripts' foes (entry, spawn and respawn);
+[Bestiary](../Enemy-Spawning/bestiary.md) reads their entry functions as enemy placements. The rows
+are in four files split between scripts:
 
 | File | Scripts | Steps |
 |---|---|---:|
@@ -543,8 +545,8 @@ Calls between the functions this page cites and code in other parts of the progr
 - Movement: `0x00266530` calls `0x00265FF0`, `0x00268380`; `0x00355830` calls `0x0026D6D0`; those functions are documented on
   [actor record fields](../Characters-And-Objects/actor-record-fields.md),
   [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
-- Party: `0x0034D4E0` calls `0x00263750`, `0x003271D0`, `0x00327850`, `0x00328DB0`, `0x00359C00`, `0x0035A050`; `0x00355830` calls
-  `0x003590D0`.
+- Party: `0x0034D4E0` calls `0x00263750`, `0x0026DC40`, `0x003271D0`, `0x00327850`, `0x00328DB0`, `0x00359C00`, `0x0035A050`,
+  `0x003601B0`; `0x00355830` calls `0x003590D0`.
 - Party: those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
   [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
   [party control modes](../Engine-Core/party-control-modes.md),

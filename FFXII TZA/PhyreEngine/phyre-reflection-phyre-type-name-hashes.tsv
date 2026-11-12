@@ -24,7 +24,7 @@ PAnimationDataSourceListEntry	9A2DB75E	0x005A8840
 PAnimationEvent	6A9651C7	0x005A88F0
 PAnimationEventController	18243F8B	0x005A899A
 PAnimationEventList	8D6E9AA3	0x005A8A40
-PAnimationHierarchyNode	0x01C7AE2A	0x005A8AF0
+PAnimationHierarchyNode	01C7AE2A	0x005A8AF0
 PAnimationNetworkInstance	ACE35F84	0x005A8BA0
 PAnimationNetworkInstanceTarget	477934EB	0x005A8C50
 PAnimationSet	2C874C11	0x005A8D00
@@ -48,7 +48,7 @@ PArray<PAnimationSlotArray>	9C119ECF	0x005B184C
 PArray<PAnimationSlotFilterDeferredLoad>	3F052F37	0x005B1EE4
 PArray<PAnimationSlotListIndex>	06C940C4	0x005B1A7C
 PArray<PBase *>	94E1FF53	0x006C3437
-PArray<PBitmapFontCharInfo>	0x010A09AC	0x0067D1EC
+PArray<PBitmapFontCharInfo>	010A09AC	0x0067D1EC
 PArray<PBlendableAnimationSource>	86EB6F38	0x005AD9B9
 PArray<PContextSwitch *>	CAA9134F	0x005E439D
 PArray<PContextVariantFoldingTable>	79C30713	0x005E8037
@@ -127,7 +127,7 @@ PDataBlockBase	7DBCCAE5	0x00661C20
 PDataBlockBufferD3D11	790F5141	0x00661CD0
 PDataBlockD3D11	3583F927	0x00661D7A
 PDebugUtils	2AE85E3D	0x00791C70
-PDeferredLighting	0x0063747C	0x0064428A
+PDeferredLighting	0063747C	0x0064428A
 PDeferredLightingBase	B5C271F7	0x0064432A
 PDeferredLightingD3D11	6E3E8279	0x006443CA
 PDepthOfField	48146733	0x0064446A
@@ -136,7 +136,7 @@ PDepthOfFieldD3D11	2F36BF90	0x006445AA
 PDynamicDataBlock	CAE1FF0F	0x00661E20
 PDynamicMesh	8A261F17	0x00661ED0
 PDynamicMeshInstance	8ABFCAEC	0x005D9170
-PDynamicSegmentDesc	0x00AF16FC	0x00661F80
+PDynamicSegmentDesc	00AF16FC	0x00661F80
 PEffect	B31B3452	0x005D9220
 PEffectVariant	742FF3E7	0x005D92D0
 PEntity	B3B3B8E2	0x006AB6D0
@@ -249,7 +249,7 @@ PPhysicsCapsuleBullet	F1BF0A5D	0x0068F66A
 PPhysicsCharacterCamera	30AA8B9E	0x0068F710
 PPhysicsCharacterController	22E0DC39	0x0068F7BA
 PPhysicsCharacterControllerBase	23F77034	0x0068F860
-PPhysicsCharacterControllerBullet	0x00FA7F21	0x0068F90A
+PPhysicsCharacterControllerBullet	00FA7F21	0x0068F90A
 PPhysicsCylinder	C4DA1B02	0x0068F9AA
 PPhysicsCylinderBase	8A94EB7D	0x0068FA4A
 PPhysicsCylinderBullet	84E3F0AA	0x0068FAEA

@@ -119,7 +119,7 @@ its first word is the render index, -1 when the actor has no model.
 
 | Helper | Verbs | Does |
 |---|---|---|
-| `0x002E7DD0(actor, run)`, `0x002E7E10(actor, run)` | `getdefaultwalkthresholdspeed` `0x0272`, `getdefaultrunspeed` `0x0246` | the model parameter (`0x003E6150`) `0x09000707`, or `0x09000101` for a non-zero second argument; and `0x09000808` or `0x09000202`; 0 without a model |
+| `0x002E7DD0(actor, run)`, `0x002E7E10(actor, run)` | `getdefaultwalkthresholdspeed` `0x0272`, `getdefaultrunspeed` `0x0246` | the model parameter (`0x003E6150`) `0x09000707`, or `0x09000101` for a positive second argument; and `0x09000808` or `0x09000202`; a negative argument counts as 0 (`0x002E7DEC`, `0x002E7E2C`) and both verbs pass −1 (`0x0034D30F`, `0x0034CB3F`), so scripts get `0x09000707` and `0x09000808`; 0 without a model |
 | `0x002E9B10(actor)` | `raturn` `0x025D`, `raturna` `0x025F`, `raturnya` `0x02D5` and their relatives | the model parameter `0x09000909`, or pi/30 (`0x00D0F8E4`) without a model |
 | `0x002E30D0(actor, on, a, b)` | `unkCall_5bd` `0x05BD` | `0x00382B50(render index, a, b)`, or `0x00382B50(-1, 0, 0)` when `on` is 0 or there is no model |
 | `0x002EC860(actor, on)` | `motionloop` `0x003B` | bit `0x8` of the binding's byte `+0x11` |

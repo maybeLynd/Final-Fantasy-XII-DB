@@ -74,7 +74,7 @@ below 0 (`0x0031E750`) ([Navigation](../Movement-And-Pathfinding/navigation-mesh
 | 6, 7 | status `s` (stats `+0x64` or `+0x3C`) | `0x003021A3` |
 | 8, 9 | unit byte `+0x55` is `s` (13 = undead) | `0x003021CC` |
 | 10, 11 | unit type byte `+0x56` is `s` (46 = flying) | `0x003021EC` |
-| 12, 13 | bit `s` of unit word `+0x52` | `0x003021F3` |
+| 12, 13 | bit value `1 << s` of unit word `+0x52` | `0x003021F3` |
 | 14, 15 | HP at least 90, 80, 70 ... 0 % of max HP for `s` = 0-9 (`0x00D102E0`) | `0x00302203` |
 | 16, 17 | max HP at least 500, 1,000, 2,000, 5,000, 10,000, 20,000, 30,000, 50,000, 100, 200 (`0x00D10308`) | `0x003022FC` |
 | 20, 21 | weak to element `s` (stats `+0x40`) | `0x003023A5` |
@@ -92,7 +92,7 @@ below 0 (`0x0031E750`) ([Navigation](../Movement-And-Pathfinding/navigation-mesh
 | 46, 47 | `s` = 0: HP full; `s` = 1: MP full | `0x00302F7E` |
 | 48, 49 | the whole field, read at the first candidate: `s` = 0 the environment class (`0x00321490`) is `v`, 1 the MP regime (`0x00320160`) is `v`, 2 the MP regime is at least `v` | `0x00303027` |
 | 52, 53 | before any candidate: every active enemy whose spawn record tag `+0x15` is `v` (1-255) and that no unit is committed against (`+0xEA4` = 0) | `0x00301CFB`-`0x00301DAB` |
-| 54, 55 | before any candidate, for `s` = 0-2: a register (next tables) equal to `v`, at least `v`, or with bit `v` set; a pass keeps the deciding unit. `s` = 3 runs the candidates instead and tests bit `v` of each one's register `+0xB90` | `0x00301C2B`-`0x00301CF6`, `0x00303079` |
+| 54, 55 | before any candidate, for `s` = 0-2: a register (next tables) equal to `v`, at least `v`, or with bit value `1 << v` set; a pass keeps the deciding unit. `s` = 3 runs the candidates instead and tests bit value `1 << v` of each one's register `+0xB90` | `0x00301C2B`-`0x00301CF6`, `0x00303079` |
 | 56, 57 | `s` = 0: on screen (`0x00322360`), nearest for 56 and furthest for 57; 1: the party leader's target (`+0x750`); 2: carrying out a magick (its action's kind `+0x1E` is 1) | `0x003030A7` |
 | 58, 59 | at least `v` units that relation mode `s` admits (0 = every unit) in its own perception list `+0xBC4` | `0x003031C4` |
 | 60, 61 | team byte `+0x54` is `v` | `0x0030329B` |

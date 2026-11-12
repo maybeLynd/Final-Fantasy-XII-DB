@@ -47,8 +47,8 @@ holds the slot pointer in `0x02099D70` for the duration):
    `0x00377480(field)` is 0, then `0x003ACA90(8)`, `0x00360110`, `0x002E24B0`, `0x00408AD0`, `0x0036E3B0`,
    `0x0026FFA0(1)`, `0x002700C0(1)`, `0x002EC590(1)`, `0x002EC5A0(1)`, the clears of `0x02099DE8[0..7]` and
    `0x0209A2A0[0..7]`, and `0x0042ED30`;
-4. between the slot-0 extras and the pointer block it makes one indirect call through a checked
-   function pointer with the slot index as its argument;
+4. between the slot-0 extras and the pointer block it calls the `ret` stub `0x0016D6A0`
+   (`0x0026CACC`), which does nothing;
 5. it fills the pointer block: `+0x88` = the callback or `0x00267930` when no callback was given, `+0x48` =
    the persistent save payload (`0x002EF2B0()`), `+0x50` = payload + payload `+0x48`, `+0x58` =
    `0x02099DF0`, `+0x60` = `0x02099FF0`, `+0x98` = `0x00264E30`;
@@ -75,8 +75,8 @@ holds the slot pointer in `0x02099D70` for the duration):
 1. it allocates the record pool with `0x002679F0(slot)` and stores it at `+0x08`
    ([the actor record](actor-record.md)), then runs `0x00266C50`,
    `0x002342F0` on slot 0, and `0x00265A20` ([battle units](battle-units.md));
-2. on slot 0 it makes one checked indirect call, clears the sixteen party-slot pointers at
-   `0x0209A210`, zeroes `0x02099DA6`, runs `0x002EA870(0)`, `0x002EA690` and `0x003DD220(1)`, then runs the
+2. on slot 0 it calls the `ret` stub `0x0016D6A0` (`0x0026CEE8`), clears the sixteen map-jump group
+   pointers at `0x0209A210`, zeroes `0x02099DA6`, runs `0x002EA870(0)`, `0x002EA690` and `0x003DD220(1)`, then runs the
    stamping loops below and `0x00314010`, `0x00314DF0(-1)` and `0x00358BC0`;
 3. it clears `+0x13`, fills `+0x40` with payload + payload `+0x38` when still 0, runs
    `0x0026D3E0(slot, payload)`, sets `+0x10` bit `0x1` and runs `0x00263660` on slot 3;
@@ -135,10 +135,12 @@ the camera-shot table `[slot + 0xD8]` and side B at `+0x170` against the camera-
 
 `0x00257230(index, value, entry)` initialises the camera driver block `0x02092830 + index * 0xBB0 + entry * 0x2E0`
 (or `0x02096520` for a negative entry): its `+0x178` = the value's row `[0x02092810[index * 0x176] + 0x18 + value * 0x40]`
-or 0, and its clocks and scales reset (`+0xFC` and `+0x10C` = 1.0). `0x0037DCF0(index, value, entry)`
-writes into the `0x1E`-byte shake entry `0x02ADD980 + index * 0x7A + entry * 0x1E`: byte `+0x03`, dword
-`+0x04`, bytes `+0x1B`-`+0x1E` and a dword at `+0x1F` are zeroed, so the last store runs into the next
-entry's first bytes.
+or 0, and its clocks and scales reset (`+0xFC` and `+0x10C` = 1.0).
+
+`0x0037DCF0(index, value, entry)` zeroes fields of the `0xF0`-byte shake entry
+`0x02ADD990 + index * 0x3D0 + entry * 0xF0` ([camera shake](../EBP-Script-Files/ebp-camera-shake.md)):
+the qword `+0x08`, the dword `+0x10`, the 32 bytes `+0xC8`-`+0xE7` and the state dword `+0xE8`
+(`0x0037DD10`-`0x0037DD38`). Every store is inside the entry.
 
 The binds are reached from the camera verbs: `camerastart` `0x7D` (`0x0034F2F0`) and
 `camerashakestart` `0x1A2` (`0x003492F0`) pass clock 0, the record index masked to 24 bits, the entry

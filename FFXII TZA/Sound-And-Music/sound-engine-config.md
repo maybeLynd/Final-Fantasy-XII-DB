@@ -349,7 +349,7 @@ The mixer, `Driver::Audio`, `0x20` bytes at `0x02EAD0A8`, built by `0x007AC360`:
 | Offset | Type | Name | Meaning | Set by |
 |---|---|---|---|---|
 | `+0x00` | `void*` | vtable | `0x01CB4710` | `0x007AC38F` |
-| `+0x08` | `void*` | buses | the bus table | `0x007AC59D` |
+| `+0x08` | `void*` | buses | null, then the bus table | `0x007AC394`; `0x007AC59D` |
 | `+0x10` | `i32` | busCount | 0, then the `bus ` count, plus 1 for a version-0 chunk | `0x007AC398`; `0x007AC565`, `0x007AC570` |
 | `+0x14` | `i32` | preset | -1, then the preset last applied | `0x007AC39B`; `0x007AD196` |
 | `+0x18` | `void*` | port2 | master port 2's voice, built when byte `+0x50` of the start block is set | `0x007AC3A2`; `0x007ACC61` |
@@ -634,7 +634,7 @@ teardown](../Compiler-And-C-Runtime/static-initialisation-and-teardown.md)).
 | `0x01F403EC` | `f32` | 0 | its duration; with a duration of 0 the value is the target | `0x007AAA40` (`0x007AAC12`); `0x007AAD90` (`0x007AAE0D`, `0x007AAE53`, `0x007AAE86`) | `0x007AAD90` (`0x007AADA7`); `0x007AAEA0` (`0x007AAEB0`) |
 | `0x01F403F4` | `i32` | 0 | its curve, handed to `0x007A9E50` with `time / duration` | `0x007AAA40`, 0 (`0x007AAC19`); `0x007AAD90`, 0 (`0x007AAE1F`) | `0x007AAD90` (`0x007AADC6`); `0x007AAEA0` (`0x007AAF22`) |
 | `0x01F403F8` | `u8` | 0 | 1 while the ramp runs; the pass clears it when the time reaches the duration | `0x007AAA40`, 0 (`0x007AAC27`); `0x007AAD90`, 1 (`0x007AAE29`); `0x007AAEA0` (`0x007AAEFB`, `0x007AAF04`) | `0x007AAEA0` (`0x007AAEBB`) |
-| `0x01F403FC` | `i32` | 0 | with 1, a start shortens the duration to the change over the rate `0x01F40400` (rising) or `0x01F40404` (falling) (`0x007AAE30`-`0x007AAE86`); only `0x007AAA40` writes it, with 0 | `0x007AAA40` (`0x007AAC2E`) | `0x007AAD90` (`0x007AADFE`) |
+| `0x01F403FC` | `i32` | 0 | with 1, a start lengthens the duration to the change over the rate when it is shorter: `duration = max(duration, change / abs(rate))`, the rate `0x01F40400` rising or `0x01F40404` falling (`0x007AAE30`-`0x007AAE86`); only `0x007AAA40` writes it, with 0 | `0x007AAA40` (`0x007AAC2E`) | `0x007AAD90` (`0x007AADFE`) |
 | `0x01F40414` | `f32` | 0 | the pitch ramp's target | `0x007AAA40` (`0x007AAC20`); `0x007AAC80` (`0x007AACF5`) | `0x007AAC80` (`0x007AACA4`, `0x007AACC5`); `0x007AAEA0` (`0x007AAFA1`, `0x007AAFBA`) |
 | `0x01F40418` | `f32` | 0 | its time so far | `0x007AAA40` (`0x007AAC20`); `0x007AAC80`, 0 (`0x007AAD05`); `0x007AAEA0` (`0x007AAF77`, `0x007AAF81`) | `0x007AAC80` (`0x007AACAE`); `0x007AAEA0` (`0x007AAF62`) |
 | `0x01F4041C` | `f32` | 0 | its duration | `0x007AAA40` (`0x007AAC20`); `0x007AAC80` (`0x007AACFD`, `0x007AAD43`, `0x007AAD76`) | `0x007AAC80` (`0x007AAC97`); `0x007AAEA0` (`0x007AAF50`) |

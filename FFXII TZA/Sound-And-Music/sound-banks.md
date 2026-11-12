@@ -559,7 +559,8 @@ points.
 
 In `0x007CFD00`, with the curve header's count `u16 +0x04` (0 gives 0), range `+0x08`..`+0x0C` and points at
 `u16 +0x02` past the header, moved on by `(byte +0x01 + 0x10) & 0xF0` when byte `+0x00` is above 3 (`x +0x00`, `y +0x04`, ease byte `+0x08`): `x = clamp((input - min) / (max - min), 0, 1)` when the
-header's first byte is non-zero (0 when `max <= min`), the search finds the last point `k` with `x[k] <= x`, and the
+header's first byte is non-zero (`max <= min` returns 0.0, `0x007CFD36`), the search finds the last point `k` with
+`x[k] <= x`, and the
 value is `y[k] + 0x007A9E50((x - x[k]) / (x[k + 1] - x[k]), ease[k]) x (y[k + 1] - y[k])`, or `y[k]` at the last point
 (`0x007CFD00`-`0x007CFE5B`).
 

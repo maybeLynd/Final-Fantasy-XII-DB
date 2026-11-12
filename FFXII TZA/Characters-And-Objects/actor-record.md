@@ -11,8 +11,10 @@ Every townsperson, door, trigger line, party member and monster in a field is on
 one of the five actor managers. When a field or a scene loads, the manager's script payload says
 how many actors of each kind it brings, the records are carved out of one block, and each is set up
 with its script entry, its position and steering state and its slots for resource requests and
-waits. The record stays alive until the manager unloads, when the block is freed; the handle code
-carries makes a stale reference fail instead of pointing at the wrong actor.
+waits. The record stays alive until the manager unloads, when the block is freed.
+
+A handle kept to a record then fails while its slot is unbound. A rebuilt pool starts every discriminator at 1
+again, so a handle kept from the old pool names whichever new record has that index.
 
 ## How it works
 
@@ -88,9 +90,9 @@ neither (`0x00266BDE`). A separate nibble, bits
    `+0x10C` and `+0x114`;
 4. it sets the flag bytes: `+0x14` = `(old & 0xB0) | 0x30`, `+0x0D` = `(old & 0xA2) | 0x82` and
    `+0x08` = `(old & 0x9F) | 0x11` on manager 0 (`(old & 0x22) | 2` and `(old & 0x8F) | 1` elsewhere);
-   - then `+0x0D` bit `0x20` and `+0x08` bit `0x80` cleared, `+0x0B` &= `0xC0`, `+0x0C` = `(old & 0x71) | 8` then
-   mask `0x70` cleared, `+0x09` bits `0x20` and `0x80` cleared, `+0x13` &= `0x3C`, `+0x0E` |= `0xF0` then `&= 0xF0`,
-   and for class 3 `+0x1C` bits `0x100` and `0x2000` cleared;
+   - then `+0x0D` bit `0x20` and `+0x08` bit `0x80` cleared, `+0x0B` &= `0xC0`, `+0x0C` = 8
+     (`0x0026661B`-`0x002666AC`), `+0x09` bits `0x20` and `0x80` cleared, `+0x13` &= `0x3C`, `+0x0E` |= `0xF0` then
+     `&= 0xF0`, and for class 3 `+0x1C` bits `0x100` and `0x2000` cleared;
 5. it binds the script entry: `+0x02` = 1, or 2 while `i` is below the payload's count word at
    `+[0x14] + 2`; `+0x40` = the entry at payload `+[0x18] + 4 + i * 0x20` (`0x30` when the payload's
    word `+0` is 8 or more); `+0x48` and `+0x50` = payload + the resolved dwords at entry `+0x10` and
@@ -99,8 +101,9 @@ neither (`0x00266BDE`). A separate nibble, bits
    table at `0x0209A1F0` by its low 7 bits (`[0x120000 + rax * 8 + 0x1F7A1F0]`, `0x00266758`-`0x0026677C`):
    tags 0-3 are the party roster entries the field runtime walks ([field runtime](field-runtime.md)),
    and tags 4 and above the sixteen pointers from `0x0209A210` that `0x0026CE60` clears on slot 0;
-7. the record that held a tag below 4 is evicted (`+0x12` = `0xFF`, `+0x0F` = 3), and the new
-   record gets `+0x12` = the tag and `+0x0F` = 2 for tags 0-3, 3 above;
+7. the new record gets `+0x12` = the tag and `+0x0F` = 2 for tags 0-3, 3 above. The eviction at `0x00266754`-`0x00266771`
+   tests this record's own `+0x12`, which step 2 set to `0xFF` (`0x00266612`), so it does not run, and the record the
+   table held keeps its `+0x12` and `+0x0F`;
 8. it builds the request entry free list (`0x003DB580`) and clears bytes `+0x00`-`+0x16` of the
    first `+0x88` (channel count) wait slots, which covers every slot only because the two counts
    are both 8 or both 6;
@@ -179,7 +182,7 @@ small accessors. Each takes the calling actor unless the row says otherwise:
 | `settargetliststatus(v)` | `0x053A` | `0x00269FC0` | `+0x0E` bit `0x40` = `v != 0` |
 | `setnochecktouchheightflag(v)` | `0x020F` | `0x0026BED0` | `+0x08` bit `0x80` = `v != 0` |
 | `fieldsign` | `0x0176` | `0x0026B480` | class 1 only: `+0x0D` bit `0x8` = bit `0x1` of the value the verb passes |
-| `setmapjumpgroup(i)` | `0x011E` | `0x0026AD90` | stores the actor in `0x0209A210[i]`, `i` capped at 15 and a negative `i` taken as 0 |
+| `setmapjumpgroup(i)` | `0x011E` | `0x0026AD90` | stores the actor in `0x0209A210[i]`, an `i` above 15 taken as 15 and a negative `i` as 0 |
 | `set_force_char_nearfade(v)` | `0x0552` | `0x0026AB50(1, v)` | the globals `0x02099DA4` = 1 and `0x02099DA5` = `v` |
 | `attachinfo(i, ref)` | `0x01C8` | `0x0026A140` | secondary `+0x120 + i * 8` = the address `0x002650B0` resolves `ref` to through the current slot's homes, and secondary `+0x14F` bit `0x4` set |
 | `setambient(r, g, b)`, `resetambient` | `0x0116`, `0x0117` | `0x0026AD40` | secondary `+0x151` bit `0x10` set, the colour handed to `0x0026A420`; `resetambient` passes the colour `0x00379900` returns and clears the bit again |
@@ -231,11 +234,10 @@ write nothing):
 
 A manager's teardown `0x002628B0` runs in two phases.
 
-1. `0x0025B070(slot)` is the semantic cleanup, run for every slot but 4: its only call, `0x00262D34`, is
-   skipped when the slot is 4 (`0x00262D2C`-`0x00262D2F`). For the class-1 and
-   class-3 records (the ranges
-   `+0x1DA`/`+0x1D2` and `+0x1DE`/`+0x1D6`) it ends the movement context's `+0x74` or `+0x220` job
-   (`0x0024CFF0`) and zeroes it.
+1. `0x0025B070(slot)` is the semantic cleanup, run for every bound slot but 4: its only call, `0x00262D34`, is skipped
+   when the slot's `+0x10` bit `0x1` is clear (`0x00262930`) or the slot is 4 (`0x00262D2C`-`0x00262D2F`). For the class-1
+   and class-3 records (the ranges `+0x1DA`/`+0x1D2` and `+0x1DE`/`+0x1D6`) it ends the movement context's `+0x74` or
+   `+0x220` job (`0x0024CFF0`) and zeroes it.
 2. The job is `+0x74` of the context `[record + 0xB8]` for a record whose byte `+0x03` says class 1 and `+0x220`
    for class 3; a job of 0 is skipped and a null record passed over (`0x0025B0A5`-`0x0025B114`,
    `0x0025B136`-`0x0025B1A6`).
@@ -247,9 +249,10 @@ A manager's teardown `0x002628B0` runs in two phases.
    `0x002EB780(record)` for every record, with or without a unit (`0x0025B200`-`0x0025B237`).
 5. The owning release: the block at `[slot + 0x08]` is freed with `0x003697F0`, the pointer nulled,
    the slot's `+0x10` bit `0x1` and `+0x200` bit `0x4` cleared and `+0x13` zeroed (`0x00262D96`-`0x00262DB3`).
-6. The slot's `+0x00`, `+0x30`, `+0xE8`, `+0x1E0` and `+0x1FC` are zeroed and `+0x17` bit `0x8` is
-   cleared; the live-slot totals `0x02099DB4`/`0x02099DB8` and the flag `0x02099DA1` are recomputed over
-   slots 0-2; the slot's `+0x108` callback is called once with the slot and then nulled.
+6. The slot's `+0x00`, `+0x30`, `+0xE8`, `+0x1E0`, `+0x1FC` and `+0x284` are zeroed and `+0x17` bit `0x8` is
+   cleared; the live-slot totals `0x02099DB4`/`0x02099DB8` are recomputed over slots 0-2 and the flag `0x02099DA1` over all
+   five slots;
+   the slot's `+0x108` callback is called once with the slot and then nulled.
 
 Every record address and interior pointer is valid only until that release.
 
@@ -279,7 +282,7 @@ and on slot 0 state that belongs to the field. Among its calls, in order (rows a
 | `0x002E63D0` | slot 0 | the keep bit `0x10` of `+0x19` in all 128 binding entries ([script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)) |
 | `0x003EA200` | slot 0 | with the expanded voice memory `0x02B5E0B0` held: stops each voice slot whose byte `+0x07` is 12 and whose state byte `+0x04` is 2, 3 or 4 (`0x0032E520(0)` first for 2 and 4), runs `0x0036D160(0xC)` and frees the block; every voice slot first takes its table for the language into `+0x30` (`0x003EA225`-`0x003EA235`), the pointer `0x02B5E0B0` is zeroed after the free (`0x003EA287`), and with it null nothing runs (`0x003EA20C`) |
 | `0x003E9100` | slot 0 | `0x00408200` when `0x02B5D090` is set, then `0x02B5D090` = 0 |
-| `0x002E1630` | slot 0 | returns -1 when `0x00290180()` is 0, 1 when it is 2 and 0 otherwise; a non-zero value triggers a checked indirect call |
+| `0x002E1630` | slot 0 | returns -1 when `0x00290180()` is 0, 1 when it is 2 and 0 otherwise; a non-zero value runs only a call to the `ret` stub `0x0016D6A0` (`0x00262C4A`) |
 | `0x0036A280` | slot 0 | writes 0-14 into the 15 bytes at `0x022D89A8` |
 | `0x002E06F0` | slot 0 | the 8 records of `0x68` bytes at `0x0215F200`: a live one (qword `+0x00` set) runs `0x002A2720` with that qword, gets dword `+0x08` = 6, and `0x002F1C50` with the byte at `0x0215F1B6` when its byte `+0x40` is -1 (`0x002E072D`-`0x002E0746`); every byte `+0x40` becomes `0xFE` (`0x002E074D`) |
 | `0x0035AB50(0)` | slots 1-3 | slot 0's model list, below |
@@ -406,7 +409,8 @@ Struct ActorResourceEntry size=`0x14`:
   sequence table, which sizes the block.
 - Only class-3 records carry a secondary context and can be steered; a class-1 record has a
   position but no steering, a class-2 record is a trigger line.
-- Hold a handle, not a record pointer, across a field change: the block is freed at unload.
+- A record pointer is dead once the block is freed at unload. A handle resolves to nothing until the slot is bound
+  again; after that it names whichever new record has its index, because every discriminator restarts at 1.
 
 ## Related
 
@@ -415,11 +419,12 @@ Struct ActorResourceEntry size=`0x14`:
 - [Field runtime](field-runtime.md): the wait slots and the drive loops.
 - [Battle units](battle-units.md): the unit bound at `+0x30` and the handle.
 - [NPC names](npc-names.md): `+0xF8` and `+0x102`.
-- [`actor-sequence-descriptor-accesses.tsv`](actor-sequence-descriptor-accesses.tsv): the reads of the descriptor
-  table at `0x01E0C328`, all in `0x002679F0`, each by its offset in the four-byte entry the sequence selects (3 rows).
+- [`actor-sequence-descriptor-accesses.tsv`](actor-sequence-descriptor-accesses.tsv): the reads of the
+  descriptor table at `0x01E0C328`, each by its offset in the four-byte entry the sequence selects (6 rows).
 - [`actor-storage-record-flags1c-initial-values.tsv`](actor-storage-record-flags1c-initial-values.tsv): the value
   `0x00266BD0` gives the flag dword `+0x1C` for each sequence: `dispatch` the arm its jump table selects, `flags1c`
-  the value, `bits_set` its bits as values, and `side_effects` what else the arm does (8 rows).
+  the value, `bits_set` its bits as values, and `side_effects` what else the arm does (8 rows). A sequence above 7
+  (`byte +0x03 & 0x1F`) leaves `+0x1C` unwritten (`0x00266BDE`).
 
 In the descriptor table's rows, `function`, `name` and `site` give the function, its name and the instruction's
 address, `disp` the offset in the entry, `kind` `r` (a read), `instruction` the instruction itself, and `route`

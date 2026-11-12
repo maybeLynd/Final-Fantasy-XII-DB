@@ -64,8 +64,8 @@ Petrify, Confuse, and Oil." and "Remedies remove Sleep, Sap, Immobilize, and Dis
 
 ### Statuses the game checks together
 
-Code tests the two status words together: it loads `+0x64`, ORs `+0x3C` into it and tests a mask. Over every
-function of the image this happens at 248 sites in 167 functions (`0x003868F1`-`0x003868F7` is one). The masks group the
+Code tests the two status words together: it loads `+0x64`, ORs `+0x3C` into it and tests a mask. Over every function of the image this happens at 251 sites in 168 functions (`0x003868F1`-`0x003868F7` is one); the three
+in `0x00390F20` load both words into registers first (`0x00391118`-`0x0039111E`). The masks group the
 statuses by what they stop:
 
 | Mask | Statuses | Sites | What it stops |
@@ -78,7 +78,7 @@ statuses by what they stop:
 | `0x8000201B`, `0x8000401B` | the same with Disable, or with Immobilize | 3 | stance and movement queries (`0x00307DF0`, `0x0030BFB0`, `0x00325D90`) |
 | `0x00010010` | Sleep, Disease | 1 | the periodic HP credit (`0x00386860`) |
 
-Nine more masks are each used at one to three sites, and 48 sites test the combined word some other way.
+Nine more masks are each used at one to four sites, and 50 sites test the combined word some other way.
 
 ## Columns
 

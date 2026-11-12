@@ -59,7 +59,7 @@ a handle first compares the generation, so a stale handle does nothing:
      and its state `+1` is 1, it stores the mask at `+0x1C` and sets state 2, or 4 when the mask shares a bit
      with `0x02EC0B40` (`0x0035B6C5`-`0x0035B707`).
    - A returned handle of 0 (an empty free list or a busy head slot) leaves the entry 0, and the arming test then
-     reads the generation word at `0x202EC0B62`, slot index `0xFFFFFFFF` zero-extended (`0x0035B6C5`-`0x0035B6E1`).
+     reads the generation word at `0x2002EC0B62`, slot index `0xFFFFFFFF` zero-extended (`0x0035B6C5`-`0x0035B6E1`).
 
 | Starter | What it plays |
 |---|---|

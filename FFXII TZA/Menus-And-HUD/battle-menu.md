@@ -190,10 +190,14 @@ The tab strip `0x0027C870` shows one tab per target list the action allows.
 4. The strip is centred from its total width `0x0027B120`, and its side nodes 6 and 7 are shown only when two or more
    tabs are enabled (mask not 1, 2, 4 or 8).
 
-The filter skips, for filter 1, rows with flag bit `0x2` and units whose status words hold KO, Stone or bit `0x80000000`
-(`0x00273710`, mask `0x80000003`), and for every filter units whose byte `+0x0A` (`0x002647E0`) has bit `0x4` (filter 0) or bit `0x1`
-(otherwise). `0x0027B5A0` and `0x0027B6C0` make the same two checks from a saved request when L1 or R1 is pressed
-(`0x0027C730`), and `0x0027BB70` applies the filter to a page's rows in place, keeping the count at `+0x40`.
+The filter skips, for filter 1, rows with flag bit `0x2` and units whose status words hold KO, Stone or bit
+`0x80000000` (`0x00273710`, mask `0x80000003`), and for every filter units whose byte `+0x0A` (`0x002647E0`) has bit `0x4`
+(filter 0) or bit `0x1` (otherwise).
+
+`0x0027B5A0` makes the same two checks from a saved request when L1 or R1 is pressed (`0x0027C730`), and `0x0027B6C0` only
+answers whether target list `0xF` has a row (`0x0031EB20`). `0x0027BB70` applies the checks to a page's rows in place,
+keeping the count at `+0x40`; its callers `0x0027D740` and `0x0027E050` take the filter from page bit `0x8000` and the
+mask from page bit `0x1000`, which picks bit `0x1` over bit `0x4`.
 
 `0x0027DCA0` moves the strip half way towards its centred position, snapping when it is within 1. `0x00276830(tabs,
 kind)` marks the tab of list kind `0x10`-`0x13`: the other tabs draw one palette further on.
@@ -220,12 +224,18 @@ matrix, point)` projects a point and divides by its depth; `0x00272250` turns th
 
 1. A command or action list is rebuilt with `0x0031EB20`; an action list (page kind 11) keeps the cursor on the row
    with the same id, and the cursor is clamped to the last row.
-2. A target list (bit `0x2000`) is rebuilt from a copy of the page (`0x00272400`, which copies the `0x50`-byte header and the
-   eight-byte rows) and filtered (`0x0027BB70`). Once bit `0x4000` is set it keeps its old order (`0x002727F0`: rows still
-   present first, in their old order, then the new ones); before that, with bit `0x1000` it is sorted by distance from the
-   camera `0x02AEDDB0` (`0x002729A0`), and bit `0x4000` is then set.
-3. The cursor stays on the same unit, or is clamped to the last row; bits `0x80800` are set when the row count or the
+2. A target list (bit `0x2000`) is rebuilt from a copy of the page (`0x00272400`, which copies dwords `+0x00`, `+0x40`
+   and `+0x44`, bytes `+0x08`-`+0x3F` and the eight-byte rows, leaving `+0x04` and `+0x48`-`+0x4F` as they were).
+   With bit `0x40000` set the rebuilt rows are stored as they are (`0x0027D9FE`).
+3. Otherwise the rows are filtered (`0x0027BB70`) and ordered. Once bit `0x4000` is set the list keeps its old order
+   (`0x002727F0`: rows still present first, in their old order, then the new ones). The first rebuild sets bit `0x4000`,
+   after sorting the rows by distance from the camera `0x02AEDDB0` when bit `0x1000` is set (`0x002729A0`).
+4. The cursor stays on the same unit, or is clamped to the last row; bits `0x80800` are set when the row count or the
    cursor changed.
+5. With bit `0x8000` set, when the cursor had to move and the list is empty, or, on any rebuild but the first
+   ordering (rows kept in their old order, or stored as they are under bit `0x40000`: `0x0027DA9F`), the row now under
+   the cursor is another unit, the saved copy of the list and the cursor are put back and bit `0x100000` is set
+   (`0x0027DB06`-`0x0027DB55`).
 
 `0x0035BC50` sorts its list `0x1A` at `0x022C83F0` by distance in the same way (`0x00272B40`, `0x0035BD19`).
 
@@ -442,20 +452,44 @@ Each bar is a child `0x004061F0` of the gauge's window `[0x02B62D88] + 0xC0`, at
 - `0x00404F50(i, style, cells)` returns entry `i` of the value table `[0x02B62D88] + 0xE8` (count `+0xE3`, 0x18 bytes
   each). For style 2 it cuts entry 0 into 50 cells: `cells = current x 51 / max`, 51 counted as 50. Bar 0 then
   gets the part inside the current cell, bar 1 the cell count as a width `cells x 6 - 2` of 298.
-- `0x004060B0(bar, open, b)` starts a bar's 25-frame opening (`0x00246AD0`) or closing; a segmented bar (`+0x130`
-  bit `0x100`) also plans a ramp of 50 cells over 25 frames, and closing marks all 50 cells `+0x13C` lit (9).
+- `0x004060B0(bar, open, b)` does nothing while the bar's `+0x130` bit `0x1` is set. Otherwise it shows the bar
+  (`0x00246AD0`). With `open` it sets that bit, starts the 25-frame count `+0x17A`, keeps `b` at `+0x13A` and zeroes the
+  50 cells `+0x13C`; a segmented bar (`+0x130` bit `0x100`) also plans a ramp of 50 cells over 25 frames. Without
+  `open` it marks all 50 cells lit (9).
 - `0x004058E0(bar, start)` runs the opening or closing each frame: the value widget grows by the square of the eased
   step (`0x00248F40`), or a segmented bar widens cell by cell (`0x004076B0`). When a closing run ends the bar is
   released (`0x00245020`).
-- `0x004068B0(bar, value)` takes a new value, ends a running ramp at it and sets the flash timer `+0x178`: 1 frame for a
-  rise; 40 for a drop, or 1 once the drops' total `+0x17C` passes 3,999 (each adds 40 divided by its size).
+- `0x004068B0(bar, value)` takes a new value, ends a running ramp at it and sets the flash timer `+0x178`:
+  - with `+0x130` bit `0x40` the timer is 40 when `+0x136` is 0, else 8 with cell `+0x137` of `+0x13C` set to 10;
+  - with bit `0x80` it is 1 when `+0x136` is 0, else 8 with the cell before `+0x137` set to 1; bit `0x20` is set in
+    both cases;
+  - any other bar gets 1 frame for a rise; 40 for a drop, or 1 once the drops' total `+0x17C` passes 3,999 (each adds
+    40 divided by its size, at least 1).
 - `0x00406770(bar, on)` re-reads the value when shown, and `0x00406DD0(gauge, on)` records the state in `+0xC8` bit `0x20`
   and passes it to every shown bar (`+0x130` bit `0x10`).
 - `0x00405C20` draws a bar: the number (`0x0029E840`) and, for a segmented bar, up to 49 cell frames in batches of 16
   (`0x002D9DB0`, `0x002DAC70`). A lit cell's state counts 1 to 8 while the first sprite fades out, then 9 to 17 while
   the second fades in, wrapping to 9 (`0x002D8D10`).
 
-A bar does nothing in a frame while the window's `+0xC8` bit `0x40` or `0x80` is set, unless it is closing (`0x0040639D`-`0x004063B2`).
+While the manager's `+0xC8` has bit `0x40` or `0x80` set (the manager `[0x02B62D88]` is loaded at `0x0040631A`, its
+`+0xC8` read at `0x0040639D`), a bar skips the rest of its frame from `0x004063B8` on, unless it is closing: its
+`+0x130` bit `0x8`, set only by `bossgaugeclose` (`0x00404EE2`), is tested at `0x004063AB`.
+
+The pause test comes after these steps, in order (`0x004062A0`-`0x00406397`), so they run during a pause:
+
+1. the frame ends when `0x001EDEC0` returns 0 for the bar's `+0xB4` or the bar's `+0xD8` bit `0x20` is set
+   (`0x004062A0`-`0x004062BA`);
+2. for style 2 with `+0x136` clear, the style-2 maximum refresh: `0x004073B0` takes `+0x0C` of what `0x00404F50`
+   returns for style 2 (below), and is skipped when that is null (`0x004062C0`-`0x004062E9`);
+3. with a manager, the `0x00247870` call, told whether the manager's value count `+0xE3` is non-zero; the frame
+   ends when it is zero (`0x004062EE`-`0x00406314`);
+4. while the delay `+0x13A` is non-zero, it is counted down by one and the frame ends (`0x00406321`-`0x00406340`);
+5. the frame ends when there is no manager or the manager has no window at `+0xC0` (`0x00406341`-`0x00406354`);
+6. while bit `0x1` of the window's `+0x40` is clear: a non-zero 25-frame count `+0x17A` is copied into the flash
+   timer `+0x178` (`0x0040637B`), but the frame ends instead when the bar's `+0x130` bit `0x1` is set
+   (`0x00406375`); a zero count ends the frame unless the bar is closing (`0x00406384`-`0x0040638B`);
+7. the frame ends when bit `0x1` of the bar's own `+0x40` is clear (`0x00406391`-`0x00406397`).
+
 The verbs reach the gauge through one-jump stubs:
 
 | Verb or caller | Function | Effect |
@@ -541,7 +575,7 @@ The manager is the `0xF0`-byte widget kept at `0x02B62D88` with procedure `0x004
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x00406A60` |
 | `+0xC0` | `void*` | window | the boss gauge window, the `0xD8`-byte widget with procedure `0x00405310` that the tick builds (`0x00244F50` at `0x00406C36`) and that stores itself here (`0x00405384`); the tick attaches it hidden (`0x00244960`) while the HUD is hidden and opens it otherwise (`0x00406C3B`-`0x00406C63`); `0x00404D40` returns its bars (`0x00404D4C`), and bossgaugeclose `0x00404E10`, the HUD hide `0x00405150`, the HUD show `0x004052D0`, `0x004060B0`, the bar `0x004061F0` and `0x00406DD0` reach the window through it; 0 at construction (`0x00406C8D`) |
-| `+0xC8` | `u32` | flags | bit `0x1`: bossgaugeopen asked for the gauge (`0x00405270`), and the tick builds the window while it is set (`0x00406B52`); bit `0x2`: the window is open, set by the tick with bit `0x1` cleared (`0x00406C68`-`0x00406C74`), after which the tick only refreshes the value table (`0x004050C0`, `0x00406B44`); bit `0x4`: the HUD hid the window (`0x00405150`), taken back by the HUD show (`0x004052EC`, `0x00405301`); bits `0x2` and `0x4` are cleared when the window goes (`0x004056F2`). Bit `0x8`: skip the full-values test once (`0x00406BC2`-`0x00406BCA`). Bit `0x10`: 1 at construction (`0x10`, `0x00406CA5`); passed to the new window as its creation argument (`0x00406B85`-`0x00406B9D`) unless an entry's value is below its maximum (`0x00406BD2`-`0x00406C0E`). Bit `0x20`: the bars' state from `0x00406DD0` (`0x00406DE0`, `0x00406E0D`). Bit `0x80`: the script pause mask, set and cleared by `0x00404D70` and `0x00404DC0` (`0x00404D9C`-`0x00404DFB`); a bar does nothing while bit `0x40` or `0x80` is set (`0x0040639D`) |
+| `+0xC8` | `u32` | flags | bit `0x1`: bossgaugeopen asked for the gauge (`0x00405270`), and the tick builds the window while it is set (`0x00406B52`); bit `0x2`: the window is open, set by the tick with bit `0x1` cleared (`0x00406C68`-`0x00406C74`), after which the tick only refreshes the value table (`0x004050C0`, `0x00406B44`); bit `0x4`: the HUD hid the window (`0x00405150`), taken back by the HUD show (`0x004052EC`, `0x00405301`); bits `0x2` and `0x4` are cleared when the window goes (`0x004056F2`). Bit `0x8`: skip the full-values test once (`0x00406BC2`-`0x00406BCA`). Bit `0x10`: 1 at construction (`0x10`, `0x00406CA5`); passed to the new window as its creation argument (`0x00406B85`-`0x00406B9D`) unless an entry's value is below its maximum (`0x00406BD2`-`0x00406C0E`). Bit `0x20`: the bars' state from `0x00406DD0` (`0x00406DE0`, `0x00406E0D`). Bit `0x80`: the script pause mask, set and cleared by `0x00404D70` and `0x00404DC0` (`0x00404D9C`-`0x00404DAB`, `0x00404DEC`-`0x00404DFB`); while bit `0x40` or `0x80` is set, a bar that is not closing skips its frame from `0x004063B8` on (`0x0040639D`-`0x004063B2`) |
 | `+0xCC` | `u8[4]` | pad0CC | read and written by no function; nothing fixes its width |
 | `+0xD0` | `void*` | layoutRecord | the gauge's layout record, `0x0051EDC0`(3) (`0x00406CAF`-`0x00406CB4`): its byte `+0x24` is the picture count and its `+0x28` the picture list the construct message loads (`0x00406CC9`-`0x00406CDF`) |
 | `+0xD8` | `void*` | pictures | the array of `+0xE0` picture handles the construct message allocates (`0x00393590`, `0x00406CFA`) and fills, one load (`0x0024A440`) for each list entry of type 1 and 0 for the others (`0x00406D17`-`0x00406D54`); message 18 releases each (`0x0024A680`) and frees the array (`0x00406AA6`-`0x00406B04`) |

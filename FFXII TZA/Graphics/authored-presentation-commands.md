@@ -77,8 +77,10 @@ bank B (`0x00426A12` to `0x00426B84`). The actor side's `0x002EA320` and `0x002E
   - Both calls pass the command in `rdx`, each is skipped while its slot is empty (`0x00417C77`, `0x00417C8F`), and
     the render record is `[stream + 0x2E0]` (`0x00417C94`).
 - Id 6, `0x00417CC0`, calls bank-A slot 6 with the actor and sets bit `0x40` of `+0x2C8`.
-- Slot `0x0C` is not in the pair table; `0x0041DA90` calls it with the actor and `stream + 0x31C` when
-  the motion reaches the time at `+0x34C`.
+  - Slot `0x0C` is not in the pair table; `0x0041DA90` calls it with the actor and `stream + 0x31C` when the motion
+    reaches the time at `+0x34C` (not −1), and also for an entry with `+0x96` bit `0x4` whose word `+0x04` is 2.
+    Either call needs stream `+0x0C` bit `0x100000` set, bits `0x20000200` clear, and byte `0x01EFFBB8` zero when bit
+    `0x10` is set; it then sets bit `0x200`.
 - Ids `0x0D` to `0x10` are the ramp setters below.
 
 ### The motion invokers
@@ -121,11 +123,10 @@ then picks the clock: 0 runs `0x00418750`, 1 runs the channel reader `0x00418880
 ever, and sets state 2 at 0. Otherwise the frame stays at the end minus `[0x01DFE0BC]` and the
 entry ends (state 2), unless the stream's `+0x2E8` bit `0x1` and the entry's `+0x96` bit `0x10` are both set.
 
-When a timed entry passes the time at `+0x34C`, or an ended entry with `+0x96` bit `0x4` finishes, the
-walker sets state 2, flushes the keyed records (`0x0041E000` with −1), sets bit `0x1000` of `+0x2C8` and
-runs `0x0041C6C0`: for motion number `0x2008`, while bit `0x200000` of `+0x0C` is clear, it calls bank-A slot
-4 (`[0x02CA4430]`) with the actor `+0x2C0` and an argument block whose word `+2` is 2, then sets
-bit `0x200000`.
+When a timed entry passes the time at `+0x34C`, or an ended entry with `+0x96` bit `0x4` finishes, the walker sets
+state 2, flushes the keyed records (`0x0041E000` with −1), sets bit `0x1000` of `+0x2C8` and runs `0x0041C6C0`: for motion
+number `0x2008`, while bit `0x200000` of `+0x0C` is clear, it calls bank-A slot 4 (`[0x02CA4430]`) with the actor
+`+0x2C0` and an argument block whose byte `+2` is 2, then sets bit `0x200000`.
 
 ### The registered handlers
 

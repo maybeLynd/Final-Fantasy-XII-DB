@@ -141,10 +141,10 @@ is counted at the manager's `+0x1E0` and the record's steering pushed (`0x002EAB
 battle unit also has its speed set to 0 (`0x0026D6F0(record, 0, 2)`) and `0x0035AE10(record, 1)`. A null record passes
 the `+0x0C` test (`0x00263276`) and faults at `0x002632FD` or `0x002633BB`, which read it without a test.
 
-`0x00263050(record, op)` ends it. Op 1 decrements the count, the manager's `+0x1E0 -= 1` (`0x002630B7`), and, when
-the sum of the live managers' counts, which it stores in `0x02099DB4`, reaches 0 or below, `sum <= 0`
-(`0x002630BE`-`0x002630F2`), runs `0x002E1CD0(1, 3)` (clearing action-availability row 3), zeroes
-`0x02099DE5`, sets `0x02099DE7` to `0xFF`, calls `0x00263480(record, 2 or 1)` (2 when `+0x0C` bit `0x80` is set) and,
+`0x00263050(record, op)` ends it. Op 1 decrements the count, the manager's `+0x1E0 -= 1` (`0x002630B7`), and, when the sum
+of the counts of managers 0, 1 and 2 that are live (managers 3 and 4 are not added), which it stores in `0x02099DB4`,
+reaches 0 or below, `sum <= 0` (`0x002630BE`-`0x002630F2`), runs `0x002E1CD0(1, 3)` (clearing action-availability row 3),
+zeroes `0x02099DE5`, sets `0x02099DE7` to `0xFF`, calls `0x00263480(record, 2 or 1)` (2 when `+0x0C` bit `0x80` is set) and,
 with `0x0209A2A8` set and `+0x0C` non-negative, `0x00225CD0(6, 4)`.
 
 It then releases the focus actor's look (`0x002EBE50(focus, 0, 0)` and `0x002E8EE0` when `0x002E7600(focus)` is
@@ -202,13 +202,17 @@ While `+0x29` is non-zero the wait resolver `0x0025DF00` re-issues `0x0026D6F0(a
    target at once;
 4. the remaining distance is `distance - reach`, three-dimensional (`0x003A1920`) when `0x00264460` or
    actor byte `+0x08` bit `0x4` says so, else flat (`0x004686D0`);
-5. the ramp, with `v = +0x24` and `a = +0x2C`: mode 1 leaves `v`; mode 2 uses the distance from the
-   start snapshot `d0`, and when `max(a, d0) < v^2 / 2a` sets `v = max(a, sqrt(2a * max(a, d0)))`;
-   mode 3 does the same with the remaining distance; mode 4 both. `v` goes to the context's `+0xD0`
-   and `+0xF8`;
-6. actor byte `+0x0D` bit `0x10` (near) is set when `[0x02164200] * +0x24 > remaining`; `0x02164200` is 3.0
-   at run time: its only writer is the setter `0x002EBE40`, called by `0x00266D10` at boot and by the
-   verb `debug_charmovestopvelrratio` (`0x0050D320`);
+5. the ramp, with `v = +0x24` and `a = +0x2C`, by mode (`0x002E47BD`-`0x002E47CE`); `v` then goes to the
+   context's `+0xD0` and `+0xF8`:
+   - mode 1 leaves `v`;
+   - mode 2 uses the distance from the start snapshot `d0`, and when `max(a, d0) < v^2 / 2a` sets
+     `v = max(a, sqrt(2a * max(a, d0)))` (`0x002E4823`-`0x002E4850`);
+   - mode 3 takes the remaining distance `rem` and, when `max(a, rem) < v^2 / 2a`, sets
+     `v = max(a, sqrt(2a * rem))`, with `rem` itself under the root (`0x002E4861`-`0x002E4895`);
+   - mode 4 runs the mode 2 step, then the mode 3 step on the new `v` (`0x002E485B`);
+6. actor byte `+0x0D` bit `0x10` (near) is set when `[0x02164200] * +0x24 > remaining` and cleared otherwise
+   (`0x002E48CA`, `0x002E48D0`); `0x02164200` is 3.0 at run time: its only writer is the setter `0x002EBE40`, called by
+   `0x00266D10` at boot and by the verb `debug_charmovestopvelrratio` (`0x0050D320`);
 7. arrival, when `[0x01DFE0B8] * v > remaining`: for a position target (`+0x2A` = 0) a zero reach
    snaps the actor onto it (`0x0026AFE0`) and `+0x24`, `+0xD0` and `+0x2C` are zeroed; for every
    target `+0x29` = 0, a movement mode 2 is torn down (`0x0026C120(actor, 0)`), and `+0x24` and

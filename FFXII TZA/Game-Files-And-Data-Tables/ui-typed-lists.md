@@ -408,6 +408,8 @@ bits `0x3C`. Types 1, 3, 6 and 8 have no arm.
   `+0x10` scrolls (`cmp ebp, ebx`, `0x0029FD81`): with `r = +0x0A - +0x10` (`+0x0A` less that width,
   `0x0029FD96`-`0x0029FD9A`), the field under mask `0xFFC0` becomes the absolute value of
   `([0x0208F574] / 4) mod 2r - r`, and x is the node's x less it (`0x0029FD85`-`0x0029FDC8`).
+- Nothing tests `r` before the division: a scrolling node whose `+0x0A` equals its width `+0x10` makes `2r` 0,
+  and the `idiv` faults (`0x0029FDA1`-`0x0029FDA5`).
 - A text that fits is centred in the node's width (`0x0029FDCC`-`0x0029FDDB`).
 - Type 7 goes to `0x0029ED50`. It clamps the value into 0 to maximum, draws the background strip at full length,
   then the fill strip at `fill length × value / maximum`, then the overlay over the fill.

@@ -30,7 +30,7 @@ id-specific rules (`0x003018DD`-`0x00301AA5`); every other id passes:
 | Ids | Rule |
 |---|---|
 | `0x4051`-`0x4121` except `0x4091`, and `0x414B` | a non-zero parameter is a percentage: refused when the parameter is not above a draw from the gameplay generator (`0x00328370`) modulo 100 |
-| `0x4022`, `0x4124` | must have a reachable movement goal (`0x00312730`, and `0x0033A120` must not report arrival); `0x4022` then stores the goal at `+0x6C0` and `0x00309A90()` at `+0x6D0` |
+| `0x4022`, `0x4124` | must have a movement block `+0xD4` that is not negative (`0x00301978`) and a reachable movement goal (`0x00312730`, and `0x0033A120` must not report arrival); `0x4022` then stores the goal at `+0x6C0` and `0x00309A90()` at `+0x6D0` |
 | `0x4165` | `0x00312730` must find a goal |
 | `0x414D` | `0x00308130` (party side) or `0x00308040(unit, 0)`, tested against unit bit `0x800000` |
 

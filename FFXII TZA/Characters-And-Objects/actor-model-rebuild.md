@@ -65,7 +65,7 @@ record is gone (the entry's `+0x1E` is negative, `0x002E4C37`) or its stamp `+0x
 |---|---|---|
 | 0 | hides the actor (`0x002EBB80(actor, 0)`) | 1 |
 | 1 | compares the actor's bound id (`0x002E96B0`, context `+0x04`) with the id its definition calls for (`0x0031C250`, then `0x002EB7A0`) | 3 when equal; 22 when the new id is negative; else 2 |
-| 1 (changed) | when the old id is 0 or more: `0x0025AB30(actor)`, releases the old main entry (`0x002EBD60(id, 0)`, `0x002E3F00(id, lane)`, `0x002E3DC0(id)`) and each attached part whose id will change; then sets actor `+0x23` bit `0x1` and requests the new id | 2 |
+| 1 (changed) | when the old id is 0 or more: `0x0025AB30(actor)`, the old main entry's release when that id is above 0 (`0x002EBD60(id, 0)`, `0x002E3F00(id, lane)`, `0x002E3DC0(id)`) and the release of each attached part whose id will change; then sets actor `+0x23` bit `0x1` and requests the new id | 2 |
 | 2 | waits for the main entry; then `0x002EBC90(actor, 0, 0)`, the variant bytes from `0x0031C540(0x003589B0(actor))` (1 and 0 when it fails) into `0x0026D610`, the bind `0x002E28E0`, `0x002681D0`, `0x002E5C70` with the three floats at `[actor + 0xB8]`, `0x002EAC90`, `0x002E49B0(actor, 0)`, `0x002E4A40`, `0x002E8450(actor, 0x00321380(0x003589B0(actor)) or 0)` (`0x0037B76B`-`0x0037B80D`) | 3 |
 | 3 | — | 4 |
 | 4 | releases the actor's pool entry at `+0x20` (`0x0036EC10`), looks up the new pool id (`0x002ED910`) and acquires an entry (`0x0036F0F0`) into `+0x20`; a negative id leaves the released index in `+0x20`, so the next rebuild releases it again | 5; 7 when the id is negative |
@@ -258,8 +258,9 @@ share the `i16` state word `0x022C8010`, which the world tick advances once per 
 
 1. sets battle flags `0x02089340` bit `0x20` (`0x00238B70(1)`, which also calls `0x002E7C10(actor, actor,
    0x30B, 0)` for every unit in use with flag bit `0x10`) and bit `0x80` (`0x00238AE0(1)`);
-2. releases each record of manager 0's ordinal window (first `+0x1DE`, count `+0x1D6`, only while bit `0x1`
-   of `+0x10` is set) that holds a unit at `+0x30` (`0x0035A590`: `0x0026D6D0`, `0x00233F50(record, 1)`, `0x002ED020`);
+2. releases each record of manager 0's ordinal window (first `+0x1DE`, count `+0x1D6`, when bit `0x1` of `+0x10` is
+   set
+   before the walk) that holds a unit at `+0x30` (`0x0035A590`: `0x0026D6D0`, `0x00233F50(record, 1)`, `0x002ED020`);
 3. clears the keep bit `0x10` of `+0x19` in all 128 binding entries (`0x002E63D0`) and zeroes dword
    `+0x40` of the 32 lane records (`0x002E6570`);
 4. for every record of slot 0 with `+0x14` bit `0x80` and a tag of 4 or more (`0x002647B0` = 0), takes its

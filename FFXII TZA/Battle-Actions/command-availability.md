@@ -54,7 +54,7 @@ check `0x002FFB60` (`0x002FFC7C`, its reason 6). In order:
 4. Code `0x2C` for ids `0x106`-`0x112` (the summons) while `0x0030D9A0()` is 1 - bit `0x1` of
    `[0x02EBF190]+0x5B04`, which the summon scene sets ([Quickenings and summons](quickenings-and-summons.md)).
    `0x0030D9A0` returns 5, 4, 3 (town flag `0x00377C20`), 2 or 1 from bits `0x8`, `0x4`, the town flag, `0x2` and `0x1` of
-   that word, in that priority.
+   that dword, in that priority.
 5. **Statuses:** `0x0030E9C0(stats, mask)` with mask `0x8000201B` (status bits `0x1`, `0x2`, `0x8`, `0x10`, `0x2000`, `0x80000000`), or
    `0x8000221B` (adding bit `0x200`) when the row has bit `0x80000` of `+0x0C` or kind byte `+0x1E` = 1 (Magicks).
 

@@ -245,11 +245,11 @@ With s and c the sine and cosine of x, y and z, row 0 is `(cy·cz, cy·sz, −sy
 `(sx·sy·cz − cx·sz, sx·sy·sz + cx·cz, sx·cy)` and row 2 `(cx·sy·cz + sx·sz, cx·sy·sz − sx·cz, cx·cy)`
 (`0x0046D67F`-`0x0046D71C`).
 
-`0x00409240(entry)` gives the node count (word `+0x30` for a kind-2 entry, dword `+0x0C` otherwise),
-`0x00409270(entry, n)` the address of node `n`'s record (`+0x40` table entry `>> 12`, 0 past the count
-or for another kind), and `0x004095A0` the address of the `+0x40` table. With flag bit `0x400000` set,
-`0x004092A0(entry, record)` returns the pool dword named by the node's first pool index, skipping one
-index for bit `0x80000000` and sixteen more when bits `0x200100` are both set, and 0 otherwise.
+`0x00409240(entry)` gives the node count (word `+0x30` for a kind-2 entry, dword `+0x0C` otherwise), `0x00409270(entry,
+n)` the address of node `n`'s record (`+0x40` table entry `>> 12`, 0 past the count or for another kind), and
+`0x004095A0` the address of the `+0x40` table. With flag bit `0x400000` set, `0x004092A0(entry, record)` returns, as a
+float, the dword of the pool at `entry + [entry + 0x34]` named by the node's first pool index, skipping one index each
+for bits `0x40000000` and `0x80000000` and sixteen more when bits `0x200100` are both set, and 0.0 otherwise.
 
 ### @FOR, variants and distance LOD
 
@@ -616,9 +616,9 @@ shipped file uses it.
 
 - `0x00504840(entry, key)` returns float `+0x18` of the record with that key, or 1.0. `0x00420480` calls it
   with record byte `+0x5C`, and the result is the record scale that `0x003E6150` applies.
-- `0x004201F0(record, view)` runs only when the entry starts with `@FOR`. With a non-zero distance count
-  it builds the windows `{0, d0 × 0.01, d1 × 0.01, 1.0e8}` in metres, or uses the record's float array
-  `+0xA0` when record byte `+0xC0` bit `0x1` is set.
+- `0x004201F0(record, view)` runs only when the entry starts with `@FOR`. With a non-zero distance count it builds the
+  windows `{0, d0 × 0.01, d1 × 0.01, 1.0e8}` in metres, or uses the float array `+0xA0` of the view (of the record
+  when `view` is null) when byte `+0xC0` of that same object has bit `0x1` set.
 - The level is the first window that holds the view depth (float `+0x208`; a negative depth gives
   level 0), capped at `+0x3B`. It stores `(count + 1 − level) / (count + 1)` at record `+0x2A4`, so 1.0
   is nearest, then calls `0x00421280`.
@@ -682,13 +682,15 @@ The draw writes its transfers and state into the current GS command buffer (`0x0
 `0x02EBEFC0 + 0x18 × [0x02EBEFF0]`), and when fewer than a block's bytes remain it closes the buffer
 with `0x00504450`: a `{0x10000000, 0}` record, then the flip `0x003A1DB0`. `0x00504490` only flips.
 
-- `0x0053D4B0` writes a part's alpha and depth test: registers `0x47` and `0x48` with the reference
-  `alpha × [0x02CA81DC]`, capped at `0x80` and raised to `[0x01F2CA90]` for an instance with `+0xF8` set
-  whose `0x003E56A0` entry has bit `0x8` of `+0x134`; the alpha is the part's bits under mask `0xFE`, or the
-  instance's byte `+0xBC`. With instance `+0x08` bit `0x8` it writes `0x34000` instead.
-- `0x0053D140` writes a material block: a tag (`0x10000008`, `0x50000005`), two register words per
-  mode (`0x44` and `0x42`/`0x43`, or `0x4A`), per-texture pairs from the material when its flag byte
-  has bit `0x1` or bit `0x4`, and the two texture handles.
+- `0x0053D4B0` writes a part's alpha and depth test: registers `0x47` and `0x48` with the reference `alpha ×
+  [0x02CA81DC]`, at most `0x80` and raised to `[0x01F2CA90]` for an instance with `+0xF8` set whose `0x003E56A0` entry has
+  bit `0x8` of `+0x134`.
+- In `0x0053D4B0` the alpha is the instance's byte `+0xBC` when the draw's `+0x8700` is non-zero and the instance's
+  `+0x244` bit `0x20` is clear, and otherwise the part's bits under mask `0xFE`. With instance `+0x08` bit `0x8` it
+  writes `0x34000` instead.
+- `0x0053D140` writes a material block: a tag (`0x10000008`, `0x50000005`), two register words per mode (`0x44` and
+  `0x42`/`0x43`, or `0x4A`), per-texture pairs from the material when its flag byte has bit `0x4` and, in the `0x44`
+  mode only, bit `0x1`, and the two texture handles.
 
 ### Palettes
 
@@ -729,7 +731,7 @@ and the record joins a list (head `0x02B47778`, tail `0x02B47780`, count byte `0
 |---|---|---|---|
 | `+0x00` | `u8` | opCount | operation count |
 | `+0x01` | `u8` | flags | any of bits `0x3F` set: `+0x08` and `+0x10` are handles (`0x0036B130`); `0x40` keep running; `0x80` run |
-| `+0x02` | `u16` | colourCount | colour count, at most `0x20` |
+| `+0x02` | `u16` | colourCount | colour count; `0x003CD840` and `0x003D2B60` copy only 1, `0x10` or `0x100` colours |
 | `+0x04` | `u32` | handle | serial << 8 \| slot |
 | `+0x08` | `void*` | source | source palette |
 | `+0x10` | `void*` | destination | destination palette |
@@ -737,7 +739,7 @@ and the record joins a list (head `0x02B47778`, tail `0x02B47780`, count byte `0
 | `+0x20` | `void*` | next | next record |
 | `+0x28` | `void*` | firstOp | first operation |
 | `+0x30` | `void*` | lastOp | last operation |
-| `+0x38` | `u32` | overrideOnly | when non-zero, runs only while `0x00181DD0` reports an override |
+| `+0x38` | `u32` | overrideStamp | `0x00181DD0`() when `0x003CCC20` last added an operation; 0 skips the record during an override |
 
 `PaletteOperation` (`0x50` bytes, offsets from the start of the record):
 
@@ -772,6 +774,11 @@ The kinds call `0x0050AC20`,
 moving time. `0x003CD6C0(handle)` returns the record; `0x003CD7C0` and `0x003CD7F0` set its bits `0x40` and `0x80`;
 `0x003CD590` detaches its operations and clears its count; `0x003CD5D0` unregisters it; `0x003CD650(handle)`
 removes one operation from its record.
+
+Both walks skip a record whose `+0x38` is 0 while `0x00181DD0()` is non-zero (`0x003CCF6A`-`0x003CCF77`,
+`0x003CD2DD`-`0x003CD2EA`); a record with `+0x38` non-zero runs either way, still only with bit `0x80` of `+0x01`
+(`0x003CCF60`-`0x003CCF64`). `0x003CCC20` stores `0x00181DD0()` in `+0x38` each time it adds an operation
+(`0x003CCE6B`-`0x003CCE76`).
 
 ## Modding notes
 

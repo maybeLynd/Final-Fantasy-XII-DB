@@ -57,15 +57,15 @@ It then writes into the current GS command buffer (`0x02EBEFC0` + 0x18 × `[0x02
 4. when the table entry `0x00D10F88[(a != 0) | (b != 0) << 1]` is non-zero: a screen clear (below);
 5. TEST_1 `0x47` = `0x50000` (`0x0036D733`), and `0x003A2020` writes the tag's loop count.
 
-The table holds 0, `0x32001`, `0x31001` and `0x30000`; the chosen entry is the clear's TEST_1
-value. The clear sets TEST_1, PRIM (register 0) = 6, a sprite, and RGBAQ (register 1) to the colour
-`[0x022D8ED8]` when `[0x022D8EDC]` is non-zero, else 0; `0x003A20C0` then emits XYZ2 (register 4) pairs
-that cover the screen in sprites 64 pixels wide.
+The table holds 0, `0x32001`, `0x31001` and `0x30000`; the chosen entry is the clear's TEST_1 value. The clear sets
+TEST_1, PRIM (register 0) = 6, a sprite, and RGBAQ (register 1) to the colour `[0x022D8ED8]` when `[0x022D8EDC]` is
+non-zero, else 0; `0x003A20C0` then emits XYZF2 (register 4) pairs that cover the screen in sprites 64 pixels wide.
 
-The header record gets `(records − 1) | 0x10000000` in its first qword (`0x0036D781`) and
-`0x5000000011000000 | records << 32` in its second (`0x0036D792`): a DMA `cnt` tag followed by the
-VIF codes FLUSH (`0x11`) and DIRECT (`0x50`) with the record count. `0x0036D400` ends with
-`0x003A1DB0` (`0x0036D7AD` or `0x0036D7C7`), which flips the buffers and calls the first publisher.
+With n the records after the header, `(cursor - header) / 16 - 1` (`0x0036D75B`-`0x0036D77B`), the header record
+gets `n | 0x10000000` in its first qword (`0x0036D77E`-`0x0036D786`) and `0x5000000011000000 | n << 32` in its
+second (`0x0036D78E`-`0x0036D7A4`), or 0 there when n is 0 (`0x0036D789`-`0x0036D78C`, `0x0036D7B9`-`0x0036D7BE`): a DMA
+`cnt` tag followed by the VIF codes FLUSH (`0x11`) and DIRECT (`0x50`) with the record count. `0x0036D400` ends
+with `0x003A1DB0` (`0x0036D7AD` or `0x0036D7C7`), which flips the buffers and calls the first publisher.
 
 ### The three publishers
 
@@ -255,7 +255,8 @@ its loops at `0x00376170`, `0x003761B0` and `0x003761E0`-`0x003761EA` never run,
 ### The Tk thread set-ups
 
 `0x00368DD0` (above) also zeroes handler 0 of the table `0x022CFF10` (`0x00368DF9`) before it makes the two semaphores,
-and builds the name with `0x0019C5D0(name, 0x18, "TkSyncvThread%d", 0)` (`__stdio_common_vsprintf`, `0x00368E7F`).
+and builds the name with `0x0019C5D0(name, 0x18, "TkSyncvThread%d", 0)` (`__stdio_common_vsprintf_s`, import slot
+`0x008C2E10` called at `0x0019C60F`; `0x00368E7F`).
 
 `0x00368C80` starts the TkBG thread the same way from a descriptor at `0x022D7F20`: the entry `0x00368C10` at `+0x08`,
 `0x022D3F20` at `+0x10`, the stack size `0x4000`, `0x02EAF6D0` at `+0x20`, the priority `0x24` and 0 at `+0x34`

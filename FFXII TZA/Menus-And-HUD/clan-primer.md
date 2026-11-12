@@ -85,23 +85,28 @@ immediate at four sites in `.text`: the title call (`0x00574E18`), the return to
 menu task `0x00281AE0` (`0x00281B1B`, and `0x00281C72`, which passes it to `0x002CD3C0`). The content page draws a frame
 through `0x00573F40(page)` (`0x005746C5`) when its byte `+0x8060` is 2 or 5 and up and it has rows (`+0xE0`).
 
-`0x00573F40` draws a box through `0x00392A00(+0x38, rect, ...)` with `0x002DD7E0(0xF6)` in all four colour slots, at
-x = `[+0xE0] + 0x98` plus the layout's `+0x0C` - 8 and y = the layout's `+0x10` + 16, 8 x 8 wide, as high as
-`min(+0x8063, rows) x the row height + 16`, where rows = `(word +0x9E - +0x13C - 1 + word +0x100) / word +0x100` of
-`[+0xE0]` and the row height is `+0x0A` of the record `0x0020E600` gives for `[[[+0x60]]] + 0x0C`.
+`0x00573F40` draws a box through `0x00392A00(+0x38, rect, ...)` with `0x002DD7E0(0xF6)` in all four colour slots: x =
+`[+0xE0] + 0x98` plus the layout's `+0x0C` - 8, y = `[+0xE0] + 0x9A` - 8, width = the layout's `+0x10` + 16 and height
+= `min(+0x8063, rows) x the row height + 16`, with the rect's four words from `+0x08` all 8. rows = `(word +0x9E -
++0x13C - 1 + word +0x100) / word +0x100` of `[+0xE0]`, and the row height is `+0x0A` of entry `[[[+0x60]]] + 0x0C`
+(0x14 bytes each) of the table `0x0020E600` gives for `[+0xE8] + 0x20`.
 
 ### The family index rows
 
 `0x00571F60(page)` builds the index rows for the page's kind (`+0xE8`) after updating the unlocks (`0x00577550`). Each row
-is a word at `+0xF0`: bits `0xF` the type (0 blank, 1 entry, 2 group caption), mask `0x3FF0` the entry or group, bit `0x4000` set
-for an entry not fully read, bit `0x8000` for the right column of the Bestiary's two. `0x00570930(page, entry)` appends an
-entry row (the read test is `0x00576D20`). The Bestiary keeps its captions on the left by padding with blanks.
+is a word at `+0xF0`: bits `0xF` the type (0 blank, 1 entry, 2 group caption), mask `0x3FF0` the entry or group, bit
+`0x4000` set for an entry not fully read, bit `0x8000` set on the entry rows of every kind but the Bestiary (kind 5);
+with it set and bit `0x4000` clear, the painter `0x00571710` keeps the piece named by layout byte `+0x00` shown.
+
+`0x00570930(page, entry)` appends an entry row (the read test is `0x00576D20`). The Bestiary keeps its captions on the
+left by padding with blanks.
 
 - `0x00571900` paints a row: a blank or caption row through `0x005722E0` and `0x005723C0` (which show or hide up to six and
   four of the row's nodes) and the caption's text (`0x00576A50`), an entry through `0x00571710` (`0x005760A0`).
-- `0x005709E0(page, forward)` finds the first entry of the next group, or of the current group's start going back;
-  `0x005713C0` jumps there on the buttons of mask `0xC50` (Traveler's Tips) or `0xCF0` (Bestiary), `0x400` back and
-  `0x800` on, stepping the list (`0x002D3BA0`) until the cursor reaches it.
+- `0x005709E0(page, forward)` finds the first entry of the next group. Going back it finds the first entry of the
+  cursor's group, or, when the cursor is already there, the first entry of the previous group. `0x005713C0` jumps there
+  on the buttons of mask `0xC50` (Traveler's Tips) or `0xCF0` (Bestiary), `0x400` back and `0x800` on, stepping the
+  list (`0x002D3BA0`) until the cursor reaches it.
 - `0x005715E0` runs one list step and reports when the cursor lands on an entry row.
 - `0x00576D20(kind, entry)` answers whether an entry is fully read: the family's read bit (`0x003156E0`) or, for the
   Bestiary, every unlocked slot of the seven read (`0x00576E30`, `0x00315670`; the loop runs 0-7).
@@ -167,7 +172,8 @@ The hunt host `[0x02CA9748]` (`0x00579AF0`) shows two lists, open and cleared:
 - `0x005780D0(row)` selects a row and fills the detail pane (`0x00577C30`, `0x00D23888`); `0x00578860(host, list)` switches
   between the two lists; `0x005790D0` closes the panes.
 - `0x00578120(text, parts)` splits a hunt text at code 2 and counts the parts.
-- `0x00578F50` keeps the host's place at `+0x130`-`+0x13F` (the lists, rows and selection) and sets `+0xD0` bit `0x8`.
+- `0x00578F50` returns 0 and writes nothing when `0x0037ED80()` is 2. Otherwise it keeps the host's place at
+  `+0x130`-`+0x13F` (the lists, rows and selection), sets `+0xD0` bit `0x8` and returns 1.
 
 ### The data manager
 

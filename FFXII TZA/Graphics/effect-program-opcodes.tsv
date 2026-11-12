@@ -1,50 +1,50 @@
 opcode	handler	commands	operands_read	calls	action
-01	0x003B879D	2	-	0x003A8290	-
-02	0x003B87D1	890	-	0x003A8510	-
-03	0x003B87E7	341	-	0x002EB740 0x0024ED80 0x00322850	0x002EB740 with unit block +8, the current target and code 0
-05	0x003B8A30	1700	-	0x003B99D0	sound by id = operand +4 (an id below 0x100 gets bit 31), played by 0x003B99D0; operand +8 is the position source (1, 2, 3)
-06	0x003B8A5C	38	-	0x003326F0	-
-07	0x003B8A77	283	-	0x003335A0	-
-08	0x003B8A99	396	-	0x00333430 0x003A7F60	-
-09	0x003B8AF5	1	-	0x00333620	-
-0A	0x003B96A5	347	-	0x00379940 0x003ABCA0 0x003ACA90 0x003AFD30 0x003B6930	-
-0B	0x003B9726	192	-	0x00379940 0x003B81A0 0x003ACA80 0x003AFD30 0x003B6930	-
-0C	0x003B8B17	278	+4:u8	0x003339C0	-
-0D	0x003B894E	255	-	0x002EB740	0x002EB740 with unit block +8, no second unit and code 1
-18	0x003B8E31	374	+4:u32	indirect	-
-19	0x003B8E69	16	+4:u32	0x003B3EA0	-
-1A	0x003B89A9	4	+4:u32	0x002EB740	operand +4 of 0, 1, 2 or 3 gives code 3, 6, 7 or 8 (any other value does nothing): 0x002EB740 with unit block +8 and no second unit; 0 also sets bit 0x80 of word +0x36A
-1B	0x003B8B36	80	+4:u8	0x00333A40	-
-1C	0x003B8EBD	115	+4:f32 +8:f32 +C:f32	0x003588B0 0x00265020 0x00265200 0x00263F70 0x00263E70 0x003B7E10 0x0026A430 0x0026AF80	-
-1D	0x003B8FB2	76	+8:f32	0x003588B0 0x00265020 0x00265200 0x00263F70 0x00263E70 0x003B7E10 0x0026B5A0	-
-1E	0x003B9095	89	-	0x0024C6B0	-
+01	0x003B879D	2	-	0x003A8290	restarts every path object whose key +0x100 is the track's key: 0x004FF080, record, links and key put back, then 0x004FF0D0(object, 0.0)
+02	0x003B87D1	890	-	0x003A8510	frees every emitter whose key +0x1C is the track's key (0x003A8510)
+03	0x003B87E7	341	-	0x002EB740 0x0024ED80 0x00322850	for the current target (the slot is the signed byte +0x10 of the current track [0x02EBA4F0], -1 meaning slot 0; the unit is dword +0x90 + 4 x slot of the block, or +0x10 + 4 x slot when that is 0), nothing at or past the unit count byte +0x372; when bit 0x200 of word +0x378 is clear, sets bit 0x20 of word +0x36A and, when word +0x368 is below 0x8000, calls 0x002EB740 with unit block +8, the current target and code 0, then 0x0024ED80 and 0x00322850 (it keeps 0x02F97340, 0x02F97348, 0x02EBA4F0 and 0x02EC0F88 across 0x002EB740, putting the first two back before 0x0024ED80 and the other two before 0x00322850), setting the target's bit in dword +0xC when 0x00322850 returns 1; when bit 0x200 is set, sets that bit only when byte 0x020968C8 has bit 0x10; then byte +0x374 counts up
+05	0x003B8A30	1700	+4:u16 +4:u32 +8:u8 +9:u8 +A:u16 +C:u16	0x003B99D0	sound by id = operand +4 (an id below 0x100 gets bit 31), played by 0x003B99D0; operand +8 is the position source (1, 2, 3)
+06	0x003B8A5C	38	-	0x003326F0	frees all 16 tracks of the player (0x0046EE70, 0x003697F0) and sets the stop byte +0x139 of every emitter (0x003A8C80)
+07	0x003B8A77	283	-	0x003335A0	frees every track of the player but the current one, and sets the stop byte +0x139 of every emitter whose key differs from the current track's (0x003A8CB0)
+08	0x003B8A99	396	-	0x00333430 0x003A7F60	frees every track of the player but the current one and every emitter whose key differs from the current track's (0x003A8660), frees the path objects whose byte +0x100 is neither instance +0x388 nor the track's key (0x003A7F60), and clears bit 0x1000 of +0x368
+09	0x003B8AF5	1	-	0x00333620	for every emitter whose key differs from the current track's and whose element definition +0x108 has type 0x40 (byte +0x44), sets bit 0x1 of byte +0x248 of each active element (0x003A8CE0)
+0A	0x003B96A5	347	-	0x00379940 0x003ABCA0 0x003ACA90 0x003AFD30 0x003B6930	sets 0x02ADD118, 0x0209A6F8 and 0x022D8EDC to 1; when a light is held at 0x02B40538 releases it (0x003ABCA0), zeroes the handle and clears bits 0x8 and 0x10 of 0x02B3F501; clears bit 0x2 of 0x02B3F501 and bits 0x1 and 0x2 of 0x02F8F29E; unless bit 0x4 of 0x02F8F29E is set, sets 0x02B3F554 to 1 and calls 0x003B6930(4)
+0B	0x003B9726	192	-	0x00379940 0x003B81A0 0x003ACA80 0x003AFD30 0x003B6930	sets 0x02ADD118, 0x0209A6F8 and 0x022D8EDC to 0; replaces the held light with a new one (0x003B81A0(1), which sets bits 0x8 and 0x10 of 0x02B3F501); sets bit 0x2 of 0x02B3F501 and bits 0x1 and 0x2 of 0x02F8F29E; sets 0x02B3F554 to 0 and calls 0x003B6930(6)
+0C	0x003B8B17	278	+4:u8	0x003339C0	frees every track of the player whose byte +0x11 is operand +4 and every emitter whose tag +0x13A is operand +4 (0x003A87B0)
+0D	0x003B894E	255	-	0x002EB740	only while byte +0x375 is 0: sets bit 0x40 of word +0x36A and, when word +0x368 is below 0x8000, calls 0x002EB740 with unit block +8, no second unit and code 1; then byte +0x375 counts up
+18	0x003B8E31	374	+4:u32	indirect	calls entry 0 of the callback table 0x02091140, when set, with instance +0x04 and the address of a copy of operand +4
+19	0x003B8E69	16	+4:u32	0x003B3EA0	queues a delayed stop (0x003B3EA0(handle, operand +4)) for the handle at +0xB0 of each 0x30-byte entry of the player, count byte +0x93, then zeroes the count
+1A	0x003B89A9	4	+4:u32	0x002EB740	operand +4 of 0, 1, 2 or 3 gives code 3, 6, 7 or 8 (any other value does nothing): 0 sets bit 0x80 of word +0x36A; then, when word +0x368 is below 0x8000, 0x002EB740 with unit block +8 and no second unit
+1B	0x003B8B36	80	+4:u8	0x00333A40	frees every track of the player whose byte +0x11 is operand +4 and sets the stop byte +0x139 of every emitter whose tag +0x13A is operand +4 (0x003A8D40)
+1C	0x003B8EBD	115	+4:f32 +8:f32 +C:f32	0x003588B0 0x00265020 0x00265200 0x00263F70 0x00263E70 0x003B7E10 0x0026A430 0x0026AF80	saves the owner actor's position, facing and two hit bits on the first such command (sets +0x368 bit 0x80), clears the two bits (0x0026A430), sets 0x02092190 to 1 and places the actor at operands +4, +8 and +C times 0.01 (0x0026AF80)
+1D	0x003B8FB2	76	+8:f32	0x003588B0 0x00265020 0x00265200 0x00263F70 0x00263E70 0x003B7E10 0x0026B5A0	saves the owner actor as 0x1C does, sets 0x02092190 to 1 and turns the actor to operand +8 in degrees (0x0026B5A0)
+1E	0x003B9095	89	-	0x0024C6B0	puts the owner actor back (0x0024C6B0)
 1F	0x003B90A9	216	+4:u32 +8:u32	0x003A6E60 0x003AA280 indirect 0x002DF660	sound: bank slot = operand +4, or operand +8 when that is non-zero and 0x003A6E60(2) returns 1; finds the kind-0x59 record of that slot through 0x003AA280 and loads its sabf data through 0x002DF660
-21	0x003B8AD5	1	-	0x0024C3C0	-
-22	0x003B91AE	6	-	0x002EB740	-
+21	0x003B8AD5	1	-	0x0024C3C0	moves every kind-7 instance except the current one to the free list (0x0024C3C0)
+22	0x003B91AE	6	-	0x002EB740	sets bit 0x100 of word +0x36A; when the instance's kind is below 10 and bit 0x8000 of +0x368 is clear, 0x002EB740 with the unit (instance +0x08, or [0x02096A20] when +0x378 bit 0x200 is set), no second unit and code 2
 23	0x003B921C	195	-	-	sets bit 0x1 of 0x02F8F29E
 24	0x003B9228	344	-	-	clears bit 0x1 of 0x02F8F29E
-25	0x003B9234	6	-	-	-
-26	0x003B9286	645	-	0x003333B0	-
-27	0x003B8A30	142	-	0x003B99D0	sound through 0x003A1070 with operand +4, played by 0x003B99D0; operand +8 is the position source (1, 2, 3)
-29	0x003B93B3	1110	+4:u32	0x00333520	-
-2A	0x003B87B3	110	-	0x003A8660 0x003A7F60	-
-2B	0x003B94D4	19	-	0x003BA020	-
-2C	0x003B94EB	14	-	0x003B9FE0	-
+25	0x003B9234	6	-	0x002EB740	sets bit 0x200 of word +0x36A; when bit 0x8000 of +0x368 is clear, 0x002EB740 with the unit (instance +0x08, or [0x02096A20] when +0x378 bit 0x200 is set), no second unit and code 4
+26	0x003B9286	645	+4:u32 +8:u32 +C:u32	0x003333B0	for each non-zero dword of operands +4, +8 and +C, releases the active elements (0x002F31C0) of every emitter whose element definition +0x108 has word +0x42 equal to it (0x003A8DD0 with flag 0)
+27	0x003B8A30	142	+4:u16 +4:u32 +8:u8 +9:u8 +A:u16 +C:u16	0x003B99D0	sound through 0x003A1070 with operand +4, played by 0x003B99D0; operand +8 is the position source (1, 2, 3)
+29	0x003B93B3	1110	+4:u32	0x00333520	with operand +4 below 2 acts as 0x00333430 does for 0x08; otherwise stores the current track's key at +0x37C, the frames at +0x358 and +0x35A, 1.0 at +0x35C, and sets bit 0x1000 of +0x368, clearing 0x2000
+2A	0x003B87B3	110	-	0x003A8660 0x003A7F60	frees every emitter (0x003A8660(-1)) and the path objects whose byte +0x100 is neither instance +0x388 nor the track's key (0x003A7F60)
+2B	0x003B94D4	19	+4:u32	0x003BA020	makes the instance's render target +0x380 when it has none (0x00182B40). With operand +4 of 0 or 2 and 0x020926D0 set it calls 0x0017F2A0(target, 0x020926D0) and 0x001E0580; otherwise it files a kind-3 request through 0x00375900 with the target at +0x38 and byte +0x1E = 1 (operand 0 or 2), 2 (operand 1) or 0 (any other)
+2C	0x003B94EB	14	-	0x003B9FE0	hands the instance's render target +0x380 back (0x0024B240) and zeroes the field
 2D	0x003B9502	1692	-	-	sets bit 0x2 of word +0x36A of the effect program block 0x02F97348
-2F	0x003B92BD	157	-	0x003333B0	-
-31	0x003B9691	59	-	0x003BA1F0	-
-32	0x003B9556	6	-	0x003B8260	-
-33	0x003B956D	6	-	0x003B8260	-
-34	0x003B9583	73	-	0x003B5310 0x0024ED80 0x003AF330	-
-35	0x003B95FA	73	-	0x003B5310 0x0024ED80 0x003AF330	-
-36	0x003B9673	87	-	-	-
-37	0x003B9684	60	-	-	-
-38	0x003B93D9	420	+4:u32	0x00333640	-
-39	0x003B93FF	8	+4:f32 +8:f32 +C:f32	0x0024B6F0 0x0024F9B0	-
-3A	0x003B9466	6	+8:f32	0x0024B6F0 0x0024F9B0	-
-3B	0x003B94C0	8	-	0x0024C870	-
-3C	0x003B9772	64	-	-	sets bit 0x4 of 0x02F8F29E
-3D	0x003B977B	66	-	-	-
+2F	0x003B92BD	157	+4:u32 +8:u32 +C:u32	0x003333B0	as 0x26, but each element first runs its eight firing slots (0x003A8DD0 with flag 1)
+31	0x003B9691	59	-	0x003BA1F0	sets byte +0x37B to byte 0x020926F6 (times byte 0x01DFE0B4 when 0x001EDDA0 returns 0, plus 1 when that product is non-zero, and 1 more when 0x00250000 then returns non-zero: 0x003BA24D-0x003BA269), plays effect 0x8D as an instance of kind 9 (0x003B02A0) and makes the saved instance current again
+32	0x003B9556	6	-	0x003B8260	0x003B8260(1): finds the model record named n1159 and, for up to 8 living enemy-side units (0x0031E880) not already under it, calls 0x0042F2A0(that record, id, unit record) with id 18216, 18215, 18214, 18213, 18212, 18211, 18210 or 18630 in turn, switches rig controller 11 off (0x003E1350) and calls 0x003B3CA0(+0x288, 0x1E)
+33	0x003B956D	6	-	0x003B8260	0x003B8260(0): for each of those units under the record n1159, calls 0x0042F250(index), switches rig controller 11 on (0x003E1610), calls 0x003E6AA0(record, n) with n counting from 1 and 0x003B3CA0(+0x288, 0x1E)
+34	0x003B9583	73	-	0x003B5310 0x0024ED80 0x003AF330	0x003B5310(1) sets bit 0x2 of 0x02B40518 and, when that changes it, runs 0x003B4FD0; makes the saved instance current again; sets bit 0x1 of 0x02EBEF68, stores 1 at 0x02B3F540 (0x003AF330) and sets bit 0x1 of word +0x3A0
+35	0x003B95FA	73	-	0x003B5310 0x0024ED80 0x003AF330	0x003B5310(0) clears bit 0x2 of 0x02B40518 and, when that changes it, runs 0x003B4FD0; makes the saved instance current again; clears bit 0x1 of 0x02EBEF68, stores 0 at 0x02B3F540 (0x003AF330) and clears bit 0x1 of word +0x3A0
+36	0x003B9673	87	-	-	ANDs the group mask 0x02092162 with 0x3FB, clearing bit 0x4
+37	0x003B9684	60	-	-	sets bit 0x4 of the group mask 0x02092162
+38	0x003B93D9	420	+4:u32	0x00333640	0x00333640: with operand +4 below 2 frees the current track and every emitter with its key (0x003336C0, 0x003A8510); otherwise stores the key at +0x37C, the frames at +0x358 and +0x35A, 1.0 at +0x35C, and sets bit 0x2000 of +0x368, clearing 0x1000
+39	0x003B93FF	8	+4:f32 +8:f32 +C:f32	0x0024B6F0 0x0024F9B0	on the first such command (while +0x368 bit 0x100 is clear) saves the target actor (0x0024B6F0) and zeroes the angle 0x020925B4; stores operands +4, +8 and +C times 0.01 at 0x020925A0-0x020925A8 and places the target actor (0x0024F9B0)
+3A	0x003B9466	6	+8:f32	0x0024B6F0 0x0024F9B0	on the first such command (while +0x368 bit 0x100 is clear) saves the target actor (0x0024B6F0) and zeroes the position 0x020925A0-0x020925A8; stores operand +8 in degrees as radians at 0x020925B4 (x 2 x π / 360) and places the target actor (0x0024F9B0)
+3B	0x003B94C0	8	-	0x0024C870	restores the target actor (0x0024C870)
+3C	0x003B9772	64	-	0x003AFD30 0x003B6930	sets bit 0x4 of 0x02F8F29E; sets 0x02B3F554 to 0 (0x003AFD30) and calls 0x003B6930(6)
+3D	0x003B977B	66	-	0x003AFD30 0x003B6930	clears bit 0x4 of 0x02F8F29E; unless bit 0x2 of 0x02F8F29E is set, sets 0x02B3F554 to 1 and calls 0x003B6930(4)
 3E	0x003B9797	48	+4:u8	-	sets bit 0x400 of 0x020926E4 and stores the byte operand +4 in 0x020926F8
 3F	0x003B97B2	47	-	-	clears bit 0x400 of 0x020926E4
-80	0x003B92F3	341	-	-	0x002EB740 with unit block +8, the current target and code 5; sets bit 0x400 of word +0x36A
+80	0x003B92F3	341	-	0x002EB740	when bit 0x200 of word +0x378 is clear: sets bit 0x400 of word +0x36A, then, when word +0x368 is below 0x8000, calls 0x002EB740 with unit block +8, the current target (the slot is the signed byte +0x10 of the current track [0x02EBA4F0], -1 meaning slot 0; the unit is dword +0x90 + 4 x slot of the block, or +0x10 + 4 x slot when that is 0) and code 5

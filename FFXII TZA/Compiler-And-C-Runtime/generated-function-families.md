@@ -216,7 +216,7 @@ middleware or compiler code and the boundary of that code is stated.
 | `NativeLeaf.TaggedStaticAddressAccessor` | [23](generated-function-families-nativeleaf-taggedstaticaddressaccessor.tsv) | `0x005C51E0` | `lea rax, [global]; or rax, 1; ret`: returns a static's address with bit `0x1` set. |
 | `NativeLeaf.ThreeFloatStore` | [4](generated-function-families-nativeleaf-threefloatstore.tsv) | `0x00194330` | Stores `xmm1`, `xmm2` and `xmm3` into three adjacent float fields of `this`. |
 | `NativeLeaf.TwoFloatStore` | [5](generated-function-families-nativeleaf-twofloatstore.tsv) | `0x00180870` | Stores `xmm1` and `xmm2` into two adjacent float fields of `this`. |
-| `NativeLeaf.VectCountFloatOrConst` | [4](generated-function-families-nativeleaf-vectcountfloatorconst.tsv) | `0x001C0820` | Divides the span `[+0x60] - [+0x58]` by 20 (multiply by `0x6666666666666667`); when non-zero returns a float constant, else 0.0 when `[+0x10]` is 0, else the float at `[[+0x18]+0x24]`. |
+| `NativeLeaf.VectCountFloatOrConst` | [4](generated-function-families-nativeleaf-vectcountfloatorconst.tsv) | `0x001C0820` | Divides the span `[+0x60] - [+0x58]` by 40 (the high half of a multiply by `0x6666666666666667`, then `sar 4`); a count of 0 returns 1.0 (`0x01CEBBA8`), any other count 0.0 when `[+0x10]` is 0, else the float at `[[+0x18]+0x24]` (`+0x28`, `+0x2C` and `+0x30` in the other three members). |
 
 ### Forwarders that set an argument and jump
 

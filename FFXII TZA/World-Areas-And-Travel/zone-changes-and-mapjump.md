@@ -133,10 +133,13 @@ bit `0x1` of `0x022C6E48`, the start hold. A branch guarded by `0x005C5230(5)` i
 That dead branch calls `0x003319D0(map)`. It takes the zone's `.ebp` path (kind 5, index
 `map * 3`) and makes four sibling paths with `0x00331F50`, which replaces every occurrence of one
 substring with another: the folder `global` becomes `entry`, `entry`, `treasure` or `icon` and the
-extension `eps`, `ard`, `eps` or `icn`. Each file that exists (`0x0032E400(0xFF, path)`) is read into
-a block labelled `POSENT`, `MAPARD`, `TREENT` or `NV_ICON` with the source name `atelload.c`
-(`0x0036C750` cuts a path to its file name), with the completions `0x003320E0`, `0x003320D0`,
-`0x00332110` and `0x00332100`.
+extension `eps`, `ard`, `eps` or `icn`.
+
+The branch would read each into a block labelled `POSENT`, `MAPARD`, `TREENT` or `NV_ICON` with the source name
+`atelload.c` (`0x0036C750` cuts a path to its file name), with the completions `0x003320E0`, `0x003320D0`, `0x00332110` and
+`0x00332100`, but only when `0x0032E400(0xFF, path)` returns more than 0 (`0x00331CEE`, `0x00331D77`, `0x00331E01`,
+`0x00331E8D`). For kind `0xFF` that function returns -1 before any lookup (`0x0032E404`-`0x0032E43D`), so none of the four
+is read, whether it exists or not.
 
 ### Where the files come from
 
@@ -154,7 +157,7 @@ It then queues the asynchronous loads, each setting a bit of the manager's pendi
 
 | Load | Pending bit | Condition |
 |---|---:|---|
-| `base + 2` (callback `0x00331760`, buffer `0x022C6E98[m]`) | `0x1000` | managers 1 to 4 |
+| `base + 2` (callback `0x00331760`, buffer `0x022C6E98[m]`) | `0x1000` | managers 1 to 3 |
 | `base + 1` (callback `0x003302B0`, buffer `0x022C6E70[m]`) | `0x2000` | managers 0 to 3 |
 | `base + 3` from kind 8 (callback `0x00331820`) | `0x8000` | managers 1 to 3 |
 | `base + 3` from kind `0x25` (callback `0x003317C0`) | `0x4000` | managers 1 to 3 |

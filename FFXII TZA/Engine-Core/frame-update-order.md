@@ -189,11 +189,14 @@ While the accumulator is at least 1.0, one simulation step runs:
 2. `0x0037A450`, `0x0036D890`, `0x004668C0`; `0x003323D0` when `0x00358290()`; `0x002507C0(first)` when
    `0x003583A0()`; `0x00258B90(0)` when `0x00358340()`; `0x00314370(result)`; with the mode saved by
    `0x00358320`, `0x00358640(0)`, `0x0037D4C0`, `0x00314820`, `0x0036F510`, `0x00256F60`, `0x00358640(saved)`;
-   `0x00258D70` when `0x00358340()`, and `0x001808D0` on the last step; `0x00254E50` (the per-tick game-over check, [game over](../World-Areas-And-Travel/game-over.md)); `0x0035AF20(0)`;
-3. the accumulator loses 1.0 (floored at 0); a state other than 2 zeroes it and stops; otherwise
+3. when `0x00358340()`, `0x00258D70`, then `0x001808D0` if this step or an earlier one of the frame started with
+   the accumulator below 1.1 (`0x00908D4C`): the flag is set at `0x0022ABA0`-`0x0022ABA4`, cleared only at `0x0022A795`
+   before the steps and tested at `0x0022AC6A` (`0x0022AC5C`-`0x0022AC6E`); then `0x00254E50` (the per-tick game-over check,
+   [game over](../World-Areas-And-Travel/game-over.md)) and `0x0035AF20(0)`;
+4. the accumulator loses 1.0 (floored at 0); a state other than 2 zeroes it and stops; otherwise
    `0x003586A0(1, 1)` when `0x002361A0()`, `(3, 1)` when `0x00265760()`, `(2, 1)` unless `0x00226BC0()`,
    `(4, 1)` unless `0x002F1A20()`;
-4. `0x02064AD2 = 0x00358550()`, and when it is clear (after `0x0017F740(1)` when set) and `0x003583D0(0)`
+5. `0x02064AD2 = 0x00358550()`, and when it is clear (after `0x0017F740(1)` when set) and `0x003583D0(0)`
    or `0x003583D0(1)` holds the accumulator is zeroed; `0x003603C0()` zeroes it too; `0x00358280` resets
    the permit byte; `0x02064AA8` counts the steps of this pass and is zeroed right after the loop,
    so it is non-zero only while a pass's steps run.
@@ -358,7 +361,7 @@ restarts its swing at 255 (`0x001D85A0`).
 `0x00314020(mode, arg)` has three callers: the field frame with mode 0 and the two menu frames with
 mode 1. It returns `mode == 0`. Every mode runs the prologue:
 
-- the tick-active word `0x022C2548` = 1 (read back by `0x00314960`, cleared at the one exit), the
+- the tick-active dword `0x022C2548` = 1 (read back by `0x00314960`, cleared at the one exit), the
   return stub `0x0016D6A0(0)`, `0x003EB9A0`, `0x003DAA20`, `0x003DA2F0(1.0)`, `0x003DD210(1.0)`;
 - the manager request queue `0x0025BFB0` (below);
 - the deferred mode request: `0x01EED060` is reset to -1; a non-negative `0x01EED064` prints two
@@ -423,7 +426,7 @@ is recomputed ([spatial sound](../Sound-And-Music/spatial-sound.md)): `x = 0x003
 stores the result, floored at 0, back into `0x022CBB28`.
 
 Then `0x003E7650`, `0x0025D950`, `0x00263660`, `0x002EEEB0` (`0x002EE430`, `0x002EF050`), and the
-tick-active word is cleared.
+tick-active dword is cleared.
 
 ### The scheduled tasks
 
@@ -720,7 +723,7 @@ unit frame per bound record.
 
 ## State
 
-The state byte and the main-loop cells; the tick-active word, the two tick counters, the
+The state byte and the main-loop cells; the tick-active dword, the two tick counters, the
 deferred request and the manager request mask; the battle-state word, its one-shot callback, the
 slots' `+0x201` bytes; the eight one-byte field flags `0x02099DA0` to `0x02099DA7`.
 

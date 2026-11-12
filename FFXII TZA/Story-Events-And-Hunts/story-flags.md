@@ -35,7 +35,14 @@ Every bank is in the save payload, the bytes from `SaveImage_GetPersistentPayloa
 | Bank64B | `+0x138C` | `0`-`63` | `0x0032ACF0` / `0x0032AA00` | `0x2FD` `setshutoralenable`, `0x2FC` `clearshutoralenable`, `0x2FB` `isshutoralenable` | scripts only |
 
 An id outside a bank's range reads as 0 and sets nothing. The four Bank64 accessors test the range with a signed
-compare only (`0x0032A9A4`, `0x0032AA04`, `0x0032AC77`, `0x0032ACF7`), so a negative id reaches the bank's bytes below it.
+compare only (`0x0032A9A4`, `0x0032AA04`, `0x0032AC77`, `0x0032ACF7`) and split the id with a signed divide by 8
+(`0x0032A9B7`-`0x0032A9C9`, `0x0032AC83`-`0x0032AC9F`), so a negative id is not refused:
+
+- an id that is not a multiple of 8 gives an 8-bit mask of 0 (`shl bl, cl` with a count of 25 to 31), so it reads
+  as 0 and sets or clears nothing;
+- an id of −8k reaches bit `0x1` of the byte k below the bank: Bank64B id −64 is bit `0x1` of `+0x1384`, which is
+  Bank64A id 0.
+
 Nothing outside the twelve accessors reads or writes these offsets from the payload base.
 
 Payload bytes `+0xCF6`-`+0xFFF`, between the script variables ([Script variables](../Scripts-And-Script-Commands/script-variables.md),

@@ -260,7 +260,12 @@ table at `0x00D0F870` (pairs of two dwords `{letter, kind}`: `b` 22, `s` 23, `t`
 
 The stepper then takes the kind and file index from `0x002ED6F0` ([Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)),
 moves the number on by the step again while the file has no size (`0x002DF980`, `0x002DF8E0`), and returns the id
-when its path ends in `.cm`, else 0.
+only when its path ends in `.cm` (`0x002EEF9D`-`0x002EEFBF`; the value is loaded at `0x002EEFF3` and the one return is
+`0x002EF006`).
+
+With no path, or one not ending in `.cm`, it moves to the next letter of the table with the number reset to 0 and
+tries again (`0x002EEFC1`-`0x002EEFE9`); a letter missing from the table logs `get character id error!` (`0x00D0F8C0`, at
+`0x002EEFDC`) and retries (`0x002EEFE1`). It never returns 0.
 
 ### Who reaches the dispatcher
 

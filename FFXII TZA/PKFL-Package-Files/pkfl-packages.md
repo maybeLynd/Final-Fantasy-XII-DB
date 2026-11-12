@@ -234,9 +234,10 @@ It then sets the record's byte `+4` to 2 unless it is 5 (`0x003E9F5E`-`0x003E9F6
 `0x0032F170` (`0x003DF49A`), and allocates with `0x0036A100`, or, when that gives null, with `0x0036A190` in arena 6
 (`0x003DF4A9`-`0x003DF4C3`).
 
-It stores the kind, `index + 2`, the block, `id`, the size and the offset in the slot
-record (`0x003DF4E3`-`0x003DF50F`). While `0x00267310(g)` is non-zero it parks the record in state 1 and reads nothing
-(`0x003DF513`-`0x003DF526`); otherwise `0x003DF550` files the read (`0x003DF52F`).
+It stores the kind, `index + 2`, the block, `id`, the size and the offset in the slot record, and clears `+0x20`
+(`0x003DF4FF`), where `0x003DF2C0` later keeps the sub-file's second part (`0x003DF4E3`-`0x003DF50F`, `0x003DF2EF`).
+While `0x00267310(g)` is non-zero it parks the record in state 1 and reads nothing (`0x003DF513`-`0x003DF526`);
+otherwise `0x003DF550` files the read (`0x003DF52F`).
 
 ### The script steps that reach a slot
 

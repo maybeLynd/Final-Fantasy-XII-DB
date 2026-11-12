@@ -93,10 +93,12 @@ The body takes one of these branches after the refusals:
    and returns 1; with bit `0x8` set it returns 1 while the request word of slot 1 (`0x022C6E48 + 8`,
    `0x0032F6C0(1)`, bit `0x1` masked off) is non-zero or slot 1's flags bit `0x1` or `+0x13` is set, and
    otherwise sets bit `0x10` and continues.
-3. `drivePending` set: the designated record `0x00358940(slot, payload i16 +0x50)` is driven once; if
-   its `+0x14` bit `0x40` is clear and its low nibble is clear the pass ends with 0; while bit `0x40` is
-   clear and the low nibble is not, `0x003DB280(record)` runs and the record is driven again. Once bit
-   `0x40` is set, `drivePending` is cleared, the init core `0x002620E0` runs and the pass ends with 0.
+3. `drivePending` set: the designated record `0x00358940(slot, payload i16 +0x50)` is driven once, then:
+   - if its `+0x14` bit `0x40` is clear and its low nibble is clear the pass ends with 0;
+   - while bit `0x40` is clear and the low nibble is not, `0x003DB280(record)` runs and the record is driven again. No
+     write in the [record table](actor-record-fields.tsv) sets a bit under mask `0xF` of `+0x14`, so the repeat is
+     not reached;
+   - once bit `0x40` is set, `drivePending` is cleared, the init core `0x002620E0` runs and the pass ends with 0.
 4. Otherwise the area music select `0x00261F90(slot)` runs first: on slot index 0 with flags bit `0x40`
    clear it selects and starts the area's track once per field while flags3 bit `0x80` is set (`0x00262000`),
    sets flags bit `0x20` when flags3 bit `0x4`
@@ -107,8 +109,9 @@ The body takes one of these branches after the refusals:
 
 The two holds of branch 4:
 
-- With flags3 bit `0x80` set, the current track is the payload's `+0x1534` when `+0x1063` bit `0x40` is set
-  and `0x003EAA70(field)` otherwise ([save data fields](../Saving-Loading-And-Settings/save-data-fields.md)).
+- With flags3 bit `0x80` set, the current track is the byte `+0x1534` of the persistent save payload `0x002EF2B0()` when
+  its `+0x1063` bit `0x40` is set, and `0x003EAA70(field)` otherwise
+  ([save data fields](../Saving-Loading-And-Settings/save-data-fields.md)).
   The bit is cleared when `0x00360D60()` is 0, or when the track is negative and both `0x003135C0()`
   and `0x00303EC0()` are 0.
 - With flags bit `0x20` set, the bit is cleared once `0x02ADD968` is 0 (`0x0037CB40`).
@@ -120,7 +123,8 @@ At the end of branches 4 and 5 flags bit `0x80` is rewritten from the busy mark;
 
 `0x002620E0(slot)` does nothing for a slot whose index is not 0. On slot 0 with flags bit `0x4` clear it
 runs `0x00259B30`, `0x003E8980(0)`, `0x0025ACA0`, instantiates the field's effect rows for channels 0 and
-`0x1F` (`0x0026FAD0`) with the lane from `0x0017D490()` or the payload's `+0x1060` plus 1, then
+`0x1F` (`0x0026FAD0`) with the lane from `0x0017D490()` when it is above 0, and otherwise the persistent save payload's
+byte `+0x1060` plus 1, then
 `0x00379860(lane)`, `0x00379290`, `0x003DE920(0, 1)` and `0x00363B40`, and sets bit `0x4` ([weather](../World-Areas-And-Travel/weather.md)
 has the lane). It always ends with `0x003601C0(0xB)` and `0x003601C0(0xC)`.
 
@@ -198,7 +202,7 @@ After the loop the resolver finishes the visit:
 
 1. record `+0x108` is cleared;
 2. record `+0x0C` bit `0x1` is set when `+0x1C` bit `0x800` is on, `+0x14` bit `0x40` is off, `+0x18` is not 1,
-   and the entry `0x003DB550(record, +0x62)` has the id the record's `+0xDE` names (or, when that is
+   and the entry `0x003DB550(record, +0x62)` has the non-zero id the record's `+0xDE` names (or, when that is
    -1, the word `+0x18` of the payload row reached through `+0x40`, used only when that row's count
    exceeds 11); otherwise it is cleared;
 3. `+0x0D` bit `0x40` is cleared; for a record with `+0x10` = 0 that is settled or matched, with `+0x13`
@@ -251,8 +255,8 @@ record +0x14: bit 0x10 drive the bound battle unit through +0x38 (0x0025DF00), b
 ## Operations
 
 - A pass that refuses still returns 1, so a caller cannot tell a refused pass from a settled one.
-- `0x0025DF00` is called from five sites of the pass: the not-busy loop, the designated drive, the
-  dead repeat, the roster loop and the all-records loop. A record is driven once per loop that
+- `0x0025DF00` is called from five sites of the pass: the not-busy loop, the designated drive, the designated drive's
+  repeat (not reached), the roster loop and the all-records loop. A record is driven once per loop that
   names it, so a party member is driven by both the roster loop and the all-records loop.
 - The init core runs on slot 0 in branch 3 after a designated drive and in branch 5 before the
   roster loop; its field initialisation runs once per field (flags bit `0x4`).
@@ -273,3 +277,17 @@ record +0x14: bit 0x10 drive the bound battle unit through +0x38 (0x0025DF00), b
 - [Zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md): the fade request and the mapjump mode.
 - [Weather](../World-Areas-And-Travel/weather.md): the lane the init core passes on.
 - [Saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md): the busy flag's writers.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Story event quest hunt: `0x002EF2B0` is called by `0x0032A8A0`, `0x0032A930`, `0x0032A9A0`, `0x0032AA00`, `0x0032AA60`,
+  `0x0032AAD0`, `0x0032AB60`, `0x0032ABF0`, `0x0032AC70`, `0x0032ACF0`, `0x0032AD70`, `0x0032ADF0`.
+- Story event quest hunt: those functions are documented on
+  [identifier spaces](../Engine-Core/identifier-spaces.md),
+  [story flags](../Story-Events-And-Hunts/story-flags.md),
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md),
+  [story flag ids](../Story-Events-And-Hunts/story-flag-ids.md).
+- Story event quest hunt: and on [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md),
+  [npc names](npc-names.md).

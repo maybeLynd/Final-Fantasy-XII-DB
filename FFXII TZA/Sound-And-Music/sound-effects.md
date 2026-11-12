@@ -121,7 +121,8 @@ earlier call of `0x0016D6A0` (`0x0022573E`), with 0 when voice `+0x2C` is 3, 5 o
 
 ### Fades
 
-`0x007A9E50(curve, t)` is the fade shape, with six curves from the jump table at `0x007A9F1C`:
+`0x007A9E50(t, curve)` is the fade shape, `t` the float first argument and `curve` the second (`0x007A9E54`,
+`0x007A9E57`), with six curves from the jump table at `0x007A9F1C`:
 
 | Curve | Shape |
 |---:|---|

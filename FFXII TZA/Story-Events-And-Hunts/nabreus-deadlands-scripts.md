@@ -193,7 +193,9 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 
 The steps table [`nabreus-deadlands-script-steps.tsv`](nabreus-deadlands-script-steps.tsv) has one row for each step
 of every function of the thirteen scripts, in the order the function runs them: each call, request, store, branch,
-loop, case and return. It has 6,823 rows.
+loop, case and return. It has 6,823 rows. That leaves out the 428 functions in the spawn groups of the scripts' foes
+(entry, spawn, respawn and talk); [Bestiary](../Enemy-Spawning/bestiary.md) reads their entry
+functions as enemy placements.
 
 A row gives where the step sits in the script, the branch it runs under, the verb and its arguments, and what those
 arguments name in the game: the actor, the model, the animation and its motion file, the effect file, the event sound,
@@ -342,8 +344,9 @@ Calls between the functions this page cites and code in other parts of the progr
 - Movement: `0x00266530` calls `0x00265FF0`, `0x00268380`; `0x00355830` calls `0x0026D6D0`; those functions are documented on
   [actor record fields](../Characters-And-Objects/actor-record-fields.md),
   [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
-- Party: `0x0034D4E0` calls `0x00263750`, `0x003271D0`, `0x00327850`, `0x00328DB0`, `0x00359C00`, `0x0035A050`; `0x00352190` calls
-  `0x00263750`, `0x003170E0`, `0x00322350`; `0x00352AF0` calls `0x00322350`, `0x003288F0`; `0x00355830` calls `0x003590D0`.
+- Party: `0x0034D4E0` calls `0x00263750`, `0x0026DC40`, `0x003271D0`, `0x00327850`, `0x00328DB0`, `0x00359C00`, `0x0035A050`,
+  `0x003601B0`; `0x00352190` calls `0x00263750`, `0x003170E0`, `0x00322350`; `0x00352AF0` calls `0x00322350`, `0x003288F0`; `0x00355830`
+  calls `0x003590D0`.
 - Party: those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
   [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
   [party control modes](../Engine-Core/party-control-modes.md),

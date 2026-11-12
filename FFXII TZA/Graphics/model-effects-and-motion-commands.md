@@ -489,14 +489,14 @@ A bone whose byte `+0x28A` is 0 takes its rest pose from the skeleton
 instead (`0x0041D6F0`: `0x00409270` finds the node for the bone's `+0x27E` and `0x00409300` reads it, all
 of it into `+0xC0` when bone `+0x28B` bit `0x4` is set, else only the translation into `+0xF0`).
 
-`0x0041D180` copies the 48-byte template `0x02CA43D0` into a bone's `+0xC0` block; both appliers use
-it before rebuilding a pose. For a packed motion, `0x0041BDC0` restarts, in every row, each channel
-the mask names through `0x0041B650` at frame 0, and clears bit `0x80` of the entry's `+0x96`.
+`0x0041D180` copies the 48-byte template `0x02CA43D0` into a bone's `+0xC0` block; both appliers use it before rebuilding
+a pose. `0x0041BDC0`, given a bound track at `+0x70`, clears bit `0x80` of the entry's `+0x96`; for a packed motion it
+then restarts, in every row, each channel the mask names through `0x0041B650` at frame 0.
 
-With the entry's `+0x96` bit `0x10` set, `0x0041C260` (from `0x0041BEE0`) keeps each bone's current
-rotation `+0xC0` (through `0x0046D730`) at `+0x120` and the 32 bytes from `+0xF0` at `+0x130`, or
-only clears bit `0x400` of the descriptor when that bit is set; with bit `0x20` set, `0x0041C200` clears bit `0x10`
-of each bone's word `+0x280`.
+With the entry's `+0x96` bit `0x10` set, `0x0041C260` (from `0x0041BEE0`) keeps each bone's current rotation `+0xC0`
+(through `0x0046D730`) at `+0x120` and the 32 bytes from `+0xF0` at `+0x130`, or only clears bit `0x400` of the skeleton
+entry's word `+0x00` when that bit is set; with bit `0x20` set, `0x0041C200` clears bit `0x10` of each bone's word
+`+0x280`.
 
 ### Blending into a new motion
 

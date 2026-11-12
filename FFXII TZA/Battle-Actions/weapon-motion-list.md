@@ -82,7 +82,7 @@ and stored once by the loader (`0x00236C74`); none of them reads the count.
 |---|---|
 | `motion_class` | the row, a weapon motion class |
 | `animation_set` | the row's byte |
-| `weapons`, `first_weapons` | how many main-hand rows have the class, and every one of them by name, in row order; the 13 main-hand rows named Reserve are not counted (ten of class 1, rows 179 and 180 of class 13, row 186 of class 18) |
+| `weapons`, `first_weapons` | how many main-hand rows have the class, and every one of them by name, in row order; the 13 main-hand rows named Reserve (ten of class 1, rows 179 and 180 of class 13, row 186 of class 18) and the 108 named `NOT USED` are not counted |
 | `explanation` | a one-line summary |
 
 ## Related

@@ -41,7 +41,8 @@ then open its window with `0x002E16B0`; the settings apply to the next window op
 | `mes`, `aask_1ff` | | `0x002E1F40` | the window kind `+0x3C` |
 
 Verb names and ids are those of the [verb table](../Scripts-And-Script-Commands/verb-table.md). `messync` and
-`messync2` (`0x11`, `0x129`) set bit `0x2` and bit `0x1` of `+0x3E` (`0x00357820`, through `0x002E1E70` and `0x002E1E40`).
+`messync2` (`0x11`, `0x129`) write two popped values to `+0x3E`: the first to bit `0x2` and the second to bit `0x1`
+(`0x00357820`, through `0x002E1E70` and `0x002E1E40`).
 
 ### Opening a window
 
@@ -158,8 +159,11 @@ state its `+0x08` and the byte `+0x40` the slot's own (`0x002E08D9`-`0x002E08F8`
 `0x002E06F0` closes all eight slots the same way. The script unload `0x0032ED80(n)` calls `0x002E0780(n)`, which closes and
 destroys at once every window whose `+0x3F` is n (`0x0032EEBF`).
 
-`0x002A2720(window)` starts the closing run (`0x00244DD0`) unless bit `0x100000` of `+0x40` or bit `0x20` of `+0x7C` is set, and, for a
-window that keeps a log, clears the log rows (`0x0209C700`, `0x280` bytes) and the published text `0x0209C980`/`0x0209C988`.
+`0x002A2720(window)` acts only on the window its slot `+0x3B8` names in the table `0x0209C4D0` (`0x002A2742`); `0x002A27C0`
+makes the same test (`0x002A27D6`). It starts the closing run (`0x00244DD0`) unless bit `0x100000` of `+0x40` or bit
+`0x20` of `+0x7C` is set, and, for a window that keeps a log, clears the log rows (`0x0209C700`, `0x280` bytes) and the
+published text `0x0209C980`/`0x0209C988`.
+
 `0x002A27C0` asks a window to close: it sets bit `0x40` of `+0x40`, then runs the closing run when bits `0x1` and `0x20` are set and
 otherwise sends message 15 and destroys it at once (`0x00245020`). `0x002A27F0` closes with a run of 1 ms, which is 0
 frames.
@@ -224,8 +228,18 @@ A string with a choice list (token `0x0E`) gets a list widget at `+0xC0`: `0x002
 `0x002D14E0`, with the row painter `0x002A1B00` (`0x002A5836`-`0x002A5855`). The painter finds the row's option text with
 `0x002B2D90` and draws it from the scratch `0x0209CB90` through `0x002D89E0`.
 
-Options whose bit is set in the text's mask `+0x84` are left out. `0x002B2D20` counts the shown options, `0x002B2CA0` turns
-an option number into its row and `0x002B2CE0` a row into its option. The mask is the slot's `setaskselectignore` bits:
+Options whose bit is set in the text's mask `+0x84` are left out. `0x002B2D20` counts the shown options and `0x002B2CE0`
+turns a row into its option.
+
+`0x002B2CA0(text, n, count)` passes over the hidden options in its loop (`0x002B2CB5`-`0x002B2CB9`) but returns its own
+count of shown options, which equals n when it stops (`0x002B2CBB`), so the result is n, held to the last row `count -
+1` (`0x002B2CCA`-`0x002B2CCF`); a negative n, or any n with a count above `0x20`, is returned unchanged
+(`0x002B2CA2`-`0x002B2CA8`).
+
+Its callers pass the shown count (`0x002A984B`, `0x002A9D6B`), so with option 1 of four hidden, option 2 gives row 2
+although it is shown in row 1.
+
+The mask is the slot's `setaskselectignore` bits:
 `0x002A6A80` passes the request's `+0x24` to the text set-up `0x002B32D0`, which stores it at `+0x84` (`0x002A6AF7`,
 `0x002B3310`). The confirm windows set up their text through `0x002B3280`, which passes its arguments on to `0x002B32D0` with the
 last two set to 0 (`0x002B3284`-`0x002B32B6`).
@@ -328,11 +342,11 @@ sets `+0x9B` and `+0x9D` to 1.
 
 ### Captions and sizes
 
-Kinds 13 and 14 build caption windows (bit `0x2000` of `+0x3E8`) with `0x002A70B0`. A kind 14 window matches its width to the
-other caption window `0x002A3F50` finds, and `0x002A4030` widens a caption window and its two frame parts. `0x002A5460`
-measures a caption's text plus 4, and `0x002A5520` gives the y of a style-3 caption: `0x0028F810`, or the screen height
-`0x01E0C1DC` when that is negative, less 5 font sizes and 38 times `0x0024ABA0`. `0x002A6F80` places the caption window of
-style 0 or 3.
+Kinds 13 and 14 build caption windows (bit `0x2000` of `+0x3E8`) with `0x002A70B0`. A kind 14 window matches its width
+to the other caption window `0x002A3F50` finds. `0x002A4030` widens a caption window's two frame parts, and its caller
+sets the window's own width `+0x9C`. `0x002A5460` measures a caption's text plus 4, and `0x002A5520` gives the y of a
+style-3 caption: `0x0028F810`, or the screen height `0x01E0C1DC` when that is negative, less 5 font sizes and 38 times
+`0x0024ABA0`. `0x002A6F80` places the caption window of style 0 or 3.
 
 `0x002B39A0(text, c)` returns the first byte c in a zero-terminated string, or null; the message windows (`0x002A3250`,
 `0x002A5590`, `0x002A6C40`, `0x002A70B0`) and the Clan Primer (`0x00573BE0`) use it. `0x002B39D0` and `0x002B3A80` find a string inside
@@ -554,8 +568,10 @@ The draws copy the window's text record `+0xD0` whole into `0x0209C630`: `0x002A
 - The eighth simultaneous window (registry entry 7) is not removed from the registry when it is destroyed; the entry
   keeps pointing at the destroyed widget, which the loops over `0x0209C4D0` (`0x002A28E0`, `0x002A29A0`, `0x002A38C0`,
   `0x002A3F50`) still read until the reset.
-- Hidden choices keep their option numbers: `askpos` and the answer use option numbers, which `0x002B2CA0` and
-  `0x002B2CE0` convert to and from rows.
+- Hidden choices keep their option numbers: the answer is converted from a row to an option number by `0x002B2CE0`,
+  but the start option `+0xA4`, from the token or from `askpos`, goes through `0x002B2CA0` (`0x002A9078`,
+  `0x002A986A`-`0x002A9880`), whose result is not moved up for hidden options: the row it stores at `+0x58` (`0x002A9888`)
+  is one row further down for each hidden option before the start option, held to the last row.
 
 ## Related
 

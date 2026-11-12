@@ -117,15 +117,15 @@ instance: it keeps the 64 bytes at `0x02AEEAA0`, turns the unit z vector by the 
 (`0x0039AF70`, `0x00398F90`), and writes at `0x02AEEAE0` a single-axis rotation (`0x00398910`) by the
 `atan2` of the result's x and z, which `0x0024C060` folds into `0x02AEEC70` (`0x00397910`).
 
-`0x003A74F0(index)` releases every emitter (`0x003A9160`) and every `0x700` object (`0x003A81E0`), zeroes
-the counters `+0x80` and `+0x84` of the block at `0x02EBEFB0`, frees its players (`0x003A7360`) and runs
-the record store's kind-`0x59` (`'Y'`) nodes through `0x005043F0` (`0x003AA430`). It then attaches a
+`0x003A74F0(index)` releases every emitter (`0x003A9160`) and every `0x700` object (`0x003A81E0`), zeroes the counters
+`+0x80` and `+0x84` of the block at `[0x02EBEFB0]`, frees its players (`0x003A7360`) and runs the record store's
+kind-`0x59` (`'Y'`) nodes through `0x005043F0` (`0x003AA430`). It then attaches a
 player for the `0x600` record `index`, or for index 1 the first record that exists
 (`0x003A7460`), and starts every attached player with `0x003337B0`.
 
-The block at `0x02EBEFB0` (instance `+0x130`) holds 16 player pointers, which `0x003A72A0` clears with
-the counters when an instance is made. `0x003A7460(index)` takes a `0x2A0`-byte player for the
-`0x600` record `index` into the first free pointer and initialises it with `0x00333030`.
+The block at `[0x02EBEFB0]` (instance `+0x130`) holds 16 player pointers, which `0x003A72A0` clears with the counters when
+an instance is made. `0x003A7460(index)` takes a `0x2A0`-byte player for the `0x600` record `index` into the first free
+pointer and initialises it with `0x00333030`.
 
 `0x003A7360` tears each player down (`0x00333350`) and frees it, then, by the instance's flags, calls
 `0x0024C6B0` (`+0x368` bit `0x80`), `0x0024C870` (`+0x368` bit `0x100`) and `0x003AF330(0)` (`+0x3A0` bit `0x1`,
@@ -181,8 +181,10 @@ call it:
 2. `0x0026FF50`, the disposal of the map effect bank;
 3. `0x003B2F90` moves every used model-effect slot (`0x02EBDB98`) to the free list `0x02EBDBA0`, ending
    its instance (`0x0024EE60`) and keeping bits under mask `0xF000003F` of its id, and frees the kind-3 instances;
-4. `0x003B0130`, then `0x003B26D0`, which releases every loaded file whose flag `+0x20` bit `0x1` is clear
-   (`0x003B18E0`);
+4. `0x003B0130`, then `0x003B26D0`, which walks the 32 loaded-file slots once, up to the first empty one, and releases
+   each file whose flag `+0x20` bit `0x1` is clear (`0x003B18E0`). A release in state 1, 3 or 5, or in state 2 when
+   `0x0032E4D0` and `0x0032E520` answer 0, moves the later slots down one while the walk advances, so the file right after
+   it is passed over on this walk;
 5. `0x3FF` goes to the group mask `0x02092160`, and bit `0x2` of `+0x368` is cleared in the instance of
    every model-effect slot (`0x003B3B50`) and of every numbered request (`0x003B1130`);
 6. `0x02EBEF68` bit `0x1`, bits `0x400` and `0x800` of `0x020926E4`, the low three bits of `0x02F8F29E` and bit `0x1`
@@ -224,10 +226,10 @@ The emitter block (instance `+0x1B8`, published at `0x02EBEF88`) keeps, from `+0
   count lowered; when a pending entry reaches 0 it is removed and the path objects with the
   emitter's id and kind are freed (`0x003A8130`).
 
-The stop byte `+0x139` has four writers: `0x003A8C80` sets it on every emitter, `0x003A8CB0(n)` on
-emitters whose byte `+0x1C` is not `n`, and `0x003A8D40(tag)` on emitters whose `+0x13A` is the tag;
-`0x003A8FC0(tag)` returns whether any emitter has the tag. `0x003A8CE0(n)` sets bit `0x1` of `+0x248` on
-every element of the emitters whose `+0x1C` is not `n` and whose definition type is `0x40`.
+The stop byte `+0x139` has four writers: `0x0043F210` clears it when an emitter is set up, `0x003A8C80` sets it on every
+emitter, `0x003A8CB0(n)` on emitters whose byte `+0x1C` is not `n`, and `0x003A8D40(tag)` on emitters whose `+0x13A` is
+the tag; `0x003A8FC0(tag)` returns whether any emitter has the tag. `0x003A8CE0(n)` sets bit `0x1` of `+0x248` on every
+element of the emitters whose `+0x1C` is not `n` and whose definition type is `0x40`.
 
 ### The record store's other fronts
 
@@ -320,11 +322,11 @@ A type above `0xD1`, or one without a main arm, goes to the sub-range dispatcher
 6. Returns `n` at once for a definition type of `0xA0` or more; otherwise goes on to sample the
    definition's motion tracks at `+0x44` (`0x002F262D`–`0x002F263C`).
 
-Before the base fires an element's spawn slots with trigger 2 or 3 (`0x003A8950`), it runs
-`0x002F3890(element)`: the colour `+0x1F0` is copied to `+0x1F4`, the world position `+0x70` moves
-to `+0x80`, and the position `+0x60` becomes the new `+0x70`, turned through the parent's matrix
-(`0x0039AF70`, `0x00398F90`) when `+0x10` is set. The children therefore start from where the element
-is on that step.
+Before the base fires an element's spawn slots with trigger 2, and with trigger 3 on the branch taken at `0x002F2A5F`
+when the value from `0x002F3750` exceeds `+0x64` (`0x003A8950`), it runs `0x002F3890(element)`; the lifetime firing of step
+4 does not. `0x002F3890` copies the colour `+0x1F0` to `+0x1F4`, moves the world position `+0x70` to `+0x80`, and makes
+the position `+0x60` the new `+0x70`, turned through the parent's matrix (`0x0039AF70`, `0x00398F90`) when `+0x10` is set.
+The children of those two firings therefore start from where the element is on that step.
 
 In 60 fps mode (`0x001EDDA0()` returns 0) the base ends by asking `0x001EDBB0(whole age, kind, effect
 number, frame)`, the last three read from the instance's `+0x3AC`, `+0x3AE` and `+0x3A2`, and
@@ -419,10 +421,9 @@ otherwise; the base birth looks up the `0x700` path object the element follows w
 
 ### Signals and extra steps
 
-- `0x003B3CA0(handle, value)` makes the handle's instance current and calls `0x003A9490`, which signals
-  every element of types `0x67`, `0x6B`, `0x71` and `0x72` through `0x0043EE70`: each type's handler
-  sets one word of the element to 1 (`0x0045FD00` `+0x3D8`, `0x00529D40` `+0x3D4`, `0x0052A8A0` `+0x434`,
-  `0x0052B5D0` `+0x3F8`).
+- `0x003B3CA0(handle, value)` makes the handle's instance current and calls `0x003A9490`, which signals every element of
+  types `0x67`, `0x6B`, `0x71` and `0x72` through `0x0043EE70`: each type's handler sets one dword of the element to 1
+  (`0x0045FD00` `+0x3D8`, `0x00529D40` `+0x3D4`, `0x0052A8A0` `+0x434`, `0x0052B5D0` `+0x3F8`).
 - `0x0024B9B0` calls `0x003A93F0`, which updates the elements of each emitter of type `0x40` or `0xA1`
   that follows a subtype-0 path object whose byte `+0x118` is 3 or 11 a second time, through
   `0x00442310` with `dt` = 2 × `[0x01DFE0BC]`.
@@ -579,17 +580,19 @@ of the table at `+0x2B0` (`0x00459566`, `0x0045957B`).
   frees the track (`0x0046EE70`, `0x003697F0`). A target of −1 becomes 0 unless bit `0x1` of `+0x90` is set.
 - After a non-null sub-entry, the counter `+0x92` goes up by one whether or not a slot was free; a null
   sub-entry does nothing at all.
-- `0x00333280(player, sub-entry, n)` does the same with target −1 and stores `n` in the track's
-  byte `+0x11`, the byte `0x003333F0` compares when a script waits on trigger `n`.
+- `0x00333280(player, sub-entry, n)` does the same with two differences. It always passes a target of −1
+  (`0x003332D9`) and never applies the `+0x90` test, so the −1 is never turned into 0. It also stores `n` in
+  the track's byte `+0x11`, the byte `0x003333F0` compares when a script waits on trigger `n`.
 - `0x003337B0(player)`, the start, frees all sixteen tracks, then opens the sub-entries of bytes
   `+1`–`+7` whose delay words (`+0x18`, `+0x1A`–`+0x24`) are 0 through `0x003331A0`, and, with bit `0x1`
   of `+0x90` set and word `+0x26` 0, one track of byte `+9` for the next target from `+0x91` that
   `0x003A3E30` finds, stepping `+0x91` past it.
-- `0x0024FE70(instance, n)`, the signal, makes the instance current. Without a player it starts a
-  state-2 instance (`0x003A74F0`, with `0x02092720` set while `n` is non-zero) or attaches one to a
-  state-1 or state-7 instance (`0x003A7460`, also setting `+0x378` bit `0x400`), and sets state 1.
-  It then opens the sub-entry of record byte `+0x0A + n` on the first player through `0x00333280`
-  and returns 1, or 0 when that byte is 0.
+- `0x0024FE70(instance, n)`, the signal, makes the instance current. Without a player it starts a state-2 instance
+  (`0x003A74F0`, with `0x02092720` set while `n` is non-zero) and sets state 1, or attaches one to a state-1 or state-7
+  instance (`0x003A7460`) and, when that yields a player, sets state 1 and `+0x378` bit `0x400`. Without a player
+  afterwards, or in any other state, it returns 0.
+- With a player, `0x0024FE70` then opens the sub-entry of record byte `+0x0A + n` on the first player through
+  `0x00333280` and returns 1, or 0 when that byte is 0.
 
 A track's word `+8` is the counter value it was given (`0x0046EE30`), and the emitters its events
 birth keep it at `+0x1C` (`0x00538820`, `0x003A8AE0`, `0x0043F450`). The battle effect program stops tracks by that key through `0x00333640(player,

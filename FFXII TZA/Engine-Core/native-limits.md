@@ -150,9 +150,9 @@ of another field.
 
 ### Who reaches a unit through a pointer
 
-[`native-limits-battle-unit-consumers.tsv`](native-limits-battle-unit-consumers.tsv) has the 413 functions of
+[`native-limits-battle-unit-consumers.tsv`](native-limits-battle-unit-consumers.tsv) has the 445 functions of
 [`battle-unit-fields.tsv`](../Characters-And-Objects/battle-unit-fields.tsv), with the route each reaches a unit by and how
-many fields it uses. 357 of them are not in the site table: they depend on the record's layout and not on the count.
+many fields it uses. 379 of them are not in the site table: they depend on the record's layout and not on the count.
 43 read the slot number.
 
 ### Columns of native-limits-battle-unit-dependencies.tsv

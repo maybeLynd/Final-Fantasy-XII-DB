@@ -182,10 +182,10 @@ The row shows the counter's value at `+0x50` while it runs, and the record's val
 ### The status mark
 
 `0x00297FE0(row, record)` copies the status presence word `+0x44` into the row's status record at `+0xF0` and steps it
-with `0x00272F80(+0xF0, 30, 0)`. With n statuses to show, each shows for `max(36 - 6n, 12)` frames in display order,
-after a blank of `ceil(30 / that)` periods (`0x00272F80`). The mark shows the status's sprite and its name, text
-`0x46B7` plus the status, such as "KO" (`0x46B7`) or "Stone" (`0x46B8`), in colour 5 when the status has flag bit `0x1`
-at `+0x25` and 4 otherwise.
+with `0x00272F60(+0xF0, 30, 0)`, which passes a further 0 to `0x00272F80`. With n statuses to show, each shows for
+`max(36 - 6n, 12)` frames in display order, after a blank of `ceil(30 / that)` periods (`0x00272F80`). The mark
+shows the status's sprite and its name, text `0x46B7` plus the status, such as "KO" (`0x46B7`) or "Stone"
+(`0x46B8`), in colour 5 when the status has flag bit `0x1` at `+0x25` and 4 otherwise.
 
 The display orders are four tables of pointers to copies of the 32 status rows, class `0x1A`, that `0x00273BA0` builds
 at `0x022C8B08 + 0x1500`, `+0x1600`, `+0x1700` and `+0x1800` (`0x0035D490`):
@@ -210,10 +210,12 @@ at most 11 entries and skips status `0x1D` (`0x00284058`-`0x00284070`).
 
 The Status pane `0x002C59D0` keeps 32 such entries at `+0xC8` and its mask at `+0x148`:
 
-- `0x002C5810(pane, dir)` moves the pane's cursor `+0x14D` to the next entry that passes `0x002D02A0`: dir 0 and 1
-  step back and forward, 2 and 3 by the list's column count (`+0xEC`), wrapping round the 32 entries. It
-  answers 1 when the cursor moved. `0x002C5EC0(pane, dir)` answers whether such a move finds an entry without
-  wrapping.
+- `0x002C5810(pane, dir)` moves the pane's cursor `+0x14D` to the next entry that passes `0x002D02A0`: dir 0 and 1 step
+  back and forward, 2 and 3 by the list's column count (`+0xEC`), wrapping round the 32 entries. It answers 1 when the
+  cursor moved.
+- `0x002C5EC0(pane, dir)` answers whether such a move finds an entry. Dir 0 and 1 answer 0 at either end of the 32
+  entries; dir 3 answers 0 when entry + columns is 35; dir 2 steps by 4 and answers 0 when entry - 4 is -columns; both
+  otherwise wrap by 31.
 - `0x002C5900(pane, row, ..., i)` is the row painter the pane installs (`0x002C5A7F`). For an empty entry it hides
   both of the row's elements; otherwise it gives the first the status's sprite cell and the second the text at
   `+0x18` of the status's class `0x1A` record (`0x002B58B0`), in colour 4 when the entry's third byte is set and

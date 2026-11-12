@@ -678,7 +678,7 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x05` | `u8[3]` | pad05 | the bytes after the byte the placement constructor `0x005D5FE0` sets to 1 at `+0x04` (`0x005D5FED`) up to m_lodBias (`+0x08`); no registered member covers it (`0x005D9E70` registers the `0x20`-byte class at `0x005D9EC0`) |
+| `+0x05` | `u8[3]` | pad05 | the bytes after m_wrapR (u8 at `+0x04`, registered by `0x005E7070` at `0x005E72D9`; the placement constructor `0x005D5FE0` sets it to 1 at `0x005D5FED`) up to m_lodBias (`+0x08`); no registered member covers it (`0x005D9E70` registers the `0x20`-byte class at `0x005D9EC0`) |
 | `+0x08` | `f32` | m_lodBias | m_lodBias (f32), registered by `0x005E7070` (`0x00632960` at `0x005E734C`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PSamplerStateBase; the placement constructor `0x005D5FE0` sets it to 0 (`0x005D5FF1`) |
 | `+0x10` | `u32` | m_borderColor | m_borderColor (u32), registered by `0x005E7070` (`0x00632960` at `0x005E7432`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PSamplerStateBase; the placement constructor `0x005D5FE0` sets it to 0 with the qword store that writes 1.0 to `+0x0C` (`0x005D5FF4`) |
 | `+0x14` | `u32` | m_baseLevel | m_baseLevel (u32), registered by `0x005E7070` (`0x00632960` at `0x005E74A5`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PSamplerStateBase; the placement constructor `0x005D5FE0` sets it to 0 (`0x005D5FFC`) |
@@ -704,7 +704,7 @@ The members below are the ones the code of this page's classes uses or the refle
 |---|---|---|---|
 | `+0x04` | `u32` | m_constantBufferLocation | m_constantBufferLocation (u32), registered by `0x005E89C0` (`0x00632960` at `0x005E8A4E`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderParameterCaptureBufferLocationTypeConstantBuffer; the placement constructor `0x005D7DE0` clears `+0x04` to `+0x0B` (`0x005D7DEA`) |
 | `+0x08` | `u32` | m_size | m_size (u32), registered by `0x005E89C0` (`0x00632960` at `0x005E8ABD`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderParameterCaptureBufferLocationTypeConstantBuffer; cleared with m_constantBufferLocation by the placement constructor `0x005D7DE0` (`0x005D7DEA`) |
-| `+0x0D` | `u8[3]` | pad0D | the bytes after the byte the placement constructor `0x005D7DE0` sets to `0x34` at `+0x0C` (`0x005D7DEE`) up to the end of the `0x10`-byte class; no registered member covers it (`0x005DA6D0` registers the `0x10`-byte class at `0x005DA71A`) |
+| `+0x0D` | `u8[3]` | pad0D | the bytes after m_type (u8 at `+0x0C`, registered by `0x005E89C0` at `0x005E8B2C`; the placement constructor `0x005D7DE0` sets it to `0x34` at `0x005D7DEE`) up to the end of the `0x10`-byte class; no registered member covers it (`0x005DA6D0` registers the `0x10`-byte class at `0x005DA71A`) |
 
 `PShape` (`0x38` bytes, offsets from the start of the record):
 

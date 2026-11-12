@@ -77,7 +77,7 @@ Struct MoveTurnRequest  (`0x20` bytes, on the builder's stack):
 | `+0x00` | `u16` |  | value 0 |
 | `+0x02` | `u16` |  | mode (the command's word +2) |
 | `+0x04` | `f32` | distance |  |
-| `+0x08` | `f32` |  | 0 (left as it was for mode `0x10`) |
+| `+0x08` | `f32` |  | value 0 |
 | `+0x0C` | `f32` |  | relative heading |
 | `+0x10` | `f32[3]` | unit direction |  |
 | `+0x1C` | `f32` | 1.0 |  |
@@ -113,7 +113,8 @@ so only the newest request turns.
 heading `+0x160` (the heading itself when the two coincide), wrapped; the direction `(victim -
 attacker) / hypot` in x and z, away from the attacker; `w` = 1.0.
 
-A zero distance between the two skips it, as does the combination of `0x02089340` bits `0x200` and `0x400`, a victim `+0x698` record with byte
+A zero distance between the two skips it, as does either of `0x02089340` bits `0x200` and `0x400` together with a victim
+`+0x698` record with byte
 `+5` = 0, victim byte `+0` bit `0x10`, and status words `+0x3C | +0x64` clear of `0x80000003` (or
 `0x00377C20()` set).
 
@@ -289,8 +290,8 @@ streams and each container's own `@FRM` table:
 | naming a table slot | 11,224: 11,200 present, 24 an empty slot in their own container (read as the table head) |
 | present profiles | all 11,200 have both `moveFrames` and `turnFrames` non-zero, durations 1 to 30 frames, curves inside the file |
 | modes authored | 0-7, 9-12, 16, 21, 22; commonest 12 (2,344), 16 (2,145), 6 (1,908) |
-| blocks | `attack` 4,495, `avoid` 1,216, then `magic`, `ev_treasure`, `ability`, `steal`, `pary_weapon`, `pary_shield` at 608 each |
-| scale | small floats near `5e-6` (`0x36C19F01` in 2,782 profiles), so a `u16` curve value times the scale is a per-frame share of at most 1.0 |
+| blocks | `attack` 4,495, `avoid` 1,216, then `magic`, `ev_treasure`, `ability`, `steal`, `pary_weapon`, `pary_shield`, `summon_attack` at 608 each |
+| scale | small floats near `5e-6` (`0x36C19F01` in 4,224 of the 13,267 profiles, and named by 2,782 of the 11,200 commands), so a `u16` curve value times the scale is a per-frame share of at most 1.0 |
 | pool | 128 entries of `0x60` bytes; the serial wraps at `0xFFFFFF` |
 
 ### Every table, profile and command

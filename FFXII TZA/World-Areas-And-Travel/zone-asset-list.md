@@ -221,10 +221,14 @@ wall. `lus_e01` and `lus_f01` to `lus_f05` follow it. 12 rows carry a Lhusu date
 region is its field sign record, tested on the walk mesh with its wall standing and its floor group shut.
 
 The hub door of Henne Mines moves five dates. `hne_c01`, `hne_c02`, `hne_c03`, `hne_d01` and `hne_e01` open at 4400:
-floor group 2 of `hne_b01` is shut unless bit `0x2` of `g_com_マップ通行制限フラグ[1]` is set (`Map_Director.init`, lines 638
-to 644), and outside developer scripts only `ガリフ族工芸家03.talk` in `glf_a02` sets it. That talk needs ten of the
-Espers `0xC012` to `0xC01E`. Zodiark lies behind the door, so the tenth of the other twelve fixes the date: Shemhazai,
-at 4400.
+floor group 2 of `hne_b01` is shut unless bit `0x2` of `g_com_マップ通行制限フラグ[1]` is set
+(`Map_Director.init`, lines 638 to 644), and outside developer scripts only `ガリフ族工芸家03.talk` in `glf_a02`
+sets it.
+
+That talk sets it only once the Mine Flayer hunt has been reported to `ガリフ戦士05` (global `0x0313`, the
+test at line 6025; the hunt is posted from
+story progress 3000 at clan rank 5 or higher), and only with ten of the Espers `0xC012` to `0xC01E` held.
+Zodiark lies behind the door, so the tenth of the other twelve fixes the date: Shemhazai, at 4400.
 
 The Golmore barrier moves 22 more. Floor group 1 of `gol_a01` and `gol_a02` is shut, on foot and riding, without
 key item `0x80B7`, Lente's Tear. Scene `vic_a0300` gives it, and `イベント管理.姉と妹_再生` in `vic_a01` stores 1950

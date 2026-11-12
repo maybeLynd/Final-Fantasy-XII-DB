@@ -111,10 +111,14 @@ publishes the instance's other draw state
 The License Board keeps the id of a square's effect in the square's `+0x2C`, and `0x0055F010` polls `0x003B2CE0` while it
 runs the square transitions ([License Board screen](../Menus-And-HUD/license-board-screen.md)). `0x00557DB0` also polls it.
 
-In the Sky Pirate's Den, `0x00572920` goes through the thirty descriptors and, for each one whose award bit is set
-(`0x00576E10`), spawns one effect at the layout entry's words `+2` and `+4` with the kind byte `+0x16`, then calls
-`0x003B2F50(id, (0xFF - entry byte +1) × 10000)` ([Achievements](../Steam-And-Achievements/achievements.md)).
-`0x005734C0` and `0x00573690` refresh them: a stored id that is not -1 is removed first, then a new one is spawned and set.
+In the Sky Pirate's Den, `0x00572920` goes through the thirty descriptors and records each one whose award bit is set
+(`0x00576E10`), attaching the layout entries that match it. It spawns one effect for each entry whose byte `+0` is
+`0xFE`, with no award test. It then spawns one for each awarded descriptor's own entry and one for each entry attached
+to it, at the entry's words `+2` and `+4` with the kind byte `+0x16`, and calls `0x003B2F50(id, (0xFF - entry byte +1) ×
+10000)` after each ([Achievements](../Steam-And-Achievements/achievements.md)).
+
+`0x005734C0` and `0x00573690` refresh them when the selection moves: a stored id that is not -1 is removed first, then
+the previously selected group is spawned again with kind `+0x16` and the newly selected group with kind `+0x17`.
 
 ## Layouts
 

@@ -48,11 +48,11 @@ Entry `2 * id` is pair `id`'s first name and entry `2 * id + 1` its second.
   `0x003EAC10(id, flagSet)` returns the first name while the flag is clear and the second once it is
   set.
 
-`0x002639E0(id)` does the same from a bare id and `0x0026DEA0(id, flag)` from an explicit pair. The
-callers that put the name on screen are `0x00272CB0` (the name for an actor handle resolved by
-`0x003588B0`, or the empty string `0x01CEB638`), `0x00272CE0` and the field interaction pass
-`0x00268D10`, which passes the name to `0x003DF760(..., 3, ...)` for an actor whose `+0x1C` bit `0x2000` is
-set and whose name's first byte is not 0 (`0x00268E58`).
+`0x002639E0(id)` does the same from a bare id and `0x0026DEA0(id, flag)` from an explicit pair. Among the callers that put
+the name on screen are the text interpreter `0x002AC5F0` (`0x002ADDAA`, `0x002ADEA3`), `0x002B0280` (`0x002B16D4`, `0x002B1730`),
+`0x00272CB0` (the name for an actor handle resolved by `0x003588B0`, or the empty string `0x01CEB638`), `0x00272CE0` and the
+field interaction pass `0x00268D10`, which passes the name to `0x003DF760(..., 3, ...)` for an actor whose `+0x1C` bit
+`0x2000` is set and whose name's first byte is not 0 (`0x00268E58`).
 
 `0x00272CE0(buffer, handle)` copies the name into a caller's buffer. It writes the empty string when the handle
 does not resolve (`0x003588B0`, `0x00272D0B`) or the name is null (`0x00272DA6`). When the 16-bit word `0x00263A10`
@@ -234,7 +234,8 @@ scripts.
 ### Where each name is given
 
 [`npc-names-maps.tsv`](npc-names-maps.tsv) has one row per name pair and script, from every `setnpcname` step
-with a fixed id in the script step tables of the area pages, and from the crystal actor
+with a fixed id in the script step tables of the area pages, from the same calls in the spawn groups of the zone
+scripts, which those tables leave out, and from the crystal actor
 ([Shared zone-script actors](../Story-Events-And-Hunts/shared-zone-script-actors.md)). A row gives:
 
 - the pair's two `us` names;
@@ -244,14 +245,20 @@ with a fixed id in the script step tables of the area pages, and from the crysta
 
 What it shows:
 
-- 3,832 steps with a constant id and the 33 array steps below that name a person give 1,575 rows: 773 pairs in
-  513 scripts. 198 of the pairs have two different names.
+- 3,722 steps with a constant id, 7 of them calls on another actor such as `THIRD_ガリフ.setnpcname`, 50 calls in
+  spawn groups and the 33 array steps below that name a person give 1,583 rows: 775 pairs in 516 scripts. 198 of
+  the pairs have two different names.
+- The 50 spawn-group calls name a foe of the group only while `btlAtelIsMimicName` returns 1, bit `0x20` of its
+  spawn record's byte `+0` ([Battle units](battle-units.md)): 47 give it Treasure, the chests' name, and 3 a
+  crystal's name. Otherwise the group calls `setnpcname(-1)` (50 calls), and the foe shows its own text at `+0xF8`.
+- The groups' talk functions `btalk00` to `btalk05` call `setnpcname(-1)` before `btlAtelMimicFunction(0)` (41 calls
+  in 18 scripts), so the foe goes back to its own text when its talk function runs.
 - The save and gate crystal actor is shared by the crystal maps. It picks the crystal's pair by the number
   `getcrystalid` returns: 0 is Save Crystal, 255 Life Crystal, each of 25 gate numbers its own place's crystal, and
   any other number Gate Crystal. Its rows are its 80 loaded crystals
   ([Save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md)).
-- `bts_z01`, `pre_a01` and `pre_b01`, fields 108, 109 and 114, name their treasure chests, but no zone-script entry
-  names those scripts.
+- `bts_z01`, `pre_a01` and `pre_b01`, fields 108, 109 and 114, name their treasure chests, and `bts_h01` and
+  `bts_y01`, fields 80 and 107, a foe of a spawn group, but no zone-script entry names those scripts.
 - 89 more steps, one in each of 89 scripts, take the id from an array of the script's own data, indexed by the
   person: `NPC01`'s background people in `clip_show` in 52 scripts, and `NPC_LABO_0`'s `begin` in 37 Draklor
   Laboratory scripts. The arrays start at 0 in every script, and `EventDirector`'s `init` stores their values as
@@ -267,7 +274,7 @@ What it shows:
 
 | Column | Holds |
 |---|---|
-| `name_pair_hex` | the pair number of `name_pair` in hex, four digits, as `pair_hex` in npc-name-pairs.tsv; it equals `name_pair` on all 1,575 rows |
+| `name_pair_hex` | the pair number of `name_pair` in hex, four digits, as `pair_hex` in npc-name-pairs.tsv; it equals `name_pair` on all 1,583 rows |
 
 ## Modding notes
 

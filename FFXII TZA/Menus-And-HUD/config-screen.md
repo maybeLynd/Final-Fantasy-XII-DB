@@ -209,8 +209,10 @@ go through `0x0017E540(row, value)`:
 |  |  | `23` | `14` |
 
 The read-back `0x0017E070` takes Resolution's index through `0x001DD050`: display `+0x38` when display `+0x18` is 0,
-`+0x24` otherwise. `0x0017FF20` returns the resolution as `width << 16 | height` from that mode's list of `0x1C`-byte
-entries (`0x001DD0B0`), or `[0x01F82D20] + 4` when the index is past the list's end.
+`+0x24` otherwise. `0x0017FF20` returns the resolution, the width in the high 16 bits and the height in the low 16, from
+a list of `0x1C`-byte entries (`0x001DD0B0`) chosen by `[0x01F82D20] + 8`: for 1 the list at `+0x28`, index `+0x24` below
+the count `+0x20`; for 0 the list at `+0x40`, index `+0x38` up to `+0x34`. It returns `[0x01F82D20] + 4` when the index
+is past that limit and for any other value.
 
 ### Controls rows
 
@@ -258,9 +260,13 @@ command names a row list in `0x01E0BF60` whose layout kind is `0x0B` or `0x0C`. 
 test, kept at `+0x728` on Graphics Settings and `+0x4B8` on Controls; a non-zero answer skips the row.
 
 Graphics Settings' test `0x00241840` skips a row whose kind (`0x00914714` + 20 x row) is 0, a heading; Controls' test
-`0x00241890` skips a row whose type (`0x0208E6E4` + 20 x row) is not 2, 3 or 4. With `hold` set
-and a direction pressed, `0x00240DE0` posts `0x8003` to the list (`0x002D1AC0`) instead of moving; Graphics Settings sets
-it while a row's `+0xC8` differs from its `+0xC4` (`0x0023C25F`-`0x0023C26B`).
+`0x00241890` skips a row whose type (`0x0208E6E4` + 20 x row) is not 2, 3 or 4.
+
+With `hold` set and a direction pressed, `0x00240DE0` does not move: through `0x002D1AC0` (`0x00240F2F`-`0x00240F37`) it
+sends `0x8003` to the list's owner, the widget at `[list+0xC8]`, calling the owner's handler directly with the
+message `{0xC, 0x8003, item}` (`0x00247510`, `0x00247523`-`0x00247547`); the item is the list's position, (`+0xF2` +
+`+0xF4`) x `+0xEC` + `+0xEE` + `+0xED` (`0x002D1ACC`-`0x002D1AFD`), and a list with no owner gets nothing (`0x002D1B0B`).
+Graphics Settings sets `hold` while a row's `+0xC8` differs from its `+0xC4` (`0x0023C25F`-`0x0023C26B`).
 
 ### Where each setting is saved
 
@@ -371,7 +377,7 @@ Each of the 42 slots at `+0xE0` of the Config screen (next) is `0x18` bytes.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8` | command | the row's command, byte `+0x00` of the row (`0x0023EE47`); `0x0023EF80` matches it (`0x0023EF90`); `0xFF` for no command (`0x0023FE84`) |
-| `+0x01` | `u8` | layoutKind | the layout kind of the row list the command names, or `0xFF` (`0x0023EE69`): kinds 1-10 get a row widget (`0x0023EE6C`-`0x0023EEDD`); the input turn passes the turn on only for kinds 1, 2, 3, 6 and 8 (mask `0x14E`, `0x0023FE9D`-`0x0023FED9`) |
+| `+0x01` | `u8` | layoutKind | the layout kind of the row list the command names, or `0xFF` (`0x0023EE69`): kinds 1, 2, 3, 6, 8 and 10 get a row widget (jump table `0x0023EF54`, `0x0023EE6C`-`0x0023EEDD`); kinds 4, 5, 7 and 9, like any kind outside 1-10, go straight to `0x0023EEE5` and make none; the input turn passes the turn on only for kinds 1, 2, 3, 6 and 8 (mask `0x14E`, `0x0023FE9D`-`0x0023FED9`) |
 | `+0x02` | `u8[6]` | pad02 | read and written by no function; nothing fixes its width |
 | `+0x08` | `void*` | widget | the row's widget, `0x0023E770`, `0x0023D6B0` (`0xD8`), `0x0023EBE0` (`0xD8`) or `0x0023E400` (`0xF0`) by the kind (`0x0023EEE2`); the draw places it (`0x0023FDE7`); sub-command `0x12` drops it (`0x0023FF4D`) |
 | `+0x10` | `void*` | dialog | the confirmation the row opens: `0x0023E560` (`0x2E0` bytes, Restore Defaults, `0x002400D7`-`0x00240102`) or `0x0023DFC0` (`0x0024015B`-`0x0024016D`); sub-command `0x1C` drops it (`0x0023FF1D`) |

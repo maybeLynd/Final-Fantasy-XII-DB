@@ -57,10 +57,10 @@ for kind 7, and `+0x1F` for kinds 3, 5 and `0x0B` (`0x003745CE`, `0x00375BAF`, `
 `0x003752AE`; `0x00374E3E`; `0x00374A37`, `0x00375D9E`, `0x00376248`). Three steps recur:
 
 1. Kind 3 copies the finished scene into a target.
-2. Kind 4 (`0x00375B90`) binds an image to a block address of the emulated GS memory, the low 14
-   bits of its qword `+0x30` (`0x2A00` on this page): with `+0x1C` bit `0x1` it uploads the image at
-   `+0x20`, binds the texture at `+0x50` to that address (`0x002D7E00`), and with bit `0x2` uploads the
-   palette at `+0x28`.
+2. Kind 4 (`0x00375B90`) binds an image to a block address of the emulated GS memory, the low 14 bits of its qword
+   `+0x30` (`0x2A00` on this page): with `+0x1C` bit `0x1` it uploads the image at `+0x20` and binds the texture at
+   `+0x50`, when there is one, to that address (`0x002D7E00`), and with bit `0x2`, when bits `0x3F00000` of `+0x30` hold
+   more than `0x200000`, it uploads the palette at `+0x28`.
 3. Quads of kinds 2, 5, 6, 7 and `0x0D` sample that address.
 
 The pool releases a descriptor when its handler returns 0: kind 4 does so once drawn when `+0x1C`
@@ -101,9 +101,9 @@ The parameter verbs only write the staging block (layout below): `cutintype` (`0
 `cutinlinefade` (`0x0314`, `0x003DF990`), `cutinpos` (`0x0315`, `0x003DF9C0`), `cutinuv` (`0x0318`,
 `0x003DFA30`), `cutincolor` (`0x0319`, `0x003DF950`) and `cutinlinecolor` (`0x031A`, `0x003DF970`).
 
-`0x0024CBE0` draws nothing while the live type byte is 0. In draw 0 it switches the draw mask
-bits under mask `0x7F` on for both draws and queues a kind-3 capture of the scene into `0x02092638` (stage 7,
-`0x40703`). In draw 1 it queues a kind-4 bind of that target and calls `0x003AA6B0`, which queues
+`0x0024CBE0` draws nothing while the live type byte is 0. In draw 0 it switches the draw mask bits under mask `0x7F` on
+for draw 0 and under `0xFF` on for draw 1, sets byte `0x022C7F99` to 1 and queues a kind-3 capture of the scene into
+`0x02092638` (stage 7, `0x40703`). In draw 1 it queues a kind-4 bind of that target and calls `0x003AA6B0`, which queues
 two kind-`0x0D` quads in stage 5:
 
 - the picture: the block's position, rotation and colour, with texture coordinates from `(u, v)`
@@ -250,14 +250,15 @@ by `0x00251F20`) then 6; 7 a pulse of `+0x129` strength over `+0x12A` frames (`0
 | 1 | `sin(πt/2)` |
 | 2 | `1 − sin((t/2 + 1/2)π)` |
 | 3 | `0.5 − sin((t + 1/2)π) / 2` |
-| 4 | `0.6 + 0.4 ×` a random value (`0x003A1D30`) |
+| 4 | `0.6 + 0.4 √t` (`0x003A1D30` is the square root of the absolute value;`0x00248FC9`-`0x00248FDB`) |
 | 5 | `0.4 + 0.3 sin(πt/2) + 0.3 t` |
 | other | `t` |
 
-`0x00251D20()` returns the state, or 2 when `+0xE8` bit `0x1` is clear; `0x00251D50()` returns 1 when there is no
-backdrop or its state is 0, 6 or 8. `0x00251EE0` sets the fade-out frames. `0x00250E90(palette)` swaps in
-another palette (`+0x40` past its header) through `0x00183760`, or, for types other than 2 and 3, restores
-type 0's palette.
+`0x00251D20()` returns the state, or 2 when `+0xE8` bit `0x1` is clear; `0x00251D50()` returns 1 when there is no backdrop
+or, with that bit set, when its state is 0, 6 or 8. `0x00251EE0` sets the fade-out frames. `0x00250E90(palette)` swaps in
+another palette (`+0x40` past its header), making the 256-entry handle `[0x0209AC48]` through `0x00183760` on first use
+and uploading through `0x00183310` after that; with a null argument, for types other than 2 and 3, it restores type 0's
+palette in the same way (`0x002553C0`).
 
 Both it (`0x00250ED7`) and the backdrop's procedure `0x002509D0` (`0x00250C26`, with `+0xF8`) go
 through `0x002553C0(palette)`. It creates the palette texture `0x0209AC48` with `0x00183760(palette, 0x100, 1)` when there
@@ -376,8 +377,9 @@ byte `+0x1C` picks the mode:
 - 0 releases the descriptor without drawing.
 - 1 draws a 256 x 224 quad without texture (`PRIM` `0x4D`).
 - 2 samples the texture whose `TEX0_1` value is the descriptor's `+0x48`.
-- 3 to 6, and for kind 2 also 7, sample the surface entry `0x02AEECF0` + 16 x (mode - 3) of the
-  [legacy GS layer](legacy-ps2-gs-layer.md). Kind 2's mode 7 first rewrites entry 0 (`0x0037467C`-`0x0037468F`).
+- 3 to 6 sample the surface entry `0x02AEECF0` + 16 x (mode - 3) of the
+  [legacy GS layer](legacy-ps2-gs-layer.md) (`0x00374698`-`0x003746A8`). Kind 2's mode 7 samples entry 0: it first
+  sets that entry's base bits `0x3FFF` to `0xDFF` (`0x0037467C`-`0x0037468F`) and then reads it (`0x003746AB`).
 - Higher modes keep the block's size, texture, blend and switch words from the last draw that set them.
 
 Whatever the mode, block 0 then takes the descriptor's offset (`+0x20`, `+0x24`), scale (`+0x28`, `+0x2C`), alpha
@@ -443,7 +445,7 @@ the difference of the `u32` at `+0x294` and a, divided by 3 and rounded toward z
 | `0x02AE96C8` | `u32` | 0 (zero-filled tail) | corner colour 3, blue: the descriptor's byte `+0x46` with `+0x1C` bit `0x10` set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F666`); `0x0036F9F0` (`0x0036FB07`); `0x00374280` (`0x0037455C`, `0x00374533`); `0x003745C0` (`0x003748D5`, `0x003748AC`); `0x00462540` (`0x00462EF2`); `0x00476C80` at boot (`0x00476D74`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B5F`) | `0x0036F550` (`0x0036F761`, `0x0036F808`, `0x0036F8A7`); `0x0022BFF0` during each submit |
 | `0x02AE96CC` | `u32` | 0 (zero-filled tail) | corner colour 3, alpha: the descriptor's byte `+0x47` with `+0x1C` bit `0x10` set, else corner 0's copy (kinds 2 and 6); `0x80` from the tint; `0x80` at boot | `0x0036F550` (`0x0036F68E`); `0x0036F9F0` (`0x0036FB24`); `0x00374280` (`0x0037455C`, `0x0037453D`); `0x003745C0` (`0x003748D5`, `0x003748B6`); `0x00462540` (`0x00462EF2`); `0x00476C80` at boot (`0x00476D74`); `0x00462260` (`0x00462421`, called by `0x00463460` at `0x00463B5F`) | `0x0036F550` (`0x0036F761`, `0x0036F808`, `0x0036F8A7`); `0x0022BFF0` during each submit |
 | `0x02AE96E0` | `u64` | 0 (zero-filled tail) | the `CLAMP_1` value of block 0's A+D pairs: 5, or the descriptor's `+0x50` in kind 6's mode 2; 0 at boot | `0x0036F550` (`0x0036F6B6`); `0x0036F9F0` (`0x0036FB4A`); `0x00374280` (`0x00374336`, `0x003743C0`); `0x003745C0` (`0x003746AE`, `0x00374722`); `0x00462540` (`0x004628D2`, `0x00462999`, `0x00462A3E`); `0x00463460` (`0x0046375D`, `0x0046387B`, `0x00463920`); `0x00476C80` at boot (`0x00476D9A`) | `0x0036F550` (`0x0036F76F`, `0x0036F816`, `0x0036F8B5`); `0x0022BFF0` during each submit |
-| `0x02AE96F0` | `u64` | 0 (zero-filled tail) | the `TEX0_1` value: a surface entry `0x02AEECF0` + 16 x (mode - 3) in modes 3 and up, the descriptor's `+0x48` in mode 2, `[0x02AEECF0]` from the plain tint, `[0x02AEED10]` from the layered tint; 0 at boot | `0x0036F550` (`0x0036F6FF`); `0x0036F9F0` (`0x0036FB43`); `0x00374280` (`0x0037434D`); `0x003745C0` (`0x003746B9`); `0x00462540` (`0x004628DA`, `0x00462996`, `0x00462A46`); `0x00463460` (`0x00463765`, `0x00463878`, `0x00463928`); `0x00476C80` at boot (`0x00476DAC`) | `0x0036F550` (`0x0036F777`, `0x0036F81E`, `0x0036F8BD`); `0x0022BFF0` during each submit |
+| `0x02AE96F0` | `u64` | 0 (zero-filled tail) | the `TEX0_1` value: a surface entry `0x02AEECF0` + 16 x (mode - 3) in modes 3 to 6 and entry 0 in kind 2's mode 7, the descriptor's `+0x48` in mode 2, `[0x02AEECF0]` from the plain tint, `[0x02AEED10]` from the layered tint; 0 at boot | `0x0036F550` (`0x0036F6FF`); `0x0036F9F0` (`0x0036FB43`); `0x00374280` (`0x0037434D`); `0x003745C0` (`0x003746B9`); `0x00462540` (`0x004628DA`, `0x00462996`, `0x00462A46`); `0x00463460` (`0x00463765`, `0x00463878`, `0x00463928`); `0x00476C80` at boot (`0x00476DAC`) | `0x0036F550` (`0x0036F777`, `0x0036F81E`, `0x0036F8BD`); `0x0022BFF0` during each submit |
 | `0x02AE9700` | `u64` | 0 (zero-filled tail) | the `ALPHA_1` value: the blend word `0x01EFAC20[byte +1 >> 4]` of [screen fades](screen-fades.md) (kinds 2 and 6), `0x44` from the tint; 0 at boot | `0x0036F550` (`0x0036F6C1`); `0x0036F9F0` (`0x0036FB55`); `0x00374280` (`0x00374414`); `0x003745C0` (`0x0037477A`); `0x00462540` (`0x0046272B`, `0x004628F9`, `0x00462A64`); `0x00463460` (`0x00463610`, `0x00463784`, `0x00463946`); `0x00476C80` at boot (`0x00476DBE`) | `0x0036F550` (`0x0036F77F`, `0x0036F826`, `0x0036F8C5`); `0x0022BFF0` during each submit |
 | `0x02AE9710` | `u64` | 0 (zero-filled tail) | the `TEST_1` value: the descriptor's `+0x58`, or `0x1001` when that is 0 (kind 6), `0x1001` (kind 2, plain tint), `0x51001` (layered tint); 0 at boot | `0x0036F550` (`0x0036F6CC`); `0x0036F9F0` (`0x0036FB60`); `0x00374280` (`0x00374596`); `0x003745C0` (`0x003748F7`); `0x00462540` (`0x00462F68`, `0x00462F72`); `0x00463460` (`0x00463C42`, `0x00463C4F`); `0x00476C80` at boot (`0x00476DD0`) | `0x0036F550` (`0x0036F787`, `0x0036F82E`, `0x0036F8CD`); `0x0022BFF0` during each submit |
 | `0x02AE9720` | `u32` | 0 (zero-filled tail) | the `PRIM` value: `0x5D`, or `0x4D` (bit `0x10`, texturing, clear) in mode 1; `0x5D` at boot | `0x0036F550` (`0x0036F6D7`); `0x0036F9F0` (`0x0036FB6B`); `0x00374280` (`0x00374358`, `0x003743FB`); `0x003745C0` (`0x003746C4`, `0x00374761`); `0x00462540` (`0x0046272F`, `0x004628FD`, `0x00462A68`); `0x00463460` (`0x00463614`, `0x00463788`, `0x0046394A`); `0x00476C80` at boot (`0x00476DE2`) | `0x0036F550` (`0x0036F78F`, `0x0036F836`, `0x0036F8D5`); `0x0022BFF0` during each submit |
@@ -480,16 +482,14 @@ acts when `frames` is positive or flag bit `0x2` is set:
   records which.
 - With a crossfade already running, flag bit `0x1` replaces its flags and restarts the length.
 
-`0x00374D40(p, mode, q)` works only for a mode of 1 to 4. It takes a screen-size target once
-(`0x00182B40`, kept at `0x02ADB6D0` with the mode at `0x02ADB6D8`) and files a kind-3 descriptor, stage 7,
-class 5, with bytes `+0x1C` = 1, `+0x1D` = mode, `+0x1E` = `q` and `+0x1F` = `p`, the target at
-`+0x28` and `+0x40`; its handle goes to `0x02EC07F0`.
+`0x00374D40(p, mode, q)` works only for a mode of 1 to 4. It takes a screen-size target once (`0x00182B40`, kept at
+`0x02ADB6D0` with the mode at `0x02ADB6D8`) and files a kind-3 descriptor, stage 7, class 5, with bytes `+0x1C` = 1,
+`+0x1D` = mode, `+0x1E` = `q` and `+0x1F` = `p`, the target at `+0x20` and `+0x38`; its handle goes to `0x02EC07F0`.
 
-Each frame `0x002F18D0` re-captures when flag bit `0x4` is set and calls `0x003756B0(+0x30, alpha)` with
-`alpha = (L − c) / L × 255`, with `L` the length plus `[0x01DFE0B4]` and `c` the task's word `+0x00`,
-so the still fades out as `c` grows; it also sets
-byte `+0xD18` of the render manager (`0x00182610(1)`). `0x003756B0` files two descriptors while a target
-and a mode exist:
+Each frame `0x002F18D0` re-captures when flag bit `0x4` is set and calls `0x003756B0(+0x30, alpha)` with `alpha = (L − c)
+/ L × 255`, with `L` the length plus `[0x01DFE0B4]` and `c` the task's dword `+0x00`, so the still fades out as `c`
+grows; it also sets byte `+0xD18` of the render manager (`0x00182610(1)`). `0x003756B0` files two descriptors while a
+target and a mode exist:
 
 - a kind-4 descriptor binding the target to the emulated GS memory, with a bind word that depends on
   the mode and, for modes 3 and 4, a palette at `0x02ADB720` or `0x02ADB6E0` (handle `0x02EC07F4`);

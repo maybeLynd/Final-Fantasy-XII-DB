@@ -999,13 +999,14 @@ return stub `0x0016D6A0` (`0x00378B0A`-`0x00378B14`). Step 4 runs either way, an
 step 2 passed to `0x00378230` as its last argument, 1 in mode 0 (`0x00378B16`-`0x00378B2B`).
 
 The debug verb `mapload` (0x2001, `0x0050D4D0`) requests one pack in mode 1 with field 0. Around
-the pack's allocation `0x0036C1A0` and `0x0036C110` push and pop the current arena number (`0x022D8E1C`,
+the pack's allocation `0x0036C1A0` and `0x0036C110` push and pop the current block tag (`0x022D8E1C`,
 stack at `0x022D8DD0`).
 
 `0x00378030(mode, field, index, 4, index)` sizes the pack with its fifth argument (`0x0037804B`-`0x00378059`) and returns
 at once, storing nothing, when the size is 0 or less (`0x00378062`). Otherwise it pushes arena 6 (`0x0036C1D0(6, 5)`,
-`0x00378075`), sets the arena number `0x022D8E1C` to 3 (`0x0036C1A0(3)`, `0x0037807F`), allocates, labels the block `MapNo`
-(`0x0036C660`, `0x0037809B`), pops both (`0x0036C110`, `0x0036C140`, `0x003780A0`-`0x003780A5`) and submits the load.
+`0x00378075`), pushes the current block tag `0x022D8E1C` and makes it 3 (`0x0036C1A0(3)`, `0x0037807F`), allocates,
+labels the block `MapNo` (`0x0036C660`, `0x0037809B`), pops both (`0x0036C110`, `0x0036C140`, `0x003780A0`-`0x003780A5`)
+and submits the load. The arena number stays 6.
 
 The completion argument is a 32-bit dword, the low 32 bits of the block ORed with the mode (`0x003780D0`-`0x003780DD`),
 and `0x00378BC0` takes the block back as `arg & 0xFFFFFFFC` and the mode as `arg & 3` (`0x00378BE2`-`0x00378BF0`). After

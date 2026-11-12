@@ -296,8 +296,12 @@ Floats are written with nine significant digits, which keeps each stored value e
 
 Nothing is compared with the section's length.
 
-`0x002572E0(manager)`, run by `0x0026CE60` once `+0xD8` and `+0xE0` are both set, does nothing for a manager of 5
-or above or one without a CAM7 section (`0x0025730F`-`0x0025732B`). For manager 4, `0x00257AD0` looks the actor up
+`0x002572E0(manager)`, run by `0x0026CE60` once `+0xD8` and `+0xE0` are both set, loads the CAM7 section pointer
+`[0x02092808 + manager × 0xBB0]` and the section's row offset `+0x1C` (`0x00257304`, `0x00257309`) before any test. It
+then does nothing for a manager of 5 or above, a null section pointer or a shot count `+0x04` of 0 or below
+(`0x0025730F`-`0x0025732B`), so a null pointer is read at `0x00257309` before its test.
+
+For manager 4, `0x00257AD0` looks the actor up
 in the manager whose index is held at `0x02096504` (`0x0025737C`, `0x00257466`), and only while `0x002671F0` of that
 manager returns non-zero; otherwise that side's actor is 0 and its bits are still decoded (`0x00257377`,
 `0x0025739D`, `0x00257460`, `0x00257487`).

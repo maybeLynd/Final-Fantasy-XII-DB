@@ -186,8 +186,20 @@ Before the steps, `0x003DCFB0` takes the entries k that the record's two camera-
 `0x0037DCC0(manager, entry)` (`0x003DD075`, `0x0037DCDE`).
 
 The outputs are a three-part offset from oscillators 0-2, a second from oscillators 3-5 added to
-the first, and single values from oscillators 6 and 7. `0x0037D4C0` sums the outputs of every
-shake bound to the current camera frame and hands them through `0x00382B70` to `0x003820C0`, which:
+the first, and single values from oscillators 6 and 7. `0x0037D4C0` gathers the outputs of every
+shake bound to the current camera frame:
+
+- it walks the 20 entries of the five managers, manager 4's four from `0x02ADE8D0` first and manager 0's last,
+  ending at `0x02ADD990` (`0x0037D54B`, `0x0037D74D`-`0x0037D756`), and takes an entry whose `+0xEC` equals
+  `0x00358320()` when that is 0 or 1; another value takes none (`0x0037D548`-`0x0037D567`);
+- it adds the third and fourth values (entry `+0xC0`, `+0xC4`) to the roll and field-of-view values from
+  `0x002563F0` (`0x0037D4EC`, `0x0037D569`-`0x0037D56E`);
+- it loads the two offsets (`+0xA0`-`+0xA8`, `+0xB0`-`+0xB8`) without adding (`0x0037D573`-`0x0037D58B`), so the
+  last entry taken in that order sets them alone;
+- while `0x02EBF3C0` is set it adds row `0x00358320()` of `0x02EBF380` to both offsets and the roll
+  (`0x0037D75C`-`0x0037D7B7`).
+
+It hands them through `0x00382B70` to `0x003820C0`, which:
 
 - adds the first offset to the camera's position and the second to the point it looks at, both
   turned into the camera's frame by the matrix `0x02AED5C0`;

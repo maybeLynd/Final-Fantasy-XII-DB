@@ -197,13 +197,14 @@ helpers:
   order; the element-list rebuild `0x00402A40` asks it before adding a line (`0x00402B25`).
 - `0x00403130(list, zoom)` sets the size `+0x34`/`+0x36` of every element of type 1 (byte `+2`) to its base
   `+0x48`/`+0x4A` divided by the zoom.
-- `0x00403180(list, selected)` animates each element per frame: `+0x4C` steps by 16 toward `0x80` (`0x40` with `+0x4E`
-  bit `0x2`) while `+0x4E` bit `0x1` is set and down otherwise; the scale `+0x38` grows by 0.05625 (0.046875 when the
-  language test `0x00254A10` is true) to 1.0, or shrinks to 0.9 (0.75) with `+0x4E` bit `0x4`; the highlight `+0x50` rises by
-  16 to 256 on the selected element and falls by 16 to 0 on the others.
-- `0x00402F00(list, w, h)` copies the first bit `0x1` element's rectangle `+0x20`-`+0x26` to `+0x30`-`+0x36` and, while
-  `0x00264790()` is below 1, projects the party leader (`0x0035D320`, `0x003588B0`, `0x00265020`) through the minimap view
-  (`0x003C3F90`, `0x00202B70`) and shifts the element by how far the leader falls outside a `w` by `h` box.
+- `0x00403180(list, selected)` animates each element per frame: `+0x4C` steps by 16 up to `0x80` (`0x40` with `+0x4E`
+  bit `0x2`) while `+0x4E` bit `0x1` is set, and otherwise down to 0 (`0x40` with bit `0x2`). The highlight `+0x50`
+  rises by 16 to 256 on the selected element and falls by 16 to 0 on the others.
+- The same pass grows each element's scale `+0x38` by 0.05625 (0.046875 when the language test `0x00254A10` is true) to
+  1.0, or shrinks it to 0.9 (0.75) with `+0x4E` bit `0x4`.
+- While `0x00264790()` is below 1, `0x00402F00(list, w, h)` copies the first bit `0x1` element's rectangle
+  `+0x20`-`+0x26` to `+0x30`-`+0x36`, projects the party leader (`0x0035D320`, `0x003588B0`, `0x00265020`) through the
+  minimap view (`0x003C3F90`, `0x00202B70`) and shifts the element by how far the leader falls outside a `w` by `h` box.
 - `0x00402610(item, src)` stores `0x00275320` of the item's current values at `+0`, copies `src`'s rectangle
   `+0x30`-`+0x36` to `+8` and clears `+0x10`; `0x004026D0(out, src)` copies the same rectangle twice; `0x004022D0` sets
   a rectangle: the words {0, 0, 8, 8} at `+0x00` and again at `+0x08`, and `0x100` at `+0x10` (`0x004022D2`,
@@ -216,9 +217,9 @@ helpers:
 
 The location map's caption pane `[0x02B62D78]` (created by `0x00402680`, procedure `0x00403380`) carries an icon and three
 labels. `0x00402490(texts)` sets the labels from the text ids at `+8`, `+0x10` and `+0x18` of its argument (`-1` keeps a
-label; `-1` at `+0x10` hides the second), measures the first with `0x0029CD00` to place the rest, and a non-negative
-`+0` picks the row of the fourth child. `0x00402730(atlas, group, frame)` sets the icon and moves the second label past its
-width.
+label; `-1` at `+0x10` also clears bit `0x1` of node 3, which sits between the first two labels, and any other value
+sets it), measures the first with `0x0029CD00` to place the rest, and a non-negative `+0` picks the row of node 1 of the
+widget at `+0x18` of node 4. `0x00402730(atlas, group, frame)` sets the icon and moves the second label past its width.
 
 `0x002BA1B0(v)` gives the location container a y from the menu bars: the screen height `0x01E0C1DC`, less
 `0x002C9430(0x81)` when `0x002C9430(0x80) + v` is not 0.
@@ -242,9 +243,11 @@ The story gate `0x0032A8A0` ([Story flags](../Story-Events-And-Hunts/story-flags
 | World Map destination (`0x003C08B0`) | its area entry's region byte `+0xA` is non-zero and the story counter (`0x00265270`) is below its word `+8`, where `0xFFFF` never hides (`0x003C08DD`-`0x003C0930`); then it shows when it is the current area, when the screen mode's own test passes (mode 0 every area, 2 the area gate `+0x14` through `0x003C0B70`, 3 the area's bit at `+0x270`, 4 its map owned through `0x003C0BE0`, 6 `0x003C0A00`), or when one of its persistence groups passes `0x003C0D70(g, 1)` (`0x003C0936`-`0x003C09E4`) |
 | icon of a sub-location (`0x003DFB50`, `0x003FFF40`, `0x00400CF0`) | its word `+0xA` is 0, or its gate passes; 1 never shows |
 
-`0x003BCBA0` builds the state an area point reads: the current area (`0x003C1070`), a visit byte at
-`[0x020927C0] + 0x224 + 32 x entry` (`0x00255200`), and the area's map as a key item of class `0x8000` (`0x002543F0`; the
-map list is `menumap_area.bin` `+0xC`).
+`0x003BCBA0` builds the state an area point reads: bit `0x1` for the current area (`0x003C1070`), bit `0x400` when any of
+the 32 saved bytes at `[0x020927C0] + 0x224 + 32 x entry` is non-zero (`0x00255200`), and bit `0x2` when the map is held:
+the item in word `+0x0E` of the point when that word is not `0xFFFF` and any of bits `0xFC0` of its `+0x10` is set
+(`0x003C06E0`), otherwise the area's map as a key item of class `0x8000` (`0x002543F0`; the map list is `menumap_area.bin`
+`+0xC`).
 
 ### The minimap
 
@@ -411,13 +414,15 @@ The view `0x005528C0` keeps its places in a list linked through `+0x140`; each p
 - `0x00550BD0(place, ctx)` sets the place's marker pieces from its flags: a place with `+0x130` bit `0x4` or `+0x54` bit `0x10000`
   pulses `64 x sin(frame x pi / 30) + 128` (`0x0208F570`), bit `0x8` dims it to `0x40`, and `+0x54` bits `0x1`, `0x4`, `0x10`, `0x20` and `0x20000`
   pick the frames shown; it places them with `0x00562190` (`0x00562850`, through the map view `+0x80`).
-- `0x00554A60(list)` eases each place's two scales `+0x138` and `+0x13A` by `0x400` a frame toward `0x4000`, or toward
-  `0x2666`/`0x3666` (`0x3CCC`/`0x2CCC` when the language test `0x00254A10` is true) for a place with `+0x130` bit `0x2`;
-  a place with `+0x54` bit `0x10000` is held at `0x4000`.
+- `0x00554A60(list)` eases each place's two scales `+0x138` and `+0x13A` by `0x400` a frame. A place with `+0x130` bit
+  `0x1` eases toward `0x4000`, or, with bit `0x2` as well, toward `0x2666`/`0x3666` (`0x3CCC`/`0x2CCC` when the
+  language test `0x00254A10` is true). A place without bit `0x1` shrinks, `+0x138` to 0 and `+0x13A` to `0x3666`
+  (`0x2CCC` when the language test is true). A place with `+0x54` bit `0x10000` is held at `0x4000`.
 - `0x00554EA0` draws the place names in the same order (`0x002D8650`), re-measuring a name (`0x0029CD00`) when its scale
   changes and anchoring it by `0x002718C0`.
-- `0x00551130(x, y, list, find, id)` returns the place whose `+0x39` is `id` (or the first with `+0x54` bit `0x1`) and its
-  position less half the screen (`0x01E0C1D8`, `0x01E0C1DC`), passed through `0x005552A0`.
+- `0x00551130(x, y, list, find, id)` returns the place whose `+0x39` is `id` when `find` is non-zero. With `find` 0 or
+  no such place it returns the first with `+0x54` bit `0x1`, or else the list's first place, and 0 for an empty list.
+  It gives that place's position less half the screen (`0x01E0C1D8`, `0x01E0C1DC`), passed through `0x005552A0`.
 
 ### World Map routes and panes
 

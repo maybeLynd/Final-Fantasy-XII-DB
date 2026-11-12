@@ -203,12 +203,12 @@ in byte order, at `[+0x10]` of the pointer `0x008642A0` returns (`0x0039D8E7`-`0
 emitters and 0 in the immediate ones. The point emitters also set the dword `+0x50` to 0 (`0x0039D8DF`,
 `0x0039DA20`), which `0x008642A0` sets to 1 (`0x008642FC`); the line emitters leave it at 1.
 
-"Kind" is the primitive number the `GiPrim` carries; its execute `0x00863D80` looks it up in the
-eight-entry table `0x01F44D20` (0, 1, 6, 2, 3, 4, 6, 6) and passes the result to the device's draw
-slot `+0x20`. The callers `0x004355D0`, `0x00437130` and `0x00438860` are the mesh composers of type
-`0x05`, and `0x004434D0` and `0x00444340` the grid emitters of types `0x04`, `0x06` and `0x07`. Their
-texture coordinates pass through `0x0039B840` or `0x0039B860`, both jumps to `0x0039B880`, which adds the
-offset pair its fifth argument points at to each coordinate and multiplies it by the vertex's `q`.
+"Kind" is the primitive number the `GiPrim` carries; its execute `0x00863D80` looks it up in the eight-entry table
+`0x01F44D20` (0, 1, 6, 2, 3, 4, 6, 6) and passes the result to the device's draw slot `+0x20`. The callers `0x004355D0`,
+`0x00437130` and `0x00438860` are the mesh composers of type `0x05`, and `0x004434D0` and `0x00444340` the grid emitters of
+types `0x04`, `0x06` and `0x07`. Their texture coordinates pass through `0x0039B840` or `0x0039B860`, which call
+`0x0039B880` for 3 and 4 vertices. It adds the offset pair its fifth argument points at to each coordinate and
+multiplies it by the vertex's `q`.
 
 `0x004355D0` returns 1 without composing anything for a kind-7 effect `0x200`–`0x23F` drawn while the pass id
 is 0 (`0x0024E410`) while the debug console's "Enable VFX Display" row (`+0xAC0` of `[0x01F81428]`,
@@ -449,9 +449,10 @@ the point `0x02AEEAD0` from the position `+0x30` (`0x00434900`), and mode 5 turn
 the `atan2` of the same direction (`0x00434A70`). Then they project the positions; a rejected mesh
 draws nothing (`0x00399B80` at `0x00434ED9` and `0x0043526E`).
 
-- With byte `+0x1F1` bit `0x8` and `0x0024E410` true, the projection is not tested and the first six
-  (`0x00434CD0`) or four (`0x00435050`) projected vertices are overwritten with fixed screen values,
-  one set for locale ids 1–6 (`0x00229E40`) and another for the rest.
+- With byte `+0x1F1` bit `0x8` and `0x0024E410` true, the projection is not tested and the first six (`0x00434CD0`) or
+  four (`0x00435050`) projected vertices are overwritten with fixed screen values, one set for locale ids 1–6
+  (`0x00229E40`) and another for the rest. In `0x00435050` the rest takes one of two sets: one when the first vertex's
+  screen x is below the second's (`0x00435218`), the other when it is not.
 - Byte `+0x1F1` at `0x80` or above hands the mesh to `0x00438860`; bit `0x8` hands it to `0x00437130`.
   Otherwise `0x004355D0` runs its own loop over the `+0x1F0` layers.
 
@@ -595,10 +596,10 @@ their quadwords into the packet and patches in the element's values, and a progr
 the microprogram the template's header installs. `0xA6`, `0xA8` and `0xAB` share the templates of
 `0x02AE9BC0` and `0x02AE9D50`, and `0x73` and `0x74` share all three of theirs.
 
-- A size function adds a fixed head to a cost per enabled layer slot, the first enabled slot
-  costing less: `0x00541DB0` returns 0 unless byte `+0x38` is set, then `0x230` bytes plus `0xB0` for
-  the first and `0xC0` for each further of three slots (`+0x140`, stride `0x50`); `0x00544CE0`,
-  `0x00547350` and `0x005479B0` count four slots from a `0x40`-byte head.
+- A size function adds a fixed head to a cost per enabled layer slot, the first enabled slot costing less, and returns
+  the total in 16-byte units, or 0 when no slot is enabled: `0x00541DB0` returns 0 unless byte `+0x38` is set, then
+  counts `0x230` bytes plus `0xB0` for the first and `0xC0` for each further of three slots (`+0x140`, stride `0x50`);
+  `0x00544CE0`, `0x00547350` and `0x005479B0` count four slots from a `0x40`-byte head.
 - `0x0054B3A0` never returns 0: its head is `0x4F0` bytes, plus `0x2D0` for the first and `0x2E0` for each further
   of four slots whose word is not zero (`+0x30`, stride `0x110`; `0x0054B3A3`-`0x0054B3DC`). `0x00543940` adds `0x190`
   bytes for each of four non-zero words at `+0x740`–`+0x830`; `0x00544590` adds one quadword per 20 entries to `0x130`.
@@ -625,9 +626,9 @@ Type `0x6A` simulates a height field with the damped two-dimensional wave equati
 and the grid's point counts (`+0x3F0`, `+0x3F4`) into the element block at `+0x230`, allocates
 16 bytes per point, and then:
 
-- `0x00545120` derives the three step coefficients `k1 = (4 − 8c²t²/d²) / (μt + 2)`,
-  `k2 = (μt − 2) / (μt + 2)` and `k3 = (2c²t²/d²) / (μt + 2)` into block `+0x30`, `+0x34` and
-  `+0x38`, the half extents `(n − 1)d / 2`, and the number of tiles the packet needs;
+- `0x00545120` derives the three step coefficients `k1 = (4 − 8c²t²/d²) / (μt + 2)`, `k2 = (μt − 2) / (μt + 2)` and `k3
+  = (2c²t²/d²) / (μt + 2)` into block `+0x30`, `+0x34` and `+0x38`, the half extents `(n − 1)d / 2`, and at `+0x1C`
+  the sum over the tiles of one more than each tile's points across (22 at most);
 - `0x005450E0` zeroes the `n × m` points; `0x005263F0` then runs once per warm-up frame, the count from
   definition word `+0x3FC` (`0x00525FDA`–`0x0052601D`).
 
@@ -651,11 +652,15 @@ Types `0x73` and `0x74` break a mesh into pieces of `0xA0` bytes that fly and sp
 record per piece (count at `+0x968`) and randomises its ranges; `0x0054C6B0` then gives each piece a
 start velocity and spin, the direction chosen by the low three bits of block byte `+0x4E`.
 
-Each step, `0x0054C440` (`0x73`, from the update tail `0x0052E270`) and `0x0054DD30` (`0x74`, from
-`0x0052F400`) walk the pieces. The second component `+0x24` of a piece's velocity `+0x20` loses
-gravity, its position `+0x70` adds the velocity and its angles `+0x00` add the spin `+0x10`, each
-scaled by one of two parameter sets chosen by the piece's time against the block's thresholds;
-`0x0046D560` then rebuilds the piece's rotation at `+0x40`.
+Each step, `0x0054C440` (`0x73`, from the update tail `0x0052E270`) and `0x0054DD30` (`0x74`, from `0x0052F400`) walk the
+pieces. The second component `+0x24` of a piece's velocity `+0x20` loses gravity, its position `+0x70` adds the
+velocity and its angles `+0x00` add the spin `+0x10`, each scaled by one of two parameter sets.
+
+`0x0054C440` chooses the set by the piece's thresholds `+0x0C` and `+0x98` against the block's values `+0xC4` and
+`+0x3C` (`0x0054C4AE`-`0x0054C4E2`). `0x0054DD30` takes `c` = the block's `+0xC0` and `c + (1 - c) x [+0xD8]`
+(`0x0054DD53`-`0x0054DD7B`): a piece's `+0x0C` up to `c` takes the first set (`0x0054DDAD`), up to the second value the
+second set (`0x0054DECD`), and above it the piece is passed over for that step, neither moved nor rotated
+(`0x0054DED0`, `0x0054DFFB`). `0x0046D560` then rebuilds the rotation at `+0x40` of each piece that moved.
 
 In `0x0054C440` the step is `v.y -= [+0xC0] x [+0x44] x s x k.y`, then per axis `pos += s x k x v` and
 `angle += r x spin x q`. Set A is `s` = block `+0x58`, `k` = `+0x80`-`+0x88`, `r` = `+0x70`-`+0x78`,
@@ -680,10 +685,11 @@ leaves the piece unmoved that step.
 - The same birth calls `0x00542060`, which draws six more in `[−0.5, 0.5)`.
 - `0x69`'s birth `0x00523C30` calls `0x005439A0`, which clears block `+0x04` and `+0x14` and stores
   the float `1 / (count + 1)`, the count being block `+0x00`, at `+0x18`.
-- `0x67`'s birth `0x0045FD50` and `0x6B`'s birth `0x00529200` call `0x00532EF0`, which fills each of
-  the `+0xB0` strands (`0x440` bytes) with a base plus a random amount for every parameter and a
-  direction from a random or stepped angle; `0x00532E80` sizes `0x6B`'s packet from the strand count
-  and three enabled layers (`+0x88`–`+0x90`).
+  - `0x67`'s birth `0x0045FD50` and `0x6B`'s birth `0x00529200` call `0x00532EF0`, which fills each of the `+0xB0` strands
+    (`0x440` bytes) with a base plus a random amount for its parameters and a direction from a random or stepped
+    angle. Two fields differ: `+0x1C` is the random amount alone, and `+0x08` is the midpoint of `+0x14` and `+0x18`
+    unless bit `0x2` of `+0x140` is set.
+  - `0x00532E80` sizes `0x6B`'s packet from the strand count and three enabled layers (`+0x88`–`+0x90`).
   - Each field is `base + 0x003D8E50(1.0) x range`, with the strand field, block base and block range:
     `+0x10`, `+0xC8`, `+0xCC`; `+0x14`, `+0xF8`, `+0xFC`; `+0x18`, `+0x100`, `+0x104`; `+0x424`, `+0xD8`,
     `+0xDC`; `+0x434`, `+0xC0`, `+0xC4`; `+0x438`, `+0xE8`, `+0xEC`; `+0x43C`, `+0xF0`, `+0xF4`

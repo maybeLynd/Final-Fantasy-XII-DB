@@ -235,8 +235,8 @@ Smaller entry helpers:
   returns `+0x0C` bit `0x8000`. `0x0041C3A0(entry)`, which `0x00423280` reaches by a tail jump (`0x004232B9`),
   returns the word `+0x1A` of the record at `+0x18` as a float (`0x0041C3A0`-`0x0041C3AF`).
 
-- `0x0041C770(entry)`, for `0x00423380`, returns the dword `+0x0C` of the first state after state 0
-  whose byte `+0x95` is 1, or 0.
+- `0x0041C770(entry)`, for `0x00423380`, returns the float `+0x0C` of the first state after state 0 whose byte `+0x95` is
+  1, or 0.0.
 
 ## Layouts
 

@@ -181,7 +181,7 @@ appender stores nothing (`0x00252EF7`-`0x00252EFD`). Otherwise it writes the id 
 `0x00322C50(class, id)` answers whether an id is valid for a class. Classes 1 to 32 dispatch
 through the 32-entry table at `0x00323054`, and every arm ends in the shared test `lo ≤ id ≤ hi -
 1`, so a bound is a count and the valid set is `[lo, lo + count)`. The count comes from the
-`+4` word of an authored table (`st2e`: `+4` rows, `+8` stride, `+0x0C` the row array, `0x20` in the
+`+4` dword of an authored table (`st2e`: `+4` rows, `+8` stride, `+0x0C` the row array, `0x20` in the
 shipped tables that have rows; bound at the pack or area load through `0x003845F0`), except for four arms:
 
 - class 1 derives the class from the id with `0x00309440` and re-enters the switch;

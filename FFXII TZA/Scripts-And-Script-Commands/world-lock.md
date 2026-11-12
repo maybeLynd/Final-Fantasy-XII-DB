@@ -19,9 +19,10 @@ The lock is stop request 6 of the registry. `0x00263230(actor, 1)` takes it when
 `0x00226BE0(6, 0, 0, 0, 4, flag)` with the flag `0x00377700() != 0`. With a take active it skips the request and the
 turn below (`0x0026325A`).
 
-In every case the counter at manager `+0x1E0` is then raised and summed into `0x02099DB4` over the live managers,
-the actor's steering is pushed (`0x002EAB80`) and, for an actor with a battle unit (`+0x30`), its speed is set to 0
-(`0x0026D6F0`) and the taken actor's battle action is cancelled (`0x0035AE10(actor, 1)`).
+In every case the counter at manager `+0x1E0` is then raised and summed into `0x02099DB4` over the live managers among
+0, 1 and 2 (`0x002633CE`-`0x00263402`; managers 3 and 4 are not added), the actor's steering is pushed (`0x002EAB80`) and,
+for an actor with a battle unit (`+0x30`), its speed is set to 0 (`0x0026D6F0`) and the taken actor's battle action is
+cancelled (`0x0035AE10(actor, 1)`).
 
 Any op other than 1 returns at once (`0x00263233`). A null actor passes the `+0x0C` test (`0x00263276`) and faults at
 `0x002632FD` or `0x002633BB`, which read it without a test. The request engine reaches it with flag 1: the talk
@@ -38,10 +39,11 @@ For a class-1 actor and a class-3 leader it also sets bit `0x80` of `+0x62` of t
 `[[focus + 0xB8] + 0xF0]` (`0x0026339D`); for an actor of any other class only `0x002ED040(focus, 1)` runs
 (`0x002633A9`).
 
-`0x00263050(actor, 1)` is the release: it lowers the counter, sums the live managers' counters into `0x02099DB4` and,
-at 0 or below, clears action-availability row 3 (`0x002E1CD0(1, 3)`), sets `0x02099DE5` to 0 and `0x02099DE7` to `0xFF`,
-runs the field hold `0x00263480(actor, 2 or 1)` (2 when the actor's byte `+0x0C` bit `0x80` is set) and
-`0x00225CD0(6, 4)`, the latter only while `0x0209A2A8` is set and that bit is clear (`0x00263128`-`0x00263141`).
+`0x00263050(actor, 1)` is the release: it lowers the counter, sums the counters of the live managers among 0, 1 and 2
+into `0x02099DB4` (`0x002630BE`-`0x002630EA`) and, at 0 or below, clears action-availability row 3 (`0x002E1CD0(1, 3)`), sets
+`0x02099DE5` to 0 and `0x02099DE7` to `0xFF`, runs the field hold `0x00263480(actor, 2 or 1)` (2 when the actor's byte
+`+0x0C` bit `0x80` is set) and `0x00225CD0(6, 4)`, the latter only while `0x0209A2A8` is set and that bit is clear
+(`0x00263128`-`0x00263141`).
 
 It then releases the leader's look (`0x002EBE50(focus, 0, 0)` and `0x002E8EE0` when `0x002E7600` is non-zero, then
 `0x002ED040(focus, 0)`); the steering pop and the other ops are on
@@ -120,7 +122,7 @@ Globals:
 | `+0x2099DE5` | `u8` | hold1 | field hold byte |
 | `+0x2099DE6` | `u8` | hold2 | field hold byte |
 | `+0x2099DE7` | `u8` | holdFlag | the flag the hold passes |
-| `+0x2099DB4` | `i32` | activeTakes | sum of the managers' lock counts |
+| `+0x2099DB4` | `i32` | activeTakes | sum of the lock counts of managers 0, 1 and 2 |
 
 ## Shipped data
 

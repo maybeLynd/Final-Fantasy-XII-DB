@@ -201,8 +201,11 @@ The takeaway skips indices with no record (`0x0030FC02`). Its call for id `0x100
 `giveback_item_and_equip` (`0x0387`, `0x0034A790` → `0x0035A630` → `0x0030FAA0`) adds the saved counts
 back (bounded by `0x01EEBCFC` and `0x01EEBD54`; the add for `0x1000` is refused, `0x0030FB48`), re-equips from `+0x5A`
 (`0x0031A710`) the records of the nine indices that pass the takeaway's test (`0x0030FB70`-`0x0030FBA0`), calls `0x00324380`
-and clears the `0x83C`-byte backup, returning 1 (`0x0030FBAC`-`0x0030FBCC`). Both poll `0x0034A300`, which runs while
-`0x0030BAD0()` is non-zero (`0x0035A250`) and then calls `0x00314D40(1)`.
+and clears the `0x83C`-byte backup, returning 1 (`0x0030FBAC`-`0x0030FBCC`).
+
+Both verbs poll `0x0034A300`, which holds the script while `0x0030BAD0()` is 0, that is while the read-in walk over
+the roster slots runs (`0x0037CB50`), raising the loading flag (`0x00314D40(1)`) on each held frame (`0x0035A250`,
+`0x0034A30B`-`0x0034A317`); it finishes once `0x0030BAD0()` is non-zero (`0x0034A321`).
 
 `takeoff_equip(item)` (`0x055B`, `0x003497B0` → `0x0030FD10`) unequips one item id from every alive
 main-character record (`0x0031A630(record, slot, 0xFFFF, 1)`). It collects the records of seats 0-8 of map 0

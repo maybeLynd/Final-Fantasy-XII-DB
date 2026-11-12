@@ -253,7 +253,7 @@ generation (`>> 6`) and the z bits from the newer.
 With record byte `+0x0D` bit `0x8` the same test uses the capsule separation `0x003DA5A0` ([movement
 bodies](movement-bodies-and-separation.md)) instead of the rectangles.
 
-`0x0025A8E0(p, rec)`, its only caller that test, is the outcode without the clamp: the CLIP word is
+`0x0025A8E0(p, rec)`, called only by that test, is the outcode without the clamp: the CLIP word is
 shifted left 6 and takes bits `0x1`/`0x2` for `p.x` above `e` or below `-e`, bits `0x4`/`0x8` for `p.y`, bits
 `0x10`/`0x20` for `p.z`, with `e = |rec.+0x0C|`; its top byte `0x022D9133` is then zeroed, keeping 24 bits
 (`0x0025A970`), and the word is copied to `0x022D9478` (`0x0025A97D`). The history is what lets

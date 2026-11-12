@@ -189,7 +189,9 @@ sets bit `0x20000000000000` and removes the unit's effect `+0x74` (`0x00300E54`-
 - **Anyone else** (a null stats record or another kind, `0x00300EE4`, `0x00300EEC`) first has its spawn record
   cleared by `0x00237080` when `keep` is 0 (`0x00300F5D`-`0x00300F68`). It loses its definition
   (`0x0023A570(unit, 0xFFFF)`) and has flag bit `0x200000` cleared (`0x00300F7A`).
-- It also loses its actor (`0x0025AB30`, `0x002697E0`), unless a spawn group holds it: `0x00236760()` is non-zero (bit
+- It also loses its actor (`0x0025AB30`), and `0x002697E0`, which is `0x00269860(actor, 0)`, starts one of the
+  actor's script functions through `0x003DBB60(actor, 2, entry, 0, 0)` when bit `0x4000` of its `+0x1C` is set
+  (`0x00269910`-`0x002699AB`) and then runs `0x00269640`, unless a spawn group holds it: `0x00236760()` is non-zero (bit
   `0x1000` of the party block's flag dword `[0x02EBF190]+4`) and `+0xE99` has bit `0x2`, group mode 2
   (`0x00300F80`-`0x00300FA4`).
 

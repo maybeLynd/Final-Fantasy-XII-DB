@@ -26,21 +26,21 @@ ps2data/effect_finish/in/event/q0047.efx	23	0x1006D0	48	0x100	0xB00	0x20	0000510
 ps2data/effect_finish/in/event/q0047.efx	24	0x100700	48	0x100	0xB00	0x20	00005108			0			0x51	8										
 ps2data/effect_finish/in/event/q0047.efx	25	0x100730	912	0x100	0xB00	0x380	00005701			0			0x57	1										
 ps2data/effect_finish/in/event/q0047.efx	26	0x100AC0	176	0x100	0x600	0xA0	00010000	1								0x01	0000000000000000000000	0x12						
-ps2data/effect_finish/in/event/q0047.efx	27	0x100B70	32	0x100	0x610	0x10	0x01010000								8									
-ps2data/effect_finish/in/event/q0047.efx	28	0x100B90	96	0x100	0x620	0x50	0x01010602																	
-ps2data/effect_finish/in/event/q0047.efx	29	0x100BF0	64	0x100	0x620	0x30	0x01010101																	
-ps2data/effect_finish/in/event/q0047.efx	30	0x100C30	64	0x100	0x620	0x30	0x01010201																	
-ps2data/effect_finish/in/event/q0047.efx	31	0x100C70	64	0x100	0x620	0x30	0x01010301																	
-ps2data/effect_finish/in/event/q0047.efx	32	0x100CB0	64	0x100	0x620	0x30	0x01010401																	
-ps2data/effect_finish/in/event/q0047.efx	33	0x100CF0	64	0x100	0x620	0x30	0x01010501																	
-ps2data/effect_finish/in/event/q0047.efx	34	0x100D30	816	0x100	0x800	0x2E0	0x01000100		1		1													
-ps2data/effect_finish/in/event/q0047.efx	35	0x101060	816	0x100	0x800	0x2E0	0x02000100		2		1													
-ps2data/effect_finish/in/event/q0047.efx	36	0x101390	816	0x100	0x800	0x2E0	0x03000100		3		1													
+ps2data/effect_finish/in/event/q0047.efx	27	0x100B70	32	0x100	0x610	0x10	01010000								8									
+ps2data/effect_finish/in/event/q0047.efx	28	0x100B90	96	0x100	0x620	0x50	01010602																	
+ps2data/effect_finish/in/event/q0047.efx	29	0x100BF0	64	0x100	0x620	0x30	01010101																	
+ps2data/effect_finish/in/event/q0047.efx	30	0x100C30	64	0x100	0x620	0x30	01010201																	
+ps2data/effect_finish/in/event/q0047.efx	31	0x100C70	64	0x100	0x620	0x30	01010301																	
+ps2data/effect_finish/in/event/q0047.efx	32	0x100CB0	64	0x100	0x620	0x30	01010401																	
+ps2data/effect_finish/in/event/q0047.efx	33	0x100CF0	64	0x100	0x620	0x30	01010501																	
+ps2data/effect_finish/in/event/q0047.efx	34	0x100D30	816	0x100	0x800	0x2E0	01000100		1		1													
+ps2data/effect_finish/in/event/q0047.efx	35	0x101060	816	0x100	0x800	0x2E0	02000100		2		1													
+ps2data/effect_finish/in/event/q0047.efx	36	0x101390	816	0x100	0x800	0x2E0	03000100		3		1													
 ps2data/effect_finish/in/event/q0047.efx	37	0x1016C0	816	0x100	0x800	0x2E0	04000100		4		1													
 ps2data/effect_finish/in/event/q0047.efx	38	0x1019F0	816	0x100	0x800	0x2E0	05000100		5		1													
-ps2data/effect_finish/in/event/q0047.efx	39	0x101D20	2240	0x100	0xA00	0x7E0	0x0100a200		1			0xA2				0x00								
-ps2data/effect_finish/in/event/q0047.efx	40	0x1025E0	2640	0x100	0xA00	0x7E0	0x0200a200		2			0xA2				0x00								
-ps2data/effect_finish/in/event/q0047.efx	41	0x103030	2160	0x100	0xA00	0x7E0	0x0300a200		3			0xA2				0x00								
+ps2data/effect_finish/in/event/q0047.efx	39	0x101D20	2240	0x100	0xA00	0x7E0	0100a200		1			0xA2				0x00								
+ps2data/effect_finish/in/event/q0047.efx	40	0x1025E0	2640	0x100	0xA00	0x7E0	0200a200		2			0xA2				0x00								
+ps2data/effect_finish/in/event/q0047.efx	41	0x103030	2160	0x100	0xA00	0x7E0	0300a200		3			0xA2				0x00								
 ps2data/effect_finish/in/event/q0047.efx	42	0x1038A0	2656	0x100	0xA00	0x7E0	0400a200		4			0xA2				0x00								
 ps2data/effect_finish/in/event/q0047.efx	43	0x104300	2240	0x100	0xA00	0x7E0	0500a200		5			0xA2				0x00								
 ps2data/effect_finish/in/event/q0048.efx	0	0x10	524320	0x100	0xB00	0x80010	00005201			0			0x52	1					4	1	0	0	512x64	1024x128
@@ -70,43 +70,43 @@ ps2data/effect_finish/in/event/q0048.efx	23	0x1006D0	48	0x100	0xB00	0x20	0000510
 ps2data/effect_finish/in/event/q0048.efx	24	0x100700	48	0x100	0xB00	0x20	00005108			0			0x51	8										
 ps2data/effect_finish/in/event/q0048.efx	25	0x100730	1408	0x100	0xB00	0x570	00005701			0			0x57	1										
 ps2data/effect_finish/in/event/q0048.efx	26	0x100CB0	176	0x100	0x600	0xA0	00010000	1								0x01	0000000000000000000000	0x12						
-ps2data/effect_finish/in/event/q0048.efx	27	0x100D60	32	0x100	0x610	0x10	0x01010000								8									
-ps2data/effect_finish/in/event/q0048.efx	28	0x100D80	96	0x100	0x620	0x50	0x01010602																	
-ps2data/effect_finish/in/event/q0048.efx	29	0x100DE0	64	0x100	0x620	0x30	0x01010101																	
-ps2data/effect_finish/in/event/q0048.efx	30	0x100E20	64	0x100	0x620	0x30	0x01010201																	
-ps2data/effect_finish/in/event/q0048.efx	31	0x100E60	64	0x100	0x620	0x30	0x01010301																	
-ps2data/effect_finish/in/event/q0048.efx	32	0x100EA0	64	0x100	0x620	0x30	0x01010401																	
-ps2data/effect_finish/in/event/q0048.efx	33	0x100EE0	64	0x100	0x620	0x30	0x01010501																	
-ps2data/effect_finish/in/event/q0048.efx	34	0x100F20	816	0x100	0x800	0x2E0	0x01000100		1		1													
-ps2data/effect_finish/in/event/q0048.efx	35	0x101250	816	0x100	0x800	0x2E0	0x02000100		2		1													
-ps2data/effect_finish/in/event/q0048.efx	36	0x101580	816	0x100	0x800	0x2E0	0x03000100		3		1													
+ps2data/effect_finish/in/event/q0048.efx	27	0x100D60	32	0x100	0x610	0x10	01010000								8									
+ps2data/effect_finish/in/event/q0048.efx	28	0x100D80	96	0x100	0x620	0x50	01010602																	
+ps2data/effect_finish/in/event/q0048.efx	29	0x100DE0	64	0x100	0x620	0x30	01010101																	
+ps2data/effect_finish/in/event/q0048.efx	30	0x100E20	64	0x100	0x620	0x30	01010201																	
+ps2data/effect_finish/in/event/q0048.efx	31	0x100E60	64	0x100	0x620	0x30	01010301																	
+ps2data/effect_finish/in/event/q0048.efx	32	0x100EA0	64	0x100	0x620	0x30	01010401																	
+ps2data/effect_finish/in/event/q0048.efx	33	0x100EE0	64	0x100	0x620	0x30	01010501																	
+ps2data/effect_finish/in/event/q0048.efx	34	0x100F20	816	0x100	0x800	0x2E0	01000100		1		1													
+ps2data/effect_finish/in/event/q0048.efx	35	0x101250	816	0x100	0x800	0x2E0	02000100		2		1													
+ps2data/effect_finish/in/event/q0048.efx	36	0x101580	816	0x100	0x800	0x2E0	03000100		3		1													
 ps2data/effect_finish/in/event/q0048.efx	37	0x1018B0	816	0x100	0x800	0x2E0	04000100		4		1													
 ps2data/effect_finish/in/event/q0048.efx	38	0x101BE0	816	0x100	0x800	0x2E0	05000100		5		1													
-ps2data/effect_finish/in/event/q0048.efx	39	0x101F10	2240	0x100	0xA00	0x7E0	0x0100a200		1			0xA2				0x00								
-ps2data/effect_finish/in/event/q0048.efx	40	0x1027D0	2640	0x100	0xA00	0x7E0	0x0200a200		2			0xA2				0x00								
-ps2data/effect_finish/in/event/q0048.efx	41	0x103220	2160	0x100	0xA00	0x7E0	0x0300a200		3			0xA2				0x00								
+ps2data/effect_finish/in/event/q0048.efx	39	0x101F10	2240	0x100	0xA00	0x7E0	0100a200		1			0xA2				0x00								
+ps2data/effect_finish/in/event/q0048.efx	40	0x1027D0	2640	0x100	0xA00	0x7E0	0200a200		2			0xA2				0x00								
+ps2data/effect_finish/in/event/q0048.efx	41	0x103220	2160	0x100	0xA00	0x7E0	0300a200		3			0xA2				0x00								
 ps2data/effect_finish/in/event/q0048.efx	42	0x103A90	2656	0x100	0xA00	0x7E0	0400a200		4			0xA2				0x00								
 ps2data/effect_finish/in/event/q0048.efx	43	0x1044F0	2240	0x100	0xA00	0x7E0	0500a200		5			0xA2				0x00								
 ps2data/effect_finish/in/event/q0075.efx	0	0x10	8294432	0x100	0xB00	0x7E9010	00005201			0			0x52	1					4	1	0	0	1920x1080	1920x1080
 ps2data/effect_finish/in/event/q0075.efx	1	0x7E9030	8294432	0x100	0xB00	0x7E9010	00005202			0			0x52	2					4	1	0	0	1920x1080	1920x1080
 ps2data/effect_finish/in/event/q0075.efx	2	0xFD2050	176	0x100	0x600	0xA0	00010000	1								0x01	0002030400000000000000	0x12						
-ps2data/effect_finish/in/event/q0075.efx	3	0xFD2100	32	0x100	0x610	0x10	0x01010000								4									
-ps2data/effect_finish/in/event/q0075.efx	4	0xFD2120	64	0x100	0x620	0x30	0x01010101																	
-ps2data/effect_finish/in/event/q0075.efx	5	0xFD2160	32	0x100	0x610	0x10	0x01020000								4									
-ps2data/effect_finish/in/event/q0075.efx	6	0xFD2180	96	0x100	0x620	0x50	0x01020202																	
-ps2data/effect_finish/in/event/q0075.efx	7	0xFD21E0	64	0x100	0x620	0x30	0x01020101																	
-ps2data/effect_finish/in/event/q0075.efx	8	0xFD2220	32	0x100	0x610	0x10	0x01030000								4									
-ps2data/effect_finish/in/event/q0075.efx	9	0xFD2240	96	0x100	0x620	0x50	0x01030102																	
-ps2data/effect_finish/in/event/q0075.efx	10	0xFD22A0	32	0x100	0x610	0x10	0x01040000								4									
-ps2data/effect_finish/in/event/q0075.efx	11	0xFD22C0	96	0x100	0x620	0x50	0x01040102																	
-ps2data/effect_finish/in/event/q0075.efx	12	0xFD2320	400	0x100	0x700	0x160	0x01000000	1			0													
-ps2data/effect_finish/in/event/q0075.efx	13	0xFD24B0	800	0x100	0x800	0x2E0	0x01000100		1		1													
-ps2data/effect_finish/in/event/q0075.efx	14	0xFD27D0	800	0x100	0x800	0x2E0	0x02000100		2		1													
-ps2data/effect_finish/in/event/q0075.efx	15	0xFD2AF0	816	0x100	0x800	0x2E0	0x03000000		3		0													
+ps2data/effect_finish/in/event/q0075.efx	3	0xFD2100	32	0x100	0x610	0x10	01010000								4									
+ps2data/effect_finish/in/event/q0075.efx	4	0xFD2120	64	0x100	0x620	0x30	01010101																	
+ps2data/effect_finish/in/event/q0075.efx	5	0xFD2160	32	0x100	0x610	0x10	01020000								4									
+ps2data/effect_finish/in/event/q0075.efx	6	0xFD2180	96	0x100	0x620	0x50	01020202																	
+ps2data/effect_finish/in/event/q0075.efx	7	0xFD21E0	64	0x100	0x620	0x30	01020101																	
+ps2data/effect_finish/in/event/q0075.efx	8	0xFD2220	32	0x100	0x610	0x10	01030000								4									
+ps2data/effect_finish/in/event/q0075.efx	9	0xFD2240	96	0x100	0x620	0x50	01030102																	
+ps2data/effect_finish/in/event/q0075.efx	10	0xFD22A0	32	0x100	0x610	0x10	01040000								4									
+ps2data/effect_finish/in/event/q0075.efx	11	0xFD22C0	96	0x100	0x620	0x50	01040102																	
+ps2data/effect_finish/in/event/q0075.efx	12	0xFD2320	400	0x100	0x700	0x160	01000000	1			0													
+ps2data/effect_finish/in/event/q0075.efx	13	0xFD24B0	800	0x100	0x800	0x2E0	01000100		1		1													
+ps2data/effect_finish/in/event/q0075.efx	14	0xFD27D0	800	0x100	0x800	0x2E0	02000100		2		1													
+ps2data/effect_finish/in/event/q0075.efx	15	0xFD2AF0	816	0x100	0x800	0x2E0	03000000		3		0													
 ps2data/effect_finish/in/event/q0075.efx	16	0xFD2E20	816	0x100	0x800	0x2E0	04000000		4		0													
-ps2data/effect_finish/in/event/q0075.efx	17	0xFD3150	2288	0x100	0xA00	0x7E0	0x0100a200		1			0xA2				0x00								
-ps2data/effect_finish/in/event/q0075.efx	18	0xFD3A40	2368	0x100	0xA00	0x7E0	0x0200a200		2			0xA2				0x00								
-ps2data/effect_finish/in/event/q0075.efx	19	0xFD4380	160	0x100	0xA00	0x80	0x03000000		3			0x00				0x00								
+ps2data/effect_finish/in/event/q0075.efx	17	0xFD3150	2288	0x100	0xA00	0x7E0	0100a200		1			0xA2				0x00								
+ps2data/effect_finish/in/event/q0075.efx	18	0xFD3A40	2368	0x100	0xA00	0x7E0	0200a200		2			0xA2				0x00								
+ps2data/effect_finish/in/event/q0075.efx	19	0xFD4380	160	0x100	0xA00	0x80	03000000		3			0x00				0x00								
 ps2data/effect_finish/in/event/q0075.efx	20	0xFD4420	160	0x100	0xA00	0x80	04000000		4			0x00				0x00								
 ps2data/effect_finish/in/magic/m0179.efx	0	0x10	3072	0x100	0xB00	0xBF0	00005205			0			0x52	5					1	0	0	1	63x32	63x32
 ps2data/effect_finish/in/magic/m0179.efx	1	0xC10	5152	0x100	0xB00	0x1410	00005209			0			0x52	9					1	0	0	1	64x64	64x64
@@ -123,29 +123,29 @@ ps2data/effect_finish/in/magic/m0179.efx	11	0xEF90	128	0x100	0xB00	0x70	00005703
 ps2data/effect_finish/in/magic/m0179.efx	12	0xF010	224	0x100	0xB00	0xD0	00005704			0			0x57	4										
 ps2data/effect_finish/in/magic/m0179.efx	13	0xF0F0	48	0x100	0xB00	0x20	00005801			0			0x58	1										
 ps2data/effect_finish/in/magic/m0179.efx	14	0xF120	176	0x100	0x600	0xA0	00010000	1								0x01	0000000000000000000000	0x03						
-ps2data/effect_finish/in/magic/m0179.efx	15	0xF1D0	32	0x100	0x610	0x10	0x01010000								4									
-ps2data/effect_finish/in/magic/m0179.efx	16	0xF1F0	96	0x100	0x620	0x50	0x01010102																	
-ps2data/effect_finish/in/magic/m0179.efx	17	0xF250	32	0x100	0x610	0x10	0x01020000								16									
-ps2data/effect_finish/in/magic/m0179.efx	18	0xF270	160	0x100	0x620	0x90	0x01020102																	
-ps2data/effect_finish/in/magic/m0179.efx	19	0xF310	64	0x100	0x620	0x30	0x01020301																	
-ps2data/effect_finish/in/magic/m0179.efx	20	0xF350	64	0x100	0x620	0x30	0x01020403																	
-ps2data/effect_finish/in/magic/m0179.efx	21	0xF390	64	0x100	0x620	0x30	0x01020501																	
-ps2data/effect_finish/in/magic/m0179.efx	22	0xF3D0	64	0x100	0x620	0x30	0x01020601																	
-ps2data/effect_finish/in/magic/m0179.efx	23	0xF410	64	0x100	0x620	0x30	0x01020701																	
-ps2data/effect_finish/in/magic/m0179.efx	24	0xF450	64	0x100	0x620	0x30	0x01020801																	
-ps2data/effect_finish/in/magic/m0179.efx	25	0xF490	64	0x100	0x620	0x30	0x01020901																	
-ps2data/effect_finish/in/magic/m0179.efx	26	0xF4D0	64	0x100	0x620	0x30	0x01020a01																	
-ps2data/effect_finish/in/magic/m0179.efx	27	0xF510	64	0x100	0x620	0x30	0x01020b01																	
-ps2data/effect_finish/in/magic/m0179.efx	28	0xF550	64	0x100	0x620	0x30	0x01020c01																	
-ps2data/effect_finish/in/magic/m0179.efx	29	0xF590	64	0x100	0x620	0x30	0x01020d01																	
-ps2data/effect_finish/in/magic/m0179.efx	30	0xF5D0	64	0x100	0x620	0x30	0x01020e01																	
-ps2data/effect_finish/in/magic/m0179.efx	31	0xF610	560	0x100	0x700	0x200	0x01000100	1			1													
-ps2data/effect_finish/in/magic/m0179.efx	32	0xF840	864	0x100	0x700	0x300	0x02000300	2			3													
-ps2data/effect_finish/in/magic/m0179.efx	33	0xFBA0	384	0x100	0x700	0x160	0x03000000	3			0													
+ps2data/effect_finish/in/magic/m0179.efx	15	0xF1D0	32	0x100	0x610	0x10	01010000								4									
+ps2data/effect_finish/in/magic/m0179.efx	16	0xF1F0	96	0x100	0x620	0x50	01010102																	
+ps2data/effect_finish/in/magic/m0179.efx	17	0xF250	32	0x100	0x610	0x10	01020000								16									
+ps2data/effect_finish/in/magic/m0179.efx	18	0xF270	160	0x100	0x620	0x90	01020102																	
+ps2data/effect_finish/in/magic/m0179.efx	19	0xF310	64	0x100	0x620	0x30	01020301																	
+ps2data/effect_finish/in/magic/m0179.efx	20	0xF350	64	0x100	0x620	0x30	01020403																	
+ps2data/effect_finish/in/magic/m0179.efx	21	0xF390	64	0x100	0x620	0x30	01020501																	
+ps2data/effect_finish/in/magic/m0179.efx	22	0xF3D0	64	0x100	0x620	0x30	01020601																	
+ps2data/effect_finish/in/magic/m0179.efx	23	0xF410	64	0x100	0x620	0x30	01020701																	
+ps2data/effect_finish/in/magic/m0179.efx	24	0xF450	64	0x100	0x620	0x30	01020801																	
+ps2data/effect_finish/in/magic/m0179.efx	25	0xF490	64	0x100	0x620	0x30	01020901																	
+ps2data/effect_finish/in/magic/m0179.efx	26	0xF4D0	64	0x100	0x620	0x30	01020a01																	
+ps2data/effect_finish/in/magic/m0179.efx	27	0xF510	64	0x100	0x620	0x30	01020b01																	
+ps2data/effect_finish/in/magic/m0179.efx	28	0xF550	64	0x100	0x620	0x30	01020c01																	
+ps2data/effect_finish/in/magic/m0179.efx	29	0xF590	64	0x100	0x620	0x30	01020d01																	
+ps2data/effect_finish/in/magic/m0179.efx	30	0xF5D0	64	0x100	0x620	0x30	01020e01																	
+ps2data/effect_finish/in/magic/m0179.efx	31	0xF610	560	0x100	0x700	0x200	01000100	1			1													
+ps2data/effect_finish/in/magic/m0179.efx	32	0xF840	864	0x100	0x700	0x300	02000300	2			3													
+ps2data/effect_finish/in/magic/m0179.efx	33	0xFBA0	384	0x100	0x700	0x160	03000000	3			0													
 ps2data/effect_finish/in/magic/m0179.efx	34	0xFD20	384	0x100	0x700	0x160	04000000	4			0													
-ps2data/effect_finish/in/magic/m0179.efx	35	0xFEA0	1120	0x100	0x800	0x3C0	0x01000300		1		3													
-ps2data/effect_finish/in/magic/m0179.efx	36	0x10300	1120	0x100	0x800	0x3C0	0x02000300		2		3													
-ps2data/effect_finish/in/magic/m0179.efx	37	0x10760	816	0x100	0x800	0x2E0	0x03000100		3		1													
+ps2data/effect_finish/in/magic/m0179.efx	35	0xFEA0	1120	0x100	0x800	0x3C0	01000300		1		3													
+ps2data/effect_finish/in/magic/m0179.efx	36	0x10300	1120	0x100	0x800	0x3C0	02000300		2		3													
+ps2data/effect_finish/in/magic/m0179.efx	37	0x10760	816	0x100	0x800	0x2E0	03000100		3		1													
 ps2data/effect_finish/in/magic/m0179.efx	38	0x10A90	816	0x100	0x800	0x2E0	04000100		4		1													
 ps2data/effect_finish/in/magic/m0179.efx	39	0x10DC0	848	0x100	0x800	0x2E0	05000100		5		1													
 ps2data/effect_finish/in/magic/m0179.efx	40	0x11110	816	0x100	0x800	0x2E0	06000100		6		1													
@@ -154,9 +154,9 @@ ps2data/effect_finish/in/magic/m0179.efx	42	0x118B0	816	0x100	0x800	0x2E0	080001
 ps2data/effect_finish/in/magic/m0179.efx	43	0x11BE0	832	0x100	0x800	0x2E0	09000100		9		1													
 ps2data/effect_finish/in/magic/m0179.efx	44	0x11F20	816	0x100	0x800	0x2E0	0a000000		10		0													
 ps2data/effect_finish/in/magic/m0179.efx	45	0x12250	816	0x100	0x800	0x2E0	0b000100		11		1													
-ps2data/effect_finish/in/magic/m0179.efx	46	0x12580	1040	0x100	0xA00	0x2B0	0x01008c00		1			0x8C				0x00								
-ps2data/effect_finish/in/magic/m0179.efx	47	0x12990	768	0x100	0xA00	0x1D0	0x02000200		2			0x02				0x00								
-ps2data/effect_finish/in/magic/m0179.efx	48	0x12C90	720	0x100	0xA00	0x1D0	0x03000200		3			0x02				0x00								
+ps2data/effect_finish/in/magic/m0179.efx	46	0x12580	1040	0x100	0xA00	0x2B0	01008c00		1			0x8C				0x00								
+ps2data/effect_finish/in/magic/m0179.efx	47	0x12990	768	0x100	0xA00	0x1D0	02000200		2			0x02				0x00								
+ps2data/effect_finish/in/magic/m0179.efx	48	0x12C90	720	0x100	0xA00	0x1D0	03000200		3			0x02				0x00								
 ps2data/effect_finish/in/magic/m0179.efx	49	0x12F60	912	0x100	0xA00	0x2B0	04008c00		4			0x8C				0x00								
 ps2data/effect_finish/in/magic/m0179.efx	50	0x132F0	832	0x100	0xA00	0x2C0	05000a00		5			0x0A				0x00								
 ps2data/effect_finish/in/magic/m0179.efx	51	0x13630	720	0x100	0xA00	0x1D0	06000200		6			0x02				0x00								
@@ -175,35 +175,35 @@ ps2data/effect_finish/in/magic/m0180.efx	7	0x151D0	176	0x100	0xB00	0xA0	00005703
 ps2data/effect_finish/in/magic/m0180.efx	8	0x15280	64	0x100	0xB00	0x30	00005802			0			0x58	2										
 ps2data/effect_finish/in/magic/m0180.efx	9	0x152C0	64	0x100	0xB00	0x30	00005803			0			0x58	3										
 ps2data/effect_finish/in/magic/m0180.efx	10	0x15300	176	0x100	0x600	0xA0	00010000	1								0x01	0000000000000000000000	0x03						
-ps2data/effect_finish/in/magic/m0180.efx	11	0x153B0	32	0x100	0x610	0x10	0x01010000								24									
-ps2data/effect_finish/in/magic/m0180.efx	12	0x153D0	160	0x100	0x620	0x90	0x01010e02																	
-ps2data/effect_finish/in/magic/m0180.efx	13	0x15470	64	0x100	0x620	0x30	0x01010101																	
-ps2data/effect_finish/in/magic/m0180.efx	14	0x154B0	64	0x100	0x620	0x30	0x01010201																	
-ps2data/effect_finish/in/magic/m0180.efx	15	0x154F0	64	0x100	0x620	0x30	0x01010301																	
-ps2data/effect_finish/in/magic/m0180.efx	16	0x15530	64	0x100	0x620	0x30	0x01010401																	
-ps2data/effect_finish/in/magic/m0180.efx	17	0x15570	64	0x100	0x620	0x30	0x01010501																	
-ps2data/effect_finish/in/magic/m0180.efx	18	0x155B0	64	0x100	0x620	0x30	0x01010601																	
-ps2data/effect_finish/in/magic/m0180.efx	19	0x155F0	64	0x100	0x620	0x30	0x01010701																	
-ps2data/effect_finish/in/magic/m0180.efx	20	0x15630	64	0x100	0x620	0x30	0x01010801																	
-ps2data/effect_finish/in/magic/m0180.efx	21	0x15670	64	0x100	0x620	0x30	0x01010901																	
-ps2data/effect_finish/in/magic/m0180.efx	22	0x156B0	64	0x100	0x620	0x30	0x01010a01																	
-ps2data/effect_finish/in/magic/m0180.efx	23	0x156F0	64	0x100	0x620	0x30	0x01010b01																	
-ps2data/effect_finish/in/magic/m0180.efx	24	0x15730	64	0x100	0x620	0x30	0x01010c01																	
-ps2data/effect_finish/in/magic/m0180.efx	25	0x15770	64	0x100	0x620	0x30	0x01010d01																	
-ps2data/effect_finish/in/magic/m0180.efx	26	0x157B0	64	0x100	0x620	0x30	0x01010f03																	
-ps2data/effect_finish/in/magic/m0180.efx	27	0x157F0	64	0x100	0x620	0x30	0x01011003																	
-ps2data/effect_finish/in/magic/m0180.efx	28	0x15830	64	0x100	0x620	0x30	0x01011301																	
-ps2data/effect_finish/in/magic/m0180.efx	29	0x15870	64	0x100	0x620	0x30	0x01011401																	
-ps2data/effect_finish/in/magic/m0180.efx	30	0x158B0	32	0x100	0x610	0x10	0x01020000								4									
-ps2data/effect_finish/in/magic/m0180.efx	31	0x158D0	96	0x100	0x620	0x50	0x01020102																	
-ps2data/effect_finish/in/magic/m0180.efx	32	0x15930	384	0x100	0x700	0x160	0x01000000	1			0													
-ps2data/effect_finish/in/magic/m0180.efx	33	0x15AB0	400	0x100	0x700	0x160	0x02000000	2			0													
-ps2data/effect_finish/in/magic/m0180.efx	34	0x15C40	592	0x100	0x700	0x200	0x03000100	3			1													
+ps2data/effect_finish/in/magic/m0180.efx	11	0x153B0	32	0x100	0x610	0x10	01010000								24									
+ps2data/effect_finish/in/magic/m0180.efx	12	0x153D0	160	0x100	0x620	0x90	01010e02																	
+ps2data/effect_finish/in/magic/m0180.efx	13	0x15470	64	0x100	0x620	0x30	01010101																	
+ps2data/effect_finish/in/magic/m0180.efx	14	0x154B0	64	0x100	0x620	0x30	01010201																	
+ps2data/effect_finish/in/magic/m0180.efx	15	0x154F0	64	0x100	0x620	0x30	01010301																	
+ps2data/effect_finish/in/magic/m0180.efx	16	0x15530	64	0x100	0x620	0x30	01010401																	
+ps2data/effect_finish/in/magic/m0180.efx	17	0x15570	64	0x100	0x620	0x30	01010501																	
+ps2data/effect_finish/in/magic/m0180.efx	18	0x155B0	64	0x100	0x620	0x30	01010601																	
+ps2data/effect_finish/in/magic/m0180.efx	19	0x155F0	64	0x100	0x620	0x30	01010701																	
+ps2data/effect_finish/in/magic/m0180.efx	20	0x15630	64	0x100	0x620	0x30	01010801																	
+ps2data/effect_finish/in/magic/m0180.efx	21	0x15670	64	0x100	0x620	0x30	01010901																	
+ps2data/effect_finish/in/magic/m0180.efx	22	0x156B0	64	0x100	0x620	0x30	01010a01																	
+ps2data/effect_finish/in/magic/m0180.efx	23	0x156F0	64	0x100	0x620	0x30	01010b01																	
+ps2data/effect_finish/in/magic/m0180.efx	24	0x15730	64	0x100	0x620	0x30	01010c01																	
+ps2data/effect_finish/in/magic/m0180.efx	25	0x15770	64	0x100	0x620	0x30	01010d01																	
+ps2data/effect_finish/in/magic/m0180.efx	26	0x157B0	64	0x100	0x620	0x30	01010f03																	
+ps2data/effect_finish/in/magic/m0180.efx	27	0x157F0	64	0x100	0x620	0x30	01011003																	
+ps2data/effect_finish/in/magic/m0180.efx	28	0x15830	64	0x100	0x620	0x30	01011301																	
+ps2data/effect_finish/in/magic/m0180.efx	29	0x15870	64	0x100	0x620	0x30	01011401																	
+ps2data/effect_finish/in/magic/m0180.efx	30	0x158B0	32	0x100	0x610	0x10	01020000								4									
+ps2data/effect_finish/in/magic/m0180.efx	31	0x158D0	96	0x100	0x620	0x50	01020102																	
+ps2data/effect_finish/in/magic/m0180.efx	32	0x15930	384	0x100	0x700	0x160	01000000	1			0													
+ps2data/effect_finish/in/magic/m0180.efx	33	0x15AB0	400	0x100	0x700	0x160	02000000	2			0													
+ps2data/effect_finish/in/magic/m0180.efx	34	0x15C40	592	0x100	0x700	0x200	03000100	3			1													
 ps2data/effect_finish/in/magic/m0180.efx	35	0x15E90	384	0x100	0x700	0x160	04000000	4			0													
 ps2data/effect_finish/in/magic/m0180.efx	36	0x16010	400	0x100	0x700	0x160	05000000	5			0													
-ps2data/effect_finish/in/magic/m0180.efx	37	0x161A0	832	0x100	0x800	0x2E0	0x01000100		1		1													
-ps2data/effect_finish/in/magic/m0180.efx	38	0x164E0	1056	0x100	0x800	0x3C0	0x02000300		2		3													
-ps2data/effect_finish/in/magic/m0180.efx	39	0x16900	1088	0x100	0x800	0x3C0	0x03000300		3		3													
+ps2data/effect_finish/in/magic/m0180.efx	37	0x161A0	832	0x100	0x800	0x2E0	01000100		1		1													
+ps2data/effect_finish/in/magic/m0180.efx	38	0x164E0	1056	0x100	0x800	0x3C0	02000300		2		3													
+ps2data/effect_finish/in/magic/m0180.efx	39	0x16900	1088	0x100	0x800	0x3C0	03000300		3		3													
 ps2data/effect_finish/in/magic/m0180.efx	40	0x16D40	816	0x100	0x800	0x2E0	04000100		4		1													
 ps2data/effect_finish/in/magic/m0180.efx	41	0x17070	816	0x100	0x800	0x2E0	05000100		5		1													
 ps2data/effect_finish/in/magic/m0180.efx	42	0x173A0	1088	0x100	0x800	0x3C0	06000300		6		3													
@@ -216,9 +216,9 @@ ps2data/effect_finish/in/magic/m0180.efx	48	0x18AA0	816	0x100	0x800	0x2E0	0c0001
 ps2data/effect_finish/in/magic/m0180.efx	49	0x18DD0	816	0x100	0x800	0x2E0	0d000100		13		1													
 ps2data/effect_finish/in/magic/m0180.efx	50	0x19100	816	0x100	0x800	0x2E0	0e000100		14		1													
 ps2data/effect_finish/in/magic/m0180.efx	51	0x19430	816	0x100	0x800	0x2E0	0f000100		15		1													
-ps2data/effect_finish/in/magic/m0180.efx	52	0x19760	2416	0x100	0xA00	0x890	0x01006b00		1			0x6B				0x00								
-ps2data/effect_finish/in/magic/m0180.efx	53	0x1A0D0	592	0x100	0xA00	0x1D0	0x02000200		2			0x02				0x00								
-ps2data/effect_finish/in/magic/m0180.efx	54	0x1A320	1024	0x100	0xA00	0x350	0x03008d00		3			0x8D				0x00								
+ps2data/effect_finish/in/magic/m0180.efx	52	0x19760	2416	0x100	0xA00	0x890	01006b00		1			0x6B				0x00								
+ps2data/effect_finish/in/magic/m0180.efx	53	0x1A0D0	592	0x100	0xA00	0x1D0	02000200		2			0x02				0x00								
+ps2data/effect_finish/in/magic/m0180.efx	54	0x1A320	1024	0x100	0xA00	0x350	03008d00		3			0x8D				0x00								
 ps2data/effect_finish/in/magic/m0180.efx	55	0x1A720	448	0x100	0xA00	0x130	04004000		4			0x40				0x00								
 ps2data/effect_finish/in/magic/m0180.efx	56	0x1A8E0	1024	0x100	0xA00	0x350	05008d00		5			0x8D				0x00								
 ps2data/effect_finish/in/magic/m0180.efx	57	0x1ACE0	624	0x100	0xA00	0x1D0	06000200		6			0x02				0x00								
@@ -245,24 +245,24 @@ ps2data/effect_finish/in/magic/m0181.efx	9	0x18D30	160	0x100	0xB00	0x90	00005703
 ps2data/effect_finish/in/magic/m0181.efx	10	0x18DD0	80	0x100	0xB00	0x40	00005802			0			0x58	2										
 ps2data/effect_finish/in/magic/m0181.efx	11	0x18E20	48	0x100	0xB00	0x20	00005803			0			0x58	3										
 ps2data/effect_finish/in/magic/m0181.efx	12	0x18E50	176	0x100	0x600	0xA0	00010000	1								0x01	0000000000000000000000	0x03						
-ps2data/effect_finish/in/magic/m0181.efx	13	0x18F00	32	0x100	0x610	0x10	0x01010000								16									
-ps2data/effect_finish/in/magic/m0181.efx	14	0x18F20	160	0x100	0x620	0x90	0x01010502																	
-ps2data/effect_finish/in/magic/m0181.efx	15	0x18FC0	64	0x100	0x620	0x30	0x01010101																	
-ps2data/effect_finish/in/magic/m0181.efx	16	0x19000	64	0x100	0x620	0x30	0x01010201																	
-ps2data/effect_finish/in/magic/m0181.efx	17	0x19040	64	0x100	0x620	0x30	0x01010301																	
-ps2data/effect_finish/in/magic/m0181.efx	18	0x19080	64	0x100	0x620	0x30	0x01010401																	
-ps2data/effect_finish/in/magic/m0181.efx	19	0x190C0	64	0x100	0x620	0x30	0x01010803																	
-ps2data/effect_finish/in/magic/m0181.efx	20	0x19100	64	0x100	0x620	0x30	0x01010901																	
-ps2data/effect_finish/in/magic/m0181.efx	21	0x19140	64	0x100	0x620	0x30	0x01010a03																	
-ps2data/effect_finish/in/magic/m0181.efx	22	0x19180	64	0x100	0x620	0x30	0x01010b01																	
-ps2data/effect_finish/in/magic/m0181.efx	23	0x191C0	64	0x100	0x620	0x30	0x01010c01																	
-ps2data/effect_finish/in/magic/m0181.efx	24	0x19200	32	0x100	0x610	0x10	0x01020000								4									
-ps2data/effect_finish/in/magic/m0181.efx	25	0x19220	96	0x100	0x620	0x50	0x01020102																	
-ps2data/effect_finish/in/magic/m0181.efx	26	0x19280	384	0x100	0x700	0x160	0x01000000	1			0													
-ps2data/effect_finish/in/magic/m0181.efx	27	0x19400	400	0x100	0x700	0x160	0x02000000	2			0													
-ps2data/effect_finish/in/magic/m0181.efx	28	0x19590	816	0x100	0x800	0x2E0	0x01000100		1		1													
-ps2data/effect_finish/in/magic/m0181.efx	29	0x198C0	816	0x100	0x800	0x2E0	0x02000100		2		1													
-ps2data/effect_finish/in/magic/m0181.efx	30	0x19BF0	816	0x100	0x800	0x2E0	0x03000100		3		1													
+ps2data/effect_finish/in/magic/m0181.efx	13	0x18F00	32	0x100	0x610	0x10	01010000								16									
+ps2data/effect_finish/in/magic/m0181.efx	14	0x18F20	160	0x100	0x620	0x90	01010502																	
+ps2data/effect_finish/in/magic/m0181.efx	15	0x18FC0	64	0x100	0x620	0x30	01010101																	
+ps2data/effect_finish/in/magic/m0181.efx	16	0x19000	64	0x100	0x620	0x30	01010201																	
+ps2data/effect_finish/in/magic/m0181.efx	17	0x19040	64	0x100	0x620	0x30	01010301																	
+ps2data/effect_finish/in/magic/m0181.efx	18	0x19080	64	0x100	0x620	0x30	01010401																	
+ps2data/effect_finish/in/magic/m0181.efx	19	0x190C0	64	0x100	0x620	0x30	01010803																	
+ps2data/effect_finish/in/magic/m0181.efx	20	0x19100	64	0x100	0x620	0x30	01010901																	
+ps2data/effect_finish/in/magic/m0181.efx	21	0x19140	64	0x100	0x620	0x30	01010a03																	
+ps2data/effect_finish/in/magic/m0181.efx	22	0x19180	64	0x100	0x620	0x30	01010b01																	
+ps2data/effect_finish/in/magic/m0181.efx	23	0x191C0	64	0x100	0x620	0x30	01010c01																	
+ps2data/effect_finish/in/magic/m0181.efx	24	0x19200	32	0x100	0x610	0x10	01020000								4									
+ps2data/effect_finish/in/magic/m0181.efx	25	0x19220	96	0x100	0x620	0x50	01020102																	
+ps2data/effect_finish/in/magic/m0181.efx	26	0x19280	384	0x100	0x700	0x160	01000000	1			0													
+ps2data/effect_finish/in/magic/m0181.efx	27	0x19400	400	0x100	0x700	0x160	02000000	2			0													
+ps2data/effect_finish/in/magic/m0181.efx	28	0x19590	816	0x100	0x800	0x2E0	01000100		1		1													
+ps2data/effect_finish/in/magic/m0181.efx	29	0x198C0	816	0x100	0x800	0x2E0	02000100		2		1													
+ps2data/effect_finish/in/magic/m0181.efx	30	0x19BF0	816	0x100	0x800	0x2E0	03000100		3		1													
 ps2data/effect_finish/in/magic/m0181.efx	31	0x19F20	816	0x100	0x800	0x2E0	04000100		4		1													
 ps2data/effect_finish/in/magic/m0181.efx	32	0x1A250	816	0x100	0x800	0x2E0	05000100		5		1													
 ps2data/effect_finish/in/magic/m0181.efx	33	0x1A580	1056	0x100	0x800	0x3C0	06000300		6		3													
@@ -274,9 +274,9 @@ ps2data/effect_finish/in/magic/m0181.efx	38	0x1B680	816	0x100	0x800	0x2E0	0b0001
 ps2data/effect_finish/in/magic/m0181.efx	39	0x1B9B0	816	0x100	0x800	0x2E0	0c000100		12		1													
 ps2data/effect_finish/in/magic/m0181.efx	40	0x1BCE0	816	0x100	0x800	0x2E0	0d000100		13		1													
 ps2data/effect_finish/in/magic/m0181.efx	41	0x1C010	816	0x100	0x800	0x2E0	0e000100		14		1													
-ps2data/effect_finish/in/magic/m0181.efx	42	0x1C340	640	0x100	0xA00	0x130	0x01004000		1			0x40				0x00								
-ps2data/effect_finish/in/magic/m0181.efx	43	0x1C5C0	736	0x100	0xA00	0x260	0x02008000		2			0x80				0x00								
-ps2data/effect_finish/in/magic/m0181.efx	44	0x1C8A0	3040	0x100	0xA00	0x8F0	0x03006600		3			0x66				0x00								
+ps2data/effect_finish/in/magic/m0181.efx	42	0x1C340	640	0x100	0xA00	0x130	01004000		1			0x40				0x00								
+ps2data/effect_finish/in/magic/m0181.efx	43	0x1C5C0	736	0x100	0xA00	0x260	02008000		2			0x80				0x00								
+ps2data/effect_finish/in/magic/m0181.efx	44	0x1C8A0	3040	0x100	0xA00	0x8F0	03006600		3			0x66				0x00								
 ps2data/effect_finish/in/magic/m0181.efx	45	0x1D480	976	0x100	0xA00	0x350	04008d00		4			0x8D				0x00								
 ps2data/effect_finish/in/magic/m0181.efx	46	0x1D850	608	0x100	0xA00	0x1D0	05000200		5			0x02				0x00								
 ps2data/effect_finish/in/magic/m0181.efx	47	0x1DAB0	688	0x100	0xA00	0x1D0	06000200		6			0x02				0x00								
@@ -313,28 +313,28 @@ ps2data/effect_finish/in/magic/m0182.efx	21	0x1FED0	304	0x100	0xB00	0x120	000057
 ps2data/effect_finish/in/magic/m0182.efx	22	0x20000	272	0x100	0xB00	0x100	00005703			0			0x57	3										
 ps2data/effect_finish/in/magic/m0182.efx	23	0x20110	96	0x100	0xB00	0x50	00005801			0			0x58	1										
 ps2data/effect_finish/in/magic/m0182.efx	24	0x20170	176	0x100	0x600	0xA0	00010000	1								0x01	0000000000000000000000	0x03						
-ps2data/effect_finish/in/magic/m0182.efx	25	0x20220	32	0x100	0x610	0x10	0x01010000								4									
-ps2data/effect_finish/in/magic/m0182.efx	26	0x20240	96	0x100	0x620	0x50	0x01010102																	
-ps2data/effect_finish/in/magic/m0182.efx	27	0x202A0	32	0x100	0x610	0x10	0x01020000								16									
-ps2data/effect_finish/in/magic/m0182.efx	28	0x202C0	160	0x100	0x620	0x90	0x01020902																	
-ps2data/effect_finish/in/magic/m0182.efx	29	0x20360	64	0x100	0x620	0x30	0x01020101																	
-ps2data/effect_finish/in/magic/m0182.efx	30	0x203A0	64	0x100	0x620	0x30	0x01020201																	
-ps2data/effect_finish/in/magic/m0182.efx	31	0x203E0	64	0x100	0x620	0x30	0x01020301																	
-ps2data/effect_finish/in/magic/m0182.efx	32	0x20420	64	0x100	0x620	0x30	0x01020401																	
-ps2data/effect_finish/in/magic/m0182.efx	33	0x20460	64	0x100	0x620	0x30	0x01020501																	
-ps2data/effect_finish/in/magic/m0182.efx	34	0x204A0	64	0x100	0x620	0x30	0x01020601																	
-ps2data/effect_finish/in/magic/m0182.efx	35	0x204E0	64	0x100	0x620	0x30	0x01020701																	
-ps2data/effect_finish/in/magic/m0182.efx	36	0x20520	64	0x100	0x620	0x30	0x01020801																	
-ps2data/effect_finish/in/magic/m0182.efx	37	0x20560	64	0x100	0x620	0x30	0x01020c03																	
-ps2data/effect_finish/in/magic/m0182.efx	38	0x205A0	64	0x100	0x620	0x30	0x01020d01																	
-ps2data/effect_finish/in/magic/m0182.efx	39	0x205E0	720	0x100	0x700	0x280	0x01000200	1			2													
-ps2data/effect_finish/in/magic/m0182.efx	40	0x208B0	384	0x100	0x700	0x160	0x02000000	2			0													
-ps2data/effect_finish/in/magic/m0182.efx	41	0x20A30	384	0x100	0x700	0x160	0x03000000	3			0													
+ps2data/effect_finish/in/magic/m0182.efx	25	0x20220	32	0x100	0x610	0x10	01010000								4									
+ps2data/effect_finish/in/magic/m0182.efx	26	0x20240	96	0x100	0x620	0x50	01010102																	
+ps2data/effect_finish/in/magic/m0182.efx	27	0x202A0	32	0x100	0x610	0x10	01020000								16									
+ps2data/effect_finish/in/magic/m0182.efx	28	0x202C0	160	0x100	0x620	0x90	01020902																	
+ps2data/effect_finish/in/magic/m0182.efx	29	0x20360	64	0x100	0x620	0x30	01020101																	
+ps2data/effect_finish/in/magic/m0182.efx	30	0x203A0	64	0x100	0x620	0x30	01020201																	
+ps2data/effect_finish/in/magic/m0182.efx	31	0x203E0	64	0x100	0x620	0x30	01020301																	
+ps2data/effect_finish/in/magic/m0182.efx	32	0x20420	64	0x100	0x620	0x30	01020401																	
+ps2data/effect_finish/in/magic/m0182.efx	33	0x20460	64	0x100	0x620	0x30	01020501																	
+ps2data/effect_finish/in/magic/m0182.efx	34	0x204A0	64	0x100	0x620	0x30	01020601																	
+ps2data/effect_finish/in/magic/m0182.efx	35	0x204E0	64	0x100	0x620	0x30	01020701																	
+ps2data/effect_finish/in/magic/m0182.efx	36	0x20520	64	0x100	0x620	0x30	01020801																	
+ps2data/effect_finish/in/magic/m0182.efx	37	0x20560	64	0x100	0x620	0x30	01020c03																	
+ps2data/effect_finish/in/magic/m0182.efx	38	0x205A0	64	0x100	0x620	0x30	01020d01																	
+ps2data/effect_finish/in/magic/m0182.efx	39	0x205E0	720	0x100	0x700	0x280	01000200	1			2													
+ps2data/effect_finish/in/magic/m0182.efx	40	0x208B0	384	0x100	0x700	0x160	02000000	2			0													
+ps2data/effect_finish/in/magic/m0182.efx	41	0x20A30	384	0x100	0x700	0x160	03000000	3			0													
 ps2data/effect_finish/in/magic/m0182.efx	42	0x20BB0	544	0x100	0x700	0x200	04000100	4			1													
 ps2data/effect_finish/in/magic/m0182.efx	43	0x20DD0	384	0x100	0x700	0x160	05000000	5			0													
-ps2data/effect_finish/in/magic/m0182.efx	44	0x20F50	1152	0x100	0x800	0x3C0	0x01000300		1		3													
-ps2data/effect_finish/in/magic/m0182.efx	45	0x213D0	816	0x100	0x800	0x2E0	0x02000100		2		1													
-ps2data/effect_finish/in/magic/m0182.efx	46	0x21700	816	0x100	0x800	0x2E0	0x03000100		3		1													
+ps2data/effect_finish/in/magic/m0182.efx	44	0x20F50	1152	0x100	0x800	0x3C0	01000300		1		3													
+ps2data/effect_finish/in/magic/m0182.efx	45	0x213D0	816	0x100	0x800	0x2E0	02000100		2		1													
+ps2data/effect_finish/in/magic/m0182.efx	46	0x21700	816	0x100	0x800	0x2E0	03000100		3		1													
 ps2data/effect_finish/in/magic/m0182.efx	47	0x21A30	816	0x100	0x800	0x2E0	04000100		4		1													
 ps2data/effect_finish/in/magic/m0182.efx	48	0x21D60	816	0x100	0x800	0x2E0	05000100		5		1													
 ps2data/effect_finish/in/magic/m0182.efx	49	0x22090	816	0x100	0x800	0x2E0	06000100		6		1													
@@ -347,9 +347,9 @@ ps2data/effect_finish/in/magic/m0182.efx	55	0x23400	848	0x100	0x800	0x2E0	0c0001
 ps2data/effect_finish/in/magic/m0182.efx	56	0x23750	816	0x100	0x800	0x2E0	0d000100		13		1													
 ps2data/effect_finish/in/magic/m0182.efx	57	0x23A80	816	0x100	0x800	0x2E0	0e000100		14		1													
 ps2data/effect_finish/in/magic/m0182.efx	58	0x23DB0	816	0x100	0x800	0x2E0	0f000100		15		1													
-ps2data/effect_finish/in/magic/m0182.efx	59	0x240E0	688	0x100	0xA00	0x1D0	0x01000200		1			0x02				0x00								
-ps2data/effect_finish/in/magic/m0182.efx	60	0x24390	1856	0x100	0xA00	0x620	0x02000500		2			0x05				0x00								
-ps2data/effect_finish/in/magic/m0182.efx	61	0x24AD0	1008	0x100	0xA00	0x350	0x03008d00		3			0x8D				0x00								
+ps2data/effect_finish/in/magic/m0182.efx	59	0x240E0	688	0x100	0xA00	0x1D0	01000200		1			0x02				0x00								
+ps2data/effect_finish/in/magic/m0182.efx	60	0x24390	1856	0x100	0xA00	0x620	02000500		2			0x05				0x00								
+ps2data/effect_finish/in/magic/m0182.efx	61	0x24AD0	1008	0x100	0xA00	0x350	03008d00		3			0x8D				0x00								
 ps2data/effect_finish/in/magic/m0182.efx	62	0x24EC0	736	0x100	0xA00	0x260	04008200		4			0x82				0x00								
 ps2data/effect_finish/in/magic/m0182.efx	63	0x251A0	384	0x100	0xA00	0xE0	05004100		5			0x41				0x00								
 ps2data/effect_finish/in/magic/m0182.efx	64	0x25320	704	0x100	0xA00	0x1D0	06000200		6			0x02				0x00								
@@ -373,27 +373,27 @@ ps2data/effect_finish/in/magic/m0183.efx	7	0x18C80	144	0x100	0xB00	0x80	00005703
 ps2data/effect_finish/in/magic/m0183.efx	8	0x18D10	64	0x100	0xB00	0x30	00005801			0			0x58	1										
 ps2data/effect_finish/in/magic/m0183.efx	9	0x18D50	64	0x100	0xB00	0x30	00005802			0			0x58	2										
 ps2data/effect_finish/in/magic/m0183.efx	10	0x18D90	176	0x100	0x600	0xA0	00010000	1								0x01	0000000000000000000000	0x03						
-ps2data/effect_finish/in/magic/m0183.efx	11	0x18E40	32	0x100	0x610	0x10	0x01010000								16									
-ps2data/effect_finish/in/magic/m0183.efx	12	0x18E60	160	0x100	0x620	0x90	0x01010902																	
-ps2data/effect_finish/in/magic/m0183.efx	13	0x18F00	64	0x100	0x620	0x30	0x01010101																	
-ps2data/effect_finish/in/magic/m0183.efx	14	0x18F40	64	0x100	0x620	0x30	0x01010201																	
-ps2data/effect_finish/in/magic/m0183.efx	15	0x18F80	64	0x100	0x620	0x30	0x01010301																	
-ps2data/effect_finish/in/magic/m0183.efx	16	0x18FC0	64	0x100	0x620	0x30	0x01010401																	
-ps2data/effect_finish/in/magic/m0183.efx	17	0x19000	64	0x100	0x620	0x30	0x01010501																	
-ps2data/effect_finish/in/magic/m0183.efx	18	0x19040	64	0x100	0x620	0x30	0x01010601																	
-ps2data/effect_finish/in/magic/m0183.efx	19	0x19080	64	0x100	0x620	0x30	0x01010701																	
-ps2data/effect_finish/in/magic/m0183.efx	20	0x190C0	64	0x100	0x620	0x30	0x01010801																	
-ps2data/effect_finish/in/magic/m0183.efx	21	0x19100	64	0x100	0x620	0x30	0x01010c03																	
-ps2data/effect_finish/in/magic/m0183.efx	22	0x19140	64	0x100	0x620	0x30	0x01010d03																	
-ps2data/effect_finish/in/magic/m0183.efx	23	0x19180	64	0x100	0x620	0x30	0x01010f01																	
-ps2data/effect_finish/in/magic/m0183.efx	24	0x191C0	32	0x100	0x610	0x10	0x01020000								4									
-ps2data/effect_finish/in/magic/m0183.efx	25	0x191E0	96	0x100	0x620	0x50	0x01020102																	
-ps2data/effect_finish/in/magic/m0183.efx	26	0x19240	400	0x100	0x700	0x160	0x01000000	1			0													
-ps2data/effect_finish/in/magic/m0183.efx	27	0x193D0	384	0x100	0x700	0x160	0x02000000	2			0													
-ps2data/effect_finish/in/magic/m0183.efx	28	0x19550	832	0x100	0x700	0x280	0x03000200	3			2													
-ps2data/effect_finish/in/magic/m0183.efx	29	0x19890	1008	0x100	0x800	0x380	0x01000700		1		7													
-ps2data/effect_finish/in/magic/m0183.efx	30	0x19C80	832	0x100	0x800	0x2E0	0x02000100		2		1													
-ps2data/effect_finish/in/magic/m0183.efx	31	0x19FC0	816	0x100	0x800	0x2E0	0x03000100		3		1													
+ps2data/effect_finish/in/magic/m0183.efx	11	0x18E40	32	0x100	0x610	0x10	01010000								16									
+ps2data/effect_finish/in/magic/m0183.efx	12	0x18E60	160	0x100	0x620	0x90	01010902																	
+ps2data/effect_finish/in/magic/m0183.efx	13	0x18F00	64	0x100	0x620	0x30	01010101																	
+ps2data/effect_finish/in/magic/m0183.efx	14	0x18F40	64	0x100	0x620	0x30	01010201																	
+ps2data/effect_finish/in/magic/m0183.efx	15	0x18F80	64	0x100	0x620	0x30	01010301																	
+ps2data/effect_finish/in/magic/m0183.efx	16	0x18FC0	64	0x100	0x620	0x30	01010401																	
+ps2data/effect_finish/in/magic/m0183.efx	17	0x19000	64	0x100	0x620	0x30	01010501																	
+ps2data/effect_finish/in/magic/m0183.efx	18	0x19040	64	0x100	0x620	0x30	01010601																	
+ps2data/effect_finish/in/magic/m0183.efx	19	0x19080	64	0x100	0x620	0x30	01010701																	
+ps2data/effect_finish/in/magic/m0183.efx	20	0x190C0	64	0x100	0x620	0x30	01010801																	
+ps2data/effect_finish/in/magic/m0183.efx	21	0x19100	64	0x100	0x620	0x30	01010c03																	
+ps2data/effect_finish/in/magic/m0183.efx	22	0x19140	64	0x100	0x620	0x30	01010d03																	
+ps2data/effect_finish/in/magic/m0183.efx	23	0x19180	64	0x100	0x620	0x30	01010f01																	
+ps2data/effect_finish/in/magic/m0183.efx	24	0x191C0	32	0x100	0x610	0x10	01020000								4									
+ps2data/effect_finish/in/magic/m0183.efx	25	0x191E0	96	0x100	0x620	0x50	01020102																	
+ps2data/effect_finish/in/magic/m0183.efx	26	0x19240	400	0x100	0x700	0x160	01000000	1			0													
+ps2data/effect_finish/in/magic/m0183.efx	27	0x193D0	384	0x100	0x700	0x160	02000000	2			0													
+ps2data/effect_finish/in/magic/m0183.efx	28	0x19550	832	0x100	0x700	0x280	03000200	3			2													
+ps2data/effect_finish/in/magic/m0183.efx	29	0x19890	1008	0x100	0x800	0x380	01000700		1		7													
+ps2data/effect_finish/in/magic/m0183.efx	30	0x19C80	832	0x100	0x800	0x2E0	02000100		2		1													
+ps2data/effect_finish/in/magic/m0183.efx	31	0x19FC0	816	0x100	0x800	0x2E0	03000100		3		1													
 ps2data/effect_finish/in/magic/m0183.efx	32	0x1A2F0	816	0x100	0x800	0x2E0	04000100		4		1													
 ps2data/effect_finish/in/magic/m0183.efx	33	0x1A620	816	0x100	0x800	0x2E0	05000100		5		1													
 ps2data/effect_finish/in/magic/m0183.efx	34	0x1A950	816	0x100	0x800	0x2E0	06000100		6		1													
@@ -401,9 +401,9 @@ ps2data/effect_finish/in/magic/m0183.efx	35	0x1AC80	816	0x100	0x800	0x2E0	070001
 ps2data/effect_finish/in/magic/m0183.efx	36	0x1AFB0	816	0x100	0x800	0x2E0	08000100		8		1													
 ps2data/effect_finish/in/magic/m0183.efx	37	0x1B2E0	816	0x100	0x800	0x2E0	09000100		9		1													
 ps2data/effect_finish/in/magic/m0183.efx	38	0x1B610	816	0x100	0x800	0x2E0	0a000100		10		1													
-ps2data/effect_finish/in/magic/m0183.efx	39	0x1B940	1792	0x100	0xA00	0x5F0	0x01006700		1			0x67				0x00								
-ps2data/effect_finish/in/magic/m0183.efx	40	0x1C040	1824	0x100	0xA00	0x5F0	0x02006700		2			0x67				0x00								
-ps2data/effect_finish/in/magic/m0183.efx	41	0x1C760	720	0x100	0xA00	0x240	0x03009600		3			0x96				0x00								
+ps2data/effect_finish/in/magic/m0183.efx	39	0x1B940	1792	0x100	0xA00	0x5F0	01006700		1			0x67				0x00								
+ps2data/effect_finish/in/magic/m0183.efx	40	0x1C040	1824	0x100	0xA00	0x5F0	02006700		2			0x67				0x00								
+ps2data/effect_finish/in/magic/m0183.efx	41	0x1C760	720	0x100	0xA00	0x240	03009600		3			0x96				0x00								
 ps2data/effect_finish/in/magic/m0183.efx	42	0x1CA30	656	0x100	0xA00	0x1D0	04000200		4			0x02				0x00								
 ps2data/effect_finish/in/magic/m0183.efx	43	0x1CCC0	768	0x100	0xA00	0x240	05008400		5			0x84				0x00								
 ps2data/effect_finish/in/magic/m0183.efx	44	0x1CFC0	352	0x100	0xA00	0xE0	06004100		6			0x41				0x00								
@@ -429,28 +429,28 @@ ps2data/effect_finish/in/menu/m_all.efx	14	0xF0B0	48	0x100	0xB00	0x20	00005108		
 ps2data/effect_finish/in/menu/m_all.efx	15	0xF0E0	48	0x100	0xB00	0x20	00005109			0			0x51	9										
 ps2data/effect_finish/in/menu/m_all.efx	16	0xF110	48	0x100	0xB00	0x20	0000510a			0			0x51	10										
 ps2data/effect_finish/in/menu/m_all.efx	17	0xF140	176	0x100	0x600	0xA0	00010000	1								0x01	0000000000000000000000	0x0E						
-ps2data/effect_finish/in/menu/m_all.efx	18	0xF1F0	32	0x100	0x610	0x10	0x01010000								8									
-ps2data/effect_finish/in/menu/m_all.efx	19	0xF210	64	0x100	0x620	0x30	0x01010101																	
-ps2data/effect_finish/in/menu/m_all.efx	20	0xF250	64	0x100	0x620	0x30	0x01010201																	
-ps2data/effect_finish/in/menu/m_all.efx	21	0xF290	64	0x100	0x620	0x30	0x01010301																	
-ps2data/effect_finish/in/menu/m_all.efx	22	0xF2D0	64	0x100	0x620	0x30	0x01010401																	
-ps2data/effect_finish/in/menu/m_all.efx	23	0xF310	64	0x100	0x620	0x30	0x01010501																	
+ps2data/effect_finish/in/menu/m_all.efx	18	0xF1F0	32	0x100	0x610	0x10	01010000								8									
+ps2data/effect_finish/in/menu/m_all.efx	19	0xF210	64	0x100	0x620	0x30	01010101																	
+ps2data/effect_finish/in/menu/m_all.efx	20	0xF250	64	0x100	0x620	0x30	01010201																	
+ps2data/effect_finish/in/menu/m_all.efx	21	0xF290	64	0x100	0x620	0x30	01010301																	
+ps2data/effect_finish/in/menu/m_all.efx	22	0xF2D0	64	0x100	0x620	0x30	01010401																	
+ps2data/effect_finish/in/menu/m_all.efx	23	0xF310	64	0x100	0x620	0x30	01010501																	
 ps2data/effect_finish/in/menu/m_all.efx	24	0xF350	176	0x100	0x600	0xA0	00020000	2								0x02	0000000000000000000000	0x0E						
-ps2data/effect_finish/in/menu/m_all.efx	25	0xF400	32	0x100	0x610	0x10	0x02010000								8									
-ps2data/effect_finish/in/menu/m_all.efx	26	0xF420	64	0x100	0x620	0x30	0x02010101																	
-ps2data/effect_finish/in/menu/m_all.efx	27	0xF460	64	0x100	0x620	0x30	0x02010201																	
-ps2data/effect_finish/in/menu/m_all.efx	28	0xF4A0	64	0x100	0x620	0x30	0x02010301																	
-ps2data/effect_finish/in/menu/m_all.efx	29	0xF4E0	64	0x100	0x620	0x30	0x02010401																	
-ps2data/effect_finish/in/menu/m_all.efx	30	0xF520	64	0x100	0x620	0x30	0x02010501																	
-ps2data/effect_finish/in/menu/m_all.efx	31	0xF560	64	0x100	0x620	0x30	0x02010601																	
+ps2data/effect_finish/in/menu/m_all.efx	25	0xF400	32	0x100	0x610	0x10	02010000								8									
+ps2data/effect_finish/in/menu/m_all.efx	26	0xF420	64	0x100	0x620	0x30	02010101																	
+ps2data/effect_finish/in/menu/m_all.efx	27	0xF460	64	0x100	0x620	0x30	02010201																	
+ps2data/effect_finish/in/menu/m_all.efx	28	0xF4A0	64	0x100	0x620	0x30	02010301																	
+ps2data/effect_finish/in/menu/m_all.efx	29	0xF4E0	64	0x100	0x620	0x30	02010401																	
+ps2data/effect_finish/in/menu/m_all.efx	30	0xF520	64	0x100	0x620	0x30	02010501																	
+ps2data/effect_finish/in/menu/m_all.efx	31	0xF560	64	0x100	0x620	0x30	02010601																	
 ps2data/effect_finish/in/menu/m_all.efx	32	0xF5A0	176	0x100	0x600	0xA0	00030000	3								0x03	0000000000000000000000	0x0E						
-ps2data/effect_finish/in/menu/m_all.efx	33	0xF650	32	0x100	0x610	0x10	0x03010000								8									
-ps2data/effect_finish/in/menu/m_all.efx	34	0xF670	64	0x100	0x620	0x30	0x03010101																	
-ps2data/effect_finish/in/menu/m_all.efx	35	0xF6B0	64	0x100	0x620	0x30	0x03010201																	
-ps2data/effect_finish/in/menu/m_all.efx	36	0xF6F0	64	0x100	0x620	0x30	0x03010301																	
-ps2data/effect_finish/in/menu/m_all.efx	37	0xF730	64	0x100	0x620	0x30	0x03010401																	
-ps2data/effect_finish/in/menu/m_all.efx	38	0xF770	64	0x100	0x620	0x30	0x03010501																	
-ps2data/effect_finish/in/menu/m_all.efx	39	0xF7B0	64	0x100	0x620	0x30	0x03010601																	
+ps2data/effect_finish/in/menu/m_all.efx	33	0xF650	32	0x100	0x610	0x10	03010000								8									
+ps2data/effect_finish/in/menu/m_all.efx	34	0xF670	64	0x100	0x620	0x30	03010101																	
+ps2data/effect_finish/in/menu/m_all.efx	35	0xF6B0	64	0x100	0x620	0x30	03010201																	
+ps2data/effect_finish/in/menu/m_all.efx	36	0xF6F0	64	0x100	0x620	0x30	03010301																	
+ps2data/effect_finish/in/menu/m_all.efx	37	0xF730	64	0x100	0x620	0x30	03010401																	
+ps2data/effect_finish/in/menu/m_all.efx	38	0xF770	64	0x100	0x620	0x30	03010501																	
+ps2data/effect_finish/in/menu/m_all.efx	39	0xF7B0	64	0x100	0x620	0x30	03010601																	
 ps2data/effect_finish/in/menu/m_all.efx	40	0xF7F0	176	0x100	0x600	0xA0	00040000	4								0x04	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	41	0xF8A0	32	0x100	0x610	0x10	04010000								8									
 ps2data/effect_finish/in/menu/m_all.efx	42	0xF8C0	64	0x100	0x620	0x30	04010101																	
@@ -556,59 +556,59 @@ ps2data/effect_finish/in/menu/m_all.efx	141	0x11540	64	0x100	0x620	0x30	10010401
 ps2data/effect_finish/in/menu/m_all.efx	142	0x11580	176	0x100	0x600	0xA0	00110000	17								0x11	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	143	0x11630	32	0x100	0x610	0x10	11010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	144	0x11650	64	0x100	0x620	0x30	11010101																	
-ps2data/effect_finish/in/menu/m_all.efx	145	0x11690	176	0x100	0x600	0xA0	0x00120000	18								0x12	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	145	0x11690	176	0x100	0x600	0xA0	00120000	18								0x12	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	146	0x11740	32	0x100	0x610	0x10	12010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	147	0x11760	64	0x100	0x620	0x30	12010101																	
-ps2data/effect_finish/in/menu/m_all.efx	148	0x117A0	176	0x100	0x600	0xA0	0x00130000	19								0x13	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	148	0x117A0	176	0x100	0x600	0xA0	00130000	19								0x13	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	149	0x11850	32	0x100	0x610	0x10	13010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	150	0x11870	64	0x100	0x620	0x30	13010101																	
 ps2data/effect_finish/in/menu/m_all.efx	151	0x118B0	64	0x100	0x620	0x30	13010201																	
-ps2data/effect_finish/in/menu/m_all.efx	152	0x118F0	176	0x100	0x600	0xA0	0x00140000	20								0x14	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	152	0x118F0	176	0x100	0x600	0xA0	00140000	20								0x14	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	153	0x119A0	32	0x100	0x610	0x10	14010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	154	0x119C0	64	0x100	0x620	0x30	14010101																	
-ps2data/effect_finish/in/menu/m_all.efx	155	0x11A00	176	0x100	0x600	0xA0	0x00150000	21								0x15	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	155	0x11A00	176	0x100	0x600	0xA0	00150000	21								0x15	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	156	0x11AB0	32	0x100	0x610	0x10	15010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	157	0x11AD0	64	0x100	0x620	0x30	15010101																	
-ps2data/effect_finish/in/menu/m_all.efx	158	0x11B10	176	0x100	0x600	0xA0	0x00160000	22								0x16	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	158	0x11B10	176	0x100	0x600	0xA0	00160000	22								0x16	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	159	0x11BC0	32	0x100	0x610	0x10	16010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	160	0x11BE0	64	0x100	0x620	0x30	16010101																	
-ps2data/effect_finish/in/menu/m_all.efx	161	0x11C20	176	0x100	0x600	0xA0	0x00170000	23								0x17	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	161	0x11C20	176	0x100	0x600	0xA0	00170000	23								0x17	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	162	0x11CD0	32	0x100	0x610	0x10	17010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	163	0x11CF0	64	0x100	0x620	0x30	17010101																	
-ps2data/effect_finish/in/menu/m_all.efx	164	0x11D30	176	0x100	0x600	0xA0	0x00180000	24								0x18	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	164	0x11D30	176	0x100	0x600	0xA0	00180000	24								0x18	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	165	0x11DE0	32	0x100	0x610	0x10	18010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	166	0x11E00	64	0x100	0x620	0x30	18010101																	
-ps2data/effect_finish/in/menu/m_all.efx	167	0x11E40	176	0x100	0x600	0xA0	0x00190000	25								0x19	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	167	0x11E40	176	0x100	0x600	0xA0	00190000	25								0x19	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	168	0x11EF0	32	0x100	0x610	0x10	19010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	169	0x11F10	64	0x100	0x620	0x30	19010101																	
-ps2data/effect_finish/in/menu/m_all.efx	170	0x11F50	176	0x100	0x600	0xA0	0x001a0000	26								0x1A	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	170	0x11F50	176	0x100	0x600	0xA0	001a0000	26								0x1A	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	171	0x12000	32	0x100	0x610	0x10	1a010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	172	0x12020	64	0x100	0x620	0x30	1a010101																	
-ps2data/effect_finish/in/menu/m_all.efx	173	0x12060	176	0x100	0x600	0xA0	0x001b0000	27								0x1B	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	173	0x12060	176	0x100	0x600	0xA0	001b0000	27								0x1B	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	174	0x12110	32	0x100	0x610	0x10	1b010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	175	0x12130	64	0x100	0x620	0x30	1b010101																	
-ps2data/effect_finish/in/menu/m_all.efx	176	0x12170	176	0x100	0x600	0xA0	0x001c0000	28								0x1C	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	176	0x12170	176	0x100	0x600	0xA0	001c0000	28								0x1C	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	177	0x12220	32	0x100	0x610	0x10	1c010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	178	0x12240	64	0x100	0x620	0x30	1c010101																	
-ps2data/effect_finish/in/menu/m_all.efx	179	0x12280	176	0x100	0x600	0xA0	0x001d0000	29								0x1D	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	179	0x12280	176	0x100	0x600	0xA0	001d0000	29								0x1D	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	180	0x12330	32	0x100	0x610	0x10	1d010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	181	0x12350	64	0x100	0x620	0x30	1d010101																	
-ps2data/effect_finish/in/menu/m_all.efx	182	0x12390	176	0x100	0x600	0xA0	0x001e0000	30								0x1E	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	182	0x12390	176	0x100	0x600	0xA0	001e0000	30								0x1E	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	183	0x12440	32	0x100	0x610	0x10	1e010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	184	0x12460	64	0x100	0x620	0x30	1e010101																	
-ps2data/effect_finish/in/menu/m_all.efx	185	0x124A0	176	0x100	0x600	0xA0	0x001f0000	31								0x1F	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	185	0x124A0	176	0x100	0x600	0xA0	001f0000	31								0x1F	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	186	0x12550	32	0x100	0x610	0x10	1f010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	187	0x12570	64	0x100	0x620	0x30	1f010101																	
-ps2data/effect_finish/in/menu/m_all.efx	188	0x125B0	176	0x100	0x600	0xA0	0x00200000	32								0x20	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	188	0x125B0	176	0x100	0x600	0xA0	00200000	32								0x20	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	189	0x12660	32	0x100	0x610	0x10	20010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	190	0x12680	64	0x100	0x620	0x30	20010101																	
-ps2data/effect_finish/in/menu/m_all.efx	191	0x126C0	176	0x100	0x600	0xA0	0x00210000	33								0x21	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	191	0x126C0	176	0x100	0x600	0xA0	00210000	33								0x21	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	192	0x12770	32	0x100	0x610	0x10	21010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	193	0x12790	64	0x100	0x620	0x30	21010101																	
-ps2data/effect_finish/in/menu/m_all.efx	194	0x127D0	176	0x100	0x600	0xA0	0x00220000	34								0x22	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	194	0x127D0	176	0x100	0x600	0xA0	00220000	34								0x22	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	195	0x12880	32	0x100	0x610	0x10	22010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	196	0x128A0	64	0x100	0x620	0x30	22010101																	
-ps2data/effect_finish/in/menu/m_all.efx	197	0x128E0	176	0x100	0x600	0xA0	0x00230000	35								0x23	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	197	0x128E0	176	0x100	0x600	0xA0	00230000	35								0x23	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	198	0x12990	32	0x100	0x610	0x10	23010000								12									
 ps2data/effect_finish/in/menu/m_all.efx	199	0x129B0	64	0x100	0x620	0x30	23010101																	
 ps2data/effect_finish/in/menu/m_all.efx	200	0x129F0	64	0x100	0x620	0x30	23010201																	
@@ -618,48 +618,48 @@ ps2data/effect_finish/in/menu/m_all.efx	203	0x12AB0	64	0x100	0x620	0x30	23010501
 ps2data/effect_finish/in/menu/m_all.efx	204	0x12AF0	64	0x100	0x620	0x30	23010601																	
 ps2data/effect_finish/in/menu/m_all.efx	205	0x12B30	64	0x100	0x620	0x30	23010701																	
 ps2data/effect_finish/in/menu/m_all.efx	206	0x12B70	64	0x100	0x620	0x30	23010801																	
-ps2data/effect_finish/in/menu/m_all.efx	207	0x12BB0	176	0x100	0x600	0xA0	0x00240000	36								0x24	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	207	0x12BB0	176	0x100	0x600	0xA0	00240000	36								0x24	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	208	0x12C60	32	0x100	0x610	0x10	24010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	209	0x12C80	64	0x100	0x620	0x30	24010101																	
-ps2data/effect_finish/in/menu/m_all.efx	210	0x12CC0	176	0x100	0x600	0xA0	0x00250000	37								0x25	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	210	0x12CC0	176	0x100	0x600	0xA0	00250000	37								0x25	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	211	0x12D70	32	0x100	0x610	0x10	25010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	212	0x12D90	64	0x100	0x620	0x30	25010101																	
-ps2data/effect_finish/in/menu/m_all.efx	213	0x12DD0	176	0x100	0x600	0xA0	0x00260000	38								0x26	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	213	0x12DD0	176	0x100	0x600	0xA0	00260000	38								0x26	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	214	0x12E80	32	0x100	0x610	0x10	26010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	215	0x12EA0	64	0x100	0x620	0x30	26010101																	
-ps2data/effect_finish/in/menu/m_all.efx	216	0x12EE0	176	0x100	0x600	0xA0	0x00270000	39								0x27	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	216	0x12EE0	176	0x100	0x600	0xA0	00270000	39								0x27	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	217	0x12F90	32	0x100	0x610	0x10	27010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	218	0x12FB0	64	0x100	0x620	0x30	27010101																	
-ps2data/effect_finish/in/menu/m_all.efx	219	0x12FF0	176	0x100	0x600	0xA0	0x00280000	40								0x28	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	219	0x12FF0	176	0x100	0x600	0xA0	00280000	40								0x28	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	220	0x130A0	32	0x100	0x610	0x10	28010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	221	0x130C0	64	0x100	0x620	0x30	28010101																	
-ps2data/effect_finish/in/menu/m_all.efx	222	0x13100	176	0x100	0x600	0xA0	0x00290000	41								0x29	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	222	0x13100	176	0x100	0x600	0xA0	00290000	41								0x29	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	223	0x131B0	32	0x100	0x610	0x10	29010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	224	0x131D0	64	0x100	0x620	0x30	29010101																	
-ps2data/effect_finish/in/menu/m_all.efx	225	0x13210	176	0x100	0x600	0xA0	0x002a0000	42								0x2A	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	225	0x13210	176	0x100	0x600	0xA0	002a0000	42								0x2A	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	226	0x132C0	32	0x100	0x610	0x10	2a010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	227	0x132E0	64	0x100	0x620	0x30	2a010101																	
-ps2data/effect_finish/in/menu/m_all.efx	228	0x13320	176	0x100	0x600	0xA0	0x002b0000	43								0x2B	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	228	0x13320	176	0x100	0x600	0xA0	002b0000	43								0x2B	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	229	0x133D0	32	0x100	0x610	0x10	2b010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	230	0x133F0	64	0x100	0x620	0x30	2b010101																	
-ps2data/effect_finish/in/menu/m_all.efx	231	0x13430	176	0x100	0x600	0xA0	0x002c0000	44								0x2C	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	231	0x13430	176	0x100	0x600	0xA0	002c0000	44								0x2C	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	232	0x134E0	32	0x100	0x610	0x10	2c010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	233	0x13500	64	0x100	0x620	0x30	2c010101																	
-ps2data/effect_finish/in/menu/m_all.efx	234	0x13540	176	0x100	0x600	0xA0	0x002d0000	45								0x2D	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all.efx	234	0x13540	176	0x100	0x600	0xA0	002d0000	45								0x2D	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all.efx	235	0x135F0	32	0x100	0x610	0x10	2d010000								4									
 ps2data/effect_finish/in/menu/m_all.efx	236	0x13610	64	0x100	0x620	0x30	2d010101																	
-ps2data/effect_finish/in/menu/m_all.efx	237	0x13650	384	0x100	0x700	0x160	0x01000000	1			0													
-ps2data/effect_finish/in/menu/m_all.efx	238	0x137D0	400	0x100	0x700	0x160	0x02000000	2			0													
-ps2data/effect_finish/in/menu/m_all.efx	239	0x13960	400	0x100	0x700	0x160	0x03000000	3			0													
+ps2data/effect_finish/in/menu/m_all.efx	237	0x13650	384	0x100	0x700	0x160	01000000	1			0													
+ps2data/effect_finish/in/menu/m_all.efx	238	0x137D0	400	0x100	0x700	0x160	02000000	2			0													
+ps2data/effect_finish/in/menu/m_all.efx	239	0x13960	400	0x100	0x700	0x160	03000000	3			0													
 ps2data/effect_finish/in/menu/m_all.efx	240	0x13AF0	400	0x100	0x700	0x160	04000000	4			0													
 ps2data/effect_finish/in/menu/m_all.efx	241	0x13C80	400	0x100	0x700	0x160	05000000	5			0													
 ps2data/effect_finish/in/menu/m_all.efx	242	0x13E10	400	0x100	0x700	0x160	06000000	6			0													
 ps2data/effect_finish/in/menu/m_all.efx	243	0x13FA0	400	0x100	0x700	0x160	07000000	7			0													
 ps2data/effect_finish/in/menu/m_all.efx	244	0x14130	400	0x100	0x700	0x160	08000000	8			0													
 ps2data/effect_finish/in/menu/m_all.efx	245	0x142C0	400	0x100	0x700	0x160	09000000	9			0													
-ps2data/effect_finish/in/menu/m_all.efx	246	0x14450	800	0x100	0x800	0x2E0	0x01000100		1		1													
-ps2data/effect_finish/in/menu/m_all.efx	247	0x14770	816	0x100	0x800	0x2E0	0x02000100		2		1													
-ps2data/effect_finish/in/menu/m_all.efx	248	0x14AA0	848	0x100	0x800	0x2E0	0x03000100		3		1													
+ps2data/effect_finish/in/menu/m_all.efx	246	0x14450	800	0x100	0x800	0x2E0	01000100		1		1													
+ps2data/effect_finish/in/menu/m_all.efx	247	0x14770	816	0x100	0x800	0x2E0	02000100		2		1													
+ps2data/effect_finish/in/menu/m_all.efx	248	0x14AA0	848	0x100	0x800	0x2E0	03000100		3		1													
 ps2data/effect_finish/in/menu/m_all.efx	249	0x14DF0	800	0x100	0x800	0x2E0	04000100		4		1													
 ps2data/effect_finish/in/menu/m_all.efx	250	0x15110	800	0x100	0x800	0x2E0	05000100		5		1													
 ps2data/effect_finish/in/menu/m_all.efx	251	0x15430	784	0x100	0x800	0x2E0	06000100		6		1													
@@ -673,9 +673,9 @@ ps2data/effect_finish/in/menu/m_all.efx	258	0x16A70	816	0x100	0x800	0x2E0	0d0001
 ps2data/effect_finish/in/menu/m_all.efx	259	0x16DA0	816	0x100	0x800	0x2E0	0e000100		14		1													
 ps2data/effect_finish/in/menu/m_all.efx	260	0x170D0	816	0x100	0x800	0x2E0	0f000100		15		1													
 ps2data/effect_finish/in/menu/m_all.efx	261	0x17400	832	0x100	0x800	0x2E0	10000100		16		1													
-ps2data/effect_finish/in/menu/m_all.efx	262	0x17740	544	0x100	0xA00	0x1D0	0x01000200		1			0x02				0x00								
-ps2data/effect_finish/in/menu/m_all.efx	263	0x17960	544	0x100	0xA00	0x1D0	0x02000200		2			0x02				0x00								
-ps2data/effect_finish/in/menu/m_all.efx	264	0x17B80	624	0x100	0xA00	0x1D0	0x03000200		3			0x02				0x00								
+ps2data/effect_finish/in/menu/m_all.efx	262	0x17740	544	0x100	0xA00	0x1D0	01000200		1			0x02				0x00								
+ps2data/effect_finish/in/menu/m_all.efx	263	0x17960	544	0x100	0xA00	0x1D0	02000200		2			0x02				0x00								
+ps2data/effect_finish/in/menu/m_all.efx	264	0x17B80	624	0x100	0xA00	0x1D0	03000200		3			0x02				0x00								
 ps2data/effect_finish/in/menu/m_all.efx	265	0x17DF0	560	0x100	0xA00	0x1D0	04000200		4			0x02				0x00								
 ps2data/effect_finish/in/menu/m_all.efx	266	0x18020	624	0x100	0xA00	0x1D0	05000200		5			0x02				0x00								
 ps2data/effect_finish/in/menu/m_all.efx	267	0x18290	592	0x100	0xA00	0x1D0	06000200		6			0x02				0x00								
@@ -859,14 +859,14 @@ ps2data/effect_finish/in/menu/m_all2.efx	164	0x19BBE0	112	0x100	0xB00	0x60	00005
 ps2data/effect_finish/in/menu/m_all2.efx	165	0x19BC50	48	0x100	0xB00	0x20	0000513f			0			0x51	63										
 ps2data/effect_finish/in/menu/m_all2.efx	166	0x19BC80	48	0x100	0xB00	0x20	00005140			0			0x51	64										
 ps2data/effect_finish/in/menu/m_all2.efx	167	0x19BCB0	176	0x100	0x600	0xA0	00010000	1								0x01	0000000000000000000000	0x0E						
-ps2data/effect_finish/in/menu/m_all2.efx	168	0x19BD60	32	0x100	0x610	0x10	0x01010000								4									
-ps2data/effect_finish/in/menu/m_all2.efx	169	0x19BD80	64	0x100	0x620	0x30	0x01010101																	
+ps2data/effect_finish/in/menu/m_all2.efx	168	0x19BD60	32	0x100	0x610	0x10	01010000								4									
+ps2data/effect_finish/in/menu/m_all2.efx	169	0x19BD80	64	0x100	0x620	0x30	01010101																	
 ps2data/effect_finish/in/menu/m_all2.efx	170	0x19BDC0	176	0x100	0x600	0xA0	00020000	2								0x02	0000000000000000000000	0x0E						
-ps2data/effect_finish/in/menu/m_all2.efx	171	0x19BE70	32	0x100	0x610	0x10	0x02010000								4									
-ps2data/effect_finish/in/menu/m_all2.efx	172	0x19BE90	64	0x100	0x620	0x30	0x02010101																	
+ps2data/effect_finish/in/menu/m_all2.efx	171	0x19BE70	32	0x100	0x610	0x10	02010000								4									
+ps2data/effect_finish/in/menu/m_all2.efx	172	0x19BE90	64	0x100	0x620	0x30	02010101																	
 ps2data/effect_finish/in/menu/m_all2.efx	173	0x19BED0	176	0x100	0x600	0xA0	00030000	3								0x03	0000000000000000000000	0x0E						
-ps2data/effect_finish/in/menu/m_all2.efx	174	0x19BF80	32	0x100	0x610	0x10	0x03010000								4									
-ps2data/effect_finish/in/menu/m_all2.efx	175	0x19BFA0	64	0x100	0x620	0x30	0x03010101																	
+ps2data/effect_finish/in/menu/m_all2.efx	174	0x19BF80	32	0x100	0x610	0x10	03010000								4									
+ps2data/effect_finish/in/menu/m_all2.efx	175	0x19BFA0	64	0x100	0x620	0x30	03010101																	
 ps2data/effect_finish/in/menu/m_all2.efx	176	0x19BFE0	176	0x100	0x600	0xA0	00040000	4								0x04	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	177	0x19C090	32	0x100	0x610	0x10	04010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	178	0x19C0B0	64	0x100	0x620	0x30	04010101																	
@@ -909,181 +909,181 @@ ps2data/effect_finish/in/menu/m_all2.efx	214	0x19CD70	64	0x100	0x620	0x30	100101
 ps2data/effect_finish/in/menu/m_all2.efx	215	0x19CDB0	176	0x100	0x600	0xA0	00110000	17								0x11	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	216	0x19CE60	32	0x100	0x610	0x10	11010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	217	0x19CE80	64	0x100	0x620	0x30	11010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	218	0x19CEC0	176	0x100	0x600	0xA0	0x00120000	18								0x12	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	218	0x19CEC0	176	0x100	0x600	0xA0	00120000	18								0x12	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	219	0x19CF70	32	0x100	0x610	0x10	12010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	220	0x19CF90	64	0x100	0x620	0x30	12010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	221	0x19CFD0	176	0x100	0x600	0xA0	0x00130000	19								0x13	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	221	0x19CFD0	176	0x100	0x600	0xA0	00130000	19								0x13	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	222	0x19D080	32	0x100	0x610	0x10	13010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	223	0x19D0A0	64	0x100	0x620	0x30	13010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	224	0x19D0E0	176	0x100	0x600	0xA0	0x00140000	20								0x14	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	224	0x19D0E0	176	0x100	0x600	0xA0	00140000	20								0x14	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	225	0x19D190	32	0x100	0x610	0x10	14010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	226	0x19D1B0	64	0x100	0x620	0x30	14010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	227	0x19D1F0	176	0x100	0x600	0xA0	0x00150000	21								0x15	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	227	0x19D1F0	176	0x100	0x600	0xA0	00150000	21								0x15	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	228	0x19D2A0	32	0x100	0x610	0x10	15010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	229	0x19D2C0	64	0x100	0x620	0x30	15010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	230	0x19D300	176	0x100	0x600	0xA0	0x00160000	22								0x16	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	230	0x19D300	176	0x100	0x600	0xA0	00160000	22								0x16	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	231	0x19D3B0	32	0x100	0x610	0x10	16010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	232	0x19D3D0	64	0x100	0x620	0x30	16010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	233	0x19D410	176	0x100	0x600	0xA0	0x00170000	23								0x17	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	233	0x19D410	176	0x100	0x600	0xA0	00170000	23								0x17	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	234	0x19D4C0	32	0x100	0x610	0x10	17010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	235	0x19D4E0	64	0x100	0x620	0x30	17010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	236	0x19D520	176	0x100	0x600	0xA0	0x00180000	24								0x18	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	236	0x19D520	176	0x100	0x600	0xA0	00180000	24								0x18	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	237	0x19D5D0	32	0x100	0x610	0x10	18010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	238	0x19D5F0	64	0x100	0x620	0x30	18010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	239	0x19D630	176	0x100	0x600	0xA0	0x00190000	25								0x19	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	239	0x19D630	176	0x100	0x600	0xA0	00190000	25								0x19	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	240	0x19D6E0	32	0x100	0x610	0x10	19010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	241	0x19D700	64	0x100	0x620	0x30	19010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	242	0x19D740	176	0x100	0x600	0xA0	0x001a0000	26								0x1A	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	242	0x19D740	176	0x100	0x600	0xA0	001a0000	26								0x1A	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	243	0x19D7F0	32	0x100	0x610	0x10	1a010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	244	0x19D810	64	0x100	0x620	0x30	1a010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	245	0x19D850	176	0x100	0x600	0xA0	0x001b0000	27								0x1B	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	245	0x19D850	176	0x100	0x600	0xA0	001b0000	27								0x1B	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	246	0x19D900	32	0x100	0x610	0x10	1b010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	247	0x19D920	64	0x100	0x620	0x30	1b010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	248	0x19D960	176	0x100	0x600	0xA0	0x001c0000	28								0x1C	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	248	0x19D960	176	0x100	0x600	0xA0	001c0000	28								0x1C	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	249	0x19DA10	32	0x100	0x610	0x10	1c010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	250	0x19DA30	64	0x100	0x620	0x30	1c010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	251	0x19DA70	176	0x100	0x600	0xA0	0x001d0000	29								0x1D	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	251	0x19DA70	176	0x100	0x600	0xA0	001d0000	29								0x1D	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	252	0x19DB20	32	0x100	0x610	0x10	1d010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	253	0x19DB40	64	0x100	0x620	0x30	1d010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	254	0x19DB80	176	0x100	0x600	0xA0	0x001e0000	30								0x1E	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	254	0x19DB80	176	0x100	0x600	0xA0	001e0000	30								0x1E	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	255	0x19DC30	32	0x100	0x610	0x10	1e010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	256	0x19DC50	64	0x100	0x620	0x30	1e010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	257	0x19DC90	176	0x100	0x600	0xA0	0x001f0000	31								0x1F	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	257	0x19DC90	176	0x100	0x600	0xA0	001f0000	31								0x1F	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	258	0x19DD40	32	0x100	0x610	0x10	1f010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	259	0x19DD60	64	0x100	0x620	0x30	1f010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	260	0x19DDA0	176	0x100	0x600	0xA0	0x00200000	32								0x20	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	260	0x19DDA0	176	0x100	0x600	0xA0	00200000	32								0x20	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	261	0x19DE50	32	0x100	0x610	0x10	20010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	262	0x19DE70	64	0x100	0x620	0x30	20010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	263	0x19DEB0	176	0x100	0x600	0xA0	0x00210000	33								0x21	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	263	0x19DEB0	176	0x100	0x600	0xA0	00210000	33								0x21	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	264	0x19DF60	32	0x100	0x610	0x10	21010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	265	0x19DF80	64	0x100	0x620	0x30	21010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	266	0x19DFC0	176	0x100	0x600	0xA0	0x00220000	34								0x22	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	266	0x19DFC0	176	0x100	0x600	0xA0	00220000	34								0x22	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	267	0x19E070	32	0x100	0x610	0x10	22010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	268	0x19E090	64	0x100	0x620	0x30	22010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	269	0x19E0D0	176	0x100	0x600	0xA0	0x00230000	35								0x23	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	269	0x19E0D0	176	0x100	0x600	0xA0	00230000	35								0x23	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	270	0x19E180	32	0x100	0x610	0x10	23010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	271	0x19E1A0	64	0x100	0x620	0x30	23010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	272	0x19E1E0	176	0x100	0x600	0xA0	0x00240000	36								0x24	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	272	0x19E1E0	176	0x100	0x600	0xA0	00240000	36								0x24	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	273	0x19E290	32	0x100	0x610	0x10	24010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	274	0x19E2B0	64	0x100	0x620	0x30	24010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	275	0x19E2F0	176	0x100	0x600	0xA0	0x00250000	37								0x25	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	275	0x19E2F0	176	0x100	0x600	0xA0	00250000	37								0x25	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	276	0x19E3A0	32	0x100	0x610	0x10	25010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	277	0x19E3C0	64	0x100	0x620	0x30	25010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	278	0x19E400	176	0x100	0x600	0xA0	0x00260000	38								0x26	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	278	0x19E400	176	0x100	0x600	0xA0	00260000	38								0x26	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	279	0x19E4B0	32	0x100	0x610	0x10	26010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	280	0x19E4D0	64	0x100	0x620	0x30	26010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	281	0x19E510	176	0x100	0x600	0xA0	0x00270000	39								0x27	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	281	0x19E510	176	0x100	0x600	0xA0	00270000	39								0x27	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	282	0x19E5C0	32	0x100	0x610	0x10	27010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	283	0x19E5E0	64	0x100	0x620	0x30	27010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	284	0x19E620	176	0x100	0x600	0xA0	0x00280000	40								0x28	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	284	0x19E620	176	0x100	0x600	0xA0	00280000	40								0x28	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	285	0x19E6D0	32	0x100	0x610	0x10	28010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	286	0x19E6F0	64	0x100	0x620	0x30	28010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	287	0x19E730	176	0x100	0x600	0xA0	0x00290000	41								0x29	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	287	0x19E730	176	0x100	0x600	0xA0	00290000	41								0x29	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	288	0x19E7E0	32	0x100	0x610	0x10	29010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	289	0x19E800	64	0x100	0x620	0x30	29010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	290	0x19E840	176	0x100	0x600	0xA0	0x002a0000	42								0x2A	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	290	0x19E840	176	0x100	0x600	0xA0	002a0000	42								0x2A	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	291	0x19E8F0	32	0x100	0x610	0x10	2a010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	292	0x19E910	64	0x100	0x620	0x30	2a010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	293	0x19E950	176	0x100	0x600	0xA0	0x002b0000	43								0x2B	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	293	0x19E950	176	0x100	0x600	0xA0	002b0000	43								0x2B	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	294	0x19EA00	32	0x100	0x610	0x10	2b010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	295	0x19EA20	64	0x100	0x620	0x30	2b010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	296	0x19EA60	176	0x100	0x600	0xA0	0x002c0000	44								0x2C	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	296	0x19EA60	176	0x100	0x600	0xA0	002c0000	44								0x2C	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	297	0x19EB10	32	0x100	0x610	0x10	2c010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	298	0x19EB30	64	0x100	0x620	0x30	2c010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	299	0x19EB70	176	0x100	0x600	0xA0	0x002d0000	45								0x2D	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	299	0x19EB70	176	0x100	0x600	0xA0	002d0000	45								0x2D	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	300	0x19EC20	32	0x100	0x610	0x10	2d010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	301	0x19EC40	64	0x100	0x620	0x30	2d010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	302	0x19EC80	176	0x100	0x600	0xA0	0x002e0000	46								0x2E	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	302	0x19EC80	176	0x100	0x600	0xA0	002e0000	46								0x2E	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	303	0x19ED30	32	0x100	0x610	0x10	2e010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	304	0x19ED50	64	0x100	0x620	0x30	2e010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	305	0x19ED90	176	0x100	0x600	0xA0	0x002f0000	47								0x2F	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	305	0x19ED90	176	0x100	0x600	0xA0	002f0000	47								0x2F	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	306	0x19EE40	32	0x100	0x610	0x10	2f010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	307	0x19EE60	64	0x100	0x620	0x30	2f010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	308	0x19EEA0	176	0x100	0x600	0xA0	0x00300000	48								0x30	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	308	0x19EEA0	176	0x100	0x600	0xA0	00300000	48								0x30	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	309	0x19EF50	32	0x100	0x610	0x10	30010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	310	0x19EF70	64	0x100	0x620	0x30	30010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	311	0x19EFB0	176	0x100	0x600	0xA0	0x00310000	49								0x31	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	311	0x19EFB0	176	0x100	0x600	0xA0	00310000	49								0x31	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	312	0x19F060	32	0x100	0x610	0x10	31010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	313	0x19F080	64	0x100	0x620	0x30	31010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	314	0x19F0C0	176	0x100	0x600	0xA0	0x00320000	50								0x32	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	314	0x19F0C0	176	0x100	0x600	0xA0	00320000	50								0x32	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	315	0x19F170	32	0x100	0x610	0x10	32010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	316	0x19F190	64	0x100	0x620	0x30	32010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	317	0x19F1D0	176	0x100	0x600	0xA0	0x00330000	51								0x33	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	317	0x19F1D0	176	0x100	0x600	0xA0	00330000	51								0x33	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	318	0x19F280	32	0x100	0x610	0x10	33010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	319	0x19F2A0	64	0x100	0x620	0x30	33010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	320	0x19F2E0	176	0x100	0x600	0xA0	0x00340000	52								0x34	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	320	0x19F2E0	176	0x100	0x600	0xA0	00340000	52								0x34	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	321	0x19F390	32	0x100	0x610	0x10	34010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	322	0x19F3B0	64	0x100	0x620	0x30	34010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	323	0x19F3F0	176	0x100	0x600	0xA0	0x00350000	53								0x35	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	323	0x19F3F0	176	0x100	0x600	0xA0	00350000	53								0x35	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	324	0x19F4A0	32	0x100	0x610	0x10	35010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	325	0x19F4C0	64	0x100	0x620	0x30	35010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	326	0x19F500	176	0x100	0x600	0xA0	0x00360000	54								0x36	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	326	0x19F500	176	0x100	0x600	0xA0	00360000	54								0x36	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	327	0x19F5B0	32	0x100	0x610	0x10	36010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	328	0x19F5D0	64	0x100	0x620	0x30	36010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	329	0x19F610	176	0x100	0x600	0xA0	0x00370000	55								0x37	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	329	0x19F610	176	0x100	0x600	0xA0	00370000	55								0x37	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	330	0x19F6C0	32	0x100	0x610	0x10	37010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	331	0x19F6E0	64	0x100	0x620	0x30	37010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	332	0x19F720	176	0x100	0x600	0xA0	0x00380000	56								0x38	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	332	0x19F720	176	0x100	0x600	0xA0	00380000	56								0x38	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	333	0x19F7D0	32	0x100	0x610	0x10	38010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	334	0x19F7F0	64	0x100	0x620	0x30	38010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	335	0x19F830	176	0x100	0x600	0xA0	0x00390000	57								0x39	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	335	0x19F830	176	0x100	0x600	0xA0	00390000	57								0x39	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	336	0x19F8E0	32	0x100	0x610	0x10	39010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	337	0x19F900	64	0x100	0x620	0x30	39010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	338	0x19F940	176	0x100	0x600	0xA0	0x003a0000	58								0x3A	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	338	0x19F940	176	0x100	0x600	0xA0	003a0000	58								0x3A	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	339	0x19F9F0	32	0x100	0x610	0x10	3a010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	340	0x19FA10	64	0x100	0x620	0x30	3a010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	341	0x19FA50	176	0x100	0x600	0xA0	0x003b0000	59								0x3B	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	341	0x19FA50	176	0x100	0x600	0xA0	003b0000	59								0x3B	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	342	0x19FB00	32	0x100	0x610	0x10	3b010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	343	0x19FB20	64	0x100	0x620	0x30	3b010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	344	0x19FB60	176	0x100	0x600	0xA0	0x003c0000	60								0x3C	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	344	0x19FB60	176	0x100	0x600	0xA0	003c0000	60								0x3C	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	345	0x19FC10	32	0x100	0x610	0x10	3c010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	346	0x19FC30	64	0x100	0x620	0x30	3c010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	347	0x19FC70	176	0x100	0x600	0xA0	0x003d0000	61								0x3D	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	347	0x19FC70	176	0x100	0x600	0xA0	003d0000	61								0x3D	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	348	0x19FD20	32	0x100	0x610	0x10	3d010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	349	0x19FD40	64	0x100	0x620	0x30	3d010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	350	0x19FD80	176	0x100	0x600	0xA0	0x003e0000	62								0x3E	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	350	0x19FD80	176	0x100	0x600	0xA0	003e0000	62								0x3E	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	351	0x19FE30	32	0x100	0x610	0x10	3e010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	352	0x19FE50	64	0x100	0x620	0x30	3e010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	353	0x19FE90	176	0x100	0x600	0xA0	0x003f0000	63								0x3F	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	353	0x19FE90	176	0x100	0x600	0xA0	003f0000	63								0x3F	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	354	0x19FF40	32	0x100	0x610	0x10	3f010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	355	0x19FF60	64	0x100	0x620	0x30	3f010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	356	0x19FFA0	176	0x100	0x600	0xA0	0x00400000	64								0x40	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	356	0x19FFA0	176	0x100	0x600	0xA0	00400000	64								0x40	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	357	0x1A0050	32	0x100	0x610	0x10	40010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	358	0x1A0070	64	0x100	0x620	0x30	40010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	359	0x1A00B0	176	0x100	0x600	0xA0	0x00410000	65								0x41	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	359	0x1A00B0	176	0x100	0x600	0xA0	00410000	65								0x41	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	360	0x1A0160	32	0x100	0x610	0x10	41010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	361	0x1A0180	64	0x100	0x620	0x30	41010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	362	0x1A01C0	176	0x100	0x600	0xA0	0x00420000	66								0x42	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	362	0x1A01C0	176	0x100	0x600	0xA0	00420000	66								0x42	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	363	0x1A0270	32	0x100	0x610	0x10	42010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	364	0x1A0290	64	0x100	0x620	0x30	42010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	365	0x1A02D0	176	0x100	0x600	0xA0	0x00430000	67								0x43	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	365	0x1A02D0	176	0x100	0x600	0xA0	00430000	67								0x43	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	366	0x1A0380	32	0x100	0x610	0x10	43010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	367	0x1A03A0	64	0x100	0x620	0x30	43010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	368	0x1A03E0	176	0x100	0x600	0xA0	0x00440000	68								0x44	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	368	0x1A03E0	176	0x100	0x600	0xA0	00440000	68								0x44	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	369	0x1A0490	32	0x100	0x610	0x10	44010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	370	0x1A04B0	64	0x100	0x620	0x30	44010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	371	0x1A04F0	176	0x100	0x600	0xA0	0x00450000	69								0x45	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	371	0x1A04F0	176	0x100	0x600	0xA0	00450000	69								0x45	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	372	0x1A05A0	32	0x100	0x610	0x10	45010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	373	0x1A05C0	64	0x100	0x620	0x30	45010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	374	0x1A0600	176	0x100	0x600	0xA0	0x00460000	70								0x46	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	374	0x1A0600	176	0x100	0x600	0xA0	00460000	70								0x46	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	375	0x1A06B0	32	0x100	0x610	0x10	46010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	376	0x1A06D0	64	0x100	0x620	0x30	46010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	377	0x1A0710	176	0x100	0x600	0xA0	0x00470000	71								0x47	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	377	0x1A0710	176	0x100	0x600	0xA0	00470000	71								0x47	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	378	0x1A07C0	32	0x100	0x610	0x10	47010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	379	0x1A07E0	64	0x100	0x620	0x30	47010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	380	0x1A0820	176	0x100	0x600	0xA0	0x00480000	72								0x48	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	380	0x1A0820	176	0x100	0x600	0xA0	00480000	72								0x48	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	381	0x1A08D0	32	0x100	0x610	0x10	48010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	382	0x1A08F0	64	0x100	0x620	0x30	48010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	383	0x1A0930	176	0x100	0x600	0xA0	0x00490000	73								0x49	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	383	0x1A0930	176	0x100	0x600	0xA0	00490000	73								0x49	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	384	0x1A09E0	32	0x100	0x610	0x10	49010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	385	0x1A0A00	64	0x100	0x620	0x30	49010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	386	0x1A0A40	176	0x100	0x600	0xA0	0x004a0000	74								0x4A	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all2.efx	386	0x1A0A40	176	0x100	0x600	0xA0	004a0000	74								0x4A	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all2.efx	387	0x1A0AF0	32	0x100	0x610	0x10	4a010000								4									
 ps2data/effect_finish/in/menu/m_all2.efx	388	0x1A0B10	64	0x100	0x620	0x30	4a010101																	
-ps2data/effect_finish/in/menu/m_all2.efx	389	0x1A0B50	384	0x100	0x700	0x160	0x01000000	1			0													
-ps2data/effect_finish/in/menu/m_all2.efx	390	0x1A0CD0	816	0x100	0x800	0x2E0	0x01000100		1		1													
-ps2data/effect_finish/in/menu/m_all2.efx	391	0x1A1000	816	0x100	0x800	0x2E0	0x02000100		2		1													
-ps2data/effect_finish/in/menu/m_all2.efx	392	0x1A1330	816	0x100	0x800	0x2E0	0x03000100		3		1													
+ps2data/effect_finish/in/menu/m_all2.efx	389	0x1A0B50	384	0x100	0x700	0x160	01000000	1			0													
+ps2data/effect_finish/in/menu/m_all2.efx	390	0x1A0CD0	816	0x100	0x800	0x2E0	01000100		1		1													
+ps2data/effect_finish/in/menu/m_all2.efx	391	0x1A1000	816	0x100	0x800	0x2E0	02000100		2		1													
+ps2data/effect_finish/in/menu/m_all2.efx	392	0x1A1330	816	0x100	0x800	0x2E0	03000100		3		1													
 ps2data/effect_finish/in/menu/m_all2.efx	393	0x1A1660	816	0x100	0x800	0x2E0	04000100		4		1													
 ps2data/effect_finish/in/menu/m_all2.efx	394	0x1A1990	816	0x100	0x800	0x2E0	05000100		5		1													
 ps2data/effect_finish/in/menu/m_all2.efx	395	0x1A1CC0	816	0x100	0x800	0x2E0	06000100		6		1													
@@ -1111,9 +1111,9 @@ ps2data/effect_finish/in/menu/m_all2.efx	416	0x1A5FB0	816	0x100	0x800	0x2E0	1b00
 ps2data/effect_finish/in/menu/m_all2.efx	417	0x1A62E0	816	0x100	0x800	0x2E0	1c000100		28		1													
 ps2data/effect_finish/in/menu/m_all2.efx	418	0x1A6610	816	0x100	0x800	0x2E0	1d000100		29		1													
 ps2data/effect_finish/in/menu/m_all2.efx	419	0x1A6940	816	0x100	0x800	0x2E0	1e000100		30		1													
-ps2data/effect_finish/in/menu/m_all2.efx	420	0x1A6C70	528	0x100	0xA00	0x1D0	0x01000200		1			0x02				0x00								
-ps2data/effect_finish/in/menu/m_all2.efx	421	0x1A6E80	528	0x100	0xA00	0x1D0	0x02000200		2			0x02				0x00								
-ps2data/effect_finish/in/menu/m_all2.efx	422	0x1A7090	528	0x100	0xA00	0x1D0	0x03000200		3			0x02				0x00								
+ps2data/effect_finish/in/menu/m_all2.efx	420	0x1A6C70	528	0x100	0xA00	0x1D0	01000200		1			0x02				0x00								
+ps2data/effect_finish/in/menu/m_all2.efx	421	0x1A6E80	528	0x100	0xA00	0x1D0	02000200		2			0x02				0x00								
+ps2data/effect_finish/in/menu/m_all2.efx	422	0x1A7090	528	0x100	0xA00	0x1D0	03000200		3			0x02				0x00								
 ps2data/effect_finish/in/menu/m_all2.efx	423	0x1A72A0	528	0x100	0xA00	0x1D0	04000200		4			0x02				0x00								
 ps2data/effect_finish/in/menu/m_all2.efx	424	0x1A74B0	528	0x100	0xA00	0x1D0	05000200		5			0x02				0x00								
 ps2data/effect_finish/in/menu/m_all2.efx	425	0x1A76C0	528	0x100	0xA00	0x1D0	06000200		6			0x02				0x00								
@@ -1219,20 +1219,20 @@ ps2data/effect_finish/in/menu/m_all3.efx	39	0x164500	48	0x100	0xB00	0x20	0000511
 ps2data/effect_finish/in/menu/m_all3.efx	40	0x164530	48	0x100	0xB00	0x20	00005117			0			0x51	23										
 ps2data/effect_finish/in/menu/m_all3.efx	41	0x164560	5552	0x100	0xB00	0x15A0	00005401			0			0x54	1										
 ps2data/effect_finish/in/menu/m_all3.efx	42	0x165B10	176	0x100	0x600	0xA0	00010000	1								0x01	0000000000000000000000	0x0E						
-ps2data/effect_finish/in/menu/m_all3.efx	43	0x165BC0	32	0x100	0x610	0x10	0x01010000								4									
-ps2data/effect_finish/in/menu/m_all3.efx	44	0x165BE0	64	0x100	0x620	0x30	0x01010101																	
+ps2data/effect_finish/in/menu/m_all3.efx	43	0x165BC0	32	0x100	0x610	0x10	01010000								4									
+ps2data/effect_finish/in/menu/m_all3.efx	44	0x165BE0	64	0x100	0x620	0x30	01010101																	
 ps2data/effect_finish/in/menu/m_all3.efx	45	0x165C20	176	0x100	0x600	0xA0	00020000	2								0x02	0000000000000000000000	0x0E						
-ps2data/effect_finish/in/menu/m_all3.efx	46	0x165CD0	32	0x100	0x610	0x10	0x02010000								8									
-ps2data/effect_finish/in/menu/m_all3.efx	47	0x165CF0	64	0x100	0x620	0x30	0x02010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	48	0x165D30	64	0x100	0x620	0x30	0x02010201																	
-ps2data/effect_finish/in/menu/m_all3.efx	49	0x165D70	64	0x100	0x620	0x30	0x02010301																	
-ps2data/effect_finish/in/menu/m_all3.efx	50	0x165DB0	64	0x100	0x620	0x30	0x02010401																	
+ps2data/effect_finish/in/menu/m_all3.efx	46	0x165CD0	32	0x100	0x610	0x10	02010000								8									
+ps2data/effect_finish/in/menu/m_all3.efx	47	0x165CF0	64	0x100	0x620	0x30	02010101																	
+ps2data/effect_finish/in/menu/m_all3.efx	48	0x165D30	64	0x100	0x620	0x30	02010201																	
+ps2data/effect_finish/in/menu/m_all3.efx	49	0x165D70	64	0x100	0x620	0x30	02010301																	
+ps2data/effect_finish/in/menu/m_all3.efx	50	0x165DB0	64	0x100	0x620	0x30	02010401																	
 ps2data/effect_finish/in/menu/m_all3.efx	51	0x165DF0	176	0x100	0x600	0xA0	00030000	3								0x03	0000000000000000000000	0x0E						
-ps2data/effect_finish/in/menu/m_all3.efx	52	0x165EA0	32	0x100	0x610	0x10	0x03010000								8									
-ps2data/effect_finish/in/menu/m_all3.efx	53	0x165EC0	64	0x100	0x620	0x30	0x03010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	54	0x165F00	64	0x100	0x620	0x30	0x03010201																	
-ps2data/effect_finish/in/menu/m_all3.efx	55	0x165F40	64	0x100	0x620	0x30	0x03010301																	
-ps2data/effect_finish/in/menu/m_all3.efx	56	0x165F80	64	0x100	0x620	0x30	0x03010401																	
+ps2data/effect_finish/in/menu/m_all3.efx	52	0x165EA0	32	0x100	0x610	0x10	03010000								8									
+ps2data/effect_finish/in/menu/m_all3.efx	53	0x165EC0	64	0x100	0x620	0x30	03010101																	
+ps2data/effect_finish/in/menu/m_all3.efx	54	0x165F00	64	0x100	0x620	0x30	03010201																	
+ps2data/effect_finish/in/menu/m_all3.efx	55	0x165F40	64	0x100	0x620	0x30	03010301																	
+ps2data/effect_finish/in/menu/m_all3.efx	56	0x165F80	64	0x100	0x620	0x30	03010401																	
 ps2data/effect_finish/in/menu/m_all3.efx	57	0x165FC0	176	0x100	0x600	0xA0	00040000	4								0x04	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	58	0x166070	32	0x100	0x610	0x10	04010000								8									
 ps2data/effect_finish/in/menu/m_all3.efx	59	0x166090	64	0x100	0x620	0x30	04010101																	
@@ -1305,35 +1305,35 @@ ps2data/effect_finish/in/menu/m_all3.efx	125	0x1674D0	64	0x100	0x620	0x30	100101
 ps2data/effect_finish/in/menu/m_all3.efx	126	0x167510	176	0x100	0x600	0xA0	00110000	17								0x11	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	127	0x1675C0	32	0x100	0x610	0x10	11010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	128	0x1675E0	64	0x100	0x620	0x30	11010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	129	0x167620	176	0x100	0x600	0xA0	0x00120000	18								0x12	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	129	0x167620	176	0x100	0x600	0xA0	00120000	18								0x12	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	130	0x1676D0	32	0x100	0x610	0x10	12010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	131	0x1676F0	64	0x100	0x620	0x30	12010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	132	0x167730	176	0x100	0x600	0xA0	0x00130000	19								0x13	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	132	0x167730	176	0x100	0x600	0xA0	00130000	19								0x13	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	133	0x1677E0	32	0x100	0x610	0x10	13010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	134	0x167800	64	0x100	0x620	0x30	13010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	135	0x167840	176	0x100	0x600	0xA0	0x00140000	20								0x14	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	135	0x167840	176	0x100	0x600	0xA0	00140000	20								0x14	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	136	0x1678F0	32	0x100	0x610	0x10	14010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	137	0x167910	64	0x100	0x620	0x30	14010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	138	0x167950	176	0x100	0x600	0xA0	0x00150000	21								0x15	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	138	0x167950	176	0x100	0x600	0xA0	00150000	21								0x15	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	139	0x167A00	32	0x100	0x610	0x10	15010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	140	0x167A20	64	0x100	0x620	0x30	15010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	141	0x167A60	176	0x100	0x600	0xA0	0x00160000	22								0x16	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	141	0x167A60	176	0x100	0x600	0xA0	00160000	22								0x16	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	142	0x167B10	32	0x100	0x610	0x10	16010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	143	0x167B30	64	0x100	0x620	0x30	16010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	144	0x167B70	176	0x100	0x600	0xA0	0x00170000	23								0x17	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	144	0x167B70	176	0x100	0x600	0xA0	00170000	23								0x17	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	145	0x167C20	32	0x100	0x610	0x10	17010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	146	0x167C40	64	0x100	0x620	0x30	17010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	147	0x167C80	176	0x100	0x600	0xA0	0x00180000	24								0x18	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	147	0x167C80	176	0x100	0x600	0xA0	00180000	24								0x18	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	148	0x167D30	32	0x100	0x610	0x10	18010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	149	0x167D50	64	0x100	0x620	0x30	18010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	150	0x167D90	176	0x100	0x600	0xA0	0x00190000	25								0x19	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	150	0x167D90	176	0x100	0x600	0xA0	00190000	25								0x19	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	151	0x167E40	32	0x100	0x610	0x10	19010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	152	0x167E60	64	0x100	0x620	0x30	19010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	153	0x167EA0	176	0x100	0x600	0xA0	0x001a0000	26								0x1A	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	153	0x167EA0	176	0x100	0x600	0xA0	001a0000	26								0x1A	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	154	0x167F50	32	0x100	0x610	0x10	1a010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	155	0x167F70	64	0x100	0x620	0x30	1a010101																	
 ps2data/effect_finish/in/menu/m_all3.efx	156	0x167FB0	64	0x100	0x620	0x30	1a010201																	
-ps2data/effect_finish/in/menu/m_all3.efx	157	0x167FF0	176	0x100	0x600	0xA0	0x001b0000	27								0x1B	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	157	0x167FF0	176	0x100	0x600	0xA0	001b0000	27								0x1B	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	158	0x1680A0	32	0x100	0x610	0x10	1b010000								8									
 ps2data/effect_finish/in/menu/m_all3.efx	159	0x1680C0	64	0x100	0x620	0x30	1b010101																	
 ps2data/effect_finish/in/menu/m_all3.efx	160	0x168100	64	0x100	0x620	0x30	1b010201																	
@@ -1341,18 +1341,18 @@ ps2data/effect_finish/in/menu/m_all3.efx	161	0x168140	64	0x100	0x620	0x30	1b0103
 ps2data/effect_finish/in/menu/m_all3.efx	162	0x168180	64	0x100	0x620	0x30	1b010401																	
 ps2data/effect_finish/in/menu/m_all3.efx	163	0x1681C0	64	0x100	0x620	0x30	1b010501																	
 ps2data/effect_finish/in/menu/m_all3.efx	164	0x168200	64	0x100	0x620	0x30	1b010601																	
-ps2data/effect_finish/in/menu/m_all3.efx	165	0x168240	176	0x100	0x600	0xA0	0x001c0000	28								0x1C	0001020000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	165	0x168240	176	0x100	0x600	0xA0	001c0000	28								0x1C	0001020000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	166	0x1682F0	32	0x100	0x610	0x10	1c010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	167	0x168310	64	0x100	0x620	0x30	1c010101																	
 ps2data/effect_finish/in/menu/m_all3.efx	168	0x168350	64	0x100	0x620	0x30	1c010201																	
 ps2data/effect_finish/in/menu/m_all3.efx	169	0x168390	32	0x100	0x610	0x10	1c020000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	170	0x1683B0	64	0x100	0x620	0x30	1c020101																	
 ps2data/effect_finish/in/menu/m_all3.efx	171	0x1683F0	64	0x100	0x620	0x30	1c020201																	
-ps2data/effect_finish/in/menu/m_all3.efx	172	0x168430	176	0x100	0x600	0xA0	0x001d0000	29								0x1D	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	172	0x168430	176	0x100	0x600	0xA0	001d0000	29								0x1D	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	173	0x1684E0	32	0x100	0x610	0x10	1d010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	174	0x168500	64	0x100	0x620	0x30	1d010101																	
 ps2data/effect_finish/in/menu/m_all3.efx	175	0x168540	64	0x100	0x620	0x30	1d010201																	
-ps2data/effect_finish/in/menu/m_all3.efx	176	0x168580	176	0x100	0x600	0xA0	0x001e0000	30								0x1E	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	176	0x168580	176	0x100	0x600	0xA0	001e0000	30								0x1E	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	177	0x168630	32	0x100	0x610	0x10	1e010000								8									
 ps2data/effect_finish/in/menu/m_all3.efx	178	0x168650	64	0x100	0x620	0x30	1e010101																	
 ps2data/effect_finish/in/menu/m_all3.efx	179	0x168690	64	0x100	0x620	0x30	1e010201																	
@@ -1361,73 +1361,73 @@ ps2data/effect_finish/in/menu/m_all3.efx	181	0x168710	64	0x100	0x620	0x30	1e0104
 ps2data/effect_finish/in/menu/m_all3.efx	182	0x168750	64	0x100	0x620	0x30	1e010501																	
 ps2data/effect_finish/in/menu/m_all3.efx	183	0x168790	64	0x100	0x620	0x30	1e010601																	
 ps2data/effect_finish/in/menu/m_all3.efx	184	0x1687D0	64	0x100	0x620	0x30	1e010701																	
-ps2data/effect_finish/in/menu/m_all3.efx	185	0x168810	176	0x100	0x600	0xA0	0x001f0000	31								0x1F	0001000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	185	0x168810	176	0x100	0x600	0xA0	001f0000	31								0x1F	0001000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	186	0x1688C0	32	0x100	0x610	0x10	1f010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	187	0x1688E0	64	0x100	0x620	0x30	1f010101																	
 ps2data/effect_finish/in/menu/m_all3.efx	188	0x168920	64	0x100	0x620	0x30	1f010201																	
-ps2data/effect_finish/in/menu/m_all3.efx	189	0x168960	176	0x100	0x600	0xA0	0x00200000	32								0x20	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	189	0x168960	176	0x100	0x600	0xA0	00200000	32								0x20	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	190	0x168A10	32	0x100	0x610	0x10	20010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	191	0x168A30	64	0x100	0x620	0x30	20010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	192	0x168A70	176	0x100	0x600	0xA0	0x00210000	33								0x21	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	192	0x168A70	176	0x100	0x600	0xA0	00210000	33								0x21	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	193	0x168B20	32	0x100	0x610	0x10	21010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	194	0x168B40	64	0x100	0x620	0x30	21010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	195	0x168B80	176	0x100	0x600	0xA0	0x00220000	34								0x22	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	195	0x168B80	176	0x100	0x600	0xA0	00220000	34								0x22	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	196	0x168C30	32	0x100	0x610	0x10	22010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	197	0x168C50	64	0x100	0x620	0x30	22010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	198	0x168C90	176	0x100	0x600	0xA0	0x00230000	35								0x23	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	198	0x168C90	176	0x100	0x600	0xA0	00230000	35								0x23	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	199	0x168D40	32	0x100	0x610	0x10	23010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	200	0x168D60	64	0x100	0x620	0x30	23010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	201	0x168DA0	176	0x100	0x600	0xA0	0x00240000	36								0x24	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	201	0x168DA0	176	0x100	0x600	0xA0	00240000	36								0x24	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	202	0x168E50	32	0x100	0x610	0x10	24010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	203	0x168E70	64	0x100	0x620	0x30	24010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	204	0x168EB0	176	0x100	0x600	0xA0	0x00250000	37								0x25	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	204	0x168EB0	176	0x100	0x600	0xA0	00250000	37								0x25	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	205	0x168F60	32	0x100	0x610	0x10	25010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	206	0x168F80	64	0x100	0x620	0x30	25010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	207	0x168FC0	176	0x100	0x600	0xA0	0x00260000	38								0x26	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	207	0x168FC0	176	0x100	0x600	0xA0	00260000	38								0x26	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	208	0x169070	32	0x100	0x610	0x10	26010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	209	0x169090	64	0x100	0x620	0x30	26010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	210	0x1690D0	176	0x100	0x600	0xA0	0x00270000	39								0x27	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	210	0x1690D0	176	0x100	0x600	0xA0	00270000	39								0x27	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	211	0x169180	32	0x100	0x610	0x10	27010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	212	0x1691A0	64	0x100	0x620	0x30	27010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	213	0x1691E0	176	0x100	0x600	0xA0	0x00280000	40								0x28	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	213	0x1691E0	176	0x100	0x600	0xA0	00280000	40								0x28	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	214	0x169290	32	0x100	0x610	0x10	28010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	215	0x1692B0	64	0x100	0x620	0x30	28010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	216	0x1692F0	176	0x100	0x600	0xA0	0x00290000	41								0x29	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	216	0x1692F0	176	0x100	0x600	0xA0	00290000	41								0x29	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	217	0x1693A0	32	0x100	0x610	0x10	29010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	218	0x1693C0	64	0x100	0x620	0x30	29010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	219	0x169400	176	0x100	0x600	0xA0	0x002a0000	42								0x2A	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	219	0x169400	176	0x100	0x600	0xA0	002a0000	42								0x2A	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	220	0x1694B0	32	0x100	0x610	0x10	2a010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	221	0x1694D0	64	0x100	0x620	0x30	2a010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	222	0x169510	176	0x100	0x600	0xA0	0x002b0000	43								0x2B	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	222	0x169510	176	0x100	0x600	0xA0	002b0000	43								0x2B	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	223	0x1695C0	32	0x100	0x610	0x10	2b010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	224	0x1695E0	64	0x100	0x620	0x30	2b010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	225	0x169620	176	0x100	0x600	0xA0	0x002c0000	44								0x2C	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	225	0x169620	176	0x100	0x600	0xA0	002c0000	44								0x2C	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	226	0x1696D0	32	0x100	0x610	0x10	2c010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	227	0x1696F0	64	0x100	0x620	0x30	2c010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	228	0x169730	176	0x100	0x600	0xA0	0x002d0000	45								0x2D	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	228	0x169730	176	0x100	0x600	0xA0	002d0000	45								0x2D	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	229	0x1697E0	32	0x100	0x610	0x10	2d010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	230	0x169800	64	0x100	0x620	0x30	2d010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	231	0x169840	176	0x100	0x600	0xA0	0x002e0000	46								0x2E	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	231	0x169840	176	0x100	0x600	0xA0	002e0000	46								0x2E	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	232	0x1698F0	32	0x100	0x610	0x10	2e010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	233	0x169910	64	0x100	0x620	0x30	2e010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	234	0x169950	176	0x100	0x600	0xA0	0x002f0000	47								0x2F	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	234	0x169950	176	0x100	0x600	0xA0	002f0000	47								0x2F	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	235	0x169A00	32	0x100	0x610	0x10	2f010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	236	0x169A20	64	0x100	0x620	0x30	2f010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	237	0x169A60	176	0x100	0x600	0xA0	0x00300000	48								0x30	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	237	0x169A60	176	0x100	0x600	0xA0	00300000	48								0x30	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	238	0x169B10	32	0x100	0x610	0x10	30010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	239	0x169B30	64	0x100	0x620	0x30	30010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	240	0x169B70	176	0x100	0x600	0xA0	0x00310000	49								0x31	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	240	0x169B70	176	0x100	0x600	0xA0	00310000	49								0x31	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	241	0x169C20	32	0x100	0x610	0x10	31010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	242	0x169C40	64	0x100	0x620	0x30	31010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	243	0x169C80	176	0x100	0x600	0xA0	0x00320000	50								0x32	0000000000000000000000	0x0E						
+ps2data/effect_finish/in/menu/m_all3.efx	243	0x169C80	176	0x100	0x600	0xA0	00320000	50								0x32	0000000000000000000000	0x0E						
 ps2data/effect_finish/in/menu/m_all3.efx	244	0x169D30	32	0x100	0x610	0x10	32010000								4									
 ps2data/effect_finish/in/menu/m_all3.efx	245	0x169D50	64	0x100	0x620	0x30	32010101																	
-ps2data/effect_finish/in/menu/m_all3.efx	246	0x169D90	384	0x100	0x700	0x160	0x01000000	1			0													
-ps2data/effect_finish/in/menu/m_all3.efx	247	0x169F10	384	0x100	0x700	0x160	0x02000000	2			0													
-ps2data/effect_finish/in/menu/m_all3.efx	248	0x16A090	400	0x100	0x700	0x160	0x03000000	3			0													
-ps2data/effect_finish/in/menu/m_all3.efx	249	0x16A220	816	0x100	0x800	0x2E0	0x01000100		1		1													
-ps2data/effect_finish/in/menu/m_all3.efx	250	0x16A550	816	0x100	0x800	0x2E0	0x02000100		2		1													
-ps2data/effect_finish/in/menu/m_all3.efx	251	0x16A880	816	0x100	0x800	0x2E0	0x03000100		3		1													
+ps2data/effect_finish/in/menu/m_all3.efx	246	0x169D90	384	0x100	0x700	0x160	01000000	1			0													
+ps2data/effect_finish/in/menu/m_all3.efx	247	0x169F10	384	0x100	0x700	0x160	02000000	2			0													
+ps2data/effect_finish/in/menu/m_all3.efx	248	0x16A090	400	0x100	0x700	0x160	03000000	3			0													
+ps2data/effect_finish/in/menu/m_all3.efx	249	0x16A220	816	0x100	0x800	0x2E0	01000100		1		1													
+ps2data/effect_finish/in/menu/m_all3.efx	250	0x16A550	816	0x100	0x800	0x2E0	02000100		2		1													
+ps2data/effect_finish/in/menu/m_all3.efx	251	0x16A880	816	0x100	0x800	0x2E0	03000100		3		1													
 ps2data/effect_finish/in/menu/m_all3.efx	252	0x16ABB0	832	0x100	0x800	0x2E0	04000100		4		1													
 ps2data/effect_finish/in/menu/m_all3.efx	253	0x16AEF0	864	0x100	0x800	0x2E0	05000100		5		1													
 ps2data/effect_finish/in/menu/m_all3.efx	254	0x16B250	816	0x100	0x800	0x2E0	06000100		6		1													
@@ -1440,9 +1440,9 @@ ps2data/effect_finish/in/menu/m_all3.efx	260	0x16C800	816	0x100	0x800	0x2E0	0c00
 ps2data/effect_finish/in/menu/m_all3.efx	261	0x16CB30	816	0x100	0x800	0x2E0	0d000100		13		1													
 ps2data/effect_finish/in/menu/m_all3.efx	262	0x16CE60	816	0x100	0x800	0x2E0	0e000100		14		1													
 ps2data/effect_finish/in/menu/m_all3.efx	263	0x16D190	816	0x100	0x800	0x2E0	0f000100		15		1													
-ps2data/effect_finish/in/menu/m_all3.efx	264	0x16D4C0	704	0x100	0xA00	0x260	0x01008000		1			0x80				0x00								
-ps2data/effect_finish/in/menu/m_all3.efx	265	0x16D780	672	0x100	0xA00	0x1D0	0x02000200		2			0x02				0x00								
-ps2data/effect_finish/in/menu/m_all3.efx	266	0x16DA20	656	0x100	0xA00	0x1D0	0x03000200		3			0x02				0x00								
+ps2data/effect_finish/in/menu/m_all3.efx	264	0x16D4C0	704	0x100	0xA00	0x260	01008000		1			0x80				0x00								
+ps2data/effect_finish/in/menu/m_all3.efx	265	0x16D780	672	0x100	0xA00	0x1D0	02000200		2			0x02				0x00								
+ps2data/effect_finish/in/menu/m_all3.efx	266	0x16DA20	656	0x100	0xA00	0x1D0	03000200		3			0x02				0x00								
 ps2data/effect_finish/in/menu/m_all3.efx	267	0x16DCB0	640	0x100	0xA00	0x1D0	04000200		4			0x02				0x00								
 ps2data/effect_finish/in/menu/m_all3.efx	268	0x16DF30	640	0x100	0xA00	0x1D0	05000200		5			0x02				0x00								
 ps2data/effect_finish/in/menu/m_all3.efx	269	0x16E1B0	672	0x100	0xA00	0x1D0	06000200		6			0x02				0x00								

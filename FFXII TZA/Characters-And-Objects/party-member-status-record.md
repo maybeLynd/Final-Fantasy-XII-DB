@@ -52,8 +52,8 @@ The callers of the wrappers:
 2. The owning unit is found by scanning the unit pool (`0x00236850`, `0x00236820`) for the unit whose
    `+0x698` is this record; the focus unit is the current party focus (`0x003590D0`, `0x003588B0`,
    `0x00263E30`) when `0x02089340` bit `0x10` is set and that unit's flag bit `0x8` is set.
-3. The flag bits that do not need the unit are computed: 10, 11, 4, 14, 16 and 17 (the table under
-   Layouts).
+3. The flag bits written before the unit-side block are computed: `0x400`, `0x800`, `0x10`, `0x4000`, `0x10000` and
+   `0x20000` (the table under The flag word); `0x10`, `0x4000` and `0x20000` read the unit found in step 2.
 4. The stats fields are copied: HP and MP, charges and bars, the two status words, type and kind,
    the merged status layers, the five affinity bytes and the 32 countdown bytes taken from the
    `u32[32]` status durations at `+0xBC`.

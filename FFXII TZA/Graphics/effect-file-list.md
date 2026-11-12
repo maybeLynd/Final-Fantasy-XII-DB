@@ -69,8 +69,9 @@ The columns come from the path arrays, the US size table, the archive index and 
     there is no file (`0x003B23B0`-`0x003B23C7`), and requests it (completion `0x003B22D0`).
 11. The common bank: the type-5 context builder `0x003B0660`, run at start-up by `0x00259180`, sizes and
     requests kind 10 id 0 (`0x003B06E5`, `0x003B070D`). No site requests kind 10 id 1 or kind 7 ids
-    49-51 with the id as a constant: the kind-7 requests are `0x00291C80`, which takes its id from `+0x98`
-    of its argument, `0x002C8EE0`, from `+0x74`, `0x0039C3F0` (id `0xD5`) and the font loaders.
+    49-51 with the id as a constant: the kind-7 requests are `0x00291C80` (ids `0x98` to `0xA1`,
+    `0x00291CA1`-`0x00291D12`) and `0x002C8EE0` (ids `0x74` and `0x75`, `0x002C8F18`-`0x002C901C`), neither
+    reading its argument, `0x0039C3F0` (id `0xD5`) and the font loaders.
 12. The character effects: `0x0019FFD0`, run once from `0x001A0AF0` (`0x0019F620`), stores 125 paths into
     144 slots of the `0x28000`-entry table at `+0x228` of its object; `0x001A09E0` reads the slot
     `letter x 0x500 + number` for a model name `<letter><number>` (`0x001A0A74`-`0x001A0A7F`), for

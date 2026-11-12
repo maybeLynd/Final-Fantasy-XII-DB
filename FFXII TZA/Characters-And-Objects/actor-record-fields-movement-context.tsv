@@ -188,7 +188,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0025C830	FUN_0025c830	0x0025C9B8	0x10	r	movups xmm1, xmmword ptr [rsi + 0x10]	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C1D2	
 0x0025C830	FUN_0025c830	0x0025C9B8	0x10	r	movups xmm1, xmmword ptr [rsi + 0x10]	actor +0xB8, the actor in rdx	
 0x0025C830	FUN_0025c830	0x0025CF48	0x10	addr	lea rax, [rsi + 0x10]	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C1D2	
-0x0025C830	FUN_0025c830	0x0025CF48	0x10	a	lea rax, [rsi + 0x10]	actor +0xB8, the actor in rdx	
+0x0025C830	FUN_0025c830	0x0025CF48	0x10	addr	lea rax, [rsi + 0x10]	actor +0xB8, the actor in rdx	
 0x00265FF0	FUN_00265ff0	0x00266213	0x10	w	mov dword ptr [r14 + 0x10], eax	actor +0xB8, the actor in rcx	
 0x0026AFE0	FUN_0026afe0	0x0026B05B	0x10	w	movss dword ptr [rax + 0x10], xmm8	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AF91	
 0x0026AFE0	FUN_0026afe0	0x0026B05B	0x10	w	movss dword ptr [rax + 0x10], xmm8	actor +0xB8, the actor in rcx	

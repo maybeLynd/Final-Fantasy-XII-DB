@@ -88,7 +88,9 @@ of `ch` belong to no shipped bundle.
 ### The two us files
 
 `us/fontex_expand.fex` and `us/fontex_subtitle.fex` are 12-byte triples `{key, index, value}`, 9,032 and 11,481 of
-them, and no flag requests them. Each of their lines is one triple, with `list` empty and `ordinal` the stored index.
+them, and the game requests neither: `us/fontex_expand.dat`, whose flags `0x2` ask for its `.fex`, is named by no
+`fontlist.ah`, and `us/fontex_subtitle.dat` has flags `0x1`. Each of their lines is one triple, with `list` empty and
+`ordinal` the stored index.
 The triples of one key stand together with indices 0, 1, 2 and on, so they hold the same lists the chunk form would.
 
 ### The glyph of a value

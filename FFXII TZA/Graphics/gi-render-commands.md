@@ -267,12 +267,11 @@ CreateGeometryShader, `+0x78` CreatePixelShader and `+0xB8` CreateSamplerState.
 | `+0x0B50` | `0x00624C30` (`0x00625D4E`) | one vertex shader (`0x01F2FEB4`), eight pixel shaders, the `DrawClearConstantBuffer`, and eight state blocks |
 | `+0x18C0` | `0x006C9CD0` (`0x00625D65`) | the `PrimitiveRendererD3D11` resources: a `0x7FE0`-byte and a `0x8000`-byte buffer (`+0x90`, `+0xA8`), a `0xC0`-byte buffer at `+0x98` filled through the immediate context (`+0x110`, Map and Unmap) with a quad spanning −1 to 1, a sampler at `+0x200`, four vertex, two geometry and ten pixel shaders, two input layouts, the `PrimitiveRendererPsConstantBuffer`, `…VsConstantBuffer` and `…GsConstantBuffer`, two state blocks, and the batcher at `+0x880` (`0x006DA850`) |
 
-`0x0061DE20(state, mask)` turns a state block's descriptions into D3D11 state objects, each made
-once: with mask bit `0x1` the rasterizer state at `+0x168` and, from the same description with fill
-mode 2 (wireframe), a second at `+0x170`; with bit `0x2` the blend state at `+0x180`; with bit `0x4` the
-depth-stencil state at `+0x178`. `0x0061C550` names each object (`"BlendState"`,
-`"DepthStencilState"`, `"RasterState"` and the buffer names above). `0x00624C30` passes all bits
-for each of its eight blocks.
+`0x0061DE20(state, mask)` turns a state block's descriptions into D3D11 state objects, each made once: with mask bit
+`0x1` the rasterizer state at `+0x168` and, from the same description with fill mode 2 (wireframe), a second at
+`+0x170`; with bit `0x2` the blend state at `+0x180`; with bit `0x4` the depth-stencil state at `+0x178`. `0x0061C550`
+names these objects, all but the wireframe state at `+0x170` (`"BlendState"`, `"DepthStencilState"`, `"RasterState"`
+and the buffer names above). `0x00624C30` passes all bits for each of its eight blocks.
 
 `0x006DA850(batcher)` empties the batcher at `+0x880`: it clears the dword `+0x08` and the vertex
 count word `+0x8010`. `0x006C9CD0` calls it at the end of the build and the scene end `0x006C9B20`

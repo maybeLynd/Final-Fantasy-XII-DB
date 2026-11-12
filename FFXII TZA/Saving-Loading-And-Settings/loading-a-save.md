@@ -51,7 +51,7 @@ options stored in the save take effect: the Config screen's options are the ones
    - `0x00584210` handles the mode-3 stash or its restore, calls `0x00316810` (`0x00584398`) and reseeds the gameplay
      generator from the clock ([saving and loading](saving-and-loading.md#what-a-load-runs),
      [save file format](save-file-format.md)).
-8. **`AtelRefreshByLoad()`.** When the mode screen closes, the area controller's message `0x10` finds bit `0x200`,
+8. **`AtelRefreshByLoad()`.** When the mode screen closes, the area controller's message `0x12` finds bit `0x200`,
    clears bits `0x200` and `0x400` (`0x002801DA`-`0x002801F8`) and runs `0x00268320` (`0x002801FF`), which resets the
    scripts' scratch variables ([script variables](../Scripts-And-Script-Commands/script-variables.md)).
    - It zeroes `scratch1` (`0x02099DF0`) always (`0x00268359`).

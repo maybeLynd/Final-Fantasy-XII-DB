@@ -171,9 +171,10 @@ when the count is positive (`0x003EC8A0`) and clears the slot.
 3. publish the largest footprint to `0x02CA6004` (`0x00467B10`) and the total to `0x02CA6008`
    (`0x00467B00`), then take the budget from `0x00467AA0`;
 4. for every instance record whose flag word `+0x0C` has bit `23 + slot` set (`0x002F738E`–`0x002F7397`,
-   `0x002F74C9`) and whose texture index `+0x04` is at most `0x3FFF`: unless the record repeats the
-   previous one's texture index and byte `+0x1D`, increment `+0x0E` of that texture record and of
-   every following record whose `+0x0C` word is non-zero (`0x002F7500`–`0x002F753D`);
+   `0x002F74C9`) and whose texture index `+0x04` is at most `0x3FFF`, unless it repeats the texture index and
+   byte `+0x1D` of the last record counted (`0x002F74D4`–`0x002F74E3`): increment `+0x0E` of that texture record
+   (`0x002F7500`) and of each record after it up to the first whose `+0x0C` word is 0 or the bank count `+0x224`
+   (`0x002F7504`–`0x002F753D`);
 5. walk the texture records in bank order: a record counted more than once is admitted when the
    running total plus its footprint stays below the budget (`0x002F75A2`), and gets the next slot
    number in `+0x0E`; every other record gets `0xFFFF` (`0x002F75B0`). A record that does not fit is
@@ -181,6 +182,10 @@ when the count is positive (`0x003EC8A0`) and clears the slot.
 6. with any admitted, store the count at `+0x228`, allocate `count × 40` bytes (`0x003EC8D0(6, …)`)
    at `+0x218`, and zero `+0x00`, `+0x08`, `+0x10`, `+0x18` and the byte `+0x20` of each record
    (`0x002F760B`–`0x002F761F`).
+
+The texture index and byte `+0x1D` that step 4 compares with start at -1 (`0x002F73DE`–`0x002F740A`,
+`0x002F7465`–`0x002F7474`) and change only when a record is counted (`0x002F753F`–`0x002F7542`). A texture record past
+one whose `+0x0C` word is 0 is not counted by that run.
 
 `0x003EC8D0` reports a failed allocation by passing `"out of memory!\n"` to `0x00862690`, which hands
 it to `0x008620B0`, a body that returns at once; nothing is printed.
@@ -239,8 +244,10 @@ mode of 0 to 3 chosen from `a` and `b` (`0x00376320`), and records a changed tar
 A texture word in the GS TEX0 layout comes from `0x002D8050(word, width, height, format)`. It keeps the
 base in bits `0x3FFF`, which the caller sets, and writes the other fields, with e(n) the exponent below:
 
-- the buffer width in 64-pixel units rounded up (1 becomes 2), `(w == 1 ? 2 : w) & 0x3F`, in bits `0xFC000`,
-  where `w = width / 64 + (width % 64 != 0)` (`0x002D805F`-`0x002D80DC`);
+- the buffer width in 64-pixel units, in bits `0xFC000`: the field takes `(width / 64) & 0x3F`
+  (`0x002D805F`-`0x002D8088`), a non-zero `width % 64` adds 1 that wraps in 6 bits (`0x002D808E`-`0x002D80AC`), and a
+  field of 1 becomes 2 (`0x002D80AF`-`0x002D80DC`); with `w = width / 64 + (width % 64 != 0)` that is
+  `f = w & 0x3F`, then `f == 1 ? 2 : f`, so a width of 4,097 to 4,160 pixels stores 2;
 - the format in bits `0x3F00000`, `(format & 0x3F) << 20` (`0x002D80DF`-`0x002D80F2`);
 - the power-of-two exponents of the width and height in the bits under mask `0x3FC000000`, and bit `0x400000000`:
   `(e(width) & 0xF) << 26` and `((e(height) & 0xF) | 0x10) << 30` (`0x002D80F5`-`0x002D8134`);
@@ -281,10 +288,11 @@ DMA tag in the first qword of every chunk header is never written.
 
 The content helpers write fixed packets:
 
-- `0x00271760(w, block, matrix, extra)` builds a 15-record chunk: an UNPACK header for 13 records
-  (`0x6C0D8000`), the 13 constant records from `0x00276190`, and FLUSHA, MSCAL (`0x13000000`,
-  `0x14000000`). The constants are the matrix, the matrix `0x02AEDDB0` ([scripted camera](scripted-camera.md)),
-  four 2047.5 and four 1.0, the last replaced by `extra` when given.
+- `0x00271760(w, block, matrix, extra)` builds a 15-record chunk: an UNPACK header for 13 records (`0x6C0D8000`), the 13
+  records of the block's constant area, and FLUSHA, MSCAL (`0x13000000`, `0x14000000`).
+- `0x00276190` fills ten of the chunk's 13 constant records: records 0 to 3 with the matrix, 4 to 7 with the matrix
+  `0x02AEDDB0` ([scripted camera](scripted-camera.md)), record 8 with four times 2047.5 and record 12 with four times
+  1.0, that last record replaced by `extra` when given. Records 9 to 11 keep what the block holds.
 - `0x00271720(w)` writes VIF BASE 0 and OFFSET `0x200` (`0x03000000`, `0x02000200`) into the record at
   the cursor. `0x002715A0(w, picture, row, half)` writes a picture bind there: A+D with CLAMP_1 = 5 and
   TEX0_1 from the picture's `+0x30`, the palette offset `(half + row × 2) × 2` in the bits from `0x2000000000` up.

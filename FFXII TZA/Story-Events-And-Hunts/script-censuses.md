@@ -238,8 +238,8 @@ The engine calls that conditions test read as follows:
     `0x002E0540()` is 0 and `0x00265720()` finds bytes `+0x14`, `+0x15` and `+0x16` non-zero on every live manager;
     any other case gives 0.
 - `get_talk_run_status()` (`0x057C`, `0x003456C0`) returns `0x02099DB4`, the world locks held by running talks (the sum of
-  the managers' `+0x1E0` counters); the talk button works only while it is 0
-  ([script requests](../Scripts-And-Script-Commands/script-requests.md)).
+  the `+0x1E0` counters of managers 0, 1 and 2); the talk button works only while it is 0 ([script
+  requests](../Scripts-And-Script-Commands/script-requests.md)).
 - `is_enable_run_event()` (`0x04FF`, `0x003475E0`, `0x00233D20`) is 1 when no party-down state is set
   (`0x02089340 & 0xF00` = 0) and time-stop request 10, the one-at-a-time action display, is not raised
   (`0x00226BD0(10)`, [time stop](../Engine-Core/time-stop-and-freeze.md)).

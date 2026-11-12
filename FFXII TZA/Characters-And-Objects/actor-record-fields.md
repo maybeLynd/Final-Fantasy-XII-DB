@@ -33,8 +33,8 @@ receive one.
 Two stored record pointers are followed as well: the 32-bit offset `0x0037B4D0` decodes with `0x0020E600` from its
 binding block, and the record bound to a presentation entry's render record (render record `+0x108`, stored by
 `0x002E28E0`). Records held only in other stored pointers or offsets, or passed only to functions called through a
-pointer, are not in the table. The 35 other functions that reference the manager slots `0x02098E10` touch slot
-fields, not records.
+pointer, are not in the table. Of the 58 functions that reference the manager slots `0x02098E10`, 32 have no row: 29 use only slot fields and the
+payload or pass a record on, and `0x00263AC0`, `0x0026C3E0` and `0x0026C5D0` read a record held in a stored pointer.
 
 The interiors were followed from every record so held, through their pointers, through the 47 functions that receive
 an interior pointer in an argument register, through the entry resolver `0x003DB550` and through `0x002651A0`,
@@ -45,8 +45,9 @@ which returns the current wait slot's integer result `+0x0C` and sets the slot's
 
 | Record offset | Size | Region |
 |---|---|---|
-| `+0x000` | `0x20` | identity and flag bytes: index, entry class, class and sequence, the masks and the eleven flag bytes |
+| `+0x000` | `0x1C` | identity and flag bytes: index, entry class, class and sequence, the masks and the eleven flag bytes |
 | `+0x01C` | 4 | the flag dword seeded by sequence |
+| `+0x020` | 8 | the byte `+0x20`, the word `+0x21`, the byte `+0x23` and the channel bit words `+0x24` and `+0x26` |
 | `+0x028` | 8 | a qword zeroed at init |
 | `+0x030` | 8 | the battle unit |
 | `+0x038` | 8 | the frame callback |
@@ -54,7 +55,7 @@ which returns the current wait slot's integer result `+0x0C` and sets the slot's
 | `+0x060` | 4 | the request entry list heads and flags |
 | `+0x064` | `0x20` | the script VM's four integer and four float registers |
 | `+0x088` | `0x18` | the channel counts and the channel tail and head arrays |
-| `+0x0A0` | `0x20` | the four interior pointers |
+| `+0x0A0` | `0x28` | the four interior pointers, at `+0xA0`, `+0xA8`, `+0xB8` and `+0xC0` |
 | `+0x0C8` | `0x24` | the eighteen override words |
 | `+0x0F8` | `0x0C` | the name text, its length and the name id |
 | `+0x104` | `0x1C` | sentinels and counters the initialiser sets |
@@ -103,11 +104,11 @@ for a tagged entry; the frozen pass `0x0025E400` runs `0x002E5180` on a record w
 
 | Byte offset | Manager 0 | Other managers |
 |---|---|---|
-| `+0x08` | `(old & 0x9F) \| 0x11`, then bit `0x80` cleared | `(old & 0x8F) \| 1`, then bit `0x80` cleared |
+| `+0x08` | `(old & 0x9F) \| 0x11`, then bit `0x80` cleared; for class 2 `0x00265FF0` then applies `(v & 0xF5) \| 4` | `(old & 0x8F) \| 1`, then bit `0x80` cleared; the same for class 2 |
 | `+0x0D` | `(old & 0xA2) \| 0x82`, then bit `0x20` cleared | `(old & 0x22) \| 2`, then bit `0x20` cleared |
 | `+0x14` | `(old & 0xB0) \| 0x30`; bit `0x80` for sequences 5 and 7 | the same |
-| `+0x0C` | `(old & 0x71) \| 8`, then bits under mask `0x70` cleared | the same |
-| `+0x0E` | set to `0xF0`, then `0x00265FF0` writes the low nibble: 4 for class 1, 5 for class 3 | the same |
+| `+0x0C` | 8: `(old & 0x70) \| 8`, then bits under mask `0x70` cleared | the same |
+| `+0x0E` | set to `0xF0`, then `0x00265FF0` makes it `0xB4` for class 1 and `0xF5` for class 3; classes 0 and 2 keep `0xF0` | the same |
 | `+0x1C` | 0, `0x38`, `0x40`, `0x30004` or `0x34C85` by sequence; bits `0x100` and `0x2000` cleared for class 3 | the same |
 
 ## Related

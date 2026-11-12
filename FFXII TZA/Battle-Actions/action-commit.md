@@ -19,8 +19,8 @@ Nothing about damage, cost or timing is decided at that moment.
   against it, and a count of them; a unit is added once and removed when its action is cancelled or
   reset. Each such change is posted as a combat-relation event to the acting side's living party
   members (or to the enemy itself).
-- **Idle units.** A unit with no action goes into a queue; once per simulation tick, up to 8 queued
-  units that are still able to act are sent back to choose their next action.
+- **Idle units.** A unit with no action goes into a queue; each pass of the simulation tick that reaches the queue,
+  normally one, sends up to 8 queued units that are still able to act back to choose their next action.
 
 The group leader also keeps its own copy of the hostile target it committed to, and that copy is what the gambit
 target selector reads.
@@ -123,9 +123,9 @@ once in the first pass, and again in each of up to 15 further passes of the same
 skip flag `0x00267310(slot)` is set. Tick mode 1 calls it only for slots 3 and 4 (`0x0031412B`), where it
 does nothing.
 
-Inside it the drain runs only when bits `0x1` and `0x4` of `0x02089340` are not 1 and 0
-(otherwise the one-shot callback at `0x0208E6A8` runs) and `0x00383C80` reports a loaded navigation
-dataset (`0x00234547`-`0x00234582`).
+Inside it the drain runs only when bits `0x1` and `0x4` of `0x02089340` are not 1 and 0 and `0x00383C80` reports a loaded
+navigation dataset (`0x00234547`-`0x00234582`). When they are 1 and 0, the one-shot callback at `0x0208E6A8`, if set and
+with bit `0x2` of `0x02089340` clear, is called and its pointer zeroed.
 
 `0x00313CD0` does nothing while bit `0x20` of `0x02089340` is set; otherwise it makes 8 attempts to take an
 entry from the read index `0x022BE980` (an empty ring yields handle 0). For each unit that resolves and
@@ -145,8 +145,8 @@ still has bit `0x20`, it clears the bit and calls `0x00305AB0(unit, 0)` when the
 | unit `+0x710` | `u32` | committed target handle | `0x0030F800` |
 | unit `+0x714` | `u16` | committed action id | `0x0030F806` |
 | unit `+0x718`-`+0x72F` | `u8[24]` | copy of `+0x700`-`+0x717` at commit | `0x0030F823`, `0x0030F82A` |
-| unit `+0x750` | `u32` | the leader's own hostile target; read by `0x00301AD0` (`0x0030314F`, `0x00303176`) | `0x0030F931`; zeroed at `0x0030F8A3`; `0x00305E70` copies `+0x754` into it |
-| unit `+0x754` | `u32` | the group leader's hostile target | `0x0030F8CF`, `0x0030F920` |
+| unit `+0x750` | `u32` | the leader's own hostile target; read by `0x00301AD0` (`0x0030314F`, `0x00303176`) | `0x0030F931`; zeroed at `0x0030F8A3`; `0x00305E70` copies `+0x754` into it; zeroed with `+0x754` by the qword stores `0x00236BCB`, `0x002FFA2A`, `0x003001AC`, `0x00300EBE`, `0x003011FB`, `0x0030B013` and `0x002FE7F4` |
+| unit `+0x754` | `u32` | the group leader's hostile target | `0x0030F8CF`, `0x0030F920`; zeroed by the qword stores at `+0x750` listed above |
 | unit `+0xEA4` | `u32` | attacker mask, one bit per `+0xEA9` index | `0x0030F962`; `0x003107EA` |
 | unit `+0xEA8` | `u8` | attacker count | `0x0030F959` (+1); `0x003107DD` (-1) |
 | `0x022BE980` / `0x022BE981` | `u8` | idle-queue read and write indices | `0x00313D1E` / `0x003086DA`; both zeroed by `0x0030FE60` (`0x0030FE7B`) |

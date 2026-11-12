@@ -3,15 +3,24 @@ function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_
 0x00233AD0	BattleUnit_ActivateAppliedDefinitionRuntime	0x0031B760	3	10	3	0	no	no
 0x00233EA0	FUN_00233ea0	arg0	5	7	2	0	no	no
 0x00233F70	BattleUnit_UpdateLifecycleAndCombatFrame	0x0031B760	6	11	1	1	no	no
+0x00234150	FUN_00234150	0x0031B810	1	1	0	0	no	no
 0x00234200	ActorSystem_ReleaseBattleUnitSlotForActor	0x00263E30	5	6	2	0	yes	no
 0x00234480	BattleUnit_AllocateSlotAndBindActor	0x0208E688 (the slot acquire)	5	3	7	0	yes	yes
 0x00234590	BattleSystem_RunFieldFrameOrchestrator	0x0031B770	1	1	0	0	no	no
+0x00234880	SpawnGroup_TeardownAllGroupedSpawnUnits	0x00321170	2	2	0	0	yes	no
+0x002348E0	FUN_002348e0	0x00321170	1	1	0	0	yes	no
+0x00234990	SpawnGroup_TeardownUnitsByGroupMask	0x00321170	2	2	0	0	yes	no
 0x00234A00	FUN_00234a00	arg0	1	0	1	0	no	no
-0x002350C0	SpawnLifecycle_CheckAndRetireByNativeRange	0x0031B760	6	8	0	0	no	no
+0x00234A10	SpawnGroup_SetUnitFlag800ByGroupMask	0x00321170	3	3	1	0	yes	no
+0x00234A80	SpawnGroup_ClearUnitFlag800ByGroupMask	0x00321170	3	3	1	0	yes	no
+0x00234DA0	Spawn_ValidateCandidateDistanceToPlayers	0x0031B810	3	4	0	0	no	no
+0x002350C0	SpawnLifecycle_CheckAndRetireByNativeRange	0x0031B760; 0x0031B810	8	12	0	0	no	no
+0x002352E0	Spawn_SetAllSpawnBackedUnitsCurrentHPZero	0x00321170	1	1	0	0	yes	no
 0x00235360	Spawn_SelectContinuousEntry	0x0031B760	1	1	0	0	no	no
 0x002354F0	Spawn_SelectPreviousMapEntry	0x0031B760	1	1	1	0	no	no
 0x002355A0	Spawn_PrepareRandomCandidateForCurrentEntry	0x0031B760	4	4	1	0	no	no
 0x00235720	Spawn_SelectAndPrepareAutomaticEntry	0x0031B760	2	3	1	0	no	no
+0x00235DD0	FUN_00235dd0	0x0031B810	2	1	0	1	no	no
 0x00235EF0	SpawnEntry_GetDeathLimit	0x0031B760	1	1	0	0	no	no
 0x00235F50	SpawnEntry_GetDeathCount	0x0031B760	1	1	0	0	no	no
 0x00235FB0	SpawnEntry_GetElapsedTicksSinceLastDeath	0x0031B760	1	1	0	0	no	no
@@ -25,9 +34,15 @@ function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_
 0x00236860	SpawnEntry_ResetTransientState	0x0031B760	1	1	0	0	no	no
 0x002368D0	FUN_002368d0	0x0208E688	1	0	1	0	yes	no
 0x00236A60	BattleUnit_ResetStateForReuse	arg0	51	6	49	4	no	no
+0x00237140	FUN_00237140	0x0031B810	2	2	0	0	no	no
+0x002371B0	FUN_002371b0	0x0031B810	2	2	0	0	no	no
+0x00237260	FUN_00237260	0x0031B810	1	1	0	0	no	no
+0x002372E0	FUN_002372e0	0x0031B810	1	1	0	0	no	no
 0x002373A0	FUN_002373a0	0x0031B760	1	1	0	0	no	no
 0x002373C0	FUN_002373c0	0x0031B770	1	1	0	0	no	no
+0x00237460	FUN_00237460	0x0031B810	1	0	0	1	no	no
 0x00237650	ActorWork_HasAppliedUnitDefinition	0x0031B760	1	1	0	0	no	no
+0x00237690	SpawnGroup_TeardownAllUngroupedSpawnUnits	0x00321170	2	2	0	0	yes	no
 0x00237D80	FUN_00237d80	0x0031B760	3	4	0	0	no	no
 0x00238AB0	FUN_00238ab0	0x0031B760	1	0	1	0	no	no
 0x00238B40	FUN_00238b40	0x0031B760	1	2	2	0	no	no
@@ -63,7 +78,7 @@ function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_
 0x002E5610	FUN_002e5610	actor +0x30	1	0	0	1	no	no
 0x002F8060	BattleUnit_TryTriggerNearbyAuthoredFieldAction	arg0	2	2	0	0	no	no
 0x002F8410	BattleAction_ComputeChargeLimitTicks	arg0	2	16	0	0	no	no
-0x002F8BB0	Reward_ComputeExperienceForRecipient	arg1	3	7	0	0	no	no
+0x002F8BB0	Reward_ComputeExperienceForRecipient	arg1; 0x0031B810	3	8	0	0	no	no
 0x002F8E90	FUN_002f8e90	0x0031B860	1	1	0	0	no	no
 0x002F90C0	Reward_ComputeLicensePointsForRecipient	arg1	3	3	0	0	no	no
 0x002F91A0		arg1; arg0	1	3	0	0	no	no
@@ -77,6 +92,7 @@ function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_
 0x002FA290	FUN_002fa290	arg1; 0x0031B860; arg2	2	7	0	0	no	yes
 0x002FB150	Loot_FindOverlappingPickupIndex	arg0	1	2	0	0	no	no
 0x002FB6C0	BattleAction_LookupPrimaryResourceGainFactorByHpDamage	arg0	1	2	0	0	no	no
+0x002FB8C0	FUN_002fb8c0	0x0031B810	2	2	0	0	no	no
 0x002FE950	FUN_002fe950	arg0	5	6	3	0	no	no
 0x002FEAB0	FUN_002feab0	arg0	1	0	1	0	no	no
 0x002FEAD0	FUN_002fead0	arg0	5	10	6	0	no	yes
@@ -86,7 +102,9 @@ function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_
 0x002FFB60	BattleAction_CheckCurrentActionInterruptReason	arg0	7	9	1	0	no	no
 0x002FFCF0	BattleAction_CheckActionAvailabilityReason	arg1	3	6	0	0	no	no
 0x002FFF50	BattleTarget_ComputeEligibilityBlockMask	arg0	3	5	0	0	no	no
+0x00300060	FUN_00300060	0x00321170	3	3	2	0	yes	no
 0x00300140	BattleUnit_ResetActionControlForStatusTransition	arg0	10	6	9	0	no	no
+0x003001D0	FUN_003001d0	0x0031B810	1	1	0	0	no	no
 0x00300280	BattleAction_RefundReservedExecutionResources	arg0	3	3	2	0	no	no
 0x00300310	BattleUnit_PublishLocomotionPosition	arg1+0x140; arg0	9	15	3	0	no	no
 0x003003F0	BattleUnit_PublishLocomotionPositionAndFacing	arg0	5	3	2	0	no	no
@@ -95,14 +113,16 @@ function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_
 0x00300E40	BattleUnit_TeardownAndDespawn	arg0	18	21	17	0	no	no
 0x00300FC0	FUN_00300fc0	arg0	5	8	2	0	no	no
 0x00301140	BattleUnit_RecoverFromTerminalStatusSetIfClear	arg0	18	22	21	1	no	no
-0x00301310	FUN_00301310	arg0	1	2	0	0	no	no
+0x00301310	FUN_00301310	arg0; 0x0031B810	1	3	0	0	no	no
 0x003014C0	AiOrder_EvaluateAndResolveActionTarget	arg0; 0x0031B760	8	9	0	1	no	no
 0x00301830	AiOrder_CheckActionPreconditions	arg0	13	12	2	2	no	no
-0x00301AD0	AiOrder_EvaluateTargetSelector	0x00236820; arg0	21	80	0	4	yes	no
+0x00301AD0	AiOrder_EvaluateTargetSelector	0x00236820; arg0; 0x0031B810	21	81	0	4	yes	no
 0x003037A0	FUN_003037a0	arg0	2	2	0	0	no	no
 0x00303830	BattleAction_EvaluateTargetPreviews	arg0; 0x0031B760	6	8	1	1	no	no
 0x00303A00	BattleAction_EvaluateTargetPreviewRecursive	0x0031B860	3	1	2	0	no	no
 0x00303BD0	BattleAction_CheckExecutionResourceAvailability	arg0	2	2	0	0	no	no
+0x00304060	FUN_00304060	0x0031B8C0	1	1	0	0	no	no
+0x00304180	FUN_00304180	0x0031B8C0	6	6	5	0	no	no
 0x00304850	BattleUnit_AdvanceStandardActionState	arg0; 0x0031B7E0	38	87	54	10	no	yes
 0x00305110	FUN_00305110	0x0031B7E0; arg0	5	4	1	1	no	no
 0x00305230	FUN_00305230	arg0; 0x0031B7E0	4	4	0	2	no	yes
@@ -111,7 +131,7 @@ function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_
 0x003057D0	FUN_003057d0	arg0	4	8	2	0	no	no
 0x00305AB0	BattleUnit_SelectAndCommitNextAction	arg0	10	13	5	1	no	no
 0x00305CC0	BattleUnit_TrySelectAndCommitAiOrderFromSet	arg0	3	3	0	0	no	no
-0x00305E70	FUN_00305e70	arg0	6	5	1	0	yes	no
+0x00305E70	FUN_00305e70	arg0; 0x00321170	7	7	1	0	yes	no
 0x00306010	FUN_00306010	arg0; 0x0031B760	3	5	0	1	no	no
 0x00306760	BattleAction_UpdateSpecialPresentationSequence	arg0; 0x00236820	10	13	5	4	yes	no
 0x00306B10	FUN_00306b10	arg0	1	1	0	0	no	no
@@ -125,6 +145,7 @@ function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_
 0x00307C70	FUN_00307c70	arg0	3	5	3	0	no	no
 0x00307D10	BattleUnit_UpdateEngagementStateFlag	arg0	4	9	5	0	no	no
 0x00307DF0	BattleUnit_UpdatePartyCombatStanceState	arg0	2	4	0	0	no	no
+0x00307E70	PartyCombat_UpdateStanceState	0x0031B810	1	1	0	0	no	no
 0x00308010	BattleUnit_ShouldEnterEngagedActionState	arg0	1	1	0	0	no	no
 0x00308040	BattleUnit_HasNonPartyEngagementEvidence	arg0	4	4	0	1	no	no
 0x00308130	BattleUnit_ComputePartyBattleStance	arg0	3	4	0	0	no	no
@@ -141,7 +162,10 @@ function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_
 0x00309230	BattleSpecialSequence_DeriveActionPresentationCode	arg0	1	1	0	0	no	no
 0x003098D0	BattleAction_SelectGlobalSequencePresentationEvent	arg0	1	1	0	0	no	no
 0x00309990	FUN_00309990	0x0031B7E0	11	1	11	2	no	no
+0x00309FB0	Inventory_QueryOwnedCountIncludingReservedActionItems	0x0031B810	1	1	0	0	no	no
 0x0030A130	BattleUnit_GetNavigationClearanceRadius	arg0	1	1	0	0	no	no
+0x0030A8A0	BattleUnit_CollectMappedFourSlotUnitsByFlags	0x0031B810	2	3	0	0	no	no
+0x0030AA00	FUN_0030aa00	0x0031B8C0	1	1	0	0	no	no
 0x0030AB40	BattleTarget_ClassifyRelationshipClass	arg1; arg0	3	7	0	0	no	no
 0x0030AD90	FUN_0030ad90	arg0	3	3	0	0	no	no
 0x0030AF30	BattleAction_CheckAndHandleExecutionTimeout	arg0	15	12	9	0	no	no
@@ -166,14 +190,15 @@ function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_
 0x0030CBE0	FUN_0030cbe0	0x0031B7E0	1	2	1	0	no	no
 0x0030CE10	BattleAction_TryEnterGlobalSpecialSequence	arg0	1	3	2	0	no	no
 0x0030CFB0	BattleAction_AcquirePresentationSlot	arg0+0x690	1	1	1	0	no	no
-0x0030D160	Battle_BuildActionTargetSet	arg0; 0x0031B7E0; arg3+0x778	6	5	1	6	yes	no
+0x0030D160	Battle_BuildActionTargetSet	arg0; 0x00321170; 0x0031B7E0; 0x0031B810; arg3+0x778	7	7	1	9	yes	no
+0x0030D600	FUN_0030d600	0x0031B810	1	2	0	0	no	no
 0x0030DA30	FUN_0030da30	arg0	6	8	0	0	no	no
 0x0030E360	BattleStats_ChangeStatusAndProcessSideEffects	0x0031B860	5	8	4	0	no	no
 0x0030EC00	BattleAction_ResolveSpecialSequenceTargets	arg0; 0x0031B760	4	8	0	1	no	yes
 0x0030EDA0	BattleUnit_RestoreSuspendedActionState	arg0	17	1	15	1	no	no
 0x0030EF20	BattleAction_PrepareExecutionResources	arg0	3	1	2	0	no	no
 0x0030EFF0	BattleUnit_SnapshotAndSuspendActionState	arg0	20	19	2	3	no	no
-0x0030F130	AiOrder_BuildCandidateTargetBufferFromStoredRangeAndStatus	arg0; 0x0031B760	16	17	0	5	no	no
+0x0030F130	AiOrder_BuildCandidateTargetBufferFromStoredRangeAndStatus	arg0; 0x0031B760; 0x0031B810	16	19	0	5	no	no
 0x0030F2D0	FUN_0030f2d0	0x0031B760	5	3	4	0	no	no
 0x0030F690	BattleStats_RemoveStatusesFromMaskAndRecompute	0x0031B860	2	2	1	0	no	no
 0x0030F760	BattleUnit_CommitAction	arg0; 0x00236820; arg1+0xBA0	24	25	19	2	yes	yes
@@ -182,9 +207,12 @@ function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_
 0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	0x0031B860	2	10	0	0	no	no
 0x003105D0	BattleUnit_CancelAndResetCurrentAction	arg0; 0x00236820	30	13	27	2	yes	yes
 0x00310780	BattleUnit_ReleaseTargetRelationAndActionState	arg0; 0x0031B7E0	9	9	4	1	no	yes
+0x00310920	FUN_00310920	0x0031B810	1	1	0	0	no	no
 0x00310DB0	BattleUnit_RunPeriodicCombatMaintenance	arg0; 0x0031B770	7	20	3	0	no	no
 0x003112F0	BattleFormula_ApplyTargetResult	0x0031B860	4	23	3	0	no	no
+0x00311B20	BattleUnit_IssueCommandByFocusHandlesWithOptionalPartyFanout	0x0031B810	1	1	0	0	no	no
 0x00311CF0	BattleUnit_IssueCommand	arg0	11	9	8	0	no	yes
+0x00311E90	FUN_00311e90	0x0031B810	1	1	0	0	no	no
 0x00311F50	FUN_00311f50	0x0031B760	1	1	1	0	no	no
 0x00311F70	FUN_00311f70	arg1	8	9	5	0	no	no
 0x00312130	FUN_00312130	0x0031B760	1	2	2	0	no	no
@@ -198,7 +226,9 @@ function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_
 0x00313120	FUN_00313120	0x0031B7E0	7	5	4	3	no	no
 0x00313400	BattleUnit_EnterPartyCombatStance	arg0	5	4	4	0	no	no
 0x00313500	FUN_00313500	arg0	3	4	3	1	no	no
-0x00313B30	BattleUnit_BroadcastPartyCombatTargetRelation	arg0; arg1	2	4	0	0	no	no
+0x00313670	FUN_00313670	0x0031B810	1	1	0	0	no	no
+0x003138D0	FUN_003138d0	0x0031B8C0	4	4	0	0	no	no
+0x00313B30	BattleUnit_BroadcastPartyCombatTargetRelation	arg0; arg1; 0x0031B810	2	5	0	0	no	no
 0x00313CD0	BattleUnit_ProcessPendingActionSelectionQueue	0x0031B7E0	2	3	1	0	no	no
 0x00313DB0	FUN_00313db0	0x0031B7E0	3	6	2	0	no	no
 0x00313F20	BattleUnit_ApplyPartyCombatStanceTransition	arg0	3	4	0	0	no	no
@@ -356,8 +386,10 @@ function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_
 0x00336710	BattleLocomotion_BuildSolverContext	arg1+0x80; 0x00236820	23	27	0	0	yes	no
 0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	arg1+0x80	8	0	8	0	no	no
 0x003377C0	FUN_003377c0	0x00236820	2	2	0	0	yes	yes
+0x00337C10	FUN_00337c10	0x00321170	2	3	0	0	yes	no
+0x00337D90	FUN_00337d90	0x00321170	2	3	0	0	yes	no
 0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00236820	1	1	0	0	yes	no
-0x00338490	PartyFollow_SolveFormation	0x00236820	4	4	0	0	yes	yes
+0x00338490	PartyFollow_SolveFormation	0x00236820; 0x0031B810	6	8	0	0	yes	yes
 0x00339C40	BattleLocomotion_ComputeStepDistance	sweep	2	2	0	0	no	no
 0x0033A240	FUN_0033a240	arg0+0x80	4	0	4	0	no	no
 0x0033C310	FUN_0033c310	0x00236820	3	3	0	0	yes	yes
@@ -374,7 +406,7 @@ function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_
 0x00384130	Navigation_FindRegionForPositionXZ	arg0+0xE0	2	2	0	0	no	no
 0x003847C0	BattleFormula_BuildEvaluationContext	0x0031B860	1	1	0	0	no	no
 0x00384E50	FUN_00384e50	0x0031B860	1	2	0	0	no	no
-0x00384F40	FUN_00384f40	0x0031B860	2	4	0	0	yes	yes
+0x00384F40	FUN_00384f40	0x00321170; 0x0031B860	5	10	0	0	yes	yes
 0x00385680	BattleFormula_EvaluateTargetPreview	0x0031B860	5	7	0	0	no	yes
 0x00385BA0	BattleFormula_ApplyResultMetadata	0x0031B860	1	3	0	0	no	no
 0x00385F60	BattleFormula_ResolveTargetResult	0x0031B860	1	3	0	0	no	yes
@@ -388,7 +420,7 @@ function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_
 0x00387FD0	BattleFormula_RollSpecialGuardOutcome	0x0031B860	1	1	0	0	no	no
 0x003884F0	BattleFormula_RollGuardParryMode	0x0031B860	1	1	0	0	no	no
 0x00388660	BattleFormula_RollAndStoreComboCount	0x0031B860	4	4	0	0	no	yes
-0x00388D50	FUN_00388d50	0x0031B860	2	2	0	0	no	yes
+0x00388D50	FUN_00388d50	0x0031B860; 0x0031B810	3	3	0	0	no	yes
 0x003896B0	BattleFormula_RollAvoidGuardParryOutcome	0x0031B860	1	1	0	0	no	no
 0x00389820	FUN_00389820	0x0031B860	1	1	0	0	no	no
 0x00389950	FUN_00389950	0x0031B860	1	1	0	0	no	no

@@ -85,6 +85,8 @@ four handles that is not `0xFFFF` (`0x0051CDC0`). `0x003E74C0(record)` frees eac
 `0x0051C270` allocates `0x3C00` bytes, sixteen entries of `0x3C0`, at `[0x02CA8420]`, clears every handle and zeroes the
 header: live count `0x02CA8400`, flag byte `0x02CA8402`, serial `0x02CA8404`, list head `0x02CA8408` and tail `0x02CA8410`. It
 builds the parameter template at `0x02CA8A90` (`0x005409C0`) and binds the engine's trail image from `0x01F2A220`.
+The only instruction that stores to `0x02CA8402` writes 0 (`0x0051C341`), so both tests of `entry +5 | 0x02CA8402` below
+(`0x0051BE44`, `0x0051C454`) depend on the entry's `+5` alone.
 
 The order is the image, the template, then the pool (`0x0051C276`-`0x0051C2F3`). It allocates only while `[0x02CA8420]` is
 null, under arena 6 (`0x0036C1D0(6, 6)` and `0x0036C140` around `0x0036A100(0x3C00)`, `0x0051C2FF`-`0x0051C321`); every call

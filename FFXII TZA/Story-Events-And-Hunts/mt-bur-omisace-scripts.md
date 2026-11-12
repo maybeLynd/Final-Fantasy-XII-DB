@@ -179,7 +179,9 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 
 The steps table [`mt-bur-omisace-script-steps.tsv`](mt-bur-omisace-script-steps.tsv) has one row for each step of
 every function of the ten scripts, in the order the function runs them: each call, request, store, branch, loop, case
-and return. It has 31,998 rows.
+and return. It has 31,998 rows. That leaves out the 12 functions in the spawn groups of the scripts' foes (entry,
+spawn and respawn); [Bestiary](../Enemy-Spawning/bestiary.md) reads their entry functions as enemy
+placements.
 
 A row gives where the step sits in the script, the branch it runs under, the verb and its arguments, and what those
 arguments name in the game: the actor, the model, the animation and its motion file, the effect file, the event sound,

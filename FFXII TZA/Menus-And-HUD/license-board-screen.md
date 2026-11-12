@@ -39,7 +39,7 @@ The chooser steps through the twelve boards with left and right (`0x00557B90`), 
 ([Dialogs](dialogs.md)). Its stage byte `+0x37D` runs the opening (`0x00557DF0`):
 
 1. The first visit to the chooser shows "You must choose a license board in order to obtain licenses. ..." (`0x836`)
-   once per save, and sets the save-wide flag `0xBB` (`0x00252D10`).
+   once per save: `0x00252D10` tests the save-wide flag `0xBB` (`0x00557F43`) and `0x00252D40` sets it (`0x00557F16`).
 2. Confirm asks "Choose this license board?" (`0x835`, `0x00558607`).
 3. Yes plays three cues and stores the board: `0x00323740(row, board)` for a first board, or `0x003236F0(row, board)` for
    the second (`0x00558630`-`0x00558668`). [License Board](../Items-Equipment-Shops-And-Licenses/license-board.md) has the
@@ -192,8 +192,11 @@ Obtaining the Second Board ends with the chooser opening for the member's second
 - `0x0055EF10(view)` runs every square's transition (`0x0055F010`) and fade (alpha `+0x25` from `+0x26`/`+0x27`, rising or
   falling by `+0x29`), and plays sound `0x4A` once when a transition returns `0x10`. `0x0055B2B0(view)` returns 1 while
   any square still fades or counts down.
-- `0x0055B8C0(view)` starts a 6-frame pan toward the cursor square (`+0x550`/`+0x551` times the cell size `+0x554`) when
-  the view is not there; `0x0055F1C0` runs the pan (`0x00248F40`) and the cursor's pulse `+0x191` in five steps.
+- `0x0055B8C0(view)` starts a 6-frame pan toward the cursor square (`+0x550` times the cell width `+0x554` and `+0x551`
+  times the cell height `+0x555`, each plus half of `0x01F2CACC`) when the view is not there.
+- `0x0055F1C0` runs the pan (`0x00248F40`) and, while `+0x570` bit `0x40` is set, the cursor's pulse `+0x191` in the four
+  timed steps of `+0x190`: 30 frames at 0, 6 rising to 8, 4 falling to 0 and 30 at 0, starting again with `+0x570`
+  bit `0x80` set.
 - `0x0055B960(view, dx, dy, now)` gives the scroll `d` that keeps the cursor inside the view. Unless `now`,
   each axis takes `s = d >> 4` (arithmetic), `s = d / abs(d)` when that is 0, and an odd `s` one further from 0
   (`0x0055BA33`-`0x0055BA5F` for x, `0x0055BA6E`-`0x0055BA91` for y).

@@ -103,11 +103,11 @@ Two callers take a record's centre point:
 
 ### The motion bone list
 
-Before `0x0041BEE0` binds a motion's bone channels it runs `0x00370BB0`, which lists the skeleton's bones as
-12-byte nodes (index, previous, next) in the scratch list at `[0x01EF9438]`, with the head at `+0x00` and
-the count at `+0x1804`. Kind 0 lists every record (`0x00370BD0`; with bit `0x20` of the entry's `+0x00` set
-only records whose word `+0x22` is 1 or 7) and kind 2 every node with flag bit `0x100` (`0x00370CD0`).
-`0x00370E00` then claims the node whose key matches each channel, unlinking it (`0x00373540`).
+Before `0x0041BEE0` binds a motion's bone channels it runs `0x00370BB0`, which lists the skeleton's bones as 12-byte nodes
+(index, previous, next) in the scratch list at `[0x01EF9438]`, with the head at `+0x00` and the count at `+0x1804`. Kind
+0 lists every record (`0x00370BD0`; with bit `0x20` of the entry's `+0x00` set only records whose word `+0x22` is 1 or
+7) and kind 2 every node with flag bit `0x100` (`0x00370CD0`). For kind 2, `0x00370E00` then claims the node whose key
+matches each channel, unlinking it (`0x00373540`). For any other kind it answers -1 and `0x0041BEE0` skips the channel.
 
 `[0x01EF9438]` normally points at `0x02AD9EC0` (`0x00370DE0`); `0x00426090` and `0x004262E0` point it at
 `[0x01FD4A78]` (`0x00370DF0`) for their work and back at the end.

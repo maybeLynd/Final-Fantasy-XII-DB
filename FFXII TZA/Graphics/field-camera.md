@@ -87,10 +87,14 @@ Each ease first counts its hold down by 1 while the hold is above 0. While the h
 
 ### The followed transform
 
-Each controller keeps two poses of `0xB0` bytes, a start at `+0x6E0` and a target at `+0x790`, and a
-weight at `+0x840`. A pose holds a position at `+0x00` and the heading as `(cos, 0, sin, 1)` at
-`+0x10`. `0x00259510(out, from, to, t)` blends them: the position linearly, the heading from `from` by
-`t` times the shorter difference (`0x003A1C50`), written back as cosine and sine.
+Each controller keeps two poses of `0xB0` bytes, a start at `+0x6E0` and a target at `+0x790`, and a weight at
+`+0x840`. A pose holds a position at `+0x00` and a heading pair `(a, 0, b, 1)` at `+0x10`. The target comes from the
+leader's body block, whose pair `0x003DAF20` writes as `a = cos h`, `b = sin h` of the body heading `h` (`+0xF8`).
+
+`0x00259510(out, from, to, t)` blends the position linearly and reads each heading as `atan2f(a, b)`, which for a body
+pair is `pi/2 - h`. It adds `t` times the shorter difference (`0x003A1C50`) to `from`'s angle and writes `a = cosf` and
+`b = sinf` of the result, so at `t` = 1 a body pair comes out swapped, `(sin h, 0, cos h, 1)`. `0x0032CE40` reads the
+output as `atan2(b, a)`, which gives that angle back.
 
 Each frame `0x0025A180(actor, slot)` copies the leader's transform (the block at `+0x30` of its
 `+0xC0` → `+0x138` object) into the target pose and blends start to target by the weight into the

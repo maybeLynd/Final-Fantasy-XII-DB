@@ -163,7 +163,8 @@ While a unit is shown and no scene is playing (state not 5 or 6; with state 5 or
 cleared - which phase 11 does - with `0x00225CD0(10, -1)`. It is also released when it has no record at `+0x698`
 (`0x00313ED4`). The release zeroes `0x02089350` and ends with a tail jump to `0x00313A00` (`0x00313EF5`-`0x00313F13`).
 
-While a unit is shown, `0x00313A00` sets the bits `0x1019FD` (`0x1`, `0x4` to `0x100`, `0x800`, `0x1000` and `0x100000`) of row 2 of the action-availability table
+While a unit is shown, `0x00313A00` sets the bits `0x1019FF` (`0x1` to `0x100`, `0x800`, `0x1000` and `0x100000`) of row
+2 of the action-availability table
 `0x0215F1C0` (`0x00313A68`-`0x00313AF5`; [Action availability](../Controls-And-Input/action-availability.md)), and the menu
 request router `0x00254B50` refuses a request whose id a set bit lists (`0x00254B80`-`0x00254BC1`;
 [Menu requests](../Menus-And-HUD/menus.md)).
@@ -306,10 +307,10 @@ Phase 3 releases the unit's three slot bytes `+0x694`-`+0x696` (`0x00304B75`, `0
 
 ### Arrival
 
-The `0x00305110` term of phase 4's arrival test is always true: `0x00305110(unit, id)` returns 0
-in every case; for an action that may target KO'd or
-stoned units (row `+0x2C` bits `0x40`/`0x80`) whose target is in that state, it also calls
-`0x00300310(target, ...)` and clears the target's bit `0x4000000`.
+The `0x00305110` term of phase 4's arrival test is always true: `0x00305110(unit, id)` returns 0 in every case. For an id
+below `0x116` with row `+0x2C` bit `0x40` or `0x80` (the action may target KO'd or stoned units), a target that
+resolves, has no stats record or is in that state, and answers 0 from `0x002E9600(target +0x10)` also gets
+`0x00300310(target, ...)` and has its bit `0x4000000` cleared.
 
 ## Layouts
 

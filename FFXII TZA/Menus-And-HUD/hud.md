@@ -358,8 +358,9 @@ The `+0x10F30` marks join two units, a at `+0x2D0` and b at `+0x2D4`:
 ### The overhead display
 
 The part at `+0x10F80`, `0x1D90` bytes, draws marks over units: a status mark for each unit it lists, a box at
-`+0x1B80` and two name boxes. `0x002C63D0`, run by `0x0028FF80` and `0x00290060`, clears it, links its 95 `0x40`-byte unit
-entries into the free list `+0x1D60` and sets the fade distances `+0x1D7C` = 5.0 and `+0x1D80` = 17.0.
+`+0x1B80` and two name boxes. `0x002C63D0`, run by `0x0028FF80` and `0x00290060`, clears it, links its 96 `0x40`-byte unit
+entries, headed by the one at `+0`, into the free list `+0x1D60` and sets the fade distances `+0x1D7C` = 5.0 and
+`+0x1D80` = 17.0.
 
 Group 15 of the pump, `0x002C6180`, steps it:
 

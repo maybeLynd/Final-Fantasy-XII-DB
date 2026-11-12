@@ -565,7 +565,7 @@ fontpack_fs.bin	it us	2	0x4240	11648	b3c3f014c7f80e0e33df704e8dce77f4c86294a79b1
 fontpack_fs.bin	it us	3	0x4240	11648	b3c3f014c7f80e0e33df704e8dce77f4c86294a79b122fdbe1bcfce6d11869bc	it us	00000000																
 fontpack_fs.bin	it us	4	0x6FC0	5120	f3e50c0053acf0dd0ccd109b2bb2d4294f522fa68bab26501a491bdbf92d15ec	ch cn in it kr us	00000000																
 fontpack_fs.bin	it us	5	0x83C0	38272	456981ed784d9b7a28bf4f81c7522fb7ce5936c76117449392b1145a88e34730	it us	00000000																
-fontpack_fs.bin	it us	6	0x11940	1536	7f5aec8b45fea82828b51b1070369afba722825036b943f3f792a4b2b17e3440	it us	0x00325523																
+fontpack_fs.bin	it us	6	0x11940	1536	7f5aec8b45fea82828b51b1070369afba722825036b943f3f792a4b2b17e3440	it us	00325523																
 fontpack_fs.bin	it us	7	0xFFFFFFFF																				
 fontpack_fs.bin	it us	8	0xFFFFFFFF																				
 fontpack_fs.bin	it us	9	0xFFFFFFFF																				

@@ -151,10 +151,14 @@ update (message 2):
 3. It copies 64 x 96 bytes (`0x01E0C470`, `0x01E0C474`) into the `itemgra_c` pixels, at column 0 or 64 by a toggle that
    flips each time, and re-uploads the atlas (`0x0024A1D0`).
 
-The id is signed. On the update the procedure does nothing for an id with bit `0x8000` set (`0x0029269A`-`0x0029269D`).
-For any other id it takes slot `(id >> 6) + 2` through `0x00292050`, which shifts 1 left by the slot with a 32-bit shift,
-keeps the low 16 bits and tests them against the object's word `+0x168` (`0x00292063`-`0x0029206D`); the shift counts the
-slot modulo 32: the bits tested are `(1 << (slot & 31)) & 0xFFFF & [object + 0x168]`.
+The id is signed. For an id with bit `0x8000` set (`0x0029269A`-`0x0029269D`) the update clears the cell once instead:
+while the item's word `+0x102CA` is 0 and the container `[[0x0209AC30] + 0x300]` is there with bit `0x1` of its `+0x168`
+and its atlas `+0xC0`, it zeroes the 64 x 96 bytes at the toggle's column, flips the toggle, sets `+0x102CA` to 1 and
+re-uploads the atlas (`0x00292952`-`0x00292A43`).
+
+For any other id it takes slot `(id >> 6) + 2` through `0x00292050`, which shifts 1 left by the slot with a 32-bit
+shift, keeps the low 16 bits and tests them against the object's word `+0x168` (`0x00292063`-`0x0029206D`); the shift
+counts the slot modulo 32: the bits tested are `(1 << (slot & 31)) & 0xFFFF & [object + 0x168]`.
 
 `0x00291D90` sets the bits under mask `0x3FF`, one per slot, so sheets 0 to 7 answer and ids 0 to 511 (512 pictures,
 highest 511) decode. An id whose slot modulo 32 is 10 to 31 finds no container: ids 512 to 1919, and the same band in

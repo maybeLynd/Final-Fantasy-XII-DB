@@ -35,7 +35,7 @@ ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp		0	15	36	2	15	0x0	704	0	6
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp		0	16	36	2	16	0x0	768	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp		0	17	36	2	17	0x0	832	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp		0	18	36	2	18	0x0	896	0	64	60	070001000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	0x02000000
+ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	02000000
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp		2	0	36	2	0	0x10	26	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp		2	1	36	2	1	0x10	44	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/ch/mrp_menu/party_book.mrp		2	2	36	2	2	0x10	62	84	26	34	000002000100070080808080808080808080808080808080
@@ -287,7 +287,7 @@ ps2data/image/ff12/myoshiok/ch/mrp_menu/quest.mrp		21	8	36	2	8	0x10	-1	-23	60	60
 ps2data/image/ff12/myoshiok/ch/mrp_menu/save_load.mrp		0	0	44	8	0	0x10	0	0	1244	576	0800010601000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/ch/mrp_menu/save_load.mrp		1	0	36	2	0	0x0	1	19	1036	272	000004000000ff0008060448080604480806044808060448
 ps2data/image/ff12/myoshiok/ch/mrp_menu/save_load.mrp		1	1	72	7	1	0x10	0	12	1180	12	04000102000000000000000000000100020020005d040b0000000080050004000300040005002000510403008080808000000000ffff000000000000
-ps2data/image/ff12/myoshiok/ch/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	0x03000000
+ps2data/image/ff12/myoshiok/ch/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	03000000
 ps2data/image/ff12/myoshiok/ch/mrp_menu/save_load.mrp		2	1	16	1	1	0x10	52	196	464	90	04000000
 ps2data/image/ff12/myoshiok/ch/mrp_menu/save_load.mrp		2	2	16	1	2	0x10	430	-15	800	312	05000000
 ps2data/image/ff12/myoshiok/ch/mrp_menu/save_load.mrp		3	0	36	2	0	0x10	210	11	3	254	000004000000000080808030808080308080803080808030
@@ -444,7 +444,7 @@ ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp		15	2	24	5	2	0x10	504	9	212
 ps2data/image/ff12/myoshiok/ch/mrp_menu/shop_new.mrp		15	3	36	2	3	0x10	728	5	68	40	070001000000000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/ch/mrp_menu/title.mrp		0	0	36	2	0	0x10	0	0	1024	896	020000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/ch/mrp_menu/title.mrp		1	0	36	2	0	0x10	256	608	508	156	010000000200ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/ch/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	0x03000000
+ps2data/image/ff12/myoshiok/ch/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	03000000
 ps2data/image/ff12/myoshiok/ch/mrp_menu/title.mrp		2	1	44	8	1	0x10	160	24	840	432	0700010c01000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/ch/mrp_menu/title.mrp		3	0	36	2	0	0x0	0	0	96	60	020000000000020080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/ch/mrp_menu/title.mrp		3	1	36	2	1	0x0	96	0	66	60	020000000100020080808080808080808080808080808080
@@ -466,9 +466,9 @@ ps2data/image/ff12/myoshiok/ch/mrp_menu/title.mrp		7	0	24	5	0	0x10	0	0	840	32	80
 ps2data/image/ff12/myoshiok/ch/mrp_menu/title.mrp		8	0	36	2	0	0x10	4	-10	360	70	010000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/ch/mrp_menu/title_menu.mrp		1	0	44	8	0	0x10	122	278	64	336	0200010201000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/ch/mrp_menu/title_menu.mrp		2	0	28	4	0	0x10	0	88	64	64	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/ch/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	0x01000000
-ps2data/image/ff12/myoshiok/ch/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	900	900	0x02000000
-ps2data/image/ff12/myoshiok/ch/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	900	800	0x03000000
+ps2data/image/ff12/myoshiok/ch/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	01000000
+ps2data/image/ff12/myoshiok/ch/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	900	900	02000000
+ps2data/image/ff12/myoshiok/ch/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	900	800	03000000
 ps2data/image/ff12/myoshiok/ch/mrp_menu/w_menu.mrp		0	3	16	1	3	0x10	0	16	558	590	04000000
 ps2data/image/ff12/myoshiok/ch/mrp_menu/w_menu.mrp		1	0	36	2	0	0x10	56	0	64	1100	000008000000090000000000000000800000000000000080
 ps2data/image/ff12/myoshiok/ch/mrp_menu/w_menu.mrp		1	1	36	2	1	0x10	84	0	800	1100	00000800000009005c594e805c594e805c594e805c594e80
@@ -548,7 +548,7 @@ ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp		0	15	36	2	15	0x0	704	0	6
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp		0	16	36	2	16	0x0	768	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp		0	17	36	2	17	0x0	832	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp		0	18	36	2	18	0x0	896	0	64	60	070001000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	0x02000000
+ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	02000000
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp		2	0	36	2	0	0x10	26	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp		2	1	36	2	1	0x10	44	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/cn/mrp_menu/party_book.mrp		2	2	36	2	2	0x10	62	84	26	34	000002000100070080808080808080808080808080808080
@@ -800,7 +800,7 @@ ps2data/image/ff12/myoshiok/cn/mrp_menu/quest.mrp		21	8	36	2	8	0x10	-1	-23	60	60
 ps2data/image/ff12/myoshiok/cn/mrp_menu/save_load.mrp		0	0	44	8	0	0x10	0	0	1244	576	0800010601000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/cn/mrp_menu/save_load.mrp		1	0	36	2	0	0x0	1	19	1036	272	000004000000ff0008060448080604480806044808060448
 ps2data/image/ff12/myoshiok/cn/mrp_menu/save_load.mrp		1	1	72	7	1	0x10	0	12	1180	12	04000102000000000000000000000100020020005d040b0000000080050004000300040005002000510403008080808000000000ffff000000000000
-ps2data/image/ff12/myoshiok/cn/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	0x03000000
+ps2data/image/ff12/myoshiok/cn/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	03000000
 ps2data/image/ff12/myoshiok/cn/mrp_menu/save_load.mrp		2	1	16	1	1	0x10	52	196	464	90	04000000
 ps2data/image/ff12/myoshiok/cn/mrp_menu/save_load.mrp		2	2	16	1	2	0x10	430	-15	800	312	05000000
 ps2data/image/ff12/myoshiok/cn/mrp_menu/save_load.mrp		3	0	36	2	0	0x10	210	11	3	254	000004000000000080808030808080308080803080808030
@@ -957,7 +957,7 @@ ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp		15	2	24	5	2	0x10	504	9	212
 ps2data/image/ff12/myoshiok/cn/mrp_menu/shop_new.mrp		15	3	36	2	3	0x10	728	5	68	40	070001000000000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/cn/mrp_menu/title.mrp		0	0	36	2	0	0x10	0	0	1024	896	020000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/cn/mrp_menu/title.mrp		1	0	36	2	0	0x10	256	608	508	156	010000000200ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/cn/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	0x03000000
+ps2data/image/ff12/myoshiok/cn/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	03000000
 ps2data/image/ff12/myoshiok/cn/mrp_menu/title.mrp		2	1	44	8	1	0x10	160	24	840	432	0700010c01000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/cn/mrp_menu/title.mrp		3	0	36	2	0	0x0	0	0	96	60	020000000000020080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/cn/mrp_menu/title.mrp		3	1	36	2	1	0x0	96	0	66	60	020000000100020080808080808080808080808080808080
@@ -979,9 +979,9 @@ ps2data/image/ff12/myoshiok/cn/mrp_menu/title.mrp		7	0	24	5	0	0x10	0	0	840	32	80
 ps2data/image/ff12/myoshiok/cn/mrp_menu/title.mrp		8	0	36	2	0	0x10	4	-10	360	70	010000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/cn/mrp_menu/title_menu.mrp		1	0	44	8	0	0x10	122	278	64	336	0200010201000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/cn/mrp_menu/title_menu.mrp		2	0	28	4	0	0x10	0	88	64	64	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/cn/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	0x01000000
-ps2data/image/ff12/myoshiok/cn/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	900	900	0x02000000
-ps2data/image/ff12/myoshiok/cn/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	900	800	0x03000000
+ps2data/image/ff12/myoshiok/cn/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	01000000
+ps2data/image/ff12/myoshiok/cn/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	900	900	02000000
+ps2data/image/ff12/myoshiok/cn/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	900	800	03000000
 ps2data/image/ff12/myoshiok/cn/mrp_menu/w_menu.mrp		0	3	16	1	3	0x10	0	16	558	590	04000000
 ps2data/image/ff12/myoshiok/cn/mrp_menu/w_menu.mrp		1	0	36	2	0	0x10	56	0	64	1100	000008000000090000000000000000800000000000000080
 ps2data/image/ff12/myoshiok/cn/mrp_menu/w_menu.mrp		1	1	36	2	1	0x10	84	0	800	1100	00000800000009005c594e805c594e805c594e805c594e80
@@ -1061,7 +1061,7 @@ ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp		0	15	36	2	15	0x0	704	0	6
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp		0	16	36	2	16	0x0	768	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp		0	17	36	2	17	0x0	832	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp		0	18	36	2	18	0x0	896	0	64	60	070001000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	0x02000000
+ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	02000000
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp		2	0	36	2	0	0x10	26	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp		2	1	36	2	1	0x10	44	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/mrp_menu/party_book.mrp		2	2	36	2	2	0x10	62	84	26	34	000002000100070080808080808080808080808080808080
@@ -1313,7 +1313,7 @@ ps2data/image/ff12/myoshiok/de/mrp_menu/quest.mrp		21	8	36	2	8	0x10	-1	-23	60	60
 ps2data/image/ff12/myoshiok/de/mrp_menu/save_load.mrp		0	0	44	8	0	0x10	0	0	1244	576	0800010601000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/de/mrp_menu/save_load.mrp		1	0	36	2	0	0x0	1	19	1036	272	000004000000ff0008060448080604480806044808060448
 ps2data/image/ff12/myoshiok/de/mrp_menu/save_load.mrp		1	1	72	7	1	0x10	0	12	1180	12	04000102000000000000000000000100020020005d040b0000000080050004000300040005002000510403008080808000000000ffff000000000000
-ps2data/image/ff12/myoshiok/de/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	0x03000000
+ps2data/image/ff12/myoshiok/de/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	03000000
 ps2data/image/ff12/myoshiok/de/mrp_menu/save_load.mrp		2	1	16	1	1	0x10	52	196	464	90	04000000
 ps2data/image/ff12/myoshiok/de/mrp_menu/save_load.mrp		2	2	16	1	2	0x10	430	-15	800	312	05000000
 ps2data/image/ff12/myoshiok/de/mrp_menu/save_load.mrp		3	0	36	2	0	0x10	210	11	3	254	000004000000000080808030808080308080803080808030
@@ -1470,7 +1470,7 @@ ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp		15	2	24	5	2	0x10	704	9	212
 ps2data/image/ff12/myoshiok/de/mrp_menu/shop_new.mrp		15	3	36	2	3	0x10	928	5	68	40	070001000000000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/mrp_menu/title.mrp		0	0	36	2	0	0x10	0	0	1024	896	020000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/mrp_menu/title.mrp		1	0	36	2	0	0x10	256	608	508	156	010000000200ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/de/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	0x03000000
+ps2data/image/ff12/myoshiok/de/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	03000000
 ps2data/image/ff12/myoshiok/de/mrp_menu/title.mrp		2	1	44	8	1	0x10	160	24	840	432	0700010c01000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/de/mrp_menu/title.mrp		3	0	36	2	0	0x0	0	0	96	60	020000000000020080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/mrp_menu/title.mrp		3	1	36	2	1	0x0	96	0	66	60	020000000100020080808080808080808080808080808080
@@ -1492,7 +1492,7 @@ ps2data/image/ff12/myoshiok/de/mrp_menu/title.mrp		7	0	24	5	0	0x10	0	0	840	32	80
 ps2data/image/ff12/myoshiok/de/mrp_menu/title.mrp		8	0	36	2	0	0x10	4	-10	360	70	010000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/mrp_menu/title_fore3.mrp		0	0	36	2	0	0x10	0	0	1024	896	010000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/mrp_menu/title_fore3.mrp		1	0	36	2	0	0x10	256	608	508	156	000000000200ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/de/mrp_menu/title_fore3.mrp		2	0	16	1	0	0x0	0	0	258	296	0x03000000
+ps2data/image/ff12/myoshiok/de/mrp_menu/title_fore3.mrp		2	0	16	1	0	0x0	0	0	258	296	03000000
 ps2data/image/ff12/myoshiok/de/mrp_menu/title_fore3.mrp		2	1	44	8	1	0x10	160	24	840	432	0600010c01000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/de/mrp_menu/title_fore3.mrp		3	0	36	2	0	0x0	0	0	96	60	010000000000020080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/mrp_menu/title_fore3.mrp		3	1	36	2	1	0x0	96	0	66	60	010000000100020080808080808080808080808080808080
@@ -1509,9 +1509,9 @@ ps2data/image/ff12/myoshiok/de/mrp_menu/title_fore3.mrp		6	0	24	5	0	0x10	0	0	840
 ps2data/image/ff12/myoshiok/de/mrp_menu/title_fore3.mrp		7	0	36	2	0	0x10	-4	4	766	74	000000000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/mrp_menu/title_menu.mrp		1	0	44	8	0	0x10	122	278	64	336	0200010201000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/de/mrp_menu/title_menu.mrp		2	0	28	4	0	0x10	0	88	64	64	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/de/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	0x01000000
-ps2data/image/ff12/myoshiok/de/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	725	864	0x02000000
-ps2data/image/ff12/myoshiok/de/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	800	800	0x03000000
+ps2data/image/ff12/myoshiok/de/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	01000000
+ps2data/image/ff12/myoshiok/de/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	725	864	02000000
+ps2data/image/ff12/myoshiok/de/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	800	800	03000000
 ps2data/image/ff12/myoshiok/de/mrp_menu/w_menu.mrp		0	3	16	1	3	0x10	0	16	1200	590	04000000
 ps2data/image/ff12/myoshiok/de/mrp_menu/w_menu.mrp		1	0	36	2	0	0x10	56	0	64	1100	000008000000090000000000000000800000000000000080
 ps2data/image/ff12/myoshiok/de/mrp_menu/w_menu.mrp		1	1	36	2	1	0x10	84	0	800	1100	00000800000009005c594e805c594e805c594e805c594e80
@@ -1591,7 +1591,7 @@ ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp		0	15	36	2	15	0x0	704	0	6
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp		0	16	36	2	16	0x0	768	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp		0	17	36	2	17	0x0	832	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp		0	18	36	2	18	0x0	896	0	64	60	070001000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	0x02000000
+ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	02000000
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp		2	0	36	2	0	0x10	26	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp		2	1	36	2	1	0x10	44	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/mrp_menu/party_book.mrp		2	2	36	2	2	0x10	62	84	26	34	000002000100070080808080808080808080808080808080
@@ -1843,7 +1843,7 @@ ps2data/image/ff12/myoshiok/es/mrp_menu/quest.mrp		21	8	36	2	8	0x10	-1	-23	60	60
 ps2data/image/ff12/myoshiok/es/mrp_menu/save_load.mrp		0	0	44	8	0	0x10	0	0	1244	576	0800010601000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/es/mrp_menu/save_load.mrp		1	0	36	2	0	0x0	1	19	1036	272	000004000000ff0008060448080604480806044808060448
 ps2data/image/ff12/myoshiok/es/mrp_menu/save_load.mrp		1	1	72	7	1	0x10	0	12	1180	12	04000102000000000000000000000100020020005d040b0000000080050004000300040005002000510403008080808000000000ffff000000000000
-ps2data/image/ff12/myoshiok/es/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	0x03000000
+ps2data/image/ff12/myoshiok/es/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	03000000
 ps2data/image/ff12/myoshiok/es/mrp_menu/save_load.mrp		2	1	16	1	1	0x10	52	196	464	90	04000000
 ps2data/image/ff12/myoshiok/es/mrp_menu/save_load.mrp		2	2	16	1	2	0x10	430	-15	800	312	05000000
 ps2data/image/ff12/myoshiok/es/mrp_menu/save_load.mrp		3	0	36	2	0	0x10	210	11	3	254	000004000000000080808030808080308080803080808030
@@ -2000,7 +2000,7 @@ ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp		15	2	24	5	2	0x10	704	9	212
 ps2data/image/ff12/myoshiok/es/mrp_menu/shop_new.mrp		15	3	36	2	3	0x10	928	5	68	40	070001000000000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/mrp_menu/title.mrp		0	0	36	2	0	0x10	0	0	1024	896	020000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/mrp_menu/title.mrp		1	0	36	2	0	0x10	256	608	508	156	010000000200ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/es/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	0x03000000
+ps2data/image/ff12/myoshiok/es/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	03000000
 ps2data/image/ff12/myoshiok/es/mrp_menu/title.mrp		2	1	44	8	1	0x10	160	24	840	432	0700010c01000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/es/mrp_menu/title.mrp		3	0	36	2	0	0x0	0	0	96	60	020000000000020080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/mrp_menu/title.mrp		3	1	36	2	1	0x0	96	0	66	60	020000000100020080808080808080808080808080808080
@@ -2022,7 +2022,7 @@ ps2data/image/ff12/myoshiok/es/mrp_menu/title.mrp		7	0	24	5	0	0x10	0	0	840	32	80
 ps2data/image/ff12/myoshiok/es/mrp_menu/title.mrp		8	0	36	2	0	0x10	4	-10	360	70	010000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/mrp_menu/title_fore3.mrp		0	0	36	2	0	0x10	0	0	1024	896	010000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/mrp_menu/title_fore3.mrp		1	0	36	2	0	0x10	256	608	508	156	000000000200ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/es/mrp_menu/title_fore3.mrp		2	0	16	1	0	0x0	0	0	258	296	0x03000000
+ps2data/image/ff12/myoshiok/es/mrp_menu/title_fore3.mrp		2	0	16	1	0	0x0	0	0	258	296	03000000
 ps2data/image/ff12/myoshiok/es/mrp_menu/title_fore3.mrp		2	1	44	8	1	0x10	160	24	840	432	0600010c01000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/es/mrp_menu/title_fore3.mrp		3	0	36	2	0	0x0	0	0	96	60	010000000000020080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/mrp_menu/title_fore3.mrp		3	1	36	2	1	0x0	96	0	66	60	010000000100020080808080808080808080808080808080
@@ -2039,9 +2039,9 @@ ps2data/image/ff12/myoshiok/es/mrp_menu/title_fore3.mrp		6	0	24	5	0	0x10	0	0	840
 ps2data/image/ff12/myoshiok/es/mrp_menu/title_fore3.mrp		7	0	36	2	0	0x10	-4	4	360	70	000000000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/mrp_menu/title_menu.mrp		1	0	44	8	0	0x10	122	278	64	336	0200010201000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/es/mrp_menu/title_menu.mrp		2	0	28	4	0	0x10	0	88	64	64	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/es/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	0x01000000
-ps2data/image/ff12/myoshiok/es/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	725	864	0x02000000
-ps2data/image/ff12/myoshiok/es/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	800	800	0x03000000
+ps2data/image/ff12/myoshiok/es/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	01000000
+ps2data/image/ff12/myoshiok/es/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	725	864	02000000
+ps2data/image/ff12/myoshiok/es/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	800	800	03000000
 ps2data/image/ff12/myoshiok/es/mrp_menu/w_menu.mrp		0	3	16	1	3	0x10	0	16	1200	590	04000000
 ps2data/image/ff12/myoshiok/es/mrp_menu/w_menu.mrp		1	0	36	2	0	0x10	56	0	64	1100	000008000000090000000000000000800000000000000080
 ps2data/image/ff12/myoshiok/es/mrp_menu/w_menu.mrp		1	1	36	2	1	0x10	84	0	800	1100	00000800000009005c594e805c594e805c594e805c594e80
@@ -2121,7 +2121,7 @@ ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp		0	15	36	2	15	0x0	704	0	6
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp		0	16	36	2	16	0x0	768	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp		0	17	36	2	17	0x0	832	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp		0	18	36	2	18	0x0	896	0	64	60	070001000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	0x02000000
+ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	02000000
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp		2	0	36	2	0	0x10	26	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp		2	1	36	2	1	0x10	44	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/mrp_menu/party_book.mrp		2	2	36	2	2	0x10	62	84	26	34	000002000100070080808080808080808080808080808080
@@ -2373,7 +2373,7 @@ ps2data/image/ff12/myoshiok/fr/mrp_menu/quest.mrp		21	8	36	2	8	0x10	-1	-23	60	60
 ps2data/image/ff12/myoshiok/fr/mrp_menu/save_load.mrp		0	0	44	8	0	0x10	0	0	1244	576	0800010601000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/fr/mrp_menu/save_load.mrp		1	0	36	2	0	0x0	1	19	1036	272	000004000000ff0008060448080604480806044808060448
 ps2data/image/ff12/myoshiok/fr/mrp_menu/save_load.mrp		1	1	72	7	1	0x10	0	12	1180	12	04000102000000000000000000000100020020005d040b0000000080050004000300040005002000510403008080808000000000ffff000000000000
-ps2data/image/ff12/myoshiok/fr/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	0x03000000
+ps2data/image/ff12/myoshiok/fr/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	03000000
 ps2data/image/ff12/myoshiok/fr/mrp_menu/save_load.mrp		2	1	16	1	1	0x10	52	196	464	90	04000000
 ps2data/image/ff12/myoshiok/fr/mrp_menu/save_load.mrp		2	2	16	1	2	0x10	430	-15	800	312	05000000
 ps2data/image/ff12/myoshiok/fr/mrp_menu/save_load.mrp		3	0	36	2	0	0x10	210	11	3	254	000004000000000080808030808080308080803080808030
@@ -2530,7 +2530,7 @@ ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp		15	2	24	5	2	0x10	704	9	212
 ps2data/image/ff12/myoshiok/fr/mrp_menu/shop_new.mrp		15	3	36	2	3	0x10	928	5	68	40	070001000000000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/mrp_menu/title.mrp		0	0	36	2	0	0x10	0	0	1024	896	020000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/mrp_menu/title.mrp		1	0	36	2	0	0x10	256	608	508	156	010000000200ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/fr/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	0x03000000
+ps2data/image/ff12/myoshiok/fr/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	03000000
 ps2data/image/ff12/myoshiok/fr/mrp_menu/title.mrp		2	1	44	8	1	0x10	160	24	840	432	0700010c01000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/fr/mrp_menu/title.mrp		3	0	36	2	0	0x0	0	0	96	60	020000000000020080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/mrp_menu/title.mrp		3	1	36	2	1	0x0	96	0	66	60	020000000100020080808080808080808080808080808080
@@ -2552,7 +2552,7 @@ ps2data/image/ff12/myoshiok/fr/mrp_menu/title.mrp		7	0	24	5	0	0x10	0	0	840	32	80
 ps2data/image/ff12/myoshiok/fr/mrp_menu/title.mrp		8	0	36	2	0	0x10	4	-10	360	70	010000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/mrp_menu/title_fore3.mrp		0	0	36	2	0	0x10	0	0	1024	896	010000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/mrp_menu/title_fore3.mrp		1	0	36	2	0	0x10	256	608	508	156	000000000200ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/fr/mrp_menu/title_fore3.mrp		2	0	16	1	0	0x0	0	0	258	296	0x03000000
+ps2data/image/ff12/myoshiok/fr/mrp_menu/title_fore3.mrp		2	0	16	1	0	0x0	0	0	258	296	03000000
 ps2data/image/ff12/myoshiok/fr/mrp_menu/title_fore3.mrp		2	1	44	8	1	0x10	160	24	840	432	0600010c01000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/fr/mrp_menu/title_fore3.mrp		3	0	36	2	0	0x0	0	0	96	60	010000000000020080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/mrp_menu/title_fore3.mrp		3	1	36	2	1	0x0	96	0	66	60	010000000100020080808080808080808080808080808080
@@ -2569,9 +2569,9 @@ ps2data/image/ff12/myoshiok/fr/mrp_menu/title_fore3.mrp		6	0	24	5	0	0x10	0	0	840
 ps2data/image/ff12/myoshiok/fr/mrp_menu/title_fore3.mrp		7	0	36	2	0	0x10	-4	4	360	70	000000000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/mrp_menu/title_menu.mrp		1	0	44	8	0	0x10	122	278	64	336	0200010201000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/fr/mrp_menu/title_menu.mrp		2	0	28	4	0	0x10	0	88	64	64	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/fr/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	0x01000000
-ps2data/image/ff12/myoshiok/fr/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	725	864	0x02000000
-ps2data/image/ff12/myoshiok/fr/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	800	800	0x03000000
+ps2data/image/ff12/myoshiok/fr/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	01000000
+ps2data/image/ff12/myoshiok/fr/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	725	864	02000000
+ps2data/image/ff12/myoshiok/fr/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	800	800	03000000
 ps2data/image/ff12/myoshiok/fr/mrp_menu/w_menu.mrp		0	3	16	1	3	0x10	0	16	1200	590	04000000
 ps2data/image/ff12/myoshiok/fr/mrp_menu/w_menu.mrp		1	0	36	2	0	0x10	56	0	64	1100	000008000000090000000000000000800000000000000080
 ps2data/image/ff12/myoshiok/fr/mrp_menu/w_menu.mrp		1	1	36	2	1	0x10	84	0	800	1100	00000800000009005c594e805c594e805c594e805c594e80
@@ -2651,7 +2651,7 @@ ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp		0	15	36	2	15	0x0	704	0	6
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp		0	16	36	2	16	0x0	768	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp		0	17	36	2	17	0x0	832	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp		0	18	36	2	18	0x0	896	0	64	60	070001000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	0x02000000
+ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	02000000
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp		2	0	36	2	0	0x10	26	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp		2	1	36	2	1	0x10	44	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/mrp_menu/party_book.mrp		2	2	36	2	2	0x10	62	84	26	34	000002000100070080808080808080808080808080808080
@@ -2903,7 +2903,7 @@ ps2data/image/ff12/myoshiok/in/mrp_menu/quest.mrp		21	8	36	2	8	0x10	-1	-23	60	60
 ps2data/image/ff12/myoshiok/in/mrp_menu/save_load.mrp		0	0	44	8	0	0x10	0	0	1254	576	0800010601000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/in/mrp_menu/save_load.mrp		1	0	36	2	0	0x0	1	19	1036	272	000004000000ff0008060448080604480806044808060448
 ps2data/image/ff12/myoshiok/in/mrp_menu/save_load.mrp		1	1	72	7	1	0x10	0	12	1180	12	04000102000000000000000000000100020020005d040b0000000080050004000300040005002000510403008080808000000000ffff000000000000
-ps2data/image/ff12/myoshiok/in/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	0x03000000
+ps2data/image/ff12/myoshiok/in/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	03000000
 ps2data/image/ff12/myoshiok/in/mrp_menu/save_load.mrp		2	1	16	1	1	0x10	52	196	464	90	04000000
 ps2data/image/ff12/myoshiok/in/mrp_menu/save_load.mrp		2	2	16	1	2	0x10	430	-15	800	312	05000000
 ps2data/image/ff12/myoshiok/in/mrp_menu/save_load.mrp		3	0	36	2	0	0x10	210	11	3	254	000004000000000080808030808080308080803080808030
@@ -3060,7 +3060,7 @@ ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp		15	2	24	5	2	0x10	504	9	212
 ps2data/image/ff12/myoshiok/in/mrp_menu/shop_new.mrp		15	3	36	2	3	0x10	728	5	68	40	070001000000000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/mrp_menu/title.mrp		0	0	36	2	0	0x10	0	0	1024	896	020000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/mrp_menu/title.mrp		1	0	36	2	0	0x10	256	608	508	156	010000000200ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/in/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	0x03000000
+ps2data/image/ff12/myoshiok/in/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	03000000
 ps2data/image/ff12/myoshiok/in/mrp_menu/title.mrp		2	1	44	8	1	0x10	160	24	840	432	0700010c01000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/in/mrp_menu/title.mrp		3	0	36	2	0	0x0	0	0	96	60	020000000000020080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/mrp_menu/title.mrp		3	1	36	2	1	0x0	96	0	66	60	020000000100020080808080808080808080808080808080
@@ -3082,7 +3082,7 @@ ps2data/image/ff12/myoshiok/in/mrp_menu/title.mrp		7	0	24	5	0	0x10	0	0	840	32	80
 ps2data/image/ff12/myoshiok/in/mrp_menu/title.mrp		8	0	36	2	0	0x10	4	-10	360	70	010000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/mrp_menu/title_fore3.mrp		0	0	36	2	0	0x10	0	0	1024	896	010000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/mrp_menu/title_fore3.mrp		1	0	36	2	0	0x10	256	608	508	156	000000000200ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/in/mrp_menu/title_fore3.mrp		2	0	16	1	0	0x0	0	0	258	296	0x03000000
+ps2data/image/ff12/myoshiok/in/mrp_menu/title_fore3.mrp		2	0	16	1	0	0x0	0	0	258	296	03000000
 ps2data/image/ff12/myoshiok/in/mrp_menu/title_fore3.mrp		2	1	44	8	1	0x10	160	24	840	432	0600010c01000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/in/mrp_menu/title_fore3.mrp		3	0	36	2	0	0x0	0	0	96	60	010000000000020080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/mrp_menu/title_fore3.mrp		3	1	36	2	1	0x0	96	0	66	60	010000000100020080808080808080808080808080808080
@@ -3099,9 +3099,9 @@ ps2data/image/ff12/myoshiok/in/mrp_menu/title_fore3.mrp		6	0	24	5	0	0x10	0	0	840
 ps2data/image/ff12/myoshiok/in/mrp_menu/title_fore3.mrp		7	0	36	2	0	0x10	-4	-6	360	70	000000000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/mrp_menu/title_menu.mrp		1	0	44	8	0	0x10	122	278	64	336	0200010201000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/in/mrp_menu/title_menu.mrp		2	0	28	4	0	0x10	0	88	64	64	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/in/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	0x01000000
-ps2data/image/ff12/myoshiok/in/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	900	900	0x02000000
-ps2data/image/ff12/myoshiok/in/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	900	800	0x03000000
+ps2data/image/ff12/myoshiok/in/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	01000000
+ps2data/image/ff12/myoshiok/in/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	900	900	02000000
+ps2data/image/ff12/myoshiok/in/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	900	800	03000000
 ps2data/image/ff12/myoshiok/in/mrp_menu/w_menu.mrp		0	3	16	1	3	0x10	0	16	1200	590	04000000
 ps2data/image/ff12/myoshiok/in/mrp_menu/w_menu.mrp		1	0	36	2	0	0x10	56	0	64	1100	000008000000090000000000000000800000000000000080
 ps2data/image/ff12/myoshiok/in/mrp_menu/w_menu.mrp		1	1	36	2	1	0x10	84	0	800	1100	00000800000009005c594e805c594e805c594e805c594e80
@@ -3181,7 +3181,7 @@ ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp		0	15	36	2	15	0x10	
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp		0	16	36	2	16	0x10	384	0	32	30	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp		0	17	36	2	17	0x10	416	0	32	30	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp		0	18	36	2	18	0x10	448	0	32	30	070001000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	496	96	0x02000000
+ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	496	96	02000000
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp		2	0	36	2	0	0x10	13	42	13	17	0000020001000b0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp		2	1	36	2	1	0x10	22	42	13	17	0000020001000b0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/party_book.mrp		2	2	36	2	2	0x10	31	42	13	17	0000020001000b0080808080808080808080808080808080
@@ -3433,7 +3433,7 @@ ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/quest.mrp		21	8	36	2	8	0x10	1	2	30
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/save_load.mrp		0	0	44	8	0	0x10	29	0	498	240	0900010501000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/save_load.mrp		1	0	36	2	0	0x10	0	10	518	136	000004000000ff00201c1838201c18380806044808060448
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/save_load.mrp		1	1	72	7	1	0x10	0	6	520	12	0400010200000000000002000000010002002000080209000000000a020005000400040004002b00030206008080808000000000ffff000000000000
-ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	4	0	220	156	0x03000000
+ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	4	0	220	156	03000000
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/save_load.mrp		2	1	16	1	1	0x10	26	100	232	45	04000000
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/save_load.mrp		2	2	16	1	2	0x10	170	-5	340	156	05000000
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/save_load.mrp		3	0	36	2	0	0x10	105	21	3	132	0000040000000000201c1864201c1864201c1864201c1864
@@ -3586,7 +3586,7 @@ ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp		15	2	24	5	2	0x10	192
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/shop_new.mrp		15	3	36	2	3	0x10	304	1	29	19	070001000000000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/title.mrp		0	0	36	2	0	0x10	0	0	512	448	010000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/title.mrp		1	0	36	2	0	0x10	128	304	254	78	000000000200ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	129	148	0x03000000
+ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	129	148	03000000
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/title.mrp		2	1	44	8	1	0x10	80	12	420	216	0600010c01000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/title.mrp		3	0	36	2	0	0x0	0	0	48	30	010000000000020080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/title.mrp		3	1	36	2	1	0x0	48	0	33	30	010000000100020080808080808080808080808080808080
@@ -3603,9 +3603,9 @@ ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/title.mrp		6	0	24	5	0	0x10	0	0	420
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/title.mrp		7	0	36	2	0	0x10	2	-1	128	27	000000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/title_menu.mrp		1	0	44	8	0	0x10	61	139	32	168	0200010201000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/title_menu.mrp		2	0	28	4	0	0x10	0	44	32	32	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	272	456	0x01000000
-ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	0	0	298	432	0x02000000
-ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	0	279	300	0x03000000
+ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	272	456	01000000
+ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	0	0	298	432	02000000
+ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	0	279	300	03000000
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/w_menu.mrp		0	3	16	1	3	0x10	0	0	279	295	04000000
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/w_menu.mrp		1	0	36	2	0	0x10	28	0	32	456	000008000000090000000000000000800000000000000080
 ps2data/image/ff12/myoshiok/in_sdver/mrp_menu/w_menu.mrp		1	1	36	2	1	0x10	42	0	234	456	00000800000009005c594e805c594e805c594e805c594e80
@@ -3685,7 +3685,7 @@ ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp		0	15	36	2	15	0x0	704	0	6
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp		0	16	36	2	16	0x0	768	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp		0	17	36	2	17	0x0	832	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp		0	18	36	2	18	0x0	896	0	64	60	070001000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	0x02000000
+ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	02000000
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp		2	0	36	2	0	0x10	26	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp		2	1	36	2	1	0x10	44	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/mrp_menu/party_book.mrp		2	2	36	2	2	0x10	62	84	26	34	000002000100070080808080808080808080808080808080
@@ -3937,7 +3937,7 @@ ps2data/image/ff12/myoshiok/it/mrp_menu/quest.mrp		21	8	36	2	8	0x10	-1	-23	60	60
 ps2data/image/ff12/myoshiok/it/mrp_menu/save_load.mrp		0	0	44	8	0	0x10	0	0	1244	576	0800010601000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/it/mrp_menu/save_load.mrp		1	0	36	2	0	0x0	1	19	1036	272	000004000000ff0008060448080604480806044808060448
 ps2data/image/ff12/myoshiok/it/mrp_menu/save_load.mrp		1	1	72	7	1	0x10	0	12	1180	12	04000102000000000000000000000100020020005d040b0000000080050004000300040005002000510403008080808000000000ffff000000000000
-ps2data/image/ff12/myoshiok/it/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	0x03000000
+ps2data/image/ff12/myoshiok/it/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	03000000
 ps2data/image/ff12/myoshiok/it/mrp_menu/save_load.mrp		2	1	16	1	1	0x10	52	196	464	90	04000000
 ps2data/image/ff12/myoshiok/it/mrp_menu/save_load.mrp		2	2	16	1	2	0x10	430	-15	800	312	05000000
 ps2data/image/ff12/myoshiok/it/mrp_menu/save_load.mrp		3	0	36	2	0	0x10	210	11	3	254	000004000000000080808030808080308080803080808030
@@ -4094,7 +4094,7 @@ ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp		15	2	24	5	2	0x10	704	9	212
 ps2data/image/ff12/myoshiok/it/mrp_menu/shop_new.mrp		15	3	36	2	3	0x10	928	5	68	40	070001000000000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/mrp_menu/title.mrp		0	0	36	2	0	0x10	0	0	1024	896	020000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/mrp_menu/title.mrp		1	0	36	2	0	0x10	256	608	508	156	010000000200ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/it/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	0x03000000
+ps2data/image/ff12/myoshiok/it/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	03000000
 ps2data/image/ff12/myoshiok/it/mrp_menu/title.mrp		2	1	44	8	1	0x10	160	24	840	432	0700010c01000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/it/mrp_menu/title.mrp		3	0	36	2	0	0x0	0	0	96	60	020000000000020080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/mrp_menu/title.mrp		3	1	36	2	1	0x0	96	0	66	60	020000000100020080808080808080808080808080808080
@@ -4116,7 +4116,7 @@ ps2data/image/ff12/myoshiok/it/mrp_menu/title.mrp		7	0	24	5	0	0x10	0	0	840	32	80
 ps2data/image/ff12/myoshiok/it/mrp_menu/title.mrp		8	0	36	2	0	0x10	4	-10	360	70	010000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/mrp_menu/title_fore3.mrp		0	0	36	2	0	0x10	0	0	1024	896	010000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/mrp_menu/title_fore3.mrp		1	0	36	2	0	0x10	256	608	508	156	000000000200ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/it/mrp_menu/title_fore3.mrp		2	0	16	1	0	0x0	0	0	258	296	0x03000000
+ps2data/image/ff12/myoshiok/it/mrp_menu/title_fore3.mrp		2	0	16	1	0	0x0	0	0	258	296	03000000
 ps2data/image/ff12/myoshiok/it/mrp_menu/title_fore3.mrp		2	1	44	8	1	0x10	160	24	840	432	0600010c01000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/it/mrp_menu/title_fore3.mrp		3	0	36	2	0	0x0	0	0	96	60	010000000000020080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/mrp_menu/title_fore3.mrp		3	1	36	2	1	0x0	96	0	66	60	010000000100020080808080808080808080808080808080
@@ -4133,9 +4133,9 @@ ps2data/image/ff12/myoshiok/it/mrp_menu/title_fore3.mrp		6	0	24	5	0	0x10	0	0	840
 ps2data/image/ff12/myoshiok/it/mrp_menu/title_fore3.mrp		7	0	36	2	0	0x10	-4	-4	360	70	000000000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/mrp_menu/title_menu.mrp		1	0	44	8	0	0x10	122	278	64	336	0200010201000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/it/mrp_menu/title_menu.mrp		2	0	28	4	0	0x10	0	88	64	64	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/it/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	0x01000000
-ps2data/image/ff12/myoshiok/it/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	725	864	0x02000000
-ps2data/image/ff12/myoshiok/it/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	800	800	0x03000000
+ps2data/image/ff12/myoshiok/it/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	01000000
+ps2data/image/ff12/myoshiok/it/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	725	864	02000000
+ps2data/image/ff12/myoshiok/it/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	800	800	03000000
 ps2data/image/ff12/myoshiok/it/mrp_menu/w_menu.mrp		0	3	16	1	3	0x10	0	16	1200	590	04000000
 ps2data/image/ff12/myoshiok/it/mrp_menu/w_menu.mrp		1	0	36	2	0	0x10	56	0	64	1100	000008000000090000000000000000800000000000000080
 ps2data/image/ff12/myoshiok/it/mrp_menu/w_menu.mrp		1	1	36	2	1	0x10	84	0	800	1100	00000800000009005c594e805c594e805c594e805c594e80
@@ -4215,7 +4215,7 @@ ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp		0	15	36	2	15	0x0	704	0	6
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp		0	16	36	2	16	0x0	768	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp		0	17	36	2	17	0x0	832	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp		0	18	36	2	18	0x0	896	0	64	60	070001000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	0x02000000
+ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	02000000
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp		2	0	36	2	0	0x10	26	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp		2	1	36	2	1	0x10	44	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/kr/mrp_menu/party_book.mrp		2	2	36	2	2	0x10	62	84	26	34	000002000100070080808080808080808080808080808080
@@ -4467,7 +4467,7 @@ ps2data/image/ff12/myoshiok/kr/mrp_menu/quest.mrp		21	8	36	2	8	0x10	-1	-23	60	60
 ps2data/image/ff12/myoshiok/kr/mrp_menu/save_load.mrp		0	0	44	8	0	0x10	0	0	1244	576	0800010601000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/kr/mrp_menu/save_load.mrp		1	0	36	2	0	0x0	1	19	1036	272	000004000000ff0008060448080604480806044808060448
 ps2data/image/ff12/myoshiok/kr/mrp_menu/save_load.mrp		1	1	72	7	1	0x10	0	12	1180	12	04000102000000000000000000000100020020005d040b0000000080050004000300040005002000510403008080808000000000ffff000000000000
-ps2data/image/ff12/myoshiok/kr/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	0x03000000
+ps2data/image/ff12/myoshiok/kr/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	03000000
 ps2data/image/ff12/myoshiok/kr/mrp_menu/save_load.mrp		2	1	16	1	1	0x10	52	196	464	90	04000000
 ps2data/image/ff12/myoshiok/kr/mrp_menu/save_load.mrp		2	2	16	1	2	0x10	430	-15	800	312	05000000
 ps2data/image/ff12/myoshiok/kr/mrp_menu/save_load.mrp		3	0	36	2	0	0x10	210	11	3	254	000004000000000080808030808080308080803080808030
@@ -4624,7 +4624,7 @@ ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp		15	2	24	5	2	0x10	504	9	212
 ps2data/image/ff12/myoshiok/kr/mrp_menu/shop_new.mrp		15	3	36	2	3	0x10	728	5	68	40	070001000000000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/kr/mrp_menu/title.mrp		0	0	36	2	0	0x10	0	0	1024	896	020000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/kr/mrp_menu/title.mrp		1	0	36	2	0	0x10	256	608	508	156	010000000200ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/kr/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	0x03000000
+ps2data/image/ff12/myoshiok/kr/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	03000000
 ps2data/image/ff12/myoshiok/kr/mrp_menu/title.mrp		2	1	44	8	1	0x10	160	24	840	432	0700010c01000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/kr/mrp_menu/title.mrp		3	0	36	2	0	0x0	0	0	96	60	020000000000020080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/kr/mrp_menu/title.mrp		3	1	36	2	1	0x0	96	0	66	60	020000000100020080808080808080808080808080808080
@@ -4646,9 +4646,9 @@ ps2data/image/ff12/myoshiok/kr/mrp_menu/title.mrp		7	0	24	5	0	0x10	0	0	840	32	80
 ps2data/image/ff12/myoshiok/kr/mrp_menu/title.mrp		8	0	36	2	0	0x10	4	-10	360	70	010000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/kr/mrp_menu/title_menu.mrp		1	0	44	8	0	0x10	122	278	64	336	0200010201000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/kr/mrp_menu/title_menu.mrp		2	0	28	4	0	0x10	0	88	64	64	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/kr/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	0x01000000
-ps2data/image/ff12/myoshiok/kr/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	900	900	0x02000000
-ps2data/image/ff12/myoshiok/kr/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	900	800	0x03000000
+ps2data/image/ff12/myoshiok/kr/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	01000000
+ps2data/image/ff12/myoshiok/kr/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	900	900	02000000
+ps2data/image/ff12/myoshiok/kr/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	900	800	03000000
 ps2data/image/ff12/myoshiok/kr/mrp_menu/w_menu.mrp		0	3	16	1	3	0x10	0	16	558	590	04000000
 ps2data/image/ff12/myoshiok/kr/mrp_menu/w_menu.mrp		1	0	36	2	0	0x10	56	0	64	1100	000008000000090000000000000000800000000000000080
 ps2data/image/ff12/myoshiok/kr/mrp_menu/w_menu.mrp		1	1	36	2	1	0x10	84	0	800	1100	00000800000009005c594e805c594e805c594e805c594e80
@@ -4728,7 +4728,7 @@ ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp		0	15	36	2	15	0x0	704	0	6
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp		0	16	36	2	16	0x0	768	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp		0	17	36	2	17	0x0	832	0	64	60	070001000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp		0	18	36	2	18	0x0	896	0	64	60	070001000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	0x02000000
+ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp		1	0	16	1	0	0x10	0	0	992	192	02000000
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp		2	0	36	2	0	0x10	26	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp		2	1	36	2	1	0x10	44	84	26	34	000002000100070080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/mrp_menu/party_book.mrp		2	2	36	2	2	0x10	62	84	26	34	000002000100070080808080808080808080808080808080
@@ -4980,7 +4980,7 @@ ps2data/image/ff12/myoshiok/us/mrp_menu/quest.mrp		21	8	36	2	8	0x10	-1	-23	60	60
 ps2data/image/ff12/myoshiok/us/mrp_menu/save_load.mrp		0	0	44	8	0	0x10	0	0	1244	576	0800010601000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/us/mrp_menu/save_load.mrp		1	0	36	2	0	0x0	1	19	1036	272	000004000000ff0008060448080604480806044808060448
 ps2data/image/ff12/myoshiok/us/mrp_menu/save_load.mrp		1	1	72	7	1	0x10	0	12	1180	12	04000102000000000000000000000100020020005d040b0000000080050004000300040005002000510403008080808000000000ffff000000000000
-ps2data/image/ff12/myoshiok/us/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	0x03000000
+ps2data/image/ff12/myoshiok/us/mrp_menu/save_load.mrp		2	0	16	1	0	0x10	8	0	440	312	03000000
 ps2data/image/ff12/myoshiok/us/mrp_menu/save_load.mrp		2	1	16	1	1	0x10	52	196	464	90	04000000
 ps2data/image/ff12/myoshiok/us/mrp_menu/save_load.mrp		2	2	16	1	2	0x10	430	-15	800	312	05000000
 ps2data/image/ff12/myoshiok/us/mrp_menu/save_load.mrp		3	0	36	2	0	0x10	210	11	3	254	000004000000000080808030808080308080803080808030
@@ -5137,7 +5137,7 @@ ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp		15	2	24	5	2	0x10	704	9	212
 ps2data/image/ff12/myoshiok/us/mrp_menu/shop_new.mrp		15	3	36	2	3	0x10	928	5	68	40	070001000000000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/mrp_menu/title.mrp		0	0	36	2	0	0x10	0	0	1024	896	020000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/mrp_menu/title.mrp		1	0	36	2	0	0x10	256	608	508	156	010000000200ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/us/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	0x03000000
+ps2data/image/ff12/myoshiok/us/mrp_menu/title.mrp		2	0	16	1	0	0x0	0	0	258	296	03000000
 ps2data/image/ff12/myoshiok/us/mrp_menu/title.mrp		2	1	44	8	1	0x10	160	24	840	432	0700010c01000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/us/mrp_menu/title.mrp		3	0	36	2	0	0x0	0	0	96	60	020000000000020080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/mrp_menu/title.mrp		3	1	36	2	1	0x0	96	0	66	60	020000000100020080808080808080808080808080808080
@@ -5159,7 +5159,7 @@ ps2data/image/ff12/myoshiok/us/mrp_menu/title.mrp		7	0	24	5	0	0x10	0	0	840	32	80
 ps2data/image/ff12/myoshiok/us/mrp_menu/title.mrp		8	0	36	2	0	0x10	4	-10	360	70	010000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/mrp_menu/title_fore3.mrp		0	0	36	2	0	0x10	0	0	1024	896	010000000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/mrp_menu/title_fore3.mrp		1	0	36	2	0	0x10	256	608	508	156	000000000200ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/us/mrp_menu/title_fore3.mrp		2	0	16	1	0	0x0	0	0	258	296	0x03000000
+ps2data/image/ff12/myoshiok/us/mrp_menu/title_fore3.mrp		2	0	16	1	0	0x0	0	0	258	296	03000000
 ps2data/image/ff12/myoshiok/us/mrp_menu/title_fore3.mrp		2	1	44	8	1	0x10	160	24	840	432	0600010c01000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/us/mrp_menu/title_fore3.mrp		3	0	36	2	0	0x0	0	0	96	60	010000000000020080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/mrp_menu/title_fore3.mrp		3	1	36	2	1	0x0	96	0	66	60	010000000100020080808080808080808080808080808080
@@ -5176,9 +5176,9 @@ ps2data/image/ff12/myoshiok/us/mrp_menu/title_fore3.mrp		6	0	24	5	0	0x10	0	0	840
 ps2data/image/ff12/myoshiok/us/mrp_menu/title_fore3.mrp		7	0	36	2	0	0x10	-4	4	360	70	000000000400ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/mrp_menu/title_menu.mrp		1	0	44	8	0	0x10	122	278	64	336	0200010201000000ffff000000000000ffffff00ffffff00ffffff00ffffff00
 ps2data/image/ff12/myoshiok/us/mrp_menu/title_menu.mrp		2	0	28	4	0	0x10	0	88	64	64	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/us/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	0x01000000
-ps2data/image/ff12/myoshiok/us/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	725	864	0x02000000
-ps2data/image/ff12/myoshiok/us/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	800	800	0x03000000
+ps2data/image/ff12/myoshiok/us/mrp_menu/w_menu.mrp		0	0	16	1	0	0x10	0	0	1000	1100	01000000
+ps2data/image/ff12/myoshiok/us/mrp_menu/w_menu.mrp		0	1	16	1	1	0x10	9	171	725	864	02000000
+ps2data/image/ff12/myoshiok/us/mrp_menu/w_menu.mrp		0	2	16	1	2	0x10	0	16	800	800	03000000
 ps2data/image/ff12/myoshiok/us/mrp_menu/w_menu.mrp		0	3	16	1	3	0x10	0	16	1200	590	04000000
 ps2data/image/ff12/myoshiok/us/mrp_menu/w_menu.mrp		1	0	36	2	0	0x10	56	0	64	1100	000008000000090000000000000000800000000000000080
 ps2data/image/ff12/myoshiok/us/mrp_menu/w_menu.mrp		1	1	36	2	1	0x10	84	0	800	1100	00000800000009005c594e805c594e805c594e805c594e80
@@ -5338,7 +5338,7 @@ ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	0	40	0	36	2	0	0x10	0	4	4
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	0	40	1	36	2	1	0x10	5	-6	32	39	000002000500ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	0	40	2	28	4	2	0x10	-6	-2	50	52	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	1	0	0	28	4	0	0x10	0	0	1000	164	00000080000000000000008000000000
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	0x02000000
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	02000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	1	1	1	72	7	1	0x10	250	96	94	16	0100010200003c000000000000000100020020005a0010008080808001000100030004000500210058000e00808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	1	1	2	72	7	2	0x10	250	94	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	1	1	3	72	7	3	0x10	250	100	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
@@ -5353,7 +5353,7 @@ ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	1	1	11	36	2	11	0x10	290	
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	1	1	12	36	2	12	0x10	312	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	1	1	13	36	2	13	0x10	334	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	1	1	14	24	5	14	0x10	146	36	304	46	8080808064000000ffffffff
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	0x03000000
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	03000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	1	1	16	16	1	16	0x10	42	112	500	60	04000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	1	1	17	36	2	17	0x10	92	40	30	26	010002000200000080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	1	1	18	36	2	18	0x10	114	40	32	26	010002000500000080808070808080708080807080808070
@@ -5613,7 +5613,7 @@ ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	1	51	1	36	2	1	0x10	1000	
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	1	51	2	36	2	2	0x0	1426	0	58	88	040000070200ff00787c8078787c80782e5074642e507478
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	2	0	0	28	4	0	0x10	0	0	400	400	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	2	0	1	36	2	1	0x0	164	-2	84	38	070000000000010080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	0x01000000
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	01000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	2	0	3	36	2	3	0x10	28	108	204	34	000001040000420080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	2	1	0	36	2	0	0x10	2	6	36	34	000002010000110080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	2	1	1	36	2	1	0x10	4	32	4	4	000001000100090080808080808080808080808080808080
@@ -6493,9 +6493,9 @@ ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	12	42	1	36	2	1	0x10	4	19
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	12	42	2	36	2	2	0x10	4	19	330	32	0000080106001d008041805a8041805a8041805a8041805a
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	12	42	3	24	5	3	0x10	0	16	334	40	8080808042000000ffffffff
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	12	42	4	24	5	4	0x10	0	36	334	40	808080804c000000ffffffff
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	0x01000000
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	0x02000000
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	0x03000000
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	01000000
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	02000000
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	03000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	13	0	3	16	1	3	0x10	0	246	1214	316	04000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	13	0	4	16	1	4	0x0	16	678	160	48	05000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	13	0	5	16	1	5	0x0	16	742	96	96	06000000
@@ -6531,9 +6531,9 @@ ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	13	4	2	24	5	2	0x0	786	24
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	13	4	3	36	2	3	0x0	746	258	46	54	000000000100ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	13	5	0	36	2	0	0x0	0	0	38	32	000000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	13	6	0	36	2	0	0x0	0	0	38	32	000000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	0x02000000
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	0x03000000
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	02000000
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	03000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -6564,9 +6564,9 @@ ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	3	11	36	2	11	0x0	178	
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	3	12	36	2	12	0x0	232	76	10	10	030003000900000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	5	0	36	2	0	0x0	0	0	38	32	020000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	14	6	0	36	2	0	0x0	0	0	38	32	020000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	0x02000000
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	168	458	96	0x03000000
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	02000000
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	168	458	96	03000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	15	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	15	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	15	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -6604,8 +6604,8 @@ ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	16	0	3	72	7	3	0x10	188	3
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	16	0	4	24	5	4	0x0	64	14	240	24	523a785a641001003ee60200
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	16	0	5	24	5	5	0x10	64	16	240	24	8080806c641001003ee60200
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	16	0	6	28	4	6	0x10	192	32	64	12	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	0x01000000
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	0x02000000
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	01000000
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	02000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	17	0	2	24	5	2	0x10	82	14	240	24	8080805a640401000eec0200
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	17	0	3	24	5	3	0x10	300	2	456	24	8080808054040000ffffffff
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	17	1	0	36	2	0	0x10	0	4	752	16	01000500010006008080803c8080803c8080803c8080803c
@@ -6647,8 +6647,8 @@ ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	20	1	0	36	2	0	0x10	101	2
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	20	2	0	36	2	0	0x10	1788	38	74	36	000000000200ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	20	2	1	36	2	1	0x10	1788	38	74	36	000000000300ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	20	2	2	36	2	2	0x10	1788	38	74	36	000000000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	0x01000000
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	0x02000000
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	01000000
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	02000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	21	0	2	16	1	2	0x10	-46	0	32	32	6d000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	21	0	3	16	1	3	0x10	-41	0	1920	1080	79000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	21	0	4	16	1	4	0x10	287	0	1920	1080	80000000
@@ -6667,7 +6667,7 @@ ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	21	1	5	36	2	5	0x10	1853	
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	21	1	6	36	2	6	0x10	17	1005	50	50	00000d000600ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	21	1	7	36	2	7	0x10	67	1005	1786	50	00000d000700ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	21	1	8	36	2	8	0x10	1853	1005	50	50	00000d000800ff0080808020808080208080802080808020
-ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	0x03000000
+ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	03000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	21	2	1	16	1	1	0x10	100	110	1110	320	04000000
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	21	3	0	36	2	0	0x10	78	76	50	50	00000c000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/ch/packfiles/mrppack_ys.bin	21	3	1	36	2	1	0x10	128	76	1052	50	00000c000100ff0080808080808080808080808080808080
@@ -8011,7 +8011,7 @@ ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	0	40	0	36	2	0	0x10	0	4	4
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	0	40	1	36	2	1	0x10	5	-6	32	39	000002000500ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	0	40	2	28	4	2	0x10	-6	-2	50	52	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	1	0	0	28	4	0	0x10	0	0	1000	164	00000080000000000000008000000000
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	0x02000000
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	02000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	1	1	1	72	7	1	0x10	250	96	94	16	0100010200003c000000000000000100020020005a0010008080808001000100030004000500210058000e00808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	1	1	2	72	7	2	0x10	250	94	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	1	1	3	72	7	3	0x10	250	100	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
@@ -8026,7 +8026,7 @@ ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	1	1	11	36	2	11	0x10	290	
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	1	1	12	36	2	12	0x10	312	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	1	1	13	36	2	13	0x10	334	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	1	1	14	24	5	14	0x10	146	36	304	46	8080808064000000ffffffff
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	0x03000000
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	03000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	1	1	16	16	1	16	0x10	42	112	500	60	04000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	1	1	17	36	2	17	0x10	92	40	30	26	010002000200000080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	1	1	18	36	2	18	0x10	114	40	32	26	010002000500000080808070808080708080807080808070
@@ -8286,7 +8286,7 @@ ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	1	51	1	36	2	1	0x10	1000	
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	1	51	2	36	2	2	0x0	1426	0	58	88	040000070200ff00787c8078787c80782e5074642e507478
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	2	0	0	28	4	0	0x10	0	0	400	400	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	2	0	1	36	2	1	0x0	164	-2	84	38	070000000000010080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	0x01000000
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	01000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	2	0	3	36	2	3	0x10	28	108	204	34	000001040000420080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	2	1	0	36	2	0	0x10	2	6	36	34	000002010000110080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	2	1	1	36	2	1	0x10	4	32	4	4	000001000100090080808080808080808080808080808080
@@ -9166,9 +9166,9 @@ ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	12	42	1	36	2	1	0x10	4	19
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	12	42	2	36	2	2	0x10	4	19	330	32	0000080106001d008041805a8041805a8041805a8041805a
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	12	42	3	24	5	3	0x10	0	16	334	40	8080808042000000ffffffff
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	12	42	4	24	5	4	0x10	0	36	334	40	808080804c000000ffffffff
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	0x01000000
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	0x02000000
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	0x03000000
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	01000000
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	02000000
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	03000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	13	0	3	16	1	3	0x10	0	246	1214	316	04000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	13	0	4	16	1	4	0x0	16	678	160	48	05000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	13	0	5	16	1	5	0x0	16	742	96	96	06000000
@@ -9204,9 +9204,9 @@ ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	13	4	2	24	5	2	0x0	786	24
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	13	4	3	36	2	3	0x0	746	258	46	54	000000000100ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	13	5	0	36	2	0	0x0	0	0	38	32	000000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	13	6	0	36	2	0	0x0	0	0	38	32	000000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	0x02000000
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	0x03000000
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	02000000
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	03000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -9237,9 +9237,9 @@ ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	3	11	36	2	11	0x0	178	
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	3	12	36	2	12	0x0	232	76	10	10	030003000900000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	5	0	36	2	0	0x0	0	0	38	32	020000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	14	6	0	36	2	0	0x0	0	0	38	32	020000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	0x02000000
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	168	458	96	0x03000000
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	02000000
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	168	458	96	03000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	15	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	15	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	15	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -9277,8 +9277,8 @@ ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	16	0	3	72	7	3	0x10	188	3
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	16	0	4	24	5	4	0x0	64	14	240	24	523a785a641001003ee60200
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	16	0	5	24	5	5	0x10	64	16	240	24	8080806c641001003ee60200
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	16	0	6	28	4	6	0x10	192	32	64	12	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	0x01000000
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	0x02000000
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	01000000
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	02000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	17	0	2	24	5	2	0x10	82	14	240	24	8080805a640401000eec0200
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	17	0	3	24	5	3	0x10	300	2	456	24	8080808054040000ffffffff
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	17	1	0	36	2	0	0x10	0	4	752	16	01000500010006008080803c8080803c8080803c8080803c
@@ -9320,8 +9320,8 @@ ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	20	1	0	36	2	0	0x10	101	2
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	20	2	0	36	2	0	0x10	1788	38	74	36	000000000200ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	20	2	1	36	2	1	0x10	1788	38	74	36	000000000300ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	20	2	2	36	2	2	0x10	1788	38	74	36	000000000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	0x01000000
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	0x02000000
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	01000000
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	02000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	21	0	2	16	1	2	0x10	-46	0	32	32	6d000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	21	0	3	16	1	3	0x10	-41	0	1920	1080	79000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	21	0	4	16	1	4	0x10	287	0	1920	1080	80000000
@@ -9340,7 +9340,7 @@ ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	21	1	5	36	2	5	0x10	1853	
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	21	1	6	36	2	6	0x10	17	1005	50	50	00000d000600ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	21	1	7	36	2	7	0x10	67	1005	1786	50	00000d000700ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	21	1	8	36	2	8	0x10	1853	1005	50	50	00000d000800ff0080808020808080208080802080808020
-ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	0x03000000
+ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	03000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	21	2	1	16	1	1	0x10	100	110	1110	320	04000000
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	21	3	0	36	2	0	0x10	78	76	50	50	00000c000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/cn/packfiles/mrppack_ys.bin	21	3	1	36	2	1	0x10	128	76	1052	50	00000c000100ff0080808080808080808080808080808080
@@ -10684,7 +10684,7 @@ ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	0	40	0	36	2	0	0x10	0	4	4
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	0	40	1	36	2	1	0x10	5	-6	32	39	000002000500ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	0	40	2	28	4	2	0x10	-6	-2	50	52	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	1	0	0	28	4	0	0x10	0	0	1000	164	00000080000000000000008000000000
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	0x02000000
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	02000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	1	1	1	72	7	1	0x10	250	96	94	16	0100010200003c000000000000000100020020005a0010008080808001000100030004000500210058000e00808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	1	1	2	72	7	2	0x10	250	94	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	1	1	3	72	7	3	0x10	250	100	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
@@ -10699,7 +10699,7 @@ ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	1	1	11	36	2	11	0x10	290	
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	1	1	12	36	2	12	0x10	312	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	1	1	13	36	2	13	0x10	334	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	1	1	14	24	5	14	0x10	146	36	304	46	8080808064000000ffffffff
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	0x03000000
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	03000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	1	1	16	16	1	16	0x10	42	112	500	60	04000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	1	1	17	36	2	17	0x10	92	40	30	26	010002000200000080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	1	1	18	36	2	18	0x10	114	40	32	26	010002000500000080808070808080708080807080808070
@@ -10963,7 +10963,7 @@ ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	1	51	1	36	2	1	0x10	1000	
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	1	51	2	36	2	2	0x0	1426	0	58	88	040000070200ff00787c8078787c80782e5074642e507478
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	2	0	0	28	4	0	0x10	0	0	400	400	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	2	0	1	36	2	1	0x0	164	-2	84	38	070000000000010080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	0x01000000
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	01000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	2	0	3	36	2	3	0x10	28	108	204	34	000001040000420080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	2	1	0	36	2	0	0x10	1	6	36	34	000002010000110080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	2	1	1	36	2	1	0x10	4	32	4	4	000001000100090080808080808080808080808080808080
@@ -11843,9 +11843,9 @@ ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	12	42	1	36	2	1	0x10	4	19
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	12	42	2	36	2	2	0x10	4	19	330	32	0000080106001d008041805a8041805a8041805a8041805a
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	12	42	3	24	5	3	0x10	0	16	334	40	8080808042000000ffffffff
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	12	42	4	24	5	4	0x10	0	36	334	40	808080804c000000ffffffff
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	0x01000000
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	0x02000000
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	0x03000000
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	01000000
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	02000000
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	03000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	13	0	3	16	1	3	0x10	0	246	1214	316	04000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	13	0	4	16	1	4	0x0	16	678	160	48	05000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	13	0	5	16	1	5	0x0	16	742	96	96	06000000
@@ -11881,9 +11881,9 @@ ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	13	4	2	24	5	2	0x0	786	24
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	13	4	3	36	2	3	0x0	746	258	46	54	000000000100ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	13	5	0	36	2	0	0x0	0	0	38	32	000000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	13	6	0	36	2	0	0x0	0	0	38	32	000000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	0x02000000
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	0x03000000
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	02000000
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	03000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -11914,9 +11914,9 @@ ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	3	11	36	2	11	0x0	178	
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	3	12	36	2	12	0x0	232	76	10	10	030003000900000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	5	0	36	2	0	0x0	0	0	38	32	020000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	14	6	0	36	2	0	0x0	0	0	38	32	020000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	0x02000000
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	188	458	96	0x03000000
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	02000000
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	188	458	96	03000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	15	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	15	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	15	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -11954,8 +11954,8 @@ ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	16	0	3	72	7	3	0x10	188	3
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	16	0	4	24	5	4	0x0	64	14	240	24	523a785a641001003ee60200
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	16	0	5	24	5	5	0x10	64	16	240	24	8080806c641001003ee60200
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	16	0	6	28	4	6	0x10	192	32	64	12	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	0x01000000
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	0x02000000
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	01000000
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	02000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	17	0	2	24	5	2	0x10	82	14	240	24	8080805a640401000eec0200
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	17	0	3	24	5	3	0x10	300	2	456	24	8080808054040000ffffffff
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	17	1	0	36	2	0	0x10	0	4	752	16	01000500010006008080803c8080803c8080803c8080803c
@@ -11997,8 +11997,8 @@ ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	20	1	0	36	2	0	0x10	101	2
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	20	2	0	36	2	0	0x10	1778	37	74	36	000000000200ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	20	2	1	36	2	1	0x10	1778	37	74	36	000000000300ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	20	2	2	36	2	2	0x10	1778	37	74	36	000000000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	0x01000000
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	0x02000000
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	01000000
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	02000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	21	0	2	16	1	2	0x10	-46	0	32	32	6d000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	21	0	3	16	1	3	0x10	-41	0	1920	1080	79000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	21	0	4	16	1	4	0x10	287	0	1920	1080	80000000
@@ -12017,7 +12017,7 @@ ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	21	1	5	36	2	5	0x10	1853	
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	21	1	6	36	2	6	0x10	17	1005	50	50	00000d000600ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	21	1	7	36	2	7	0x10	67	1005	1786	50	00000d000700ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	21	1	8	36	2	8	0x10	1853	1005	50	50	00000d000800ff0080808020808080208080802080808020
-ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	0x03000000
+ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	03000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	21	2	1	16	1	1	0x10	100	110	1110	320	04000000
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	21	3	0	36	2	0	0x10	78	76	50	50	00000c000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/de/packfiles/mrppack_ys.bin	21	3	1	36	2	1	0x10	128	76	1052	50	00000c000100ff0080808080808080808080808080808080
@@ -13361,7 +13361,7 @@ ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	0	40	0	36	2	0	0x10	0	4	4
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	0	40	1	36	2	1	0x10	5	-6	32	39	000002000500ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	0	40	2	28	4	2	0x10	-6	-2	50	52	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	1	0	0	28	4	0	0x10	0	0	1000	164	00000080000000000000008000000000
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	0x02000000
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	02000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	1	1	1	72	7	1	0x10	250	96	94	16	0100010200003c000000000000000100020020005a0010008080808001000100030004000500210058000e00808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	1	1	2	72	7	2	0x10	250	94	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	1	1	3	72	7	3	0x10	250	100	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
@@ -13376,7 +13376,7 @@ ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	1	1	11	36	2	11	0x10	290	
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	1	1	12	36	2	12	0x10	312	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	1	1	13	36	2	13	0x10	334	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	1	1	14	24	5	14	0x10	146	36	304	46	8080808064000000ffffffff
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	0x03000000
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	03000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	1	1	16	16	1	16	0x10	42	112	500	60	04000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	1	1	17	36	2	17	0x10	92	40	30	26	010002000200000080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	1	1	18	36	2	18	0x10	114	40	32	26	010002000500000080808070808080708080807080808070
@@ -13640,7 +13640,7 @@ ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	1	51	1	36	2	1	0x10	1000	
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	1	51	2	36	2	2	0x0	1426	0	58	88	040000070200ff00787c8078787c80782e5074642e507478
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	2	0	0	28	4	0	0x10	0	0	400	400	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	2	0	1	36	2	1	0x0	164	-2	84	38	070000000000010080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	0x01000000
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	01000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	2	0	3	36	2	3	0x10	28	108	204	34	000001040000420080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	2	1	0	36	2	0	0x10	1	6	36	34	000002010000110080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	2	1	1	36	2	1	0x10	4	32	4	4	000001000100090080808080808080808080808080808080
@@ -14520,9 +14520,9 @@ ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	12	42	1	36	2	1	0x10	4	19
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	12	42	2	36	2	2	0x10	4	19	330	32	0000080106001d008041805a8041805a8041805a8041805a
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	12	42	3	24	5	3	0x10	0	16	334	40	8080808042000000ffffffff
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	12	42	4	24	5	4	0x10	0	36	334	40	808080804c000000ffffffff
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	0x01000000
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	0x02000000
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	0x03000000
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	01000000
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	02000000
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	03000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	13	0	3	16	1	3	0x10	0	246	1214	316	04000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	13	0	4	16	1	4	0x0	16	678	160	48	05000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	13	0	5	16	1	5	0x0	16	742	96	96	06000000
@@ -14558,9 +14558,9 @@ ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	13	4	2	24	5	2	0x0	786	24
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	13	4	3	36	2	3	0x0	746	258	46	54	000000000100ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	13	5	0	36	2	0	0x0	0	0	38	32	000000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	13	6	0	36	2	0	0x0	0	0	38	32	000000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	0x02000000
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	0x03000000
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	02000000
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	03000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -14591,9 +14591,9 @@ ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	3	11	36	2	11	0x0	178	
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	3	12	36	2	12	0x0	232	76	10	10	030003000900000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	5	0	36	2	0	0x0	0	0	38	32	020000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	14	6	0	36	2	0	0x0	0	0	38	32	020000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	0x02000000
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	188	458	96	0x03000000
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	02000000
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	188	458	96	03000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	15	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	15	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	15	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -14631,8 +14631,8 @@ ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	16	0	3	72	7	3	0x10	188	3
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	16	0	4	24	5	4	0x0	64	14	240	24	523a785a641001003ee60200
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	16	0	5	24	5	5	0x10	64	16	240	24	8080806c641001003ee60200
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	16	0	6	28	4	6	0x10	192	32	64	12	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	0x01000000
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	0x02000000
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	01000000
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	02000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	17	0	2	24	5	2	0x10	82	14	240	24	8080805a640401000eec0200
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	17	0	3	24	5	3	0x10	300	2	456	24	8080808054040000ffffffff
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	17	1	0	36	2	0	0x10	0	4	752	16	01000500010006008080803c8080803c8080803c8080803c
@@ -14674,8 +14674,8 @@ ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	20	1	0	36	2	0	0x10	101	2
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	20	2	0	36	2	0	0x10	1778	37	74	36	000000000200ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	20	2	1	36	2	1	0x10	1778	37	74	36	000000000300ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	20	2	2	36	2	2	0x10	1778	37	74	36	000000000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	0x01000000
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	0x02000000
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	01000000
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	02000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	21	0	2	16	1	2	0x10	-46	0	32	32	6d000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	21	0	3	16	1	3	0x10	-41	0	1920	1080	79000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	21	0	4	16	1	4	0x10	287	0	1920	1080	80000000
@@ -14694,7 +14694,7 @@ ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	21	1	5	36	2	5	0x10	1853	
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	21	1	6	36	2	6	0x10	17	1005	50	50	00000d000600ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	21	1	7	36	2	7	0x10	67	1005	1786	50	00000d000700ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	21	1	8	36	2	8	0x10	1853	1005	50	50	00000d000800ff0080808020808080208080802080808020
-ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	0x03000000
+ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	03000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	21	2	1	16	1	1	0x10	100	110	1110	320	04000000
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	21	3	0	36	2	0	0x10	78	76	50	50	00000c000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/es/packfiles/mrppack_ys.bin	21	3	1	36	2	1	0x10	128	76	1052	50	00000c000100ff0080808080808080808080808080808080
@@ -16038,7 +16038,7 @@ ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	0	40	0	36	2	0	0x10	0	4	4
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	0	40	1	36	2	1	0x10	5	-6	32	39	000002000500ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	0	40	2	28	4	2	0x10	-6	-2	50	52	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	1	0	0	28	4	0	0x10	0	0	1000	164	00000080000000000000008000000000
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	0x02000000
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	02000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	1	1	1	72	7	1	0x10	250	96	94	16	0100010200003c000000000000000100020020005a0010008080808001000100030004000500210058000e00808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	1	1	2	72	7	2	0x10	250	94	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	1	1	3	72	7	3	0x10	250	100	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
@@ -16053,7 +16053,7 @@ ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	1	1	11	36	2	11	0x10	290	
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	1	1	12	36	2	12	0x10	312	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	1	1	13	36	2	13	0x10	334	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	1	1	14	24	5	14	0x10	146	36	304	46	8080808064000000ffffffff
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	0x03000000
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	03000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	1	1	16	16	1	16	0x10	42	112	500	60	04000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	1	1	17	36	2	17	0x10	92	40	30	26	010002000200000080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	1	1	18	36	2	18	0x10	114	40	32	26	010002000500000080808070808080708080807080808070
@@ -16317,7 +16317,7 @@ ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	1	51	1	36	2	1	0x10	1000	
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	1	51	2	36	2	2	0x0	1426	0	58	88	040000070200ff00787c8078787c80782e5074642e507478
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	2	0	0	28	4	0	0x10	0	0	400	400	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	2	0	1	36	2	1	0x0	164	-2	84	38	070000000000010080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	0x01000000
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	01000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	2	0	3	36	2	3	0x10	28	108	204	34	000001040000420080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	2	1	0	36	2	0	0x10	1	6	36	34	000002010000110080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	2	1	1	36	2	1	0x10	4	32	4	4	000001000100090080808080808080808080808080808080
@@ -17197,9 +17197,9 @@ ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	12	42	1	36	2	1	0x10	4	19
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	12	42	2	36	2	2	0x10	4	19	332	32	0000080106001d008041805a8041805a8041805a8041805a
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	12	42	3	24	5	3	0x10	0	16	340	40	8080808042000000ffffffff
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	12	42	4	24	5	4	0x10	0	36	340	40	808080804c000000ffffffff
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	0x01000000
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	0x02000000
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	0x03000000
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	01000000
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	02000000
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	03000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	13	0	3	16	1	3	0x10	0	246	1214	316	04000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	13	0	4	16	1	4	0x0	16	678	160	48	05000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	13	0	5	16	1	5	0x0	16	742	96	96	06000000
@@ -17235,9 +17235,9 @@ ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	13	4	2	24	5	2	0x0	786	24
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	13	4	3	36	2	3	0x0	746	258	46	54	000000000100ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	13	5	0	36	2	0	0x0	0	0	38	32	000000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	13	6	0	36	2	0	0x0	0	0	38	32	000000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	0x02000000
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	0x03000000
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	02000000
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	03000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -17268,9 +17268,9 @@ ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	3	11	36	2	11	0x0	178	
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	3	12	36	2	12	0x0	232	76	10	10	030003000900000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	5	0	36	2	0	0x0	0	0	38	32	020000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	14	6	0	36	2	0	0x0	0	0	38	32	020000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	0x02000000
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	188	458	96	0x03000000
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	02000000
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	188	458	96	03000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	15	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	15	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	15	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -17308,8 +17308,8 @@ ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	16	0	3	72	7	3	0x10	188	3
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	16	0	4	24	5	4	0x0	64	14	240	24	523a785a641001003ee60200
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	16	0	5	24	5	5	0x10	64	16	240	24	8080806c641001003ee60200
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	16	0	6	28	4	6	0x10	192	32	64	12	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	0x01000000
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	0x02000000
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	01000000
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	02000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	17	0	2	24	5	2	0x10	82	14	240	24	8080805a640401000eec0200
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	17	0	3	24	5	3	0x10	300	2	456	24	8080808054040000ffffffff
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	17	1	0	36	2	0	0x10	0	4	752	16	01000500010006008080803c8080803c8080803c8080803c
@@ -17351,8 +17351,8 @@ ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	20	1	0	36	2	0	0x10	101	2
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	20	2	0	36	2	0	0x10	1778	37	74	36	000000000200ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	20	2	1	36	2	1	0x10	1778	37	74	36	000000000300ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	20	2	2	36	2	2	0x10	1778	37	74	36	000000000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	0x01000000
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	0x02000000
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	01000000
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	02000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	21	0	2	16	1	2	0x10	-46	0	32	32	6d000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	21	0	3	16	1	3	0x10	-41	0	1920	1080	79000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	21	0	4	16	1	4	0x10	287	0	1920	1080	80000000
@@ -17371,7 +17371,7 @@ ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	21	1	5	36	2	5	0x10	1853	
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	21	1	6	36	2	6	0x10	17	1005	50	50	00000d000600ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	21	1	7	36	2	7	0x10	67	1005	1786	50	00000d000700ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	21	1	8	36	2	8	0x10	1853	1005	50	50	00000d000800ff0080808020808080208080802080808020
-ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	0x03000000
+ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	03000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	21	2	1	16	1	1	0x10	100	110	1110	320	04000000
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	21	3	0	36	2	0	0x10	78	76	50	50	00000c000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/fr/packfiles/mrppack_ys.bin	21	3	1	36	2	1	0x10	128	76	1052	50	00000c000100ff0080808080808080808080808080808080
@@ -18715,7 +18715,7 @@ ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	0	40	0	36	2	0	0x10	0	4	4
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	0	40	1	36	2	1	0x10	5	-6	32	39	000002000500ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	0	40	2	28	4	2	0x10	-6	-2	50	52	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	1	0	0	28	4	0	0x10	0	0	1000	164	00000080000000000000008000000000
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	0x02000000
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	02000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	1	1	1	72	7	1	0x10	250	96	94	16	0100010200003c000000000000000100020020005a0010008080808001000100030004000500210058000e00808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	1	1	2	72	7	2	0x10	250	94	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	1	1	3	72	7	3	0x10	250	100	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
@@ -18730,7 +18730,7 @@ ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	1	1	11	36	2	11	0x10	290	
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	1	1	12	36	2	12	0x10	312	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	1	1	13	36	2	13	0x10	334	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	1	1	14	24	5	14	0x10	146	36	304	46	8080808064000000ffffffff
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	0x03000000
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	03000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	1	1	16	16	1	16	0x10	42	112	500	60	04000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	1	1	17	36	2	17	0x10	92	40	30	26	010002000200000080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	1	1	18	36	2	18	0x10	114	40	32	26	010002000500000080808070808080708080807080808070
@@ -18990,7 +18990,7 @@ ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	1	51	1	36	2	1	0x10	1000	
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	1	51	2	36	2	2	0x0	1426	0	58	88	040000070200ff00787c8078787c80782e5074642e507478
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	2	0	0	28	4	0	0x10	0	0	400	400	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	2	0	1	36	2	1	0x0	164	-2	84	38	070000000000010080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	0x01000000
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	01000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	2	0	3	36	2	3	0x10	28	108	204	34	000001040000420080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	2	1	0	36	2	0	0x10	2	6	36	34	000002010000110080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	2	1	1	36	2	1	0x10	4	32	4	4	000001000100090080808080808080808080808080808080
@@ -19870,9 +19870,9 @@ ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	12	42	1	36	2	1	0x10	4	19
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	12	42	2	36	2	2	0x10	4	19	232	32	0000080106001d008041805a8041805a8041805a8041805a
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	12	42	3	24	5	3	0x10	0	16	240	40	8080808046000000ffffffff
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	12	42	4	24	5	4	0x10	0	36	240	40	8080808050000000ffffffff
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	0x01000000
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	0x02000000
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	0x03000000
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	01000000
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	02000000
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	03000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	13	0	3	16	1	3	0x10	0	246	1214	316	04000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	13	0	4	16	1	4	0x0	16	678	160	48	05000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	13	0	5	16	1	5	0x0	16	742	96	96	06000000
@@ -19908,9 +19908,9 @@ ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	13	4	2	24	5	2	0x0	786	24
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	13	4	3	36	2	3	0x0	746	258	46	54	000000000100ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	13	5	0	36	2	0	0x0	0	0	38	32	000000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	13	6	0	36	2	0	0x0	0	0	38	32	000000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	0x02000000
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	0x03000000
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	02000000
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	03000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -19941,9 +19941,9 @@ ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	3	11	36	2	11	0x0	178	
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	3	12	36	2	12	0x0	232	76	10	10	030003000900000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	5	0	36	2	0	0x0	0	0	38	32	020000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	14	6	0	36	2	0	0x0	0	0	38	32	020000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	0x02000000
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	168	458	96	0x03000000
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	02000000
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	168	458	96	03000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	15	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	15	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	15	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -19981,8 +19981,8 @@ ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	16	0	3	72	7	3	0x10	188	3
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	16	0	4	24	5	4	0x0	64	14	240	24	523a785a641001003ee60200
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	16	0	5	24	5	5	0x10	64	16	240	24	8080806c641001003ee60200
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	16	0	6	28	4	6	0x10	192	32	64	12	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	0x01000000
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	0x02000000
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	01000000
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	02000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	17	0	2	24	5	2	0x10	82	14	240	24	8080805a640401000eec0200
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	17	0	3	24	5	3	0x10	300	2	456	24	8080808054040000ffffffff
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	17	1	0	36	2	0	0x10	0	4	752	16	01000500010006008080803c8080803c8080803c8080803c
@@ -20024,8 +20024,8 @@ ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	20	1	0	36	2	0	0x10	101	2
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	20	2	0	36	2	0	0x10	1788	38	74	36	000000000200ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	20	2	1	36	2	1	0x10	1788	38	74	36	000000000300ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	20	2	2	36	2	2	0x10	1788	38	74	36	000000000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	0x01000000
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	0x02000000
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	01000000
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	02000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	21	0	2	16	1	2	0x10	-46	0	32	32	6d000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	21	0	3	16	1	3	0x10	-41	0	1920	1080	79000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	21	0	4	16	1	4	0x10	287	0	1920	1080	80000000
@@ -20044,7 +20044,7 @@ ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	21	1	5	36	2	5	0x10	1853	
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	21	1	6	36	2	6	0x10	17	1005	50	50	00000d000600ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	21	1	7	36	2	7	0x10	67	1005	1786	50	00000d000700ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	21	1	8	36	2	8	0x10	1853	1005	50	50	00000d000800ff0080808020808080208080802080808020
-ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	0x03000000
+ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	03000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	21	2	1	16	1	1	0x10	100	110	1110	320	04000000
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	21	3	0	36	2	0	0x10	78	76	50	50	00000c000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in/packfiles/mrppack_ys.bin	21	3	1	36	2	1	0x10	128	76	1052	50	00000c000100ff0080808080808080808080808080808080
@@ -21352,7 +21352,7 @@ ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	0	22	1	28	4	1	0x10
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	0	23	0	36	2	0	0x10	-1	-1	39	23	000003000300ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	0	23	1	28	4	1	0x10	-3	1	39	17	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	1	0	0	28	4	0	0x10	0	0	375	82	00000080000000000000008000000000
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	11	399	14	0x02000000
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	11	399	14	02000000
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	1	1	1	72	7	1	0x10	125	48	47	8	0100010200003c000000000000000100020020002d0006008080808004000200030004000500210024000200808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	1	1	2	72	7	2	0x10	125	47	47	8	0100020200003c000000000000000100020022002f000600808080800200020003000400050022002b000200808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	1	1	3	72	7	3	0x10	125	50	47	8	0100020200003c000000000000000100020022002f000600808080800200020003000400050022002b000200808080800000803f0100000660102001
@@ -21367,7 +21367,7 @@ ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	1	1	11	36	2	11	0x1
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	1	1	12	36	2	12	0x10	156	38	15	13	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	1	1	13	36	2	13	0x10	167	38	15	13	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	1	1	14	24	5	14	0x10	73	18	152	23	8080808064000000ffffffff
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	164	8	200	90	0x03000000
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	164	8	200	90	03000000
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	1	1	16	16	1	16	0x10	21	56	250	30	04000000
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	1	1	17	36	2	17	0x10	46	20	15	13	010002000200000080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	1	1	18	36	2	18	0x10	58	20	16	13	010002000500000080808070808080708080807080808070
@@ -21623,7 +21623,7 @@ ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	1	49	1	36	2	1	0x10
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	1	49	2	36	2	2	0x10	383	0	29	44	040000070200ff00787c8078787c80782e5074642e507478
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	2	0	0	28	4	0	0x10	0	0	128	128	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	2	0	1	36	2	1	0x0	82	-1	42	19	070000000000010080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	55	4	25	39	0x01000000
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	55	4	25	39	01000000
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	2	0	3	36	2	3	0x10	14	54	102	17	000001040000420080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	2	1	0	36	2	0	0x10	1	3	18	17	000002010000110080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	2	1	1	36	2	1	0x10	2	16	2	2	000001000100090080808080808080808080808080808080
@@ -22365,9 +22365,9 @@ ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	12	25	2	24	5	2	0x1
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	12	25	3	28	4	3	0x10	198	0	32	20	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	12	25	4	24	5	4	0x10	8	3	100	16	5a5a5a78641001001cec0200
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	12	25	5	24	5	5	0x10	8	3	100	16	5a5a5a78641001001dec0200
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	8	248	48	48	0x01000000
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	346	94	240	48	0x02000000
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x0	8	144	176	46	0x03000000
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	8	248	48	48	01000000
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	346	94	240	48	02000000
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x0	8	144	176	46	03000000
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	13	0	3	16	1	3	0x10	0	0	607	158	04000000
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	13	0	4	16	1	4	0x0	8	216	80	24	05000000
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	13	0	5	16	1	5	0x0	8	248	48	48	06000000
@@ -22403,9 +22403,9 @@ ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	13	4	2	24	5	2	0x0	
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	13	4	3	36	2	3	0x0	373	129	23	27	000000000100ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	13	5	0	36	2	0	0x0	0	0	19	16	000000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	13	6	0	36	2	0	0x0	0	0	19	16	000000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	8	248	48	48	0x01000000
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	8	12	208	120	0x02000000
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	346	94	243	48	0x03000000
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	8	248	48	48	01000000
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	8	12	208	120	02000000
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	346	94	243	48	03000000
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	0	3	16	1	3	0x0	0	0	32	32	04000000
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	0	4	16	1	4	0x0	8	216	80	24	05000000
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	0	5	16	1	5	0x0	8	248	48	48	06000000
@@ -22436,9 +22436,9 @@ ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	3	11	36	2	11	0x
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	3	12	36	2	12	0x0	116	38	5	5	030003000900000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	5	0	36	2	0	0x0	0	0	19	16	020000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	14	6	0	36	2	0	0x0	0	0	19	16	020000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	8	248	48	48	0x01000000
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	8	8	208	120	0x02000000
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	346	94	229	48	0x03000000
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	8	248	48	48	01000000
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	8	8	208	120	02000000
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	346	94	229	48	03000000
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	15	0	3	16	1	3	0x0	0	0	32	32	04000000
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	15	0	4	16	1	4	0x0	8	216	80	24	05000000
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	15	0	5	16	1	5	0x0	8	248	48	48	06000000
@@ -22476,8 +22476,8 @@ ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	16	0	3	72	7	3	0x10
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	16	0	4	24	5	4	0x0	10	7	120	12	523a785a6a1001003ee60200
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	16	0	5	24	5	5	0x10	10	7	120	12	8080806c6a1001003ee60200
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	16	0	6	28	4	6	0x10	61	19	32	6	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	0	14	336	14	0x01000000
-ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	0	14	336	14	0x02000000
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	0	14	336	14	01000000
+ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	0	14	336	14	02000000
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	17	0	2	24	5	2	0x10	16	3	120	12	8080805a640401000eec0200
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	17	0	3	24	5	3	0x10	96	0	228	12	8080808058040000ffffffff
 ps2data/image/ff12/myoshiok/in_sdver/packfiles/mrppack_ys.bin	17	1	0	36	2	0	0x10	0	2	316	6	01000500010008008080803c8080803c8080803c8080803c
@@ -22634,7 +22634,7 @@ ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	0	40	0	36	2	0	0x10	0	4	4
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	0	40	1	36	2	1	0x10	5	-6	32	39	000002000500ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	0	40	2	28	4	2	0x10	-6	-2	50	52	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	1	0	0	28	4	0	0x10	0	0	1000	164	00000080000000000000008000000000
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	0x02000000
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	02000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	1	1	1	72	7	1	0x10	250	96	94	16	0100010200003c000000000000000100020020005a0010008080808001000100030004000500210058000e00808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	1	1	2	72	7	2	0x10	250	94	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	1	1	3	72	7	3	0x10	250	100	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
@@ -22649,7 +22649,7 @@ ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	1	1	11	36	2	11	0x10	290	
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	1	1	12	36	2	12	0x10	312	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	1	1	13	36	2	13	0x10	334	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	1	1	14	24	5	14	0x10	146	36	304	46	8080808064000000ffffffff
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	0x03000000
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	03000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	1	1	16	16	1	16	0x10	42	112	500	60	04000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	1	1	17	36	2	17	0x10	92	40	30	26	010002000200000080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	1	1	18	36	2	18	0x10	114	40	32	26	010002000500000080808070808080708080807080808070
@@ -22913,7 +22913,7 @@ ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	1	51	1	36	2	1	0x10	1000	
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	1	51	2	36	2	2	0x0	1426	0	58	88	040000070200ff00787c8078787c80782e5074642e507478
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	2	0	0	28	4	0	0x10	0	0	400	400	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	2	0	1	36	2	1	0x0	164	-2	84	38	070000000000010080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	0x01000000
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	01000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	2	0	3	36	2	3	0x10	28	108	204	34	000001040000420080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	2	1	0	36	2	0	0x10	1	6	36	34	000002010000110080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	2	1	1	36	2	1	0x10	4	32	4	4	000001000100090080808080808080808080808080808080
@@ -23793,9 +23793,9 @@ ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	12	42	1	36	2	1	0x10	4	19
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	12	42	2	36	2	2	0x10	4	19	330	32	0000080106001d008041805a8041805a8041805a8041805a
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	12	42	3	24	5	3	0x10	0	16	334	40	8080808042000000ffffffff
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	12	42	4	24	5	4	0x10	0	36	334	40	808080804c000000ffffffff
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	0x01000000
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	0x02000000
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	0x03000000
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	01000000
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	02000000
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	03000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	13	0	3	16	1	3	0x10	0	246	1214	316	04000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	13	0	4	16	1	4	0x0	16	678	160	48	05000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	13	0	5	16	1	5	0x0	16	742	96	96	06000000
@@ -23831,9 +23831,9 @@ ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	13	4	2	24	5	2	0x0	786	24
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	13	4	3	36	2	3	0x0	746	258	46	54	000000000100ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	13	5	0	36	2	0	0x0	0	0	38	32	000000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	13	6	0	36	2	0	0x0	0	0	38	32	000000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	0x02000000
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	0x03000000
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	02000000
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	03000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -23864,9 +23864,9 @@ ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	3	11	36	2	11	0x0	178	
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	3	12	36	2	12	0x0	232	76	10	10	030003000900000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	5	0	36	2	0	0x0	0	0	38	32	020000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	14	6	0	36	2	0	0x0	0	0	38	32	020000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	0x02000000
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	188	458	96	0x03000000
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	02000000
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	188	458	96	03000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	15	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	15	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	15	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -23904,8 +23904,8 @@ ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	16	0	3	72	7	3	0x10	188	3
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	16	0	4	24	5	4	0x0	64	14	240	24	523a785a641001003ee60200
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	16	0	5	24	5	5	0x10	64	16	240	24	8080806c641001003ee60200
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	16	0	6	28	4	6	0x10	192	32	64	12	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	0x01000000
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	0x02000000
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	01000000
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	02000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	17	0	2	24	5	2	0x10	82	14	240	24	8080805a640401000eec0200
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	17	0	3	24	5	3	0x10	300	2	456	24	8080808054040000ffffffff
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	17	1	0	36	2	0	0x10	0	4	752	16	01000500010006008080803c8080803c8080803c8080803c
@@ -23947,8 +23947,8 @@ ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	20	1	0	36	2	0	0x10	101	2
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	20	2	0	36	2	0	0x10	1778	37	74	36	000000000200ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	20	2	1	36	2	1	0x10	1778	37	74	36	000000000300ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	20	2	2	36	2	2	0x10	1778	37	74	36	000000000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	0x01000000
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	0x02000000
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	01000000
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	02000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	21	0	2	16	1	2	0x10	-46	0	32	32	6d000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	21	0	3	16	1	3	0x10	-41	0	1920	1080	79000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	21	0	4	16	1	4	0x10	287	0	1920	1080	80000000
@@ -23967,7 +23967,7 @@ ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	21	1	5	36	2	5	0x10	1853	
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	21	1	6	36	2	6	0x10	17	1005	50	50	00000d000600ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	21	1	7	36	2	7	0x10	67	1005	1786	50	00000d000700ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	21	1	8	36	2	8	0x10	1853	1005	50	50	00000d000800ff0080808020808080208080802080808020
-ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	0x03000000
+ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	03000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	21	2	1	16	1	1	0x10	100	110	1110	320	04000000
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	21	3	0	36	2	0	0x10	78	76	50	50	00000c000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/it/packfiles/mrppack_ys.bin	21	3	1	36	2	1	0x10	128	76	1052	50	00000c000100ff0080808080808080808080808080808080
@@ -25311,7 +25311,7 @@ ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	0	40	0	36	2	0	0x10	0	4	4
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	0	40	1	36	2	1	0x10	5	-6	32	39	000002000500ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	0	40	2	28	4	2	0x10	-6	-2	50	52	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	1	0	0	28	4	0	0x10	0	0	1000	164	00000080000000000000008000000000
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	0x02000000
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	02000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	1	1	1	72	7	1	0x10	250	96	94	16	0100010200003c000000000000000100020020005a0010008080808001000100030004000500210058000e00808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	1	1	2	72	7	2	0x10	250	94	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	1	1	3	72	7	3	0x10	250	100	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
@@ -25326,7 +25326,7 @@ ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	1	1	11	36	2	11	0x10	290	
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	1	1	12	36	2	12	0x10	312	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	1	1	13	36	2	13	0x10	334	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	1	1	14	24	5	14	0x10	146	36	304	46	8080808064000000ffffffff
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	0x03000000
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	03000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	1	1	16	16	1	16	0x10	42	112	500	60	04000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	1	1	17	36	2	17	0x10	92	40	30	26	010002000200000080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	1	1	18	36	2	18	0x10	114	40	32	26	010002000500000080808070808080708080807080808070
@@ -25586,7 +25586,7 @@ ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	1	51	1	36	2	1	0x10	1000	
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	1	51	2	36	2	2	0x0	1426	0	58	88	040000070200ff00787c8078787c80782e5074642e507478
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	2	0	0	28	4	0	0x10	0	0	400	400	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	2	0	1	36	2	1	0x0	164	-2	84	38	070000000000010080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	0x01000000
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	01000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	2	0	3	36	2	3	0x10	28	108	204	34	000001040000420080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	2	1	0	36	2	0	0x10	2	6	36	34	000002010000110080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	2	1	1	36	2	1	0x10	4	32	4	4	000001000100090080808080808080808080808080808080
@@ -26466,9 +26466,9 @@ ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	12	42	1	36	2	1	0x10	4	19
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	12	42	2	36	2	2	0x10	4	19	330	32	0000080106001d008041805a8041805a8041805a8041805a
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	12	42	3	24	5	3	0x10	0	16	334	40	8080808042000000ffffffff
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	12	42	4	24	5	4	0x10	0	36	334	40	808080804c000000ffffffff
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	0x01000000
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	0x02000000
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	0x03000000
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	01000000
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	02000000
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	03000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	13	0	3	16	1	3	0x10	0	246	1214	316	04000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	13	0	4	16	1	4	0x0	16	678	160	48	05000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	13	0	5	16	1	5	0x0	16	742	96	96	06000000
@@ -26504,9 +26504,9 @@ ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	13	4	2	24	5	2	0x0	786	24
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	13	4	3	36	2	3	0x0	746	258	46	54	000000000100ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	13	5	0	36	2	0	0x0	0	0	38	32	000000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	13	6	0	36	2	0	0x0	0	0	38	32	000000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	0x02000000
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	0x03000000
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	02000000
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	03000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -26537,9 +26537,9 @@ ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	3	11	36	2	11	0x0	178	
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	3	12	36	2	12	0x0	232	76	10	10	030003000900000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	5	0	36	2	0	0x0	0	0	38	32	020000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	14	6	0	36	2	0	0x0	0	0	38	32	020000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	0x02000000
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	168	458	96	0x03000000
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	02000000
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	168	458	96	03000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	15	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	15	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	15	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -26577,8 +26577,8 @@ ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	16	0	3	72	7	3	0x10	188	3
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	16	0	4	24	5	4	0x0	64	14	240	24	523a785a641001003ee60200
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	16	0	5	24	5	5	0x10	64	16	240	24	8080806c641001003ee60200
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	16	0	6	28	4	6	0x10	192	32	64	12	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	0x01000000
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	0x02000000
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	01000000
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	02000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	17	0	2	24	5	2	0x10	82	14	240	24	8080805a640401000eec0200
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	17	0	3	24	5	3	0x10	300	2	456	24	8080808054040000ffffffff
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	17	1	0	36	2	0	0x10	0	4	752	16	01000500010006008080803c8080803c8080803c8080803c
@@ -26620,8 +26620,8 @@ ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	20	1	0	36	2	0	0x10	101	2
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	20	2	0	36	2	0	0x10	1788	38	74	36	000000000200ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	20	2	1	36	2	1	0x10	1788	38	74	36	000000000300ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	20	2	2	36	2	2	0x10	1788	38	74	36	000000000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	0x01000000
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	0x02000000
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	01000000
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	02000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	21	0	2	16	1	2	0x10	-46	0	32	32	6d000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	21	0	3	16	1	3	0x10	-41	0	1920	1080	79000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	21	0	4	16	1	4	0x10	287	0	1920	1080	80000000
@@ -26640,7 +26640,7 @@ ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	21	1	5	36	2	5	0x10	1853	
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	21	1	6	36	2	6	0x10	17	1005	50	50	00000d000600ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	21	1	7	36	2	7	0x10	67	1005	1786	50	00000d000700ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	21	1	8	36	2	8	0x10	1853	1005	50	50	00000d000800ff0080808020808080208080802080808020
-ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	0x03000000
+ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	03000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	21	2	1	16	1	1	0x10	100	110	1110	320	04000000
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	21	3	0	36	2	0	0x10	78	76	50	50	00000c000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/kr/packfiles/mrppack_ys.bin	21	3	1	36	2	1	0x10	128	76	1052	50	00000c000100ff0080808080808080808080808080808080
@@ -27984,7 +27984,7 @@ ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	0	40	0	36	2	0	0x10	0	4	4
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	0	40	1	36	2	1	0x10	5	-6	32	39	000002000500ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	0	40	2	28	4	2	0x10	-6	-2	50	52	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	1	0	0	28	4	0	0x10	0	0	1000	164	00000080000000000000008000000000
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	0x02000000
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	1	1	0	16	1	0	0x10	0	22	798	28	02000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	1	1	1	72	7	1	0x10	250	96	94	16	0100010200003c000000000000000100020020005a0010008080808001000100030004000500210058000e00808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	1	1	2	72	7	2	0x10	250	94	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	1	1	3	72	7	3	0x10	250	100	94	16	0100020200003c000000000000000100020022005e000c008080808004000400030004000500220056000400808080800000803f0100000660102001
@@ -27999,7 +27999,7 @@ ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	1	1	11	36	2	11	0x10	290	
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	1	1	12	36	2	12	0x10	312	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	1	1	13	36	2	13	0x10	334	76	30	26	010002000400080080808070808080708080807080808070
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	1	1	14	24	5	14	0x10	146	36	304	46	8080808064000000ffffffff
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	0x03000000
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	1	1	15	16	1	15	0x10	328	16	400	180	03000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	1	1	16	16	1	16	0x10	42	112	500	60	04000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	1	1	17	36	2	17	0x10	92	40	30	26	010002000200000080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	1	1	18	36	2	18	0x10	114	40	32	26	010002000500000080808070808080708080807080808070
@@ -28263,7 +28263,7 @@ ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	1	51	1	36	2	1	0x10	1000	
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	1	51	2	36	2	2	0x0	1426	0	58	88	040000070200ff00787c8078787c80782e5074642e507478
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	2	0	0	28	4	0	0x10	0	0	400	400	00000000000000000000000000000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	2	0	1	36	2	1	0x0	164	-2	84	38	070000000000010080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	0x01000000
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	2	0	2	16	1	2	0x10	180	28	50	78	01000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	2	0	3	36	2	3	0x10	28	108	204	34	000001040000420080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	2	1	0	36	2	0	0x10	1	6	36	34	000002010000110080808060808080608080806080808060
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	2	1	1	36	2	1	0x10	4	32	4	4	000001000100090080808080808080808080808080808080
@@ -29143,9 +29143,9 @@ ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	12	42	1	36	2	1	0x10	4	19
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	12	42	2	36	2	2	0x10	4	19	272	32	0000080106001d008041805a8041805a8041805a8041805a
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	12	42	3	24	5	3	0x10	0	16	280	40	8080808046000000ffffffff
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	12	42	4	24	5	4	0x10	0	36	280	40	8080808050000000ffffffff
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	0x01000000
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	0x02000000
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	0x03000000
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	13	0	0	16	1	0	0x0	16	742	96	96	01000000
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	13	0	1	16	1	1	0x10	692	434	480	96	02000000
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	13	0	2	16	1	2	0x10	16	534	352	92	03000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	13	0	3	16	1	3	0x10	0	246	1214	316	04000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	13	0	4	16	1	4	0x0	16	678	160	48	05000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	13	0	5	16	1	5	0x0	16	742	96	96	06000000
@@ -29181,9 +29181,9 @@ ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	13	4	2	24	5	2	0x0	786	24
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	13	4	3	36	2	3	0x0	746	258	46	54	000000000100ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	13	5	0	36	2	0	0x0	0	0	38	32	000000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	13	6	0	36	2	0	0x0	0	0	38	32	000000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	0x02000000
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	0x03000000
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	0	1	16	1	1	0x0	16	24	416	240	02000000
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	0	2	16	1	2	0x10	900	188	486	96	03000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -29214,9 +29214,9 @@ ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	3	11	36	2	11	0x0	178	
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	3	12	36	2	12	0x0	232	76	10	10	030003000900000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	5	0	36	2	0	0x0	0	0	38	32	020000000400000080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	14	6	0	36	2	0	0x0	0	0	38	32	020000000000000080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	0x01000000
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	0x02000000
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	188	458	96	0x03000000
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	15	0	0	16	1	0	0x0	16	496	96	96	01000000
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	15	0	1	16	1	1	0x0	16	16	416	240	02000000
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	15	0	2	16	1	2	0x10	692	188	458	96	03000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	15	0	3	16	1	3	0x0	0	0	64	64	04000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	15	0	4	16	1	4	0x0	16	432	160	48	05000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	15	0	5	16	1	5	0x0	16	496	96	96	06000000
@@ -29254,8 +29254,8 @@ ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	16	0	3	72	7	3	0x10	188	3
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	16	0	4	24	5	4	0x0	64	14	240	24	523a785a641001003ee60200
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	16	0	5	24	5	5	0x10	64	16	240	24	8080806c641001003ee60200
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	16	0	6	28	4	6	0x10	192	32	64	12	00000000000000000000000000000000
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	0x01000000
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	0x02000000
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	17	0	0	16	1	0	0x10	-6	34	1000	28	01000000
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	17	0	1	16	1	1	0x10	10	34	1000	28	02000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	17	0	2	24	5	2	0x10	82	14	240	24	8080805a640401000eec0200
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	17	0	3	24	5	3	0x10	300	2	456	24	8080808054040000ffffffff
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	17	1	0	36	2	0	0x10	0	4	752	16	01000500010006008080803c8080803c8080803c8080803c
@@ -29297,8 +29297,8 @@ ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	20	1	0	36	2	0	0x10	101	2
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	20	2	0	36	2	0	0x10	1778	37	74	36	000000000200ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	20	2	1	36	2	1	0x10	1778	37	74	36	000000000300ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	20	2	2	36	2	2	0x10	1778	37	74	36	000000000400ff0080808080808080808080808080808080
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	0x01000000
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	0x02000000
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	21	0	0	16	1	0	0x10	3	0	1920	1080	01000000
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	21	0	1	16	1	1	0x10	-38	0	32	32	02000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	21	0	2	16	1	2	0x10	-46	0	32	32	6d000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	21	0	3	16	1	3	0x10	-41	0	1920	1080	79000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	21	0	4	16	1	4	0x10	287	0	1920	1080	80000000
@@ -29317,7 +29317,7 @@ ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	21	1	5	36	2	5	0x10	1853	
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	21	1	6	36	2	6	0x10	17	1005	50	50	00000d000600ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	21	1	7	36	2	7	0x10	67	1005	1786	50	00000d000700ff0080808020808080208080802080808020
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	21	1	8	36	2	8	0x10	1853	1005	50	50	00000d000800ff0080808020808080208080802080808020
-ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	0x03000000
+ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	21	2	0	16	1	0	0x10	0	0	1920	1080	03000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	21	2	1	16	1	1	0x10	100	110	1110	320	04000000
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	21	3	0	36	2	0	0x10	78	76	50	50	00000c000000ff0080808080808080808080808080808080
 ps2data/image/ff12/myoshiok/us/packfiles/mrppack_ys.bin	21	3	1	36	2	1	0x10	128	76	1052	50	00000c000100ff0080808080808080808080808080808080

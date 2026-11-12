@@ -71,7 +71,7 @@ whether or not `0x00234480` found a slot; the branch gives the record:
   below 4;
 - the `0x00359B80` object's `+0x40`-`+0x63` and byte `+0x65` cleared.
 
-The number bound is stored at the slot's `+0x1E8` (`0x00265B3B`). Records of the other four managers never get a
+The number of records that entered the branch is stored at the slot's `+0x1E8` (`0x00265B3B`). Records of the other four managers never get a
 unit: the walk tests the slot's `+0x28` for every record (`0x00265A70`) and stores 0 at `+0x1E8` for them, as it
 does for a slot with no records (`0x00265B4D`).
 
@@ -243,8 +243,9 @@ Without `includeHidden` the walk keeps an entry only when it is non-null and `0x
 (`0x0035A010`), so a negative index is not refused and reads the stack before the list (`0x0035A025`).
 
 `0x00359CA0` takes the same arguments and gives the same pick, except that it filters the two lists apart and looks
-for the party focus only among the members of `0x0031B670`, so a focus member from `0x0031B680` keeps its place;
-capturebattlemembeructop, ucmovecancel_52d and setbattlethinkstatus_52e use it.
+for the party focus only among the members of `0x0031B670`, so a focus member from `0x0031B680` keeps its place. Eight
+verbs use it: capturebattlemember, capturebattlemembeructop, ucmove_52b, ucmovesync_52c, ucmovecancel_52d,
+setbattlethinkstatus_52e, check_move_battlestatus and check_move_battlestatus_ignore_dead.
 
 The verb `0x308C` (`0x0050F5B0`) calls it through
 `0x00510870` with `focusFirst` = 1 and `includeHidden` = 0, and sets its result to 1 when a member
@@ -286,39 +287,39 @@ Every immediate-mask write and test on `+0x00` and `+0x04` in the access table
 at `+0x04`.
 
 The Tested by column lists the functions that test the bit on the word in memory. The last column lists the
-functions that load the word into a register and, before any branch, test the bit with `bt` or `test` on that
-register or a copy of it, each with the address of its first such test. `0x00301140`, for one, tests `0x4000000`
+functions that load the word into a register and test the bit with `bt` or `test` on that register or a copy of
+it, each with the address of its first such test. `0x00301140`, for one, tests `0x4000000`
 with `bt rax, 0x1a` at `0x00301176`:
 
 | Bit value | Set by | Cleared by | Tested by | Tested in a register by |
 |---|---|---|---|---|
 | `0x1` | `0x00234480` | `0x00234200` | `0x00234480` | |
-| `0x2` | `0x0023A570`, `0x00300E40` | `0x00236A60` | `0x00233F70`, `0x003125E0`, `0x00319F50`, `0x003243F0`, `0x00324470` and one more | |
+| `0x2` | `0x0023A570`, `0x00300E40` | `0x00236A60` | `0x00233F70`, `0x003125E0`, `0x00319F50`, `0x003243F0`, `0x00324470` and four more |  |
 | `0x4` | `0x0023A570` | `0x00236A60` | `0x00233AD0`, `0x0023A570`, `0x0031A300`, `0x0031C000`, `0x00324380` and three more | `0x003266C0` (`0x00326A66`) |
-| `0x8` | `0x00233AD0` | `0x00236A60` | `0x00233AD0`, `0x00317E60`, `0x00319090`, `0x00319490`, `0x0031ACC0` and three more | `0x00233F70` (`0x00233FAD`), `0x0030BE80` (`0x0030BE87`), `0x0030BEB0` (`0x0030BEC3`), `0x003125E0` (`0x003125F5`) |
-| `0x10` | `0x00233F70` | `0x00236A60` | 27 functions, among them `0x00233EA0`, `0x00234200`, `0x002350C0`, `0x00237D80` | `0x00233F70` (`0x00233FC3`), `0x0030B7F0` (`0x0030B80D`), `0x0030DA30` (`0x0030DA46`), `0x003125E0` (`0x003125F1`) |
+| `0x8` | `0x00233AD0` | `0x00236A60` | `0x00233AD0`, `0x00317E60`, `0x00319090`, `0x00319490`, `0x0031ACC0` and four more | `0x00233F70` (`0x00233FAD`), `0x0030BE80` (`0x0030BE87`), `0x0030BEB0` (`0x0030BEC3`), `0x003125E0` (`0x003125F5`) |
+| `0x10` | `0x00233F70` | `0x00236A60` | 38 functions, among them `0x00233EA0`, `0x00234200`, `0x002350C0`, `0x00237D80` | `0x00233F70` (`0x00233FC3`), `0x0030B7F0` (`0x0030B80D`), `0x0030DA30` (`0x0030DA46`), `0x003125E0` (`0x003125F1`) |
 | `0x20` | `0x00308610` | `0x0030EFF0`, `0x00310780` | | `0x00308610` (`0x00308698`), `0x00313CD0` (`0x00313D36`) |
 | `0x40` | `0x00324470`, `0x003266C0` | `0x00324450` | `0x00324450` | |
 | `0x100` | `0x00313500` | `0x00233EA0`, `0x00236A60`, `0x00301140`, `0x00306760`, `0x00313F70` | | |
 | `0x200` | `0x00319F50` | `0x00233EA0`, `0x00236A60`, `0x00301140`, `0x00306760`, `0x003082F0` | | `0x003125E0` (`0x0031269C`) |
 | `0x400` | `0x00319F50` | `0x00236A60`, `0x00301140` | | `0x003125E0` (`0x00312693`) |
-| `0x800` | | `0x00236A60` | | `0x003125E0` (`0x0031268A`) |
-| `0x1000` | `0x00304850` | | | `0x00304850` (`0x00304EA5`), `0x0030CA80` (`0x0030CB58`) |
-| `0x2000` | | `0x00304850` | | `0x0030CA80` (`0x0030CB58`), `0x00313DB0` (`0x00313EEE`) |
-| `0x4000` | | `0x00236A60` | | `0x0030BA30` (`0x0030BA43`), `0x0030BA80` (`0x0030BA93`) |
-| `0x8000` | `0x00239170` | `0x00239170` | | |
+| `0x800` | `0x00234A10` | `0x00234A80`, `0x00236A60` | | `0x003125E0` (`0x0031268A`) |
+| `0x1000` | `0x00304850` | `0x00313DB0` |  | `0x00304850` (`0x00304EA5`), `0x0030CA80` (`0x0030CB58`) |
+| `0x2000` | `0x00313DB0` | `0x00304850` |  | `0x0030CA80` (`0x0030CB58`), `0x00313DB0` (`0x00313EEE`) |
+| `0x4000` | `0x00311CF0` | `0x00236A60` |  | `0x0030BA30` (`0x0030BA43`), `0x0030BA80` (`0x0030BA93`), `0x003138D0` (`0x00313903`) |
+| `0x8000` | `0x00239170` | `0x00239170` |  | `0x00305E70` (`0x00305ECA`) |
 | `0x10000` | | | | `0x00233F70` (`0x00233FB8`) |
 | `0x40000` | `0x00236300` | `0x00236300`, `0x00325BB0` | | `0x0023A070` (`0x0023A0E4`), `0x00304850` (`0x00304FB7`), `0x00325D90` (`0x00325E45`) |
 | `0x80000` | `0x00325260` | `0x00236A60` | | `0x003057D0` (`0x00305806`) |
 | `0x100000` | `0x003057D0` | `0x00236A60` | | `0x003057D0` (`0x00305811`) |
 | `0x200000` | `0x00239840` | `0x00234480`, `0x00300E40` | `0x00308D90` | |
 | `0x400000` | `0x00312FA0` | | | `0x002FFB60` (`0x002FFBD9`), `0x00305AB0` (`0x00305AC1`), `0x00307300` (`0x00307544`), `0x00308270` (`0x0030827B`), `0x00308610` (`0x003086A0`), `0x0030C010` (`0x0030C053`), `0x0030F760` (`0x0030F939`), `0x00310780` (`0x003107BE`), `0x00312FA0` (`0x00312FF3`) |
-| `0x800000` | | `0x00301140`, `0x0030F2D0` | `0x003081E0`, `0x00312FA0`, `0x00313F20`, `0x003176E0` | `0x00325BB0` (`0x00325CC2`) |
-| `0x1000000` | `0x00301140`, `0x00313500` | `0x003083A0`, `0x003250F0` | | `0x002FEF30` (`0x002FF99C`), `0x002FFB60` (`0x002FFBB3`), `0x00304850` (`0x003048AD`), `0x00308610` (`0x0030865B`), `0x0030DA30` (`0x0030DA3B`), `0x0030E360` (`0x0030E772`), `0x0030EFF0` (`0x0030EFFF`), `0x00313F20` (`0x00313F22`), `0x00320BB0` (`0x00320C30`) |
+| `0x800000` | `0x00313400` | `0x00301140`, `0x0030F2D0` | `0x003081E0`, `0x00312FA0`, `0x00313F20`, `0x003176E0` | `0x00325BB0` (`0x00325CC2`) |
+| `0x1000000` | `0x00301140`, `0x00307300`, `0x00313500` | `0x003083A0`, `0x003250F0` |  | `0x002FEF30` (`0x002FF99C`), `0x002FFB60` (`0x002FFBB3`), `0x00304850` (`0x003048AD`), `0x00308610` (`0x0030865B`), `0x0030DA30` (`0x0030DA3B`), `0x0030E360` (`0x0030E772`), `0x0030EFF0` (`0x0030EFFF`), `0x00313F20` (`0x00313F22`), `0x00320BB0` (`0x00320C30`) |
 | `0x2000000` | `0x00313500` | `0x003083A0` | | |
-| `0x4000000` | `0x002354F0`, `0x002355A0`, `0x00235720`, `0x00238FA0`, `0x00239410`, `0x00300310` | `0x00233AD0`, `0x002393E0`, `0x0023A570`, `0x00300E40`, `0x0030F690`, `0x003266C0` | | `0x00233AD0` (`0x00233BCF`), `0x0023A570` (`0x0023A643`), `0x00301140` (`0x00301176`) |
+| `0x4000000` | `0x002354F0`, `0x002355A0`, `0x00235720`, `0x00238FA0`, `0x00239410`, `0x00300310`, `0x00304180`, `0x00307300`, `0x00311F70` | `0x00233AD0`, `0x002393E0`, `0x0023A570`, `0x00300E40`, `0x00305110`, `0x00305430`, `0x0030F690`, `0x003266C0` |  | `0x00233AD0` (`0x00233BCF`), `0x0023A570` (`0x0023A643`), `0x00301140` (`0x00301176`), `0x00304180` (`0x003042C3`) |
 | `0x10000000` | | `0x0030EFF0`, `0x00310780` | | |
-| `0x20000000` | `0x0030CE10` (`0x0030CF16`, when `0x00306BD0` returns non-zero) | `0x0030CE10` (`0x0030CF00`) | `0x0030CE10` (`0x0030CF1D`) | `0x0030CBE0` (`0x0030CDC0`) |
+| `0x20000000` | `0x0030CE10` (`0x0030CF16`, when `0x00306BD0` returns non-zero) | `0x0030CE10` (`0x0030CF00`) | | `0x0030CBE0` (`0x0030CDC0`), `0x0030CE10` (`0x0030CF1D`, `shr` and `and`) |
 | `0x40000000` | `0x00301140` | `0x00310DB0` | | |
 | `0x200000000` | | `0x00236A60` | | |
 | `0x400000000` | `0x00319F50` | `0x00236A60`, `0x00300E40`, `0x00300FC0`, `0x00301140` | `0x00233F70`, `0x003125E0` | |
@@ -329,11 +330,11 @@ with `bt rax, 0x1a` at `0x00301176`:
 | `0x40000000000` | `0x00311F50` | `0x00301140`, `0x00307D10`, `0x0030F2D0` | `0x00307D10` | |
 | `0x800000000000` | | `0x00236A60` | | |
 | `0x1000000000000` | | `0x00301140`, `0x00307D10`, `0x0030F2D0` | | |
-| `0x10000000000000` | | `0x00236A60` | | |
+| `0x10000000000000` |  | `0x00236A60`, `0x002FEAD0` |  |  |
 | `0x20000000000000` | `0x002FEF30`, `0x00300140`, `0x00300E40`, `0x00301140`, `0x0030AF30` | `0x00304850`, `0x003105D0` | `0x00307300` | |
 
-Other writers that apply a mask held in a register are not in the table: among them the
-`hideenemy` and `showenemy` verbs on bit `0x800` and the command issuer on bit `0x4000`.
+Other writers that apply a mask held in a register are not in the table: among them `0x00312130` on bit
+`0x1000000000`, `0x00317E60` on bit `0x100000000` and `0x005102D0` on bit `0x200000000000`.
 
 ## Operations
 
@@ -344,10 +345,12 @@ Other writers that apply a mask held in a register are not in the table: among t
 
 ## Modding notes
 
-- The thirty-two is a literal in `0x002368D0`; raising spawn counts spends against that budget, and
-  there is no separate enemy pool.
-- Carry the handle at `+0x08`, not the unit pointer or the slot index: a handle stops resolving
-  once the actor's discriminator advances or the manager is unbound.
+- The thirty-two is a literal in `0x002368D0` and again in the bind walk (`0x00265A8F`); raising spawn counts spends
+  against
+  that budget, and there is no separate enemy pool.
+- Carry the handle at `+0x08`, not the unit pointer or the slot index: a handle stops resolving once the actor's
+  discriminator advances or the manager is unbound. When the manager is bound again every discriminator restarts at
+  1, so a handle kept across the unbind can name a new record.
 - An actor that ignores movement calls is one whose class is not 3; check `+0x03 >> 5`.
 
 ## Related

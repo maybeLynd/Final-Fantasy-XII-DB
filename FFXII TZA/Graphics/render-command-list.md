@@ -101,7 +101,7 @@ player is in state 3 (`0x001B7D20`).
 `0x00229F20(water)`, called from the scene draw `0x0022B0B0`, files the ambient-occlusion pass when `0x01FD49E8`
 is set: the scope `AO render`, `MaskBorderObj(1)` and a depth copy; with `water` non-zero the scope
 `Water effect`, the water refraction copy, `RenderAfterWaterObj`, a pop and another depth copy; then
-`AmbientOcclusionObj` and a pop. `0x00182560` returns `0x01F7F538`, the scene-open byte the scene wrappers
+`AmbientOcclusionObj` and a pop. `0x00182560` returns `0x01F7F538`, the scene-open dword the scene wrappers
 write; `0x00183060(x)` stores `x != 0` in `0x01F7F50E`, which `0x0017FE50` returns.
 
 `0x001809E0`, also in the frame bodies, runs `0x001A5A70` and `0x001AA2C0` on the map-art context when its
@@ -123,10 +123,10 @@ The copy source comes from the render manager's target tables:
   first table entry `+0xB08`. Its one caller, `PostProcessObj`'s execute `0x001F3300`, passes 0 after
   the post-process work for the screen index `0x01F82EC0` when the device byte `+0xD48` of
   `0x00796E20()` is set, and otherwise copies the result back with `0x001EE8E0`.
-- `0x001EEE80(target, w, h)` resizes a target's texture (`0x0060DD70`, same format) when its size
-  `+0x28`/`+0x2C` differs, unbinding it first when it is bound (`0x00625F00`, `0x0062BCB0`);
-  `0x001EE180(target, b)` unbinds the same way and stores `b` in the target's byte `+9`. Both skip a
-  null target or one whose byte `+0x08` is set.
+- `0x001EEE80(target, w, h)` resizes a target's texture (`0x0060DD70`, same format) when its size `+0x28`/`+0x2C` differs,
+  unbinding it first when it is bound (`0x00625F00`, `0x0062BCB0`); `0x001EE180(target, b)` unbinds the same way and stores
+  `b` in the target's byte `+9`. Both skip a null target, one whose byte `+0x08` is set, or one with no texture at
+  `+0x00`.
 - The target rebuild `0x00188B10` resizes ten of the
   manager's targets to the fit size (`0x00182EB0`, `0x00182E80`), and `0x00188DA0` gives four of them
   `0x02CB8084` through `0x001EE180`.

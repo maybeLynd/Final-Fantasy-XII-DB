@@ -285,11 +285,16 @@ Subtype 2 is a command list for `0x003B8670`: `+0x10` is the command count, and 
 
 #### Commands
 
-`effect-program-opcodes.tsv` gives each number's handler, the operands its code reads and the functions
-it calls, and says what it does where that has been read. Sounds come two ways. Command `0x1F` picks a bank slot,
-operand `+4`, or operand `+8` when that is non-zero and `0x003A6E60(2)` returns 1. It finds the kind-`0x59` record of
-that slot through `0x003AA280` and loads its `sabf` data through `0x002DF660`. All 292 slots are in their own stream.
-Commands `0x05` and `0x27` play a sound by id through `0x003B99D0`, and operand `+8` chooses the position it plays from.
+`effect-program-opcodes.tsv` gives each number's handler, the operands its code reads (also through a function it
+hands the command pointer to, such as `0x003B99D0`), the functions it calls (also on code it shares with another number)
+and what it does. The player is `[0x02EC0F88]`, the current track `[0x02EBA4F0]` and the track's key its word `+8`, which
+`0x0046F0A6` passes as the second argument of `0x003B8670`. `0x003326F0`, `0x003333B0`, `0x00333430`, `0x00333520`, `0x003335A0`,
+`0x00333620`, `0x00333640`, `0x003339C0` and `0x00333A40` return at once when a pointer they are given is null.
+
+Sounds come two ways. Command `0x1F` picks a bank slot, operand `+4`, or operand `+8` when that is non-zero and
+`0x003A6E60(2)` returns 1. It finds the kind-`0x59` record of that slot through `0x003AA280` and loads its `sabf` data
+through `0x002DF660`. All 292 slots are in their own stream. Commands `0x05` and `0x27` play a sound by id through
+`0x003B99D0`, and operand `+8` chooses the position it plays from.
 
 #### Expressions
 
@@ -730,11 +735,16 @@ instance that manager started. The skip paths `0x00360710` and `0x00360A50` call
   every instance of the channel (`0x0024FE70`, with arena 8 selected) and puts `n` in the low nibble
   of the word `+0x378` of each one the signal reached.
 
-`0x0026F470` stops at a row whose byte `+1` is not 1, steps over type-1
-rows by `0x60`, and for a type-3 row of the requested channel (or any channel when the filter is
-−1) whose slot enable byte is set, looks up the definition (`0x0024F610`) and creates an effect
-instance of kind 2 (`0x0024B270`) (`0x0026F4E3`–`0x0026F5BE`). Which channels the weather code starts is
-on the [weather](../World-Areas-And-Travel/weather.md) page.
+`0x0026F470` stops at a row whose byte `+1` is not 1, passes over a type-0 row without moving the row pointer, steps
+over type-1 rows by `0x60`, and for a type-3 row of the requested channel (or any channel when the filter is −1) whose
+slot enable byte is set, looks up the definition (`0x0024F610`) and creates an effect instance of kind 2 (`0x0024B270`)
+(`0x0026F4E3`–`0x0026F5BE`).
+
+Any other type takes a second path (`0x0026F77F`–`0x0026F946`) that creates the same instance
+from a `0xA0`-byte row, with the `0x0026EE00` table at `+0x50` instead of `+0x60` and the three vectors from `+0x60`
+instead of `+0x70`, and copies none of `+0x0E`, `+0x0F`, `+0x10` or bits `0x8`, `0x10` and `0x20` of `+0x0D`. Every
+shipped row is type 3. Which channels the weather code starts is on the [weather](../World-Areas-And-Travel/weather.md)
+page.
 
 The definition byte `+5` is used in both bank versions. `0x0026FAD0` passes type 2 (`0x0026FB38`), and
 the row builders compare it with the bank version `0x02F8F29D`, which `0x0026FC47` sets to 2 for

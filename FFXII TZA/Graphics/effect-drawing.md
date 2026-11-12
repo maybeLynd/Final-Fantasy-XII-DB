@@ -128,23 +128,23 @@ Between the bit `0x1` and bit `0x2` work, while the open layer `+0x94` (`0x00862
 | kind 7 | `0xB0`, `0x2C0`–`0x373` | `0x1` |
 | kind 7 | `0x240`–`0x2BF` | `0x1` for 25 listed ids, `0x4` for `0x289`, `0x3` for `0x28B` and `0x2A3`, `0x2` for the rest |
 
-Any other context gets 0. For each instance it draws, `0x0024D370` calls `0x00183090(1)` after the
-emitter walk when the flags have bit `0x2`, which sets `0x01F7F4F8`, one of the flags the mask-border
-wrapper `0x0017F6B0` tests; the frame state machine `0x0022A580` clears it each frame (`0x00183090(0)`). `0x0024E640` turns the flags into the widescreen mode the element draws use: 1 for
-bit `0x1` or a kind-7 id from `0x200` to `0x23F`, else 2, 3 or 4 for bit `0x4`, `0x8` or `0x10`, else
-0.
+Any other context gets 0. For each instance it draws, `0x0024D370` calls `0x00183090(1)` after the emitter walk when the
+flags have bit `0x2`, which sets `0x01F7F4F8`, one of the flags the mask-border wrapper `0x0017F6B0` tests; the frame
+state machine `0x0022A580` clears it each frame (`0x00183090(0)`). `0x0024E640` turns the flags into the widescreen mode the
+element draws use: 1 for bit `0x1` or, while the pass id is 0, a kind-7 id from `0x200` to `0x23F`, else 2, 3 or 4 for
+bit `0x4`, `0x8` or `0x10`, else 0.
 
-`0x00184740`, from the frame `0x0022A770`, reads the current instance through `0x0024DE30(&kind, &id,
-&frame)`, which returns its bytes `+0x3AC`, `+0x3AE` and `+0x3A2` + 1. While a kind-1 effect
-`0x17A` is current and the latch `0x01F7F540` is clear, it sets both; any other current effect
-clears `0x01F7F500`, another flag `0x0017F6B0` tests. `0x00182D30` clears the latch.
+`0x00184740`, from the frame `0x0022A770`, reads the current instance through `0x0024DE30(&kind, &id, &frame)`, which
+returns its byte `+0x3AC`, its word `+0x3AE` and its word `+0x3A2` + 1. While a kind-1 effect `0x17A` is current and
+the latch `0x01F7F540` is clear, it sets both; any other current effect clears `0x01F7F500`, another flag `0x0017F6B0`
+tests. `0x00182D30` clears the latch.
 
 ### Soft particles
 
 `0x0024D140(&factor)` answers whether the current context draws soft particles, for the `GiSprite`
 builder `0x008647C0` (`+0xD0` and `+0xD4` of the command) and the VU program packet `0x001DB840`
 (`+0x630` and `+0x634`). It answers no with a factor of 0.1 unless the pass id is 0 and the layer
-`+0x94` is 4, or 3 or 4 when `0x0017FE10()` (the byte `0x01DF08F4`) is non-zero. Otherwise the kind
+`+0x94` is 4, or 3 or 4 when `0x0017FE10()` (the dword `0x01DF08F4`) is non-zero. Otherwise the kind
 picks a table from `softparticle_*.csv` ([standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md)):
 
 | Kind | Key | Table |

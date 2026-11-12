@@ -13,7 +13,9 @@ name ids mean the same character in every language.
 
 `0x00379D20` loads the dictionary at boot through `0x003EAC40` and keeps it at `0x02B5E0D8`. Entry `2 x id` is the first
 name of pair `id` and entry `2 x id + 1` its second (`0x003EAC10`). A field character shows the first name until the
-story flag with the same number as its pair is set, and the second after it (`0x00263990`, `0x002639E0`, `0x0026DEA0`).
+story flag with the same number as its pair is set, and the second after it (`0x00263990`, `0x002639E0`). `0x0026DEA0`
+takes the choice from its caller: the map screens test the flag themselves (`0x002B9C70`, `0x002BA530`) and the battle
+log asks for the second name (`0x00536280`).
 
 The entries are read through `0x003EAC10` and `0x003EABE0`: besides the load (`0x003EAC58`) and the relocation callback
 `0x003EAC70`, they are the only instructions that name `0x02B5E0D8` (`0x003EAC1A`, `0x003EABE7`), and no image word points at
@@ -39,7 +41,7 @@ the flag and the script verbs that give an actor its name id.
 | 33 | 16, second | `Sherral` | `Scharmal` | `シャルアール` |
 
 Pair 0 repeats one name, so its flag changes nothing on screen; pair 16 shows `Imperial` until its flag is set
-and `Sherral` after. The names hold no text codes.
+and `Sherral` after. The only text code in the names is the space `0x04`, in every tree but `in`, `cn` and `ch`.
 
 ## Columns
 

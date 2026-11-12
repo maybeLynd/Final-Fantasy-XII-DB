@@ -71,9 +71,10 @@ dialog posts to its owner:
 | `0x8004` | a move has ended | `0x002D2DB0` (`0x002D38B5`) |
 | `0x8005` | posted right after `0x8000` with the same row | `0x002D41E8` |
 | `0x8100`-`0x8103` | the confirmation window's yes, no, cancel and cursor row | `0x0057C480` ([Dialogs](dialogs.md)) |
-| `0x8102`-`0x8106` | the item sort bar's close, help and three sorts | `0x00566680` ([Dialogs](dialogs.md)) |
+| `0x8102`-`0x8106` | the item sort bar's close, help and three sorts, to its procedure `0x00566680` | `0x0057C480` |
 
-Screens also use small codes `0xE`-`0x1D` among themselves, most often `0x12` (21 calls) and `0xF` (17).
+Screens also use small codes among themselves: `0`, `6` and `7` (two sends each) and `0xE`-`0x1D`, most often `0x12`
+(18 of the 101 sends through `0x00247510`) and `0xF` (13).
 
 ### Private ids
 

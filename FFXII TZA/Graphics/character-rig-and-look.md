@@ -140,10 +140,13 @@ On (`0x004718D0`) sets the active byte `+0` and the running byte `+3` and remaps
 
 ### The hit flinch
 
-The record event handler `0x00427320` switches controller 12 on for event `0x2005`, which the HP write posts for a target
-that survives ([HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md)), when the argument record's byte `+1` is 0 and the
-motion word `+0xCC` is not `0x2009` or `0x2031`, nor `0x2001` with `+0x2A0` equal to 0 or 14. For `0x2006` it switches it
-on when `0x00422DE0` puts the motion word in class 3.
+The record event handler `0x00427320` switches controller 12 on for event `0x2005`, which the HP write posts for a
+target that survives ([HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md)), when the argument record's byte `+1` is 0 and
+the motion word `+0xCC` is not `0x2009` or `0x2031`, nor `0x2001` with `+0x2A0` equal to 0 or 14.
+
+For `0x2006` it switches it on when `0x00422DE0` puts the motion word in class 3. Both are skipped while
+`0x003E7D10(record +0x6A4, 3)` is non-zero and byte `+0xC0` has bit `0x40` set, because the handler ends there for a
+kinded event other than `0x2007`, `0x2008`, `0x200C`, `0x200E`, `0x4035` and `0x4036`.
 
 The update `0x00471150` steps a counter `+0xD` through the eight-entry
 curves `0x01F22130` and `0x01F22170` and turns them by the record's heading `h` (`+0x124`): with
@@ -287,9 +290,9 @@ Controller 14's apply `0x0051A280` (`0x003E0624`) multiplies the rotations of th
 `+0xC0`, `+0xC4` and `+0xC8`, by the controller's three 3 × 3 matrices at `+0x00`, `+0x40` and `+0x80`
 through `0x00519880`.
 
-- `0x003E12A0(rig, n, on)` fades controller 9 or 13 instead of cutting it: off sets bit `0x40` of byte `+1`
-  (`0x00517610` keeps the lip flap's current values at `+0x88` and `+0x8C`; `0x00471B20` clears the
-  nod's byte `+8`), and on restarts a controller that was fading. Its callers are `0x0041DD40` and
+- `0x003E12A0(rig, n, on)` fades controller 9 or 13 instead of cutting it: off sets bit `0x40` of byte `+1` on the lip
+  flap and of byte `+9` on the nod (`0x00517610` keeps the lip flap's current values at `+0x88` and `+0x8C`; `0x00471B20`
+  clears the nod's byte `+8`), and on restarts a controller that was fading. Its callers are `0x0041DD40` and
   `0x0042BED0`.
 - `0x003E0740` resets the talking-head controllers of every active record; the lip flap's reset is
   `0x005175F0`.
@@ -457,9 +460,10 @@ the additive bone matrices, calls each slot's reset and then its second-phase in
 4. It saves the point as this kind's last and reloads the other kind's nibble with `8 × [0x01DFE0B4]` truncated to four
    bits: 8 at 30 fps, 0 at 60 fps, so at 60 fps a change of kind jumps. `0x0042C410`, from the record pass, lowers each
    non-zero nibble by 1.
-5. `0x003E6070` fetches a second vector (`@FRM` block `+0x60`; else the `@FRM` chunk of the resource behind `+0x69C`, or
-   behind `+0x430` when the motion word's low twelve bits are `0x36`; else model block `+0xEC`; else 0), and `+0x680`
-   follows it by `sqrt(0.12)`, about 0.35, a frame; bit `0x2` of `+0x66D` snaps it once. `+0x6A8` gets 0.
+5. `0x003E6070` fetches a second vector (`@FRM` block `+0x60`; else, when the resource behind `+0x69C` has an `@FRM`
+   chunk, that chunk, or the chunk of the resource behind `+0x430` if it has one and the motion word's low twelve bits
+   are `0x36`; else model block `+0xEC`; else 0), and `+0x680` follows it by `sqrt(0.12)`, about 0.35, a frame; bit
+   `0x2` of `+0x66D` snaps it once. `+0x6A8` gets 0.
    - The `+0x430` source is tried only when the `+0x69C` one exists (`0x003E60B1`); both are the `@FRM` sub-block whose
      offset sits at `+0x0C` of the chunk data (`0x00423510`, `0x0042354E`), where step 1's `0x004234B0` reads `+0x10`
      (`0x004234F9`). The vector's fourth float is 1.0 (`0x003E6136`), and the 0 at `+0x6A8` is the return value of

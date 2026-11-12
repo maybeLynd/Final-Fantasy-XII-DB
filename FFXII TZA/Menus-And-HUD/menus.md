@@ -34,15 +34,16 @@ table, so a request is refused while a scene blocks it.
    and the router returns the callee's answer; 12 calls `0x0028E970(12)` and returns 1 (`0x00254BFB`-`0x00254C2B`).
 6. Every other id, 0 and every id above 24 included, takes the generic arm (`0x00254C2D`-`0x00254C3E`). It calls
    `0x0028F970()`, which, unless `[0x0209BE80]` is null or bit `0x2000` of its `+0x10F68` is set, clears bits `0x10`
-   and `0x400` of that dword and the word `+0x10FA0` (`0x0028F97B`-`0x0028F9AF`, [HUD](hud.md)). It then calls
-   `0x00280A00(request, parameter, flag)` with the whole first argument, bit `0x8000` included, and returns that
-   call's answer.
+   and `0x400` of that dword and the word `+0x10FA0`, and sets bit `0x40` of `+0x10CFC` when the battle menu at
+   `+0xAB30` exists (`0x0028F97B`-`0x0028F9D4`, [HUD](hud.md)).
+7. The generic arm then calls `0x00280A00(request, parameter, flag)` with the whole first argument, bit `0x8000`
+   included, and returns that call's answer.
 
 ### The requests
 
 | Id | Route | Opens |
 |---:|---|---|
-| `1`, `4` | `0x0035D660`, after its own refusals (`0x0035D66D`, `0x0035D67B`) | the command menu, widget procedure `0x00279E20` |
+| `1`, `4` | `0x0035D660`, after its own refusals (`0x0035D66D`, `0x0035D67B`, and `0x0035D684`-`0x0035D697` for id 1) | the command menu, widget procedure `0x00279E20` |
 | `2` | generic; parameter 0 builds `0x00280D20` (`0x0027FC9C`) | the main menu, procedure `0x00280DE0` |
 | `3` | `0x0035D980` | choosing the party leader: "Select a new party leader." (`menu_message.bin` `0x86E`) |
 | `5` | `0x003C87B0` | the field target cycle |
@@ -136,7 +137,7 @@ The router is also called directly, without the mailbox:
 | `tutorial_sync_partymenu` | `0x3A6` | waits until the next menu closes | 0 |
 | `clear_callpartymenu_status`, `is_callpartymenu_status` | `0x561`, `0x562` | clear and read the flag `0x0215F1AF` | 1 each |
 
-Six more verbs read or set menu state through helpers of their own:
+`spattackwindowsync` and five more verbs read or set menu state through helpers of their own:
 
 | Verb | Id | Helper | Does |
 |---|---|---|---|
@@ -160,7 +161,9 @@ The drain `0x002E09A0` runs once per world tick:
 
 1. While manager slot 0 is not ready, it throws the request away (`0x002E0B8B`-`0x002E0BAA`).
 2. A pending id 2 is dropped when `0x0037B330` answers non-zero or availability bit `0x1` or `0x8` is set (`0x002E0BC0`-`0x002E0C65`).
-3. While a party record is busy or another request word is held, it waits and keeps the request (`0x002E0C87`-`0x002E0CC2`).
+3. While one of the eight message window slots at `0x0215F200` holds a window with its byte `+0x38` or bit `0x1`
+   of `+0x3E` set, or the request word `0x02092730` is non-zero and not 5, it keeps the request for a later tick
+   (`0x002E0C6C`-`0x002E0CC2`).
 4. It then tests `0x00226BA0` and `0x0053DD10` for ids other than 12, 15, 17, 18 and 19 (`0x002E0CC9`-`0x002E0CF3`), but
    `0x0053DD10` always answers 1, so this never holds a request.
 5. It calls the router and clears pending whether or not the router opened anything (`0x002E0CFC`-`0x002E0D10`).

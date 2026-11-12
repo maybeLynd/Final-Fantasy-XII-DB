@@ -240,10 +240,14 @@ that is 0 in 32 bits leaves the new block null (`0x001A415C`). It copies the rec
 the new record and the rest (`0x001A417D`-`0x001A41F3`), frees the old block through slot `+0x18` with its capacity in
 bytes (`0x001A41F5`-`0x001A4216`) and stores the new begin, end and capacity (`0x001A4221`-`0x001A4239`).
 
-Every frame `0x001808D0`, called from `0x0022A770`, runs `0x001AA120`, which rewrites each recorded palette from its PS2 data through
+`0x001808D0`, called from `0x0022A770` in a simulation step while `0x00358340()` is non-zero, once a step of the
+frame has started with the accumulator below 1.1 (`0x0022AC5C`-`0x0022AC6E`,
+[frame update order](../Engine-Core/frame-update-order.md)), runs `0x001AA120`, which rewrites each
+recorded palette from its PS2 data through
 `0x00183320`, scaling alpha from 0-128 to 0-255 with `a = min((int)(a × 255.0 × (1 / 128)), 255)`
-(`0x00183440`-`0x0018346A`), so a palette the original code animates in memory
-animates on screen. `0x004680D0` releases the PS2 side and calls `0x00180280`, whose `0x001A5980` frees
+(`0x00183440`-`0x0018346A`), so a palette the original code animates in memory animates on screen.
+
+`0x004680D0` releases the PS2 side and calls `0x00180280`, whose `0x001A5980` frees
 both textures of every entry (`0x00183720`) and empties the map and the vector.
 
 The parser keeps the PS2 palettes in a buffer of its own. For a chunk of `n` textures (its first dword), `0x00468160`

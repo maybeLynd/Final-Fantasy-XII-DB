@@ -181,9 +181,11 @@ Each battle unit keeps a bounce slot beside every entry of the action's target l
 slot i beside the entry at `+0x780` + `0x10` x i. The Reflect arm marks an entry bounced by writing code 8 to its
 result (`0x00390E35`) and the new target from `0x00384F40` to the result's `+0x10` (`0x00390E42`).
 
-The preview `0x00303A00` then stores that unit in the slot (`0x00303B45`-`0x00303B6D`) and previews the action again
-against it, keeping that preview's code at the slot's `+0x08` (`0x00303B75`-`0x00303B90`). With no result record the
-slot gets 0 (`0x00303B97`-`0x00303B9D`), and an entry that is not bounced keeps its slot (`0x00303B34`-`0x00303B37`).
+The preview `0x00303A00` then stores the bounce unit's actor, its `+0x10` (`0x00303B4F`), in the slot
+(`0x00303B45`-`0x00303B6D`), the value the readers below compare with the target list and turn into a handle. It
+previews the action again with the unit's `+0x698` record, keeping that preview's code at the slot's `+0x08`
+(`0x00303B75`-`0x00303B90`). With no bounce unit the slot gets 0 (`0x00303B4A`-`0x00303B4D`, `0x00303B97`-`0x00303B9D`), and an
+entry that is not bounced keeps its slot (`0x00303B34`-`0x00303B37`).
 
 The target step `0x003191B0` works a bounced entry through its slot when the slot is set (`0x003192C3`-`0x0031932E`),
 and `0x00322760` returns the bounce unit's actor handle (`0x003589B0`) for an entry whose code at `+0x788` is 8

@@ -69,10 +69,12 @@ previous party member (`0x00568280`, `0x00567990`). Each member's cursor row and
 ### Confirming a row
 
 The line list posts confirm (`0x8001`), cancel (`0x8002`), clear (`0x8003`) and end-of-move (`0x8004`) to the editor,
-in the convention of [Dialogs](dialogs.md). Confirm runs `0x00567D80`:
+in the convention of [Dialogs](dialogs.md). Confirm runs `0x00567D80`, which sets the list's sound byte `+0xFC` to 0xFF
+and stops when `0x00368240()` is 1, and otherwise:
 
 1. On the header row it flips the character's gambits on or off (`0x00311AF0`, `0x00567DDD`), sound `0x12` or `0x13`.
-2. On a condition or action it opens the condition or action list (`0x0056B350`).
+2. On a condition or action it sets `[0x02CA9700] + 0x360` to 1 and, when `0x00264150()` is 0, opens the condition or
+   action list (`0x0056B350`).
 3. On a switch it picks the line up for moving (`0x005687F0`) when no line is held: bit `0x1` of `+0x340` of the
    editor that `0x02CA96E0` holds for `+0x35C` is clear (`0x00567E7F`-`0x00567E98`, `0x00567F68`).
 4. On the same switch again it turns the line on or off and saves; an empty line cannot be turned on (sound 5,

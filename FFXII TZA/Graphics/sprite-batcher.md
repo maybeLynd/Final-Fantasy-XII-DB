@@ -198,9 +198,12 @@ and the same quad to the batcher as a four-vertex strip (`0x00181460`).
 | `0x002DA7C0(writer, widget, colours, clamp, src, x, y, w, h, flags)` | a textured quad | four corners | the caller's CLAMP_1 value, decoded into the mirror |
 | `0x002DC7F0(writer, widget, colours, x, y, w, h, flags)` | an untextured patch | four corners | no clamp |
 
-- `src` is `s16` x, y, width, height in texels. When its size differs from the target's, the first three
-  set flag `0x2` in each UV record; CLAMP_1 (register 8) is written as region clamp on both axes, `0xA`
-  in the low bits.
+- `src` is `s16` x, y, width, height in texels. When its size differs from the target's, the first three add
+  flag `0x2` to the `flags` argument (`0x002D9E5F`-`0x002D9E85`, `0x002DA385`-`0x002DA3AB`, `0x002DA85C`-`0x002DA87B`)
+  and store it only in the first UV record's dword `+8` (`0x002D9ED3`, `0x002DA3F0`, `0x002DA8B6`); the other three
+  UV records get u and v only. `CLAMP_1` (register 8) gets region mode on both axes, `0xA` in its low bits.
+- `0x002D9DB0` and `0x002DA2D0` also put those flags in each batcher vertex's `+0x28` (`0x002DA1A9`-`0x002DA1EE`,
+  `0x002DA697`-`0x002DA6DC`); `0x002DA7C0` gives its batcher vertices no flags word (`0x002DAB06`-`0x002DAC3D`).
 - Colours are four RGBA dwords in packet order: top left, top right, bottom left, bottom right. The batcher
   strip runs top left, bottom left, top right, bottom right.
 - `0x002DC7F0` with flag `0x8` draws two strips meeting at the patch centre, coloured with the average of the

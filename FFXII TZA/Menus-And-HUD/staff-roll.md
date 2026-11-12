@@ -26,9 +26,15 @@ The roll is the event script `men_z0005`. Its actor `staffroll_main`, function `
    pressed (`padt() & (8 | get_pad_cancel() | get_pad_ok())`), fades out (`fadeout_d0(0, 60)`), ends the movie and
    closes the roll (`movieend`, `fsroll_finalize`).
 
-The lines themselves are the `fsroll` calls of the actor `staffroll_script`, function `create`: 950 lines on 600
-rows ([staff-roll.tsv](staff-roll.tsv)). Its `for` loops over a counter show runs of consecutive rows, two per pass
-in the two-column parts.
+The `fsroll` calls of the actor `staffroll_script`, function `create`, hold 950 lines on 600 rows
+([staff-roll.tsv](staff-roll.tsv)). Its `for` loops over a counter show runs of consecutive rows, two per pass in
+the two-column parts.
+
+No code runs `create`: the entry-slot footer of every actor of `men_z0005` names only `main` (slot 1), the script's
+start list and request lists are empty, and no request in any shipped script names it. `staffroll_main.main` resets
+the roll with `fsroll_refresh` (`0x0053EDB0` frees the line block and builds an empty one), sets the speed and the
+double mode, and records a fade, a movie mark at frame `0x3CFF`, cell 3 of `sf_logo_c`, a second fade and the end
+mode. The roll the game draws over movie 42 is that logo.
 
 ### The recorder
 

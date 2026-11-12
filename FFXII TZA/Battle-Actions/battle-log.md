@@ -31,10 +31,10 @@ result.
 
 The result applier's first step, `0x00385BA0`, calls `0x00469EC0(actionId, sourceStats, targetStats,
 result)` when the result's byte `+0x1C` is 1, with the action id from the formula scratch word
-`0x02AEDFD4` (`0x00385C6F`-`0x00385C85`). Seventeen other functions post messages directly through the same
-poster `0x0046AB10`: `0x004697C0`, `0x004698C0`, `0x00469A50`, `0x00469AF0`, `0x00469BB0`, `0x00469C00`, `0x00469E30`,
-`0x00469E80`, `0x0046A630`, `0x0046A690`, `0x0046A6E0`, `0x0046A720`, `0x0046A790`, `0x0046A800`, `0x0046A870`,
-`0x0046A9D0` and `0x0046AA70` (48 call sites in all).
+`0x02AEDFD4` (`0x00385C6F`-`0x00385C85`). Seventeen other functions post messages directly through the same poster `0x0046AB10`: `0x004697C0`, `0x004698C0`,
+`0x00469A50`, `0x00469AF0`, `0x00469BB0`, `0x00469C00`, `0x00469E30`, `0x00469E80`, `0x0046A630`, `0x0046A690`, `0x0046A6E0`,
+`0x0046A720`, `0x0046A790`, `0x0046A800`, `0x0046A870`, `0x0046A9D0` and `0x0046AA70` (38 call sites; with the ten in `0x00469EC0`,
+48 in all).
 
 ### The event context
 

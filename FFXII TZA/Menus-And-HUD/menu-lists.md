@@ -194,8 +194,8 @@ After a move the cursor is pulled back onto the last item, and the direction bit
 
 ### Other switches
 
-- `0x002D45C0(list, on)` sets `+0xE0` bit `0x10000` and, when the focus widget is the list or one of its ancestors and every
-  one of them is active, can take the focus and is not mid-run, calls `0x003689E0(on)`.
+- `0x002D45C0(list, on)` writes `on` to `+0xE0` bit `0x10000` and, when the focus widget is the list or one of its
+  ancestors and every one of them is active, can take the focus and is not mid-run, calls `0x003689E0(on)`.
 - `0x002D49C0(list, on)` sets `+0xE4` bit `0x200000` and clears `+0x118` when it is turned off; the gambit editor and its
   condition list use it (`0x00569812`, `0x0056AB7F`).
 - `0x002D49F0(list, kind)`, used by the Clan Primer's family index, scrolls with `0x002D4A40` and, when it scrolled, `+0xE4`

@@ -142,16 +142,17 @@ The third stage asks the scheduled-task test `0x002F1A30(1)` (`0x0034DBCE`, [fra
 order](../Engine-Core/frame-update-order.md)) and then `0x0032E520(1)` (`0x0034DBD9`), and stays while either
 answers non-zero (`0x0034DBD5`, `0x0034DBE0`). The argument is 1 from `0x0034DB49` on that path.
 
-The poll keeps the stage in scratch `+4` and returns 1 while it waits, 0 when it is done. Stage −1 releases
-(`0x00360A20(i, manager)` with the issuer's byte `+0x15`, `0x0034DB59`) and returns 0. Stage 0 moves to 1 once
+The poll keeps the stage in scratch `+4` and returns 1 while it waits, 0 when it is done. Any negative stage,
+not only −1, releases (`0x0034DB4E`; `0x00360A20(i, manager)` with the issuer's byte `+0x15`, `0x0034DB59`) and
+returns 0. Stage 0 moves to 1 once
 `0x0025C070(manager, issuer)` is non-zero (`0x0034DC12`, `0x0034DC1B`) and waits in either case. Stage 1 stays while
 `0x003608D0` returns 0 (`0x0034DBB3`) and stage 2 while `0x00360D60` (`0x022CBA58` non-zero) is non-zero (`0x0034DBC3`); a
 stage that is passed falls through to the next in the same poll (`0x0034DBB5`, `0x0034DBC5`).
 
 Past the third stage the poll releases the entry (`0x0034DBE8`), stores the game-step count `0x02064AD0` (`0x00229EB0`)
 in scratch byte `+8` (`0x0034DBF2`) and moves to stage 4 (`0x0034DBF7`). Stage 4 returns 0 once the count differs from
-that byte (`0x0034DB92`), one game step later. The begin and the poll store only the stages −1 to 4; any other stage
-value returns 1 (`0x0034DB84`).
+that byte (`0x0034DB92`), one game step later. The begin and the poll store only the stages −1 to 4; a stage above 4
+returns 1 (`0x0034DB84`).
 
 ## Layouts
 
