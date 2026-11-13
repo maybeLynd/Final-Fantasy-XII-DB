@@ -602,7 +602,9 @@ swapped last, by a tail jump (`0x0059C245`).
 
 `0x0059E300` runs the rest in stream order.
 
-- `0x00686D10` copies the three D3D11 sizes into the load record, and `0x0059E780` reads the list
+- `0x00686D10` copies the three D3D11 sizes into the `0x28`-byte local that `0x00686C20` has just zeroed
+  (`0x0059E343`; the header's dwords `+0x48`, `+0x4C` and `+0x50` to its `+0x20`, `+0x1C` and `+0x24`),
+  and `0x0059E780` reads the list
   headers (`0x00596FC0`), returning 6 for a `m_classID` outside the class table.
 - `0x0059E780` returns the result of `0x00596FC0` when it is not 0 (`0x0059E7CD`). For each list it stores the
   class entry in the load record's per-list array at `+0x58` (`0x0059E801`). When the entry's runtime

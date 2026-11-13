@@ -495,10 +495,11 @@ region `+0x188` or a `0xFF` link, 128 at most (`cmp esi, 0x80`, `0x00334A2F`), p
 distance `0x004686D0`, `w[r]` the route's x and z at `+0x210 + 8 × r` and the next region the byte `+0x190 + r`
 (`0x003349C2`-`0x00334A35`).
 
-`0x0033BD70` fires at 60: with the goal at least 20 units away and no action running, it samples the route at 1,
+`0x0033BD70` fires at 60: with the goal at least 20 units away and the unit off screen, it samples the route at 1,
 2, ... 20 units ahead (`0x003347C0`) and takes the first point on the mesh as a detour (`+0xCC` bit `0x80`,
 `+0x50`). It answers 0 without a unit, outside a battle, below 60 or for an order other than `0x4124` and
-`0x4022` (`0x0033BDA9`-`0x0033BDE9`); no action running is `0x00322360(unit)` = 0 (`0x0033BE0F`).
+`0x4022` (`0x0033BDA9`-`0x0033BDE9`); off screen is `0x00322360(unit)` = 0 (`0x0033BE0F`-`0x0033BE16`), the box test of
+[gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md).
 
 A taken point also zeroes the stall counter `+0x14` and answers 1 (`0x0033BEB0`-`0x0033BEC8`); a sample whose x and
 z equal the destination `+0x30` ends the search with 0 (`0x0033BE5E`-`0x0033BE78`). `0x003347C0(out, ctx, length)`
@@ -768,8 +769,16 @@ The body then places each mode 1 unit. Unit `0x022C7CE9` of the `0x022C7CEA` (`0
 by 0.4189 radians a call, the sign from `0x022C7CEC` (`0x0033E14A`, `0x0033E153`, `0x0033E164`, `0x0091602C`).
 
 The mode 3 body `0x0033DB60` drives one walk on the same count and phase words, lowering `0x022C7CE4` by one a call while it
-is above 0 (`0x0033DD0F`). Its direction is turned by `0x022C7CE8` quarter turns (`0x0033DC80`, times 90 degrees) and bent by
-0.0091 radians, one way while `0x022C7CE7` is 0 and the other way otherwise (`0x0033DBD8`, `0x00D10ACC`, `0x00D10B14`). Each phase
+is above 0 (`0x0033DD0F`).
+
+Its desired heading `+0xB4` (`0x0033DC70`) is the bearing to a point 11 (`0x00915B9C`,
+`0x004692F0`) from field point `0x20` (`0x00320940(0x20)`, `0x0033DB95`), on the line from that point to the unit
+turned by 0.0091 radians, one way while `0x022C7CE7` is 0 and the other way otherwise (`0x0033DBD8`, `0x00D10ACC`,
+`0x00D10B14`). `0x022C7CE8` is read after that store: its quarter turns (`0x0033DC80`, times 90 degrees) place a
+second point 11 from the field point (`0x0033DCD6`-`0x0033DCF6`), which phase 2's distance test reads
+(`0x0033DDE5`-`0x0033DDF8`).
+
+Each phase
 sets the speed `+0xB0` from the full speed, `+0xF8` of `[unit+0x108]`; the target is the unit at `+0xF0`:
 
 - phase 0: speed 0; when the count is 0 and the target's order word is `0x21F` or above or is `0x96`, or the target's

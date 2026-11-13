@@ -6954,7 +6954,7 @@ field	WidgetSingleton02B62D80+0x00D8	pictures	Menus-And-HUD/script-gauges.md	-	-
 field	WidgetSingleton02B62D80+0x00E0	pictureCount	Menus-And-HUD/script-gauges.md	-	-
 field	WidgetSingleton02B62D80+0x00E1	unobservedTail00E1	Menus-And-HUD/script-gauges.md	-	-
 field	WidgetSingleton02CA96D8+0x0000	widgetBase0000	Menus-And-HUD/gambit-screen.md	-	-
-field	WidgetSingleton02CA96D8+0x00C0	unobservedSpan00C0	Menus-And-HUD/gambit-screen.md	-	-
+field	WidgetSingleton02CA96D8+0x00C0	recordWord60AndTableDword7370	Menus-And-HUD/gambit-screen.md	-	-
 field	WidgetSingleton02CA96D8+0x00C8	items67Shown	Menus-And-HUD/gambit-screen.md	-	-
 field	WidgetSingleton02CA96D8+0x00CC	unobservedTail00CC	Menus-And-HUD/gambit-screen.md	-	-
 field	WidgetSingleton02CA9738+0x0000	widgetBase0000	Menus-And-HUD/clan-primer.md	-	-
@@ -7003,7 +7003,8 @@ field	WidgetSingleton02CA99D8+0x00C0	flags	Saving-Loading-And-Settings/saving-an
 field	WidgetSingleton02CA99D8+0x00C4	pad0C4	Saving-Loading-And-Settings/saving-and-loading.md	-	-
 field	WidgetSingleton02CA99D8+0x00C8	controller	Saving-Loading-And-Settings/saving-and-loading.md	-	-
 field	WidgetSingleton02CA99E0+0x0000	widgetBase0000	Saving-Loading-And-Settings/saving-and-loading.md	-	-
-field	WidgetSingleton02CA99E0+0x00C0	unobservedSpan00C0	Saving-Loading-And-Settings/saving-and-loading.md	-	-
+field	WidgetSingleton02CA99E0+0x00C0	created002CCCA0Ptr	Saving-Loading-And-Settings/saving-and-loading.md	-	-
+field	WidgetSingleton02CA99E0+0x00C8	closeFlags	Saving-Loading-And-Settings/saving-and-loading.md	-	-
 field	WidgetSingleton02CA99E0+0x00CC	countdown	Saving-Loading-And-Settings/saving-and-loading.md	-	-
 field	WidgetSingleton0209C498+0x0000	widgetBase0000	Game-Files-And-Data-Tables/small-bin-tables.md	-	-
 field	WidgetSingleton0209C498+0x00C0	offsetX	Game-Files-And-Data-Tables/small-bin-tables.md	-	-
@@ -12659,7 +12660,7 @@ function	0x001242C0	-	Third-Party-Libraries/media-decoder-libraries-cri-hca-deco
 function	0x001242F0	-	Sound-And-Music/sound-engine.md	-	6
 function	0x00124350	-	Third-Party-Libraries/media-decoder-libraries.md	-	7
 function	0x00124380	-	Third-Party-Libraries/media-decoder-libraries-cri-hca-decoder.tsv	-	5
-function	0x001243B0	-	Engine-Core/jump-thunks.md	-	11
+function	0x001243B0	-	Engine-Core/jump-thunks.md	-	12
 function	0x001243C0	-	Third-Party-Libraries/media-decoder-libraries-cri-hca-decoder.tsv	-	5
 function	0x001243D0	-	Third-Party-Libraries/media-decoder-libraries-cri-hca-decoder.tsv	-	5
 function	0x001248B0	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
@@ -12702,7 +12703,7 @@ function	0x00128E6B	-	Third-Party-Libraries/media-decoder-libraries-libvpx-vp8-d
 function	0x00128FB3	-	Third-Party-Libraries/media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv	-	5
 function	0x001292C0	-	Third-Party-Libraries/media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv	-	5
 function	0x00129312	-	Third-Party-Libraries/media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv	-	5
-function	0x001294D0	-	Third-Party-Libraries/media-decoder-libraries.md	-	5
+function	0x001294D0	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x001297DE	-	Third-Party-Libraries/media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv	-	5
 function	0x00129870	-	Third-Party-Libraries/media-decoder-libraries.md	-	4
 function	0x0012A290	-	Third-Party-Libraries/media-decoder-libraries.md	-	4
@@ -12737,8 +12738,8 @@ function	0x00149610	-	Random-Numbers/random-number-generators.md	-	7
 function	0x001496A0	-	Third-Party-Libraries/media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv	-	5
 function	0x00149983	-	Third-Party-Libraries/media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv	-	5
 function	0x00149BCE	-	Third-Party-Libraries/media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv	-	5
-function	0x00149DC0	-	Third-Party-Libraries/media-decoder-libraries.md	-	5
-function	0x0014A48A	-	Third-Party-Libraries/media-decoder-libraries.md	-	5
+function	0x00149DC0	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
+function	0x0014A48A	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x0014C160	-	Third-Party-Libraries/media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv	-	5
 function	0x0014C221	-	Third-Party-Libraries/media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv	-	5
 function	0x00158B40	-	Third-Party-Libraries/media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv	-	5
@@ -13953,7 +13954,7 @@ function	0x0016D560	-	PhyreEngine/phyre-reflection-class-flag-sites.tsv	-	11
 function	0x0016D5A0	-	PhyreEngine/phyre-modules.md	-	7
 function	0x0016D5B0	-	PhyreEngine/phyre-modules.md	-	7
 function	0x0016D610	-	PhyreEngine/phyre-modules.md	-	7
-function	0x0016D670	-	Engine-Core/debug-logging.md	-	12
+function	0x0016D670	-	Engine-Core/debug-logging.md	-	13
 function	0x0016D680	-	PhyreEngine/phyre-thread-pool.md	-	18
 function	0x0016D690	-	Compiler-And-C-Runtime/memory-and-allocation.md	-	9
 function	0x0016D6A0	_guard_check_icall	Graphics/gi-render-commands.md	-	140
@@ -13971,18 +13972,18 @@ function	0x0016DEC0	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x0016DFE0	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x0016E040	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x0016E070	-	Third-Party-Libraries/media-decoder-libraries.md	-	8
-function	0x0016E110	-	Third-Party-Libraries/media-decoder-libraries.md	-	7
+function	0x0016E110	-	Third-Party-Libraries/media-decoder-libraries.md	-	8
 function	0x0016E210	-	Third-Party-Libraries/media-decoder-libraries.md	-	7
 function	0x0016E290	-	Third-Party-Libraries/media-decoder-libraries-libvpx-vp8-decoder.tsv	-	5
 function	0x0016E380	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x0016E3A0	-	Third-Party-Libraries/media-decoder-libraries.md	-	5
 function	0x0016E3C0	-	Third-Party-Libraries/media-decoder-libraries-libvpx-vp8-decoder.tsv	-	5
-function	0x0016E4A0	-	Third-Party-Libraries/media-decoder-libraries.md	-	7
+function	0x0016E4A0	-	Third-Party-Libraries/media-decoder-libraries.md	-	8
 function	0x0016EA80	-	Third-Party-Libraries/media-decoder-libraries.md	-	7
 function	0x0016EC20	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x0016ECE0	-	Third-Party-Libraries/media-decoder-libraries.md	-	7
-function	0x0016EE70	-	Third-Party-Libraries/media-decoder-libraries.md	-	10
-function	0x0016EEC0	-	Third-Party-Libraries/media-decoder-libraries.md	-	5
+function	0x0016EE70	-	Third-Party-Libraries/media-decoder-libraries.md	-	11
+function	0x0016EEC0	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x0016F070	-	Third-Party-Libraries/media-decoder-libraries.md	-	8
 function	0x0016F080	-	Third-Party-Libraries/media-decoder-libraries.md	-	8
 function	0x0016F1F0	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
@@ -13995,7 +13996,7 @@ function	0x0016F840	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x0016FA40	-	Third-Party-Libraries/media-decoder-libraries.md	-	8
 function	0x0016FB80	-	Third-Party-Libraries/media-decoder-libraries.md	-	9
 function	0x0016FC10	-	Third-Party-Libraries/media-decoder-libraries-libvpx-vp8-decoder.tsv	-	5
-function	0x0016FE80	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
+function	0x0016FE80	-	Third-Party-Libraries/media-decoder-libraries.md	-	7
 function	0x00170370	-	Third-Party-Libraries/media-decoder-libraries.md	-	8
 function	0x00171370	-	Third-Party-Libraries/media-decoder-libraries-libvpx-vp8-decoder.tsv	-	7
 function	0x00171480	vp8_decoder_create_threads	Third-Party-Libraries/media-decoder-libraries.md	-	11
@@ -14008,7 +14009,7 @@ function	0x00172680	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x00172750	-	Third-Party-Libraries/media-decoder-libraries.md	-	8
 function	0x001728C0	-	Third-Party-Libraries/media-decoder-libraries.md	-	8
 function	0x00172BA0	-	Engine-Core/engine-types-fields.tsv	-	6
-function	0x00172C30	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
+function	0x00172C30	-	Third-Party-Libraries/media-decoder-libraries.md	-	7
 function	0x00172CE0	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x00172DC0	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x00172F00	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
@@ -14029,10 +14030,10 @@ function	0x001740A0	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x00174200	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x001742D0	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x00174470	-	Third-Party-Libraries/media-decoder-libraries-libvpx-vp8-decoder.tsv	-	5
-function	0x001744F0	-	Compiler-And-C-Runtime/runtime-services-msvc-runtime-tail.tsv	-	5
+function	0x001744F0	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x00174540	-	Third-Party-Libraries/media-decoder-libraries.md	-	8
 function	0x001746B0	-	Engine-Core/engine-types-fields.tsv	-	6
-function	0x00174790	-	Third-Party-Libraries/media-decoder-libraries.md	-	5
+function	0x00174790	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x00174BF0	-	Third-Party-Libraries/media-decoder-libraries-libvpx-vp8-decoder.tsv	-	5
 function	0x00174D10	-	Engine-Core/engine-types-fields.tsv	-	6
 function	0x00174E10	-	Engine-Core/engine-types-fields.tsv	-	6
@@ -14183,7 +14184,7 @@ function	0x0017E6E0	-	Saving-Loading-And-Settings/game-settings.md	-	10
 function	0x0017E720	-	Engine-Core/game-application.md	-	7
 function	0x0017E740	-	Menus-And-HUD/config-screen.md	-	8
 function	0x0017E7A0	-	Engine-Core/debug-menu-commands-inputs.tsv	-	7
-function	0x0017E7D0	_guard_check_icall	Engine-Core/jump-thunks.md	-	20
+function	0x0017E7D0	_guard_check_icall	Engine-Core/jump-thunks.md	-	21
 function	0x0017E7E0	-	Graphics/lens-flares.md	-	8
 function	0x0017E8E0	-	Compiler-And-C-Runtime/memory-and-allocation.md	-	10
 function	0x0017EBD0	-	Game-Files-And-Data-Tables/binmenu-images.md	-	9
@@ -14193,7 +14194,7 @@ function	0x0017ECE0	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	9
 function	0x0017ECF0	-	Graphics/render-command-list.md	-	8
 function	0x0017ED20	-	Compiler-And-C-Runtime/runtime-services.md	-	9
 function	0x0017ED50	-	Graphics/lens-flares.md	-	8
-function	0x0017EF60	-	Graphics/character-render-object.md	-	5
+function	0x0017EF60	-	Graphics/character-render-object.md	-	6
 function	0x0017EFC0	-	Graphics/character-render-object.md	-	5
 function	0x0017F000	-	Graphics/model-asset-list.md	-	7
 function	0x0017F040	-	Compiler-And-C-Runtime/generated-function-families.md	-	9
@@ -14260,7 +14261,7 @@ function	0x0017FB90	-	Menus-And-HUD/fonts-files.md	-	10
 function	0x0017FBC0	-	Game-Files-And-Data-Tables/tim2-images.md	-	15
 function	0x0017FBE0	-	EBP-Script-Files/ebp-script-container.md	-	9
 function	0x0017FC00	-	Game-Files-And-Data-Tables/btm-exfont-bitmaps.md	-	8
-function	0x0017FC50	-	Compiler-And-C-Runtime/generated-function-families-nativeadapter-callresulttailcall.tsv	-	5
+function	0x0017FC50	-	Menus-And-HUD/hud.md	-	6
 function	0x0017FC70	-	Game-Files-And-Data-Tables/btm-exfont-bitmaps.md	-	6
 function	0x0017FC90	-	Menus-And-HUD/text-drawing.md	-	5
 function	0x0017FD00	-	Game-Files-And-Data-Tables/btm-exfont-bitmaps.md	-	5
@@ -16091,8 +16092,8 @@ function	0x001EAD40	-	Engine-Core/debug-menu.md	-	8
 function	0x001EADB0	-	Engine-Core/debug-menu.md	-	6
 function	0x001EAE10	-	Engine-Core/debug-menu.md	-	6
 function	0x001EAEA0	-	Engine-Core/debug-menu.md	-	8
-function	0x001EB110	-	Graphics/render-command-list.md	-	7
-function	0x001EB150	-	Graphics/render-command-list.md	-	8
+function	0x001EB110	-	Graphics/render-command-list.md	-	8
+function	0x001EB150	-	Graphics/render-command-list.md	-	9
 function	0x001EB190	-	Engine-Core/frame-update-order.md	-	11
 function	0x001EB3D0	-	Menus-And-HUD/clan-primer.md	-	5
 function	0x001EB4B0	-	PhyreEngine/phyre-math-and-camera.md	-	7
@@ -16424,11 +16425,11 @@ function	0x001FBBB0	-	Engine-Core/engine-types-fields.tsv	-	8
 function	0x001FBBE0	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	9
 function	0x001FBBF0	-	Engine-Core/engine-types-fields.tsv	-	8
 function	0x001FBD70	-	Graphics/gi-render-commands.md	-	8
-function	0x001FBD80	-	Graphics/effect-drawing.md	-	13
+function	0x001FBD80	-	Graphics/effect-drawing.md	-	14
 function	0x001FBE20	-	Graphics/gi-render-commands.md	-	7
 function	0x001FBE30	-	Graphics/gi-render-commands.md	-	8
 function	0x001FBE40	-	Graphics/gi-render-commands.md	-	8
-function	0x001FBE50	-	Graphics/gi-render-commands.md	-	11
+function	0x001FBE50	-	Graphics/gi-render-commands.md	-	12
 function	0x001FBEF0	-	Compiler-And-C-Runtime/object-construction-and-destruction-eastl-container-instances.tsv	-	5
 function	0x001FBFC0	-	Third-Party-Libraries/eastl-strings-and-containers.md	-	6
 function	0x001FC060	-	Menus-And-HUD/fonts-files.md	-	7
@@ -16549,14 +16550,14 @@ function	0x00202CA0	-	Menus-And-HUD/map-screens.md	-	7
 function	0x00202CF0	-	Movement-And-Pathfinding/battle-locomotion.md	-	5
 function	0x00202D20	-	Engine-Core/subsystem-update-flags-manager-singleton-0209be80-accesses.tsv	-	6
 function	0x00202D50	-	Graphics/effect-element-types.md	-	12
-function	0x00202D60	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	6
+function	0x00202D60	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	7
 function	0x00202D70	-	Graphics/effect-element-types.md	-	18
 function	0x00202D80	-	Graphics/animation-playback.md	-	6
 function	0x00202DE0	-	Menus-And-HUD/hud.md	-	7
 function	0x00202E10	-	Graphics/model-oscillators-and-pose-sequencer.md	-	11
-function	0x00202E90	-	Game-Files-And-Data-Tables/world-map-mesh-mg.md	-	8
-function	0x00202F00	-	Engine-Core/graphics-settings.md	-	8
-function	0x00202F70	-	Movement-And-Pathfinding/battle-locomotion.md	-	7
+function	0x00202E90	-	Menus-And-HUD/hud.md	-	9
+function	0x00202F00	-	Menus-And-HUD/hud.md	-	9
+function	0x00202F70	-	Menus-And-HUD/hud.md	-	8
 function	0x00202FE0	-	Graphics/animation-playback.md	-	10
 function	0x00203030	-	Movement-And-Pathfinding/battle-locomotion.md	-	5
 function	0x00203080	-	Graphics/scripted-camera.md	-	13
@@ -17874,7 +17875,7 @@ function	0x00244F00	-	Menus-And-HUD/widgets.md	-	45
 function	0x00244F50	-	Menus-And-HUD/widgets.md	-	40
 function	0x00245000	-	Menus-And-HUD/widgets.md	-	14
 function	0x00245020	-	Menus-And-HUD/widgets.md	-	37
-function	0x002450B0	-	Menus-And-HUD/widgets.md	-	10
+function	0x002450B0	-	Menus-And-HUD/widgets.md	-	11
 function	0x00245110	-	Menus-And-HUD/widgets.md	-	6
 function	0x00245170	-	Menus-And-HUD/widgets.md	-	6
 function	0x00245510	-	Menus-And-HUD/widgets.md	-	8
@@ -17943,7 +17944,7 @@ function	0x00248F10	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-ta
 function	0x00248F20	-	Menus-And-HUD/message-windows.md	-	6
 function	0x00248F40	-	Graphics/script-screen-effects.md	-	15
 function	0x00249080	-	Engine-Core/ps2-cpu-emulation.md	-	7
-function	0x00249110	-	Menus-And-HUD/hud.md	-	8
+function	0x00249110	-	Menus-And-HUD/battle-menu.md	-	9
 function	0x00249180	-	Game-Files-And-Data-Tables/ps2data-bin-families.md	-	18
 function	0x002491B0	-	Game-Files-And-Data-Tables/battle-text-tables.md	-	10
 function	0x00249210	-	Game-Files-And-Data-Tables/mrp-menu-resource-packages.md	-	27
@@ -17984,7 +17985,7 @@ function	0x0024A5F0	-	Game-Files-And-Data-Tables/ui-typed-lists.md	-	5
 function	0x0024A610	-	Game-Files-And-Data-Tables/ui-typed-lists.md	-	5
 function	0x0024A660	-	Game-Files-And-Data-Tables/ui-typed-lists.md	-	5
 function	0x0024A680	-	Game-Files-And-Data-Tables/handbook-files.md	-	20
-function	0x0024A710	-	Game-Files-And-Data-Tables/ui-typed-lists.md	-	6
+function	0x0024A710	-	Game-Files-And-Data-Tables/ui-typed-lists.md	-	7
 function	0x0024A9E0	-	Game-Files-And-Data-Tables/cl2-menu-colour-tables.md	-	7
 function	0x0024AA00	-	Game-Files-And-Data-Tables/as7-menu-graphics.md	-	6
 function	0x0024AB30	-	Game-Files-And-Data-Tables/resource-arena-and-relocation.md	-	6
@@ -18112,7 +18113,7 @@ function	0x002506D0	-	Engine-Core/frame-update-order.md	-	11
 function	0x00250730	-	Engine-Core/frame-update-order.md	-	7
 function	0x002507C0	-	Engine-Core/game-application.md	-	10
 function	0x002508E0	-	Engine-Core/game-application.md	-	8
-function	0x00250960	-	Engine-Core/frame-update-order.md	-	12
+function	0x00250960	-	Menus-And-HUD/hud.md	-	12
 function	0x002509A0	-	Menus-And-HUD/hud.md	-	11
 function	0x002509D0	-	Menus-And-HUD/menu-screens.md	-	10
 function	0x00250C50	-	Graphics/script-screen-effects.md	-	7
@@ -18144,7 +18145,7 @@ function	0x002528A0	-	Engine-Core/frame-update-order.md	-	7
 function	0x00252990	-	Engine-Core/frame-update-order.md	-	7
 function	0x002529F0	-	Engine-Core/frame-update-order.md	-	6
 function	0x00252A20	-	Engine-Core/frame-update-order.md	-	8
-function	0x00252A70	-	Engine-Core/frame-update-order.md	-	13
+function	0x00252A70	-	Menus-And-HUD/hud.md	-	13
 function	0x00252B40	-	World-Areas-And-Travel/game-over.md	-	13
 function	0x00252B60	-	Controls-And-Input/escape.md	-	9
 function	0x00252C80	-	Controls-And-Input/escape.md	-	7
@@ -18193,9 +18194,9 @@ function	0x00254380	-	Game-Files-And-Data-Tables/menu-map-files.md	-	7
 function	0x002543A0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	5
 function	0x002543D0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	6
 function	0x002543F0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	7
-function	0x00254440	-	Menus-And-HUD/map-screens.md	-	9
+function	0x00254440	-	Menus-And-HUD/hud.md	-	9
 function	0x00254480	-	Menus-And-HUD/hud.md	-	5
-function	0x002544B0	-	Menus-And-HUD/party-list.md	-	10
+function	0x002544B0	-	Menus-And-HUD/hud.md	-	10
 function	0x002544C0	-	Engine-Core/time-stop-and-freeze.md	-	5
 function	0x00254500	-	Controls-And-Input/action-availability.md	-	13
 function	0x00254550	-	Menus-And-HUD/widgets.md	-	7
@@ -18382,10 +18383,10 @@ function	0x0025BAD0	-	Scripts-And-Script-Commands/script-requests.md	-	16
 function	0x0025BE50	-	Characters-And-Objects/actor-record.md	-	13
 function	0x0025BFB0	-	Engine-Core/frame-update-order.md	-	14
 function	0x0025C070	-	Scripts-And-Script-Commands/event-scenes.md	-	9
-function	0x0025C0F0	-	Scripts-And-Script-Commands/native-commands.md	-	9
+function	0x0025C0F0	-	Scripts-And-Script-Commands/native-commands.md	-	10
 function	0x0025C130	-	Scripts-And-Script-Commands/native-commands.md	-	5
 function	0x0025C170	-	Engine-Core/time-stop-and-freeze.md	-	20
-function	0x0025C230	-	Menus-And-HUD/text-npc-names.md	-	78
+function	0x0025C230	-	Scripts-And-Script-Commands/script-requests.md	-	78
 function	0x0025C830	-	Menus-And-HUD/text-npc-names.md	-	89
 function	0x0025D460	ScriptExecutionState_ResetCore	Scripts-And-Script-Commands/script-requests.md	-	6
 function	0x0025D480	-	World-Areas-And-Travel/chocobos-and-airships.md	-	8
@@ -18497,7 +18498,7 @@ function	0x00264460	-	Movement-And-Pathfinding/heading-speed-to-position-delta.m
 function	0x00264490	-	Status-Effects-And-KO/ko-and-game-over.md	-	5
 function	0x002644C0	-	Scripts-And-Script-Commands/party-during-scenes.md	-	6
 function	0x002644E0	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	11
-function	0x00264510	-	Characters-And-Objects/actor-record-fields-movement-context.tsv	-	8
+function	0x00264510	-	Menus-And-HUD/hud.md	-	9
 function	0x002645D0	-	Menus-And-HUD/hud.md	-	7
 function	0x00264610	-	Engine-Core/frame-update-order.md	-	6
 function	0x00264640	-	Characters-And-Objects/actor-managers.md	-	12
@@ -18584,8 +18585,8 @@ function	0x002659A0	-	Characters-And-Objects/battle-units.md	-	7
 function	0x002659D0	-	Characters-And-Objects/actor-lifecycle.md	-	13
 function	0x002659F0	-	Characters-And-Objects/actor-managers-slot-accesses.tsv	-	7
 function	0x00265A20	ActorSystem_BindBattleUnitsForEligibleRecords	Scripts-And-Script-Commands/world-lock.md	-	21
-function	0x00265B60	-	Characters-And-Objects/actor-record.md	-	59
-function	0x00265F90	-	Scripts-And-Script-Commands/verb-table.md	-	7
+function	0x00265B60	-	Characters-And-Objects/actor-record.md	-	60
+function	0x00265F90	-	Scripts-And-Script-Commands/verb-table.md	-	8
 function	0x00265FF0	-	Scripts-And-Script-Commands/world-lock.md	-	62
 function	0x00266530	ActorStorage_InitializeRecord	Story-Events-And-Hunts/archades-scripts.md	-	68
 function	0x00266AD0	-	Scripts-And-Script-Commands/party-during-scenes.md	-	63
@@ -18793,7 +18794,7 @@ function	0x0026BD50	-	Menus-And-HUD/aerodrome-airship-dialogue.md	-	64
 function	0x0026BDD0	-	Movement-And-Pathfinding/movement-bodies-and-separation.md	-	63
 function	0x0026BE00	-	Movement-And-Pathfinding/movement-bodies-and-separation.md	-	7
 function	0x0026BE40	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	8
-function	0x0026BE50	-	Scripts-And-Script-Commands/native-commands.md	-	9
+function	0x0026BE50	-	Scripts-And-Script-Commands/native-commands.md	-	10
 function	0x0026BE90	-	Scripts-And-Script-Commands/native-commands.md	-	5
 function	0x0026BED0	-	Characters-And-Objects/actor-record.md	-	7
 function	0x0026BEE0	-	Movement-And-Pathfinding/movement-bodies-and-separation.md	-	9
@@ -18911,10 +18912,10 @@ function	0x00270B40	-	Menus-And-HUD/hud.md	-	9
 function	0x00270CF0	-	Menus-And-HUD/hud.md	-	5
 function	0x00270F50	-	Menus-And-HUD/hud.md	-	5
 function	0x00270F60	-	Menus-And-HUD/hud.md	-	5
-function	0x00270FF0	-	Graphics/legacy-ps2-gs-layer.md	-	5
+function	0x00270FF0	-	Graphics/legacy-ps2-gs-layer.md	-	6
 function	0x00271010	-	Graphics/legacy-ps2-gs-layer.md	-	5
 function	0x00271050	-	Graphics/legacy-ps2-gs-layer.md	-	5
-function	0x00271080	-	Graphics/legacy-ps2-gs-layer.md	-	5
+function	0x00271080	-	Graphics/legacy-ps2-gs-layer.md	-	6
 function	0x002710C0	-	Graphics/legacy-ps2-gs-layer.md	-	5
 function	0x00271100	-	Graphics/legacy-ps2-gs-layer.md	-	6
 function	0x00271140	-	Menus-And-HUD/hud.md	-	6
@@ -18926,14 +18927,14 @@ function	0x00271380	-	Menus-And-HUD/hud.md	-	6
 function	0x002713B0	-	Game-Files-And-Data-Tables/prefetch-manifests.md	-	6
 function	0x002713E0	-	Menus-And-HUD/hud.md	-	9
 function	0x00271420	-	Rewards-EXP-Gil-And-Loot/kill-chain.md	-	11
-function	0x00271450	-	Graphics/legacy-ps2-gs-layer.md	-	7
+function	0x00271450	-	Graphics/legacy-ps2-gs-layer.md	-	8
 function	0x00271480	-	Graphics/legacy-ps2-gs-layer.md	-	5
-function	0x002714A0	-	Compiler-And-C-Runtime/object-construction-and-destruction.md	-	9
+function	0x002714A0	-	Compiler-And-C-Runtime/object-construction-and-destruction.md	-	10
 function	0x002714C0	-	Graphics/legacy-ps2-gs-layer.md	-	5
 function	0x002714E0	-	Compiler-And-C-Runtime/object-construction-and-destruction.md	-	6
 function	0x00271500	-	Battle-Actions/quickenings-and-summons.md	-	8
 function	0x00271530	-	Graphics/legacy-ps2-gs-layer.md	-	5
-function	0x002715A0	-	Graphics/legacy-ps2-gs-layer.md	-	5
+function	0x002715A0	-	Graphics/legacy-ps2-gs-layer.md	-	6
 function	0x00271650	-	Graphics/legacy-ps2-gs-layer.md	-	6
 function	0x002716C0	-	Graphics/legacy-ps2-gs-layer.md	-	5
 function	0x002716F0	-	Battle-Actions/quickenings-and-summons.md	-	6
@@ -19020,7 +19021,7 @@ function	0x002752E0	-	Menus-And-HUD/hud.md	-	8
 function	0x00275320	-	Menus-And-HUD/map-screens.md	-	7
 function	0x002753F0	-	Menus-And-HUD/widgets.md	-	8
 function	0x00275440	-	Menus-And-HUD/widgets.md	-	10
-function	0x00275490	-	Menus-And-HUD/map-screens.md	-	10
+function	0x00275490	-	Menus-And-HUD/hud.md	-	10
 function	0x002754E0	-	Menus-And-HUD/hud.md	-	5
 function	0x00275550	-	Menus-And-HUD/hud.md	-	10
 function	0x00275570	-	Menus-And-HUD/hud.md	-	5
@@ -19140,7 +19141,7 @@ function	0x002826F0	-	Menus-And-HUD/party-marks.md	-	11
 function	0x00282A40	-	Menus-And-HUD/menu-screens.md	-	11
 function	0x00282D90	-	Engine-Core/party-control-modes-manager-0209ac60-accesses.tsv	-	6
 function	0x00282DD0	-	Steam-And-Achievements/achievements.md	-	5
-function	0x00282DF0	-	Menus-And-HUD/menu-screens.md	-	14
+function	0x00282DF0	-	Menus-And-HUD/menu-screens.md	-	15
 function	0x00282E10	-	Items-Equipment-Shops-And-Licenses/licenses.md	-	8
 function	0x00282E60	-	Menus-And-HUD/license-board-screen.md	-	6
 function	0x00282E80	-	Items-Equipment-Shops-And-Licenses/licenses.md	-	6
@@ -19336,7 +19337,7 @@ function	0x0028FD70	-	World-Areas-And-Travel/chocobos-and-airships.md	-	11
 function	0x0028FE40	-	Controls-And-Input/controls.md	-	8
 function	0x0028FEA0	-	Menus-And-HUD/hud.md	-	8
 function	0x0028FF00	-	Engine-Core/subsystem-update-flags-manager-singleton-0209be80-accesses.tsv	-	5
-function	0x0028FF20	-	Engine-Core/subsystem-update-flags-manager-singleton-0209be80-accesses.tsv	-	5
+function	0x0028FF20	-	Menus-And-HUD/hud.md	-	6
 function	0x0028FF80	-	Menus-And-HUD/hud.md	-	6
 function	0x0028FFE0	-	Engine-Core/debug-menu.md	-	6
 function	0x00290030	-	Engine-Core/subsystem-update-flags-manager-singleton-0209be80-accesses.tsv	-	5
@@ -20285,7 +20286,7 @@ function	0x002DD550	-	Menus-And-HUD/map-screens.md	-	6
 function	0x002DD5D0	-	Menus-And-HUD/fonts-files.md	-	8
 function	0x002DD680	-	Menus-And-HUD/fonts-files.md	-	8
 function	0x002DD7B0	-	Menus-And-HUD/battle-numbers.md	-	9
-function	0x002DD7E0	-	Game-Files-And-Data-Tables/ui-typed-lists.md	-	24
+function	0x002DD7E0	-	Game-Files-And-Data-Tables/ui-typed-lists.md	-	25
 function	0x002DD810	-	Menus-And-HUD/text-drawing.md	-	7
 function	0x002DD840	-	Menus-And-HUD/text-drawing.md	-	6
 function	0x002DD860	-	Compiler-And-C-Runtime/generated-function-families-explained-callee-adapters.tsv	-	5
@@ -20722,7 +20723,7 @@ function	0x002E9BE0	-	Scripts-And-Script-Commands/party-during-scenes.md	-	8
 function	0x002E9C00	-	Scripts-And-Script-Commands/party-verbs.md	-	10
 function	0x002E9C30	-	Scripts-And-Script-Commands/script-name-bindings.md	-	5
 function	0x002E9C60	-	Scripts-And-Script-Commands/script-name-bindings.md	-	9
-function	0x002E9CA0	-	Characters-And-Objects/actor-record-fields-secondary-context.tsv	-	8
+function	0x002E9CA0	-	Menus-And-HUD/hud.md	-	9
 function	0x002E9D10	-	Menus-And-HUD/battle-menu.md	-	10
 function	0x002E9D90	-	Game-Files-And-Data-Tables/character-se-tables-chse.md	-	18
 function	0x002E9FE0	-	Engine-Core/time-stop-and-freeze.md	-	13
@@ -20770,16 +20771,16 @@ function	0x002EAEA0	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-ta
 function	0x002EAEB0	-	Scripts-And-Script-Commands/script-name-bindings.md	-	9
 function	0x002EAF70	-	Scripts-And-Script-Commands/script-name-bindings.md	-	7
 function	0x002EAFA0	-	Scripts-And-Script-Commands/script-name-bindings.md	-	7
-function	0x002EB030	-	Scripts-And-Script-Commands/party-during-scenes.md	-	15
-function	0x002EB080	-	Graphics/character-render-records.md	-	8
+function	0x002EB030	-	Scripts-And-Script-Commands/party-during-scenes.md	-	16
+function	0x002EB080	-	Graphics/character-render-records.md	-	9
 function	0x002EB0D0	-	PKFL-Package-Files/pkfl-packages.md	-	18
-function	0x002EB330	-	Scripts-And-Script-Commands/script-name-bindings.md	-	7
-function	0x002EB380	-	Scripts-And-Script-Commands/script-name-bindings.md	-	9
-function	0x002EB3E0	-	Scripts-And-Script-Commands/battle-verbs.md	-	10
+function	0x002EB330	-	Scripts-And-Script-Commands/script-name-bindings.md	-	8
+function	0x002EB380	-	Scripts-And-Script-Commands/script-name-bindings.md	-	10
+function	0x002EB3E0	-	Scripts-And-Script-Commands/battle-verbs.md	-	11
 function	0x002EB430	-	Scripts-And-Script-Commands/party-during-scenes.md	-	15
 function	0x002EB490	-	Characters-And-Objects/actor-model-rebuild.md	-	11
 function	0x002EB4A0	-	Graphics/character-render-records.md	-	13
-function	0x002EB4F0	-	Characters-And-Objects/actor-record-fields.tsv	-	8
+function	0x002EB4F0	-	Characters-And-Objects/actor-record-fields.tsv	-	9
 function	0x002EB540	-	Scripts-And-Script-Commands/script-binding-lifecycle.md	-	10
 function	0x002EB5E0	-	Scripts-And-Script-Commands/script-name-bindings.md	-	8
 function	0x002EB690	-	Scripts-And-Script-Commands/script-name-bindings.md	-	7
@@ -21718,7 +21719,7 @@ function	0x0031FBD0	-	Characters-And-Objects/battle-unit-fields.tsv	-	7
 function	0x0031FC10	-	Damage-And-Battle-Formulas/unit-stats-fields.tsv	-	7
 function	0x0031FC70	-	Damage-And-Battle-Formulas/unit-stats-fields.tsv	-	7
 function	0x0031FCF0	-	Characters-And-Objects/battle-units.md	-	5
-function	0x0031FD20	-	Characters-And-Objects/battle-units.md	-	5
+function	0x0031FD20	-	Characters-And-Objects/battle-units.md	-	6
 function	0x0031FD70	-	Characters-And-Objects/battle-unit-fields.tsv	-	5
 function	0x0031FDA0	-	Characters-And-Objects/party-member-status-record.md	-	14
 function	0x0031FE10	-	Enemy-Spawning/spawn-record-fields.md	-	10
@@ -22731,7 +22732,7 @@ function	0x003479E0	-	Scripts-And-Script-Commands/script-name-bindings.md	-	9
 function	0x003479F0	-	Story-Events-And-Hunts/draklor-laboratory-script-steps.tsv	-	60
 function	0x00347A50	-	Characters-And-Objects/actor-managers.md	-	10
 function	0x00347AB0	-	Graphics/effect-anchors-and-targets.md	-	9
-function	0x00347B00	-	PKFL-Package-Files/pkfl-packages.md	-	14
+function	0x00347B00	-	PKFL-Package-Files/pkfl-packages.md	-	15
 function	0x00347BC0	-	Characters-And-Objects/actor-record-fields-secondary-context.tsv	-	9
 function	0x00347BE0	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	6
 function	0x00347C40	-	Graphics/movies.md	-	8
@@ -23703,7 +23704,7 @@ function	0x00357620	-	Graphics/effect-anchors-and-targets.md	-	11
 function	0x003576D0	-	Graphics/effect-file-list.md	-	11
 function	0x00357760	-	Characters-And-Objects/field-runtime.md	-	7
 function	0x00357770	-	Characters-And-Objects/field-runtime.md	-	8
-function	0x00357780	-	Graphics/effect-drawing.md	-	12
+function	0x00357780	-	Menus-And-HUD/hud.md	-	13
 function	0x00357790	-	Menus-And-HUD/message-windows.md	-	7
 function	0x00357820	-	Menus-And-HUD/message-windows.md	-	61
 function	0x003578B0	-	Movement-And-Pathfinding/facing-and-steering.md	-	11
@@ -23939,7 +23940,7 @@ function	0x0035D530	-	Menus-And-HUD/menu-screens.md	-	9
 function	0x0035D550	-	Menus-And-HUD/hud.md	-	7
 function	0x0035D560	-	Menus-And-HUD/hud.md	-	7
 function	0x0035D570	-	Menus-And-HUD/party-list.md	-	5
-function	0x0035D5A0	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	6
+function	0x0035D5A0	-	Menus-And-HUD/hud.md	-	7
 function	0x0035D5B0	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	6
 function	0x0035D5C0	-	Menus-And-HUD/hud.md	-	6
 function	0x0035D5F0	-	Menus-And-HUD/map-screens.md	-	8
@@ -23953,7 +23954,7 @@ function	0x0035D8C0	-	Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md	-	7
 function	0x0035D8D0	-	Controls-And-Input/action-availability.md	-	10
 function	0x0035D980	-	Controls-And-Input/action-availability.md	-	11
 function	0x0035DA80	-	Menus-And-HUD/hud.md	-	12
-function	0x0035DAC0	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	6
+function	0x0035DAC0	-	Menus-And-HUD/hud.md	-	7
 function	0x0035DAD0	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	7
 function	0x0035DAE0	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	6
 function	0x0035DAF0	-	Menus-And-HUD/hud.md	-	8
@@ -24142,7 +24143,7 @@ function	0x003657E0	-	Game-Files-And-Data-Tables/btm-exfont-bitmaps.md	-	7
 function	0x00365810	-	Game-Files-And-Data-Tables/btm-exfont-bitmaps.md	-	10
 function	0x003658F0	-	Game-Files-And-Data-Tables/btm-exfont-bitmaps.md	-	11
 function	0x00365980	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	6
-function	0x00365990	-	Game-Files-And-Data-Tables/btm-exfont-bitmaps.md	-	5
+function	0x00365990	-	Game-Files-And-Data-Tables/btm-exfont-bitmaps.md	-	6
 function	0x003659F0	-	Menus-And-HUD/fonts-files.md	-	7
 function	0x00365B20	-	Menus-And-HUD/fonts-files.md	-	6
 function	0x00365B30	-	Menus-And-HUD/fonts-files.md	-	8
@@ -25120,7 +25121,7 @@ function	0x0039BB20	-	Story-Events-And-Hunts/shared-zone-script-actors.md	-	7
 function	0x0039BB30	-	Game-Files-And-Data-Tables/tim2-images.md	-	5
 function	0x0039BB60	-	Game-Files-And-Data-Tables/tim2-images.md	-	11
 function	0x0039BD50	-	Game-Files-And-Data-Tables/tim2-images.md	-	7
-function	0x0039BDA0	-	Game-Files-And-Data-Tables/tim2-images.md	-	5
+function	0x0039BDA0	-	Game-Files-And-Data-Tables/tim2-images.md	-	6
 function	0x0039BEC0	-	Game-Files-And-Data-Tables/tim2-images.md	-	16
 function	0x0039BF50	-	Game-Files-And-Data-Tables/tim2-images.md	-	10
 function	0x0039C0F0	-	Compiler-And-C-Runtime/generated-function-families-trivial-global-accessors.tsv	-	6
@@ -25646,7 +25647,7 @@ function	0x003BBCD0	-	Menus-And-HUD/battle-numbers.md	-	5
 function	0x003BBCF0	-	Compiler-And-C-Runtime/generated-function-families-trivial-global-accessors.tsv	-	5
 function	0x003BBD00	-	Random-Numbers/which-roll-uses-which-generator.md	-	16
 function	0x003BBF90	-	Menus-And-HUD/battle-numbers.md	-	7
-function	0x003BBFA0	-	Compiler-And-C-Runtime/generated-function-families-trivial-global-accessors.tsv	-	5
+function	0x003BBFA0	-	Menus-And-HUD/hud.md	-	6
 function	0x003BBFB0	-	Game-Files-And-Data-Tables/quest-menu-files.md	-	9
 function	0x003BC160	-	Menus-And-HUD/map-screens.md	-	9
 function	0x003BC260	-	Game-Files-And-Data-Tables/menu-map-files.md	-	7
@@ -25803,8 +25804,8 @@ function	0x003C8670	-	Menus-And-HUD/map-screens.md	-	11
 function	0x003C86B0	-	Menus-And-HUD/map-screens-subroutines.tsv	-	5
 function	0x003C87B0	-	Controls-And-Input/controls.md	-	9
 function	0x003C8950	-	Controls-And-Input/controls.md	-	7
-function	0x003C8990	-	Controls-And-Input/controls.md	-	13
-function	0x003C8A20	-	Controls-And-Input/action-availability.md	-	7
+function	0x003C8990	-	Controls-And-Input/controls.md	-	14
+function	0x003C8A20	-	Controls-And-Input/action-availability.md	-	8
 function	0x003C8A50	-	Controls-And-Input/controls.md	-	9
 function	0x003C8B20	-	Controls-And-Input/controls.md	-	7
 function	0x003C8B50	-	Controls-And-Input/controls.md	-	7
@@ -25840,7 +25841,7 @@ function	0x003CA200	-	Controls-And-Input/controls.md	-	6
 function	0x003CA280	-	World-Areas-And-Travel/chocobos-and-airships.md	-	8
 function	0x003CA2B0	-	World-Areas-And-Travel/chocobos-and-airships.md	-	8
 function	0x003CA2E0	-	Engine-Core/party-control-modes.md	-	9
-function	0x003CA2F0	-	Compiler-And-C-Runtime/generated-function-families-documented-global-leaf-accessors.tsv	-	6
+function	0x003CA2F0	-	Menus-And-HUD/hud.md	-	7
 function	0x003CA310	-	World-Areas-And-Travel/chocobos-and-airships.md	-	11
 function	0x003CA530	-	World-Areas-And-Travel/chocobos-and-airships.md	-	15
 function	0x003CA860	-	World-Areas-And-Travel/chocobos-and-airships.md	-	10
@@ -26039,7 +26040,7 @@ function	0x003DD790	-	Game-Files-And-Data-Tables/resource-ownership-and-disposal
 function	0x003DD7E0	-	Game-Files-And-Data-Tables/resource-ownership-and-disposal.md	-	8
 function	0x003DD850	-	Game-Files-And-Data-Tables/resource-ownership-and-disposal.md	-	8
 function	0x003DD8D0	-	PKFL-Package-Files/pkfl-packages.md	-	10
-function	0x003DD980	-	PKFL-Package-Files/pkfl-packages.md	-	11
+function	0x003DD980	-	PKFL-Package-Files/pkfl-packages.md	-	12
 function	0x003DDA20	-	Game-Files-And-Data-Tables/resource-ownership-and-disposal.md	-	10
 function	0x003DDA70	-	Game-Files-And-Data-Tables/resource-ownership-and-disposal.md	-	8
 function	0x003DDAD0	-	Movement-And-Pathfinding/facing-and-steering.md	-	6
@@ -26232,7 +26233,7 @@ function	0x003E5600	-	Graphics/effect-anchors-and-targets.md	-	7
 function	0x003E56A0	FCPPayload_ResolvePrimaryConfigBlock	Graphics/character-lighting-and-shadows.md	-	7
 function	0x003E56C0	-	Game-Files-And-Data-Tables/small-bin-tables.md	-	11
 function	0x003E56E0	-	Graphics/model-files-cm-ca.md	-	6
-function	0x003E5700	-	Graphics/effect-anchors-and-targets.md	-	8
+function	0x003E5700	-	Menus-And-HUD/hud.md	-	9
 function	0x003E5710	-	Graphics/effect-anchors-and-targets.md	-	7
 function	0x003E5770	-	Graphics/model-files-cm-ca.md	-	8
 function	0x003E5790	-	Graphics/model-oscillators-and-pose-sequencer.md	-	6
@@ -26610,12 +26611,12 @@ function	0x003F4E70	-	Rewards-EXP-Gil-And-Loot/gil.md	-	10
 function	0x003F5070	-	Menus-And-HUD/hud.md	-	5
 function	0x003F5100	-	Menus-And-HUD/hud.md	-	6
 function	0x003F5260	-	Menus-And-HUD/hud.md	-	6
-function	0x003F5290	-	Compiler-And-C-Runtime/generated-function-families-explained-callee-adapters.tsv	-	5
+function	0x003F5290	-	Menus-And-HUD/hud.md	-	6
 function	0x003F5370	-	Menus-And-HUD/hud.md	-	6
 function	0x003F5390	-	Menus-And-HUD/hud.md	-	6
 function	0x003F5430	-	Game-Files-And-Data-Tables/prefetch-manifests.md	-	8
 function	0x003F5BE0	-	Menus-And-HUD/hud.md	-	5
-function	0x003F5CA0	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	6
+function	0x003F5CA0	-	Menus-And-HUD/hud.md	-	7
 function	0x003F5CB0	-	Menus-And-HUD/hud.md	-	5
 function	0x003F6100	-	Engine-Core/subsystem-update-flags.md	-	7
 function	0x003F6130	-	Menus-And-HUD/hud.md	-	5
@@ -26694,7 +26695,7 @@ function	0x003FAF10	-	Menus-And-HUD/hud.md	-	14
 function	0x003FB3E0	-	Menus-And-HUD/hud.md	-	9
 function	0x003FB8F0	-	Menus-And-HUD/hud.md	-	5
 function	0x003FBA80	-	Game-Files-And-Data-Tables/prefetch-manifests.md	-	8
-function	0x003FBE90	-	Random-Numbers/which-roll-uses-which-generator.md	-	11
+function	0x003FBE90	-	Random-Numbers/which-roll-uses-which-generator.md	-	12
 function	0x003FC170	-	Graphics/animation-playback.md	-	8
 function	0x003FC3F0	-	Menus-And-HUD/menu-screens.tsv	-	5
 function	0x003FC510	-	Rewards-EXP-Gil-And-Loot/loot-pickups.md	-	6
@@ -27749,7 +27750,7 @@ function	0x0046B240	-	Story-Events-And-Hunts/quests.md	-	15
 function	0x0046B290	-	Story-Events-And-Hunts/quests.md	-	12
 function	0x0046B350	-	Story-Events-And-Hunts/quests.md	-	8
 function	0x0046B380	-	Story-Events-And-Hunts/quests.md	-	10
-function	0x0046B3F0	-	Story-Events-And-Hunts/quests.md	-	12
+function	0x0046B3F0	-	Story-Events-And-Hunts/quests.md	-	13
 function	0x0046B490	-	Story-Events-And-Hunts/quests.md	-	10
 function	0x0046B4C0	-	Battle-Actions/target-selection.md	-	8
 function	0x0046B560	-	Menus-And-HUD/map-screens.md	-	7
@@ -29332,7 +29333,7 @@ function	0x0055E9E0	-	Menus-And-HUD/license-board-screen.md	-	13
 function	0x0055EF10	-	Items-Equipment-Shops-And-Licenses/buying-a-license.md	-	8
 function	0x0055F010	-	Menus-And-HUD/license-board-screen.md	-	6
 function	0x0055F1C0	-	Menus-And-HUD/license-board-screen.md	-	6
-function	0x0055F3E0	-	Items-Equipment-Shops-And-Licenses/buying-a-license.md	-	12
+function	0x0055F3E0	-	Items-Equipment-Shops-And-Licenses/buying-a-license.md	-	13
 function	0x0055F730	-	Graphics/effect-anchors-and-targets.md	-	7
 function	0x0055F740	-	Menus-And-HUD/license-board-screen.md	-	10
 function	0x0055F780	-	Menus-And-HUD/menu-screens.md	-	7
@@ -29467,7 +29468,7 @@ function	0x00568AA0	-	Menus-And-HUD/gambit-screen.md	-	5
 function	0x00568B30	-	Menus-And-HUD/gambit-screen.md	-	8
 function	0x00568BB0	-	Menus-And-HUD/gambit-screen.md	-	6
 function	0x00568FE0	-	Menus-And-HUD/gambit-screen.md	-	5
-function	0x005691E0	-	Menus-And-HUD/menu-screens.md	-	23
+function	0x005691E0	-	Menus-And-HUD/menu-screens.md	-	25
 function	0x00569F90	-	Menus-And-HUD/gambit-screen.md	-	5
 function	0x0056A010	-	Game-Files-And-Data-Tables/as7-menu-graphics.md	-	7
 function	0x0056A140	-	Menus-And-HUD/gambit-screen.md	-	10
@@ -29490,7 +29491,7 @@ function	0x0056BE40	-	Menus-And-HUD/gambit-screen.md	-	7
 function	0x0056C060	-	Menus-And-HUD/menu-screens.md	-	7
 function	0x0056C170	-	Menus-And-HUD/menu-screens.md	-	8
 function	0x0056C380	-	Engine-Core/engine-types.tsv	-	6
-function	0x0056C3A0	-	Engine-Core/engine-types-fields.tsv	-	9
+function	0x0056C3A0	-	Menus-And-HUD/gambit-screen.md	-	10
 function	0x0056C490	-	Menus-And-HUD/shop-screens.md	-	9
 function	0x0056C850	-	Menus-And-HUD/inventory-screen.md	-	6
 function	0x0056C950	-	Menus-And-HUD/shop-screens.md	-	6
@@ -33141,7 +33142,7 @@ function	0x0060F5F0	-	Compiler-And-C-Runtime/generated-function-families-nativea
 function	0x0060F620	-	Compiler-And-C-Runtime/generated-function-families-nativeadapter-relativememberaddresstailcall64.tsv	-	9
 function	0x0060F650	-	Compiler-And-C-Runtime/generated-function-families-nativeadapter-relativememberaddresstailcall64.tsv	-	9
 function	0x0060F680	-	Compiler-And-C-Runtime/generated-function-families-nativeadapter-relativememberaddresstailcall64.tsv	-	10
-function	0x0060F6B0	-	Engine-Core/game-application.md	-	12
+function	0x0060F6B0	-	Engine-Core/game-application.md	-	13
 function	0x0060F7A0	-	PhyreEngine/phyre-reflection-state.tsv	-	6
 function	0x0060F7D0	-	PhyreEngine/phyre-reflection-state.tsv	-	6
 function	0x0060F7F0	-	PhyreEngine/phyre-reflection-state.tsv	-	6
@@ -40759,7 +40760,7 @@ function	0x007B67E0	-	Sound-And-Music/sound-driver-objects.md	-	6
 function	0x007B69C0	-	Sound-And-Music/sound-driver-objects.md	-	5
 function	0x007B6AA0	-	Sound-And-Music/sound-driver-objects.md	-	11
 function	0x007B6B00	-	Sound-And-Music/sound-driver-objects.md	-	6
-function	0x007B6C40	-	Engine-Core/vtable-methods.tsv	-	6
+function	0x007B6C40	-	Third-Party-Libraries/media-decoder-libraries.md	-	8
 function	0x007B6C50	-	Sound-And-Music/sound-streaming.md	-	6
 function	0x007B6D40	-	Sound-And-Music/sound-streaming.md	-	8
 function	0x007B6F70	-	Sound-And-Music/sound-driver-objects.md	-	9
@@ -41828,18 +41829,18 @@ function	0x007FFEE0	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvp
 function	0x007FFF60	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
 function	0x00800000	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
 function	0x008000C0	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
-function	0x00800140	-	Compiler-And-C-Runtime/generated-function-families-cxxobjectlifecycle-vtableinstallstub.tsv	-	6
+function	0x00800140	-	Compiler-And-C-Runtime/generated-function-families-cxxobjectlifecycle-vtableinstallstub.tsv	-	7
 function	0x00800150	-	Compiler-And-C-Runtime/exception-handling-cleanup-funclets.tsv	-	6
 function	0x008001B0	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
 function	0x008003A0	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
 function	0x00800420	-	Compiler-And-C-Runtime/static-initialisation-and-teardown-scalar-deleting-destructors-free.tsv	-	6
 function	0x00800550	-	Compiler-And-C-Runtime/static-initialisation-and-teardown-scalar-deleting-destructors-free.tsv	-	6
-function	0x008005C0	-	Engine-Core/vtable-methods.tsv	-	7
+function	0x008005C0	-	Engine-Core/vtable-methods.tsv	-	8
 function	0x00800600	-	Engine-Core/vtable-methods.tsv	-	7
 function	0x00800650	-	Engine-Core/vtable-methods.tsv	-	7
 function	0x00800680	-	Engine-Core/vtable-methods.tsv	-	7
-function	0x008006D0	-	Engine-Core/vtable-methods.tsv	-	7
-function	0x00800710	-	Engine-Core/vtable-methods.tsv	-	7
+function	0x008006D0	-	Engine-Core/vtable-methods.tsv	-	8
+function	0x00800710	-	Engine-Core/vtable-methods.tsv	-	8
 function	0x00800750	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
 function	0x00800900	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
 function	0x008009C0	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
@@ -41849,9 +41850,9 @@ function	0x00800C70	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvp
 function	0x00800D20	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
 function	0x00800E30	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
 function	0x00800F90	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
-function	0x00801210	-	Third-Party-Libraries/media-decoder-libraries.md	-	5
+function	0x00801210	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x00801480	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
-function	0x00801550	-	Third-Party-Libraries/media-decoder-libraries.md	-	5
+function	0x00801550	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x008019A0	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
 function	0x00801A20	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
 function	0x00801A30	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
@@ -41911,7 +41912,7 @@ function	0x00806480	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvp
 function	0x00806870	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
 function	0x00806B10	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
 function	0x00806DE0	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
-function	0x00806F20	-	Third-Party-Libraries/media-decoder-libraries.md	-	5
+function	0x00806F20	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x008074B0	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
 function	0x00807650	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
 function	0x00807C80	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
@@ -42496,7 +42497,7 @@ function	0x00825EC0	file:flush	Third-Party-Libraries/lua-runtime-members.tsv	-	5
 function	0x00825F20	-	PhyreEngine/phyre-lua-bindings.md	-	6
 function	0x00825FC0	-	Third-Party-Libraries/lua-runtime-members.tsv	-	5
 function	0x00826010	-	Third-Party-Libraries/lua-runtime-members.tsv	-	5
-function	0x00826200	-	Third-Party-Libraries/lua-runtime-members.tsv	-	5
+function	0x00826200	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x008262E0	-	Third-Party-Libraries/lua-runtime.md	-	6
 function	0x00826320	io_noclose (liolib)	Third-Party-Libraries/lua-runtime-members.tsv	-	5
 function	0x00826370	-	Third-Party-Libraries/lua-runtime-members.tsv	-	5
@@ -42534,7 +42535,7 @@ function	0x00827D60	debug.upvalueid	Third-Party-Libraries/lua-runtime-members.ts
 function	0x00827DA0	debug.upvaluejoin	Third-Party-Libraries/lua-runtime-members.tsv	-	5
 function	0x00827E50	debug.sethook	Third-Party-Libraries/lua-runtime-members.tsv	-	5
 function	0x00828000	debug.gethook	Third-Party-Libraries/lua-runtime-members.tsv	-	5
-function	0x00828140	debug.debug	Third-Party-Libraries/lua-runtime-members.tsv	-	5
+function	0x00828140	debug.debug	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x00828330	debug.traceback	Third-Party-Libraries/lua-runtime-members.tsv	-	5
 function	0x008283F0	checkupval (ldblib)	Third-Party-Libraries/lua-runtime-members.tsv	-	5
 function	0x008284A0	-	Third-Party-Libraries/lua-runtime-members.tsv	-	5
@@ -46983,11 +46984,11 @@ global	0x01E0C290	-	Graphics/effect-drawing.md	-	0
 global	0x01E0C2A0	-	Saving-Loading-And-Settings/languages.md	-	15
 global	0x01E0C2A4	-	Saving-Loading-And-Settings/languages.md	-	13
 global	0x01E0C2A8	-	Engine-Core/debug-menu.md	-	0
-global	0x01E0C2AC	-	Engine-Core/subsystem-update-flags.md	-	6
+global	0x01E0C2AC	-	Menus-And-HUD/hud.md	-	6
 global	0x01E0C2B0	-	Engine-Core/subsystem-update-flags.md	-	2
 global	0x01E0C2B4	-	Engine-Core/force-fight-mode.md	-	1
 global	0x01E0C2B8	-	Engine-Core/force-fight-mode.md	-	6
-global	0x01E0C320	-	Engine-Core/debug-menu.md	-	1
+global	0x01E0C320	-	Menus-And-HUD/hud.md	-	1
 global	0x01E0C3EC	-	Saving-Loading-And-Settings/loading-a-save.md	-	5
 global	0x01E0C478	-	Menus-And-HUD/inventory-screen.md	-	0
 global	0x01E0C47C	-	Menus-And-HUD/inventory-screen.md	-	0
@@ -47051,7 +47052,7 @@ global	0x01EF9218	-	Graphics/effect-element-runtime.md	-	5
 global	0x01EF9234	-	Movement-And-Pathfinding/player-movement.md	-	0
 global	0x01EF93E8	-	Random-Numbers/random-number-generators.md	-	4
 global	0x01EF93F0	-	Engine-Core/ps2-cpu-emulation.md	-	8
-global	0x01EF93F4	-	Engine-Core/ps2-cpu-emulation.md	-	2
+global	0x01EF93F4	-	Engine-Core/ps2-cpu-emulation.md	-	3
 global	0x01EF93F8	-	Engine-Core/ps2-cpu-emulation.md	-	1
 global	0x01EF93FC	-	Movement-And-Pathfinding/geometry-primitives.md	-	5
 global	0x01EF9438	-	Graphics/animation-playback.md	-	1
@@ -48720,7 +48721,7 @@ global	0x0208E9F0	-	Controls-And-Input/control-remapping.md	-	0
 global	0x0208EA00	-	Controls-And-Input/control-remapping.md	-	0
 global	0x0208EA10	-	Controls-And-Input/control-remapping.md	-	0
 global	0x0208EA38	-	Menus-And-HUD/dialogs.md	-	4
-global	0x0208EA40	-	Controls-And-Input/on-screen-keyboard.md	-	7
+global	0x0208EA40	-	Controls-And-Input/on-screen-keyboard.md	-	8
 global	0x0208EA48	-	Engine-Core/game-application.md	-	5
 global	0x0208EA50	-	Menus-And-HUD/dialogs.md	-	4
 global	0x0208EA58	-	Menus-And-HUD/widgets.md	-	3
@@ -48751,7 +48752,7 @@ global	0x0208F560	-	Menus-And-HUD/widgets.md	-	1
 global	0x0208F564	-	Menus-And-HUD/widgets.md	-	1
 global	0x0208F568	-	Menus-And-HUD/widgets.md	-	3
 global	0x0208F570	-	Engine-Core/subsystem-update-flags.md	-	18
-global	0x0208F574	-	Game-Files-And-Data-Tables/ui-typed-lists.md	-	2
+global	0x0208F574	-	Game-Files-And-Data-Tables/ui-typed-lists.md	-	3
 global	0x0208F578	-	Game-Files-And-Data-Tables/mrp-menu-resource-packages.md	-	1
 global	0x02090780	-	Game-Files-And-Data-Tables/ui-typed-lists.md	-	0
 global	0x02090788	-	Game-Files-And-Data-Tables/as7-menu-graphics.md	-	0
@@ -49507,7 +49508,7 @@ global	0x022C6D3C	-	EBP-Script-Files/ebp-script-container.md	-	0
 global	0x022C6E48	-	World-Areas-And-Travel/zone-changes-and-mapjump.md	-	10
 global	0x022C6F10	-	EBP-Script-Files/ebp-script-container.md	-	0
 global	0x022C6F20	-	Graphics/character-render-records.md	-	4
-global	0x022C6F28	-	Graphics/character-render-records.md	-	84
+global	0x022C6F28	-	Graphics/character-render-records.md	-	85
 global	0x022C7CE0	-	Movement-And-Pathfinding/battle-locomotion.md	-	1
 global	0x022C7CE4	-	Movement-And-Pathfinding/battle-locomotion.md	-	0
 global	0x022C7CE6	-	Movement-And-Pathfinding/battle-locomotion.md	-	0
@@ -51351,7 +51352,7 @@ global	0x02AE9674	-	Graphics/script-screen-effects.md	-	1
 global	0x02AE9680	-	Graphics/script-screen-effects.md	-	1
 global	0x02AE9688	-	Graphics/script-screen-effects.md	-	0
 global	0x02AE968C	-	Graphics/script-screen-effects.md	-	0
-global	0x02AE9690	-	Game-Files-And-Data-Tables/small-bin-tables.md	-	0
+global	0x02AE9690	-	Graphics/script-screen-effects.md	-	1
 global	0x02AE9694	-	Graphics/script-screen-effects.md	-	0
 global	0x02AE9698	-	Graphics/script-screen-effects.md	-	0
 global	0x02AE969C	-	Graphics/script-screen-effects.md	-	0
@@ -52522,7 +52523,7 @@ global	0x02CA96D0	-	Menus-And-HUD/map-screens.md	-	0
 global	0x02CA96D4	-	Game-Files-And-Data-Tables/battle-text-tables.md	-	3
 global	0x02CA96D8	-	Menus-And-HUD/gambit-screen.md	-	1
 global	0x02CA96F8	-	Menus-And-HUD/gambit-screen.md	-	0
-global	0x02CA9700	-	Menus-And-HUD/gambit-screen.md	-	2
+global	0x02CA9700	-	Menus-And-HUD/gambit-screen.md	-	3
 global	0x02CA9708	-	Menus-And-HUD/gambit-screen.md	-	0
 global	0x02CA9718	-	Menus-And-HUD/clan-primer.md	-	3
 global	0x02CA972C	-	Menus-And-HUD/menu-screens.md	-	1
@@ -53590,7 +53591,7 @@ global	0x02CB30A0	-	PhyreEngine/phyre-reflection-state.tsv	-	1
 global	0x02CB30A8	-	PhyreEngine/phyre-reflection-state.tsv	-	0
 global	0x02CB30C8	-	PhyreEngine/phyre-reflection-state.tsv	-	0
 global	0x02CB30D0	-	PhyreEngine/phyre-reflection-state.tsv	-	0
-global	0x02CB30D8	-	PhyreEngine/phyre-reflection-state.tsv	-	0
+global	0x02CB30D8	-	PhyreEngine/phyre-animation-binding.md	-	2
 global	0x02CB3100	-	PhyreEngine/phyre-reflection-state.tsv	-	1
 global	0x02CB3108	-	PhyreEngine/phyre-reflection-state.tsv	-	0
 global	0x02CB3128	-	PhyreEngine/phyre-reflection-state.tsv	-	0
@@ -58692,6 +58693,7 @@ data	0x008C2D70	-	Sound-And-Music/sound-engine.md	-	1
 data	0x008C2DA8	-	Compiler-And-C-Runtime/msvc-containers.md	-	1
 data	0x008C2E10	-	Graphics/graphics-thread-handshake.md	-	1
 data	0x008C2EF0	-	Game-Files-And-Data-Tables/bigfile-archive.md	-	1
+data	0x008C2F10	-	Third-Party-Libraries/media-decoder-libraries.md	-	1
 data	0x008C3038	-	Menus-And-HUD/fonts.md	-	1
 data	0x008C3060	-	Random-Numbers/random-number-generators.md	-	1
 data	0x008C3098	-	Random-Numbers/which-roll-uses-which-generator.md	-	5
@@ -59008,7 +59010,7 @@ data	0x00908D4C	-	Engine-Core/frame-update-order.md	-	0
 data	0x00908DE8	-	Movement-And-Pathfinding/collision-mesh-movement.md	-	1
 data	0x00908DF8	-	Movement-And-Pathfinding/geometry-primitives.md	-	0
 data	0x00908E10	-	Graphics/model-oscillators-and-pose-sequencer.md	-	1
-data	0x00908E14	-	Graphics/position-to-scalar.md	-	1
+data	0x00908E14	-	Menus-And-HUD/hud.md	-	1
 data	0x00908E1C	-	Battle-Actions/combos.md	-	0
 data	0x00908E30	-	World-Areas-And-Travel/mpk-map-pack.md	-	0
 data	0x00914698	-	Game-Files-And-Data-Tables/battle-text-tables.md	-	0
@@ -59051,6 +59053,7 @@ data	0x009159E8	-	Game-Files-And-Data-Tables/prefetch-manifests.md	-	0
 data	0x009159F4	-	Sound-And-Music/audio-effects.md	-	0
 data	0x00915A00	-	Graphics/script-screen-effects.md	-	0
 data	0x00915A08	-	Characters-And-Objects/party-member-status-record.md	-	0
+data	0x00915B9C	-	Movement-And-Pathfinding/battle-locomotion.md	-	0
 data	0x00915BB0	-	Game-Files-And-Data-Tables/quest-menu-files.md	-	0
 data	0x00915BD0	-	Menus-And-HUD/widgets.md	-	1
 data	0x00915BE0	-	Menus-And-HUD/widgets.md	-	2
@@ -59304,7 +59307,7 @@ data	0x00D23D60	-	Menus-And-HUD/shop-screens.md	-	0
 data	0x00D23D6C	-	Menus-And-HUD/shop-screens.md	-	0
 data	0x00D23D80	-	Game-Files-And-Data-Tables/tim2-images.md	-	1
 data	0x00D23DA0	-	Controls-And-Input/control-remapping.md	-	1
-data	0x00D23E98	-	Saving-Loading-And-Settings/saving-and-loading.md	-	0
+data	0x00D23E98	-	Saving-Loading-And-Settings/saving-and-loading.md	-	1
 data	0x00D23FF0	-	Compiler-And-C-Runtime/generated-function-families.md	-	0
 data	0x00D24540	-	PhyreEngine/phyre-reflection.md	-	4
 data	0x00D249A8	-	PhyreEngine/phyre-lua-bindings.md	-	6
@@ -60326,7 +60329,7 @@ data	0x01F813A8	-	Engine-Core/graphics-settings.md	-	2
 data	0x01F813C8	-	Engine-Core/graphics-settings.md	-	7
 data	0x01F813D8	-	Engine-Core/graphics-settings.md	-	2
 data	0x01F81838	-	Graphics/post-processing.md	-	0
-data	0x01F81850	-	Graphics/post-processing.md	-	0
+data	0x01F81850	-	Graphics/post-processing.md	-	1
 data	0x01F81880	-	Graphics/post-processing.md	-	0
 data	0x01F82C88	-	Engine-Core/game-application.md	-	1
 data	0x01F82C90	-	Engine-Core/game-application.md	-	1
@@ -60411,7 +60414,7 @@ data	0x0208E6E4	-	Controls-And-Input/control-remapping.md	-	1
 data	0x0208E6EC	-	Controls-And-Input/control-remapping.md	-	0
 data	0x0208EA13	-	Controls-And-Input/control-remapping.md	-	0
 data	0x0208EA20	-	Menus-And-HUD/map-screens.md	-	4
-data	0x0208EA28	-	Menus-And-HUD/menu-screens.md	-	16
+data	0x0208EA28	-	Menus-And-HUD/menu-screens.md	-	17
 data	0x0208EA30	-	Engine-Core/game-application.md	-	0
 data	0x0208EA60	-	Menus-And-HUD/dialogs.md	-	0
 data	0x0208EAC0	-	Menus-And-HUD/widgets.md	-	2
@@ -60979,7 +60982,7 @@ data	0x02B5CFF0	-	Menus-And-HUD/script-gauges.md	-	0
 data	0x02B5D0B0	-	Sound-And-Music/voices.md	-	46
 data	0x02B5D0B4	-	Scripts-And-Script-Commands/verb-table.md	-	0
 data	0x02B5E120	-	Scripts-And-Script-Commands/verb-table.md	-	0
-data	0x02B5EA20	-	World-Areas-And-Travel/traps.md	-	6
+data	0x02B5EA20	-	World-Areas-And-Travel/traps.md	-	7
 data	0x02B5EC8F	-	Characters-And-Objects/actor-record.md	-	1
 data	0x02B5ED94	-	World-Areas-And-Travel/mpk-map-pack.md	-	1
 data	0x02B5F2A0	-	Menus-And-HUD/map-screens.md	-	0
@@ -61247,7 +61250,7 @@ data	0x02EBA2E0	-	Third-Party-Libraries/eastl-strings-and-containers.md	-	5
 data	0x02EBA2E1	-	Third-Party-Libraries/eastl-strings-and-containers.md	-	2
 data	0x02EBA300	-	Third-Party-Libraries/media-decoder-libraries.md	-	0
 data	0x02EBA308	-	Third-Party-Libraries/media-decoder-libraries.md	-	0
-data	0x02EBA3D0	-	Engine-Core/debug-logging.md	-	4
+data	0x02EBA3D0	-	Engine-Core/debug-logging.md	-	5
 data	0x02EBA3E0	-	Controls-And-Input/controllers.md	-	0
 data	0x02EBA3E4	-	Controls-And-Input/controllers.md	-	0
 data	0x02EBA400	-	Graphics/character-render-object.md	-	1
@@ -61266,6 +61269,7 @@ data	0x02EBB54B	-	Damage-And-Battle-Formulas/steal.md	-	0
 data	0x02EBB6A0	-	World-Areas-And-Travel/mpk-map-pack.md	-	2
 data	0x02EBB700	-	Graphics/render-command-list.md	-	3
 data	0x02EBB718	-	Graphics/render-command-list.md	-	1
+data	0x02EBB798	-	Menus-And-HUD/hud.md	-	0
 data	0x02EBB7EC	-	Graphics/character-fades.md	-	2
 data	0x02EBB7EE	-	Graphics/character-fades.md	-	36
 data	0x02EBB7EF	-	Graphics/position-to-scalar.md	-	37

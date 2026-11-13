@@ -318,11 +318,12 @@ The root bus reads no sends (`0x007AC7A4`). A send takes the voice the target bu
 `0x007AC81A`), and a bus's voice is 0 until its own element has been built (`0x007AC636`). The voice of a bus with sends
 is made by `0x007AEC10`:
 
-1. It receives the send list the builder gathered on its stack (`0x007ACB16`), the send count (`0x007ACB13`) and the
-   level list (`0x007ACB0F`).
+1. It receives the send list the builder gathered on its stack (`0x007ACB16`), the send count (`0x007ACB13`), the list
+   of the built effects' interfaces (`0x007ACB0F`, filled at `0x007ACA60`-`0x007ACA64`) and their count (`0x007ACB0B`).
 2. It takes a voice from the pool `0x02EAD250` (`0x007AEC43`-`0x007AEC5C`; 0 when the pool is empty, `0x007AEC61`).
-3. `0x007E0130` fills the voice: the level list goes to `+0x90` (`0x007E0153`-`0x007E0173`) and the send list to
-   `+0x28`, sixteen bytes per send (`0x007E0184`-`0x007E01A2`), with no test of any entry.
+3. `0x007E0130` fills the voice: the interface list goes to `+0x90`, eight bytes each (`0x007E0153`-`0x007E0173`), and the
+   send list to `+0x38`, sixteen bytes per send (`0x007E0184`-`0x007E01A2`; the store at `0x007E0198` runs after the
+   source pointer has moved on `0x10`), with no test of any entry.
 
 A send to a bus whose element comes later is therefore copied in as a null voice.
 

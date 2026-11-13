@@ -345,8 +345,9 @@ Every drawing command (`GiColorRect`, `GiNormal`, `GiPolyGT4T`, `GiPrim`, `GiScr
   the 16-byte table `0x01F83580` when `id < 0x4000` as a signed compare, so ids `0x8000`–`0xFFFF`
   write below the table. The GS replay looks textures up in this table.
 - `GiPolyGT4T`'s prepare `0x00864CA0` reads its `+0xF8`; when the id `& 0x3FFF` is `0xE00` it uses
-  `0xDFF` while `0x02EC3ECC` is 0. It stores the record `0x002D7FA0(id)` returns (from the 0x30-byte
-  table `0x0209E6B0`) at `+0xD0`, and the record `0x002D7EE0(+0xF8)` returns at `+0xD8` and its dword `+8` at `+0xE0`.
+  `0xDFF` while `0x02EC3ECC` is 0. It stores the first qword of the record `0x002D7FA0(id)` returns
+  (from the 0x30-byte table `0x0209E6B0`) at `+0xD0` (`0x00864CD3`-`0x00864CD6`), and the first qword of the
+  record `0x002D7EE0(+0xF8)` returns at `+0xD8` (`0x00864CE9`-`0x00864CEC`) and that record's dword `+8` at `+0xE0`.
 - `GiZNormalOnOff` (`0x00864D70`) calls `0x00210560` with 0 or `0x70000` by its `+0x08` and sets device
   state through `+0xA0`, `+0x88` and `+0xA8`.
 

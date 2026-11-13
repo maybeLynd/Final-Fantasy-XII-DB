@@ -433,11 +433,14 @@ timestamp-disjoint query (type 3) at `+0x10` and two timestamp queries (type 2) 
 
 ### Render targets in a cluster
 
-`0x005D8E40(cluster, description)` creates one `PRenderTarget` instance in a cluster (`0x006394E0`, with
+`0x005D8E40(cluster, texture)` creates one `PRenderTarget` instance in a cluster (`0x006394E0`, with
 descriptor `0x02CB76A0`) and initialises it with `0x00615C90`; it returns null when no object results.
 It calls `0x006394E0(cluster, 1, 0x02CB76A0, 0)` (`0x005D8E65`) and takes the instance from `+0x60` of the result
 (`0x005D8E76`): a null result or a null `+0x60` returns null (`0x005D8E84`). Otherwise it calls
-`0x00615C90(instance, description)` (`0x005D8E93`) and returns the instance. Ten call sites in `0x0064A000`–`0x006560E0`
+`0x00615C90(instance, texture)` (`0x005D8E93`) and returns the instance; `0x00615C90` attaches the instance to the
+texture with `0x005DC1C0` (`0x00615C99`).
+
+Ten call sites in `0x0064A000`–`0x006560E0`
 use it (`0x0064A066` to `0x0065612E`).
 
 ### Presenting a frame

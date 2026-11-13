@@ -145,7 +145,7 @@ it, take a record (`0x001A0A90`), set its callback `0x001D6D70`, argument 0 and 
 `+0x20` up to its terminator with no length limit (`0x001D6E20`-`0x001D6E2D`, `0x001D7040`-`0x001D704D`).
 
 They store the destination `+0x120`, the offset as the low 32 bits of `+0x128` and the byte count as the 64-bit
-`+0x130`; `0x001D6FB0` also stores the stream `+0x138` (`0x001D7064`). The kind 2 record runs later on the loading
+`+0x130`; `0x001D6FB0` also stores the stream `+0x138` (`0x001D7067`). The kind 2 record runs later on the loading
 thread. The kind 3 record runs at once on the calling thread (`0x001A0BB0` with `now` = 1, `0x001D7076`-`0x001D707C`),
 so its callback has run when `0x001D6FB0` returns.
 

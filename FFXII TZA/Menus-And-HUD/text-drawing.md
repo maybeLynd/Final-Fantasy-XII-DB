@@ -129,9 +129,14 @@ Slots 4, 5 and 6 refuse a layer index of 10 or more (`0x00213B33`, `0x00213F93`,
 
 ### Layers and the shared draw body
 
-Each Special instance holds ten layers, one per font used in the line: a layer's texture is that font's atlas and its
-vertices are that font's glyphs (`0x001E8801`). The flush numbers the fonts without a limit, so the glyphs of an 11th
-font in one line are dropped.
+Each Special instance holds ten layers; a layer's texture is one font's atlas and its vertices are that font's glyphs.
+The flush sets the layer number to 0 once for a line (`0x001E8651`), counts it up after each font of the mask loop
+(`0x001E8801`) and goes on from that value in the coloured loop (`0x001E8937`-`0x001E89E4`). A line that uses n fonts
+therefore has its mask in layers 0 to n - 1 of the first object and its coloured glyphs in layers n to 2n - 1 of
+the second.
+
+The number has no limit and a layer of 10 or more is refused, so a line keeps the coloured glyphs of all its fonts
+only up to five fonts, and the mask of an 11th font is dropped.
 
 The shared body `0x002142A0` walks the ten layers: layer `i`'s texture is at `+0x08 + 8i`, its vertex count at
 `+0xA8 + 4i` and its vertices at `+0x58 + 8i` (`0x002142BA`-`0x00214332`). It skips a layer without a texture

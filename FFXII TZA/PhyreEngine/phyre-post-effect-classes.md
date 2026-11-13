@@ -271,7 +271,7 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x68` | `u8[56]` | bytes68 | the bytes after m_glowLuminanceScale (`+0x64`) up to the end of the `0xA0`-byte class; the constructor `0x00645E50` clears them (`0x00645E75`-`0x00645E98`); no registered member covers it (`0x00644880` registers the `0xA0`-byte class at `0x006448CA`) |
+| `+0x68` | `u8[56]` | bytes68 | the bytes after m_glowLuminanceScale (`+0x64`) up to the end of the `0xA0`-byte class; the constructor `0x00645E50` clears them (`0x00645E75`-`0x00645E96`); no registered member covers it (`0x00644880` registers the `0xA0`-byte class at `0x006448CA`) |
 
 `PPostEffectBase` (`0x50` bytes, offsets from the start of the record):
 

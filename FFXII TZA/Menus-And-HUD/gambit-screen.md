@@ -256,7 +256,8 @@ The member-scoped pane is the `0xD0`-byte widget kept at `0x02CA96D8` with proce
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x005677A0` |
-| `+0xC0` | `u8[8]` | pad0C0 | read and written by no function; nothing fixes its width |
+| `+0xC0` | `u32` | recordWord60 | the word at `+0x60` of the record `0x00282DF0` returns for the id at `[[0x0209AC30]+0xDE0]`, sign-extended, stored by `0x0056C3A0` (`0x0056C3C1`); the pane procedure calls `0x0056C3A0` at `0x005677E3` and, while `0x02CA9700` is not null, at `0x005677FE` |
+| `+0xC4` | `u32` | tableDword7370 | the dword at `[0x02EBF190]` plus `0x7370` plus 4 for each unit of `recordWord60`, stored by `0x0056C3A0` (`0x0056C3D9`). `0x0056C3A0` then sets bit `0x1`, the shown bit, of layout items 0, 2 and 4 and clears it on items 1, 3 and 5 (`0x0056C3DF`-`0x0056C41E`), reads the dword back (`0x0056C422`) and, for 0, sets the bit on item 1 and clears it on item 0 (`0x0056C472`-`0x0056C485`); for 1, sets it on item 3 and clears it on item 2 (`0x0056C454`-`0x0056C468`); for 2, sets it on item 5 and clears it on item 4 (`0x0056C436`-`0x0056C44A`); any other value changes nothing more (`0x0056C434`) |
 | `+0xC8` | `u32` | items67Shown | bit `0x1` is copied into bit `0x1`, the shown bit, of layout items 6 and 7 of the pane each tick while the gambit screen exists (`0x00567817`, `0x0056782E`); the construct message sets 1 (`0x0056785F`); the gambit screen's `0x0056B4D0` sets it to 1 in one arm (`0x0056B557`) and to 0 in another (`0x0056B58D`) |
 | `+0xCC` | `u8[4]` | pad0CC | read and written by no function; nothing fixes its width |
 

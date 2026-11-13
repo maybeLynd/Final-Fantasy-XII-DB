@@ -157,8 +157,10 @@ Inherited unchanged by `GameApplication` (slot 28 holds the same address in both
 5. Measures frames per second over two seconds into `+0x60`, then calls slot 4, animate (`0x0079C2D6`).
 6. Handles the deferred window requests (below), calling slot 9 again after a size change
    (`0x0079C526`).
-7. Calls each viewport's slot 3 (`0x0079C5FE`) with the render context, then slot 8, render
-   (`0x0079C655`). When `0x01FD4A68` is clear and render returned 0, it also runs `0x00600C20` on the render
+7. Calls each viewport's slot 3 (`0x0079C5FE`) with the viewport as its only argument, and after each one that
+   returns 0 passes the render context to `0x0060F6B0` (`0x0079C61C`). After the last viewport it calls the
+   application's slot 8, render, once (`0x0079C655`).
+   When `0x01FD4A68` is clear and render returned 0, it also runs `0x00600C20` on the render
    context and the context's slot 2.
 
 One branch of the deferred window requests (`0x0079C4B1`) clears `+0x20`, sets the bytes `+0x1E` and `+0x23` and
@@ -231,7 +233,8 @@ These serve the script-file and input-replay options, so they never run in the s
   `Left` `0x3F`; any other name logs and returns 5.
 - `0x00798AC0` is `RenderFrame`'s screenshot: it logs `PApplication::screenshot: %s`, reads the frame back under the
   render lock (`0x00615BC0`, `0x00624960`, `0x0061EE30`, `0x00616700`), swaps red and blue and writes a 24-bit BMP.
-- `0x0079A120` replays one record, logged as `INPUT:...`: kind 1 sets a pad byte, kind 2 an action found by name
+- `0x0079A120` replays one record, logged as `INPUT:...`: kind 1 sets a keyboard key byte
+  (`0x0079A3E9`-`0x0079A401`), kind 2 an action found by name
   (`0x00873C50`, `0x00873C40`), kind 3 runs a command; `0x0079A550` and `0x00799C90` append a 0x40-byte record, and
   `0x0079D430(file)` reads the replay file's `%d:` lines and returns the last number.
 

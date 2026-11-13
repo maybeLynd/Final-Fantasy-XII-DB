@@ -129,7 +129,7 @@ places) and `1C53BB6B` Cues (5 places).
 Only the parser is linked: the image has no `mkvmuxer` text. The movie player (`0067xxxx`) and the
 game's reader are the only game code that calls it.
 
-Two of the parser's larger bodies are outside its member list:
+Two of the parser's larger bodies:
 
 - `0x00806F20`, called from `0x00803190` (`0x008031B5`), parses the segment's headers. It creates the Info
   (`1549A966`) and Tracks (`1654AE6B`) objects, returning -2 when either is already present, and the
@@ -238,9 +238,9 @@ says otherwise.
   `0x00172160` (`0x0016E24D`) and the frame buffers and mode grid through `0x00172750` (`0x0016E259`). Then it frees the
   instance (`0x0016E262`) and the context (`0x0016E276`) through the CRT free.
 
-### Decoder bodies and kernels outside the member lists
+### Decoder bodies the decoder calls, and five kernels nothing refers to
 
-Five bodies the decoder calls are in neither libvpx list:
+Five bodies the decoder calls, two in the decoder's list and three in the kernels' list:
 
 - `0x0016FE80` and `0x00174790` decode one macroblock, called from `0x00170370` (`0x001709E6`) and
   `0x00175070` (`0x00175572`). Both read the macroblock's mode info through `+0xF00` and, for mode 4,
@@ -301,6 +301,11 @@ No instruction in the image refers to any of the handlers. `0x0016EC20`, `0x0016
 linker shares: besides its four map entries (`0x01CDB358`, `0x01CDB368`, `0x01CDB378`, `0x01CDB388`) it is
 stored at `0x009010E8`, `0x01CB40B8`, `0x01CCFC10` and `0x01CCFC30`, in other classes' tables.
 The movie player calls no control, so the map is linked data that nothing reads.
+
+One function between the decoder's is not libvpx's. `0x001744F0` keeps its register arguments as a variable
+list and calls the C runtime's `__stdio_common_vfprintf` (import slot `0x008C2F10`, `0x00174527`) on the stream
+pointer kept at `0x02EBA3D0` (`0x0016D670`, `0x00174511`-`0x00174524`): a formatted print to a stream. Its five callers
+are outside the decoder (`0x006798CD`, `0x00826268`, `0x0082817A`, `0x0082827D`, `0x008282BC`).
 
 ### libvorbis: the movie's sound
 
@@ -611,12 +616,12 @@ One of the player's three frame queues, as the queue functions use it:
 
 | Fact | Value |
 |---|---|
-| libwebm `mkvparser` | `0x007FFBC0` to `0x008087C3` and three scattered vtable bodies; 104 functions in [`media-decoder-libraries-libwebm-mkvparser.tsv`](media-decoder-libraries-libwebm-mkvparser.tsv) |
-| libvpx VP8 decoder | `0x0016DDD0` to `0x0017C88F`; 116 functions in [`media-decoder-libraries-libvpx-vp8-decoder.tsv`](media-decoder-libraries-libvpx-vp8-decoder.tsv), and the four control handlers the function list does not hold (`0x0016EE40`, `0x0016EE80`, `0x0016EFF0`, `0x0016F030`) in [`media-decoder-libraries-libvpx-vp8-control-handlers.tsv`](media-decoder-libraries-libvpx-vp8-control-handlers.tsv) |
-| libvpx kernels | 63 in [`media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv`](media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv), `0x00125740` to `0x00158C09` |
+| libwebm `mkvparser` | `0x007FFBC0` to `0x008087C3` and four scattered vtable bodies; 112 functions in [`media-decoder-libraries-libwebm-mkvparser.tsv`](media-decoder-libraries-libwebm-mkvparser.tsv) |
+| libvpx VP8 decoder | `0x0016DDD0` to `0x0017C88F`; 123 functions in [`media-decoder-libraries-libvpx-vp8-decoder.tsv`](media-decoder-libraries-libvpx-vp8-decoder.tsv), and the four control handlers the function list does not hold (`0x0016EE40`, `0x0016EE80`, `0x0016EFF0`, `0x0016F030`) in [`media-decoder-libraries-libvpx-vp8-control-handlers.tsv`](media-decoder-libraries-libvpx-vp8-control-handlers.tsv) |
+| libvpx kernels | 66 in [`media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv`](media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv), `0x00125740` to `0x00158C09` |
 | libvpx kernels nothing reaches | [`media-decoder-libraries-libvpx-unreferenced-kernels.tsv`](media-decoder-libraries-libvpx-unreferenced-kernels.tsv), entries `0x00125770` to `0x00158C97` |
 | libvorbis | `0x008800C0` to `0x008958AF`; 124 functions in [`media-decoder-libraries-libvorbis.tsv`](media-decoder-libraries-libvorbis.tsv) |
-| CRI HCA decoder | `0x00121000` to `0x0012573F`; 53 functions in [`media-decoder-libraries-cri-hca-decoder.tsv`](media-decoder-libraries-cri-hca-decoder.tsv) |
+| CRI HCA decoder | `0x00121000` to `0x0012573F`; 54 functions in [`media-decoder-libraries-cri-hca-decoder.tsv`](media-decoder-libraries-cri-hca-decoder.tsv) |
 | Tremor with `vorbisfile` | `0x007F41A0` to `0x007F6FAF` and `0x007F7680` to `0x007FFBBF`; 107 functions in [`media-decoder-libraries-tremor-vorbisfile.tsv`](media-decoder-libraries-tremor-vorbisfile.tsv) |
 | libogg | `framing.c` 22 functions in [`media-decoder-libraries-libogg-framing.tsv`](media-decoder-libraries-libogg-framing.tsv); `bitwise.c` 4 in [`media-decoder-libraries-libogg-bitwise.tsv`](media-decoder-libraries-libogg-bitwise.tsv) |
 | VP8 decoder fields | the decoder instance and macroblock-decoder field accesses in [`media-decoder-libraries-vp8-decoder-instance-accesses.tsv`](media-decoder-libraries-vp8-decoder-instance-accesses.tsv) and [`media-decoder-libraries-vp8-macroblock-decoder-accesses.tsv`](media-decoder-libraries-vp8-macroblock-decoder-accesses.tsv) |
@@ -624,11 +629,11 @@ One of the player's three frame queues, as the queue functions use it:
 
 ### Columns of media-decoder-libraries-libwebm-mkvparser.tsv
 
-One row per function, 104 rows in address order.
+One row per function, 112 rows in address order.
 
 | Column | Holds |
 |---|---|
-| `entry` | the function's entry address: 101 from `0x007FFBC0` to `0x00808770` and the three vtable bodies `0x007AD440`, `0x007BD590` and `0x007E3260` |
+| `entry` | the function's entry address: 108 from `0x007FFBC0` to `0x00808770` and the four vtable bodies `0x007AD440`, `0x007B6C40`, `0x007BD590` and `0x007E3260` |
 
 ### Columns of media-decoder-libraries-tremor-vorbisfile.tsv
 
@@ -640,7 +645,7 @@ One row per function, 107 rows in address order.
 
 ### Columns of media-decoder-libraries-libvpx-vp8-decoder.tsv
 
-One row per function, 116 rows in address order.
+One row per function, 123 rows in address order.
 
 | Column | Holds |
 |---|---|
@@ -648,7 +653,7 @@ One row per function, 116 rows in address order.
 
 ### Columns of media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv
 
-One row per kernel, 63 rows in address order.
+One row per kernel, 66 rows in address order.
 
 | Column | Holds |
 |---|---|
@@ -664,7 +669,7 @@ One row per function, 124 rows in address order.
 
 ### Columns of media-decoder-libraries-cri-hca-decoder.tsv
 
-One row per function, 53 rows in address order.
+One row per function, 54 rows in address order.
 
 | Column | Holds |
 |---|---|

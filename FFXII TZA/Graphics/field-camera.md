@@ -167,9 +167,12 @@ loaded with the others and selected by nothing in the shipped game.
 The same walk keeps running totals of those shares, the profile's position at the start of a
 segment, in three controller fields: `+0x1D0` the start of segment 3; `+0x1D4` the start of segment 2,
 or of segment 1 when `+0x2A0` is non-zero; and `+0x1D8` the start of segment 4, or of segment 5 when
-`+0x2A0` is non-zero. `0x003D99B0` and `0x003D9B80` run it too, on the default pairs `0x01EFE998` to
-`0x01EFE9CC`, from (−0.7, 2.8) to (7.6, 8.8), the end points of the orbit curve below with the height
-first.
+`+0x2A0` is non-zero.
+
+`0x003D99B0` runs it too, on the default pairs `0x01EFE998` to `0x01EFE9CC`, from
+(−0.7, 2.8) to (7.6, 8.8), the end points of the orbit curve below with the height first, which it copies
+into the controller first (`0x003D99DF`-`0x003D9AB0`, `0x003D9B3E`). `0x003D9B80` runs it on the pairs the
+controller holds at that moment (`0x003D9C1F`).
 
 ### Other controller settings
 
@@ -389,7 +392,15 @@ changed (`0x02B4E4A4`) or `+0x360` is 0, and otherwise keeps it; with `0x02B4E4A
 blends the follow eye and look (`+0x2E0`, `+0x2F0`) toward the framing pair (`+0x300`, `+0x310`) by
 `(1 + cos(π t + π)) / 2`, with `t` the count over its cap, going round the shorter way (`0x0032CC90`).
 
-`0x0032C5E0` records which way round when framing starts or ends. `0x0032D000` blends the eye linearly into `+0x330`; for
+`0x0032AEC0` keeps what `0x0032C5E0` answers at `+0x324` when framing starts and when it ends (`0x0032AF82`,
+`0x0032B01A`).
+
+`0x0032AEC0` passes `0x0032C5E0` the addresses of the follow eye, the follow look, the framing eye and
+the framing look; `0x0032C5E0` stores the four in its home slots and gives `0x003CC130` the addresses of those
+slots, not the positions (`0x0032C5E3`-`0x0032C60B`, `0x0032C628`-`0x0032C62D`), so the answer does not follow where
+the camera or the target is.
+
+`0x0032D000` blends the eye linearly into `+0x330`; for
 the look it blends the heading, pitch and distance from eye to look of the two pairs (`0x003CC130`) and places the
 published look `+0x340` from the blended eye with them (`0x003CC2F0`, `0x0032D22A`).
 

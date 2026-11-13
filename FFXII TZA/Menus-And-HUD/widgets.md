@@ -117,9 +117,10 @@ parent (`0x00248230`-`0x00248267`). The links are the old last child's next `+0x
 (`0x0024825C`, `0x00248260`); a first child goes to the parent's `+0x18` with neither written (`0x00248239`).
 
 A parent with bit `0x20` passes it to the child and to every descendant of the child through the pre-order walker
-`0x002463F0(widget, callback, value)` with the bit setter `0x002418E0` (`0x00248271`-`0x002482A0`). Then an active parent
-activates an attached child that may be activated (`0x002473F0`, which sends message 6, `0x002482AE`-`0x002482C7`), and
-the parent's bit `0x2000` is set in every case (`0x002482CC`).
+`0x002463F0(widget, callback, value)` with the bit setter `0x002418E0` (`0x00248271`-`0x002482A0`). Only such a parent goes
+on to activate the child: when the parent is active and the child has bit `0x2`, it calls `0x002473F0(child, 1)`,
+which sends message 6 (`0x002482AE`-`0x002482C7`). A parent without bit `0x20` skips both steps (`0x0024826F`). The
+parent's bit `0x2000` is set in every case (`0x002482CC`).
 
 Two shortcuts use the main root `[0x0208EA28]`:
 
@@ -139,8 +140,8 @@ The message record and every id are in [Widget messages](widget-messages.md).
 ### Draw order and the two draw passes
 
 `0x00247930(widget, priority)` stores a widget's draw priority at `+0x44` (100 when built) and sets bit `0x2000` on its
-parent. When the walker `0x00244980` reaches a widget with bit `0x2000`, it re-sorts that widget's children with `0x002479B0`
-and clears the bit (`0x00244990`-`0x0024499F`):
+parent. When the walker `0x00244980` reaches an active widget (bit `0x1`) with bit `0x2000`, it re-sorts that widget's
+children with `0x002479B0` and clears the bit when the sort answers other than 0 (`0x0024498C`-`0x0024499F`):
 
 1. Each child's priority, position in the list and pointer go into the scratch table `0x0208ED60`
    (`0x00247A0A`-`0x00247A2D`).
@@ -278,7 +279,8 @@ passes, up to the first with bit `0x200` or to the root, must have bits `0x1` an
 
 1. It attaches the widget under `parent` when it has no parent (`0x00246AF5`), and activates it.
    - A null widget returns at once (`0x00246AD3`). It clears the widget's `+0x40` bit `0x40` and sets bit `0x2`
-     (`0x00246ADE`-`0x00246B18`). With no parent the attach `0x00248220` activates it under an active parent; with a
+     (`0x00246ADE`-`0x00246B18`). With no parent the attach `0x00248220` activates it under an active parent that has bit
+     `0x20`; with a
      parent it calls `0x002473F0(widget, 1)` only when the widget's bit `0x20` is set, and otherwise only sets bit `0x2`
      (`0x00246AFC`-`0x00246B18`).
 2. It sets the rate: 1.0, or one over the game's speed steps in the field at game speed (`0x00246B1B`-`0x00246B49`).
@@ -512,7 +514,7 @@ after them. Its private messages 33-52 set or read the fields below ([Widget mes
 | `+0x61DA` | `i16` | layout11Y | y of that item plus the record's y, written once (`0x00279FA4`); read by no instruction. |
 | `+0x61DC` | `i16` | layout11W | width of that item, written once (`0x00279FAF`); read by no instruction. |
 | `+0x61DE` | `i16` | layout11H | height of that item, written once (`0x00279FBD`); read by no instruction. |
-| `+0x61E0` | `i16` | memberType | the type (`+0x60` of the party status record, 0-5) of the member message 38 names, from `0x00272EE0` (`0x0027A91A`); -1 when the message has no second argument (`0x0027A928`) or `0x00254560`(3) answers non-zero (`0x0027A8F3`). Senders: `0x002778C0` at `0x0027826B` and the menu itself after building a panel (`0x0027A66B`). The panel `0x00276D30` picks its picture cell by it and draws no picture above 5 (`0x0027735B`). |
+| `+0x61E0` | `i16` | memberType | the type (`+0x60` of the party status record, 0-5) of the member message 38 names, from `0x00272EE0` (`0x0027A91A`); -1 when the message has no second argument (`0x0027A928`) or `0x00254560`(3) answers non-zero (`0x0027A8F3`). Senders: `0x002778C0` at `0x0027826B` and the menu itself after building a panel (`0x0027A66B`). The panel `0x00276D30` picks its picture cell by it (`0x0027735B`): 0 to 5 pick a cell, 7 to 25 take a second arm (`0x002774A9`-`0x002774B1`), and 6 and every other value draw no picture. |
 | `+0x61E2` | `i8` | markListKind | the target list kind whose tab to mark, from message 50 with `+0x61CC` bit `0x1000` (`0x0027A80A`), sent by `0x002778C0` at `0x00279AAD` with its list kind; the next tick passes it to `0x00276830` when the tab strip is opening or open (`0x0027A29B`). |
 | `+0x61E3` | `i8` | tabStep | the last tab step: message 51 stores it (`0x0027A81C`), sent by `0x002778C0` with the L1 or R1 step from `0x0027B430` (`0x00277F24`) and with -1 (`0x00278EB8`, constant `0x00915BD0`); the tick that marks a tab nudges arrow 7 for a positive step and arrow 6 for a negative one (`0x0027A2AA`, `0x0027A2B5`, `0x0027A2C1`) and sets it to 0 (`0x0027A2D2`); building the strip sets it to 0 (`0x0027A184`). |
 | `+0x61E4` | `u32` | tabMask | the target tabs the chosen action allows (bits `0x1`, `0x2`, `0x8`, `0x4` for tabs 0-3): message 52 stores it (`0x0027A9A2`), sent by `0x002778C0` (`0x0027849A`-`0x002784F8`) with 7 for any list but kind 11 and otherwise a mask from the row's target bits; read for the tab strip's requested mask (`0x0027A166`) and each new panel's `+0x3000` (`0x0027A509`). |

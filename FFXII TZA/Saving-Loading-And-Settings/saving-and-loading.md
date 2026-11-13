@@ -582,14 +582,15 @@ reseeds the gameplay generator from the clock (see the [save file format page](s
 `0x00394520` returns 1 while the qword `0x02AEE4C0`, the title asset's pointer, is non-zero
 (`0x00394522`-`0x00394529`).
 
-Message `0x10` records the load mode: with `0x00394450()` = 3 it calls
-`0x00238A30(1)`, else `0x00238A30(0)`, then `0x00285E60(-1)`.
+Message `0xC` with sub-command `0x10` records the load mode: it sets bit `0x10` of `+0xC4` (`0x00582CB3`)
+and, with `0x00394450()` = 3, calls `0x00238A30(1)`, else `0x00238A30(0)`, then `0x00285E60(-1)`
+(`0x00582CBA`-`0x00582CE6`).
 
 On message 1 `0x00582790` loads the screen's two layouts into `+0x100` and `+0x108` and, unless byte
 `+0xC1` is set, the two icon resources (kind 7, ids `0x2C` and `0x2D`) into `+0x110` and `+0x118`,
 with `0x00393600(2)` at `+0x120`. `0x00582FC0`, on message `0x12`, releases them, and the buffers at
 `+0x588` and `+0x590` are freed after it. `0x00581310(pane)`, run on sub-commands `0x8100`-`0x8102` and
-on message `0xF` with value 4, closes the pane and calls `0x00291D40` and `0x002CA110`, then
+on sub-command `0xF` with value 4 (`0x00582CF2`-`0x00582D04`), closes the pane and calls `0x00291D40` and `0x002CA110`, then
 `0x002CC9C0(0x002CC9B0())` when bit `0x8` of `+0xC4` is set.
 
 ## Layouts
@@ -611,7 +612,7 @@ The slot screen is the `0x1C8`-byte widget with procedure `0x0057FE80` that `0x0
 | `+0x0E4` | `u32` | nextCounter | the next save counter: the active image's `+0x50` at construction (`0x0057FFA5`), raised to the highest header `+0x50` among the listed status-2 slots and slot 0's cache row, each time also stored at `0x02CA99B4` (`0x005800AF`-`0x005800BD`, `0x00580179`-`0x00580187`); state 4 passes it plus 1 to the save transaction (`0x00580FA7`); `0x00580CD0` reads and raises it after a save (`0x00580D35`-`0x00580D92`) |
 | `+0x0E8` | `u8` | holdFrames | frames left in state `0xC`, which sets `0x78` (The save and load screen above); counted down by 1 (`0x00580376`) |
 | `+0x0E9` | `u8` | state | the screen's state 0-`0xE` (The save and load screen above), set by the state machine `0x00580EB0` (`0x00581246`) and `0xFF` at construction (`0x0057FF0B`); `0x00580EB0` compares the new state with it (`0x00580EE2`); the popup answer handlers dispatch on it (`0x00580369`, `0x005803D5`, `0x0058062B`, `0x00580A86`, `0x00580A9D`) |
-| `+0x0EA` | `u8` | loadMode | 0 for the save screen, 1 for the load screen, the creation record's `+0x10` (`0x0057FF16`): it chooses the slots listed (`0x0057FF56`, `0x00580055`), the device check's mode (`0x00580F29`), the row draw mode, and how a confirm (`0x00580541`), a cursor move (`0x0058030F`) and `0x00580B40` (`0x00580B46`) proceed |
+| `+0x0EA` | `u8` | loadMode | 0 for the save screen, 1 for the load screen, the creation record's `+0x10` (`0x0057FF16`): it chooses the slots listed (`0x0057FF56`, `0x00580055`), the device check's mode (`0x00580F29`), the row draw mode, and how a confirm (`0x00580541`), the text of message `0xE` (`0x0058030F`) and `0x00580B40` (`0x00580B46`) proceed |
 | `+0x0EB` | `u8` | slot | the slot the player confirmed (`0x0058053A`); state 4 opens the save transaction with it (The save and load screen above) |
 | `+0x0EC` | `u8` | rowCount | the rows listed: 0 at construction (the word store at `0x0057FFAB`), 1 more for each listed slot (`0x005800E1`-`0x005800F0`); `0x00580CD0` adds a row after a save (`0x00580E49`-`0x00580E5E`) |
 | `+0x0ED` | `u8` | unusedRows | the listed slots with status 5, "Unused file" (`0x0058002F`); 0 at construction (`0x0057FFAB`) |

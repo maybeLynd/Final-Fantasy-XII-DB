@@ -1,6 +1,6 @@
 script	actor	function	step	at	line	condition	verb	arguments	addresses	quoted_lines	timing	sync	calls	resolution	source
 men_z0001	gambit_tutorial	init	1	0x00260	18	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-men_z0001	gambit_tutorial	main	1	0x00261	23	-	fsmenu_registrestore	-	the gambit editor told to commit its gambits when it closes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+men_z0001	gambit_tutorial	main	1	0x00261	23	-	fsmenu_registrestore	-	the gambit editor told to write the copy of the set it kept at load back to the member when it closes (0x00569242-0x00569259)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 men_z0001	gambit_tutorial	main	2	0x0026A	24	-	fsmenu_paddisable	-1, -1	argument 1: the buttons the script takes away from the player while a menu is open / argument 2: whether the sticks are taken too	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 men_z0001	gambit_tutorial	main	3	0x00270	25	-	fsmenu_setslot	3	argument 1: the member id (record +0x60) whose place in the menu's member list is saved	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 men_z0001	gambit_tutorial	main	4	0x00273	26	-	fsmenu_loadresource	-	the script menu's resources, loaded and waited for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

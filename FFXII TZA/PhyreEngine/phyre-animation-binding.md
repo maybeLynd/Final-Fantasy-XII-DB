@@ -176,7 +176,8 @@ controller `+0x30`:
 
 ### Grouping channels by target
 
-`0x005C22B0`, called from `0x005B1900`, collects the channels of a set of clips in a local ordered map
+`0x005C22B0`, whose address `0x005B1900` stores at `0x02CB30D8` without calling it (`0x005B1C86`-`0x005B1C8D`), collects
+the channels of a set of clips in a local ordered map
 keyed by channel target. Two targets are the same key when their index (`+0x30`), type (`+0x20`),
 the four object fields and the name match. The map's nodes are `0xA8` bytes from a `PMapPair` pool
 (`0x0067FFB0`). Each node's value starts from a template at `0x01F2D010`; every channel ORs bit *n* (*n*

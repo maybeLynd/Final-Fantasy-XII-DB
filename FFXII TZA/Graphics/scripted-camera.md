@@ -205,7 +205,8 @@ and `0x00263E80` reads `+0x20`. Bit `0x8000` marks the actor; the low byte is it
 Each field frame `0x00256F60` (from `0x0022A770`) boxes the subject and every other live actor of the
 five managers on screen with `0x00255CF0`. That function places the points `(−r, 0, 0)` and `(r, h, 0)`
 in the camera's orientation at the actor's position, `r` and `h` from `0x00265090` and `0x00263940`,
-projects both through `0x02AEDDB0`, divides x and y by the third value and subtracts 1792 and 1824,
+projects both through `0x02AEDDB0`, divides x and y by the fourth value of each projected point, the float at
+`+0x0C` (`0x00255E17`), and subtracts 1792 and 1824,
 giving the corners of a 512 × 448 frame. Then for each other actor:
 
 - the mark is cleared when the actor's depth value `+0x08` is not above the subject's or the two boxes

@@ -311,7 +311,7 @@ The board screen is the `0x110`-byte widget with procedure `0x00561390` that `0x
 | `+0x0E8` | `u8[32]` | gap0E8 | read and written by no function; nothing fixes its width |
 | `+0x108` | `u8` | chooserByte | the creation record's byte `+0x18` (`0x005615C6`-`0x005615CA`): `0xFF` from the member picker (`0x00560C81`-`0x00560C98`), the board chooser's own `+0xDC` when it hands over (`0x005590D4`-`0x005590E3`); passed back as the third argument of `0x00558F20` when the screen hands over to the chooser (`0x0056148C`-`0x005614A1`) |
 | `+0x109` | `u8[3]` | gap109 | read and written by no function; nothing fixes its width |
-| `+0x10C` | `u32` | flags | bit `0x1`: on destroy, sends the owner the command `0x8003` (`0x00247510`) instead of handing back (`0x00561424`-`0x0056143C`); no access sets it. Bit `0x2`: the owner's byte `+0x185` (`0x00561593`-`0x005615A5`); no access reads it. Bit `0x4`: the creation record's `+0x08` bit `0x1` (`0x005615AB`-`0x005615BE`), 1 from the board chooser when the board changed (`0x005590A5`-`0x005590E3`), 0 from the member picker; on destroy, set: the member goes back to the owner and `0x00558F20`(owner, 1, `+0x108`) builds the chooser (`0x0056147A`-`0x005614A1`); clear: the owner is opened again (`0x00561460`-`0x00561470`) |
+| `+0x10C` | `u32` | flags | bit `0x1`: on destroy, sends the owner the command `0x8003` (`0x00247510`) instead of handing back (`0x00561424`-`0x0056143C`); the view's commands `0x8002` and `0x8001` copy bit `0x1` of the command's value into it (`0x0055D55C`-`0x0055D56F`, `0x0055D66C`-`0x0055D67F`) and stage 4 of the purchase clears it (`0x0055F4BD`). Bit `0x2`: the owner's byte `+0x185` (`0x00561593`-`0x005615A5`); the view's build copies it to bit `0x2` of its `+0x570` (`0x0055CF52`-`0x0055CF6D`). Bit `0x4`: the creation record's `+0x08` bit `0x1` (`0x005615AB`-`0x005615BE`), 1 from the board chooser when the owner's `+0x18C` was set, or when the owner's word `+0x188` is not the member word [`0x0209AC30`] + `0xDE0` (`0x005590A5`-`0x005590E3`), 0 from the member picker, and set by the view's command `0x8001` (`0x0055D685`-`0x0055D68C`); on destroy, set: the member goes back to the owner and `0x00558F20`(owner, 1, `+0x108`) builds the chooser (`0x0056147A`-`0x005614A1`); clear: the owner is opened again (`0x00561460`-`0x00561470`) |
 
 ### The board view's fields
 
@@ -382,7 +382,7 @@ beside this page. A field reached by no instruction in that table says so.
 | `+0x540` | `u32` | panStart | the UI tick `0x0208F570` when the pan started |
 | `+0x544` | `i16` | offsetX | the current square offsets: set at build from the cursor and cell size (`0x0055C5FD`, `0x0055C620`), compared by the pan before it moves (`0x0055B8F4`-`0x0055B917`), written by the pan (`0x0055F21A`, `0x0055F239`) and `0x0055E9E0` (`0x0055EA6C`-`0x0055ED88`) |
 | `+0x546` | `i16` | offsetY |  |
-| `+0x548` | `u32` | effectHandle | the handle `0x003B2D80` returns at build (`0x0055D136`), read and rewritten by the destroy arm's release (`0x0055D1A9`-`0x0055D1BE`) |
+| `+0x548` | `u32` | effectHandle | the handle `0x003B2D80` returns at build (`0x0055D136`), message 20 stops it with `0x003B2AA0` when it is not 0 and zeroes it (`0x0055D1A9`-`0x0055D1BE`) |
 | `+0x54C` | `u16` | squareCount | columns x rows (`0x0055E3CE`); read by the grid helpers `0x0055DEA0` (`0x0055DF15`, `0x0055DF4A`, `0x0055DF76`), `0x0055E090` (`0x0055E0EA`, `0x0055E139`, `0x0055E188`, `0x0055E1CE`) and `0x0055E3F0` (`0x0055E475`, `0x0055E4CC`, `0x0055E524`, `0x0055E575`) |
 | `+0x54E` | `i8` | defaultCol | the cursor's default square, the centre, written with `+0x550` (`0x0055E7CE`, `0x0055E7E8`; also `0x0055E620`, `0x0055E812`, `0x0055E9A5`); read at `0x0055ED19`, `0x0055ED23` |
 | `+0x54F` | `i8` | defaultRow |  |
@@ -402,7 +402,7 @@ beside this page. A field reached by no instruction in that table says so.
 | `+0x55D` | `u8` | pane | the current detail pane 0-3, cycled by the rebuild (`0x0055DBF7`-`0x0055DC0F`) and the announce arm (`0x0055D8BA`-`0x0055D8C5`), indexing the panes at `0x0055FB59` |
 | `+0x55E` | `u8` | stage | the purchase stage 0-4 (Obtaining a license) |
 | `+0x55F` | `u8` | gap55F | reached by no instruction in the table |
-| `+0x560` | `u16` | stageFrames | the stage's countdown: `0x10` when the pan ends, `0x45` for the lit square, 0 on the others, decremented each tick (`0x0055F5F2`-`0x0055F6ED`) |
+| `+0x560` | `u16` | stageFrames | the stage's countdown: `0x10` when the purchase starts (`0x0055DAC9`) and when the pan ends (`0x0055F6ED`), `0x18` with stage 3 at `0x0055D947`, 0 at `0x0055D964`, `0x0055F5E6` and `0x0055F65F`, decremented each tick (`0x0055F5F2`-`0x0055F6ED`) |
 | `+0x562` | `u8` | boardByte87 | the board file's byte `+0x87` (`0x0055C029`); read at `0x0055DA99` |
 | `+0x563` | `u8` | effectPhase | 0 idle; 1 when `0x00560070` arms the square effect (`0x0056013A`); 4 when `0x0055F740` arms it (`0x0055F75C`); the mover `0x0055AA00` writes 2 and `0x302` as a word with `+0x564` (`0x0055AAA0`, `0x0055AAF8`) and copies `+0x564` into it (`0x0055AAD9`-`0x0055AAE0`); `0x0055FF90` answers 1 while it is 0 (`0x0055FFA5`) |
 | `+0x564` | `u8` | phase564 | read by the mover (`0x0055AAD9`) and written with `+0x563` as above |

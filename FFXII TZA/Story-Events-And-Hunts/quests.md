@@ -63,8 +63,8 @@ it. The developer verb `0x206C` `debug_clearquestall` does nothing: its handler 
 ### The wrong ordered bit
 
 When `setquestclear` sets a cleared bit it also means to clear the quest's ordered bit, but it computes the byte
-and bit again from the bit position, `q & 7`, instead of from *q* (`0x0046B2EF`-`0x0046B316`). The byte is therefore
-always the first, and the bit value `1 << (q & 7)`: clearing quest 13 clears the ordered bit of quest 5, and the
+and bit again from the bit position, `q % 8`, instead of from *q* (`0x0046B2EF`-`0x0046B316`). The byte is therefore
+always the first, and the bit value `1 << (q % 8)`: clearing quest 13 clears the ordered bit of quest 5, and the
 verb leaves the quest's own bit as it was. Only quests 0-7 have their own ordered bit cleared by the verb. The
 same happens when a clear arrives through `0x00329E60` kind 5.
 
@@ -152,8 +152,8 @@ The variable id of `rbn_a14`'s hunt clear is 167 or 170 (lines 2614, 2634), both
 
 ## Modding notes
 
-- Clearing a quest from a script also unmarks quest `q & 7` as ordered; a mod that relies on ordered bits above 7
-  should not expect `setquestclear` to clear them.
+- Clearing a quest from a script also unmarks quest `q % 8` as ordered; `setquestclear` does not clear the
+  ordered bit of a quest above 7.
 - The field id written on the first order and the contract word are the same word, so a script that sets the
   contract replaces the recorded field.
 

@@ -185,10 +185,11 @@ The tab strip `0x0027C870` shows one tab per target list the action allows.
    `0x00276A19`-`0x00276A60`).
 2. Bit `0x8` is dropped when target list `0xF` has no row (`0x0027B090`), and bit `0x4` when list `0x1C` has no row left
    after filtering (`0x0027AF80`).
-3. A disabled tab's four corner alphas are set to 0; an enabled tab is placed at `0x0027B290(tabs, mask, i)` and fades
-   in by `0x18` per call.
-4. The strip is centred from its total width `0x0027B120`, and its side nodes 6 and 7 are shown only when two or more
-   tabs are enabled (mask not 1, 2, 4 or 8).
+3. A disabled tab's four corner alphas are set to 0; an enabled tab takes its layout alphas at once
+   (`0x00276A90`-`0x00276AA0`; the add of `0x18` after it is capped at the same bytes, `0x00276AC0`-`0x00276ADC`) and is
+   placed at `0x0027B290(tabs, mask, i)`.
+4. The strip is centred from its total width `0x0027B120`, and its side nodes 6 and 7 are hidden when the mask
+   is 1, 2, 4 or 8 and shown for every other mask, 0 included (`0x00276B4E`-`0x00276B7A`).
 
 The filter skips, for filter 1, rows with flag bit `0x2` and units whose status words hold KO, Stone or bit
 `0x80000000` (`0x00273710`, mask `0x80000003`), and for every filter units whose byte `+0x0A` (`0x002647E0`) has bit `0x4`
@@ -229,7 +230,8 @@ matrix, point)` projects a point and divides by its depth; `0x00272250` turns th
    With bit `0x40000` set the rebuilt rows are stored as they are (`0x0027D9FE`).
 3. Otherwise the rows are filtered (`0x0027BB70`) and ordered. Once bit `0x4000` is set the list keeps its old order
    (`0x002727F0`: rows still present first, in their old order, then the new ones). The first rebuild sets bit `0x4000`,
-   after sorting the rows by distance from the camera `0x02AEDDB0` when bit `0x1000` is set (`0x002729A0`).
+   after sorting the rows by where their units stand across the picture, left to right, when bit `0x1000` is
+   set (`0x002729A0`).
 4. The cursor stays on the same unit, or is clamped to the last row; bits `0x80800` are set when the row count or the
    cursor changed.
 5. With bit `0x8000` set, when the cursor had to move and the list is empty, or, on any rebuild but the first
@@ -237,7 +239,9 @@ matrix, point)` projects a point and divides by its depth; `0x00272250` turns th
    the cursor is another unit, the saved copy of the list and the cursor are put back and bit `0x100000` is set
    (`0x0027DB06`-`0x0027DB55`).
 
-`0x0035BC50` sorts its list `0x1A` at `0x022C83F0` by distance in the same way (`0x00272B40`, `0x0035BD19`).
+The key of each row in `0x002729A0` is the horizontal frame coordinate `0x00249110` gives for the unit's position
+under the camera matrix `0x02AEDDB0` (`0x00272A73`-`0x00272AA0`); no distance is computed. `0x0035BC50` sorts its list
+`0x1A` at `0x022C83F0` by the same coordinate (`0x00272B40`, key at `0x00272BBB`-`0x00272BDC`; called at `0x0035BD19`).
 
 Both sorts end in `0x002748E0(n, rows, ascending)` (`0x00272AC5`, `0x00272C0F`, each passing 1). It orders `n`
 eight-byte rows by their signed dword `+0`: a quicksort with its own stack of ranges leaves ranges of 11
