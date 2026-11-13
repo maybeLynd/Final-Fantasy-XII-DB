@@ -57,7 +57,7 @@ manager's `+0x100` table by `0x00263F80`; a small number is mapped by `0x002EB7A
 
 `0x002FA740`:
 
-1. clears the Libra state byte `0x022BE944`, takes the current field id (`0x003148F0`) and binds the
+1. clears the Libra state dword `0x022BE944`, takes the current field id (`0x003148F0`) and binds the
    table `0x002641B0(0, 0)` to `0x022BE948`; with no table it returns;
 2. for each record `i` below `min(count, 32)`: the record is skipped when its flag id (`+0x04`)
    is not `0xFF` and that flag is set (`0x0032AA60`); otherwise it rolls `0x00379CD0() % 100`, and
@@ -232,7 +232,7 @@ Libra reveals the live traps. `0x002F82F0`, run from the world tick's per-slot p
 (`0x0030C34A`-`0x0030C360`), then returns 1 at the first that carries the bit (`0x0030C38A`, `0x0030C3B3`) and 0 when no
 stored member does (`0x0030C398`).
 
-On the change from no Libra to Libra the byte `0x022BE944` becomes 1 and every live trap's marker gets mode 1
+On the change from no Libra to Libra the dword `0x022BE944` becomes 1 and every live trap's marker gets mode 1
 (`0x003EC700(i, 1)`); on the change back it becomes 0 and the markers get mode 2.
 
 The pass does nothing while no trap table is bound (`0x022BE948` null, `0x002F82FE`), so the byte then keeps
@@ -410,7 +410,7 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
 | Address | Kind | Role |
 |---|---|---|
 | `0x022BE948` | ptr | the bound trap table of manager 0 (`0x002FA740` sets, `0x002FAEC0` clears) |
-| `0x022BE944` | u8 | the Libra marker state the pre-pass toggles |
+| `0x022BE944` | u32 | the Libra marker state the pre-pass toggles |
 | `0x02EC3EA0`-`0x02EC3ECB` | struct | the ring of three `{field, mask}` entries, write index and count |
 | `0x02B5EC94` | i32 | the marker resource `settrapresource` loaded |
 | `0x02B5EA20` | ptr[32] | the puppet table `0x003EB720` indexes; the markers use slots 0 to 15 |

@@ -792,8 +792,8 @@ runs `0x003E8690` and clears it:
 
 - `0x003E85B0` sets the animation slot's rate to 0, turns the light's loop off and stops its animation
   (`0x0037A310`, `0x0037A130`, or `0x003E8A10` and `0x003E8A40` through the aux table), starts the effect
-  channel (`0x0026FAD0`) and clears its flag (`0x002700F0(channel, 0)`), and sets bit `0x4` of the sound
-  emitter's flag byte (`0x00363AD0(id, 1)`);
+  channel (`0x0026FAD0`) and clears its flag (`0x002700F0(channel, 0)`), and sets bit `0x10` of the sound
+  emitter's flag byte `+8` (`0x00363AD0(id, 1)`, `0x00363AE2`-`0x00363AEC`);
 - `0x003E8690` sets the rate to 1.0, resets, turns on and restarts the light (`0x0037A270`, `0x0037B190`,
   `0x0037A1D0`, `0x0037A310`), sets the channel's flags (`0x002700F0`, `0x00270130`) and starts it, and
   clears the emitter's bit `0x4`.

@@ -298,31 +298,31 @@ zone	map_name	region	script	function	entry	row	id	name	kind	group_chosen_by	prim
 177	The Fog Mutters	Nabreus Deadlands	bog_b/bog_b03/global/bog_b03.ebp	monster_04	entry01	2	0x0102	Dead Bones	foe	a bank-return selector, the automatic selector	The Barheim Passage (Dead Bones)	-	-	-
 177	The Fog Mutters	Nabreus Deadlands	bog_b/bog_b03/global/bog_b03.ebp	monster_05	entry01	2	0x0102	Dead Bones	foe	a bank-return selector, the automatic selector	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	NM_ロビー	entry00	11	0x010B	Roblon	hunt mark	a constant	Marks (Roblon)	Adding Insult to Injury	-	-
-178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_00	entry00	2	0x0102	Dead Bones	foe	a bank-return selector, a constant	The Barheim Passage (Dead Bones)	-	-	-
+178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_00	entry00	2	0x0102	Dead Bones	foe	a bank-return selector	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_00	entry01	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_00	entry02	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_00	entry03	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_00	entry04	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_00	entry05	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
-178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_01	entry00	2	0x0102	Dead Bones	foe	a bank-return selector, a constant	The Barheim Passage (Dead Bones)	-	-	-
+178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_01	entry00	2	0x0102	Dead Bones	foe	a bank-return selector	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_01	entry01	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_01	entry02	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_01	entry03	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_01	entry04	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_01	entry05	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
-178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_02	entry00	2	0x0102	Dead Bones	foe	a bank-return selector, a constant	The Barheim Passage (Dead Bones)	-	-	-
+178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_02	entry00	2	0x0102	Dead Bones	foe	a bank-return selector	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_02	entry01	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_02	entry02	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_02	entry03	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_02	entry04	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_02	entry05	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
-178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_03	entry00	2	0x0102	Dead Bones	foe	a bank-return selector, a constant	The Barheim Passage (Dead Bones)	-	-	-
+178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_03	entry00	2	0x0102	Dead Bones	foe	a bank-return selector	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_03	entry01	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_03	entry02	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_03	entry03	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_03	entry04	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_03	entry05	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
-178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_04	entry00	2	0x0102	Dead Bones	foe	a bank-return selector, a constant	The Barheim Passage (Dead Bones)	-	-	-
+178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_04	entry00	2	0x0102	Dead Bones	foe	a bank-return selector	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_04	entry01	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_04	entry02	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
 178	Overlooking Eternity	Nabreus Deadlands	bog_b/bog_b04/global/bog_b04.ebp	monster_04	entry03	2	0x0102	Dead Bones	foe	a bank-return selector, the script's loop register	The Barheim Passage (Dead Bones)	-	-	-
@@ -1987,35 +1987,35 @@ zone	map_name	region	script	function	entry	row	id	name	kind	group_chosen_by	prim
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	monster_04	entry00	1	0x0101	Coeurl	foe	a bank-return selector	Tchita Uplands (Coeurl)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	monster_04	entry01	2	0x0102	Diresaur	foe	a bank-return selector, the automatic selector	Golmore Jungle (Diresaur)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	monster_04	entry02	0	0x0100	Hellhound	foe	a bank-return selector, the automatic selector	Golmore Jungle (Hellhound)	-	-	-
-453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_00	entry00	3	0x0103	Dark Skeleton	foe	a bank-return selector, a constant	Paramina Rift (Dark Skeleton)	-	-	-
+453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_00	entry00	3	0x0103	Dark Skeleton	foe	a bank-return selector	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_00	entry01	3	0x0103	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_00	entry02	3	0x0103	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_00	entry03	3	0x0103	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_00	entry04	3	0x0103	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_00	entry05	3	0x0103	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_00	entry06	3	0x0103	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
-453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_01	entry00	3	0x0103	Dark Skeleton	foe	a bank-return selector, a constant	Paramina Rift (Dark Skeleton)	-	-	-
+453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_01	entry00	3	0x0103	Dark Skeleton	foe	a bank-return selector	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_01	entry01	4	0x0104	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_01	entry02	4	0x0104	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_01	entry03	4	0x0104	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_01	entry04	4	0x0104	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_01	entry05	4	0x0104	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_01	entry06	4	0x0104	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
-453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_02	entry00	4	0x0104	Dark Skeleton	foe	a bank-return selector, a constant	Paramina Rift (Dark Skeleton)	-	-	-
+453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_02	entry00	4	0x0104	Dark Skeleton	foe	a bank-return selector	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_02	entry01	3	0x0103	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_02	entry02	3	0x0103	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_02	entry03	3	0x0103	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_02	entry04	3	0x0103	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_02	entry05	3	0x0103	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_02	entry06	3	0x0103	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
-453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_03	entry00	3	0x0103	Dark Skeleton	foe	a bank-return selector, a constant	Paramina Rift (Dark Skeleton)	-	-	-
+453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_03	entry00	3	0x0103	Dark Skeleton	foe	a bank-return selector	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_03	entry01	4	0x0104	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_03	entry02	4	0x0104	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_03	entry03	4	0x0104	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_03	entry04	4	0x0104	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_03	entry05	4	0x0104	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_03	entry06	4	0x0104	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
-453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_04	entry00	3	0x0103	Dark Skeleton	foe	a bank-return selector, a constant	Paramina Rift (Dark Skeleton)	-	-	-
+453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_04	entry00	3	0x0103	Dark Skeleton	foe	a bank-return selector	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_04	entry01	3	0x0103	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_04	entry02	3	0x0103	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
 453	The Rustling Chapel	Golmore Jungle	gol_b/gol_b01/global/gol_b01.ebp	nm_triger_04	entry03	3	0x0103	Dark Skeleton	foe	a bank-return selector, the script's loop register	Paramina Rift (Dark Skeleton)	-	-	-
@@ -2484,22 +2484,22 @@ zone	map_name	region	script	function	entry	row	id	name	kind	group_chosen_by	prim
 365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	lot_02	entry01	1	0x0101	Headless	foe	the automatic selector, the selection kept for the lane	The Lhusu Mines (Headless)	-	-	-
 365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	lot_03	entry00	2	0x0102	Dullahan	foe	a constant, the selection kept for the lane	The Lhusu Mines (Dullahan)	-	-	-
 365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	lot_03	entry01	1	0x0101	Headless	foe	the automatic selector, the selection kept for the lane	The Lhusu Mines (Headless)	-	-	-
-365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_00	entry00	0	0x0100	Skull Defender	foe	a bank-return selector, a constant	The Barheim Passage (Skull Defender)	-	-	-
+365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_00	entry00	0	0x0100	Skull Defender	foe	a bank-return selector	The Barheim Passage (Skull Defender)	-	-	-
 365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_00	entry01	0	0x0100	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
 365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_00	entry02	0	0x0100	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
 365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_00	entry03	0	0x0100	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
-365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_01	entry00	5	0x0105	Skeleton	foe	a bank-return selector, a constant	The Barheim Passage (Skeleton)	-	-	-
+365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_01	entry00	5	0x0105	Skeleton	foe	a bank-return selector	The Barheim Passage (Skeleton)	-	-	-
 365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_01	entry01	5	0x0105	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_01	entry02	5	0x0105	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_01	entry03	5	0x0105	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
-365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_02	entry00	0	0x0100	Skull Defender	foe	a bank-return selector, a constant	The Barheim Passage (Skull Defender)	-	-	-
+365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_02	entry00	0	0x0100	Skull Defender	foe	a bank-return selector	The Barheim Passage (Skull Defender)	-	-	-
 365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_02	entry01	0	0x0100	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
 365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_02	entry02	0	0x0100	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
 365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_02	entry03	0	0x0100	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
-365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_03	entry00	5	0x0105	Skeleton	foe	a bank-return selector, a constant	The Barheim Passage (Skeleton)	-	-	-
+365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_03	entry00	5	0x0105	Skeleton	foe	a bank-return selector	The Barheim Passage (Skeleton)	-	-	-
 365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_03	entry01	5	0x0105	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_03	entry02	5	0x0105	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
-365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_04	entry00	0	0x0100	Skull Defender	foe	a bank-return selector, a constant	The Barheim Passage (Skull Defender)	-	-	-
+365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_04	entry00	0	0x0100	Skull Defender	foe	a bank-return selector	The Barheim Passage (Skull Defender)	-	-	-
 365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_04	entry01	0	0x0100	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
 365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_04	entry02	0	0x0100	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
 365	Shunia Twinspan	Lhusu Mines	lus_b/lus_b01/global/lus_b01.ebp	monster_06	entry00	3	0x0103	Bug	foe	a bank-return selector	The Lhusu Mines (Bug)	-	-	-
@@ -2688,15 +2688,15 @@ zone	map_name	region	script	function	entry	row	id	name	kind	group_chosen_by	prim
 934	Shunia Twinspan	Lhusu Mines	lus_g/lus_g02/global/lus_g02.ebp	BOSS_モナ一味A	entry00	3	0x0103	Bwagi	story boss	a bank-return selector, a constant	-	-	BOSS_バッガモナン	-
 934	Shunia Twinspan	Lhusu Mines	lus_g/lus_g02/global/lus_g02.ebp	BOSS_モナ一味B	entry00	4	0x0104	Gijuk	story boss	a bank-return selector, a constant	-	-	BOSS_バッガモナン	-
 934	Shunia Twinspan	Lhusu Mines	lus_g/lus_g02/global/lus_g02.ebp	BOSS_モナ一味C	entry00	5	0x0105	Rinok	story boss	a bank-return selector, a constant	-	-	BOSS_バッガモナン	-
-934	Shunia Twinspan	Lhusu Mines	lus_g/lus_g02/global/lus_g02.ebp	monster_00	entry00	0	0x0100	Skull Defender	foe	a bank-return selector, a constant	The Barheim Passage (Skull Defender)	-	-	-
+934	Shunia Twinspan	Lhusu Mines	lus_g/lus_g02/global/lus_g02.ebp	monster_00	entry00	0	0x0100	Skull Defender	foe	a bank-return selector	The Barheim Passage (Skull Defender)	-	-	-
 934	Shunia Twinspan	Lhusu Mines	lus_g/lus_g02/global/lus_g02.ebp	monster_00	entry01	0	0x0100	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
 934	Shunia Twinspan	Lhusu Mines	lus_g/lus_g02/global/lus_g02.ebp	monster_00	entry02	0	0x0100	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
 934	Shunia Twinspan	Lhusu Mines	lus_g/lus_g02/global/lus_g02.ebp	monster_00	entry03	0	0x0100	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
-934	Shunia Twinspan	Lhusu Mines	lus_g/lus_g02/global/lus_g02.ebp	monster_01	entry00	0	0x0100	Skull Defender	foe	a bank-return selector, a constant	The Barheim Passage (Skull Defender)	-	-	-
+934	Shunia Twinspan	Lhusu Mines	lus_g/lus_g02/global/lus_g02.ebp	monster_01	entry00	0	0x0100	Skull Defender	foe	a bank-return selector	The Barheim Passage (Skull Defender)	-	-	-
 934	Shunia Twinspan	Lhusu Mines	lus_g/lus_g02/global/lus_g02.ebp	monster_01	entry01	0	0x0100	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
 934	Shunia Twinspan	Lhusu Mines	lus_g/lus_g02/global/lus_g02.ebp	monster_01	entry02	0	0x0100	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
 934	Shunia Twinspan	Lhusu Mines	lus_g/lus_g02/global/lus_g02.ebp	monster_01	entry03	0	0x0100	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
-934	Shunia Twinspan	Lhusu Mines	lus_g/lus_g02/global/lus_g02.ebp	monster_02	entry00	0	0x0100	Skull Defender	foe	a bank-return selector, a constant	The Barheim Passage (Skull Defender)	-	-	-
+934	Shunia Twinspan	Lhusu Mines	lus_g/lus_g02/global/lus_g02.ebp	monster_02	entry00	0	0x0100	Skull Defender	foe	a bank-return selector	The Barheim Passage (Skull Defender)	-	-	-
 934	Shunia Twinspan	Lhusu Mines	lus_g/lus_g02/global/lus_g02.ebp	monster_02	entry01	0	0x0100	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
 934	Shunia Twinspan	Lhusu Mines	lus_g/lus_g02/global/lus_g02.ebp	monster_02	entry02	0	0x0100	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
 935	Transitway 1	Lhusu Mines	lus_g/lus_g03/global/lus_g03.ebp	BOSS_バッガモナン	entry00	2	0x0102	Ba'Gamnan	story boss	a bank-return selector, a constant	-	-	BOSS_バッガモナン	-
@@ -2913,7 +2913,7 @@ zone	map_name	region	script	function	entry	row	id	name	kind	group_chosen_by	prim
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_00	entry04	3	0x0103	Tiny Mimic	foe	a bank-return selector, the automatic selector	The Barheim Passage (Tiny Mimic)	-	-	-
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_00	entry05	3	0x0103	Tiny Mimic	foe	a bank-return selector, the automatic selector	The Barheim Passage (Tiny Mimic)	-	-	-
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_00	entry06	3	0x0103	Tiny Mimic	foe	a bank-return selector, the automatic selector	The Barheim Passage (Tiny Mimic)	-	-	-
-54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_01	entry00	5	0x0105	Zombie	foe	a bank-return selector, a constant	The Barheim Passage (Zombie)	-	-	-
+54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_01	entry00	5	0x0105	Zombie	foe	a bank-return selector	The Barheim Passage (Zombie)	-	-	-
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_01	entry01	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_01	entry02	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_01	entry03	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
@@ -2928,7 +2928,7 @@ zone	map_name	region	script	function	entry	row	id	name	kind	group_chosen_by	prim
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_01	entry12	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_01	entry13	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_01	entry14	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
-54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_02	entry00	5	0x0105	Zombie	foe	a bank-return selector, a constant	The Barheim Passage (Zombie)	-	-	-
+54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_02	entry00	5	0x0105	Zombie	foe	a bank-return selector	The Barheim Passage (Zombie)	-	-	-
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_02	entry01	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_02	entry02	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_02	entry03	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
@@ -2943,7 +2943,7 @@ zone	map_name	region	script	function	entry	row	id	name	kind	group_chosen_by	prim
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_02	entry12	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_02	entry13	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_02	entry14	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
-54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_03	entry00	7	0x0107	Specter	foe	a bank-return selector, a constant	The Barheim Passage (Specter)	-	-	-
+54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_03	entry00	7	0x0107	Specter	foe	a bank-return selector	The Barheim Passage (Specter)	-	-	-
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_03	entry01	7	0x0107	Specter	foe	a bank-return selector, the script's loop register	The Barheim Passage (Specter)	-	-	-
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_03	entry02	7	0x0107	Specter	foe	a bank-return selector, the script's loop register	The Barheim Passage (Specter)	-	-	-
 54	Great Eastern Passage	Barheim Passage	mic_a/mic_a02/global/mic_a02.ebp	unique_03	entry03	7	0x0107	Specter	foe	a bank-return selector, the script's loop register	The Barheim Passage (Specter)	-	-	-
@@ -2965,38 +2965,38 @@ zone	map_name	region	script	function	entry	row	id	name	kind	group_chosen_by	prim
 55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_01	entry00	3	0x0103	Tiny Mimic	foe	a bank-return selector, a constant	The Barheim Passage (Tiny Mimic)	-	-	-
 55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_02	entry00	8	0x0108	Bomb	foe	a bank-return selector, a constant	The Barheim Passage (Bomb)	-	-	-
 55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_03	entry00	8	0x0108	Bomb	foe	a bank-return selector, a constant	The Barheim Passage (Bomb)	-	-	-
-55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_04	entry00	6	0x0106	Skeleton	foe	a bank-return selector, a constant	The Barheim Passage (Skeleton)	-	-	-
+55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_04	entry00	6	0x0106	Skeleton	foe	a bank-return selector	The Barheim Passage (Skeleton)	-	-	-
 55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_04	entry01	6	0x0106	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_04	entry02	6	0x0106	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_04	entry03	6	0x0106	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
-55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_05	entry00	6	0x0106	Skeleton	foe	a bank-return selector, a constant	The Barheim Passage (Skeleton)	-	-	-
+55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_05	entry00	6	0x0106	Skeleton	foe	a bank-return selector	The Barheim Passage (Skeleton)	-	-	-
 55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_05	entry01	6	0x0106	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_05	entry02	6	0x0106	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_05	entry03	6	0x0106	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
-55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_06	entry00	7	0x0107	Specter	foe	a bank-return selector, a constant	The Barheim Passage (Specter)	-	-	-
+55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_06	entry00	7	0x0107	Specter	foe	a bank-return selector	The Barheim Passage (Specter)	-	-	-
 55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_06	entry01	7	0x0107	Specter	foe	a bank-return selector, the script's loop register	The Barheim Passage (Specter)	-	-	-
 55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_06	entry02	7	0x0107	Specter	foe	a bank-return selector, the script's loop register	The Barheim Passage (Specter)	-	-	-
 55	Op Sector 36	Barheim Passage	mic_a/mic_a03/global/mic_a03.ebp	unique_06	entry03	7	0x0107	Specter	foe	a bank-return selector, the script's loop register	The Barheim Passage (Specter)	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	Ｂミミック11A	entry00	0	0x0100	Battery Mimic	foe	a bank-return selector, a constant	-	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	Ｂミミック12A	entry00	0	0x0100	Battery Mimic	foe	a bank-return selector, a constant	-	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	raise_00	entry00	7	0x0107	Specter	foe	a bank-return selector, a constant	The Barheim Passage (Specter)	-	-	-
-56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_00	entry00	4	0x0104	Flan	foe	a bank-return selector, a constant	The Barheim Passage (Flan)	-	-	-
+56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_00	entry00	4	0x0104	Flan	foe	a bank-return selector	The Barheim Passage (Flan)	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_00	entry01	4	0x0104	Flan	foe	a bank-return selector, the script's loop register	The Barheim Passage (Flan)	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_00	entry02	4	0x0104	Flan	foe	a bank-return selector, the script's loop register	The Barheim Passage (Flan)	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_00	entry03	4	0x0104	Flan	foe	a bank-return selector, the script's loop register	The Barheim Passage (Flan)	-	-	-
-56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_01	entry00	4	0x0104	Flan	foe	a bank-return selector, a constant	The Barheim Passage (Flan)	-	-	-
+56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_01	entry00	4	0x0104	Flan	foe	a bank-return selector	The Barheim Passage (Flan)	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_01	entry01	4	0x0104	Flan	foe	a bank-return selector, the script's loop register	The Barheim Passage (Flan)	-	-	-
-56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_02	entry00	5	0x0105	Zombie	foe	a bank-return selector, a constant	The Barheim Passage (Zombie)	-	-	-
+56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_02	entry00	5	0x0105	Zombie	foe	a bank-return selector	The Barheim Passage (Zombie)	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_02	entry01	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_02	entry02	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_02	entry03	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_02	entry04	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
-56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_03	entry00	5	0x0105	Zombie	foe	a bank-return selector, a constant	The Barheim Passage (Zombie)	-	-	-
+56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_03	entry00	5	0x0105	Zombie	foe	a bank-return selector	The Barheim Passage (Zombie)	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_03	entry01	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_03	entry02	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_03	entry03	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_03	entry04	5	0x0105	Zombie	foe	a bank-return selector, the script's loop register	The Barheim Passage (Zombie)	-	-	-
-56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_04	entry00	7	0x0107	Specter	foe	a bank-return selector, a constant	The Barheim Passage (Specter)	-	-	-
+56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_04	entry00	7	0x0107	Specter	foe	a bank-return selector	The Barheim Passage (Specter)	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_04	entry01	7	0x0107	Specter	foe	a bank-return selector, the script's loop register	The Barheim Passage (Specter)	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_04	entry02	7	0x0107	Specter	foe	a bank-return selector, the script's loop register	The Barheim Passage (Specter)	-	-	-
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_04	entry03	7	0x0107	Specter	foe	a bank-return selector, the script's loop register	The Barheim Passage (Specter)	-	-	-
@@ -3007,29 +3007,29 @@ zone	map_name	region	script	function	entry	row	id	name	kind	group_chosen_by	prim
 56	Special Op Sector 3	Barheim Passage	mic_a/mic_a04/global/mic_a04.ebp	unique_06	entry01	8	0x0108	Bomb	foe	a bank-return selector, the automatic selector	The Barheim Passage (Bomb)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	Ｂミミック11A	entry00	0	0x0100	Battery Mimic	foe	a bank-return selector, a constant	-	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	Ｂミミック12A	entry00	0	0x0100	Battery Mimic	foe	a bank-return selector, a constant	-	-	-	-
-57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	monster_00	entry00	4	0x0104	Flan	foe	a bank-return selector, a constant	The Barheim Passage (Flan)	-	-	-
+57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	monster_00	entry00	4	0x0104	Flan	foe	a bank-return selector	The Barheim Passage (Flan)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	monster_00	entry01	4	0x0104	Flan	foe	a bank-return selector, the script's loop register	The Barheim Passage (Flan)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	monster_00	entry02	4	0x0104	Flan	foe	a bank-return selector, the script's loop register	The Barheim Passage (Flan)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	monster_00	entry03	4	0x0104	Flan	foe	a bank-return selector, the script's loop register	The Barheim Passage (Flan)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	monster_00	entry04	4	0x0104	Flan	foe	a bank-return selector, the script's loop register	The Barheim Passage (Flan)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	monster_00	entry05	4	0x0104	Flan	foe	a bank-return selector, the script's loop register	The Barheim Passage (Flan)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	monster_00	entry06	4	0x0104	Flan	foe	a bank-return selector, the script's loop register	The Barheim Passage (Flan)	-	-	-
-57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	monster_01	entry00	4	0x0104	Flan	foe	a bank-return selector, a constant	The Barheim Passage (Flan)	-	-	-
+57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	monster_01	entry00	4	0x0104	Flan	foe	a bank-return selector	The Barheim Passage (Flan)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	monster_01	entry01	4	0x0104	Flan	foe	a bank-return selector, the script's loop register	The Barheim Passage (Flan)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	monster_01	entry02	4	0x0104	Flan	foe	a bank-return selector, the script's loop register	The Barheim Passage (Flan)	-	-	-
-57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_00	entry00	6	0x0106	Skeleton	foe	a bank-return selector, a constant	The Barheim Passage (Skeleton)	-	-	-
+57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_00	entry00	6	0x0106	Skeleton	foe	a bank-return selector	The Barheim Passage (Skeleton)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_00	entry01	6	0x0106	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_00	entry02	6	0x0106	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_00	entry03	6	0x0106	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_00	entry04	6	0x0106	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_00	entry05	6	0x0106	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
-57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_01	entry00	6	0x0106	Skeleton	foe	a bank-return selector, a constant	The Barheim Passage (Skeleton)	-	-	-
+57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_01	entry00	6	0x0106	Skeleton	foe	a bank-return selector	The Barheim Passage (Skeleton)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_01	entry01	6	0x0106	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_01	entry02	6	0x0106	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_01	entry03	6	0x0106	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_01	entry04	6	0x0106	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_01	entry05	6	0x0106	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
-57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_02	entry00	9	0x0109	Skull Defender	foe	a bank-return selector, a constant	The Barheim Passage (Skull Defender)	-	-	-
+57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_02	entry00	9	0x0109	Skull Defender	foe	a bank-return selector	The Barheim Passage (Skull Defender)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_02	entry01	9	0x0109	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_02	entry02	9	0x0109	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
 57	Op Sector 37	Barheim Passage	mic_a/mic_a05/global/mic_a05.ebp	unique_02	entry03	9	0x0109	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
@@ -3048,12 +3048,12 @@ zone	map_name	region	script	function	entry	row	id	name	kind	group_chosen_by	prim
 61	Great Central Passage	Barheim Passage	mic_b/mic_b01/global/mic_b01.ebp	unique_00	entry00	1	0x0101	Mimic	foe	a bank-return selector, a constant	The Barheim Passage (Mimic)	-	-	-
 61	Great Central Passage	Barheim Passage	mic_b/mic_b01/global/mic_b01.ebp	unique_01	entry00	1	0x0101	Mimic	foe	a bank-return selector, a constant	The Barheim Passage (Mimic)	-	-	-
 61	Great Central Passage	Barheim Passage	mic_b/mic_b01/global/mic_b01.ebp	unique_02	entry00	1	0x0101	Mimic	foe	a bank-return selector, a constant	The Barheim Passage (Mimic)	-	-	-
-61	Great Central Passage	Barheim Passage	mic_b/mic_b01/global/mic_b01.ebp	unique_03	entry00	2	0x0102	Skeleton	foe	a bank-return selector, a constant	The Barheim Passage (Skeleton)	-	-	-
+61	Great Central Passage	Barheim Passage	mic_b/mic_b01/global/mic_b01.ebp	unique_03	entry00	2	0x0102	Skeleton	foe	a bank-return selector	The Barheim Passage (Skeleton)	-	-	-
 61	Great Central Passage	Barheim Passage	mic_b/mic_b01/global/mic_b01.ebp	unique_03	entry01	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 61	Great Central Passage	Barheim Passage	mic_b/mic_b01/global/mic_b01.ebp	unique_03	entry02	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 61	Great Central Passage	Barheim Passage	mic_b/mic_b01/global/mic_b01.ebp	unique_03	entry03	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 61	Great Central Passage	Barheim Passage	mic_b/mic_b01/global/mic_b01.ebp	unique_03	entry04	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
-61	Great Central Passage	Barheim Passage	mic_b/mic_b01/global/mic_b01.ebp	unique_04	entry00	2	0x0102	Skeleton	foe	a bank-return selector, a constant	The Barheim Passage (Skeleton)	-	-	-
+61	Great Central Passage	Barheim Passage	mic_b/mic_b01/global/mic_b01.ebp	unique_04	entry00	2	0x0102	Skeleton	foe	a bank-return selector	The Barheim Passage (Skeleton)	-	-	-
 61	Great Central Passage	Barheim Passage	mic_b/mic_b01/global/mic_b01.ebp	unique_04	entry01	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 61	Great Central Passage	Barheim Passage	mic_b/mic_b01/global/mic_b01.ebp	unique_04	entry02	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 61	Great Central Passage	Barheim Passage	mic_b/mic_b01/global/mic_b01.ebp	unique_04	entry03	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
@@ -3065,7 +3065,7 @@ zone	map_name	region	script	function	entry	row	id	name	kind	group_chosen_by	prim
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	Ｂミミック11A	entry00	0	0x0100	Battery Mimic	foe	a bank-return selector, a constant	The Barheim Passage (Battery Mimic)	-	-	-
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	Ｂミミック12A	entry00	0	0x0100	Battery Mimic	foe	a bank-return selector, a constant	The Barheim Passage (Battery Mimic)	-	-	-
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	Ｂミミック13A	entry00	0	0x0100	Battery Mimic	foe	a bank-return selector, a constant	The Barheim Passage (Battery Mimic)	-	-	-
-62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_00	entry00	2	0x0102	Skeleton	foe	a bank-return selector, a constant	The Barheim Passage (Skeleton)	-	-	-
+62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_00	entry00	2	0x0102	Skeleton	foe	a bank-return selector	The Barheim Passage (Skeleton)	-	-	-
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_00	entry01	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_00	entry02	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_00	entry03	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
@@ -3077,7 +3077,7 @@ zone	map_name	region	script	function	entry	row	id	name	kind	group_chosen_by	prim
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_00	entry09	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_00	entry10	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_00	entry11	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
-62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_01	entry00	2	0x0102	Skeleton	foe	a bank-return selector, a constant	The Barheim Passage (Skeleton)	-	-	-
+62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_01	entry00	2	0x0102	Skeleton	foe	a bank-return selector	The Barheim Passage (Skeleton)	-	-	-
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_01	entry01	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_01	entry02	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_01	entry03	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
@@ -3089,7 +3089,7 @@ zone	map_name	region	script	function	entry	row	id	name	kind	group_chosen_by	prim
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_01	entry09	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_01	entry10	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_01	entry11	2	0x0102	Skeleton	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skeleton)	-	-	-
-62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_02	entry00	5	0x0105	Skull Defender	foe	a bank-return selector, a constant	The Barheim Passage (Skull Defender)	-	-	-
+62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_02	entry00	5	0x0105	Skull Defender	foe	a bank-return selector	The Barheim Passage (Skull Defender)	-	-	-
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_02	entry01	5	0x0105	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_02	entry02	5	0x0105	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
 62	The Zeviah Subterrane	Barheim Passage	mic_b/mic_b02/global/mic_b02.ebp	unique_02	entry03	5	0x0105	Skull Defender	foe	a bank-return selector, the script's loop register	The Barheim Passage (Skull Defender)	-	-	-
@@ -3383,42 +3383,42 @@ zone	map_name	region	script	function	entry	row	id	name	kind	group_chosen_by	prim
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_05	entry00	0	0x0100	Balloon	foe	a bank-return selector	The Stilshrine of Miriam (Balloon)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_05	entry01	0	0x0100	Balloon	foe	a bank-return selector, the automatic selector	The Stilshrine of Miriam (Balloon)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_05	entry02	0	0x0100	Balloon	foe	a bank-return selector, the automatic selector	The Stilshrine of Miriam (Balloon)	-	-	-
-600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_06	entry00	1	0x0101	Zombie Warrior	foe	a bank-return selector, a constant	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
+600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_06	entry00	1	0x0101	Zombie Warrior	foe	a bank-return selector	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_06	entry01	1	0x0101	Zombie Warrior	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_06	entry02	10	0x010A	Ghoul	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Ghoul)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_06	entry03	1	0x0101	Zombie Warrior	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_06	entry04	1	0x0101	Zombie Warrior	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_06	entry05	11	0x010B	Ghast	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Ghast)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_06	entry06	11	0x010B	Ghast	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Ghast)	-	-	-
-600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_07	entry00	1	0x0101	Zombie Warrior	foe	a bank-return selector, a constant	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
+600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_07	entry00	1	0x0101	Zombie Warrior	foe	a bank-return selector	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_07	entry01	1	0x0101	Zombie Warrior	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_07	entry02	1	0x0101	Zombie Warrior	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_07	entry03	1	0x0101	Zombie Warrior	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_07	entry04	1	0x0101	Zombie Warrior	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_07	entry05	10	0x010A	Ghoul	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Ghoul)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_07	entry06	11	0x010B	Ghast	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Ghast)	-	-	-
-600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_08	entry00	10	0x010A	Ghoul	foe	a bank-return selector, a constant	The Stilshrine of Miriam (Ghoul)	-	-	-
+600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_08	entry00	10	0x010A	Ghoul	foe	a bank-return selector	The Stilshrine of Miriam (Ghoul)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_08	entry01	10	0x010A	Ghoul	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Ghoul)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_08	entry02	1	0x0101	Zombie Warrior	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_08	entry03	1	0x0101	Zombie Warrior	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_08	entry04	10	0x010A	Ghoul	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Ghoul)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_08	entry05	1	0x0101	Zombie Warrior	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_08	entry06	11	0x010B	Ghast	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Ghast)	-	-	-
-600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_09	entry00	10	0x010A	Ghoul	foe	a bank-return selector, a constant	The Stilshrine of Miriam (Ghoul)	-	-	-
+600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_09	entry00	10	0x010A	Ghoul	foe	a bank-return selector	The Stilshrine of Miriam (Ghoul)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_09	entry01	10	0x010A	Ghoul	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Ghoul)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_09	entry02	10	0x010A	Ghoul	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Ghoul)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_09	entry03	1	0x0101	Zombie Warrior	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_09	entry04	10	0x010A	Ghoul	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Ghoul)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_09	entry05	1	0x0101	Zombie Warrior	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_09	entry06	1	0x0101	Zombie Warrior	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
-600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_10	entry00	1	0x0101	Zombie Warrior	foe	a bank-return selector, a constant	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
+600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_10	entry00	1	0x0101	Zombie Warrior	foe	a bank-return selector	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_10	entry01	1	0x0101	Zombie Warrior	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_10	entry02	10	0x010A	Ghoul	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Ghoul)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_10	entry03	10	0x010A	Ghoul	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Ghoul)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_10	entry04	10	0x010A	Ghoul	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Ghoul)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_10	entry05	11	0x010B	Ghast	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Ghast)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_10	entry06	10	0x010A	Ghoul	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Ghoul)	-	-	-
-600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_11	entry00	1	0x0101	Zombie Warrior	foe	a bank-return selector, a constant	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
+600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_11	entry00	1	0x0101	Zombie Warrior	foe	a bank-return selector	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_11	entry01	1	0x0101	Zombie Warrior	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_11	entry02	1	0x0101	Zombie Warrior	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Zombie Warrior)	-	-	-
 600	Walk of Reason	Stilshrine of Miriam	mrm_b/mrm_b04/global/mrm_b04.ebp	monster_11	entry03	11	0x010B	Ghast	foe	a bank-return selector, the script's loop register	The Stilshrine of Miriam (Ghast)	-	-	-
@@ -3613,7 +3613,7 @@ zone	map_name	region	script	function	entry	row	id	name	kind	group_chosen_by	prim
 527	Haulo Green	Ozmone Plain	ozm_a/ozm_a03/global/ozm_a03.ebp	npc_battle_00	entry00	12	0x010C	Garif Hunter	foe	a bank-return selector, a constant	Humanoids (Garif)	-	-	-
 527	Haulo Green	Ozmone Plain	ozm_a/ozm_a03/global/ozm_a03.ebp	unique_monster_00	entry00	11	0x010B	Sylphi Entite	foe	a constant	Ozmone Plain (Sylphi Entite)	-	-	-
 527	Haulo Green	Ozmone Plain	ozm_a/ozm_a03/global/ozm_a03.ebp	event_garif_00	entry00	13	0x010D	Garif Warrior	foe	a bank-return selector, a constant	Humanoids (Garif)	-	-	-
-527	Haulo Green	Ozmone Plain	ozm_a/ozm_a03/global/ozm_a03.ebp	event_monster_00	entry00	1	0x0101	Viper	foe	a bank-return selector, a constant	Ozmone Plain (Viper)	-	-	-
+527	Haulo Green	Ozmone Plain	ozm_a/ozm_a03/global/ozm_a03.ebp	event_monster_00	entry00	1	0x0101	Viper	foe	a bank-return selector	Ozmone Plain (Viper)	-	-	-
 527	Haulo Green	Ozmone Plain	ozm_a/ozm_a03/global/ozm_a03.ebp	event_monster_00	entry01	7	0x0107	Black Chocobo	foe	a bank-return selector, the script's loop register	Ozmone Plain (Chocobo)	-	-	-
 527	Haulo Green	Ozmone Plain	ozm_a/ozm_a03/global/ozm_a03.ebp	event_monster_00	entry02	0	0x0100	Mesmenir	foe	a bank-return selector, the script's loop register	Ozmone Plain (Mesmenir)	-	-	-
 527	Haulo Green	Ozmone Plain	ozm_a/ozm_a03/global/ozm_a03.ebp	event_monster_00	entry03	1	0x0101	Viper	foe	a bank-return selector, the script's loop register	Ozmone Plain (Viper)	-	-	-

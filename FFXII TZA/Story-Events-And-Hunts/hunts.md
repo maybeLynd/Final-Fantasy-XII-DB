@@ -37,6 +37,29 @@ The `mark` column joins each mark to its [Bestiary](../Enemy-Spawning/bestiary.m
 
 Seven hunts have no such step. The five steps of 153 carry location 0. The one step of 159, 167, 169, 170, 171 and 172 is labelled Montblanc, Rikken or Whitecap Wench, and the hunt map marks that step's zone. Their marks are the foes their record names; hunt 172's Belito is a ruse, and the foe is Ba'Gamnan.
 
+### The key item a mark leaves
+
+Ten marks leave a key item when they fall. The hunt watcher of the mark's map stores the item's id while the
+mark's battle word is 1, requests the key-item screen, which gives the item, and then writes the hunt's stage.
+[`hunt-key-items.tsv`](hunt-key-items.tsv) lists the ten with the listing lines, the step that later takes the
+item and what the item is used for:
+
+- the Cactus Flower (hunt 130), Broken Key (133), Serpentwyne Must (136) and Errmonea Leaf (137);
+- the Ring of the Toad (138), Rabbit's Tail (141), Viera Rucksack (148) and Rusted Scrap of Armor (149);
+- the Ring of the Light (158) and Stolen Articles (162).
+
+Nine of the ten watchers are actors named `wanted_kansi`; the Cactus Flower's is `花サボ監督` of `dst_a02`. The
+`us` zone scripts hold 35 actors named `wanted_kansi`, and the other 26 store no item.
+
+| Column | Meaning |
+|---|---|
+| `hunt`, `hunt_name` | the quest id and name, as in `hunts.tsv` |
+| `item`, `item_name` | the key item's id and name ([key items](../Items-Equipment-Shops-And-Licenses/key-item-list.md)) |
+| `given` | the watcher's script, the battle word it tests, the lines of the test, the store and the screen request, and the line of the screen's `additemmes` |
+| `hunt_stage` | the stage the watcher then writes with `setquestscenarioflag`, and its line |
+| `taken_by` | the script steps that take the item with `subitem` ([scene rewards](scene-rewards.md)), or `-`; the developer script `evt_t0090` also takes three of them and is left out, as on that page |
+| `used_for` | the item's use, as the key item list gives it |
+
 ### When a bill is posted
 
 The clan boards in The Sandsea (Rabanastre), Jajim Bazaar (Nalbina Town), The Cloudborne (Bhujerba), Hunters' Camp (Phon Coast), The Whitecap (Balfonheim Port) and Granch's Requisites (Archades) run one talk (`掲示板.talk` in `rbn_a16`, `nac_a02`, `byu_a18`, `fon_b01`, `var_a14` and `alc_f04`). It posts hunts 129 to 159 in order: story progress sets how many the board shows, 2 from 105 up to all 31 from 6,100, and each needs its own clan rank. A bill shows while its hunt is neither ordered nor cleared; taking it orders the hunt (`setquestorder(quest, 1)`).

@@ -389,7 +389,7 @@ context's word `+0x9C4` is 2), the blend state at `+0x180` with a zero blend fac
 `0xFFFFFFFF` (`+0x118`) and the depth-stencil state at `+0x178` with the stencil reference byte at
 `+0x188` (`+0x120`). `0x0061D180` applies only the states selected by bits `0x1`, `0x2` and `0x4` of its mask, and
 `0x0061D320` all three without the alternative rasterizer state. `0x00629680(state, value)` stores a
-byte at `+0x20` of a pass state and sets dirty bit `0x1`.
+dword at `+0x20` of a pass state and sets dirty bit `0x1`.
 
 `0x00629C70` calls `0x0061D260(state, holder)` only when `0x0061DE20` returns 0 (`0x00629C8E`). `0x0061D260` reads the render
 context from the pointer its second argument holds (`0x0061D283`) and sets each state only when its pointer is

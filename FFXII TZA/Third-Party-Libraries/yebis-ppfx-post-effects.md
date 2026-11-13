@@ -424,7 +424,7 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0x0D8` | `void*` | effectSourceView | the effect source as a view, set by `0x0070D270` (`0x0070D325`); `0x006FD070` uses it first (`0x006FD076`-`0x006FD085`) |
 | `+0x0E0` | `void*` | effectSourceTexture | the effect source as a texture; `0x006FD070` asks it for a view through its vtable `+0xA0` when `+0xD8` is null (`0x006FD094`-`0x006FD0BF`); cleared by `0x0070D240` and `0x0070D270` |
 | `+0x0E8` | `void*` | effectSourceBuffer | the effect source as a render buffer, set by `0x0070D240` (`0x0070D242`); `0x006FD070` takes its current texture when `+0xD8` and `+0xE0` are null (`0x006FD0CA`-`0x006FD0E8`) |
-| `+0x0F0` | `void*` | ptr0F0 | cleared by the constructor (`0x006FF687`) and Initialize (`0x00704C34`), written by nothing else; read by UpdateParameters_Base (`0x006F786A`) and the internal process (`0x006FB3E1`) |
+| `+0x0F0` | `void*` | ptr0F0 | cleared by the constructor (`0x006FF687`) and Initialize (`0x00704C34`), stored by `0x0070DC90` (`0x0070DD14`); read by UpdateParameters_Base (`0x006F786A`) and the internal process (`0x006FB3E1`) |
 | `+0x0F8` | `u8` | initBit31 | 1 when init flag `0x80000000` was given (`+0x145`, `0x00704C24`-`0x00704C2E`); UpdateParameters_Base tests it (`0x006F7861`) |
 | `+0x100` | `u64` | qword100 | cleared by Initialize (`0x00704D60`); read by no instruction |
 | `+0x108` | `void*` | renderBuffer | m_pRenderBuffer, the `0xA8`-byte render buffer Initialize allocates under that name (`0x00700977`-`0x007009BB`, constructor `0x0075B710`); its texture array (`+0x48`, current index `+0xA0`) holds the slots the `+0x4C8`.. indices name |

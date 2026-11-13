@@ -365,8 +365,9 @@ handle's low byte, flagged in byte `+0x40`; it returns at once when the slot's d
 
 `0x003B5980` measures the distance `d` from the entry's bone (`0x00421FF0`) to the camera position
 `0x02AEDF20` and returns `clamp(1 − (clamp(d, near, far) − near) × k, 0, 1)`, with `near`, `far` and `k`
-at `+0x20`, `+0x24` and `+0x2C` of the model's `@FCP` block (`0x003E6F70`). The 1 and the zero bias inside the
-inner clamp are the cells `0x01EF93FC` (1.0) and `0x01EF93F0` (0.0), which `0x0036D990` sets at boot.
+at `+0x20`, `+0x24` and `+0x2C` of the part of the model's `@FCP` block that the block's word `+0x02` points to
+(`0x003E6F70`, `0x003E56A0`). The 1 and the zero bias inside the inner clamp are the cells `0x01EF93FC` (1.0) and
+`0x01EF93F0` (0.0), which `0x0036D990` sets at boot.
 
 `0x003B5980` itself stores (0, 0, 0, 1.0) into `0x01EF93F0`-`0x01EF93FF` through `0x0036DD80` just before it reads them
 (`0x003B5AD9`), and `0x01EF93FC` also weights each squared component of the distance (`0x003B5ADE`-`0x003B5B33`).

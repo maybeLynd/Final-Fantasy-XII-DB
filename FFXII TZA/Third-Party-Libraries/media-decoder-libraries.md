@@ -505,7 +505,7 @@ One of the player's three frame queues, as the queue functions use it:
 
 | Fact | Value |
 |---|---|
-| libwebm `mkvparser` | `0x007FFBC0` to `0x00808887` and three scattered vtable bodies; 104 functions in [`media-decoder-libraries-libwebm-mkvparser.tsv`](media-decoder-libraries-libwebm-mkvparser.tsv) |
+| libwebm `mkvparser` | `0x007FFBC0` to `0x008087C3` and three scattered vtable bodies; 104 functions in [`media-decoder-libraries-libwebm-mkvparser.tsv`](media-decoder-libraries-libwebm-mkvparser.tsv) |
 | libvpx VP8 decoder | `0x0016DDD0` to `0x0017C88F`; 116 functions in [`media-decoder-libraries-libvpx-vp8-decoder.tsv`](media-decoder-libraries-libvpx-vp8-decoder.tsv), and the four control handlers the function list does not hold (`0x0016EE40`, `0x0016EE80`, `0x0016EFF0`, `0x0016F030`) in [`media-decoder-libraries-libvpx-vp8-control-handlers.tsv`](media-decoder-libraries-libvpx-vp8-control-handlers.tsv) |
 | libvpx kernels | 63 in [`media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv`](media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv), `0x00125740` to `0x00158C09` |
 | libvpx kernels nothing reaches | [`media-decoder-libraries-libvpx-unreferenced-kernels.tsv`](media-decoder-libraries-libvpx-unreferenced-kernels.tsv), entries `0x00125770` to `0x00158C97` |
@@ -522,7 +522,7 @@ One row per function, 104 rows in address order.
 
 | Column | Holds |
 |---|---|
-| `entry` | the function's entry address: 101 from `0x007FFBC0` to `0x00808887` and the three vtable bodies `0x007AD440`, `0x007BD590` and `0x007E3260` |
+| `entry` | the function's entry address: 101 from `0x007FFBC0` to `0x00808770` and the three vtable bodies `0x007AD440`, `0x007BD590` and `0x007E3260` |
 
 ### Columns of media-decoder-libraries-tremor-vorbisfile.tsv
 
@@ -639,13 +639,20 @@ runs its own; the one-time table set-up `0x0016F1F0` runs `0x00172580` and `0x00
 Two decoders index them: the
 predictors `0x00174200` (`0x0017426E`-`0x00174275`) and `0x001742D0` (`0x001743F6`-`0x001743FD`) read the entry at
 `0x02EBA340` and `0x02EBA348` respectively plus 8 times `+0xF10 * 2 + +0xF14 * 4` of the macroblock decoder, both
-flags being 0 or 1, and `0x001790A0`, the subblock predictor, reads the third table through the address it loads at `0x001790DF`. No instruction that names an address reads the first three pairs or an entry of the third table after its first.
+flags being 0 or 1, and `0x001790A0`, the subblock predictor, reads the third table through the address it loads at
+`0x001790DF`.
+
+Each predictor takes that index while its own mode byte is 0: for `0x00174200` byte `+0` of what the macroblock
+decoder's `+0xF00` points to (`0x00174238`, `0x00174254`), for `0x001742D0` byte `+1` (`0x00174317`, `0x001743DC`). With a
+non-zero mode byte m, `0x00174200` reads `[0x02EBA300 + m * 0x10]` (`0x0017427F`-`0x0017428C`) and `0x001742D0` reads
+`[0x02EBA308 + m * 0x10]` (`0x00174407`-`0x00174414`), which for m = 1, 2 and 3 are the first three pairs. No instruction
+that names an address reads an entry of the third table after its first.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02EBA310`, `0x02EBA318` | `void*` | 0 (zero-filled tail of `.data`) | first pair: `0x001491A0`, `0x00149160` | `0x001740A0` (`0x001740A7`, `0x00174109`) | no instruction names them |
-| `0x02EBA320`, `0x02EBA328` | `void*` | 0 (zero-filled tail of `.data`) | second pair: `0x001492B0`, `0x00149260` | `0x001740A0` (`0x001740B5`, `0x00174117`) | no instruction names them |
-| `0x02EBA330`, `0x02EBA338` | `void*` | 0 (zero-filled tail of `.data`) | third pair: `0x00149450`, `0x001493E0` | `0x001740A0` (`0x001740C3`, `0x00174125`) | no instruction names them |
+| `0x02EBA310`, `0x02EBA318` | `void*` | 0 (zero-filled tail of `.data`) | first pair: `0x001491A0`, `0x00149160` | `0x001740A0` (`0x001740A7`, `0x00174109`) | `0x00174200` (`0x0017428C`, `0x02EBA310`, for mode byte 1); `0x001742D0` (`0x00174414`, `0x02EBA318`, for mode byte 1) |
+| `0x02EBA320`, `0x02EBA328` | `void*` | 0 (zero-filled tail of `.data`) | second pair: `0x001492B0`, `0x00149260` | `0x001740A0` (`0x001740B5`, `0x00174117`) | `0x00174200` (`0x0017428C`, `0x02EBA320`, for mode byte 2); `0x001742D0` (`0x00174414`, `0x02EBA328`, for mode byte 2) |
+| `0x02EBA330`, `0x02EBA338` | `void*` | 0 (zero-filled tail of `.data`) | third pair: `0x00149450`, `0x001493E0` | `0x001740A0` (`0x001740C3`, `0x00174125`) | `0x00174200` (`0x0017428C`, `0x02EBA330`, for mode byte 3); `0x001742D0` (`0x00174414`, `0x02EBA338`, for mode byte 3) |
 | `0x02EBA340`, `0x02EBA348` | `void*` | 0 (zero-filled tail of `.data`) | the pair taken when `+0xF10` and `+0xF14` are both 0: `0x00148F10`, `0x00148DA0` | `0x001740A0` (`0x001740D1`, `0x00174133`) | `0x00174200` (`0x00174275`, `0x02EBA340` plus the index); `0x001742D0` (`0x001743FD`, `0x02EBA348` plus the index) |
 | `0x02EBA350`, `0x02EBA358` | `void*` | 0 (zero-filled tail of `.data`) | the pair taken when only `+0xF10` is 1: `0x00148E50`, `0x00148CB0` | `0x001740A0` (`0x001740DF`, `0x00174141`) | the indexed reads at `0x00174275` and `0x001743FD` |
 | `0x02EBA360`, `0x02EBA368` | `void*` | 0 (zero-filled tail of `.data`) | the pair taken when only `+0xF14` is 1: `0x00148EB0`, `0x00148D10` | `0x001740A0` (`0x001740ED`, `0x0017414F`) | the indexed reads at `0x00174275` and `0x001743FD` |

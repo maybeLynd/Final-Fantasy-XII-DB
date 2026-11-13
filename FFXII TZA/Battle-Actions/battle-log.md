@@ -119,6 +119,10 @@ Action `0xB1` with a target present then posts `0x3B` (`0x0046A5FE`-`0x0046A617`
    (`0x0046ABF5` jumps to the exit `0x0046AC6B`),
    and calls `0x005369C0(stats, event, context)` (`0x0046AC00`-`0x0046AC66`).
 
+The row of step 3 is the event's row of the table of `[0x02EBF018]`: `0x0020E600` of its dword `+0xC`, plus the stride
+word `+8` times the event, a 32-bit sum (`0x0046AB72`-`0x0046ABAD`). With `[0x02EBF018]` null or a null `0x0020E600` result
+the row address is 0 (`0x0046AB81`, `0x0046AB8E`, `0x0046ABB1`) and the test at `0x0046ABB3` reads the byte at address 4.
+
 The area initialisation `0x002342F0` empties the ring through `0x0033A380` (`0x00234463`), which calls
 `0x004696A0` (`0x0033A3B0`): every entry's event becomes `0xFFFF`, its tick, stats and word `+0x18` 0,
 and the index `0x02EBB54C` 0 (`0x004696A0`-`0x004697BB`).

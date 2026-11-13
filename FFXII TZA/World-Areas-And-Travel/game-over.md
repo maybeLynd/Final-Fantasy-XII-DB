@@ -374,8 +374,11 @@ bit `0x1`: when all five are 0 it clears bit `0x80` through `0x003601C0(7)`, oth
    `0x00363E40(0)` are map-sound calls ([map sounds](../Sound-And-Music/map-sounds.md)).
 
 The other title byte has one writer: the script verb `softwarereset` (`0x3E2`, handler `0x0034EB20`,
-a jump to `0x003603D0`, which sets `0x022CB72A = 1`). `0x00360370` clears every byte of the block at boot
-(`0x0022A39E` in `0x0022A0B0`). The title screen's own start-up after the teardown belongs to the boot path, outside this page.
+a jump to `0x003603D0`, which sets `0x022CB72A = 1`).
+At boot (`0x0022A39E` in `0x0022A0B0`) `0x00360370`
+zeroes the block's dword `0x022CB720`, bytes `0x022CB726`, `0x022CB727`, `0x022CB72A` and `0x022CB72B` and word `0x022CB728`
+(`0x00360372`-`0x00360391`) and stores `0x5A` in the word `0x022CB724` (`0x00360397`-`0x0036039C`).
+The title screen's own start-up after the teardown belongs to the boot path, outside this page.
 
 ### Nothing is reloaded, and where a load puts the party
 

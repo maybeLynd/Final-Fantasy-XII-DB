@@ -576,8 +576,11 @@ Two more entry points that fetch the manager, `0x0020E540` (from `0x002EF690`) a
 The load lifecycle `0x00582860` creates the slot screen and its panes (message `0xC`, `0x8001`), and
 on message `0x12` with flag bit `0x10` of `+0xC4` set runs the post-load sequence: `0x001831A0`,
 `0x005843E0` and `0x00182D40` when the controller's byte `+0x598` is clear (that arm also sets
-`0x0209AC10` to 1), `0x00394400` when `0x00394520` reports a pending mode, then `0x00584210`, which handles the mode-3 stash and reseeds the gameplay generator from the clock
-(see the [save file format page](save-file-format.md)).
+`0x0209AC10` to 1), `0x00394400` when `0x00394520` returns 1, then `0x00584210`, which handles the mode-3 stash and
+reseeds the gameplay generator from the clock (see the [save file format page](save-file-format.md)).
+
+`0x00394520` returns 1 while the qword `0x02AEE4C0`, the title asset's pointer, is non-zero
+(`0x00394522`-`0x00394529`).
 
 Message `0x10` records the load mode: with `0x00394450()` = 3 it calls
 `0x00238A30(1)`, else `0x00238A30(0)`, then `0x00285E60(-1)`.

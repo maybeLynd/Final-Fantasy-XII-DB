@@ -205,8 +205,9 @@ walks the tree through `+0x18` and `+0x20`). The window's widget `+0xC8` gets th
 
 ### The challenges
 
-[script-gauges-challenges.tsv](script-gauges-challenges.tsv) has 13 rows, one for each challenge listed below that the `us`
-scripts hold: what the player does, where, from when, the limits the script passes, the reward and what a failure does.
+[script-gauges-challenges.tsv](script-gauges-challenges.tsv) has 14 rows, one for each challenge listed below
+that the `us` scripts hold: what the player does, where, from when, the limits the script passes, the reward and
+what a failure does.
 These counts cover the 1,114 `us` listings that decode (`evt_t0020.ebp` has no `EBP2` header and no listing).
 `initgauge` is called 268 times in 99 of them: 55 fields of The Great Crystal, 14 of Bhujerba, 12 of Barheim Passage,
 8 of the Dreadnought Leviathan, 8 of Giza Plains, the scene `sav_c0280` and the developer event `evt_t0083`.
@@ -221,8 +222,9 @@ hold their barriers open for 72 to 288 seconds by room. The Demon Wall's two fig
 
 Challenges without a gauge: slipping past the guards of the Royal Palace, the spot-the-difference game of the Nalbina
 Stockade (which no talk in its script opens), fishing with Ruksel on the Nebra, the Hunt Club's trophy contest ([Quests](../Story-Events-And-Hunts/quests.md),
-quest 71), the miner's stash in the Henne Mines and the chops Vaan earns in Archades by carrying the townsfolk's
-tales to one another. Trial Mode has its own rows on [Trial Mode
+quest 71), the miner's stash in the Henne Mines, the chops Vaan earns in Archades by carrying the townsfolk's
+tales to one another and Rikken's footrace in Balfonheim Port.
+Trial Mode has its own rows on [Trial Mode
 scripts](../Story-Events-And-Hunts/trial-mode-scripts.md).
 
 | Column | Meaning |

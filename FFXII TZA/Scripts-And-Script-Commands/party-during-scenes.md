@@ -26,7 +26,7 @@ party-focus handle (`0x003590D0`, `0x003588B0`) and, for each slot 0 to 3 whose 
 non-null and is not that actor (`0x00341CDA`, `0x00341CDC`), calls `0x002ECD50(actor, 0)` through its
 thunk `0x0026DC40`. When the handle resolves to null, every non-null slot actor is hidden.
 
-`disposepartywithoutcontrol` (`0x0202`, `0x0034C990` → `0x003B6F30`) clears the party-control byte
+`disposepartywithoutcontrol` (`0x0202`, `0x0034C990` → `0x003B6F30`) clears the party-control dword
 `0x02B40534`, empties the follower list (`0x003B6DE0`), narrows the controlled set to one actor
 (`0x003B6D60`), the actor of the party slot that holds the summoner's row `+0x5AD5` ([party control
 modes](../Engine-Core/party-control-modes.md), `0x003B6D69`-`0x003B6D82`), turns its [animation-driven
@@ -106,7 +106,7 @@ heading body `+0xA4`. For class 1 the position is the same, both headings are bo
 A slot or leader whose `0x00359B80` record is null is skipped (`0x003B748C`; `0x003B73B0` returns for a
 null leader at `0x003B73B3` and for a null record at `0x003B73CD`).
 
-`setpossummonspace` (`0x0191`, `0x003482E0` → `0x003B7E20`) clears the party-control byte `0x02B40534`,
+`setpossummonspace` (`0x0191`, `0x003482E0` → `0x003B7E20`) clears the party-control dword `0x02B40534`,
 calls `0x0025A5F0(1)` and `0x0036D840(0)`, and takes as origin the position of the first follower
 handle (`0x02EBCBE0`) when the requested count is above 0 and that handle resolves to an actor
 (`0x003B7E77`), otherwise `(0, 0, 0)`. `0x003B7F40(actor, origin)` then places each follower and the

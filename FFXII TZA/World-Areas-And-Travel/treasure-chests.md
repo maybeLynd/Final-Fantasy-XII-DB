@@ -149,6 +149,9 @@ Opening runs `0x002FAFD0` from `btlAtelOpenTreasureMessage`:
 5. Item: a second draw `% 100`. With Treasure Hunter, below 95 gives `+0x10`, otherwise `+0x12`; without it, below
    50 gives `+0x0C`, otherwise `+0x0E`. `0xFFFF` gives nothing; any other id gives one.
 
+The status words and augment bytes of step 3 are those of the record at the leader's `+0x698`, which both arms load
+first (`0x002FB049` for gil, `0x002FB0CD` for items).
+
 The verb then grants the item through `0x00300B80(item, 1, 0)` (`0x0050FBA0`) or the gil through `0x003004B0(gil, 0)`
 (`0x0050FB76`), after adding the matching entry to its message record (`0x0035E500`); when the roll gave nothing it adds
 no entry and grants nothing (`0x0050FB5A`), and on every path it shows the message record (`0x0035DF40`, `0x0050FBA8`)

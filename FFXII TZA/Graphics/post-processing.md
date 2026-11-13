@@ -328,9 +328,6 @@ when the allocation fails (`0x001D6357`). It sets the layout floats `+0x00` = 0.
 `(−0.8, 0.7)` in row 2, with width `1 - 0.2` = 0.8 and height 0.04. It clears the word `+0x14`, the byte
 `+0x16` and `+0x1C` to `+0x2B`, and sets `+0x2C30` to −1 and `+0x2C34` to 0 (`0x001D6328`-`0x001D6341`).
 
-OLD:
-
-
 `0x001D6170` runs `0x001D5970` again while the object's byte `+0x15` is clear. Besides the queries,
 `0x001D5970` lays out two rows of bar quads in the object, six vertices of 16 bytes each, after
 resetting all `0x324` vertices of each row to `(0, 0, 0, 1)`:

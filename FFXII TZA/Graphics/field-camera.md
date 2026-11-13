@@ -43,7 +43,8 @@ position at `+0x630`, raised by `+0x64`, as the look point (copied to `+0x70`), 
 `0x0032B600` sets the three orbit blocks `+0x00`, `+0x40` and `+0x80` to the look point (0, 0, 0, 1), heading 0 and
 level 0.483 with that level's pitch and distance (`0x0032B624`-`0x0032B6C1`), runs `0x0032CE40` and `0x0032B790`, and then
 zeroes the state `+0xC0` (`0x0032B6DC`-`0x0032B70D`). It stores `atan2(−0.7, 2.8)` and `atan2(7.6, 8.8)` from `0x01EED478`
-at `0x022C3190` and `0x022C3194`, and 7.6 and −0.7 at `0x022C3184` and `0x022C3188` (`0x0032B713`-`0x0032B776`).
+at `0x022C3190` and `0x022C3194`, and 7.598 (`0x00D108E4`) and −0.7 (`0x00D108F4`) at `0x022C3184` and `0x022C3188`
+(`0x0032B713`-`0x0032B776`).
 
 `0x0032B790` sets the state, `[camera + 0xC0] = 0x20000000` (`0x0032B790`), and zeroes the two rates, the wall and
 auto terms, the floor lift `[camera + 0x128] = 0`, both hold counts, `+0x364` and the travelled distance
@@ -457,7 +458,7 @@ Follow camera (controller + `0x2B0`):
 | `0x02097D20`, `0x02098580` | the two camera contexts, each 16 bytes before its controller: those 16 bytes and controller `+0x848`-`+0x84F` hold 0 and move only when `setinterventioncamera` copies one context over the other (`0x00359410`: `0x002593D0`, `0x00259470`); controller `+0x844` is only ever stored 0 (`0x00259811`, `0x0025A2B5`) |
 | `0x02B4E3F0`, `0x02B4E3F4`, `0x02B4E3F8` | the framed actor's position x, y and z, the first three floats of a `0xB0`-byte copy of its movement body's placement `+0x30` (`0x003D9ED1`): `0x003D9E20` writes them from `0x002E7F70` (`0x003D9F4F`, `0x003D9F65`, `0x003D9F5D`) and raises `0x02B4E4A6` (`0x003D9F6D`); `0x003D9FB0` zeroes the `0xC0` bytes from `0x02B4E3F0` (`0x003D9FB2`) |
 | `0x02B4E4A0`, `0x02B4E4A5` | the framed actor and its flag (`0x003D9E20`) |
-| `0x022C3184`, `0x022C3188` | the curve's highest and lowest `y`, 7.6 and −0.7 (`0x0032B600`) |
+| `0x022C3184`, `0x022C3188` | the highest and lowest `y` kept for the curve, 7.598 from `0x00D108E4` (the curve's own end point is 7.6) and −0.7 from `0x00D108F4` (`0x0032B74F`-`0x0032B776`) |
 | `0x01EED478` | the curve's end points |
 | `0x01EED488` | the four probe bits |
 

@@ -71,7 +71,7 @@ The loader `0x001CA600` binds every key by its own code, with no table (1,602 in
      length (`0x001FF540`-`0x001FF5DB`). A missing key is inserted at the place found, with tag 6, payload 0 and a copy
      of the key, through `0x001FFD40` (`0x001FF5E1`-`0x001FF64C`). Either way it answers the entry's value node at `+0x40`
      (`0x001FF68E`).
-3. The slots are `[0x01F811E8] + 0x3B00` onwards, filled by `0x001AF470` (`0x001AF477`-`0x001B00E9`), and three more at
+3. The slots are `[0x01F811E8] + 0x3B00` onwards, filled by `0x001AF470` (`0x001AF477`-`0x001B00D3`), and three more at
    `[0x01F81200] + 0x2F8`-`+0x308`, filled by `0x001B44A0` (`0x001B4551`-`0x001B4574`), for the three float keys.
 
 | Count | |

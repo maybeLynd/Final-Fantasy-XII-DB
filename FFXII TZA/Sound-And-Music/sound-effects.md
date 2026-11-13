@@ -36,9 +36,10 @@ Volume is masked to 0-127 and pan to a byte before the controller (`0x00210C03`-
 
 ### The gates
 
-1. `0x00249C60(slot)`, `0x00249CA0(slot)` and `0x0024A1A0(handle)` return -1 at once while `0x02091098` is not 0
-   (`0x00249C64`); `0x00249FC0` is its only writer. Other callers of `0x002DF220`, such as `0x00271500`, `0x003A0E20` and the
-   script verb body `0x00357040`, do not read it.
+1. `0x00249C60(slot)` and `0x00249CA0(slot)` return -1 at once while `0x02091098` is not 0 (`0x00249C64`-`0x00249C8B`,
+   `0x00249CA4`-`0x00249CCB`), and `0x0024A1A0(handle)` returns at once without setting a value
+   (`0x0024A1A6`-`0x0024A1AF`); `0x00249FC0` is its only writer. Other callers of `0x002DF220`, such as `0x00271500`,
+   `0x003A0E20` and the script verb body `0x00357040`, do not read it.
 2. Every play entry answers 0 while the byte `0x022CB726` is set (`0x003603C0`, read at `0x002DF23B`). `0x003601D0` sets it
    after stopping every block-bank sound and releasing every six-digit bank (`0x00360252`-`0x003602A4`); `0x00360110` and
    `0x00360370` clear it.

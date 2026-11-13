@@ -15282,7 +15282,7 @@ function	0x001AF2B0	-	Compiler-And-C-Runtime/static-initialisation-and-teardown.
 function	0x001AF310	-	Compiler-And-C-Runtime/generated-function-families-runtime-container-recursivespannodewalk.tsv	-	6
 function	0x001AF3B0	-	Compiler-And-C-Runtime/object-construction-and-destruction-eastl-container-instances.tsv	-	5
 function	0x001AF470	-	Engine-Core/subsystem-update-flags.md	-	8
-function	0x001B00E0	-	Menus-And-HUD/screen-layouts.md	-	6
+function	0x001B00E0	-	Compiler-And-C-Runtime/generated-function-families-nativeadapter-callresulttailcall.tsv	-	5
 function	0x001B0100	-	Graphics/sprite-batcher.md	-	6
 function	0x001B0190	-	Graphics/sprite-batcher.md	-	8
 function	0x001B03D0	-	Graphics/sprite-batcher.md	-	9
@@ -16781,7 +16781,7 @@ function	0x0020E540	-	Saving-Loading-And-Settings/saving-and-loading.md	-	5
 function	0x0020E580	-	Compiler-And-C-Runtime/generated-function-families-nativeadapter-callresultfield32getter.tsv	-	6
 function	0x0020E5A0	-	World-Areas-And-Travel/weather.md	-	7
 function	0x0020E5C0	-	Saving-Loading-And-Settings/saving-and-loading.md	-	5
-function	0x0020E600	-	Characters-And-Objects/field-runtime.md	-	81
+function	0x0020E600	-	Characters-And-Objects/field-runtime.md	-	82
 function	0x0020E610	-	Graphics/effect-element-runtime.md	-	5
 function	0x0020E620	-	Game-Files-And-Data-Tables/resource-arena-and-relocation.md	-	43
 function	0x0020E630	-	Graphics/gi-render-commands.md	-	14
@@ -17612,9 +17612,9 @@ function	0x002342F0	-	Engine-Core/frame-update-order.md	-	38
 function	0x00234480	BattleUnit_AllocateSlotAndBindActor	Characters-And-Objects/battle-unit-fields.md	-	24
 function	0x00234520	-	Engine-Core/frame-update-order.md	-	11
 function	0x00234590	BattleSystem_RunFieldFrameOrchestrator	Battle-Actions/quickenings-and-summons.md	-	34
-function	0x00234880	SpawnGroup_TeardownAllGroupedSpawnUnits	Battle-Actions/boss-fights.md	-	17
-function	0x002348E0	-	Engine-Core/force-fight-mode.md	-	15
-function	0x00234990	SpawnGroup_TeardownUnitsByGroupMask	Enemy-Spawning/enemy-respawning.md	-	18
+function	0x00234880	SpawnGroup_TeardownAllGroupedSpawnUnits	Battle-Actions/boss-fights.md	-	18
+function	0x002348E0	-	Enemy-Spawning/enemy-spawning.md	-	16
+function	0x00234990	SpawnGroup_TeardownUnitsByGroupMask	Enemy-Spawning/enemy-respawning.md	-	19
 function	0x00234A00	-	Characters-And-Objects/battle-unit-fields.md	-	11
 function	0x00234A10	SpawnGroup_SetUnitFlag800ByGroupMask	Characters-And-Objects/battle-units.md	-	14
 function	0x00234A80	SpawnGroup_ClearUnitFlag800ByGroupMask	Characters-And-Objects/battle-units.md	-	14
@@ -17627,7 +17627,7 @@ function	0x002352E0	Spawn_SetAllSpawnBackedUnitsCurrentHPZero	Enemy-Spawning/ene
 function	0x00235330	-	Enemy-Spawning/enemy-respawning.md	-	10
 function	0x00235340	-	Enemy-Spawning/enemy-respawning.md	-	8
 function	0x00235360	Spawn_SelectContinuousEntry	Enemy-Spawning/spawn-record-fields.md	-	16
-function	0x002354F0	Spawn_SelectPreviousMapEntry	Enemy-Spawning/enemy-spawning.md	-	14
+function	0x002354F0	Spawn_SelectPreviousMapEntry	Enemy-Spawning/enemy-spawning.md	-	15
 function	0x002355A0	Spawn_PrepareRandomCandidateForCurrentEntry	Enemy-Spawning/enemy-spawning.md	-	19
 function	0x00235720	Spawn_SelectAndPrepareAutomaticEntry	Enemy-Spawning/enemy-spawning.md	-	32
 function	0x00235A70	-	Damage-And-Battle-Formulas/unit-stats-fields.tsv	-	6
@@ -17641,7 +17641,7 @@ function	0x00235EA0	-	Movement-And-Pathfinding/player-movement.md	-	6
 function	0x00235EF0	SpawnEntry_GetDeathLimit	Enemy-Spawning/enemy-respawning.md	-	13
 function	0x00235F50	SpawnEntry_GetDeathCount	Enemy-Spawning/enemy-respawning.md	-	13
 function	0x00235FB0	SpawnEntry_GetElapsedTicksSinceLastDeath	Enemy-Spawning/enemy-respawning.md	-	13
-function	0x00236030	SpawnEntry_GetCandidateUnitId	Characters-And-Objects/battle-unit-fields.tsv	-	11
+function	0x00236030	SpawnEntry_GetCandidateUnitId	Enemy-Spawning/enemy-placement-conditions-terms.tsv	-	13
 function	0x002360D0	-	Battle-Actions/boss-fights.md	-	11
 function	0x00236100	-	Enemy-Spawning/spawn-record-fields.md	-	19
 function	0x00236140	SpawnEntry_GetScriptSelection	Enemy-Spawning/spawn-record-fields.md	-	12
@@ -17650,7 +17650,7 @@ function	0x002361B0	-	Characters-And-Objects/battle-unit-fields.tsv	-	7
 function	0x00236210	-	Enemy-Spawning/bestiary.md	-	12
 function	0x00236300	BattleUnit_SnapshotWorldActorRuntimeState	Movement-And-Pathfinding/heading-speed-to-position-delta.md	-	15
 function	0x00236450	-	EBP-Script-Files/ebp-position-entries.md	-	8
-function	0x00236670	SpawnEntry_QueryRangeReentryPending	Enemy-Spawning/enemy-respawning.md	-	13
+function	0x00236670	SpawnEntry_QueryRangeReentryPending	Enemy-Spawning/enemy-respawning.md	-	14
 function	0x002366E0	SpawnEntry_GetRespawnCooldownTicks	Enemy-Spawning/enemy-respawning.md	-	12
 function	0x00236740	-	Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md	-	11
 function	0x00236760	-	Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md	-	22
@@ -17664,7 +17664,7 @@ function	0x00236A40	-	Battle-Actions/action-definition-row.md	-	10
 function	0x00236A60	BattleUnit_ResetStateForReuse	Characters-And-Objects/battle-unit-fields.md	-	25
 function	0x00236C30	-	Menus-And-HUD/text-string-tables.md	-	33
 function	0x00237040	-	Characters-And-Objects/battle-unit-construction.md	-	5
-function	0x00237080	SpawnEntry_ClearSelectionTransientStateForTeardown	Enemy-Spawning/spawn-record-fields.md	-	16
+function	0x00237080	SpawnEntry_ClearSelectionTransientStateForTeardown	Enemy-Spawning/spawn-record-fields.md	-	17
 function	0x002370A0	-	Engine-Core/frame-update-order.md	-	5
 function	0x002370C0	-	Party/party-data.md	-	16
 function	0x00237140	-	Status-Effects-And-KO/ko-and-game-over.md	-	10
@@ -17680,7 +17680,7 @@ function	0x002374E0	-	Enemy-Spawning/enemy-spawning.md	-	9
 function	0x00237630	-	Game-Files-And-Data-Tables/authored-data-tables.md	-	9
 function	0x00237650	ActorWork_HasAppliedUnitDefinition	Characters-And-Objects/actor-model-rebuild.md	-	11
 function	0x00237670	-	Engine-Core/frame-update-order.md	-	8
-function	0x00237690	SpawnGroup_TeardownAllUngroupedSpawnUnits	Battle-Actions/boss-fights.md	-	17
+function	0x00237690	SpawnGroup_TeardownAllUngroupedSpawnUnits	Battle-Actions/boss-fights.md	-	18
 function	0x002376F0	-	Battle-Actions/action-definition-row.md	-	6
 function	0x00237CA0	-	World-Areas-And-Travel/game-over.md	-	7
 function	0x00237D60	-	Scripts-And-Script-Commands/verb-table.md	-	10
@@ -18401,7 +18401,7 @@ function	0x0025D690	-	Characters-And-Objects/actor-record-fields.tsv	-	7
 function	0x0025D740	-	Scripts-And-Script-Commands/script-interpreter.md	-	6
 function	0x0025D8E0	WorldPersistence_ExportGroupPersistentBank	Saving-Loading-And-Settings/save-data-fields.md	-	14
 function	0x0025D950	-	Engine-Core/frame-update-order.md	-	10
-function	0x0025D9E0	ActorManager_RunFieldRuntimePass	Story-Events-And-Hunts/opening-setup-scripts.md	-	51
+function	0x0025D9E0	ActorManager_RunFieldRuntimePass	Story-Events-And-Hunts/opening-setup-scripts.md	-	53
 function	0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	Characters-And-Objects/field-runtime.md	-	32
 function	0x0025E3F0	-	Compiler-And-C-Runtime/thunks-and-import-stubs.md	-	8
 function	0x0025E400	-	Characters-And-Objects/actor-record-fields.md	-	21
@@ -18410,7 +18410,7 @@ function	0x00261F90	-	World-Areas-And-Travel/chocobos-and-airships.md	-	28
 function	0x002620E0	-	World-Areas-And-Travel/zone-changes-and-mapjump.md	-	18
 function	0x002621D0	VMNativeCommand_ExecuteLifecycle	Engine-Core/identifier-spaces.md	-	66
 function	0x002623A0	-	Engine-Core/frame-update-order.md	-	14
-function	0x00262440	-	Story-Events-And-Hunts/story-progress.md	-	11
+function	0x00262440	-	Story-Events-And-Hunts/story-progress.md	-	12
 function	0x002626C0	-	Scripts-And-Script-Commands/script-requests.md	-	7
 function	0x00262740	-	Scripts-And-Script-Commands/script-requests.md	-	7
 function	0x002627C0	-	Movement-And-Pathfinding/facing-and-steering.md	-	7
@@ -18590,7 +18590,7 @@ function	0x00265FF0	-	Scripts-And-Script-Commands/world-lock.md	-	62
 function	0x00266530	ActorStorage_InitializeRecord	Story-Events-And-Hunts/archades-scripts.md	-	68
 function	0x00266AD0	-	Scripts-And-Script-Commands/party-during-scenes.md	-	63
 function	0x00266BD0	-	Characters-And-Objects/actor-record.md	-	58
-function	0x00266C50	-	EBP-Script-Files/ebp-script-image.md	-	17
+function	0x00266C50	-	EBP-Script-Files/ebp-script-image.md	-	18
 function	0x00266D00	-	Story-Events-And-Hunts/shared-zone-script-actors.md	-	7
 function	0x00266D10	-	Engine-Core/frame-update-order.md	-	64
 function	0x002671C0	ActorSystem_IsPrimaryBattleSimulationReady	Engine-Core/frame-update-order.md	-	9
@@ -18660,11 +18660,11 @@ function	0x002690D0	-	Movement-And-Pathfinding/facing-and-steering.md	-	14
 function	0x002693D0	-	Scripts-And-Script-Commands/party-during-scenes.md	-	20
 function	0x00269530	-	Scripts-And-Script-Commands/party-during-scenes.md	-	8
 function	0x002695A0	-	World-Areas-And-Travel/save-and-teleport-crystals.md	-	19
-function	0x00269640	Actor_RequestConfiguredPrimaryResources	Scripts-And-Script-Commands/script-requests.md	-	13
+function	0x00269640	Actor_RequestConfiguredPrimaryResources	Scripts-And-Script-Commands/script-requests.md	-	14
 function	0x002697A0	-	Characters-And-Objects/actor-record.md	-	7
 function	0x002697E0	-	Graphics/effect-file-loading.md	-	11
 function	0x00269800	-	Characters-And-Objects/field-runtime.md	-	10
-function	0x00269860	-	Scripts-And-Script-Commands/script-requests.md	-	18
+function	0x00269860	-	Scripts-And-Script-Commands/script-requests.md	-	19
 function	0x002699D0	-	Items-Equipment-Shops-And-Licenses/equipping-an-item.md	-	6
 function	0x00269A20	WorldPersistence_ImportGroupPersistentBank	Saving-Loading-And-Settings/save-data-fields.md	-	17
 function	0x00269A90	-	Scripts-And-Script-Commands/script-requests.md	-	8
@@ -18818,7 +18818,7 @@ function	0x0026C8C0	ActorManager_BindLoadedDefinitionPayload	Characters-And-Obje
 function	0x0026CE00	-	EBP-Script-Files/ebp-script-container.md	-	10
 function	0x0026CE20	-	EBP-Script-Files/ebp-script-container.md	-	9
 function	0x0026CE40	-	EBP-Script-Files/ebp-actor-manifest.md	-	9
-function	0x0026CE60	ActorSystem_InitializeManagerRuntime	Scripts-And-Script-Commands/event-scenes.md	-	34
+function	0x0026CE60	ActorSystem_InitializeManagerRuntime	Scripts-And-Script-Commands/event-scenes.md	-	36
 function	0x0026D3A0	-	EBP-Script-Files/ebp-script-container.md	-	10
 function	0x0026D3C0	-	EBP-Script-Files/ebp-script-container.md	-	8
 function	0x0026D3E0	-	Scripts-And-Script-Commands/script-variables.md	-	10
@@ -19320,7 +19320,7 @@ function	0x0028F880	-	Engine-Core/subsystem-update-flags-manager-singleton-0209b
 function	0x0028F8B0	-	Menus-And-HUD/hud.md	-	13
 function	0x0028F970	-	World-Areas-And-Travel/game-over.md	-	14
 function	0x0028F9E0	-	Menus-And-HUD/hud.md	-	5
-function	0x0028FA00	-	Menus-And-HUD/hud.md	-	7
+function	0x0028FA00	-	Controls-And-Input/controls.md	-	7
 function	0x0028FA30	-	Engine-Core/subsystem-update-flags-manager-singleton-0209be80-accesses.tsv	-	6
 function	0x0028FA50	-	Engine-Core/subsystem-update-flags.md	-	7
 function	0x0028FA70	-	Menus-And-HUD/hud.md	-	9
@@ -19842,7 +19842,7 @@ function	0x002B8EE0	-	Menus-And-HUD/map-screens.md	-	13
 function	0x002B9A20	-	Menus-And-HUD/map-screens.md	-	5
 function	0x002B9B30	-	Menus-And-HUD/map-screens.md	-	6
 function	0x002B9BE0	-	Menus-And-HUD/map-screens.md	-	8
-function	0x002B9C70	-	Menus-And-HUD/text-npc-names.md	-	7
+function	0x002B9C70	-	Menus-And-HUD/text-npc-names.md	-	8
 function	0x002B9D30	-	Menus-And-HUD/map-screens.md	-	11
 function	0x002B9FC0	-	Engine-Core/frame-update-order.md	-	7
 function	0x002B9FD0	-	Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md	-	10
@@ -21102,7 +21102,7 @@ function	0x002FBEF0	-	Graphics/effect-element-runtime.md	-	6
 function	0x002FBFA0	-	Graphics/effect-anchors-and-targets.md	-	5
 function	0x002FC010	-	World-Areas-And-Travel/game-over.md	-	7
 function	0x002FC200	-	Engine-Core/startup-constants.md	-	11
-function	0x002FC340	-	Graphics/effect-lifecycle.md	-	8
+function	0x002FC340	-	Graphics/effect-element-runtime.md	-	9
 function	0x002FC350	-	Graphics/effect-file-loading.md	-	5
 function	0x002FC3C0	-	Graphics/effect-file-loading.md	-	14
 function	0x002FC4A0	-	Graphics/effect-file-loading.md	-	10
@@ -21112,7 +21112,7 @@ function	0x002FC9B0	-	Graphics/effects-on-actors-and-scripts.md	-	5
 function	0x002FCA00	-	World-Areas-And-Travel/save-and-teleport-crystals.md	-	6
 function	0x002FCAC0	-	Graphics/effect-file-loading.md	-	8
 function	0x002FCB40	-	Battle-Actions/action-phases.md	-	6
-function	0x002FCB60	-	Graphics/effects-on-actors-and-scripts.md	-	10
+function	0x002FCB60	-	Graphics/effects-on-actors-and-scripts.md	-	9
 function	0x002FCBF0	-	Graphics/effect-file-list.md	-	8
 function	0x002FCCC0	-	Graphics/effect-file-loading.md	-	10
 function	0x002FCF00	-	Graphics/effect-file-loading.md	-	6
@@ -21132,7 +21132,7 @@ function	0x002FD970	-	Engine-Core/item-and-ability-ids.md	-	9
 function	0x002FDA60	-	Battle-Actions/battle-orders.md	-	9
 function	0x002FDC30	-	Battle-Actions/battle-orders.md	-	10
 function	0x002FDDA0	BattleUnit_ExecuteDirectStateCommandOrder	Damage-And-Battle-Formulas/augments.md	-	24
-function	0x002FE660	-	Game-Files-And-Data-Tables/menu-map-files.md	-	13
+function	0x002FE660	-	Game-Files-And-Data-Tables/menu-map-files.md	-	14
 function	0x002FE840	-	Battle-Actions/battle-orders.md	-	6
 function	0x002FE8D0	-	Graphics/character-effects.md	-	7
 function	0x002FE910	-	Battle-Actions/battle-orders.md	-	6
@@ -21742,14 +21742,14 @@ function	0x00320790	-	Damage-And-Battle-Formulas/unit-stats-fields.tsv	-	7
 function	0x00320800	-	Scripts-And-Script-Commands/party-verbs.md	-	11
 function	0x00320890	-	Characters-And-Objects/party-member-status-record.md	-	10
 function	0x003208C0	-	Enemy-Spawning/enemy-spawning.md	-	11
-function	0x00320940	-	EBP-Script-Files/ebp-position-entries.md	-	12
+function	0x00320940	-	EBP-Script-Files/ebp-position-entries.md	-	14
 function	0x003209C0	-	EBP-Script-Files/ebp-position-entries.md	-	9
 function	0x003209E0	-	Enemy-AI-And-Gambits/gambit-conditions.md	-	5
 function	0x00320A00	-	Characters-And-Objects/battle-unit-fields.tsv	-	7
 function	0x00320A30	-	World-Areas-And-Travel/traps.md	-	8
 function	0x00320A40	-	Battle-Actions/area-of-effect.md	-	15
 function	0x00320A70	BattleStats_ResolveByActorHandle	Battle-Actions/battle-log.md	-	10
-function	0x00320AB0	-	Engine-Core/subsystem-update-flags.md	-	23
+function	0x00320AB0	-	Engine-Core/subsystem-update-flags.md	-	25
 function	0x00320AF0	-	Enemy-AI-And-Gambits/gambit-conditions.md	-	6
 function	0x00320B30	-	Engine-Core/frame-update-order.md	-	6
 function	0x00320BB0	-	Graphics/character-status-visuals.md	-	11
@@ -21938,7 +21938,7 @@ function	0x00329B70	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	8
 function	0x00329BD0	-	Damage-And-Battle-Formulas/hp-and-ko.md	-	8
 function	0x00329CC0	BattleSlotMap_InitializeMappingClasses	Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md	-	18
 function	0x00329E40	-	Saving-Loading-And-Settings/save-file-format.md	-	8
-function	0x00329E60	-	Enemy-AI-And-Gambits/enemy-order-sets.md	-	14
+function	0x00329E60	-	Enemy-AI-And-Gambits/enemy-order-sets.md	-	15
 function	0x00329F70	-	Sound-And-Music/animation-sounds.md	-	7
 function	0x00329F80	-	Enemy-Spawning/bestiary.md	-	12
 function	0x0032A060	-	Scripts-And-Script-Commands/verb-table.md	-	11
@@ -21967,7 +21967,7 @@ function	0x0032A830	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	9
 function	0x0032A850	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	8
 function	0x0032A860	-	Scripts-And-Script-Commands/reward-verbs.md	-	7
 function	0x0032A880	-	Rewards-EXP-Gil-And-Loot/price-list.md	-	8
-function	0x0032A8A0	PersistentFlag_QueryPrimaryOrAuthoredThresholdGate	World-Areas-And-Travel/zone-asset-list.md	-	37
+function	0x0032A8A0	PersistentFlag_QueryPrimaryOrAuthoredThresholdGate	World-Areas-And-Travel/zone-asset-list.md	-	38
 function	0x0032A920	-	Enemy-AI-And-Gambits/enemy-order-sets.md	-	7
 function	0x0032A930	PersistentFlag_QueryBank2048	Engine-Core/identifier-spaces.md	-	20
 function	0x0032A9A0	PersistentFlag_QueryBank64A	Story-Events-And-Hunts/story-flags.md	-	11
@@ -21977,7 +21977,7 @@ function	0x0032AAD0	PersistentFlag_QueryBank512High	Characters-And-Objects/field
 function	0x0032AB40	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	6
 function	0x0032AB50	-	Items-Equipment-Shops-And-Licenses/bazaar.md	-	6
 function	0x0032AB60	PersistentFlag_SetPrimary	Story-Events-And-Hunts/story-flags.md	-	17
-function	0x0032ABE0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	10
+function	0x0032ABE0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	11
 function	0x0032ABF0	PersistentFlag_SetBank2048	Story-Events-And-Hunts/story-flags.md	-	17
 function	0x0032AC70	PersistentFlag_SetBank64A	Story-Events-And-Hunts/story-flags.md	-	11
 function	0x0032ACF0	PersistentFlag_SetBank64B	Story-Events-And-Hunts/story-flags.md	-	11
@@ -24027,7 +24027,7 @@ function	0x003601B0	-	Scripts-And-Script-Commands/event-scenes.md	-	70
 function	0x003601C0	-	World-Areas-And-Travel/zone-changes-and-mapjump.md	-	18
 function	0x003601D0	-	World-Areas-And-Travel/game-over.md	-	20
 function	0x00360360	-	World-Areas-And-Travel/zone-changes-and-mapjump.md	-	9
-function	0x00360370	-	World-Areas-And-Travel/game-over.md	-	11
+function	0x00360370	-	Engine-Core/force-fight-mode.md	-	11
 function	0x003603B0	-	Controls-And-Input/escape.md	-	10
 function	0x003603C0	-	Scripts-And-Script-Commands/event-scenes.md	-	19
 function	0x003603D0	-	World-Areas-And-Travel/game-over.md	-	10
@@ -25040,7 +25040,7 @@ function	0x00394460	-	Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md	-	20
 function	0x003944C0	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	8
 function	0x003944D0	-	Scripts-And-Script-Commands/verb-table.md	-	11
 function	0x00394500	-	Scripts-And-Script-Commands/verb-table.md	-	11
-function	0x00394520	-	Saving-Loading-And-Settings/loading-a-save.md	-	7
+function	0x00394520	-	Saving-Loading-And-Settings/saving-and-loading.md	-	7
 function	0x00394530	-	Menus-And-HUD/widgets.md	-	10
 function	0x003945E0	-	Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md	-	10
 function	0x00394600	-	Saving-Loading-And-Settings/saving-and-loading.md	-	9
@@ -25974,13 +25974,13 @@ function	0x003DB150	-	Movement-And-Pathfinding/heading-speed-to-position-delta.m
 function	0x003DB1B0	-	Movement-And-Pathfinding/movement-bodies-and-separation.md	-	9
 function	0x003DB1F0	-	Engine-Core/frame-update-order.md	-	16
 function	0x003DB280	-	Characters-And-Objects/actor-record.md	-	57
-function	0x003DB2A0	ActorResource_RemoveActiveEntry	Scripts-And-Script-Commands/script-requests.md	-	14
+function	0x003DB2A0	ActorResource_RemoveActiveEntry	Scripts-And-Script-Commands/script-requests.md	-	15
 function	0x003DB420	ActorResource_RecycleEntryRange	Scripts-And-Script-Commands/script-requests.md	-	12
 function	0x003DB550	ActorResource_GetEntryByOrdinal	Characters-And-Objects/actor-record.md	-	12
 function	0x003DB580	-	Scripts-And-Script-Commands/script-requests.md	-	60
 function	0x003DB640	ActorResource_IsChannelBitActive	Characters-And-Objects/field-runtime.md	-	8
 function	0x003DB650	-	Characters-And-Objects/actor-record.md	-	7
-function	0x003DB6E0	ActorResource_SelectPendingEntryForExecution	Scripts-And-Script-Commands/script-requests.md	-	17
+function	0x003DB6E0	ActorResource_SelectPendingEntryForExecution	Scripts-And-Script-Commands/script-requests.md	-	19
 function	0x003DB790	-	Scripts-And-Script-Commands/script-requests.md	-	7
 function	0x003DB7A0	ActorResource_InsertEntryFromDescriptor	Scripts-And-Script-Commands/script-requests.md	-	11
 function	0x003DBAE0	-	Scripts-And-Script-Commands/script-requests.md	-	8
@@ -26229,7 +26229,7 @@ function	0x003E5510	-	Menus-And-HUD/hud.md	-	10
 function	0x003E55B0	CharacterRenderRecord_ResolveModelInstance	Graphics/model-oscillators-and-pose-sequencer.md	-	14
 function	0x003E55F0	CharacterRenderRecord_GetFCPPresentationConfigurationPayload	Graphics/model-files-cm-ca.md	-	9
 function	0x003E5600	-	Graphics/effect-anchors-and-targets.md	-	7
-function	0x003E56A0	FCPPayload_ResolvePrimaryConfigBlock	Graphics/model-files-cm-ca.md	-	6
+function	0x003E56A0	FCPPayload_ResolvePrimaryConfigBlock	Graphics/character-lighting-and-shadows.md	-	7
 function	0x003E56C0	-	Game-Files-And-Data-Tables/small-bin-tables.md	-	11
 function	0x003E56E0	-	Graphics/model-files-cm-ca.md	-	6
 function	0x003E5700	-	Graphics/effect-anchors-and-targets.md	-	8
@@ -28540,11 +28540,11 @@ function	0x0050FE80	-	Damage-And-Battle-Formulas/stats.md	-	13
 function	0x0050FED0	-	Damage-And-Battle-Formulas/stats.md	-	13
 function	0x0050FF20	-	Characters-And-Objects/battle-unit-construction.md	-	14
 function	0x0050FFB0	-	Engine-Core/party-control-modes.md	-	7
-function	0x0050FFF0	-	Enemy-Spawning/bestiary.md	-	7
+function	0x0050FFF0	-	Enemy-Spawning/bestiary.md	-	8
 function	0x00510040	-	Graphics/effect-anchors-and-targets.md	-	8
 function	0x00510080	-	Graphics/effect-anchors-and-targets.md	-	8
 function	0x005100C0	-	Graphics/effect-anchors-and-targets.md	-	8
-function	0x00510100	-	Rewards-EXP-Gil-And-Loot/kill-chain.md	-	11
+function	0x00510100	-	Rewards-EXP-Gil-And-Loot/kill-chain.md	-	13
 function	0x00510160	-	Characters-And-Objects/actor-model-rebuild.md	-	15
 function	0x005101B0	-	Characters-And-Objects/actor-model-rebuild.md	-	7
 function	0x005101F0	-	Enemy-Spawning/enemy-respawning.md	-	7
@@ -38749,7 +38749,7 @@ function	0x0070D920	-	Third-Party-Libraries/yebis-ppfx-post-effects.md	-	9
 function	0x0070DA60	-	Engine-Core/engine-types-fields.tsv	-	6
 function	0x0070DBA0	-	Third-Party-Libraries/yebis-ppfx-post-effects.md	-	9
 function	0x0070DC10	-	Third-Party-Libraries/yebis-ppfx-post-effects-diagnostic-strings.tsv	-	7
-function	0x0070DC90	-	Third-Party-Libraries/yebis-ppfx-post-effects-members.tsv	-	6
+function	0x0070DC90	-	Third-Party-Libraries/yebis-ppfx-post-effects.md	-	7
 function	0x0070DD30	-	Third-Party-Libraries/yebis-ppfx-post-effects.md	-	8
 function	0x0070DD40	-	Third-Party-Libraries/yebis-ppfx-post-effects-unlisted-bodies.tsv	-	6
 function	0x0070DE40	-	Third-Party-Libraries/yebis-ppfx-post-effects-unlisted-bodies.tsv	-	6
@@ -41924,9 +41924,9 @@ function	0x008084E0	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvp
 function	0x008085C0	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
 function	0x00808690	-	Third-Party-Libraries/media-decoder-libraries-libwebm-mkvparser.tsv	-	5
 function	0x00808730	-	Engine-Core/vtable-methods.tsv	-	7
-function	0x00808770	-	Engine-Core/vtable-methods.tsv	-	7
+function	0x00808770	-	Third-Party-Libraries/media-decoder-libraries.md	-	8
 function	0x008087C4	-	Compiler-And-C-Runtime/image-hardening.md	-	8
-function	0x00808850	-	Compiler-And-C-Runtime/static-initialisation-and-teardown.md	-	10
+function	0x00808850	-	Compiler-And-C-Runtime/static-initialisation-and-teardown.md	-	8
 function	0x00808888	?showmanyc@?$basic_streambuf@_WU?$char_t; ?showmanyc@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@MEAA_JXZ	Compiler-And-C-Runtime/thunks-and-import-stubs.md	-	10
 function	0x0080888E	?xsgetn@?$basic_streambuf@_WU?$char_trai; ?xsgetn@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@MEAA_JPEA_W_J@Z	Compiler-And-C-Runtime/thunks-and-import-stubs-external-import-stubs-map.tsv	-	9
 function	0x00808894	?xsputn@?$basic_streambuf@_WU?$char_trai; ?xsputn@?$basic_streambuf@_WU?$char_traits@_W@std@@@std@@MEAA_JPEB_W_J@Z	Compiler-And-C-Runtime/thunks-and-import-stubs-external-import-stubs-map.tsv	-	9
@@ -51718,7 +51718,7 @@ global	0x02AEE0A8	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	
 global	0x02AEE0B0	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	-	4
 global	0x02AEE0B8	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	-	1
 global	0x02AEE0BC	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	-	1
-global	0x02AEE4C0	-	Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md	-	9
+global	0x02AEE4C0	-	Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md	-	10
 global	0x02AEE4C8	-	Menus-And-HUD/widgets.md	-	8
 global	0x02AEE4D0	-	Menus-And-HUD/widgets.md	-	5
 global	0x02AEE4D8	-	Saving-Loading-And-Settings/loading-a-save.md	-	5
@@ -58583,6 +58583,7 @@ data	0x00785117	-	Third-Party-Libraries/yebis-ppfx-post-effects.md	-	0
 data	0x007911DF	-	Third-Party-Libraries/yebis-ppfx-post-effects.md	-	1
 data	0x007F6FAF	-	Third-Party-Libraries/media-decoder-libraries.md	-	1
 data	0x007FFBBF	-	Third-Party-Libraries/media-decoder-libraries.md	-	1
+data	0x008087C3	-	Third-Party-Libraries/media-decoder-libraries.md	-	1
 data	0x00809930	-	Engine-Core/jump-thunks.md	-	0
 data	0x00809940	-	Engine-Core/jump-thunks.md	-	0
 data	0x00861EAE	-	Compiler-And-C-Runtime/exception-handling.md	-	10
@@ -59158,8 +59159,9 @@ data	0x00D10828	-	Graphics/model-files-cm-ca.md	-	0
 data	0x00D10830	-	Party/party-slots.md	-	0
 data	0x00D10890	-	Party/party-slots.md	-	0
 data	0x00D108A0	-	Graphics/model-oscillators-and-pose-sequencer.md	-	0
+data	0x00D108E4	-	Graphics/field-camera.md	-	0
 data	0x00D108F0	-	Graphics/field-camera.md	-	0
-data	0x00D108F4	-	Graphics/script-screen-effects.md	-	0
+data	0x00D108F4	-	Graphics/field-camera.md	-	1
 data	0x00D10990	-	EBP-Script-Files/atel-debug-companions.md	-	0
 data	0x00D10994	-	EBP-Script-Files/atel-debug-companions.md	-	0
 data	0x00D1099C	-	EBP-Script-Files/atel-debug-companions.md	-	0
@@ -61235,6 +61237,8 @@ data	0x02EBA258	-	Compiler-And-C-Runtime/lazy-statics-and-one-time-init.md	-	1
 data	0x02EBA2D7	-	PhyreEngine/phyre-modules.md	-	0
 data	0x02EBA2E0	-	Third-Party-Libraries/eastl-strings-and-containers.md	-	5
 data	0x02EBA2E1	-	Third-Party-Libraries/eastl-strings-and-containers.md	-	2
+data	0x02EBA300	-	Third-Party-Libraries/media-decoder-libraries.md	-	0
+data	0x02EBA308	-	Third-Party-Libraries/media-decoder-libraries.md	-	0
 data	0x02EBA3D0	-	Engine-Core/debug-logging.md	-	4
 data	0x02EBA3E0	-	Controls-And-Input/controllers.md	-	0
 data	0x02EBA3E4	-	Controls-And-Input/controllers.md	-	0
@@ -61263,7 +61267,6 @@ data	0x02EBCAC0	-	Scripts-And-Script-Commands/party-during-scenes.md	-	3
 data	0x02EBCBE0	-	Scripts-And-Script-Commands/party-during-scenes.md	-	10
 data	0x02EBCC80	-	Sound-And-Music/sound-effects.md	-	2
 data	0x02EBCD80	-	Graphics/character-effects.md	-	7
-data	0x02EBCD84	-	Engine-Core/startup-constants.md	-	0
 data	0x02EBD480	-	Graphics/character-effects.md	-	6
 data	0x02EBDBC0	-	Graphics/menu-effects.md	-	1
 data	0x02EBE5BF	-	Graphics/menu-effects.md	-	0

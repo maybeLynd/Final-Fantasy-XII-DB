@@ -466,6 +466,40 @@ Battle orders write a story flag through `0x0032ABE0` (`0x00329EEC`-`0x00329EF7`
 whose word `+0x06` is kind 8. The 4,467 register orders of the 166 area files' order sets write kinds 10, 9 and 1, and
 no weighted run of `battle_pack.bin` entry `+0x2C` holds a register order in any language.
 
+### The location maps in player names
+
+[`world-locations.tsv`](world-locations.tsv) has one row for each of the 48 location maps of the `us`
+`menumap_location.bin`: its area and region, its zones by map name (384 in all), the location each marker opens
+and its icons by what they show. Eight codes have no world area, so their area is the region their zones carry:
+`nac01_s01`, `naf01_s01`, `slm01_s01`, `rrp01_s01` and `rbl01_s01` to `rbl04_s01`.
+
+[`world-location-icons.tsv`](world-location-icons.tsv) has one row for each of the 631 `us` icon entries: the 609
+of the path-array files and the 22 of `menumap_sub26_e3.bin`. 457 entries carry a name: 143 the map name of a
+field, 91 an NPC name pair, 32 a shop and 191 a text id; the other 174 take the legend label of their icon. A shop's
+name pair is the word at `+0x00` of its row in `battle_pack.bin` section 39.
+
+### Columns of world-locations.tsv
+
+| Column | Holds |
+|---|---|
+| `location` | the define code: the `menumap_sublocation_<code>` define of `menumap_world.h` for the record |
+| `area` | the world area named by the code's first three letters, or the region of its zones followed by `(by its zones)` |
+| `region`, `sheet` | the world area's region, and the sheet number in the code |
+| `zone_count`, `zones` | its zones by map name and field number (a zone's `fieldId` is the zone number); a field stands twice where the record has two entries for it, one for each picture of the zone |
+| `markers_lead_to` | each marker's label and the location it opens |
+| `icons` | its icons by what they show, with counts |
+
+### Columns of world-location-icons.tsv
+
+| Column | Holds |
+|---|---|
+| `location`, `area`, `map` | the sub-location, its area, and the map of the entry's `fieldId` |
+| `kind`, `icon` | the entry's kind (3, 5, 8 or 9) and icon number |
+| `shows` | for icons 1 to 8, 10, 12, 13, 15 and 16 the legend's meaning: save crystal, gate crystal, the shops, aerodrome, other (a person), tavern, the Strahl, life crystal; for the others, the picture the icon draws |
+| `name` | bytes `+0x0C` to `+0x0F`, by the kind byte `+0x0D` and the id word `+0x0E` (`0x002B9C70`): 1 gives the map name of the field, 2 the NPC name pair, 3 the shop with its name and place, 4 the text with that id (`0x002F9860`); `-` for kind 0, which shows the legend label of its icon |
+| `shown_when` | the entry's gate in words, from menu-map-files-gates.tsv |
+| `at` | the entry's position on the sheet |
+
 ## Loader behaviour
 
 ### The map-data widget

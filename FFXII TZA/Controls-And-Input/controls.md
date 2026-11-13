@@ -323,9 +323,9 @@ The helpers the arms call:
 - `0x002736B0()`, from the HUD's `0x002C6F70` and `0x002C64C0`, answers 1 only when `0x00267720()` answers 1, hold-mask
   bit `0x10` is clear, `0x0028FA00()` and `0x00273950()` pass, and `0x0209A2C0` holds no handle or one whose class-1 or class-3
   actor has `+0x0C` bit `0x2` set (`0x0025B4C0`).
-- `0x0028FA00()` needs the HUD part `+0x10F80` with word `+0x1D7A` bit `0x8` and `+0x1D78` times the controlled character's
-  byte `+0x14` in the part's list `+0x1D70` above `0x3FFF`, or `+0x1D78` above `0x7F` when the character is not
-  listed.
+- `0x0028FA00()` needs the HUD part `+0x10F80` with word `+0x1D7A` bit `0x8` clear (`0x0028FA16`-`0x0028FA25`) and
+  `+0x1D78` times the controlled character's byte `+0x14` in the part's list `+0x1D70` above `0x3FFF`, or
+  `+0x1D78` above `0x7F` when the character is not listed.
 - `0x00252DE0`, from the area unload `0x002628B0`, clears `0x02092730` and `0x02092734` and sets `0x020927C8` and `0x020927CC`
   to 1 (`0x00252DF5`-`0x00252E0B`).
 

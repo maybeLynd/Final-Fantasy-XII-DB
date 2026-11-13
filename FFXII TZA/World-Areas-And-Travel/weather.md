@@ -7,8 +7,9 @@ addresses: "0x0026D910, 0x0025ACA0, 0x0025ABA0, 0x002658B0, 0x002620E0, 0x002659
 
 ## What the player sees
 
-Some areas are always clear, some are always raining, and some change: the Ozmone Plain between clear,
-rain and heavy rain, the Paramina Rift between calm and snowstorm. The Giza Plains' Dry and Rains are
+Some areas are always clear, some are always raining, and some change: the Ozmone Plain between sunshine,
+a sky with no drawn weather and heavy rain with strong wind, the Paramina Rift between sunshine and
+snowstorm. The Giza Plains' Dry and Rains are
 not weather: they are two separate sets of maps, and the exit you take into the plains picks the set
 from the story and the play clock (see [the Giza Plains seasons](#the-giza-plains-seasons)).
 
@@ -460,6 +461,32 @@ to `0x07B8`, the party comes from one of four maps and a draw of 1 to 100 is abo
 
 Such a slot stays for the visit: the verb arms the restore flag, so the roll that follows is dropped.
 
+Only the first `setweatherslot` of a zone start takes effect. `0x0026D910` stores a request only while the restore
+flag is 0 (`0x0026D951`-`0x0026D95E`), applies the slot the payload holds (`0x0026D96F`) and clears the flag
+(`0x0026DA92`); the verb's `0x0026D8F0` then sets it again (`0x0026D8F9`). A later call in the same start pass therefore
+keeps the first call's slot, and the roll after it does the same. The later call still reads the wind class for
+the slot it asked for itself (`0x0026DA2C`-`0x0026DA31`, `0x00377850`) and publishes that class at `0x02099DAC`
+(`0x0026DA3C`, `0x0026DA4E`).
+
+[`weather-forced-slots.tsv`](weather-forced-slots.tsv) reads the 366 calls with their tests in words. Of the 231
+that can run, 169 decide the slot, 59 decide it only when no earlier call ran on that visit, and 3 never decide.
+[`weather-calls.tsv`](weather-calls.tsv) gives all 1,744 calls with the tests they sit under: 1,737 in the
+setup actor's `map` function and 7 in its `event` function.
+
+The setup actor's functions run in the order the script image files them (`0x00266C50`), all inside the start pass:
+a function's return picks the next filed one in the same opcode (`0x003DB2A0`, `0x003DB6E0`), and manager `+0x12`
+is cleared only when none is left (`0x0025DB79`). `map` is filed before `event` in all 32 of the 122 calling
+scripts that file both. `bul_a02` is the one script with calls in both: its `map` calls on every path, so the
+two calls of its `event` (:59, :62) never decide.
+
+In `srb_a04` the call at :1373 stands under a local flag that `map` clears at its start (:1193) and sets only on
+the lines after its calls, so an earlier call has always run and it never decides.
+
+In the `tests` column a draw keeps its number, so two tests of `draw 1` read one draw. The carried weather slot
+is the global word `mp_last_weather`. The map-exit functions store `getweatherslot()` in it before the map change
+(2,806 stores in 575 scripts), and a setup script stores its call's argument in it on the line after the call
+(1,593 stores), so a carried slot of -1 is the argument of a call that leaves slot 1.
+
 ### The Giza Plains seasons
 
 The Giza Plains' Dry and Rains are two sets of fields, not weather slots: fields 236 to 249 are the Dry
@@ -577,6 +604,10 @@ The three files row by row, decoded with the layouts above:
 | [`weather-sky-textures.tsv`](weather-sky-textures.tsv) | 1,052 | one texture binding of a material that a sky instance draws or that binds a texture named `sky`: the scene, material, effect variant, parameter, texture, the file it loads, and how many sky and other instances draw the material |
 | [`weather-slot-effects.tsv`](weather-slot-effects.tsv) | 2,124 | one map of [`weather-maps.tsv`](weather-maps.tsv) and slot: the slot's chance, its environment index, combat and wind class, the effect banks the field loads, the rows of channels 0 and 31 the slot makes and how many other slots do not make, the element types they play with a count (and, for types without a picture, how they draw), the pictures drawn with a count, and the screen surfaces sampled |
 | [`weather-class-effects.tsv`](weather-class-effects.tsv) | 8 | one combat class (0 to 4) or wind class (0 to 2): its combat rule, its slots, how many make a zone-start element and a slot-limited one, and per element type and picture the number of slots whose slot-limited rows play or draw it; then the same four counts (slots, those with a zone-start element, those with a slot-limited one, and the element types of those) for the slots the roll can move to (chance above 0) and for the slots of chance 0 that the zone's setup script sets |
+| [`weather-slot-names.tsv`](weather-slot-names.tsv) | 2,124 | one map of [`weather-maps.tsv`](weather-maps.tsv) and slot, named from what the slot draws and what combat reads: `weather` (rain at 48 to 200 drops an element, heavy rain at 300, rain with lightning, sandstorm, snow, snowstorm, Mist, sunlight, each with `strong wind` for wind class 2, or `no drawn weather`: 1,325 slots), `element_rule` (the damage factors of its combat and wind class), the classes, the elements, and the sky textures and map model groups that, among the map's slot-limited pieces, only this slot draws |
+| [`weather-calls.tsv`](weather-calls.tsv) | 1,744 | one `setweatherslot` call of a zone script: the script, the listing line, the actor and function, the slot argument and the tests the call sits under, with each draw numbered |
+| [`weather-forced-slots.tsv`](weather-forced-slots.tsv) | 366 | one call that sets a slot of chance 0: the field, map, the slot the call leaves (an argument of -1 or 0 gives slot 1) and its name, the three chances, the script, line and function, `takes_effect` (`decides`, `decides unless an earlier call ran` with the lines of the earlier calls that can come first, `never decides` with the reason, or `cannot run`) and the tests in words |
+| [`weather-gated-spawns.tsv`](weather-gated-spawns.tsv) | 159 | one row of [`enemy-placement-conditions.tsv`](../Enemy-Spawning/enemy-placement-conditions.tsv) whose test reads `getweatherslot()` (68 placements in 28 maps): the placement, the map, the enemy and its kind, the slots the test allows with their names, and the test in words; 130 rows allow all three slots, because the weather term sits inside a negated pair with a hunt mark's presence |
 
 The zone scripts (`ps2data/plan_master/us/plan_map/<area>/<zone>/global/<zone>.ebp`, 769 files,
 the script section at `+0x80`, its `+0x64` section a count of 3 then three bytes) author 17

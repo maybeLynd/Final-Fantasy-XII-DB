@@ -123,12 +123,13 @@ with `0x003F89C0` and the callbacks `0x0029B7D0` (HP) and `0x0029B810` (MP), and
 `+0x80` (`0x003F8A50`). `0x002962D0` unregisters pairs whose handle no longer resolves (`0x002732E0`, `0x003F8A30`), and
 `0x00296360(record, handle)` does the same for the target window's pair (from `0x002C0870`).
 
-`0x00297C10` scans the five pairs from `0x0209BF40`, `0xC0` bytes apart, the target window's last; a pair is in use while
-either counter's flags `+0x26` have bit `0x2` (`0x00297C1A`-`0x00297C54`). An in-use pair whose `+0xB0` is the record's
-handle `+0x04` is kept as it is; otherwise the first pair with both bits clear is set up (`0x00297C56`-`0x00297CD8`).
+`0x00297C10` scans the four member pairs from `0x0209BF40`, `0xC0` bytes apart, and not the target window's pair at
+`0x0209C240`; a pair is in use while either counter's flags `+0x26` have bit `0x2` (`0x00297C1A`-`0x00297C54`). An
+in-use pair whose `+0xB0` is the record's handle `+0x04` is kept as it is; otherwise the first pair with both
+bits clear is set up (`0x00297C56`-`0x00297CD8`).
 
 Either way the record goes to both counters' `+0x48` (pair `+0x48` and `+0xA0`) and the handle to `+0xB0`, and the
-pair is returned (`0x00297CE2`-`0x00297CF8`); with all five in use it returns 0 and sets nothing (`0x00297C71`).
+pair is returned (`0x00297CE2`-`0x00297CF8`); with all four in use it returns 0 and sets nothing (`0x00297C71`).
 
 `0x003F8A30(list, node)` first moves the list head on to the node's next (`+0x28`) when the node is the head, then
 runs `0x003F8BF0(node)` (`0x003F8A42`): it calls the node's callback `+0x38` with 5, links its previous `+0x30` and next

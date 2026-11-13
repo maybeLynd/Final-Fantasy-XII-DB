@@ -658,8 +658,8 @@ to `0xFFFF`) and forgets through `0x00521300`. The live count is `0x02CA8458` an
   `+0x100 + 2 × slot`: it releases the old entry, takes one for the texture's key (`+0x1C`), and
   copies the texture's size and register words with the base-2 logarithms of width and height.
 - `0x00504800(instance, slot)` returns the slot's width and height as one dword once the entry is
-  marked uploaded (bit `0x1` of `+0x1C`), else 0. `0x00521320` clears that mark and the word `+0x14` in
-  all 256 entries.
+  marked uploaded (bit `0x1` of `+0x1C`), else 0. `0x00521320` clears that mark and the dword `+0x14`
+  (`0x00521344`) in all 256 entries.
 
 ### The upload area
 

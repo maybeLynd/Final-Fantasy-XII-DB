@@ -230,7 +230,7 @@ The request is consumed by the per-frame menu router `0x002E09A0`, run from the 
    - no word of `0x01E0C2C0` holds bit `0x40`, so category 6 is refused only by the latch;
    - before the default arm it calls `0x0017E7D0`, `0x0035DA80` and `0x003C8990` (`0x00254BC7`-`0x00254BD1`);
 4. the done byte is written by `0x002E1BA0` (`0x0215F1AE` = `0x0215F1AF` = 1), whose only caller is the
-   menu driver `0x0022B8C0` in its close-full-menu arm (`0x0022BB8D`, when `0x002E05C0()` is non-zero),
+   menu driver `0x0022B8C0` in its close-full-menu arm (`0x0022BB8D`, when `0x002E05C0()` is 0),
    so the Poll releases the crystal when the save screen has closed.
 
 ### The teleport

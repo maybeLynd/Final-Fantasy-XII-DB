@@ -88,8 +88,8 @@ Besides these, the menu's quest readers (`0x0037E780`, `0x0037EAA0`, `0x0037EB90
 
 ### The quests
 
-[quest-list.tsv](quest-list.tsv) has 30 rows: one for each of the 18 quest ids outside the hunts that a shipping
-script sets, 0, 3, 4, 5, 6, 8, 10, 11, 12, 13, 15, 18, 52, 53, 57, 58, 59 and 71, and one for each of 12 side quests
+[quest-list.tsv](quest-list.tsv) has 36 rows: one for each of the 18 quest ids outside the hunts that a shipping
+script sets, 0, 3, 4, 5, 6, 8, 10, 11, 12, 13, 15, 18, 52, 53, 57, 58, 59 and 71, and one for each of 18 side quests
 with no quest id of their own. The 45 hunts, quests 128 to 172, are in
 [hunts.tsv](hunts.tsv).
 
@@ -97,20 +97,34 @@ These counts cover the 1,114 us listings that decode, 769 zone and 345 event scr
 `evt_t0020.ebp` has no `EBP2` header and no listing. The developer scripts `evt_t0090` (`デバッグ監督`, the debug
 director), `evt_t0500` (`イベントデバッグメニュー`, the event debug menu) and `evt_t0505` are left out of the rows, cells and counts.
 
-Twelve are story chapters, the ids `menuquest.dat` puts in group 0 (records 0 to 18; no `us` listing sets the seven ids
-14, 16, 17 and 19 to 22). Their scenario byte steps along the story beside the story counter, and their
+Twelve are story chapters, the ids `menuquest.dat` puts in group 0 (records 0 to 18).
+No script of the nine languages writes or reads the seven other group 0 ids, 14, 16, 17 and 19 to 22, or the two
+ids of group 2, 50 and 51, whose records have no text.
+
+Five scripts pass a quest verb its id in a variable, the same in each language: `rbn_a14` stores 167 or 170
+(:2614, :2634), `rbn_a19` 53 (:5299) and `slm_a0380` 3 (:90), and no step of `rbn_a18` or `bhm_a04` stores theirs.
+`rbn_a14` also tests the ids 160 to 171 one after another in two loops (:260-:262, :3412-:3414).
+
+The chapters' scenario byte steps along the story beside the story counter, and their
 `questtitle.bin` rows are empty in `us`. Six are quests that `menuquest.dat` does not list: July's soldier at Nalbina
 (52), Rimzat's windvane (53), the Nabudis medallions of Ma'kleou (57), Roh'kenmou (58) and Roh'kenmu (59), and the
 Hunt Club (71).
 
-The twelve side quests have `-` for a quest id: the Craftsmoogles' windmills of the Cerobi Steppe, the Dragon Scale,
+The eighteen side quests have `-` for a quest id: the Craftsmoogles' windmills of the Cerobi Steppe, the Dragon Scale,
 the bottles and their messages, the Feather of the Flock and the escaped cockatrices, the Cactoid Compact, the Ring of
 the Toad, the Errmonea Leaf, the sick traveler and the Barheim Key, the cactoids of the Nebra, the Soul Ward Key,
-Pilika's diary and Ann's letter.
+Pilika's diary, Ann's letter, Ktjn's choice, the wandering viera and her two admirers, the Imperial soldier's
+Potion, the Jaya Stick, Jovy's strength and Ada's Empty Bottles.
 
 They keep their state in key items and in bytes of the script globals; the cockatrices and the Ring of the Toad also
 step along the scenario byte of hunt quests 160 and 138 after those hunts. The sick traveler and Pilika's diary begin
 once hunt quests 130 and 161 are cleared, and the cactoids of the Nebra once Dantro's wife has the cactus flower.
+
+The last six give a reward and keep their whole state in script bytes: Ktjn's four answers settle her in one of
+five places, each with its own gift; the viera's choice between two admirers decides who hands over the Loxley Bow;
+the Imperial on the Sunlit Path leaves two Prince's Kisses for a Potion; the Jaya Stick carried to Supinelu changes
+Jahara's parting gift; Jovy thanks the party once the five Nalbina hunts are rewarded; and Ada gives an Electrum
+for 99 Empty Bottles.
 
 Few quests use the ordered and cleared bits. `setquestorder(q, 1)` with a literal id runs for 6, 18 and 53, and
 `setquestclear(q, 1)` for 0, 4, 12, 18, 53, 57 and 58, each one line after `setquestorder(q, 0)`, which clears the

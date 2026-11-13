@@ -106,8 +106,9 @@ stores the dword `0x10000` at its `+0` (`0x0050FB3A`) and runs `0x002FAFD0`:
 1. The opened flag is set (`0x0032AD70(record[9], 1)`) when byte `+9` is not `0xFF`, and the
    per-field presence ledger is marked (`0x002FB430(0x02EC3E60, field, record[0], 0)`).
 2. `rand % 100` at or above byte `+0xB` gives an item, below it gil.
-3. The alternate contents apply when the unit `0x003272A0` returns has `+0x6B` or `+0x7B` bit `0x2` set
-   and none of the statuses `0x80000003`.
+3. The alternate contents apply when the unit `0x003272A0` returns exists and the record at its `+0x698`
+   (`0x002FB049`, `0x002FB0CD`) has `+0x6B` or `+0x7B` bit `0x2` set and none of the bits `0x80000003` in its
+   dwords `+0x64` and `+0x3C` (`0x002FB050`, `0x002FB053`).
 4. Item: a second `rand % 100` picks word `+0x10` (below 95) or `+0x12` with the alternate flag,
    otherwise `+0xC` (below 50) or `+0xE`. `0xFFFF` gives nothing; any other id gives one.
 5. Gil: word `+0x16` with the alternate flag, otherwise `+0x14`. A word of 0 gives nothing. With

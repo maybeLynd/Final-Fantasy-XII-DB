@@ -18,6 +18,26 @@ package's gil and items together.
 - 299 of the 300 are named by a package selector or by at least one script give; the other one, `0x9001`, is
   named by neither.
 
+### Who gives each package
+
+[`package-givers.tsv`](package-givers.tsv) has one row per package with every giver the tables record:
+
+- 211 packages are given by scene steps alone, 12 by a clan rank and scene steps, and 31 by a trophy trade and
+  scene steps;
+- 45 are the rewards of the 45 hunts: `questresultwindow(q)` pays selector `0xA000` + q, so no scene step names
+  them. `0x902E`, 30,000 gil and the Godslayer's Badge, is selector `0xA0AB`, hunt 171 Farewell to a Legend,
+  reported in The Clan Hall;
+- the 212 empty packages have no giver, and neither has `0x9001`.
+
+| Column | Meaning |
+|---|---|
+| `id`, `gives` | the package and what it gives, as in `reward-package-list.tsv` |
+| `giver_kinds` | scene, hunt, clan rank and trophy trade, those that apply; `empty` for an empty package |
+| `hunt` | the selector, the hunt quest and its name, and where the hunt is reported ([hunts](../Story-Events-And-Hunts/hunts.md)) |
+| `clan_rank` | the clan rank whose reward it is |
+| `trophy_trade` | the trade's price id, its gil and the map of the trade |
+| `scene_gives` | the number of scene-reward rows that give it, and each script with the actor and function; an actor whose copies carry several names is given with all of them, and the step's own tests pick the copy ([scene rewards](../Story-Events-And-Hunts/scene-rewards.md)) |
+
 ### Where the values come from
 
 The package table is the `st2e` table at entry `+0x98` (512 rows of 12 bytes from the section's `+0x20`); each

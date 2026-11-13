@@ -469,7 +469,7 @@ all; 13 install the defaults and spawn nothing). What the overriding zones autho
 - `btlAtelSetMapJumoKeep`: no script.
 
 [`enemy-placement-conditions.tsv`](enemy-placement-conditions.tsv) gives the spawn condition of each of the 6,229
-placements in [`enemy-placements.tsv`](enemy-placements.tsv), in 23,242 rows. A placement is the `entryNN` function of
+placements in [`enemy-placements.tsv`](enemy-placements.tsv), in 22,571 rows. A placement is the `entryNN` function of
 its actor (the `entry` column there). The actor's `spawnNN` and `respawnNN` functions enter it by a `requestreentry` step after `setentrygroup`
 names its group and `btlAtelSetKeepWorkGroup` its lane (`0x00239840`; a negative lane uses the group as the lane). Each
 row is one such step on one path, and gives:
@@ -479,16 +479,28 @@ row is one such step on one path, and gives:
   `btlAtelDecideEntryGroupByContinuous`; the selection `btlAtelGetKeepWorkRealGroup` keeps for a lane; or the script's
   loop register; and the lane's source the same way;
 - the tests on that path in five columns: story (シナリオフラグ, read directly or through the variables its writers
-  set), weather, count (death counts, elapsed and respawn times, a death counter), random (call `0x0029`, play time)
+  set), weather, count (death counts, elapsed and respawn times, a count of respawns with cause 0), random (call
+  `0x0029`, play time)
   and other;
 - the lane's respawn table row, decoded from the operand bytes: death limit and cooldown, base and range;
 - for a lane the automatic selector offers, the gates of `0x00235720` with their instruction addresses and the values the
   script sets for them (cap, attempts, distance band, arc), or the defaults;
 - the steps it comes from.
 
+A step the group's value cannot reach gives no row, and a value that reaches it only under a test carries the
+test:
+
+- a bank-return selector's value is entered by the `requestreentry` in its own branch, which returns, so no
+  later step of the function is entered with it;
+- a constant that fails a later test of the same variable gives no row: the 0 a lane search stores when it
+  finds no point never passes the `>= 1` test before the step;
+- where a later store replaces the group under a test, the row carries the test that leaves the group in
+  place: the Disma of `lus_f02` keeps the group its lottery chose only while `g_btl_hunt_lus_ゾンビ` is 1 or
+  call `0x05A9()` returns a non-zero value; otherwise the lane's own number replaces it.
+
 3,999 placements are entered at a lane the automatic selector offers, and 2,230 by the script's choice alone. By test:
-1,406 placements have a count test, 956 a random test, 303 a story test, 68 a weather test and 3,122 another test;
-3,726 have a path with no script test.
+1,360 placements have a count test, 956 a random test, 297 a story test, 68 a weather test and 3,091 another test;
+3,711 have a path with no script test.
 
 The Larva Eater placed by unique_monster_00 in `gil_e01`, `gil_e04`, `gil_e06`, `gil_f01`, `gil_f05`, `gil_g01` and
 `gil_g04` enters from the area start:
@@ -501,24 +513,66 @@ The Larva Eater placed by unique_monster_00 in `gil_e01`, `gil_e04`, `gil_e06`, 
 
 The Larva Eater of `gil_i`, `gil_j` and `gil_k` (levels 61 to 62) is entered by its own `spawn00`.
 
-[`enemy-spawn-variables.tsv`](enemy-spawn-variables.tsv) lists the 1,442 variables those tests read, by place
-(`file +0x00C0`, `scratch2 +0x40`), with every step that writes them. For `scratch2`, the writers include the zone scripts
-of the same field group. 48 are death counters: a step adds 1 to them when `btlAtelGetRespawnCause()` returns 0.
+[`enemy-spawn-variables.tsv`](enemy-spawn-variables.tsv) lists the 1,448 variables those tests read, by place
+(`file +0x000C`, `scratch2 +0x40`), with every step that writes them. A `file` or `local` place is the variable's
+byte offset from the script's variable table (the descriptor's low 24 bits, added as bytes for every width at
+`0x00262639`-`0x00262661`): in the script's file area, or in the local area of one actor.
+
+The functions of an actor declare their locals at different offsets of that area and two actors of a script can
+use the same offsets, so a local is named with its actor (`local +0x04 of 警報解除西`).
+
+For `scratch2`, the writers include the zone scripts
+of the same field group. 48 count the respawns whose cause is 0 (column `death_counter`): a step adds 1 to them
+when `btlAtelGetRespawnCause()` returns 0.
+
+The cause is bit `0x1` of the placement's entry (`0x00236670`). It is read only when bit `0x2` is set and bit `0x4`
+clear; otherwise the answer is -1, as it is with no calling unit (`0x0023667C`), with a unit that has no lane entry
+(`0x0023668A`-`0x002366A8`) or with a null entry address (`0x002366B8`). A retirement by
+range sets bit `0x1` (`0x002352A6`). The stores that clear it are listed with the bit in
+[spawn record fields](spawn-record-fields.md). Among them:
+
+- a kill, and a script removal of the living unit with `killallfast` or `entrystart` (`0x002348E0`), `killgroup`
+  (`0x00234990`), `zakokillall` or `btlAtelKillAllZako` (`0x00237690`), or `bosskillall` or `btlAtelKillAllBoss`
+  (`0x00234880`). Each calls `0x00300E40(unit, 0)`, which for these units clears entry bits `0x1`, `0x4` and `0x80`
+  (`0x00300F5D`-`0x00300F68`, `0x00237085`);
+- `btlAtelIgnoreKeepWork` (`0x00236860`, `0x002368AA`), with the same mask;
+- `btlAtelSetKeepWorkGroup` when it changes the entry's selection byte (`0x00239840`, `0x002398C2`), for bits `0x1`
+  and `0x4`.
+
+So a cause of 0 says the entry is not marked retired by range, whichever store cleared the mark.
+
+[`enemy-placement-conditions-terms.tsv`](enemy-placement-conditions-terms.tsv) gives the same 22,571 rows in the same
+order with every test read in the game's terms. A story-counter value is named by its stage, a global word by its
+meaning and the phrase for the tested value, a roll by its range, and a script word once per row by its writers. Of
+the test cells, 965 story, 159 weather, 1,825 count, 1,944 random and 9,537 other cells hold a test; the rest
+hold `-`.
 
 ### Columns of enemy-placement-conditions.tsv
 
 | Column | Holds |
 |---|---|
-| `other_test` | the tests on the path that are not story, weather, count or random tests, written as conditions on script words (`file +0x00D0 == 1`), calls (`btlAtelGetActiveActorNow() < btlAtelGetActiveActorMax()`) and the loop register, separated by semicolons; `-` on the 13,070 rows with no such test |
-| `entry_struct` | the lane's storage, on all 23,242 rows: the bank slot the lane map in the `msp` area gives the lane, with the map's offset and the step that writes it, then the lane's respawn table row (its `msp` offset, the step that writes it and its eight operand bytes) decoded as death limit and cooldown, each as base and range, and the key |
-| `native_gate` | for a lane the automatic selector offers (9,289 rows), the gates of `btlAtelDecideEntryPointAuto` (`0x00235720`) with their instruction addresses and the values the script sets for them: the active cap, the lane's candidate ids, the attempts, the distance band and the arc, or the defaults; `-` on the other 13,953 |
+| `other_test` | the tests on the path that are not story, weather, count or random tests, written as conditions on script words (`file +0x000D == 1`), calls (`btlAtelGetActiveActorNow() < btlAtelGetActiveActorMax()`) and the loop register, separated by semicolons; `-` on the 13,034 rows with no such test |
+| `entry_struct` | the lane's storage, on all 22,571 rows: the bank slot the lane map in the `msp` area gives the lane, with the map's offset and the step that writes it, then the lane's respawn table row (its `msp` offset, the step that writes it and its eight operand bytes) decoded as death limit and cooldown, each as base and range, and the key |
+| `native_gate` | for a lane the automatic selector offers (9,289 rows), the gates of `btlAtelDecideEntryPointAuto` (`0x00235720`) with their instruction addresses and the values the script sets for them: the active cap, the lane's candidate ids, the attempts, the distance band and the arc, or the defaults; `-` on the other 13,282 |
 | `cite` | the steps the row comes from: the script, actor and `entryNN` function, then each `requestreentry` step that enters it, with its function, step and byte offset, and, in brackets, the selector step that chose the group where one did |
 
 ### Columns of enemy-spawn-variables.tsv
 
 | Column | Holds |
 |---|---|
-| `story_counter_writers` | for a variable whose writers run under a story-counter test, directly or through another variable they copy, each such store with its value, step and the `シナリオフラグ` test that holds there (227 rows); `-` on the 1,215 variables no story-counter test reaches |
+| `story_counter_writers` | for a variable whose writers run under a story-counter test, directly or through another variable they copy, each such store with its value, step and the `シナリオフラグ` test that holds there (226 rows); a step of another script of the field group is named with that script (`rsn_b02 警報解除西.talk step 71`), and so is a `scratch1` or `local` place such a step sets; the places in a step's test are those of the step's script; `-` on the 1,222 variables no story-counter test reaches |
+
+### Columns of enemy-placement-conditions-terms.tsv
+
+| Column | Holds |
+|---|---|
+| `area`, `area_id`, `script`, `function`, `row`, `id`, `name`, `group`, `decided_by` | the row's key, as in enemy-placement-conditions.tsv and in the same order; `script` is the zone script's name alone |
+| `kind`, `zone`, `map_name` | the placement's kind, zone and map from enemy-placement-kinds.tsv |
+| `story_text` | the row's `story_test`, each story-counter value by its stage in story-counter-values.tsv; `-` with no such test |
+| `weather_text` | the row's `weather_test`, the weather slot by number; `-` with no such test |
+| `count_text` | the row's `count_test`: the lane's death count against its death limit, its cooldown, the active enemies against the cap; `-` with no such test |
+| `random_text` | the row's `random_test`: each roll by its range and threshold, play-clock tests by their unit; `-` with no such test |
+| `other_text` | the row's `other_test`: each global word by its meaning in script-variables-global-meanings.tsv, each script word by its writers in enemy-spawn-variables.tsv; `-` with no such test |
 
 ## Operations
 

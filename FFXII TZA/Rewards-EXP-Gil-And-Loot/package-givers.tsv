@@ -1,0 +1,513 @@
+id	gives	giver_kinds	hunt	clan_rank	trophy_trade	scene_gives
+0x9000	gives Orrachea Armlet x1	scene	-	-	-	1 row: rbn_a16 常駐監督.EV掲示板とミュート
+0x9001	gives Potion x3 + Phoenix Down x2	no giver: no scene step, hunt, clan rank or trophy trade gives it	-	-	-	-
+0x9002	gives Potion x3 + Phoenix Down x2	scene	-	-	-	1 row: sav_b0181 ＡＤ.Ｃ０１_パンネロ解説
+0x9003	gives 300 gil + Potion x2 + Teleport Stone x1	hunt	selector 0xA080, quest 128 Red & Rotten in the Desert, reported in The Sandsea (Rabanastre) [rbn_a16]	-	-	-
+0x9004	gives 500 gil + Headguard x1 + Teleport Stone x1	hunt	selector 0xA081, quest 129 Wolf in the Waste, reported in The Sandsea (Rabanastre) [rbn_a16]	-	-	-
+0x9005	gives 500 gil + Potion x10	hunt	selector 0xA082, quest 130 Dalmasca's Desert Bloom, reported in Outpost (Dalmasca Estersand) [dst_a07]	-	-	-
+0x9006	gives 500 gil + Ether x1 + Gauntlets x1	hunt	selector 0xA083, quest 131 Waterway Haunting, reported in North Sprawl (Lowtown) [slm_a01]	-	-	-
+0x9007	gives 600 gil + Rose Corsage x1 + Balaclava x1	hunt	selector 0xA084, quest 132 Marauder in the Mines, reported in Lhusu Square (Bhujerba) [byu_a04]; The Chosen Path (Tchita Uplands) [pla_a06]	-	-	-
+0x9008	gives 2800 gil + Burning Bow x1	hunt	selector 0xA085, quest 133 Lost in the Pudding, reported in Westgate (Rabanastre) [rbn_a19]	-	-	-
+0x9009	gives 200 gil + Moon Ring x1 + Icebrand x1	hunt	selector 0xA086, quest 134 For Whom the Wyrm Tolls, reported in North Sprawl (Lowtown) [slm_a01]	-	-	-
+0x900A	gives 1000 gil + Elfin Bow x1 + Shell Shield x1	hunt	selector 0xA087, quest 135 A Scream from the Sky, reported in Amal's Weaponry (Rabanastre) [rbn_a07]	-	-	-
+0x900B	gives 2200 gil + Serpent Eye x1 + Teleport Stone x3	hunt	selector 0xA088, quest 136 A Tingling Toast, reported in The Sandsea (Rabanastre) [rbn_a16]	-	-	-
+0x900C	gives 1100 gil + Ether x1 + Golden Amulet x1	hunt	selector 0xA089, quest 137 The Defense of Ozmone Plain, reported in The Elderknoll (Jahara) [glf_a03]	-	-	-
+0x900D	gives 1200 gil + Serpent Rod x1 + Teleport Stone x1	hunt	selector 0xA08A, quest 138 A Ring in the Rain, reported in Nomad Village (Giza Plains) [sav_e01]	-	-	-
+0x900E	gives 1300 gil + Ether x1 + Soul Powder x1	hunt	selector 0xA08B, quest 139 The Dead Ought Sleep Forever, reported in The Elderknoll (Jahara) [glf_a03]	-	-	-
+0x900F	gives 1500 gil + Hunting Crossbow x1 + Teleport Stone x2	hunt	selector 0xA08C, quest 140 Befoulment of the Beast, reported in Sand-strewn Pass (Mt Bur-Omisace) [bul_b02]	-	-	-
+0x9010	gives 2000 gil + Lightning Arrows x1 + Gillie Boots x1	hunt	selector 0xA08D, quest 141 A Chase Through the Woods, reported in The Spiritwood (Eruyt Village) [vic_a02]	-	-	-
+0x9011	gives 2200 gil + Carmagnole x1	hunt	selector 0xA08E, quest 142 The Mine Flayer, reported in Lull of the Land (Jahara) [glf_a02]	-	-	-
+0x9012	gives 2400 gil + Stun Bombs x1 + Vampyr Fang x1	hunt	selector 0xA08F, quest 143 The Deserter's Revenge, reported in South Bank Village (Dalmasca Estersand) [dst_b01]	-	-	-
+0x9013	gives 1800 gil + Gaia Rod x1 + Platinum Shield x1	hunt	selector 0xA090, quest 144 Trouble in the Hills, reported in Jajim Bazaar (Nalbina Town) [nac_a02]	-	-	-
+0x9014	gives 3100 gil + Giant's Helmet x1 + Mythril x1	hunt	selector 0xA091, quest 145 Adding Insult to Injury, reported in West Ward (Nalbina Town) [nac_a03]	-	-	-
+0x9015	gives 1700 gil + Caliper x1 + Hi-Ether x1	hunt	selector 0xA092, quest 146 Rodeo to the Death, reported in Babbling Vale (Mosphoran Highwaste) [mnt_d01]	-	-	-
+0x9016	gives 3000 gil + Lead Bolts x1 + Adamantite x1	hunt	selector 0xA093, quest 147 Shelled Obstruction, reported in Vint's Armaments (Archades) [alc_f03]	-	-	-
+0x9017	gives 3500 gil + Halberd x1 + Aegis Shield x1	hunt	selector 0xA094, quest 148 Get My Stuff Back!, reported in The Whitecap (Balfonheim Port) [var_a14]	-	-	-
+0x9018	gives 4200 gil + Minerva Bustier x1 + Hi-Ether x1	hunt	selector 0xA095, quest 149 Old Legends, Decaying Bonds, reported in Alley of Muted Sighs (Old Archades) [ald_a01]	-	-	-
+0x9019	gives 3500 gil + Hi-Ether x2 + Teleport Stone x1	hunt	selector 0xA096, quest 150 The Things We Do..., reported in Bulward's Technicks (Archades) [alc_b06]	-	-	-
+0x901A	gives 3600 gil + Save the Queen x1 + Einherjarium x1	hunt	selector 0xA097, quest 151 The Creature Collector, reported in West Ward (Nalbina Town) [nac_a03]	-	-	-
+0x901B	gives 2800 gil + Hi-Ether x2 + Soul of Thamasa x1	hunt	selector 0xA098, quest 152 Dead City Watch, reported in Jajim Bazaar (Nalbina Town) [nac_a02]	-	-	-
+0x901C	gives 3400 gil + Elixir x2	hunt	selector 0xA099, quest 153 Visitor on Deck, reported in Aerodrome (Archades) [alc_e01]; Aerodrome (Balfonheim Port) [var_b01]; Aerodrome (Bhujerba) [byu_b01]; Aerodrome (Nalbina Town) [nac_b01]; Aerodrome (Rabanastre) [rbn_b01]	-	-	-
+0x901D	gives 2600 gil + Demon Shield x1 + Zeus Mace x1	hunt	selector 0xA09A, quest 154 The Child Snatcher, reported in Miners' End (Bhujerba) [byu_a03]	-	-	-
+0x901E	gives 3800 gil + Dark Shot x1 + Scathe Mote x1	hunt	selector 0xA09B, quest 155 The Black Sorcerer, reported in Temple Grounds (Mt Bur-Omisace) [bul_a03]	-	-	-
+0x901F	gives 4600 gil + Euclid's Sextant x1	hunt	selector 0xA09C, quest 156 A Wild Stench, reported in The Spiritwood (Eruyt Village) [vic_a02]	-	-	-
+0x9020	gives 3200 gil + Volcano x1 + Arctic Wind x1	hunt	selector 0xA09D, quest 157 Paying for the Past, reported in Lull of the Land (Jahara) [glf_a02]	-	-	-
+0x9021	gives 7000 gil + Assassin's Arrows x1 + Teleport Stone x1	hunt	selector 0xA09E, quest 158 Wyrm Wrath's Renewal, reported in Temple Approach (Mt Bur-Omisace) [bul_b01]	-	-	-
+0x9022	gives 8000 gil + Grand Mace x1 + Scathe Mote x2	hunt	selector 0xA09F, quest 159 Who's the Strongest!?, reported in Saccio Lane (Balfonheim Port) [var_a04]	-	-	-
+0x9023	gives 1000 gil + Amber Armlet x1 + Rainbow Egg x1	hunt	selector 0xA0A0, quest 160 Little Love on the Big Plains, reported in Nomad Village (Giza Plains) [sav_b01]	-	-	-
+0x9024	gives 1200 gil + Hi-Potion x2 + Survival Vest x1	hunt	selector 0xA0A1, quest 161 The Cry of Its Power, reported in Khus Skygrounds (Bhujerba) [byu_a07]	-	-	-
+0x9025	gives 3800 gil + Horakhty's Flame x1 + Unpurified Ether x1	hunt	selector 0xA0A2, quest 162 Crime and Punishment, reported in North Sprawl (Lowtown) [slm_a01]	-	-	-
+0x9026	gives 3000 gil + Phobos Glaze x1	hunt	selector 0xA0A3, quest 163 Paradise Risen, reported in Nomad Village (Giza Plains) [sav_b01]	-	-	-
+0x9027	gives 4800 gil + Deimos Clay x1	hunt	selector 0xA0A4, quest 164 Paramina Run, reported in Sand-strewn Pass (Mt Bur-Omisace) [bul_b02]	-	-	-
+0x9028	gives 4300 gil + Bubble Belt x1 + Sickle-Blade x1	hunt	selector 0xA0A5, quest 165 Antlion Infestation, reported in The Staras Residence (Bhujerba) [byu_a17]	-	-	-
+0x9029	gives 5200 gil + Stink Bombs x1 + Putrid Liquid x1	hunt	selector 0xA0A6, quest 166 Carrot Stalk, reported in Aerodrome (Nalbina Town) [nac_b01]	-	-	-
+0x902A	gives 10000 gil + Excalipur x1	hunt	selector 0xA0A7, quest 167 Battle on the Big Bridge, reported in The Clan Hall (Rabanastre) [rbn_a14]	-	-	-
+0x902B	gives 250 gil + Bacchus's Wine x2	hunt	selector 0xA0A8, quest 168 Truth Shrouded in Mist, reported in Dalan's House (Lowtown) [slm_a03]	-	-	-
+0x902C	gives 3000 gil + Sapping Bolts x1 + Ragnarok x1	hunt	selector 0xA0A9, quest 169 Fishy Dreams, reported in The Whitecap (Balfonheim Port) [var_a14]	-	-	-
+0x902D	gives 20000 gil + Megalixir x2	hunt	selector 0xA0AA, quest 170 God or Devil?, reported in The Clan Hall (Rabanastre) [rbn_a14]	-	-	-
+0x902E	gives 30000 gil + Godslayer's Badge x1	hunt	selector 0xA0AB, quest 171 Farewell to a Legend, reported in The Clan Hall (Rabanastre) [rbn_a14]	-	-	-
+0x902F	gives Potion x3	clan rank, scene	-	rank 1 Moppet	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9030	gives Warp Mote x2 + Teleport Stone x2	clan rank, scene	-	rank 2 Hedge Knight	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9031	gives Remedy x3 + Teleport Stone x2	clan rank, scene	-	rank 3 Rear Guard	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9032	gives Hi-Potion x3 + Teleport Stone x2	clan rank, scene	-	rank 4 Vanguard	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9033	gives Ether x2 + Teleport Stone x2	clan rank, scene	-	rank 5 Headhunter	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9034	gives X-Potion x2 + Teleport Stone x2	clan rank, scene	-	rank 6 Ward of Justice	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9035	gives Hi-Ether x2 + Teleport Stone x3	clan rank, scene	-	rank 7 Brave Companion	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9036	gives Elixir x2 + Teleport Stone x3	clan rank, scene	-	rank 8 Riskbreaker	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9037	gives High Arcana x1 + Teleport Stone x3	clan rank, scene	-	rank 9 Paragon of Justice	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9038	gives Empyreal Soul x1 + Teleport Stone x3	clan rank, scene	-	rank 10 High Guardian	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9039	gives Megalixir x2 + Teleport Stone x3	clan rank, scene	-	rank 11 Knight of the Round	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x903A	gives Centurio Hero's Badge x1 + Teleport Stone x3	clan rank, scene	-	rank 12 Order of Ambrosia	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x903B	gives 150 gil	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x903C	gives 200 gil	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x903D	gives 1200 gil	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x903E	gives 300 gil	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x903F	gives 1200 gil + Electrum x1	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9040	gives 600 gil + Warp Mote x1	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9041	gives 800 gil	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9042	gives 900 gil	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9043	gives 1100 gil	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9044	gives 1300 gil + Mallet x1	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9045	gives 1600 gil	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9046	gives 1600 gil	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9047	gives 50000 gil	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9048	gives 1800 gil	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9049	gives 1900 gil	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x904A	gives 1900 gil	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x904B	gives 2000 gil	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x904C	gives 2100 gil	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x904D	gives 2100 gil + Bacchus's Wine x1	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x904E	gives Arcana x2 + Teleport Stone x2	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x904F	gives High Arcana x1 + Teleport Stone x2	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9050	gives Gemsteel x1 + Teleport Stone x2	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9051	gives Serpentarius x1 + Teleport Stone x2	scene	-	-	-	1 row: rbn_a14 モンブラン.talk (Montblanc)
+0x9052	gives 1000 gil + Remedy x3	scene	-	-	-	2 rows: pla_a06 依頼主.talk (Archadian Wayfarer); pla_b06 依頼主.talk (Archadian Wayfarer)
+0x9053	gives Hi-Potion x1	scene	-	-	-	1 row: nal_a01 PRISON_HUME_Z.セリフ結果4 (Cutraz)
+0x9054	gives Potion x2 + Eye Drops x4	scene	-	-	-	2 rows: slm_a01 制御レクト０２.touch; slm_a01 常駐監督.集積場扉開いたら呼んでねタグ
+0x9055	gives 500000 gil + Rod of Faith x1	scene	-	-	-	1 row: bul_b01 behibehi_rect.talk_kirari
+0x9056	gives Loxley Bow x1 + Hi-Potion x2	scene	-	-	-	1 row: rbn_a04 NPC01.talk_after_parade, an actor whose copies are named Rabanastran, Desert Merchant, Bright-eyed Boy, Imperial, Lovestruck Man
+0x9057	gives Loxley Bow x1	scene	-	-	-	1 row: rbn_a12 NPC01.talk_step01, an actor whose copies are named Adept Adventurer, Lord Vain, Greenhorn
+0x9058	gives Runeblade x1	scene	-	-	-	1 row: rbn_a14 常駐監督.カトリーヌ台詞
+0x9059	gives Hunting Crossbow x1	scene	-	-	-	2 rows: rbn_a01 カトリーヌ.talk (Viera / Ktjn)
+0x905A	gives Fuzzy Miter x1	scene	-	-	-	1 row: rbn_a09 カトリーヌ.talk (Viera / Ktjn)
+0x905B	gives Firefly x1	scene	-	-	-	1 row: rbn_a03 カトリーヌ.talk (Viera / Ktjn)
+0x905C	gives Ether x1 + Hi-Potion x3	scene	-	-	-	4 rows: rbn_a01 カトリーヌ５.talk (Viera / Ktjn); rbn_a02 カトリーヌ５.talk (Viera / Ktjn); rbn_a03 カトリーヌ５.talk (Viera / Ktjn); rbn_b01 カトリーヌ５.talk (Viera / Ktjn)
+0x905D	gives 50 gil + Potion x2 + Teleport Stone x2	scene	-	-	-	1 row: sav_b0180 ＡＤ.Ｃ０３_マシュアお礼
+0x905E	gives 200 gil + Potion x2 + Holy Stone x1	scene	-	-	-	3 rows: sav_b01 １３マシュア.talk (Nomad / Masyua)
+0x905F	gives 150 gil + Holy Stone x1	scene	-	-	-	3 rows: sav_b01 １３マシュア.talk (Nomad / Masyua)
+0x9060	gives 100 gil	scene	-	-	-	3 rows: sav_b01 １３マシュア.talk (Nomad / Masyua)
+0x9061	gives 50 gil	scene	-	-	-	3 rows: sav_b01 １３マシュア.talk (Nomad / Masyua)
+0x9062	gives Remedy x2	scene	-	-	-	1 row: sav_b01 １１レジーナ.talk_enk (Nomad / Lesina)
+0x9063	gives Deathbringer x1	scene	-	-	-	1 row: rbn_a01 コカトリス.talk, an actor whose copies are named Cockatrice / Renn, Cockatrice
+0x9064	gives Platinum Dagger x1	scene	-	-	-	2 rows: glf_a02 常駐イベント.コカ; glf_a02 酪農ガリフ03.talk (Garif Herder)
+0x9065	gives Defender x1	scene	-	-	-	1 row: var_a01 NPC_MOG_GARDY.talk (Gurdy)
+0x9066	gives Koga Blade x1	scene	-	-	-	2 rows: dst_b02 クエコカトリス.talk, an actor whose copies are named Cockatrice / Sassan, Cockatrice
+0x9067	gives Yoichi Bow x1	scene	-	-	-	2 rows: vic_a01 ＡＤ.Ｃ０２_チィ帰る
+0x9068	gives Tumulus x1	scene	-	-	-	1 row: alc_a01 NPC_COCATRICE.talk, an actor whose copies are named Cockatrice / Agytha, Cockatrice
+0x9069	gives Hi-Ether x2	scene	-	-	-	1 row: sav_b01 ３０テラ.talk_cockatrice_escape (Nomad Youth / Terra)
+0x906A	gives Elixir x1 + Knot of Rust x1	scene	-	-	-	1 row: nac_a03 ロケイベント監督.ジョニーお礼渡す
+0x906B	gives Salamand Halcyon x1	scene	-	-	-	1 row: alc_b05 NPC01.talk_06a
+0x906C	gives Ring of Renewal x1	scene	-	-	-	1 row: asp_a02 姉妹イベント監督.七女からのお礼渡す
+0x906D	gives Prince's Kiss x2	scene	-	-	-	1 row: ozm_b04 手紙キラリン.talk
+0x906E	gives 1 gil	scene	-	-	-	2 rows: dst_a07 チョコへそＦＳ０１.talk; dst_b01 チョコへそＦＳ.talk
+0x906F	gives 3 gil	scene	-	-	-	3 rows: dst_a07 チョコへそＦＳ０２.talk; dst_a07 チョコへそＦＳ０３.talk; dst_b01 チョコへそＦＳ.talk
+0x9070	gives 5 gil	scene	-	-	-	3 rows: dst_a07 チョコへそＦＳ０４.talk; dst_a07 チョコへそＦＳ０５.talk; dst_b01 チョコへそＦＳ.talk
+0x9071	gives Teleport Stone x1	scene	-	-	-	1 row: dst_b01 チョコへそＦＳ.talk
+0x9072	gives Hi-Potion x1	scene	-	-	-	1 row: dst_b0100 演出監督.釣りイベント
+0x9073	gives Water Stone x1	scene	-	-	-	1 row: dst_b0100 演出監督.釣りイベント
+0x9074	gives 100 gil	scene	-	-	-	1 row: dst_b0100 演出監督.釣りイベント
+0x9075	gives Water Magicite x1	scene	-	-	-	1 row: dst_b0100 演出監督.釣りイベント
+0x9076	gives Fish Scale x1	scene	-	-	-	1 row: dst_b0100 演出監督.釣りイベント
+0x9077	gives Turtle Shell x1	scene	-	-	-	1 row: dst_b0100 演出監督.釣りイベント
+0x9078	gives Frogspawn x1	scene	-	-	-	1 row: dst_b0100 演出監督.釣りイベント
+0x9079	gives Hi-Potion x1	scene	-	-	-	1 row: dst_b0100 演出監督.釣りイベント
+0x907A	gives Adamantite x1	scene	-	-	-	1 row: dst_b0100 演出監督.釣りイベント
+0x907B	gives Scarletite x1	scene	-	-	-	2 rows: dst_b0100 演出監督.釣りイベント
+0x907C	gives Lu Shang's Badge x1	scene	-	-	-	1 row: dst_b0100 演出監督.釣りイベント
+0x907D	gives 10 gil	scene	-	-	-	1 row: dst_b01 NPC01.talk, an actor whose copies are named Cartographers' Guild, Village Youth / Tchigri, Villager / Dantro's Wife, Village Elder, Villager, Ruksel, Beachcomber / Ada
+0x907E	gives 100 gil	scene	-	-	-	1 row: dst_b01 NPC01.talk, an actor whose copies are named Cartographers' Guild, Village Youth / Tchigri, Villager / Dantro's Wife, Village Elder, Villager, Ruksel, Beachcomber / Ada
+0x907F	gives 200 gil	scene	-	-	-	1 row: dst_b01 NPC01.talk, an actor whose copies are named Cartographers' Guild, Village Youth / Tchigri, Villager / Dantro's Wife, Village Elder, Villager, Ruksel, Beachcomber / Ada
+0x9080	gives Electrum x1	scene	-	-	-	1 row: dst_b01 NPC01.talk, an actor whose copies are named Cartographers' Guild, Village Youth / Tchigri, Villager / Dantro's Wife, Village Elder, Villager, Ruksel, Beachcomber / Ada
+0x9081	gives Bundle of Needles x1	scene	-	-	-	4 rows: dst_b01 NPC01.talk, an actor whose copies are named Cartographers' Guild, Village Youth / Tchigri, Villager / Dantro's Wife, Village Elder, Villager, Ruksel, Beachcomber / Ada
+0x9082	gives Balance Mote x1	scene	-	-	-	1 row: dst_b01 ボス.talk (Recovering Traveler)
+0x9083	gives Magick Gloves x1	scene	-	-	-	1 row: dst_b01 ボス.talk (Recovering Traveler)
+0x9084	gives Golden Amulet x1	scene	-	-	-	1 row: dst_b01 ボス.talk (Recovering Traveler)
+0x9085	gives X-Potion x1	scene	-	-	-	4 rows: bog_a05 小舟ボトルレクト.talk; frs_c02 小舟ボトルレクト.talk; grm_e13 小舟ボトルレクト.talk; mnt_d01 小舟ボトルレクト.talk
+0x9086	gives Hastega Mote x1	scene	-	-	-	4 rows: bog_a05 廃屋ボトルレクト.talk; frs_c02 廃屋ボトルレクト.talk; grm_e13 廃屋ボトルレクト.talk; mnt_d01 廃屋ボトルレクト.talk
+0x9087	gives Holy Mote x1	scene	-	-	-	4 rows: bog_a05 祠ボトルレクト.talk; frs_c02 祠ボトルレクト.talk; grm_e13 祠ボトルレクト.talk; mnt_d01 祠ボトルレクト.talk
+0x9088	gives Hi-Ether x1	scene	-	-	-	10 rows: srb_a02 風車レクト６.talk; srb_a02 風車レクト７.talk; srb_a03 風車レクト４.talk; srb_a03 風車レクト５.talk; srb_b01 風車レクト１.talk; srb_b01 風車レクト２.talk; srb_b01 風車レクト３.talk; srb_b04 風車レクト１０.talk; srb_b04 風車レクト８.talk; srb_b04 風車レクト９.talk
+0x9089	gives Elixir x1	scene	-	-	-	4 rows: bog_a05 ネズミボトルレクト.talk; frs_c02 ネズミボトルレクト.talk; grm_e13 ネズミボトルレクト.talk; mnt_d01 ネズミボトルレクト.talk
+0x908A	gives 1000 gil + Wyrmfire Shot x1	scene	-	-	-	1 row: dst_b02 クエサボ息子.子サボラスト移動
+0x908B	gives 1000 gil	scene	-	-	-	14 rows: byu_a01 NPC01.talk_step01, an actor whose copies are named Cartographers' Guild, Archadian Wayfarer, Bhujerban, Bhujerban Sainikah, Street Kid, City Parijanah, Informed Citydweller, Informed Sainikah, Informed Parijanah, Informed Wayfarer, Shop Clerk; byu_a02 NPC01.talk_step01, an actor whose copies are named Archadian Wayfarer, Cloudborne Patron, Bhujerban Sainikah, Cloudborne Resident, Cloudborne Kid, City Parijanah, Lhusu Miner, Informed Citydweller, Informed Sainikah, Informed Parijanah, Informed Wayfarer, Bhujerban Guru; byu_a03 NPC01.talk_step01, an actor whose copies are named Shop Clerk, Bhujerban Sainikah, Lhusu Parivir, City Parijanah, Lhusu Miner, Informed Citydweller, Informed Sainikah, Informed Parijanah, Miners' Ender, Miners' Ender Kid, Bhujerban Guru; byu_a04 NPC01.talk, an actor whose copies are named Cartographers' Guild, Lhusu Parivir / Aekom, Lhusu Parivir, Lhusu Miner, Informed Citydweller, Miners' Ender; byu_a07 NPC01.talk_step01, an actor whose copies are named Bhujerban, Bhujerban Sainikah, Street Kid, Pilika, City Parijanah, Informed Citydweller, Informed Sainikah, Informed Parijanah, Informed Shopkeep; byu_a08 NPC01.talk, an actor whose copies are named Bhujerban, Bhujerban Sainikah, City Parijanah, Yrlon, Informed Citydweller, Informed Sainikah, Informed Parijanah; byu_a11 NPC01.talk, an actor whose copies are named Bhujerban Sainikah, Shop Clerk, Lhusu Parivir, City Parijanah, Lhusu Miner, Informed Citydweller, Informed Sainikah, Informed Parijanah, Informed Shopkeep, Bhujerban; byu_a12 NPC01.talk, an actor whose copies are named Bhujerban, Bhujerban Sainikah, Shop Clerk, City Parijanah, Informed Citydweller, Informed Sainikah, Informed Parijanah, Informed Shopkeep; byu_a14 NPC01.talk, an actor whose copies are named Bhujerban, Bhujerban Sainikah, City Parijanah, Informed Citydweller, Informed Sainikah, Informed Parijanah, Bhujerban Guru, Shop Clerk, Informed Shopkeep; byu_a15 NPC01.talk, an actor whose copies are named Archadian Wayfarer, Shop Clerk, Bhujerban Sainikah, City Parijanah, Informed Citydweller, Informed Sainikah, Informed Parijanah, Informed Shopkeep, Informed Wayfarer; byu_a16 NPC01.talk, an actor whose copies are named Bhujerban, Shop Clerk, Bhujerban Sainikah, City Parijanah, Informed Citydweller, Informed Sainikah, Informed Parijanah, Informed Shopkeep; byu_a17 NPC01.talk, an actor whose copies are named Niray, Yrlon, Kait, Informed Citydweller; byu_a18 NPC01.talk_step01, an actor whose copies are named Timorous Bangaa, Melisa, Magu, Cloudborne Patron, City Parijanah, Informed Citydweller, Informed Parijanah, Shop Clerk, Informed Shopkeep; byu_b01 NPC01.talk_step01, an actor whose copies are named Docent, Imperial, Traveler, Flights to Rabanastre, Flights to Balfonheim, Private Airships, Bhujerban, Bhujerban Sainikah, Street Kid, City Parijanah, Informed Citydweller, Informed Sainikah, Informed Parijanah, Informed Wayfarer
+0x908C	gives Bangle x1	scene	-	-	-	1 row: byu_a07 NPC01.talk_step01, an actor whose copies are named Bhujerban, Bhujerban Sainikah, Street Kid, Pilika, City Parijanah, Informed Citydweller, Informed Sainikah, Informed Parijanah, Informed Shopkeep
+0x908D	gives Jade Collar x1	scene	-	-	-	1 row: byu_a07 NPC01.talk_step01, an actor whose copies are named Bhujerban, Bhujerban Sainikah, Street Kid, Pilika, City Parijanah, Informed Citydweller, Informed Sainikah, Informed Parijanah, Informed Shopkeep
+0x908E	gives Sash x1	scene	-	-	-	1 row: frs_d01 親方.talk (Moogle Boss)
+0x908F	gives Potion x1	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x9090	gives Phoenix Down x1	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x9091	gives Eye Drops x1	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x9092	gives Antidote x1	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x9093	gives 10 gil + Echo Herbs x1	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x9094	gives Gold Needle x1	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x9095	gives Prince's Kiss x1	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x9096	gives Handkerchief x1	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x9097	gives Bacchus's Wine x1	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x9098	gives 100 gil + Balance Mote x2	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x9099	gives Potion x2	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x909A	gives Phoenix Down x2	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x909B	gives Eye Drops x2	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x909C	gives Antidote x2	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x909D	gives 20 gil + Echo Herbs x2	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x909E	gives Gold Needle x2	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x909F	gives Prince's Kiss x2	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90A0	gives Handkerchief x2	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90A1	gives Bacchus's Wine x2	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90A2	gives 300 gil + Float Mote x2	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90A3	gives Potion x3	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90A4	gives Phoenix Down x3	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90A5	gives Eye Drops x3	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90A6	gives Antidote x3	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90A7	gives 30 gil + Echo Herbs x3	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90A8	gives Gold Needle x3	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90A9	gives Prince's Kiss x3	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90AA	gives Handkerchief x3	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90AB	gives Bacchus's Wine x3	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90AC	gives 800 gil + Teleport Stone x3	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90AD	gives Potion x4	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90AE	gives Phoenix Down x4	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90AF	gives Eye Drops x4	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90B0	gives Antidote x4	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90B1	gives 40 gil + Echo Herbs x4	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90B2	gives Gold Needle x4	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90B3	gives Prince's Kiss x4	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90B4	gives Handkerchief x4	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90B5	gives Bacchus's Wine x4	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90B6	gives 1500 gil + Vanishga Mote x2	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90B7	gives Potion x5	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90B8	gives Phoenix Down x5	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90B9	gives Eye Drops x5	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90BA	gives Antidote x5	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90BB	gives 50 gil + Echo Herbs x5	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90BC	gives Gold Needle x5	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90BD	gives Prince's Kiss x5	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90BE	gives Handkerchief x5	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90BF	gives Bacchus's Wine x5	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90C0	gives 2500 gil + Reflectga Mote x2	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90C1	gives Potion x6	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90C2	gives Phoenix Down x6	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90C3	gives Eye Drops x6	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90C4	gives Antidote x6	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90C5	gives 60 gil + Echo Herbs x6	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90C6	gives Gold Needle x6	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90C7	gives Prince's Kiss x6	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90C8	gives Handkerchief x6	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90C9	gives Bacchus's Wine x6	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90CA	gives 3500 gil + Hi-Ether x2	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90CB	gives Potion x7	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90CC	gives Phoenix Down x7	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90CD	gives Eye Drops x7	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90CE	gives Antidote x7	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90CF	gives 70 gil + Echo Herbs x7	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90D0	gives Gold Needle x7	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90D1	gives Prince's Kiss x7	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90D2	gives Handkerchief x7	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90D3	gives Bacchus's Wine x7	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90D4	gives 4500 gil + Holy Mote x2	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90D5	gives Potion x8	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90D6	gives Phoenix Down x8	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90D7	gives Eye Drops x8	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90D8	gives Antidote x8	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90D9	gives 80 gil + Echo Herbs x8	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90DA	gives Gold Needle x8	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90DB	gives Prince's Kiss x8	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90DC	gives Handkerchief x8	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90DD	gives Bacchus's Wine x8	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90DE	gives 6000 gil + Hastega Mote x2 + Caramel x1	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90DF	gives Potion x9	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90E0	gives Phoenix Down x9	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90E1	gives Eye Drops x9	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90E2	gives Antidote x9	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90E3	gives 90 gil + Echo Herbs x9	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90E4	gives Gold Needle x9	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90E5	gives Prince's Kiss x9	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90E6	gives Handkerchief x9	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90E7	gives Bacchus's Wine x9	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90E8	gives 8000 gil + Scathe Mote x2 + Slime Oil x1	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90E9	gives Potion x10	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90EA	gives Phoenix Down x10	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90EB	gives Eye Drops x10	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90EC	gives Antidote x10	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90ED	gives 100 gil + Echo Herbs x10	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90EE	gives Gold Needle x10	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90EF	gives Prince's Kiss x10	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90F0	gives Handkerchief x10	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90F1	gives Bacchus's Wine x10	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90F2	gives 10000 gil + Elixir x2 + Unpurified Ether x1	scene	-	-	-	11 rows: var_a04 CTRL_RUNNING.main
+0x90F3	gives Zodiac Spear x1	scene	-	-	-	1 row: fon_b01 監督.結果発表
+0x90F4	gives Staff of the Magi x1	scene	-	-	-	1 row: fon_b01 監督.結果発表
+0x90F5	gives Zodiac Escutcheon x1	scene	-	-	-	1 row: fon_b01 監督.結果発表
+0x90F6	gives Ensanguined Shield x1	scene	-	-	-	1 row: fon_b01 監督.結果発表
+0x90F7	gives Ribbon x1	scene	-	-	-	1 row: fon_b01 監督.結果発表
+0x90F8	gives Sage's Ring x1	scene	-	-	-	1 row: fon_b01 監督.結果発表
+0x90F9	gives Aries Gem x1 + Libra Gem x1	scene	-	-	-	1 row: alc_a02 NPC_HUNTLOOP_A.talk (Archadian Gentry / Hunt Club Owner)
+0x90FA	gives Taurus Gem x1 + Scorpio Gem x1	scene	-	-	-	1 row: alc_a02 NPC_HUNTLOOP_A.talk (Archadian Gentry / Hunt Club Owner)
+0x90FB	gives Gemini Gem x1 + Sagittarius Gem x1	scene	-	-	-	1 row: alc_a02 NPC_HUNTLOOP_A.talk (Archadian Gentry / Hunt Club Owner)
+0x90FC	gives Cancer Gem x1 + Capricorn Gem x1	scene	-	-	-	1 row: alc_a02 NPC_HUNTLOOP_A.talk (Archadian Gentry / Hunt Club Owner)
+0x90FD	gives Leo Gem x1 + Aquarius Gem x1	scene	-	-	-	1 row: alc_a02 NPC_HUNTLOOP_A.talk (Archadian Gentry / Hunt Club Owner)
+0x90FE	gives Virgo Gem x1 + Pisces Gem x1	scene	-	-	-	1 row: alc_a02 NPC_HUNTLOOP_A.talk (Archadian Gentry / Hunt Club Owner)
+0x90FF	gives Kiku-ichimonji x1	trophy trade, scene	-	-	0xB035, 9450 gil, Hunters' Camp (fon_b01); 0xB054, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9100	gives Platinum Armor x1	trophy trade, scene	-	-	0xB036, 8370 gil, Hunters' Camp (fon_b01); 0xB055, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9101	gives Thief's Cuffs x1	trophy trade, scene	-	-	0xB037, 3600 gil, Hunters' Camp (fon_b01); 0xB056, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9102	gives Holy Lance x1	trophy trade, scene	-	-	0xB038, 13050 gil, Hunters' Camp (fon_b01); 0xB057, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9103	gives Minerva Bustier x1	trophy trade, scene	-	-	0xB039, 11160 gil, Hunters' Camp (fon_b01); 0xB058, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9104	gives Ruby Ring x1	trophy trade, scene	-	-	0xB03A, 10200 gil, Hunters' Camp (fon_b01); 0xB059, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9105	gives Ame-no-Murakumo x1	trophy trade, scene	-	-	0xB03B, 13500 gil, Hunters' Camp (fon_b01); 0xB05A, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9106	gives White Mask x1	trophy trade, scene	-	-	0xB03C, 21750 gil, Hunters' Camp (fon_b01); 0xB05B, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9107	gives Opal Ring x1	trophy trade, scene	-	-	0xB03D, 19200 gil, Hunters' Camp (fon_b01); 0xB05C, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9108	gives Stoneblade x1	trophy trade, scene	-	-	0xB03E, 29250 gil, Hunters' Camp (fon_b01); 0xB05D, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9109	gives Aegis Shield x1	trophy trade, scene	-	-	0xB03F, 57600 gil, Hunters' Camp (fon_b01); 0xB05E, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x910A	gives Golden Amulet x1	trophy trade, scene	-	-	0xB040, 5400 gil, Hunters' Camp (fon_b01); 0xB05F, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x910B	gives Eight-fluted Pole x1	trophy trade, scene	-	-	0xB041, 70200 gil, Hunters' Camp (fon_b01); 0xB060, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x910C	gives Orochi x1	trophy trade, scene	-	-	0xB042, 49500 gil, Hunters' Camp (fon_b01); 0xB061, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x910D	gives Dueling Mask x1	trophy trade, scene	-	-	0xB043, 117000 gil, Hunters' Camp (fon_b01); 0xB062, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x910E	gives Cat-ear Hood x1	trophy trade, scene	-	-	0xB044, 36000 gil, Hunters' Camp (fon_b01); 0xB063, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x910F	gives Maximillian x1	trophy trade, scene	-	-	0xB045, 20400 gil, Hunters' Camp (fon_b01); 0xB064, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9110	gives Ultima Blade x1	trophy trade, scene	-	-	0xB046, 75000 gil, Hunters' Camp (fon_b01); 0xB065, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9111	gives Grand Helm x1	trophy trade, scene	-	-	0xB047, 123750 gil, Hunters' Camp (fon_b01); 0xB066, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9112	gives Bubble Belt x1	trophy trade, scene	-	-	0xB048, 47520 gil, Hunters' Camp (fon_b01); 0xB067, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9113	gives Genji Gloves x1	trophy trade, scene	-	-	0xB049, 447000 gil, Hunters' Camp (fon_b01); 0xB068, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9114	gives Masamune x1	trophy trade, scene	-	-	0xB04A, 700000 gil, Hunters' Camp (fon_b01); 0xB069, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9115	gives Grand Armor x1	trophy trade, scene	-	-	0xB04B, 162000 gil, Hunters' Camp (fon_b01); 0xB06A, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9116	gives Nihopalaoa x1	trophy trade, scene	-	-	0xB04C, 360000 gil, Hunters' Camp (fon_b01); 0xB06B, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9117	gives Zodiac Spear x1 + Zodiac Escutcheon x1	trophy trade, scene	-	-	0xB04D, 999999 gil, Hunters' Camp (fon_b01); 0xB06C, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9118	gives Tula x1 + Grand Bolts x1	trophy trade, scene	-	-	0xB04E, 104000 gil, Hunters' Camp (fon_b01); 0xB06D, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x9119	gives Lordly Robes x1	trophy trade, scene	-	-	0xB04F, 132000 gil, Hunters' Camp (fon_b01); 0xB06E, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x911A	gives Indigo Pendant x1	trophy trade, scene	-	-	0xB050, 60000 gil, Hunters' Camp (fon_b01); 0xB06F, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x911B	gives Artemis Bow x1 + Artemis Arrows x1	trophy trade, scene	-	-	0xB051, 61600 gil, Hunters' Camp (fon_b01); 0xB070, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x911C	gives Black Mask x1	trophy trade, scene	-	-	0xB052, 18600 gil, Hunters' Camp (fon_b01); 0xB071, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x911D	gives Turtleshell Choker x1	trophy trade, scene	-	-	0xB053, 11160 gil, Hunters' Camp (fon_b01); 0xB072, 1 gil, Hunters' Camp (fon_b01)	1 row: fon_b01 二級男11.talk, an actor whose copies are named Shifty-Eyed Man, Outfitters
+0x911E	gives Killer Bow x1 + Onion Arrows x1	scene	-	-	-	2 rows: glf_a01 常駐イベント.旅立ち
+0x911F	gives Recurve Crossbow x1 + Onion Bolts x1	scene	-	-	-	1 row: glf_a01 常駐イベント.旅立ち
+0x9120	gives Bacchus's Wine x3 + Megalixir x2	scene	-	-	-	2 rows: hne_c01 ミニゲレクト.talk; hne_d01 ミニゲレクト.talk
+0x9121	gives Hi-Potion x3 + Ether x1	scene	-	-	-	1 row: glf_a02 ラーサー護衛01.talk (Judge / Judge Hausen)
+0x9122	gives 5100 gil + Megalixir x1	hunt	selector 0xA0AC, quest 172 A Dark Rumor, reported in Withering Shores (Nam-Yensa Sandsea) [enw_c01]	-	-	-
+0x9123	gives 1000 gil + Hi-Potion x10 + Handkerchief x15	scene	-	-	-	1 row: tri_b05 トライアル監督.main
+0x9124	gives 2000 gil + Phoenix Down x10 + Domaine Calvados x5	scene	-	-	-	1 row: tri_d05 トライアル監督.main
+0x9125	gives 3000 gil + Ether x10 + Echo Herbs x15	scene	-	-	-	1 row: tri_f05 トライアル監督.main
+0x9126	gives 4000 gil + Phoenix Down x10 + Reverse Mote x3	scene	-	-	-	1 row: tri_h05 トライアル監督.main
+0x9127	gives 5000 gil + X-Potion x10 + Chronos Tear x15	scene	-	-	-	1 row: tri_j05 トライアル監督.main
+0x9128	gives 6000 gil + Phoenix Down x10 + Scathe Mote x3	scene	-	-	-	1 row: tri_l05 トライアル監督.main
+0x9129	gives 7000 gil + Hi-Ether x10 + Serum x15	scene	-	-	-	1 row: tri_n05 トライアル監督.main
+0x912A	gives 8000 gil + Elixir x3 + Bubble Mote x3	scene	-	-	-	1 row: tri_p05 トライアル監督.main
+0x912B	gives 9000 gil + Megalixir x2 + Remedy x15	scene	-	-	-	1 row: tri_r05 トライアル監督.main
+0x912C	an empty package: no gil and no item	empty	-	-	-	-
+0x912D	an empty package: no gil and no item	empty	-	-	-	-
+0x912E	an empty package: no gil and no item	empty	-	-	-	-
+0x912F	an empty package: no gil and no item	empty	-	-	-	-
+0x9130	an empty package: no gil and no item	empty	-	-	-	-
+0x9131	an empty package: no gil and no item	empty	-	-	-	-
+0x9132	an empty package: no gil and no item	empty	-	-	-	-
+0x9133	an empty package: no gil and no item	empty	-	-	-	-
+0x9134	an empty package: no gil and no item	empty	-	-	-	-
+0x9135	an empty package: no gil and no item	empty	-	-	-	-
+0x9136	an empty package: no gil and no item	empty	-	-	-	-
+0x9137	an empty package: no gil and no item	empty	-	-	-	-
+0x9138	an empty package: no gil and no item	empty	-	-	-	-
+0x9139	an empty package: no gil and no item	empty	-	-	-	-
+0x913A	an empty package: no gil and no item	empty	-	-	-	-
+0x913B	an empty package: no gil and no item	empty	-	-	-	-
+0x913C	an empty package: no gil and no item	empty	-	-	-	-
+0x913D	an empty package: no gil and no item	empty	-	-	-	-
+0x913E	an empty package: no gil and no item	empty	-	-	-	-
+0x913F	an empty package: no gil and no item	empty	-	-	-	-
+0x9140	an empty package: no gil and no item	empty	-	-	-	-
+0x9141	an empty package: no gil and no item	empty	-	-	-	-
+0x9142	an empty package: no gil and no item	empty	-	-	-	-
+0x9143	an empty package: no gil and no item	empty	-	-	-	-
+0x9144	an empty package: no gil and no item	empty	-	-	-	-
+0x9145	an empty package: no gil and no item	empty	-	-	-	-
+0x9146	an empty package: no gil and no item	empty	-	-	-	-
+0x9147	an empty package: no gil and no item	empty	-	-	-	-
+0x9148	an empty package: no gil and no item	empty	-	-	-	-
+0x9149	an empty package: no gil and no item	empty	-	-	-	-
+0x914A	an empty package: no gil and no item	empty	-	-	-	-
+0x914B	an empty package: no gil and no item	empty	-	-	-	-
+0x914C	an empty package: no gil and no item	empty	-	-	-	-
+0x914D	an empty package: no gil and no item	empty	-	-	-	-
+0x914E	an empty package: no gil and no item	empty	-	-	-	-
+0x914F	an empty package: no gil and no item	empty	-	-	-	-
+0x9150	an empty package: no gil and no item	empty	-	-	-	-
+0x9151	an empty package: no gil and no item	empty	-	-	-	-
+0x9152	an empty package: no gil and no item	empty	-	-	-	-
+0x9153	an empty package: no gil and no item	empty	-	-	-	-
+0x9154	an empty package: no gil and no item	empty	-	-	-	-
+0x9155	an empty package: no gil and no item	empty	-	-	-	-
+0x9156	an empty package: no gil and no item	empty	-	-	-	-
+0x9157	an empty package: no gil and no item	empty	-	-	-	-
+0x9158	an empty package: no gil and no item	empty	-	-	-	-
+0x9159	an empty package: no gil and no item	empty	-	-	-	-
+0x915A	an empty package: no gil and no item	empty	-	-	-	-
+0x915B	an empty package: no gil and no item	empty	-	-	-	-
+0x915C	an empty package: no gil and no item	empty	-	-	-	-
+0x915D	an empty package: no gil and no item	empty	-	-	-	-
+0x915E	an empty package: no gil and no item	empty	-	-	-	-
+0x915F	an empty package: no gil and no item	empty	-	-	-	-
+0x9160	an empty package: no gil and no item	empty	-	-	-	-
+0x9161	an empty package: no gil and no item	empty	-	-	-	-
+0x9162	an empty package: no gil and no item	empty	-	-	-	-
+0x9163	an empty package: no gil and no item	empty	-	-	-	-
+0x9164	an empty package: no gil and no item	empty	-	-	-	-
+0x9165	an empty package: no gil and no item	empty	-	-	-	-
+0x9166	an empty package: no gil and no item	empty	-	-	-	-
+0x9167	an empty package: no gil and no item	empty	-	-	-	-
+0x9168	an empty package: no gil and no item	empty	-	-	-	-
+0x9169	an empty package: no gil and no item	empty	-	-	-	-
+0x916A	an empty package: no gil and no item	empty	-	-	-	-
+0x916B	an empty package: no gil and no item	empty	-	-	-	-
+0x916C	an empty package: no gil and no item	empty	-	-	-	-
+0x916D	an empty package: no gil and no item	empty	-	-	-	-
+0x916E	an empty package: no gil and no item	empty	-	-	-	-
+0x916F	an empty package: no gil and no item	empty	-	-	-	-
+0x9170	an empty package: no gil and no item	empty	-	-	-	-
+0x9171	an empty package: no gil and no item	empty	-	-	-	-
+0x9172	an empty package: no gil and no item	empty	-	-	-	-
+0x9173	an empty package: no gil and no item	empty	-	-	-	-
+0x9174	an empty package: no gil and no item	empty	-	-	-	-
+0x9175	an empty package: no gil and no item	empty	-	-	-	-
+0x9176	an empty package: no gil and no item	empty	-	-	-	-
+0x9177	an empty package: no gil and no item	empty	-	-	-	-
+0x9178	an empty package: no gil and no item	empty	-	-	-	-
+0x9179	an empty package: no gil and no item	empty	-	-	-	-
+0x917A	an empty package: no gil and no item	empty	-	-	-	-
+0x917B	an empty package: no gil and no item	empty	-	-	-	-
+0x917C	an empty package: no gil and no item	empty	-	-	-	-
+0x917D	an empty package: no gil and no item	empty	-	-	-	-
+0x917E	an empty package: no gil and no item	empty	-	-	-	-
+0x917F	an empty package: no gil and no item	empty	-	-	-	-
+0x9180	an empty package: no gil and no item	empty	-	-	-	-
+0x9181	an empty package: no gil and no item	empty	-	-	-	-
+0x9182	an empty package: no gil and no item	empty	-	-	-	-
+0x9183	an empty package: no gil and no item	empty	-	-	-	-
+0x9184	an empty package: no gil and no item	empty	-	-	-	-
+0x9185	an empty package: no gil and no item	empty	-	-	-	-
+0x9186	an empty package: no gil and no item	empty	-	-	-	-
+0x9187	an empty package: no gil and no item	empty	-	-	-	-
+0x9188	an empty package: no gil and no item	empty	-	-	-	-
+0x9189	an empty package: no gil and no item	empty	-	-	-	-
+0x918A	an empty package: no gil and no item	empty	-	-	-	-
+0x918B	an empty package: no gil and no item	empty	-	-	-	-
+0x918C	an empty package: no gil and no item	empty	-	-	-	-
+0x918D	an empty package: no gil and no item	empty	-	-	-	-
+0x918E	an empty package: no gil and no item	empty	-	-	-	-
+0x918F	an empty package: no gil and no item	empty	-	-	-	-
+0x9190	an empty package: no gil and no item	empty	-	-	-	-
+0x9191	an empty package: no gil and no item	empty	-	-	-	-
+0x9192	an empty package: no gil and no item	empty	-	-	-	-
+0x9193	an empty package: no gil and no item	empty	-	-	-	-
+0x9194	an empty package: no gil and no item	empty	-	-	-	-
+0x9195	an empty package: no gil and no item	empty	-	-	-	-
+0x9196	an empty package: no gil and no item	empty	-	-	-	-
+0x9197	an empty package: no gil and no item	empty	-	-	-	-
+0x9198	an empty package: no gil and no item	empty	-	-	-	-
+0x9199	an empty package: no gil and no item	empty	-	-	-	-
+0x919A	an empty package: no gil and no item	empty	-	-	-	-
+0x919B	an empty package: no gil and no item	empty	-	-	-	-
+0x919C	an empty package: no gil and no item	empty	-	-	-	-
+0x919D	an empty package: no gil and no item	empty	-	-	-	-
+0x919E	an empty package: no gil and no item	empty	-	-	-	-
+0x919F	an empty package: no gil and no item	empty	-	-	-	-
+0x91A0	an empty package: no gil and no item	empty	-	-	-	-
+0x91A1	an empty package: no gil and no item	empty	-	-	-	-
+0x91A2	an empty package: no gil and no item	empty	-	-	-	-
+0x91A3	an empty package: no gil and no item	empty	-	-	-	-
+0x91A4	an empty package: no gil and no item	empty	-	-	-	-
+0x91A5	an empty package: no gil and no item	empty	-	-	-	-
+0x91A6	an empty package: no gil and no item	empty	-	-	-	-
+0x91A7	an empty package: no gil and no item	empty	-	-	-	-
+0x91A8	an empty package: no gil and no item	empty	-	-	-	-
+0x91A9	an empty package: no gil and no item	empty	-	-	-	-
+0x91AA	an empty package: no gil and no item	empty	-	-	-	-
+0x91AB	an empty package: no gil and no item	empty	-	-	-	-
+0x91AC	an empty package: no gil and no item	empty	-	-	-	-
+0x91AD	an empty package: no gil and no item	empty	-	-	-	-
+0x91AE	an empty package: no gil and no item	empty	-	-	-	-
+0x91AF	an empty package: no gil and no item	empty	-	-	-	-
+0x91B0	an empty package: no gil and no item	empty	-	-	-	-
+0x91B1	an empty package: no gil and no item	empty	-	-	-	-
+0x91B2	an empty package: no gil and no item	empty	-	-	-	-
+0x91B3	an empty package: no gil and no item	empty	-	-	-	-
+0x91B4	an empty package: no gil and no item	empty	-	-	-	-
+0x91B5	an empty package: no gil and no item	empty	-	-	-	-
+0x91B6	an empty package: no gil and no item	empty	-	-	-	-
+0x91B7	an empty package: no gil and no item	empty	-	-	-	-
+0x91B8	an empty package: no gil and no item	empty	-	-	-	-
+0x91B9	an empty package: no gil and no item	empty	-	-	-	-
+0x91BA	an empty package: no gil and no item	empty	-	-	-	-
+0x91BB	an empty package: no gil and no item	empty	-	-	-	-
+0x91BC	an empty package: no gil and no item	empty	-	-	-	-
+0x91BD	an empty package: no gil and no item	empty	-	-	-	-
+0x91BE	an empty package: no gil and no item	empty	-	-	-	-
+0x91BF	an empty package: no gil and no item	empty	-	-	-	-
+0x91C0	an empty package: no gil and no item	empty	-	-	-	-
+0x91C1	an empty package: no gil and no item	empty	-	-	-	-
+0x91C2	an empty package: no gil and no item	empty	-	-	-	-
+0x91C3	an empty package: no gil and no item	empty	-	-	-	-
+0x91C4	an empty package: no gil and no item	empty	-	-	-	-
+0x91C5	an empty package: no gil and no item	empty	-	-	-	-
+0x91C6	an empty package: no gil and no item	empty	-	-	-	-
+0x91C7	an empty package: no gil and no item	empty	-	-	-	-
+0x91C8	an empty package: no gil and no item	empty	-	-	-	-
+0x91C9	an empty package: no gil and no item	empty	-	-	-	-
+0x91CA	an empty package: no gil and no item	empty	-	-	-	-
+0x91CB	an empty package: no gil and no item	empty	-	-	-	-
+0x91CC	an empty package: no gil and no item	empty	-	-	-	-
+0x91CD	an empty package: no gil and no item	empty	-	-	-	-
+0x91CE	an empty package: no gil and no item	empty	-	-	-	-
+0x91CF	an empty package: no gil and no item	empty	-	-	-	-
+0x91D0	an empty package: no gil and no item	empty	-	-	-	-
+0x91D1	an empty package: no gil and no item	empty	-	-	-	-
+0x91D2	an empty package: no gil and no item	empty	-	-	-	-
+0x91D3	an empty package: no gil and no item	empty	-	-	-	-
+0x91D4	an empty package: no gil and no item	empty	-	-	-	-
+0x91D5	an empty package: no gil and no item	empty	-	-	-	-
+0x91D6	an empty package: no gil and no item	empty	-	-	-	-
+0x91D7	an empty package: no gil and no item	empty	-	-	-	-
+0x91D8	an empty package: no gil and no item	empty	-	-	-	-
+0x91D9	an empty package: no gil and no item	empty	-	-	-	-
+0x91DA	an empty package: no gil and no item	empty	-	-	-	-
+0x91DB	an empty package: no gil and no item	empty	-	-	-	-
+0x91DC	an empty package: no gil and no item	empty	-	-	-	-
+0x91DD	an empty package: no gil and no item	empty	-	-	-	-
+0x91DE	an empty package: no gil and no item	empty	-	-	-	-
+0x91DF	an empty package: no gil and no item	empty	-	-	-	-
+0x91E0	an empty package: no gil and no item	empty	-	-	-	-
+0x91E1	an empty package: no gil and no item	empty	-	-	-	-
+0x91E2	an empty package: no gil and no item	empty	-	-	-	-
+0x91E3	an empty package: no gil and no item	empty	-	-	-	-
+0x91E4	an empty package: no gil and no item	empty	-	-	-	-
+0x91E5	an empty package: no gil and no item	empty	-	-	-	-
+0x91E6	an empty package: no gil and no item	empty	-	-	-	-
+0x91E7	an empty package: no gil and no item	empty	-	-	-	-
+0x91E8	an empty package: no gil and no item	empty	-	-	-	-
+0x91E9	an empty package: no gil and no item	empty	-	-	-	-
+0x91EA	an empty package: no gil and no item	empty	-	-	-	-
+0x91EB	an empty package: no gil and no item	empty	-	-	-	-
+0x91EC	an empty package: no gil and no item	empty	-	-	-	-
+0x91ED	an empty package: no gil and no item	empty	-	-	-	-
+0x91EE	an empty package: no gil and no item	empty	-	-	-	-
+0x91EF	an empty package: no gil and no item	empty	-	-	-	-
+0x91F0	an empty package: no gil and no item	empty	-	-	-	-
+0x91F1	an empty package: no gil and no item	empty	-	-	-	-
+0x91F2	an empty package: no gil and no item	empty	-	-	-	-
+0x91F3	an empty package: no gil and no item	empty	-	-	-	-
+0x91F4	an empty package: no gil and no item	empty	-	-	-	-
+0x91F5	an empty package: no gil and no item	empty	-	-	-	-
+0x91F6	an empty package: no gil and no item	empty	-	-	-	-
+0x91F7	an empty package: no gil and no item	empty	-	-	-	-
+0x91F8	an empty package: no gil and no item	empty	-	-	-	-
+0x91F9	an empty package: no gil and no item	empty	-	-	-	-
+0x91FA	an empty package: no gil and no item	empty	-	-	-	-
+0x91FB	an empty package: no gil and no item	empty	-	-	-	-
+0x91FC	an empty package: no gil and no item	empty	-	-	-	-
+0x91FD	an empty package: no gil and no item	empty	-	-	-	-
+0x91FE	an empty package: no gil and no item	empty	-	-	-	-
+0x91FF	an empty package: no gil and no item	empty	-	-	-	-

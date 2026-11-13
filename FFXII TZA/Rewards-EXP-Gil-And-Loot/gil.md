@@ -93,7 +93,8 @@ sweep after the stored total reaches the threshold, with no further gain or spen
 The thresholds come from the handbook file `menuhandbook.bin`, loaded raw into `[0x022C2550]` by
 `0x003158B0` (resource 7, 200). `0x003165C0(kind)` follows four 16-bit relative offsets from file
 `+0x08`, then reads a kind bitmask at `+4` and packed 32-bit values at `+8`. When the kind's bit is
-clear, it falls back to the row's dword at `0x00D10464 + kind*8`, which is 0 for kinds 6 and 7.
+clear it returns 0 (`0x0031661A`-`0x0031661C`). Its callers then take the row's dword at `0x00D10464 + kind*8`
+(`0x00315F24`-`0x00315F28`, `0x00316AFD`-`0x00316B01`), which is 0 for kinds 6 and 7.
 
 In the shipped files of every language the gained threshold is **100,000** and the spent threshold
 is **1,000,000**.

@@ -61,7 +61,7 @@ of "A Dark Rumor".
   for the lane or the script's loop register picks, or that the area start binds (7 placements).
 
 [`rare-game-spawn-tests.tsv`](rare-game-spawn-tests.tsv) reads in words the spawn tests of the `rare game` placements:
-the 879 rows [`enemy-placement-conditions.tsv`](enemy-placement-conditions.tsv) gives them, for 91 definitions, 800
+the 879 rows [`enemy-placement-conditions.tsv`](enemy-placement-conditions.tsv) gives them, for 91 definitions, 830
 of them with a test. Each test is rewritten clause by clause:
 
 - call `0x0029(N)` is a roll of 0 to N - 1 (`0x00354BF0`: a Mersenne Twister draw, `0x00379CD0`, times N, shifted right
@@ -79,7 +79,20 @@ of them with a test. Each test is rewritten clause by clause:
   its own zones;
 - each script word (`file +0x..`, `scratch2 +0x..`) is given once per row by its writers in
   [`enemy-spawn-variables.tsv`](enemy-spawn-variables.tsv): a constant by its value, a call result by what the call
-  returns, any other word by its first writer.
+  returns, any other word by its writers. A script's file words are one area that all its actors share, so the
+  stores of every actor of the script are named.
+
+[`rare-game-catalogue.tsv`](rare-game-catalogue.tsv) has one row for each of the 80 rare game names of those 208
+placements: its maps, levels, Clan Primer entry, trophy and the number of its spawn rules. 31 of them carry a Trophy
+key item, which are all 31 Trophy key items (`0x80B8` to `0x80D6`); no other key item names a rare game.
+
+[`rare-game-spawn-rules.tsv`](rare-game-spawn-rules.tsv) lists the rules, 574 rows: for each placement, each distinct
+pair of how the zone script enters it and what it tests there, with the tests in the words of
+[`enemy-placement-conditions-terms.tsv`](enemy-placement-conditions-terms.tsv).
+
+A rule entered "when a bank-return selector returns it" has no roll or count test. The selector `0x002354F0` returns
+the first lane of the unit whose kept record has bit `0x4` set (`0x0023555C`) and sets bit `0x4000000` of the unit
+(`0x0023557E`), or returns -1; the script then enters that lane's group.
 
 The category is the spawn lifecycle's because a definition does nothing until a zone script spawns it: the
 installer `0x0023A570` applies it to a unit through the spawn record ([Spawn record fields](spawn-record-fields.md)).
@@ -510,6 +523,33 @@ No instruction in that set touches the bytes above, so the TSV gives them raw.
 | `explanation` | a one-line summary of the placements, HP, elements, rewards and steals; for a No name line also its name word, that word's `fr` text, its model's folder, the functions that place it and its Clan Primer entry |
 
 A value that differs between placements of one definition is listed once per variant, separated by ` / `.
+
+### Columns of rare-game-catalogue.tsv
+
+| Column | Meaning |
+|---|---|
+| `name` | the rare game's name |
+| `placements` | its placements of kind `rare game` |
+| `areas` | the area files that place it |
+| `maps` | each map of its placements with region and zone |
+| `levels` | the level ranges of its bestiary rows |
+| `clan_primer_entry` | the Clan Primer entry number and name of its bestiary rows |
+| `trophy` | the Trophy key item whose `sources` cell in key-item-list.tsv names it, id and name; `-` when no key item names it |
+| `trophy_use` | the trophy's `used_for` cell; `-` with no trophy |
+| `spawn_rules` | the number of distinct spawn rules over its placements, a rule counted once for each script that holds it |
+| `spawn_rule_rows` | where the rules are: the rows of rare-game-spawn-rules.tsv with this name |
+
+### Columns of rare-game-spawn-rules.tsv
+
+| Column | Meaning |
+|---|---|
+| `name` | the rare game |
+| `script`, `function`, `group`, `row` | the placement: the zone script, the placing actor, its `entryNN` function and the definition's row |
+| `map_name`, `region`, `zone` | where the placement is |
+| `rule` | the rule's number within the placement, from 1 |
+| `decided_by` | the `spawnNN` and `respawnNN` functions with a path that reads as this rule |
+| `entered_as` | how those paths enter the placement: the source of the group and of the lane, from the `lane` column of enemy-placement-conditions.tsv |
+| `spawn_rule` | what those paths test: the story, weather, count, random and other texts of enemy-placement-conditions-terms.tsv, joined by `;`; `no test` when they test nothing |
 
 ## Related
 

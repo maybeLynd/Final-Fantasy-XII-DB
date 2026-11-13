@@ -601,7 +601,7 @@ the microprogram the template's header installs. `0xA6`, `0xA8` and `0xAB` share
   counts `0x230` bytes plus `0xB0` for the first and `0xC0` for each further of three slots (`+0x140`, stride `0x50`);
   `0x00544CE0`, `0x00547350` and `0x005479B0` count four slots from a `0x40`-byte head.
 - `0x0054B3A0` never returns 0: its head is `0x4F0` bytes, plus `0x2D0` for the first and `0x2E0` for each further
-  of four slots whose word is not zero (`+0x30`, stride `0x110`; `0x0054B3A3`-`0x0054B3DC`). `0x00543940` adds `0x190`
+  of four slots whose dword is not zero (`+0x30`, stride `0x110`; `0x0054B3A3`-`0x0054B3DC`). `0x00543940` adds `0x190`
   bytes for each of four non-zero words at `+0x740`–`+0x830`; `0x00544590` adds one quadword per 20 entries to `0x130`.
 - `0x00545EF0` (type `0x6A`) starts from `(+0x1C + 0x17) x 16` bytes and adds, per tile, `0x60` plus
   `w x h x 16` when bit `0x2` of `+0x64` is set. Tiles start every 21 grid points along `+0x10` and `+0x14`
@@ -1017,7 +1017,7 @@ No instruction reads `0x02CA5F20`-`0x02CA5F4F` after `0x00398030` writes them (`
 draw-source block of the definition (`+0x690`, `0xF0` apart). A layer is a polygon of nine points in a 3 × 3
 grid: the builder `0x0054B3E0` lists their colours centre first and then round the edge, points 4, 0, 1, 2, 5, 8,
 7, 6, 3 and 0 again (`0x0054B994`-`0x0054BA16`). Each layer has a `0x110`-byte block in the request at `0x02CA8530`,
-from `0x02CA8560`; `0x0054B3A0` sizes the packet from the layers whose word `+0` is set, and `0x0054B3E0` builds it.
+from `0x02CA8560`; `0x0054B3A0` sizes the packet from the layers whose dword `+0` is set, and `0x0054B3E0` builds it.
 
 The source kind of the layer's block, byte `+0xA0` (definition `+0x730` + `0xF0` × layer), picks the arm
 through the table `0x0052CF40` (`0x0052C452`-`0x0052C474`):
