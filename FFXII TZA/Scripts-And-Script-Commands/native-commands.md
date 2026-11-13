@@ -116,9 +116,9 @@ to 2 for 60 fps (`0x001EDDE8`, `0x001EDDF2`; [startup constants](../Engine-Core/
 scaled count is doubled. The raw count is stored instead under any of four gates: `0x022C7F84` set, `0x001EC5E0` for
 manager 3, `0x001ED130` with `0x001EC5C0` clear for managers 1 and 2, or the three field ids `0x001ED180` names.
 
-Its poll `0x0034DCC0` decrements the word and finishes, returning 0, when it goes below zero
+Its poll `0x0034DCC0` decrements that dword and finishes, returning 0, when it goes below zero
 (`0x0034DCCD`). Otherwise it reads the skip mask of the manager named by the target actor's `+0x15`
-(`0x0034DCD7`), stores 0 in the word when that mask is non-zero (`0x0034DCE4`), and returns 1, so a
+(`0x0034DCD7`), stores 0 in the dword when that mask is non-zero (`0x0034DCE4`), and returns 1, so a
 skipped wait ends on the following poll.
 
 `0x001ED180` holds while the loaded map `0x00314910()` is `0x2F4`, `0x2E9` or `0x27B` and `0x001EC560`,
@@ -127,7 +127,7 @@ skipped wait ends on the following poll.
 ### The sync verbs
 
 `camerasync` (`0x0079`), `effectsync` (`0x00DE`) and `effectreadsync` (`0x00DC`) share the begin
-`0x0034C290`, which pushes a literal 0, pops it back and stores it in the scratch word: the verbs
+`0x0034C290`, which pushes a literal 0, pops it back and stores it in the first scratch dword: the verbs
 take no argument because the handler supplies one. `fadesync` (`0x00B9`, `0x0033F4C0`) is the same
 three lines plus a call to `0x00183070`, made as a tail jump (`0x0033F4EE`).
 
@@ -136,13 +136,13 @@ three lines plus a call to `0x00183070`, made as a tail jump (`0x0033F4EE`).
 `eventsync_ee` `0x00EE`): both add 1 to the popped value and clamp to 1 to 3, so below a full
 value stack the argument-less forms always store 1.
 
-The literal 0 reaches the scratch word only below the value stack's limit. At depth 63 the push
+The literal 0 reaches the first scratch dword only below the value stack's limit. At depth 63 the push
 `0x00267F90` writes nothing (`0x00267F96`), and the pop `0x00267E10` then returns the value already in
 slot 62, so `0x0034C290` and `0x0033F4C0` store that value and `0x00353E20` stores it plus 1, `value + 1`, clamped
 to 1 to 3, `min(max(value + 1, 1), 3)` (`0x00353E42`-`0x00353E69`).
 
-The poll then uses the word as a selector. `camerasync`'s poll `0x0034C570` asks `0x003DA1A0(index,
-word)` whether that camera channel is still busy, with the index of the current manager (the slot
+The poll then uses the dword as a selector. `camerasync`'s poll `0x0034C570` asks `0x003DA1A0(index,
+value)` whether that camera channel is still busy, with the index of the current manager (the slot
 `0x02099D70` points at, `+0x28`), and, if so, stays running unless the skip mask of the issuer's
 manager (its `+0x15`) says otherwise.
 
@@ -153,7 +153,7 @@ target actor's, through `rdx` (`0x0034C593`), which is the issuer for a verb iss
 ### Signal waits
 
 `effecttotalsignalsync(n)` (`0x029F`) and `motiontotalsignalsync(n)` (`0x02B7`) wait for a
-numbered signal. Both use the begin `0x003567F0`, which pops `n` into the scratch word. The poll
+numbered signal. Both use the begin `0x003567F0`, which pops `n` into the first scratch dword. The poll
 `0x0034AA70` tests bit `n` of the eight bytes at `0x02099DE8` through `0x0025C0F0`, and `0x0034B310` tests
 bit `n` of `0x0209A2A0` through `0x0025C130`. While the bit is clear the poll returns 1 and the script
 waits; once it is set the poll clears it (`0x0026BE50` or `0x0026BE90` with 0) and the verb finishes,
@@ -292,7 +292,7 @@ skip mask byte, and the two signal bit arrays with the effect slots' signal byte
 ## Modding notes
 
 - To make a verb wait, give it a poll that returns odd while busy; a begin alone finishes at once.
-- `wait N` stores N in the scratch word and counts it down once per poll.
+- `wait N` stores N in the first scratch dword and counts it down once per poll.
 - The sync verbs' channel or slot is a constant in a shared begin: changing `0x0034C290` changes
   `camerasync`, `effectsync` and `effectreadsync` together.
 - A verb whose poll ignores the skip mask will not end when the player skips a scene.

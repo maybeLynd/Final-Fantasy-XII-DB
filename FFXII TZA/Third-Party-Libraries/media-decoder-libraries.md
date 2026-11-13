@@ -184,8 +184,8 @@ it while the dword at `+0x1A8` of its context is 0 and stores the instance at `+
 2. It arms the error handler: `setjmp` into `+0x1320`, with the armed flag `+0x1318` set to 1.
 3. `0x00172C30(+0x12C0)` sets up the common decoder state (below).
 4. It sets `+0x4440` to 1 and `+0x34DC` to 0, builds the dequantiser tables (`0x00174540`) and the loop
-   filter (`0x00173640`, `0x001735C0` on `+0x1ED0`), clears four 16-byte entries at `+0x2AD0`, and
-   disarms the handler.
+   filter (`0x00173640`, `0x001735C0` on `+0x1ED0`), fills the four 16-byte entries at `+0x2AD0` with the
+   bytes 0, 1, 2 and 3, entry k with the byte k (`0x0016F3B0`-`0x0016F3C9`), and disarms the handler.
 5. The first instance runs the one-time table setup `0x0016F1F0`, guarded by `0x02EBA2EC`; a later
    instance spins on `Sleep(0)` until that word reads 2.
 
@@ -222,7 +222,7 @@ says otherwise.
 - **The mode grid.** The same call allocates `0x4C`-byte records for a grid one record wider and one row taller than
   the frame's macroblocks (`0x00172A3F`-`0x00172A47`). It keeps the block at `+0x1EA8` (`0x00172A73`) and the first visible
   record, one row and one record in, at `+0x1EB0` (`0x00172A9E`).
-  `0x00172750` frees it (`0x00172881`) and nulls the pointer (`0x001728A2`).
+  `0x00172750` frees it (`0x00172897`) and nulls the pointer (`0x001728A2`).
 - **The readers.** The frame decode `0x00175EF0` runs from `0x0016F840` (`0x0016F98E`), which the decode body calls at
   `0x0016EA2D`. It starts the mode reader at `+0x42C0` (`0x00175F32`), and the eight partition readers of `0x30` bytes
   from `+0x4140` through `0x00175A00` (`0x00176BCD`). On a key frame it resets the current probabilities through
@@ -359,6 +359,16 @@ map of `blocksizes[W] / 2` linear bins to Bark bins through `atan` (`0x00862064`
 `0x01CEBB60`), capped at the map length less 1 and ended with -1. `0x00894EE0`, called three times by
 `0x0088E8C0`, is the encoder's `floor1_fit`: its fit values start at -200 and a post it drops carries bit
 `0x8000`.
+
+`0x00887630` is `seed_curve` of libvorbis's psychoacoustic model, kept as a body of its own that no call, jump or
+stored pointer in the image reaches. With `seed`, `curves`, `amp`, `oc`, `n`, `linesper` and `dBoffset` as the
+library names them:
+
+- the curve is `curves[c]`, `c = (int)((amp + dBoffset - 30.0) * 0.1)` held to 0 to 7 (`0x00887649`-`0x00887699`);
+- the first seed index is `oc + (curve[0] - 16.0) * linesper - (linesper >> 1)` (`0x008876A1`-`0x008876D3`);
+- for each `i` from `(int)curve[0]` up to `(int)curve[1]` it raises `seed[index]` to `amp + curve[i + 2]` when the
+  index is above 0 and the sum is larger, then adds `linesper` to the index and stops once the index reaches `n`
+  (`0x00887700`-`0x008877E4`, four entries at a time and then one by one).
 
 ### CRI HCA decoder: the sound banks
 

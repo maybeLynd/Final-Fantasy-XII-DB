@@ -102,9 +102,10 @@ no seek offset, and warns that seeking "will cause timing overlap when streaming
 ### Releasing a bank
 
 A streaming bank is released on the job worker: `0x007E5040`, unless the bank is already released (`+0x1C`) or its
-job is still queued (`0x007B7070`), queues the bank's job object `+0x50` (`0x007B6C50`) and stops the bank's sounds and
-music (`0x007D0A70`). `0x007E4260` answers that the bank has finished once it is released, its use count `+0x18` is 0
-or less and its job is done.
+job is still queued (`0x007B7070`), queues the bank's job object `+0x50` (`0x007B6C50`). Every path then ends in
+`0x007D0A70` (`0x007E5090`), which stops the bank's sounds and music only for a bank whose byte `+0x1C` is set
+(`0x007D0A76`) and does nothing for the others. `0x007E4260` answers that the bank has finished once it is
+released, its use count `+0x18` is 0 or less and its job is done.
 
 `0x007B6C50` puts a job in the 48-entry ring `0x02EAD8B0` with a fresh non-zero id and wakes the
 worker (`0x007B6D40`); with the ring full it gives id 0 and returns -1. `0x007B7070(id)` answers whether that job is

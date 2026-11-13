@@ -448,7 +448,9 @@ The 23 names, in order: `EyeDirWS`, `EyePosWS`, `Proj`, `View`, `ViewInv`, `View
 
 Its count word `0x02CB8448`, the object array `0x02CB8478` and the lock `0x02CB8480`
 are listed with `0x005FD2A0` and `0x005FE200` in [phyre-engine-helpers.tsv](phyre-engine-helpers.tsv). The `PRendering`
-shutdown `0x00610630` runs `0x005FE200` (`0x00610658`), which takes the lock, releases everything and stores 0.
+shutdown `0x00610630` runs `0x005FE200` (`0x00610658`), which first closes the lock (`0x005CD6D0` at `0x005FE225`: when
+its byte `+0x00` is set, that byte cleared, `CloseHandle` on the qword `+0x08`, the byte `+0x10` cleared), then
+releases everything and stores 0.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

@@ -10,7 +10,7 @@ function	size	referenced_from	does
 0x005CD8B0	49	0x00600C53 in 0x00600C20, 0x00600C7A in 0x00600C20	waits for a handle with a timeout (WaitForSingleObject); 5 on timeout, abandon or failure
 0x005DBEE0	60	0x0060A4A9 in 0x0060A410	constructs a 0x214-byte record: clears +0x00, +0x08, 32 pairs from +0x10 and +0x210; passed as the element constructor by 0x0060A410 (0x0060A4A9)
 0x005DBFC0	29	0x0061CEA4 in 0x0061CE30	constructs an element (0x00615790) and clears its word +0x28; 0x0061CE30 runs it on each new element
-0x005FE200	325	0x00610658 in 0x00610630, 0x0062B5D1 in 0x0062B5A0	tears down the table at 0x02CB8448-0x02CB8478 under the lock 0x02CB8480 (0x005CD6D0): frees the 0x50-byte entries, releasing each live one (0x00625EC0, 0x0062B7B0, 0x00616420)
+0x005FE200	325	0x00610658 in 0x00610630, 0x0062B5D1 in 0x0062B5A0	closes the lock 0x02CB8480 when its byte +0x00 is set (0x005CD6D0 at 0x005FE225, CloseHandle on its qword +0x08), then tears down the table at 0x02CB8448-0x02CB8478: frees the 0x50-byte entries, releasing each live one (0x00625EC0, 0x0062B7B0, 0x00616420)
 0x005FE9C0	130	0x0060AB46 in 0x0060AB10, 0x0060AB7C in 0x0060AB10	"grows a vector of 8-byte elements to hold n more (one and a half times the old capacity at least; ""vector<T> too long"" past the limit) through 0x005FE930"
 0x00606600	127	0x00610240 in 0x00610210	takes one of 16 event slots from the bit mask +0x28A0 with a compare-and-swap, creates its event on first use (0x005CD0E0) and resets it (0x005CD500)
 0x00607D10	12	0x00625D0F in 0x00625830, 0x00625D28 in 0x00625830, 0x00627B3B in 0x006278B0, 0x00627B54 in 0x006278B0	stores two words and a pointer at +0x18, +0x1C and +0x20

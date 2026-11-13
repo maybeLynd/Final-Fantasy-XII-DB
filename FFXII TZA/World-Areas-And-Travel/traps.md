@@ -235,10 +235,10 @@ stored member does (`0x0030C398`).
 On the change from no Libra to Libra the dword `0x022BE944` becomes 1 and every live trap's marker gets mode 1
 (`0x003EC700(i, 1)`); on the change back it becomes 0 and the markers get mode 2.
 
-The pass does nothing while no trap table is bound (`0x022BE948` null, `0x002F82FE`), so the byte then keeps
+The pass does nothing while no trap table is bound (`0x022BE948` null, `0x002F82FE`), so the dword then keeps
 its value. It treats the records below `min(count, 32)` (`0x002F8310`-`0x002F831C`) and takes the live mask
 from the ring entry of the current field (`0x003148F0`, `0x002F835D`-`0x002F83DD`); a field missing from the
-ring gives mask 0, so the byte changes and no marker does (`0x002F838F`).
+ring gives mask 0, so the dword changes and no marker does (`0x002F838F`).
 
 ## Layouts
 

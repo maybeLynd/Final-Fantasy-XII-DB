@@ -152,6 +152,22 @@ actions.
 | pages | `0x007BB6B0` | one `0x60`-byte `Lay::Page` (`0x007BB7E0`; `0x007BB830` destroys it) with a 128-handle list (`0x007BBD40`, `0x007BBC30`) |
 | sources | `0x007BC400` | 128 blocks of `0x230` bytes, their list (`0x007BC2F0`) and two per-pass arrays at `0x02EADED8` and `0x02EADEE0` |
 
+The two action queues are `SQEX::Sd::FixedQueue<3, SQEX::Sd::Lay::ACTION*>` objects of `0x30` bytes at `0x02EADD70`
+and `0x02EADDA0`. Their start-up initialisers `0x0016A180` and `0x0016A110` store the vtable `0x01CB5790` and clear the
+rest. The vtable's one slot is the destructor `0x007BA990(queue, flags)`:
+
+- it frees the entry array at `+0x08` when there is one: an array with a count before it (`[array - 8]` not 0)
+  through the array's own slot 0 with argument 3 (`0x007BA9B2`-`0x007BA9C1`), any other through `0x00210EB0` on
+  `array - 8` (`0x007BA9C5`-`0x007BA9C9`);
+- it clears the qwords `+0x08`, `+0x10`, `+0x18`, `+0x20` and the dword `+0x2C` (`0x007BA9CE`-`0x007BA9E0`) and stores
+  the base vtable `0x01CB57A0` of `SQEX::Sd::SeadObject<3, 8>` (`0x007BA9E3`-`0x007BA9EA`);
+- with bit `0x1` of the flags set it frees the object through the driver's free (`0x007AD450`, `0x007BA9FC`), unless
+  bit `0x4` is set as well: then it calls `0x0016D6A0` with the size `0x30` instead, which does nothing
+  (`0x007BA9F6`-`0x007BAA14`).
+
+The destructor follows the last function of libogg's `framing.c` in the image, `0x007BA970`, which ends at
+`0x007BA98A`.
+
 `0x007A5A00(page, out, ...)`, from the game's `0x00221940`, takes the page (`0x007BB690`) and calls `0x007BBAB0`, which builds a
 source through the factory `0x007BBFB0` and appends its handle to the page (`0x007BB9A0`); when the page is full it stops
 the new sound over 0.1 s (`0x007BBB45`). Lay action 0 runs slot 11 with 0 on every source of a page (`0x007BBB70`).

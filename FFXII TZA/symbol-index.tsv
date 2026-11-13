@@ -6799,7 +6799,7 @@ field	WidgetSingleton02CA8F38+0x0120	winImage	Menus-And-HUD/map-screens.md	-	-
 field	WidgetSingleton02CA8F38+0x0128	mapPicture	Menus-And-HUD/map-screens.md	-	-
 field	WidgetSingleton02CA8F38+0x0130	cursorImage	Menus-And-HUD/map-screens.md	-	-
 field	WidgetSingleton02CA8F38+0x0138	lineImage	Menus-And-HUD/map-screens.md	-	-
-field	WidgetSingleton02CA8F38+0x0140	gap140	Menus-And-HUD/map-screens.md	-	-
+field	WidgetSingleton02CA8F38+0x0140	mapScreen	Menus-And-HUD/map-screens.md	-	-
 field	WidgetSingleton02CA8F38+0x0148	mapPictureId	Menus-And-HUD/map-screens.md	-	-
 field	WidgetSingleton02CA8F38+0x014C	bind8C	Menus-And-HUD/map-screens.md	-	-
 field	WidgetSingleton02CA8F38+0x0150	bind90	Menus-And-HUD/map-screens.md	-	-
@@ -7017,7 +7017,7 @@ field	WidgetSingleton0209C498+0x00D0	showDelay	Game-Files-And-Data-Tables/small-
 field	WidgetSingleton0209C498+0x00D2	showScene	Game-Files-And-Data-Tables/small-bin-tables.md	-	-
 field	WidgetSingleton0209C498+0x00D4	paneCloseDelay	Game-Files-And-Data-Tables/small-bin-tables.md	-	-
 field	WidgetSingleton0209C498+0x00D6	closeDelay	Game-Files-And-Data-Tables/small-bin-tables.md	-	-
-field	WidgetSingleton0209C498+0x00D8	gap0D8	Game-Files-And-Data-Tables/small-bin-tables.md	-	-
+field	WidgetSingleton0209C498+0x00D8	paneText	Game-Files-And-Data-Tables/small-bin-tables.md	-	-
 field	WidgetSingleton0209C498+0x0158	openPane	Game-Files-And-Data-Tables/small-bin-tables.md	-	-
 field	WidgetSingleton0209C498+0x0160	pane0	Game-Files-And-Data-Tables/small-bin-tables.md	-	-
 field	WidgetSingleton0209C498+0x02A8	pane1	Game-Files-And-Data-Tables/small-bin-tables.md	-	-
@@ -13575,7 +13575,7 @@ function	0x0016A030	-	Compiler-And-C-Runtime/generated-function-families-compile
 function	0x0016A070	-	Compiler-And-C-Runtime/generated-function-families-platform-windows-criticalsectionstaticinitializer.tsv	-	6
 function	0x0016A0A0	-	Sound-And-Music/sound-driver-objects.md	-	7
 function	0x0016A0E0	-	Compiler-And-C-Runtime/generated-function-families-platform-windows-criticalsectionstaticinitializer.tsv	-	6
-function	0x0016A110	-	Sound-And-Music/sound-driver-objects.md	-	7
+function	0x0016A110	-	Sound-And-Music/sound-driver-objects.md	-	8
 function	0x0016A150	-	Compiler-And-C-Runtime/generated-function-families-platform-windows-criticalsectionstaticinitializer.tsv	-	6
 function	0x0016A180	-	Sound-And-Music/spatial-sound.md	-	7
 function	0x0016A1C0	-	Compiler-And-C-Runtime/generated-function-families-platform-windows-criticalsectionstaticinitializer.tsv	-	6
@@ -13956,7 +13956,7 @@ function	0x0016D610	-	PhyreEngine/phyre-modules.md	-	7
 function	0x0016D670	-	Engine-Core/debug-logging.md	-	12
 function	0x0016D680	-	PhyreEngine/phyre-thread-pool.md	-	18
 function	0x0016D690	-	Compiler-And-C-Runtime/memory-and-allocation.md	-	9
-function	0x0016D6A0	_guard_check_icall	Graphics/gi-render-commands.md	-	139
+function	0x0016D6A0	_guard_check_icall	Graphics/gi-render-commands.md	-	140
 function	0x0016D6B0	-	Compiler-And-C-Runtime/memory-and-allocation.md	-	7
 function	0x0016D6C0	-	Compiler-And-C-Runtime/memory-and-allocation.md	-	8
 function	0x0016D6D0	-	Graphics/map-cubemaps.md	-	13
@@ -16526,7 +16526,7 @@ function	0x00200BF0	-	Game-Files-And-Data-Tables/json-configs.md	-	11
 function	0x00200E60	-	Third-Party-Libraries/third-party-libraries.md	-	10
 function	0x00201460	-	Game-Files-And-Data-Tables/standard-file-formats.md	-	6
 function	0x00201690	-	Engine-Core/vtable-methods.tsv	-	7
-function	0x002016C0	-	Engine-Core/vtable-methods.tsv	-	7
+function	0x002016C0	-	Third-Party-Libraries/third-party-libraries.md	-	8
 function	0x002016F0	-	Third-Party-Libraries/third-party-libraries.md	-	8
 function	0x00201720	-	Third-Party-Libraries/third-party-libraries-jsonbox.tsv	-	5
 function	0x00201890	-	Third-Party-Libraries/eastl-strings-and-containers.md	-	8
@@ -16847,7 +16847,7 @@ function	0x00210CD0	-	Sound-And-Music/audio-manager.md	-	5
 function	0x00210D20	-	Story-Events-And-Hunts/tomb-of-raithwall-script-steps.tsv	-	12
 function	0x00210D90	-	Sound-And-Music/sound-effects.md	-	8
 function	0x00210E10	-	Sound-And-Music/audio-manager.md	-	12
-function	0x00210EB0	free	Compiler-And-C-Runtime/memory-and-allocation.md	-	25
+function	0x00210EB0	free	Compiler-And-C-Runtime/memory-and-allocation.md	-	26
 function	0x00210EC0	-	Compiler-And-C-Runtime/memory-and-allocation.md	-	43
 function	0x00210ED0	-	Engine-Core/jump-thunks.md	-	7
 function	0x00210F60	-	Sound-And-Music/spatial-sound.md	-	7
@@ -17017,7 +17017,7 @@ function	0x00216100	-	Graphics/gi-render-commands-geometry-instance-vtable-slots
 function	0x00216160	-	Engine-Core/vtable-methods.tsv	-	8
 function	0x002161C0	-	Third-Party-Libraries/third-party-libraries-jsonbox.tsv	-	6
 function	0x002164C0	-	Third-Party-Libraries/third-party-libraries-jsonbox.tsv	-	5
-function	0x002164D0	-	Engine-Core/call-signatures-forwards.tsv	-	4
+function	0x002164D0	-	Third-Party-Libraries/third-party-libraries.md	-	5
 function	0x00216530	-	Third-Party-Libraries/third-party-libraries-jsonbox.tsv	-	5
 function	0x00216540	-	Engine-Core/call-signatures-forwards.tsv	-	4
 function	0x002165B0	-	Third-Party-Libraries/third-party-libraries.md	-	6
@@ -19788,7 +19788,7 @@ function	0x002B3C30	-	EBP-Script-Files/ebp-text-sections.md	-	6
 function	0x002B3D50	-	EBP-Script-Files/ebp-text-sections.md	-	6
 function	0x002B3E30	-	Menus-And-HUD/text-drawing.md	-	5
 function	0x002B3E90	-	Menus-And-HUD/text-drawing.md	-	6
-function	0x002B4090	-	Story-Events-And-Hunts/shared-zone-script-actors.md	-	17
+function	0x002B4090	-	Story-Events-And-Hunts/shared-zone-script-actors.md	-	18
 function	0x002B40C0	-	Menus-And-HUD/text-string-tables.md	-	6
 function	0x002B41F0	-	Menus-And-HUD/message-windows.md	-	7
 function	0x002B43C0	-	Menus-And-HUD/message-windows.md	-	9
@@ -20251,7 +20251,7 @@ function	0x002D8650	-	Menus-And-HUD/fonts-files.md	-	10
 function	0x002D8670	-	Menus-And-HUD/fonts-files.md	-	6
 function	0x002D8690	-	Menus-And-HUD/fonts-files.md	-	8
 function	0x002D87D0	-	Menus-And-HUD/fonts-files.md	-	7
-function	0x002D8910	-	Menus-And-HUD/fonts-files.md	-	11
+function	0x002D8910	-	Menus-And-HUD/fonts-files.md	-	12
 function	0x002D89E0	-	Menus-And-HUD/text-drawing.md	-	7
 function	0x002D8B00	-	Menus-And-HUD/text-drawing.md	-	6
 function	0x002D8BB0	-	Menus-And-HUD/staff-roll.md	-	7
@@ -21052,7 +21052,7 @@ function	0x002F9240	BattleAction_ComputeCasterPrimaryResourceGainFromHpDamage	Wo
 function	0x002F9400	BattleUnit_ResolvePeriodicPrimaryResourceRecoveryStep	Status-Effects-And-KO/mp.md	-	16
 function	0x002F95D0	BattleAction_ComputeModifiedResourceCostAmount	Status-Effects-And-KO/battle-buffs.md	-	16
 function	0x002F9820	BattleUnit_UsesGilActionCostChannel	Rewards-EXP-Gil-And-Loot/gil.md	-	11
-function	0x002F9860	-	Game-Files-And-Data-Tables/battle-text-tables.md	-	43
+function	0x002F9860	-	Game-Files-And-Data-Tables/battle-text-tables.md	-	44
 function	0x002F9920	-	Engine-Core/identifier-spaces.md	-	19
 function	0x002F9A60	-	Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md	-	8
 function	0x002F9B20	-	Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md	-	8
@@ -29231,7 +29231,7 @@ function	0x005528C0	-	Menus-And-HUD/map-screens.md	-	21
 function	0x00553AE0	-	Game-Files-And-Data-Tables/json-configs-inputs.tsv	-	8
 function	0x00553BB0	-	Menus-And-HUD/map-screens.md	-	5
 function	0x00553CB0	-	Game-Files-And-Data-Tables/json-configs-inputs.tsv	-	7
-function	0x00553DD0	-	Menus-And-HUD/map-screens.md	-	5
+function	0x00553DD0	-	Menus-And-HUD/map-screens.md	-	6
 function	0x00553F40	-	Menus-And-HUD/map-screens.md	-	8
 function	0x005542D0	-	Menus-And-HUD/widgets.md	-	12
 function	0x00554A60	-	Menus-And-HUD/map-screens.md	-	5
@@ -29301,8 +29301,8 @@ function	0x00559E30	-	Menus-And-HUD/license-board-screen.md	-	9
 function	0x0055A180	-	Menus-And-HUD/license-board-screen.md	-	7
 function	0x0055A1F0	-	Menus-And-HUD/license-board-screen.md	-	9
 function	0x0055A340	-	Menus-And-HUD/license-board-screen.md	-	12
-function	0x0055A810	-	Game-Files-And-Data-Tables/world-map-mesh-mg.md	-	6
-function	0x0055A8A0	-	Game-Files-And-Data-Tables/world-map-mesh-mg.md	-	7
+function	0x0055A810	-	Menus-And-HUD/license-board-screen.md	-	8
+function	0x0055A8A0	-	Game-Files-And-Data-Tables/world-map-mesh-mg.md	-	9
 function	0x0055AA00	-	Menus-And-HUD/license-board-screen.md	-	8
 function	0x0055AB20	-	Menus-And-HUD/license-board-screen.md	-	6
 function	0x0055AE00	-	Menus-And-HUD/license-board-screen.md	-	9
@@ -29378,7 +29378,7 @@ function	0x00562120	-	Menus-And-HUD/map-screens.md	-	5
 function	0x00562190	-	Menus-And-HUD/map-screens.md	-	5
 function	0x005621A0	-	Menus-And-HUD/map-screens.md	-	7
 function	0x00562850	-	Menus-And-HUD/map-screens.md	-	5
-function	0x00562920	-	Menus-And-HUD/map-screens.md	-	5
+function	0x00562920	-	Menus-And-HUD/map-screens.md	-	6
 function	0x00562A30	-	Menus-And-HUD/map-screens.md	-	6
 function	0x00562E30	-	Menus-And-HUD/map-screens.md	-	5
 function	0x00562F30	-	Game-Files-And-Data-Tables/world-map-mesh-mg.md	-	8
@@ -31324,7 +31324,7 @@ function	0x005CD500	-	Graphics/gi-render-commands.md	-	8
 function	0x005CD570	-	Compiler-And-C-Runtime/runtime-services.md	-	8
 function	0x005CD5E0	-	Graphics/gi-render-commands.md	-	10
 function	0x005CD650	-	PhyreEngine/phyre-thread-pool.md	-	7
-function	0x005CD6D0	-	PhyreEngine/phyre-lua-bindings.md	-	17
+function	0x005CD6D0	-	PhyreEngine/phyre-lua-bindings.md	-	18
 function	0x005CD700	-	Graphics/gi-render-commands.md	-	9
 function	0x005CD720	-	PhyreEngine/phyre-application.md	-	7
 function	0x005CD7D0	-	Compiler-And-C-Runtime/runtime-services.md	-	11
@@ -40612,7 +40612,7 @@ function	0x007ACD30	-	Sound-And-Music/sound-engine-config.md	-	7
 function	0x007AD240	-	Sound-And-Music/sound-engine-config.md	-	6
 function	0x007AD310	-	Sound-And-Music/sound-driver-objects.md	-	5
 function	0x007AD440	-	Third-Party-Libraries/media-decoder-libraries.md	-	8
-function	0x007AD450	-	Compiler-And-C-Runtime/object-construction-and-destruction.md	-	6
+function	0x007AD450	-	Compiler-And-C-Runtime/object-construction-and-destruction.md	-	7
 function	0x007AD460	-	Sound-And-Music/sound-engine-config.md	-	9
 function	0x007AD4D0	-	Sound-And-Music/sound-driver-objects.md	-	5
 function	0x007AD540	-	Sound-And-Music/sound-driver-objects.md	-	5
@@ -40827,8 +40827,8 @@ function	0x007BA770	-	Third-Party-Libraries/media-decoder-libraries-libogg-frami
 function	0x007BA7B0	-	Third-Party-Libraries/media-decoder-libraries-libogg-framing.tsv	-	5
 function	0x007BA7E0	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x007BA950	-	Third-Party-Libraries/media-decoder-libraries-libogg-framing.tsv	-	5
-function	0x007BA970	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
-function	0x007BA990	-	Engine-Core/vtable-methods.tsv	-	7
+function	0x007BA970	-	Sound-And-Music/spatial-sound.md	-	8
+function	0x007BA990	-	Sound-And-Music/spatial-sound.md	-	7
 function	0x007BAA30	-	Engine-Core/vtable-methods.tsv	-	6
 function	0x007BAAF0	-	Engine-Core/vtable-methods.tsv	-	6
 function	0x007BAB30	-	Sound-And-Music/spatial-sound.md	-	6
@@ -41156,7 +41156,7 @@ function	0x007D09E0	-	Engine-Core/vtable-methods.tsv	-	5
 function	0x007D0A00	-	Sound-And-Music/interactive-music.md	-	6
 function	0x007D0A10	-	Sound-And-Music/sound-driver-objects.md	-	5
 function	0x007D0A20	-	Sound-And-Music/sound-driver-objects.md	-	7
-function	0x007D0A70	-	Sound-And-Music/interactive-music.md	-	8
+function	0x007D0A70	-	Sound-And-Music/sound-streaming.md	-	8
 function	0x007D0AB0	-	Engine-Core/vtable-methods.tsv	-	6
 function	0x007D0AC0	-	Sound-And-Music/audio-effects.md	-	6
 function	0x007D0C38	-	Engine-Core/vtable-methods.tsv	-	6
@@ -44230,7 +44230,7 @@ function	0x008865C0	-	Third-Party-Libraries/media-decoder-libraries-libvorbis.ts
 function	0x00886FE0	-	Third-Party-Libraries/media-decoder-libraries-libvorbis.tsv	-	5
 function	0x00887130	-	Third-Party-Libraries/media-decoder-libraries-libvorbis.tsv	-	5
 function	0x00887330	-	Third-Party-Libraries/media-decoder-libraries-libvorbis.tsv	-	5
-function	0x00887630	-	Engine-Core/call-signatures-stack-args.tsv	-	3
+function	0x00887630	-	Third-Party-Libraries/media-decoder-libraries.md	-	4
 function	0x00887810	-	Third-Party-Libraries/media-decoder-libraries-libvorbis.tsv	-	5
 function	0x008887B0	-	Third-Party-Libraries/media-decoder-libraries-libvorbis.tsv	-	5
 function	0x008888F0	-	Third-Party-Libraries/media-decoder-libraries-libvorbis.tsv	-	5
@@ -57719,7 +57719,7 @@ global	0x02EADD88	-	Sound-And-Music/spatial-sound.md	-	0
 global	0x02EADD90	-	Sound-And-Music/spatial-sound.md	-	0
 global	0x02EADD98	-	Sound-And-Music/spatial-sound.md	-	0
 global	0x02EADD9C	-	Sound-And-Music/spatial-sound.md	-	0
-global	0x02EADDA0	-	Sound-And-Music/sound-driver-objects.md	-	0
+global	0x02EADDA0	-	Sound-And-Music/sound-driver-objects.md	-	1
 global	0x02EADDA8	-	Sound-And-Music/sound-driver-objects.md	-	0
 global	0x02EADDB0	-	Sound-And-Music/sound-driver-objects.md	-	0
 global	0x02EADDB8	-	Sound-And-Music/sound-driver-objects.md	-	0
@@ -58666,6 +58666,7 @@ data	0x008C2608	-	Compiler-And-C-Runtime/msvc-containers.md	-	1
 data	0x008C2610	-	Compiler-And-C-Runtime/msvc-containers.md	-	1
 data	0x008C2618	-	Compiler-And-C-Runtime/msvc-containers.md	-	1
 data	0x008C2620	-	Compiler-And-C-Runtime/msvc-containers.md	-	1
+data	0x008C2660	-	Third-Party-Libraries/third-party-libraries.md	-	1
 data	0x008C26A0	-	Compiler-And-C-Runtime/exception-handling.md	-	1
 data	0x008C27C8	-	Compiler-And-C-Runtime/exception-handling.md	-	1
 data	0x008C27E8	-	Compiler-And-C-Runtime/runtime-services.md	-	1
@@ -58958,6 +58959,7 @@ data	0x00904FE8	-	Third-Party-Libraries/third-party-libraries.md	-	0
 data	0x00905008	-	Third-Party-Libraries/eastl-strings-and-containers.md	-	0
 data	0x00905038	-	Third-Party-Libraries/third-party-libraries.md	-	0
 data	0x00905070	-	Compiler-And-C-Runtime/thunks-and-import-stubs.md	-	4
+data	0x00905170	-	Third-Party-Libraries/third-party-libraries.md	-	3
 data	0x00905888	-	Compiler-And-C-Runtime/msvc-containers.md	-	3
 data	0x009058C0	-	Compiler-And-C-Runtime/msvc-containers.md	-	4
 data	0x00905930	-	Compiler-And-C-Runtime/msvc-containers.md	-	4
@@ -59585,6 +59587,8 @@ data	0x01CB5194	-	Sound-And-Music/audio-effects.md	-	0
 data	0x01CB51B0	-	Sound-And-Music/audio-effects.md	-	0
 data	0x01CB5380	-	Third-Party-Libraries/media-decoder-libraries.md	-	0
 data	0x01CB5780	-	Third-Party-Libraries/media-decoder-libraries.md	-	1
+data	0x01CB5790	-	Sound-And-Music/spatial-sound.md	-	3
+data	0x01CB57A0	-	Sound-And-Music/spatial-sound.md	-	4
 data	0x01CB58C8	-	Sound-And-Music/sound-engine.md	-	4
 data	0x01CB5A20	-	Sound-And-Music/sound-effects.md	-	3
 data	0x01CB5A30	-	Sound-And-Music/sound-engine.md	-	4

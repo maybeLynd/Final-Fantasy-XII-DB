@@ -133,6 +133,16 @@ state bytes at `+0x70`, the target stream buffer and the character:
   character clears it. Every character but a replaced `/` is written unchanged (`sputc`). The filter
   returns what `sputc` returns (`0x00216641`), and 0 after a replaced `/` (`0x0021661E`, `0x00216649`).
 
+The writer's `Indenter` filter is `0x002164D0(state, buffer, character)`. When the state byte is set and the
+character is not a newline it first writes a tab to the stream buffer (`0x002164DF`-`0x002164F7`, `sputc` through
+`0x008C2660`). It then sets the state byte to 1 for a newline and 0 for any other character (`0x002164FD`-`0x00216509`)
+and writes the character with a tail jump to `sputc` (`0x0021651A`), whose result is the filter's result.
+
+The overflow slot of `OutputFilter<Indenter>` (`0x002016C0`, vtable `0x00905170` slot 3) is its only caller. For the
+end-of-file value -1 it jumps to the filter's own vtable slot `+0x68` (`0x002016C3`-`0x002016CB`). With no target stream
+buffer at `+0x68` it returns -1 (`0x002016CF`-`0x002016E4`). Otherwise it jumps to `0x002164D0` with the state byte at
+`+0x70`, the target buffer and the character (`0x002016D8`-`0x002016DC`).
+
 Every call into JsonBox from outside it comes from the game's JSON readers
 (`0x001C2F50` to `0x001CCB20`), a few static initialisers and unwind code. What the game reads with it
 is on [Standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md).

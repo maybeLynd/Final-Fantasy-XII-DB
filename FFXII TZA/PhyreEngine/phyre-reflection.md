@@ -128,9 +128,10 @@ part when there is no parent (`0x0063E44A`-`0x0063E47F`).
 
 A member's position in an object is its registered offset minus the owning class's `+0xF4`
 (`0x0063C910`, `0x00639C80`, `0x0063CB80`). `PAnimatableComponent` passes 8: its reflected layout starts
-8 bytes into the object, after the vtable pointer. Its member visitor `0x005A2390` is handed
-`object + 8`, and descriptor slot `+0x58` (`0x0063FC60`) steps back 8 bytes to call the object's own
-destructor.
+8 bytes into the object, after the vtable pointer. Its member visitor `0x005A2390` is handed the
+object and forms `object + 8` itself (`0x005A2399`), keeping a null object null (`0x005A23A8`), before
+it calls `0x0063E2E0` on `0x02CAD140` (`0x005A23B3`, `0x005A23D0`). Descriptor slot `+0x58` (`0x0063FC60`)
+steps back 8 bytes to call the object's own destructor.
 
 ### The type tree and the namespace
 

@@ -118,7 +118,12 @@ picture's word `+0x0A`, and points its sprite `+0x20` at an entry of the atlas's
 - for the 21 key-cap indices at `0x01E0C3F0` (`0x002878B0`), the entry follows the game's language: French 6, German 5,
   Italian 4, Spanish 3, Korean 0, the two Chinese languages 2 and 1, any other 9 (`0x00285F60` of `0x0017E270`);
 - for any other key it follows the keyboard layout from `GetKeyboardLayout` (`0x001E0B90`): French `0x40C` gives 8,
-  German `0x407` gives 7, any other 9 (`0x00285FE0`).
+  German `0x407` gives 7, any other layout 9 (`0x00285FE0`).
+
+The index that test reads is the one the picture held before this call: the word `+0x0A` is read and passed to
+`0x002878B0` first (`0x002B5D51`, `0x002B5D55`) and the new index is stored after the choice (`0x002B5D9A`), and so at
+each of the six sites. For the prompts whose picture is fixed (`0x002B5EB2` onward) the entry therefore follows the
+key shown until now; the pictures of the first two steps are chosen by the key itself (`0x002B5D3A`-`0x002B5D4D`).
 
 It also keeps WalkMode's key-cap index (group 2 slot 3) at `0x01E0CE28` and those of the sixteen group 0 controls at
 `0x01E0CE10`.
