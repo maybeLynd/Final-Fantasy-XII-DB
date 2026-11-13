@@ -21,9 +21,16 @@ addresses: "0x0215F200, 0x002E16B0, 0x002E09A0, 0x002E08C0, 0x002A2C00, 0x002A61
 ### The script's eight slots
 
 A script owns eight message slots, records of `0x68` bytes at `0x0215F200` (layout below). Every setter turns a
-negative slot number into 0, and all but three turn one above 7 into 7 (`0x002E1D10`-`0x002E1D1F`, `0x002E1F80` and the
+negative slot number into 0, and all but eight turn one above 7 into 7 (`0x002E1D10`-`0x002E1D1F`, `0x002E1F80` and the
 others below). `setaskselectignore`, `setmeswinactive` and `setmeswinhidestatus` do nothing for a slot of 8 or more
-(`0x002E20D3`-`0x002E20D6`, `0x002E2160`-`0x002E2163`, `0x002E21E0`-`0x002E21E3`). The verbs fill a slot's settings first and
+(`0x002E20D3`-`0x002E20D6`, `0x002E2160`-`0x002E2163`, `0x002E21E0`-`0x002E21E3`).
+
+Five more setters start with the same test and do nothing for such a slot: `0x002E2010`, which keeps its argument
+in bit `0x1` of the window's `+0x40` (`0x002E2013`), and the four that store their argument in the slot, `0x002E2050`
+at `+0x1C` (`0x002E2053`), `0x002E21A0` at `+0x20` (`0x002E21A3`), `0x002E2120` at `+0x58` (`0x002E2123`) and `0x002E2090` at
+`+0x5C` (`0x002E2093`).
+
+The verbs fill a slot's settings first and
 then open its window with `0x002E16B0`; the settings apply to the next window opened in that slot.
 
 | Verb | Id | Setter | What it sets |
@@ -418,8 +425,8 @@ verbs](../Scripts-And-Script-Commands/reward-verbs.md)), and `0x002A5B90(ids, co
 | `+0x0C` | `i32` | answer | the chosen option, -1 until chosen |
 | `+0x10` | `i16[4]` | rect | x, y, width, height |
 | `+0x18` | `u32` | hidden | hidden-choices mask |
-| `+0x1C` | `i32` | req1C | its low byte goes into the creation request; the reset writes -1 |
-| `+0x20` | `i32` | req20 | its low byte goes into the creation request; the reset writes 0 |
+| `+0x1C` | `i32` | req1C | set by `0x002E2050`; its low byte goes into the creation request; the reset writes -1 |
+| `+0x20` | `i32` | req20 | set by `0x002E21A0`; its low byte goes into the creation request; the reset writes 0 |
 | `+0x24` | `i32` | startRow | `askpos` start row |
 | `+0x28` | `i32` | cancelRow | `askpos` cancel row |
 | `+0x2C` | `i32` | cursor | the cursor or answer, -1 until set |

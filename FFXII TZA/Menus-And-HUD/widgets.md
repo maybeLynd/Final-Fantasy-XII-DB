@@ -313,8 +313,11 @@ channel (messages 22 and 17, 21, 23), and ends a run with message 19 (forward) o
 ### Tweens
 
 Besides its opening and closing runs, a widget has four animated values, one per bit of `+0x80`. Each starter
-refuses while any of the other three bits is set, records the start value, the change and the length
-`ms x 60 / 1000` frames, and stores a curve in the bits `0x3C00`:
+refuses while any of the other three bits is set. The starters of bits `0x1`, `0x2` and `0x4` record the start
+value, the change and the length `ms x 60 / 1000` frames, and store a curve in the bits `0x3C00`. The starter of
+bit `0x8` records none of the three: it also refuses when the value equals the float `+0x84`
+(`0x002472B9`-`0x002472C6`), clears the bits `0x3C00`, puts its slot AND 3 into the bits `0xC00`
+(`0x002472CF`-`0x002472E1`) and stores the value at `+0x84` (`0x002472E8`):
 
 | Bit | Starter | Animates | Message per step |
 |---|---|---|---|

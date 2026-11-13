@@ -320,7 +320,9 @@ apart. Both read a colour track at `0x00915FB0` (four keys, `0x0028CB90`) and sc
 | `+0x10F30` | 832 | `0x00291010`, only while flag bit `0x800` is set | `0x00290300`, called by `0x0035DAF0` |
 
 `0x0027DC10(actor, unit, action, keep)` asks for a `+0x10F40` mark when `0x0031AB80` reports kind 1, `keep` is 0 and
-`0x00273710` passes the unit; it first drops the unit's old mark (`0x00290CD0`, `0x003F35A0`).
+`0x00273710` passes the unit. It first calls `0x00290CD0(unit)`, which walks the `+0x10F40` marks (`0x003F35A0`):
+every mark whose `+0x6C` is not the unit loses bit `0x1` of `+0x50` and has `+0x6C` set to 0
+(`0x003F35A7`-`0x003F35B0`); a mark that already names the unit is left as it is.
 
 The `+0x10F20` and `+0x10F40` marks:
 

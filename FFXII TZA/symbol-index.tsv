@@ -20482,12 +20482,12 @@ function	0x002E1F40	-	Menus-And-HUD/message-windows.md	-	8
 function	0x002E1F80	-	Controls-And-Input/action-availability.md	-	10
 function	0x002E1FD0	-	Menus-And-HUD/message-windows.md	-	6
 function	0x002E2010	-	Menus-And-HUD/message-windows.md	-	5
-function	0x002E2050	-	Compiler-And-C-Runtime/generated-function-families.md	-	10
+function	0x002E2050	-	Menus-And-HUD/message-windows.md	-	11
 function	0x002E2090	-	Menus-And-HUD/message-windows.md	-	6
 function	0x002E20D0	-	Menus-And-HUD/message-windows.md	-	7
 function	0x002E2120	-	Story-Events-And-Hunts/shared-zone-script-actors.md	-	10
 function	0x002E2160	-	Menus-And-HUD/message-windows.md	-	7
-function	0x002E21A0	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	6
+function	0x002E21A0	-	Menus-And-HUD/message-windows.md	-	7
 function	0x002E21E0	-	Menus-And-HUD/message-windows.md	-	7
 function	0x002E2240	-	Controls-And-Input/action-availability.md	-	7
 function	0x002E2290	-	Engine-Core/debug-menu.md	-	6
@@ -23406,7 +23406,7 @@ function	0x00352C00	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	7
 function	0x00352C80	-	Story-Events-And-Hunts/script-censuses.md	-	12
 function	0x00352CE0	-	Characters-And-Objects/actor-record-fields.tsv	-	8
 function	0x00352D10	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	7
-function	0x00352D70	-	Graphics/effect-anchors-and-targets.md	-	8
+function	0x00352D70	-	Scripts-And-Script-Commands/event-scenes.md	-	8
 function	0x00352DB0	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	7
 function	0x00352DE0	-	Graphics/character-render-object.md	-	8
 function	0x00352E00	-	World-Areas-And-Travel/save-and-teleport-crystals.md	-	10

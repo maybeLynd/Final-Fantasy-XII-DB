@@ -686,7 +686,7 @@ The poll is the `0xD0`-byte widget kept at `0x02CA99D8` with procedure `0x0057EB
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x0057EB30` |
 | `+0xC0` | `u32` | flags | bit `0x1`: the second argument of the poll arm `0x0057EC60` (`0x0057ECC7`-`0x0057ECD1`); bit `0x2`: a presence poll is queued, set by `0x0057EC60` (`0x0057ED13`) and by the device check `0x0057EA40` after it queues its packets (`0x0057EAFE`); while bit `0x2` is set each of the three, `0x0057EA40` (`0x0057EA5D`), `0x0057EC60` (`0x0057EC7A`) and the disarm `0x0057ED40` (`0x0057ED4C`), first empties the storage queue, or marks its started front packet to skip its callback. The disarm clears bits `0x1` and `0x2` (`0x0057ED85`, `0x0057ED9B`); the construct message sets 0 (`0x0057EB74`) |
-| `+0xC4` | `u8[4]` | pad0C4 | read and written by no function; nothing fixes its width |
+| `+0xC4` | `u32` | pollResult | written by the presence-poll callback `0x0057EBB0`: a result of 0 sets bit `0x1` (`0x0057EBD4`); any other result clears bit `0x1` and sets bit `0x2` (`0x0057EBDD`, `0x0057EBE4`) |
 | `+0xC8` | `void*` | controller | the first argument of the poll arm `0x0057EC60`, the save and load screen that armed it (`0x0057ECD7`); 0 at construction (`0x0057EB6A`) |
 
 ### The backdrop

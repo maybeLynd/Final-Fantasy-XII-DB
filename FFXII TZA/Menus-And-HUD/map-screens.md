@@ -483,7 +483,7 @@ A marker, `0x70` bytes, 24 in a page's list at `+0xB140`:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x40` | `void*` | mapPoint | the map point it stands for, `0x003BF520(record +0x1C, record +0x1E)`, 0 for no map point (`0x00402CA8`); read by the marker painters `0x002B8EE0` (`0x002B91CF`, `0x002B925C`, `0x002B956D`, `0x002B96CF`) and `0x002BCB00` (`0x002BCE90`, `0x002BCF0C`, `0x002BD160`, `0x002BD2D2`) and by `0x00403970` (`0x00403A3A`), `0x00403F90` (`0x00403FF7`, `0x00404007`) and `0x00404730` (`0x0040476D`, `0x00404840`) |
-| `+0x4E` | `u16` | markerFlags | bit `0x1` the page's selected marker (`0x002B7F57`, `0x002B80D1`, `0x002BB3B3`, `0x002BB52A`, `0x002BBC1C`), which loses bits `0x6`; bits `0x6` set on a kind-1 marker (`0x00402CBE`, `0x002BBC04`); `0x00402BF0` sets bits `0x1` and `0x8` on every kind-1 marker (`0x00402C0A`); read by `0x00403180` (`0x00403200`, bit `0x2` picks colour `0x80`) and the labels `0x004044D0` (`0x00404624`, bit `0x8`) |
+| `+0x4E` | `u16` | markerFlags | bit `0x1` the page's selected marker (`0x002B7F57`, `0x002B80D1`, `0x002BB3B3`, `0x002BB52A`, `0x002BBC1C`), which loses bits `0x6`; bits `0x6` set on a kind-1 marker (`0x00402CBE`, `0x002BBC04`); `0x00402BF0` sets bits `0x1` and `0x8` on every kind-1 marker (`0x00402C0A`); read by `0x00403180` (`0x00403200`-`0x00403211`: bit `0x2` picks colour `0x40`, and `0x80` without it) and the labels `0x004044D0` (`0x00404624`, bit `0x8`) |
 
 ### The location sprite pane
 

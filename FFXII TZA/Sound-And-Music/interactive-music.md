@@ -43,7 +43,8 @@ run-time type and built by one accessor:
 
 A header's offset table starts at its `u16` `+0x02`, moved on by `(nameLength + 0x10) & 0xF0`: the name length is
 byte `+0x48` of a music header from version 9 and byte `+0x04` of a section header from version 8. `0x007CFFB0` and `0x007CFFE0` build and drop the `MabFile` wrapper. `0x007C30C0` refuses a music whose
-section or mode headers are newer than the driver reads ("Music::CheckVersion failed").
+section or mode headers are older than the driver reads, a section header version below 7 (`0x007C30FF`) or a
+mode header version below 2 (`0x007C3193`) ("Music::CheckVersion failed"); every higher version is accepted.
 
 ### Commands
 
@@ -93,7 +94,7 @@ the version as the section to `0x1C` and `0x23`.
    timing-callback list at `+0x8A8` (`0x007C6EA0`, whose `0x30`-byte nodes `0x007C8830` links into a free chain).
 2. `0x007C6FB0` stores the creation values: the bank handles `+0x20` and `+0x28`, the header `+0x18`, the music number
    `+0xB0` and the callback object `+0xB8` with its argument `+0xC0`. It reads the sample rate into `+0x64C`, refuses
-   a header newer than the driver reads (`0x007C30C0`) and sets state 1.
+   a header older than the driver reads (`0x007C30C0`) and sets state 1.
 
 `0x007C6770` gives the rate: header `+0x44` from version 6, otherwise section 0's `+0x18`. `0x007C6340` gives the music's
 bank from its handle `+0x28` (`0x007B2470`). When the update pass frees an ended music, `0x007C5980` gives back its stream

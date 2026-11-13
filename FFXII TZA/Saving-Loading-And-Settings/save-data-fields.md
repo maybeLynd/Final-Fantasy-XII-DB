@@ -48,7 +48,7 @@ file, and a load reads it back in one piece.
 | `+0x08000` | 18456 | the image-backed state block, `*(0x020927C0)` | see its table below | |
 | `+0x0E000` | 4 | the plain CRC of image `+0x8`-`+0xE1FF` (`0x003BB220`), whose complement the header carries at `+0x00`; computed over the active buffer `0x002EF640()` but stored into the buffer `0x00583D60`'s third argument selects (the staging buffer when it is not 0, as `0x003145E0` passes through `0x005844A0`) | `0x00583D60` | |
 | `+0x0E040` | 512 | group persistent bank A, a copy of `0x02099FF0` | `0x0025D8E0` from `0x00229B40` and `0x00584580` | `0x00269A20` from `0x005843E0` and `0x00584210`; `0x005844A0`; `0x002EF7C0` copies the bank out to `0x021C8B80` |
-| `+0x0E240` | 131088 | spawn-keep image A | `0x00233440` from `0x00229B40` and `0x00584580` | `0x00233550` from `0x005843E0`; `0x002EF740` copies `0x20000` bytes out to `0x021C8D80` |
+| `+0x0E240` | 131088 | spawn-keep image A | `0x00233440` from `0x00229B40` and `0x00584580` | `0x00233550` from `0x005843E0`; `0x002EF740` copies all `0x20010` bytes out to `0x021C8D80` (`0x002EF747`-`0x002EF7B6`) |
 | `+0x2E250` | 512 | group persistent bank B | `0x0025D8E0` from `0x00229B40` (`0x00229CCA`-`0x00229CD1`, when its argument is non-zero; bank A when it is 0) and `0x00584580` (`0x005845CE`-`0x005845D5`, when `0x00236760()` is non-zero; bank A when it is 0) | `0x00269A20` from `0x005843E0` (`0x0058444B`-`0x00584452`); `0x00229B40` writes this bank through `0x0025D8E0` and does not read it |
 | `+0x2E450` | 131088 | spawn-keep image B | `0x00233440` from `0x00229B40` (`0x00229CD6`, `0x00229CF2`, when its argument is non-zero; image A when it is 0) and `0x00584580` (`0x005845DA`-`0x005845E1`, in the same branch as bank B) | `0x00233550` from `0x005843E0` (`0x00584457`-`0x0058445E`, after bank B); `0x00229B40` writes this image through `0x00233440` and does not read it |
 | `+0x4E460` | 44 | the save-transition metadata record | `0x002EF540` (run by `0x00229B40` on the staging buffer's record, `0x00229CF7`-`0x00229CFE`), `0x002EF3C0`, `0x002EF510`, `0x00584580`, `0x003145E0` | `0x002EF410`, `0x005843E0`, `0x00584210`; `0x00229B40` reads no byte of it, since its copies end at payload `+0xE040` and start again at `+0x4E48C` |
@@ -240,7 +240,8 @@ cleared by `0x0023A390`); `0x00229B40` takes the bit as its argument from its on
 `0x00584580` captures into the staging buffer `0x002EF620()` (`0x00584586`) and on both paths stores `0x0208D455`,
 sign-extended, as the record's `+0x00` (`0x005845BB`-`0x005845C2`, `0x005845FC`-`0x00584603`). With bit `0x1000` set it
 also runs `0x002EF7C0` and `0x002EF740` (`0x005845F2`, `0x005845F7`), which copy the active buffer's bank A (`0x200`
-bytes, payload `+0xE040`) and `0x20000` bytes of its image A (payload `+0xE240`) to `0x021C8B80` and `0x021C8D80`.
+bytes, payload `+0xE040`) and the `0x20010` bytes of its image A (payload `+0xE240`) to `0x021C8B80` and
+`0x021C8D80`.
 
 `0x00584210` imports bank A again on the restore path, and `0x005843E0` ends by copying the record's first
 byte to `0x0208D455`.

@@ -269,8 +269,9 @@ normalises it, leaving zero for a vector within `1e-6` of zero, and `0x00202FE0`
 `0x00217790`, `0x00217970`).
 
 `0x00203170` writes the identity matrix that `0x0033CC80`, `0x0033D890` and the
-collision sweep's `0x0022EF20` start from. The same vector library holds `0x00203030` (a four-float
-vector times a scalar), `0x00202CA0` (the four floats times the reciprocal of a scalar), `0x00202CF0`
+collision sweep's `0x0022EF20` start from. The same vector library holds `0x00203030` (x, y and z times a
+scalar, the fourth float copied as it is, `0x0020306E`), `0x00202CA0` (the four floats times the reciprocal
+of a scalar), `0x00202CF0`
 (x, y and z divided by a scalar) and `0x002030E0` (a matrix copy with a vector added to its
 translation row); their callers are presentation and text code outside this category.
 
