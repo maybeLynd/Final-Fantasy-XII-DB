@@ -17,7 +17,7 @@ Code reaches a record three ways:
 
 | Route | How |
 |---|---|
-| the lane map | unit `+0x40` is the lane map: count at `+0`, one slot byte per lane from `+1`, `0xFF` empty; `0x00236100(map, lane)` returns `[0x0208E690] + slot * 0x250`, or null for a null map (`0x00236103`), a negative lane (`0x00236107`), a lane past the count (`0x0023610E`-`0x00236110`) or an empty `0xFF` slot (`0x0023611A`-`0x0023611D`), and `0x002360D0(map, lane)` the slot. Every script accessor opens with this walk through the unit from `0x0031B760` |
+| the lane map | unit `+0x40` is the lane map: count at `+0`, one slot byte per lane from `+1`, `0xFF` empty; `0x00236100(map, lane)` returns `[0x0208E690] + slot * 0x250`, or null for a null map (`0x00236103`), a negative lane (`0x00236107`), a lane at or past the count (`0x00236109`-`0x00236110`) or an empty `0xFF` slot (`0x0023611A`-`0x0023611D`), and `0x002360D0(map, lane)` the slot. Every script accessor opens with this walk through the unit from `0x0031B760` |
 | the unit's back-pointer | unit `+0x6A0`, installed by `0x0023A570` for a kind-1 unit and null for party units ([battle unit construction](../Characters-And-Objects/battle-unit-construction.md)) |
 | the bank copies | `0x00233780`, `0x00233440`, `0x00233550` and `0x00235360` move whole records with `movups`, structure-blind |
 

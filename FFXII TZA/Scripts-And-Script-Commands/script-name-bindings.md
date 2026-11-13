@@ -353,8 +353,9 @@ it unloads each queued, loaded lane (`0x002E6E30`), takes the record off the que
 the same test. When that record is the queue's head, the head `0x0215FD90` is set to 0 (`0x002E6A5A`-`0x002E6A61`) and
 `0x002E6A80` relinks nothing, so the queue's other records are no longer reachable from the head.
 
-`0x002E9470` resets the owner's `+0x1E` to `0xFFFF` when the
-stamps still match. It also sets the record's owner slot `+0x22` to `0xFFFF` and `+0x44` to 0, takes the record
+`0x002E9470` resets the owner's `+0x1E` to `0xFFFF` when the owner slot `+0x22` is not negative (`0x002E9484`)
+and the stamps still match (`0x002E9497`-`0x002E949F`). It also sets the record's owner slot `+0x22` to `0xFFFF`
+and `+0x44` to 0, takes the record
 off the unload queue, moves the idle, pending and free heads past it, unlinks it and pushes it on the free list
 `0x0215FD70` (`0x002E94A7`-`0x002E954A`). A null record leaves everything as it was.
 

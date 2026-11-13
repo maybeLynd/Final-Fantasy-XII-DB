@@ -370,6 +370,31 @@ library names them:
   index is above 0 and the sum is larger, then adds `linesper` to the index and stops once the index reaches `n`
   (`0x00887700`-`0x008877E4`, four entries at a time and then one by one).
 
+`0x00893E80` is `floor1_unpack` of libvorbis's `floor1.c`, slot 1 of the floor 1 function table `0x01CEB098`. It
+allocates the `0x460`-byte floor description with `calloc` (`0x00893EBE`), uses the answer without testing it
+(`0x00893EC3`-`0x00893ED1`), and reads it from the packet with
+`oggpack_read` (`0x0017CB40`):
+
+- 5 bits, the partition count at `+0x00`; then 4 bits for each partition, its class at `+0x04 + 4i`
+  (`0x00893EDB`-`0x00893F26`);
+- for each class up to the highest one a partition names: 3 bits plus 1, the dimension at `+0x80`; 2 bits, the
+  subclass bits at `+0xC0`; when those are not 0, 8 bits, the class book at `+0x100`; then one value for each
+  subclass, 8 bits less 1: the subclass books, in the class's `0x20`-byte row from `+0x140`. The subclasses
+  number 1 shifted left by the subclass bits (`0x00893F60`-`0x0089401C`);
+- 2 bits plus 1, the multiplier at `+0x340`; 4 bits, the range bits (`0x00894027`-`0x00894047`);
+- for each partition, as many values of range bits each as its class's dimension: the posts from `+0x34C`
+  (`0x0089406C`-`0x0089411C`). `+0x344` is 0 and `+0x348` is 1 shifted left by the range bits (`0x00894133`-`0x00894140`).
+
+It refuses a negative class, subclass bits, range bits or post (`0x00893F11`, `0x00893F83`, `0x00894050`, `0x008940CE`).
+It refuses a negative class book (`0x00893F9E`), a stored subclass book below -1 (`0x00893FD1`), and either book
+when it is not below the book count, the dword `+0x18` of the setup block at `+0x20` of its first argument
+(`0x00893FA6`-`0x00893FAA`, `0x00893FDA`-`0x00893FDE`). It refuses more than 63 posts
+(`0x00894093`) and a post that is not below the value stored at `+0x348` (`0x008940D4`).
+
+It also refuses two equal posts: it sorts pointers to the posts and to the two fixed values with `qsort`
+(`0x00894248`, comparator `0x008942D0`) and compares neighbours (`0x00894260`-`0x0089426E`). On a refusal it zero-fills
+the block, frees it and returns 0; otherwise it returns the block (`0x00894278`-`0x00894296`).
+
 ### CRI HCA decoder: the sound banks
 
 The HCA decoder occupies the start of `.text`, from `0x00121000`. Its banner "HCA Decoder (Float)
@@ -409,6 +434,73 @@ For an Ogg Vorbis material the sound driver uses Tremor, the integer Vorbis deco
 | `0x007F6750` | `ov_read` | 16-bit output: each integer sample shifted right by 9 and clipped; -131 when the state `+0x80` is below 2 (`0x007F6779`); at state 4 it takes the decoded samples (`0x007F8EE0`, `0x007F67A5`); at another state, or with 0 samples, it fetches the next packet (`0x007F4710`, `0x007F67BE`) and returns 0 at the stream's end, -2 (`0x007F67C3`, `0x007F691B`), and any other result of 0 or below as it is (`0x007F67D0`); a negative sample count is returned as it is (`0x007F67E2`); the count is cut to `bytes / (2 * channels)` (`0x007F6825`-`0x007F682C`), with the channels from the info at `+0x68`, indexed by the link `+0x88` when `+0x08` is set and the state is 3 or more (`0x007F67E8`-`0x007F681A`); channel `i` goes to the bytes from `2 * i` at a stride of `2 * channels`, clipped to -32768 to 32767 (`0x007F6870`-`0x007F68AA`); it then consumes the samples (`0x007F8F60`, `0x007F68E3`), adds them to `+0x78` (`0x007F68E8`), stores the link `+0x88` through the fourth argument when it is not null (`0x007F68FC`) and returns `samples * channels * 2` bytes (`0x007F6900`, `0x007F6908`) |
 | `0x007F5850` | `ov_clear` | |
 
+`0x007F41A0` is `_bisect_forward_serialno` of Tremor's `vorbisfile.c`, the recursive search for the place where
+each logical stream of a chained file starts. Its arguments are the file, `begin`, `searched`, `end`, the end
+granule position, the end serial number, the current link's serial list with its count, and the link index m.
+`0x007F5420` calls it (`0x007F551F`) and it calls itself for the next link (`0x007F45D7`).
+
+When the end serial number is in the list, the link is the last one (`0x007F41F4`-`0x007F420F`):
+
+- unless the end serial number already is the stream serial `+0x200` (`0x007F423E`), it steps back with
+  `0x007F5020` until that reports the stream serial, storing each answer in the offset `+0x10`
+  (`0x007F4250`-`0x007F427D`);
+- before each such call it stores the stream serial in its end serial number argument (`0x007F4254`), and
+  `0x007F5020` is given the addresses of that argument and of the end granule position: it writes the granule
+  position of each page that carries the stored stream serial and keeps that page (`0x007F5120`-`0x007F5130`);
+- a page whose serial number is not in the list drops the kept page (`0x007F5133`-`0x007F5151`), and when it
+  ends after reading a page with no page kept (`0x007F5171`-`0x007F518A`) it writes the serial number and granule
+  position of the last page it read (`0x007F519C`-`0x007F519F`); its two error answers (`0x007F50B6`, `0x007F5181`)
+  write nothing;
+- it sets the link count `+0x40` to m + 1, frees the arrays `+0x48`, `+0x58` and `+0x50`, and allocates the
+  offsets `+0x48` with one entry more than the links, 8 bytes each, the serial numbers `+0x58`, 4 bytes a link,
+  the data offsets `+0x50`, 8 bytes a link, and the PCM lengths `+0x60`, 16 bytes a link; the info array `+0x68`
+  is resized to `0x28` bytes a link and the comment array `+0x70` to `0x20` (`0x007F4283`-`0x007F433A`);
+- the old `+0x60` array is not freed before its pointer is replaced (`0x007F433A`);
+- it stores `end` in entry m + 1 of the offsets, `begin` in entry m and the end granule position, as the step
+  back left it, in entry 2m + 1 of the PCM lengths, and returns 0 (`0x007F433E`-`0x007F4367`).
+
+Otherwise it bisects while `searched` is below the end of the range (`0x007F421A`, `0x007F44E0`):
+
+- the probe is `searched` itself when fewer than `0x400` bytes remain, else the midpoint
+  (`0x007F4224`-`0x007F4381`);
+- when the offset `+0x10` is not the probe it seeks: with no data source it returns -129; with no seek callback
+  `+0x2F8`, or a callback answer of -1, it returns -128; else it stores the offset and resets the sync state
+  `+0x20` with `0x007BA950` (`0x007F4389`-`0x007F43D3`);
+- it takes the next page with `0x007BA7E0` on the sync state; a negative answer skips that many bytes
+  (`0x007F43E0`-`0x007F43F7`);
+- with no whole page yet it reads `0x400` bytes through the read callback `+0x2F0` into the buffer `0x007BA6A0`
+  gives and reports them with `0x007BA970`; a missing callback, a negative read, or a read of 0 with `errno` set
+  returns -128 (`0x007F43FB`-`0x007F446E`). It clears `errno` first (`0x007F4401`); a null data source, or a read of
+  0 with `errno` still clear, is the end of the data (`0x007F4411`, `0x007F4470`);
+- a page that is found moves the offset `+0x10` on by the page's length, and a page that began at offset
+  -128 returns -128 (`0x007F4477`-`0x007F4488`);
+- a page whose serial number (`0x007BA0D0`) is in the list moves `searched` up to the offset after that page
+  (`0x007F4493`-`0x007F44B4`, `0x007F469E`-`0x007F46AB`);
+- any other page, and the end of the data, moves the range end down to the probe; a page that was found also
+  sets `next` to its own offset when that is not negative (`0x007F44C2`-`0x007F44E3`). A page that began at a
+  negative offset other than -128 skips the serial test and is handled as any other page (`0x007F448A`).
+
+After the loop it sets the offset to `next` and steps back with `0x007F5020` for the previous link's last granule
+position (`0x007F44F5`-`0x007F452D`). The step back runs at least once: the test ahead of it compares a value
+with itself plus 1 (`0x007F44F5`-`0x007F44FE`).
+
+Here and in the last-link path the answer of `0x007F5020` goes into the offset `+0x10` untested (`0x007F4526`,
+`0x007F4276`), also when it is one of its error answers -128 and -129 (`0x007F50A5`, `0x007F50AC`).
+
+It seeks to `next` with `0x007F57E0` when the offset moved, and reads the next
+link's headers with `0x007F4A80` into a local info block, a local comment block and a new serial list
+(`0x007F452F`-`0x007F4576`).
+
+It takes the stream serial `+0x200`, the data offset `+0x10` and the first PCM offset from `0x007F51C0`, and calls
+itself with `next`, the offset, the same end values, the new list and m + 1 (`0x007F457C`-`0x007F45D7`). A non-zero
+answer of `0x007F57E0`, of `0x007F4A80` or of the call to itself is returned as it is (`0x007F46B4`); a serial list
+that `0x007F4A80` has filled by then is not freed. The answer of `0x007F51C0` is not tested (`0x007F45B0`).
+
+On the way back it frees the new serial list and fills entry m + 1 of the offsets, serial numbers, data offsets,
+the `0x28`-byte info block and the `0x20`-byte comment block (`0x007F45E7`-`0x007F465A`). Entry 2m + 1 of the PCM
+lengths takes the previous link's last granule position and entry 2m + 2 the first PCM offset, which is also
+taken off entry 2m + 3 (`0x007F465F`-`0x007F468C`).
+
 Their callers are the driver's voice code: `Voice::Initialize` (`0x007EBAD0`), the feed `0x007EAA60` and
 `0x007EA050`. Tremor's own header reader, `vorbis_synthesis_headerin` (`0x007F7FF0`), compares the same "vorbis"
 signature (`0x007F807E`) after the packet's type byte and dispatches on that type:
@@ -440,6 +532,10 @@ fewer than 27 bytes, or fewer than the header and body the header announces, are
 `0x007BA84C`, `0x007BA883`). It keeps the header length `27 + segments` in `+0x18` and the lacing values' total in
 `+0x1C` (`0x007BA845`-`0x007BA877`). It checks the CRC through `0x007B9F80` with the page's CRC field zeroed
 (`0x007BA891`, `0x007BA8B6`); `0x007B9F80` reads the table at `0x007B9F9D`.
+
+A call that finds `+0x18` non-zero, the state a return of 0 at `0x007BA883` leaves, makes no 27-byte test,
+pattern compare or lacing count and goes straight to the test of header plus body (`0x007BA828`-`0x007BA82C`,
+`0x007BA87B`).
 
 A wrong CRC first puts the CRC field back (`0x007BA8C0`). Then a wrong CRC or capture pattern clears `+0x18` and
 `+0x1C` and looks for the next "O" with `memchr` (`0x007BA8C3`-`0x007BA8D6`). It moves `+0x10` there, or to the
@@ -519,9 +615,9 @@ One of the player's three frame queues, as the queue functions use it:
 | libvpx VP8 decoder | `0x0016DDD0` to `0x0017C88F`; 116 functions in [`media-decoder-libraries-libvpx-vp8-decoder.tsv`](media-decoder-libraries-libvpx-vp8-decoder.tsv), and the four control handlers the function list does not hold (`0x0016EE40`, `0x0016EE80`, `0x0016EFF0`, `0x0016F030`) in [`media-decoder-libraries-libvpx-vp8-control-handlers.tsv`](media-decoder-libraries-libvpx-vp8-control-handlers.tsv) |
 | libvpx kernels | 63 in [`media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv`](media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv), `0x00125740` to `0x00158C09` |
 | libvpx kernels nothing reaches | [`media-decoder-libraries-libvpx-unreferenced-kernels.tsv`](media-decoder-libraries-libvpx-unreferenced-kernels.tsv), entries `0x00125770` to `0x00158C97` |
-| libvorbis | `0x008800C0` to `0x008958AF`; 121 functions in [`media-decoder-libraries-libvorbis.tsv`](media-decoder-libraries-libvorbis.tsv) |
+| libvorbis | `0x008800C0` to `0x008958AF`; 124 functions in [`media-decoder-libraries-libvorbis.tsv`](media-decoder-libraries-libvorbis.tsv) |
 | CRI HCA decoder | `0x00121000` to `0x0012573F`; 53 functions in [`media-decoder-libraries-cri-hca-decoder.tsv`](media-decoder-libraries-cri-hca-decoder.tsv) |
-| Tremor with `vorbisfile` | `0x007F41A0` to `0x007F6FAF` and `0x007F7680` to `0x007FFBBF`; 103 functions in [`media-decoder-libraries-tremor-vorbisfile.tsv`](media-decoder-libraries-tremor-vorbisfile.tsv) |
+| Tremor with `vorbisfile` | `0x007F41A0` to `0x007F6FAF` and `0x007F7680` to `0x007FFBBF`; 107 functions in [`media-decoder-libraries-tremor-vorbisfile.tsv`](media-decoder-libraries-tremor-vorbisfile.tsv) |
 | libogg | `framing.c` 22 functions in [`media-decoder-libraries-libogg-framing.tsv`](media-decoder-libraries-libogg-framing.tsv); `bitwise.c` 4 in [`media-decoder-libraries-libogg-bitwise.tsv`](media-decoder-libraries-libogg-bitwise.tsv) |
 | VP8 decoder fields | the decoder instance and macroblock-decoder field accesses in [`media-decoder-libraries-vp8-decoder-instance-accesses.tsv`](media-decoder-libraries-vp8-decoder-instance-accesses.tsv) and [`media-decoder-libraries-vp8-macroblock-decoder-accesses.tsv`](media-decoder-libraries-vp8-macroblock-decoder-accesses.tsv) |
 | encoder text | `mkvmuxer`, "VP8 Encoder" and "VP9" occur zero times |
@@ -536,11 +632,11 @@ One row per function, 104 rows in address order.
 
 ### Columns of media-decoder-libraries-tremor-vorbisfile.tsv
 
-One row per function, 103 rows in address order.
+One row per function, 107 rows in address order.
 
 | Column | Holds |
 |---|---|
-| `entry` | the function's entry address: 25 from `0x007F41A0` to `0x007F6FAF` and 78 from `0x007F7680` to `0x007FFBBF` |
+| `entry` | the function's entry address: 26 from `0x007F41A0` to `0x007F6FAF` and 81 from `0x007F7680` to `0x007FFBBF` |
 
 ### Columns of media-decoder-libraries-libvpx-vp8-decoder.tsv
 
@@ -560,7 +656,7 @@ One row per kernel, 63 rows in address order.
 
 ### Columns of media-decoder-libraries-libvorbis.tsv
 
-One row per function, 121 rows in address order.
+One row per function, 124 rows in address order.
 
 | Column | Holds |
 |---|---|

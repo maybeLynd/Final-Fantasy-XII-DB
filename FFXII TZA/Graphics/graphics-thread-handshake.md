@@ -93,8 +93,8 @@ The address `0x003A2D80` stores is that of the buffer it has just filled, read b
 `0x003A2E30(source, bytes, pointer, bytes2)` does the same copy and appends two records by hand: a
 `ref` record (`+3` = `0x30`, `u16` count `bytes2 / 16`, `+4` the pointer as a 32-bit image address
 through `0x0020E620`) and a `cnt` record (`+3` = `0x10`, `+0xC` = `0x0404`, `+0xF` = 1), then
-publishes count + 2 (`0x003A2F59`). Its only route is the guard stub `0x0045BAD0`
-(`cmp byte [rcx], 0` / `jne 0x0045BAE0`), called from `0x002F4020` at `0x002F42C2`.
+publishes count + 2 (`0x003A2EFC`) and, after its guard loop, `0x100` (`0x003A2F59`). Its only route is the guard
+stub `0x0045BAD0` (`cmp byte [rcx], 0` / `jne 0x0045BAE0`), called from `0x002F4020` at `0x002F42C2`.
 
 The `ref` record's second qword is 0 (`0x003A2EA6`). The `cnt` record has the `u16` count 0, `+4` =
 `0x0020E620(0)`, which is `0 - [0x01F83530]`, and 0 at `+8` (`0x003A2EB6`-`0x003A2ECF`). The stores into the word come

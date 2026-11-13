@@ -95,8 +95,9 @@ file request, `+0x1C` state, `+0x20` flags, `+0x28` buffer. Only one load runs a
   state 1;
 - in state 1, when the size query finds no file, a number with bit `0x1000` retries file `0x200`, one with bit
   `0x2000` retries file `0x240`, and any other is refused;
-- state 3 (`0x003B2220`) builds a type-7 context for the id (`0x0024B3A0`); when that fails it returns and the
-  entry stays in state 3 (`0x003B225D`-`0x003B2260`). Otherwise it keeps the context at the entry's `+8`
+- state 3 (`0x003B2220`) builds a type-7 context (`0x0024B3A0`) whose template word `+4` is the low word of the
+  file number `+0x04` (`0x003B2242`-`0x003B2250`); when that fails it returns and the entry stays in state 3
+  (`0x003B225D`-`0x003B2260`). Otherwise it keeps the context at the entry's `+8`
   (`0x003B2266`), parses the buffer (`0x003EDAD0`), sets state 5 and clears the load-running flag `0x02EBEBE4`
   (`0x003B22A3`-`0x003B22AA`);
   - before that it copies the high nibble of the first `0x600` record's `+0x16` into the context's byte `+2`,

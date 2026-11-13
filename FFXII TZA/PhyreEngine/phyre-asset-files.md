@@ -51,9 +51,10 @@ clears `+0x98`, and stores the first one at `out` (`0x00637CA4`-`0x00637CE3`); a
 the stream position `+0x18` has not reached the size `+0x1C`, and goes on the end of the chain
 (`0x00637D29`-`0x00637DA0`); a size of `0xFFFFFFFF` skips that end test (`0x00637D03`, `0x00637D2D`).
 
-Every exit after the open calls `0x0059BD40` on the stream (`0x00637CF0`, `0x00637DB9`) and then `0x00598100`
-(`0x00637DE8`). On an error the first container is destroyed (`0x006336E0`, then `0x00584730`), `out` is
-cleared and the error is returned (`0x00637DBE`-`0x00637DDC`); a full read returns 0 (`0x00637DE1`).
+Every exit once the stream is open calls `0x0059BD40` on it (`0x00637CF0`, `0x00637DB9`) and then `0x00598100`
+(`0x00637DE8`); the exit for a file that does not open calls `0x00598100` alone (`0x00637C9A`, `0x00637DE3`). On an
+error the first container is destroyed (`0x006336E0`, then `0x00584730`), `out` is cleared and the error is
+returned (`0x00637DBE`-`0x00637DDC`); a full read returns 0 (`0x00637DE1`).
 
 ## Layouts
 
@@ -754,7 +755,12 @@ Related).
 
 - The constructor `0x006753A0(reference, name, a, b)`, called by the descriptor's construct slot
   `0x00674BE0`, sets up the node at `+0x08`, copies the name (`0x001C26B0`), stores `a` and `b` at
-  `+0x38` and `+0x40`, clears `+0x48` and registers the object (`0x00677BA0`).
+  `+0x38` and `+0x40`, clears `+0x48` and calls the registration `0x00677BA0`, whose result it drops
+  (`0x00675403`-`0x00675409`).
+- `0x00677BA0` registers a named reference only: with `+0x30` at 0 it returns `0x15` before it touches the
+  node, the hash or the registry (`0x00677BBF`-`0x00677BD2`). The one call of the constructor (`0x00674C2A`)
+  passes a null name (`0x00674C25`), which `0x001C26B0` answers with 0 (`0x001C26B9`-`0x001C2713`), so that
+  reference is not registered.
 - It points the node's three links at `+0x08` itself, clears the key's 32-bit hash `+0x20` and name
   `+0x28`, keeps the copy at `+0x30` and returns the reference (`0x006753C6`-`0x00675409`).
 - For a loaded list, slot `+0x70` (`0x00674B50`) runs `0x00676450`: each reference gets the list's

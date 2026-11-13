@@ -75,6 +75,18 @@ with the ground height `h` that `0x0026E350` resolves (through `0x0032A790`, `0x
 `0x003EC770(i, angle, hit, 0)` with the slope angle from the collision-mesh query (`0x003355A0`, `0x0033CBF0`,
 `atanf`).
 
+`0x003EC770` turns marker `i`. It takes the slot's record pointer from `0x003EB700(i)`, the qword at
+`0x02B5EA20 + 8i` or 0 for `i` above `0x1F`, keeps its low 32 bits sign-extended (`0x003EC793`) and jumps to
+`0x003EB910` with the three floats (`0x003EC7B4`). `0x003EB910` does nothing for a null record or a negative dword
+at record `+0x10` (`0x003EB914`-`0x003EB91D`); otherwise it calls `0x003EC260` with the word `+0x10` as a render
+record index, the three floats and 1 (`0x003EB91F`-`0x003EB92B`). `0x003EC720` narrows the pointer the same way
+(`0x003EC743`).
+
+`0x003EC260` works on the render record `[0x022C6F28] + index x 0x740`. When the record's `+0x290` has bit
+`0x100000` or its word `+0x06` is -1, it stores the three floats at `+0x120`, `+0x124` and `+0x128`
+(`0x003EC332`-`0x003EC350`) and copies them to `+0x250`-`+0x258` (`0x003EC372`-`0x003EC390`). Otherwise, with bit
+`0x8000000` of `+0x284` clear, it zeroes the three, sets `+0x12C` to 1.0 and returns (`0x003EC2C8`-`0x003EC2D5`).
+
 The same 1.0 stays when no collision part is loaded (`0x0026E361`, `0x0026E372`). The query below then faults on the null
 part at `0x00231926`.
 

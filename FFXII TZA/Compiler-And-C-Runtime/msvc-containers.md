@@ -97,6 +97,10 @@ One row per routine, 22 rows.
 | B: one map | `0x60` | node builder `0x0071F180` | two strings, at node `+0x20` and `+0x40` |
 | C: a static map at `0x02EA5550` | `0x28` head | `0x00169270` at start-up | nothing: no code inserts into it |
 
+- B's node builder `0x0071F180(tree)` allocates one `0x60`-byte node with `0x00210EC0` (`0x0071F192`-`0x0071F197`) and
+  calls `_invalid_parameter_noinfo_noreturn` (`0x008C2DA8`) when the allocation fails (`0x0071F1A9`). It stores the
+  tree's head pointer `[tree]` in the node's three links `+0x00`, `+0x08` and `+0x10` and returns the node
+  (`0x0071F1B0`-`0x0071F1D4`).
 - A is cleared by `0x006FF840`, which erases each map's whole range (`0x00714CE0`, `0x00715110`,
   `0x007151F0`) and frees its head. All three use the one insert `0x00712F60` and the one node erase
   `0x00714DC0`.

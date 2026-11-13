@@ -98,9 +98,10 @@ steering dispatcher `0x00339F00` instead.
 Those three paths end in `0x0033BFB0`; a step claimed by
 `0x0033C870` or `0x0033C200`, and the `0x00336040` = 0 path, return without it.
 
-When `0x0033A570` stops the unit it also turns the limited heading `+0xBC` from the current heading by the slow
-rate `+0xEC` (`0x00334120`): for a block goal kind `+0x160` of 1 toward the bearing of the point the block holds
-at `+0x150`-`+0x158` (`0x0033A601`-`0x0033A67D`), for kind 2 toward the angle at `+0x150` itself
+When `0x0033A570` stops the unit (speed `+0xB0` = 0, `0x0033A5F7`) it also turns the limited heading `+0xBC` from
+the current heading by the slow rate `+0xEC` (`0x00334120`): for a block goal kind `+0x160` of 1 toward the
+bearing from the point the block holds at `+0x150`-`+0x158` to the unit, `0x004687F0` on position minus point
+(`0x00203080` at `0x0033A64F`, `0x0033A601`-`0x0033A67D`), for kind 2 toward the angle at `+0x150` itself
 (`0x0033A685`-`0x0033A6AB`); any other kind leaves it.
 
 On every path it then compares the limited and desired headings: when `|wrap(+0xBC - +0xB4)|` exceeds `pi/2` it

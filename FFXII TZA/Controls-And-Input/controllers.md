@@ -154,6 +154,11 @@ No other instruction reaches these five. The lists' heads are also taken by the 
 `0x007999E0`, `0x0079AF20`, `0x0079CEC0` and `0x0079E3D0`, which only follow the first-node links, and the address `0x02EA5370`
 that `0x00797910` hands DirectInput (`0x00797942`) is the 8-byte interface pointer, below `0x02EA537A`.
 
+`0x00796FC0(kind, n)` walks the list whose head is `0x01F401E8`: each element is the object 8 bytes before its link,
+and the next link is the object's `+0x08` (`0x00796FF8`, `0x00797013`-`0x00797021`). It asks each object for its kind
+through slot 1 of its vtable (`0x00797006`) and returns the n-th object, counted from 0, whose kind equals the
+argument (`0x00797009`-`0x00797011`, `0x00797044`); it returns 0 when the list ends first (`0x00797027`).
+
 ## Modding notes
 
 - A fifth XInput pad is counted but never built.

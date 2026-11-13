@@ -230,6 +230,11 @@ builds the rotation from the record floats `+0x34`, `+0x38` and `+0x3C` (`0x0046
 `+0x28`-`+0x30` (`0x0046D920`), for kind 1 from `+0x94`-`+0x9C` and `+0x88`-`+0x90` (`0x0046D380`, `0x0046D8E0`), and
 for any other kind it writes nothing (`0x0040931F`-`0x00409336`, `0x0040942F`-`0x004094A6`).
 
+For kind 1 the three translation floats are copied to the stack first (`0x00409452`-`0x0040946E`), and `0x0046D8E0`
+also stores `out` `+0x3C`: the product of the 1.0 that `0x0046D380` left there (`0x0046D550`) and the stack dword
+after those three floats (`0x0046D90B`-`0x0046D910`), which `0x00409300` never writes. `0x0046D920`, the kind-0 call,
+leaves `+0x3C` at 1.0.
+
 Bit `0x200000` makes `0x004094D0` copy sixteen pool dwords as a 4×4 matrix to node `+0x150`, starting after the
 index for bit `0x80000000` (`0x004094F5`-`0x0040958D`), and the identity goes there without it (`0x0046D110`,
 `0x00409593`). Bits `0x80000000` and `0x400000` each skip one index. `0x00409250` returns the key from bits `0xFFF`,

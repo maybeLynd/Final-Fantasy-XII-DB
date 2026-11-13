@@ -270,8 +270,9 @@ at the rank of bit `i` among the set bits. `0x003158B0` loads the file (kind 7, 
 
 The hops are summed in 32 bits: `0x003165C0` adds each step with `add eax, edx` and reads the next one with
 `movzx eax, word ptr [rax]` (`0x003165DA`-`0x003165FC`), and `0x00315E90` mode 7, `0x00316930`, the Bestiary test
-`0x003161A0` (`0x003161C6`, `0x0031620A`), the quest test `0x00315DC0` (`0x00315E03`, `0x00315E0C`) and the list lookup
-`0x00315D50` that reads `0x01EED130` (`0x00315D68`-`0x00315D7A`) do the same.
+`0x003161A0` (`0x003161C6`, `0x0031620A`), the quest test `0x00315DC0` (`0x00315E03`, `0x00315E0C`), the unlock test
+`0x003154B0` for the rule table (`0x00315557`, `0x0031555E`) and the list lookup `0x00315D50` that reads `0x01EED130`
+(`0x00315D68`-`0x00315D7A`) do the same.
 The chain is therefore correct only while the loaded `menuhandbook.bin` (`[0x022C2550]`) sits below 4 GB.
 
 ## Shipped data

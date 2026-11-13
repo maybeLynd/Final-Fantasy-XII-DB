@@ -173,6 +173,11 @@ allocates the new block (alignment 8) and copies the kept elements, and a failed
   `0x005DE9D2`-`0x005DE9DC`). It frees old storage only when it is neither the new storage nor the inline slot
   (`0x005DE9B4`-`0x005DE9CD`), and writes the pointer only when the new storage is not the inline slot
   (`0x005DE9D7`). Both copy-assigns return the destination (`0x005AA431`, `0x005DE9D4`).
+- `0x005DE950` reads the destination's old count and old pointer after the copy (`0x005DE992`, `0x005DE9A6`, after
+  the call at `0x005DE98D`). For a source count of 1, `0x005FEE80` has by then stored the element in the
+  destination's `+0x08` (`0x005FEE8F`, `0x005FEEDC`-`0x005FEEE2`). A destination that held 2 or more owned elements
+  therefore hands `0x00584730` its old pointer with the low 32 bits replaced by that element (`0x005DE9CD`), not
+  the old block.
 - `0x006C5020` is the `PSharray` copy constructor: it zeroes the count before the copy-assign.
 - `0x005C0090` appends one `{qword, dword}` element to the `PArray` at `+0x100` of its object by
   reallocating with one more element; it returns 0 when the allocation fails, 1 otherwise. It asks

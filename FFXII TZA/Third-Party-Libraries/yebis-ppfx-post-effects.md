@@ -85,6 +85,8 @@ The messages a function prints name its method:
 
 | Function | Method |
 |---|---|
+| `0x006DE950` | `ppfxInitialize()` |
+| `0x00708110` | `CPostEffect::SetMultisampleMode` |
 | `0x0070B780` | `CPostEffect::BeginPostEffectScene` |
 | `0x0070B990` | `CPostEffect::EndPostEffectScene` |
 | `0x0070CD40` | `CPostEffect::SetFramebuffer`, which refuses to run between Begin and End |
@@ -178,6 +180,36 @@ address `0x18`, which faults (`0x006CBE53`, `0x006CBE69`-`0x006CBE73`).
 keeps the result at `0x02EA0B90`; with a negative result it returns that result and creates nothing.
 Otherwise it allocates the `0xD40`-byte global block (constructor `0x006FF5D0`), stores it at
 `0x02EA0B70` and runs `CPostEffect::Initialize` (`0x006FF900`) on it.
+
+`0x006DE950` is `ppfxInitialize()`, named by its log lines ("==== ppfxInitialize() ====", `0x00D8ED08`). No call, jump
+or stored pointer in the image reaches it: the game starts the library through `0x006DAA70`. It has no licence step
+and, unlike `0x006DAA70`, never keeps an existing block:
+
+- it releases an existing global block (`0x006DEB40`, when `[0x02EA0B70]` is not null; `0x006DE9B2`-`0x006DE9BC`);
+- it allocates the `0xD40`-byte block (`0x006DA880`), constructs it (`0x006FF5D0`), stores it at `0x02EA0B70` and runs
+  `CPostEffect::Initialize` (`0x006FF900`) on it with its own five arguments (`0x006DE9C1`-`0x006DEA1F`). A null
+  allocation skips the constructor (`0x006DE9EE`), so 0 is stored and `0x006FF900` is given a null block, whose
+  byte `+0x00` is the first thing it reads of the block (`0x006FF9C3`);
+- on a negative result it logs the failure and returns 0 (`0x006DEA28`-`0x006DEA67`);
+- otherwise it logs the GPU memory in use, the dword `+0x9F0` of the object at the block's `+0x20`, in bytes, KB
+  and MB, and returns 1 (`0x006DEA6C`-`0x006DEB0F`).
+
+`0x00708110` is `CPostEffect::SetMultisampleMode(mode)`. While the byte `+0x00` is set, which its message calls
+being between `BeginPostEffectScene` and `EndPostEffectScene`, it logs and returns `0x80004005`
+(`0x00708114`-`0x0070814D`). Otherwise it stores the mode at `+0x590` (`0x00708159`) and:
+
+- with byte `+0x147` set it stores 0 at `+0x594` and returns 1 (`0x00708152`-`0x0070816E`);
+- else it looks at the object at `+0x108`: whether its `+0x68` is not null, and whether either dword `+0xC0` or
+  `+0xC4` of the object at its `+0x60` is not 0 (`0x00708173`-`0x007081A6`);
+- with `+0x68` null, mode 3 becomes mode 0 and mode 1 is refused: it logs "Cannot set multisample mode to
+  PFXMSM_SINGLESAMPLE" and returns `0x80070057` (`0x007081AA`-`0x007081B4`, `0x007081F9`-`0x00708230`);
+- with both dwords 0, mode 2 is refused the same way with "PFXMSM_MULTISAMPLE" (`0x007081B6`-`0x007081F4`);
+- a mode still 3 stores 1 at `+0x594` and at `+0xA4` of the `+0x108` object, mode 2 stores 0 at both and any
+  other mode stores itself (`0x00708235`-`0x00708264`). These paths return 0.
+
+A refused mode has already been stored at `+0x590`. The game passes mode 0 both times: `0x006DB4C0`, which
+`0x006CBD20` calls with 0 (`0x006CBE25`-`0x006CBE27`), jumps here with the global block `[0x02EA0B70]`
+(`0x006DB4C0`-`0x006DB4C7`), and `CPostEffect::Initialize` calls it with 0 (`0x007051B2`-`0x007051B7`).
 
 ### Each frame
 
@@ -352,8 +384,8 @@ frees the copy, and then looks up the effect's parameter handles by name (`fPara
 
 ### Bodies outside the member lists
 
-Seven of the bodies below are in neither member list; the eighth, `0x00789D50`, is in the function list and no
-instruction calls it directly. Each of the seven is called only from inside the span
+Eight of the bodies below are in neither member list; the ninth, `0x00789D50`, is in the function list and no
+instruction calls it directly. Each of the eight is called only from inside the span
 (`0x006E9C20` from `0x007422F0`, `0x007428B0` and `0x0074CA90`; `0x0077FFE0` from `0x00780260`, `0x00780590` and
 `0x007809C0`), and all are effect-pass code:
 
@@ -376,6 +408,13 @@ instruction calls it directly. Each of the seven is called only from inside the 
 - `0x0077FFE0` maps a GPU resource through slot `+0x70` of the object at `[+0x28] + 0x38`, which takes Map's
   arguments (the resource, subresource 0, type 1, and flag `0x100000`, do-not-wait, when `+0x68` is 2;
   `0x00780002`-`0x00780040`), copies four bytes of it into `+0xA0` to `+0xA3` and unmaps it (slot `+0x78`).
+- `0x00788430` is `IGPUBuffer::Unmap`. With the mapped byte `+0xC4` clear it only logs "IGPUBuffer::Unmap(): Buffer
+  is not mapped." as a PPFX ERROR line of `GPUInterfaceBuffer.cpp`, line 1001, when the two log levels
+  `0x01F3BA80` and `0x01F3BA90` are 1 or more (`0x00788436`-`0x00788471`).
+- With the byte set, `0x00788430` calls slot `+0x78` of the device context at `+0x30` of the object `+0x18`, with
+  the buffer the pointer array `+0xB8` holds at index `+0xC0` and subresource 0, and clears the byte
+  (`0x00788476`-`0x007884A0`). A null `+0x18` skips the `+0x30` load (`0x0078848B`-`0x0078848E`), and the vtable
+  pointer is then read from address 0 (`0x00788494`).
 - `0x00735E40` stages up to eight float vectors at `0x02EA1C50` and uploads them through slots
   `+0xD0` and `+0x98` of the same effect at `+0x38` (`0x00789E40`, `0x00789D50`). `0x0074F740` runs it twice
   (`0x0074FDD9`, `0x007502CD`).
@@ -1092,6 +1131,62 @@ by index, but the thunk `0x006DBA00`, which jumps to it, is referenced by no ins
 
 `0x0075B2F0` returns a seven-entry hexagon pattern built once (flag `0x02EA3D24`): `0x02EA3CB0` is (0, 0, 0, 0) and
 entry *i* + 1 is (-sin 60*i*°, cos 60*i*°, 0, 0) for *i* = 0 to 5.
+
+`0x00769640` is slot 3 (`+0x18`) of the `PPFX::CRenderGlare` vtable `0x00DA8420`: it gives back what the glare
+renderer created on the device. It first calls `0x007142F0`, whose result it keeps, and `0x00714560`
+(`0x00769660`-`0x00769668`), and then:
+
+- for each of the thirteen objects at `+0x238`, `+0x280`, `+0x288`, `+0x290`, `+0x298`, `+0x210`, `+0x248`,
+  `+0x250`, `+0x258`, `+0x2A0`, `+0x2B0`, `+0x2A8` and `+0x260` that is not null it calls the object's slot `+0x20`
+  with 0, frees it through the library allocator (`0x006DA8A0` on `[0x01F3BA68]`) and clears the field
+  (`0x0076966D`-`0x007698FC`);
+- it frees the array at `+0x1C8` and clears the field (`0x007698B0`-`0x007698CC`); this free and every array or block
+  free below starts 8 bytes before the stored pointer;
+- it releases each non-null entry of the pointer array at `+0x270`, whose count is the dword `+0xF0`, the same
+  way, then frees that array and the one at `+0x278` (`0x00769903`-`0x007699A1`);
+- it does the same for the entries of the array at `+0x230`, whose count is the dword `+0xD0`, and frees it and
+  the array at `+0x240` (`0x007699A8`-`0x00769A53`). The `+0x270` pass is skipped when that pointer is null
+  (`0x0076990A`) and compares its count unsigned (`0x00769914`); this pass reads the count signed (`0x007699A8`)
+  and indexes `+0x230` without a null test (`0x007699C0`-`0x007699C7`);
+- for a non-null block at `+0x220` it calls `0x0075E690` with the qword `+0x22248` of the first call's result,
+  the dword `+0x228` and the block, frees the block and clears both fields (`0x00769A5A`-`0x00769A9B`);
+- it ends with `0x007604A0` and `0x00727450` on the renderer and returns the latter's result when that is negative,
+  else 0 (`0x00769AA1`-`0x00769AB6`). `0x00727450` is `xor eax, eax` and `ret`, so the result is 0 every time.
+
+`0x0077E0B0` is slot 3 of the `PPFX::CDepthOfField` vtable `0x00DABD60` and does the same for the depth of field. A
+counted object below is dropped: 1 is taken off its dword `+0x08` and, at 0, its slot `+0x20` is called with 0
+and it is freed; the field is cleared either way (`0x0077E19B`-`0x0077E1BF`). After the same two calls
+(`0x0077E0C7`-`0x0077E0D4`):
+
+- for each of the `+0xDC` records of `0x108` bytes in the array at `+0x4B8`, it hands the record's `+0x38` to
+  `0x0075E7C0` on the object at `+0x4B0` when the record's byte `+0x40` is 0 (`0x0077E100`-`0x0077E11B`);
+- it hands the record's blocks `+0x68` and `+0x78`, with the counts `+0x60` and `+0x70`, to `0x0075E690` and frees
+  them (`0x0077E120`-`0x0077E17E`);
+- it drops the record's counted objects: `+0xA0` and `+0xA8` while the effect's byte `+0x130` is 0, else `+0x80`,
+  `+0x88`, `+0x90` and `+0x98`, with `+0xA0` and `+0xA8` cleared undropped; the `+0x18C` entries from `+0x48`; and
+  `+0xB0` and `+0xB8` (`0x0077E182`-`0x0077E3D8`);
+- it drops the counted object at `+0x258` (`0x0077E3DE`-`0x0077E40E`);
+- for each of the `+0x300` entries of the four array pairs at `+0x308 + 8k` and `+0x328 + 8k`, `k` from 0 to 3,
+  it calls the entry's slot `+0x08` and clears it; it frees the twenty arrays at `+0x308` to `+0x3A0`, clears the
+  count and frees the array at `+0x3A8` (`0x0077E415`-`0x0077E531`);
+- it calls slot `+0x08` of the objects at `+0x268`, `+0x270`, `+0x290`, `+0x298` and `+0x3B0` and clears the
+  fields (`0x0077E538`-`0x0077E5AE`);
+- it does the per-entry call for the `+0x2D0` entries of the arrays at `+0x2D8` and `+0x2E0`, and frees those and
+  the arrays at `+0x2E8`, `+0x2F0` and `+0x2F8` (`0x0077E5B7`-`0x0077E6C8`).
+
+The last group has the dword `+0x408` as its count `n`, and the body skips its loop when `n` is 0
+(`0x0077E6CF`-`0x0077E6E3`):
+
+- it drops entries 0 to `n` of the array at `+0x440`, one more than the count (`0x0077E6F0`-`0x0077E72B`,
+  `0x0077E93B`-`0x0077E94B`);
+- for entries below `n` it calls slot `+0x08` of the entries of `+0x420` and `+0x428`, and drops the counted
+  entries of `+0x448`, `+0x450`, `+0x458`, `+0x460`, `+0x478`, `+0x480` and, when that array is not null,
+  `+0x498` (`0x0077E72F`-`0x0077E937`);
+- it frees the eighteen arrays at `+0x410` to `+0x498` and clears the count (`0x0077E951`-`0x0077EBCE`);
+- it frees the record array `+0x4B8`, calls slot `+0x20` of the object at `+0x4B0` with 0 and frees it, hands
+  the block `+0x4A0` with the count `+0x4A8` to `0x0075E690` and frees that (`0x0077EBC7`-`0x0077EC62`);
+- it ends with `0x0076BFA0` and `0x00727450` on the effect and returns the latter's result when that is negative,
+  else 0 (`0x0077EC68`-`0x0077EC82`); `0x00727450` always answers 0, so this result is 0 too.
 
 ### Constant colours and the allocator's map
 

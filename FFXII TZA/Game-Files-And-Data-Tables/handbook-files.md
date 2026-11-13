@@ -453,6 +453,12 @@ those catalog tests no longer pass (`0x0057796E`-`0x005779B3`).
   `entryCount` (`0x00575D1A`-`0x00575D66`). It clears slot 1's bit `0x100` of the manager's `+0x100` (`0x00575D8B`)
   and, when slot 1 already holds that bundle (`0x00575A50` answers 1), sends the manager message `0x10` with 1 at
   once, the message a finished load sends (`0x00575DBA`).
+- `0x00575D10` takes slot 0 from the manager at `0x02CA9738`, not from its argument (`0x00575D32`-`0x00575D3D`), and
+  reads the slot's state byte (`0x00575D44`) ahead of the slot's null test (`0x00575D4E`), so a null slot 0 makes
+  that a read at address `0xC9`; its one caller `0x005778F0` tests the manager and slot 0 first (`0x00577900`,
+  `0x00577922`). The record address is a 32-bit sum of the catalog pointer and `recordsAt` (`0x00575D70`).
+- `0x00575DD0` and the second read in `0x005778F0` have the same order: the state byte of slot 0 is compared
+  (`0x00575DF8`, `0x0057797C`) before the slot's null test (`0x00575E01`, `0x00577986`).
 - `0x00575DD0` bounds the page by `pageCount`, takes `pageMap[page]` as the file number and the page as the
   picture. Its `0xFFFF` test compares the zero-extended word with -1 (`0x00575E26`), so it never matches.
 - `0x00575DD0` acts only when slot 2 exists and the catalog is loaded (`0x00575DDD`-`0x00575E10`). It clears bit
@@ -470,7 +476,12 @@ those catalog tests no longer pass (`0x0057796E`-`0x005779B3`).
   `0x00D237B0` and the 12 at `0x005761BE`; `0x0057619B`-`0x005761FF`).
 - `0x00576030(header)` copies the catalog header: slot 0's family `+0xD2` to `+0x00`, the word `+0x08` shifted
   right by 4 to `+0x04`, `sectionCount` to `+0x06`, `entryCount` to `+0x08` and `pageCount` to `+0x0A`. It
-  answers 1, or 0 with nothing written while the catalog is not loaded (`0x0057603E`-`0x0057608F`).
+  answers 1, or 0 with nothing written when slot 0's state byte `+0xC9` is not 1 or its catalog pointer
+  `+0xF0` is null (`0x0057603E`-`0x0057608F`).
+- `0x00576030` tests neither the manager `[0x02CA9738]` nor slot 0 before it reads them: it loads slot 0 from the
+  manager's `+0x108` (`0x00576037`) and reads the slot's state byte (`0x0057603E`) ahead of the slot's null test
+  (`0x00576047`), so a null manager makes that a read at address `0x108` and a null slot 0 a read at address
+  `0xC9`.
 - `0x00576740(record, section)` gives a section's caption, its first entry, its entry count and the number of its
   entries that pass the family's unlock test for that entry (`0x00576CA0`, `0x003154B0`).
 - `0x00576740` writes the caption `+0x00` (from `0x00576A50`), the section `+0x08`, the first entry `+0x0A` (`0xFFFF`

@@ -156,9 +156,9 @@ non-zero. When the pending list is empty the pass also steps the BGM stream read
 
 - **Delivery** `0x0032E330(slot)`: `+0x40(+0x60, +0x70, 1)` when set; for kind `0xFF`, frees the path
   (`0x003697F0`).
-- **Failure** `0x0032E370(slot)`: `+0x40(+0x60, +0x70, 0)` only when the byte count `+0x28` is −1; then
-  frees a kind-`0xFF` path. A failed read with any other byte count calls nothing, and a −1-size request
-  reaches this only when the previous read had failed.
+- **Failure** `0x0032E370(slot)`: `+0x40(+0x60, +0x70, 0)` when set (`0x0032E37D`) and only when the byte
+  count `+0x28` is −1 (`0x0032E382`); then frees a kind-`0xFF` path. A failed read with any other byte
+  count calls nothing, and a −1-size request reaches this only when the previous read had failed.
 - **Cancel** `0x0032E2F0(slot)`: `+0x48(+0x60)` with `+0x28` = 0 when set, then state 0.
 
 The first argument is the descriptor's `+0x08` word, not the buffer; a requester reads its bytes at

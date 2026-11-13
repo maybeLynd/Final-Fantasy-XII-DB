@@ -120,7 +120,10 @@ the field teardown `0x0024E910`, walks the used list, ends every instance, frees
 `0x0024C460(3)` ([effect element runtime](effect-element-runtime.md#the-effect-teardown)).
 
 `0x003B2F90` frees from the used head `0x02EBDB98` until the list is empty, skips `0x0024EE60` for a slot whose `+0x10`
-is null, and reaches `0x0024C460(3)` by a tail jump, also when the list starts empty (`0x003B2F94`-`0x003B306C`).
+is null, and reaches `0x0024C460(3)` by a tail jump, also when the list starts empty (`0x003B2F94`-`0x003B306C`). Each
+pass frees the slot the head's id names, `0x02EBD480 + 0x38 x (id & 0x3F)`, and only when that slot's dword
+`+0x00` equals the id (`0x003B2FC0`-`0x003B2FD0`). On a mismatch it jumps to the loop test with the head it already
+holds (`0x003B304B`), without the reload at `0x003B3044`, so the pass repeats without end.
 
 ### The per-frame flags
 

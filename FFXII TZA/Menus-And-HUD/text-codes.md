@@ -172,8 +172,9 @@ Any other unit is copied. A result that does not fit ends `out` at `size - 1` an
 `0x002B58B0(row, k)` returns string `k` of a word row ([battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md)).
 
 `0x002B4550(size, out, row)` builds a plural: string 1 of the row is the plural template and string 0 the base word.
-Control byte `0x08` with a two-byte count `& 0x7FFF` copies that many bytes of the base word, control byte `0x09` the whole word, and
-anything else is copied (`0x002B45E3`-`0x002B46A2`).
+Control byte `0x08` with a two-byte count `& 0x7FFF` copies that many bytes of the base word, or the whole word
+when the count is above its length (`0x002B467C`-`0x002B4685`), control byte `0x09` the whole word, and anything
+else is copied (`0x002B45E3`-`0x002B46A2`).
 
 `0x002B3770(size, out, &pos, value, digits, pad, fullwidth, space)` writes a number with `0x003EFD00` and turns each digit
 into the font's glyph code through the font sheet's first character map, or the second with `fullwidth`; a digit the

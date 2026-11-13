@@ -160,9 +160,14 @@ the mapping (`0x0022F2EC`), and the push goes to the centre's x, y and z only (`
 edge push-out it adds nothing to `+0x40` and sets no flag. A centre exactly on a vertex has a mapped length of 0,
 whose reciprocal (`0x0022F341`) makes the push NaN.
 
-`0x00232760(part, placement)`, run when the placement's radii step in `0x003808A0`, uses the same
+`0x00232760(part, placement, cell, point)`, run when the placement's radii step in `0x003808A0`, uses the same
 pieces on the standing position: `0x00233110` finds the polygon, `0x0022EF20` builds the frame,
 `0x0022F9B0` and `0x0022F250` push the position off closed edges and vertices.
+
+It reads only `part` and `placement`. The cell and the point stay in `r8` and `r9` as the caller left them and
+reach `0x00233110` that way (`0x00232770`); the caller passes the cell `0x00233050` gave and the placement as the
+point (`0x00380A10`-`0x00380A1F`). `0x00233110` stores -1 at `+0x52` first (`0x00233135`), and with `+0x52` still
+negative the visited list is left empty (`0x00232790`) and `0x0022F9B0` runs all the same (`0x002327B1`).
 
 It runs one round of each, with no walk and no penetration test: it empties the visited list and seeds it with the
 polygon `+0x52` when that is not negative, empties the vertex list (`0x00232782`-`0x002327A2`), calls `0x0022F9B0(part,
