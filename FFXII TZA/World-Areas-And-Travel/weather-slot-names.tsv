@@ -1,13 +1,13 @@
 field	map_name	region	slot	chance	weather	element_rule	combat_class	wind_class	elements	slot_only_sky_textures	slot_only_model_groups
-12	-	Pharos at Ridorana	1	1	no drawn weather	-	4	0	-	-	-
-12	-	Pharos at Ridorana	2	1	no drawn weather	fire x0.5, lightning x1.2	0	0	-	-	-
-12	-	Pharos at Ridorana	3	1	no drawn weather	fire x0.5, lightning x1.2	0	0	-	-	-
-13	-	Pharos at Ridorana	1	1	no drawn weather	-	4	0	-	-	-
-13	-	Pharos at Ridorana	2	1	no drawn weather	fire x0.5, lightning x1.2	0	0	-	-	-
-13	-	Pharos at Ridorana	3	1	no drawn weather	fire x0.5, lightning x1.2	0	0	-	-	-
-14	-	Pharos at Ridorana	1	1	no drawn weather	-	4	0	-	-	-
-14	-	Pharos at Ridorana	2	1	no drawn weather	fire x0.5, lightning x1.2	0	0	-	-	-
-14	-	Pharos at Ridorana	3	1	no drawn weather	fire x0.5, lightning x1.2	0	0	-	-	-
+12	title screen	Pharos at Ridorana	1	1	no drawn weather	-	4	0	-	-	-
+12	title screen	Pharos at Ridorana	2	1	no drawn weather	fire x0.5, lightning x1.2	0	0	-	-	-
+12	title screen	Pharos at Ridorana	3	1	no drawn weather	fire x0.5, lightning x1.2	0	0	-	-	-
+13	staff roll	Pharos at Ridorana	1	1	no drawn weather	-	4	0	-	-	-
+13	staff roll	Pharos at Ridorana	2	1	no drawn weather	fire x0.5, lightning x1.2	0	0	-	-	-
+13	staff roll	Pharos at Ridorana	3	1	no drawn weather	fire x0.5, lightning x1.2	0	0	-	-	-
+14	second title screen	Pharos at Ridorana	1	1	no drawn weather	-	4	0	-	-	-
+14	second title screen	Pharos at Ridorana	2	1	no drawn weather	fire x0.5, lightning x1.2	0	0	-	-	-
+14	second title screen	Pharos at Ridorana	3	1	no drawn weather	fire x0.5, lightning x1.2	0	0	-	-	-
 48	Stockade	Nalbina Dungeons	1	100	no drawn weather	-	4	1	-	sky.dds	-
 48	Stockade	Nalbina Dungeons	2	0	no drawn weather	-	4	1	-	-	-
 48	Stockade	Nalbina Dungeons	3	0	no drawn weather	-	4	1	-	-	-
@@ -1811,9 +1811,9 @@ field	map_name	region	slot	chance	weather	element_rule	combat_class	wind_class	e
 1145	Overflow Cloaca	Garamsythe Waterway	1	100	no drawn weather	-	4	1	TsElementType_SPRITE x1	-	-
 1145	Overflow Cloaca	Garamsythe Waterway	2	0	no drawn weather	-	4	1	TsElementType_SPRITE x1	-	-
 1145	Overflow Cloaca	Garamsythe Waterway	3	0	no drawn weather	-	4	1	TsElementType_SPRITE x1	-	-
-1147	-	Pharos at Ridorana	1	1	no drawn weather	-	4	0	-	-	-
-1147	-	Pharos at Ridorana	2	1	no drawn weather	fire x0.5, lightning x1.2	0	0	-	-	-
-1147	-	Pharos at Ridorana	3	1	no drawn weather	fire x0.5, lightning x1.2	0	0	-	-	-
+1147	Trial Mode completion screen	Pharos at Ridorana	1	1	no drawn weather	-	4	0	-	-	-
+1147	Trial Mode completion screen	Pharos at Ridorana	2	1	no drawn weather	fire x0.5, lightning x1.2	0	0	-	-	-
+1147	Trial Mode completion screen	Pharos at Ridorana	3	1	no drawn weather	fire x0.5, lightning x1.2	0	0	-	-	-
 1150	Air Deck	Skyferry	1	100	sunlight, strong wind	fire x1.2, water x0.5, wind x1.2	4	2	TsElementType_SPRITE x2; TsElementType_VLENSFLARE x1; TsElementType_VMODEL02 x2	-	-
 1150	Air Deck	Skyferry	2	0	sunlight, strong wind	fire x1.2, water x0.5, wind x1.2	4	2	TsElementType_SPRITE x2; TsElementType_VLENSFLARE x1; TsElementType_VMODEL02 x2	-	-
 1150	Air Deck	Skyferry	3	0	sunlight, strong wind	fire x1.2, water x0.5, wind x1.2	4	2	TsElementType_SPRITE x2; TsElementType_VLENSFLARE x1; TsElementType_VMODEL02 x2	-	-

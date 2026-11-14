@@ -77,7 +77,7 @@ The five swapped zones are `dst0109` (art of `dst0103`), `dst0110` (`dst0105`), 
 | Fact | Value |
 |---|---|
 | zones | 708, numbered 12 to 1,311; 47 name prefixes over 215 areas |
-| map names | 704 zones, 648 distinct names; the four `ttl` zones have no name. 16 scene-variant zones (`rbn_z01`, `alc_z01` to `alc_z04`, `var_z01` and the like) carry their own code as the name |
+| map names | 704 zones carry the name the game gives, 648 distinct. The four `ttl` zones, whose entry is empty, carry what they show: title screen (`ttl_a01`), staff roll (`ttl_b01`), second title screen (`ttl_c01`) and Trial Mode completion screen (`ttl_d01`). 16 scene-variant zones (`rbn_z01`, `alc_z01` to `alc_z04`, `var_z01` and the like) carry their own code as the name |
 | region names | all 708 zones, 51 distinct regions; the largest are Trial Mode (100 zones), The Great Crystal (73) and Draklor Laboratory (71) |
 | scripts | all 708 ship, in each of the nine language folders (`us`, `de`, `es`, `fr`, `it`, `in`, `kr`, `cn`, `ch`) |
 | `.mot` | ships for 188 zones; named but not shipped for 520 |
@@ -284,7 +284,7 @@ stores it` with the developer test scripts' stores named when only those store i
 | Column | Meaning |
 |---|---|
 | `zone`, `name` | the zone number *n* and the zone script's name |
-| `map_name`, `region` | the map name `0x00377B60(n)` and the region name `0x003778B0(n)`; empty when the entry is empty |
+| `map_name`, `region` | the map name `0x00377B60(n)` and the region name `0x003778B0(n)`. The four `ttl` zones, whose map name entry is empty, carry what the zone shows instead ([Title scripts](../Story-Events-And-Hunts/titles-scripts.md)); their region, Pharos at Ridorana, is region entry 1, as the `map_ref.bin` rows of these four zones hold group 1 and no other zone in this list holds group 1 |
 | `script`, `mot`, `fpk` | the files at kind 5 indices 3*n*, 3*n* + 1 and 3*n* + 2, the US copy; "(not shipped)" when the archive lacks the file |
 | `pack`, `block_pack` | the zone's map pack and the block pack |
 | `sound_map` | the sound map number, the block record's second word plus 500 |
@@ -309,7 +309,7 @@ a music run except field 869, `alc_z04` ([Music table](../Sound-And-Music/music-
 
 | Column | Meaning |
 |---|---|
-| `zone`, `name`, `map_name` | the zone number, its script's name and its map name, as in [zone-asset-list.tsv](zone-asset-list.tsv); `map_name` is `-` for the four `ttl` zones |
+| `zone`, `name`, `map_name` | the zone number, its script's name and its map name, as in [zone-asset-list.tsv](zone-asset-list.tsv) |
 | `opens` | the story counter value at which the zone opens; `-` when the row is not dated |
 | `status` | `dated`, `Trial Mode`, `title screen map` or `no way in` |
 | `way_in` | the way: the zone it leads from, its kind (`walk` for an exit group's map jump, `event` for a map jump elsewhere in the zone's scripts, `strahl` for a Strahl destination), then the actor, function and step of the map jump in the step tables; `new game start` for `naf_a01` |

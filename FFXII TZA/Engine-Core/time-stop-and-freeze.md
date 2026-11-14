@@ -266,7 +266,10 @@ fade and resets each such slot to -1, and ORs bit `0x20000000000` into every slo
 
 ### The per-actor pass and the seven stop sets
 
-`0x00226640(allExempt, fade, three)` walks three managers (one when `three` is set) and every record.
+`0x00226640(allExempt, fade, three)` walks three managers (one when `three` is set), skipping a manager whose
+`+0x10` bit `0x1` is clear (`0x0022669B`); for each live one it zeroes the list count `+0x1F8` (`0x002266B5`) and
+visits the records from `+0x1DE` for `+0x1D6` entries (`0x00358940`, `0x002266A5`-`0x002266D5`).
+
 Each set is a live bitset of request ids plus a pending-set and a pending-clear word; the pass
 folds them (`live |= set; live &= ~clear;` both zeroed); the hook of set 1 runs when it becomes non-zero, that of
 set 3 when it changes, `0x002269A0` of set 5 for every record (it tests the change itself), and those of sets 6 and

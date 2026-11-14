@@ -52,68 +52,68 @@ id	price	script_calls	scripts	explanation
 0xB032	100000	1	ald_a02	100000 gil; asked for by ald_a02
 0xB033	1	0		1 gil; no us script asks for it by a written id
 0xB034	200000	0		200000 gil; no us script asks for it by a written id
-0xB035	9450	0		9450 gil: package 0x90FF: Kiku-ichimonji; stored by fon_b01's 二級男11
-0xB036	8370	0		8370 gil: package 0x9100: Platinum Armor; stored by fon_b01's 二級男11
-0xB037	3600	0		3600 gil: package 0x9101: Thief's Cuffs; stored by fon_b01's 二級男11
-0xB038	13050	0		13050 gil: package 0x9102: Holy Lance; stored by fon_b01's 二級男11
-0xB039	11160	0		11160 gil: package 0x9103: Minerva Bustier; stored by fon_b01's 二級男11
-0xB03A	10200	0		10200 gil: package 0x9104: Ruby Ring; stored by fon_b01's 二級男11
-0xB03B	13500	0		13500 gil: package 0x9105: Ame-no-Murakumo; stored by fon_b01's 二級男11
-0xB03C	21750	0		21750 gil: package 0x9106: White Mask; stored by fon_b01's 二級男11
-0xB03D	19200	0		19200 gil: package 0x9107: Opal Ring; stored by fon_b01's 二級男11
-0xB03E	29250	0		29250 gil: package 0x9108: Stoneblade; stored by fon_b01's 二級男11
-0xB03F	57600	0		57600 gil: package 0x9109: Aegis Shield; stored by fon_b01's 二級男11
-0xB040	5400	0		5400 gil: package 0x910A: Golden Amulet; stored by fon_b01's 二級男11
-0xB041	70200	0		70200 gil: package 0x910B: Eight-fluted Pole; stored by fon_b01's 二級男11
-0xB042	49500	0		49500 gil: package 0x910C: Orochi; stored by fon_b01's 二級男11
-0xB043	117000	0		117000 gil: package 0x910D: Dueling Mask; stored by fon_b01's 二級男11
-0xB044	36000	0		36000 gil: package 0x910E: Cat-ear Hood; stored by fon_b01's 二級男11
-0xB045	20400	0		20400 gil: package 0x910F: Maximillian; stored by fon_b01's 二級男11
-0xB046	75000	0		75000 gil: package 0x9110: Ultima Blade; stored by fon_b01's 二級男11
-0xB047	123750	0		123750 gil: package 0x9111: Grand Helm; stored by fon_b01's 二級男11
-0xB048	47520	0		47520 gil: package 0x9112: Bubble Belt; stored by fon_b01's 二級男11
-0xB049	447000	0		447000 gil: package 0x9113: Genji Gloves; stored by fon_b01's 二級男11
-0xB04A	700000	0		700000 gil: package 0x9114: Masamune; stored by fon_b01's 二級男11
-0xB04B	162000	0		162000 gil: package 0x9115: Grand Armor; stored by fon_b01's 二級男11
-0xB04C	360000	0		360000 gil: package 0x9116: Nihopalaoa; stored by fon_b01's 二級男11
-0xB04D	999999	0		999999 gil: package 0x9117: Zodiac Spear, Zodiac Escutcheon; stored by fon_b01's 二級男11
-0xB04E	104000	0		104000 gil: package 0x9118: Tula, Grand Bolts; stored by fon_b01's 二級男11
-0xB04F	132000	0		132000 gil: package 0x9119: Lordly Robes; stored by fon_b01's 二級男11
-0xB050	60000	0		60000 gil: package 0x911A: Indigo Pendant; stored by fon_b01's 二級男11
-0xB051	61600	0		61600 gil: package 0x911B: Artemis Bow, Artemis Arrows; stored by fon_b01's 二級男11
-0xB052	18600	0		18600 gil: package 0x911C: Black Mask; stored by fon_b01's 二級男11
-0xB053	11160	0		11160 gil: package 0x911D: Turtleshell Choker; stored by fon_b01's 二級男11
-0xB054	1	0		1, a count, not gil: how many times package 0x90FF sells; stored by fon_b01's 二級男11
-0xB055	1	0		1, a count, not gil: how many times package 0x9100 sells; stored by fon_b01's 二級男11
-0xB056	1	0		1, a count, not gil: how many times package 0x9101 sells; stored by fon_b01's 二級男11
-0xB057	1	0		1, a count, not gil: how many times package 0x9102 sells; stored by fon_b01's 二級男11
-0xB058	1	0		1, a count, not gil: how many times package 0x9103 sells; stored by fon_b01's 二級男11
-0xB059	1	0		1, a count, not gil: how many times package 0x9104 sells; stored by fon_b01's 二級男11
-0xB05A	1	0		1, a count, not gil: how many times package 0x9105 sells; stored by fon_b01's 二級男11
-0xB05B	1	0		1, a count, not gil: how many times package 0x9106 sells; stored by fon_b01's 二級男11
-0xB05C	1	0		1, a count, not gil: how many times package 0x9107 sells; stored by fon_b01's 二級男11
-0xB05D	1	0		1, a count, not gil: how many times package 0x9108 sells; stored by fon_b01's 二級男11
-0xB05E	1	0		1, a count, not gil: how many times package 0x9109 sells; stored by fon_b01's 二級男11
-0xB05F	1	0		1, a count, not gil: how many times package 0x910A sells; stored by fon_b01's 二級男11
-0xB060	1	0		1, a count, not gil: how many times package 0x910B sells; stored by fon_b01's 二級男11
-0xB061	1	0		1, a count, not gil: how many times package 0x910C sells; stored by fon_b01's 二級男11
-0xB062	1	0		1, a count, not gil: how many times package 0x910D sells; stored by fon_b01's 二級男11
-0xB063	1	0		1, a count, not gil: how many times package 0x910E sells; stored by fon_b01's 二級男11
-0xB064	1	0		1, a count, not gil: how many times package 0x910F sells; stored by fon_b01's 二級男11
-0xB065	1	0		1, a count, not gil: how many times package 0x9110 sells; stored by fon_b01's 二級男11
-0xB066	1	0		1, a count, not gil: how many times package 0x9111 sells; stored by fon_b01's 二級男11
-0xB067	1	0		1, a count, not gil: how many times package 0x9112 sells; stored by fon_b01's 二級男11
-0xB068	1	0		1, a count, not gil: how many times package 0x9113 sells; stored by fon_b01's 二級男11
-0xB069	1	0		1, a count, not gil: how many times package 0x9114 sells; stored by fon_b01's 二級男11
-0xB06A	1	0		1, a count, not gil: how many times package 0x9115 sells; stored by fon_b01's 二級男11
-0xB06B	1	0		1, a count, not gil: how many times package 0x9116 sells; stored by fon_b01's 二級男11
-0xB06C	1	0		1, a count, not gil: how many times package 0x9117 sells; stored by fon_b01's 二級男11
-0xB06D	1	0		1, a count, not gil: how many times package 0x9118 sells; stored by fon_b01's 二級男11
-0xB06E	1	0		1, a count, not gil: how many times package 0x9119 sells; stored by fon_b01's 二級男11
-0xB06F	1	0		1, a count, not gil: how many times package 0x911A sells; stored by fon_b01's 二級男11
-0xB070	1	0		1, a count, not gil: how many times package 0x911B sells; stored by fon_b01's 二級男11
-0xB071	1	0		1, a count, not gil: how many times package 0x911C sells; stored by fon_b01's 二級男11
-0xB072	1	0		1, a count, not gil: how many times package 0x911D sells; stored by fon_b01's 二級男11
+0xB035	9450	0		9450 gil: package 0x90FF: Kiku-ichimonji; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB036	8370	0		8370 gil: package 0x9100: Platinum Armor; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB037	3600	0		3600 gil: package 0x9101: Thief's Cuffs; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB038	13050	0		13050 gil: package 0x9102: Holy Lance; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB039	11160	0		11160 gil: package 0x9103: Minerva Bustier; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB03A	10200	0		10200 gil: package 0x9104: Ruby Ring; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB03B	13500	0		13500 gil: package 0x9105: Ame-no-Murakumo; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB03C	21750	0		21750 gil: package 0x9106: White Mask; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB03D	19200	0		19200 gil: package 0x9107: Opal Ring; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB03E	29250	0		29250 gil: package 0x9108: Stoneblade; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB03F	57600	0		57600 gil: package 0x9109: Aegis Shield; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB040	5400	0		5400 gil: package 0x910A: Golden Amulet; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB041	70200	0		70200 gil: package 0x910B: Eight-fluted Pole; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB042	49500	0		49500 gil: package 0x910C: Orochi; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB043	117000	0		117000 gil: package 0x910D: Dueling Mask; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB044	36000	0		36000 gil: package 0x910E: Cat-ear Hood; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB045	20400	0		20400 gil: package 0x910F: Maximillian; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB046	75000	0		75000 gil: package 0x9110: Ultima Blade; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB047	123750	0		123750 gil: package 0x9111: Grand Helm; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB048	47520	0		47520 gil: package 0x9112: Bubble Belt; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB049	447000	0		447000 gil: package 0x9113: Genji Gloves; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB04A	700000	0		700000 gil: package 0x9114: Masamune; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB04B	162000	0		162000 gil: package 0x9115: Grand Armor; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB04C	360000	0		360000 gil: package 0x9116: Nihopalaoa; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB04D	999999	0		999999 gil: package 0x9117: Zodiac Spear, Zodiac Escutcheon; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB04E	104000	0		104000 gil: package 0x9118: Tula, Grand Bolts; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB04F	132000	0		132000 gil: package 0x9119: Lordly Robes; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB050	60000	0		60000 gil: package 0x911A: Indigo Pendant; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB051	61600	0		61600 gil: package 0x911B: Artemis Bow, Artemis Arrows; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB052	18600	0		18600 gil: package 0x911C: Black Mask; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB053	11160	0		11160 gil: package 0x911D: Turtleshell Choker; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB054	1	0		1, a count, not gil: how many times package 0x90FF sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB055	1	0		1, a count, not gil: how many times package 0x9100 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB056	1	0		1, a count, not gil: how many times package 0x9101 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB057	1	0		1, a count, not gil: how many times package 0x9102 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB058	1	0		1, a count, not gil: how many times package 0x9103 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB059	1	0		1, a count, not gil: how many times package 0x9104 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB05A	1	0		1, a count, not gil: how many times package 0x9105 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB05B	1	0		1, a count, not gil: how many times package 0x9106 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB05C	1	0		1, a count, not gil: how many times package 0x9107 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB05D	1	0		1, a count, not gil: how many times package 0x9108 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB05E	1	0		1, a count, not gil: how many times package 0x9109 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB05F	1	0		1, a count, not gil: how many times package 0x910A sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB060	1	0		1, a count, not gil: how many times package 0x910B sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB061	1	0		1, a count, not gil: how many times package 0x910C sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB062	1	0		1, a count, not gil: how many times package 0x910D sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB063	1	0		1, a count, not gil: how many times package 0x910E sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB064	1	0		1, a count, not gil: how many times package 0x910F sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB065	1	0		1, a count, not gil: how many times package 0x9110 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB066	1	0		1, a count, not gil: how many times package 0x9111 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB067	1	0		1, a count, not gil: how many times package 0x9112 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB068	1	0		1, a count, not gil: how many times package 0x9113 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB069	1	0		1, a count, not gil: how many times package 0x9114 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB06A	1	0		1, a count, not gil: how many times package 0x9115 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB06B	1	0		1, a count, not gil: how many times package 0x9116 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB06C	1	0		1, a count, not gil: how many times package 0x9117 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB06D	1	0		1, a count, not gil: how many times package 0x9118 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB06E	1	0		1, a count, not gil: how many times package 0x9119 sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB06F	1	0		1, a count, not gil: how many times package 0x911A sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB070	1	0		1, a count, not gil: how many times package 0x911B sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB071	1	0		1, a count, not gil: how many times package 0x911C sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
+0xB072	1	0		1, a count, not gil: how many times package 0x911D sells; stored by fon_b01's Shifty-Eyed Man, later the Outfitters
 0xB073	1500	5	ald_a01, ald_a0180	1500 gil; asked for by ald_a01, ald_a0180
 0xB074	2500	5	alc_a0280, alc_f01	2500 gil; asked for by alc_a0280, alc_f01
 0xB075	20000	20	alc_b05, alc_b06, alc_f03, alc_f04, alc_f05	20000 gil; asked for by alc_b05, alc_b06, alc_f03, alc_f04, alc_f05

@@ -14424,7 +14424,7 @@ function	0x00182560	-	Graphics/gi-render-commands.md	-	9
 function	0x00182570	-	Graphics/scripted-camera.md	-	6
 function	0x001825A0	-	Engine-Core/game-application.md	-	7
 function	0x001825C0	-	Graphics/field-camera.md	-	7
-function	0x00182610	-	Graphics/script-screen-effects.md	-	5
+function	0x00182610	-	Graphics/script-screen-effects.md	-	6
 function	0x00182640	-	Graphics/scripted-camera.md	-	6
 function	0x001826E0	-	Graphics/render-command-list.md	-	8
 function	0x00182730	-	Graphics/render-command-list-postprocess-context-accesses.tsv	-	5
@@ -14592,7 +14592,7 @@ function	0x00186B80	-	Graphics/screen-mode-and-aspect.md	-	7
 function	0x00186CD0	-	PhyreEngine/phyre-application.md	-	20
 function	0x001871B0	-	PhyreEngine/phyre-math-and-camera.md	-	7
 function	0x00187460	-	Engine-Core/graphics-settings.md	-	9
-function	0x00187530	-	Compiler-And-C-Runtime/generated-function-families.md	-	8
+function	0x00187530	-	Compiler-And-C-Runtime/generated-function-families.md	-	9
 function	0x00187540	-	Engine-Core/game-application.md	-	8
 function	0x00187550	-	Engine-Core/game-application.md	-	7
 function	0x001876E0	-	Engine-Core/game-application.md	-	6
@@ -14603,7 +14603,7 @@ function	0x00188730	-	Engine-Core/game-application.md	-	11
 function	0x001889C0	-	Graphics/gi-render-commands.md	-	6
 function	0x00188AC0	-	Engine-Core/game-application.md	-	7
 function	0x00188B10	-	Engine-Core/game-application.md	-	10
-function	0x00188DA0	-	Engine-Core/game-application.md	-	10
+function	0x00188DA0	-	Graphics/render-command-list.md	-	10
 function	0x00188E60	-	Engine-Core/debug-menu.md	-	6
 function	0x00189000	-	Engine-Core/game-application.md	-	9
 function	0x00189090	-	Graphics/gi-render-commands.md	-	4
@@ -15183,7 +15183,7 @@ function	0x001A9DA0	-	Engine-Core/graphics-settings.md	-	7
 function	0x001A9DD0	-	World-Areas-And-Travel/map-art.md	-	5
 function	0x001A9E10	-	Saving-Loading-And-Settings/game-settings.md	-	6
 function	0x001A9E50	-	Engine-Core/debug-menu.md	-	8
-function	0x001A9ED0	-	World-Areas-And-Travel/map-art.md	-	10
+function	0x001A9ED0	-	World-Areas-And-Travel/map-art.md	-	11
 function	0x001AA0A0	-	Compiler-And-C-Runtime/generated-function-families.md	-	8
 function	0x001AA120	-	World-Areas-And-Travel/map-art.md	-	5
 function	0x001AA240	-	World-Areas-And-Travel/map-art.md	-	5
@@ -15530,7 +15530,7 @@ function	0x001BD940	-	Menus-And-HUD/config-screen.md	-	8
 function	0x001BD9D0	-	Engine-Core/graphics-settings.md	-	11
 function	0x001BDA50	-	Graphics/render-command-list.md	-	7
 function	0x001BDAB0	-	Graphics/character-render-object.md	-	15
-function	0x001BDAC0	-	Engine-Core/game-application.md	-	8
+function	0x001BDAC0	-	Engine-Core/game-application.md	-	9
 function	0x001BDC40	-	Graphics/add-motion-tables.md	-	5
 function	0x001BDCA0	-	Compiler-And-C-Runtime/exception-handling-cleanup-funclets.tsv	-	6
 function	0x001BDCE0	-	Compiler-And-C-Runtime/exception-handling-cleanup-funclets.tsv	-	6
@@ -15590,7 +15590,7 @@ function	0x001C18E0	-	Controls-And-Input/keymap-file.md	-	15
 function	0x001C18F0	-	Saving-Loading-And-Settings/saving-and-loading.md	-	6
 function	0x001C1910	-	Engine-Core/game-application.md	-	7
 function	0x001C1940	-	Engine-Core/game-application.md	-	6
-function	0x001C1990	-	Controls-And-Input/controls.md	-	9
+function	0x001C1990	-	Controls-And-Input/controls.md	-	10
 function	0x001C19A0	-	Engine-Core/debug-menu.md	-	9
 function	0x001C1A60	-	Engine-Core/debug-menu.md	-	5
 function	0x001C1B00	-	Engine-Core/debug-menu.md	-	5
@@ -21518,8 +21518,8 @@ function	0x00314A00	-	World-Areas-And-Travel/save-and-teleport-crystals.md	-	12
 function	0x00314A60	-	Scripts-And-Script-Commands/world-lock.md	-	12
 function	0x00314A80	-	Compiler-And-C-Runtime/generated-function-families.md	-	12
 function	0x00314AA0	-	World-Areas-And-Travel/area-flags-navimapdata.md	-	12
-function	0x00314AC0	-	World-Areas-And-Travel/area-flags-navimapdata.md	-	12
-function	0x00314AE0	-	World-Areas-And-Travel/save-and-teleport-crystals.md	-	10
+function	0x00314AC0	-	World-Areas-And-Travel/area-flags-navimapdata.md	-	13
+function	0x00314AE0	-	World-Areas-And-Travel/save-and-teleport-crystals.md	-	11
 function	0x00314B00	-	World-Areas-And-Travel/save-and-teleport-crystals.md	-	10
 function	0x00314B20	-	Saving-Loading-And-Settings/save-data-fields.md	-	10
 function	0x00314B40	-	Saving-Loading-And-Settings/save-data-fields.md	-	11
@@ -33147,7 +33147,7 @@ function	0x0060F5F0	-	Compiler-And-C-Runtime/generated-function-families-nativea
 function	0x0060F620	-	Compiler-And-C-Runtime/generated-function-families-nativeadapter-relativememberaddresstailcall64.tsv	-	9
 function	0x0060F650	-	Compiler-And-C-Runtime/generated-function-families-nativeadapter-relativememberaddresstailcall64.tsv	-	9
 function	0x0060F680	-	Compiler-And-C-Runtime/generated-function-families-nativeadapter-relativememberaddresstailcall64.tsv	-	10
-function	0x0060F6B0	-	Engine-Core/game-application.md	-	14
+function	0x0060F6B0	-	Graphics/render-command-list.md	-	14
 function	0x0060F7A0	-	PhyreEngine/phyre-reflection-state.tsv	-	6
 function	0x0060F7D0	-	PhyreEngine/phyre-reflection-state.tsv	-	6
 function	0x0060F7F0	-	PhyreEngine/phyre-reflection-state.tsv	-	6
@@ -58910,7 +58910,7 @@ data	0x00901B34	-	World-Areas-And-Travel/traps.md	-	0
 data	0x00901B38	-	Status-Effects-And-KO/battle-buffs.md	-	0
 data	0x00901B3C	-	Damage-And-Battle-Formulas/damage-formula.md	-	4
 data	0x00902438	-	Battle-Actions/area-of-effect.md	-	0
-data	0x00902720	-	Menus-And-HUD/fonts.md	-	16
+data	0x00902720	-	Menus-And-HUD/fonts.md	-	18
 data	0x00902750	-	Menus-And-HUD/text-drawing.md	-	2
 data	0x00902C60	-	Menus-And-HUD/text-drawing.md	-	1
 data	0x00902CE0	-	Menus-And-HUD/text-drawing.md	-	1

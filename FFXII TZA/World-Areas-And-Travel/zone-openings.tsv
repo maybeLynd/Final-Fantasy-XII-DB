@@ -1,7 +1,7 @@
 zone	name	map_name	opens	status	way_in	gate	basis	gate_text	basis_text
-12	ttl_a01	-	-	title screen map	-	-	-	-	-
-13	ttl_b01	-	7150	dated	bhm_d01 event ボス監督.main step 213	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	-	the story counter (シナリオフラグ) is below 11000 (After the end of FFXII); the story counter (シナリオフラグ) is not 0 (New game); the story counter (シナリオフラグ) is at most 7150 (After the last Vayne battle) and g_btl_ラスト・ヴェイン (The Undying defeat variable, global byte 0x0A2E) is 1 (stored as the global byte 0xA2E rows of saved-value-stores.tsv give)	-
-14	ttl_c01	-	-	no way in	-	-	-	-	-
+12	ttl_a01	title screen	-	title screen map	-	-	-	-	-
+13	ttl_b01	staff roll	7150	dated	bhm_d01 event ボス監督.main step 213	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	-	the story counter (シナリオフラグ) is below 11000 (After the end of FFXII); the story counter (シナリオフラグ) is not 0 (New game); the story counter (シナリオフラグ) is at most 7150 (After the last Vayne battle) and g_btl_ラスト・ヴェイン (The Undying defeat variable, global byte 0x0A2E) is 1 (stored as the global byte 0xA2E rows of saved-value-stores.tsv give)	-
+14	ttl_c01	second title screen	-	no way in	-	-	-	-	-
 48	nal_a01	Stockade	301	dated	rbn_z01 event 常駐監督.main step 10	シナリオフラグ <= 0x0122	-	the story counter (シナリオフラグ) is at most 290 (After the capture)	-
 49	nal_b01	Arena	301	dated	nal_a01 walk __MJ_CTRL000.mapjump step 27	local_var_s6f1_1; not (regI3)	the walk mesh of nal_a01 joins entrance 0 to the floor of exit group 1	the variable this test reads holds 1, the only value the script stores in it (__MJ_CTRL000.mapjump line 705, before this line), so this test always passes; the exit lock is off (sysucoff() gave 0)	the walk mesh of nal_a01 joins entrance 0 to the floor of exit group 1
 50	rbn_z01	rbn_z01	290	dated	slm_a01 event 常駐監督.main step 43	シナリオフラグ = 0x011d	-	the story counter (シナリオフラグ) is 285 (After the first half of the capture)	-
@@ -603,7 +603,7 @@ zone	name	map_name	opens	status	way_in	gate	basis	gate_text	basis_text
 1141	rbl_n02	Spire Ravel - 2nd Flight	5303	dated	rbl_n01 event s_warp_2_2.talk step 39	not (local_var_s20f1_1)	-	"the choice made in the question at s_warp_2_2.talk line 3026 is answer 1, ""Touch the device."""	-
 1143	rbl_q01	Empyrean Ravel	5303	dated	dgl_h01 event 監督.main step 171	g_btl_ハシュマリム == 1	-	the Hashmal battle state (g_btl_ハシュマリム, global byte 0x0A1F) is 1 (set by pre_z0000 制御.init line 262)	-
 1145	grm_g01	Overflow Cloaca	25	dated	naf_b04 event 大広間レクト.touch step 35	シナリオフラグ < 25	-	the story counter (シナリオフラグ) is below 25 (After Reks's death)	-
-1147	ttl_d01	-	-	title screen map	-	-	-	-	-
+1147	ttl_d01	Trial Mode completion screen	-	title screen map	-	-	-	-	-
 1150	asp_b03	Air Deck	291	dated	asp_a01 event 左のドア.talk step 34	not (regI3) & scratch1_var_1 = 1	-	the exit lock is off (sysucoff() gave 0); the value of asp_a01 scratch1 16-bit word 0x4 (stored as the asp_a01 scratch1 16-bit word 0x4 rows of saved-value-stores.tsv give) is 1	-
 1151	mnt_d01	Babbling Vale	105	dated	mnt_a02 walk __MJ_CTRL002.mapjump step 69	local_var_s3f1_2; not (regI3)	the walk mesh of mnt_a02 joins entrance 5 to the floor of exit group 3	the value of mnt_a02 local_var_s3f1_2 (stored as the mnt_a02 local_var_s3f1_2 rows of saved-value-stores.tsv give) is not 0; the exit lock is off (sysucoff() gave 0)	the walk mesh of mnt_a02 joins entrance 5 to the floor of exit group 3
 1153	enw_c01	Withering Shores	1180	dated	ztc_c04 walk __MJ_CTRL001.mapjump step 33	battle_global_flag[3] == 1; not (regI3)	the walk mesh of ztc_c04 joins entrance 1 to the floor of exit group 2	the value of global 16-bit word 0xA72[3] (stored as the global 16-bit word 0xA72[3] rows of saved-value-stores.tsv give) is 1; the exit lock is off (sysucoff() gave 0)	the walk mesh of ztc_c04 joins entrance 1 to the floor of exit group 2

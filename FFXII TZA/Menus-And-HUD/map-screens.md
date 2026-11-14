@@ -71,6 +71,12 @@ and `+0xBDC0`, and flips between them:
    `+0x179DA`, which then takes a (`0x002B64B9`-`0x002B6513`). `0x00244960` attaches the page (`0x002B651B`), and the call
    returns it.
 
+The location map's builder `0x002B9D30` does the same with four differences: the page procedure is `0x002BAF80`
+(`0x002B9E0C`); `+0xBBEE` takes `[0x01E0C1DC]` less `0x002C9430(0x81)` when `0x002C9430(0x80)` plus the container's
+answer to message `0x29` (0 when the container or its procedure is null) is not 0 (`0x002B9E80`-`0x002B9EC6`);
+`+0x48` takes the `0x28`-byte descriptor at `0x00916A70` + 40 x `+0x179D9` (entry 8 for `0xFF`, `0x002B9ED4`-
+`0x002B9EFA`); and `+0xBBE0` takes 5 instead of b while the dword `0x02B457D8` is not 0 (`0x002B9F1B`-`0x002B9F33`).
+
 A page posts messages to every ancestor up to the root through `0x00275440`, which follows the parent link `+0x10`
 that `0x00244960` sets; its container acts on `0x2B` when it has opened and `0x1F` when it is cancelled. The page procedures `0x002B7B80` and `0x002BAF80` answer
 the same 17 messages through their tables at `0x198EB0` and `0x19C28C` from the image base.

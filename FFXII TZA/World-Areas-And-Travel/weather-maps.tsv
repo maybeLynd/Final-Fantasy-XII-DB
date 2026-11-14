@@ -1,7 +1,7 @@
 field	zone_script	map_name	region	weather_probability	slot1_roll	slot2_roll	slot3_roll	slot1_environment	slot2_environment	slot3_environment	slot1_combat_class	slot2_combat_class	slot3_combat_class	slot1_wind_class	slot2_wind_class	slot3_wind_class	slot1_magick_elements	slot2_magick_elements	slot3_magick_elements
-12	ttl_a01.ebp	-	Pharos at Ridorana	1,1,1	stays 1%, else moves to 2	stays 1%, else moves to 3 or 1, half each	stays 1%, else moves to 2	1	3	3	4	0	0	0	0	0	no change	fire x0.5, lightning x1.2	fire x0.5, lightning x1.2
-13	ttl_b01.ebp	-	Pharos at Ridorana	1,1,1	stays 1%, else moves to 2	stays 1%, else moves to 3 or 1, half each	stays 1%, else moves to 2	1	3	3	4	0	0	0	0	0	no change	fire x0.5, lightning x1.2	fire x0.5, lightning x1.2
-14	ttl_c01.ebp	-	Pharos at Ridorana	1,1,1	stays 1%, else moves to 2	stays 1%, else moves to 3 or 1, half each	stays 1%, else moves to 2	1	3	3	4	0	0	0	0	0	no change	fire x0.5, lightning x1.2	fire x0.5, lightning x1.2
+12	ttl_a01.ebp	title screen	Pharos at Ridorana	1,1,1	stays 1%, else moves to 2	stays 1%, else moves to 3 or 1, half each	stays 1%, else moves to 2	1	3	3	4	0	0	0	0	0	no change	fire x0.5, lightning x1.2	fire x0.5, lightning x1.2
+13	ttl_b01.ebp	staff roll	Pharos at Ridorana	1,1,1	stays 1%, else moves to 2	stays 1%, else moves to 3 or 1, half each	stays 1%, else moves to 2	1	3	3	4	0	0	0	0	0	no change	fire x0.5, lightning x1.2	fire x0.5, lightning x1.2
+14	ttl_c01.ebp	second title screen	Pharos at Ridorana	1,1,1	stays 1%, else moves to 2	stays 1%, else moves to 3 or 1, half each	stays 1%, else moves to 2	1	3	3	4	0	0	0	0	0	no change	fire x0.5, lightning x1.2	fire x0.5, lightning x1.2
 48	nal_a01.ebp	Stockade	Nalbina Dungeons	100,0,0	stays	moves to 1	moves to 1	0	0	0	4	4	4	1	1	1	no change	no change	no change
 49	nal_b01.ebp	Arena	Nalbina Dungeons	100,0,0	stays	moves to 1	moves to 1	0	0	0	4	4	4	1	1	1	no change	no change	no change
 50	rbn_z01.ebp	rbn_z01	Rabanastre	100,0,0	stays	moves to 1	moves to 1	0	0	0	4	4	4	0	0	0	no change	no change	no change
@@ -603,7 +603,7 @@ field	zone_script	map_name	region	weather_probability	slot1_roll	slot2_roll	slot
 1141	rbl_n02.ebp	Spire Ravel - 2nd Flight	Pharos - Third Ascent	100,0,0	stays	moves to 1	moves to 1	0	0	0	4	4	4	1	1	1	no change	no change	no change
 1143	rbl_q01.ebp	Empyrean Ravel	Pharos - Third Ascent	100,0,0	stays	moves to 1	moves to 1	0	0	0	4	4	4	1	1	1	no change	no change	no change
 1145	grm_g01.ebp	Overflow Cloaca	Garamsythe Waterway	100,0,0	stays	moves to 1	moves to 1	0	0	0	4	4	4	1	1	1	no change	no change	no change
-1147	ttl_d01.ebp	-	Pharos at Ridorana	1,1,1	stays 1%, else moves to 2	stays 1%, else moves to 3 or 1, half each	stays 1%, else moves to 2	1	3	3	4	0	0	0	0	0	no change	fire x0.5, lightning x1.2	fire x0.5, lightning x1.2
+1147	ttl_d01.ebp	Trial Mode completion screen	Pharos at Ridorana	1,1,1	stays 1%, else moves to 2	stays 1%, else moves to 3 or 1, half each	stays 1%, else moves to 2	1	3	3	4	0	0	0	0	0	no change	fire x0.5, lightning x1.2	fire x0.5, lightning x1.2
 1150	asp_b03.ebp	Air Deck	Skyferry	100,0,0	stays	moves to 1	moves to 1	1	0	0	4	4	4	2	2	2	fire x1.2, water x0.5, wind x1.2	fire x1.2, water x0.5, wind x1.2	fire x1.2, water x0.5, wind x1.2
 1151	mnt_d01.ebp	Babbling Vale	Mosphoran Highwaste	0,100,0	moves to 2	stays	moves to 2	1	2	3	4	4	0	1	1	1	no change	no change	fire x0.5, lightning x1.2
 1153	enw_c01.ebp	Withering Shores	Nam-Yensa Sandsea	100,0,0	stays	moves to 1	moves to 1	1	1	2	4	4	4	1	1	2	no change	no change	fire x1.2, water x0.5, wind x1.2

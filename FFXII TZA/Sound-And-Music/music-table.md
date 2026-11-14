@@ -120,7 +120,7 @@ The `track_titles` and `zone_names` columns name each run's tracks and maps: the
 | `offset` | the run's file offset in `musicctrl.bin` |
 | `page` | the page whose offset leads to the run |
 | `track_titles` | each track the run and its ladder name, with the title in section 0 of its music file ([Sound banks](sound-banks.md), [`sound-music-bank-files.tsv`](sound-music-bank-files.tsv)); `-` for a run with no track |
-| `zone_names` | the map and region of each zone in `zones`, in order ([Zone asset list](../World-Areas-And-Travel/zone-asset-list.md)); the region alone where the zone has no map name; `-` for an id with no zone |
+| `zone_names` | the map and region of each zone in `zones`, in order ([Zone asset list](../World-Areas-And-Travel/zone-asset-list.md)); for the four `ttl` zones, whose map name entry is empty, what the zone shows; `-` for an id with no zone |
 
 ### Each area's track by story stage and mode
 

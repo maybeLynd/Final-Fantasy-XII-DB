@@ -1,7 +1,7 @@
 line	text	field	zone	map_name	region	story	story_stage	entrance	variable	variable_name	boss	entered	rule
 1	1140,0,9	1140	rbl_n01	Spire Ravel - 1st Flight	Pharos - Third Ascent	0		9	0			yes	no autosave entering field 1140 at entrance 9 at any story stage
-2	12,	12	ttl_a01		Pharos at Ridorana	0		0	0			yes	no autosave entering field 12 at any story stage
-3	13,	13	ttl_b01		Pharos at Ridorana	0		0	0			yes	no autosave entering field 13 at any story stage
+2	12,	12	ttl_a01	title screen	Pharos at Ridorana	0		0	0			yes	no autosave entering field 12 at any story stage
+3	13,	13	ttl_b01	staff roll	Pharos at Ridorana	0		0	0			yes	no autosave entering field 13 at any story stage
 4	48,301	48	nal_a01	Stockade	Nalbina Dungeons	301	After the vision of Reks. Written in West Ward (Nalbina Town); Rabanastre.	0	0			yes	no autosave entering field 48 while the story counter is exactly 301
 5	866,	866	alc_z01		Archades	0		0	0			yes	no autosave entering field 866 at any story stage
 6	867,	867	alc_z02		Archades	0		0	0			yes	no autosave entering field 867 at any story stage
@@ -19,7 +19,7 @@ line	text	field	zone	map_name	region	story	story_stage	entrance	variable	variabl
 18	769,	769	vic_a04			0		0	0			no: the us script array names no script for it	no autosave entering field 769 at any story stage
 19	868,	868	alc_z03		Archades	0		0	0			yes	no autosave entering field 868 at any story stage
 20	869,	869	alc_z04		Archades	0		0	0			yes	no autosave entering field 869 at any story stage
-21	1147,	1147	ttl_d01		Pharos at Ridorana	0		0	0			yes	no autosave entering field 1147 at any story stage
+21	1147,	1147	ttl_d01	Trial Mode completion screen	Pharos at Ridorana	0		0	0			yes	no autosave entering field 1147 at any story stage
 22	858,	858	glf_z01		Jahara	0		0	0			yes	no autosave entering field 858 at any story stage
 23	329,265	329	grm_d01	Overflow Cloaca	Garamsythe Waterway	265	After the Flan battle. Written in Southern Sluiceway (Garamsythe Waterway).	0	0			yes	no autosave entering field 329 while the story counter is exactly 265
 24	49,303	49	nal_b01	Arena	Nalbina Dungeons	303	After the pebble. Written in Stockade (Nalbina Dungeons).	0	0			yes	no autosave entering field 49 while the story counter is exactly 303

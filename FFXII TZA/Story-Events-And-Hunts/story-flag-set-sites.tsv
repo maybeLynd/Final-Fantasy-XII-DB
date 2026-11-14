@@ -645,11 +645,11 @@ flag_id	map_name	field	script	actor	function	line	verb	condition
 0x006F	Starfall Field (Giza Plains)	247	sav_c01	満タン判定	満タンチェック_カメラ付き	3214	setmapjumpgroupflag	the value of global byte 0x99F (stored as the global byte 0x99F rows of saved-value-stores.tsv give) is at least 100
 0x006F	Gizas South Bank (Giza Plains)	249	sav_c03	満タン判定	満タンチェック	2795	setmapjumpgroupflag	the value of global byte 0x99F (stored as the global byte 0x99F rows of saved-value-stores.tsv give) is at least 100
 0x006F	Gizas South Bank (Giza Plains)	249	sav_c03	満タン判定	満タンチェック_カメラ付き	2848	setmapjumpgroupflag	the value of global byte 0x99F (stored as the global byte 0x99F rows of saved-value-stores.tsv give) is at least 100
-0x006F	Pharos at Ridorana	12	ttl_a01	アイコン制御	初期設定	778	setmapjumpgroupflag	always
-0x006F	Pharos at Ridorana	12	ttl_a01	アイコン制御	表示	800	setmapjumpgroupflag	always
-0x006F	Pharos at Ridorana	12	ttl_a01	アイコン制御	消去	813	setmapjumpgroupflag	always
-0x006F	Pharos at Ridorana	14	ttl_c01	title_c_fade	cfadein	587	setmapjumpgroupflag	always
-0x006F	Pharos at Ridorana	14	ttl_c01	title_c_fade	cfadeout	602	setmapjumpgroupflag	always
+0x006F	title screen (Pharos at Ridorana)	12	ttl_a01	アイコン制御	初期設定	778	setmapjumpgroupflag	always
+0x006F	title screen (Pharos at Ridorana)	12	ttl_a01	アイコン制御	表示	800	setmapjumpgroupflag	always
+0x006F	title screen (Pharos at Ridorana)	12	ttl_a01	アイコン制御	消去	813	setmapjumpgroupflag	always
+0x006F	second title screen (Pharos at Ridorana)	14	ttl_c01	title_c_fade	cfadein	587	setmapjumpgroupflag	always
+0x006F	second title screen (Pharos at Ridorana)	14	ttl_c01	title_c_fade	cfadeout	602	setmapjumpgroupflag	always
 0x0070	Silverflow's End (Paramina Rift)	475	pbc_c03	Map_Director	init	726	setmapjumpgroupflag	the arrival entrance is 1
 0x0070	Walk of Sky (Stilshrine of Miriam)	593	mrm_a01	Map_Director	main	450	setmapjumpgroupflag	the arrival entrance is 2
 0x0070	Walk of Sky (Stilshrine of Miriam)	593	mrm_a01	Map_Director	main	454	setmapjumpgroupflag	the arrival entrance is 1

@@ -45,6 +45,7 @@ from the steps of the function that asks for the price, and where the seller sta
 | `gil` | the price `+0x00`: gil, except on the 31 `trophy trade limit` rows, where it is the number of times the package sells, 1 on each |
 | `detail` | what the price buys, by the kind in `buys`: a map's key item id and name (`0x8002 Bhujerba`); an airship route with its destination and route code (`to Archades (route 1)`); a trophy trade package id and its contents, or for a sale limit `how many times package 0x90FF sells`; for the other kinds, the purchase in words with the line that asks for the price in single quotes, `[value]` standing for the price |
 | `map_name`, `region` | where the seller stands: the map name and region of the script's zone in [`zone-asset-list.tsv`](../World-Areas-And-Travel/zone-asset-list.tsv), as the location line shows them (117 rows); the two scene scripts `ald_a0180` and `alc_a0280`, which have no row there, read Alley of Muted Sighs (Old Archades) and Nilbasse (Archades) |
+| `seller` | the actor whose talk asks for the price: on the 62 trophy trade rows the name the game shows for it, Shifty-Eyed Man (name pair `0x3D4`), which becomes Outfitters (`0x418`) once quest scenario flag 71 is at least `0x46` and bit `0x1` of global byte `0x31F` is set, as his talk sets it (`setnpcname(0x03d4)` and `setnpcname(0x0418)` of `fon_b01`); on the other rows the actor's script name |
 
 ### Where the values come from
 

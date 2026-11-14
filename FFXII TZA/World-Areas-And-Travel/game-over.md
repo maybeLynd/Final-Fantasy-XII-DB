@@ -185,7 +185,7 @@ both null. It stores the mode with `0x00252B40(mode, 1)` (`0x02092730 = mode & 0
    have landed;
 4. sets its rect to `0x01E0C1D8` x `0x01E0C1DC` at 0, 0 (`0x003EF9EB`-`0x003EFA0A`), attaches itself to the list
    `0x0208EA28` with priority 100 and runs `0x003678F0`;
-5. spawns two helpers of `0xD0` bytes: the image task `0x003EF2E0` at `+0xD0` and the timing task
+5. spawns two helpers of `0xD0` bytes: the game-over music task `0x003EF2E0` at `+0xD0` and the timing task
    `0x003EEEC0` at `+0xD8`, whose create record names the game-over task as its parent (`0x003EFA45`-`0x003EFA67`),
    and returns 0.
 
@@ -200,10 +200,10 @@ runs `0x003EF680` and message `0x13` `0x003EF770`, each with the payload byte (`
 other than 1, 2, `0x0C`, `0x10` and `0x12` go to `0x005C5230(task)`, whose answer it returns (`0x003EF872`); every
 other path returns 0.
 
-The image task `0x003EF2E0` fades the music with `0x002DEE50(0x002DEC00(), 30)` (`0x003EF44C`-`0x003EF45A`). It marks each
-loaded music track slot as fading and ends its track once the count `30 / [0x01F3DA18] + 1` runs out, emptying a
-ready slot and flagging any other for release (`0x003611F0(0x1E, 1)`, which starts the task `0x00361080` for each
-slot: `0x00361263`-`0x003612FB`, `0x003610FA`-`0x00361139`), and fades the map sound volume to 0 over 60 frames
+The game-over music task `0x003EF2E0` fades the music with `0x002DEE50(0x002DEC00(), 30)` (`0x003EF44C`-`0x003EF45A`). It
+marks each loaded music track slot as fading and ends its track once the count `30 / [0x01F3DA18] + 1` runs out,
+emptying a ready slot and flagging any other for release (`0x003611F0(0x1E, 1)`, which starts the task `0x00361080` for
+each slot: `0x00361263`-`0x003612FB`, `0x003610FA`-`0x00361139`), and fades the map sound volume to 0 over 60 frames
 (`0x003634B0(0x3C, 0)`).
 
 Its create arm also sets state 0
@@ -247,18 +247,17 @@ The prompt task's create record, like the logo task's below, is {0, the game-ove
 the last two sign-extended from 32 bits (`0x003EF7BB`-`0x003EF7E8`, `0x003EFC16`-`0x003EFC48`). States 0, 2, 3 and 4 do
 nothing in `0x003EFAA0` (`0x003EFAFA`); `0x003EF770` and `0x003EF680` move the task out of them.
 
-1. State 1 waits until the music track slot is ready (image task state 3) and message `0x10` has
-   arrived (`+0xF0`). It then spawns the logo task `0x003EF4A0` (`0xD0` bytes) at `+0xE0`, starts music track 7
-   at full volume with `0x002DECE0(7)` (`0x003EFC69`; [Music](../Sound-And-Music/music.md)) and goes to state 2.
-   - The music and step 2 below run only when the image task's state byte reads 3 again after the spawn
+1. State 1 waits until the music track slot is ready (game-over music task state 3) and message `0x10` has arrived
+   (`+0xF0`). It then spawns the logo task `0x003EF4A0` (`0xD0` bytes) at `+0xE0`, starts music track 7 at full volume
+   with `0x002DECE0(7)` (`0x003EFC69`; [Music](../Sound-And-Music/music.md)) and goes to state 2.
+   - The music and step 2 below run only when the game-over music task's state byte reads 3 again after the spawn
      (`0x003EFC5B`-`0x003EFC62`); otherwise the task goes to state 2 without them (`0x003EFCA9`, `0x003EFCAE`).
    - The logo task's widget is entry 0 of the `gameover.mrp` file its create record names
      (`0x002432B0(self + 0x50, file, 0, self)`, `0x003EF4E2`); the animation descriptor at `0x00D11CA8` goes to
      `0x00247570` (`0x003EF539`).
-2. At the same moment the image task enters state 4 with a display count of `0x564`, `0x3DE` or
-   `0x3A2` frames when `0x002DDCA0()` returns 1, 2 or anything else; that is the word at
-   `[0x0215E6E0] + 0x0E`, a 2 downgraded to 1 when `0x0017E490()` has bit `0x1` clear. The downgrade is stored
-   back into the word (`0x002DDCC7`).
+2. At the same moment the game-over music task enters state 4 with a display count of `0x564`, `0x3DE` or `0x3A2`
+   frames when `0x002DDCA0()` returns 1, 2 or anything else; that is the word at `[0x0215E6E0] + 0x0E`, a 2 downgraded
+   to 1 when `0x0017E490()` has bit `0x1` clear. The downgrade is stored back into the word (`0x002DDCC7`).
 3. The logo task waits 18 frames, then, once `+0xF0` is set, attaches to the parent's list; when it
    ends it sends `0x13` with payload 2, which spawns the prompt task.
    - Its create arm copies the widget's rectangle to `+0x98`-`+0x9E`, takes the parent from the record's
@@ -268,9 +267,8 @@ nothing in `0x003EFAA0` (`0x003EFAFA`); `0x003EF770` and `0x003EF680` move the t
      `+0xF0` is set, calls `0x00246AD0(game-over task, self)` (`0x003EF58A`-`0x003EF5BB`).
    - It forwards messages `0x0F`, `0x12` and `0x13` to the parent with payload 2 (`0x003EF5E1`-`0x003EF601`);
      message `0x0E` sets its `+0xC8` bit `0x1` (`0x003EF5CD`), and other messages go to `0x005C5230`.
-4. The prompt task `0x003EF050` ends the screen on message 10 when the image task's end flag is set
-   or a button in the mask `0xFF09` of `0x02F9736A` is pressed: it sends `0x8001` to the parent, which
-   kills it.
+4. The prompt task `0x003EF050` ends the screen on message 10 when the game-over music task's end flag is set or a
+   button in the mask `0xFF09` of `0x02F9736A` is pressed: it sends `0x8001` to the parent, which kills it.
    - Its widget is entry 1 of the same file (`0x002432B0(self + 0x50, file, 1, self)`, `0x003EF095`). Like the
      logo task it copies the rectangle, calls `0x00247930(self, 99)` and `0x00244960(game-over task, self)` and
      `0x00247870(self, 0)`, with an 18-frame count at `+0xC8` (`0x003EF0AC`-`0x003EF10A`).
@@ -280,22 +278,20 @@ nothing in `0x003EFAA0` (`0x003EFAFA`); `0x003EF770` and `0x003EF680` move the t
      `0x0E` sets `+0xCC` bit `0x1` and calls `0x002470D0(self)` (`0x003EF171`-`0x003EF17B`).
    - Messages `0x0F`, `0x12` and `0x13` go to the parent with payload 3 (`0x003EF18D`, `0x003EF1FB`-`0x003EF214`),
      and other messages go to `0x005C5230` (`0x003EF233`).
-5. Message `0x0F` with payload 3 runs `0x003EF680`: the logo task is killed, `0x00250C50(100)` and
-   `0x00251EA0(0.8, 0x78)` run, the timing task is set to state 4 for 180 frames and, unless the image
-   task has already ended, the music fades over 120 frames, the loaded tracks are set to end and the map sounds
-   fade over 240 (`0x003611F0(0xF0, 1)`, `0x003634B0(0xF0, 0)`, image state 6). The parent waits 60 frames and goes to
-   state 5.
+5. Message `0x0F` with payload 3 runs `0x003EF680`: the logo task is killed, `0x00250C50(100)` and `0x00251EA0(0.8, 0x78)`
+   run and the timing task is set to state 4 for 180 frames. The parent waits 60 frames and goes to state 5.
+   - Unless the game-over music task has already ended, it goes to state 6, the music fades over 120 frames, the
+     loaded tracks are set to end and the map sounds fade over 240 (`0x003611F0(0xF0, 1)`, `0x003634B0(0xF0, 0)`).
    - `0x003EF680` returns at once for any other payload (`0x003EF683`). The full calls are `0x00250C50(100, 180)` and
-     `0x00251EA0(0.8, 0x78, 0)` (`0x003EF6A9`-`0x003EF6C5`), and the image task's count `+0xC8` becomes 240
+     `0x00251EA0(0.8, 0x78, 0)` (`0x003EF6A9`-`0x003EF6C5`), and the game-over music task's count `+0xC8` becomes 240
      (`0x003EF720`).
    - It reads the timing task `+0xD8` with no null test (`0x003EF6A2`-`0x003EF6D1`).
-6. State 5 fades layer 2 to black over 60 frames (`0x002EFA70(2, 0x3C, 0)`), waits 120 frames and goes
-   to 6. State 6 runs `0x003EF290(image, 1)` when the image task's end flag is set (a one-frame music
-   fade; the loaded tracks end after a count of `2 / [0x01F3DA18] + 1` and the map sounds fade over 2 frames),
-   then 7. State 7 waits for image task state 7 and destroys it
-   (`0x00244F00`), then 8.
-   - `0x003EF290(image, n)` runs `0x002DEE50(0x002DEC00(), n, 0)`, `0x003611F0(2n, 1)` and `0x003634B0(2n, 0)` and puts
-     the image task in state 6 with a count of `2n` (`0x003EF29F`-`0x003EF2D2`).
+6. State 5 fades layer 2 to black over 60 frames (`0x002EFA70(2, 0x3C, 0)`), waits 120 frames and goes to 6. State 6
+   runs `0x003EF290(game-over music task, 1)` when the game-over music task's end flag is set (a one-frame music fade;
+   the loaded tracks end after a count of `2 / [0x01F3DA18] + 1` and the map sounds fade over 2 frames), then 7. State
+   7 waits for game-over music task state 7 and destroys it (`0x00244F00`), then 8.
+   - `0x003EF290(game-over music task, n)` runs `0x002DEE50(0x002DEC00(), n, 0)`, `0x003611F0(2n, 1)` and `0x003634B0(2n, 0)`
+     and puts the game-over music task in state 6 with a count of `2n` (`0x003EF29F`-`0x003EF2D2`).
 7. State 8, once `+0xD8`, `+0xE0` and `+0xE8` are all null, destroys the task itself and calls
    `0x00285EC0(0x0C)` (`0x003EFB32`).
 
@@ -460,7 +456,7 @@ Struct GameOverTask size=`0x108`   (`0x00244F50`(`0x108`, `0x003EF830`, 0); `0x0
 | `+0x0B4` | `u32` |  | tick handle (`0x001EDEC0`) |
 | `+0x0C0` | `i32` |  | state 0..8 |
 | `+0x0C4` | `i32` |  | countdown frames |
-| `+0x0D0` | `void*` |  | image task `0x003EF2E0` |
+| `+0x0D0` | `void*` |  | game-over music task `0x003EF2E0` |
 | `+0x0D8` | `void*` |  | timing task `0x003EEEC0` |
 | `+0x0E0` | `void*` |  | logo task `0x003EF4A0` |
 | `+0x0E8` | `void*` |  | prompt task `0x003EF050` |

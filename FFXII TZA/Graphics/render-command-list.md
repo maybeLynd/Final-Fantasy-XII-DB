@@ -127,9 +127,12 @@ The copy source comes from the render manager's target tables:
   unbinding it first when it is bound (`0x00625F00`, `0x0062BCB0`); `0x001EE180(target, b)` unbinds the same way and stores
   `b` in the target's byte `+9`. Both skip a null target, one whose byte `+0x08` is set, or one with no texture at
   `+0x00`.
-- The target rebuild `0x00188B10` resizes ten of the
-  manager's targets to the fit size (`0x00182EB0`, `0x00182E80`), and `0x00188DA0` gives four of them
+- The target rebuild `0x00188B10` resizes ten of the manager's targets to the fit size (`0x00182EB0`, `0x00182E80`)
+  and copies `+0xB28` into `+0xB08` (`0x00188B8A`); `0x00188DA0` gives four of them
   `0x02CB8084` through `0x001EE180`.
+- The rebuild then calls `0x0060F6B0` on the device `+0x08` with 0, 0, W, H and 0, W x H being 3840 x 2160 when
+  byte `+0xDB8` is set or `+0xC30` is 3 and `+0xAD8` x `+0xADC` otherwise (`0x00188CF0`-`0x00188D46`), and at its end
+  sets byte `+0xDCC` to 1 (`0x00188D81`).
 - The rebuild also prunes the object `[0x01F81210]` (`0x001B6C40`), which `0x00182CA0` and `0x00182B40`
   use: `0x001B6B50` removes every entry for which `0x001B6A70` returns 1, after that function has
   queued the `+0x20` of each node of the entry's list `+0x78` for a deferred call to `0x001B6C30`

@@ -45,68 +45,68 @@ price_id	gil	buys	detail	script	map_name	region	seller
 0xB02E	1400	chocobo	hiring a chocobo: 'Welcome to the chocobo stables. Only [value] gil should you wish to hire one, kupo!'	fon_b01	Hunters' Camp	Phon Coast	ガーディ
 0xB031	100	rest	a rest that restores the party (healall): 'Pretty hot, huh? [value] gil if you wanna rest!'	dst_a07	Outpost	Dalmasca Estersand	NPC01
 0xB032	100000	map	0x8026 Royal Palace of Rabanastre	ald_a02	Alley of Low Whispers	Old Archades	地図屋
-0xB035	9450	trophy trade package	package 0x90FF: Kiku-ichimonji	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB036	8370	trophy trade package	package 0x9100: Platinum Armor	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB037	3600	trophy trade package	package 0x9101: Thief's Cuffs	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB038	13050	trophy trade package	package 0x9102: Holy Lance	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB039	11160	trophy trade package	package 0x9103: Minerva Bustier	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB03A	10200	trophy trade package	package 0x9104: Ruby Ring	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB03B	13500	trophy trade package	package 0x9105: Ame-no-Murakumo	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB03C	21750	trophy trade package	package 0x9106: White Mask	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB03D	19200	trophy trade package	package 0x9107: Opal Ring	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB03E	29250	trophy trade package	package 0x9108: Stoneblade	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB03F	57600	trophy trade package	package 0x9109: Aegis Shield	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB040	5400	trophy trade package	package 0x910A: Golden Amulet	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB041	70200	trophy trade package	package 0x910B: Eight-fluted Pole	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB042	49500	trophy trade package	package 0x910C: Orochi	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB043	117000	trophy trade package	package 0x910D: Dueling Mask	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB044	36000	trophy trade package	package 0x910E: Cat-ear Hood	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB045	20400	trophy trade package	package 0x910F: Maximillian	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB046	75000	trophy trade package	package 0x9110: Ultima Blade	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB047	123750	trophy trade package	package 0x9111: Grand Helm	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB048	47520	trophy trade package	package 0x9112: Bubble Belt	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB049	447000	trophy trade package	package 0x9113: Genji Gloves	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB04A	700000	trophy trade package	package 0x9114: Masamune	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB04B	162000	trophy trade package	package 0x9115: Grand Armor	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB04C	360000	trophy trade package	package 0x9116: Nihopalaoa	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB04D	999999	trophy trade package	package 0x9117: Zodiac Spear, Zodiac Escutcheon	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB04E	104000	trophy trade package	package 0x9118: Tula, Grand Bolts	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB04F	132000	trophy trade package	package 0x9119: Lordly Robes	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB050	60000	trophy trade package	package 0x911A: Indigo Pendant	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB051	61600	trophy trade package	package 0x911B: Artemis Bow, Artemis Arrows	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB052	18600	trophy trade package	package 0x911C: Black Mask	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB053	11160	trophy trade package	package 0x911D: Turtleshell Choker	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB054	1	trophy trade limit	how many times package 0x90FF sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB055	1	trophy trade limit	how many times package 0x9100 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB056	1	trophy trade limit	how many times package 0x9101 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB057	1	trophy trade limit	how many times package 0x9102 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB058	1	trophy trade limit	how many times package 0x9103 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB059	1	trophy trade limit	how many times package 0x9104 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB05A	1	trophy trade limit	how many times package 0x9105 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB05B	1	trophy trade limit	how many times package 0x9106 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB05C	1	trophy trade limit	how many times package 0x9107 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB05D	1	trophy trade limit	how many times package 0x9108 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB05E	1	trophy trade limit	how many times package 0x9109 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB05F	1	trophy trade limit	how many times package 0x910A sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB060	1	trophy trade limit	how many times package 0x910B sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB061	1	trophy trade limit	how many times package 0x910C sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB062	1	trophy trade limit	how many times package 0x910D sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB063	1	trophy trade limit	how many times package 0x910E sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB064	1	trophy trade limit	how many times package 0x910F sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB065	1	trophy trade limit	how many times package 0x9110 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB066	1	trophy trade limit	how many times package 0x9111 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB067	1	trophy trade limit	how many times package 0x9112 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB068	1	trophy trade limit	how many times package 0x9113 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB069	1	trophy trade limit	how many times package 0x9114 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB06A	1	trophy trade limit	how many times package 0x9115 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB06B	1	trophy trade limit	how many times package 0x9116 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB06C	1	trophy trade limit	how many times package 0x9117 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB06D	1	trophy trade limit	how many times package 0x9118 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB06E	1	trophy trade limit	how many times package 0x9119 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB06F	1	trophy trade limit	how many times package 0x911A sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB070	1	trophy trade limit	how many times package 0x911B sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB071	1	trophy trade limit	how many times package 0x911C sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
-0xB072	1	trophy trade limit	how many times package 0x911D sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB035	9450	trophy trade package	package 0x90FF: Kiku-ichimonji	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB036	8370	trophy trade package	package 0x9100: Platinum Armor	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB037	3600	trophy trade package	package 0x9101: Thief's Cuffs	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB038	13050	trophy trade package	package 0x9102: Holy Lance	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB039	11160	trophy trade package	package 0x9103: Minerva Bustier	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB03A	10200	trophy trade package	package 0x9104: Ruby Ring	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB03B	13500	trophy trade package	package 0x9105: Ame-no-Murakumo	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB03C	21750	trophy trade package	package 0x9106: White Mask	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB03D	19200	trophy trade package	package 0x9107: Opal Ring	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB03E	29250	trophy trade package	package 0x9108: Stoneblade	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB03F	57600	trophy trade package	package 0x9109: Aegis Shield	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB040	5400	trophy trade package	package 0x910A: Golden Amulet	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB041	70200	trophy trade package	package 0x910B: Eight-fluted Pole	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB042	49500	trophy trade package	package 0x910C: Orochi	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB043	117000	trophy trade package	package 0x910D: Dueling Mask	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB044	36000	trophy trade package	package 0x910E: Cat-ear Hood	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB045	20400	trophy trade package	package 0x910F: Maximillian	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB046	75000	trophy trade package	package 0x9110: Ultima Blade	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB047	123750	trophy trade package	package 0x9111: Grand Helm	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB048	47520	trophy trade package	package 0x9112: Bubble Belt	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB049	447000	trophy trade package	package 0x9113: Genji Gloves	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB04A	700000	trophy trade package	package 0x9114: Masamune	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB04B	162000	trophy trade package	package 0x9115: Grand Armor	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB04C	360000	trophy trade package	package 0x9116: Nihopalaoa	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB04D	999999	trophy trade package	package 0x9117: Zodiac Spear, Zodiac Escutcheon	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB04E	104000	trophy trade package	package 0x9118: Tula, Grand Bolts	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB04F	132000	trophy trade package	package 0x9119: Lordly Robes	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB050	60000	trophy trade package	package 0x911A: Indigo Pendant	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB051	61600	trophy trade package	package 0x911B: Artemis Bow, Artemis Arrows	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB052	18600	trophy trade package	package 0x911C: Black Mask	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB053	11160	trophy trade package	package 0x911D: Turtleshell Choker	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB054	1	trophy trade limit	how many times package 0x90FF sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB055	1	trophy trade limit	how many times package 0x9100 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB056	1	trophy trade limit	how many times package 0x9101 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB057	1	trophy trade limit	how many times package 0x9102 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB058	1	trophy trade limit	how many times package 0x9103 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB059	1	trophy trade limit	how many times package 0x9104 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB05A	1	trophy trade limit	how many times package 0x9105 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB05B	1	trophy trade limit	how many times package 0x9106 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB05C	1	trophy trade limit	how many times package 0x9107 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB05D	1	trophy trade limit	how many times package 0x9108 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB05E	1	trophy trade limit	how many times package 0x9109 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB05F	1	trophy trade limit	how many times package 0x910A sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB060	1	trophy trade limit	how many times package 0x910B sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB061	1	trophy trade limit	how many times package 0x910C sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB062	1	trophy trade limit	how many times package 0x910D sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB063	1	trophy trade limit	how many times package 0x910E sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB064	1	trophy trade limit	how many times package 0x910F sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB065	1	trophy trade limit	how many times package 0x9110 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB066	1	trophy trade limit	how many times package 0x9111 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB067	1	trophy trade limit	how many times package 0x9112 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB068	1	trophy trade limit	how many times package 0x9113 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB069	1	trophy trade limit	how many times package 0x9114 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB06A	1	trophy trade limit	how many times package 0x9115 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB06B	1	trophy trade limit	how many times package 0x9116 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB06C	1	trophy trade limit	how many times package 0x9117 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB06D	1	trophy trade limit	how many times package 0x9118 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB06E	1	trophy trade limit	how many times package 0x9119 sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB06F	1	trophy trade limit	how many times package 0x911A sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB070	1	trophy trade limit	how many times package 0x911B sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB071	1	trophy trade limit	how many times package 0x911C sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
+0xB072	1	trophy trade limit	how many times package 0x911D sells	fon_b01	Hunters' Camp	Phon Coast	Shifty-Eyed Man, later the Outfitters
 0xB073	1500	way into the city	Jules's price: 'So, wise man, how does [value] gil sound?'	ald_a01	Alley of Muted Sighs	Old Archades	NPC_JULES
 0xB073	1500	way into the city	Jules's price: 'So, wise man, how does [value] gil sound?'	ald_a0180	Alley of Muted Sighs	Old Archades	監督
 0xB073	1500	way into the city	taken by the gate guard after 'Entering the capital? You have credentials?'	ald_a01	Alley of Muted Sighs	Old Archades	NPC_SOLDIER_A

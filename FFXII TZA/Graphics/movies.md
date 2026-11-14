@@ -12,6 +12,7 @@ the options and the sound at the music volume. A movie asked to stop either ends
 its sound out over half a second first. Beside the movie paths the game still carries the PS2
 seek indexes (`.mh`) of the old movie streams; nothing opens them. What each of the 40 shipped movies
 shows, with its length and its first subtitle line, is in [`movies-contents.tsv`](movies-contents.tsv).
+The same table says, for the five ids whose `.webm` does not ship, which script function opens each.
 
 ## Where it comes from
 
@@ -128,7 +129,7 @@ Every value below matches the shipped `.mh` and `.webm` files; the `.webm` files
 | `after_frame` | in movies-subtitle-lines.tsv, the movie frame the printing function waits for before it prints the line (`getmovieframe`) |
 | `after_seconds` | that frame divided by 29.97, to two decimal places: `after_seconds = after_frame / 29.97`, rounded to 0.01 |
 | `printed_by` | the zone script, the function that prints the line, and the step in that function |
-| what each movie shows | one row per shipped `.webm` in [`movies-contents.tsv`](movies-contents.tsv), 40 rows: the `movie_id`, the `movie` code, the `webm` file, its length in `seconds` (the duration the file states), what it `shows`, written from twelve frames spread evenly over the movie with the seconds of the frames each phrase rests on, and the `first_line` of its subtitles from [`movies-subtitle-lines.tsv`](movies-subtitle-lines.tsv) (`-` for the 26 movies whose opening script prints no line) |
+| what each movie shows | one row per movie id with a path in [`movies-contents.tsv`](movies-contents.tsv), 45 rows: the `movie_id`, the `movie` code, the `webm` file, its length in `seconds` (the duration the file states), what it `shows`, written from twelve frames spread evenly over the movie with the seconds of the frames each phrase rests on, and the `first_line` of its subtitles from [`movies-subtitle-lines.tsv`](movies-subtitle-lines.tsv) (`-` for the 26 movies whose opening script prints no line). The five ids whose `.webm` does not ship (37, 41, 44, 45 and 47) have `seconds` and `first_line` `-`, and their `shows` says what opens them |
 
 ### Subtitle timing by voice language
 

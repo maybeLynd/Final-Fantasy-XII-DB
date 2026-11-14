@@ -164,7 +164,7 @@ whose elements are `0x10`, `0x18`, `0x118`, `0x20` and `0x10` bytes.
 
 | Column | Holds |
 |---|---|
-| `evidence` | what in the body shows it is EASTL container code, in a fixed order separated by semicolons: `allocator allocate slot` and `allocator free slot +0x18` for calls through the container allocator's vtable (slot `+0x10` allocates, `+0x18` frees), `0x001EDF00` with the allocator name it passes or `(copied allocator)` when it copies the source's allocator, and `calls` with the other container bodies it calls. A body with no such call is identified by the bodies it calls, the function that calls it (`called by`), or what its loop does. The most common value is `allocator free slot +0x18` alone (24 of the 76 rows) |
+| `evidence` | what in the body shows it is EASTL container code, in a fixed order separated by semicolons: `allocator allocate slot` and `allocator free slot +0x18` for calls through the container allocator's vtable (slot `+0x10` allocates, `+0x18` frees), `0x001EDF00` with the allocator name it passes or `(allocator vtable 0x00902720)` when it is handed the source's allocator, which it does not copy: it stores only that vtable, and `calls` with the other container bodies it calls. A body with no such call is identified by the bodies it calls, the function that calls it (`called by`), or what its loop does. The most common value is `allocator free slot +0x18` alone (24 of the 76 rows) |
 
 The template is the record pool that [game application](../Engine-Core/game-application.md)
 describes: its constructor `0x001997F0` builds the lock at `+0x90` with `0x005CC8A0` and stores the

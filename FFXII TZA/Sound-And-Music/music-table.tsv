@@ -1,5 +1,5 @@
 first_field	last_field	zones	track	ladder	kept_in_modes	offset	page	track_titles	zone_names
-12	14	ttl_a01, ttl_b01, ttl_c01	no track	-	-	0x34	0	-	Pharos at Ridorana; Pharos at Ridorana; Pharos at Ridorana
+12	14	ttl_a01, ttl_b01, ttl_c01	no track	-	-	0x34	0	-	title screen (Pharos at Ridorana); staff roll (Pharos at Ridorana); second title screen (Pharos at Ridorana)
 48	48	nal_a01	no track	above 300: no track	-	0x38	0	-	Stockade (Nalbina Dungeons)
 49	50	nal_b01, rbn_z01	no track	-	-	0x3F	0	-	Arena (Nalbina Dungeons); rbn_z01 (Rabanastre)
 51	51	nal_d01	15	-	-	0x43	0	15: 32_FinalFantasyXII-NalbinaFortressUndergroundPrison	Oubliette (Nalbina Dungeons)
@@ -249,7 +249,7 @@ first_field	last_field	zones	track	ladder	kept_in_modes	offset	page	track_titles
 1140	1141	rbl_n01, rbl_n02	203	-	-	0x59C	8	203: 27_FinalFantasyXII-ClashofSwords	Spire Ravel - 1st Flight (Pharos - Third Ascent); Spire Ravel - 2nd Flight (Pharos - Third Ascent)
 1143	1143	rbl_q01	no track	-	-	0x5A0	8	-	Empyrean Ravel (Pharos - Third Ascent)
 1145	1145	grm_g01	no track	above 25: 55	-	0x5A4	8	55: 22_FinalFantasyXII-TheGaramscytheWaterway	Overflow Cloaca (Garamsythe Waterway)
-1147	1147	ttl_d01	no track	-	-	0x5AB	8	-	Pharos at Ridorana
+1147	1147	ttl_d01	no track	-	-	0x5AB	8	-	Trial Mode completion screen (Pharos at Ridorana)
 1150	1150	asp_b03	51	-	51	0x5AF	8	51: 43_FinalFantasyXII-SpeechlessFight	Air Deck (Skyferry)
 1151	1151	mnt_d01	18	-	-	0x5B3	8	18: 72_FinalFantasyXII-TheMosphoranHighwaste	Babbling Vale (Mosphoran Highwaste)
 1153	1153	enw_c01	200	-	-	0x5B7	9	200: 73_FinalFantasyXII-TheCerobiSteppe	Withering Shores (Nam-Yensa Sandsea)
