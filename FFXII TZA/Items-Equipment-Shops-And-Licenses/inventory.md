@@ -85,7 +85,15 @@ ignores the channel: a result below 1 clears the bit and 1 or more sets it (`0x0
 
 The bundle handlers `0x002FD530`, `0x002FD640` and `0x002FD780` and the gil handler `0x002FD880` act only on a
 relative channel-1 change. The three bundle handlers call `0x003008A0` again for each nested grant
-(`0x002FD53F`-`0x002FD85D`). The gil handler makes no such call: it gives `max(0, gil + (id & 0xFFF) * count)`
+(`0x002FD53F`-`0x002FD85D`).
+
+Before its nested grants the package handler `0x002FD530` gives
+`max(0, gil + rowGil * count)`, `rowGil` the dword at `+0` of its row, to the purse setter `0x00254EE0`
+(`0x002FD5A9`-`0x002FD5C0`) and, when `flags` bit `0x1` is set, passes that value less the purse before the
+change to `0x00469E80` (`0x002FD5C5`-`0x002FD5D3`), which acts only on a value above 0 (`0x00469EA5`-`0x00469EA7`);
+the purse cap is not applied to it.
+
+The gil handler makes no call of `0x003008A0`: it gives `max(0, gil + (id & 0xFFF) * count)`
 to the purse setter `0x00254EE0` (`0x002FD89A`-`0x002FD8B4`), which keeps the purse at most 99,999,999
 (`0x00254F07`-`0x00254F15`). A package selector, `0xAxxx`, gives its second triple when
 `flags` bit `0x2` is set and its
@@ -154,7 +162,7 @@ The table `0x02092760` holds 8 bytes per list:
 | 2 | shields, helms and body armour: equipment classes 18-20 | 140 | `+0x3ADC` |
 | 3 | accessories: equipment classes 21 and 22 | 48 | `+0x3BF4` |
 | 4 | ammunition: equipment classes 23-26 | 32 | `+0x3C54` |
-| 5 | gambit presets (id nibble 5, ids `0x5000`-`0x5027`: the 40 rows of `gambit_data`); record 5 has an id count of 0, so `0x003008A0` refuses these ids (`0x00300920`-`0x0030092C`); it has no change handler either | 40 | `+0x3C94` |
+| 5 | gambit presets (id nibble 5, ids `0x5000`-`0x5027`: the 40 rows of `gambit_data`); record 5 has an id count of 0, so `0x003008A0` refuses these ids (`0x00300920`-`0x0030092C`); it has no change handler either, and `0x00325F40` runs only from the two handlers (`0x002FD355`, `0x002FD4F6`), so none of these ids reaches it | 40 | `+0x3C94` |
 | 6 | gambits (id nibble 6) | 256 | `+0x3CE4` |
 | 7 | id nibble 7, which has no ids | 0 | `+0x3EE4`, list 8's place (`0x00253387`-`0x00253397`) |
 | 8 | technicks (id nibble 4) | 24 | `+0x3EE4` |

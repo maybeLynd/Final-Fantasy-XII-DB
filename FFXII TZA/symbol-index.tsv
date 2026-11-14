@@ -18107,7 +18107,7 @@ function	0x00250180	-	Engine-Core/frame-update-order.md	-	7
 function	0x002501A0	-	Engine-Core/frame-update-order.md	-	10
 function	0x002501E0	-	Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md	-	9
 function	0x00250200	-	Engine-Core/frame-update-order.md	-	11
-function	0x00250270	-	Menus-And-HUD/battle-menu.md	-	11
+function	0x00250270	-	Menus-And-HUD/battle-menu.md	-	12
 function	0x00250540	-	Engine-Core/game-application.md	-	10
 function	0x002506D0	-	Engine-Core/frame-update-order.md	-	11
 function	0x00250730	-	Engine-Core/frame-update-order.md	-	7
@@ -18157,14 +18157,14 @@ function	0x00252E30	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-ta
 function	0x00252E40	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	6
 function	0x00252E50	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	6
 function	0x00252E60	InventoryDerivedIndex_AddPresentItem	Items-Equipment-Shops-And-Licenses/inventory.md	-	16
-function	0x00252F40	-	Engine-Core/identifier-spaces.md	-	11
+function	0x00252F40	-	Engine-Core/identifier-spaces.md	-	12
 function	0x00252F70	-	Saving-Loading-And-Settings/save-data-fields.md	-	11
 function	0x00252FA0	-	Battle-Actions/quickening-and-esper-list.md	-	11
 function	0x00252FF0	-	Battle-Actions/quickening-and-esper-list.md	-	9
-function	0x002530E0	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	12
+function	0x002530E0	-	Battle-Actions/quickening-and-esper-list.md	-	12
 function	0x00253240	SaveRuntime_InitializeImageBackedPointerDescriptor	Items-Equipment-Shops-And-Licenses/inventory.md	-	16
 function	0x00253480	-	Saving-Loading-And-Settings/save-data-fields.md	-	11
-function	0x002534C0	InventoryDerivedIndex_CompactCategoryList	Items-Equipment-Shops-And-Licenses/inventory.md	-	12
+function	0x002534C0	InventoryDerivedIndex_CompactCategoryList	Battle-Actions/quickening-and-esper-list.md	-	12
 function	0x002535D0	InventoryDerivedIndex_RemoveAbsentItem	Engine-Core/item-and-ability-ids.md	-	11
 function	0x00253690	GameState_GetGil	Menus-And-HUD/party-list.md	-	27
 function	0x002536A0	-	Saving-Loading-And-Settings/loading-a-save.md	-	16
@@ -18504,7 +18504,7 @@ function	0x00264610	-	Engine-Core/frame-update-order.md	-	6
 function	0x00264640	-	Characters-And-Objects/actor-managers.md	-	12
 function	0x00264670	-	Graphics/effect-anchors-and-targets.md	-	11
 function	0x002646A0	-	Movement-And-Pathfinding/movement-bodies-and-separation.md	-	5
-function	0x002646C0	-	Movement-And-Pathfinding/battle-locomotion.md	-	12
+function	0x002646C0	-	Movement-And-Pathfinding/battle-locomotion.md	-	13
 function	0x00264750	-	Movement-And-Pathfinding/facing-and-steering.md	-	7
 function	0x00264770	-	EBP-Script-Files/ebp-script-image.md	-	8
 function	0x00264790	-	EBP-Script-Files/ebp-script-image.md	-	10
@@ -18543,7 +18543,7 @@ function	0x00264F90	MapRef_GetPersistenceGroupId	World-Areas-And-Travel/zone-ass
 function	0x00264FD0	MapRef_GetAuxValue1	World-Areas-And-Travel/zone-asset-list.md	-	10
 function	0x00265020	Actor_GetWorldPosition	Scripts-And-Script-Commands/party-during-scenes.md	-	49
 function	0x00265060	-	Characters-And-Objects/actor-record.md	-	13
-function	0x00265090	ActorRuntime_GetClass3FloatPair	Scripts-And-Script-Commands/party-during-scenes.md	-	19
+function	0x00265090	ActorRuntime_GetClass3FloatPair	Scripts-And-Script-Commands/party-during-scenes.md	-	20
 function	0x002650B0	-	Scripts-And-Script-Commands/verb-dispatch.md	-	73
 function	0x002651A0	-	Characters-And-Objects/actor-record-fields.md	-	9
 function	0x002651C0	-	Movement-And-Pathfinding/animation-driven-movement.md	-	8
@@ -21124,7 +21124,7 @@ function	0x002FD090	-	Engine-Core/time-stop-and-freeze.md	-	6
 function	0x002FD0C0	-	Engine-Core/native-limits-family-consumers.tsv	-	6
 function	0x002FD150	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	13
 function	0x002FD420	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	9
-function	0x002FD530	InventoryBundleClass09_ApplyGilAndNestedItems	Rewards-EXP-Gil-And-Loot/gil.md	-	11
+function	0x002FD530	InventoryBundleClass09_ApplyGilAndNestedItems	Items-Equipment-Shops-And-Licenses/inventory.md	-	11
 function	0x002FD640	InventoryBundleClass0A_ApplyNestedItems	Engine-Core/item-and-ability-ids.md	-	9
 function	0x002FD780	InventoryBundleClass0D_ApplyNestedItems	Engine-Core/item-and-ability-ids.md	-	9
 function	0x002FD880	-	Engine-Core/item-and-ability-ids.md	-	8
@@ -24995,7 +24995,7 @@ function	0x00391D10	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.m
 function	0x00391D90	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	-	6
 function	0x003920F0	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	-	8
 function	0x00392170	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	-	10
-function	0x00392200	-	Engine-Core/native-limits.md	-	8
+function	0x00392200	-	Engine-Core/native-limits.md	-	9
 function	0x003924B0	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	-	8
 function	0x00392710	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	-	8
 function	0x00392740	-	World-Areas-And-Travel/mpk-map-pack.md	-	17
@@ -25947,7 +25947,7 @@ function	0x003DA500	-	Characters-And-Objects/actor-managers.md	-	7
 function	0x003DA570	-	Characters-And-Objects/actor-managers.md	-	11
 function	0x003DA5A0	-	Movement-And-Pathfinding/movement-bodies-and-separation.md	-	12
 function	0x003DA6A0	-	Movement-And-Pathfinding/facing-and-steering.md	-	7
-function	0x003DA710	FloatPair_CopyToOptionalOutputs	Movement-And-Pathfinding/animation-driven-movement.md	-	10
+function	0x003DA710	FloatPair_CopyToOptionalOutputs	Movement-And-Pathfinding/animation-driven-movement.md	-	11
 function	0x003DA730	-	Movement-And-Pathfinding/movement-bodies-and-separation.md	-	8
 function	0x003DA830	-	Movement-And-Pathfinding/movement-bodies-and-separation.md	-	8
 function	0x003DA850	-	Movement-And-Pathfinding/movement-bodies-and-separation.md	-	9
@@ -27724,7 +27724,7 @@ function	0x00469AF0	-	Battle-Actions/action-phases.md	-	8
 function	0x00469BB0	-	Damage-And-Battle-Formulas/hp-and-ko.md	-	7
 function	0x00469C00	-	Battle-Actions/battle-log.md	-	9
 function	0x00469E30	-	Battle-Actions/battle-log.md	-	7
-function	0x00469E80	-	Scripts-And-Script-Commands/reward-verbs.md	-	9
+function	0x00469E80	-	Scripts-And-Script-Commands/reward-verbs.md	-	10
 function	0x00469EC0	BattleFormula_DispatchPostResultEvents	Battle-Actions/battle-log.md	-	18
 function	0x0046A630	-	Engine-Core/item-and-ability-ids.md	-	7
 function	0x0046A690	-	Battle-Actions/battle-log.md	-	11
@@ -51718,7 +51718,7 @@ global	0x02AEE0A0	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	
 global	0x02AEE0A8	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	-	2
 global	0x02AEE0B0	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	-	4
 global	0x02AEE0B8	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	-	1
-global	0x02AEE0BC	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	-	1
+global	0x02AEE0BC	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	-	2
 global	0x02AEE4C0	-	Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md	-	10
 global	0x02AEE4C8	-	Menus-And-HUD/widgets.md	-	8
 global	0x02AEE4D0	-	Menus-And-HUD/widgets.md	-	5

@@ -56,10 +56,14 @@ a `0xC000` id:
 
 1. `0x002826F0` and `0x00282A40` hand it the ids of the inventory lists 9 and 8
    ([Party marks](../Menus-And-HUD/party-marks.md)).
-2. The only function that adds an id to a category list is `0x00252E60`, reached from `0x00325F40`. `0x00325F40` chooses
+2. An id is added to a category list by `0x00252E60`, which `0x00325F40` alone names (`0x00325F79`). `0x00325F40` chooses
    the list from the id's top nibble through the table at `0x01EED1B0`: nibble 3 to list 9, nibble 4 to list 8
    (`0x00D1066E`, `0x00D1066F`). After validating the id and testing for a change between 0 and non-zero, it
-   returns without a call for a nibble above 10 (`0x00325FE9`-`0x00325FEC`), so a `0xC000` id is never listed.
+   returns without a call for a nibble above 10 (`0x00325FE9`-`0x00325FEC`), so it never lists a `0xC000` id.
+   - Of the other functions that name the list record table `0x02092760`, `0x002530E0` moves an id the list
+     already holds (`0x00253170`-`0x00253214`), `0x002534C0` closes the gaps (`0x00253544`-`0x0025359F`), `0x002535D0`
+     and `0x00253240` write `0xFFFF` (`0x00253668`, `0x00253410`), and `0x00252F40`, `0x00252FF0` and the loop
+     `0x002503D2`-`0x00250438` store nothing in a list.
    - An id already in the list is not added again (`0x00252EE5`). Nor is one added when the walk meets an
      entry `0xFFFF` before it, or when the list's count has reached the capacity word `+0x02` of the
      list's descriptor at `0x02092760 + 8 × list`; both leave through `0x0016D6A0(0x200)` with no further

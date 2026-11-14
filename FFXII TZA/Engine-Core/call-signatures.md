@@ -18,8 +18,13 @@ registers that reach it unchanged. Return values are not in these tables.
 [`call-signatures-contract-evidence.tsv`](call-signatures-contract-evidence.tsv) has one row per function
 with what its bytes and its direct callers show about the rest of its contract. Each function is read straight
 through in address order, so a value is followed along the layout of the code and each path is not followed on its
-own. Decoding steps over a jump table inside a function and any bytes that do not decode, and it resumes at the
-next address a table or a direct jump names. A count is evidence for a contract and is not a prototype.
+own. There is one exception: code laid out after a `ret`, a `jmp` or an `int3` starts from the state at
+the first forward jump that names it.
+
+Decoding steps over a jump table inside a function and any bytes that do not decode, and it resumes at
+the next address a table or a direct jump names. A jump table of fewer than three entries and the byte
+index table beside it are found from the indexed read that names them, and decoding ends before them.
+A count is evidence for a contract and is not a prototype.
 
 | Column | Meaning |
 |---|---|
@@ -36,7 +41,7 @@ next address a table or a direct jump names. A count is evidence for a contract 
 
 Of the functions with a direct caller, 6,385 have a caller that reads an integer return and 418 one that reads a
 float.
-10,885 functions store through an argument, 951 keep one in memory, 5,706 write globals and 103 call themselves.
+11,488 functions store through an argument, 1,095 keep one in memory, 5,706 write globals and 103 call themselves.
 22,203 have no direct `call` site, so their caller columns are 0. A table, a pointer or a tail jump can still reach
 them.
 
@@ -59,7 +64,7 @@ takes, returns and keeps, what it reads and writes, what happens when it fails, 
 the evidence for it stops.
 
 Along each function's control flow the flow table counts 1,831,216 instructions; the `instructions` column of the
-evidence table sums to 1,831,499 over the same 39,115 functions. The two are measured separately, and in some
+evidence table sums to 1,831,107 over the same 39,115 functions. The two are measured separately, and in some
 functions the flow reaches more than that function's count. 549 indirect jumps end a path, among them tail calls
 through a pointer.
 

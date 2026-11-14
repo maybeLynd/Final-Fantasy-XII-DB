@@ -164,8 +164,9 @@ the shown value. The five points are from, the three between, and to, one quarte
 
 - with the step below `0x400`, `u = step / 256`, `i = int(u)`, `t = u - i` and the points `P0`-`P4` in that order,
   over the first three quarters the value follows a spline through them (`0x00271960`, `0x00270260`). Segment 0 is
-  `0.5 x ((P0 - 2 P1 + P2) t^2 + (4 P1 - 3 P0 - P2) t)`, 0 at `t = 0` and `P1 - P0` at `t = 1` (the basis at
-  `0x009157B0`; its constant term multiplies the point matrix's first row, which `0x00270260` makes zero at `0x0027034F`);
+  `0.5 x ((P0 - 2 P1 + P2) t^2 + (4 P1 - 3 P0 - P2) t + 2 P0)`, `P0` at `t = 0` and `P1` at `t = 1`;
+  - the basis is at `0x009157B0`; its constant row, 0, 2, 0, 0, multiplies `P0`: the point matrix's rows are
+    a zero row, written at `0x0027033B`-`0x0027034F`, then `P0`, `P1` and `P2` (`0x00270355`-`0x00270371`);
 - segments 1 and 2 are the Catmull-Rom `0.5 x ((3 P[i] - P[i-1] - 3 P[i+1] + P[i+2]) t^3 + (2 P[i-1] - 5 P[i] +
   4 P[i+1] - P[i+2]) t^2 + (P[i+1] - P[i-1]) t + 2 P[i])` (the basis at `0x009157F0`, points from `0x00276220`), the
   0.5 being the vector at `0x00915870`;
