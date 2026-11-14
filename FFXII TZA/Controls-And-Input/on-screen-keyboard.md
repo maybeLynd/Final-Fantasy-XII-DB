@@ -49,7 +49,11 @@ case it then makes the ten update calls of step 3 (`0x00287AD1`-`0x00287B7F`). T
 
 ### The task
 
-`0x002878E0` handles its messages in this order of work:
+For every message `0x002878E0` first works out the layout set and the language set the way `0x00287C20` does
+below (`0x002878FB`-`0x00287928`). It hands both to `0x00287400`, `0x002875D0` and the seven panel builders on a
+redraw (`0x0028797D`-`0x002879F5`) and to the seven panel updates, at step 3 (`0x00287A68`-`0x00287ABE`) and again
+at the copy of that work reached by messages 2 and 18 (`0x00287B29`-`0x00287B7F`). It handles its messages in
+this order of work:
 
 1. On creation it builds its widgets with `0x002432B0` from the layout at `+0xA8` of `0x0209AC30` (`0x00287B86`-`0x00287B9E`).
 

@@ -109,9 +109,9 @@ reach 31 ids and Montblanc 10; each is a row of the table, with the call in `com
 
 The `set_when` column gives, for a flag whose shipping set calls are all one call site in an actor's own `init`, `touchon`,
 `main` or `talk` function, the actor and its field and the tests that enclose the call there, in the listing's `if`
-and `switch` nesting: 60 flags. A set call with no test is made each time that function runs. The `set_conditions`
-column gives every shipping set site of each of the 328 Primary flags with a shipping set call, these 60 included,
-with the tests around each call.
+and `switch` nesting: 60 flags, 34 of the Primary bank and 26 of the second half of Bank512. A set call with no
+test is made each time that function runs. The `set_conditions` column gives every shipping set site of each of
+the 328 Primary flags with a shipping set call, those 34 included, with the tests around each call.
 
 ## Columns
 

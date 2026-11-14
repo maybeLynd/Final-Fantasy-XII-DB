@@ -51,11 +51,13 @@ returns 0 without that test (`0x00306370`).
 
 `0x003064F0(member, action)` takes the member's stats record from `0x00320A40`, null for a member above 39, and
 returns 1 only when there is one, `0x003060E0(action, stats, 0)` returns 0 and `0x00323EC0` passes, and 0 otherwise
-(`0x00306502`-`0x00306550`): that is whether the member may use that action. The two callers of `0x00306340` never pass
-a `0xC000` id:
+(`0x00306502`-`0x00306550`): that is whether the member may use that action. The two callers of `0x00306340` take
+their ids from lists that `0x00325F40` never puts a `0xC000` id in:
 
-1. `0x002826F0` and `0x00282A40` hand it the ids of the inventory lists 9 and 8
-   ([Party marks](../Menus-And-HUD/party-marks.md)).
+1. `0x002826F0` and `0x00282A40` hand it each word of the inventory lists 9 and 8 that is not `0xFFFF`
+   (`0x00282920`-`0x00282995`, `0x00282C62`-`0x00282CD9`). The range compares of the id before the call
+   (`0x00282931`-`0x00282962`, `0x00282C74`-`0x00282CA6`) only choose a byte of the bit table at `+0xB2E`; no
+   path skips the call ([Party marks](../Menus-And-HUD/party-marks.md)).
 2. An id is added to a category list by `0x00252E60`, which `0x00325F40` alone names (`0x00325F79`). `0x00325F40` chooses
    the list from the id's top nibble through the table at `0x01EED1B0`: nibble 3 to list 9, nibble 4 to list 8
    (`0x00D1066E`, `0x00D1066F`). After validating the id and testing for a change between 0 and non-zero, it

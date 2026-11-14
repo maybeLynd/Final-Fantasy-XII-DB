@@ -21,9 +21,12 @@ gear and gambits from the preset rows with the same number, both in `battle_pack
 
 `0x00239960` reads the number and, when it is not -1, copies it to the byte `0x0208D456` (`0x00239975`) and sets
 it back to -1, so a set is applied once (`0x00239966`-`0x0023997B`). -2 resets
-the battle state instead (`0x00237DF0`), and any other negative number, or a number at or above the scenario table's row count
-(`[0x02EBF030]+4`, 50 in the shipped section 60), does nothing (`0x00239993`-`0x002399BB`). Otherwise
-(`0x002399E9`-`0x00239DE8`):
+the battle state instead (`0x00237DF0`), and any other negative number does nothing (`0x00239993`-`0x00239996`).
+
+A number above the scenario table's row count less 1, compared unsigned, does nothing either (`[0x02EBF030]+4`,
+50 in the shipped section 60; `0x0023999C`-`0x002399BB`), so the shipped table passes sets 0 to 49. With the
+table pointer null the count is taken as 0 (`0x002399AA`-`0x002399B4`); then, as with a row count of 0, the
+bound is `0xFFFFFFFF` and no number is refused. Otherwise (`0x002399E9`-`0x00239DE8`):
 
 1. The party block is reset, keeping bits `0x1000`, `0x2000` and `0x4000` of its flag word and moving bits `0x2`
    and `0x4` of the battle flags `0x02089344` into its bits `0x2000` (New Game+) and `0x4000` (New Game-), clearing
@@ -32,16 +35,24 @@ the battle state instead (`0x00237DF0`), and any other negative number, or a num
    - Between the flag moves and the rebuilds the kill chain is reset with `0x003183A0` (`0x00239A85`;
      [Kill chain](../Rewards-EXP-Gil-And-Loot/kill-chain.md)).
 2. The scenario's gil is set with `0x00300500` ([Gil](../Rewards-EXP-Gil-And-Loot/gil.md)), the inventory
-   emptied, and up to 64 entries granted, each an id and a count set with `0x00300BA0`
-   ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md); `0x00239B11`-`0x00239B5F`).
+   emptied with `0x003047F0` (`0x00239B22`), and up to 64 entries granted, each an id and a count set with
+   `0x00300BA0` ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md); `0x00239B11`-`0x00239B5F`).
+   - `0x003047F0` stores 0 in every word of the array that each of the fifteen inventory descriptor records
+     from `0x01EEBCC0` names by its pointer `+0x08` and length `+0x10`, a null pointer being stepped over
+     (`0x00304801`-`0x0030483B`), and jumps to `0x00253480` (`0x0030483D`).
+   - `0x00253480` clears the twelve category lists with `0x00253240(list, 1)` and every category bit of
+     `[0x020927C0] + 0x3244` but bit `0x1`, with bit `0x1` of `+0x3245` (`0x00253490`-`0x002534B1`).
 3. Each party-preset row with this scenario number sets up the member in its record slot: level, gambit preset,
    License Points, the five pieces of gear and the MP share (`0x00239BBC`-`0x00239D7F`).
 4. The nine seats are filled from the scenario row with `0x00329080(seat, member, 3)`, and the leader
    selector `[0x02EBF190]+0x5AA4` takes the member in the seat the row's byte `+0x0A` names, or `0xFF`
    when that byte is above 8, through `0x00327870`, which then has `0x00326500` pick the controlled member
    (`0x00239DC0`-`0x00239DE0`; [Party slots](party-slots.md)).
-5. Last it calls `0x002CFD10(-1)`, which does not read its argument and clears the menu cursors
-   (`0x00239DE5`-`0x00239DE8`; [Loading a save](../Saving-Loading-And-Settings/loading-a-save.md)).
+5. Last it calls `0x002CFD10(-1)`, which does not read its argument and clears the menu cursors (`0x00239DE5`-`0x00239DE8`;
+   [Loading a save](../Saving-Loading-And-Settings/loading-a-save.md)): it stores 0 in the word
+   `[0x020927C0] + 0x38` through `0x002527B0(6, 4, 0)` (`0x002CFD1E`, `0x0025282D`) and jumps to `0x0028E880`
+   (`0x002CFD27`), which zeroes the `0xC4` bytes at `[0x0209BE80] + 0xAA60` while that pointer is set
+   (`0x0028E880`-`0x0028E89B`).
 
 ### Which scripts ask for a set
 
@@ -103,3 +114,5 @@ Calls between the functions this page cites and code in other parts of the progr
   [party control modes](../Engine-Core/party-control-modes.md).
 - Save load settings: `0x002CFD10` is called by `0x00280140`; those functions are documented on
   [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).
+- Presentation: `0x002527B0` is called by `0x00579420`; those functions are documented on
+  [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md).

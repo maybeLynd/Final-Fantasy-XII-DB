@@ -25,8 +25,16 @@ out from that leader each frame.
 
 The leader is one actor handle, `0x022C7FE0`. `0x003272A0` turns it into the leader's battle unit, or no unit: the battle
 flag `0x02089340` bit `0x10` must be set, the handle must resolve to an actor with a battle unit, and the unit's flag bit
-`0x8` must be set (`0x003272A4`-`0x003272CE`). Every reader of the leader's battle unit asks `0x003272A0`; the lock setters
-below and the release `0x00358B40` resolve the handle `0x022C7FE0` to its actor directly, without those three tests.
+`0x8` must be set (`0x003272A4`-`0x003272CE`).
+
+Twenty-five functions call `0x003272A0` for the leader's battle unit. Of the 82 call sites of `0x003590D0`, which
+returns the handle, eight more go straight on to `0x003588B0` and `0x00263E30` for that actor's unit. Six make
+the same three tests inline (`0x00317E60`, `0x00319090`, `0x00319490`, `0x0031ACC0`, `0x0031E630`, `0x00329220`), and
+`0x00326BB0` and `0x00326D60` make the first two and take the unit with no test of its bit `0x8`
+(`0x00326CDA`-`0x00326D1A`, `0x00326DA2`-`0x00326DC9`).
+
+The lock setters below and the release `0x00358B40` resolve the handle `0x022C7FE0` to its actor directly, without
+those three tests.
 
 Two more readers keep only the bit `0x10` test. `0x00327270` returns the leader's actor (`0x003590D0()` through
 `0x003588B0`), or no actor while bit `0x10` is clear (`0x00327274`-`0x0032728D`). `0x003272F0` returns the leader's
@@ -286,8 +294,9 @@ No other instruction reaches these globals. The slots' addresses are taken by `0
 
 ## Modding notes
 
-- Every reader of the leader asks `0x003272A0`, so changing `0x022C7FE0` through the request and commit is enough for
-  the formation, the camera and the controls to follow.
+- The readers of the leader on this page all start from the handle `0x022C7FE0`: through `0x003272A0`, through
+  their own copy of all or some of its tests, or directly. So changing `0x022C7FE0` through the request and
+  commit is enough for the formation, the camera and the controls to follow.
 - A new lock source needs its own bit or byte; clearing someone else's bit releases their lock too.
 
 ## Related
@@ -298,3 +307,10 @@ No other instruction reaches these globals. The slots' addresses are taken by `0
 - [Party control modes](../Engine-Core/party-control-modes.md) - summon, chocobo and
   town modes.
 - [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md) - the town bit.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on
+  [battle units](../Characters-And-Objects/battle-units.md).

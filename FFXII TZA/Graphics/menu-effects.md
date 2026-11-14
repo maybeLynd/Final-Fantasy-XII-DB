@@ -98,7 +98,8 @@ publishes the instance's other draw state
 - `0x003B2CE0(id)` returns 0 when the id has no record or instance, and 1 when bit `0x100` of the instance's `+0x378` is
   clear. Otherwise it returns a code from the instance's byte `+0x370`: 0 gives 2; 1 and 2 give 3; 3 gives 5; 4 to 6 give
   4; any other value 1. A fresh spawn (`+0x370` = 2) answers 3.
-- `0x003B2CA0(instance)` returns the record holding an instance, or 0. `0x0024D770`, `0x003A4290` and `0x003A56F0` call it.
+- `0x003B2CA0(instance)` returns the record holding an instance, or 0; like `0x003B2F50` it scans the records up
+  to the first free one (`0x003B2CB0`-`0x003B2CB4`). `0x0024D770`, `0x003A4290` and `0x003A56F0` call it.
 
 ### Who drives it
 

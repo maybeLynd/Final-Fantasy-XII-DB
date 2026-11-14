@@ -167,8 +167,8 @@ calls `0x003A0E50` with the sound id and returns its result (`0x0046CAAE`).
   `soundfoottable.bin`, with the table's 32 added when the flag and the field's environment variant are both set.
   With a negative flag group 1 plays the variant as given (`0x002E9E99`).
 - For group 2 with a variant below 10, when the actor's voice-pool entry (`+0x20` of the actor it resolves to through
-  `0x00263F40` and `0x00263F10`) has state 3, its bank loaded (`0x0036ECA0`), the sound comes straight from that bank
-  (`0x0036EC50`, `0x002E9F81`): the character's own voice.
+  `0x00263F40` and `0x00263F10`) has state 3, its bank loaded (`0x0036ECA0`, `0x002E9F81`), the sound comes straight
+  from that bank (`0x0036EC50`, `0x002E9F90`): the character's own voice.
 - Outside that voice case a non-zero flag adds the field's environment variant `0x02099DBC` to the variant before the
   block lookup, for every group (`0x002E9FA7`).
 - The footstep flag is set for types 1, 8, 9 and 10.

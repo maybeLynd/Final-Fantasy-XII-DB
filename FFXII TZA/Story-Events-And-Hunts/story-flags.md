@@ -57,7 +57,7 @@ nothing fixes their width. Only the payload clears (`0x002EF2E8`, `0x002EF603`, 
 1. Bits `0x3FFF` are the index; bits `0x8000` and above are dropped (`0x0032A8A8`).
 2. With bit `0x4000` set it answers the story schedule for that index, below (`0x0032A8AE`-`0x0032A8BB`).
 3. An index of 512 or more answers 0 (`0x0032A8C0`-`0x0032A8C8`).
-4. Index 0 answers 1 and index 1 answers 0, without reading the bank (`0x0032A8D0`-`0x0032A8DD`): always and never.
+4. Index 0 answers 1 and index 1 answers 0, without reading the bank (`0x0032A8D0`-`0x0032A8E0`): always and never.
 5. Any other index answers its Primary bit (`0x0032A8E9`-`0x0032A911`).
 
 So `0xFFFF` asks the schedule for index `0x3FFF`, which does not exist, and answers 0. Fourteen call sites test for
