@@ -161,6 +161,9 @@ bit `0x1` is zero it clears bit `0x8` of the record's `+0x11`, and when the word
 runs `0x0032F1B0(manager)`. For manager 0, once bits `0x2` and `0x200` are both clear (`0x0032F9D0`), it then runs
 `0x0025AFC0(0)` and `0x002EACC0(0x00331990, [0x022C6D28])` (`0x0032F9DA`-`0x0032F9EE`).
 
+`0x00330050(record)` is a jump to the teardown `0x0032ED80` with the record's dword `+0x28`
+as the manager (`0x00330050`-`0x00330053`).
+
 ### The bind
 
 `0x0026C8C0` fills the manager record ([actor managers](../Characters-And-Objects/actor-managers.md)). From
@@ -180,12 +183,12 @@ The callback goes to `+0x88`. No offset is checked against `+0x04` or the sectio
 
 When the manager's loads finish, `0x0026CE60` builds the actor record pool with `0x002679F0`, which
 sizes it from the type counts and initialises one record per directory entry through `0x00266530`;
-it then runs `0x00266C50` and sets record `+0x40` to image + `[+0x38]` (`0x0026D2ED`–`0x0026D2F6`) when
+it then runs `0x00266C50` and sets the manager slot's `+0x40` to image + `[+0x38]` (`0x0026D2ED`–`0x0026D2F6`) when
 that is still 0. `0x00266530`:
 
 1. forms the directory as image + `[+0x18]` and the actor's entry at `+4 + index × 0x30`, or
    `× 0x20` when the version word is below 8 (`0x00266710`–`0x00266731`), and stores it at record `+0x40`;
-2. sets record `+2` to 1 for an index below the type-0 count, a signed 32-bit compare, else 2
+2. sets record `+2` to 2 for an index below the type-0 count, a signed 32-bit compare, else 1
    (`0x002666FC`–`0x0026670D`);
 3. for a `partySlot` of `0x80` to `0x83`, files the record in the party table `0x0209A1F0` at
    `partySlot & 0x7F` (`0x00266738`–`0x00266792`);
@@ -242,6 +245,13 @@ record's `+0x10` bit `0x1`.
 | `+0x70` | `0x00264AE0` | image + entry `index` of the five offsets |
 | `+0x80` | `0x0035A270` | for each `{id, mask}` whose id resolves, `0x002ECAB0(id, i, 1)` for each bit `1 << i` set in `mask & 0xFFFFFFFE`: it makes the given manager's record current (`0x0026A480`, `0x0035A28F`) and restores the previous one at the end (`0x0035A392`); the table id is turned into a bound id by `0x002E9A60` (`0x0035A2E7`), and only a non-zero bound id whose entry `0x002E99C0(0x002EB7A0(bound id))` exists and is ready (`0x002E4C20`) goes on (`0x0035A2F2`-`0x0035A316`); that entry gets bit `0x1` of `+0x19` (`0x0035A318`), and for each `i` from 1 to 31 with `mask & (1 << i)` set and a positive bound id it calls `0x002ECAB0(bound id, i, 1)` and then `0x002ECAB0(bound id, 0, 1)` (`0x0035A330`-`0x0035A35F`) |
 | `+0x8C` | `0x00264870` | a pointer to 16-byte record `index`: image + offset + 4 + `index * 16` (`0x002648BD`-`0x002648C8`); the bound is a signed compare (`0x002648B4`), so a negative index passes it and gives a pointer before the table |
+
+`0x002E6420` walks a manager only while bit `0x1` of its byte `+0x10` is set, over the
+ordinals from its word `+0x1DE` for its word `+0x1D6`. For each, `0x00358940(manager,
+ordinal)` gives an object; when that, its pointer `+0xC0`, a dword there other than -1
+and a word there other than `0xFFFF` are all present, the record is
+`[0x022C6F28] + 0x740 × word`, and `0x00428FE0(record, 0)` is called only for a record
+address other than 0 whose dword `+0x284` is not 0 (`0x002E6440`-`0x002E64A8`).
 
 `0x00264B90` maps the index -1 to `+0x52`, -2 to `+0x78` and -3 to `+0x7A`, and any other negative
 index to `+0x52`. The tests run in that order on the replaced value, so a `+0x52` of -2 goes on to `+0x78`, and

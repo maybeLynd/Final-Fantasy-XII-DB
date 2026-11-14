@@ -235,6 +235,9 @@ nothing.
 
 It returns the element, or 0 when all 13 are in use. The handle is the element's address kept in a
 dword (`0x00319E05`), and `0x003FA730` reads `[handle+0x272]` before any null test.
+`0x003FA730(manager, handle)` answers the element's state dword `+0x260` only when bit
+`0x1` of `+0x272` is set and the element is on the manager's list, walked from `+0x2490`
+along the links `+0x278`; otherwise it answers 0 (`0x003FA730`-`0x003FA75F`).
 
 The element update `0x003FC510` runs the element through its states:
 
@@ -248,6 +251,14 @@ The element update `0x003FC510` runs the element through its states:
 - Op 3 marks the element collected, sets a phase from `sin(0x0208F570 × π / 30)` and plays sound
   `0x46` when a unit is given. The update then shrinks the element (state 3) and sets its state to
   0 when its scale `+0x270` has reached 0.
+- `0x003FA820(handle, unit)` does nothing unless bit `0x1` of the flag word `+0x272` is
+  set and bit `0x2` is clear; it then sets bit `0x2` (`0x003FA83B`-`0x003FA851`). With bit
+  `0x8` set or a unit given it sets bits `0x40` and `0x100` and the phase word `+0x28C`,
+  which is the integer part of `sin(0x0208F570 × π / 30) × 22 + 11` shifted left by 7
+  (`0x003FA858`-`0x003FA8B6`).
+- A unit then clears bit `0x40`, sets bit `0x80` and plays sound `0x46`
+  (`0x003FA8BD`-`0x003FA8DB`). In every case that passed the two tests the unit argument
+  goes to `+0x290` and `+0x294` becomes 0 (`0x003FA8E0`, `0x003FA8E6`).
 
 ## Layouts
 

@@ -294,6 +294,14 @@ Floats are written with nine significant digits, which keeps each stored value e
    (stepping by the `u16` at `+0`) at `0x02092818` and `0x02092820`, allocated at `countB * 8` and
    `countC * 8` bytes (`0x002562FE`, `0x00256351`), and returns 1 (`0x00256396`).
 
+For a manager of 5 or above the three allocations still run, with the sizes -0x40, -8
+and -8 as 32-bit values, and their results are stored (`0x00256236`-`0x00256240`,
+`0x002562F7`-`0x00256303`, `0x0025634A`-`0x00256356`).
+
+The three walks of steps 5 and 6 share one pointer: the ease curves start where the
+last shot record ended and the paths where the last ease curve ended
+(`0x002562C6`-`0x002562CA`, `0x0025632C`-`0x0025632F`, `0x0025637C`-`0x0025637F`).
+
 Nothing is compared with the section's length.
 
 `0x002572E0(manager)`, run by `0x0026CE60` once `+0xD8` and `+0xE0` are both set, loads the CAM7 section pointer

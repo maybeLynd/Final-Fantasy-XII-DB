@@ -203,13 +203,56 @@ that array null it writes nothing (`0x0037228D`-`0x003722C0`).
 ### Composing the pose
 
 `0x003703A0(entry)` is the skeleton-entry update (from `0x004242B0` and `0x0046E0F0`). It allocates two
-per-bone arrays on its stack (`0x00370438`-`0x0037045E`), builds the record's mapping table `+0x6D0` when it
-is null and both the record and the skeleton named by entry `+0x0C` have a `skeletonmapping.bin` table
-(`+0x6B8`, `0x003704C2`-`0x003705AC`; [add-motion tables](add-motion-tables.md#skeletonmappingbin)), then
-calls the final-pose composer `0x00373860` once (`0x003705BA`) and sets bit `0x800` of the entry's `+0x00`.
+per-bone arrays on its stack, the first of 8 bytes a bone, for pointers, and the second of `0x10` bytes a
+bone, bones being the entry's sign-extended word `+0x8A` (`0x0037040E`-`0x0037045E`), and zero-fills both
+with `0x00861EC0`
+(`0x00370461`-`0x00370485`). It builds the record's mapping table `+0x6D0` when it is null and both the
+record and the record of the skeleton named by entry `+0x0C` have a pointer at `+0x6B8`
+(`0x003704F6`-`0x0037055B`; [add-motion tables](add-motion-tables.md#skeletonmappingbin)).
 
-`0x00373860(entry, out pointers, out scales)` first applies the add-motion tracks (`0x003714A0`),
-then for each listed bone (`0x00373970`-`0x00373CA3`):
+The skeleton that entry `+0x0C` decodes to must also be not null (`0x00370512`-`0x0037051E`). The build
+calls `0x0019C580(bones x 4, 0x10, 0, -1)`, stores the answer at `+0x6D0` without testing it, fills it
+with `0x00861EC0(table, -1, bones x 4)` so every dword is -1, and calls
+`0x0017EF60([record + 0x6B8], [other record + 0x6B8], table)` (`0x0037055D`-`0x003705AC`).
+
+A record whose `+0x6B8`
+is null first gets it from `0x0017F0D0([record + 0x6B0])` when `0x0017EFC0` accepts that dword, and 0 otherwise
+(`0x003704C2`-`0x003704EF`). The record's address is not tested first: with the entry's word `+0xA8` at
+`0xFFFF`, or the record's `+0x284` at 0, the address is 0 (`0x003703E8`-`0x0037040A`) and `0x003704C2` reads
+at address `0x6B8`. It then calls the final-pose composer `0x00373860` once (`0x003705BA`) and sets bit
+`0x800` of the entry's `+0x00` (`0x003705BF`).
+
+When bit `0x200` of the entry's `+0x00` is set, its dword `+0x90` is above 0 and `+0x94` decodes to an
+address that is not null, `0x003703A0` calls `0x003E00C0` on that address before the `+0x6B8` test
+(`0x0037048A`-`0x003704BD`) and `0x003DFFE0` on it after the composer (`0x003705C6`-`0x003705F9`). It then fills
+the record's output array `+0x6C0`. When that pointer is null it calls
+`0x0019C580(bones x 0x40, 0x10, 0, -1)`, bones being the entry's word `+0x8A`, stores the answer at
+`+0x6C0` and leaves when the answer is null (`0x003705FE`-`0x0037062E`).
+
+For each bone i below the word `+0x8A` whose pointer in the first stack array is not null, it copies the
+`0x40` bytes that pointer names and the bone's 16 bytes of the second array (`0x003706B5`-`0x00370718`).
+
+A mapped step follows when all of these hold: the record's dword `+0x6C8` is 2, its `+0x6D0` is not
+null and the entry's dword `+0xB0` is not -1 (`0x00370634`-`0x00370659`); the skeleton that entry `+0x0C`
+decodes to is not null and its `+0x84` decodes to bone records (`0x00370683`-`0x003706B1`, `0x0037071E`); and
+i is below the dword `+0x20` of the `0x30`-byte entry that `+0xB0` picks at `[0x02AD9E30]` (`0x0037065D`-`0x00370673`,
+`0x00370723`).
+
+The step reads the dword i of that entry's list `+0x28` (`0x00370728`-`0x0037072C`). When it is a number m
+other than -1, `0x003703A0` calls `0x00202D60(copy, own bone i + 0x150)`, `0x00202D70(copy, other bone m +
+0x150, copy)` and `0x00202D70(copy, other bone m + 0x80, copy)` (`0x00370730`-`0x00370787`). The bone records
+are `0x290` bytes apart, the entry's own decoded from its dword `+0x84` before the loop, with no null
+test (`0x00370664`, `0x0037067E`).
+
+For every such bone, mapped or not, `0x00202FE0(row, row, float)` is then called for the copy's rows at
+`+0x00`, `+0x10` and `+0x20` with the first, second and third float of the 16 bytes
+(`0x00370790`-`0x003707C1`). The first `0x3C` bytes of the
+copy are stored at `[+0x6C0]` + i x `0x40` (`0x003707C6`-`0x003707F9`), and the dword `+0x3C` there takes
+the sign-extended word `+0x270` of the entry's own bone record i (`0x003707FE`-`0x0037081E`).
+
+`0x00373860(entry, out pointers, out scales)` does nothing when the entry's word `+0xA8` is `0xFFFF` or
+its render record's `+0x284` is 0 (`0x003738C8`-`0x00373912`); otherwise it first applies the add-motion
+tracks (`0x003714A0`), then for each listed bone (`0x00373970`-`0x00373CA3`):
 
 - stores at `+0x284` the encoded address of the bone's skinning slot: `+0x00` when the skeleton's
   byte `+0xA7` has 1 in its low nibble, else `+0x40` (`0x0037397B`-`0x00373998`);
@@ -217,13 +260,15 @@ then for each listed bone (`0x00373970`-`0x00373CA3`):
   parent skeleton that entry `+0x0C` names, else node 0's `+0x1F0` (`0x0037399E`-`0x003739DD`);
 - with `+0x280` bit `0x10` set takes the second-set path (the `+0x96` bit `0x20` set): `+0x1A0`
   as a matrix (`0x00477130`) times `+0xC0`, the translation `+0xF0` plus `+0x1C0` (`0x00202B10`), the scale `+0x100` times `+0x1E0`
-  (`0x00202D80`), then `+0x230`, the source, the row scales (row i times `s[i]`, `s = +0x100 × +0x1E0` with
-  `s[3] = +0x10C`; `0x00202FE0`, `0x00373AE4`-`0x00373B39`) and `+0x150` (`0x003739EA`-`0x00373B51`);
+  (`0x00202D80`), then the source (`0x00373AC7`), `+0x230` (`0x00373ADF`), the
+  row scales (row i times `s[i]`, `s = +0x100 × +0x1E0` with `s[3] = +0x10C`; `0x00202FE0`,
+  `0x00373AE4`-`0x00373B39`) and `+0x150` (`0x003739EA`-`0x00373B51`);
 - with that bit clear, takes `0x00372610(source, +0xC0, +0x230, +0x100, +0x150)`
   ([the tie](skeleton-entries-and-bones.md#tying-bones-to-another-skeleton));
 - copies `0x02AD9E40`, the product before `+0x150`, into `+0x80`, and `0x02AD9E80`, the product with
   `+0x150`, into the slot `+0x284` names (`0x00373B8A`-`0x00373BB8`);
-- when the record's add-motion state `+0x6C8` is 2 and its `+0x6D0` table maps the bone to a
+- when the skeleton that entry `+0x0C` names resolves (`0x00373BBD`), the record's add-motion
+  state `+0x6C8` is 2 and its `+0x6D0` table maps the bone to a
   partner bone, the bone's `+0x80` and its skinning slot are overwritten with that partner bone's
   `+0x80` and the matrix its `+0x284` names (`0x00373BC6`-`0x00373C4F`).
 
@@ -252,9 +297,17 @@ as well (`0x00418679`, `0x00418729`, `0x004186D9`), and the composer takes a tie
 
 A party member in a story scene can be two chunks: the bound model and a second skeleton tied to it. A child
 record attached with code `0x7FFF` goes through `0x004215A0` to `0x004219C0(parent, −1, child)`
-(`0x0042164D`-`0x00421661`), and `0x004219C0` ties the skeletons with `0x0046E640` (`0x00421AC1`). The skeleton-entry update
-builds `+0x6D0` when the record and the skeleton named by `+0x0C` both have a `skeletonmapping.bin` table
-(`+0x6B8`), and the composer uses it only while `+0x6C8` is 2.
+(`0x0042164D`-`0x00421661`), and `0x004219C0` ties the skeletons with `0x0046E640` (`0x00421AC1`).
+
+The skeleton-entry update builds `+0x6D0` when the record has the pointer `+0x6B8` that `0x0017F0D0`
+answers for its dword `+0x6B0` (`0x003704CC`-`0x003704E6`) and the `+0x6B8` of the record of the skeleton
+named by `+0x0C` is not null (`0x00370553`); the composer uses it only while `+0x6C8` is 2. That second
+record's address is not tested: when the skeleton's word `+0xA8` is `0xFFFF` or the record's `+0x284`
+is 0 the test reads from a null record address (`0x0037052B`-`0x00370553`).
+
+`0x0053AB50` builds `+0x6D0` the same way when it is null (`0x0053ACF9`-`0x0053ADB0`). The composer reads the table's
+dword at the index the bone's word `+0x27E` gives and takes no partner for a negative value
+(`0x00373BD4`-`0x00373BEE`).
 
 `0x004219C0` takes both skeleton entries (`0x002ED570` of each record's `+0x18`, no entry for −1) from its banks
 `+0xD98` and ties nothing when either is missing (`0x004219E4`-`0x00421A60`). It sets the child's `+0x2F2` to 0; with
@@ -533,3 +586,5 @@ Calls between the functions this page cites and code in other parts of the progr
   [call signatures](../Engine-Core/call-signatures.md), [hud](../Menus-And-HUD/hud.md).
 - World area: `0x003714A0` calls `0x00377C20`; those functions are documented on
   [force fight mode](../Engine-Core/force-fight-mode.md).
+- Save load settings: `0x0019C580` is called by `0x00866200`; those functions are documented on
+  [save file format](../Saving-Loading-And-Settings/save-file-format.md).

@@ -71,6 +71,10 @@ drop data is the record at `[unit+0xE60]`.
    least the quantity-group run `0x022C3160`; row 0 if no row qualifies (`0x003181C7`-`0x003181EF`).
    - With the shipped limits 8, 16, 24 and -1 this is row 0 for a run of 0-8, row 1 for 9-16,
      row 2 for 17-24 and row 3 from 25.
+   - The table is the one in slot `0x02EBF0C0`, its row count the dword `+0x04`; a null
+     slot gives row 0 (`0x0031816D`-`0x00318186`). When the slot is set and `0x0020E600`
+     answers null, the row address is 0 and its byte `+0x05` is read with no test
+     (`0x00318195`-`0x003181C7`).
    - When the killer is a party unit, the roll reads the run after the same kill's chain update:
      `0x00312280` calls `0x00317ED0` at `0x003122CD` (`0x003122B9`-`0x003122C8`) and the drop roll at `0x003125A1`.
    - A kill with no party killer that the reward gate still pays through its Poison or Petrify arm
@@ -142,9 +146,18 @@ bonus:
    level is above 3 (`0x003195B8`, `0x003195EC`).
 2. For outcomes 1-6 the tick gathers the party members (`0x00311173`-`0x003111B7`; outcomes 3 and 5
    only the picker, `0x003111DD`-`0x003111F1`).
+   The members are the nine entries of party map 1 (`0x00320AB0(i, 1)`), kept at `0x022C1740`
+   when `(+0x64 | +0x3C) & 0x80000003` is 0 or `0x00377C20` reports a town
+   (`0x00311173`-`0x003111B7`). An outcome of 0 or above 6 ends the bonus (`0x0031114E`-`0x0031115D`).
 3. It applies action `0xF5`, "Chain Bonus", through `BattleFormula_ResolveTargetResult` /
    `BattleFormula_ApplyTargetResult` (`0x0031124D`, `0x0031126C`) with the variant
    `0x00D102C0[outcome]` = `{-1, 0, 1, 2, 2, 3, 3}`.
+
+   For each member it takes the id `0x0031E800(member)`, calls
+   `0x002EACD0(id, 1, &id, 0x76)` when the id is not 0 (`0x003111D8`-`0x00311208`), clears a
+   `0x148`-byte result and puts the variant into bits `0x18` of the result's first dword
+   (`0x0031120D`-`0x00311241`). Both calls pass no source: `0x00385F60(0xF5, 0, member, result)`
+   and `0x003112F0(result, 0, member, 0xF5, 0)`.
 
 The action's effect slot `0x003908A0` does, by variant:
 
@@ -154,6 +167,17 @@ The action's effect slot `0x003908A0` does, by variant:
 | 1 | MP amount `0x02AEE010` = 10 % of the `i16` at `+0x28`, or 0 when byte `+0x6C` or `+0x7C` is negative | `0x00390A17`-`0x00390A46` |
 | 2 | adds Protect (status 18) through `0x00387BB0` | `0x003908DF`-`0x003909E3` |
 | 3 | adds Shell (status 19) through `0x00387BB0` | `0x003908DF`-`0x003909E3` |
+
+`0x00387BB0(source, stats, status, context)` adds to the result at context `+0x10`. It
+answers 0 and adds nothing when a source is given and the context's dword `+0x08` has a
+bit of `0x80000003` (`0x00387BDF`-`0x00387BEE`). For status 0 it adds nothing either: it
+answers 0 when the stats byte `+0x68` or `+0x78` has bit `0x2`, and 1 otherwise
+(`0x00387BF5`-`0x00387C0C`).
+
+The add sets bit `1 << status` of the result's `+0x54`. Unless the status row's byte
+`+0x08` is `0xFF`, it stores `0x00387730(source, stats, status)` at result
+`+0x5C + 4 * status`; statuses 2 and 6 then get `0xB` there. It stores the word
+`0x003876D0(status)` at result `+0xDC + 2 * status` and answers 1 (`0x00387C0E`-`0x00387C8E`).
 
 A status is refused (`0x02AEDFBC` = 1) in any of these cases (`0x003908DF`-`0x003909E3`):
 
@@ -278,3 +302,16 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Platform online achievements: `0x00312280` calls `0x00316A50`; those functions are documented on
   [debug menu](../Engine-Core/debug-menu.md).
+- Audio: `0x003112F0` calls `0x002DF220`, `0x003A1180`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Input: `0x00377C20` is called by `0x00253C70`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Script VM: `0x00320AB0` is called by `0x0050FD00`, `0x0050FD50`, `0x0050FDD0`, `0x0050FE20`, `0x0050FE80`, `0x0050FED0`,
+  `0x0050FF20`; `0x00377C20` is called by `0x00344740`, `0x00352FA0`, `0x003537D0`, `0x00355680`.
+- Script VM: those functions are documented on
+  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md),
+  [script censuses](../Story-Events-And-Hunts/script-censuses.md).

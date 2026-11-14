@@ -36,6 +36,8 @@ enemy (stats byte `+0x05` = 1) whose byte `+0xE9A` has bit `0x8` clear, and when
 holds: `+0xE9A` has bits `0x1` and `0x4` set, or the enemy's status words `+0x64 | +0x3C` have bit `0x2` set
 while `+0xE9A` bit `0x2` is set, or the killer is a party member (killer stats byte `+0x05` = 0).
 
+`0x00312280` returns at once for a null enemy, before any call (`0x00312280`-`0x00312283`).
+
 ### Recipients
 
 It walks the nine entries of party map 3 (`0x00320AB0(i, 3)`, `i` = 0-8: the selector
@@ -89,6 +91,9 @@ Party control mode 1 is bit `0x1` of `[0x02EBF190] + 0x5B04` with the bits under
 that mode the receiving unit is the one whose id equals byte `[0x02EBF190] + 0x5AD5`, looked up in the
 slot table at `+0x5A48` by `0x00320890`; it must still pass the recipient gate above, or nobody
 receives EXP.
+
+`0x00320890(id)` answers the index, 0 to 8, of the first of the nine table words whose
+low byte equals the id, and -1 for an id of `0xFF` or no match (`0x00320890`-`0x003208BE`).
 
 ### LP
 
@@ -145,12 +150,32 @@ How bit `0x4000` gets set ([New Game+ and New Game-](strong-and-weak-mode.md)):
 After the loop, `0x0028FB80(enemy id, exp, lp)` posts the amounts, clamped to 999,999 and 999, to the HUD's reward display
 (`0x00289D00` on `[0x0209BE80] + 0x5380`, once for EXP and once for LP). It uses EXP and LP computed with no
 recipient (`0x002F8BB0(0, enemy)`, `0x002F90C0(0, enemy)`): divided as above but never doubled, and EXP
-shows as 0 while bit `0x4000` of `[0x02EBF190] + 4` (New Game-) is set (`0x00312505`-`0x00312513`).
+is passed as 0 while bit `0x4000` of `[0x02EBF190] + 4` (New Game-) is set (`0x00236780`,
+`0x00312505`-`0x00312513`), so no EXP number is posted then: `0x00289BD0` posts nothing for 0
+(`0x00289BD0`-`0x00289BD3`).
 
 The clamps are made by the defeat routine before the call, `exp < 0 ? 0 : min(exp, 999999)` for the EXP and
 `lp < 0 ? 0 : min(lp, 999)` for the LP (`0x003124B4`, `0x003124DE`-`0x00312502`), a negative amount becoming 0;
-`0x0028FB80` posts the values it is given. With no HUD at `[0x0209BE80]` it posts nothing (`0x0028FB8F`-`0x0028FB99`). It
+`0x0028FB80` hands on the values it is given, and `0x00289BD0` posts nothing for a 0. With no HUD at `[0x0209BE80]`
+`0x0028FB80` posts nothing (`0x0028FB8F`-`0x0028FB99`). It
 gives `0x00289D00` a last argument of 0 for the EXP and 1 for the LP (`0x0028FBA7`, `0x0028FBB6`).
+
+`0x00289D00(part, id, amount, kind)` posts nothing when `0x003588B0(id)` finds no actor
+(`0x00289D28`-`0x00289D30`); otherwise it calls `0x002E9D10(id, buffer)` on a 16-byte stack buffer it does not
+clear and then `0x00289BD0(part, buffer, amount, kind)` (`0x00289D32`-`0x00289D4C`).
+`0x00289BD0` itself posts nothing for an amount of 0 (`0x00289BD0`-`0x00289BD3`) or when none of its twelve
+entries is free (`0x00289C00`-`0x00289C1F`).
+
+`0x002E9D10` writes nothing when `0x003588B0` finds no actor (`0x002E9D19`-`0x002E9D21`). It zeroes the buffer's
+first 12 bytes when the actor's pointer `+0xC0` is null or the dword it points to is -1
+(`0x002E9D23`-`0x002E9D32`, `0x002E9D6F`-`0x002E9D74`).
+
+Otherwise the word that pointer points to is an index, sign-extended:
+the first 12 bytes stay as they were when that word is `0xFFFF`, when the address
+`[0x022C6F28] + index * 0x740` is 0, or when the dword `+0x284` of the record at that address is 0
+(`0x002E9D34`-`0x002E9D58`); else `0x003E5700` copies the 16 bytes at that record's `+0x670` into the buffer
+(`0x002E9D5A`-`0x002E9D5D`, `0x003E5700`-`0x003E570B`). Whenever `0x003588B0` found an actor it then stores 1.0 at
+the buffer's `+0x0C` (`0x002E9D62`, `0x002E9D77`).
 
 With no recipient the EXP is not zeroed by the Stagnation bit either (`0x002F8D24`), and in party control mode 1 it
 is the whole amount, since the `0x00313800` member is not compared (`0x002F8C42`).

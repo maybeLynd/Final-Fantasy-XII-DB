@@ -119,14 +119,16 @@ floor of 796 is KO'd when it reaches 796. The revive test compares the HP before
 
 ### The number and the counter roll
 
-With a target unit, two publishers run before the store, on the limited value (`0x003006A7`-`0x003006E7`):
+With a target unit, two publishers run before the store (`0x003006A7`-`0x003006E7`):
 
 - `0x003283D0(targetUnit, delta, isHeal, 0)` posts the floating damage or healing number through `0x003BBD00`
   ([Battle numbers](../Menus-And-HUD/battle-numbers.md)), unless flag bit `0x10`. `isHeal` is `delta > 0`, or flag bit
   `0x20` when the delta is 0.
-- `0x0028F1F0(targetUnit[+0x08], old, new, 0)` starts the roll of the unit's HP counter in the party list or the
-  target window ([Party list](../Menus-And-HUD/party-list.md)), unless flag bit `0x80`. An HP change can so move one
-  display without the other.
+  The delta is the one the function was called with (`0x00300535`, `0x003006B7`), not the limited change, so a
+  heal of 500 on a unit 10 HP below its cap posts 500.
+- `0x0028F1F0(targetUnit[+0x08], old, new, 0)`, with the limited `new`, starts the roll of the unit's HP
+  counter in the party list or the target window ([Party list](../Menus-And-HUD/party-list.md)), unless flag bit
+  `0x80`. An HP change can so move one display without the other.
 
 Then it reads the event variant: bit `0x100` of the source unit's target-buffer entry for this target
 (`0x00316D70` over source `+0x778`, entry dword at `+0x788`), or 0 without both units

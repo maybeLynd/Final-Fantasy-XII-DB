@@ -193,6 +193,18 @@ control to
 Vaan; only when he has no battle unit does the function fall back to the first of the four active
 slots with a unit, then to `0x00263750(0)`.
 
+`0x0031C000(words, part, unit, n)` gives -1 for part 8 unless the unit is an enemy
+record (stats byte `+5` = 1) and `n` is below 2 (signed compare, `0x0031C048`-`0x0031C04C`);
+it then gives the dword `+0x38` or
+`+0x3C`, by `n`, of the record the unit's pointer `+0xE60` names
+(`0x0031C01C`-`0x0031C065`). For any other part it
+gives -1 when the unit is not null, has bit `0x4` of its first byte, `0x00313F60()` is not
+0, and its stats record `+0x698` exists, is a party record (stats byte `+5` = 0) and has
+stats byte `+4` equal to `0x00377C70()` (`0x0031C078`-`0x0031C0B2`).
+
+Otherwise the answer is `0x0031BF60(0x0031BDC0(words, part))`, by a tail jump
+(`0x0031C0B4`-`0x0031C0CF`).
+
 ### What a missing table returns
 
 Every reader runs its normal shift and mask on a default record of `0x0FFF` for the word and 0 for the
@@ -312,6 +324,12 @@ The name table's header, measured in all nine language copies of `planmapname.bi
 | payload `+0x1062` bit `0x80` | bit | enables the MP regime override | the script verb `setmist(v)` (`0x00314BE0`: set for a positive `v`, cleared otherwise); cleared by `0x00314A00` from the manager unload `0x002628B0` (`0x002695A0`, `0x00262CEF`); the whole byte also by the payload clears, the save read and the copy ([save and teleport crystals](save-and-teleport-crystals.md#every-bit-of-the-flag-byte)) |
 | payload `+0x1063` bits under mask `0x30` | 2 bits | the overriding MP regime, the level the scripts call the mist level | `setmist(v)` stores `v & 3` (`0x00314C1B`-`0x00314C28`) and clears it for `v` at most 0; cleared by `0x00314A00` from the manager unload `0x002628B0` (`0x002695A0`, `0x00262CEF`); the whole byte also by the payload clears, the save read and the copy ([save and teleport crystals](save-and-teleport-crystals.md#every-bit-of-the-flag-byte)) |
 | `0x02099DE7` | `u8` | the party hold parameter: `0x00377700() == 0` from `0x00268E29`, `0xFF` from the other five | `0x00268E29`; `0xFF`: `0x00262BEE`, `0x0026311C`, `0x00266F5F`, `0x00266FC1`, and `0x0026A20B` (its caller `0x002628B0` passes -1) |
+
+`0x002695A0`, the reset the manager unload runs, does these in order: `0x003590E0`; zeroes
+the four roster pointers at `0x0209A1F0`; `0x0035A240`; clears the `0x200` bytes at
+`0x02099DF0` with `0x00861EC0`; `0x00314A00`, `0x002341C0`, `0x00314010` and `0x00314DF0(-1)`
+(`0x002695A4`-`0x002695EA`); `0x00229F10(2 / [0x01DFE0B4])`; and zeroes the sixteen map-exit
+group owners at `0x0209A210` (`0x002695EF`-`0x0026962F`).
 
 ## Modding notes
 

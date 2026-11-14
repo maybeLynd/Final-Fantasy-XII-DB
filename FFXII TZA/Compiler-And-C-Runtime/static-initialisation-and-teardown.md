@@ -388,6 +388,20 @@ The array words of `0x01F2E828` lie between `0x01F2E820`, which `0x0064A0E0` and
 `{next, facet}`, allocated by `0x00210EC0`; `0x00194F50`, `0x0019B2F0`, `0x001AA6C0` and `0x00203E60` call it. At exit `0x008B905C`
 takes each node off the front and deletes it through its scalar deleting destructor `0x008087C4`.
 
+`0x0019B2F0(locale)` works under a lock object it builds with the import `0x008C25F0` and
+ends with `0x008C25F8` (`0x0019B313`, `0x0019B3E6`). It turns the id at the import `0x008C25A8`
+into an index (`0x008C2628`) and takes the facet at that index of the locale's table:
+the object the locale's `+0x08` names keeps the table pointer at `+0x10` and its size
+at `+0x18`. With no facet there and that object's byte `+0x24` set it looks in the
+table of the object that `0x008C2630` answers (`0x0019B326`-`0x0019B36F`).
+
+With no facet in either it uses the kept pointer `0x01F81148` (`0x0019B31A`, `0x0019B374`).
+Only when that is null too does it ask the import `0x008C2790` for a new facet: an
+answer of -1 throws through `0x00861ECC` with the text "bad cast", any other stores the
+facet at `0x01F81148`, calls the facet's slot `+0x08` and registers it with `0x00808850`
+(`0x0019B37E`-`0x0019B3DB`). It answers the facet
+(`0x0019B3EC`).
+
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x02EAECE8` | `void*` | 0 (zero-filled tail of `.data`) | head of the registered-facet list | `0x00808850` (`0x0080887B`, the new node, or 0 when the allocation fails); `0x008B905C` (`0x008B906A`, the next node) | `0x00808850` (`0x0080886D`); `0x008B905C` (`0x008B9076`) |

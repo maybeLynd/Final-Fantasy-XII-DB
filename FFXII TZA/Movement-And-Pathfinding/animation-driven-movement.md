@@ -33,7 +33,8 @@ the request both start from the argument.
 
 Otherwise it asks the unit for a view: `0x0041F2F0(record,
 0x0C, view)` zeroes 64 bytes, stamps `+0x00` with the record's word `+0xCC` and `+0x30` with its
-`+0x110` (both overwritten: the builder zeroes the view again), and hands the view to the battle
+`+0x110` (the builder reads both before it zeroes the view again, `0x0031ADD1`-`0x0031AE32`),
+and hands the view to the battle
 unit's view builder (`0x002ED500` → `0x0031ADB0`) with selector bits `0x4` and `0x8`.
 
 The `+0x00` stamp is the word sign-extended to a dword (`0x0041F31B`). The view builder is reached by
@@ -42,8 +43,10 @@ actor gets the 64 bytes zeroed again and nothing more (`0x002ED503`-`0x002ED52A`
 `0x0031B4B0`, which hands the unit `0x00263E30(actor)`, the selector and the view on to `0x0031ADB0`
 (`0x0031B4C8`-`0x0031B4DF`).
 
-Bit `0x4` writes the world position of the actor behind the unit's target handle `+0x2C` (`0x00265020`)
-into the view's `+0x10`-`+0x18` while the battle-state word `0x02089340` has bit `0x10`.
+Bit `0x4` writes the world position (`0x00265020`) of the actor behind the handle the view
+carried in at `+0x30`, here the render record's `+0x110` (`0x0041F311`-`0x0041F317`,
+`0x0031ADD1`, `0x0031AE7C`), into the view's `+0x10`-`+0x18` with `+0x1C` = 1.0, while the
+battle-state word `0x02089340` has bit `0x10`.
 
 Bit `0x8` writes the
 reach point into `+0x20`-`+0x28`: when `0x00322280()` holds, the target actor exists, either
@@ -54,11 +57,16 @@ coincide) and the view's `+0x3C` takes bit `0x1` (otherwise `+0x20` and `+0x28` 
 stays clear).
 
 Its y is the unit's `+0xE4`, or the target's y plus
-1.0 when the unit's `+0x698` record has byte `+5` = 1 and its definition `+0x28` bit `0x1`.
+1.0 when the unit's `+0x698` record has byte `+5` = 1 and its definition `+0x28` bit `0x1`; with a
+reach of 0 the routine skips the target position and that y is 1.0 (`0x0031AF56`, `0x0031AF91`,
+`0x0031B093`-`0x0031B099`).
 
 Nothing is queued when the target position equals the record's position `+0x140`/`+0x148` in x and
-z. Otherwise the request is built: for mode `0x10` and modes 3 and 4 the direction is the unit
-vector from the target position to the record's position, a step away from the target, with
+z.
+
+Otherwise the request is built: for mode `0x10` and modes 3 and 4 the direction is the unit
+vector from the target position to the record's position in x and z, its y 0 (`0x003E63FE`,
+`0x003E64E2`), a step away from the target, with
 distance 1.0; for every other mode it is the vector from the record to the reach point, with the
 distance `|vector|` kept only when the view's `+0x3C` has bit `0x1` and zeroed otherwise (with the
 reach point unset the vector points at the world origin and only the turn acts).
@@ -110,7 +118,7 @@ so only the newest request turns.
 `0x003AED70` has a second producer. The knockback impulse `0x00323350(attacker, victim, distance, flag)`
 (from `0x00307300`) builds a request on its stack: mode `0xE`, or `0xF` with the flag; the distance;
 `+8` = 0; the relative heading as the bearing from the victim to the attacker minus the victim's
-heading `+0x160` (the heading itself when the two coincide), wrapped; the direction `(victim -
+heading `+0x160`, wrapped; the direction `(victim -
 attacker) / hypot` in x and z, away from the attacker; `w` = 1.0.
 
 A zero distance between the two skips it, as does either of `0x02089340` bits `0x200` and `0x400` together with a victim
@@ -397,7 +405,8 @@ each entry's counter, armed bytes and two accumulators.
 - The step is proportional to the distance at the command, shaped by the speed curve, clamped per
   frame by the actor's smaller collision radius; it is not root motion, and the bone data does not
   contain it.
-- The target is whatever the unit's target handle names when the command fires.
+- The target is whatever the handle in the render record's `+0x110` names when the command fires
+  (`0x0041F311`-`0x0041F317`, `0x0031AE7C`).
 - With no target, or while battle-state bit `0x10` is clear, the view's target position stays 0
   (`0x0031AE6D`-`0x0031AEA7`), and the builder tests only that it differs from the record's position
   (`0x003E6395`-`0x003E63BB`): the character turns toward the world origin (x 0, z 0), and for modes 3, 4

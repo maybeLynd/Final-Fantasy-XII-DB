@@ -80,6 +80,33 @@ Inside a row (`0x0023C5C0`):
    (`0x0023C729`). A pad button is never captured.
 4. The row calls `0x001E1050(row, profile, code, swap 0)` (`0x0023C74A`).
 
+`0x0023C5C0(row, message)` is the row's procedure and branches on the message dword
+`+0` (`0x0023C5D5`-`0x0023C5FE`): 1 builds the row, 2 re-reads its codes, 10 is the frame
+step the list above describes, 12 and 13 are the two below, and every other message
+goes on to `0x005C5230` (`0x0023C612`). The row keeps its index at `+0xC8`, its column
+count at `+0xCC`, the selected column at `+0xE8` and the capture flag at `+0xEC`.
+
+The code of a column is `0x001E0AA0(row index, column)`. The build stores it for every
+column at `+0xD0 + 4 × column` and at `+0xDC + 4 × column` (`0x0023CAB0`-`0x0023CACE`);
+message 2 stores it at `+0xD0` alone (`0x0023C930`-`0x0023C94B`), and each assignment
+stores the selected column's again (`0x0023C648`-`0x0023C654`, `0x0023C762`-`0x0023C76E`).
+
+The build also takes index and count from the message's `+8` and `+0x10`, sets the
+selected column to -1 and the capture flag to 0, and on the list the pointer `+0xC0`
+names sets the dword `+0x148` to 1, calls `0x002D48C0(list, count)` and `0x002D45C0(list, 0)`,
+clears bit `0x8000000` of the list's `+0xE0` and calls `0x002445C0`
+(`0x0023C9D7`-`0x0023CA2B`, `0x0023CA6C`-`0x0023CA76`).
+
+Message 12 reads the qword `+8`: `0x1C` clears the row's dialog pointer `+0xF8`,
+`0x8002` sets the selected column to -1, and `0x8001` gives a row with no selected
+column the column in the message's `+0x10`, or the last column when that is not below
+the count (`0x0023C684`-`0x0023C6FD`).
+
+Message 13 with `0x2CA1` at `+8` is the answer of the swap question: the row calls
+`0x001E1050(row, profile, code at message +0x10, 1)` (`0x0023C617`-`0x0023C637`) and
+`0x0016D6A0`, `0x00287C20` and `0x002B5C90`; every message 13 ends the capture
+(`0x0023C66C`).
+
 `0x001E1050` maps the row, calls the assigner `0x00198A00` (`0x001E10AA`) and publishes on success (`0x001E10D0`). The map
 `0x001E0650(row)` gives the group in bits `0xFF0000` and the slot in the low byte (`0x001E108B`, `0x001E109A`), and the
 swap argument is passed as 1 for any non-zero value (`0x001E1084`-`0x001E1088`). The assigner's 1 comes back as 1, its
@@ -106,7 +133,7 @@ Leaving the screen with cancel shows notice `0x001E08F0()` when that is not 0 (`
 the assigner's refusal (`0x0023C7B9`), and notice 4 a row whose `+0xE8` is 0 (`0x0023C8CF`).
 
 A yes to the question calls `0x001E1050` again with swap 1 (`0x0023C637`); a no changes nothing. Square clears the
-binding with `0x001E1050(row, profile, 0, 1)` (`0x0023C8F5`), and in the first profile it plays error sound 4 instead
+binding with `0x001E1050(row, profile, 0, 1)` (`0x0023C8F5`), and in the first profile it shows notice 4 instead
 (`0x0023C8BF`-`0x0023C8CF`).
 
 ### The key-cap pictures
@@ -210,6 +237,12 @@ screen's row table (the open Controls screen `0x0208E6D0` is on [Config screen](
 | `0x01F8041C`, `0x01F80420` | `u32`, `u32` | 0 | the same in the master copy of record 4, `0x01F803E8` | `0x0015BD30` (`0x0015BEB2`); `0x00195DF0` and `0x00198B60` as above; `0x00198960` (`0x001989C0`, `0x001989C6`) | `0x00196290` (the third copy, from `0x001963DE`) |
 | `0x0208E6E0`-`0x0208EA13` | `u32[205]` | 0 | the Config screen's 41 rows (see The binding rows), `0x14` bytes each: `+0x00` the row's own number, which no instruction reads; `+0x04` the type; `+0x08` the text id; `+0x0C` the help text id (`0xD43` on every binding row); `+0x10` the columns of a type 1 or 2 row, or the value a type 3 or 4 row passes to its handler (`0x0023DB40`, `0x0023E710`) | `0x002414B0`, which the screen `0x0023CE10` calls: see the list below | `0x0023CD20`, the type and text (`0x0023CD48`, `0x0023CD67`, `0x0023CD97`); `0x0023CE10`, the type (`0x0023CFA7`, `0x0023D020`, `0x0023D0CF`), `+0x10` (`0x0023D03D`, `0x0023D049`, `0x0023D062`) and the help of the selected row (`0x0023D350`); `0x00241890`, the type of the row under the cursor (`0x002418D0`) |
 
+The same initialiser `0x0015BD30` also stores buttons 0-3 of the three master records,
+from `0x01DF09C0`, `0x01DF0A00` and `0x01DF0A40` (`0x0015BD4C`, `0x0015BDEF`, `0x0015BE8F`), and
+copies the `0x100` bytes that follow each record's sixteen buttons: `0x01DF0A80` to
+`0x01F80170`, `0x01DF0B80` to `0x01F802CC` and `0x01DF0C80` to `0x01F80428` (`0x0015BD80`-`0x0015BDD1`,
+`0x0015BE20`-`0x0015BE71`, `0x0015BEC0`-`0x0015BF11`).
+
 `0x002414B0` stores the row table in one pass, from 16-byte constants at `0x00914D10`-`0x00915030`:
 
 - 16-byte stores to `0x0208E6E0`, `0x0208E6F0`, `0x0208E700`, `0x0208E710`, `0x0208E720`, `0x0208E730`, `0x0208E740`, `0x0208E760`,
@@ -245,3 +278,10 @@ No other instruction reaches these globals. `0x01DF176C` and `0x01DF1770` are al
 - [keymap.ini](keymap-file.md) - the file the profiles are read from and written to.
 - [Controls](controls.md) - the records the game polls.
 - [Control names](control-names.md) - the codes and their names.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Presentation: `0x002D45C0` is called by `0x00579420`; `0x002D48C0` is called by `0x00578450`, `0x00579420`; those functions
+  are documented on [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md).

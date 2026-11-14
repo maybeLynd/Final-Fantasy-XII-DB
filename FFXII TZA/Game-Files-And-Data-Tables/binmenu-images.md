@@ -108,6 +108,18 @@ and 6).
 - The menu task `0x00281AE0` calls `0x00283270(1)`, which scans the nine party records (`0x00320040(3, i)`). It clears
   bit `0x2` of `[0x0209AC30] + 0xD3C` and sets `+0xB2D` to `0xFF`. A member whose record has bit `0x2` of byte 0
   sets bit `0x2` and stores its character id (record `+0x60`) at `+0xB2D`.
+- Before that scan the task clears the `0x938` bytes from `[0x0209AC30] + 0x408`
+  (`0x00281C8B`-`0x00281CA1`), which hold both `+0xB2D` and `+0xD3C`. After it the task runs
+  `0x002826F0`, `0x002CD510` and `0x00254E80` (`0x00281CB0`-`0x00281CBA`).
+- `0x00254A50` gates two of the menu's entries: `0x002CD3C0(0x4B7, 0xCCA)` (story gate
+  `0x4010`) and `0x002CD3C0(0x4BC, 0xCCF)` (story gate `0x4007`) run only when `0x00254A50()`
+  answers 0 and `0x0032A8A0` answers non-zero for the gate (`0x00281C13`-`0x00281C3B`,
+  `0x00281C4F`-`0x00281C77`). `0x002CD3C0(a, b)` stores `a` in the new entry's dword `+0x00` and
+  the answers of `0x002F9860(a)` and `0x002F9860(b)` in its `+0x10` and `+0x18`
+  (`0x002CD3F1`-`0x002CD403`).
+- The page object comes from `0x00249580(task)`; the task calls `0x002920C0`, `0x002CEFA0`,
+  `0x002CEAE0` and `0x00249410` on it in that order (`0x00281D93`-`0x00281DB6`), so the guest
+  portrait request of the next item runs after `0x002920C0`.
 - `0x002CEAE0` then requests kind 7, id `+0xB2D + 0x10` into `+0x3C0` through `0x00249180`, so guest ids 7 to 16
   load `face_guest07` to `face_guest16`. It requests only while bit `0x2` of `+0xD3C` is set (`0x002CEAEB`); with
   the bit clear it returns at once and leaves `+0x3C0` as it was.
@@ -159,6 +171,8 @@ and 6).
 - The flags are set by `0x0031A910` and cleared by `0x0031A8C0`; their callers are the handlers of the verbs
   `set_field_effect` (`0x4F5`, `0x00344610`) and `clear_field_effect` (`0x4F6`, `0x00344980`) and `0x002FDDA0`
   ([verb table](../Scripts-And-Script-Commands/verb-table.md)).
+  `0x0031A910(mask)` first calls `0x00469C00(mask, 1)` and then ORs the mask into
+  `0x022C314C` (`0x0031A916`-`0x0031A922`).
 - `0x0031A7B0`, asked by the command check `0x002FFCF0`
   ([command availability](../Battle-Actions/command-availability.md)), refuses a command whose command-record byte
   `+0x1E` is 0, 1, 2 or 3 while bit `0x4`, `0x8`, `0x10` or `0x20` is set, with codes `0x16` to `0x19`.

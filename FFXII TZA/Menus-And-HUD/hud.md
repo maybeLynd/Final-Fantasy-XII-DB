@@ -166,7 +166,8 @@ Two callers ask for lines:
 - `0x00328530(unit, target)`, for each target of a unit (`0x00306010`), when `0x003126E0` passes the target and
   `0x0031AA30` gives a kind (`0x00328555`-`0x003285A0`);
 - the battle menu's list `0x0027DE30(unit, row)`, for the target `0x00272E10` gives the row, with the kind from
-  `0x00321060` (`0x0027DE99`); a row with no target closes the unit's lines (`0x00290B90`, `0x0027DE6F`).
+  `0x00321060` (`0x0027DE82`), handed to `0x00290320` (`0x0027DE99`); a row with no target closes the unit's
+  lines (`0x00290B90`, `0x0027DE6F`).
 
 ### Line states
 

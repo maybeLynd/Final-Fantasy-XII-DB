@@ -69,6 +69,10 @@ bank `id / 1000` and index `id mod 1000` (`0x002F9866`-`0x002F98BD`), so these a
 and `help_menu.bin` 117, 396 and 397. The row builder `0x0023ED80` adds every row without a condition
 (`0x0023EE10`-`0x0023EF27`).
 
+`0x002406F0(a, b)` builds the screen with `0x00244F50(0x4D8, 0x0023FBE0, arguments)` only
+while `0x0208E6D8` is 0, the three construct arguments being the dword 0, its own byte
+`a` and its own word `b` (`0x00240703`-`0x00240736`).
+
 On a confirm, Config's switch (`0x00240065`-`0x00240080`) sends all three commands to `0x00240173`. That code plays sound
 `0x2B`, runs `0x00238A50` for `0x19` (`0x00240182`) or `0x00238A20` for `0x1A` (`0x0024018C`), sets the leaving bit
 (`0x00240191`) and closes. Leaving the title list stores that bit (1 after a confirm, else the 0 set at
@@ -155,6 +159,13 @@ The join catch-up `0x00317480` reads no mode bit, so a joiner's level is set as 
   `0x002501E0` and `0x002DDE60` (`0x00394464`-`0x00394481`). After it, it creates the widget `0x00394070` with
   `0x00244F50(0xD8, 0x00394070, 0)` when `0x02AEE4C0` is empty (`0x0039448B`-`0x003944A4`) and ends with a jump to
   `0x001D6C60` (`0x003944AD`).
+- The widget's procedure `0x00394070` takes three messages. Message 1 stores the widget
+  in `0x02AEE4C0`, zeroes `+0xC0`, runs `0x00393FF0` and `0x002E1C20(0, 0x15)` and attaches the
+  widget under `[0x0208EA28]` with `0x00244960` (`0x003940F2`-`0x00394121`). Message 16 sets bit
+  `0x1` of `+0xC0` (`0x003940E3`).
+- Message 18 calls `0x0024A680([+0xC8], 1)`, frees the pointer `+0xD0` through `0x003697F0`
+  when it is not null and nulls it, calls `0x002E1CA0(0, 0x15)` and zeroes `0x02AEE4C0`
+  (`0x00394097`-`0x003940D2`). Every other message goes on to `0x005C5230` (`0x00394092`).
 
 ### Where the scripts offer the two questions
 

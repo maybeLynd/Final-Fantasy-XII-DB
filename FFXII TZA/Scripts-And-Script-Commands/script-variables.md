@@ -40,6 +40,11 @@ stack, last dimension `d[n − 1]` first, and folds them row-major with `stride 
 An empty stack gives the index 0 (`0x002624D8`), and an entry whose tag is neither 1 nor 2 calls `0x008620C0` and
 gives 0 as well (`0x002624F3`-`0x002624FB`).
 
+The resolver takes a popped entry's tag from the byte at stack `+4 + position` and its
+value from the dword at stack `+0x184 + 4 × position` (`0x002624E4`). A tag-1 value is used as it is
+(`0x0026257D`); a tag-2 value is a float and is cut to an integer toward zero
+(`0x00262571`).
+
 It then resolves the element descriptor's class as above; an element class of 6 or 7 has no case and falls to
 base 0, the bare offset as an address (`0x00262552`-`0x00262555`). The flat index is returned separately and
 the caller scales it by the element width.
@@ -131,6 +136,14 @@ The save controller sets the flag to 1 at `0x00582E98`, the script verb `0x05BF`
 clears it through `0x00287D00`, and the verb `0x05BE` (start `0x00355940`) reads it through
 `0x00286000`; in the shipped scripts only the Trial Mode
 director uses the pair, to skip its entry sequences once after a load.
+
+`0x00287D00(v)` stores its argument in `0x0209AC10` (`0x00287D00`), so it is a setter. Its two
+callers both give it 0: the verb (`0x00355E80`-`0x00355E82`) and `0x00314754`. Before that
+call, when `0x00236760` answered 0 and `0x01EED064` is not `0xC`, the dword `+0x4E664` of
+the answer of `0x002EF640` takes `0x01EED064` (`0x00314712`-`0x00314731`); when `0x01EED064` is
+not `0xC` at `0x0031473F`, `0x003C8670` runs and the value is tested once more
+(`0x0031473F`-`0x00314750`). The call runs only when one of these tests finds `0xC`, and
+`0x01E0C3EC` is then set to 1 (`0x00314752`-`0x00314759`). No caller gives it another value.
 
 `global` variables are bytes of the save payload and are saved and loaded with it; `file` and
 `local` variables live in the script image and are gone when the area's scripts unload. `POPV`

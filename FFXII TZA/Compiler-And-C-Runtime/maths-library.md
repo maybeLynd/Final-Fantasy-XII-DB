@@ -100,6 +100,8 @@ and `0x007F1EC0` slot 7 of `SQEX::Sd::Lay::DirectionSound` (`0x01CB9DD0`). `0x00
 `0x007F1EC0` calls `0x007F0210` with its arguments and returns its result. Unless that result is negative, it
 copies the direction at `+0x18` to `+0x20` of its third argument to `+0x100` and normalises it the same
 way, keeping `+0x10C` (`0x007F1EF2`-`0x007F1F69`).
+The second argument reaches `0x007F0210` as a pointer to a local copy of the 8 bytes at
+`[rdx]`, not as the caller's pointer (`0x007F1ECA`-`0x007F1ED5`).
 
 Routines that use `sqrtps` take the exact root and load only the mask. What the sound engine does
 with these values is on [spatial-sound.md](../Sound-And-Music/spatial-sound.md).
@@ -112,6 +114,22 @@ The runtime linked into the image carries four-wide `float` power routines with 
 - `0x00809900` tests the CPU level the start-up probe `__isa_available_init` (`0x00809458`) stores at
   `0x01F44858`. At level 2 or above it jumps to `0x0080A000`, otherwise to `0x00809D80`. It is called once,
   from the post-effect library (`0x006EA4CF`).
+- Both targets give e to the power x for the four floats in xmm0. They take
+  n = x × 64 / ln 2 as an integer (`42B8AA3B`) and r = x - n × ln 2 / 64 with the
+  constant in two parts (`3C316000`, `3690BFBF`) (`0x00809D87`-`0x00809E42`,
+  `0x0080A007`-`0x0080A0BB`).
+- The result is 2^(n / 64) × (1 + r + r × r / 2): the fraction of 2^(j / 64) comes
+  from the 64 qwords at `0x03005100` (`0x03005500` for `0x0080A000`) by the low six bits of
+  n, and the exponent from n shifted right by 6 (same ranges).
+- `0x00809D80` makes the integer by adding and taking away 1.5 × 2^23 (`CB400000`),
+  `0x0080A000` with `cvtps2dq` and `roundps` (`0x00809DA6`, `0x00809DCE`, `0x0080A01F`,
+  `0x0080A044`). Otherwise the two bodies take the same steps.
+- When a lane's magnitude is above 86.5 (`42AD0000`, compared as integers) both take
+  a second path (`0x00809E50`, `0x0080A0C0`): a lane below 105.0 (`42D20000`) takes its
+  power of two in two steps by sign, a larger finite lane gives the square of
+  `7F000000` or of `0x00800000` by sign, an infinite lane gives infinity or 0 by sign,
+  and a lane that is not a number gives its own square (`0x00809ECD`-`0x00809FFA`,
+  `0x0080A140`-`0x0080A26D`).
 - `0x00809920` is `jmp 0x0080A270`, called once from `0x00767052`, also in the post-effect library.
   `0x0080A270` widens the four inputs to `double` (`0x0080A298`), seeds a reciprocal with `rcpps`
   (`0x0080A339`, `0x0080A33D`, the only two in the image), and loads tables from `0x03006800`.

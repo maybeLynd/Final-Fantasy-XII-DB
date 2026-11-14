@@ -268,6 +268,60 @@ half a byte per texel. The pen advance and the screen quad come from the `font_s
 (`0x0017FD00`, `0x0017F8C0`): the quad drawn through `0x0017F7C0` uses that font's glyph record for its atlas
 rectangle, and only when the colour's alpha byte is non-zero.
 
+In order, `0x003649A0(state)` does this, the offsets being of its one argument unless a name is given:
+
+1. It selects the font: `0x0017FA10(0x3001, 0x44, flag)`, `0x0017FD00(face + 11)` and
+   `0x0017FB00([+0x20])`, the face being the byte `+0x60` and the flag 1 for faces 0, 3
+   and 4 and 0 for the others (`0x00364A20`-`0x00364A61`).
+2. When `0x002DDC50()` answers non-zero and the face is 6 to 11, the float `+0x04` becomes
+   `+0x04 × 0x00254A00()` (`0x00364A66`-`0x00364A85`).
+3. The word `+0x56` becomes 0 when the floats `+0x00`, `+0x04` and `+0x08` are all 1.0 and
+   1 otherwise (`0x00364A8B`-`0x00364AD5`); it later chooses the value sent to GS register
+   `0x14`: `0x20` for 1, 0 for 0 (`0x00365069`-`0x00365087`).
+4. It copies the colour `+0x30` to `+0x34` and starts reading the line 4 bytes into the
+   text at `+0x28` (`0x00364ADA`-`0x00364AEA`).
+5. A character with no cache entry from `0x00365FD0` or `0x00364210`, or with no glyph record
+   from `0x0017F8C0(code)`, is skipped (`0x00364BAE`-`0x00364BC5`).
+6. The byte `+0x61` picks the palette block of the two texture words: below `0x20` the
+   block is `0x34E0 + 4 × (byte >> 4)`, from `0x20` it is `0x3500 + 4 × ((byte - 0x20) >> 4)`,
+   and the low four bits go in the second word; each word also holds an answer of
+   `0x003A1FE0`, called twice on either way (`0x00364C31`-`0x00364D81`).
+7. The quad: `+0x40` and `+0x44` take the glyph record's dwords `+0x10` and `+0x14` as
+   floats (`0x0017F9C0`), and the pen x `+0x38` first gains the record's dword `+0x20`
+   (`0x0017F8E0`). The corner is x `+0x38`, y `+0x3C` plus the integer `+0x50`; the width is
+   the integer `+0x48` when it is not 0 and `+0x40` otherwise, the height `+0x4C` or
+   `+0x44` in the same way (`0x00364DA5`-`0x00364E3F`).
+8. Each of the four values becomes `value × +0x00`; then the width becomes `width × +0x04`
+   and the height `height × +0x08` (`0x00364E45`-`0x00364EE9`). Only when the float `+0x0C` is not 0 the
+   four corners go through `0x00202B90` with the matrix at `[0x022CBE00] + 0x1E0`
+   (`0x00364EC3`-`0x00364F59`). `0x0016D6A0` then takes the four corners with the pointer
+   `+0x20` (`0x00364F5E`-`0x00364F78`).
+9. The packet sends 0 to register `0x3F`, `0x44` to `0x42`, `0x3001` to `0x47`, 5 to
+   register 8, the two texture words to register 6, the value of step 3 to `0x14` and
+   `0x154` to register 0 (`0x00364FAD`-`0x003650AB`).
+10. When the colour `+0x30` differs from the one last sent, it sends the four colour
+    bytes with 1.0 to register 1, calls `0x0017F850` and repeats the three calls of step 1
+    (`0x003650AF`-`0x00365141`).
+11. Four vertices follow, each a word for register 3 and one for register 5. The
+    texture corners run from `(0.5 × 16, 0.5 × 16)` to `((b2 + 0.5) × 16, (b3 + 0.5) × 16)`,
+    `b2` and `b3` being bytes `+2` and `+3` of the cell record, the cache entry's `+0x20`
+    (`0x00364DA9`); the other word is the corner from `0x0016D6A0` with the word `+0x54` as
+    depth (`0x00365146`-`0x00365301`). `0x003A2020` closes the packet (`0x00365309`).
+12. The pen x `+0x38` gains `advance × +0x04`, the advance being the glyph record's dword
+    `+0x1C` (`0x0017F9C0`, `0x00365364`-`0x00365382`); the cell record goes to `[0x022CBE00] + 0x238`
+    (`0x00365388`) and `0x0017FAE0` takes the glyph record.
+13. A packet of `0x180` entries or more is sent with `0x003A1DB0` and a new one started
+    (`0x00365394`-`0x003653C8`).
+14. The `0x0017F7C0` quad of the page's sentence takes its atlas rectangle from the glyph
+    record's dwords `+0x08`, `+0x0C`, `+0x08 + +0x10` and `+0x0C + +0x14`, the four colour
+    bytes, the word `+0x54` and a mode value (`0x003653D7`-`0x003654DF`).
+15. The mode value is `0x1B` for face 0 with a byte `+0x61` below `0x20`, and `0x1A` or
+    `0x1B` for face 0 above it (`0x1A` only for `0x21`); for another face it is the byte
+    (less `0x20` from `0x20`) when the flag of step 1 is 1 and -1 when it is 0
+    (`0x00364CCC`-`0x00364CEA`, `0x00364D84`-`0x00364DA1`, `0x003654A9`).
+16. At the end of the line it calls `0x0017F850`, and `0x003A1DB0` when a character was
+    added since the last send of step 13 (`0x00365399`, `0x003653CD`, `0x00365539`-`0x0036554B`).
+
 ### Control codes and measuring
 
 `0x003649A0` reads the line as 16-bit codes and hands each to `0x003647E0` first (`0x00364B58`), which

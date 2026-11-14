@@ -128,13 +128,16 @@ any other pair converts nothing.
 
 The 144 nodes share 68 routines. Every routine takes `(source base, destination base, desc, context)`,
 where `desc` holds the element count, the source stride, the destination stride and a byte that swaps
-the two field offsets read from the context, and converts `count` elements, four per loop pass. The
+the two field offsets read from the context, and converts `count` elements; `0x00592E30` and `0x00595C00`
+convert one per loop pass (`0x00592E80`-`0x00592E90`, `0x00595C50`-`0x00595C5F`). The
 pairing follows from the arithmetic:
 
 - a conversion to an 8-bit integer from an integer, `bool` or character source is the one byte copy `0x00595C00`
   (20 pairs), to a 16-bit integer from an integer source at least 16 bits wide `0x00593980` (14), to a 32-bit
   integer from one at least 32 bits wide `0x005939F0` (10); float sources and widening conversions use other
   routines ([scalar-conversion registrars](image-hardening-scalar-conversion-registrars.tsv));
+- `0x00592E30`, the routine of `PUInt8` and `bool` to `PInt64` and to `PUInt64`, stores
+  each source byte zero-extended as a qword (`0x00592E80`-`0x00592E90`);
 - `0x00594EB0` converts `double` to `float` (`cvtpd2ps`) and `0x00594350` `float` to `double`
   (`cvtps2pd`). Both add `[[context + 0x10] + 0x48]` to the source base and `[[context + 8] + 8]` to the
   destination base, swapped when the byte `desc + 0xC` is set (`0x00594363`-`0x00594396`,
@@ -148,6 +151,9 @@ One of the other 41 tears down the event record `0x02D3E880`. Its initialiser `0
 which stores a `CreateEventA` handle (auto-reset, initially unsignalled) at `+0x08` and sets `+0x10`
 and `+0x00`. `0x00677520` closes it through `0x005CD6D0` (`CloseHandle`). The empty teardown never closes
 the handle.
+
+With the record's first byte at 0 `0x00677520` makes no call and answers `0x15`; after
+the close it answers 0 (`0x00677524`-`0x00677543`).
 
 ### What the image records about its build
 
@@ -299,6 +305,13 @@ the stub `0x005C5230`), calls
 `0x0067F580(0x01F2CDA0)` (`0x0059FF08`). It removes every node, rebalancing through `0x0067F9D0`, and leaves each one
 pointing at itself in `+0x00`, `+0x08` and `+0x10` (`0x0067F69D`-`0x0067F6A4`, `0x0067F6BB`-`0x0067F6C2`). It then clears
 the byte `0x02CA9D91` (`0x0059FF0D`), so the next call of `0x0059A030` runs the 144 registrars again.
+
+Before the `0x0067F580` call `0x0059FE20` empties the list at `0x02CA9D88`: each node is
+unlinked first (`0x0059FE60`-`0x0059FE8D`); its array `+0x70` is freed with `0x00584730` only
+when bit `0x80000000` of the count `+0x68` is clear, and both are zeroed; `0x00598040`
+runs on the node's `+0x18`; the array `+0x10` with the count `+0x08` is treated the same
+way; and the node itself is freed (`0x0059FE9C`-`0x0059FEEB`). After the call it clears the
+bytes `0x02CA9D91` and `0x02CA9D90` and answers 0 (`0x0059FF0D`-`0x0059FF1B`).
 
 On that second run every guard is already set, so each registrar runs steps 2 to 4 only, and the tree is rebuilt
 with the same shape. The exit teardown `0x008A81D0`, which `0x00160310` registers with `atexit`, calls

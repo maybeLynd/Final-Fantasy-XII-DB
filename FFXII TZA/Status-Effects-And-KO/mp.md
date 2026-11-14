@@ -125,6 +125,7 @@ byte `+8` bit `0x4` (`0x002E5290`-`0x002E5337`, `0x00329A80`).
    `+0x18` of its 64-byte record. When the two are equal it stores the value back and gives nothing. A unit that
    is inactive or has KO, Stone or X-Zone without the field's bit `0x8000` gets 0 and loses its progress
    (`0x00320450`-`0x00320492`).
+   A null unit also gets 0, with nothing written (`0x00320461`-`0x00320464`).
 2. It picks the first of rows 20-24 whose MP limit `+0x04` is at least current MP, or row 24.
 3. The row's distance `+0x00`, divided by 3 in a rich area, is the walk for one point. A longer distance gives
    1 MP and starts again from 0.
@@ -138,6 +139,10 @@ float, divided by 3.0 in a rich area, `d = (float)[row + 0x00] / 3.0` when `0x00
 
 The distance left is stored at record `+0x18` and added back to `+0x70` by `0x00329A20(unit, distance)`
 (`0x002F95A6`-`0x002F95AE`). On the equal path it is the same value (`0x002F947E`).
+`0x00329A20` adds nothing for a null unit, for a unit without bit `0x10` of its first
+byte or without a stats record `+0x698`, and for one whose stats record has a bit of
+`0x80000003` set in its dword `+0x64` or `+0x3C` while `0x00313F60()` answers 0
+(`0x00329A31`-`0x00329A5B`); it answers 0 in every case (`0x00329A67`).
 
 `0x00310DB0` writes the point with flags `0x90`, so the gain is neither shown nor reported (`0x003110C8`-`0x003110D7`).
 
@@ -246,3 +251,13 @@ Augment rows 91, 92 and 93 each carry 10 in word `+4`, so the three together cut
 - [Action definition row](../Battle-Actions/action-definition-row.md) - `+0x0A`, `+0x1E` and `+0x2C`.
 - [Action phases](../Battle-Actions/action-phases.md) - when an action pays.
 - [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md) - the MP regime.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Input: `0x00313F60` is called by `0x00253C70`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Spawn encounter lifecycle: `0x00313F60` is called by `0x00234DA0`, `0x002350C0`; those functions are documented on
+  [enemy spawning](../Enemy-Spawning/enemy-spawning.md),
+  [frame update order](../Engine-Core/frame-update-order.md).

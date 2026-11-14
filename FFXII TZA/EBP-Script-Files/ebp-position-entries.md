@@ -22,7 +22,8 @@ releases the roots.
 
 `0x003DFA50` passes each non-null root, `0x02B59D48` and `0x02B59D50`, to `0x00331880` and nulls it
 (`0x003DFA70`-`0x003DFA7D`), then does the same for the navigation-icon block `0x02B59D58`
-(`0x003DFA8A`-`0x003DFA9B`).
+(`0x003DFA8A`-`0x003DFA9B`). The boot clear `0x003DFDA0` zeroes both roots with one 16-byte
+store (`0x003DFDAE`).
 
 ## Layouts
 
@@ -162,3 +163,10 @@ past the records. In the 517 `us` tables that count lies inside the section, and
 - [Battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md): the order goal decoder and the class steering solver.
 - [Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md): the condition evaluator.
 - [Random number generators](../Random-Numbers/random-number-generators.md): the generator behind region placement and wandering.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- World area: `0x003DFDA0` is called by `0x00266D10`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).

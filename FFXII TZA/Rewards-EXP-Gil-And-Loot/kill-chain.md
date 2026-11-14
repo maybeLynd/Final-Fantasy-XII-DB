@@ -198,10 +198,34 @@ The widget update `0x003F9F40` reads those flags each frame:
 - With flag bit `0x4` set, it counts frames at widget `+0x24A0` and, once the count passes 15 times the
   frame base `0x01DFE0B4`, starts a second element at widget `+0xD0` with the handler `0x003FACF0` and
   clears the bit (`0x003F9F51`-`0x003F9FB5`).
+- The second element is started only while its slot at `+0xD0` is empty (`0x00273A20`);
+  the frame count goes back to 0 and the bit is cleared either way (`0x003F9F76`-`0x003F9FB5`).
+- Flag bit `0x10` starts a third element at widget `+0x1A0` with the handler `0x003FC3F0`
+  in the same way and is cleared only when it does (`0x003F9FBC`-`0x003F9FFD`).
+- The count is redrawn when it differs from the drawn count `+0x249A` and is not 0, or
+  when flag bit `0x1` is set; `playSound` is flag bit `0x8` (`0x003FA004`-`0x003FA040`). A
+  redraw that answers 0 sets flag bit `0x1` for the next frame (`0x003FA146`).
+- A redraw that answers 1 clears flag bits `0x1`, `0x2` and `0x8`, puts flag bit `0x8`
+  into the widget's `+0xC4` bit `0x4` beside bit `0x2`, and copies the count to `+0x249A`
+  (`0x003FA04D`-`0x003FA08B`).
+- In the same frame, with `+0xC4` bit `0x2` set, it draws the kept count `+0xC8` with
+  `0x0029F6E0`, in a colour whose three colour bytes are what `0x00296F50(0x40, 0x80, 0)`
+  answers and whose fourth byte is `0x80` (`0x003FA0EC`-`0x003FA136`).
 
 That second element is a one-shot sprite: on creation it takes element `0x59` of the layout at
 `0x00D11FC8` and sits at the counter's x position; it plays sound `0x6C` (`0x00249C60`) and removes
 itself after 30 times the frame base (`0x003FACF0`).
+
+The handler takes messages 1 (creation), 2 (the frame count), 3 (the draw), 14 (the
+sound) and 15, and passes any other to `0x005C5230` (`0x003FACFB`-`0x003FAD28`). Message 15
+stores 1 in the word `+0xC2`, and the frame count `+0xC0` stops while that word is not 0
+(`0x003FAD2D`-`0x003FAD35`, `0x003FAE41`-`0x003FAE49`).
+
+The draw reads the picture entry of the element, stores at the draw record's `+0x5C`
+the layout's palette-table byte for the high four bits of the entry's byte `+0x07` plus
+that byte's low four bits (`0x003FADE1`-`0x003FAE0C`), and makes the record's alpha word
+`+0x58` `(alpha * 100) >> 7` for the
+call of `0x002D8C80`, putting the old value back after it (`0x003FAD59`-`0x003FAE35`).
 
 When the count is redrawn and is non-zero (unless widget `+0xC4` bit `0x4` was set before the redraw and
 still is, `0x003FA092`-`0x003FA0AB`), the digits take their colour from the colour table

@@ -177,6 +177,9 @@ name that bone. Then for each track:
   skeleton's `+0x0C` names. It takes that bone's angle `+0x190 + 4 × angle` and
   the same angle of the bone's matrix at `+0x230` (`0x003719F7`–`0x00371A4A`) and uses their difference
   in degrees; `0x00180060` / `0x00180090` can replace it with a set value.
+- `0x00180060` answers the byte `+0xCF1` of the object `0x001D50D0()` gives and `0x00180090`
+  its float `+0xCF4`; each answers 0 when `0x001D50D0()` gives no object
+  (`0x00180064`-`0x00180073`, `0x00180094`-`0x001800B0`).
 - Kind 0 then finds the pair of groups `k`, `k + 1` whose keys (group `+0x00`, groups `0x28` bytes apart)
   hold the value `v`, the first or last pair when `v` lies outside them. With
   `t = (v - key[k]) / (key[k + 1] - key[k])` each record's three angles (record `+0x04`-`+0x0C`) become

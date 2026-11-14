@@ -140,7 +140,7 @@ The ambient is the block's `+0xC0`-`+0xCC`: `0x004FD4B0` reads red, green and bl
 
 Before the light call `0x004FD4B0` copies the record's matrix `+0x180`-`+0x1BF` into
 `0x02CA8000`-`0x02CA803F` (`0x004FD505`-`0x004FD52F`). Later it keeps the translation of its second argument
-(`+0x30`-`+0x38`, copied to the instance's `+0x160`) at `0x02EBA4A0` (x and y, one 8-byte store,
+(`+0x30`-`+0x38`, copied to `+0x160` of the block it sends, `0x004FDA73`-`0x004FDA87`) at `0x02EBA4A0` (x and y, one store,
 `0x004FDA95`) and `0x02EBA4A8` (z, `0x004FDAA3`), which the render update `0x0053AB50` reads (`0x0053C8C3`,
 `0x0053C8E1`, `0x0053C8F0`).
 

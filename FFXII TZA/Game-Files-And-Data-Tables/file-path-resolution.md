@@ -65,6 +65,9 @@ destructor, reinstalls that vtable and frees an owned name the same way.
   `0x0059FBD5`). `SetFilePointer` gets the offset as the low 32 bits with a null high part and the
   origin as the move method; the view route enters `0x0020C180` through `0x001D6CE0`, which adds the cache
   manager (`0x0020C700`).
+- `0x0020C180(manager, view, offset, origin)` answers -1 itself for a null view
+  (`0x0020C186`-`0x0020C199`) and otherwise jumps to `0x00217AD0(view, offset, origin)`
+  (`0x0020C18B`-`0x0020C194`).
 - `0x0019EAA0(…, name)` opens a name (selector 1), closes it when it opened, and returns whether it did.
 - `0x0059D510(stream, buffer, n)` reads through slot 5, adds the count to the stream's dword `+0x18`,
   and returns 0 when all n bytes came and 9 otherwise.
@@ -160,6 +163,13 @@ Releasing a view, `0x0020B9A0(manager, key, view)`, takes the lock, finds the en
 byte `+0x10` by one unless it is 0, and then frees the 16-byte view whether or not the key was found.
 It returns 1; a null view returns 0 at once, without the lock (`0x0020B9BA`), and `0x001D6AA0` passes the
 answer on as 0 or 1 (`0x001D6AC8`). The cached bytes stay in the cache.
+
+In `0x0020B9A0` the lock is `manager + 0x58`, taken with `0x005CD4F0` and dropped with
+`0x005CD820`; the entry is looked up by the dword key `+0x20` in the tree at `manager + 0x28`
+(`0x0020B9C0`-`0x0020BA22`). The counted byte is `+0x10` of the object the entry's `+0x28` points
+to, not of the entry itself (`0x0020BA0D`-`0x0020BA1B`).
+Between the unlock and the free the view goes to `0x0016D6A0`, which only returns
+(`0x0020BA2A`); the free is `0x00809950(view, 0x10)` (`0x0020BA2F`-`0x0020BA37`).
 
 `0x0020C150(cache, view, buffer, n)` is the read that slot 5 reaches through `0x001D6CA0`: it calls
 `0x00217A70` when the view and the count are both non-zero and returns 0 otherwise.

@@ -65,11 +65,17 @@ the top-left corner of the part, in the 1920 × 1080 window that `shapewin(3, 0,
 `setshape` (`0x17E`, `0x003405C0` → `0x003E9320`) chooses the frame a part shows. The frames are cut from the picture
 block in the script's own reference area, so each tree draws its own wording: the block's frame table gives each
 frame's corner and size in a TIM2 image that follows it.
+`0x003405C0` calls `0x002640C0` before it pops anything and passes the answer as the first
+argument of `0x003E9320`; the four ints follow in the reverse of the order popped
+(`0x003405DD`-`0x0034061A`).
 
 `0x002A7950`, which `registshape` runs while the context's `+0xB8` is empty (`0x003E92F6`-`0x003E930D`), takes the
 block's address, not the image's: it keeps `block + 0x10` and `block + 0x10 + [block + 4]` in the first free of
 the eight picture slots at `0x0209C510` (-1 when all eight are taken) and loads from `block + 0x10 + [block + 4] +
 [block + 8]` through `0x0024A440`, the last two sums made in 32 bits (`0x002A7970`-`0x002A79CE`).
+
+The image is registered with `0x0024A440(address, [0x01E0C270], 2)` and the answer is
+kept at the slot's `+0x08` (`0x002A7996`-`0x002A79B7`).
 
 `0x003E9320` changes nothing but the slot's `+0x4C` when the slot holds no window, no picture is registered (the
 context's `+0xB8`) or the part is not below the slot's word `+0x54` (`0x003E934F`-`0x003E9371`, `0x003E941D`). After it

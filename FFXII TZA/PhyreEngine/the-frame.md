@@ -145,6 +145,13 @@ It passes the result and `flag` to `0x001B23E0` (`0x00184613`), and the result a
 (`0x00184636`). The full-menu state `0x0022B8C0` calls it with `[0x01E0C1D8]` and `[0x01E0C1DC]`, which hold `0x200` and
 `0x1C0`.
 
+Both only store their arguments. `0x001B23E0(object, a, b, c, d, e)` writes the five
+dwords to `+0x3AE8`, `+0x3AEC`, `+0x3AF0`, `+0x3AF4` and `+0x3AF8` in that order
+(`0x001B23E0`-`0x001B2401`). `0x001E9F00(object, a, b, c, d, flag)` writes four dwords to
+`+0x13A0`, `+0x13A4`, `+0x13A8` and `+0x13AC` and the flag, read as a byte and stored
+as a dword, to `+0x13B0` (`0x001E9F00`-`0x001E9F22`). `0x001B23E0` has a second call site,
+`0x001D79AA`.
+
 ### The camera snapshot
 
 `0x00864F30` is slot 0 (prepare) of the `GiBeginEff` render command (vtable `0x01CCFB78`, `0x90`

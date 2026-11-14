@@ -97,9 +97,67 @@ to an empty box when they do not meet. For the sprite draw (`0x002DBD81`), `0x00
 from the menu's space, centred on 2048, onto the render target, using the target's width and height (`0x00182EB0`,
 `0x00182E80`, 1920 and 1080 without a display) and the aspect `0x00182EE0`.
 
+The sprite draw `0x002DB080` calls `0x002DD910` only for an atlas with no pointer at `+0x20` whose name holds
+the text
+`screenCapture` (`0x002DB9E6`, `0x002DBA01`, `0x002DBC93`-`0x002DBC96`, `0x002DBD4A`-`0x002DBD4D`).
+
 The record's first word flips the source left to right (bit `0x1`, `0x002DB1B8`) and top to bottom (bit `0x2`, `0x002DB1D0`); a
 non-zero float at `+0x04` rotates the sprite (`0x002DB22F`), about `+0x10`/`+0x12` when bit `0x4` is set and about the
 centre otherwise; a pointer at `+0x08` supplies four corner colours.
+
+In order, `0x002DB080` does this, the draw record being its first argument, the widget:
+
+1. It returns at once when the dword `0x0215E6D0` is 0 (`0x002DB0B0`, `0x002DB170`).
+2. From the source box words x, y, w, h it takes u0 = max(x, 0), v0 = max(y, 0),
+   u1 = x + w and v1 = y + h, swapping u0 with u1 for record bit `0x1` and v0 with v1 for
+   bit `0x2` (`0x002DB1B8`, `0x002DB1D0`).
+3. It takes the packet cursor `0x02EBEFC0 + 0x18 × [0x02EBEFF0] + 8` and calls `0x00181560`
+   (`0x002DB1EA`-`0x002DB218`).
+4. With the record's float `+0x04` equal to 0 it copies the `0x40` bytes at the draw
+   record's start to `0x022D8F30` and to the packet's `+0x20` (`0x002DB24F`-`0x002DB2CB`). The
+   corners are the destination box (x, y, x + w, y + h), each put through `0x00202B70`; its
+   x and y then become `x / v[3]` and `y / v[3]`, over its fourth component
+   (`0x002DB22F`-`0x002DB36A`).
+5. On that path the mode is the sixth argument when the source width and height equal the
+   destination's, and 2 otherwise (`0x002DB2CF`-`0x002DB2F0`).
+6. With a non-zero float the pivot is the record's words `+0x10` and `+0x12` for bit `0x4`
+   and the destination's `width / 2` and `height / 2` otherwise (`0x002DB371`-`0x002DB398`); the
+   matrix is built by `0x00203170`, `0x00398C50` with the angle, a second `0x00203170` whose
+   elements 0 and 5 take the seventh argument, and `0x00397910` twice; the mode is 2
+   (`0x002DB3D5`-`0x002DB467`).
+7. The four corner colours come from the record's pointer `+0x08`; when that pointer is
+   null or bit `0x40000` of the draw record's `+0x5C` is set, all four take the draw
+   record's bytes `+0x90`-`+0x93` (`0x002DB532`-`0x002DB546`, `0x002DB657`). Every vertex takes
+   the draw record's dword `+0x70` as its depth.
+8. The packet takes the draw record's `+0x88` for register `0x14`, its signed word `+0x5A`
+   three times and its signed word `+0x58` as four dwords, then the qword 0, the dwords
+   `0x10000000` and `0x6C088100` and the qwords `0x1000000000000006` and `0xE`
+   (`0x002DB7A0`-`0x002DB7FB`). `0x001816F0` is called with the same four signed words
+   (`0x002DB7C6`-`0x002DB7D4`).
+9. The atlas qword `+0x30` goes to register 6, changed in one of three ways by bit
+   `0x10000` of `+0x5C` and by the bits under `0x3F00` of the atlas dword `+0x38` being
+   `0x1400` or `0x1300` (`0x002DB803`-`0x002DB908`). For `0x1400` an entry for register `0x16`
+   follows, the atlas qword with the low four bits of `+0x5C` in its top byte
+   (`0x002DB86F`-`0x002DB892`); on every other way, 0 for register `0x7F`.
+10. It sends 0 to register `0x14` and packs v1 - 1, v0, u1 - 1 and u0 into 10-bit fields
+    of one word for register 8, above a low nibble of `0xA` (`0x002DB914`-`0x002DB95B`). It
+    sends the draw record's `+0x80` to register `0x47` and `+0x78` to register `0x42`
+    (`0x002DB95F`-`0x002DB97A`).
+11. One of two fixed words follows with `0x431`: `0x30AA400000008004` on the condition of
+    step 7 and `0x30AE400000008004` otherwise (`0x002DB982`-`0x002DB9B1`). It calls
+    `0x00181910(+0x80)`, `0x001816B0(+0x78)` and `0x00181870(3)` (`0x002DB9B5`-`0x002DB9CF`).
+12. It looks for the text `screenCapture` in the atlas name with `strstr` (`0x002DB9D4`-
+    `0x002DB9E6`): found, it calls `0x00181890(1, 1, 0, 0, 0, 0)`; not found,
+    `0x00181890(1, 2, u0, u1 - 1, v0, v1 - 1)` (`0x002DB9EC`-`0x002DBA2F`). It closes the packet,
+    calls `0x0016D6A0`, moves the cursor on and calls `0x003A1DB0` (`0x002DBA39`-`0x002DBA9B`).
+13. It builds four `0x30`-byte vertices (position, depth as a float, 1.0, colours, mode).
+    With a pointer at atlas `+0x20` it calls `0x001819A0` with the words `+0x14` and `+0x16`
+    of the object that pointer names and with the atlas, and sets the texture
+    coordinates from u0, v0, u1 and v1 (`0x002DBC93`-`0x002DBD48`).
+14. Otherwise, when the name was found, it calls `0x00181A10(0x00182EB0(), h, atlas)` with
+    `h = 0x00182E80() × 512 / 448`, then `0x002DD910` on the quad and `0x001816D0(2)`
+    (`0x002DBD4A`-`0x002DBD8B`). On every path it ends with `0x00181460(quad, 4)` and
+    `0x00181330()` (`0x002DBD90`-`0x002DBDA1`).
 
 ### The hand cursor
 
@@ -245,3 +303,21 @@ folders.
 - [UI typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md) - the same sprite lookup from authored lists.
 - [Battle menu](battle-menu.md) - the ON and OFF mark and the party slot hand.
 - [Dialogs](dialogs.md) - the second confirm window.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x00203170` is called by `0x003F1E90`; those functions are documented on [hud](hud.md).
+- Gameplay: `0x00203170` is called by `0x00339630`; those functions are documented on
+  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
+- Movement: `0x00203170` is called by `0x0022EF20`, `0x00230790`, `0x0026EB30`, `0x00334220`, `0x00334AB0`, `0x00334E00`,
+  `0x00335B60`, `0x00336E40`, `0x00338490`, `0x00339F00`, `0x0033A3D0`, `0x0033BAA0`; `0x00203170` is also called by `0x0033C310`,
+  `0x0033CBF0`, `0x0033CC80`, `0x0033D890`, `0x0033DB60`, `0x0033DFD0`, `0x003ED190`, `0x003ED3F0`.
+- Movement: those functions are documented on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md),
+  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md),
+  [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md),
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md).
+- Movement: and on [bestiary](../Enemy-Spawning/bestiary.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md), [traps](../World-Areas-And-Travel/traps.md).
+- Script VM: `0x00203170` is called by `0x00356160`.

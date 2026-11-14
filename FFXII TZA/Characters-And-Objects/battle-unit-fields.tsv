@@ -268,7 +268,7 @@ function	name	site	disp	kind	instruction	route	note
 0x003266C0	BattleGroup_RefreshFourActorDefinitions	0x00326AD0	0x0	r	test byte ptr [rbx], 2	0x00263E30	
 0x003266C0	BattleGroup_RefreshFourActorDefinitions	0x00326AFA	0x0	rw	or dword ptr [rbx], 0x40	0x00263E30	
 0x003266C0	BattleGroup_RefreshFourActorDefinitions	0x00326AFD	0x0	rw	and qword ptr [rbx], 0xfffffffffbffffff	0x00263E30	
-0x00326BB0	FUN_00326bb0	0x00326C72	0x0	r	test byte ptr [rax], 8	0x00263E30	
+0x00326BB0	FUN_00326bb0	0x00326C72	0x0	r	test byte ptr [rax], 8	0x002367A0	
 0x00326D60	FUN_00326d60	0x00326EA8	0x0	r	test byte ptr [r14], 2	0x00236820	
 0x003272A0	BattleUnit_GetPartyLeader	0x003272CB	0x0	r	test byte ptr [rax], 8	0x00263E30	
 0x003273D0	PartyConfiguration_SetSelectorsAndReconcileRoster	0x003277A5	0x0	r	test byte ptr [rdi], 4	0x00236820	
@@ -422,7 +422,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00325260	BattleUnit_HandleActionTimelineEvent	0x0032562D	0x8	addr	lea r8, [rbx + 8]	0x00263E30	
 0x00325D90	BattleUnit_CanAdvanceCombatNavigation	0x00325DFF	0x8	r	mov ebx, dword ptr [rdi + 8]	arg0 from 0x00325BB0 at 0x00325BD0	
 0x00326500	PartyFocus_SelectAndRequestDefaultActor	0x003265FB	0x8	r	mov ebp, dword ptr [rbx + 8]	0x0031B770	
-0x00326BB0	FUN_00326bb0	0x00326CA9	0x8	r	mov eax, dword ptr [rdi + 8]	0x00263E30	
+0x00326BB0	FUN_00326bb0	0x00326CA9	0x8	r	mov eax, dword ptr [rdi + 8]	0x002367A0	
 0x00328530	FUN_00328530	0x0032858F	0x8	r	mov edx, dword ptr [rdi + 8]	arg1 from 0x00306010 at 0x0030605B	
 0x00328530	FUN_00328530	0x003285D5	0x8	r	cmp dword ptr [rdi + 8], eax	arg1 from 0x00306010 at 0x0030605B	
 0x00328530	FUN_00328530	0x00328612	0x8	r	mov eax, dword ptr [rdi + 8]	arg1 from 0x00306010 at 0x0030605B	
@@ -590,8 +590,8 @@ function	name	site	disp	kind	instruction	route	note
 0x003266C0	BattleGroup_RefreshFourActorDefinitions	0x00326ADF	0x10	r	mov rcx, qword ptr [rbx + 0x10]	0x00263E30	
 0x003266C0	BattleGroup_RefreshFourActorDefinitions	0x00326AE8	0x10	r	mov rcx, qword ptr [rbx + 0x10]	0x00263E30	
 0x003266C0	BattleGroup_RefreshFourActorDefinitions	0x00326AF1	0x10	r	mov rcx, qword ptr [rbx + 0x10]	0x00263E30	
-0x00326BB0	FUN_00326bb0	0x00326C92	0x10	r	mov rcx, qword ptr [rax + 0x10]	0x00263E30	
-0x00326BB0	FUN_00326bb0	0x00326C9B	0x10	r	mov rcx, qword ptr [rdi + 0x10]	0x00263E30	
+0x00326BB0	FUN_00326bb0	0x00326C92	0x10	r	mov rcx, qword ptr [rax + 0x10]	0x002367A0	
+0x00326BB0	FUN_00326bb0	0x00326C9B	0x10	r	mov rcx, qword ptr [rdi + 0x10]	0x002367A0	
 0x003273D0	PartyConfiguration_SetSelectorsAndReconcileRoster	0x00327797	0x10	r	mov rcx, qword ptr [rax + 0x10]	0x00236820	
 0x003283D0	FUN_003283d0	0x003283E6	0x10	r	mov rcx, qword ptr [rcx + 0x10]	arg0 from 0x00300530 at 0x003006C5	
 0x003283D0	FUN_003283d0	0x00328408	0x10	r	mov rcx, qword ptr [rbx + 0x10]	arg0 from 0x00300530 at 0x003006C5	
@@ -1694,7 +1694,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00326500	PartyFocus_SelectAndRequestDefaultActor	0x003265B1	0x698	r	cmp qword ptr [rax + 0x698], rbp	0x0031B770	
 0x003266C0	BattleGroup_RefreshFourActorDefinitions	0x00326A6B	0x698	r	mov rax, qword ptr [rax + 0x698]	0x00263E30	
 0x003266C0	BattleGroup_RefreshFourActorDefinitions	0x00326AAE	0x698	r	mov rcx, qword ptr [rbx + 0x698]	0x00263E30	
-0x00326BB0	FUN_00326bb0	0x00326C77	0x698	r	mov rcx, qword ptr [rax + 0x698]	0x00263E30	
+0x00326BB0	FUN_00326bb0	0x00326C77	0x698	r	mov rcx, qword ptr [rax + 0x698]	0x002367A0	
 0x00326BB0	FUN_00326bb0	0x00326D1A	0x698	r	mov rax, qword ptr [rax + 0x698]	0x00263E30	
 0x00326D60	FUN_00326d60	0x00326DC9	0x698	r	mov rax, qword ptr [rax + 0x698]	0x00236820	
 0x00326D60	FUN_00326d60	0x00326E7F	0x698	r	mov rcx, qword ptr [r14 + 0x698]	0x00236820	

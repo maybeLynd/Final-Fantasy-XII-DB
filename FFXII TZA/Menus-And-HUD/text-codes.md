@@ -24,8 +24,48 @@ The text interpreter `0x002AC5F0` reads a string one unit at a time, until a `00
 
 The callers that measure and draw text (`0x002B1FB0`, `0x002B2150`) send every byte below `0x10` to the interpreter.
 The pager's markup parser `0x002A8C50` walks the same strings to pace them. It acts on `0x03`, on the choice list
-`0x0E` (the option setup at `0x002A9066`) and on the escapes `#`, `-`, `/`, `;`, `p`, `"` and `=`. Its pacing step
-(`0x002A9747`) also pauses at `>`, `8`, `.`, `p` and every icon.
+`0x0E` (the option setup at `0x002A9066`) and on the escapes `#`, `-`, `/`, `;`, `p`, `"` and `=`.
+
+The pager's pacing step (`0x002A9747`) runs once the characters walked reach the shown count `+0x8C`, and
+only when the pager's second argument is 0. It then stops the walk at a character, at the escapes `>`,
+`8` and `.` and at any escape byte of `0x40` or above except `p`; at `p`, at the other escapes and at a
+control byte it goes on (`0x002A9747`-`0x002A9787`).
+
+`0x002A8C50(state, stop)` works on a copy of the `0xD0`-byte text state and starts at
+text `+0x28` plus the word `+0x8A` (`0x002A8C7D`-`0x002A8D1E`). With the dword `+0xC0` equal to
+1 it only sets that dword to 0 and the mode byte `+0xB0` to 1 and calls `0x002ABF70`
+(`0x002A8CE6`, `0x002A8D24`-`0x002A8D32`, `0x002A9942`); with `0x01E0CDC8` equal to 0 it returns
+without that call (`0x002A8D37`-`0x002A8D3E`).
+
+A non-zero `stop` byte ends the walk at the first token equal to it: the copy's floats
+`+0x34`, `+0x38`, `+0x3C` and `+0x4C` go back to the state (`0x002A8D76`-`0x002A8D7E`,
+`0x002A97A0`-`0x002A97C8`). A byte from `0x10` to `0x1F` counts as one character of two
+bytes, a byte from `0x20` as one of one byte (`0x002A8D84`-`0x002A8D9B`). Every exit but
+the `0x01E0CDC8` one ends in `0x002ABF70(state)` (`0x002A9942`-`0x002A9945`).
+
+At the end of the string (byte 0) the pager asks `0x001EDDA0()` when the byte `+0x9B` is
+0, the word `+0x8C` is 0 or the walked count is above `+0x92` and at most `+0x90`, and
+the mode byte is not 4 or 6: an answer of 0 sets the dword `+0xC0` to 1, any other
+sets the mode byte to 1 (`0x002A98DD`-`0x002A9923`).
+
+A `0x03` ends the walk when the mode byte is 4 or 6 (`0x002A8DD0`-`0x002A8DE8`). Otherwise,
+with the byte `+0x9B` equal to 0, it takes the wait arm `0x002A97CD` when the word `+0x8C`
+is 0 or the walked count is above `+0x92` and at most `+0x90` (`0x002A8DEE`-`0x002A8E0F`).
+Any other `0x03` turns the page when the confirm state `+0x54` is 3 and the mode byte 0,
+and ends the walk when not (`0x002A8E15`-`0x002A8E21`).
+
+The page turn writes the copy back, moves `+0x8A` past the token, clears bits
+`0x180000` of `+0xB0`, sets `+0x90` and `+0x92` to minus the rate value `+0x9E`, zeroes
+`+0x54`, `+0x88`, `+0x8C`, `+0x9B` and `+0xA9`, sets `+0xAE` to `0xFF` and calls
+`0x002B2150(state, text, 0, out)`, `out` being a float on its stack
+(`0x002A8E27`-`0x002A8F11`).
+
+The float `+0x04` then takes that `out` value when it is above 0, and otherwise
+`([[+0x60]] >> 9) & 0x1F` as a float, a field of the first dword of the object the
+pointer `+0x60` names (`0x002A8F16`-`0x002A8F34`). The pager then copies the state again,
+takes the text position from `+0x28` and `+0x8A` and counts from 0
+(`0x002A8F39`-`0x002A8FD2`). With a type-out rate `+0x9C` of 0 it calls
+`0x002B3E90(state, text)`, and the walk goes on (`0x002A8FD6`-`0x002A8FE9`).
 
 ### Code lengths
 
@@ -188,6 +228,15 @@ Three writers build codes for menu strings:
 - `0x002B5240(record)` copies a string, replacing each `0F 8` with the name it stands for (`0x002639E0`), and
   `0x002B5680(size, out, in)` copies one without its line breaks `0x02` and baseline codes `0F <`.
 
+`0x002B5240(record)` reads the output buffer at `+0x00`, the text at `+0x08` and the
+capacity word `+0x20`, and first sets the colour `+0x28` to `0x80808080` (`0x002B5259`-`0x002B526F`).
+A token that would take the read offset past the capacity empties the output and
+stores 0 at `+0x22` (`0x002B52BB`-`0x002B52C7`, `0x002B537E`-`0x002B5388`); a name of null ends
+the copy there (`0x002B52F7`). In both that case and a finished copy `+0x22` gets the
+copied length plus 1
+(`0x002B534B`-`0x002B5356`). The capacity test uses the offset in the text, so a name
+longer than its token is copied with no test of its own.
+
 ### Two-byte number templates
 
 Some screens fill a template of two-byte units that starts with the bytes `ex`. `0x00365B30(size, out,
@@ -303,3 +352,10 @@ reads past those options; their codes are counted separately.
 - [Dialogs](dialogs.md) - the message boxes that show this text.
 - [Menus](menus.md) - the screens whose labels hold these codes.
 - [Controllers](../Controls-And-Input/controllers.md) - the controller type the button icons follow.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Movement: `0x001EDDA0` is called by `0x0025DF00`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).

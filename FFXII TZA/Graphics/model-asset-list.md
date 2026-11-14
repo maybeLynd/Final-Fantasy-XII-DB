@@ -40,6 +40,18 @@ archive index:
    1, which no class of the eleven maps to; `0x002E6F99`-`0x002E6FA2`). For class `m` it files lane 0 as
    index + 1, lanes 1-15 all as index + 2, and lanes from 16 as index + 1 + (*k* − 14) (`0x002E6FD1`-`0x002E6FF6`), so a
    monster has one motion set where a character has fifteen.
+
+   For each lane bit of the record's `+0x28` whose buffer slot `+0x60 + 4k` is 0, it
+   takes the size from `0x002E9920`, a buffer handle from `0x0036B160(size)`, stored in the
+   slot, and calls `0x0032E620(kind, file, 0x0036A000(handle), size, request)`; the request
+   holds the record's word `+0x20` shifted left 16 with the lane, and the callback
+   `0x002E4E50` (`0x002E6F35`-`0x002E700C`).
+
+   A lane that got its request, or whose slot was already set, has its bit set in
+   `+0x34`; every lane tried has its bit cleared in `+0x28`. A handle of 0 skips the lane
+   as a size not above 0 does (`0x002E6EED`-`0x002E6EF6`, `0x002E6F52`-`0x002E6F57`,
+   `0x002E7027`-`0x002E703D`).
+
 3. **The remastered parts.** `0x001BB2B0` names a model's `.ah` list from its `.cm` path: the text after
    `PS2Data\obj_finish\in\`, less `.cm`, with `\` turned into `/`, as `./GameData/D3D11/ArtData/chr/<name>_d3d11.ah`.
    The binding's load `0x002EAD50` requests it through `0x0017F000` before the model's own file

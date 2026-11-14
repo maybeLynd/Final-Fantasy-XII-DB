@@ -114,6 +114,17 @@ The reader and the writer go through a wide-character file buffer whose vtable i
 `0x00195C10` and `0x00195BD0`. The reader copies text from each line into a wide string with `0x00196140`
 (`0x001982FB`, `0x0019840F`), which grows the string's buffer with `0x00195820`.
 
+The two helpers swap the buffer's get area with its one-character put-back cell at
+`+0x70`. The buffer's `+0x18`, `+0x38` and `+0x50` are pointers: to a begin qword, a
+second qword and a count dword. Unless the begin is the cell already, `0x00195C10` saves
+the begin to `+0x88` and `second + 2 × count` to `+0x90`; it then stores the cell's
+address through `+0x18` and `+0x38` and a count of 1 through `+0x50`
+(`0x00195C10`-`0x00195C5E`).
+
+`0x00195BD0` undoes it: only while the begin is the cell, it stores the saved begin
+through `+0x18` and `+0x38` and the saved length, (`+0x90` - `+0x88`) / 2, through `+0x50`
+(`0x00195BD0`-`0x00195BFF`).
+
 The number in a `[KeyboardN]` header, minus one, is the profile, which starts at -1 before any header, and
 nothing tests it (`0x0019834A`-`0x0019834C`). Each of the three name groups has its own base: group 0 (buttons)
 `0x01F80F90` (`0x001984BF`), group 1 (sticks) `0x01F80FD0` (`0x001984AF`) and group 2 (extras) `0x01F80FF0` (`0x0019849F`).

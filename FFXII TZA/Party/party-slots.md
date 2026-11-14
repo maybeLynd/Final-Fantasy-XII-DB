@@ -109,8 +109,12 @@ once; bit `0x1` of `0x022C25A0` marks the snapshot as taken (`0x003278C0` reads 
 1. For each seat 0 to 3 that map 1 holds (`0x00322C50(0x17, i)`, the byte at `[0x02EBF190] + 0x5A5A + 2i`) whose unit
    (`0x002367A0`) has first-byte bit `0x8`, the 48-byte record at `0x022C25B0 + 0x30 x i` gets the member's type at `+0` and
    `+1`, the unit id at `+4`, the position at `+0x10` (`0x00265020`) and the angle at `+0x20` (`0x00265200`).
-2. `0x022C25A4` takes the leader selector `[0x02EBF190] + 0x5AA4`, and `0x022C25A5` the controlled member's type (`0x003590D0`),
-   or the leader selector when no member is controlled.
+2. `0x022C25A4` takes the leader selector `[0x02EBF190] + 0x5AA4` (`0x00326CC6`-`0x00326CD4`).
+   `0x022C25A5` takes the controlled member's type, byte `+4` of the stats record
+   `+0x698` of the unit that `0x003588B0` and `0x00263E30` give for the handle from
+   `0x003590D0`, only while bit `0x10` of `0x02089340` is set
+   (`0x00326CDA`-`0x00326D26`); it takes the leader selector when that bit is clear, when
+   a step gives null and when the type is `0xFF` (`0x00326D2C`-`0x00326D48`).
 
 `0x00326D60`, from the menu close `0x00281E00` (`0x00281EA8`), reads the snapshot (`0x00326D67`) and clears the mark when
 it is done (`0x00327125`). `0x00327360`, run by the area
@@ -152,6 +156,18 @@ The maps start at `[0x02EBF190] + 0x5A48`; the leader selector is the dword at `
 of 4 rows of 3 that `0x0031BAC0` builds on its stack (`0x0031BAEF`-`0x0031BB9B`), the row being `0x022C2670` less 2, or 3
 when `0x003135C0` answers non-zero (`0x0031BBDA`-`0x0031BBF2`); with fewer than two standing members it places nobody
 (`0x0031BC51`).
+
+Two more cases stand on the point (`0x0031BC03`-`0x0031BC20`, `0x0031BD18`): a seat with no
+member record (`0x00322C50(0x17, seat)` fails or the seat byte is above `0x27`), and a
+member whose record dwords `+0x64` and `+0x3C` together have a bit of `0x80000003` set
+while `0x00313F60()` answers 0. The record is `[0x02EBF190] + 8 + 0x1C8 × type`
+(`0x0031BBA0`-`0x0031BBCB`).
+
+`0x0031BAC0` answers 1 when it wrote a position and 0 when it placed nobody (`0x0031BD14`,
+`0x0031BD20`): with fewer than two standing members (`0x0031BC51`-`0x0031BC58`). It also
+repeats the `0x00322C50(0x17, seat)` call and tests the seat byte for `0xFF`
+(`0x0031BC2F`-`0x0031BC4B`), but both are reached only after the first call passed and the
+byte was `0x27` or less.
 
 The member takes entry `row * 3 + position` of the table, the position being `0x022C2674`. Each entry is an x and z
 offset from the point (`0x00D10830`-`0x00D10890` and zeros, `0x0031BAEF`-`0x0031BB9B`; x and z read at `0x0031BC94` and
@@ -203,3 +219,5 @@ Calls between the functions this page cites and code in other parts of the progr
 - Save load settings: `0x003148F0` calls `0x002EF2B0`; `0x003148F0` is called by `0x00583D60`; those functions are documented
   on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
   [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md).
+- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on
+  [battle units](../Characters-And-Objects/battle-units.md).

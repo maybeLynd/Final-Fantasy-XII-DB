@@ -148,8 +148,10 @@ The effect applier `0x00307300` writes each entry's `+0x08`: the low byte is the
 outcome code from `0x0030DAE0` (`0x003075BF`), and bits `0x100`, `0x200`, `0x400` and `0x800` are set from result flags 3, 2, 1
 and 0 (bit `0x400` only when bit `0x200000` of the user's word `+0x04` is clear, `0x003075C3`-`0x003075EC`).
 
-Readers: the HP write `0x00300530` (bit `0x100`, `0x0030071A`), `0x0031ADB0` (bits `0x100` and `0x800`, low byte 10), `0x00322760` (low
-byte 8), `0x003176E0` (low byte), and the combo continuation `0x00308610`/`0x0030C010` (bit `0x400`); bit `0x400` is
+Readers: the HP write `0x00300530` (bit `0x100`, `0x0030071A`), `0x0031ADB0` (bits `0x100` and `0x800`; the
+first entry's low byte against 0, 2-5 and 7, `0x0031B0F1`-`0x0031B105`, `0x0031B30B`-`0x0031B32B`; low byte 10
+of an indexed entry, `0x0031B44F`), `0x00322760` (low byte 8), `0x003176E0` (low byte), and the combo
+continuation `0x00308610`/`0x0030C010` (bit `0x400`); bit `0x400` is
 cleared at `0x002FFA14`, `0x0030019B`, `0x00300EAD`, `0x003011E0` and `0x0030AFF8`.
 
 Before it resolves a target, the applier turns the entry's low byte back into an outcome with
@@ -168,6 +170,20 @@ writes 0 to `out+4`; with no radius or with bit `0x1000` of the flag word set, t
 radians at `+0xC`), 4 for bit `0x2000000`, and 1 or 2 for bit `0x200000` clear or set (radius at `+8`)
 (`0x0031A990`-`0x0031AA29`). Its one caller is `0x0031AA30` (`0x0031AB58`), which is called from `0x00321060`
 and `0x00328530` and jumped to from `0x0031AB80`.
+
+`0x00321060(handle, kind out, reach out)` answers -1 unless bit `0x10` of `0x02089340` is
+set and `0x003588B0` and then `0x00263E30` give a unit for the handle (`0x0032106A`-`0x0032108E`,
+`0x003210C8`). Otherwise it calls `0x0031AA30(unit, 0, word +0x714 of the unit, local)`,
+copies the local's dword `+0` to the kind pointer and its dword `+4` to the reach
+pointer, each when the pointer is not null, and answers what `0x0031AA30` answered
+(`0x00321090`-`0x003210BB`).
+
+Its one call site, `0x0027DE82`, passes a null reach pointer (`0x0027DE78`); on a negative
+answer it returns 0 without asking for a line and without closing the unit's lines
+(`0x0027DE87`-`0x0027DE89`, to `0x0027DE74`).
+
+The list append `0x00316CD0` answers the count after the append, or the count as it
+stands when it refuses (`0x00316CE4`, `0x00316CE7`).
 
 ## Layouts
 

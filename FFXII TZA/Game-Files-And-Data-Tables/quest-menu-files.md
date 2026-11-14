@@ -422,6 +422,32 @@ panes through `0x00578450`:
 
 The progress byte is the quest's scenario byte, save `+0x1064 + quest` (`0x0046B180`; [Quests](../Story-Events-And-Hunts/quests.md)).
 
+`0x00578450` is the pane's procedure. Message 1 keeps the creation record's `+0x00` at
+`+0xC0`, the quest record `+0x10` at `+0xD0`, the mode byte `+0x20` at `+0xF8` and the
+byte `+0x21` at `+0xF9` (`0x005784F4`-`0x00578538`). Mode 1 is the first pane: `0x00578120`
+lays section 0 out at `+0x100`, and for a cleared quest (`0x0046B1A0`) the empty line
+`0x00D237DC` and section 1 follow; the line count goes to `+0xFA` and `+0xFB`
+(`0x0057854F`-`0x005785BE`).
+
+Mode 0 is the second pane. After `0x00578120` on section 2 it finds the parts with
+`0x002B39A0(text, 3)` and counts each part's lines with `0x002B39A0(text, 2)`: a `0x02`
+counts when it lies before the next part and is not the text's last byte, and the last
+part counts one more when no `0x02` is left (`0x005785C9`-`0x0057869D`).
+
+The shown count `+0xF4` is the smaller of the record's part count `+0x10` and the parts
+found. The twelve bytes from `+0xE8` hold each part's first line, and `+0xFB` the lines
+of the shown parts (`0x0057869F`-`0x00578718`).
+
+Both modes then take a pane from `0x003931E0` (kept at `+0xD8`, its `+0xC8` and `+0xD8`
+pointing back), give it the line count with `0x002D48C0` and the byte `+0xF9` with
+`0x002D47C0`, set its byte `+0xFF` to `0x58`, its handler `+0x120` to `0x00578310` and bits
+`0x1000000` of `+0xE4` and `0x800000` of `+0xE0`; a creation dword `+0x08` of 1 also
+sets its byte `+0x103` to `0x64` and bit `0x4000000` of `+0xE4` (`0x0057871A`-`0x0057882B`).
+
+Message 10 runs `0x002D3900` on the pane and, like message 12, passes the message to the
+function at the first qword of `+0xC0`, answering 0 when that qword is null; message 14
+answers 0; any other goes to `0x005C5230` (`0x0057847B`-`0x005784EF`, `0x00578830`).
+
 ### Map markers
 
 Whenever the selected quest's group file is ready (`0x0037F1F0`, `0x0037FBA0`), `0x0037FEA0` takes the quest's
@@ -460,6 +486,11 @@ reads it.
   null for an offset of `0x8000` or more (`0x00473CE4`-`0x00473D14`), and returns the entry's `value` byte.
 - `0x0037EB90` returns the location of the first step that applies, and `0x0037EC70` whether that step is type
   0 or type 1, which `0x0037E350` hands back to its caller.
+- `0x0037EB90()` answers 0 with no widget at `0x02AED490` or with bit `0x100` of its `+0xE0`
+  clear (`0x0037EBA3`-`0x0037EBCD`). Otherwise it asks `0x00473BB0(0, i, progress, record)` for
+  each step `i` below `0x00473B70(0)`, the progress being `0x0046B180(word +0xEA)`, and
+  answers the dword `+0x0C` of the first record whose dword `+0x14` is not 0, or -1 when
+  no step has one (`0x0037EBE0`-`0x0037EC66`).
 - `0x0037ED80()` returns that type, or 2 when no step applies; `0x003BC160`, `0x003C18A0` and `0x00578F50` call it.
 - The map-data widget's `0x003BCAB0(widget)` turns the quest id at `+0xCC` into a record index
   (`0x0037EDB0`), keeps it at `+0xCE` and loads that quest's group file (`0x0037FD50`); with no such quest it
@@ -505,3 +536,5 @@ Calls between the functions this page cites and code in other parts of the progr
   [global state accessors](../Engine-Core/global-state-accessors.md).
 - Save load settings: `0x00249210` is called by `0x00582790`; `0x00249410` is called by `0x00582790`; `0x00249580` is called by
   `0x00582790`; those functions are documented on [mrp menu resource packages](mrp-menu-resource-packages.md).
+- Input: `0x002D3900` calls `0x001E0A10`, `0x001E0E30`; those functions are documented on
+  [controls](../Controls-And-Input/controls.md).

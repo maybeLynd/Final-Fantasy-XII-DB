@@ -35,6 +35,10 @@ The requests sit in 36 entries of `0x18` bytes at `0x02EBEC00`, packed from the 
 
 - `0x003B0980` returns the first free entry; with all 36 taken it ends the first instance whose
   request kind is 0 or 3 (`0x0024EE60`), closes the gap and returns the last entry.
+- An entry is free while its dword `+0x00` is 0 (`0x003B0994`-`0x003B09B5`), and the request
+  kind is bits `0x6` of its byte `+0x13` (`0x003B0A20`-`0x003B0A2D`). When all 36 are taken
+  and every one has request kind 1 or 2, `0x003B0980` ends nothing and answers 0
+  (`0x003B0A2F`-`0x003B0A3A`).
 - `0x003AFFB0(n)`, from `0x002FCCC0`, ends requests from the front of the table until `n` are left,
   sparing request kinds 1 and 2. `0x003B0B70` returns half the number of entries in use.
 - `0x003B0BF0(handle)` returns the entry, `0x003B0940(handle)` its effect number or −1, and
@@ -96,6 +100,9 @@ function (`0x0036E32C`-`0x0036E33D` in `0x0036E320`; `0x0036E540`, `0x0036E5A0`,
   `0x0036DF80`, which passes a non-free slot's id to `0x003B27A0`.
 - `effectsignal(slot, v)` (`0x0241`, `0x0036E460`) passes `v` to `0x0024F3C0`, which, for `v` = 1,
   adds 1 to the bits under mask `0xF0` of the instance's word `+0x378`.
+- `0x0024F3C0` reads `v` through the pointer in its second argument and finds the instance
+  with `0x003B2470`; any other `v`, or no instance, changes nothing, and the four bits
+  wrap from 15 to 0 without touching the rest of the word (`0x0024F3C4`-`0x0024F3FD`).
 - `effecthitsyncbyid` (`0x0440`) waits while `0x0036E640(id)` holds: the file reports 2 or 3 and bit `0x20`
   of the instance's `+0x36A` is clear (`0x0024E210(id, 0)`).
 

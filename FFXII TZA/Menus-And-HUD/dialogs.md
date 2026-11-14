@@ -30,7 +30,7 @@ pass fixed flags as the record's `+0x20`, kept at `+0x630` (`0x0057C4E4`-`0x0057
 | `0x00566680` | `0x005665B0` | `0x8036` (`0x00566939`) | the item screen's sort picker |
 
 Message 1 copies the caption into a `0x400`-byte buffer at `+0x1B0`, measures it, keeps the window at least `0x60`
-wide, and clears eight option rows at `+0x5B0`-`+0x62C` (`0x0057C4BF`-`0x0057C682`).
+wide, and clears eight option rows at `+0x5B0`-`+0x62C` (`0x0057C4BF`-`0x0057C6EB`).
 
 `0x0057C380(record, open)` builds the `0x640`-byte window with `0x00244F50` and returns it from the root's `+0x328`
 (`0x0057C3A6`-`0x0057C3C4`). Message 1 ends by opening the window when `open` is non-zero (`0x0057C872`-`0x0057C880`):
@@ -42,12 +42,12 @@ window's `+0x634` and the list's row (`0x002D4650`, `0x005669CD`).
 
 | Bit | Effect |
 |---|---|
-| `0x2` | cancellable: cancel posts `0x8102` to the owner (`0x0057CAD1`); without it, cancel moves the cursor to the default row |
+| `0x2` | cancellable: cancel posts `0x8102` to the owner (`0x0057CAD1`); without it cancel moves the cursor to the default row when bit `0x8` is clear and does nothing when bit `0x8` is set (`0x0057CAF4`-`0x0057CAF6`) |
 | `0x8` | notice: no list is built (`0x0057C6F3`), the pad is read directly, and confirm posts `0x8100` |
 | `0x10`, `0x2000` | frame variants 1 and 4 (`0x0057C7EE`-`0x0057C802`) |
 | `0x20` | a one-line caption (`0x0057C506`, `0x0057C90F`) |
 | `0x800` | the hand cursor stays on the chosen row while the window closes (`0x0057C7CC`) |
-| `0x1000` | the window closes itself after `+0x63A` frames; the notice sets 180 (`0x0057C9E1`) |
+| `0x1000` | after `+0x63A` frames the window sends itself `0x8002`, or `0x8001` with bit `0x10000` (`0x0057C9E1`-`0x0057CA12`); the notice sets 180 |
 | `0x4000` | a dimmed backdrop at `+0xD8` (`0x0057CD77`), released on close (`0x0057C34A`) |
 | `0x8000` | the header label is `0x4B42` instead of `0x4B48` (`0x0057C93E`) |
 | `0x10000` | any button confirms, and the timed close counts as confirm (`0x0057CA09`-`0x0057CA1C`) |
@@ -55,11 +55,15 @@ window's `+0x634` and the list's row (`0x002D4650`, `0x005669CD`).
 
 ### Stages and answers
 
-1. Sub-command `0x8000` moves the window through its stages, counted at `+0x637` up to 2, and tells the owner the
-   cursor row with `0x8103` (`0x0057CC09`).
+1. Sub-command `0x8000` moves the window through its stages, counted at `+0x637` from 0 up to 3
+   (`0x0057CC62`-`0x0057CC6F`), and, outside notice mode and once the count is not 0, tells the owner the
+   cursor row with `0x8103` (`0x0057CC09`-`0x0057CC5D`).
 2. `0x8001` is a pick: in notice mode it posts `0x8100`; otherwise it reads the list's row and its option's flags and
-   sets the confirm sound (`0x0057CB16`).
-3. `0x8002` is cancel: with bit `0x2` it posts `0x8102`, otherwise it moves the list back (`0x002D4650`, `0x0057CACB`).
+   sets the confirm sound (`0x0057CB16`); a row whose option has bit `0x1` of `+0x0C` clear posts nothing
+   (`0x0057CB66`-`0x0057CB6F`).
+3. `0x8002` is cancel: with bit `0x2` it posts `0x8102` and clears bit `0x8` of the window's `+0x40`
+   (`0x0057CACB`, `0x0057CAD1`-`0x0057CAE9`). Without bit `0x2` it moves the list back when bit `0x8` is clear
+   (`0x002D4650`, `0x0057CAFC`-`0x0057CB0A`) and does nothing when bit `0x8` is set (`0x0057CAF4`-`0x0057CAF6`).
 4. Message 10 forwards input to the list unless the window is in notice mode (`0x0057C9A3`).
 
 `0x0057C3E0(window, element, row)` is the list's row callback, given in the create record `0x002D14E0` takes
@@ -122,7 +126,7 @@ two items' query records (`0x0035D330(1, id << 16)`,
 
 | Sort | Tab | Comparator | Order |
 |---|---|---|---|
-| Auto-sort | any | `0x002CFFE0` | class 6 items by `0x002CFDA0`; others by `+0x30`, then the id |
+| Auto-sort | any | `0x002CFFE0` | by `0x002CFDA0` when the first item's class is 6 (`0x002D0000`-`0x002D0015`); otherwise by `+0x30`, then the id |
 | By Strength | `0`, `3` | `0x002CFD30` | `+0x58` highest first, then `0x002CFDA0` |
 | By Strength | `1` | `0x002CFEE0` | `+0x50`; then for `+0x50` = 2 `+0x58` and `+0x5C`, otherwise `+0x5C` and `+0x60`, highest first; then `0x002D01A0` |
 | By Strength | `2` | `0x002D0100` | `+0x5C`, then `+0x60`, highest first, then `0x002CFDA0` |
@@ -138,9 +142,33 @@ fewer than two items does (`0x00565D30`-`0x00565D33`). A sort number other than 
 instead of `+0`. `0x002C38B0` (`0x002C3AF8`) and `0x002C4720` (`0x002C4947`, `0x002C4AF7`, `0x002C4E4E`, `0x002C4FCB`)
 pass `0x002D0070` to `0x00249CE0`.
 
-Auto-sort is always offered; the other two rows depend on `0x00564380`. Message 18 clears the row highlights, sets the parent's sort-changed bit
-`+0x180 |= 0x40000000` and clears the root's `+0x2F0` (`0x005666D4`). Message 15 frees its backdrop through `0x0057C340`
-(`0x00566771`).
+Auto-sort is always offered; the other two rows depend on `0x00564380`.
+
+Message 18 (`0x005666D4`) clears the row highlights with `0x00567690` (`0x005666D4`-`0x005666FA`). When the qword
+`+0xE0` of the object at its `+0xC0` is not 0 it calls `0x00295D50(1)` (`0x005666FF`-`0x00566715`). When the
+qword `+0x1E0` of the object at its `+0xD0` is not 0 it calls `0x00291D70(0)` and then `0x00291D80(p, 0)`, p
+being the qword `+0x18` of that `+0x1E0` object (`0x0056671A`-`0x00566746`). It then sets the parent's
+sort-changed bit, `+0x180 |= 0x40000000`, the parent being the object at `+0xC0`
+(`0x0056674B`-`0x00566752`), and clears the root's `+0x2F0` (`0x0056675C`-`0x00566765`).
+
+Message 15 (`0x00566771`) hands its
+window, the object at `+0xD8`, to `0x0057C340` when it is not null and then clears `+0xD8`
+(`0x00566771`-`0x00566788`).
+
+That window is the one `0x0057C380` returned to the picker (`0x00566941`-`0x0056694D`). `0x0057C340` returns at once
+for a null window (`0x0057C340`-`0x0057C343`). When the window's dword `+0x630` has bit `0x4000` it calls
+`0x002CCB30(word [[window + 0x48] + 0x16])` and zeroes the window's own `+0xD8` (`0x0057C34A`-`0x0057C366`); in
+every case it then releases the window with `0x00244F00` (`0x0057C371`-`0x0057C374`).
+
+`0x002CCB30(value)` returns at once when the layer kept at `[[0x0209AC30] + 0x298]` is null or bit `0x20` of
+the layer's dword `+0x7C` is set (`0x002CCB30`-`0x002CCB4B`, `0x002CCB95`). Otherwise the value, compared signed
+as a dword, acts first. 0 or less changes nothing (`0x002CCB4D`-`0x002CCB4F`). `0x1000` or more clears bit
+`0x800` of `+0x7C` and sets bit `0x10000` of the layer's dword `+0x40` (`0x002CCB51`-`0x002CCB65`).
+
+1 to `0xFFF` keeps the `+0x7C` bits under mask `0x3FF7FF`, adds the value's low word shifted left by 22
+as a dword, so that only the value's bits under mask `0x3FF` are kept, and sets bit `0x800`
+(`0x002CCB6B`-`0x002CCB7F`). In all three cases `0x002CCB30` then loads the layer pointer again and jumps to
+`0x00244F00` with it (`0x002CCB82`-`0x002CCB90`).
 
 ### The Clan Primer's category list
 

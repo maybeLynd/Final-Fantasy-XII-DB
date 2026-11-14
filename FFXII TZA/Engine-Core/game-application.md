@@ -28,6 +28,9 @@ is clear (that byte is 1 in the image and every instruction naming it only compa
 `0x0015BC82`-`0x0015BCB3`) and registers the destructor `0x008A6970` with
 `atexit`.
 
+`0x008A6970` stores the vtable `0x008C5760` at `0x01F7E350` again and jumps to the base
+destructor `0x00793250` (`0x008A6970`-`0x008A6985`).
+
 The deleting destructor, slot 0 (`0x0017CC70`), re-installs the vtable, runs the base
 destructor `0x00793250` and, with flag bit `0x1` set, frees the object with `0x00584730(this)` when bit `0x4` is clear
 (`0x0017CC9F`-`0x0017CCA8`). When bit `0x4` is set it passes the size `0x1140` to `0x0016D6A0`, which is `ret 0`
@@ -116,6 +119,8 @@ and then the latch: `+0x113C = 1` (`0x0017D074`). Nothing clears it afterwards.
 It then builds the movie player (`0x001B7EE0`, then `0x001B7850` on `0x001B7F20()`), the `SaveloadManager` (`0x001C18A0`,
 `0x001C1710` on `0x001C18E0()`, `0x001C1940`), `0x001B5F10`, `0x001D6990`, `0x001D8150`, `0x001D89D0`, `0x001831A0`, and the startup
 constants `0x0022A0B0(b, a)` ([startup constants](startup-constants.md)).
+`0x001C1710(manager)` first clears the manager's byte `+0x10` with an exchange and then
+jumps to `0x001C1810` (`0x001C1710`-`0x001C1715`).
 
 After the constants come `0x001B1BA0`, `0x001B1580` on `0x001B1C00()`, `0x0022A4B0`, the screen fade
 (`0x001D8CD0`), a `0x10`-byte object at `0x01F7F4E0` (`0x001D5600`), `0x001AD3E0`, the procedural-texture
@@ -712,7 +717,8 @@ No other instruction has the displacement `0x113C` or `0x113D`.
   - While it is clear the tick continues at `0x002505C9`: it adds 1 or 2 (by `0x001EDE70()` and `0x00181DD0()`,
     `0x00250546`-`0x00250565`) to `0x0208F570`, zeroes `0x020927DC` (`0x002505D0`), tail-jumps to `0x002508E0` when
     `0x00229EA0()` is 5 (`0x002505EA`), and otherwise runs the full tick from `0x002505EF`.
-  - The full tick is `0x003C9FD0(3)`, `0x00254CC0` of that 1 or 2, `0x002481A0`, `0x00248030` on each of the three
+  - The full tick is `0x003C9FD0(3)`, `0x00254CC0` (it does not read that 1 or 2), `0x002481A0`, `0x00248030`
+    on each of the three
     objects `0x0208EA20`-`0x0208EA30` whose `+0x18` is non-null and on `0x0208EA40` and `0x0208EA48`, `0x00248190`,
     `0x002481C0`, `0x00244970` on the same objects, `0x00250CA0`, and the tail `0x00367200` of the 1 or 2 (`0x002506BE`),
     which ends the body; `0x002508D0` is a `ret` inside `0x002507C0`, not part of this tick.

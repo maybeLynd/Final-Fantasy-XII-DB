@@ -54,6 +54,7 @@ The columns come from the path arrays, the US size table, the archive index and 
 6. The magic kind: `0x002FC860` asks `0x002DEBB0`, which is 1 while bit `0x400` of the options record
    `*0x0215E6E0 + 4` is clear (`0x002DDE20`), the English voice setting ([Voices](../Sound-And-Music/voices.md)):
    kind `0x0B` then, kind `0x26` with Japanese voices.
+   `0x002DDE20` answers 0 when the pointer `0x0215E6E0` is null (`0x002DDE27`-`0x002DDE36`).
 7. It sizes the id (`0x0032E400`) and, when there is no file, loads id 120 for ids 120-137, id 138
    for 138-153 and id 0 otherwise (`0x002FC8E4`-`0x002FC911`), then requests it (`0x0032E620`, completion
    `0x002FC830`). `0x002FCFF0` sizes all 512 ids in the same kind into the load-cost table `0x02EC19C0`,
@@ -110,6 +111,9 @@ each answer at `0x02EC19C0 + 8 x id` and then sets `0x02EC3D7D` (`0x002FD015`-`0
 the stub `0x0036DDB0`, the tail of `0x0050F070` (`0x0050F096`), the result callback of the debug verb
 `debug_efffilesizecache` (`0x2062`), which only the developer menu script `bin/ctrl` calls
 ([Script verb table](../Scripts-And-Script-Commands/verb-table.md)).
+
+Before the jump `0x0050F070` calls `0x0016D6A0`, a bare return, three times, with 7, `0xC`
+and `0xB` (`0x0050F074`-`0x0050F08D`).
 
 In step 9, `0x003576D0` pops three values with `0x00267E10`, the variant, the number and the slot in that
 order, and takes the first argument of `0x0036E320` from `+0x28` of `0x002640C0()` (`0x003576F3`-`0x00357717`).

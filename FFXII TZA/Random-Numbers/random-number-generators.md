@@ -130,6 +130,32 @@ counter at `0x01F7FFD0`, then `0x0018D740` and `0x0018EE20`. Its one consumer is
 `u × 2^-32 × 2π / 16` stored as cos and sin, and a scalar `u × 2^-32`, with the standard tempering
 inline and the refill call before each draw (`0x0019483B`-`0x001948C9`). The state `0x01F7F600` has no other reference in the image.
 
+`0x001946E0` first makes the texture object with `0x0063A990` (second argument 1, third
+`0x02CBB900`), runs `0x0062BCB0` on it when `0x00625F00` answers true, and sizes it with
+`0x0060DD70(object, 0x40, 0x40, 0x02CF7720, 0)`: 64 by 64 texels of 16 bytes
+(`0x00194723`-`0x0019476A`). When the object's buffer count, the low 31 bits of `+0x30` (the
+log string `0x008C5AD0` names it "buffer count of PTexture2D"), is neither 0 nor 1, it logs
+that string when `0x00625F00` answers true, calls `0x00628100(object, 1)` and zeroes `+0x0C` on
+a 0 answer (`0x0019476F`-`0x001947A9`).
+
+It then clears bit `0x2` of the object's `+0x18`, calls `0x00610990`, sets bit `0x200`,
+and calls `0x0061E200` when the object's first qword is not `0x02CF7A30` and `0x00625F00`
+answers false (`0x001947AD`-`0x001947DB`). The texels are written through the pointer that
+`0x0017EBD0(object, record)` leaves at the record's `+0x08`, the record first going
+through `0x0016D680`; a non-zero answer skips the fill and the commit, a null pointer the
+fill only (`0x001947E0`-`0x00194808`).
+
+Each texel is four floats: the cosine (`0x00861F08`) and the sine (`0x00861F0E`) of the
+angle, the scalar, and 0 (`0x001948A8`-`0x001948BA`, `0x00194929`, `0x0019492D`). The scalar's
+draw is the inline draw described above: the refill `0x0018EE20(0x01F7F600)` when the count
+`0x01F7FFC8` is 0, the stores `[0x01F7FFC8] = count - 1` and `[0x01F7FFC0] = cursor + 4`
+(`0x001948BF`-`0x001948F0`).
+
+After the fill it takes `k = [0x01F7F5A0] % count`, the count taken
+as 1 when it is 0, and commits with `0x0062C360(object, k, record)`; on a 0 answer the
+object's `+0x0C` takes `k` and its byte `+0x08` takes 0 (`0x0019493F`-`0x0019496A`). The
+routine answers the object (`0x00194977`).
+
 ### The C runtime rand
 
 The C runtime `rand` (import at `0x008C3098`) has 48 direct call sites in 30 functions, plus the
@@ -223,7 +249,33 @@ set. The counter and the kernels (`0x02EA24A0`) are referenced only from this ro
 The kernels are six sets of `0x400` bytes, one for each grid side from 3 to 8 (`0x02EA24A0 + 0x400 x (side - 3)`,
 `0x0074BF8B`-`0x0074BF8F`), the side being the square root of the sample count. The first run builds all six and then
 sets a byte (`0x0074BF10`-`0x0074BF20`, `0x0074C286`). Later runs rebuild only the set for the current side, and only while
-the effect's byte `+0x1F8` is set (`0x0074BEFC`-`0x0074BF0E`). So each later rebuild draws again from the counter.
+the routine's twentieth argument, a byte its caller `0x0074C4D0` passes on from its own thirteenth
+argument, is not 0 (`0x0074BEFC`-`0x0074BF0E`, `0x0074C65B`-`0x0074C689`). So each later rebuild draws again from
+the counter.
+
+The sample count n is the first index at or above the routine's fourteenth argument
+whose dword at effect `+0x764C + 4 × n` is not 0; with no such index up to `0x40` the
+routine answers `0x80004001` (`0x0074BE07`-`0x0074BE61`). The side is the integer part of
+what `0x00861F14` gives for n (`0x0074BECB`-`0x0074BEF6`).
+
+A set of side s holds s × s samples of 16 bytes, row i at `+0x10 × s × i`
+(`0x0074C177`-`0x0074C1A7`). Sample (i, j) takes two draws: the radius is
+`0.99 × sqrt((u1 + i) / s) + 0.01` and the angle `(u2 + j) / s × 2 × π`; the sample's
+first two floats are the radius times the cosine and times the sine; the calls are
+`0x00861F14` for `sqrt`, `0x00861F08` for the cosine and `0x00861F0E` for the sine
+(`0x0074C0C6`-`0x0074C177`). The sample's other eight bytes are 0: they copy the stack qword
+that `0x0074C06C` stores from `r15`, which `0x0074BFE7` zeroed (`0x0074C173`-`0x0074C177`).
+
+After the build the routine hands the set of the current side and n to slot `+0x98`
+of the object at effect `+0x38` under the id `+0x100` (`0x0074C28D`-`0x0074C2AA`), fills
+the floats at `0x02EA1C50` to `0x02EA1C68` from its arguments and constants for two more
+calls of that slot, ids `+0x10C` and `+0x104` (`0x0074C2B1`-`0x0074C394`).
+
+It then calls `0x006F0800(out, matrix)` for the matrix its tenth argument points to, slot
+`+0xB0` of the object at effect `+0x38` with the dword `+0x150`, a copy of the result
+and 2, slot `+0x68` of the object its thirteenth argument points to with 4, and slot
+`+0xB8` of the object at effect `+0x38` with the dword `+0x48` and that thirteenth
+argument, and makes `0x00732D80` its last call (`0x0074C39A`-`0x0074C48C`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

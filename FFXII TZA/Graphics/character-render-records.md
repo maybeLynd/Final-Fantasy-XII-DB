@@ -177,6 +177,19 @@ tween object `+0x550`, `0x003E69A0` (which hands the handles `+0x448` and `+0x44
 non-zero) and `0x00512C80` on `+0x650` (`0x004200AD`-`0x004200DC`). It hands the dword `+0x64C` to `0x0024CFF0`, which
 ends a running effect job, when it is non-zero and zeroes it (`0x004200E1`-`0x004200F2`).
 
+`0x0041E860(record)` runs in this order: `0x0042F190(+0x270)` when the dword is not 0; for
+each of the four dwords at `+0x438` that is not `0xFFFF`, `0x0051BC10` on it and then
+`0xFFFF` stored; `0x00422C20(record)`; the skeleton entry `+0x18`, when not -1, released
+with `0x0046E2B0`, whose first argument is the qword `+0xD98` of the answer of
+`0x0020E600(+0x10)` (`0x0041E877`-`0x0041E8D2`).
+
+It then walks the eight words at `+0x90` and gives each to `0x00478070`, with the qword
+`+0xDA0` of the answer of `0x0020E600(+0x10)` as first argument, stopping at the first
+that is `0xFFFF` (`0x0041E8D7`-`0x0041E909`); sets the word `+0x64` to `0xFFFF`; runs
+`0x00477640(+0x450)` and `0x003B3300(+0x288)` when the dword is not -1; sets `+0x18` to -1;
+and ends in a jump to `0x003AB7C0` with the answer of `0x0020E600(+0x2FC)`
+(`0x0041E90B`-`0x0041E957`).
+
 `0x004200A0` returns the CharacterRenderObject `+0x6B8` to its manager with `0x0017F100`, which skips a null object,
 and zeroes `+0x6B8` (`0x004200F8`-`0x0042010B`). It frees each of the buffers `+0x6C0`, `+0x6D0`, `+0x6F8`, `+0x700`,
 `+0x708`, `+0x710`, `+0x720` and `+0x728` that is set with `_aligned_free` (`0x0019C570`) and zeroes it, zeroes
@@ -219,7 +232,7 @@ source's first five, and any other record is skipped when the source's name star
 | `0x0042E050`, `0x0042E170`, `0x0042E1B0` | `0x0042A180`, `0x0042AA10`, `0x0042AB20` | the float `+0x28` through `0x00425510`, `0x00423A60` or `0x00423AB0` |
 | `0x0042E090` | `0x0042A290` | `0x00423570(record, arg +0x24)` |
 | `0x0042E130` | `0x0042A890` | below `0x1000` in word `+0x3FA`, `0x0041FC80`; then `0x00423A10` |
-| `0x0042E300` | `0x0042AC30` | copies word `+0x20` to `+0x3FA` when `+0x2F2` is non-zero (no filter) |
+| `0x0042E300` | `0x0042AC30` | copies word `+0x20` to `+0x3FA` when `+0x2F2` is non-zero (no filter); `0x0042AC30` reaches this only when the answer it kept is not negative (`0x0042AD38`-`0x0042AD3A`): it stores the record's word `+0x3B4` at the record's `+0x3FA` (`0x0042AD47`-`0x0042AD4E`) and, only with the record's dword `+0x6C8` equal to 1 and a word `+0x08` other than `0xFFFF`, gives the copy of `+0x3B4` it took at `0x0042ACCE`-`0x0042ACD5` (the word `+0x20` the body copies) to the named record's `+0x3FA` when that record's `+0x2F2` is not 0 (`0x0042AD82`); with or without that store it hands the body to `0x0042EF90` for the named record's words `+0x08` and `+0x0A`, each when not `0xFFFF` (`0x0042AD9F`, `0x0042ADBA`). The copy is taken before the first pass, `0x0042E1F0` on the named record (`0x0042ACFD`) and `0x0042EF90` with `0x0042E1F0` for its words `+0x08` and `+0x0A` (`0x0042AD18`, `0x0042AD33`; `0x0042ACD9`-`0x0042AD33`), in which `0x004292B0`, called by `0x0042E1F0` with the record as its second argument (`0x0042E20E`-`0x0042E215`), can change the record's `+0x3B4` from `0x104A` to `0x103D` (`0x004292F7`-`0x004292FC`), so the two stored words can differ |
 | `0x0042E320`, `0x0042E350`, `0x0042E4B0` | `0x0042AE00`, `0x0042AF10`, `0x0042A580` | on a record without a parent or whose `+0x2F2` is 1, call the bare `ret` `0x0016D6A0`; `0x0042E4B0` also stores 0 at the argument's `+0x58` for a record without a parent |
 | `0x0042E440` | `0x0042A390`, `0x0042B130`, `0x0042B270` | `0x00424010` with the three floats `+0x2C`–`+0x34` |
 | `0x0042E4F0` | `0x00428CD0` | `0x00504D20` on the record's model row (`0x003E55B0`) with dword `+0x20` |
@@ -326,8 +339,8 @@ and clears `+0x284` bit `0x200`, as the setters `0x00420CF0` and `0x00420F20` ab
 They store the parent's id at the child's `+0x3CE`, the slot at `+0x3CC`, set `+0x290` bit `0x80000` and clear
 its bits `0x40000` and `0x100000` (`0x0042F382`-`0x0042F3A0`, `0x0042F487`-`0x0042F4A4`). The
 request service `0x00427DE0` sees the bit (`0x00427F44`-`0x00427F53`) and runs `0x0042F880`. That
-function hands the parent, the slot and the child to `0x004215A0` (`0x0042FA1C`-`0x0042FA29`), which resolves the slot
-against the parent's skeleton entry:
+function hands the parent, the slot and the child to `0x004215A0` (`0x0042FA1C`-`0x0042FA29`), which picks the path
+by bit `0x80` of the child's skeleton entry (`0x00421649`) and resolves the slot in the parent:
 
 | Slot | Skeleton with keyed bones (entry `+0x00` bit `0x80` set) | Skeleton with named bones (bit `0x80` clear) |
 |---|---|---|
@@ -592,6 +605,11 @@ Korean and the two Chinese languages, 544 bytes; its 33 records are on
   (`0x003DC6A0`) and tries again. A new entry has one user and state 1, and the idle entries are
   released when all held units exceed 4. With `file` 0 the cache stays as it is:
   0x80000002 says the entry exists or could be filed; `0x003DC410` is that test, `0x003DCCF0` the request.
+- `0x003DCD00` answers 0 for a null actor or a negative class (`0x003DCD22`-`0x003DCD2E`), for
+  a model id `0x002E96B0(actor)` of 0 or less (`0x003DCD51`), when the units would go above 4
+  (`0x003DCE38`-`0x003DCE3E`) and when no entry is free after the release (`0x003DCE79`). The
+  units are counted only when the dword `0x003DC8D0` writes through its fourth argument is
+  0; otherwise the entry is filed with 0 units (`0x003DCE0D`-`0x003DCE22`).
 - `0x003DC780(id)` drops a user; an entry of 0 units that reaches no users in state 3 is released at
   once. `0x003DC6A0` releases every ready entry without users: state 4, and `0x10` added to the id.
 - `0x003DC4A0`, from `0x002E65A0` in the field frame `0x0022A770`, works only after a change (`0x02B58170`): it unregisters

@@ -211,6 +211,112 @@ then walks the list with `0x0018B100(list, part, device)`, where `device` is the
 - part 0 at `0x00188128`, entries `[split, count)`;
 - the teardown pair at `0x00188204` and `0x00188211`.
 
+In order, the body does this:
+
+1. It calls `0x001EE5D0` on `+0xDA0` and `+0xDA4` with the answers of `0x00182EB0` and
+   `0x00182E80` and the settings dwords `+0xD24` and `+0xD28` (`0x0018797D`-`0x001879BB`), moves
+   `+0xDBC` to `+0xDC0` and zeroes it (`0x001879C0`-`0x001879D1`), and queues on the device,
+   through `0x005FEA50`, the
+   callback `0x001D5FD0` and then `0x00186610` with the bank index `0x01F7F590`, which it steps
+   to `(index + 1) & 3` (`0x001879D8`-`0x00187A0D`).
+2. With byte `+0xDB8` set it runs `0x00187860`: here when `+0xDAC` is neither 3 nor 4
+   (`0x00187A13`-`0x00187A2E`), and near the end, inside the scope `"output capture 4k
+   images"`, when it is 3 or 4 (`0x00188565`-`0x001885A8`).
+3. It copies `+0xB28` to `+0xB08`, sets `+0xB58` to `+0xB60` when `+0xDBA` is set and
+   `+0xDB9` clear and to `+0xB68` otherwise, and copies `+0xDC8` to `0x01DF0900` while byte
+   `+0x01` is set (`0x00187A33`-`0x00187A80`).
+4. With
+   `+0xDBA` set, `+0xDB9` clear and the multisample count `0x02CB8084` different from `0x01DF0900`,
+   it queues `0x00189110` three times, each with a 16-byte record of target and count
+   from `0x001A1470([0x01F7F4C0], 0x10)`, for `+0xB58`, the scene target and `+0xB18`, and
+   then copies the count to `0x02CB8084` (`0x00187A88`-`0x00187B92`).
+5. It takes the camera `+0x690`, or `0x0018A620() + 8` while byte `+0x00` of the object
+   `0x0018A620()` answers is set, runs `0x001AC7C0` and `0x00189570` (`0x00187B98`-`0x00187BC2`),
+   changes the camera in the two cases below and walks part 1 (`0x00187CEA`-`0x00187D05`).
+
+   The two cases need that byte set. With console byte `+0xC0C` set and the step below -1
+   or the dword `+0xB8` of `0x001AD440()` equal to 2, camera `+0xD0`, `+0xC8` and `+0xD4`
+   take console `+0xC10`, `+0xC14` and `+0xC18`. With `+0xC0C` clear, console byte `+0xC24`
+   set and the step below -1, camera `+0xD0` takes `+0x1E8` of `0x001AD440()`. Either case
+   then runs `0x00189130`, `0x0018A120(camera + 8)` and `0x0018A680` (`0x00187BC7`-`0x00187CE5`).
+
+6. While the step `+0xA8` of `0x001AD440()` is below 0 it sets byte `+0xC34` and, inside
+   the scope `"update shadowmap"`, runs `0x001F0AD0(shadow object, device, block)`, the
+   block being `+0x358` when byte `+0xDC5` is set (which it clears) and `+0x690`
+   otherwise; it then clears `+0xC34` (`0x00187D0A`-`0x00187D80`). Every scope is opened by
+   `0x001D5630([0x01F7F4E0], device, name)` and closed by `0x001D5620`.
+7. It opens and closes the scope `"output cubemap images"` with nothing between and
+   calls `0x001D7280(0x001D8210())` (`0x00187D87`-`0x00187DB6`).
+8. Once, while the latch `+0xD10` is set, it clears the target `+0xB30` (only with the
+   settings byte `+0xD48` set) and the target `+0xB10`: `0x005DC190`, `0x0060D4F0`, the
+   viewport `0x0060F6B0(device, 0, 0, w, h, 0)`, `0x0060D190`, `0x005FEFD0(device, 1)` and
+   `0x00600A60(device, 2)`. The size is 3840 by 2160 when `+0xDB8` is set or the scene
+   index is 3, and `+0xAD8` by `+0xADC` otherwise (`0x00187DC9`-`0x00187FA3`).
+9. In the same pass the code for clearing the target `+0xB40` (the same six calls, at
+   3840 by 2160, with 0 in place of the 1.0 handed to `0x0060D190`) sits behind `0x005C5230()`
+   answering non-zero and the dword `+0x18` being 0 (`0x00187FA8`-`0x0018805B`); `0x005C5230`
+   only returns 0, so it never runs.
+10. A non-zero answer of `0x0060D190`, `0x005FEFD0` or `0x00600A60` there ends the body with
+    that answer (`0x00187E8A`-`0x00187EBF`, `0x00187F65`-`0x00187F9A`; the same tests at
+    `0x0018801D`-`0x00188052` belong to step 9 and never run). So do the same calls of
+    steps 16 and 18 (`0x00188322`, `0x00188356`, `0x0018843D`, `0x00188451`).
+11. Inside the scope named at `0x008C5E00` it runs `0x00188730` (`0x00188060`-`0x0018808A`). It
+    then sets the device camera with `0x0060CE50`: the shadow object's camera
+    `+0x150 + 0xD8 × [+0x124]` while its dword `+0x120` is not 0, else `0x001EBA40() + 0x48`
+    while that object's byte `+0x118` is set, else `+0x08` of the camera of step 5
+    (`0x0018808F`-`0x001880E2`).
+12. Inside `"render ordered objects"` it walks part 0. While render-parameter byte
+    `+0x199` is set it zeroes the bytes `0x01DF08FC` and `0x01F7F594` before the walk and
+    sets `0x01DF08FC` to 1 after it (`0x001880E7`-`0x00188144`).
+13. Still inside that scope it runs `0x001D5520`, calls `0x001862B0(manager, x, y)` while
+    render-parameter byte `+0x164` is set, zeroes `+0xAE0` while byte `+0x118` of
+    `0x001EBA40()` is set, and calls `0x00609710(device)`, `0x005FEFD0(device, 0)` on a 0
+    answer, and `0x00600A60(device, 2)` (`0x0018814A`-`0x001881F7`).
+14. It runs `0x0018B040(0x0018B4E0())` and `0x0018B810(0x0018CA40())`. With console byte
+    `+0xC0C` set it puts the camera's `+0xD0`, `+0xC8` and `+0xD4` back from manager
+    `+0xCC4`, `+0xCC8` and `+0xCCC`. It runs `0x00188730` again (`0x001881FC`-`0x00188272`).
+15. The debug lines are skipped when `+0xDB8` is set with `+0xDAC` not 0 and when
+    `+0xCD4` is set. Otherwise they are drawn when the dword at `0x001C1990()` is not 0
+    or, of `0x001C2F40()`, the dword `+0x0C` is not 0, the byte `+0x463C` is set or the
+    list from `+0x4640` to `+0x4648` of `0x230`-byte entries is not empty.
+16. The draw, inside `"render debug menu"`, is `0x0060DA50(device, 0, 1)`,
+    `0x005FEFD0(device, 0)`, `0x0016D6A0`, `0x001C2DB0` and `0x00600A60(device, 2)`
+    (`0x00188277`-`0x00188369`).
+17. With render-parameter byte `+0x199` set, `0x001EE8E0` gets the first qword of the
+    scene target, or 0 when that target's byte `+0x08` is set. Else,
+    with byte `+0x4A0` set, the step below -1 and byte `+0x180` or `+0x188` set, colour
+    grading `0x0018F8F0` runs inside `"Post Process : color correction"`, and only when
+    `+0x180` is set (`0x0018836E`-`0x00188425`).
+18. In every other case `0x00188730`, `0x005FEFD0(device, 0)` and `0x00600A60(device, 2)`
+    run. `0x001EE8E0` then gets, in the same way, the `+0xD0` target of `0x001AD440()` when
+    the step is -1 or above and the scene target otherwise (`0x0018842A`-`0x00188500`).
+
+    The arm that would run `0x0018FD70` on the target `+0xB40` in its place needs the step
+    below -1, `0x005C5230()` non-zero and the dword `+0x18` 0 (`0x0018848C`-`0x001884CA`);
+    `0x005C5230` only returns 0, so it never runs.
+
+19. The brightness pass `0x0018F6B0` follows (`0x00188505`-`0x00188529`); then, inside
+    `"output capture images"`, `0x00187550` and `0x00186010` in that order
+    (`0x0018852E`-`0x00188560`); then the scope of step 2.
+20. It queues `0x001D5FD0` and `0x001D6000`, zeroes byte `+0xDCC`, runs `0x00188B10` when
+    byte `+0x00` is set, else `0x00188DA0` when byte `+0x01` is set, zeroes `+0x02` and the
+    scene index `+0xC30`, copies `+0xB28` to `+0xB08` again, adds 1 to
+    `0x01F7F5A0` and answers 0 (`0x001885AD`-`0x0018861A`).
+21. The getters used above: `0x00796E20()` gives the settings (`0x0018797D`, `0x00187DDD`),
+    `0x001D50D0()` the console, `0x00193D50()` the render parameters, `0x001AD440()` the step
+    object, `0x001F0850()` the shadow object (`0x00187D0A`) and `0x0018B4E0()` the object whose
+    parts `0x0018B100(object, part, manager +0x08)` walks (`0x00187CF7`-`0x00187D05`,
+    `0x0018811A`-`0x00188128`).
+22. `0x0016D6A0`, which only returns, is called after each queue call of step 4, at the
+    end of each clear of steps 8 and 9 whether or not it ends the body, and with
+    `0x0018B4E0()` before the walk of step 5 (`0x00187CF2`). Step 8 zeroes its latch first
+    (`0x00187DD6`). Each camera store of steps 5 and 14 is followed by a call of the
+    camera's slot `+0x08`, and step 14 then calls `0x0018A120(camera + 8)` (`0x0018826A`).
+23. Step 13 first calls `0x0018D320(render parameters, x, y)` and hands `0x001862B0` the
+    values `2 × (x - 0.5)` and `2 × (1.0 - y - 0.5)` (`0x00188165`-`0x001881AC`). In step 5
+    `0x001AC7C0` takes `0x001AD440()`, and `0x0018A680` takes `0x0018A620()` and
+    `0x0018A620() + 8` (`0x00187BB2`-`0x00187BBA`, `0x00187CD1`-`0x00187CE5`).
+
 For each entry the walk skips a null (`0x0018B159`), calls slot 2 once (`0x0018B164`), skips the entry
 when the key does not meet the list mask (`0x0018B167`), and calls slot 1 with the device (`0x0018B187`).
 

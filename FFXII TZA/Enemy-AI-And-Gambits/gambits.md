@@ -126,7 +126,9 @@ record and the picker's selection, read at `0x003014C0`, `0x0030F130`, `0x003087
      (`0x0030F163`-`0x0030F1C6`);
    - otherwise it clears the list (`0x00316CF0`) and appends each perception entry (`+0xBC8`, `0x10` bytes each,
      `+0xBC4` of them) whose unit lies within `max(0x00265090 radii) + +0x6D0` of the unit's `+0x6C0`
-     (`0x00319460`, `0x0030F1F0`-`0x0030F25A`);
+     (`0x00319460`, `0x0030F1F0`-`0x0030F25A`); `0x00319460(a, b, r)` answers 1 when `r * r` is at or
+     above the squared x-z distance `0x003A1960(a, b)`, which leaves height out
+     (`0x0031946C`-`0x0031947F`, `0x003A1960`-`0x003A197A`);
    - then, for party slots 0-3 (`0x0031B810`), it appends the member when the action's status mask (`0x003872D0`)
      meets the member's statuses `+0x64 | +0x3C` in bits `0x1`, `0x2` or `0x80000000` (`0x0030F266`-`0x0030F2B2`): an action that
      removes KO, Stone or X-Zone sees those members even when perception does not.
@@ -146,9 +148,24 @@ record and the picker's selection, read at `0x003014C0`, `0x0030F130`, `0x003087
      units with the highest (pick rule 3) or lowest (pick rule 2) key, ties kept together (`0x00308873`-`0x00308AEB`); any
      other pick rule with those key types keeps no unit, so the line fails (`0x00308925`, `0x00308A6A`). With any other
      key type it walks the list plain and keeps every unit that passed the filter (`0x00308825`-`0x0030886E`).
+   - The output list is cleared first (`0x00316CF0` at `0x0030880E`). Both lists hold
+     `0x10`-byte entries from `+0x08`, the unit's actor at entry `+0x00` and the key at entry
+     `+0x08`, with the count at list `+0x04` (`0x00308832`-`0x00308860`). The unit of an entry is
+     the answer of `0x0031B760(actor)`: 0 for a null actor, otherwise the actor's qword `+0x30`
+     (`0x00308836`-`0x0030883E`, `0x0031B760`-`0x0031B768`, `0x00263E30`).
+   - The best key starts at a bound: `0x80000001` for the highest integer and
+     `0x7FFFFFFF` for the lowest (`0x003089D7`, `0x00308A73`); the float at `0x02F973B8` for the
+     lowest float and its negative for the highest (`0x00308882`-`0x0030888A`, `0x0030892E`).
+   - A key strictly past the best one, on a unit that passes the filter, restarts the
+     output with that unit alone; a key equal to the best one appends, so a key equal
+     to the bound is kept and one past it the other way never is
+     (`0x003089F0`-`0x00308A55`, `0x00308A83`-`0x00308AE8`, `0x003088A0`-`0x00308910`).
    - With more than one unit left, pick rule 1 draws `0x00328370() % count` (`0x00308B0D`-`0x00308B1C`); any other rule
      takes the unit nearest to the deciding unit by `0x0031E620(unit + 0xE0, candidate + 0xE0)` (`0x00308B2F`-`0x00308B76`);
      the result is an index into the output list.
+   - With one unit or no unit left the index is 0 (`0x00308B08`-`0x00308B0B`, `0x00308B78`).
+     The nearest walk starts from the float at `0x02F973B8`, takes a strictly smaller
+     distance, and skips an entry whose unit does not resolve (`0x00308B2F`-`0x00308B6A`).
 5. **The target.** An empty output fails the line (`0x003017C4`-`0x003017CD`); otherwise `*target` is the chosen unit's
    actor handle `+0x08`, read through the entry's actor and its `+0x30` unit (`0x003017CF`-`0x003017E7`;
    [Battle unit fields](../Characters-And-Objects/battle-unit-fields.md)), and the evaluator returns 1. Any other action word
@@ -233,6 +250,11 @@ The condition id is not range-checked here: the row is the table's word `+8` tim
 value `0x0020E600` gives for the table's `+0xC`, added in 32 bits (`0x00327EC1`-`0x00327ED2`). A null `[0x02EBF0D8]` or
 a 0 from `0x0020E600` leaves the row at 0 (`0x00327EDD`), and the first field read, word `+0x08` at `0x00327EDF`,
 faults. Only the orders built are written, so those past the new count keep what they held.
+
+`0x00327930(record, delta)` does nothing for a record number above `0x27` or a party
+record whose kind byte `+0x05` is not 0 (`0x00327933`, `0x00327952`). Otherwise it adds the
+delta to the count byte `+0x32` of the three banks `3 * type + i`, the type being the
+record's byte `+0x04`, and keeps each result in 0-12 (`0x00327960`-`0x0032798C`).
 
 The count is a byte store (`0x00327F60`). The bank and the selected set are read from `[0x02EBF190]` itself, with `k`
 the stats byte `+0x04` (`0x00327DED`-`0x00327E4B`).

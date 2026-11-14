@@ -205,7 +205,8 @@ bind the member gets `+0x18` = 1 with the owner's manager at `+0x19` and id at `
 gets `+0x18` = 2 with the member's; `0x002E4A40(owner)` re-applies the render scale; the owner copies
 the member's body pointers (`+0xC0` and `+0xB8`); `0x002681E0` refreshes both; it returns 1.
 
-`0x002ECCF0(owner, 1)` then sets presentation `+0x11` bit `0x80`: `0x00262F50` calls it only after a
+`0x002ECCF0(owner, v)` then clears presentation `+0x11` bit `0x80` and sets it again from bit `0x1`
+of `v` (`0x002ECD06`-`0x002ECD0D`), so `(owner, 1)` sets it: `0x00262F50` calls it only after a
 bind that returned 1 (`0x00262F66`), and `0x002ECCF0` writes only when the owner and its `+0xC0` record
 are non-null and the record's first dword is not -1 (`0x002ECCF3`-`0x002ECD04`). `0x00262F50` returns the
 bind's result.

@@ -59,8 +59,9 @@ of a `+0x140` word are the periodic tick's HP-drain arms at `0x00386DF5`, `0x003
    - then, unless the actor's class nibble (`[enemy+0x10]` byte `+0x0E` & `0xF`, `0x00263C20`) is 3, or
      the species word `[[enemy+0xE68] + 0x52]` is `0xFFFF`, counts the defeat for that species through
      `0x00315820` (`0x003171FE`-`0x0031721F`).
-3. **The reward gate.** Steps 4-8 run only when the enemy's `+0xE9A` bit `0x8` is clear and one of these
-   holds (`0x003122DA`-`0x0031232A`):
+3. **The reward gate.** Steps 4-8 run only when the defeated unit's stats record `+0x698` is not null and
+   has byte `+0x05` = 1 (`0x003122DA`-`0x003122EE`), its `+0xE9A` bit `0x8` is clear and one of these holds
+   (`0x003122F4`-`0x0031232A`):
    - the killer is a party record;
    - bits `0x1` and `0x4` are both set (Poison from a party source, and the killing blow was a periodic drain);
    - status 1 (Stone) is set in the status words `+0x64 | +0x3C` and bit `0x2` is set (Petrify from a

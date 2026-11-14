@@ -356,7 +356,7 @@ function	name	route	fields	reads	writes	other	uses_the_limit_directly	reads_the_
 0x003261D0	PartyConfiguration_ReconcileRosterFromCurrentSelectors	0x00236820	3	4	0	0	yes	no
 0x00326500	PartyFocus_SelectAndRequestDefaultActor	0x0031B770	2	3	0	0	yes	no
 0x003266C0	BattleGroup_RefreshFourActorDefinitions	0x00263E30	3	10	2	0	no	no
-0x00326BB0	FUN_00326bb0	0x00263E30	4	6	0	0	yes	no
+0x00326BB0	FUN_00326bb0	0x002367A0; 0x00263E30	4	6	0	0	yes	no
 0x00326D60	FUN_00326d60	0x00236820	2	4	0	0	yes	no
 0x00327150	FUN_00327150	0x00236820	1	1	0	0	yes	no
 0x003272A0	BattleUnit_GetPartyLeader	0x00263E30	1	1	0	0	no	no

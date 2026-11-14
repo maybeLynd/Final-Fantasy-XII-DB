@@ -163,6 +163,23 @@ A failed map skips the copy, the rescale and the commit (`0x0017F4D8`). A null m
 copy, and the rescale then reads address 3 and faults (`0x0017F4E6`, `0x0017F520`). A null colour pointer
 returns the texture unfilled (`0x0017F4B9`).
 
+The texture object is `0x188` bytes from `0x0085E730(0x188, 0, -1)`, cleared and built by
+`0x006160B0` (`0x0017F3E4`-`0x0017F40C`). After `0x0060DD70` the buffer count asked for, the
+fourth argument and at least 1, is compared with the texture's buffer count
+`+0x30 & 0x7FFFFFFF`, taken as 1 when 0; when they differ
+`0x00628100(texture, count asked for)` runs, after the log line "Altering buffer count of
+PTexture2D whilst bound" when `0x00625F00` answers non-zero, and a 0 answer from `0x00628100`
+clears `+0x0C` (`0x0017F438`-`0x0017F480`).
+
+Bit `0x2` of the flag dword `+0x18` is cleared before `0x00610990` and bit `0x200` set
+after it (`0x0017F483`-`0x0017F48F`). `0x0061E200` runs when the object's first qword is not
+`0x02CF7A30` and `0x00625F00` answers 0 (`0x0017F496`-`0x0017F4B1`). When the commit `0x0062C360`
+answers 0 the dword `+0x0C` takes `[0x01F7F5A0] % count`, the buffer count, and the byte
+`+0x08` becomes 0 (`0x0017F553`-`0x0017F57E`).
+
+The teardown `0x008AF060` frees nothing: it loads the address `0x02CF7480` and jumps to `0x0016D6A0`,
+which only returns (`0x008AF060`-`0x008AF067`).
+
 An alpha of `0x80` or more draws fully opaque; `0x6F` draws as
 221 of 255.
 

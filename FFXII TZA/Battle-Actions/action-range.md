@@ -121,6 +121,10 @@ integer path instead: `0x002ECE80(object, id)` hands the same character record i
 and -1 guards, to `0x003E6310` (`0x002ECE80`-`0x002ECEA0`), and `0x003204E0` stores the returned dword as it
 is (`0x00320580`-`0x00320590`).
 
+Each of the three guards makes `0x002ECE80` answer the integer 0 (`0x002ECE9E`), and the
+id it passes on is the low word of the dword at `[object + 0xC0]`, zero-extended
+(`0x002ECE96`).
+
 `0x002ECE50` returns 0.0 when the object or `[object+0xC0]` is null or the dword there is -1 (`0x002ECE53`-`0x002ECE64`);
 otherwise it passes the low 16 bits of that dword, zero-extended (`0x002ECE66`), to `0x003E6150`, which keeps only
 those 16 bits (`0x003E615C`). That reads the parameter from the character's parameter block (`0x004FE270`)
@@ -153,9 +157,22 @@ and multiplies it by the float at `+0x26C` of that character's `0x740`-byte reco
 6. **Back-off** tests a step with `0x00335B60`: if it returns 0 the unit moves away at the block's speed
    `+0xF8` with heading `ctx+0xB4` (turn limit `0x003364D0`), otherwise the back-off bit is cleared
    (`0x00338339`-`0x003383BC`).
-7. **Neither:** the avoidance manoeuvre `0x003343D0` runs (and `0x0033BAA0` when it starts). When neither
-   bit of block `+0x38` is set and bits `0x7FE0` of block `+0x00` are clear, the unit stops and turns to
-   face the target (`0x003383C2`-`0x00338442`).
+7. **Neither:** the avoidance manoeuvre `0x003343D0` runs (and `0x0033BAA0` when it starts)
+   (`0x003383C2`-`0x003383D1`).
+8. **After every path** (`0x003383D6`): when neither bit `0x2` nor bit `0x4` of block
+   `+0x38` is set and bits `0x7FE0` of block `+0x00` are clear, the unit stops (speed
+   `ctx+0xB0` = 0) and turns to face the target (`ctx+0xBC` takes `0x003364D0(ctx, h)`),
+   `0x0033BC80` runs on the point (own x, 0, own z, 1.0), and bits `0x7FE0` are cleared
+   again (`0x003383D6`-`0x00338442`).
+9. The `h` of step 8 is the heading between the unit and the target's live position
+   `ctx+0x40` (`0x00203080`, `0x004687F0`, `0x003381C1`-`0x003381F7`, passed at `0x003383EC`).
+
+In step 6 the step heading comes from `0x00203080(out, ctx, ctx + 0x40)` with the result's
+y set to 0 and `0x004687F0` on it; the test is `0x00335B60(ctx, heading, 0, 0.1, 0.8, 0)`
+(`0x00338339`-`0x00338382`). On a 0 answer `ctx+0xB0` takes the dword `+0xF8` of the object
+at `ctx+0x108`, `ctx+0xB4` takes that heading and `ctx+0xBC` takes `0x003364D0(ctx, h)`,
+h being the heading `0x004687F0` gave earlier for `0x00203080(out, ctx + 0x40, ctx)`
+(`0x003381C1`-`0x003381F7`, `0x0033838B`-`0x003383B2`).
 
 ### The back-off condition
 
@@ -230,3 +247,10 @@ the speed `ctx+0xB0` is non-zero; otherwise it clears bit `0x100` and returns 0 
   `0x0030A16E`-`0x0030A179`).
 - [The FCP character parameter block](../Graphics/model-files-cm-ca.md)
   - the per-character parameters behind weapon-flag actions.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x00203080` is called by `0x00362850`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).

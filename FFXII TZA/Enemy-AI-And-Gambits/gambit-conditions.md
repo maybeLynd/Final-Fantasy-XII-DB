@@ -78,6 +78,12 @@ bit `0x8000` (MP) of word `+0x2C`, adds the previewed result of every action alr
 (the mask `+0xEA4`, each attacker's action `+0x714`, `0x00308B90`). The sum is clamped to 0 and the maximum
 (`0x00308C86`-`0x00308D7D`). The action row is the `0x02EBF138` row of the action id (`0x00308C26`-`0x00308C80`).
 
+`0x00308B90(a, b, action, which)` clears a `0x148`-byte result record on its stack with
+`0x00861EC0`, sets bit `0x20` of the record's first dword and calls the resolver
+`0x00385F60(action, a, b, record)` (`0x00308BBB`-`0x00308BE3`). It answers the record's dword
+`+0x24` when `which` is not 0, and otherwise the signed high word of the dword `+0x28`
+(`0x00308BE8`-`0x00308BF6`).
+
 The maximum is max HP `+0x24`, doubled under Bubble (bit `0x10000000`), or under Disease (bit `0x10000`,
 tested first, so it wins over Bubble) the current HP and at least 1, both bits of `+0x64 | +0x3C`
 (`0x00308C9C`-`0x00308CBD`). For MP it is max MP `+0x28`, or 0 when augment 39 (Emptiness) is in either layer
@@ -96,8 +102,10 @@ walk goes on to the next line.
 
 `0x003083B0` answers 0 at once when the deciding unit is an enemy (stats `+0x05` = 1), when the action id is
 above `0x21E` (`0x003083E1`-`0x003083FD`), or when the action row has bit `0x20` of `+0x36` and the candidate's byte
-`+0x55` is `0x0D` (`0x0030844B`-`0x00308457`). Otherwise it answers 1 only when every effect the action row marks
-would change nothing on the candidate (`0x0030846A`-`0x003085E6`):
+`+0x55` is `0x0D` (`0x0030844B`-`0x00308457`). Otherwise it answers 1 only when the action
+row marks at least one of the four effects below and every effect it marks would
+change nothing on the candidate; a row that marks not one of them answers 0
+(`0x003083CD`, `0x0030846A`-`0x003085E6`):
 
 | Row bit | Effect | Changes nothing when | Sites |
 |---|---|---|---|

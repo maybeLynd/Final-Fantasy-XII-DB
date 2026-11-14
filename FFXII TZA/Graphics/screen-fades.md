@@ -135,6 +135,8 @@ made again here: `0x00254A70` returns 0, bit `0x800` of `0x020926E4` is set and 
 It writes the four corners, the colour as four floats (`+0x40`-`+0x4C`) and the blend word (`+0x50`)
 into the buffer `0x00863B40` returns, and submits it with `0x00863B90(2)` and `0x0039D3F0`
 (`0x0037419A`-`0x00374266`).
+`0x00863B90(mode)` runs `0x001FB840` on the node at `0x02EB37F0` and then jumps to
+`0x0020E630(node, mode)` (`0x00863B98`-`0x00863BB2`).
 The blend is entry `blend` of eight 8-byte words at `0x01EFAC20`, read as the PS2 GS `ALPHA`
 register:
 
@@ -276,6 +278,11 @@ loading icon (`0x00183070`) and then runs `0x00182F10(n)` on the screen picture 
 2. `0x001D8F50` starts the picture when it holds one (`+0x28`): it logs `[ScreenImage]:playDPic`, sets `+0x00` to 1
    and either fades the level `+0x1C` in from 0 by `255 / [+0x14]` per step or, with no fade length, shows it at
    255 and sets `+0x10` to 2.
+
+In `0x001D8F50` the `+0x00` store is a byte and `+0x04` becomes 0 (`0x001D8F76`, `0x001D8F79`).
+On the fade-in path the level `+0x1C` is set to 0 (`0x001D8F96`), one qword store zeroes
+the counter `+0x0C` and the mode `+0x10` together (`0x001D8F99`), and the step `+0x20` is
+the float `255.0 / length`, the length taken as a float (`0x001D8F87`-`0x001D8FA1`).
 
 `0x00473E20()` reads the picture's `+0x10` (`0x00225680`) and answers 1 while it is 0 to 2, 2 when it is 3 and 0
 for any other value. The poll `0x0034F570` of the verb `0x5A6` returns 1, which holds the script, while that

@@ -119,7 +119,8 @@ left by padding with blanks.
 ### The entry page
 
 - `0x00573BE0(page, n)` lays out page `n` of the entry's text from the text bundle (`0x005766B0`): for the Bestiary it
-  splits off the title before code 3 (`0x002B39A0`), then breaks the text into lines (`0x002B5240`, `0x002B5390`), keeping
+  splits off the title before code 3 (`0x002B39A0`), then copies the text with its names filled in (`0x002B5240`)
+  and breaks it into lines (`0x002B5390`), keeping
   each line's start, colour, width and flags at `+0x41E0`.
 - `0x00574160` paints one text line into `+0x4120`, with the line's colour code first (`0x002AB870`) and right-aligned
   when its flag says so; `0x00574080` and `0x00574770` size the page from the layout.

@@ -576,15 +576,27 @@ non-zero pitch; callers hand in distances of 0.1 or 1.0.
 ### The order goal decoder
 
 `0x00312730(unit, order, outTarget, outGoal, outReach)` turns an order word at `+0x714` into a goal:
-`0x4000`-`0x401F` index `0x00312DF0` with the order's parameter word; `0x4020` uses the spawn record's
-`+0x50` for a kind-1 unit; `0x4022` the leader's `+0x120` and the target's `+0xD0` for a kind-0
-unit; `0x4023` the target of `+0x710` with the parameter as reach; `0x4024` the party leader;
-`0x4026`-`0x4035` the unit of definition selector `order - 0x4026` (`0x002367A0`).
+
+- `0x4000`-`0x401F` index `0x00312DF0` with the order's parameter word;
+- `0x4020` uses the spawn record's `+0x50` for a kind-1 unit;
+- `0x4022`, for a kind-0 unit whose group leader `0x0031B7E0(unit dword +0x24)` exists, gives the unit's
+  own `+0x120` as the first output and that leader's `+0xD0` as the second (`0x0031289E`-`0x003128E4`);
+- `0x4023` calls `0x00312DF0` with the `+0xD0` of the target of `+0x710` and a range of the parameter
+  plus the target's `0x0030A130` size, or 0 for a parameter of 0 (`0x00312804`-`0x00312856`);
+- `0x4024` the party leader;
+- `0x4026`-`0x4035` the unit of definition selector `order - 0x4026` (`0x002367A0`).
 
 `0x4124`, `0x4125`, `0x414A`, `0x414E` and `0x4165` are five higher sources; `0x4021`, `0x4025` and
-everything else reject. The reach returned is the larger of the actor's radii plus the target's
-where one exists; for `0x4022` it is `0x00309B10(unit)`, the unit's larger radius plus 0.1, plus
-`0x00309A90()`.
+everything else reject. The reach returned starts from `r`, the larger of the actor's two radii:
+
+- `r` alone for `0x4000`-`0x4020` and `0x4125` (`0x00312A86`);
+- `r` plus the other unit's `0x0030A130` size plus the parameter for `0x4024`, `0x4026`-`0x4035` and
+  `0x414A` (`0x0031294A`-`0x00312967`);
+- `r`, plus the target's size only when the parameter is 0, for `0x4023` (`0x0031287C`-`0x00312895`);
+- the unit's dword `+0x154` for `0x4124` (`0x00312AC5`);
+- 0 for `0x414E` (`0x00312A33`);
+- `r + 1.0 - 0.1` for `0x4165` (`0x003129D5`-`0x003129E5`);
+- for `0x4022` it is `0x00309B10(unit)`, the unit's larger radius plus 0.1, plus `0x00309A90()`.
 
 `0x00312DF0` draws up to nine random points (`0x00312E40`-`0x00312E47`), answering 0 when
 `0x00317DE0(unit, point, flag)` accepts one (`0x00312E9F`) and -2 when it accepts none (`0x00312EBC`). `0x00317DE0`

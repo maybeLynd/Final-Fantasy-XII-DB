@@ -88,12 +88,12 @@ below 0 (`0x0031E750`) ([Navigation](../Movement-And-Pathfinding/navigation-mesh
 | 38, 39 | within `v` of the unit of definition selector `s` (`0x002367A0`) | `0x00302D1F` |
 | 40, 41 | HP missing at least 100, 200, 300, 500, 700, 1,000, 2,000, 3,000, 4,000, 5,000 (`0x00D10328`) | `0x00302DB4` |
 | 42, 43 | HP at least 100,000, 50,000, 10,000, 5,000, 3,000, 2,000, 1,000, 500, 75, 50 (`0x00D10350`) | `0x00302E80` |
-| 44, 45 | MP at least 75, 50, 25 or 10 % of max MP (`0x00D10370`); a unit with max MP 0 fails | `0x00302F17` |
-| 46, 47 | `s` = 0: HP full; `s` = 1: MP full | `0x00302F7E` |
+| 44, 45 | MP at least 75, 50, 25 or 10 % of max MP (`0x00D10370`); a unit with max MP 0, or with bit `0x80` in stats byte `+0x6C` or `+0x7C`, is kept by neither opcode (`0x00302F3E`-`0x00302F59`) | `0x00302F17` |
+| 46, 47 | `s` = 0: HP (`0x00308C20` with a last argument of 1) at least the cap: max HP `+0x24`, or `2 × +0x24` with status bit `0x10000000`, or with status bit `0x10000` the current HP `+0x48`, at least 1 (`0x00302FAF`-`0x00302FE2`). `s` = 1: MP at least max MP `+0x28`, or at least 0, which always holds, when byte `+0x6C` or `+0x7C` of the stats has bit `0x80` (`0x00302F8B`-`0x00302FA7`). Any other `s` keeps no unit (`0x00302F82`-`0x00302F85`) | `0x00302F7E` |
 | 48, 49 | the whole field, read at the first candidate: `s` = 0 the environment class (`0x00321490`) is `v`, 1 the MP regime (`0x00320160`) is `v`, 2 the MP regime is at least `v` | `0x00303027` |
 | 52, 53 | before any candidate: every active enemy whose spawn record tag `+0x15` is `v` (1-255) and that no unit is committed against (`+0xEA4` = 0) | `0x00301CFB`-`0x00301DAB` |
 | 54, 55 | before any candidate, for `s` = 0-2: a register (next tables) equal to `v`, at least `v`, or with bit value `1 << v` set; a pass keeps the deciding unit. `s` = 3 runs the candidates instead and tests bit value `1 << v` of each one's register `+0xB90` | `0x00301C2B`-`0x00301CF6`, `0x00303079` |
-| 56, 57 | `s` = 0: on screen (`0x00322360`), nearest for 56 and furthest for 57; 1: the party leader's target (`+0x750`); 2: carrying out a magick (its action's kind `+0x1E` is 1) | `0x003030A7` |
+| 56, 57 | `s` = 0: on screen (`0x00322360`), nearest for 56 and furthest for 57; 1: the target (`+0x750`) of the deciding unit's linked unit, the unit `0x0031B7E0` gives for its `+0x24`; with no linked unit, or with a linked unit other than the deciding unit whose action word `+0x714` is above `0x21E`, neither opcode keeps a unit (`0x00303141`-`0x00303180`); 2: carrying out a magick (its action word `+0x714` is at most `0x21E` and the action's kind `+0x1E` is 1, `0x003030C3`-`0x00303130`) | `0x003030A7` |
 | 58, 59 | at least `v` units that relation mode `s` admits (0 = every unit) in its own perception list `+0xBC4` | `0x003031C4` |
 | 60, 61 | team byte `+0x54` is `v` | `0x0030329B` |
 | 62, 63 | MP at least `10 * s` % of max MP | `0x003032A7` |
@@ -102,9 +102,59 @@ below 0 (`0x0031E750`) ([Navigation](../Movement-And-Pathfinding/navigation-mesh
 | 68, 69 | the whole field: the summon timer (battle state `+0x5AD8`) at least 20, 30, 60, 90 or 120 (`0x00D10380`) | `0x00303523` |
 | 1, 4, 5, 18, 19, 30, 31, 50, 51 | no unit is kept | `0x00301C08`, `0x00303567` |
 
+`0x00321320(unit, out)` first stores -1 in the output dword, and again at `0x0032134D`. It
+answers -1 for a null unit and -2 for a unit with no stats record `+0x698`; otherwise it
+calls `0x00321400(word +0x50 of the stats record, out)` and answers 0
+(`0x00321324`-`0x00321361`). The branch at `0x00321357`, taken only if the address of that
+word were 0, answers -3 (`0x00321368`).
+
 An active enemy of opcodes 52 and 53, and a party slot of check 18 below, counts only while it is in play: a
 unit whose status words `+0x3C | +0x64` hold KO, Stone or X-Zone (`0x80000003`) is passed over unless the area's
 town flag is set (the calls at `0x00301D4E` and `0x00302738`, [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)).
+
+Before the candidates `0x00301AD0` asks `0x003272A0()` and, when the deciding unit's `+0x24`
+is not 0, `0x0031B7E0` for that unit (`0x00301BA7`-`0x00301BB9`). A candidate is taken with
+`0x0031B760` from the list entry, must pass `0x0030BD00` and must not pass `0x0030B9B0`
+(`0x00301E1E`-`0x00301E68`).
+
+For opcodes 52 and 53 the walk is over `0x00236820(i)` for `i` below `0x00236850()`, asked
+again at every step (`0x00301D0E`-`0x00301DA5`). An enemy is kept when it holds bit `0x10` in
+its first byte, has a stats record `+0x698`, passes `0x00377C20()` when that record's dwords
+`+0x64` and `+0x3C` hold a bit of `0x80000003`, has byte `+5` of the stats record equal to
+1, holds bit `0x10` in the first byte of its record `+0x6A0`, has that record's tag `+0x15`
+equal to `v` and has a dword `+0xEA4` of 0 (`0x00301D30`-`0x00301D84`).
+
+The qword `+0x10` of a kept enemy is added to the list and the list's count `+4` goes up
+by 1 (`0x00301D86`-`0x00301D96`).
+
+For opcodes 40 and 41 the HP missing is the cap of opcodes 46 and 47 (max HP `+0x24`,
+or `2 × +0x24` with status bit `0x10000000`, or the current HP `+0x48`, at least 1, with
+status bit `0x10000`) less the answer of `0x00308C20` (`0x00302DD4`-`0x00302E23`). Opcodes 42 and 43
+compare that answer itself (`0x00302EA0`-`0x00302EBF`).
+
+For opcodes 48 and 49 an `s` above 2 ends the test with no unit kept (`0x0030303A`-
+`0x0030303D`). For opcodes 58 and 59 an `s` of 0 takes the count `+0xBC4` as it stands
+(`0x003031E3`-`0x003031E5`, `0x00303292`); any other `s` counts the list units `0x0030BD00`
+admits in mode `s` (`0x003031EB`-`0x0030322E`).
+
+For opcodes 64 and 65 the item is `0x003093D0` of the line's action word and the count
+`0x00309EC0(item, 0)`, both taken at the first candidate (`0x003032C4`-`0x003032E4`); the
+answer is kept in the dword `0x022BED94` for the later candidates (`0x003032F8`-`0x00303300`).
+An item of `0xFFFF` passes over the first candidate without writing `0x022BED94`
+(`0x003032D6`-`0x003032D9`), and the later candidates are judged by the value it already
+held.
+
+For opcodes 66 and 67 a committed unit is `0x00236820(i)` for a set bit `i` of the
+candidate's `+0xEA4`, when its qword `+0x780` equals the candidate's `+0x10` and
+`0x00322C50(0x14, action, 0)` answers non-zero for its action word `+0x714`
+(`0x00303380`-`0x003033C8`).
+
+For `s` = 1 of opcodes 66 and 67 `0x0031C500` is asked twice: for the deciding unit's
+stats, the candidate's stats and the line's action (`0x0030333F`-`0x0030335B`), and for the
+committed unit's stats, the candidate's stats and that unit's action
+(`0x003034AD`-`0x003034C4`); the two status masks it answers must share a set bit
+(`0x003034CB`). With an `s` above 3 no committed unit passes: opcode 66 keeps no unit and
+opcode 67 keeps every candidate (`0x003033E8`-`0x003033EB`, `0x003034FF`-`0x0030351E`).
 
 The checks of opcodes 34 and 35:
 
@@ -129,6 +179,22 @@ The checks of opcodes 34 and 35:
 | 30, 31 | a status of set A `0x0208D320` other than bit `0x20000000` (30), or of set B `0x0208D324` (31) | `0x00302C35`, `0x00302C59` |
 | 32 | holding a bow, crossbow, gun or hand-bomb (equipment class 7, 8, 9 or 17, group 4 of `0x0031E9F0`) | `0x00302C77` |
 | 5-7, 14, 15, 22, 23 | no unit is kept | `0x00303567` |
+
+A check that needs a unit which is absent ends the whole test with no unit kept: no
+party leader for checks 19 and 21 (`0x003028C2`-`0x003028CA`, `0x003029C7`-`0x003029CF`), no
+linked unit for checks 20 and 24 (`0x00302945`-`0x0030294A`, `0x00302A76`-`0x00302A7E`) and no
+combatant `v` from `0x0031B770` for check 27 (`0x00302AE7`-`0x00302AFA`).
+
+The same end is taken by opcodes 36 and 37 when `0x00320940` answers below 0
+(`0x00302C9D`-`0x00302CA4`), by opcodes 38 and 39 when `0x002367A0(s)` gives no unit
+(`0x00302D25`-`0x00302D34`) and by opcodes 26 and 27 for an `s` above 5
+(`0x00302416`-`0x00302419`).
+
+Check 27 asks `0x0031B770` for combatant `v` at the first candidate and keeps the answer
+in the qword `0x022BED98` (`0x00302AE3`-`0x00302AF0`); opcodes 38 and 39 keep theirs in
+`0x022C17A8` (`0x00302D2A`). Check 26 passes when `0x0030AB40(deciding unit, target, 0)`
+answers a value other than 0 and 2, the target being `0x0031B7E0` of the candidate's dword
+`+0x710` (`0x00302AB1`-`0x00302AD8`).
 
 ### The registers
 
@@ -285,3 +351,21 @@ All nine language files hold the same bytes, at `fr` `0x4900`, `de` `0x4C60`, `e
 - [Bestiary](../Enemy-Spawning/bestiary.md) - the enemies, with the set numbers of their four lists.
 - [Area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md) - the area file.
 - [Enmity](enmity.md) - the enmity checks of opcodes 2 and 34.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat formula: `0x00236820` is called by `0x0031B860`, `0x0031E800`; `0x00236850` is called by `0x0031B860`, `0x0031E800`,
+  `0x00384F40`; `0x00308C20` calls `0x00308B90`; `0x0030B9B0` is called by `0x00300530`, `0x003112F0`; `0x00322C50` is called by
+  `0x002FEF30`; `0x00377C20` is called by `0x00300530`.
+- Combat formula: those functions are documented on [native limits](../Engine-Core/native-limits.md),
+  [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md),
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
+  [action results](../Battle-Actions/action-results.md).
+- Combat formula: and on [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md),
+  [traps](../World-Areas-And-Travel/traps.md), [force fight mode](../Engine-Core/force-fight-mode.md).
+- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Rewards progression economy: `0x00377C20` is called by `0x00312280`; those functions are documented on
+  [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md).

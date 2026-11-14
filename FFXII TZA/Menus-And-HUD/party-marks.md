@@ -63,6 +63,16 @@ So an equipment bit means "cannot wear" and an ability bit means "has it".
 | magick or technick | clear | 8 |
 | magick or technick | set | the member's own mark |
 
+`0x003FC900(board, word)` answers 0 for a board number above 11 and for an empty board
+slot `0x02EBF1A0 + 8 × board` (`0x003FC909`-`0x003FC939`). Otherwise it walks every cell of
+the board; for each cell that is not `0xFFFF` it takes the licence record of that
+number: the table the pointer `0x02EBF038` names holds a dword at `+0xC`, which
+`0x0020E600` turns into the first record's address, and a size word at `+8`; the record
+is read at the low dword of `first + size × number` (`0x003FC9F0`-`0x003FC9F2`).
+
+`0x003FC900` answers 1 as soon as one of the record's eight words
+at `+8` equals its second argument's word, and 0 with no match (`0x003FC960`-`0x003FCA66`).
+
 `0x003FCAD0(list, row, first, last)` works on the mark widgets `[list + 0x10]` from `first` to `last`
 (`0x003FCAE0`-`0x003FCB22`):
 
@@ -80,6 +90,10 @@ So an equipment bit means "cannot wear" and an ability bit means "has it".
   takes its palette byte from the group's record `frame x 8 + 7` (`0x003FCBB5`, `0x003FCC65`, `0x003FCC74`, `0x003FCBDC`).
 
 `0x002C9B30(n, field)` reads field 0-8 of member n's row of seven `0x10`-byte rows at `0x009170C0`, clamping n to 0-6.
+Fields 0 to 5 are the row's signed bytes `+0` to `+5`, field 6 the float `+8` cut to an
+integer, field 7 the signed byte `+0xC` and field 8 the low dword of the row's own
+address; any other field number answers 0 (`0x002C9B52`-`0x002C9BA1`, jump table
+`0x002C9BA4`).
 
 ## Modding notes
 

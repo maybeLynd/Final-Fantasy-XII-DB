@@ -47,7 +47,7 @@ otherwise it releases any body at `[+0xC0] + 0x138`, allocates one and stores th
 null included.
 
 It then runs the five consumers: `0x00269EC0(record, 0)` sets the layer byte `+6`;
-`0x002681D0`, which for a class-3 actor writes a mode code from 0 to 5 to the body's `+0x80` and the
+`0x002681D0`, which for a class-3 actor writes a mode code of 0-3 or 5 to the body's `+0x80` and the
 context's `+0x153` (`0x002682A7`, `0x002682B5`; [Player movement](player-movement.md)); `0x002682D0`
 copies the context's `+0x151` bits under mask `0x3` into the body's flags `+0x90`;
 `0x002685F0` copies the context's float `+0x148` into the weight `+8`; `0x00268380` sizes the shape.

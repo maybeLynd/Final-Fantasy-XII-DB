@@ -101,6 +101,14 @@ whose good has that flag (`0x0030B57A`-`0x0030B5B2`, `0x0030B5F6`-`0x0030B619`).
 keeps the other bits (`0x0030B603`-`0x0030B619`). The third verb, `0x2F5` `ishoridashi`, cannot read it: its handler
 `0x0034BD90` calls `0x005C5230`, which returns 0.
 
+`0x0032AB50(id, v)` passes `v` on as 1 for any value other than 0 and as 0 otherwise
+(`0x0032AB54`-`0x0032AB59`), so any non-zero argument sets the bit.
+
+`0x0030B570` forms the good's row address in 32 bits, `base + (id - 0xD000) × size`, from
+the answer of `0x0020E600` and the row size word (`0x0030B5DC`-`0x0030B5F0`). With no goods table,
+`[0x02EBF058]` null or `0x0020E600` answering null, the row address is 0 and the flag
+test reads the byte at address `0x14` (`0x0030B5BE`, `0x0030B5CB`, `0x0030B5F4`-`0x0030B5F6`).
+
 The `us` zone scripts call `sethoridashi` 135 times and never `clearhoridashi`. Each call offers one good once and sets a bit of script global byte `0x0CDA` (or, for good 99, bit `0x2` of `0x0405`) so it is not offered again. The counts are script global bytes `0x0CD0`-`0x0CD4`, each stopped at 255:
 
 | Good | Monograph | Offered when |

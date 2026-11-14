@@ -33,7 +33,7 @@ a polygon and at `+4` of a wall record. Its fields, with the functions that read
 | `0x1000` | copied into bit `0x4` of the body's flag word | `setmapidfloor` kind 9 | `0x003808A0` |
 | `0x3E000` | floor group 0-31; the wall group on type-1 polygons and wall records | no verb | every override reader below |
 | `0x7C0000` | ground field | `setmapidfloorground` | `0x00231F80` |
-| `0xF800000` | block bits for movement kinds 0, 5, 1, 2, 3 (bits `0x800000`, `0x1000000`, `0x2000000`, `0x4000000`, `0x8000000`) | `setmapidfloor`, `setmapidmj` | `0x00230A40`, `0x00232090`, `0x0022D4B0`, `0x0022CC50` |
+| `0xF800000` | block bits for movement kinds 0, 5, 1, 2, 3 (bits `0x800000`, `0x1000000`, `0x2000000`, `0x4000000`, `0x8000000`) | `setmapidfloor`, `setmapidmj` | `0x00230A40`, `0x00232090`, `0x0022D4B0` |
 | `0x4000000` | on type-1 polygons and wall records: skipped by the sphere sweep | no verb | `0x0022D7E0` |
 | `0x40000000` | wall ignored by kind-4 queries | `setmapidwall` kind 6 | `0x0022D4B0`, `0x0022CC50` |
 | `0x80000000` | wall switched off | `setmapidwall` kind 5 | `0x0022F8B0`, `0x0022DE60`, `0x0022D7E0`, `0x0022D4B0`, `0x0022CC50` |

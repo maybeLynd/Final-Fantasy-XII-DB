@@ -55,9 +55,9 @@ constructed by `0x001AA9E0`, which:
 
 While the step `+0xA8` stays negative the capture code does nothing to the picture. The render pass
 `0x00187950` runs `0x001AC7C0` each frame, which, when byte `+0xA4` is set and the step is −2, sets the
-step to −1 and calls `0x001EF540(1)` on the shadow object (`0x001F0850`). `0x001ACF10(manager, format)`, from
-`0x00186CD0`, keeps the format at `+0x248` and creates two 512 × 512 targets at `+0xD0` and `+0xC8`
-(`0x001EE040`).
+step to −1 and calls `0x001EF540(1)` on the shadow object (`0x001F0850`). `0x001ACF10(manager, samples)`, from
+`0x00186CD0` with the multisample count `0x02CB8084` (`0x0018710D`-`0x0018711D`), keeps the count at `+0x248`
+(`0x001ACF1A`) and creates two 512 × 512 targets at `+0xD0` and `+0xC8` (`0x001EE040`).
 
 ### Registering the textures
 

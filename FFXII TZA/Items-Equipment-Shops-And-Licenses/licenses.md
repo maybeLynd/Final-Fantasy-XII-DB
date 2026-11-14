@@ -33,6 +33,13 @@ An action whose row has bit `0x2000` of the word `+0x2C` set passes (`0x00323F4D
 [Action definition row](../Battle-Actions/action-definition-row.md)). A piece of equipment whose row has bit `0x10` of
 `+0x07` set passes (`0x00323CDF`-`0x00323CE3`, [Equipment row](equipment-row.md)).
 
+`0x00323C60` forms the equipment row address in 32 bits, `base + (item - 0x1000) × size`,
+from the answer of `0x0020E600` and the row size word (`0x00323CC5`-`0x00323CD9`); with no equipment
+table, `[0x02EBF0F8]` null or `0x0020E600` answering null, the row address is 0 and the
+bit test reads the byte at address 7 (`0x00323CA7`, `0x00323CB4`, `0x00323CDD`-`0x00323CDF`).
+A member that needs the license gets the answer of `0x00323BB0(record, 0, item)`
+(`0x00323CE5`-`0x00323CF7`).
+
 ### The test
 
 Every member record carries 46 bytes of owned-square bits at `+0x194`, bit value `1 << (n % 8)` of byte `n / 8`
@@ -100,6 +107,13 @@ non-party record and an invalid node (`0x00323930`-`0x00323953`). With `set`:
    at most 3, to the battle stats' `+0x37` (`0x002FF89F`, from `0x003103AD`) and keeps the Mist pool `+0x06` at
    most max MP times `+0x37` (`0x00310541`-`0x0031058E`); the Mist charges `+0x4E` are the pool divided by max MP
    (`0x0030E0B5`-`0x0030E0BD`).
+
+Each refusal, and a non-zero answer of `0x00323D10` in step 1, makes `0x00323910` answer -1
+(`0x00323935`, `0x00323976`); after the rebuild of step 6 it answers 0 (`0x00323B8C`).
+In step 4 a Quickening square is a node of `0x11` or below (`0x00323A58`); the grant runs
+only when the action `0x0030A310` gives for the answer of `0x00324020` less 1 is `0xD0`
+to `0xE1` (`0x00323A61`-`0x00323A69`, `0x00323AAC`-`0x00323AC2`). An Esper square in step 5 is a node from `0x12` to `0x1E`
+(`0x00323B12`-`0x00323B18`).
 
 Setting or clearing node 229, Brawler, also refreshes the unit's held model and cancels its current action
 (`0x00323A30`-`0x00323A48`, `0x00324470`). `0x00324470` removes the unit with `0x00300E40(unit, 0)` when it has no stats

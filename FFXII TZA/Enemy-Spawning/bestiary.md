@@ -400,7 +400,9 @@ The `+0x12` and `+0x18` bits, by their readers:
   and starts no effect for a value above 4 (`0x00329FB3`).
 - `+0x12` bits `0x10` and `0x40`: `0x00238BF0` hands bit `0x10` to `0x0026A3A0` (actor `+0x09` bit `0x40`) and bit `0x40` to `0x0026A430`
   (actor `+0x08` bit `0x8` and `+0x09` bit `0x40`), the bits `partyusecharhit` sets ([Party verbs](../Scripts-And-Script-Commands/party-verbs.md)).
-- `+0x12` bit `0x20`: the view builder `0x0031ADB0` reports kind 1 instead of 2 for a target with it (`0x0031B394`).
+- `+0x12` bit `0x20`: the view builder `0x0031ADB0` reports kind 1 instead of 2 for a target with it,
+  except a target whose `+0x698` record has byte `+5` = 0, which gets kind 2 without the test
+  (`0x0031B379`-`0x0031B3A1`).
 - `+0x12` bit `0x80`: `0x003879C0`, `0x00390AB0` (`0x00390B93`, `0x00390C16`) and the pair clearance `0x0033D660` (`0x0033D794`)
   ([Battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md)).
 - `+0x18` bits `0xE`, the value 4: the target list notices every unit (`0x003248F8`), actor `+0x13` bit `0x80` is set

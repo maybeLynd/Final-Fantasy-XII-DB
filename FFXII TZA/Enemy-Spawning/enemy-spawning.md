@@ -90,22 +90,28 @@ result: the winning lane, or -1. The selector:
 1. returns -1 when `0x00308D90()` is at or above the signed cap byte `0x0208D458` (`0x00235753`-`0x00235763`),
    or the unit, its candidate table `[unit + 0x38]` or its lane map is null;
 2. computes `seconds = counter / (int)(30.0 * [0x01DFE0B8])` from `0x0032A150` (`0x002357D9`-`0x002357F9`);
-3. walks lanes 1 to `table[0] - 1`, the candidate table's count word (lane 0 is never offered; a
-   lane past the lane map's own count is skipped). A lane is skipped when its record has
+3. walks lanes 1 to `table[0] - 1`, the candidate table's count word (lane 0 is never offered; a lane
+   past the map's count, with map byte `0xFF` or record address 0 is skipped, `0x00235865`-`0x0023589B`).
+   A lane is skipped when its record has
    died out (`+0x0A` non-zero and `+0x08 >= +0x0A`), or is committed and not retired (flag bit `0x2` set,
    bit `0x1` clear) with a non-zero cooldown `+0x10` and `seconds - +0x0C < +0x10` unsigned;
 4. sets the minimum distance to `0x02089360` when the unit's flag word has bit `0x200000000000` or bit `0x2000000000000`
    (`test qword ptr [rsi], r10` with `0x0002200000000000`, `0x002358EB`), else 0.0;
 5. for each candidate id of the lane (the table's words from `table[1 + lane]` to
-   `table[2 + lane] - 1`, a short; `0x00FF` is the sentinel, `0x00235919`-`0x00235925`, and a -1 is passed
+   `table[2 + lane] - 1`, a short; an id of `0x00FF` is skipped, `0x00235919`-`0x00235925`, and a -1 is passed
    on and fails the record fetch), tries `0x00234AF0(id, &pos, minR, 0x02089364, &observed, 0)` for
    attempts `0` to `n - 1`, `n` = `0x0208D457` read signed;
 6. an attempt is accepted when the call returns non-zero and `observed` is below `0x02F973B8` (the
    shared maximum squared distance, `+INF` from `0x002368D0`);
-7. a hit records the lane and the position, and both loops run on, so the last accepted candidate
-   of the highest accepting lane wins;
+7. a candidate records the lane, the lane's record and the position when its attempt counter
+   is not `n` at the end of its attempts (`0x0023597A`-`0x00235990`): with `n` of 1 or more that
+   is an accepted attempt. Both loops run on, so the last accepted candidate of the highest
+   accepting lane wins. A negative `n` runs no attempt and still records the lane, and `n` = 0
+   records no lane (`0x00235929`-`0x0023592B`);
 8. on a win it stores the position at the record's `+0x50` and `+0x60` as whole 16-byte moves
-   (`0x00235A08`, `0x00235A0F`), sets unit flag bit `0x4000000` and returns the lane.
+   (`0x00235A08`, `0x00235A0F`), sets unit flag bit `0x4000000` and returns the lane. After a negative
+   `n` that position is the stack slot the attempts fill, which no attempt of this candidate
+   wrote (`0x00235981`).
 
 Bit `0x2000000000000` is set once per unit by the activation `0x00233AD0` (`0x00233B8C`). The unit reset `0x00236A60`
 keeps it (mask `0xFFFF7FFDFFE7FFFD`, [battle units](../Characters-And-Objects/battle-units.md)), but the slot release

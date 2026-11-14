@@ -183,6 +183,26 @@ not wait (`0x00341FA3`). `setnowmapmusicno` is called 1,363 times; its 229 calls
 | `musicphraseplay` | `0x50E` | 4 | plays a track from a section (`0x003437A0`) |
 | `musicfadeoutsync` | `0x536` | 2,123 | waits for the music fades to end (`0x003466F0`) |
 
+`0x00340260` (`musictrans`) pops three ints: a value, the length and the track
+(`0x0034027D`-`0x0034029A`). A negative track is replaced by the answer of `0x002DEC00`, and
+no call is made when that is negative too (`0x003402BB`-`0x003402C8`). A length of 0 or
+less goes to `0x002DEE30(track, value)`, any other to `0x002DEE50(track, length, value)`
+(`0x003402CA`-`0x003402DE`). While `0x00267310` answers non-zero for the calling actor's byte
+`+0x15` it calls `0x002DE7F0(value)` and nothing else, and not even that when the track
+is negative and `0x003604C0` answers a negative value (`0x00340296`-`0x003402B4`).
+
+`0x00346C00` first sets bit `0x40` of the scratch byte `+3` (`0x00346C12`). While `0x00267310`
+answers 0 for the calling actor's byte `+0x15` it pops the flag, the frames and the
+track, a negative track becoming `0x002DEC00()`, and writes the track to the word `+0`,
+the frames to the dword `+8`, the flag as bit `0x10` of the byte `+2`, whose high four
+bits it clears first, and bit `0x80` of the byte `+3`, of which only bits `0xC0` are
+kept (`0x00346CB7`-`0x00346CF2`).
+
+On a non-zero answer it pops the same three, pushes back -1 for the track with the
+other two, calls `0x00345B60`, clears bit `0x80` of the byte `+3` and calls
+`0x00360960(track, 0, 0)` (`0x00346C41`-`0x00346CA6`). Both paths end in a jump to `0x0025D5D0`
+(`0x00346D08`).
+
 ### Columns of music-script-overrides.tsv
 
 | Column | Meaning |
@@ -301,3 +321,6 @@ Calls between the functions this page cites and code in other parts of the progr
 - UI: those functions are documented on [game over](../World-Areas-And-Travel/game-over.md),
   [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md),
   [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md), [clan primer](../Menus-And-HUD/clan-primer.md).
+- Movement: `0x00267310` is called by `0x002E45E0`, `0x002E5750`; those functions are documented on
+  [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md),
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).

@@ -52,7 +52,9 @@ when the phase is below 9 and the target `+0x710` does not resolve (`0x00304899`
 
 It dispatches the phase at `0x0030493C`-`0x0030495A` through the table of 13 image-relative offsets at
 `0x00305044`. Every arm ends with `inc byte [rsi+4]` and falls through to the next one on the same call
-unless it has to wait (returning 0). Phase 12 returns 1: the action is finished.
+unless it has to wait (returning 0); the scene arm of phase 10, while the scene state `0x022C2160` is
+not 5 or 6, raises the phase to 11 and returns 0 (`0x00304F62`-`0x00304F8C`), so phase 11 runs on the
+next call. Phase 12 returns 1: the action is finished.
 
 | Phase | Code | What happens | Leaves when |
 |---:|---|---|---|
@@ -60,7 +62,7 @@ unless it has to wait (returning 0). Phase 12 returns 1: the action is finished.
 | `1` | `0x003049FA` | presentation event; while `+0x760` < `+0x764`, `+0x760` += `0x002F9F10()` (always 100) and wait | threshold reached, to phase 3 |
 | `2` | `0x00304A49` | entry point only | at once |
 | `3` | `0x00304A4C` | `0x00305230(unit, id)`; `0x0030E360(stats, 0, 24, 0, ...)` removes status 24 (Invisible); range bands `0x002FEB80`; saved charge restored (below); charge limit `+0x76C` = `0x002F8410(unit)`; `0x00469AF0` unless the saved charge was restored for the same order; movement reset `0x003291B0`; `0x00329F80`, `0x00306010`; the three presentation slots `+0x694`-`+0x696` released | at once |
-| `4` | `0x00304BA5` | presentation event; movement goal and the bands copied to the movement block (mode 1); approach point from `0x00339630` (else the target's position, stop distance 0.1); `0x00319110`; while `+0x768` < `+0x76C`, `+0x768` += `0x002F9C00(unit)` and `+0x770` = `+0x768`; `0x0033A1E0` sets bit `0x80` of `+0x04` (in reach) | in reach and fully charged; a scene action also waits while bit `0x2` of `0x022C2158` is set (`0x00304D3F`-`0x00304D54`); otherwise a navigation step `0x00325BB0` and wait |
+| `4` | `0x00304BA5` | presentation event; movement goal and the bands copied to the movement block (mode 1); approach point from `0x00339630`, which always answers 1 (`0x00339A24`), so the arm for a 0 answer (the target's position, stop distance 0.1, `0x00304CAF`-`0x00304CC8`) is not taken; `0x00319110`; while `+0x768` < `+0x76C`, `+0x768` += `0x002F9C00(unit)` and `+0x770` = `+0x768`; `0x0033A1E0` sets bit `0x80` of `+0x04` (in reach) | in reach and fully charged; a scene action also waits while bit `0x2` of `0x022C2158` is set (`0x00304D3F`-`0x00304D54`); otherwise a navigation step `0x00325BB0` and wait |
 | `5` | `0x00304D73` | presentation event; movement reset | at once |
 | `6` | `0x00304DA5` | for action `0x9F` unit bit `0x800000000` set; presentation event; the phase-0 flag clears again, bit `0x80` of `+0x04` set; a presentation slot acquired (`0x0030CFB0`) | at once |
 | `7` | `0x00304E2C` | `0x0030CA80` checks the slot; when it asks for the unit to be shown, the unit id goes into the 64-entry ring at `0x022BEDA4` (write index `0x022BEDA1`) and unit bit `0x1000` is set; presentation event | slot ready and unit bit `0x1000` clear |
@@ -69,6 +71,21 @@ unless it has to wait (returning 0). Phase 12 returns 1: the action is finished.
 | `10` | `0x00304F62` | a scene action waits while the scene state `0x022C2160` is 5 or 6, then moves on; any other action: once `+0x690` has bits `0x2` and `0x8`, unit bit `0x400000000000` is cleared and, for the controlled member with unit bit `0x40000`, bit `0x1` of `+0x690` set; bit `0x1` of `+0x690` posts event `0x2001` | scene actions: scene over; others: `0x0030BC40` returns 1 (`+0x690` bits `0x1` and `0x4`) |
 | `11` | `0x00304FE9` | unit bit `0x2000` cleared | at once |
 | `12` | `0x00304FF3` | returns 1 | - |
+
+`0x00303830(unit, row, list)` previews the action in one of two ways (`0x00303854`-`0x00303868`).
+With a non-zero count byte `+0x6B6` it walks that many bytes from `+0x6B9`: each names
+target stats through `0x00320A40`, and a null answer or a user with no battle unit
+(`0x0031B860` of unit `+0x698`) skips the byte (`0x00303887`-`0x003038B0`).
+
+For each target it clears a `0x148`-byte result on its stack, sets bit `0x1` of the
+result's first dword when the user unit's first qword has bit `0x800000000`, and
+calls `0x00385680` and then `0x004698C0`, both as `(row index, user stats, target stats,
+result)`; the row index is `(row - first row) / row size` for the table `0x02EBF138`.
+The result's dword `+0x08` goes to the user unit's `+0xE54` (`0x003038BE`-`0x00303954`).
+
+With a count of 0 it walks the target list, `0x10`-byte entries from `+0x08` with the
+count at `+0x04`: each entry whose unit `0x0031B760` resolves gets
+`0x00303A00(user stats, target stats, row, index, entry + 8, 0)` (`0x00303981`-`0x003039D6`).
 
 ### The delay threshold (phase 0, `0x00304987`-`0x003049E5`)
 

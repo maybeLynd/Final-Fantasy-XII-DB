@@ -239,6 +239,11 @@ It stores the kind, `index + 2`, the block, `id`, the size and the offset in the
 While `0x00267310(g)` is non-zero it parks the record in state 1 and reads nothing (`0x003DF513`-`0x003DF526`);
 otherwise `0x003DF550` files the read (`0x003DF52F`).
 
+The read `0x003DF550` files is `0x0032E620(kind +0x2C, file +0x2E, block +0x18, size +0x30,
+request)`, the request holding the offset `+0x34`, the low dword of the record's
+address and the completion `0x003DF2C0`; the record's state byte `+0x10` then becomes 3
+(`0x003DF556`-`0x003DF598`).
+
 ### The script steps that reach a slot
 
 The manager slot is always the running script's, so a script reads only its own packages.
@@ -257,9 +262,17 @@ the same in `0x00347B00` (`0x00347B57`-`0x00347B7D`).
 Both also refuse while `0x00267310` gives a non-zero byte for the calling actor's manager slot, its byte `+0x15`
 (`0x0034AB8E`-`0x0034ABA9`, `0x00347B70`-`0x00347B7B`), and take `g` from the running script's record `+0x28`
 (`0x0034ABB0`, `0x00347B82`). `0x0034AB50` pops its last argument as an integer and converts it to a float
-(`0x0034AB72`-`0x0034AB7B`), plays its own actor and calls `0x003DD8D0` (`0x0034ABC2`). `0x00347B00` pops a float
-(`0x00267DB0`, `0x00347B30`), plays the actor `0x003EB720` gives for a popped id, does nothing when that is null
-(`0x00347B63`-`0x00347B6E`), and calls `0x003DD980` (`0x00347B95`).
+(`0x0034AB72`-`0x0034AB7B`), plays its own actor and calls `0x003DD8D0` (`0x0034ABC2`).
+
+`0x00347B00` pops a float
+(`0x00267DB0`, `0x00347B30`) and takes its object from `0x003EB720` with a popped index. `0x003EB720` answers the
+address `0x10` bytes into entry `index` of the 32-pointer table `0x02B5EA20`, or 0 for an index above `0x1F`, a null
+entry or an entry whose byte `+0x40` is 0 (`0x003EB720`-`0x003EB745`). `0x00347B00` does nothing when that is 0
+(`0x00347B63`-`0x00347B6E`), and calls `0x003DD980` with it (`0x00347B95`).
+
+In `0x00347B00` the slot test at `0x00347B7D`-`0x00347B80` is unsigned, so a cue word whose
+top byte is below `0x10` is refused as a slot above 15 is. The call is
+`0x003DD980(object, g, slot, entry, float)` (`0x00347B82`-`0x00347B95`).
 
 `0x003DD8D0` and `0x003DD980` play only a record in state 4 (`0x003DD905`, `0x003DD9B5`), as motion
 `(16g + k) << 16 | entry` (`0x003DD949`-`0x003DD954`). `0x00427320` takes the block back from `0x003DD740` with `g` from
@@ -269,8 +282,17 @@ slot's `@FMC` count.
 `0x003DD8D0` hands `0x002E9560(actor)` to `0x002E4F40` (`0x003DD90E`-`0x003DD919`), sets bit `0x1` of actor byte `+0xD`
 and stores `k` at `+0xF5` (`0x003DD91E`-`0x003DD925`), calls `0x002E8170(actor, [r + 0xD] >> 7)` with `r` the record
 `0x00263F40(actor)` returns (`0x003DD92C`-`0x003DD93B`), and posts with `0x002EB080(actor, motion, 0, float)` (`0x003DD958`).
-`0x003DD980` hands `0x002E95B0(actor)` to `0x002E4FA0` (`0x003DD9BE`-`0x003DD9C9`), calls `0x002E81D0(actor, 0)` (`0x003DD9D3`)
-and posts with `0x002EB0D0(0, actor, motion, 0, float)` (`0x003DD9F9`).
+`0x003DD980`, with the object `o` that `0x003EB720` answered, hands `0x002E95B0(o)` to `0x002E4FA0`
+(`0x003DD9BE`-`0x003DD9C9`), calls `0x002E81D0(o, 0)` (`0x003DD9D3`) and posts with `0x002EB0D0(0, o, motion, 0, float)`
+(`0x003DD9F9`).
+
+`0x002E95B0(o)` answers 0.0 for a null `o` or a dword `+0x00` of -1, and 30.0 (`0x008F8D80`)
+for a word of -1, a null render record or one whose `+0x284` is 0; otherwise it jumps
+to `0x00423280` with the record `[0x022C6F28] + 0x740 × word` (`0x002E95B0`-`0x002E95E9`).
+
+`0x00423280` answers 30.0 as well when the record's dword `+0xC4` is -1 or `0x0051B9E0`
+finds no entry for it in the object at `+0xDA8` of `0x0020E600(record +0x10)`; otherwise
+it ends in a jump to `0x0041C3A0` with that entry (`0x00423286`-`0x004232BE`).
 
 Each folder's scripts make 15,954 motion cue calls (`motionplay` 7,554, `motionplay_bb` 7,881, `puppetmotionplay`
 514 and `puppetmotionplay_41f` 5), 4,943 voice cue calls and 2,877 sound
@@ -359,3 +381,5 @@ Calls between the functions this page cites and code in other parts of the progr
   [script binding lifecycle](../Scripts-And-Script-Commands/script-binding-lifecycle.md).
 - Party: `0x00263F40` is called by `0x00304180`; those functions are documented on
   [party control modes](../Engine-Core/party-control-modes.md).
+- Save load settings: `0x0032E620` is called by `0x002EF300`; those functions are documented on
+  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).

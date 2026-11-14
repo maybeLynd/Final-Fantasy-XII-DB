@@ -525,10 +525,10 @@ after them. Its private messages 33-52 set or read the fields below ([Widget mes
 | `0x2` | which panel slot the next panel goes in: flipped after a panel (`0x0027A6E6`-`0x0027A6FE`) or the Dismiss confirmation (`0x0027A397`-`0x0027A3AE`) is built; read as the slot (`0x0027A2D9`, `0x0027A37B`, `0x0027A3FF`) |
 | `0x4` | the target filter: message 33's second argument (`0x0027A79A`-`0x0027A7AA`); read for the tab strip (`0x0027A14D`, `0x0027A205`) and each panel's `+0x2FF0` bit `0x800` (`0x0027A52B`); message 47 answers it (`0x0027A775`) |
 | `0x8` | set when a panel is built (`0x0027A638`), cleared by message 37 (`0x0027A756`); while it is clear message 32 goes out with 1 (`0x0027A60E`) |
-| `0x10` | message 48's argument bit `0x1` (`0x0027A958`-`0x0027A966`); at a panel build cleared for list kinds 16-19 (`0x0027A4A6`), otherwise set when the count `0x0035D4E0` returns is above 1 and the kind is not 5-7 or 10-19 (`0x0027A4AF`-`0x0027A4E2`); each tick bit `0x2000` follows it (`0x0027A716`-`0x0027A749`) |
+| `0x10` | message 48's argument bit `0x1` (`0x0027A958`-`0x0027A966`); at a panel build cleared for list kinds 16-19 (`0x0027A4A6`), otherwise set when the count `0x0035D4E0` returns is above 1 and the kind is not 5-7 or 10-19 (`0x0027A4AF`-`0x0027A4E2`); at the end of a tick, unless `0x00254560(3)` answers non-zero (`0x0027A709`-`0x0027A710`), bit `0x2000` is set when this bit is set and the count `0x0035D4E0` returns is above 1, and cleared otherwise (`0x0027A716`-`0x0027A749`) |
 | `0x20` | Dismiss asked: set by message 41 (`0x0027A8D1`); the tick builds the confirmation `0x0027AA70` when `0x00265680`, `0x00254550` and `0x00241A50(1)` allow it, and clears it (`0x0027A309`-`0x0027A3C9`) |
 | `0x40` | set by the panel `0x00276D30` (`0x00276F92`), the confirmation (`0x0027AB3F`) and `0x0028F970` (`0x0028F9D4`); the tick clears it and sends message 53 to both panels (`0x0027A052`-`0x0027A0C0`) |
-| `0x80` | set on every tick (`0x0027A0F8`); while it is set and bit `0x40` clear, a tick that finds no panel and no tab strip releases the menu (`0x0027A1A0`-`0x0027A1F9`) |
+| `0x80` | set by the tick that finds bit `0x40` set, after it sends message 53 (`0x0027A060`-`0x0027A0F8`); while it is set and bit `0x40` clear, a tick that finds no panel and no tab strip releases the menu (`0x0027A1A0`-`0x0027A1F9`) |
 | `0x100` | the router request's bit `0x400` when built (`0x002766E5`-`0x00276704`); copied to each panel's `+0x2FF0` bit `0x20000` (`0x0027A4E8`-`0x0027A503`) |
 | `0x200` | message 46's argument (`0x0027A982`-`0x0027A994`); copied to each panel's `+0x2FF0` bit `0x40000` (`0x0027A443`-`0x0027A458`) |
 | `0x400` | set when built (`0x00276722`); the first tick plays sound 4 (`0x00249C60`) and clears it (`0x0027A032`-`0x0027A048`) |
@@ -581,7 +581,15 @@ Each of the two `0x1620`-byte pages inside the list widget (`+0xF0` and `+0x1710
 
 ### The battle-menu panel's sprites
 
-Each `0x3010`-byte panel of the battle menu (procedure `0x00276D30`) keeps four `0x40`-byte sprites at `+0xC0`, `+0x100`, `+0x140` and `+0x180`. Each is a copy of a type-2 node of the panel's layout list ([UI typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md)), drawn with `0x0029F5D0`.
+Each `0x3010`-byte panel of the battle menu (procedure `0x00276D30`) keeps four `0x40`-byte sprites at `+0xC0`,
+`+0x100`, `+0x140` and `+0x180`. Each is a copy of a node of a child widget's layout list `+0x60`, the
+child being one that a node of the battle-menu manager's layout holds at `+0x18`; the manager is the
+object the panel keeps at `+0x2FF8`.
+
+Sprite 0 is node 1 of the child of the manager's node 2 (`0x002770E0`-`0x00277122`); sprites 1, 2 and 3
+are nodes 2, 0 and 1 of the child of the manager's node 5
+(`0x00277196`-`0x00277251`) ([UI typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md)). They
+are drawn with `0x0029F5D0`.
 
 `BattleMenuPanelSprite` (`0x40` bytes, offsets from the start of the record):
 
@@ -608,8 +616,8 @@ These fields sit in each `0x3010`-byte panel; the offsets are from the start of 
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x01C0` | `void*` | qword01C0 | the first 8 bytes of the panel's copy of a text node, +0x1C0-+0x1EF: node 0 of the child widget that node 2 of the panel's layout +0x2FF8 holds, copied whole when the panel is built (0x0027713A-0x00277153). These 8 bytes are the node's pointer to its layout item (0x002433EB); the panel draws the copy with the text drawer 0x0029FBD0 unless +0x2FF0 bit `0x400` is set (0x002777DF-0x002777F5), and the drawer does not read them |
-| `+0x01F0` | `u8[12]` | field01F0 | the first 12 bytes of a second text-node copy, +0x1F0-+0x21F: node 1 of the panel's layout, copied when the panel is built (0x0027716C-0x00277185): the item pointer and the node flags +0x1F8; no instruction of the menu code (0x00270000-0x002A0000) reads them |
+| `+0x01C0` | `void*` | qword01C0 | the first 8 bytes of the panel's copy of a text node, +0x1C0-+0x1EF: node 0 of the child widget that node 2 of the layout +0x60 of the manager at +0x2FF8 holds, copied whole when the panel takes message 39 (0x0027713A-0x00277153). These 8 bytes are the node's pointer to its layout item (0x002433EB); the panel draws the copy with the text drawer 0x0029FBD0 unless +0x2FF0 bit `0x400` is set (0x002777DF-0x002777F5), and the drawer does not read them |
+| `+0x01F0` | `u8[12]` | field01F0 | the first 12 bytes of a second text-node copy, +0x1F0-+0x21F: node 1 of the layout +0x60 of the manager at +0x2FF8, copied when the panel takes message 39 (0x0027716C-0x00277185): the item pointer and the node flags +0x1F8; no instruction of the menu code (0x00270000-0x002A0000) reads them |
 | `+0x0200` | `u8[16]` | vector0200 | +0x200-+0x20F of the second text-node copy: width +0x200, height +0x202 and, at +0x208, the string, which the list widget 0x002778C0 sets for a panel with +0x2FF0 bit `0x400` (the list kinds 16 to 19) to PARTY, FOES, RESERVE or ALLIES (texts 0x4A49-0x4A4C of menu_expansion.bin; 0x0027930C-0x0027939B), reaching the panel through its +0xD0 (0x002778EF) |
 | `+0x0210` | `u8[16]` | vector0210 | +0x210-+0x21F of the second text-node copy: +0x210 the node's encoded picture address, which the text drawer resolves with 0x0020E600 (0x0029FDE2-0x0029FDF8) and 0x002778C0 sets to 0x0020E620(0) with each of those strings (0x0027933A, 0x0027935E, 0x0027937F, 0x002793A0); +0x214 the colour, +0x218 the scale and +0x21C the mode bytes, copied from the layout (0x00277181-0x00277185) |
 | `+0x2FE8` | `void*` | qword2FE8 | the cursor block that keeps the stack of opened lists, the battle menu's +0x61B0 copied when the panel is built (0x0027A58D-0x0027A594); the list widget 0x002778C0 reads it through its +0xD0 (0x0027819E, 0x002781EE, 0x00278522, 0x0027881F, 0x002794F7, 0x0027981E, 0x002798D7), and 0x0027D330, called with the panel at 0x00278A2F, stores the cursor positions through it (0x0027D391-0x0027D3DD) |

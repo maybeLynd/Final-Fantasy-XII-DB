@@ -197,9 +197,17 @@ with the record `0x003587C0` finds for its byte `+0x19` and word `+0x1A`, when i
   resolves to (`0x00263F40`, then `0x00263F10`) is 0 or more and has state 3, its bank loaded, the variant
   plays from that bank instead (`0x002E9F79`-`0x002E9F9E`). The id is then `0x40000000 | slot << 8 | variant`,
   the slot from `0x0036EC50`; an id that comes out negative goes on to the block lookup (`0x002E9FA0`).
+- `0x0036EC50(handle)`, for a handle other than -1, finds the voice-pool record
+  `0x022D9AB0 + 0x18 × (handle & 0xF)` when `handle & 0xF0` is 0, and the one at the same
+  index from `0x022D9AE0` otherwise, and
+  answers the record's signed byte `+0x01`, plus 2 when its byte `+0x02` is not 0
+  (`0x0036EC65`-`0x0036EC9B`).
 - Otherwise a non-zero footstep flag first adds the weather variant flag `0x02099DBC` to the variant
   (`0x002E9FA7`), and the id is the block's registry slot × 512 + variant, or -1 when the handle no longer
   matches its registry record (`0x003A1240`, called at `0x002E9FB2`).
+- When the voice id came out negative and `0x003A1240` answers -1, `0x002E9D90` answers
+  that negative voice id, not -1: the result is replaced only by an answer other than
+  -1 (`0x002E9FA0`, `0x002E9FB7`-`0x002E9FBA`).
 
 Before any of that, `0x002E9D90` returns -1, so no sound plays, while byte `0x022CB726` is set (`0x003603C0`,
 `0x002E9DB2`), while a skip of mask index 1 to 3 has executed (`0x00360670`, `0x002E9DBF`), while the bytes

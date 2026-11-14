@@ -120,6 +120,11 @@ onward. The value-name rows of the numeric settings hold only a pointer to the s
 The parser reads the text through a string stream: `0x001DF7D0` copies the text into the stream's
 buffer and sets its pointers, `0x001A9E10` builds the key and value strings, `0x001DFA00` returns a
 string's characters (the heap copy once its capacity is above 15) and `0x001DF760` frees a buffer.
+`0x001A9E10(source, destination, position, count)` makes the destination an empty string,
+length `+0x10` 0, capacity `+0x18` 15 and first byte 0, then fills it with
+`0x001A5500(destination, source, position, count)`, a 0 in the fifth argument slot, and
+answers the destination
+(`0x001A9E16`-`0x001A9E38`).
 
 ### Writing the file
 
@@ -350,6 +355,22 @@ changes nothing.
   2 clears that bit (`0x002DDA51`-`0x002DDA8B`). The bits then go to `0x0035FF30`, which lets the pad's motors run
   ([Vibration](../Controls-And-Input/vibration.md)), and to `0x0037DDC0`, which gates the camera-shake row
   ([Scripted camera](../Graphics/scripted-camera.md)).
+- After `0x0035FF30` and `0x0037DDC0` the applier pushes the rest of the options record
+  `[0x0215E6E0]` in this order: the bits under `0x3` of its `+0x18` to `0x002DF360` as 1 for 1,
+  2 for 2 and 0 otherwise
+  (`0x002DDAC9`-`0x002DDAE4`); `0x00368AA0(1, v)` with the dword `+0x1C`, or with bit `0x1` of
+  the word `0x0215E6D8` while that word is not 0 (`0x002DDAE9`-`0x002DDB06`).
+- The options record's words `+0x20` and `+0x22` are each raised by 1 when odd and copied,
+  sign-extended, to `0x022D8EBC` and `0x022D8EC0` (`0x002DDB0B`-`0x002DDB44`); then come
+  `0x002EF370(1)` and `0x002EF350(1, -1)` (`0x002DDB4A`, `0x002DDB54`).
+- Bit `0x100` of the options record's dword `+0x04` goes to `0x001E1020` and bit `0x200` to
+  `0x001E0FF0` (`0x002DDB59`-`0x002DDB7C`). A music version of 2 in its word `+0x0E` becomes 1
+  while `0x0017E490`
+  answers with bit `0x1` clear, and the version goes to `0x002DF530(version, 0)`
+  (`0x002DDB81`-`0x002DDBA9`).
+- The options record's three volume words `+0x08`, `+0x0A` and `+0x0C`, each as
+  `word / 100.0`, go to
+  `0x002DF2B0` on channels 1, 2 and 3 (`0x002DDBAE`-`0x002DDC25`).
 - `+0x0D` is the start value of the HDD-use flag `0x02B62DB1`, which the script verb `getusehdd` (`0x376`, `0x00341DD0`)
   returns unchanged. `setusehdd` (`0x375`, `0x00341980`) stores its argument != 0 and the `hddinstall` and
   `networkhddinstall` result `0x003447F0` stores 1, both through `0x00408EC0`. None of the 1,114 decompiled US scripts
@@ -357,6 +378,10 @@ changes nothing.
 - `+0x0A` (236, Throne Road) never picks a field. The start-up `0x003318C0` and the return to the title `0x00331920` use
   `0x02B62DB4` only while `0x02B62DAD` is 1, which needs `0x01E02804` not negative, and then that dword's low word has
   replaced the file's value. With the shipped -1 both request field 12, `ttl_a01` (`0x00331903`, `0x0033196D`).
+- `0x00331920(n)` with `n` not 0 requests field 12 whatever `0x00408B90` answers
+  (`0x0033192D`-`0x0033192F`, `0x0033196D`). With `n` 0 it requests field 12 when `0x00408B90`
+  answers 0, calls `0x0016D6A0(0x00408B20(), -1, 1)` when it answers 2, and otherwise
+  requests the field `0x00408B60` gives (`0x00331931`-`0x00331968`).
 - `+0x02` is compared with 3 at 15 sites in five functions (getter `0x00408B10`), each behind a test of `0x02B62DAB`
   that skips the comparison on 1. The loader stores the file's value and sets `0x02B62DAB` to 1 in the same run
   (`0x00408CCB`, `0x00408D89`), and only the reset `0x00408BA0` also writes that byte, with 1, so the file's value is

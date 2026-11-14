@@ -43,6 +43,7 @@ options stored in the save take effect: the Config screen's options are the ones
 6. **`YsSaveRam_CallBackInit()`.** `0x002CFD10` (`0x00285E92`, whose argument it ignores) clears entry 4 of the menu
    cursor bank 6 (`0x002527B0(6, 4, 0)`) and the battle menu's cursor block, `[0x0209BE80] + 0xAA60`, `0xC4` bytes
    (`0x0028E880`) ([battle menu](../Menus-And-HUD/battle-menu.md)).
+   `0x0028E880` does nothing while `[0x0209BE80]` is null (`0x0028E887`-`0x0028E88A`).
 7. **The post-load sequence.** On message `0x12`, with bit `0x10` of its `+0xC4` set, the screen runs its post-load
    calls (`0x00582E81`-`0x00582EBA`):
    - while its byte `+0x598` is clear, `0x001831A0`, the load flag `0x0209AC10` = 1, `0x005843E0` and `0x00182D40`;

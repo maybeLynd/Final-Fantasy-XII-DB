@@ -74,7 +74,7 @@ For the source's current target, actions `0`/`4`, `0x0B`, `0x0D`, `0x0E`, `0x10`
 For other actions:
 
 1. Bit `0x1` of the remove mask `+0x58` (KO removed) posts `0x1C`.
-2. Otherwise, with HP and MP present (`+0x2C & 0x4100`), both at or above their caps, and the
+2. Otherwise, with HP or MP present (either bit of `+0x2C & 0x4100`), both at or above their caps, and the
    target having MP at all (bytes `+0x6C`/`+0x7C` not negative and `+0x28` not 0), `0x17`.
 3. Otherwise HP present (`+0x2C & 0x500` both set) posts `0x14` (at the cap) or `0x13`, and MP
    present (`0x14000`) posts `0x16`, `0x15`, or `0x1D` when the target has no MP (bytes `+0x6C`/`+0x7C`

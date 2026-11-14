@@ -146,6 +146,19 @@ helpers that reach the instance through the handle):
 - the arm takes the slot from the low six bits of the instance's dword `+0x04` without comparing the id
   (`0x0024D87B`-`0x0024D88C`), and passes the instance only when byte `+0x39B`, the last byte of the colour
   `+0x398` (`0x80` from `0x003B3550`), is non-zero (`0x0024D8D7`-`0x0024D90F`).
+- kind 2 passes only when bit `0x2` is set in both the channel byte `0x02F8F23C` + word
+  `+0x04` and the manager byte `0x02F8F27C` + word `+0x06` (`0x0024D7CD`-`0x0024D7E9`); kind 4
+  passes only when `0x003B2CA0(instance)` gives a record whose byte `+0x20` has bit `0x1`
+  clear (`0x0024D8F4`-`0x0024D909`); kinds 7 and 8 and every kind outside 2 to 9 pass
+  (`0x0024D7AB`-`0x0024D7B1`, table entries 5 and 6).
+- kinds 5, 6 and 9 share one arm (`0x0024D7FC`). It needs bit `1 << (kind - 1)` of the
+  AND of the words `0x02092162`, `0x02092164` and `0x02092166`, or else an entry from
+  `0x003B0BF0(dword +0x04)` whose byte `+0x13` has bits `0x6` equal to `0x2`
+  (`0x0024D77A`-`0x0024D797`, `0x0024D7FC`-`0x0024D81B`). With `+0x36A` bit `0x10` set it also
+  needs bit `0x1` of that AND (`0x0024D81D`-`0x0024D82C`).
+- in the same arm an instance with `+0x36A` bit `0x8000` set is refused when
+  `0x00254A70()` answers 0, bit `0x800` of the word `0x020926E4` is set and the dword `+0x04`
+  differs from `0x002EF9F0(3)` (`0x0024D82E`-`0x0024D86E`).
 
 `0x003B3B50` clears `+0x368` bit `0x2` of every stamped handle's instance and `0x003B3BA0(list, n)` sets it on
 the instances whose `+0x08` is in the list: the hold a time stop puts on a character's effect

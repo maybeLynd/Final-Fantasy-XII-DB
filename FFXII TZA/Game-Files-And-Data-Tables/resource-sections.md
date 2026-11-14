@@ -61,7 +61,7 @@ index, or −1. The name is compared as given, without the shared buffer.
 when the result is not 0 (`0x0040900E`, `0x0040906E`). With a name, a section of the tag is therefore
 taken while the container's name differs from the query, and a container whose name equals the query
 gives −1. The four callers of `0x00408F90` (`0x00422DB6`, `0x0042340D`, `0x004234DC`, `0x00423531`) give the tag
-`@FMR` and no name.
+`@FRM` and no name.
 
 `0x00408FA0` walks from `start` to `count` (`+0x0C`) and gives −1 for a null or non-`@FRP` input, a
 version above 1, or a `start` at or past `count` (`0x00408FC7`-`0x00408FE4`, `0x0040903B`). Version 1 does
@@ -169,7 +169,7 @@ Section header (`0x30`):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | tag |  |
-| `+0x08` | `u32` | length | header included; the @FMR consumer requires more than `0x30` (`0x0041D33F`) |
+| `+0x08` | `u32` | length | header included; the @FRM consumer requires more than `0x30` (`0x0041D33F`) |
 | `+0x0C` | `u32` | count | records in the section: the @FTR consumer multiplies it by `0x149` (`0x003712FE`), the @FLD consumer bounds its loop by it (`0x0041FFAF`) |
 | `+0x10` | `char[32]` | name | zero-padded |
 

@@ -119,8 +119,18 @@ A fallen body is torn down only after two unit flag bits are set:
    (`0x0031A100`-`0x0031A159`, `0x0031A198`-`0x0031A1A4`). Code 4 is ignored while the unit is carrying out Revive
    (`0xAE`) on itself.
 
-Bit `0x200000000` has a second setter: `0x00319F50` sets it on actor timeline code 2, which first sets the HP of a unit that is
-not down to 0 (`0x00300520`), unless it is carrying out Revive on itself (`0x0031A042`-`0x0031A0AA`).
+Bit `0x200000000` has a second setter: on actor timeline code 2 `0x00319F50` sets the unit's HP to 0
+(`0x00300520` with flags `0x14`) and then sets the bit (`0x0031A089`-`0x0031A0AA`), unless the unit is carrying
+out Revive on itself. A unit with no stats record leaves the arm with nothing done, and so does a unit
+that is already down, one with a bit of `0x80000003` in stats `+0x64` or `+0x3C`, while `0x00313F60`
+answers 0 (`0x0031A042`-`0x0031A066`).
+
+`0x00313F60` jumps to `0x00377C20`, which answers bit `0x8000` of the 16-bit word at
+`[0x02ADD100] + 8 + 3 × 0x003148F0()`, or 0 with no table or an index at or past its count
+(`0x00377C24`-`0x00377C5F`). `0x003148F0` takes no argument: it answers the field id, the dword `+0x1044` of the
+save's persistent payload `0x002EF2B0()` gives, read as 0 when negative (`0x003148F0`-`0x0031490A`). The word
+therefore belongs to the area: a down unit in an area whose word has that bit goes on like a unit that
+is not down.
 
 Timeline codes reach `0x00319F50` through `0x002EB740` from two senders: the battle effect program `0x003B8670`
 (`0x003B887D`, `0x003B8988`, `0x003B8A1C`, `0x003B9208`), and `0x002FC010`, which sends each queued value of a finished entry
@@ -259,3 +269,5 @@ Calls between the functions this page cites and code in other parts of the progr
   [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md), [party data](../Party/party-data.md),
   [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md),
   [game application](../Engine-Core/game-application.md).
+- Platform online achievements: `0x003148F0` is called by `0x003160C0`; those functions are documented on
+  [handbook files](../Game-Files-And-Data-Tables/handbook-files.md).

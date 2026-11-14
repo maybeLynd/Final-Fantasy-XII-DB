@@ -215,7 +215,7 @@ The string bodies follow the rules under Strings: `0x001B38B0` and `0x001A4BF0` 
 ### JsonBox values
 
 JsonBox stores parsed JSON in EASTL containers. Its reader `0x00200E60` constructs allocators named
-`EASTL map`, `EASTL vector` and `EASTL basic_string` for objects, arrays and strings, and its string
+`EASTL map`, `EASTL vector` and `EASTL basic_string` for objects, arrays and strings, and its object
 reader `0x00201C40` carries JsonBox's message `Expected '"', got '` (`0x00905008`). `0x00200BF0` reads a
 whole file into a stream and hands it to `0x00200E60`; the screen-layout files are read this way.
 

@@ -215,6 +215,23 @@ its centre, with `a0`-`a2` the three rows. `0x0022D7E0(query)` walks the list:
   from sizes stored as 4.12 fixed point and a matrix from the map's table at `+0x188`, and it is then
   tested as a wall record.
 
+`0x00230790(record, map, shape)` writes 1 to the record's dwords `+0` and `+4` and takes
+the matrix `[map + 0x188] + 0x40 × word +2` of the shape (`0x002307C8`-`0x002307E8`). The
+sizes are the shape's signed words `+4`, `+6` and `+8`, each as `word × (1 / 4096)`, called
+a, b and c below; the three are also copied to `0x022D91B0` (`0x002307F2`-`0x0023082D`).
+
+`0x00202C70(record + 0x10, matrix)` fills the record's matrix; its rows at `+0x10`,
+`+0x20` and `+0x30` are then each made `row / length(row)` and given a w of 0, with
+`0x00861F14` called once for each row on the sum of its squares and with
+no test for a zero length (`0x00230836`-`0x0023094A`), and `0x00202D50(record + 0x50,
+record + 0x10)` fills the second matrix at `+0x50` (`0x0023094F`-`0x00230956`).
+
+Two local matrices started by `0x00203170` then take the sizes. The first holds a at
+`+0x00`, (c + 0.5) / 2 at `+0x14`, b at `+0x28` and (c - 0.5) / 2 at `+0x34`; the second
+holds 1 / a, 2 / (c + 0.5), 1 / b and -(c - 0.5) / 2 at the same offsets
+(`0x0023096F`-`0x002309E7`). `0x00202D70(record + 0x10, record + 0x10, first)` and
+`0x00202D70(record + 0x50, second, record + 0x50)` end the build (`0x002309F1`, `0x00230A01`).
+
 Every hit whose depth is strictly greater than `+0x30` becomes the deepest, with its id at `+0x34`.
 `0x0022E7D0` answers 0, skipping the polygon, when the centre lies outside the third edge (`v[2]` to
 `v[0]`) and the polygon's flag word `+0x1C` has bit `0x400`.
@@ -295,6 +312,9 @@ takes no excess and leaves `out` as the caller passed it, and that is then mappe
 (`0x00381DCB`). The map into the frame uses all four floats of `p`, w included (`0x00381DB6`); before the map back the
 excess's w is set to 0 (`0x00381E82`), and `0x00380800` gives a zero vector for a length below `1e-6`
 (`0x0038083F`-`0x0038084C`).
+
+`0x00380800(out, in)` copies the w of its input to the output unchanged
+(`0x00380881`-`0x00380889`).
 
 `0x003810B0(record, p)` returns the distance from the shape in world units: the local point scaled by
 `(|l| - 1) / |l|` for a sphere outside it, the radial and vertical parts beyond 1 for a cylinder,
@@ -411,3 +431,18 @@ by every body.
 - [Movement step](heading-speed-to-position-delta.md): the solver that hands the move in.
 - [Scripted camera](../Graphics/scripted-camera.md): the camera records and the
   mode-1 view.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x00202C70` is called by `0x00362850`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Gameplay: `0x00203170` is called by `0x00339630`; those functions are documented on
+  [battle locomotion](battle-locomotion.md).
+- Script VM: `0x00203170` is called by `0x00356160`.
+- UI: `0x00202C70` is called by `0x002AF960`, `0x002D2600`, `0x002D28E0`, `0x003F26F0`, `0x003F2A70`; `0x00203170` is called by
+  `0x00247AE0`, `0x002D2600`, `0x002D28E0`, `0x00368010`, `0x003C5500`, `0x003F26F0`, `0x003F2A70`.
+- UI: those functions are documented on [text drawing](../Menus-And-HUD/text-drawing.md),
+  [menu lists](../Menus-And-HUD/menu-lists.md), [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md),
+  [hud](../Menus-And-HUD/hud.md), [map screens](../Menus-And-HUD/map-screens.md).

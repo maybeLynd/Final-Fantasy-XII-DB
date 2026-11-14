@@ -106,6 +106,7 @@ its type through the jump table `0x0037AC7C`:
 `0x00379F70`, from the boot `0x00266D10` and from `0x00379D00`, resets all five groups: 16-byte zero stores over `+0x00`
 to `+0x3F`, 1.0 into the three colour floats and 0 into `+0x4C` (group 0: `0x00379FA8`, `0x00379FC8`, `0x00379FDA`,
 `0x00379FE9`, `0x00379F90`, `0x00379F84`, `0x00379F77`, `0x00379FA1`). `0x0037B230` resets one group the same way.
+`0x00379D00` calls `0x0037D7F0` first and then jumps to `0x00379F70` (`0x00379D04`-`0x00379D0D`).
 
 `0x00379F70` also rebuilds the default request `0x02ADD8E0`. It zeroes its `0x50` bytes (`0x0037A0EA`) and stores the
 dword `0x01050006` at `+0x00`, kind 6 with `+0x02` 5 and the filter byte 1 (`0x0037A101`), the test byte `0x02ADD8E4` = 1
@@ -210,6 +211,9 @@ clears its ready byte (`0x003DE920(group, 0)` → `0x0037ACA0`, which also clear
 `0x0037ACD0`, which sets `+0x4C` only when `+0x00` is non-null, and sets bit `1 << group` of `0x02B59350`, `0x003DE938`),
 and stores the first cut id plus 1 at manager record `+0x1FC` (`0x0037B290`).
 
+For group 0, while `0x02EBF420` holds no section, `0x0037ACD0` ends by jumping to `0x00379290`
+(`0x0037ACF2`-`0x0037ACFE`); a group above 4 does nothing (`0x0037ACD0`-`0x0037ACD3`).
+
 That id is word `+0x10` of the cuts chunk `+0x18`; when that pointer is null or the chunk's `+0x04` is 0,
 `0x0037B290` returns -1 and 0 is stored (`0x0037B2A9`, `0x0037B2AF`). A section with a bad magic therefore leaves a ready
 group with no chunks, which lights nothing.
@@ -258,6 +262,12 @@ by the current fraction (`0x00466BF0`) into `+0x30` to `+0x38`, scaled by 1/128;
 four type-5 curves (`0x003CC5F0`) and clamps each result to -1..1 into `+0x30` to `+0x3C`. Each frame
 `0x0037A450` advances a kind-2 clock `+0x1C` by `0x01DFE0BC` and, past the duration `+0x18`, wraps it to
 0 (state bit `0x4`) or holds it at the duration.
+
+`0x00466BF0` takes the fraction from the map animation slot numbered by the dword
+`0x02EBB6E4`: the slot is `[0x02EBB6F0] + 0x50 × index`, and the answer is `value × 0.01`
+(`0x008F30E4`) for the float that the pointer `+0xA8` of the slot's `+0x28` target names.
+It answers 0 for an index below 0 or not below the count `0x02EBB6E0`, for a slot whose
+qword `+0x08` is 0, and for a null `+0xA8` pointer (`0x00466BF0`-`0x00466C3A`).
 
 `0x0037A450` walks every record of the five groups whose section pointer `+0x00` is set (`0x02EBF420` to
 `0x02EBF5B0` in steps of `0x50`, `0x0037A464`, `0x0037A4E3`) and skips a record with state bit `0x1` or without bit

@@ -191,9 +191,9 @@ The unit bytes between the named fields, by range. The locomotion block at `+0x8
 | `+0x6BA` | `u8[6]` | span06BA | bytes +0x6BA to +0x6BF at the head of the action state +0x6B0-+0xB9F, which 0x0030EDA0 restores as a whole from the saved block at [+0xB88] (the copy loop 0x0030EDB6-0x0030EE07 nine times 0x80 bytes, then 0x70 bytes at 0x0030EE09-0x0030EE44) |
 | `+0x704` | `u8[4]` | span0704 | bytes 4 to 7 of the action block +0x700, copied with it to the commit copy +0x718 and the cancelled copy +0x730 by the reuse reset (0x00236B5C-0x00236B80); restored with the action state by 0x0030EDA0 (0x0030EDEF) |
 | `+0x716` | `u8[2]` | span0716 | the two bytes after the action id +0x714, copied with the target focus handle +0x710 as one qword to +0x728 and +0x740 (0x00236B6A-0x00236B95); restored by 0x0030EDA0 (0x0030EDF7) |
-| `+0x746` | `u8[2]` | span0746 | the cancelled copy's counterpart of +0x716, written by the qword copies into +0x740 (0x00236B8D; 0x003105D0 at 0x003106E3); restored by 0x0030EDA0 (0x0030EDCF, 0x0030EE1A) |
-| `+0x75A` | `u8[2]` | span075A | the two bytes after the word +0x758 the reuse reset sets (0x00236BD9); restored by 0x0030EDA0 (0x0030EDD7, 0x0030EE22) |
-| `+0x980` | `u8[8]` | span0980 | the eight bytes after the target buffer +0x778-+0x97F, inside the action state 0x0030EDA0 restores (0x0030EDEF, 0x0030EE3A) |
+| `+0x746` | `u8[2]` | span0746 | the cancelled copy's counterpart of +0x716, written by the qword copies into +0x740 (0x00236B8D; 0x003105D0 at 0x003106E3); restored by 0x0030EDA0 (0x0030EDCF) |
+| `+0x75A` | `u8[2]` | span075A | the two bytes after the word +0x758 the reuse reset sets (0x00236BD9); restored by 0x0030EDA0 (0x0030EDD7) |
+| `+0x980` | `u8[8]` | span0980 | the eight bytes after the target buffer +0x778-+0x97F, inside the action state 0x0030EDA0 restores (0x0030EDEF) |
 | `+0xB94` | `u8[12]` | span0B94 | the last twelve bytes of the action state +0x6B0-+0xB9F, after the dword +0xB90 the reuse reset clears (0x00236BE0); restored by 0x0030EDA0's tail copy (0x0030EE44) |
 | `+0xBBC` | `u8[4]` | span0BBC | the four bytes between +0xBB8 and +0xBC0, before the perception candidate count +0xBC4; outside the 0x4F0 bytes 0x0030EDA0 restores (they end at +0xB9F) |
 | `+0xDCA` | `u8[2]` | span0DCA | the two bytes after the reserved consumed item +0xDC8 (set to 0xFFFF by the reuse reset, 0x00236AFC), just past the 32 entries of the perception cache +0xBC8-+0xDC7 |

@@ -140,6 +140,8 @@ the setter (`0x00312553`-`0x0031255D`), and the difference is posted as a gain n
 
 `0x00469E80(amount)` posts message `0x26` through `0x0046AB10` when the amount
 is positive, and does nothing otherwise.
+The amount is the dword `+0x10` of a zeroed `0x30`-byte context on its stack, passed as
+`0x0046AB10(0, 0x26, context)` (`0x00469E87`-`0x00469EB2`).
 
 ## Layouts
 
@@ -154,6 +156,16 @@ The quest result window is the `0x100`-byte widget with procedure `0x003F4E70` t
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x003F4E70` |
 | `+0xC0` | `u8` | skipSetup | the first byte of the creation record (`0x003F4F7E`, `0x003F4F81`); the only creator, `0x003F4BD0`, passes 0 (`0x003F4BED`). While it is 0 the construct message marks the image `0x01E0C1F8` (its `+0x38` bit `0x80`), runs `0x00252B40`(9, 1) and `0x0037F3B0` (`0x003F4FE8`-`0x003F5014`); message 16 for batch 1 passes `+0xC4` to `0x0037EDB0` and keeps `0x0037E8A0`'s result at `+0xC8` (`0x003F4F07`-`0x003F4F29`); message 18 restores the saved `+0xF4` / `+0xF8` through `0x00252B40` and clears the image bit (`0x003F4EAD`); `0x003F4B40` runs `0x0037E4F0`(0) before closing the window (`0x003F4B50`) |
 | `+0xC1` | `u8[63]` | window | the window's own fields: `+0xC4` the creation record's dword `+0x10`, `+0xC8` what `0x0037E8A0` returns, `+0xD0`-`+0xF3` the `0x24` bytes the creation record points to, `+0xF4` and `+0xF8` the saved `0x02092730` and bit `0x1` of `0x02092734` (`0x003F4F87`-`0x003F4FE2`) |
+
+The procedure `0x003F4E70` handles messages 1, 2, 16 and 18 and answers 0 for each; any
+other message goes to `0x005C5230` (`0x003F4E79`-`0x003F4E9F`). Message 1 ends with
+`0x00244960([0x0208EA28], window)` whatever `+0xC0` holds (`0x003F5019`-`0x003F5023`). Message
+16 also runs `0x003F4DD0(window)` after storing `+0xC8` (`0x003F4F26`-`0x003F4F30`).
+
+Message 2 closes the window with `0x00244F00` only when bit `0x2` of `+0xF8` is set and
+the window at `0x02B5F1F8` is absent or has its byte `+0xC0` at 3 (`0x003F4F3D`-`0x003F4F66`).
+Message 18 runs `0x0037E4F0(0)` before the restore, makes the restore only when `+0xF4`
+is not -1 and `+0xC0` is 0, and always zeroes `0x02B5F200` (`0x003F4EA4`-`0x003F4EE9`).
 
 ## Operations
 

@@ -139,7 +139,7 @@ level)`: driver action `0x2E` for parameter 7 at `level / 127` over 3 s ([Audio 
 | Verb | Id | Body | Does |
 |---|---|---|---|
 | `lockreverb` | `0x1D6` | `0x003417C0` | locks its one value as the level (`0x003631A0(1, level)`) and resets the frame count (`0x00363B20(-1)`) |
-| `lockreverb_2a5` | `0x2A5` | `0x00341460` | stores one value as the frame count (`0x00363B20`) and locks the other as the level |
+| `lockreverb_2a5` | `0x2A5` | `0x00341460` | pops the frame count first (`0x00363B20`) and the level second, which it locks with `0x003631A0(1, level)` (`0x00341470`-`0x00341499`) |
 | `unlockreverb` | `0x1D7` | `0x00341D00` | unlocks (`0x003631A0(0, 0)`) and resets the frame count |
 
 `0x00363B20` stores its count at `0x022CBB30`, 180 for 0 or less, and the event teardown `0x00262870` unlocks as well. No
@@ -264,7 +264,7 @@ Both need state 1 or 5 and an entry below the count, store the entry's `i16` fro
 `eventsounddispose` `0x154` (`0x00347470` -> `0x003DEC90`) waits out a read or bank load and then releases the slot: in
 state 5 it releases every listed id (`0x002DF050`) and calls `0x002DEB40` for each of the list's `+0x10` words from
 `+0x12`; in state 1 `0x003DEFC0` only frees the blocks and the mask bit. When a list's `+0x10` is set, `0x003DF2C0` also
-passes `mapNo % 10` to `0x0032F3A0`.
+passes the slot's byte `+0x11` and `mapNo % 10` to `0x0032F3A0` (`0x003DF30D`-`0x003DF32E`).
 
 ## Layouts
 

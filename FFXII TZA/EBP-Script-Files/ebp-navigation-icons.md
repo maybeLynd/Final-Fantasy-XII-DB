@@ -53,6 +53,8 @@ The block is used in place inside the loaded `.ebp`: `0x02B59D58` holds its addr
 `0x003DFCC0` (`0x003DFCC0`) and `0x003DFBE0` (`0x003DFC14`) read. The boot clear `0x003DFDA0` nulls it (`0x003DFDA3`). The area
 unload `0x003DFA50` reads it (`0x003DFA8A`), passes a non-null block to the free `0x00331880` and nulls it (`0x003DFA9B`); the
 free runs only when `0x005C5230(5)` returns non-zero (`0x003318A2`-`0x003318A9`), which it never does.
+The boot clear `0x003DFDA0` also zeroes the two field roots `0x02B59D48` and `0x02B59D50`
+with one 16-byte store (`0x003DFDAE`).
 
 ## Shipped data
 
@@ -195,6 +197,11 @@ It ignores the value `0x003DFBE0` returns and reads the entry and the object str
 (`0x00352476`, `0x00352497`), so a story gate that fails or a negative icon does not stop either step. The four
 words are pushed as floats through `0x00267F60` (`0x003524A1`-`0x003524CF`).
 
+`0x00350C30` pops four floats with `0x00267DB0`: the facing first, then z, y and x
+(`0x00350C53`-`0x00350C75`). It calls `0x0026B0C0(actor, x, y, z)`, `0x0026B620(actor, facing)`
+and `0x0025D540(actor)`, and ends in a jump to `0x0026AE90(actor, 0)`
+(`0x00350C86`-`0x00350CBE`).
+
 ## Modding notes
 
 - Keep `NAVIICN2` with byte `+7` at `'2'` and `kinds` above the highest kind used; 10 does for
@@ -214,3 +221,10 @@ words are pushed as floats through `0x00267F60` (`0x003524A1`-`0x003524CF`).
 - [Map screens](../Menus-And-HUD/map-screens.md): the minimap that draws the icons.
 - [Story flags](../Story-Events-And-Hunts/story-flags.md): the gates the icons name.
 - [Verb table](../Scripts-And-Script-Commands/verb-table.md): `setposbynaviicon`.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat action: `0x0026B0C0` is called by `0x00307300`; `0x0026B620` is called by `0x00307300`; those functions are
+  documented on [game over](../World-Areas-And-Travel/game-over.md).

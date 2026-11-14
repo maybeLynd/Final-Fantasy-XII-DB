@@ -110,6 +110,8 @@ value also runs, through `0x003E7C70(1 or 0)` (which stores it in `0x02B59D71` a
 `0x003ACA80(0x20)`, `0x003AC8F0(0)` and `0x003E0B40(1)` when non-zero, else `0x003ACA90(0x20)`, `0x003AC8F0(1)` and
 `0x003E0B40(0)`; the argument `0x20` is loaded for both arms at `0x003E7C7C`.
 
+`0x003AC8F0(v)` stores the low byte of `v` in `0x02B3F502` (`0x003AC8F0`).
+
 Then it indexes the table `0x01EECFC0`, five rows of four pointers: column 0
 enters or stays without commit, column 1 leaves without commit, column 2 enters or stays with
 commit, column 3 leaves with commit. Same level: that level's enter column. Changed: the old
@@ -143,6 +145,19 @@ The handlers:
   - The snap sets the unit flag (`0x00304398`), copies the rider's position to the unit's `+0xD0` and `+0xE0` and
     its heading (`0x00265200`) to `+0x15C` and `+0x160`, and calls `0x0026B0C0` only when the two positions differ
     (`0x00304322`-`0x00304347`).
+  - The members come from `0x00320AB0(i, 3)` for i 0 to 8. The three tests above run on
+    each, the town test being a non-zero answer of `0x00377C20`, and a kept member's
+    pointer goes to the next qword of `0x022C1740` (`0x00304210`-`0x0030425C`). The focus is
+    set with `0x00327850(type)`, the type being byte `+4` of the first collected member
+    (`0x00304280`-`0x003042AE`).
+  - The rider is `0x0031ABF0(0x00327200())` (`0x003042D3`-`0x003042DA`). The position call
+    `0x0026B0C0` and the heading calls `0x0026A0D0` and `0x0026B620` each run on
+    `0x00263F40(unit +0x10)` and only when that is not null (`0x00304349`-`0x0030436C`,
+    `0x003043B1`-`0x003043CF`); `0x00392170(unit +0x10)` runs between them (`0x0030438F`).
+  - The position call is also passed over when the position `0x00265020` gives for the
+    rider equals the one it gives for unit `+0x10` (`0x0030431C`-`0x00304347`). All the rider
+    steps run only while bit `0x4000000` of the unit's first dword is clear
+    (`0x003042C0`-`0x003042C8`), and they set that bit (`0x00304398`).
 - `0x00304060`: attaches the rider (the selector entry of `+0x5AA4`, `0x00327200`) to the slot-3 unit
   (`0x002E28C0`, `0x002ECF10(rider, 1)`), `0x0025A160` of `0x0031B950(3)`, channel 1 = max(2.0,
   `+0x5AE4`), channel 2 = `+0x5AE8`, `0x00303F00(turbo bit)`, `+0x5AE0` bit `0x1` set.

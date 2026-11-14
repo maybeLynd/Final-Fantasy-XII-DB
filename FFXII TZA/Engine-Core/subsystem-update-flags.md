@@ -35,7 +35,8 @@ calls it with 0 ([frame update order](frame-update-order.md)). It runs:
 
 1. `0x02092748` = 1 around `0x00184960(1 + (0x001D6B70() < 1))` ([startup constants](startup-constants.md)),
    then `0x02092748` = 0; everything below only unless `0x002287A0()` holds;
-2. `0x0208F570 += 0x00184950()`, and `0x00254CC0` of that value when `first`;
+2. `0x0208F570 += 0x00184950()`, and, when `first`, `0x00254CC0`, called with that value in `ecx` but not
+   reading it: it adds the dword `0x022CA624` that `0x0035E790` answers (`0x00254CE9`-`0x00254CF8`);
 3. `0x0035BC40`, `0x003C6000`, `0x002481A0`, `0x00248030` on the four objects `0x0208EA28`, `0x0208EA40`,
    `0x0208EA48` and `0x0208EA50`, `0x00248190`, `0x002481C0` when `first`, `0x00244980` on the same four;
 4. `0x003BBA60` when the 60 fps predicate `0x001EDE80` holds;

@@ -91,10 +91,14 @@ The stamping loops of step 2 walk the slot's records and, through `0x003587C0(or
 each record:
 
 - the words `+0xC8`, `+0xD6`, `+0xE4` and `+0xDC`, read from four lists in the payload, zeroing the
-  record's word `+0xF6` in every loop;
-- in the `+0xDC` loop, `+0x1C` bit `0x400` set when the stamp is not negative (a stamp of `0xFFFF` is
-  replaced by the payload word `+0x16` of a row with more than 10 entries) and cleared otherwise,
-  `0x00268EA0` when `+0x0B` bit `0x8` is set, and `+0x1C` bit `0x4` cleared;
+  record's word `+0xF6` in every loop; each loop stores its word only when the payload is
+  present with word `+0` above 3, its list is not empty, the stamp is not negative and bit
+  `0x8000` is clear in the record's word `+0` (`0x0026CF6D`-`0x0026CFB0`, `0x0026D00B`-`0x0026D059`,
+  `0x0026D0B1`-`0x0026D123`, `0x0026D18C`-`0x0026D1E5`);
+- in the `+0xDC` loop, `+0x1C` bit `0x400` set unless the record's word `+0xDC` is `0xFFFF` and the
+  row has 10 entries or fewer or its word `+0x16` is negative (`0x0026D203`-`0x0026D238`); when the
+  bit is set it then runs `0x00268EA0` when `+0x0B` bit `0x8` is set, and clears `+0x1C` bit `0x4`
+  (`0x0026D23A`-`0x0026D24F`); otherwise only bit `0x400` is cleared (`0x0026D255`);
 - in a last loop, `+0xF6` zeroed once more.
 
 The pool is a count dword followed by the record pointers: `0x00358940(slot, ordinal)` returns

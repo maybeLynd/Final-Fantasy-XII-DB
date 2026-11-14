@@ -172,7 +172,10 @@ outside, and 0 otherwise (`0x003B4064`-`0x003B4078`).
 - `puppet_setcharclipone(d, v)` (`0x0569`, `0x00340890`) sets two of these inputs on the render record
   of puppet `d` (`0x003EB700`) when it is live: `0x003EB8C0` writes `v` into bit `0x10` of `+0xD2`, and
   `0x003EB960` writes it into bit `0x8` of `+0x304` and raises bit `0x40` of `+0x290`, whose processor
-  `0x0042BCB0` copies that bit into bit `0x200000` of the children's `+0x284`.
+  `0x0042BCB0` copies that bit into bit `0x200000` of the `+0x284` of the record itself and then of its
+  children (`0x0042BCDE`-`0x0042BDAA`).
+- Each of those copies is made only when `0x00426220` answers 0 for the record it would change
+  (`0x0042BD0B`-`0x0042BD12`, `0x0042BD54`-`0x0042BD5B`, `0x0042E764`-`0x0042E76B`).
 
 When record `+0x6E0` is non-zero the bits are cleared and no distance fade applies; the other term of that test,
 `0x005C5230()`, returns 0. A culled record gets channels 0 and 4 ramped to 0 over one frame. Otherwise

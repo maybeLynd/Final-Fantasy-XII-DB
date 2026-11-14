@@ -366,6 +366,9 @@ Calls between the functions this page cites and code in other parts of the progr
 - Script VM: `0x00264F10` is called by `0x0050CDE0`; `0x00264F40` is called by `0x0050CDE0`; `0x00264F90` is called by
   `0x00357450`, `0x0050CDE0`; `0x0032A8A0` is called by `0x0034E0B0`; `0x0032E400` is called by `0x0050DF70`; those functions are
   documented on [archades scripts](../Story-Events-And-Hunts/archades-scripts.md).
+- `0x0050CDE0` pops two ints, a and then b, and hands `0x00264F10(a)`, `0x00264F40(a)` and
+  `0x00264F90(a)`, each with b, to `0x0016D6A0`, which only returns; the verb
+  `debug_replacegmap` therefore changes nothing (`0x0050CDEA`-`0x0050CE36`).
 - Story event quest hunt: `0x00314910` is called by `0x001ED240`; those functions are documented on
   [model effects and motion commands](../Graphics/model-effects-and-motion-commands.md).
 - Story event quest hunt: `0x0029C530` calls `0x0032A8A0`; `0x0032A8A0` calls `0x00377970`; those functions are documented on

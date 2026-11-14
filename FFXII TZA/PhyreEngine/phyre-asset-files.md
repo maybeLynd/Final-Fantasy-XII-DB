@@ -684,6 +684,9 @@ dump of data under 32 bytes) and the load goes on.
   counts: q = `(+0x00 + 3) / 4` records of the type `0x006B08A0` returns at `0x30`, then `+0x04` of the
   type `0x006B0B20` returns at `0x30 + 64 × q`, then `+0x08 × 4` entries of `PUInt8` (`0x01F2E460`, size 1,
   from `0x0062FFC0`) at `16 × (3 + 4 × q + n)` for n = `+0x04`, all from the object (`0x006DA39B`-`0x006DA435`).
+- On its first call, under the guard `0x02CF94FC`, `0x0062FFC0` only registers the exit
+  teardown `0x008AFE10` with `0x00808B90`; every call answers the address `0x01F2E460`
+  (`0x0062FFDF`-`0x00630020`).
 - `0x005BFF30` serves `PAnimationClipBinding` (`0x08` bytes), and does nothing when the visitor's slot
   `+0x18` answers true: `(+0x06 + 3) & ~3` two-byte entries at `+0x08` (the type `0x006300A0` returns),
   then `+0x02` + `+0x04` four-byte `PAnimationClipBindingChannelMap` records, both through slot `+0x08`
