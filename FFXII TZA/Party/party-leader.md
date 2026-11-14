@@ -112,6 +112,81 @@ skips a member that is missing, down (KO, Stone or X-Zone), or the leader itself
 the four 0x60-byte formation slots at `0x022C7E00`, keyed by its unit's slot byte `+0xEA9`, with its angle around
 the leader.
 
+The pass runs in this order:
+
+1. It returns at once when `0x00383C80()` answers 0 (`0x003384D5`-`0x003384DC`). The leader is the answer of
+   `0x003272A0()`; its position comes from `0x002646C0` on its actor `+0x10` and its heading from `0x00265200`.
+   With no leader or no actor the position is the constant `0x008C5FD0` (0, 0, 0, 1.0) and the heading 0
+   (`0x00338513`-`0x0033857C`).
+2. Each follower's slot `+0x20` is the answer of `0x004687F0` for the vector `0x00203080` makes from the slot's
+   position and the leader's, handed on through `0x0033CB70` and raised by 2π when negative
+   (`0x00338634`-`0x0033866B`). With no follower the pass ends here (`0x00338694`-`0x00338697`).
+
+   The slot's position `+0x10` is stored just before: the follower's position from `0x002646C0`, or
+   the constant `0x008C5FD0` when its unit has no actor (`0x00338608`-`0x0033863F`).
+3. The reference angle is the leader's heading plus π, brought into 0 to 2π (`0x003386C0`-`0x00338854`).
+
+   When `0x003135C0()` answers non-zero it is instead the `0x004687F0` answer, brought into the same
+   range, for the vector `0x00203080` makes from the three floats at `+0x30` of the block `0x00202C70`
+   fills from the answer of `0x0032A690()` and the leader's position, the first less the second as in
+   step 2. `0x00338490` makes no store to the fourth float of the first vector (`0x003386CD`-`0x00338711`).
+4. Each filled slot's `+0x24` takes its `+0x20` less the reference angle, brought into -π to π
+   (`0x00338860`-`0x003388D6`). The sort that never swaps follows.
+5. The spread angle plus `0x022C7DF0` is the step. Two bounds are set for the angles still free: with one
+   follower, reference + step to reference + 2π - step, or reference + 140 degrees to reference + 2π -
+   140 degrees (`0x00D10AF8`) when `0x003135C0()` answers non-zero; with two, reference + 15 degrees to
+   reference + 2π - 15 degrees (`0x00D10AD4`); with any other count, reference to reference + 2π
+   (`0x00338CC6`-`0x00338D39`).
+6. Then each filled slot is taken in turn. Its angle is `+0x24`, raised by 2π when negative, plus the
+   reference (`0x00338D68`-`0x00338DED`, `0x00338F19`). The stay test of step 7 is passed over for a unit whose
+   qword `+0x708` is not 0 and whose order `+0x714` is not `0x4021` (`0x00338E06`-`0x00338E1C`).
+7. Stay test: the follower keeps its place, and slot `+0x30` and `+0x40` take its own position, when
+   `r + f + 0.1 + 0.5` is above `0x004686D0(slot position, leader position)` and `0x0033A3D0` of the same
+   two answers non-zero; r is the answer of `0x00309AE0()` and f the larger of its actor's two
+   `0x00265090` floats, or 0 when the unit has no actor (`0x00338E22`-`0x00338E9B`).
+
+   `0x00265090` fills the two floats only for an actor whose byte `+3` has `0x60` under mask `0xE0`
+   (`0x00265090`-`0x00265098`); for any other actor they are what the stack held. The same holds where
+   steps 9 and 12 use it.
+8. Otherwise it tries `trunc(π / step)` angles: the slot's angle, then one step below, one above, two
+   below, two above and so on, each held inside the two bounds (`0x00338EEC`-`0x00338F67`).
+
+   The point for an angle is built by `0x00203170`, `0x00202F00` with the angle, `0x00202B70` with the vector
+   `0x01F004C0` (0, 0, 1.0, 1.0 in the image), `0x00202FE0` with the answer of `0x00309AE0()` and `0x00202B10`
+   with the leader's position (`0x00338FCF`-`0x0033901D`).
+9. A point is refused when the search of step 10 finds a blocking object, when
+   `0x0033D3E0(point, leader position, 2)` answers 1, when `0x00391410(point, point, a)` answers
+   non-zero, when `0x00384130` of the point's first and third floats answers `0xFF`, or when
+   `0x00336390(point, radius, 1)` answers 0 (`0x0033920A`-`0x00339282`).
+
+   The radius is the larger of the follower's two `0x00265090` floats, and a is the first of the two
+   alone, the one returned through `rdx` (`0x0033903C`-`0x00339059`, `0x00339233`). A follower whose unit is
+   null or has no actor takes the first point without any of the tests of steps 9 to 11
+   (`0x00339022`-`0x00339036`).
+10. The search runs only when `0x002EA7F0` answers non-zero for the follower's own object, which
+    `0x0031ABE0` gives for the dword `+8` of `0x00236820(slot byte)` (`0x00339051`-`0x00339079`). It is
+    `0x00391D10(sphere, list, 0x20, 0x1C)` with the point and the radius, or `0x003920F0` when a coordinate
+    of the point is not a number (`0x0033907F`-`0x00339119`).
+11. Of the objects found, the follower's own is ignored, and so is one whose unit's `+0xE68` record has
+    `(byte +0x18 >> 1) & 7` equal to 1 while the follower's has 4. An object is tested further when it
+    has no unit, when the follower is an enemy record (stats byte `+5` = 1) whose `0x00263C20` is not 3,
+    or when its unit is an enemy record whose `0x00263C20` is not 3.
+
+    It is blocking when `0x00314EB0(own, object)` is not 0 and `0x00313F80(own, object, out)` is outside 1 to
+    3 (`0x00339130`-`0x003391FC`).
+12. The first point not refused goes to slot `+0x30` and `+0x40` (`0x0033932E`-`0x0033933B`). When every
+    try is refused, or the count of tries is 0, both take the leader's position and `+0x50` the answer
+    of a second `0x00309AE0()` (`0x003392D5`-`0x00339327`). Before that `0x00203080`, `0x00309AE0()`, `0x004692F0`
+    and `0x00202B10` build a point from the slot's position and the leader's that the slot does not
+    take (`0x003392DE`-`0x00339311`).
+
+    In the other two cases `+0x50` takes the larger of the leader actor's two `0x00265090` floats, or 0
+    without one (`0x00338E9F`-`0x00338ED9`, `0x0033933F`-`0x0033937C`).
+13. After each slot the bounds close in by one step around the angle A it used. For a slot whose `+0x24`
+    is not negative the lower bound becomes at least A + step and the upper at most A + 2π - step;
+    for a negative one the lower becomes at least A - 2π + step and the upper at most A - step
+    (`0x00339381`-`0x003393DC`).
+
 `0x00339A60(unit)` returns a follower's destination (`0x00339A70`-`0x00339AC1`). It gives no destination when there is no
 leader, when the unit is the leader, or when the leader is an enemy-table record, and otherwise finds the unit's entry
 by its slot byte. So every follower follows the controlled character, and nobody has to be told when the leader

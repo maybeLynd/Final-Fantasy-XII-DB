@@ -106,6 +106,18 @@ The record holds:
 - whether this is a removal;
 - the ids of the recipient, the acting unit and the target.
 
+The record is built on the stack for each recipient: byte `+0x00` is the 1 or 2, byte `+0x01` is 1 when
+`adding` is 0 and 0 otherwise, and the dwords `+0x04`, `+0x08` and `+0x0C` are the ids of the
+recipient, the acting unit and the target, each the dword `+0x08` of its unit (`0x00313C3D`-`0x00313C7E`).
+Bytes `+0x02` and `+0x03` are not written.
+
+A unit is party-side when it is not null, has a stats record and that record's byte `+0x05` is 0
+(`0x00313BA4`-`0x00313BBB`). For such a unit the four positions are asked of `0x0031B810` in order and the
+living members are stored from `0x022C1788` on, eight bytes each; a member is living when it has a stats
+record and, when that record's `+0x64 | +0x3C` has a bit of `0x80000003`, `0x00377C20` answers non-zero
+(`0x00313BD2`-`0x00313C18`). When not one of
+the four is living the count is 0 and nothing is posted (`0x00313C30`-`0x00313C3B`).
+
 ### The idle-unit queue
 
 Queueing happens in the combat frame `0x00308610`, for a unit whose `+0x708` is null and whose bit `0x20` is

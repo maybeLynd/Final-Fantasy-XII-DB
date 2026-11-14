@@ -191,6 +191,16 @@ Recipe 16 (Knot of Rust `0x91`, Devour Soul `0xC4`) runs slot 121 (`0x0038D970`)
   (`0x0038D9C1`, `0x0038D9DE`; [Party data](../Party/party-data.md)), one bank for every user.
 - **Withdrawal:** with a stored preview, the bank moves into the user's record and is emptied; the damage
   is the record's value (`0x0038DA49`-`0x0038DA6A`).
+- **Which row:** `0x0038DA00` takes its argument as the user's record when it is not null and its byte
+  `+0x05` is 0; the row is then `0x0208D480 + 64 × byte +0x04` (`0x0038DA04`-`0x0038DA1C`, `0x0038DA3D`).
+  Otherwise it calls `0x0031B860`, stores the answer in `0x02EBF188` and takes the row
+  `0x0208DE80 + 64 × byte +0xEA9` of the answer (`0x0038DA1E`-`0x0038DA41`).
+
+  A null answer is not passed over: its dword at address 0 is read for `0x02AEE004`
+  (`0x0038DA2A`-`0x0038DA2D`, `0x0038DA75`). Without bit `0x1` of the row's byte `+0x12` the bank is left
+  as it is and the row's first dword alone goes to `0x02AEE004` (`0x0038DA49`-`0x0038DA4D`,
+  `0x0038DA68`-`0x0038DA6A`). With the bit, the row's first dword takes the bank word zero-extended
+  before the bank is set to 0 (`0x0038DA4F`-`0x0038DA61`).
 
 ### Gil Toss
 

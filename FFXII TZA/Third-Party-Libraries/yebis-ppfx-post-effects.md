@@ -277,6 +277,31 @@ command, it then calls `0x00188730(manager)` (`0x001F3415`).
 text (`0x0071C550`) and checks it (`0x0071CD10`, which calls `0x0071D9E0`). A failure is reported as status
 1 "License is not valid.", 2 "License is expired." or anything else "Unexpected License Error.".
 
+"No text" means the dword `0x02EA0B58` is 0 (`0x006DFF6C`). Otherwise `0x006DFF40` hands `0x0071C550` the
+text pointer `[0x01F3BB20]` and that text's length, with the address `0x00D8E9E8` and the value `0x20`
+before them, and gets back a buffer pointer and a length (`0x006DFFB8`-`0x006DFFF1`). A null buffer is
+logged as "License is not valid." as well (`0x006DFFFA`-`0x006E0029`). Both refusals answer
+`0x8000FFFF` (`0x006DFFA4`, `0x006E002E`).
+
+With a buffer it builds a reader from the buffer and the length (`0x007158B0`, `0x006E0038`-`0x006E0044`)
+and a checker (`0x0071CB80`, `0x006E004E`). It makes a temporary string of the text the pointer
+`0x02EA0B60` names and hands it to `0x001A5500` with the checker's `+0x08`, then does the same for the
+text the reader's `+0x08` names with the checker's `+0x28` (`0x006E0064`-`0x006E0105`). The answer of
+`0x0071CD10(checker)` is `0x006DFF40`'s own answer (`0x006E0129`-`0x006E012E`, `0x006E0201`).
+
+After the check the buffer is freed with `0x006DA8A0([0x01F3BA68], buffer - 8)` (`0x006E0130`-`0x006E0144`).
+Only when the answer is not 0 is the status fetched, with `0x0071CCE0(checker)` (`0x006E0149`-`0x006E0155`).
+Each of the five log lines is written only while the dwords `0x01F3BA80` and `0x01F3BA90` are both at
+least 1 (`0x006DFF75`-`0x006DFF85`, `0x006DFFFF`-`0x006E000F`, `0x006E015F`-`0x006E0171`, `0x006E0192`-`0x006E01A2`,
+`0x006E01BE`-`0x006E01CE`).
+
+The first argument of `0x0071C550` is the address of a stack slot (`0x006DFFED`), and the reader call is
+`0x007158B0(reader, buffer, length, -1)` with the length as a dword (`0x006E0038`-`0x006E0044`). Each
+temporary string is filled by `0x001A5630` and handed over as `0x001A5500(field, string, 0, -1)`; when
+its capacity is `0x10` or more after that, it is released by `0x001DFA10` (`0x006E008E`-`0x006E00BE`,
+`0x006E00F0`-`0x006E0120`). Before the body returns with the checker's answer it calls
+`0x0071CC30(checker)` and `0x00715C70(reader)` (`0x006E01EE`-`0x006E01FC`).
+
 `0x0071D9E0` checks the dates:
 
 1. The six date fields decoded from the signed part (begin and end year, month and day) must equal
@@ -503,7 +528,7 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0x1E8` | `void*` | viewFrameCounts | a per-view dword array (`0x00700DAF`-`0x00700DE9`); EndPostEffectScene_PreProcess increments the active view's entry each frame (`0x006F87A6`-`0x006F87AD`) |
 | `+0x1F0` | `i32` | activeView | the active effect view, set by SetActiveView (`0x007067B5`, 0 to m_nEffectViews); -1 in a per-view call means this view |
 | `+0x1F8` | `void*` | autoExposureParams | m_pAutoExposureParam, one `0x68`-byte record per effect view (`0x00700B5A`-`0x00700BBF`); its `+0x60` holds m_pQuerySceneLuminance (`0x00700CAC`) and its `+0x58` the exposure the game reads (`0x006DC4B0`) |
-| `+0x200` | `void*` | autoFocusParams | m_pAutoFocusParam, one `0x48`-byte record per effect view (`0x00700BC6`-`0x00700C04`); its `+0x40` holds m_pQuerySceneDepth (`0x00700D63`) and its `+0x38` the focused distance the game reads (`0x006DC650`) |
+| `+0x200` | `void*` | autoFocusParams | m_pAutoFocusParam, one `0x48`-byte record per effect view (`0x00700BC6`-`0x00700C04`); its `+0x40` holds m_pQuerySceneDepth (`0x00700D63`) and its `+0x38` the focused distance the game reads (`0x006DC650`) ; `0x0070F200`(object, view, byte, float, float) first stores 1.0 in the object's dword `+0xC60` (`0x0070F252`), then writes the record's `+0x20` (its first float, below 0 as 0 and above 1.0 as 1.0, `0x0070F20D`-`0x0070F226`), its float `+0x28` (fifth argument, 0 unless above 0, `0x0070F229`-`0x0070F234`) and byte `+0x24` (the low byte of its byte argument) (`0x0070F2C1`-`0x0070F2D1`): for the view named when it is 0 or more and below the signed count `+0x328` (any other view gets no write and the answer 0), for the view of field `+0x1F0` when -1 is named, and for every view below the signed count `+0x328` when `0x7FFFFFFF` is named (`0x0070F25C`-`0x0070F29C`, `0x0070F2D6`-`0x0070F2E0`) ; it answers 1 when a record it wrote has a null `+0x40`, else 0 (`0x0070F2BB`-`0x0070F2C7`, `0x0070F2EC`). The tests at `0x0070F237`-`0x0070F24C` end in the answer `0x80070057` (`0x0070F2F1`) and are not true after the two clamps |
 | `+0x208` | `u32` | initFlags | the init flag word as given to Initialize (`0x006FFB86`), before the adjustments made to the copy at `+0x20C` |
 | `+0x330` | `u32[2]` | descCopy08 | descriptor copy `+0x08` and `+0x0C` (see PpfxInitDescriptor): the copy at `+0x328` that Initialize takes of `+0x210` (`0x006FFB0B`-`0x006FFB7C`) and adjusts |
 | `+0x338` | `u32[2]` | descCopy10 | descriptor copy `+0x10` and `+0x14`, the render width and height overrides |
@@ -1236,3 +1261,5 @@ Calls between the functions this page cites and code in other parts of the progr
   [game application](../Engine-Core/game-application.md).
 - Platform online achievements: `0x00796E20` is called by `0x008655A0`; those functions are documented on
   [steam integration](../Steam-And-Achievements/steam-integration.md).
+- Save load settings: `0x001A5500` is called by `0x001DE5D0`; `0x001A5630` is called by `0x001DE5D0`; those functions are
+  documented on [debug logging](../Engine-Core/debug-logging.md).

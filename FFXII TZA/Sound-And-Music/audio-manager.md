@@ -130,6 +130,10 @@ Every bank class answers the same requests through its own methods:
 | `ShoutAudioBank` | language `0x00224C40`, keep one language's data `0x00224DC0`, play at a point `0x00224E40` (kind 9), play `0x00224F10` (kind 8), stop `0x00225000`, release `0x00225030` |
 | `StreamAudioBank` | open `0x002251B0`, play or resume `0x002252C0` (kind 6), pan `0x00225280`, is playing `0x002253D0`, volume `0x00225400` |
 
+`0x00224540` is a forwarder: it leaves its first four arguments in their registers, copies its fifth, a
+dword, into the fifth place, and adds a zero byte as the sixth argument and a null qword as the seventh
+before it calls `0x00224570` (`0x00224544`-`0x0022455A`). It returns what `0x00224570` returns.
+
 The kind is stored at sound `+0x2C` (`0x002256E0`). For a six-digit or block bank, `0x00222170` answers whether a handle,
 or with 0 any sound, still plays; `0x0021B2F0` asks it of every bank of one controller. A battle-voice bank holds both
 language copies, at `+0x50` (language 0) and `+0x48`, and `0x00224C40` loads the chosen one into its driver bank.
@@ -167,6 +171,10 @@ takes it (`0x00210CD0`, `0x00210E10`). The six-digit stop `0x0021A100` stops eve
 the bank with that id, of every bank for -1 and -3, and runs bank slot 1 on every bank for -4 (`0x00223300`). `0x00210710`, called by both starts, runs bank slot 6 over every six-digit bank and,
 when no bank answered, over every block bank (`0x0021B0D0`, slot 2 of both controllers' vtables `0x00907BA8` and
 `0x00907DE0`); the block bank's slot 6 is `0x002238F0`, the one-at-a-time fade of flag bit `0x40`.
+
+The constructor `0x00219400` of the controller with vtable `0x00907BA8` runs the base `0x00212710`, stores
+the vtable, calls `0x00219300(object + 0x20, 0x100)`, and then calls `0x005CC8A0` and `0x005CD0A0`, each with
+the address of the object's `+0xB8`; it returns the object (`0x0021941B`-`0x00219453`).
 
 ### Load ids
 

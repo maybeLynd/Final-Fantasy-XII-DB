@@ -310,9 +310,14 @@ upper 64 bits (`+0xE88` to `+0xE8F`) stay zero. For an actor without a battle un
 
 `btlAtelSetStatus(ref)` (`0x3002`, `0x005103B0` → `0x002394C0`) returns at once for an actor without a battle
 unit (`0x002394D9`). Otherwise it zeroes `+0xE90` (`0x002394FC`), reads a table of 32 two-bit values
-through a reference (`0x002650B0`) and sets bit `i` of `+0xE90` for value 3. Values 1 and 2 are applied at once
-through `0x0030EAE0(record +0x698, 0, i, -1, -1, 0x297)` (`0x00239556`-`0x00239577`). The dword `[[unit + 0x6A0]]`
-is read with no null test on `+0x6A0` (`0x002394DF`-`0x002394F7`), so a null `+0x6A0` faults there.
+through a reference (`0x002650B0`) and sets bit `i` of `+0xE90` for value 3.
+
+While bits `0x1` and `0x4` of the dword `[[unit + 0x6A0]]` are both clear (`0x002394F9`,
+`0x0023953E`-`0x00239540`), value 2 is applied at once through
+`0x0030EAE0(record +0x698, 0, i, -1, -1, 0x297)` (`0x00239556`-`0x00239577`), and value 1 is applied the same
+way when `0x00328370()` answers with bit `0x1` set (`0x00239542`-`0x0023954F`).
+The dword `[[unit + 0x6A0]]` is read with no null test on `+0x6A0` (`0x002394DF`-`0x002394F7`), so a null
+`+0x6A0` faults there.
 
 The applies run only when dword `[[unit + 0x6A0]] & 5` is 0, and value 1 also
 needs `0x00328370()` bit `0x1`, a draw of the generator at `0x022C256C`

@@ -184,6 +184,9 @@ State 3 would, when `0x00368F30(0)` returns 0, call `0x00369050(0, 0x00536F30)` 
 state 4 sets 0 when `0x00368F30(0)` returns 0 (`0x0046DD7B`-`0x0046DD8C`). `0x00368F30(0)` is non-zero while the qword
 `0x022D7F70` is set, and `0x00369050` stores its second argument there (`0x00369057`).
 
+`0x00369050` does not use its first argument. After the store it jumps to `0x00863800` with the qword
+`[0x022D7F68]`, which it loaded before the store, as the only argument (`0x00369050`-`0x0036905E`).
+
 The expansion the tick would hand to `0x00369050` therefore never runs. `0x00536F30`'s only reference is that `lea`
 (`0x0046DDB3`), and `0x00536DD0` and `0x00537030` are reached only by its tail jumps (`0x00536F85`, `0x00536F7F`).
 `0x00536F30` reads a header (12 bytes when byte 3 is `d`, else 16; the size in the low 25 bits of `+8`) and by

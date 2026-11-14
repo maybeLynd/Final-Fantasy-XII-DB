@@ -21,6 +21,9 @@ listed: `0x00255040`, `0x00290610`, `0x00290C50`, `0x002B4700` and `0x002CA5C0`.
 that call the accessor or tail-jump to it, directly or through a jump thunk, and the places that hold its
 address instead of calling it.
 
+Of those five, `0x002CA5C0` stores the byte `0xFF` at `+0xDE3` of the object at `[0x0209AC30]`, with no
+null test of the pointer, and returns (`0x002CA5C0`-`0x002CA5CE`).
+
 The engine reaches most of its singletons this way. The heaviest getters, with the names the
 other pages establish for their globals:
 

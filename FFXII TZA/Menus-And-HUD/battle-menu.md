@@ -59,6 +59,18 @@ The list widget keeps a chain of callback records `{fn*, argument, previous, nex
 | `15` | technicks, list `0xB` | "Technicks" |
 | `16`-`19` | a menu target list ([Target selection](../Battle-Actions/target-selection.md)), codes `0x10`, `0xD`, `0xF`, `0x1C` (`0x01E0C398`) | the action's name |
 
+`0x0027D480(part, kind, id, flag)` picks the title's row through the jump table `0x0027D570` for kinds 2
+to 20. In class `0x15` kinds 2 to 7 take rows `0x12`, `0x13`, 3, 7, 5 and 6, kinds 8 and 9 row `0xD`,
+kind 15 row 2 and kind 20 row `0x14`. Kinds 10 to 14 take row `kind - 10` of class `0x18`, and kinds 16
+to 19 take the row the low word of `id` names in class `0x14` (`0x0027D48A`-`0x0027D51D`). Any other kind
+gets the empty string at `0x01CEB638` (`0x0027D496`, `0x0027D51F`).
+
+The row comes from `0x0035D330(class, row)`, whose answer is read with no null test, and `0x002B58B0` is
+handed the pointer at the record's `+0x18` and 0 (`0x0027D4BD`-`0x0027D4C8`). `0x003EE8C0(part, text, 0, 0)`
+then sets the text. After it, with the word `+0x4B0` as the index, the dword at
+`part + 0x1E0 × index + 0x290` takes 1.0 and the byte at `part + 0x1E0 × index + 0x294` the low byte
+of `flag` (`0x0027D52F`-`0x0027D55B`).
+
 The command lists are `{flag, id}` pairs; each list's row count is an immediate (`0x0031EBA2`, `0x0031EBBF`,
 `0x0031EBEC`; `0x0031EB83`-`0x0031EBEC`):
 

@@ -75,8 +75,8 @@ below 0 (`0x0031E750`) ([Navigation](../Movement-And-Pathfinding/navigation-mesh
 | 8, 9 | unit byte `+0x55` is `s` (13 = undead) | `0x003021CC` |
 | 10, 11 | unit type byte `+0x56` is `s` (46 = flying) | `0x003021EC` |
 | 12, 13 | bit value `1 << s` of unit word `+0x52` | `0x003021F3` |
-| 14, 15 | HP at least 90, 80, 70 ... 0 % of max HP for `s` = 0-9 (`0x00D102E0`) | `0x00302203` |
-| 16, 17 | max HP at least 500, 1,000, 2,000, 5,000, 10,000, 20,000, 30,000, 50,000, 100, 200 (`0x00D10308`) | `0x003022FC` |
+| 14, 15 | HP (`0x00308C20` with a last argument of 1) at least 90, 80, 70 ... 0 % for `s` = 0-9 (`0x00D102E0`) of the cap of opcodes 46 and 47: max HP `+0x24`, or `2 × +0x24` with status bit `0x10000000`, or with status bit `0x10000` the current HP `+0x48`, at least 1 (`0x00302223`-`0x00302295`); a unit whose cap is 0 is kept by neither opcode (`0x00302251`-`0x00302253`) | `0x00302203` |
+| 16, 17 | the cap of opcodes 46 and 47 (`0x0030231C`-`0x0030234A`) at least 500, 1,000, 2,000, 5,000, 10,000, 20,000, 30,000, 50,000, 100, 200 (`0x00D10308`) | `0x003022FC` |
 | 20, 21 | weak to element `s` (stats `+0x40`) | `0x003023A5` |
 | 22, 23 | absorbs element `s` (stats `+0x41`) | `0x003023C9` |
 | 24, 25 | party type `s` (stats word `+0x04`; 255 stands for `0xFFFF`) | `0x003023ED` |
@@ -96,7 +96,7 @@ below 0 (`0x0031E750`) ([Navigation](../Movement-And-Pathfinding/navigation-mesh
 | 56, 57 | `s` = 0: on screen (`0x00322360`), nearest for 56 and furthest for 57; 1: the target (`+0x750`) of the deciding unit's linked unit, the unit `0x0031B7E0` gives for its `+0x24`; with no linked unit, or with a linked unit other than the deciding unit whose action word `+0x714` is above `0x21E`, neither opcode keeps a unit (`0x00303141`-`0x00303180`); 2: carrying out a magick (its action word `+0x714` is at most `0x21E` and the action's kind `+0x1E` is 1, `0x003030C3`-`0x00303130`) | `0x003030A7` |
 | 58, 59 | at least `v` units that relation mode `s` admits (0 = every unit) in its own perception list `+0xBC4` | `0x003031C4` |
 | 60, 61 | team byte `+0x54` is `v` | `0x0030329B` |
-| 62, 63 | MP at least `10 * s` % of max MP | `0x003032A7` |
+| 62, 63 | MP at least `10 * s` % of max MP, through the code of opcodes 44 and 45 from `0x00302F37` (`0x003032AF`-`0x003032BB`), so with the same two kinds of unit kept by neither opcode | `0x003032A7` |
 | 64, 65 | the deciding unit holds at least `10 * s` of the line's item (`0x003093D0`, `0x00309EC0`, read at the first candidate), or the candidate is an enemy | `0x003032C0` |
 | 66, 67 | a unit committed against it (`+0xEA4`) carries: `s` = 0 the same action; 1 an action removing a status it has that this action also removes (`0x0031C500`); 2 an action restoring HP (`+0x2C` bit `0x1000`); 3 one restoring MP (bit `0x8000`) | `0x00303334` |
 | 68, 69 | the whole field: the summon timer (battle state `+0x5AD8`) at least 20, 30, 60, 90 or 120 (`0x00D10380`) | `0x00303523` |

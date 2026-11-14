@@ -45,13 +45,13 @@ opcode	mnemonic	length	handler	field2	field4	field16	field20	effect
 0x2B	PREQSW	1	0x0026121A	0	0	0	0	as 0x2A (shared handler)
 0x2C	PREQEW	1	0x0026121A	0	0	0	0	as 0x2A (shared handler)
 0x2D	RET	1	0x00261239	0	0	0	0	return: retire the active entry, select the next pending one, and resume the caller's wait slot (or service the wait state when no wait is outstanding)
-0x2E	RETN	1	0x0026131C	0	0	0	0	return N: pop a depth and recycle the entry range above it, then resume as RET
+0x2E	RETN	1	0x0026131C	0	0	0	0	return N: pop a depth d; when d + 1 is above the actor's byte +0x11 (signed compare) nothing is recycled and no return is made (0x0026132E, 0x002613C5-0x002613D8); otherwise recycle the entry range above it (0x003DB420(actor, d + 1, 0)), then resume as RET
 0x2F	RETT	1	0x002613DD	0	0	0	0	return and transfer: as RET, and start the next entry's script (0x003DBDC0)
-0x30	RETTN	1	0x0026147B	0	0	0	0	return N and transfer
+0x30	RETTN	1	0x0026147B	0	0	0	0	return N and transfer, after the same test of d + 1 against byte +0x11 as RETN (0x0026148D, 0x00261521-0x00261534)
 0x31	DRET	1	0x0025E60A	0	0	0	0	inert (shares 0x0025E60A)
 0x32	REQWAIT	1	0x00261539	0	0	0	0	wait for a request: pop (function id, actor); if that actor has the entry active, park as wait kind 3 on it
 0x33	PREQWAIT	1	0x002615A6	0	0	0	0	pop two values; no wait is armed
-0x34	REQCHG	1	0x002615BA	0	0	0	0	set an actor's resource-override slot: pop (value, actor, slot) into 0x0025AF60; slots 0x10-0x11 re-arm the EH-5 countdown when the target's +0x0B bit 0x8 is set
+0x34	REQCHG	1	0x002615BA	0	0	0	0	set an actor's resource-override slot: pop (value, actor, slot) into 0x0025AF60; for slots 0x10 and 0x11, when the target record's +0x0B has bit 0x8, it then calls 0x00268EA0 with the running actor (0x002615F0-0x0026160B)
 0x35	REQCANCEL	1	0x00261301	0	0	0	0	cancel: pop an index and recycle the entry range above it (0x003DB420)
 0x36	POPI0	1	0x0026161C	0	0	0	0	pop into per-actor int register I0 (record +0x64)
 0x37	POPI1	1	0x0026162D	0	0	0	0	pop into I1

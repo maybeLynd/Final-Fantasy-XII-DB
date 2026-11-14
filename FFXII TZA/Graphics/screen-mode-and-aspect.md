@@ -35,6 +35,16 @@ window-event handler `0x007A3C10` (event 0, a packed new size), the screen-mode 
 the window-size list in windowed mode and of the display-mode list otherwise, then stores the
 mode's refresh rate (`0x001DC76F`).
 
+Both lists hold `0x1C`-byte entries with the width at `+0x00` and the height at `+0x04`. In windowed
+mode (the display object's `+0x18` is 0) `0x001DC730` takes entry `+0x38` of the list at `+0x40`,
+otherwise entry `+0x24` of the list at `+0x28`, and calls `0x001DDBA0(object, width, height)`
+(`0x001DC736`-`0x001DC76A`). The rate it then stores at `+0x30` is the display-mode entry's dword `+0x08`
+over its dword `+0x0C`, unsigned; it is taken from entry `+0x24` of the list at `+0x28` in
+both modes (`0x001DC76F`-`0x001DC784`).
+
+The division is made with no test for a dword `+0x0C` of 0 (`0x001DC780`). The body ends in a jump to
+`0x007A04F0` (`0x001DC78C`).
+
 `0x001DC730` then tail-jumps to `0x007A04F0` (`0x001DC78C`), which queues request 1 with
 the WindowSize (windowed) or the Resolution on the game window's `+0x48` queue (`0x007A3BD0`, `0x007A0530`;
 [Phyre application](../PhyreEngine/phyre-application.md)).

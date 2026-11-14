@@ -29,8 +29,18 @@ pass fixed flags as the record's `+0x20`, kept at `+0x630` (`0x0057C4E4`-`0x0057
 | `0x002CE370` | `0x002CE2F0` | `0x411A`; `0x511A`, `0x1411A`, `0x1511A` for errors; `0x611A` for tutorials and license announcements | the notice: 22 caption cases of a 28-slot switch |
 | `0x00566680` | `0x005665B0` | `0x8036` (`0x00566939`) | the item screen's sort picker |
 
-Message 1 copies the caption into a `0x400`-byte buffer at `+0x1B0`, measures it, keeps the window at least `0x60`
-wide, and clears eight option rows at `+0x5B0`-`+0x62C` (`0x0057C4BF`-`0x0057C6EB`).
+Message 1 copies the caption into a `0x400`-byte buffer at `+0x1B0` (`0x00254F30`, `0x0057C501`), measures it and
+keeps the width at least `0x60` (`0x0057C5FD`-`0x0057C607`). A one-line caption, bit `0x20`, is measured by
+`0x002B3050` after `0x002B3400` and the stores of `[0x01E0CF90]` at `+0x120` and `[0x01E0CF94]` at `+0x114`
+(`0x0057C516`-`0x0057C556`); any other by `0x002B3280` and `0x002B1E20` (`0x0057C568`-`0x0057C599`). With a null caption
+pointer the buffer is filled with zeros (`0x0057C5A6`-`0x0057C5AC`), the same two calls run, and the width is
+twice `[0x01E0CDC0]` and the height 0 (`0x0057C5B1`-`0x0057C5F7`).
+
+It then stores the create record's `+0x10`, the owner, at `+0xC8` (`0x0057C60E`), its byte `+0x1C` at `+0x634`
+(`0x0057C61A`), the dword `0xFFFF0000` at `+0x636` (`0x0057C620`), the low byte of the caption height at `+0x635`
+(`0x0057C62A`), 0 in the word `+0x63A` (`0x0057C630`) and the record's `+0x08` at `+0xD0` (`0x0057C63C`). In each of
+the eight 16-byte option rows at `+0x5B0`-`+0x62F` it clears bit `0x1` of the dword `+0x0C`, the qword `+0x00`
+and the word `+0x08`, and leaves the rest of the row (`0x0057C643`-`0x0057C6EB`).
 
 `0x0057C380(record, open)` builds the `0x640`-byte window with `0x00244F50` and returns it from the root's `+0x328`
 (`0x0057C3A6`-`0x0057C3C4`). Message 1 ends by opening the window when `open` is non-zero (`0x0057C872`-`0x0057C880`):
@@ -47,7 +57,7 @@ window's `+0x634` and the list's row (`0x002D4650`, `0x005669CD`).
 | `0x10`, `0x2000` | frame variants 1 and 4 (`0x0057C7EE`-`0x0057C802`) |
 | `0x20` | a one-line caption (`0x0057C506`, `0x0057C90F`) |
 | `0x800` | the hand cursor stays on the chosen row while the window closes (`0x0057C7CC`) |
-| `0x1000` | after `+0x63A` frames the window sends itself `0x8002`, or `0x8001` with bit `0x10000` (`0x0057C9E1`-`0x0057CA12`); the notice sets 180 |
+| `0x1000` | in notice mode on message 10, once `0x002B3930(+0xE0)` answers 0 and byte `+0x190` is 1 (`0x0057C9A3`-`0x0057C9CB`), the word `+0x63A` counts down by 1 while above 0, and when it is 0 the window sends itself `0x8002`, or `0x8001` with bit `0x10000` (`0x0057C9E1`-`0x0057CA12`); the notice sets 180 |
 | `0x4000` | a dimmed backdrop at `+0xD8` (`0x0057CD77`), released on close (`0x0057C34A`) |
 | `0x8000` | the header label is `0x4B42` instead of `0x4B48` (`0x0057C93E`) |
 | `0x10000` | any button confirms, and the timed close counts as confirm (`0x0057CA09`-`0x0057CA1C`) |
@@ -58,13 +68,20 @@ window's `+0x634` and the list's row (`0x002D4650`, `0x005669CD`).
 1. Sub-command `0x8000` moves the window through its stages, counted at `+0x637` from 0 up to 3
    (`0x0057CC62`-`0x0057CC6F`), and, outside notice mode and once the count is not 0, tells the owner the
    cursor row with `0x8103` (`0x0057CC09`-`0x0057CC5D`).
-2. `0x8001` is a pick: in notice mode it posts `0x8100`; otherwise it reads the list's row and its option's flags and
-   sets the confirm sound (`0x0057CB16`); a row whose option has bit `0x1` of `+0x0C` clear posts nothing
-   (`0x0057CB66`-`0x0057CB6F`).
+2. `0x8001` is a pick. In notice mode it posts `0x8100` to the owner, clears bit `0x8` of the window's `+0x40`
+   and answers 0 (`0x0057CB16`-`0x0057CB26`, `0x0057CADA`-`0x0057CAEF`). Otherwise it reads the list's row and its
+   option's flags; a row whose option has bit `0x1` of `+0x0C` clear posts nothing and answers 1
+   (`0x0057CB66`-`0x0057CB6F`, `0x0057CBFF`).
 3. `0x8002` is cancel: with bit `0x2` it posts `0x8102` and clears bit `0x8` of the window's `+0x40`
    (`0x0057CACB`, `0x0057CAD1`-`0x0057CAE9`). Without bit `0x2` it moves the list back when bit `0x8` is clear
    (`0x002D4650`, `0x0057CAFC`-`0x0057CB0A`) and does nothing when bit `0x8` is set (`0x0057CAF4`-`0x0057CAF6`).
 4. Message 10 forwards input to the list unless the window is in notice mode (`0x0057C9A3`).
+
+For any other row a pick sets the confirm sound when the option's word is `0x8101` or one of the sound
+bits of the flag table is set, and makes no sound store otherwise (`0x0057CB75`-`0x0057CBD7`); it then posts
+the option's word `+0x08` to the owner at `+0xC8` (`0x0057CBDE`-`0x0057CBF1`). A reply of 1 answers 1
+(`0x0057CBFF`); any other reply clears bit `0x8` of the window's `+0x40` and answers 0
+(`0x0057CBF6`-`0x0057CBF9`, `0x0057CAE9`-`0x0057CAEF`).
 
 `0x0057C3E0(window, element, row)` is the list's row callback, given in the create record `0x002D14E0` takes
 (`0x0057C722`). While `+0x636` is set it colours the element (`+0x90`) with `0x002DD7E0(6)` when the row's word
@@ -118,6 +135,16 @@ sub-commands:
 other than 0 puts the cursor on the row whose code is `0x8103` plus that value (`0x005668F7`-`0x00566905`, `0x0057CD00` at
 `0x005669A5`, `0x002D4650` at `0x005669C1`); with 0, or when that row is not listed, the cursor starts on row 0
 (`0x00566900`, `0x0057CD37`).
+
+After `0x00565CD0` the sort arm stores 12 in the bar's byte `+0xE2` (`0x0056681F`). When the object at
+`+0xC0` and its first qword are not null it calls that qword with the object and a record of the dword
+`0x11E`, the bar's dword `+0xC8` and the answer of `0x00565CD0`, both sign-extended to qwords
+(`0x005667E4`-`0x00566838`); `0x002527B0` is called with a first argument of 7 before `0x00565CD0`
+(`0x005667F1`). It then clears bit `0x8` of the bar's dword `+0x40` (`0x0056683A`).
+
+Message 2 (`0x0056688D`) does nothing while the byte `+0xE2`, read signed, is 0 or less. Otherwise it
+takes 1 from the byte, and when that leaves 0 it sets bit `0x8` of `+0x40` and closes the bar with
+`0x00244F00` (`0x00566894`-`0x005668B1`).
 
 `0x00565CD0(screen, tab, sort)` sorts the tab's list (`0x00252F40` of the list id at `0x00D23960 + 4 x tab`) through
 `0x00249CE0` with one of five comparators (`0x00565D43`-`0x00565D7F`), and does nothing for a list of fewer than two items. Each comparator reads the

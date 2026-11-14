@@ -63,6 +63,21 @@ keeping the mesh instance at `0x01F82E58`. The instance's material set (`+0x20`)
 made from the asset's first `PEffectVariant` (`0x02CB6780`, `0x00600120`). `0x001EE8E0` draws that
 instance (`0x0060B980`).
 
+`0x001EEC80` looks for the variant in the asset's list at `+0x38`: it takes the first entry whose class
+`+0x50`, or a class reached from it through `+0x78`, is `0x02CB6780` and whose dword `+0x74` is above 0
+(`0x001EECEE`-`0x001EED35`). With no such entry it builds nothing: no cluster, no mesh, and `0x01F82E60`
+and `0x01F82E58` are left as they were (`0x001EED08`, `0x001EED3A`, `0x001EED5A`). The variant is the first
+object of that entry (`0x001EED40`-`0x001EED70`).
+
+The cluster comes from `0x00584740(0xA0)` and is `0x00633040` of that block, or 0 when the block is null;
+the mesh call `0x00649C20` follows with no test of it (`0x001EED74`-`0x001EEDA4`).
+
+The material is the answer of `0x00600120(variant, cluster)` (`0x001EEDAB`-`0x001EEDBA`), and the material
+set is the array `0x0063A990(cluster, 1, 0x02D3A440, 0)` answers. When its count is not 1 the body empties it,
+freeing its block with `0x00584730` when bit `0x80000000` of the count dword is clear, and stores a
+count of 1 (`0x001EEDD2`-`0x001EEE1E`). The material goes to the array's `+0x08` and the array's address
+to the instance's `+0x20` (`0x001EEE24`-`0x001EEE4A`).
+
 ### Writing a constant
 
 `0x0018D240(shader, name)` returns the parameter's descriptor or null. It returns null for a null name, and

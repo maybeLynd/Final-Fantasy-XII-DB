@@ -36,6 +36,13 @@ Class 30 shares that arm and copies the first triple too. `0x0030AAC0(id, &a, &b
 bit `0x2` (`0x0030AADC`-`0x0030AAF1`), and the id, calls `0x0031C5D0`, and returns the three words at the record's `+0x38`,
 `+0x3A` and `+0x3C`, or -1 when the fill fails.
 
+The record is on the stack, the class in its dword `+0x00` and the id in its word `+0x06`; no other
+byte of it is written before the call (`0x0030AADF`-`0x0030AAF8`). A negative answer of `0x0031C5D0` is the
+failure: `0x0030AAC0` then answers -1 and
+writes to no out pointer (`0x0030AAFD`-`0x0030AB04`). Otherwise it stores each of the three words,
+zero-extended, as a dword through `&a`, `&b` and `&c`, with no null test on them, and answers 0
+(`0x0030AB06`-`0x0030AB1B`).
+
 ## Columns
 
 | Column | Meaning |

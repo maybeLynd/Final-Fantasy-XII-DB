@@ -197,6 +197,9 @@ subsystem; other keys are ignored.
 `0x0020D720`, slot 2's body (`0x0020D010`), and the exit routine `0x008A7360` call
 `ADL2_Main_Control_Destroy` when a context exists, free the library and release the vector.
 
+`0x0020D010(object, flags)` calls `0x0020D720(object)` first. When bit `0x1` of the flags is set it then
+calls `0x00809950(object, 0xD0)`. It answers the object in both cases (`0x0020D01F`-`0x0020D036`).
+
 ### The adapter-info chain
 
 `0x0020D2B0` builds an `AdapterInfos` head on the caller's stack: its own vtable, whose two slots return

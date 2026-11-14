@@ -81,6 +81,27 @@ The board view `0x0055B3F0` reads the width and height as bytes and keeps each p
 (`0x0055B484`-`0x0055B4A2`). The board's title and description are text ids `0x3ED + board` and `0x838 + board`
 (`0x00556FE7`, `0x00557010`), rows 5-16 of `menu_command.bin` for the titles.
 
+`0x0055F830(view)` first walks the six qwords from the view's `+0x150`: a pointer that is not null goes
+to `0x003697F0` and its qword is set to 0 (`0x0055F83D`-`0x0055F878`). The member count is the signed byte
+`+0xB2C` of `[0x0209AC30]`; with 0 or less the body returns (`0x0055F87A`-`0x0055F899`). For each member
+index i it asks `0x00282DF0` for the dword at view `+0x120 + 4 × i` and `0x003236B0` for the answer's
+byte `+0x60`; an answer byte of `0xFF` leaves that member's qword at 0 (`0x0055F8C0`-`0x0055F8D5`).
+
+Otherwise the board is `[0x02EBF1A0 + 8 × byte]`, the byte taken signed. `0x002497B0` is asked for
+`4 × width × height` bytes, the board's words `+0x04` and `+0x06`; `0x00861EC0(buffer, 0, size)`
+follows, and the buffer goes to the view's qword `+0x150 + 8 × i` (`0x0055F8DB`-`0x0055F90C`). The buffer
+takes one 4-byte entry per square, row by row (`0x0055F910`-`0x0055F9DF`).
+
+The buffer address is used with no null test (`0x0055F8F7`-`0x0055F90C`). A square's grid word is the
+board's word `+0x08 + 2 × (width × row + column)` (`0x0055F94C`-`0x0055F95A`).
+
+A square whose grid word is `0xFFFF` gets word `+0x00` = `0xFFFF` and word `+0x02` = 0
+(`0x0055F95A`-`0x0055F962`, `0x0055F9B5`-`0x0055F9BD`). So does a square for which
+`0x00323600(byte +0x60, grid word, 0)` answers 3, 4, 5 or 8, and a square with a grid word of `0x10A`
+to `0x113` while `0x00283730(0x4B9)` answers 0 (`0x0055F964`-`0x0055F99A`). Any other square gets that
+`0x00323600` answer in word `+0x00` and, in word `+0x02`, the byte `+0x21` of the record that
+`0x0035D330(0x19, grid word)` answers, read with no null test (`0x0055F99C`-`0x0055F9AF`).
+
 ## Shipped data
 
 | Board | File | Job | Squares | Second Board at | Second Board in the cn and kr copies |
@@ -152,3 +173,14 @@ and the other 276 the empty marker `0xFFFF`. The node names and LP costs are tho
 
 - [Licenses](licenses.md) - the node records, buying a square and the license test.
 - [Party members](../Party/party-members.md) - the catch-up that counts owned licenses.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Presentation: `0x0035D330` is called by `0x003BBD00`, `0x00506700`; those functions are documented on
+  [augments](../Damage-And-Battle-Formulas/augments.md), [battle numbers](../Menus-And-HUD/battle-numbers.md).
+- Save load settings: `0x00282DF0` is called by `0x00583D60`; those functions are documented on
+  [native limits](../Engine-Core/native-limits.md).
+- Story event quest hunt: `0x00283730` calls `0x0032A8A0`; those functions are documented on
+  [identifier spaces](../Engine-Core/identifier-spaces.md).

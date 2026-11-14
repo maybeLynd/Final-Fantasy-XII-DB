@@ -104,6 +104,17 @@ returns bit `0x1` of the entry's upper half (`0x002673C0`, `0x002673C6`). Sectio
   `0x002E1E00` (slot record `0x0215F200 + slot * 0x68`), returns it in the call record, and opens the
   window through `0x002E16B0` only when the flag is clear. `0x002E1E00` takes a negative slot as slot 0 and a
   slot above 7 as slot 7 (`0x002E1E00`-`0x002E1E1F`).
+
+  `mes` takes eight values with `0x00267E10`; the seventh is the message id and the eighth the slot
+  (`0x00348E0E`-`0x00348E63`). With the answer of `0x002640C0()` as manager it asks `0x00264D60(manager, id)`
+  for the text and `0x002673A0(manager, id)` for the flag (`0x00348E65`-`0x00348E85`). The calls then run in
+  this order: `0x002E1EA0(slot, second)`, `0x002E1E00(slot, flag)`,
+  `0x002E1F80(slot, sixth, fifth, fourth, third)`, `0x002E1F40(slot, first)`, `0x002E1E40(slot, 0)` and
+  `0x002E1E70(slot, 0)` (`0x00348E8A`-`0x00348ECA`).
+
+  The call record, its third argument, gets the slot in its dword `+0x00`, the flag in its dword
+  `+0x08` and 0 in its byte `+0x0C` (`0x00348ECF`-`0x00348EDC`). With the flag clear the window call is
+  `0x002E16B0(second argument, slot, text, [manager + 0xB0])` (`0x00348EE0`-`0x00348EFF`).
 - `aask_1ff` (`0x0034ADA0`) does the same but opens the window only when the flag is set. It also writes the call
   record's byte `+0x0C`: 1 when it opens the window, 0 when it does not (`0x0034AE75`, `0x0034AE8B`); `mes` always
   writes 0 there (`0x00348EDC`).

@@ -126,6 +126,16 @@ writes into the next of 64 `0x130`-byte entries on the stack, advanced by what `
 0x00D227D0  0 2 10 18 25 30 32 30 25 18 10 2 0 -2 -4 -2 -1 0
 ```
 
+`0x002EA0E0(id, out)` asks `0x003588B0(id)` for the actor again. With an actor whose slot pointer
+`+0xC0` is not null and whose slot's first dword is not -1, it takes the slot's first word,
+sign-extended (`0x002EA10D`), as an index into the `0x740`-byte render records at `[0x022C6F28]`; for a
+record whose dword `+0x284` is not 0 it calls `0x003E5910(record, out)` and then stores 1.0 in
+`out + 0xC` (`0x002EA0E9`-`0x002EA132`).
+
+For an index word of `0xFFFF`, a record address of 0 or a `+0x284` of 0, `0x002EA0E0` stores only the 1.0
+and leaves the first three floats as they were (`0x002EA107`-`0x002EA128`, `0x002EA147`). With no actor, no
+slot or a first dword of -1 it stores 0, 0, 0 and 1.0 (`0x002EA13F`-`0x002EA147`).
+
 `0x00505570` draws a picture with one sprite:
 
 1. The opacity is `age x 16` up to age 30. After that it is the colour's alpha byte `+0x0F` less

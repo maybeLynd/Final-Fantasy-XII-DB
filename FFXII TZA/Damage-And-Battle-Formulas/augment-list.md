@@ -92,6 +92,14 @@ Fifteen functions load `0x02EBF040`, at 111 instructions: `0x002FEF30`, `0x002F9
   computes the same product inline (`0x0039005D`-`0x00390088`), both only for a slot `+0x06` below 8; `0x00385570` reads
   `+0x06` only. `0x0030EA40` calls `0x00387020` only when the timer it is given is negative
   (`0x0030EAA3`-`0x0030EAB3`).
+- `0x00387020` does not read its first argument. For an id of `0xFF` it answers 0 (`0x00387028`-`0x00387030`).
+  For any other id the row address is `(u32)(base + stride × id)`, where base is the answer of
+  `0x0020E600` for the dword `+0x0C` of `[0x02EBF040]` and stride is the word `+0x08` of `[0x02EBF040]`
+  (`0x00387051`-`0x0038706E`). The answer is `word +0x04 × [0x01DFE0B4] × 30` as 32-bit integers
+  (`0x00387074`-`0x0038707F`).
+
+  With `[0x02EBF040]` null, or a null answer of the first `0x0020E600` call, the row address is 0 and the
+  word at address 4 is read (`0x00387038`-`0x0038704F`, `0x00387072`-`0x00387074`).
 - `0x0031C5D0` reads `+0x00` and `+0x02`.
 
 No other instruction reaches the table, and no instruction writes it after `battle_pack.bin` is loaded. Every read of

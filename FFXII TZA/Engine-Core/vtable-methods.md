@@ -20,6 +20,9 @@ function, so they are not slots: `LOD` after `Phyre::PLOD::PUtilityLOD` (`0x00D8
 The code uses each as a string: `0x006A3B10` returns `0x00D7A918`, `0x00164BE7` passes `0x00D5A248` to `0x005DC6F0`, ten
 `lea` instructions load `0x00D337A0`, and the qword at `0x01F2EE90` holds `0x00D85180`.
 
+The function that holds `0x00164BE7` is `0x00164BE0`. It calls `0x005DC6F0(0x02D36E20, 0x00D5A248, 0)` and then
+jumps to `0x00808B90` with the address `0x008B03B0` (`0x00164BE4`-`0x00164C05`).
+
 Of the 6,882 functions the slots hold, 5,318 begin a `.pdata` entry, 1,303 are frameless leaves that no
 `.pdata` entry covers, and 261 are a single `jmp`; `target_kind` and `target_basis` give each slot's case.
 

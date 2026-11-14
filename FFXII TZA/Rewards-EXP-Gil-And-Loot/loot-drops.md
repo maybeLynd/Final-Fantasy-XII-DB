@@ -179,6 +179,11 @@ The add sets bit `1 << status` of the result's `+0x54`. Unless the status row's 
 `+0x5C + 4 * status`; statuses 2 and 6 then get `0xB` there. It stores the word
 `0x003876D0(status)` at result `+0xDC + 2 * status` and answers 1 (`0x00387C0E`-`0x00387C8E`).
 
+The row address is `0x0020E600(table dword +0x0C) + status * table word +0x08`, summed as 32-bit values
+and zero-extended (`0x00387C4A`-`0x00387C51`), for the table at
+`[0x02EBF118]`. With a null table, or a null answer of `0x0020E600`, the address is 0 and the byte `+0x08`
+is read from it all the same (`0x00387C1B`-`0x00387C57`).
+
 A status is refused (`0x02AEDFBC` = 1) in any of these cases (`0x003908DF`-`0x003909E3`):
 
 - the target already has it (`+0x3C`);

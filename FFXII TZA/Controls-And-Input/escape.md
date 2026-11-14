@@ -113,6 +113,33 @@ and `0x00366A30(sprite, node, x, y, scale, cx, cy)` draws
 a node's picture cell at (x, y) through `0x002D8D10`, scaling it and its offset from (cx, cy) by `scale / 256`
 when `scale` is not 0.
 
+The draw (message 4) takes the node count from the dword `+0x0C` of the object at the widget's `+0x58`
+and the node pointers from the array that the widget's own qword `+0x60` points at (`0x00366CC0`). Each
+node gets a share of the delay: share =
+`[0x022CBE08]` x 128 / (count + 1), unsigned. With c = the latch's count word x 256, node i is left out
+while share x i is above c, and is drawn whole once c reaches `[0x022CBE08]` x 128 + share x i: one
+drawing with the value 5.0 and the draw record's brightness `+0x5A` at `0x80` (`0x00366CE6`-`0x00366D22`).
+
+Before those tests each node's five points are written by `0x00367110`, called with the points, the
+node, the widget's word `+0x9C` and `word +0x9E >> 1`, and the brightness `+0x5A` is set to `0x80`
+(`0x00366CC0`-`0x00366CFC`). The count word is read signed, the two tests of c are signed, and a count of
+0 at the object's `+0x0C` draws nothing (`0x00366C6A`-`0x00366C7B`, `0x00366D0A`-`0x00366D19`).
+
+Between the two, q = 4 x (c - share x i) / (`[0x022CBE08]` / 2), unsigned (`0x00366D24`-`0x00366D36`). With
+q below `0x300` the node is drawn five times, k = 0 to 4, with the value (q - `0x80` + `0x20` x k) / 256,
+a negative value skipped (`0x00366D38`-`0x00366D4B`, `0x00366D9C`-`0x00366DBE`, `0x00366E97`-`0x00366EA0`). With q
+at `0x300` or more it is drawn once with q / 256, and the brightness is `0x80` plus the low byte b of q
+while b is below `0x80`, and `0x17F` - b from there (`0x00366D4D`-`0x00366D6A`).
+
+These brightness values are the ones set before the scale by the widget's `+0xD2`, which is applied
+ahead of the drawings (`0x00366D6F`-`0x00366D86`).
+
+For each drawing the draw record's alpha `+0x58` is stored as ((`+0xD0` x f) >> 7) x m / 4, where f is
+2 x q while q is below `0x40` and `0x80` otherwise, and m is k for the five drawings and 4 for a single
+one (`0x00366D8B`-`0x00366D97`, `0x00366DDC`-`0x00366E10`). `0x00270260(out, points, 5, value)` gives the point
+from the five that `0x00367110` wrote for the node, and `0x00366A30` draws the node there with scale 0, cx
+half the widget's word `+0x9C` and cy a quarter of its word `+0x9E` (`0x00366DC4`-`0x00366E26`).
+
 ### What reads the flag
 
 `0x00253B90` answers true when the flag is 0 (force fight mode off, the party fleeing), which is Escape Mode on. Its readers are command availability `0x002FFCF0`, the
@@ -139,7 +166,7 @@ The escape widget is the `0xE0`-byte widget kept at `0x022CBE20` with procedure 
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x00366B80` |
 | `+0xC0` | `void*` | atlas | the image label battle_4_c (the name at `0x009152B0` through `0x01E0C1E8`), looked up with `0x0024A5A0` on construction (`0x003670DC`-`0x003670E1`); no function reads it back |
 | `+0xC8` | `void*` | latch | the address of the latch words `0x022CBE18` that `0x00366740` passes as the construct message's second argument (`0x00367096`-`0x0036709A`). The draw fills the gauge from the count word `+0x00` against the delay `0x022CBE08` (`0x00366C5B`-`0x00366C6A`, `0x00366CE6`-`0x00366D0D`); the update reads the arming word `+0x02`: bit `0x80` runs the disarm `0x003667E0` (`0x00366F0E`-`0x00366F1B`), bit `0x8` or `0x20` starts the pulse and is cleared (test cl, `0x28` at `0x00366F51`; `0x00366F40`-`0x00366F8C`), bit `0x4` keeps the pulse running (`0x00366F9C`-`0x00366FAC`), bits `0x1` and `0x2` fade the picture in and out (`0x00366FE6`-`0x0036701D`) |
-| `+0xD0` | `i16` | alpha | the picture's alpha, 0 to 128: set to 128 when a pulse starts with bit `0x20` (`0x00366F5B`); rises by 128 / [`0x022CBE0C`] per update while arming bit `0x1` is set and falls to 0 while bit `0x2` is set, when no pulse runs (`0x00366FE6`-`0x00367037`); while a pulse runs the draw sets it to 96 + 32 sin(pi x frames since `+0xD4` / 30) (`0x00366BEC`-`0x00366C29`). The draw draws nothing while it is 0 (`0x00366BD0`) and scales each node's alpha `+0x58` by it (`0x00366DDC`-`0x00366E10`) |
+| `+0xD0` | `i16` | alpha | the picture's alpha, 0 to 128: set to 128 when a pulse starts with bit `0x20` (`0x00366F5B`); rises by 128 / [`0x022CBE0C`] per update while arming bit `0x1` is set and falls to 0 while bit `0x2` is set, when no pulse runs (`0x00366FE6`-`0x00367037`); while a pulse runs the draw sets it to 96 + 32 sin(pi x frames since `+0xD4` / 30) (`0x00366BEC`-`0x00366C29`). The draw draws nothing while it is 0 (`0x00366BD0`) and makes the draw record's `+0x58` alpha from it for each drawing (`0x00366DDC`-`0x00366E10`) |
 | `+0xD2` | `i16` | brightness | the picture's brightness scale: 255 when a pulse starts with bit `0x8` and without bit `0x20` (`0x00366F71`-`0x00366F80`), 128 with bit `0x20` (`0x00366F5B`); each update takes 128 / [`0x022CBE14`] from it down to 128 (`0x00366FB4`-`0x00366FD0`). The draw multiplies the draw record's brightness `+0x5A` by it over 128 (`0x00366D6F`-`0x00366D86`) |
 | `+0xD4` | `u32` | pulseStart | the frame counter `0x0208F570` when the pulse started (`0x00366F90`-`0x00366F96`); the draw's pulse takes the frames since then (`0x00366BEC`-`0x00366BF5`) |
 | `+0xD8` | `u16` | pulsing | 1 while the armed pulse runs: set with `+0xDA` by one dword store when arming bit `0x8` or `0x20` is seen (`0x00366F65`, `0x00366F76`); the update clears it while arming bit `0x4` is clear (`0x00366FA6`-`0x00366FAC`). While it is set the update leaves the alpha alone (`0x00366FD8`), the draw pulses the alpha (`0x00366BDE`) and draws the ring copy (`0x00366E2B`) |
@@ -151,6 +178,17 @@ The escape widget is the `0xE0`-byte widget kept at `0x022CBE20` with procedure 
 The escape widget `0x00366B80` sets these when it is built (message 1, `0x003670A6`-`0x003670D6`), from the frame-time
 base `0x01DFE0B4`, 1 as shipped, beside the delay `0x022CBE08`. Its update (message 2, `0x00366EFB`-`0x003670E8`) moves the
 picture's alpha `+0xD0` and brightness `+0xD2` by 128 divided by them; its draw reads both (`0x00366D6F`, `0x00366DDC`).
+
+The update does nothing while `0x001EDEC0` answers 0 for the widget's dword `+0xB4`
+(`0x00366EFB`-`0x00366F08`). With no pulse running and neither bit `0x1` nor bit `0x2` in the arming word
+it sets the alpha `+0xD0` to 0 at once (`0x0036701B`-`0x00367037`).
+
+On message 1 the widget also calls
+`0x002432B0(widget + 0x50, [[0x0209AC30] + 8], 0xC, widget)` and copies the answer's words `+0x04`, `+0x06`
+and `+0x08` to its `+0x98`, `+0x9A` and `+0x9C`, and twice the word `+0x0A` to `+0x9E`; the answer is
+read with no null test and the four stores are skipped for a null widget (`0x00367044`-`0x0036708F`). Any
+message other than 1, 2 and 4 goes to `0x005C5230`, which answers 0
+(`0x00366BC3`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

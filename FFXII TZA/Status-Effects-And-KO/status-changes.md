@@ -54,6 +54,14 @@ and flags through (`0x0030EAE4`-`0x0030EAFC`). `0x0030E990` is used by:
 - `0x00318A00` and `0x00318A90`, which pick `0x0030EAE0` or `0x0030E990` by a flag (`0x00318A49`-`0x00318A63`,
   `0x00318AF0`-`0x00318B14`). `setpartybattlestatus` (`0x00347F80`) reaches `0x00318A00` through `0x00473820`, which
   sets the flag to 1 (`0x00473823`), so it always calls the add `0x0030EAE0`.
+- `0x00318A00(index, status, flag)` answers -1 for an index byte above `0x27`, compared unsigned, and
+  for a record address of 0; the record is `[0x02EBF190] + 8 + index × 0x1C8` (`0x00318A04`-`0x00318A21`).
+  It answers -2 without a call when `1 << status`, the count taken modulo 32, has a bit of
+  `0x80000003` (`0x00318A23`-`0x00318A39`).
+
+  Otherwise it calls the function picked, `0x0030EAE0` for a flag other than 0 and `0x0030E990` for 0,
+  with `(record, 0, status, -1, -1, 0x13)`, the status as a byte, and answers 0 whatever the call
+  answers (`0x00318A3E`-`0x00318A72`).
 
 ### What refuses a change
 

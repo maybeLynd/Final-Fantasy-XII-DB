@@ -92,6 +92,53 @@ the entry's `+0x14` is set: a sprite at the entry's position with w = -1, the pi
 and a size and alpha from the 5-key track `0x00915F68` at the entry's time `+0x10`; the alpha is scaled by
 `0x00272DE0()` x `alpha` while `+0x0C` is set and is 0 otherwise.
 
+`0x0028B140(entry, context, list, scale, digit sheet, label sheet, time, alpha, dx, dy)` takes a draw
+record from `0x003F0040(list)` and returns when the answer is null (`0x0028B186`-`0x0028B191`). The entry's byte
+`+0x0E` picks the label: with 0 it is cell `n + 0xF` of the label sheet, the colour `0x002DD7E0(0xBC)`,
+the row base `[0x0209BA6C]` and the dword `0x0209BA70`; otherwise cell `n + 0x10`, `0x002DD7E0(0xBB)`,
+`[0x0209BA6C] + [0x01E0C450]` and `0x0209BA74` (`0x0028B197`-`0x0028B236`). The dword picked is stored in
+`0x0209BA78` (`0x0028B24A`).
+
+A sheet's data is `[sheet + 0x20] + 0x30`. Its 8-byte cells start at the data's word `+0x10`, and its
+index words are at `+0x16 + 2 × word +0x14` of the data. The label's n is the first index word and the
+digits' n the second (`0x0028B1B7`-`0x0028B1E2`, `0x0028B41D`-`0x0028B435`). A cell's width and height are the
+low 12 bits and the next 12 bits of its dword `+0x04` (`0x0028B3A2`-`0x0028B3BA`).
+
+The label's record takes the entry's dwords `+0x00` to `+0x08`, -1.0 at `+0x0C`, 6 at qword `+0x28`,
+the label sheet at `+0xE0`, 0 at word `+0xE8` and dword `+0xF0`, and the four floats that
+`0x00271140(out, cell, texture)` gives: the third and fourth at `+0x30` and `+0x34`, the first and second
+at `+0x38` and `+0x3C` (`0x0028B25F`-`0x0028B35B`). The texture is the sheet's qword `+0x30` under the mask
+`0x1FFFFFFFFFFFFFFF`.
+
+Qword `+0x20` of the record is the texture with the palette number in its top byte, and dword `+0xEC`
+holds the palette number too. The palette number is `p + (b & 0xF)`, b being the cell's byte `+0x07`
+and p the byte at `data + word +0x12 + (b >> 4)` (`0x0028B2AE`-`0x0028B332`).
+
+The 4-key track `0x00915E98` is read with `0x00271AB0(values, track, 4, time)` and gives four words
+(`0x0028B23C`-`0x0028B25A`). The dwords `+0x40`, `+0x44` and `+0x48` are `(fourth word × alpha) >> 7`,
+signed, and `+0x4C` is `trunc(third word × scale)` (`0x0028B360`-`0x0028B387`). The left edge `+0x50` is
+`first word + word 0x01E0C444`, as a signed word, `+ dx`; the top `+0x54` is
+`row base + 3 + second word + word 0x0209BA60`, as a signed word, `+ dy`; `+0x58` and `+0x5C` are those
+`+ width` and `+ height` (`0x0028B38A`-`0x0028B404`). `0x003F1290(context, record)` ends the label
+(`0x0028B409`).
+
+The digits follow, one for each of the entry's word `+0x28` characters at `+0x10`; a digit is left out
+while the time is negative (`0x0028B40E`-`0x0028B458`, `0x0028B6AB`-`0x0028B6B5`). The pen starts at
+`(4 - w) × (count + 1)`, w being the width of the digit sheet's cell n (`0x0028B414`-`0x0028B444`). Each
+digit reads the 7-key track `0x00915ED0` and takes a record from `0x003F0040(list)`, the body returning
+when the answer is null. The record is filled as the label's is, from the digit sheet and its cell
+`n + character - 0x30`, with 0 at `+0xEC` and with `+0xF0` not written (`0x0028B45E`-`0x0028B576`).
+
+A digit's dwords `+0x40`, `+0x44` and `+0x48` are `(((c × a) >> 7) × alpha) >> 7`, c being byte 0, 1
+and 2 of the colour and a the track's fourth word; `+0x4C` is `trunc(third word × scale)`
+(`0x0028B57C`-`0x0028B5D6`). Its left edge is `pen + first word + word 0x0209BA78 + word 0x01E0C444`, as a
+signed word, `+ dx`; its top is `row base + second word + word 0x01E0C454 + word 0x0209BA60`, as a signed
+word, `+ dy` (`0x0028B5DA`-`0x0028B67A`).
+
+A digit's width and height are the cell's, each `× 110 / 100`, unsigned; they give `+0x58` and `+0x5C`,
+and the pen moves on by `width - 4` (`0x0028B61B`-`0x0028B64D`, `0x0028B67E`-`0x0028B69E`).
+`0x003F1290(context, record)` ends each digit (`0x0028B6A4`).
+
 ### The flag word
 
 Bits of `+0x10F68` that change what the HUD does:

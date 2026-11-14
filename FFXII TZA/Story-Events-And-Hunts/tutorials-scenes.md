@@ -48,6 +48,13 @@ No shipped script requests `men_z0002`:
   (`0x002E1A9A`), and give menu 2, which every selector above 6 opens (`0x002E0E00`), their parameter unchanged. No script
   of the nine language trees passes selector 6 with parameter 1 or a selector above 6, and no script calls verb
   `0x472`.
+- The body at `0x003470D0` first calls `0x00267F90(context, 0)` and stores the low byte of the answer of
+  `0x00229EB0()`, zero-extended, in the dword `+0x04` of its third argument and 0 in the dword `+0x08`
+  (`0x003470DA`-`0x003470F8`).
+
+  It then takes two values with `0x00267E10(context)` and calls `0x002E1A60` with
+  the second taken as its first argument and the first taken as its second (`0x003470FF`-`0x00347112`).
+  `0x002E1690()` follows, and the body ends in a jump to `0x002E0650` (`0x00347117`-`0x00347126`).
 - The ten calls of the developer menus (`bin/ctrl`, `bin/evctrl` and `bin/mapctrl`, in the `in` and `ch` trees) pass `0x8005`: the save menu, selector 5, with bit `0x8000`, which skips the fade ([Menus](../Menus-And-HUD/menus.md)).
 - The other writers of the request's mode word (`0x0215F1A8`) store 0 (`0x002E0B9D`, `0x002E15DF`, `0x002E1AFA`) or, through the native request `0x002E1B10`, 0, `0x21` or, for menu 2, payload word 2 (`global_flag[2]`, `+0x4`), or 1 when that word is 0 (`0x00253F31`-`0x00253F44`).
 - Scripts store only 0 to 15 in that word, apart from the byte fills of `btlctrl` and `mapctrl` (0 or `0xFF` in every byte), and no enemy order writes a payload word.

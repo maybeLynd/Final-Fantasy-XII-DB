@@ -127,6 +127,22 @@ whose `+0x284` is 0 (`0x0046C70C`-`0x0046C73A`), for a type outside 1-12 (`0x004
 whose volume from `0x00361CF0` is 0 (`0x0046C85F`-`0x0046C864`); otherwise it returns 1. The footstep's pan and volume
 come from `0x00361CF0`, the other types' from `0x00361BF0` (`0x0046C84F`, `0x0046C81E`).
 
+`0x0046C6E0(emitter, type, a, b)` hands its third and fourth arguments on unchanged as the first and
+second of `0x00361BF0` or `0x00361CF0`, and the dword that the footstep test reads is the one its fourth
+argument points at (`0x0046C6FF`-`0x0046C706`, `0x0046C813`-`0x0046C81E`, `0x0046C838`-`0x0046C861`). The point
+routines are given the record, the code, 0 and a `0x40`-byte stack buffer; the address passed on as the
+third argument of `0x00361BF0` and `0x00361CF0` is that buffer + `0x30` (`0x0046C795`, `0x0046C7AE`,
+`0x0046C7C8`, `0x0046C813`, `0x0046C82D`).
+
+For types 2 and 3 `0x00426770` gets the record again from the emitter's word `+8`, and a null record, a
+record whose `+0x284` is 0 or a null answer falls back to `0x00421E20` with `0x100`
+(`0x0046C771`-`0x0046C7A5`). For types 4 to 7 a null answer of `0x00421E20` for `0x0C` does the same
+(`0x0046C7A9`-`0x0046C7C1`). The answers for `0x101` and `0x100` are not tested (`0x0046C7D3`-`0x0046C7D8`).
+`0x00361BF0` gets the radius as its fourth argument; `0x00361CF0` gets the footstep float as its fourth
+and the radius as its fifth (`0x0046C810`, `0x0046C832`-`0x0046C842`).
+
+The answer of `0x003E56C0` is used with no null test (`0x0046C828`-`0x0046C83B`).
+
 The footstep also passes the float at `0x01F004D0 + 4 * b`, with `b` the byte `+0xB5` of the character object
 `0x003E56C0` returns (shipped values 25.0, 35.0, 45.0 and 55.0 for `b` 0 to 3; `0x0046C825`-`0x0046C842`,
 `0x0046CAE5`-`0x0046CB0A`).

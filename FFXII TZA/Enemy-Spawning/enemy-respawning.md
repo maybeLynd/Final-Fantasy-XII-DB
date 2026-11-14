@@ -310,6 +310,14 @@ stores its low byte at the spawn record's `+0x12` and writes back `old + 1`, or 
 `0x00254A40()` ([battle unit construction](../Characters-And-Objects/battle-unit-construction.md)). The
 reset `0x00237DF0` clears the parity, not the counters.
 
+`0x00254A40` answers the constant `0x34` (52) and does nothing else (`0x00254A40`-`0x00254A45`). The installer
+compares the counter it read with that answer, unsigned: a counter below 52 is written back one higher,
+and a counter of 52 or more is written back as 1 (`0x0023A80C`-`0x0023A838`). The byte kept at the spawn
+record's `+0x12` is the low byte of the counter as read, before the write (`0x0023A840`).
+
+A row byte of `0xFF` at the spawn entry's `+0x02` reads no counter, makes no call of `0x00254A40` and
+stores 0 at the spawn record's `+0x12` (`0x0023A7E7`-`0x0023A7F1`, `0x0023A840`).
+
 ### What the save image carries
 
 `0x00233440(image)` zeroes a `0x20010`-byte image, copies bank 2 to `+0x10` and bank 1 to `+0x10010`

@@ -329,6 +329,18 @@ An expansion list remaps glyph indices for one piece of text. The key of each li
 `event\<folder>\<name>` or `plan_map\<folder>\<name>` (`0x001B6350`): a hash starting at `0x1505` that multiplies by 33
 and adds each character, with bit `0x80000000` cleared (`0x00674A03`-`0x00674A23`).
 
+`0x001B6350(object, id, flag, name, value)` first looks through the pending vector `+0x250` for an entry
+whose dword `+0x04` is the id and whose byte `+0x10` is the flag byte. When it finds one it adds
+nothing and jumps to the empty stub `0x0016D6A0` with the message "Font param status has been set
+loading before" (`0x001B635D`-`0x001B6396`, `0x001B63F1`-`0x001B6407`).
+
+Otherwise it takes a record from `0x001BA860(object + 0x190)` and fills it: byte `+0x00` = 1, qword
+`+0x08` = 0, dword `+0x14` = the hash `0x00674A00` gives for the name, dword `+0x04` = the id, byte
+`+0x10` = the flag and dword `+0x18` = the fifth argument (`0x001B6398`-`0x001B63D2`). When the end
+`+0x258` is below the capacity `+0x260` the end moves on by 8 and the record's address is stored at the
+old end, unless that is null (`0x001B63D5`-`0x001B63EC`); otherwise
+`0x001AB570(vector, end, address of the record pointer)` is called (`0x001B640C`-`0x001B6414`).
+
 When text is drawn, `0x001E9D20` binds the
 running font and the list for the text's key to the text context (`0x001E9DB9`-`0x001E9DD5`). `0x001FDD60` finds that list in the
 font's map at `+0xA8`, the one the `.fex` reader fills, and returns 0 when the key has no list (`0x001E9DD0`).
@@ -367,6 +379,16 @@ number writer `0x002B3770`, the encoders `0x002B5AB0` and `0x002B5A20`, the text
 
 Two more lookups sit beside it: `0x0039C100()` returns entry `[0x02AEE894]` of the 26-entry table `0x02AEE898`, and
 `0x0039C120(n)` entry n - 1 with n clamped to 1-26; the battle menu's `0x0027E530` reads both.
+
+The font pack binder fills that table when the language test `0x00254A10` is false. For n = 1 to 26 it
+calls `0x0039C4A0(0)` and `0x002B58F0(buffer, 0x20, n, 0, 1, 0)`, takes the buffer's third byte less `0x20`
+as an index into the 8-byte entries that `0x0020E600` gives for the dword `+0x0C` of `0x0039C4A0`'s answer,
+and stores the entry's first dword under mask `0x01F00000`, shifted right 20, less 2, or 0 when that is
+negative. `0x02AEE894` takes the n of each value larger than every one before it, counting from 0
+(`0x0039C2DF`-`0x0039C395`).
+
+The index is used signed, and the answers of `0x0039C4A0` and `0x0020E600` are used with no null test
+(`0x0039C355`-`0x0039C363`).
 
 The font a code is drawn with is a slot of the font manager: two-byte codes whose lead is at least `[0x01E0CDF8]` use
 the context's index `+0xA6`, the place of its glyph sheet in `0x02AEE810`, and other codes index 0, or 7 with the

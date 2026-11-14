@@ -186,6 +186,9 @@ The environment and wind classes belong to the area, and the terrain class to th
   of the record its `+0xC0` and `+0x138` pointers reach (index 0 when either is missing), looked up in the
   32-entry table at `map_ref.bin` header `+0x14` (`0x00263DD7`-`0x00263E00`; bound by `0x002678A0`). A null actor gives
   class 0 without the lookup (`0x00263DD5`).
+- **How the terrain class is reached.** `0x003210E0` only loads the pointer at `+0x10` of its argument
+  and jumps to `0x00263DD0` with it (`0x003210E0`-`0x003210E4`). `0x00263DD0` uses the sign-extended index with
+  no bound test and reads the dword at `[0x02099D90]` + 4 + 4 x index (`0x00263DEF`-`0x00263E00`).
 
 ## Layouts
 

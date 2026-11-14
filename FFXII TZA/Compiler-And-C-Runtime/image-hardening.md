@@ -306,6 +306,13 @@ the stub `0x005C5230`), calls
 pointing at itself in `+0x00`, `+0x08` and `+0x10` (`0x0067F69D`-`0x0067F6A4`, `0x0067F6BB`-`0x0067F6C2`). It then clears
 the byte `0x02CA9D91` (`0x0059FF0D`), so the next call of `0x0059A030` runs the 144 registrars again.
 
+In `0x0067F580` a child that is the tree object itself counts as missing (`0x0067F5CD`, `0x0067F5D6`). When a
+node is taken out, the node unlinked from its place is the node itself when one of its links is
+the tree object and otherwise the leftmost node under its link `+0x08` (`0x0067F5D2`-`0x0067F5F0`); that
+node's parent goes into the `+0x10` of the child that takes its place, with that child's low bit kept
+and with no test of the child (`0x0067F5F3`-`0x0067F61C`). For a node with no child that store
+writes the `+0x10` of the tree object.
+
 Before the `0x0067F580` call `0x0059FE20` empties the list at `0x02CA9D88`: each node is
 unlinked first (`0x0059FE60`-`0x0059FE8D`); its array `+0x70` is freed with `0x00584730` only
 when bit `0x80000000` of the count `+0x68` is clear, and both are zeroed; `0x00598040`

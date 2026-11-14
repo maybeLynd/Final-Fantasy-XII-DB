@@ -183,6 +183,10 @@ only when the allocator `0x002F16B0` returns a task: with a null one it still st
 `0x02EBF400` and the mode byte `0x02EBF3FC`, then returns without filling the task or calling the wrapper
 (`0x0037C99A`, `0x0037CA1A`, `0x0037CA9A`).
 
+`0x00233CF0` takes no argument. It makes the three calls in the order `0x0030D8B0`, `0x003266C0` and
+`0x00311E10`, the second with no argument set, and answers 1 whatever they answer
+(`0x00233CF4`-`0x00233D0A`).
+
 ### What the level changes
 
 `0x0030D9A0` has 21 direct callers; the level-2 predicate has 6 direct callers and 16 through its

@@ -51,6 +51,12 @@ Verb names and ids are those of the [verb table](../Scripts-And-Script-Commands/
 `messync2` (`0x11`, `0x129`) write two popped values to `+0x3E`: the first to bit `0x2` and the second to bit `0x1`
 (`0x00357820`, through `0x002E1E70` and `0x002E1E40`).
 
+`shapewin` (`0x0033F950`) takes six values with `0x00267E10`, the sixth being the slot
+(`0x0033F968`-`0x0033F9AA`). Its calls run in this order: `0x002E1EA0(slot, first)`, `0x002E1D90(slot, 0, 0)`,
+`0x002E1F80(slot, fifth, fourth, third, second)`, `0x002E1FD0(slot, 1)`, `0x002E1E40(slot, 0)` and
+`0x002E1E70(slot, 0)` (`0x0033F9AD`-`0x0033F9F0`). It ends in a jump to `0x002E16B0(0, slot, 0, 0)`
+(`0x0033F9F5`-`0x0033FA18`).
+
 ### Opening a window
 
 `0x002E16B0(actor, slot, text, font)` builds a creation request from the slot and the text, and creates the window

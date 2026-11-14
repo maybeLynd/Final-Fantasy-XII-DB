@@ -128,6 +128,12 @@ when it passes, it commits the same action again - `0x0030F760(unit, [+0x708], [
 and on success increments `+0x6B7`, restores `+0x6B8` and sets the action phase `+0x6B4` to 5
 (`0x0030FA3B`-`0x0030FA80`).
 
+`0x0030FA00` answers 1 after those three stores and 0 when the gate or the commit answers 0, in which
+case it stores nothing itself (`0x0030FA25`-`0x0030FA29`, `0x0030FA61`-`0x0030FA74`). It reads the bytes
+`+0x6B7` and `+0x6B8` before the gate call (`0x0030FA0F`-`0x0030FA19`): the count stored is that earlier
+`+0x6B7` value one higher, kept as a byte, and `+0x6B8` gets back the value read then
+(`0x0030FA65`-`0x0030FA79`).
+
 ### The gate
 
 `0x0030C010` (179 bytes) returns 1 only when: the fleeing test above passes again; the

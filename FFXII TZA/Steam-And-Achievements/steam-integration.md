@@ -71,6 +71,15 @@ When `0x01F83450` is 0 (`0x0020CD3D`), `0x0020CD30` allocates `0x80` bytes, call
    with the callback's first field and ignores a mismatch;
 3. stores the 41 static achievement records as its entry table and calls `0x0020CCC0`, which, when the user
    interface's slot `+0x08` returns true, calls the stats interface's slot `+0x00` (the stats request).
+
+   The three callback objects are at the manager's `+0x20`, `+0x40` and `+0x60`, for callbacks 1101,
+   1102 and 1103 in that order; their vtables are `0x00906360`, `0x009063A0` and `0x009063E0` and their
+   handlers `0x0020C940`, `0x0020CB20` and `0x0020C8C0`. Each also gets 0 in its byte `+0x08` and its dword
+   `+0x0C` and the manager in its qword `+0x10`, and is then handed with its callback number to the
+   import at `0x008C3180` (`0x0020C763`-`0x0020C7EC`).
+
+   The entry table's address goes to the manager's `+0x08` and the count to
+   its dword `+0x10` (`0x0020C80F`, `0x0020C813`). `0x0020C730` answers the manager (`0x0020C81F`).
 4. `0x0020CCC0` returns 0 when the context's stats slot `+0x28` or user slot `+0x08` is 0 (`0x0020CCD1`,
    `0x0020CCE5`) or the logged-on test is false (`0x0020CD05`); otherwise it reaches the stats request as a tail
    jump (`0x0020CD1F`) and returns its result. `0x0020C730` returns the object (`0x0020C81F`).

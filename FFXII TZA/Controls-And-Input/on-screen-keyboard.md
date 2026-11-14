@@ -37,15 +37,27 @@ Three frame handlers call it while the keyboard is closed and call `0x0027E9E0` 
 reference to `0x002878E0` in the image is the `lea` at `0x0027EA18`.
 
 On each update (`0x00287A07`, `0x00287AC8`) the task closes itself (`0x00244F00`) when `0x0017DE60` reports F9 again
-(`0x00287A3B`-`0x00287A4B`). The branch that closes on the cancel button instead (`0x00287A10`-`0x00287A34`) runs only when
-`0x0209AC50` is 0, which `0x0027E9E0` never leaves it. Destroying the task clears `0x0209AC18` and `0x0209AC50` and sets
-`0x0209AC14` (`0x00287953`-`0x0028796E`).
+(`0x00287A3B`-`0x00287A4B`). The branch that closes on the cancel button instead (`0x00287A10`-`0x00287A34`,
+`0x00287AD1`-`0x00287AF5`) runs on an update only when `0x0209AC50` is 0, which `0x0027E9E0` never leaves it.
+
+Destroying the task (message 18) clears `0x0209AC18` and, when `0x0209AC50` is not 0, clears it and sets
+`0x0209AC14` to 1 (`0x00287953`-`0x0028796E`). It then goes on into the update at `0x00287AD1`, after that
+update's test of `0x0209AC50`. With a bit of the word `0x01E0C2A4` set in the word `0x02F9736A` it calls
+`0x002814E0(0x504)`, `0x00249C60(3)`, `0x002CA110()` and `0x00244F00` with the emptied `0x0209AC18`; in either
+case it then makes the ten update calls of step 3 (`0x00287AD1`-`0x00287B7F`). The `0x0017DE60` test at
+`0x00287AFC` belongs to the other branch and is not on this path.
 
 ### The task
 
 `0x002878E0` handles its messages in this order of work:
 
 1. On creation it builds its widgets with `0x002432B0` from the layout at `+0xA8` of `0x0209AC30` (`0x00287B86`-`0x00287B9E`).
+
+   It copies the words `+0x04`, `+0x06`, `+0x08` and `+0x0A` of the record `0x002432B0` answers, read with no
+   null test, to its `+0x98`, `+0x9A`, `+0x9C` and `+0x9E`, four stores skipped for a null task
+   (`0x00287BA3`-`0x00287BCF`), clears bit `0x800` of its dword `+0x40`
+   and zeroes its word `+0x44` (`0x00287BD6`-`0x00287BDF`). When the qword `0x02CA8FE0` or `0x02CA8FE8` is not 0
+   it calls `0x00247730(task, 1)` (`0x00287BE3`-`0x00287BFD`).
 2. On a redraw (`0x0028797D`-`0x002879FD`) it resets the keyboard picture (`0x00287400`), colours it (`0x002891A0`),
    writes the mouse labels (`0x002875D0`), builds the seven panels and writes the hint label (`0x00287850`).
 3. On each update (`0x00287A50`-`0x00287ABE`) it lights the held keys (`0x00289040`), colours the picture again
@@ -180,3 +192,5 @@ Calls between the functions this page cites and code in other parts of the progr
   [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
 - Presentation: `0x00557DB0` calls `0x003B2D80`; those functions are documented on
   [license board screen](../Menus-And-HUD/license-board-screen.md).
+- Save load settings: `0x002814E0` is called by `0x00582860`; those functions are documented on
+  [game application](../Engine-Core/game-application.md).

@@ -39,12 +39,24 @@ group (0, 2, 4, 5, 6). Group *g* is rows end[*g* − 1] to end[*g*] − 1, with 
 
 ### Applying it
 
-The battle menu builder `0x0031EB20` asks with the request's word `+0x04` as the group and the member's type byte
-(stats `+0x04`) ([Battle menu](../Menus-And-HUD/battle-menu.md)). `0x0027E050` and `0x0027D740` fill that word from the menu's
-word `+0x153A` (`0x0027E2F7`, `0x0027D82F`), which `0x002778C0` copies from `+0x2FF6` of its source (`0x00279296`), which the battle-menu widget procedure
+The battle menu builder `0x0031EB20` asks, only for a member with a stats record whose byte `+0x05` is 0
+(`0x0031ECEA`-`0x0031ECFA`, `0x0031F18D`-`0x0031F19F`), with the request's dword `+0x04` as the group and the
+member's type byte (stats `+0x04`) ([Battle menu](../Menus-And-HUD/battle-menu.md)).
+
+`0x0027E050` and `0x0027D740`
+fill that dword, sign-extended, from the menu's word `+0x153A` (`0x0027E2F7`-`0x0027E305`,
+`0x0027D82F`-`0x0027D836`), which `0x002778C0` copies from `+0x2FF6` of its source (`0x00279296`), which the
+battle-menu widget procedure
 `0x00279E20` sets (`0x0027A43C`) from `+0x61C2`, the word `+0x10` of the message that creates the widget (`0x00279E8B`).
 
-That word is the argument of script verb `0x45C`, `set_interventionmenu_tutorialmode`. Its handler `0x003419D0` stores it at `+0x10FA0` of `[0x0209BE80]` (`0x00290227`). `0x00290CF0` passes it to `0x00276650` as the fifth argument (`0x00290D9D`-`0x00290DC0`) and then zeroes it (`0x00290DD1`). `0x00276650` puts it at `+0x10` of the creation message (`0x00276675`-`0x002766D1`). No script of the nine language trees calls verb `0x45C`, so no shipped battle applies groups 1 to 4.
+That word is the argument of script verb `0x45C`, `set_interventionmenu_tutorialmode`. Its handler
+`0x003419D0` pops the argument as an int (`0x00267E10`) and hands it by tail jump through `0x002E2490` to
+`0x00290220`, which stores its low word at `+0x10FA0` of `[0x0209BE80]`, read with no null test
+(`0x003419D4`-`0x003419E2`, `0x00290220`-`0x00290227`). `0x00290CF0` passes it to `0x00276650` as the fifth argument
+(`0x00290D9D`-`0x00290DC0`) and then zeroes it (`0x00290DD1`). `0x00276650` puts it at `+0x10` of the creation
+message (`0x00276675`-`0x002766D1`).
+
+No script of the nine language trees calls verb `0x45C`, so no shipped battle applies groups 1 to 4.
 
 - **Command rows:** `0x0032A320(group, member, flag, command)` keeps a command when there is no row, or when an
   entry of the row allows it; otherwise the row is greyed with reason `0x2B` (`0x0031ED00`-`0x0031ED1E`). When the
@@ -52,7 +64,8 @@ That word is the argument of script verb `0x45C`, `set_interventionmenu_tutorial
   greyed (`0x0032A337`-`0x0032A341`).
 - **Action rows:** when the member's row exists, an action is kept only when it equals an entry whose mask bit is
   clear; otherwise, and when the group has no row for the member, it is greyed with reason `0x2B`
-  (`0x0031F1A1`-`0x0031F1FF`).
+  (`0x0031F1A1`-`0x0031F1FF`). A non-zero answer of `0x0032A230` that leaves the row pointer null keeps every
+  action (`0x0031F1B6`-`0x0031F1BE`).
 
 ### Which entry allows a command
 

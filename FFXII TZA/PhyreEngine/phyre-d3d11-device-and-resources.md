@@ -82,6 +82,21 @@ upload-buffer pairs below, and on feature level 11.0 a 16-byte indirect-argument
 multisampled ones when the sample count is above 1, creates the default sampler at `+0x1820`
 (`0x0061D9C0`) and finally probes the multisample levels (`0x00628690`).
 
+After step 4 the function returns 9 when `GetBuffer` gives no buffer (`0x00625B7B`-`0x00625B83`) and when
+the `CreateBuffer` call for `+0x7B8` answers a negative value (`0x00625E25`-`0x00625E2A`). A non-zero answer
+of one of these calls is returned at once: `0x00620F60` (`0x00625C4A`, `0x00625CB9`), `0x0060DD70` (`0x00625C87`),
+`0x00624980` (`0x00625D3C`), `0x00624C30` (`0x00625D53`), `0x006C9CD0` (`0x00625D6A`), `0x00624F70` (`0x00625DB5`),
+`0x00625210` (`0x00625DDB`) and `0x0061D9C0` (`0x00625E75`).
+
+`0x00620F60` is called for a render target only while the target's qwords `+0x28` and `+0x18` are both 0
+(`0x00625C36`-`0x00625C40`, `0x00625CA3`-`0x00625CAF`). The answer is 0 only after `0x00628690`
+(`0x00625E79`-`0x00625E81`).
+
+The function also stores 0 in the dword `+0x1890` before the call of step 4 (`0x00625A1F`), clears bit
+`0x1` of the dwords `+0x48C` and `+0x4DC` (`0x00625B94`, `0x00625C5E`) and bit `0x2` of the dword `+0x310`
+(`0x00625C8F`). Before the viewport call it stores the width in `+0x1864` and `+0x186C`, the height in
+`+0x1868` and `+0x1870` and 0 in the qword `+0x185C` (`0x00625CC3`-`0x00625CEA`).
+
 ### The screen refresh rate
 
 `0x00623320(context, &rate, width, height)` creates a DXGI factory (`CreateDXGIFactory`, `0x0062335A`), takes adapter 0

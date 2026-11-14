@@ -51,6 +51,63 @@ given (`0x0032F7E0`).
 
 So `0x003306E0` returns without registering any file, and no string in the executable names these files.
 
+`0x003306E0(slot, tag value, a, b)` first keeps the answer of `0x00263FF0(slot)` and builds the base path
+with `0x0032E3F0(a, b, buffer, 0x103)` (`0x0033072C`-`0x00330744`). The base path takes `bin`; nine copies
+take `dbg`, `sbn`, `msb`, `msf`, `fnt`, `cml`, `cmi`, `skl` and `vld`, and three go through `0x0032F6F0`
+(`0x0033078D`-`0x00330D51`). Sixteen more copies, `0x104` bytes apart, take the extension that
+`0x0017D2E0(out, "m%02d", i)` writes for i = 0 to 15 and then `.mld` at their end
+(`0x00330D53`-`0x00330E38`).
+
+Of the sizes `0x0032E400(0xFF, name)` answers, those of `dbg`, `sbn` and `vld` are not kept. The others
+are kept: `bin` (the one tested at `0x00330F7A`), `msb`, `msf`, `fnt`, `cam`, `cml`, `shk`, `skl`, `cmi`,
+the sixteen `.mld` sizes and, for a slot other than 0, `lgt` (`0x00330E3E`-`0x00330F76`).
+
+The instructions after the exit at `0x00330F7D` load each kept file the same way: `0x0036C750` of the
+string `..\..\katano\atelload.c`, which answers the part after the last `\`; `0x0036A100(size)`;
+`0x0036C660(the 0x0036A100 answer, the 0x0036C750 answer, line)` for a buffer; then
+`0x0032E7B0(name, buffer, size, record)`, and a bit set in the qword `0x022C6E48 + 8 × slot`.
+
+The record holds a dword 0 at `+0x00`, the dword `slot | low dword of the buffer address` at `+0x08`, a
+callback at `+0x10` and a null qword at `+0x18` (`0x00330F83`-`0x003315DB`). Every block but the `bin` one
+writes 0 over the whole qwords `+0x00` and `+0x08` before those two dwords, and 0 in the qword `+0x20`
+(`0x0033104E`-`0x00331062`, `0x00331246`-`0x0033125C` and the like).
+
+The record lies over the first eight `.mld` sizes, and the `bin` block writes only those four fields,
+so its dwords `+0x04` and `+0x0C` and its qword `+0x20` still hold `.mld` sizes when the record is handed
+to `0x0032E7B0` (`0x00330FB4`-`0x00330FE5`). The body itself reads none of the sixteen `.mld` sizes.
+
+| File | Loaded when its size is | Line | Callback | Bit |
+|---|---|---|---|---|
+| `bin` | above 0 (the test at `0x00330F7A`) | `0x734` | `0x0032F850` | `0x2` |
+| `msb` | above 0 | `0x7D8` | `0x00330190` | `0x10` |
+| `msf` | above 0 | `0x7F2` | `0x00330220` | `0x20` |
+| `fnt` | above 0 | `0x80D` | `0x00330060` | `0x40` |
+
+| File | Loaded when its size is | Line | Tag | Callback | Bit |
+|---|---|---|---|---|---|
+| `cam` | 0 or above | `0x82A` | `CAMDAT` | `0x0032FAC0` | `0x80` |
+| `cml` | 0 or above | `0x84B` | `CAMCTL` | `0x0032FA10` | `0x100` |
+| `shk` | 0 or above | `0x863` | `SHKDAT` | `0x003316B0` | `0x400` |
+| `skl` | 0 or above | `0x884` | `SHKCTL` | `0x00331610` | `0x800` |
+| `cmi` | 0 or above | `0x89E` | `CHRMDL` | `0x0032FB70` | `0x200` |
+| `lgt` | 0 or above, slot other than 0 | `0x8B8` | `LGTDAT` | `0x00330110` | `0x10000` |
+
+A file with a tag is loaded only when its buffer is not null, and the buffer first goes to
+`0x0036C660(buffer, tag, tag value)` (`0x00331220`-`0x0033123A`, `0x003312E4`-`0x003312F9`). With a null `cam`
+buffer the body calls `0x002566E0(slot, i)` for i = 0 to 3 and `0x002561C0(0, slot)`; with a null `shk`
+buffer, `0x0037DC30(slot, i)` for i = 0 to 3 and `0x0037DA90(0, slot)` (`0x0033128E`-`0x003312A7`,
+`0x003313E7`-`0x00331406`).
+
+The buffers of the four files without a tag are used with no null test. The
+`bin` buffer gets 0 in its first byte, and bit `0x8` of byte `+0x11` of the `0x00263FF0` answer is set
+(`0x00330FD3`-`0x00330FE5`).
+
+After `bin` the body calls `0x0036C1D0(n, 5)`: n is 5 for a slot of 0 or less or above 3; for slots 1
+and 2 it is `0xD`, and for slot 3 `0xE`, when `0x0036B200` of that number answers non-zero, and 5 when
+it answers 0 (`0x00330FFA`-`0x00331034`). When the `fnt` size is above 0, and so inside that block, it
+calls `0x00332250(a, b, record dword +0x08, 0)` after the load (`0x003311D1`-`0x003311E5`). The last call is
+`0x0036C140()` (`0x003315E2`).
+
 ## Layouts
 
 ### .sbn, the source text
@@ -135,3 +192,14 @@ native command `(k << 12) + i`.
 - [Script verb table](../Scripts-And-Script-Commands/verb-table.md): the command ids the `.dbg` tables name.
 - [Native commands](../Scripts-And-Script-Commands/native-commands.md): the command classes.
 - [Script variables](../Scripts-And-Script-Commands/script-variables.md): the variables the `.dbg` tables list.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Input: `0x00263FF0` is called by `0x00226BE0`, `0x002E09A0`; those functions are documented on
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Movement: `0x00263FF0` is called by `0x002E28E0`, `0x00392740`; those functions are documented on
+  [native limits](../Engine-Core/native-limits.md),
+  [frame update order](../Engine-Core/frame-update-order.md).

@@ -359,6 +359,26 @@ and initial count `+0x08` (`0x0086355E`, `0x00863565`): `[0x022CA610]` with a ma
 maximum of 1, both starting at 0. It then starts the pacer's worker `0x0035EA40` as a thread (`0x008636E0`, `0x00863610`),
 spins until the worker reports itself running (`0x022CA630`, `0x0035E930`) and registers `0x0035EC90` as handler 0.
 
+Each pass of the worker `0x0035EA40` first calls `0x0017D3E0` and, while it answers 0, sleeps 1 ms with
+`0x008635F0(1)` and asks again, leaving when the run flag `0x022CA634` is 0 (`0x0035EA92`-`0x0035EABF`). It
+then calls `0x00863650` with the semaphore `[0x022CA610]`, leaves when the run flag is 0, and reads the clock
+`0x005A0820` as a double (`0x0035EAC1`-`0x0035EAD7`). The pass's value is the double at `0x022CA640` + 8 x
+index (`0x0035EADC`); the index starts at 0 and goes up by one a pass as a byte, so 255 is followed by 0
+(`0x0035EA4F`, `0x0035EB2A`-`0x0035EB2D`).
+
+A value below 0.0 makes the clock reading the new base and calls `0x00863690` with the semaphore
+`[0x022CA618]` and `trunc(-value)` (`0x0035EAE1`-`0x0035EAEE`, `0x0035EAFE`-`0x0035EB09`). Any other
+value v calls it with `trunc(v - (clock - base))` only when `v - (clock - base)` is above 0.0
+(`0x0035EAF0`-`0x0035EB09`). The base is 0.0 until a value below 0.0 has been seen (`0x0035EA6E`-`0x0035EA77`).
+Then comes the call given below, and the loop goes on while the run flag is not 0
+(`0x0035EB0E`-`0x0035EB38`).
+
+Before its first pass the worker calls the empty stub `0x0016D6A0`, stores 1 in the dword `0x022CA630`
+and leaves at once when the run flag is 0 (`0x0035EA5C`-`0x0035EA7C`); on every way out it stores 0 in
+`0x022CA630` (`0x0035EB53`). The call that ends a pass is `0x003691B0(0)`, made only when the dword
+`0x022CA5F8` is not 0 and the qword that the answer of `0x00369160()` points at is not 0
+(`0x0035EB0E`-`0x0035EB25`).
+
 `0x00368DD0` starts the TkSyncv thread from a thread descriptor at `0x022CFEA0`. `0x008636E0` reads three of the
 descriptor's words: the entry `+0x08` (`0x0086376B`), the stack size `+0x18` (`0x00863789`, passed to the thread's
 creation) and the priority `+0x28` (`0x00863781`), which `0x00863430` turns into the thread priority `(32 - p) / 2`.

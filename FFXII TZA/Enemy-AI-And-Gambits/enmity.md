@@ -94,6 +94,11 @@ and, for every member other than `except`, changes the enemy's entry for that me
 same rules as `0x00321850` (`0x00321B90`-`0x00321CF7`). Unlike `0x00321850`, which returns at once for a null enemy
 (`0x00321850`-`0x00321853`), it reads the enemy's `+0x698` without a test (`0x00321B11`).
 
+`0x0030A880(out, mode)` builds no list itself. It stores the address of the staging list `0x022C1788` at
+`out` only when `out` is not null, and then jumps to the builder `0x0030A8A0(0x022C1788, 4, mode)`
+(`0x0030A880`-`0x0030A89A`). Every caller is therefore handed the same list, which the next call fills
+again.
+
 ### Decay
 
 The periodic maintenance step `0x00310DB0` calls `0x00321530(enemy)` for each unit (`0x003112A4`). For an

@@ -30,10 +30,47 @@ Eight Concurrences appear in the table; the other eight action rows in 226-241 (
 
 ### The counters
 
-`0x00313120`, a step of the Quickening chain (`0x022C2170` = 2, `0x022C2174` = 4), finds the slot that holds the action in the user's party
-row `+0x04`-`+0x06` (`0x0031335E`, [Party table](../Party/party-table.md)) and adds one to the byte
-`0x022C2192` + slot, unless that byte is `0xFF`; it counts only for a main character (type below 7). The three bytes count the Quickenings used from each slot, that is of
-each level, since a member learns the slots in order with the Quickening licences.
+`0x00313120`, a step of the Quickening chain (`0x022C2170` = 2, `0x022C2174` = 4), looks for the action in the
+user's party row `+0x04`-`+0x06` (`0x0031335E`, [Party table](../Party/party-table.md)) and adds one to the
+byte `0x022C2192` + the slot that holds it, or to the byte `0x022C2195` when no slot holds it, unless that byte
+is `0xFF` (`0x0031339D`-`0x003133A9`). It counts only for a main character: the user has a stats record whose
+byte `+0x05` is 0 and whose type `+0x04` is at most 6 (`0x0031334B`-`0x0031335C`).
+
+The three bytes `0x022C2192`-`0x022C2194` count the Quickenings used
+from each slot, that is of each level, since a member learns the slots in order with the Quickening
+licences. The choice below is given `0x022C2192` and reads three bytes from it (`0x002F8E00`-`0x002F8E17`), and
+the clear of the counters stores a word at `0x022C2192` and a byte at `0x022C2194` (`0x0030D731`, `0x0030D738`),
+so the byte `0x022C2195` takes no part in the choice and is left as it is by that clear.
+
+Before the counters `0x00313120` does the rest of the step. It answers -1 when `0x0031B7E0` gives no unit,
+or when `0x022C2170` is not 2 or `0x022C2174` is not 4 (`0x00313126`-`0x0031314C`). It then copies the `0x208`
+bytes at the unit's `+0x778` to `0x022C22B8` and takes the action id from the unit's word `+0x758`
+(`0x00313153`-`0x003131C7`). With `[0x02EBF138]` null, or a null answer of `0x0020E600` for its dword `+0x0C`,
+it answers -1, the copy already made (`0x003131CA`-`0x003131EA`).
+
+The action row is the low 32 bits of that answer plus the word `+0x08` of `[0x02EBF138]` times the id; a
+sum of 0 answers -1 (`0x003131F0`-`0x00313215`). The unit's word `+0x758` becomes `0xFFFF` (`0x00313257`),
+`0x00316CF0` is called with the address unit + `0x778`, and `0x00316CD0` is called with it and each of the first
+n pointers at `0x022C21B8`, where n is `[0x022C21B4]` for an id of `0xE2` to `0xF1` and 1 for any other
+(`0x00313220`-`0x00313297`).
+
+Then come `0x00303830(unit, row, unit + 0x778)` and `0x00305640(unit, row, 1)` (`0x003132A6`, `0x003132B7`),
+and the unit's dword `+0x690` is set to 0. When its byte `+0x694` is not `0xFF` and its byte `+0x695`
+is `0xFF`, `+0x695` takes the value of `+0x694` and `+0x694` becomes `0xFF` (`0x003132C3`-`0x003132E3`).
+The answer of `0x003098D0(unit, row)` is handed to `0x003299B0(unit, answer, 0)`, and `0x0030EC00(unit, id)`
+follows (`0x003132F0`-`0x00313308`).
+
+The charge byte is `0x022C2198` + 4 x the byte `+0x04` of the unit's record `+0x698`, read with no null
+test (`0x0031330D`-`0x00313318`). While it is below 3, compared unsigned, the low byte of the answer of
+`0x00308FF0(unit, id)` is added to it (`0x00313320`-`0x00313333`). The id is stored in the word `0x022C2190`
+(`0x0031333D`). After the counters `0x022C2180` goes up by one, `0x022C2170` becomes 4, `0x022C2174` 3 and
+`0x022C217C` 0, and the answer is 0 (`0x003133AC`-`0x003133D8`).
+
+The slot search compares the id, as a word, with each of the three row bytes `+0x04` to `+0x06`,
+zero-extended; with a null row pointer at the unit's `+0xE60` it compares with `0xFFFF` instead. When
+no byte matches, the index left is 3 and the byte raised is `0x022C2195` (`0x0031335E`-`0x003133A9`). The
+search runs only when the unit's record `+0x698` is not null, its byte `+0x05` is 0 and its byte
+`+0x04` is 6 or less (`0x00313344`-`0x0031335C`).
 
 ### The choice
 
@@ -131,3 +168,8 @@ Calls between the functions this page cites and code in other parts of the progr
 - Status periodic terminal: `0x00322C50` is called by `0x0030E130`, `0x0030FED0`, `0x00310DB0`; those functions are documented
   on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
   [frame update order](../Engine-Core/frame-update-order.md).
+- Platform online achievements: `0x00305640` calls `0x00316440`; those functions are documented on
+  [item use](../Items-Equipment-Shops-And-Licenses/item-use.md).
+- Rewards progression economy: `0x00305640` calls `0x00253690`, `0x00254EE0`; those functions are documented on
+  [item and ability ids](../Engine-Core/item-and-ability-ids.md),
+  [debug menu](../Engine-Core/debug-menu.md).

@@ -228,8 +228,11 @@ Three writers build codes for menu strings:
 - `0x002B5240(record)` copies a string, replacing each `0F 8` with the name it stands for (`0x002639E0`), and
   `0x002B5680(size, out, in)` copies one without its line breaks `0x02` and baseline codes `0F <`.
 
-`0x002B5240(record)` reads the output buffer at `+0x00`, the text at `+0x08` and the
-capacity word `+0x20`, and first sets the colour `+0x28` to `0x80808080` (`0x002B5259`-`0x002B526F`).
+`0x002B5240(record)` returns at once for a null record (`0x002B5243`). It reads the output buffer at `+0x00`
+and the text at `+0x08` and first sets the colour `+0x28` to `0x80808080` (`0x002B5259`-`0x002B526F`). With a
+null text or a null output buffer it returns there, leaving `+0x22` and the buffer as they were
+(`0x002B5276`-`0x002B5282`). It reads the capacity word `+0x20` at `0x002B52A1`.
+
 A token that would take the read offset past the capacity empties the output and
 stores 0 at `+0x22` (`0x002B52BB`-`0x002B52C7`, `0x002B537E`-`0x002B5388`); a name of null ends
 the copy there (`0x002B52F7`). In both that case and a finished copy `+0x22` gets the

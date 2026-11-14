@@ -267,6 +267,16 @@ also written by the font-pack completion `0x0039C150`.
 - That completion fills an empty slot 0 with the pack's directory entry 0, and an empty slot 7 with entry 6 when
   entry 6 is not `0xFFFFFFFF` and the language test `0x00254A10` is false. It then calls `0x0039BF50` and sets the
   ready flag `0x02AEE890`, a dword (`0x0039C3C6`).
+- With `0x02AEE868` null the completion returns and stores nothing (`0x0039C163`-`0x0039C16D`). Entries 1 to 5
+  go to `0x02AEE850`, `0x02AEE870`, `0x02AEE878`, `0x02AEE880` and `0x02AEE888`, each only while that pointer is 0
+  (`0x0039C1B5`-`0x0039C26B`). `0x02AEE800` takes slot 0 plus `0x40` while it is 0, and `0x02AEE808` slot 7
+  plus `0x40` while it is 0 and slot 7 is set (`0x0039C295`-`0x0039C2CB`).
+
+  With entry 1 it also stores the entry's address + `0x10` in `0x02AEE858` and
+  `that address + its word +0x0C` in `0x02AEE860`, and calls the empty stub `0x0016D6A0`
+  (`0x0039C1C5`-`0x0039C1F3`). While slot 7 is set, `0x02AEE880` is then overwritten with entry 7
+  (`0x0039C244`-`0x0039C254`). After `0x0039BF50` come `0x0017FBC0(1)` and, when the language test is false,
+  `0x0017FB90(3, 7)` (`0x0039C272`-`0x0039C290`).
 - `0x0029CAC0(buffer)` (from `0x00330060`) keeps a six-entry `{pointer, count}` table at `0x0209C320`: a buffer
   already there has its count raised and is not registered again (`0x0029CAD0`, `0x0029CB03`); a new one takes the
   first empty entry with count 1 and goes to `0x0039BEC0` as a tail jump (`0x0029CAF4`-`0x0029CAFE`); with six in use

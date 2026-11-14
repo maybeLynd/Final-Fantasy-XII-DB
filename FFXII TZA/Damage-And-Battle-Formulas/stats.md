@@ -81,6 +81,23 @@ A ranged weapon's ammunition is at hand when `0x003096F0(weapon, worn off hand)`
 ammunition (ids `0x1184`-`0x11A3`) of the class the weapon's `+0x11` names, or the party holds at least one of
 those ammunition ids (the equipment class's query handler, `0x00309801`-`0x0030988D`).
 
+`0x003096F0` first calls `0x00322C50(6, weapon, 0)` and returns 0 at once when that answers 0
+(`0x003096FA`-`0x00309715`). Both rows come from the table `[0x02EBF0F8]`: the low 32 bits of the `0x0020E600`
+answer for its dword `+0x0C`, plus the id less `0x1000` times its word `+0x08`
+(`0x00309727`-`0x00309759`, `0x00309780`-`0x003097B5`). With a null table or a null answer the row address is
+0, and the byte is read at address `0x11` or `0x09` (`0x00309764`-`0x00309766`, `0x003097C0`-`0x003097C2`).
+
+In the loop each id's row is found the same way, the byte read at address `0x09` when the table or
+the answer is null (`0x00309801`-`0x00309845`), and an id is asked about only when its row's byte `+0x09`
+is the class. The two tests that follow, for an id of `0xFFFF` and for top four bits above `0xE`, are
+never true for the ids of this loop (`0x00309850`-`0x0030985F`).
+
+The handler record is
+`0x01EEBCC0` + `0x58` x (id shifted right 12); the id's low 12 bits must not be above the record's
+dword `+0x3C` less 1, compared signed, and the pointer at `+0x50` must not be null (`0x00309861`-`0x00309887`).
+The handler is called with the id and 0, and an answer of 1 or more, compared signed, makes
+`0x003096F0` return 1 (`0x00309889`-`0x00309890`, `0x003098C4`). With no such id it returns 0 (`0x003098A7`).
+
 | Code | Slot | When | Help line |
 |---:|---|---|---|
 | `0` | any | none of the rows below applies, as for every head, body or accessory piece the license test accepts | the screen's own line |

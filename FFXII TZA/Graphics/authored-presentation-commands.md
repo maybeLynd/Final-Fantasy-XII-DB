@@ -237,7 +237,17 @@ slot's `+0x10` is not the handle or bit `0x1` of its `+0x40` is clear (`0x003B5C
 
 ### What the channels drive
 
-`0x003B62D0` builds the slot's shadow draw record each frame. While counter `+0x43` is non-zero it blends
+`0x003B62D0(handle, out)` builds the slot's shadow draw record each frame and returns 1 (`0x003B67A0`). It
+returns 0 instead:
+
+- with nothing written, when the slot's `+0x10` is not the handle (`0x003B62EE`-`0x003B62FB`), when the slot's
+  word `+0x04` is `0xFFFF` (`0x003B6310`-`0x003B6314`), when the render record's dword `+0x284` is 0
+  (`0x003B632F`-`0x003B633D`), when `0x00421FF0` gives null for bone `+0x3C` or bone `+0x3E` (`0x003B6357`,
+  `0x003B6374`), or when `0x003B6BF0` gives null (`0x003B6391`-`0x003B6394`);
+- after out `+0x14`, `+0x6C`, `+0x10`, `+0x30` and `+0x20` are written (`0x003B63C6`-`0x003B641D`), when out
+  `+0x10` is below 4 or above `0x64` (`0x003B6425`-`0x003B642F`).
+
+While counter `+0x43` is non-zero it blends
 each channel value with the blend set by a weight from `0x0046FAE0`. Then:
 
 - `+0x50`, `+0x54` plus `+0x48`, `+0x4C`, times `+0x44`, is an offset from the anchor bone, rotated by
@@ -321,7 +331,7 @@ The slot's other fields, from the take `0x003B56D0`, the builder `0x003B62D0`, t
 | `+0x3A` | `u16` | previousAnchorBone | the anchor bone before the last `0x003B5CE0` (`0x003B5D08`-`0x003B5D0D`); the builder blends from it while `+0x38` differs (`0x003B65FF`) |
 | `+0x3C` | `u16` | boneA | the model's special bone `0x104` (`0x003E5AD0`, `0x003B57FA`-`0x003B5804`): the builder's first bone matrix through `0x00421FF0` (`0x003B6343`-`0x003B634F`) |
 | `+0x3E` | `u16` | boneB | the model's special bone `0x106` (`0x003B582F`-`0x003B5839`): the builder's second bone matrix (`0x003B6360`-`0x003B636C`) |
-| `+0x40` | `u8` | flags | bit `0x1` in use (set by the take `0x003B56D0` at `0x003B5759`-`0x003B57D0`, cleared by the free `0x003B6000` at `0x003B6016`); mask `0x1E` the overrides a motion keeps at `+0xA0`-`+0xB8` (`0x2` offset, `0x4` rotation, `0x8` extent scales, `0x10` base offset; `0x003B5E3F`-`0x003B5EF0`); bit `0x20` keeps the offset out of the cross-fade blend (`0x003B6549`-`0x003B6562`) and gives the bone blend a weight of 1 (`0x003B65F1`-`0x003B65F8`); bit `0x40` takes the shadow's height from element `+0x34` of the first bone's matrix instead of the ground (`0x003B645F`-`0x003B64A3`, read `0x003B647B`); the bits under mask `0x7E` come from the motion block's word `+0x32` (`0x003B5F58`-`0x003B5FF4`) |
+| `+0x40` | `u8` | flags | bit `0x1` in use (set by the take `0x003B56D0` at `0x003B5759`-`0x003B57D0`, cleared by the free `0x003B6000` at `0x003B6016`); mask `0x1E` the overrides a motion keeps at `+0xA0`-`+0xB8` (`0x2` offset, `0x4` rotation, `0x8` extent scales, `0x10` base offset; `0x003B5E3F`-`0x003B5EF0`); bit `0x20` keeps the offset out of the cross-fade blend (`0x003B6549`-`0x003B6562`) and gives the bone blend a weight of 1 (`0x003B65F1`-`0x003B65F8`); bit `0x40` takes the shadow's height from element `+0x34` of the first bone's matrix instead of the ground (`0x003B645F`-`0x003B64A3`, read `0x003B647B`): with the bit set the builder writes out `+0x54` from that element (`0x003B647F`), out `+0x44` = 0 and out `+0x40` = shadow record `+0x14` plus `+0x10` (`0x003B6482`-`0x003B6490`); with it clear it writes out `+0x54` = `0x00264670`(render record `+0x108`) (`0x003B6497`-`0x003B64A3`), out `+0x40` = shadow record `+0x10` and out `+0x44` = shadow record `+0x14` (`0x003B64A8`-`0x003B64B1`); the bits under mask `0x7E` come from the motion block's word `+0x32` (`0x003B5F58`-`0x003B5FF4`) |
 | `+0x44` | `f32` | offsetScale | a multiplier of the anchor offset and of both extents: `0x003B6BD0` sets it (`0x003B6BE6`), called by `0x0042D050`; the builder multiplies by it (`0x003B64DC`, `0x003B64F0`, `0x003B66E3`, `0x003B66E8`); 1.0 at take (`0x003B5770`) |
 | `+0x48` | `f32` | baseOffsetX | the base offset's first axis, added to channel 0's value before the scale (`0x003B66C1`): `0x003B5CE0` stores it (`0x003B5D12`) after keeping the old one at `+0x30`; `0x003B5E20` restores a kept one from `+0xB4` (`0x003B5EE5`); 0 at take (`0x003B5848`) |
 | `+0x4C` | `f32` | baseOffsetY | the base offset's second axis (`0x003B66CE`; `0x003B5D18`; restored from `+0xB8` at `0x003B5EF0`); 0 at take (`0x003B5848`) |

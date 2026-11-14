@@ -191,6 +191,11 @@ position plus the delta as it was before the offset. On the flat path (`0x002672
 `0x002E54A0` then overwrites the delta with the context position plus the delta it saved before the offset
 (`0x002E557C`-`0x002E559E`), so the body takes the offset point and the candidate does not.
 
+`0x003DB150` tests the body pointer after the three sums are stored in the delta: with a null body it
+returns there, the delta holding the context position plus the old delta and nothing else written
+(`0x003DB150`-`0x003DB183`). The values copied to the body are read back from the delta, its y a second
+time for `+0xAC` (`0x003DB185`-`0x003DB19D`).
+
 On the flat path `0x003DB140(body, &delta)` runs the collision-mesh move `0x00380C40(placement, move)` on the body's
 placement `+0x30` ([collision mesh movement](collision-mesh-movement.md)), and `0x003DAE00(body, &delta)` copies the
 body's `+0x30`-`+0x38` back into the delta (`0x002E54C7`, `0x002E54D2`). The candidate is the solved body position,

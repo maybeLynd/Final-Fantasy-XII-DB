@@ -147,6 +147,15 @@ every active slot (`+0x4C` bit `0x1`), and `0x004668C0` sets `t = +0x44 + step` 
 - **Sampling.** After the loop or clamp below it samples the slot's tracks (`0x00466240`) and targets
   (`0x00466550`), unless the clip's group word `+0x2A` is above `0x100` with its bit in the hidden-model set
   `0x0026E5F0` (`0x004669ED`-`0x00466A6E`). It zeroes the step of every slot, updated or not (`0x00466A72`).
+- **The hidden test in detail.** The answer of `0x0026E5F0` is fetched once, before the slot loop
+  (`0x004668E4`). The group word is compared signed with `0x100` (`0x004669F5`-`0x004669F9`), so a group of
+  `0x8000` or more is sampled without the test. For a group above `0x100` the mask is
+  `1 << ((group - 0x100) & 31)`, sign-extended to 64 bits and tested against the whole answer
+  (`0x004669FB`-`0x00466A0D`).
+- **The two lists.** The tracks are the `0x18`-byte entries at the slot's `+0x20`, counted by its word
+  `+0x30`; the targets are the `0x130`-byte entries at `+0x28`, counted by its word `+0x32`. Both counts
+  are read signed and again after each call. The calls are `0x00466240(slot, track, index)` and
+  `0x00466550(slot, target)` (`0x00466A0F`-`0x00466A6E`).
 
 With `lo` = `+0x3C`, `hi` = `+0x40` and `span = hi - lo`: with loop (`+0x4C` bit `0x2`) and
 `span >= 1.0` the time becomes `t - span` when `t >= hi` and `t + span` when `t < lo`

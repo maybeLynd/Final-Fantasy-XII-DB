@@ -88,6 +88,17 @@ The relay `0x00275F10` sends a chosen id to a chosen widget when it is destroyed
 World Map (`0x00275F55`-`0x00275F82`, `0x002747B0`). Ids 285-289 each belong to one screen: 285 the yes-or-no and notice
 boxes, 286 the item sort bar, 287 the main menu's lists, 288 the script menu host, 289 the gambit lists.
 
+The relay acts on three messages. Message 1 copies from the record its qword `+0x08` points at: the
+qword `+0x00` to the relay's `+0xC0` (the target), the dword `+0x08` to `+0xC8` (the id) and the dword
+`+0x0C` to `+0xCC` (`0x00275FC1`-`0x00275FDC`). Message 16 calls `0x00244F00` on the relay when its qword
+`+0x08` equals the sign-extended `+0xCC` (`0x00275F98`-`0x00275FA8`). Message 18 sends the id; a null
+target, or a target whose first qword is null, gets nothing (`0x00275F70`-`0x00275F7B`). Any other message
+goes to `0x005C5230`, which answers 0 (`0x00275F3E`). All four answer 0.
+
+The message 18 sends is a stack record with the id in its first dword and 16 zero bytes from `+0x08`;
+its dword `+0x04` is not written. The call is to the target's first qword with the target and the
+record (`0x00275F55`-`0x00275F82`). Message 1 uses the record pointer with no null test (`0x00275FC1`).
+
 ## Columns
 
 | Column | Meaning |

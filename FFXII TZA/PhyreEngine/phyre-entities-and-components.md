@@ -174,6 +174,12 @@ The members below are the ones the code of this page's classes uses or the refle
 |---|---|---|---|
 | `+0x24` | `u8[4]` | bytes24 | the four bytes after the dword the constructor `0x006CDF00` clears at `+0x20` (`0x006CDF36`), before m_entryHandler at `+0x28`; no registered member covers it (`0x006CDFF0` registers the `0x58`-byte class at `0x006CE03A`) |
 
+`0x006CDF00` builds the component at the address in its second argument and does not read its first.
+With a null address it does nothing (`0x006CDF1B`-`0x006CDF1E`). Otherwise it calls
+`0x006AAA20(address, 0x02E5C710)`, clears the qword `+0x18` and the dword `+0x20`, and calls `0x00681640`
+on `+0x28` and then on `+0x40` (`0x006CDF20`-`0x006CDF47`). It answers 1 in its low byte in both cases
+(`0x006CDF4D`).
+
 ### Entities and components
 
 The structures below are the ones the mechanisms above use.

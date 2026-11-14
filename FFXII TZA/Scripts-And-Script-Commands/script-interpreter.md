@@ -168,6 +168,110 @@ opcode its mnemonic, length, handler and effect. By family:
 | `0x5F`, `0x61`, `0x63`, `0x62` | lists | request or wait on a whole actor list; `INCINITTAG` marks a channel requested without filing; while the skip mask is non-zero, `0x5F` and `0x63` first wait as wait kind 7 until no listed actor has the channel's bit set ([field runtime](../Characters-And-Objects/field-runtime.md); `0x00261B15`, `0x00261C12`, `0x00261B97`), then make the request |
 | `0x01`, `0x02`, `0x19`, `0x1A`, `0x31`, `0x47` | | no handler: the stop arm; no shipped script uses them |
 
+`REQ` (`0x21`) submits with `0x00268850(slot, actor, stack, wait slot, PC, 0, 1)` and does not use the
+answer (`0x0025F7B6`-`0x0025F7D0`). With the skip mask at 0 that call is the whole arm (`0x0025F493`). With
+the mask non-zero and the wait slot's byte `+0x15` at 0 the arm first pops the function id, the target
+and the channel itself: an int as it is, a float through `cvttss2si`, an empty stack 0, any other tag 0 after
+`0x008620C0(1)` (`0x0025F4A5`-`0x0025F56B`, `0x0025F5FF`-`0x0025F64E`).
+
+Bit `0x8000` in the function id or the target puts the three values back and submits (`0x0025F56E`-`0x0025F577`,
+`0x0025F677`). Otherwise the channel's low byte goes to the wait slot's `+0x26` and the arm calls
+`0x00358940(slot, target)` and `0x003DB640(that record, channel)` (`0x0025F57F`-`0x0025F593`). An answer of 0
+puts the three values back and submits (`0x0025F653`-`0x0025F70D`). The values go back channel first, and a
+value is left out once the depth is 63 or more (`0x0025F66C`, `0x0025F6AD`, `0x0025F6E1`).
+
+A non-zero answer arms the wait instead of submitting: `0x0020E620(record)` goes to the wait slot's
+`+0x18`, the target's low word to `+0x24`, the function id's low word to `+0x20`, 0 to `+0x27` and the
+word `0x0106` to `+0x14`, and the stop flag is set to 1 (`0x0025F5A0`-`0x0025F5FA`). The arm stores the
+address of the `REQ` less its length in the wait slot (`0x0025F5DA`-`0x0025F5ED`) before the tail adds the
+length back (`0x0025E61B`-`0x0025E641`), so the address of the `REQ` itself is what the exit store `0x00261DD3`
+then writes there.
+
+When the arm runs again with `+0x15` non-zero it pushes byte `+0x26`, word `+0x24` and word `+0x20`,
+each zero-extended and each only below depth 63, clears `+0x15` and submits (`0x0025F712`-`0x0025F7B2`).
+
+`RET` (`0x2D`) keeps the answer of `0x003DB2A0(actor, byte +0x62)`, calls `0x003DB6E0(actor)` and takes the
+wait slot `[actor + 0xA8] + 0x28 × (s8)[actor + 0x11]` as it is after that call
+(`0x00261239`-`0x00261260`). With the actor's byte `+0x10` non-zero it lowers that byte by 1, loads the PC
+from the new wait slot and sets the stop flag to 1 (`0x00261264`-`0x0026129A`). With `+0x10` at 0 and bit
+`0x40` of `+0x14` set it sets the flag to 1 and loads no PC: the PC stays the one after the `RET`,
+while `rsi` already holds the new wait slot (`0x0026129F`, `0x002602F2`).
+
+Otherwise `RET` calls `0x0025B400(actor)`, replaces its answer by 1 when `0x003DB2A0` answered 0, and loads
+the PC from the new wait slot. The stop flag takes that value when the new wait slot's byte `+0x14` is
+1, and 1 for any other kind (`0x002612AA`-`0x002612F5`).
+
+`RETT` (`0x2F`) does the same, with one more call on its last path: after `0x0025B400` it calls
+`0x003DBDC0(actor, 0x003DB550(actor, byte +0x62))`, and only then loads the PC from the new wait slot
+(`0x002613DD`-`0x00261476`). Its path for a non-zero `+0x10` is the one inside `RETN`
+(`0x00261352`-`0x0026136C`), which joins `RET` at `0x00261273`. On its path for bit `0x40`, `rsi` still
+holds the old wait slot (`0x00261401`-`0x00261406`).
+
+`REQCANCEL` (`0x35`) calls `0x003DB420(actor, popped value + 1, 1)` and does not use the answer
+(`0x00261301`-`0x00261312`). `PUSHV` (`0x48`) calls `0x00267FC0(slot, actor, stack, operand)` with the operand
+zero-extended from 16 bits (`0x00261761`-`0x0026176E`).
+
+`0x5F` calls `0x00268A80(slot, actor, stack, operand, actor, 0)`, and `0x63` the same with 1 as the sixth
+argument (`0x00261BEA`-`0x00261C01`, `0x00261CA4`, `0x00261CC4`). With the skip mask non-zero and byte `+0x15`
+at 0 both first find the list: the table is at `image + 0x0020E600(image dword +0x30)`, and for an operand
+below the table's first dword the list is at `image + 0x0020E600(table dword +4 + 4 × operand)`; any
+other operand gives null (`0x00261B27`-`0x00261B55`, `0x00261C24`-`0x00261C52`).
+
+`0x0020E620` of that address goes to the wait slot's `+0x1C`, 0 to word `+0x22` and the low byte of a
+popped int to `+0x26`, and `0x00267420(slot, wait slot + 0x18)` is called (`0x00261B57`-`0x00261B83`,
+`0x00261C54`-`0x00261C80`). A non-zero answer writes the word `0x0107` to `+0x14`, sets the stop flag to 1
+and stores the address of the instruction less its length in the wait slot; the tail adds the length
+back, so the address of the instruction itself is what the exit store `0x00261DD3` then writes there
+(`0x00261B8C`-`0x00261BB9`).
+
+An answer of 0 pushes byte `+0x26` back and makes the request (`0x00261BBE`-`0x00261BCE`,
+`0x00261C8D`-`0x00261CA8`). With `+0x15` non-zero the arm pushes byte `+0x26`, clears `+0x15` and makes the
+request (`0x00261BD0`-`0x00261BDC`, `0x00261CAD`-`0x00261CC0`).
+
+`0x62` pops three values as ints and pushes the three ints back in their old order, so a stack that
+held three ints is left unchanged (`0x00261D36`-`0x00261D81`); a float comes back as an int, its fraction
+dropped, and each pop from an empty stack gives 0 and is still pushed.
+
+With bit `0x4000` set in the second value popped, the manager is its upper half,
+shifted arithmetically, and the index its low word; with the bit clear the manager is the slot's dword
+`+0x28` and the index the whole value (`0x00261D86`-`0x00261D9A`). The arm then calls
+`0x003587C0(manager, index)` and `0x002659F0(that answer, 1 << (third value & 0x1F))`, with no null test
+between them (`0x00261D9C`-`0x00261DAB`).
+
+The other eight request arms have the three paths of `REQ`: the submit at once with the mask at 0, the
+pops and the wait stores with the mask non-zero and `+0x15` at 0, and the three pushes with `+0x15`
+non-zero. They differ in the last two arguments of `0x00268850`. The sixth is the kind: 0 for `0x21`,
+`0x24` and `0x27`, 2 for `0x22`, `0x25` and `0x28`, 4 for `0x23`, `0x26` and `0x29`.
+
+The seventh is the mode: 1 for `0x21` to `0x23`, 2 for `0x24` to `0x26`, 3 for `0x27` to `0x29`
+(`0x0025FBB8`-`0x0025FBC4`, `0x0025FF8F`-`0x0025FF9B`, `0x002602C3`-`0x002602CB`, `0x002606AE`-`0x002606BE`,
+`0x00260A71`-`0x00260A81`, `0x00260DB1`, `0x002610A0`-`0x002610B0`, `0x00261205`-`0x00261215`). For modes 2 and 3
+the submit is at `0x002602D0`: an answer of 1 from `0x00268850` sets the wait slot's byte `+0x14` to 4 and
+the stop flag to 1; any other answer leaves both as they were (`0x002602E1`-`0x002602FB`, `0x00261610`).
+
+`RETN` (`0x2E`) and `RETTN` (`0x30`) pop a value and first compare `value + 1`, signed, with the actor's
+byte `+0x11`. When it is above, nothing is recycled and no return is made: the script goes on when the
+wait slot's byte `+0x14` is 1, and the stop flag is set to 1 for any other kind
+(`0x0026131F`-`0x0026132E`, `0x002613C5`-`0x002613D8`, `0x0026147E`-`0x0026148D`, `0x00261521`-`0x00261534`).
+
+Otherwise they call `0x003DB420(actor, value + 1, 0)` and `0x003DB6E0(actor)` and go on as `RET` and `RETT`
+do, with the answer of `0x003DB420` in the place of the answer of `0x003DB2A0`
+(`0x00261334`-`0x00261344`, `0x00261493`-`0x002614A3`); on the path for bit `0x40`, `rsi` still holds the old
+wait slot in both, as in `RETT` (`0x00261371`-`0x00261376`, `0x002614B5`-`0x002614BA`).
+
+`REQWAIT` (`0x32`) pops the function id and then the actor. With bit `0x8000` in either it does
+nothing. Otherwise it calls `0x003DBF60(0x00358940(slot, actor), function id, -1)`; an answer of `0xFF`
+also does nothing, and any other answer stores `0x0020E620` of the record in the wait slot's `+0x18`,
+the function id's low word in `+0x20`, 0 in `+0x27` and 3 in `+0x14`, and sets the stop flag to 1
+(`0x00261539`-`0x002615A1`).
+
+`REQCHG` (`0x34`) pops three values and calls `0x0025AF60(slot, third, second, first)`. When the third is
+`0x10` or `0x11` and bit `0x8` is set in byte `+0x0B` of the record `0x00358940(slot, second)` gives, it
+calls `0x00268EA0` with the running actor, not that record; the record is not tested for null
+(`0x002615BA`-`0x0026160B`). `PUSHACT` (`0x4D`) stores its operand in `0x02099AB8` before the range test, and
+for an operand at or past the count it stores `0x8000` there and pushes `0x8000`
+(`0x00261812`-`0x0026184B`).
+
 ### Columns of script-interpreter-opcodes.tsv
 
 | Column | Holds |
@@ -184,7 +288,9 @@ target actor is the issuer unless `X` names another, resolved by ordinal through
 
 With phase `+0x15` at 0 the result word `+0xC` is zeroed and the begin callback runs with the scratch
 at `+0x18`; then the poll callback runs. A poll that returns an odd value sets the phase to 1 and
-returns 1, busy: the handler rewinds the PC to the `CALL`, stores it in the wait slot and leaves
+returns 1, busy: the handler stores the address of the `CALL` less its length in the wait slot
+(`0x002619E4`-`0x002619E7`), the tail adds the length back, the exit store `0x00261DD3` writes the address
+of the `CALL` itself there, and the handler leaves
 the loop. The next frame re-fetches the same `CALL`; phase 1 skips begin and polls again.
 
 When the poll completes and the family has a result callback, it runs and the phase decides what

@@ -80,6 +80,16 @@ The script commands `suspendbattle` (`0x0035AB20`: both on, then `0x0035A590`) a
 action is cancelled with reason 2 ([Target selection](target-selection.md)) and idle units are not
 sent back to choose actions ([Action commit](action-commit.md)).
 
+`0x00473830(value, mode)` takes the manager from `0x00263FF0(0)` and returns at once when bit `0x1` of the
+manager's byte `+0x10` is clear (`0x0047383E`-`0x0047384C`). Otherwise it walks the indices from the
+manager's word `+0x1DE` up to, not including, that word plus its word `+0x1D6`, and asks
+`0x00358940(manager, index)` for each record (`0x00473853`-`0x00473879`). A record whose qword `+0x30` is
+null is passed over (`0x00473881`).
+
+With mode 1 every such record gets `0x0023A120(record, value)`. With mode 0 a record gets that call only
+when `0x00263BE0(record)` answers 0 or 2 (`0x00473893`-`0x004738A8`). Any other mode calls nothing for the
+records (`0x0047388C`-`0x00473891`). The answer of `0x00358940` is used with no null test (`0x00473881`).
+
 ### The exit lock
 
 `lockmapjump` (`0x0034AD70`) sets bit `0x4` of byte `+0x200` of the running actor manager (`0x002640C0`);
@@ -127,3 +137,10 @@ Calls between the functions this page cites and code in other parts of the progr
   [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
   [glossary](../Engine-Core/glossary.md), [area of effect](area-of-effect.md),
   [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md).
+- Input: `0x00263BE0` is called by `0x00226BE0`; `0x00263FF0` is called by `0x00226BE0`, `0x002E09A0`; `0x00358940` is called by
+  `0x00226BE0`; those functions are documented on
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- World area: `0x00358940` is called by `0x0025E400`, `0x002623A0`; those functions are documented on
+  [actor record fields](../Characters-And-Objects/actor-record-fields.md),
+  [frame update order](../Engine-Core/frame-update-order.md).

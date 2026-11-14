@@ -22,6 +22,9 @@ table at `0x01EEC460` (359 eight-byte pointers, `0x01EEC460`-`0x01EECF97`) is em
 the handler with the unit as argument (`0x003050A0`-`0x0030510E`). Handlers keep their progress in the
 phase byte `+0x6B4`; one-shot handlers set it to 2 and return 1 at once.
 
+`0x002FDDA0` tests that phase byte first: when it is not 0 on entry it returns 1 and does nothing else
+(`0x002FDDB7`-`0x002FDDCE`).
+
 ### Availability
 
 `0x00301830(unit, record)` refuses an id outside the table or an empty slot, then applies these

@@ -47,6 +47,11 @@ records are on [effect files](effect-files-efx-efb.md). Running it takes three l
 (emitter records), `0x02EBEF78` = `+0x850` (definitions), `0x02EBEF98` = instance `+0x120`, `0x02EBEFB0` =
 `+0x130` and `0x02EBEF88` = `+0x1B8` (`0x0024ED80`–`0x0024EDFF`).
 
+`0x0024D050` does the same for every instance in turn. It walks the ten list heads from `0x020910F0` up to
+`0x02091140` and each list through `+0x348`; for each instance it stores the same ten pointers itself
+(`0x0024D080`-`0x0024D0FB`), calls `0x0024FCF0(instance)` and then `0x003A7420()`, and reads the instance's
+`+0x348` only after the two calls (`0x0024D102`-`0x0024D116`).
+
 It then tail-jumps to `0x0024FCF0` (`0x0024EDFF`), which publishes the instance's draw state:
 byte `+3` at `0x02096800`, the scale `+0x320` times `+0x39C` (`0x003A2B20`) with w 1.0 at `0x02096810`, `+0x310` at
 `0x02096820` (zero when `+0x378` has bit `0x800`), `+0x300` at `0x02096830`, `+0x330` at `0x02096840` and the depth
@@ -106,10 +111,60 @@ The instance's state byte `+0x370` picks what `0x0024B9B0` does with it after ma
 - 1 runs `0x003A7EE0` and then the update `0x003A7050`; when the update returns 0 the instance ends
   through `0x003A7300`. On steps where the pass holds the instance, state 1 runs only `0x003A7EE0` and
   `0x003A93F0`.
-- 6 runs `0x0024C060`, then `0x003A7EE0` and the update `0x003A7050` with twice the step's time (`0x0024BE11`-`0x0024BE28`),
-  and goes to 5. When the update returns 0 it ends the instance first (`0x003A7300`, `0x0024BE31`), and the 4 it
-  stores at `0x0024BE36` is overwritten by the 5 at `0x0024BE3D`. 4 starts the instance again with `0x003A74F0`
-  (`0x0024BDB3`) and also goes to 5 (`0x0024BDB8`).
+- 6 runs `0x0024C060`, then `0x003A7EE0` and the update `0x003A7050` with twice the time register `xmm7` holds
+  (the step's time, below; `0x0024BE11`-`0x0024BE28`), and goes to 5. When the update returns 0 it ends the
+  instance first (`0x003A7300`, `0x0024BE31`), and the 4 it stores at `0x0024BE36` is overwritten by the 5 at
+  `0x0024BE3D`. 4 starts the instance again with `0x003A74F0` (`0x0024BDB3`) and also goes to 5 (`0x0024BDB8`).
+- **The step's time.** State 1 takes 1.0 when `0x001EDDA0` answers non-zero and the float `0x01DFE0BC`
+  otherwise, and hands twice that to `0x003A7EE0` and `0x003A7050` (`0x0024BBE9`-`0x0024BC16`). State 6 uses twice
+  what register `xmm7` then holds: the time of the last state-1 instance updated earlier in the same
+  walk, or else the stack dword loaded at `0x0024BA2D`, which the body does not write
+  (`0x0024BE16`-`0x0024BE28`).
+- **The delay and the skip count.** A state-1 instance that is neither paused nor held is not updated
+  while its word `+0x364` is not 0: each step takes 2 from it, and a value of 1 becomes 0
+  (`0x0024BBAB`-`0x0024BBB5`, `0x0024BCE2`-`0x0024BD00`). With a byte `+0x366` other than 0 the step adds 1 to
+  the byte `+0x367` and updates only when that is above `+0x366`, compared unsigned, setting `+0x367`
+  to 0 (`0x0024BBC0`-`0x0024BBDD`).
+- **The pause.** For a kind below 8 the pass forms a mask from the words `0x02092160` and `0x0209215E`,
+  ANDed, with bit `0x4` added while bit `0x1` of the byte `0x02EBDBBC` is set; the kind is paused when the
+  mask, shifted right by the kind less 1, has bit `0x1` clear (`0x0024B9DF`-`0x0024BA07`). A kind-5, 6 or 9
+  instance whose byte `+0x373` is `0x63` is not paused while bit `0x1` of `0x02EBDBBC` is set
+  (`0x0024BAED`-`0x0024BAFF`).
+- **The holds.** Bit `0x2` or bit `0x40` of the word `+0x368` holds an instance (`0x0024BA6B`-`0x0024BA81`).
+  A kind-5, 6 or 9 instance is also held when bit `0x10` of its word `+0x36A` is set and the mask, not
+  shifted, has bit `0x1` clear, or when bit `0x8000` of `+0x36A` is set, `0x00254A70` answers 0, the word
+  `0x020926E4` has bit `0x800` and the instance's dword `+0x04` differs from the answer of `0x002EF9F0(3)`
+  (`0x0024BA92`-`0x0024BAEA`).
+- **The hold of kind 9.** For kind 9 no mask is formed and it is 0, so bit `0x10` of `+0x36A` alone
+  holds the instance (`0x0024B9C2`, `0x0024B9DD`, `0x0024BAB4`).
+- **What a paused or held instance gets.** In any state but 1 it is passed over before it is made
+  current (`0x0024BB54`-`0x0024BB64`). In state 1 it gets `0x0024C060`, `0x003A7EE0` with 0.0 and `0x003A93F0`
+  (`0x0024BB9B`-`0x0024BBA5`, `0x0024BD05`-`0x0024BD12`).
+- **States 2 and 8.** The dword `0x02092724` is 1 for state 8 and 0 for state 2 while `0x0024C060` and
+  `0x003A74F0` run, and 0 after them (`0x0024BD1C`-`0x0024BD43`). The start from state 4 calls `0x003A74F0`
+  alone (`0x0024BDAC`-`0x0024BDB8`).
+- **State 3** acts by the instance's byte `+0x00` through the table `0x0024BFAC`: 1 calls `0x002FC010`; 7
+  calls `0x003B15C0`; 4 calls `0x003B2930` and then `0x0024EE60`; 5, 6 and 9 call `0x003B0220` and then
+  `0x0024EE60`; every other value calls `0x0024EE60` alone (`0x0024BD4F`-`0x0024BDA2`). State 7, and any state
+  outside 1 to 8, does nothing once the instance is current (`0x0024BB72`-`0x0024BB86`, table `0x0024BF8C`).
+- **The end without bit `0x1`.** Beside setting state 8, the end zeroes the instance's byte `+0x374`
+  and dword `+0x0C` and clears bit `0x2` of its word `+0x36A` (`0x0024BCBF`-`0x0024BCD6`).
+- **The end with bit `0x1`** of the word `+0x368`: a kind-3 instance goes to state 7, and a kind
+  other than 2, 3 and 7 to state 3 (`0x0024BC28`-`0x0024BC65`). For kinds 2 and 7 the pass reads
+  `byte +0x16 >> 4` of the record `[[+0x340] + 0x40 + 8 × byte +0x373]`: 0 gives state 3; any other
+  value gives state 3 when it equals bits `0xF` of the word `+0x378` and state 7 when it does not
+  (`0x0024BC6A`-`0x0024BCBA`).
+- **Kinds 2 and 3.** A kind-3 instance is held while bit `0x1` of the byte `+0x30` of the record
+  `0x02EBD480 + 0x38 × (dword +0x04 & 0x3F)` is clear; when the bit is set the pass clears it and does
+  not hold for it (`0x0024BB04`-`0x0024BB29`). A kind-2 instance is held when the byte
+  `0x02F8F23C + word +0x04` or the byte `0x02F8F27C + word +0x06` has neither bit `0x1` nor bit `0x4`
+  (`0x0024BB2B`-`0x0024BB51`).
+- **State 5** asks `0x001EDDA0`. With a non-zero answer and bits `0xF0` of the word `+0x378` all 0 it
+  does nothing. Otherwise it takes 1 from the 4-bit count those bits hold, 0 becoming 15, and sets
+  state 1 (`0x0024BDBD`-`0x0024BE08`).
+- **After a kind-2 walk** of a list that is not empty the pass goes through the 64 bytes at
+  `0x02F8F23C`: it clears bit `0x8` of each, and in a byte that has bit `0x4` it also clears bits `0x4`
+  and `0x1` (`0x0024BE6C`-`0x0024BF5A`).
 
 The states that update the instance, and the group draw, first rebuild the effect matrices with
 `0x0024C060`. One step of it is `0x0039D480(view)`, with the view `0x02AEDEF0`, or `0x02AEE9E0` in a kind-4
@@ -140,6 +195,15 @@ unlinks it from its kind list `0x020910F0[kind]` and `0x0024B1F0(instance)` push
 and the kind-1 handles (`0x002FC3C0`) do this for an entry in state 6 and set state 7.
 `0x0024C3C0(kind, keep)` moves every instance of a kind except `keep` onto the list; the battle
 effect program `0x003B8670` calls it with kind 7 and the current instance (opcode `0x21`).
+
+`0x002FC3C0(handle)` acts by the handle's state, the bits under `0xF` of its byte `+0x23`, through the
+jump table `0x002FC478`. State 1 answers 1. State 2 asks `0x0032E4D0` about the request id at `+0x18`: on
+a 0 answer followed by a 0 answer of `0x0032E520(1)` it clears the byte `0x02EC3D7C` and answers 1;
+otherwise it calls `0x0032E590` with the id, sets state 4 and answers 0 (`0x002FC3F9`-`0x002FC436`).
+
+State 3 clears `0x02EC3D7C` and answers 1 (`0x002FC411`). State 5 calls `0x0024F410` with the pointer at
+`+0x08` and answers 1 (`0x002FC43E`-`0x002FC447`). State 6 is the one above and answers 0, as do states 0,
+4 and 7 and any state above 7 (`0x002FC3D3`, `0x002FC46F`).
 
 `0x0024B4F0`, from the field frame `0x0022A770` and the menu frames `0x0022B8C0` and `0x0022BC20`, frees the
 blocks queued at `0x02091150` (count `0x02092168`), releases the render targets queued at `0x02091950`

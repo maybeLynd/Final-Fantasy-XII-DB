@@ -179,6 +179,14 @@ The chain counter is a widget in the HUD sub-object at `+0x57E0`. The HUD keeps 
     (`0x002539C5`), `0x0035C560` (`0x0035C57F`).
 - `0x0028EF70` (70 B) calls `0x0028F0C0(length)`, keeps the other flags, sets bit `0x2` to the coin's bit `0x1` and
   stores the level at `+0x7C82` (`0x0028EF7F`-`0x0028EFA9`).
+- `0x0028F0C0(count)` does nothing while the manager `[0x0209BE80]` is null (`0x0028F0C6`-`0x0028F0D2`). For a
+  count other than 0 it reports achievement index 18 with the count, stores the count's low word at
+  `+0x7C78`, sets bit `0x1` of the dword `+0x7C7C` and clears its bit `0x8` (`0x0028F0DC`-`0x0028F10B`).
+
+  For 0 it stores 0 at `+0x7C78` and clears bits `0x8` and `0x1` (`0x0028F118`-`0x0028F136`), then releases
+  with `0x00244F00` each of three parts that `0x00273A20` answers non-zero for: `+0x57E0` when bit `0x1`
+  of the byte `+0x58A4` is clear, `+0x58B0` when the word `+0x5972` is 0 and `+0x5980` when the word
+  `+0x5A42` is 0 (`0x0028F13D`-`0x0028F1D8`).
 - `0x0028EF50(level)` (29 B), called on a level rise, sets flag bit `0x4` and stores the new level at `+0x7C82`
   (`0x0028EF50`-`0x0028EF65`).
 

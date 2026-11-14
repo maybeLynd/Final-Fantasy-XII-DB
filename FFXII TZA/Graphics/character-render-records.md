@@ -238,7 +238,7 @@ source's first five, and any other record is skipped when the source's name star
 | `0x0042E4F0` | `0x00428CD0` | `0x00504D20` on the record's model row (`0x003E55B0`) with dword `+0x20` |
 | `0x0042E530`, `0x0042E540` | `0x0042B690`, `0x0042B770` | `0x00420D80` or `0x00420E70` with dword `+0x74` (no filter) |
 | `0x0042E610`, `0x0042E650` | `0x0042B850`; `0x0042B970`, `0x0042BA90` | `0x00420F50` or `0x00420EA0` with dword `+0x38` |
-| `0x0042E750`, `0x0042E7A0` | `0x0042BCB0`, `0x00429020` | set bit `0x200000` of `+0x284` when `+0x38` is non-zero, or bit `0x1000` when it is 1 |
+| `0x0042E750`, `0x0042E7A0` | `0x0042BCB0`, `0x00429020` | set bit `0x200000` of `+0x284` when `+0x38` is non-zero and clear it when it is 0 (`0x0042E772`, `0x0042E787`), or set bit `0x1000` when it is 1 and clear it otherwise (`0x0042E7C3`, `0x0042E7D8`) |
 
 `0x00426500`, from `0x00332440`, is one such walk: `0x00425FB0(0x0042D7A0, 0x0042CF70, records)`.
 

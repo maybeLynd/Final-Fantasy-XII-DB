@@ -343,6 +343,54 @@ On message 1 the window builds its `0x650`-byte panel in place at `+0xC0` (proce
 `0x0029867A`-`0x00298686`), stores the release hook `0x00290610` at `+0x08` (`0x00298690`-`0x00298697`), attaches the panel
 (`0x002986A5`) and first shows the controlled character (`0x0035BAD0`, `0x002986AA`).
 
+The panel's procedure `0x00298250` answers 0 to messages 2 and 15 and does nothing for them, hands any
+message other than 1, 2 and 15 to `0x005C5230`, and builds on message 1 (`0x00298259`-`0x0029827A`,
+`0x002985B8`). It first makes a `0xC0`-byte part in place at the panel's `+0x588` with procedure
+`0x0017CDE0` (`0x00245000`, `0x00298284`-`0x002982AE`), gives it the answer of `0x002735E0(3)` through `0x00247570`,
+and asks `0x002432B0(part + 0x50, [[0x0209AC30] + 8], 0xE, part)` for a record (`0x002982B3`-`0x002982E3`).
+
+The panel's dword `+0x98` becomes 0 and its words `+0x9C` and `+0x9E` the low words of `0x01E0C1D8` and
+`0x01E0C1DC`; the part's words `+0x98` to `+0x9E` take the record's words `+0x04` to `+0x0A`
+(`0x002982E8`-`0x00298353`). From the first node of the part's list `+0x60` the panel keeps the words
+`+0x0C` and `+0x0E` at its `+0x580` and `+0x582` (`0x0029835A`-`0x00298369`); from the second node it
+keeps the same two words, less those two, at `+0x584` and `+0x586` (`0x0029842D`-`0x00298464`).
+
+The sixth node's pointer `+0x18` leads to an object with a list `+0x60` of its own; the words `+0x0C`
+to `+0x12` of that list's third node go to the panel's `+0x648` to `+0x64E` (`0x00298370`-`0x002983BD`).
+`0x0035C430` is called with the answer of `0x0035BB50` (`0x002983C4`-`0x002983CB`). The third node's pointer
+`+0x18` names an object whose word `+0x9A` gets 4 added; bit `0x1` of the dword `+0x08` of the second
+node of that object's list is cleared, and the list's first node gets the answer of
+`0x002F9860(0x4A49)` at `+0x18` and the answer of `0x0020E620(0)` at its dword `+0x20`
+(`0x002983D0`-`0x0029842A`).
+
+Then `0x00247930(part, 0x5A)`, `0x00244960(panel, part)` and `0x00247930(panel, 0x64)` run
+(`0x00298443`-`0x00298483`). A second part, `0x4C0` bytes with procedure `0x002985C0`, is made in place at
+the panel's `+0xC0` (`0x00298488`-`0x0029849E`). `0x003EE8C0(panel + 0xC0, 0x002F9860(0x4C6), 0, 0)` and
+`0x0029CD00(0x002F9860(0x4C6), 0, 0.88, a, b)` follow, 0.88 being the float `0x01E0CF94` and a and b the
+addresses of two stack dwords (`0x002984A3`-`0x002984EB`). The dword `0x01E0C34C` is added to the first of
+them when `0x00254A10` answers non-zero, and `0x01E0C350` otherwise (`0x002984F0`-`0x0029850C`).
+
+`0x0035BAD0` is called and its answer handed to `0x005C5230`, whose 0 goes to `0x002475D0` with the second
+part (`0x00298510`-`0x00298521`).
+
+The second part's words are then set: `+0x98` to the record's word
+`+0x04` plus the panel's `+0x580`, `+0x9A` to the record's word `+0x06` plus the panel's `+0x582`,
+`+0x9C` to the larger, compared signed, of the first stack dword after that add and the word `+0x10` of
+the first part's first node, and
+`+0x9E` to the low word of `0x01E0C554` (`0x00298526`-`0x0029858E`). `0x00244960(panel, second part)` and
+`0x00247930(second part, 0x64)` end the build, which answers 0 (`0x00298596`-`0x002985BF`).
+
+The fourth argument of both `0x00245000` calls is 0 (`0x0029829C`, `0x00298488`). A null first part is
+tested before each use of its list, and the node pointer is then taken as 0 with no further test
+(`0x00298312`-`0x0029831A`, `0x00298370`-`0x00298378`, `0x002983D0`-`0x002983D8`, `0x0029842D`-`0x00298435`,
+`0x0029852B`-`0x00298537`).
+
+A null `+0x18` in the sixth node leaves the node pointer 0, which is then read
+(`0x00298386`-`0x0029838E`). A null `+0x18` in the third node skips the 4 and the list read, and the node
+pointers that follow are 0 (`0x002983E6`-`0x0029840C`). The panel's three stores, the first part's four and
+the second part's four are skipped for a null pointer (`0x002982F9`-`0x002982FC`, `0x00298332`-`0x00298335`,
+`0x00298565`-`0x00298568`).
+
 Ending the leader choice runs `0x00290630` (`0x00296C28` in `0x00296BE0`, and `0x0029C455`), which closes the panel
 (`0x002964B5`) and sets `+0x710` to 1 (`0x002964BA`). On its next message 2 the window finds the panel gone and tears
 itself down (`0x00298620`-`0x00298637`). The release gives the storage back by clearing `+0xA2` and runs the hook

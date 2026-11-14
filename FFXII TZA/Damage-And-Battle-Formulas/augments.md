@@ -107,6 +107,9 @@ Two script commands set an enemy's two masks:
 | `1` | the same, when bit `0x1` of a shared gameplay LCG draw is set (`0x00239547`-`0x0023954F`) |
 | `0` | nothing |
 
+The 8 bytes hold the codes four to a byte, from the low bits up: the code of status `i` is
+`(byte[i >> 2] >> (2 × (i & 3))) & 3` (`0x00239504`-`0x00239527`).
+
 "Fresh" means bits `0x1` and `0x4` of the spawn record's first dword are clear (`0x002394DF`-`0x002394F9`); the
 spawn record pointer `+0x6A0` is read with no null test, so a null one faults at `0x002394F7`. Codes 1 and 2 add
 the status with `0x0030EAE0(record +0x698, 0, status, -1, -1, 0x297)` (`0x00239556`-`0x00239577`). After the

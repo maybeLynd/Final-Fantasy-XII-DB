@@ -60,10 +60,21 @@ a `0xC000` id:
    the list from the id's top nibble through the table at `0x01EED1B0`: nibble 3 to list 9, nibble 4 to list 8
    (`0x00D1066E`, `0x00D1066F`). After validating the id and testing for a change between 0 and non-zero, it
    returns without a call for a nibble above 10 (`0x00325FE9`-`0x00325FEC`), so a `0xC000` id is never listed.
-   - An id already in the list is not added again
-   (`0x00252EE5`); after appending, it calls `0x002CD650` (`0x00252F18`), which sets the save-wide category bit
+   - An id already in the list is not added again (`0x00252EE5`). Nor is one added when the walk meets an
+     entry `0xFFFF` before it, or when the list's count has reached the capacity word `+0x02` of the
+     list's descriptor at `0x02092760 + 8 × list`; both leave through `0x0016D6A0(0x200)` with no further
+     call (`0x00252EE7`-`0x00252EFD`, `0x00252F32`-`0x00252F3C`).
+   - After appending, it calls `0x002CD650` (`0x00252F18`), which sets the save-wide category bit
    (`[0x020927C0] + 0x3244`, `0x00252D40`) of each inventory category whose list is now non-empty
    ([Inventory screen](../Menus-And-HUD/inventory-screen.md)).
+   - `0x002CD650` takes the categories in the order 1, 3, 2, 8, 5, 4, 7, 6. For each it asks
+     `0x00252D10(category)` and goes on to the next when the answer's low byte is not 0; otherwise it calls
+     `0x00252D40(category, 1)` when the count is above 0, compared signed (`0x002CD654`-`0x002CD79F`).
+
+     The count is `0x00252FA0(list)` of list 1 for category 1, list 4 for 3, list 2 for 2, list 3 for 8,
+     list 0 for 4 and list 11 for 6. Category 5 asks list 8 and, when that is 0 or less, list 9
+     (`0x002CD703`-`0x002CD71D`). Category 7 takes `0x00252FF0(10)` instead (`0x002CD75E`-`0x002CD76A`). Every call
+     of `0x00252D40` here has 1 as its second argument; the last one is a jump (`0x002CD79F`).
    - `0x00252E60(list, id << 16)` takes the id from the argument's high 16 bits (`0x00252EC1`), and a list number
      above 11 as list 0 after a call to the empty stub `0x0016D6A0` (`0x00252E7C`-`0x00252EA9`). It appends the id at
      entry `count` and raises the count `[0x020927C0] + 0x47B8 + 4 × list` (`0x00252EFF`-`0x00252F12`).

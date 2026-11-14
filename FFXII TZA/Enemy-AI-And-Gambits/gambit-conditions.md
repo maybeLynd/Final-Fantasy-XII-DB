@@ -95,10 +95,23 @@ as do `(i8)r[+0x6C] < 0` and `(i8)r[+0x7C] < 0` (bit `0x80`, augment 39, of eith
 
 ### Units the action would not change
 
-The picker `0x003087E0` asks `0x003083B0(unit, candidate, action)` about every unit the first test kept and keeps
-only those it answers 0 for: a unit answered 1 never becomes the highest, lowest or nearest, and is left out of
-a random pick (`0x00308848`-`0x00308AD0`). When no unit is kept, the order fails (`0x003017C4`-`0x003017CD`), and the
-walk goes on to the next line.
+The picker `0x003087E0` asks `0x003083B0(unit, candidate, action)` about the units the first test kept, the
+candidate being `0x0031B760` of the entry's first qword, and keeps only those it answers 0 for: a unit
+answered 1 never becomes the highest, lowest or nearest, and is left out of a random pick
+(`0x00308848`-`0x00308AD0`). A kept entry's 16 bytes are copied to the out list and its count dword `+4`
+goes up by 1. When no unit is kept, the order fails (`0x003017C4`-`0x003017CD`), and the walk goes on to the
+next line.
+
+Where the pick is by a key, an int (list byte `+0x01` = 1) or a float (`+0x01` = 2) at the entry's `+8`,
+an entry whose key is worse than the best so far is passed over with neither call (`0x003088A0`-`0x003088E4`,
+`0x00308944`-`0x00308984`, `0x003089F0`-`0x00308A29`, `0x00308A83`-`0x00308ABC`). The best starts at the float
+`0x02F973B8` for the lowest pick and at its negative for the highest, and at `0x7FFFFFFF` and `0x80000001`
+for the int picks (`0x0030892E`, `0x00308882`-`0x0030888A`, `0x00308A73`, `0x003089D7`): an entry beyond that start
+is never kept, and one equal to it that is answered 0 is added.
+
+An entry with a better key that is answered 0 becomes the only kept entry and its key the best; one with
+the same key that is answered 0 is added. A keyed list whose byte `+0x02` is neither 3 (highest) nor 2
+(lowest) keeps no entry (`0x00308879`, `0x00308925`, `0x003089CE`, `0x00308A6A`).
 
 `0x003083B0` answers 0 at once when the deciding unit is an enemy (stats `+0x05` = 1), when the action id is
 above `0x21E` (`0x003083E1`-`0x003083FD`), or when the action row has bit `0x20` of `+0x36` and the candidate's byte
@@ -207,3 +220,5 @@ Calls between the functions this page cites and code in other parts of the progr
   [gil](../Rewards-EXP-Gil-And-Loot/gil.md).
 - Status periodic terminal: `0x0031B770` is called by `0x00310DB0`; those functions are documented on
   [frame update order](../Engine-Core/frame-update-order.md).
+- Script VM: `0x0031B760` is called by `0x005102D0`; those functions are documented on
+  [battle units](../Characters-And-Objects/battle-units.md).

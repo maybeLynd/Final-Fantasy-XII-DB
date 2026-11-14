@@ -61,6 +61,9 @@ the type name at `0x00D8D7A0`, `0x78`, 8, `0x006CD4C0` (which gives a record's n
 plus 1) and the resolver (`0x006D588A`). It then sets the descriptor's vtable `0x00D8D7B8` (`0x006D5896`),
 registers `0x008B7590` with `atexit` (`0x006D58A4`) and returns `0x02E9FD70` on every call.
 
+`0x008B7590` is two instructions: it loads the descriptor's address `0x02E9FD70` as the one argument and
+jumps to `0x006B68A0` (`0x008B7590`-`0x008B7597`).
+
 ### The parameter fetch
 
 A fetch is called with an output buffer and the invocation, and returns the number of bytes its

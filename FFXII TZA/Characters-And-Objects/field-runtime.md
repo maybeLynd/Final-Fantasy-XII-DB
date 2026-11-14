@@ -80,6 +80,11 @@ Before any record is driven the pass publishes `0x02099D70` = the slot block and
 leader's record ([Party leader](../Party/party-leader.md)): `0x003590D0()` reads the packed handle at `0x022C7FE0`, `0x003588B0` resolves it, and
 the result is null when there is no focus or the handle does not resolve.
 
+The pass first stores the address of slot 0's block `0x02098E10` in `0x02099D70`, then resolves the focus
+(`0x003588B0` of the answer of `0x003590D0()`, or 0 when that answer is 0),
+and then stores the slot's own block there together with the focus in `0x02099D78`
+(`0x0025DA8C`-`0x0025DABA`).
+
 ### The pass body
 
 The body takes one of these branches after the refusals:
@@ -115,6 +120,11 @@ The two holds of branch 4:
   The bit is cleared when `0x00360D60()` is 0, or when the track is negative and both `0x003135C0()`
   and `0x00303EC0()` are 0.
 - With flags bit `0x20` set, the bit is cleared once `0x02ADD968` is 0 (`0x0037CB40`).
+
+In the first hold, a track that is not negative is first put to `0x00361010(track)`, which answers bit `0x1` of the byte
+`[0x022CBA50] + 2 × track`, or 0 while `0x022CBA50` is null; a non-zero answer goes straight to the
+`0x00360D60` test, and an answer of 0 asks `0x003135C0` and `0x00303EC0` first, each through a jump
+(`0x0037C8F0`, `0x0037C860`), and goes to the `0x00360D60` test all the same (`0x0025DBC8`-`0x0025DBF6`).
 
 At the end of branches 4 and 5 flags bit `0x80` is rewritten from the busy mark; every branch then runs
 `0x0025B600` on slot 0 and increments `+0x24` and `+0x38`.
@@ -168,9 +178,15 @@ When flags bit `0x80` is set, nothing marked the pass busy and the slot index is
 `0x002677B0()` is non-zero, `0x00268690(9)` and the mapjump mode `0x00314DA0(0x003148D0() & ~0x18)`
 ([zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)).
 
-Then it runs `0x002E1C40(1)`, clears flags bit
+Then it runs `0x002E1C40(1, 2)`, which with a first argument other than 0 clears bit `0x4`, the bit
+`1 << 2` its second argument names, in the words `0x0215F1AC` and `0x0215F1B4` (`0x002E1C40`-`0x002E1C6B`),
+clears flags bit
 `0x80` and runs `0x00254A90`, `0x00259FB0`, `0x00234150`, `0x00250960(0, 0)` when `0x02099DA7` is set (then cleared),
 and `0x00263660`.
+
+The sequence starts with a call of `0x0017E7D0`, a jump to the empty stub `0x0016D6A0` (`0x0025DDAD`), and
+its fade request passes a fourth argument of 0, `0x002EFA70(2, 8, 1, 0)` (`0x0025DDF4`-`0x0025DE02`).
+`0x003135C0` is reached through the jump at `0x0037C8F0` (`0x0025DDBA`).
 
 ### The wait resolver
 

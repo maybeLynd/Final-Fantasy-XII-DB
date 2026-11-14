@@ -84,6 +84,18 @@ are rip-relative; the row pointers those readers compute go only into registers,
 they are passed to, such as `0x0031E9F0` (`+0x09`) and `0x00320D70` (`+0x25`), and none of them reads a byte that
 covers `+0x24`. No row pointer is stored in memory outside the stack, and no row is copied whole.
 
+`0x0030AC50(action id, weapon id)` takes both ids as words. The action row is looked up only when
+`0x00322C50(0x14, id, 0)` answers non-zero, the weapon row only when `0x00322C50(6, id, 0)` does; a row
+whose slot (`0x02EBF138`, `0x02EBF0F8`) or whose `0x0020E600` answer is null counts as missing
+(`0x0030AC5F`-`0x0030AD09`). The weapon row index is the id less `0x1000` (`0x0030ACFE`). With no action row
+the answer is -1 (`0x0030AD0B`-`0x0030AD0E`, `0x0030AD6E`-`0x0030AD73`).
+
+When the action row's word `+0x24` is not `0xFFFF`, has bit `0x8000` and the row's dword `+0x0C` lacks
+bit `0x40000000`, the answer is that word's low 15 bits (`0x0030AD10`-`0x0030AD2F`). When the word is
+`0xFFFF`, the weapon row exists and `+0x0C` lacks the bit, the answer is the low 15 bits of the
+weapon row's word `+0x2C` (`0x0030AD43`-`0x0030AD5A`). Every other case answers -1, among them a word
+`+0x24` without bit `0x8000` (`0x0030AD48`-`0x0030AD4B`, `0x0030AD73`).
+
 The bonus record is 24 bytes:
 
 | Offset | Type | Name | Meaning |

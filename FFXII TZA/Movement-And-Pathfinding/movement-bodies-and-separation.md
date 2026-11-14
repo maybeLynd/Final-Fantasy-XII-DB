@@ -258,6 +258,30 @@ argument before running their body: `rcmove`/`cmove` (`0x003E`/`0x0059`, `0x0035
 third index is negative: `0x0026BDD0` stores its three coordinates at a class-1 object's
 `+0x20`-`+0x28`, and `0x0026AB60` sets the margin to the mean of its two widths.
 
+The sign record is the answer of `0x002642C0(manager, value)` for the manager `0x002640C0()` answers and
+the one value taken with `0x00267E10`; a null record ends the body (`0x00355A0E`-`0x00355A2E`).
+
+The sign record's words are read signed: `+0x00`, `+0x02` and `+0x04` are the three point indices and
+`+0x06` the kind (`0x00355A39`-`0x00355A55`). A kind of 1 calls `0x0026B480(actor, 1)`; every kind then
+gets `0x0026B4A0(actor, 8)`, `0x0026B4A0(actor, 0xD)` and `0x0025D5E0(actor, 3)` (`0x00355A5A`-`0x00355A8B`).
+The byte `+0xF4` of the actor takes the answer of `0x003DF790` for the record's word `+0x08` only when
+the caption word `+0x0A` is not negative (`0x00355A90`-`0x00355ABB`).
+
+With a caption word that is not negative the body calls `0x00269F20(actor, text, 0)`, the text being
+the answer of `0x00264D90(manager, caption word)`; with a negative one it calls
+`0x00269F20(actor, 0x02F8F2A0, 0)` (`0x00355A99`-`0x00355AAD`, `0x00355AC3`-`0x00355AD0`).
+
+A negative first index, or a null answer of `0x00264390(manager, index, kind)` for it, ends the body
+with no point read (`0x00355AD5`-`0x00355AF2`). The first point goes to `0x0026B0C0` (three floats),
+`0x0026BFF0` (the floats `+0x0C` and `+0x10`) and `0x0026B620` (the float `+0x14`); the second, when its
+index is not negative and its record is found, to `0x0026BB00`, `0x0026BD50` and `0x0026BC70` the same way
+(`0x00355AF8`-`0x00355B78`).
+
+The third point is asked for with kind 1 whatever the record's kind is (`0x00355B82`-`0x00355B8E`). The
+two last calls are not made when the record left is null: when the third record is asked for and not
+found, or when the third index is negative and the second record was asked for and not found
+(`0x00355B40`-`0x00355B46`, `0x00355B93`-`0x00355B99`).
+
 ### The placement record
 
 The body's `+0x30` is the actor's field placement. `0x00380D30(placement, candidate)` resolves the field

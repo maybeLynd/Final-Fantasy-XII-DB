@@ -26,11 +26,17 @@ The default duration comes from row byte `+0x08` through `0x00387730` (`0x003877
 
 ```python
 b = row +0x08            (0xFF: no duration)
-vit = target Vitality (+0x2C)
+vit = target Vitality (+0x2C), 0 with a null stats pointer
 harmful:     v = trunc(2b - b * vit / 100)
-beneficial:  v = trunc(b + b * vit / 100), times 1.5 with Spellbound (augment 30) in either layer
+beneficial:  v = trunc(b + b * vit / 100); with Spellbound (augment 30) in either layer, v = trunc(v * 1.5)
 duration timer = v * 300 * frame base
 ```
+
+With a null stats pointer the Vitality is 0 and the Spellbound test is not made (`0x003877B5`-`0x003877C1`,
+`0x0038795B`). The test is bit `0x40` of the stats byte `+0x6B` or `+0x7B`, and `v * 1.5` goes through
+`cvttss2si` before the integer `v * 300 * frame base`, the frame base being the dword `0x01DFE0B4`
+(`0x00387960`-`0x00387992`). A row whose `+0x08` is `0xFF` returns 0 (`0x003877A6`-`0x003877AA`,
+`0x003879A3`-`0x003879A8`).
 
 The beat timer is row byte `+0x09` times 30 times the frame base (`0x003876D0`). The periodic step takes 10 off both
 every frame ([Status timers](status-timers.md)), so `+0x08` is in seconds and `+0x09` in tenths of a second at 30

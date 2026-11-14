@@ -353,7 +353,8 @@ The three bytes after the table, `0x00D23918`, are a separate list that `0x0057B
 
 ### The grant list
 
-The grant list is the `0x130`-byte widget with procedure `0x003F4840` that `0x003F47E0` builds and that keeps itself at `0x02B5F1F8`; the grant window `0x0057A4E0` and the quest result window use it.
+The grant list is the `0x130`-byte widget with procedure `0x003F4840` that `0x003F47E0` and `0x003F4DD0` build
+and that keeps itself at `0x02B5F1F8`; the grant window `0x0057A4E0` and the quest result window use it.
 
 `GrantList` (`0x130` bytes, offsets from the start of the record):
 

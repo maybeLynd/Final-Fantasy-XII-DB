@@ -382,6 +382,20 @@ Otherwise it keeps the row's own id and returns 0 (`0x0056E50D`-`0x0056E51B`); w
 is and returns 0 (`0x0056E449`). Either way it then rebuilds the tab through `0x005655F0(screen, slot, +0x190)`
 (`0x0056E523`-`0x0056E535`).
 
+The tab slot is `screen + 0xF0 + 8 × n`, where `n` is the dword `+0x180` under mask `0x03E00000`,
+shifted right 21 and sign-extended from five bits (`0x0056E419`-`0x0056E43B`). Rows are `0x20` bytes each
+in the array the list `[screen + 0xC0]` keeps at `+0xC8` (`0x0056E43F`, `0x0056E493`-`0x0056E49A`).
+
+When the row array is not null (`0x0056E446`-`0x0056E449`), the cursor row is counted in the object at
+the screen's `+0xD8`: its sign-extended words `+0xF2` and `+0xF4` added, times its byte `+0xEC`, plus
+its signed bytes `+0xEE` and `+0xED` (`0x0056E44F`-`0x0056E491`). The same range loads the screen's byte
+`+0x191`, the argument of `0x003933B0` (`0x0056E48A`). The row count compared in the gone-row rule is
+that object's word `+0xE8`, zero-extended (`0x0056E4C9`-`0x0056E4E5`).
+
+After the rebuild `0x0056E410` frees that row array with `0x003697F0` when it is not null. Whether it was
+null or not, it then puts the screen's `+0xE0` pointer in its place and clears `+0xE0`
+(`0x0056E53A`-`0x0056E561`).
+
 ### The empty id
 
 `0xFFFF` is the empty id. The dispatchers refuse it before the nibble test, `0x003008A0` refuses it,

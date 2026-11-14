@@ -52,6 +52,13 @@ stats record at unit `+0x698` is 1), reads the enemy's record at unit `+0xE60`
 `0xFFFF` meaning no item. Byte `+0x14` of the spawn record at unit `+0x6A0` holds one bit per item still
 available: bit `0x1`, `0x2` and `0x4`.
 
+The roll does not read its first argument. When `0x0031B860` answers null for the target, or the unit
+has no stats record, or that record's byte `+0x05` is not 1, the record pointer is 0 and the word at
+address `0x32` is read (`0x003903B9`-`0x003903DB`). The unit is asked for again before each bit test; a
+null unit or a null spawn record there also ends the attempt as nothing to steal
+(`0x003903FE`-`0x0039041C`, `0x0039042D`-`0x0039044B`, `0x0039045E`-`0x0039047C`). Each answer of `0x0031B860` is
+stored in `0x02EBF188`.
+
 The attempt ends as "nothing to steal" in either of these cases:
 
 - all three item words are `0xFFFF` (`0x003903DB`-`0x003903F3`);
@@ -118,6 +125,16 @@ common = 0.97 * 0.90 * 0.55 = 0.480
 nothing = 0.97 * 0.90 * 0.45 = 0.393
 with Thief's Cuffs, nothing = 0.94 * 0.70 * 0.20 = 0.132
 ```
+
+Without Thievery a rare or an uncommon win also stores 1 in `0x02AEDFB8` (`0x0039066A`-`0x00390670`,
+`0x00390650`-`0x00390656`, `0x00390584`); a common win stores `0x02AEE04C` alone (`0x00390635`-`0x0039063C`). The
+failures of steps 1, 2 and 4 store 1 in both `0x02AEDFBC` and `0x02AEDFB8` (`0x0039057E`-`0x00390584`), and
+the failure of step 3 stores `0x02AEDFBC` alone (`0x00390495`-`0x003904A0`).
+
+With Thievery a common win returns at once (`0x0039055B`-`0x00390561`), and a rare or uncommon win whose
+item word is `0xFFFF` leaves its flag byte as it was (`0x003904DD`-`0x003904EB`, `0x00390519`-`0x00390527`).
+The test at `0x00390563`-`0x0039057C` reads the three flag bytes as they then are, so a byte that was not
+0 on entry also keeps the two failure stores from being made.
 
 ### The debug value that forces an item
 
