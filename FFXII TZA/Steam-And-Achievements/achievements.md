@@ -130,7 +130,7 @@ from the handbook's arm 7 (`0x005775B2`). It does four things:
    (`0x003169D4`), it sets the monster's
    defeat count to 1 when it is at most 0 (state byte `+0x3404 + id` 0 or 1, `0x003169E0`-`0x003169FA`; the byte is
    set to 2) and `0x00315DC0(short)` passes: that quest is cleared (`0x0046B1A0`)
-   or its scenario byte reaches the handbook's value for it.
+   or its scenario flag reaches the handbook's value for it.
 3. It evaluates descriptors 0-29 (`0x00316A36`-`0x00316A43`).
 4. It tail-jumps `0x003162E0`.
 

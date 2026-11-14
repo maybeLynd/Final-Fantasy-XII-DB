@@ -134,7 +134,7 @@ strings of each pair are the same, so the flag changes nothing in these texts.
 | `reward` | the reward package with what it gives, its selector, and the maps whose scripts grant it ("The reward" above) | `0x00344C60`, `0x00290130` |
 | `posted` | where the bill is posted and the story progress, clan rank and earlier hunts its talk tests ("When a bill is posted" above) | the scripts' `getclanrank`, `isquestorder`, `isquestclear` and story progress tests |
 
-The progress byte is the quest's scenario byte, save `+0x1064 + quest` (`0x0046B180`), set by the scripts'
+The progress byte is the quest's scenario flag, save `+0x1064 + quest` (`0x0046B180`), set by the scripts'
 `setquestscenarioflag` ([Quests](quests.md)).
 
 ## Related

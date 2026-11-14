@@ -29,7 +29,7 @@ Every quest field is in the save payload, the bytes from `SaveImage_GetPersisten
 | `+0x1000` | ordered bits, bit *q* | 32 bytes |
 | `+0x1020` | cleared bits, bit *q* | 32 bytes |
 | `+0x1040` | quests cleared in total, at most `0xFFFF` | `u32` |
-| `+0x1064 + q` | scenario byte | 256 bytes |
+| `+0x1064 + q` | scenario flag | 256 bytes |
 | `+0x1164 + 2q` | contract word; set to the field id when the quest is first ordered | 256 words |
 | `+0x1364` | OK bits, bit *q* | 32 bytes |
 
@@ -47,8 +47,8 @@ and the story flag banks begin at `+0x1384`.
 | `0x1D0` `isquestclear(q)` | `0x0033FAA0` | `0x0046B1A0` | cleared bit *q* |
 | `0x1D4` `getquestclear` | `0x00340C50` | `0x0046B020` | the number of cleared bits set |
 | `0x1D5` `getquestcleartotal` | `0x00341050` | `0x0046B0B0` | the total |
-| `0x2B3` `setquestscenarioflag(q, v)` | `0x00351140` | `0x0046B490` | the scenario byte = *v*; the handler keeps *q* and *v* between 0 and 255 (`0x00351155`-`0x0035117B`) |
-| `0x2B4` `getquestscenarioflag(q)` | `0x00351F90` | `0x0046B180` | the scenario byte |
+| `0x2B3` `setquestscenarioflag(q, v)` | `0x00351140` | `0x0046B490` | the scenario flag = *v*; the handler keeps *q* and *v* between 0 and 255 (`0x00351155`-`0x0035117B`) |
+| `0x2B4` `getquestscenarioflag(q)` | `0x00351F90` | `0x0046B180` | the scenario flag |
 | `0x2B5` `setquestcontract(q, v)` | `0x00351560` | `0x0046B350` | the contract word = *v* (`0x0046B364`) |
 | `0x2B6` `getquestcontract(q)` | `0x00351C40` | `0x0046B0D0` | the contract word |
 | `0x2BC` `setquestok(q, v)` | `0x00353B20` | `0x0046B380` | OK bit *q* set or cleared (`0x0046B3B5`, `0x0046B3D1`) |
@@ -57,7 +57,7 @@ and the story flag banks begin at `+0x1384`.
 Two dispatchers reach the same bodies outside the verbs. `0x00329E60(kind, unit, q, v)` sets an ordered bit for kind
 4 and a cleared bit for kind 5 (`0x00329EC9`, `0x00329EE0`); the action effect applier `0x00312170` (`0x0031225E`) and
 `0x002FE660` (`0x002FE74E`) call it. Its reader twin `0x00321190(kind, unit, q, out)` answers ordered, cleared, scenario
-byte and contract word for kinds 4-7 (`0x003211FC`-`0x00321232`); `0x00301AD0`, `0x002FAD40`, `0x002FE660` and `0x00312170` call
+flag and contract word for kinds 4-7 (`0x003211FC`-`0x00321232`); `0x00301AD0`, `0x002FAD40`, `0x002FE660` and `0x00312170` call
 it. The developer verb `0x206C` `debug_clearquestall` does nothing: its handler `0x0017E7D0` returns at once.
 
 ### The wrong ordered bit
@@ -73,12 +73,12 @@ The shipped scripts clear the quest's own bit themselves, one line before the cl
 
 ### Who else reads it
 
-The quest list of the `menuhandbook` object, bound at `0x022C2550`, gives a minimum scenario byte per quest:
+The quest list of the `menuhandbook` object, bound at `0x022C2550`, gives a minimum scenario flag per quest:
 
-- The clan rank counts the list's quests that are ordered or cleared and whose scenario byte reaches the minimum
+- The clan rank counts the list's quests that are ordered or cleared and whose scenario flag reaches the minimum
   (`0x00316480`, `0x00316520`-`0x0031654D`; [Shops](../Items-Equipment-Shops-And-Licenses/shops.md) has the rank table).
 - `0x00315DC0(q)` answers false for q = -1 (`0x00315DC8`-`0x00315DCD`) and true for a cleared quest (`0x00315DD5`), else, for a quest in the list, whether its scenario
-  byte reaches the minimum (`0x00315DE9`-`0x00315E6D`). A quest the list does not hold, or an empty list, answers
+  flag reaches the minimum (`0x00315DE9`-`0x00315E6D`). A quest the list does not hold, or an empty list, answers
   false (`0x00315E27`-`0x00315E45`); only a missing list answers true (`0x00315DF5`-`0x00315E10`, `0x00315E75`).
 
 Besides these, the menu's quest readers (`0x0037E780`, `0x0037EAA0`, `0x0037EB90`, `0x0037EC70`, `0x0037EE10`, `0x0037EF70`,
@@ -105,7 +105,7 @@ Five scripts pass a quest verb its id in a variable, the same in each language: 
 (:2614, :2634), `rbn_a19` 53 (:5299) and `slm_a0380` 3 (:90), and no step of `rbn_a18` or `bhm_a04` stores theirs.
 `rbn_a14` also tests the ids 160 to 171 one after another in two loops (:260-:262, :3412-:3414).
 
-The chapters' scenario byte steps along the story beside the story counter, and their
+The chapters' scenario flag steps along the story beside the story counter, and their
 `questtitle.bin` rows are empty in `us`. Six are quests that `menuquest.dat` does not list: July's soldier at Nalbina
 (52), Rimzat's windvane (53), the Nabudis medallions of Ma'kleou (57), Roh'kenmou (58) and Roh'kenmu (59), and the
 Hunt Club (71).
@@ -117,7 +117,7 @@ Pilika's diary, Ann's letter, Ktjn's choice, the wandering viera and her two adm
 Potion, the Jaya Stick, Jovy's strength and Ada's Empty Bottles.
 
 They keep their state in key items and in bytes of the script globals; the cockatrices and the Ring of the Toad also
-step along the scenario byte of hunt quests 160 and 138 after those hunts. The sick traveler and Pilika's diary begin
+step along the scenario flag of hunt quests 160 and 138 after those hunts. The sick traveler and Pilika's diary begin
 once hunt quests 130 and 161 are cleared, and the cactoids of the Nebra once Dantro's wife has the cactus flower.
 
 The last six give a reward and keep their whole state in script bytes: Ktjn's four answers settle her in one of

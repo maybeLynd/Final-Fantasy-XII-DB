@@ -420,7 +420,8 @@ panes through `0x00578450`:
 1. Section 0, followed, once the quest is cleared, by an empty line and section 1.
 2. Section 2 cut at each `0x03` into at most 12 parts, of which the first `progress part count` are shown.
 
-The progress byte is the quest's scenario byte, save `+0x1064 + quest` (`0x0046B180`; [Quests](../Story-Events-And-Hunts/quests.md)).
+The progress byte is the quest's scenario flag, save `+0x1064 + quest` (`0x0046B180`;
+[Quests](../Story-Events-And-Hunts/quests.md)).
 
 `0x00578450` is the pane's procedure. Message 1 keeps the creation record's `+0x00` at
 `+0xC0`, the quest record `+0x10` at `+0xD0`, the mode byte `+0x20` at `+0xF8` and the
@@ -521,7 +522,7 @@ below 2 GB.
 ## Related
 
 - [Clan Primer](../Menus-And-HUD/clan-primer.md): the Hunts page and how hunts are listed and marked read.
-- [Quests](../Story-Events-And-Hunts/quests.md): the ordered and cleared bits and the scenario byte the menu reads.
+- [Quests](../Story-Events-And-Hunts/quests.md): the ordered and cleared bits and the scenario flag the menu reads.
 - [Hunts](../Story-Events-And-Hunts/hunts.md): every hunt's name, petitioner, record text and the progress that shows each part.
 - [TIM2 images](tim2-images.md): `menuquest.nfs` and the glyph-sheet registry.
 - [Map screens](../Menus-And-HUD/map-screens.md): the map-data widget that draws the markers.
