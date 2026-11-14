@@ -115,7 +115,8 @@ A fallen body is torn down only after two unit flag bits are set:
    `0x2008`, `0x200C` or `0x200E` (`0x00325136`-`0x0032519F`). Those are the death clips the HP write and the Stone
    and X-Zone arms start ([HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md)).
 2. **Bit `0x400000000`, hide the body.** `0x00319F50` sets it on actor timeline code 4 for a unit with KO, Stone or X-Zone
-   without the field's bit `0x8000`, together with flag bit `0x400`, and on code 6 for any unit, then refreshes visibility
+   without the field's bit `0x8000`, and for a unit with no stats record (`0x0031A124`-`0x0031A127`), together
+   with flag bit `0x400`, and on code 6 for any unit, then refreshes visibility
    (`0x0031A100`-`0x0031A159`, `0x0031A198`-`0x0031A1A4`). Code 4 is ignored while the unit is carrying out Revive
    (`0xAE`) on itself.
 

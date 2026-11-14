@@ -28,7 +28,7 @@ tick the list.
 
 ### Recording a death
 
-The HP modifier `0x00300530` is the one path to a death. On its lethal branch, when the unit's stats
+The HP modifier `0x00300530` records a death. On its lethal branch, when the unit's stats
 record at `+0x698` has kind byte `+0x05` = 1 (an enemy built from the enemy definition table,
 [battle unit construction](../Characters-And-Objects/battle-unit-construction.md)), it takes the spawn
 record at unit `+0x6A0` and increments its death count `+0x08` (`0x00300801`). It then reads the
@@ -36,10 +36,13 @@ step counter through `0x0032A150`, divides it by `(int)(30.0 * [0x01DFE0B8])` wi
 (`0x00300820`) and stores the quotient at `+0x0C` (`0x00300829`): the second of the death.
 
 The divisor is 30 at the 30 fps setting and 60 at 60 fps, so the stamp is in whole seconds of
-normal-speed play at either rate. It then calls the group table's death handler `0x00306F00` (`0x0030082F`). When that returns 1 the
+normal-speed play at either rate.
+
+It then calls the group table's death handler `0x00306F00` (`0x0030082F`). When that returns 1 the
 group completed, and the modifier skips its own death presentation event (`0x00300836`); otherwise
-it dispatches, when a local flag allows it, `0x200E` when its argument has bit `0x100`, else `0x2007` or
-`0x2008` by a second argument (`0x00300838`-`0x0030085F`).
+it dispatches, when a local flag allows it, `0x200E` when its argument has bit `0x100`, else `0x2007` when
+bit `0x100` of the source unit's target-buffer entry for this unit is set and `0x2008` when it is clear
+or there is no source unit or no entry (`0x003006F6`-`0x0030072C`, `0x00300838`-`0x0030085F`).
 
 ### The authored limit and cooldown
 

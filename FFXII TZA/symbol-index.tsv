@@ -17880,7 +17880,7 @@ function	0x00245110	-	Menus-And-HUD/widgets.md	-	6
 function	0x00245170	-	Menus-And-HUD/widgets.md	-	6
 function	0x00245510	-	Menus-And-HUD/widgets.md	-	8
 function	0x002455A0	-	Menus-And-HUD/widgets.md	-	6
-function	0x00245E60	-	Menus-And-HUD/widgets.md	-	10
+function	0x00245E60	-	Menus-And-HUD/widgets.md	-	11
 function	0x002463F0	-	Menus-And-HUD/widgets.md	-	5
 function	0x00246450	-	Menus-And-HUD/widgets.md	-	5
 function	0x00246480	-	Menus-And-HUD/menu-lists.md	-	7
@@ -17917,7 +17917,7 @@ function	0x002477A0	-	Menus-And-HUD/dialogs.md	-	5
 function	0x00247810	-	Menus-And-HUD/widgets.md	-	5
 function	0x00247870	-	Saving-Loading-And-Settings/saving-and-loading.md	-	15
 function	0x002478D0	-	Menus-And-HUD/widgets.md	-	5
-function	0x00247920	-	Compiler-And-C-Runtime/generated-function-families-trivial-global-accessors.tsv	-	5
+function	0x00247920	-	Menus-And-HUD/menu-screens.md	-	7
 function	0x00247930	-	Menus-And-HUD/party-list.md	-	16
 function	0x00247950	-	Game-Files-And-Data-Tables/as7-menu-graphics.md	-	9
 function	0x00247980	-	Menus-And-HUD/widgets.md	-	5
@@ -18142,7 +18142,7 @@ function	0x002526F0	-	Menus-And-HUD/status-and-equip-screen.md	-	17
 function	0x002527B0	-	Menus-And-HUD/dialogs.md	-	20
 function	0x00252840	-	Game-Files-And-Data-Tables/btm-exfont-bitmaps.md	-	6
 function	0x002528A0	-	Engine-Core/frame-update-order.md	-	7
-function	0x00252990	-	Engine-Core/frame-update-order.md	-	7
+function	0x00252990	-	Menus-And-HUD/menu-screens.md	-	9
 function	0x002529F0	-	Engine-Core/frame-update-order.md	-	6
 function	0x00252A20	-	Engine-Core/frame-update-order.md	-	8
 function	0x00252A70	-	Menus-And-HUD/hud.md	-	13
@@ -19301,7 +19301,7 @@ function	0x0028F260	-	Controls-And-Input/controls.md	-	8
 function	0x0028F280	-	Engine-Core/engine-types-fields.tsv	-	7
 function	0x0028F2A0	-	Engine-Core/subsystem-update-flags-manager-singleton-0209be80-accesses.tsv	-	6
 function	0x0028F2F0	-	Menus-And-HUD/hud.md	-	12
-function	0x0028F570	-	Engine-Core/engine-types-fields.tsv	-	8
+function	0x0028F570	-	Menus-And-HUD/menu-screens.md	-	9
 function	0x0028F590	-	Menus-And-HUD/hud.md	-	6
 function	0x0028F5B0	-	Controls-And-Input/controls.md	-	9
 function	0x0028F5F0	-	Menus-And-HUD/menus.md	-	6
@@ -19456,7 +19456,7 @@ function	0x00295C20	-	Menus-And-HUD/text-codes.md	-	5
 function	0x00295CA0	-	Compiler-And-C-Runtime/generated-function-families.md	-	7
 function	0x00295CC0	-	Compiler-And-C-Runtime/generated-function-families-nativeadapter-callthentailcall.tsv	-	5
 function	0x00295CE0	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	7
-function	0x00295CF0	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	6
+function	0x00295CF0	-	Menus-And-HUD/menu-screens.md	-	8
 function	0x00295D00	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	8
 function	0x00295D10	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	7
 function	0x00295D20	-	Game-Files-And-Data-Tables/small-bin-tables.md	-	6
@@ -21128,7 +21128,7 @@ function	0x002FD530	InventoryBundleClass09_ApplyGilAndNestedItems	Rewards-EXP-Gi
 function	0x002FD640	InventoryBundleClass0A_ApplyNestedItems	Engine-Core/item-and-ability-ids.md	-	9
 function	0x002FD780	InventoryBundleClass0D_ApplyNestedItems	Engine-Core/item-and-ability-ids.md	-	9
 function	0x002FD880	-	Engine-Core/item-and-ability-ids.md	-	8
-function	0x002FD8D0	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	9
+function	0x002FD8D0	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	10
 function	0x002FD970	-	Engine-Core/item-and-ability-ids.md	-	9
 function	0x002FDA60	-	Battle-Actions/battle-orders.md	-	9
 function	0x002FDC30	-	Battle-Actions/battle-orders.md	-	10
@@ -21163,8 +21163,8 @@ function	0x00300490	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	6
 function	0x003004B0	-	Rewards-EXP-Gil-And-Loot/gil.md	-	12
 function	0x00300500	-	Rewards-EXP-Gil-And-Loot/gil.md	-	9
 function	0x00300520	-	Damage-And-Battle-Formulas/hp-and-ko.md	-	17
-function	0x00300530	BattleStats_ModifyHPAndProcessLethalState	Enemy-Spawning/enemy-respawning.md	-	34
-function	0x003008A0	Inventory_ModifyEncodedItemAndUpdateDiscoveryState	Scripts-And-Script-Commands/reward-verbs.md	-	34
+function	0x00300530	BattleStats_ModifyHPAndProcessLethalState	Characters-And-Objects/battle-unit-fields.md	-	34
+function	0x003008A0	Inventory_ModifyEncodedItemAndUpdateDiscoveryState	Scripts-And-Script-Commands/reward-verbs.md	-	35
 function	0x00300B80	-	Story-Events-And-Hunts/shared-zone-script-actors.md	-	18
 function	0x00300BA0	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	13
 function	0x00300BC0	BattleStats_ModifySecondaryResource	Battle-Actions/concurrence-list.md	-	14
@@ -21866,7 +21866,7 @@ function	0x00325BB0	BattleUnit_UpdateCombatNavigationStep	Movement-And-Pathfindi
 function	0x00325D90	BattleUnit_CanAdvanceCombatNavigation	Battle-Actions/combos.md	-	17
 function	0x00325E60	-	Movement-And-Pathfinding/facing-and-steering.md	-	6
 function	0x00325EA0	-	Battle-Actions/area-of-effect.md	-	8
-function	0x00325F40	InventoryDerivedIndex_UpdateOnPresenceTransition	Engine-Core/item-and-ability-ids.md	-	16
+function	0x00325F40	InventoryDerivedIndex_UpdateOnPresenceTransition	Items-Equipment-Shops-And-Licenses/inventory.md	-	16
 function	0x00326030	GambitConfig_InitializeThreeBanksFromBasePairs	Enemy-AI-And-Gambits/gambits.md	-	16
 function	0x00326110	PartyConfiguration_SetEmptyIndexSelector	Party/party-members.md	-	11
 function	0x003261D0	PartyConfiguration_ReconcileRosterFromCurrentSelectors	Party/party-members.md	-	20
@@ -29566,7 +29566,7 @@ function	0x00572E10	-	Graphics/menu-effects.md	-	17
 function	0x005733F0	-	Menus-And-HUD/clan-primer.md	-	5
 function	0x005734C0	-	Graphics/menu-effects.md	-	5
 function	0x00573690	-	Graphics/menu-effects.md	-	5
-function	0x005738D0	-	Menus-And-HUD/clan-primer.md	-	8
+function	0x005738D0	-	Menus-And-HUD/menu-screens.md	-	8
 function	0x00573980	-	Graphics/menu-effects.md	-	9
 function	0x00573B40	-	Menus-And-HUD/menu-screens.tsv	-	5
 function	0x00573BE0	-	Game-Files-And-Data-Tables/ui-typed-lists.md	-	9
@@ -33568,7 +33568,7 @@ function	0x0061C1C0	-	PhyreEngine/phyre-d3d11-draws-and-state.md	-	6
 function	0x0061C250	-	Engine-Core/engine-types.tsv	-	7
 function	0x0061C2B0	-	PhyreEngine/phyre-d3d11-draws-and-state.md	-	7
 function	0x0061C540	-	PhyreEngine/phyre-application.md	-	7
-function	0x0061C550	-	Graphics/gi-render-commands.md	-	11
+function	0x0061C550	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	11
 function	0x0061C690	-	PhyreEngine/phyre-d3d11-draws-and-state.md	-	6
 function	0x0061C740	-	PhyreEngine/phyre-d3d11-draws-and-state.md	-	6
 function	0x0061C8A0	-	PhyreEngine/phyre-d3d11-draws-and-state.md	-	6
@@ -48750,7 +48750,7 @@ global	0x0208ED58	-	Menus-And-HUD/widgets.md	-	5
 global	0x0208ED5C	-	Menus-And-HUD/widgets.md	-	7
 global	0x0208F560	-	Menus-And-HUD/widgets.md	-	1
 global	0x0208F564	-	Menus-And-HUD/widgets.md	-	1
-global	0x0208F568	-	Menus-And-HUD/widgets.md	-	3
+global	0x0208F568	-	Menus-And-HUD/menu-screens.md	-	5
 global	0x0208F570	-	Engine-Core/subsystem-update-flags.md	-	18
 global	0x0208F574	-	Game-Files-And-Data-Tables/ui-typed-lists.md	-	3
 global	0x0208F578	-	Game-Files-And-Data-Tables/mrp-menu-resource-packages.md	-	1
@@ -52525,7 +52525,7 @@ global	0x02CA96D8	-	Menus-And-HUD/gambit-screen.md	-	1
 global	0x02CA96F8	-	Menus-And-HUD/gambit-screen.md	-	0
 global	0x02CA9700	-	Menus-And-HUD/gambit-screen.md	-	3
 global	0x02CA9708	-	Menus-And-HUD/gambit-screen.md	-	0
-global	0x02CA9718	-	Menus-And-HUD/clan-primer.md	-	3
+global	0x02CA9718	-	Menus-And-HUD/clan-primer.md	-	5
 global	0x02CA972C	-	Menus-And-HUD/menu-screens.md	-	1
 global	0x02CA9738	-	Game-Files-And-Data-Tables/handbook-files.md	-	6
 global	0x02CA9748	-	Game-Files-And-Data-Tables/tim2-images.md	-	2

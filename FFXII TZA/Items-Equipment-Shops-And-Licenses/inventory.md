@@ -17,8 +17,10 @@ addresses: "0x01EEBCC0, 0x003008A0, 0x002FD150, 0x002FD420, 0x00300B80, 0x0030B6
 
 ### Ids and classes
 
-Every thing the party can own has a 16-bit id whose top nibble is its class ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)).
-Each class has a `0x58`-byte descriptor in the table at `0x01EEBCC0`, fifteen rows indexed by the nibble.
+Every thing the party can own has a 16-bit id whose top nibble picks its descriptor record, one of the
+fifteen `0x58`-byte rows of the table at `0x01EEBCC0`. The record's inventory class is `nibble + 5`
+([Item and ability ids](../Engine-Core/item-and-ability-ids.md)); the tables of this page
+go by the nibble.
 
 A descriptor holds three region offsets into the party block (`+0x00`, `+0x18`, `+0x28`), the length of the first
 region in words (`+0x10`), the id count (`+0x3C`), a change handler (`+0x48`) and a query handler (`+0x50`). The
@@ -26,11 +28,11 @@ rebaser `0x0030B6A0` turns the offsets into pointers at `+0x08`, `+0x20` and `+0
 (`0x0030B6C0`-`0x0030B6ED`; [Party data](../Party/party-data.md)): each non-zero offset becomes the low 32 bits of
 offset plus block address, and a zero offset leaves its pointer as it was.
 
-It also writes each class's running id base at `+0x40` (`0x0030B6F1`-`0x0030B6F5`), zeroes the `0x200` bytes at `+0x57C8`,
-the whole loot sold tally (`0x0030B702`-`0x0030B737`), and masks the `0x80` bytes at `+0x59C8` with `0xF8`
+It also writes each record's running id base at `+0x40` (`0x0030B6F1`-`0x0030B6F5`), zeroes the `0x200` bytes at
+`+0x57C8`, the whole loot sold tally (`0x0030B702`-`0x0030B737`), and masks the `0x80` bytes at `+0x59C8` with `0xF8`
 (`0x0030B739`-`0x0030B75B`).
 
-| Nibble | Ids | Class | Storage |
+| Nibble | Ids | Holds | Storage |
 |---|---|---|---|
 | 0 | `0x0000`-`0x003F` | items | a count word each at `+0x4748`, and one ever-owned bit each at `+0x57C0` |
 | 1 | `0x1000`-`0x11A3` | equipment | a count word each at `+0x47C8` |
@@ -58,9 +60,9 @@ its query `0x002FD8D0` answers four kinds: 0 owned minus worn, 1 owned, 2 worn, 
 
 `0x003008A0(id, delta, absolute, channel, flags)` makes every change (`0x003008A0`-`0x00300B62`):
 
-1. It refuses `0xFFFF`, Unarmed `0x1000`, nibble F, and an index not below the class's id count
+1. It refuses `0xFFFF`, Unarmed `0x1000`, nibble F, and an index not below the record's id count
    (`0x003008C0`-`0x0030092C`).
-2. It reads the old value and calls the class's change handler, `+0x48` (`0x00300931`-`0x00300960`).
+2. It reads the old value and calls the record's change handler, `+0x48` (`0x00300931`-`0x00300960`).
 3. On channel 1, when the value goes from 0 or less to more than 0, it sets the first-acquisition marks in the
    party block's flag word `+4`, below (`0x00300968`-`0x00300B5A`).
 
@@ -79,9 +81,14 @@ A rise on channel 1 also sets the item's ever-owned bit (`0x002FD323`-`0x002FD34
 
 Neither handler has a channel 4: the packed handler returns 0 without writing
 (`0x002FD1B5`-`0x002FD1B9`), and the bit handler sets or clears the bit as for any channel. The bit handler
-ignores the channel: a result below 1 clears the bit and 1 or more sets it (`0x002FD49D`-`0x002FD4E5`). The bundle and
-gil classes act only on a relative channel-1 change and call `0x003008A0` again for each nested grant
-(`0x002FD53F`-`0x002FD8B4`). A package selector, `0xAxxx`, gives its second triple when `flags` bit `0x2` is set and its
+ignores the channel: a result below 1 clears the bit and 1 or more sets it (`0x002FD49D`-`0x002FD4E5`).
+
+The bundle handlers `0x002FD530`, `0x002FD640` and `0x002FD780` and the gil handler `0x002FD880` act only on a
+relative channel-1 change. The three bundle handlers call `0x003008A0` again for each nested grant
+(`0x002FD53F`-`0x002FD85D`). The gil handler makes no such call: it gives `max(0, gil + (id & 0xFFF) * count)`
+to the purse setter `0x00254EE0` (`0x002FD89A`-`0x002FD8B4`), which keeps the purse at most 99,999,999
+(`0x00254F07`-`0x00254F15`). A package selector, `0xAxxx`, gives its second triple when
+`flags` bit `0x2` is set and its
 first otherwise (`0x002FD6BA`).
 
 Most callers use three wrappers. `0x00300B80(id, delta, flags)` is a relative channel-1 change, for adding and
@@ -142,18 +149,18 @@ The table `0x02092760` holds 8 bytes per list:
 
 | List | Holds | Capacity | Place in the payload |
 |---|---|---:|---|
-| 0 | items (class 0) | 64 | `+0x38CC` |
+| 0 | items (id nibble 0) | 64 | `+0x38CC` |
 | 1 | weapons: equipment classes 0-17 | 200 | `+0x394C` |
 | 2 | shields, helms and body armour: equipment classes 18-20 | 140 | `+0x3ADC` |
 | 3 | accessories: equipment classes 21 and 22 | 48 | `+0x3BF4` |
 | 4 | ammunition: equipment classes 23-26 | 32 | `+0x3C54` |
-| 5 | gambit presets (class 5, ids `0x5000`-`0x5027`: the 40 rows of `gambit_data`) | 40 | `+0x3C94` |
-| 6 | gambits (class 6) | 256 | `+0x3CE4` |
-| 7 | class 7, which has no ids | 0 | `+0x3EE4`, list 8's place (`0x00253387`-`0x00253397`) |
-| 8 | technicks (class 4) | 24 | `+0x3EE4` |
-| 9 | magicks (class 3) | 81 | `+0x3F14` |
-| 10 | key items and maps (class 8) | 512 | `+0x3FB6` |
-| 11 | loot (class 2) | 512 | `+0x43B6` |
+| 5 | gambit presets (id nibble 5, ids `0x5000`-`0x5027`: the 40 rows of `gambit_data`); record 5 has an id count of 0, so `0x003008A0` refuses these ids (`0x00300920`-`0x0030092C`); it has no change handler either | 40 | `+0x3C94` |
+| 6 | gambits (id nibble 6) | 256 | `+0x3CE4` |
+| 7 | id nibble 7, which has no ids | 0 | `+0x3EE4`, list 8's place (`0x00253387`-`0x00253397`) |
+| 8 | technicks (id nibble 4) | 24 | `+0x3EE4` |
+| 9 | magicks (id nibble 3) | 81 | `+0x3F14` |
+| 10 | key items and maps (id nibble 8) | 512 | `+0x3FB6` |
+| 11 | loot (id nibble 2) | 512 | `+0x43B6` |
 
 The lists end at `+0x47B6`. List 7 has capacity 0 and shares list 8's array. That is why twelve list numbers cover
 eleven arrays.
@@ -171,9 +178,14 @@ How an id reaches its list:
 2. `0x00325F40` first asks the id check `0x00322C50(1, id, 0)` and returns for an id it refuses
    (`0x00325F55`-`0x00325F67`). It adds the id when `before` is 0 and `after` is not, removes it in the opposite
    case, and returns when both are 0 or neither is (`0x00325F6D`-`0x00325F8A`).
-3. It picks the list from the class through the byte maps at `0x01EED1B0`, 16 bytes per class 0-10
-   (`0x00325FF0`-`0x00326016`). Equipment picks by its row's class byte `+0x09`, from the 27 bytes at `0x00D10690`
-   ([Equipment row](equipment-row.md)). Classes 9 and 10 have no map, and a class above 10 is passed over.
+3. It picks the list from the id nibble through the table at `0x01EED1B0`, one 16-byte entry per nibble
+   0-10: a pointer to a byte map and the map's length (`0x00325FF0`-`0x00326016`). Nibbles 0 and 2-8 each have a
+   1-byte map and read its byte 0 (`0x00325FE7`). Equipment, nibble 1, reads the byte at its row's class byte
+   `+0x09` (`0x00325FD9`) of the 27 bytes at `0x00D10690` ([Equipment row](equipment-row.md)).
+4. Nibbles 9 and 10 have no map and are passed over (`0x00325FFA`-`0x00326001`), as are a nibble above 10
+   (`0x00325FE9`-`0x00325FEC`), an index not below the map's length (`0x00326003`-`0x0032600C`) and a negative map
+   byte (`0x00326010`-`0x00326016`). Otherwise the map byte is the list number, passed with `id << 16` to the
+   list function (`0x00326018`-`0x0032601D`).
 
 The list functions:
 
@@ -195,7 +207,7 @@ The list functions:
 
 ### Writes that bypass the change function
 
-- The clear-all `0x003047F0` stores 0 in the first region of each of the fifteen class descriptors whose pointer
+- The clear-all `0x003047F0` stores 0 in the first region of each of the fifteen descriptor records whose pointer
   `+0x08` is set, `+0x10` words from that pointer (`0x00304801`-`0x0030483B`, `0x0030482A`): the item, equipment and
   loot count words and the magick, technick, gambit, key item and Quickening bit words. The other two regions, the
   items' ever-owned bits `+0x57C0` and the loot's sold tallies `+0x57C8`, are not written.

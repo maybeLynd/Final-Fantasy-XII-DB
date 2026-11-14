@@ -411,8 +411,18 @@ elements, with flag 4 when buffer flag 2 is set, else flag 2 when buffer flag 4 
 ### Sampler filters
 
 The sampler builder `0x0061D9C0` turns the engine's filter bytes into a `D3D11_FILTER` with
-`0x0061C080(min, mag, comparison, maxAnisotropy)`. A maximum anisotropy of 2 or more gives `0x55`
-(anisotropic); a comparison sampler adds `0x80` to every result.
+`0x0061C080(min, mag, comparison, maxAnisotropy)`. A maximum anisotropy of 2 or more gives `0x55` (anisotropic);
+a comparison sampler adds `0x80` to every result.
+
+`0x0061D9C0(sampler)` returns 0 at once when `+0x20` is already set (`0x0061D9DE`), and when the device pointer
+`+0x108` of the context `0x005FD050` answers is null it creates nothing and returns 0
+(`0x0061D9EC`-`0x0061D9FC`).
+
+Otherwise it calls the device's `CreateSamplerState` (`+0xB8`) into `+0x20` (`0x0061DB1C`-`0x0061DB77`)
+and returns `0xE` when that answers a negative value or leaves `+0x20` null
+(`0x0061DB82`-`0x0061DB8D`, `0x0061DBD0`). After a successful call it passes the new object, the sampler,
+the text `PSamplerState` and the sampler again to `0x0061C550` (`0x0061DB86`-`0x0061DB9C`), sets bit `0x80`
+of `+0x1C` (`0x0061DBA1`-`0x0061DBA8`) and returns 0.
 
 | `min` | `mag` 0 | `mag` non-zero |
 |---|---|---|
