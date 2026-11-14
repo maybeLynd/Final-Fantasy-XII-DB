@@ -111,12 +111,12 @@ The JSON library is identified by its namespace in three RTTI type names,
 
 This copy keeps its strings and containers in EASTL:
 
-- `0x001FF740`, the lookup by C string, builds an EASTL string (allocator name "EASTL basic_string")
+- `0x001FF740`, the lookup by C string, builds an EASTL string
   from the key and calls the string lookup `0x001FF6B0`. `0x001FF6B0` first makes a value whose tag is not 3 an
-  empty "EASTL map" (`0x001FF6CF`-`0x001FF713`), and `0x001FF4F0` inserts an entry with tag 6 for a key the map lacks
+  empty EASTL map (`0x001FF6CF`-`0x001FF713`), and `0x001FF4F0` inserts an entry with tag 6 for a key the map lacks
   (`0x001FF5E1`, `0x001FFD40`), so the lookup always returns a value; `0x001FF740` frees its string and returns it.
-- The value parser `0x00200E60` reads one character and builds an object as an "EASTL map" on `{`
-  and an array as an "EASTL vector" on `[`.
+- The value parser `0x00200E60` reads one character and builds an object as an EASTL map on `{`
+  and an array as an EASTL vector on `[`.
 
 `0x00200BF0(value, path)` is the file reader the game uses: it opens the path through the engine's
 file stream (`0x00597970`), copies the whole file into memory, wraps it in a string stream and parses

@@ -94,8 +94,10 @@ entries 0 and 1 are `{4, 2, 0, 0}` and `{4, 3, 0, 0}`, entry 4 is `{4, 4, 3, 0}`
 rest are zero.
 
 The mode-4 arm acts only on an entry whose second value is 4 and whose third is 11, 12 or 13, the
-mouse buttons, or 3, the wheel (`0x001972C7`-`0x0019734F`). So entry 4 is the wheel, and entries 0, 1 and 6 do nothing:
-entry 6's 3 is in its fourth value, which this arm does not read.
+mouse buttons, or 3, the wheel (`0x001972C7`-`0x0019734F`). An entry whose second value is not 4 only calls
+`GetForegroundWindow`, and drops its answer, while byte `+0xC35` of the object `0x001D50D0` returns is set
+(`0x001973C8`-`0x001973E0`). So entry 4 is the wheel, and entries 0, 1 and 6 change nothing in the frame: entry 6's 3
+is in its fourth value, which this arm does not read.
 
 The two extra blocks turn movement keys into direction buttons. Mode bit `0x2` makes `0x00196DF0` build three records at
 `0x01F80550` whose Up, Right, Down and Left are each profile's movement keys. Mode bits `0x1` and `0x4` build the same at

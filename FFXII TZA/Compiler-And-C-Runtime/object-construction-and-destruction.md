@@ -228,7 +228,7 @@ compiler and library forms by function address; each was profiled against the im
 | `nativeleaf-refflag40strideaccessor`, `-72strideaccessor` | 4 and 4 element accessors with inline storage |
 | `malloc-record-emplace-adapters` | 14 bodies that `malloc` a record and append it to a vector |
 | `nativeadapter-lazysingletonallocinit` | 4 null-checked singletons allocated through `0x00210EC0` |
-| `nativeadapter-multirecordvtableinit` | 4 constructors building EASTL containers with named allocators |
+| `nativeadapter-multirecordvtableinit` | 4 constructors building EASTL containers |
 | `nativeadapter-containerpopfront`, `-countedemberloop`, `-boundedrangecopycompare` | 4 each: container pops, loops and keyed lookups |
 | `nativeadapter-flaggedteardownchain` | 4 teardowns that close an event record only when its flag is set |
 | `intrusive-virtual-node-dispose-loop`, `nativeleaf-listwalkvcallslot3` | 12 and 4 list clears through the allocator's slot `+0x18` |

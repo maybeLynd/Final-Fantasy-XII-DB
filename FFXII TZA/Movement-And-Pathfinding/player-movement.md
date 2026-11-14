@@ -116,9 +116,9 @@ rotates it into camera space with `0x004742A0(0x022C7FA0, 0x022C7FD0, v, placeme
 A null placement, from a null actor, controller `+0xC0` or body `+0x138` (`0x00265970`), returns before the store
 and leaves `0x022C7FD0` as `0x00358C60` zeroed it (`0x00358D03`).
 
-The rotation keeps a camera basis at `0x022C7FA0`: a vector shorter than 0.01 zeroes the output and
-marks the basis stale (`+0`); `0x002DDCF0()` or a stick yaw (`atan2(v.x, v.z)`) more than `0.3927`
-from the cached yaw `+8` also marks it stale, and a stale basis is rebuilt from the two camera rows
+The rotation keeps a camera basis at `0x022C7FA0`: a vector of length 0.01 or less sets the output to (0, 0, 0, 1.0)
+(`0x0047457D`-`0x0047458E`) and marks the basis stale (`+0`); `0x002DDCF0()` or a stick yaw (`atan2(v.x, v.z)`) more
+than `0.3927` from the cached yaw `+8` also marks it stale, and a stale basis is rebuilt from the two camera rows
 `0x02AEDF30 + 16 k` (`k` from `0x00D22690`, y zeroed, normalised).
 
 The output is `(row0.x v.x - row1.x

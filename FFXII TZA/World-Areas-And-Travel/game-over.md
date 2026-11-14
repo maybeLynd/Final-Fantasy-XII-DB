@@ -200,14 +200,19 @@ runs `0x003EF680` and message `0x13` `0x003EF770`, each with the payload byte (`
 other than 1, 2, `0x0C`, `0x10` and `0x12` go to `0x005C5230(task)`, whose answer it returns (`0x003EF872`); every
 other path returns 0.
 
-The image task `0x003EF2E0` fades the music with `0x002DEE50(0x002DEC00(), 30)`, fades the loaded images
-over 30 frames (`0x003611F0(0x1E)`) and sets the fade rate `0x003634B0(0x3C)`. Its create arm also sets state 0
+The image task `0x003EF2E0` fades the music with `0x002DEE50(0x002DEC00(), 30)` (`0x003EF44C`-`0x003EF45A`). It marks each
+loaded music track slot as fading and ends its track once the count `30 / [0x01F3DA18] + 1` runs out, emptying a
+ready slot and flagging any other for release (`0x003611F0(0x1E, 1)`, which starts the task `0x00361080` for each
+slot: `0x00361263`-`0x003612FB`, `0x003610FA`-`0x00361139`), and fades the map sound volume to 0 over 60 frames
+(`0x003634B0(0x3C, 0)`).
+
+Its create arm also sets state 0
 with a count of 15 at `+0xC8` and calls `0x00246AD0(game-over task, self)` (`0x003EF476`-`0x003EF491`). Its tick
 (message 2) runs only when `0x001EDEC0` on `+0xB4` answers non-zero, and messages other than 1 and 2 go to
 `0x005C5230` (`0x003EF301`). Its states:
 
 - state 0 counts down 15 frames, runs `0x00363560` and `0x0024D050`, and once `0x002F1A30(1)` is 0 loads
-  image 7 with `0x00361630(7)`: a slot of the four-entry image table at `0x022CB9F0` (Layouts); when
+  music track 7 with `0x00361630(7)` into one of the four music track slots at `0x022CB9F0` (Layouts); when
   no slot is free (`-1`) it releases every slot with `0x00360D70` and retries from state 1;
 - `0x00361630` also answers -1 when the first free slot is slot 2 or 3 (Layouts); state 1 calls `0x00361630(7)` on
   every tick until it answers 0 or more, and either state then goes to state 2 with a count of 0
@@ -242,7 +247,7 @@ The prompt task's create record, like the logo task's below, is {0, the game-ove
 the last two sign-extended from 32 bits (`0x003EF7BB`-`0x003EF7E8`, `0x003EFC16`-`0x003EFC48`). States 0, 2, 3 and 4 do
 nothing in `0x003EFAA0` (`0x003EFAFA`); `0x003EF770` and `0x003EF680` move the task out of them.
 
-1. State 1 waits until the image slot is ready (image task state 3) and message `0x10` has
+1. State 1 waits until the music track slot is ready (image task state 3) and message `0x10` has
    arrived (`+0xF0`). It then spawns the logo task `0x003EF4A0` (`0xD0` bytes) at `+0xE0`, starts music track 7
    at full volume with `0x002DECE0(7)` (`0x003EFC69`; [Music](../Sound-And-Music/music.md)) and goes to state 2.
    - The music and step 2 below run only when the image task's state byte reads 3 again after the spawn
@@ -277,8 +282,8 @@ nothing in `0x003EFAA0` (`0x003EFAFA`); `0x003EF770` and `0x003EF680` move the t
      and other messages go to `0x005C5230` (`0x003EF233`).
 5. Message `0x0F` with payload 3 runs `0x003EF680`: the logo task is killed, `0x00250C50(100)` and
    `0x00251EA0(0.8, 0x78)` run, the timing task is set to state 4 for 180 frames and, unless the image
-   task has already ended, the music fades over 120 frames and the images over 240
-   (`0x003611F0(0xF0, 1)`, `0x003634B0(0xF0, 0)`, image state 6). The parent waits 60 frames and goes to
+   task has already ended, the music fades over 120 frames, the loaded tracks are set to end and the map sounds
+   fade over 240 (`0x003611F0(0xF0, 1)`, `0x003634B0(0xF0, 0)`, image state 6). The parent waits 60 frames and goes to
    state 5.
    - `0x003EF680` returns at once for any other payload (`0x003EF683`). The full calls are `0x00250C50(100, 180)` and
      `0x00251EA0(0.8, 0x78, 0)` (`0x003EF6A9`-`0x003EF6C5`), and the image task's count `+0xC8` becomes 240
@@ -286,7 +291,8 @@ nothing in `0x003EFAA0` (`0x003EFAFA`); `0x003EF770` and `0x003EF680` move the t
    - It reads the timing task `+0xD8` with no null test (`0x003EF6A2`-`0x003EF6D1`).
 6. State 5 fades layer 2 to black over 60 frames (`0x002EFA70(2, 0x3C, 0)`), waits 120 frames and goes
    to 6. State 6 runs `0x003EF290(image, 1)` when the image task's end flag is set (a one-frame music
-   fade and a two-frame image fade), then 7. State 7 waits for image task state 7 and destroys it
+   fade; the loaded tracks end after a count of `2 / [0x01F3DA18] + 1` and the map sounds fade over 2 frames),
+   then 7. State 7 waits for image task state 7 and destroys it
    (`0x00244F00`), then 8.
    - `0x003EF290(image, n)` runs `0x002DEE50(0x002DEC00(), n, 0)`, `0x003611F0(2n, 1)` and `0x003634B0(2n, 0)` and puts
      the image task in state 6 with a count of `2n` (`0x003EF29F`-`0x003EF2D2`).
@@ -364,7 +370,7 @@ bit `0x1`: when all five are 0 it clears bit `0x80` through `0x003601C0(7)`, oth
    `0x0035EA30(0)` until `0x001DBD00` returns 0 ([audio manager](../Sound-And-Music/audio-manager.md));
    - `0x001DC330(-1)` is reached through the jump `0x002DF690` (`0x0036025F`), and `0x002DEE90(-1)` runs twice more,
      before `0x002DEB90(1)` and after `0x005C5230` (`0x00360267`, `0x0036027E`);
-4. the bits `0x1C` of the layer mask are cleared through `0x002DF370(0x1C, 0, 1)` and every image slot is
+4. the bits `0x1C` of the layer mask are cleared through `0x002DF370(0x1C, 0, 1)` and every music track slot is
    released (`0x00360D70`), with `0x0035EA30(0)` before and after the release (`0x00360293`, `0x0036029F`);
 5. `0x022CB726 = 1`; `0x022CB727`, `0x022CB72A` and `0x022CB72B` are cleared;
 6. `0x002EF840(0)` to `0x002EF840(6)`, `0x002F1A70`, `0x003DE210`, `0x003DE0A0`, `0x002EFE40(6)`,
@@ -462,12 +468,12 @@ Struct GameOverTask size=`0x108`   (`0x00244F50`(`0x108`, `0x003EF830`, 0); `0x0
 | `+0x0F8` | `reg` |  | texture registration (`0x00393460`) |
 | `+0x100` | `void*` |  | gameover.mrp buffer (`0x003933F0`) |
 
-Struct ImageSlot base=`0x022CB9F0` count=4 size=`0x18`   (`0x00361630` loads, `0x00360C20` reads, `0x00360D70` releases):
+Struct MusicTrackSlot base=`0x022CB9F0` count=4 size=`0x18`   (`0x00361630` loads, `0x00360C20` reads, `0x00360D70` releases):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8` |  | state: 0 free, 3 loading, 4 loaded, 5 ready; `0x00360D70` releases state 5 and flags the rest (a state-5 slot gets `0x002DEDE0`(id), `0x002DEC20`(id) and state 0; other used slots get flags bit `0x1`) `0x00361630`(id): -1 for a negative id; a used slot with the id gets flags bits `0x1` and `0x2` cleared and returns `+0x03`; else the first free slot, only when it is slot 0 or 1 (`0x0036169A`), gets state 3, the id, `+0x08` = 0, `+0x10` = 0, `+0x14` = `0x002DEC70`(id), cleared flags and state 4, and returns `+0x03`; otherwise -1. `0x00360C20`(id): the state of the used slot holding the id, or -1 |
-| `+0x01` | `u8` |  | image id (7 = gameover_c) |
+| `+0x01` | `u8` |  | music track id (7 from the game-over helper `0x003EF2E0`) |
 | `+0x02` | `u8` |  | flags: bit `0x1` release requested, bit `0x2` fading (`0x00361200`) |
 | `+0x03` | `u8` |  | result byte returned by `0x00361630` |
 | `+0x08` | `void*` | payload |  |
@@ -513,7 +519,7 @@ Request and mode:
 | `setnowjumpindex(-2)` | 1,146 calls in 183 scripts: the 81 crystal scripts and 102 others, each around a save screen |
 | save screens opened (`openfullscreenmenu_48d(0x8005, …)`) | 1,148 calls |
 | `mapjump` calls | 7,356; no call passes a negative entrance, so the `-2` alias is only ever set through `setnowjumpindex` |
-| GAME OVER image | `gameover_c.tm2` under each language's `Tm2_Menu` folder; image id 7 in the slot table |
+| GAME OVER image | `gameover_c.tm2` under each language's `Tm2_Menu` folder, registered at the game-over task's `+0xF8` (`0x00393460`) |
 | pause texts | `0x85F` "This will return you to the title screen. Are you sure?", `0x890` "This will close FINAL FANTASY XII THE ZODIAC AGE. Are you sure?" |
 | title map | field `0x0C` is `ttl_a01` ([zone changes](zone-changes-and-mapjump.md)) |
 | display count before the prompt | `0x564`, `0x3DE` or `0x3A2` frames by `0x002DDCA0()` = 1, 2 or other |
@@ -537,7 +543,7 @@ rest is the same.
 
 The root block's `+0x3FC`, `+0x400`, `+0xDEE` and `+0xDEF`; the request bytes `0x0215F1A0` to
 `0x0215F1A8`; `0x022C83E8` bits `0x2` and `0x100`; the mode words `0x02092730`, `0x02092734` and `0x020927D8`; the
-game-over task, its four helpers and `0x02B5F1C8`; the image slot table; the title bytes `0x022CB720`
+game-over task, its four helpers and `0x02B5F1C8`; the music track slot table; the title bytes `0x022CB720`
 to `0x022CB72B`; the layer mask `0x0215EFD8`; the input groups locked by `0x00254850` and `0x00254940`; the
 actors' halt class `0x16`; `0x022C3158` to `0x022C3178` after a crystal touch.
 

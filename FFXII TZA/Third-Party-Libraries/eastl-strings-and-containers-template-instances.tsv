@@ -25,20 +25,20 @@ entry	bytes	operation	evidence
 0x001E5290	218	vector resize, 0x220-byte elements	grows through 0x001E1DD0 with a zeroed element; shrinks through 0x001E12C0
 0x001E6FD0	467	template constructor (as 0x001997F0), 16-byte elements	"""EASTL vector"" at +0x00, two ""EASTL set"" trees at +0x20 and +0x58, the lock at +0x90 (0x005CC8A0), the flag at +0xB8; inserts each element's address into the first set (0x00199DB0)"
 0x001FC2E0	52	vector release at +0x08, 4-byte elements	free slot +0x18 of the allocator at +0x20; reached only from the unwind funclet 0x00898AAC
-0x001FC420	339	map operator[], int key at node +0x20, value an EASTL map	"walks from the root +0x18; inserts a default value through 0x001FCCE0 with an allocator named ""EASTL map"""
-0x001FC640	303	map operator[], u32 key at node +0x20, value a vector of 4-byte elements	"inserts a default value through 0x001FD310 with an allocator named ""EASTL vector"""
+0x001FC420	339	map operator[], int key at node +0x20, value an EASTL map	"walks from the root +0x18; inserts a default value through 0x001FCCE0; the ""EASTL map"" string it passes to 0x001EDF00 (0x001FC487-0x001FC492) is not kept"
+0x001FC640	303	map operator[], u32 key at node +0x20, value a vector of 4-byte elements	"inserts a default value through 0x001FD310; the ""EASTL vector"" string it passes to 0x001EDF00 (0x001FC6AD-0x001FC6B9) is not kept"
 0x001FC770	274	tree copy, 0x28-byte nodes with an 8-byte value at +0x20	allocates through slot +0x10 of the allocator at +0x30; copies the colour byte; recursive on the left link, iterative on the right
 0x001FD9A0	189	tree erase, 0x60-byte nodes holding a map at +0x28	clears the inner map's 0x28-byte nodes through 0x00220390 and slot +0x18, then frees the node
 0x001FDAC0	143	tree erase, 0x48-byte nodes holding a vector of 4-byte elements at +0x28	frees the vector through slot +0x18 of its allocator at +0x40, then the node
 0x001FDF90	137	vector resize, 4-byte elements	grows through 0x001FD780 with the value 0; shrinks by moving the end
-0x001AE550	347	map operator[], u32 key at node +0x20, value an EASTL string	"walks from the root +0x18; inserts an empty string (0x02EBA2E0, 0x001A4BF0) with an allocator named ""EASTL basic_string"" through 0x001AEC30; it serves the thread-name map 0x02EB37B8 of 0x008636E0"
+0x001AE550	347	map operator[], u32 key at node +0x20, value an EASTL string	"walks from the root +0x18; inserts an empty string (0x02EBA2E0, 0x001A4BF0) through 0x001AEC30 (the ""EASTL basic_string"" string it passes to 0x001EDF00, 0x001AE5BE-0x001AE5C9, is not kept); it serves the thread-name map 0x02EB37B8 of 0x008636E0"
 0x001AE6B0	271	tree copy, 0x30-byte nodes with a 16-byte value at +0x20	allocates through slot +0x10 of the allocator at +0x30; copies the colour byte +0x18; recursive on the left link, iterative on the right
 0x001B90F0	368	copy constructor, 0x2A8-byte ChrModel	writes the ChrModel vtable; the map at +0x10 copy-constructed through 0x001B9020; copies the plain fields and the two 0x100-byte blocks at +0xA0 and +0x1A0
-0x001B9260	258	default constructor, 0x2A8-byte ChrModel	"the ChrModel vtable, an empty map at +0x10 with an allocator named ""EASTL map"", zeroed fields and blocks, +0x2A0 = -1, then 0x001BA910"
+0x001B9260	258	default constructor, 0x2A8-byte ChrModel	"the ChrModel vtable, an empty map at +0x10 (the ""EASTL map"" string it passes to 0x001EDF00, 0x001B928D-0x001B9299, is not kept), zeroed fields and blocks, +0x2A0 = -1, then 0x001BA910"
 0x001B9910	94	destructor, 0x2A8-byte ChrModel	restores the vtable, zeroes +0x58 to +0x97 and destroys the map at +0x10 (0x001BA910, 0x001B9750); reached from the unwind funclets 0x00897AC0 and 0x00897B10
 0x001BBE00	316	vector resize, 0x2A8-byte ChrModel elements	grows through 0x001BA470 with a default element from 0x001B9260; shrinks through 0x001BA990
 0x001BC950	126	copy constructor, an 8-byte key followed by an EASTL list of 32-byte nodes	copies the key and the allocator (0x001EDF00) and the nodes through 0x001BC8C0
-0x001BCE30	372	map operator[], 8-byte key at node +0x20, value an EASTL list	"inserts an empty list with an allocator named ""EASTL list"" through 0x001BD1B0, then frees the temporary lists' 32-byte nodes through slot +0x18"
+0x001BCE30	372	map operator[], 8-byte key at node +0x20, value an EASTL list	"returns the mapped list at node +0x28 (0x001BCF90); for a missing key it first inserts an empty list through 0x001BD1B0 (0x001BCF26). The ""EASTL list"" string it passes to 0x001EDF00 (0x001BCE97-0x001BCEA2) is not kept: 0x001EDF00 writes only the allocator vtable 0x00902720. Its two temporary lists stay empty, so the free loops through slot +0x18 run no iteration (0x001BCF37, 0x001BCF68)"
 0x001BCFB0	138	tree node erase, 0x40-byte nodes holding a list at +0x28	frees the list's 32-byte nodes through slot +0x18 of its allocator at +0x38, then the node through the tree's allocator at +0x30
 0x001BE520	114	copy backward, 0x28-byte string elements with an 8-byte value at +0x20	assigns each string through 0x001A5760 and copies +0x20
 0x001BE5A0	186	uninitialised move, 0x28-byte string elements with an 8-byte value at +0x20	copies the allocator (0x001EDF00), swaps the three pointers with the source and copies +0x20
@@ -51,6 +51,6 @@ entry	bytes	operation	evidence
 0x001F4C00	80	uninitialised copy, 0x18-byte CharacterOrderedObject elements	writes the OrderedObject and then the CharacterOrderedObject vtable and copies the two fields; 0x001F57E0 calls it
 0x001F57E0	928	vector insert n, 0x18-byte CharacterOrderedObject elements	grows to max(size + n, 2 x size, 1) through slot +0x10, copies through 0x001F4C00 and the inline vtable writes, calls each old element's slot 0 and frees the old buffer through slot +0x18
 0x001F8A70	182	vector resize, 0x18-byte CharacterOrderedObject elements	grows through 0x001F57E0 with a default element from 0x002152E0 (destroyed through 0x00215310); shrinks through 0x001E3D80
-0x001FB360	122	"map constructor, empty, allocator named ""EASTL map"""	points the anchor at +0x10 at itself; 0x001ADD30 and 0x001B1B10 call it
+0x001FB360	122	map constructor, empty	"points the anchor at +0x10 at itself; the ""EASTL map"" string it passes to 0x001EDF00 (0x001FB374-0x001FB385) is not kept; 0x001ADD30 and 0x001B1B10 call it"
 0x001FB770	133	map store, int key c x 2 + d at node +0x20, pointer value at +0x28	inserts a node through 0x001FB470 when the key is missing, then stores the value; 0x001B20B0 calls it
 0x0021A920	201	map copy constructor, 0x30-byte nodes	copies the allocator (0x001EDF00) and the tree through 0x001AE6B0, then finds the leftmost and rightmost nodes and copies the count +0x28

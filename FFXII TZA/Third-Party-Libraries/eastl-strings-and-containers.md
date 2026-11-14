@@ -153,15 +153,18 @@ On insert the side is 0 (left) when the parent is the anchor or the key is below
 
 ### Static strings and containers built at start-up
 
-64 entries of the start-up initialiser table build EASTL objects. Each constructs the named allocator,
+64 entries of the start-up initialiser table build EASTL objects. Each constructs the allocator,
 fills the object and registers its destructor with `atexit` (`0x00808B90`). `0x0015D610` is typical: it
 allocates 5 bytes for `null`, copies 4, terminates, and registers `0x008A70F0`. An initialiser for an
 empty literal (`0x0015C560`, text `0x01CEB638`) takes the shared byte instead and copies 0 bytes. Two
 more (`0x0015D2F0`, `0x0015DBB0`) build an empty string with no copy at all, and four build empty
 containers (`0x0015D230` a vector, `0x001601C0` a list, `0x0015D260` and `0x0016A2C0` maps).
 
-`0x0015C560` builds the current cut name `0x01F81358`. It constructs the allocator twice, a stack temporary named
-`EASTL basic_string` and then the member `0x01F81370` (`0x0015C576`, `0x0015C59B`). The length is computed as
+`0x0015C560` builds the current cut name `0x01F81358`. It constructs the allocator twice, a stack temporary passed
+the name `EASTL basic_string`, which `0x001EDF00` does not keep, and then the member `0x01F81370` (`0x0015C576`,
+`0x0015C59B`).
+
+The length is computed as
 `esi - esi + 1`, always 1 (`0x0015C5A7` to `0x0015C5AB`), so the shared-byte branch is always taken (`0x0015C5B0`,
 `0x0015C600` to `0x0015C60E`). `memmove` copies 0 bytes (`0x0015C61E`), `end` is set to the shared byte (`0x0015C624`),
 the terminator 0 is written into the shared byte `0x02EBA2E0` itself (`0x0015C632`), and the routine tail-jumps to
@@ -210,12 +213,13 @@ The string bodies follow the rules under Strings: `0x001B38B0` and `0x001A4BF0` 
 
 | Column | Holds |
 |---|---|
-| `evidence` | the instructions that show the body is the operation in `operation`: calls through the container allocator's vtable (slot `+0x10` allocates, slot `+0x18` frees), construction of the named allocator through `0x001EDF00`, the shared empty byte `0x02EBA2E0`, the growth rule of a string or vector, or the other container bodies it calls, with their addresses |
+| `evidence` | the instructions that show the body is the operation in `operation`: calls through the container allocator's vtable (slot `+0x10` allocates, slot `+0x18` frees), construction of the allocator through `0x001EDF00`, the shared empty byte `0x02EBA2E0`, the growth rule of a string or vector, or the other container bodies it calls, with their addresses |
 
 ### JsonBox values
 
-JsonBox stores parsed JSON in EASTL containers. Its reader `0x00200E60` constructs allocators named
-`EASTL map`, `EASTL vector` and `EASTL basic_string` for objects, arrays and strings, and its object
+JsonBox stores parsed JSON in EASTL containers. Its reader `0x00200E60` builds objects as EASTL maps, arrays as
+EASTL vectors and strings as EASTL strings (the names it passes to `0x001EDF00` at `0x002011C3`, `0x00201234` and
+`0x0020130A` are not kept), and its object
 reader `0x00201C40` carries JsonBox's message `Expected '"', got '` (`0x00905008`). `0x00200BF0` reads a
 whole file into a stream and hands it to `0x00200E60`; the screen-layout files are read this way.
 

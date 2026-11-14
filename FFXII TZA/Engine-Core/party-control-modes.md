@@ -217,9 +217,11 @@ thunks; the level-1 predicate has 7 direct and 9 through its thunk. The ones rea
   - level 2: entry 3 becomes row `0x1A` in the first and third maps and -1 in the second; the
     other entries are -1 except the rider's in the second map and entries 0 to 2 of the third;
   - level 3: the third map is first restored to its contents from before the rebuild, the town's
-    row is looked up in it (entry 3 when the row is `0xFF` or absent), and only that entry survives
-    in the first two maps;
-  - level 4: only the leader's entry survives, with the town's row standing in under the flag;
+    row is looked up in it (entry 3 when the row is absent; `0x00377C70` answers 0 to 7, never `0xFF`), and only
+    that entry survives in the first two maps;
+  - level 4: only the leader's entry survives; under the town flag (`0x00377C20`) the surviving entry is
+    instead the controlled member's seat (`0x003272F0`) holding the town's row, and when that seat or the
+    leader's entry is not among entries 0 to 3 all four become -1 (`0x0032683F`-`0x003268EE`);
     level 5 does the same after restoring the third map and rewrites only the first two;
   - each changed entry goes through `0x0023A570`, then `0x00326500` runs and the active count
     `0x022C2670` is recounted.

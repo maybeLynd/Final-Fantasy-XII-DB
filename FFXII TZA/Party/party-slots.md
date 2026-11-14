@@ -79,9 +79,9 @@ whose result it does not use (`0x00329CD5`), and the leader selector is stored a
 
 ### Rebuilding the copies
 
-`0x003266C0` rebuilds maps 1-4 from map 0 (`0x003266C0`-`0x00326B97`). It first makes maps 1 and 3 copies of map 0,
-empties the reserve of map 1, and makes maps 2 and 4 copies of map 1, after saving map 4
-(`0x003266F4`-`0x0032674B`). Then it adjusts the four active seats by the party control mode `0x0030D9A0`
+`0x003266C0` rebuilds maps 1-4 from map 0 (`0x003266C0`-`0x00326B97`). It first calls `0x00311E20` (`0x003266EF`), then
+makes maps 1 and 3 copies of map 0, empties the reserve of map 1, and makes maps 2 and 4 copies of map 1, after
+saving map 4 (`0x003266F4`-`0x0032674B`). Then it adjusts the four active seats by the party control mode `0x0030D9A0`
 ([Party control modes](../Engine-Core/party-control-modes.md)):
 
 | Mode | Seats 0-3 of maps 1, 2 and 4 | Sites |
@@ -97,9 +97,14 @@ In modes 4 and 5 the leader's seat is that of the leader selector `+0x5AA4`, or 
 member's seat (`0x003267B7`-`0x003267E8`, `0x0032686E`-`0x0032689F`).
 
 Then, for each active seat whose battle unit holds a different member than map 1 now says, the unit is given
-the new member (`0x0023A570`); a unit that changes member while down is torn down first (`0x00326A40`-`0x00326B18`). At
-the end `0x00326500` picks the controlled member and `0x022C2670` counts the fighting members that are standing
-(`0x00326B1E`-`0x00326B97`).
+the new member (`0x0023A570`). A unit that changes from one member to another gets `0x00300E40(unit, 0)` before that
+when its first byte has bit `0x2` clear and either it has no stats record `+0x698` or that record's dwords
+`+0x64` and `+0x3C` together have a bit of `0x80000003` set while `0x00313F60()` answers 0 (`0x00326AAE`-`0x00326ADA`;
+whole loop `0x00326A40`-`0x00326B18`).
+
+At the end `0x00326500` picks the controlled member, and `0x022C2670` counts the seats 0 to 3 that
+`0x00322C50(0x17, seat, 0)` accepts, whose member byte is `0x27` or less and whose party record has none of the bits
+`0x80000003` set, or has them while `0x00313F60()` answers non-zero (`0x00326B1E`-`0x00326B97`).
 
 ### The snapshot a menu takes
 

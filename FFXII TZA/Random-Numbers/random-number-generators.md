@@ -112,8 +112,8 @@ save enters its area through the restore path `0x00314530`, which requests manag
 
 ### The graphics-noise Mersenne Twister
 
-A second MT19937 instance lives in a caller-supplied block at `0x01F7F600`: 624 words, then a cursor
-pointer at `+0x9C0` (`0x01F7FFC0`) and a remaining count at `+0x9C8` (`0x01F7FFC8`). Its seed
+A second MT19937 instance lives in the static block at `0x01F7F600`, passed to its routines: 624 words, then a
+cursor pointer at `+0x9C0` (`0x01F7FFC0`) and a remaining count at `+0x9C8` (`0x01F7FFC8`). Its seed
 `0x0018D740(block, seed)` runs the same initialisation recurrence as `0x00866D60` and writes only the
 624 words, and its refill `0x0018EE20(block)` is the same twist, scalar only, ending with the
 count at 624 and the cursor at the array start (`0x0018EECD`-`0x0018EED8`).

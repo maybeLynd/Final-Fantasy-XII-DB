@@ -37,8 +37,20 @@ and keeps a stack of the lists opened in the cursor block at `[0x0209BE80] + 0xA
 Each widget dispatches through its own tables: the manager answers 21 messages (`0x0027AA38`, `0x0027A9E0`), the panel 10
 (`0x00277880`, `0x00277854`) and the list widget 14 (`0x00279D98`, `0x00279D60`).
 
-`0x00290CF0` builds the manager only when the request bit `0x10` of `[0x0209BE80] + 0x10F68` is set and, unless bit `0x400` is also
-set, router id 1 is not refused (`0x00254500`, `0x00254550(set, 1)`, a bit test); the HUD itself is on [HUD](hud.md).
+`0x00290CF0` builds the manager only when the request bit `0x10` of `[0x0209BE80] + 0x10F68` is set, bit `0x2000` is
+clear, `0x02092730` is 0 and the slot `+0xAB30` holds no manager (`0x00273A20`), and, unless bit `0x400` is also set,
+router id 1 is not refused (`0x00254500`, `0x00254550(set, 1)`, a bit test) (`0x00290CFF`-`0x00290D7F`); the HUD itself
+is on [HUD](hud.md).
+
+A refused id 1 or a non-zero `0x02092730` clears bit `0x10` (`0x00290D24`, `0x00290D48`). With Cursor Position set to
+Default (`0x002DDD40` answers 0) it then clears the `0x68` bytes of the cursor block (`0x00276640`), before the slot
+test, so also when a manager is already there (`0x00290D5C`-`0x00290D6C`); in that case it returns with bit `0x10`
+still set (`0x00290D7F`).
+
+With no manager there it calls the builder `0x00276650` (`0x00290DC0`), which builds nothing while `0x00253BA0`
+answers 0 ([Force fight mode](../Engine-Core/force-fight-mode.md), `0x0027668C`-`0x00276693`), and then
+clears bits `0x10` and `0x400` and the word `+0x10FA0` (`0x00290DC7`-`0x00290DD1`).
+
 The list widget keeps a chain of callback records `{fn*, argument, previous, next}`: `0x00274BA0` appends one
 (`0x002779C8`), and `0x00274BD0(head, first, n)` runs up to `n` of them and unlinks each that answers 1 (`0x00278390`,
 `0x00278592`, `0x00278A7A`, `0x00278A91`).
@@ -54,10 +66,14 @@ The list widget keeps a chain of callback records `{fn*, argument, previous, nex
 | `2` | Magicks & Technicks, list 8 | "Magicks & Technicks" |
 | `3` | Mist, list 9 | "Mist" |
 | `4` | items, list `0xB` | "Items" |
+| `5` | Foecraft actions (action kind 7), list `0xB` (`0x0027E217`-`0x0027E23A`); the list is always empty, since every kind 7 row of the shipped action table has an id from `0x116` to `0x216` and the builder stops after id `0x115` (`0x0031EF63`) | "Foecraft" |
 | `6`, `7` | Summon and Quickening actions, list `0xB` | "Summon", "Quickening" |
+| `8` | the actions of kind `0xD`, list `0xB` (`0x0027E29E`-`0x0027E2C1`): in the shipped action table the three Reserve rows `0x9B`-`0x9D`, whose `0x9B` row opens kind 9 | "Gambits", the name of battle command `0xD` |
+| `9` | list `0x18`, the list action `0x9B` opens (`0x0027E2CA`-`0x0027E2E9`; see the list table below) | "Gambits" |
 | `10`-`14` | the magicks of one school, list `0xB` | "White Magicks" to "Arcane Magicks" |
 | `15` | technicks, list `0xB` | "Technicks" |
 | `16`-`19` | a menu target list ([Target selection](../Battle-Actions/target-selection.md)), codes `0x10`, `0xD`, `0xF`, `0x1C` (`0x01E0C398`) | the action's name |
+| `20` | the actions of kind `0x14`, list `0xB` (`0x0027E1E8`-`0x0027E20B`); the list is always empty, since no row of the shipped action table has kind `0x14` | "NOT USED order", the shipped name of battle command `0x14` ([Category names](../Battle-Actions/category-names.md)) |
 
 `0x0027D480(part, kind, id, flag)` picks the title's row through the jump table `0x0027D570` for kinds 2
 to 20. In class `0x15` kinds 2 to 7 take rows `0x12`, `0x13`, 3, 7, 5 and 6, kinds 8 and 9 row `0xD`,
