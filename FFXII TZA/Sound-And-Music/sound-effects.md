@@ -61,20 +61,31 @@ handle is returned even when no bank owns the id, and is kept in the voice at `+
 
 ### Starting a block-bank voice
 
-`0x00224570(bank, handle, id, pan, volume)` starts the voice (`0x002245AC`-`0x00224825`):
+`0x00224570(bank, handle, id, pan, volume, placed, position)` starts the voice (`0x002245AC`-`0x0022483F`). The
+sixth argument is a byte and the seventh a qword (`0x00224593`, `0x00224727`, `0x002247AC`): `0x00224540` passes 0
+and null, and `0x00223EB0` passes 1 and its own fourth argument, with pan 0 and volume 0
+(`0x00223EB4`-`0x00223EC1`). The steps:
 
 1. While the bank is still loading it waits (`0x002245AC`-`0x002245C5`).
 2. The slot must be in the bank's map, and its sound entry present in the loaded `.sab` (`0x007A8CF0`,
    `0x0022463F`-`0x00224651`).
 3. The slot's flag byte decides the rest, below.
-4. Otherwise it takes a voice, stores slot `+0x14`, id with bit `0x80000000` set `+0x24` and handle `+0x18`, sets pan and volume
-   and posts the start to the driver (`0x007A78B0`, `0x00224825`).
+4. Otherwise it takes a voice and stores a copy of the flag byte in byte `+9` of the slot's entry: 0 with
+   bit `0x80`, `(flags & 1) | 0x40` with bit `0x20`, the flag byte itself otherwise
+   (`0x00224766`-`0x0022477C`). In the voice it stores slot `+0x14`, id with bit `0x80000000` set `+0x24`,
+   handle `+0x18` and state 1 `+0x10` (`0x00224784`-`0x002247A7`).
+5. With the sixth argument 0 or the seventh null it stores kind 2 at `+0x2C`, calls `0x00221C70` and sets
+   pan and volume (`0x002247DB`-`0x00224812`). With both set it stores kind 3, calls
+   `0x00221940(bank, voice, seventh, bank)` and sets neither (`0x002247AC`-`0x002247D4`).
+6. It posts the start to the driver (`0x007A78B0`, `0x00224825`), resets the voice with `0x002256B0` when the
+   post answers non-zero (`0x0022482A`-`0x00224831`) and calls the bank's vtable slot `+0x50` with the voice
+   (`0x00224836`-`0x0022483F`).
 
 | Flag bit | Effect |
 |---|---|
 | `0x08` | not started while slot 7 of the same bank plays, unless this is slot 7 (`0x00224657`-`0x0022467E`); of the 4,404 slot entries of the 248 shipped block files only `se000`'s slot 7 has the bit, which that exception covers, so no shipped slot byte brings the wait into play ([`sound-block-index-files.tsv`](sound-block-index-files.tsv)) |
-| `0x20` | before starting, the playing six-digit sounds whose own slot flags have bit `0x40` are checked, and the playing block sounds with that bit only when no six-digit bank reports one (`0x00210710`, `0x0021072E`-`0x00210741`; [Audio manager](audio-manager.md)): one with the same id fades to the new volume over 4.8 s and the new sound is not started; any other fades out over 4.8 s (`0x0022468A`-`0x002246A4`, `0x00210710`, `0x002238F0`) |
-| `0x80` | a voice already playing this slot is reused with the new pan and volume (`0x002246E3`-`0x00224756`) |
+| `0x20` | before starting, the playing six-digit sounds whose own slot flags have bit `0x40` are checked, and, only when no six-digit bank reports one, the playing block sounds whose entry byte `+9` has bit `0x40` (`0x002239A7`), the copy `0x00224570` stored when the sound started (`0x00224766`-`0x0022477C`) (`0x00210710`, `0x0021072E`-`0x00210741`; [Audio manager](audio-manager.md)): one with the same id fades to the new volume over 4.8 s and the new sound is not started; any other fades out over 4.8 s (`0x0022468A`-`0x002246A4`, `0x00210710`, `0x002238F0`) |
+| `0x80` | a voice already playing this slot is reused (`0x002246E3`-`0x00224756`): it is resumed with `0x007A7A20(sound, 0.0, -1)` when `0x007A7010` answers 3 (`0x002246ED`-`0x00224702`), slot, id and handle are stored again (`0x0022470C`-`0x00224722`), and the new pan and volume are set only when the sixth argument is 0 (`0x00224727`-`0x00224751`) |
 
 A six-digit bank's start `0x00223190` reads one flag byte for the whole bank, `+0x44`, and a bank with bit `0x20` starts its
 voice with a 4.8 s fade in.

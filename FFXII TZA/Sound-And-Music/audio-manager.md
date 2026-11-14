@@ -262,7 +262,7 @@ The sound object, `AudioSeadObjectSound`, `0x30` bytes, in the object manager's 
 | `+0x1C` | `i32` | volume | 0-127 |
 | `+0x20` | `i32` | pan | the pan byte (`0x002256F0`) |
 | `+0x24` | `i32` | id | the sound id (`0x002257C0`) |
-| `+0x2C` | `i32` | kind | 6 line, 8 battle voice, 9 placed battle voice (`0x002256E0`) |
+| `+0x2C` | `i32` | kind | 2 and 3 a block-bank sound, 3 when `0x00224570` has a non-zero sixth and a non-null seventh argument (`0x002247E3`, `0x002247C3`), 4 and 5 a six-digit sound, 5 when the byte `0x00223190` tests at `0x00223245` is not 0, the branch that calls `0x00221940` (`0x00223273`, `0x00223254`), 6 line, 8 battle voice, 9 placed battle voice (`0x002256E0`) |
 
 The manager, `0x40` bytes, kept at `0x01FD36A0`:
 

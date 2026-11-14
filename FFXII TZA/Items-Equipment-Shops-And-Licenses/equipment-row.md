@@ -214,7 +214,7 @@ and "Reserve", lie past the inventory's counts, so the party cannot hold them, b
 | `+0x07` bit `0x2` | set on 21 rows: Hero's Blade, Treaty-Blade, Sword of Kings, Joyeuse, Chirijiraden, both Nightmare rows, Flimsy Blade, Manufacted Nethicite, Goddess's Magicite, Dawn Shard and ten Reserve rows (the `cannot_sell` column of [`equipment-list.tsv`](equipment-list.tsv)) |
 | `+0x10` | 0 on 260 rows, 1 on 72, 2 on 84, 3 on 1, 5 on 3 |
 | `+0x18` on weapons | 10 on 144, 100 on 42, 20 on 10, 30 on 3, 200 on 1 |
-| `+0x19` on weapons | 20-29, and 104 on ten of the eleven maces and on Joyeuse below row 420, and on the `NOT USED` rows 463-466 (class 15); the mace Bonebreaker has 27 |
+| `+0x19` on weapons | 20-27 on 188 rows and 29 on Unarmed alone, and no weapon row at 28; 104 on ten of the eleven maces and on Joyeuse below row 420, and on the `NOT USED` rows 463-466 (class 15); the mace Bonebreaker has 27 |
 | `+0x1A` on weapons and ammunition | 1 to 224 |
 | `+0x27` on weapons | 10 to 99 |
 

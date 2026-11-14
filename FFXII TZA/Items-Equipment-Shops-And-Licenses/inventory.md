@@ -164,11 +164,13 @@ removes it, so an item whose list is full stays owned but is missing from the sc
 
 How an id reaches its list:
 
-1. The packed handler and the bit handler store the change first (`0x002FD355`, `0x002FD4F6`). Then they call
-   `0x00325F40(id, before, after)`, where `before` and `after` say whether the thing was owned before and after the
-   change (`0x002FD499`, `0x002FD4F0`-`0x002FD4F3`).
-2. `0x00325F40` adds the id when `before` is 0 and `after` is not, and removes it in the opposite case
-   (`0x00325F6D`-`0x00325F8A`).
+1. The packed handler and the bit handler store the change first (`0x002FD31A`, `0x002FD4E9`). Then they call
+   `0x00325F40(id, before, after)` (`0x002FD355`, `0x002FD4F6`), the packed handler on channel 1 alone. The bit
+   handler passes the bit before and after the change (`0x002FD499`, `0x002FD4F0`-`0x002FD4F3`), the packed
+   handler the owned count before and after it (`0x002FD2D3`-`0x002FD307`, `0x002FD34E`).
+2. `0x00325F40` first asks the id check `0x00322C50(1, id, 0)` and returns for an id it refuses
+   (`0x00325F55`-`0x00325F67`). It adds the id when `before` is 0 and `after` is not, removes it in the opposite
+   case, and returns when both are 0 or neither is (`0x00325F6D`-`0x00325F8A`).
 3. It picks the list from the class through the byte maps at `0x01EED1B0`, 16 bytes per class 0-10
    (`0x00325FF0`-`0x00326016`). Equipment picks by its row's class byte `+0x09`, from the 27 bytes at `0x00D10690`
    ([Equipment row](equipment-row.md)). Classes 9 and 10 have no map, and a class above 10 is passed over.
@@ -239,3 +241,27 @@ through these.
 - [Licenses](licenses.md) - Quickening squares and the presence bits.
 - [Party members](../Party/party-members.md) - what a join adds and a leave removes.
 - [Scenario presets](../Party/scenario-presets.md) - the inventories the presets set.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x00322C50` is called by `0x002367A0`, `0x0023A570`, `0x0031B810`, `0x003266C0`, `0x00329CC0`; those functions
+  are documented on [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
+  [party control modes](../Engine-Core/party-control-modes.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md), [party data](../Party/party-data.md).
+- Combat AI: `0x00322C50` is called by `0x00301AD0`, `0x003215C0`, `0x00321630`, `0x00321770`, `0x00321850`, `0x003219D0`,
+  `0x00321B00`, `0x00321E40`, `0x00327A10`, `0x00327CB0`.
+- Combat AI: those functions are documented on [glossary](../Engine-Core/glossary.md),
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
+  [battle units](../Characters-And-Objects/battle-units.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [enmity](../Enemy-AI-And-Gambits/enmity.md).
+- Combat AI: and on [gambit screen](../Menus-And-HUD/gambit-screen.md),
+  [item and ability ids](../Engine-Core/item-and-ability-ids.md).
+- Movement: `0x00322C50` is called by `0x0031BAC0`, `0x00326BB0`; those functions are documented on
+  [game over](../World-Areas-And-Travel/game-over.md), [party data](../Party/party-data.md).
+- Party: `0x00322C50` is called by `0x003170E0`, `0x0031AC00`, `0x0031B510`, `0x00320800`, `0x00321100`, `0x00326500`, `0x003287A0`,
+  `0x00328DB0`, `0x00329080`; those functions are documented on
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party data](../Party/party-data.md),
+  [party control modes](../Engine-Core/party-control-modes.md).

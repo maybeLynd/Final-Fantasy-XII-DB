@@ -286,6 +286,12 @@ Effect type `0x41` keeps records in the 64-entry pool of `0x60`-byte records at 
   (`0x003B4182`-`0x003B4193`); it gives the record the next serial from `0x02B404C4`, wrapping to 1 above
   `0xFFFFFF` (`0x003B41AB`-`0x003B41BB`), and stores `serial << 8 | slot` at `+0x00` (`0x003B41ED`-`0x003B41F2`),
   which is never 0, the serial being 1 to 0xFFFFFF (its only writers are `0x003B41BB` and the reset's `0x003B480E`).
+- Before `0x003B4160` copies the caller's `0x30`-byte block to `+0x20` (`0x003B4212`-`0x003B4225`) it changes
+  that block in place: the period word (record `+0x2A`) becomes twice itself when `0x001EDDA0()` answers 0
+  (`0x003B41C1`-`0x003B41D1`), and `+0x2E`, `+0x34` and `+0x3C` are set to 0 and `+0x38` to 1 / period
+  (`0x003B41F4`-`0x003B420F`).
+- `0x003B4160` stores a dword 0 at `+0x04`, which zeroes the age and the frame (`0x003B41EA`), and the answer
+  of `0x00181DD0()` at `+0x50` (`0x003B41A8`).
 - A record is freed by storing 0 at its `+0x00`: `0x003B42B0` at `0x003B42DC`, `0x003B4840` at `0x003B48D7`, and the
   reset `0x003B4790`, which zeroes all 64 records and the serial (`0x003B480E`-`0x003B481D`).
 - `0x003B4840`, from `0x00258D70` and `0x00258E40`, steps every record whose stamp is non-zero or while
