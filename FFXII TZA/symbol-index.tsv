@@ -17439,7 +17439,7 @@ function	0x00226BE0	-	Scripts-And-Script-Commands/world-lock.md	-	39
 function	0x00227370	-	World-Areas-And-Travel/game-over.md	-	9
 function	0x002273B0	-	Scripts-And-Script-Commands/world-lock.md	-	10
 function	0x002273E0	-	Scripts-And-Script-Commands/event-scenes.md	-	6
-function	0x00227420	-	Engine-Core/time-stop-and-freeze.md	-	6
+function	0x00227420	-	Engine-Core/time-stop-and-freeze.md	-	7
 function	0x00227460	-	Engine-Core/time-stop-and-freeze.md	-	10
 function	0x002274A0	-	Engine-Core/time-stop-and-freeze.md	-	5
 function	0x002274E0	-	Engine-Core/time-stop-and-freeze.md	-	8
@@ -18387,7 +18387,7 @@ function	0x0025C0F0	-	Scripts-And-Script-Commands/native-commands.md	-	10
 function	0x0025C130	-	Scripts-And-Script-Commands/native-commands.md	-	5
 function	0x0025C170	-	Engine-Core/time-stop-and-freeze.md	-	20
 function	0x0025C230	-	Scripts-And-Script-Commands/script-requests.md	-	78
-function	0x0025C830	-	Menus-And-HUD/text-npc-names.md	-	89
+function	0x0025C830	-	Engine-Core/time-stop-and-freeze.md	-	89
 function	0x0025D460	ScriptExecutionState_ResetCore	Scripts-And-Script-Commands/script-requests.md	-	6
 function	0x0025D480	-	World-Areas-And-Travel/chocobos-and-airships.md	-	8
 function	0x0025D4D0	-	World-Areas-And-Travel/zone-changes-and-mapjump.md	-	15
@@ -18642,7 +18642,7 @@ function	0x002681E0	-	Scripts-And-Script-Commands/party-during-scenes.md	-	18
 function	0x002682D0	-	Movement-And-Pathfinding/movement-bodies-and-separation.md	-	9
 function	0x00268320	WorldPersistence_ResetBanksAndMarkInitializationState	Scripts-And-Script-Commands/script-variables.md	-	16
 function	0x00268380	-	Movement-And-Pathfinding/movement-bodies-and-separation.md	-	65
-function	0x00268530	-	Scripts-And-Script-Commands/battle-verbs.md	-	6
+function	0x00268530	-	Scripts-And-Script-Commands/battle-verbs.md	-	7
 function	0x002685F0	-	Movement-And-Pathfinding/movement-bodies-and-separation.md	-	10
 function	0x00268620	-	Controls-And-Input/controls.md	-	10
 function	0x00268630	ActorManager_SetResourceTeardownCallback	EBP-Script-Files/ebp-script-image.md	-	8
@@ -18810,7 +18810,7 @@ function	0x0026C3B0	-	Characters-And-Objects/actor-managers-accesses.tsv	-	8
 function	0x0026C3C0	-	World-Areas-And-Travel/chocobos-and-airships.md	-	7
 function	0x0026C3E0	-	Engine-Core/time-stop-and-freeze.md	-	28
 function	0x0026C5C0	-	Compiler-And-C-Runtime/generated-function-families-nativeadapter-twosharedcomposetailcall.tsv	-	8
-function	0x0026C5D0	-	Engine-Core/time-stop-and-freeze.md	-	25
+function	0x0026C5D0	-	Controls-And-Input/action-availability.md	-	25
 function	0x0026C840	-	World-Areas-And-Travel/chocobos-and-airships.md	-	7
 function	0x0026C860	-	EBP-Script-Files/ebp-script-container.md	-	8
 function	0x0026C880	-	EBP-Script-Files/ebp-text-sections.md	-	9
@@ -23767,7 +23767,7 @@ function	0x003589E0	-	EBP-Script-Files/ebp-script-image.md	-	8
 function	0x00358A00	ActorScriptResource_GetBytecodeOffsetById	EBP-Script-Files/ebp-script-image.md	-	8
 function	0x00358A20	-	Movement-And-Pathfinding/player-movement.md	-	6
 function	0x00358B40	-	Movement-And-Pathfinding/player-movement.md	-	11
-function	0x00358BB0	-	Graphics/lens-flares.md	-	14
+function	0x00358BB0	-	Engine-Core/time-stop-and-freeze.md	-	14
 function	0x00358BC0	-	Party/party-leader.md	-	11
 function	0x00358C60	-	Movement-And-Pathfinding/player-movement.md	-	10
 function	0x00358CB0	-	Movement-And-Pathfinding/player-movement.md	-	21
@@ -49001,7 +49001,7 @@ global	0x02099DA7	-	Engine-Core/time-stop-and-freeze.md	-	6
 global	0x02099DA8	-	World-Areas-And-Travel/weather.md	-	7
 global	0x02099DAC	-	World-Areas-And-Travel/weather.md	-	10
 global	0x02099DB0	-	World-Areas-And-Travel/weather.md	-	2
-global	0x02099DB4	-	Engine-Core/time-stop-and-freeze.md	-	13
+global	0x02099DB4	-	Engine-Core/time-stop-and-freeze.md	-	14
 global	0x02099DB8	-	World-Areas-And-Travel/zone-changes-and-mapjump.md	-	9
 global	0x02099DBC	-	World-Areas-And-Travel/weather.md	-	10
 global	0x02099DC0	-	Characters-And-Objects/actor-record.md	-	3
@@ -49403,13 +49403,13 @@ global	0x022C2158	-	Battle-Actions/quickenings-and-summons.md	-	3
 global	0x022C215C	-	Battle-Actions/quickenings-and-summons.md	-	1
 global	0x022C2160	-	Battle-Actions/action-phases.md	-	7
 global	0x022C2168	-	Battle-Actions/quickenings-and-summons.md	-	0
-global	0x022C2170	-	Battle-Actions/concurrence-list.md	-	3
-global	0x022C2174	-	Battle-Actions/concurrence-list.md	-	3
+global	0x022C2170	-	Battle-Actions/concurrence-list.md	-	4
+global	0x022C2174	-	Battle-Actions/concurrence-list.md	-	4
 global	0x022C2178	-	Battle-Actions/quickenings-and-summons.md	-	4
 global	0x022C217C	-	Battle-Actions/quickenings-and-summons.md	-	3
 global	0x022C2180	-	Battle-Actions/quickenings-and-summons.md	-	4
-global	0x022C2184	-	Menus-And-HUD/menu-screens.md	-	1
-global	0x022C2188	-	Menus-And-HUD/menu-screens.md	-	0
+global	0x022C2184	-	Menus-And-HUD/menu-screens.md	-	2
+global	0x022C2188	-	Menus-And-HUD/menu-screens.md	-	1
 global	0x022C218C	-	Battle-Actions/quickenings-and-summons.md	-	3
 global	0x022C2190	-	Battle-Actions/concurrence-list.md	-	4
 global	0x022C2192	-	Battle-Actions/concurrence-list.md	-	1
@@ -59489,6 +59489,7 @@ data	0x00D8DE98	-	PhyreEngine/phyre-asset-files.md	-	4
 data	0x00D8DFA8	-	PhyreEngine/phyre-asset-files.md	-	4
 data	0x00D8E138	-	Compiler-And-C-Runtime/msvc-containers.md	-	0
 data	0x00D8E1E8	-	Third-Party-Libraries/yebis-ppfx-post-effects.md	-	3
+data	0x00D8E998	-	Third-Party-Libraries/yebis-ppfx-post-effects.md	-	0
 data	0x00D8E9E8	-	Third-Party-Libraries/yebis-ppfx-post-effects.md	-	0
 data	0x00D8ED08	-	Third-Party-Libraries/yebis-ppfx-post-effects.md	-	0
 data	0x00D8F168	-	Third-Party-Libraries/yebis-ppfx-post-effects.md	-	0
@@ -60051,7 +60052,7 @@ data	0x01EEBCC0	-	Engine-Core/item-and-ability-ids.md	-	7
 data	0x01EEBCD0	-	Scripts-And-Script-Commands/reward-verbs.md	-	3
 data	0x01EEBCF8	-	Game-Files-And-Data-Tables/authored-data-tables.md	-	1
 data	0x01EEBCFC	-	Scripts-And-Script-Commands/reward-verbs.md	-	2
-data	0x01EEBD08	-	Rewards-EXP-Gil-And-Loot/gil.md	-	1
+data	0x01EEBD08	-	Scripts-And-Script-Commands/reward-verbs.md	-	0
 data	0x01EEBD10	-	Battle-Actions/command-availability.md	-	0
 data	0x01EEBD28	-	Scripts-And-Script-Commands/reward-verbs.md	-	3
 data	0x01EEBD54	-	Scripts-And-Script-Commands/reward-verbs.md	-	4

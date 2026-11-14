@@ -246,6 +246,11 @@ it measures each of the four party-slot actors (`0x0209A1F0`) against two rectan
 record's movement context (centres `+0x00` and `+0x10`, extents `+0x30`/`+0x34` and `+0x40`/
 `+0x44`, angles `+0x38` and `+0x48`).
 
+Unless record byte `+0x08` bit `0x80` is set or record context byte `+0x5C` is not 0 (`0x0025C86C`-`0x0025C88D`,
+`0x0025CCDC`), `0x0025C830` first tests the actor's height, its own context's `+0x04`: below the record
+context's `+0x04` less `+0x6C` less the actor context's `+0xC0` times `+0x24`, or above that `+0x04` plus
+`+0x68`, the actor counts as outside both rectangles (`0x0025C8A3`-`0x0025C8A9`, `0x0025CCE2`-`0x0025CD0C`).
+
 It calls `0x0025A8E0` twice per rectangle, once with the x
 extent and one with the z extent as the test radius, and recovers the x bits from the older CLIP
 generation (`>> 6`) and the z bits from the newer.

@@ -46,18 +46,18 @@ read the combined mask, and `0x002E1020(row)` reads one row for three of them.
 
 | Row | Holder | Bits (mask) |
 |---:|---|---|
-| `0` | the movie verbs `moviestandby` `0x368` (its handler `0x00356460` is a jump to `0x0035B840` at `0x00356467`; `0x0035B861`, `0x0035B86D`), `movieplay` `0x36A` and `movieend` `0x36D` (mask, `0x0035B816`, `0x0035B967`); the event-skip arm `0x00360980`, from verb `skipstart` `0x51A` (`0x0034D3BB`; `0x003609A7`, `0x003609B3`), and its release `0x00360A50`, from `0x003603F0` and `0x00360A20` (`0x00360B06`, `0x00360B12`); the title screen (`0x00394112`, `0x003940CB`); actor and field loads (`0x002678EB`, `0x0025D41A`, `0x0025D5A9`) | `0x3BB203` |
+| `0` | the movie verbs `moviestandby` `0x368` (its handler `0x00356460` is a jump to `0x0035B840` at `0x00356467`; `0x0035B861`, `0x0035B86D`), `movieplay` `0x36A` and `movieend` `0x36D` (mask, `0x0035B816`, `0x0035B967`); the event-skip arm `0x00360980`, from verb `skipstart` `0x51A` (`0x0034D3BB`; `0x003609A7`, `0x003609B3`), and its release `0x00360A50`, from `0x003603F0` and `0x00360A20` (`0x00360B06`, `0x00360B12`); the title screen (`0x00394112`, `0x003940CB`); actor and field loads (`0x002678EB`, `0x0025D5A9`) | `0x3BB203` |
 | `1` | verb `setmenudisablestatus` `0x3A5` through `0x002E1BE0` (`0x0035276D`); bit `0x200000` for the movie player (`0x001B82E4`, `0x001B76C8`, `0x001B80A4`, `0x001B84BE`), saving and loading (`0x0058252C`, `0x005823F8`, `0x005828B4`, `0x00582F1B`), the title screen (`0x00393A29`, `0x00393E07`), a Config screen widget (`0x0023FC78`, `0x0024024B`) and the callback `0x002CEB40` that `0x002CEFA0` installs (`0x002CEDE5`, `0x002CEBB6`) | `0x27FFFF` |
 | `2` | battle selection, `0x00313A00`, below | `0x101DFF` |
-| `3` | verbs `questresultwindow` `0x37C` and `queststartwindow` `0x386` (`0x00344C84`, `0x00345704`, `0x0034515F`, `0x003464E8`) and `0x00268D10`/`0x00263050` | the mask |
+| `3` | verbs `questresultwindow` `0x37C` and `queststartwindow` `0x386` (`0x00344C84`, `0x00345704`, `0x0034515F`, `0x003464E8`), `0x00268D10`/`0x00263050`, and `0x0026C5D0`, which clears it with `0x002E1CD0(1, 3)` for each of the four slot actors that is not null while `0x02099DB4` is above 0 (`0x0026C61A`-`0x0026C621`, `0x0026C678`-`0x0026C6B0`, `0x0026C70C`) | the mask |
 | `4` | the screen-mask verbs `maskopen` `0x08A`, `maskopenfast` `0x3B5`, `mesvmaskopen` `0x446`, `mesvmaskopenfast` `0x447`, `maskclose` `0x08B`, `maskclosefast` `0x3B6` | `0x100203` |
-| `6` | user control, verbs `ucon` and `ucon_4a5` (`0x0026C70C`, `0x0026C80C`, `0x0026C82C`) and `0x00263660`, `0x0026C3E0` | the mask |
+| `6` | user control, verbs `ucon` and `ucon_4a5` (`0x0026C80C`, `0x0026C82C`) and `0x00263660`, `0x0026C3E0` | the mask |
 | `7` | the full-screen frame modes: set by `0x00228930` and `0x002E09A0`, cleared by the main loop (`0x0022BBA1`-`0x0022BBC5`) | `0x100203` |
 | `8` | the menu-request family, below | `0x101BF7` |
 | `9` | verb `crossfade` `0x16F` (`0x002F1AD4`, `0x002F1AE1`) and its completion (`0x002F19D3`, `0x002F19E0`) | `0x100001` |
 | `10` | a timed hold after a menu request (`0x002F1C8B`, `0x002F18AC`) | `0x2` |
 | `12` | user control (`0x0026C738`) and a spawn group's last member dying (`0x00306F9A`), through `0x00307140` | `0x1019F9` |
-| `13` | cleared only: `0x0025B500` jumps to `0x002E1CD0` with clear 1 and row 13 (`0x0025B567`-`0x0025B573`) | - |
+| `13` | the trigger test `0x0025C830`, which sets the mask with `0x002E1CD0(0, 13)` after its time-stop take `0x00227420`, when `0x00377C20()` answers 0 (`0x0025D407`-`0x0025D41A`); `0x0025B500` jumps to `0x002E1CD0` with clear 1 and row 13 (`0x0025B567`-`0x0025B573`) | the mask |
 | `15` | the pause menu, `0x00229590` (`0x002299BB`-`0x002299DB`, `0x00229785`-`0x002297A9`) | `0x100203` |
 
 No holder sets a bit in rows 5, 11 and 14; only the two clears `0x002E0670` and `0x002E1450` write them (`0x002E0680`/`0x002E1572`, `0x002E0695`/`0x002E1587`, `0x002E06A3`/`0x002E1595`).
@@ -208,7 +208,7 @@ which copies each one; the table names these three the readers above.
 | `0x0215F1E8` | `u32` | 0 | row 10, the timed hold after a menu request | `0x002F1C8B`, `0x002F18AC`; 0 (`0x002E0695`, `0x002E1587`) | the readers above |
 | `0x0215F1EC` | `u32` | 0 | row 11; no holder sets a bit | 0 (`0x002E0695`, `0x002E1587`) | the readers above |
 | `0x0215F1F0` | `u32` | 0 | row 12, user control and a spawn group's last death | `0x00307140`, called at `0x0026C738` and `0x00306F9A`; 0 (`0x002E069C`, `0x002E158E`) | the readers above |
-| `0x0215F1F4` | `u32` | 0 | row 13, cleared only | `0x0025B500` through `0x002E1CD0` (`0x0025B567`-`0x0025B573`); 0 (`0x002E069C`, `0x002E158E`) | the readers above |
+| `0x0215F1F4` | `u32` | 0 | row 13 | `0x0025C830` through `0x002E1CD0(0, 13)` (`0x0025D41A`); `0x0025B500` through `0x002E1CD0` (`0x0025B567`-`0x0025B573`); 0 (`0x002E069C`, `0x002E158E`) | the readers above |
 | `0x0215F1F8` | `u32` | 0 | row 14; no holder sets a bit | 0 (`0x002E06A3`, `0x002E1595`) | the readers above |
 | `0x0215F1FC` | `u32` | 0 | row 15, the pause menu | `0x00229590` (`0x002299BB`-`0x002299DB`, `0x00229785`-`0x002297A9`); 0 (`0x002E06A3`, `0x002E1595`) | the readers above |
 

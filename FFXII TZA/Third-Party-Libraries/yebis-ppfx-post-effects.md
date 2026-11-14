@@ -273,12 +273,32 @@ command, it then calls `0x00188730(manager)` (`0x001F3415`).
 
 ### The licence check
 
-`0x006DFF40` refuses with "License text is not set." when no text was given. Otherwise it decodes the
-text (`0x0071C550`) and checks it (`0x0071CD10`, which calls `0x0071D9E0`). A failure is reported as status
+`0x006DFF40` refuses with "License text is not set." when no text was given. Otherwise it has `0x0071C550`
+build a `0x20`-byte buffer from two constants of the image, the bytes at `0x00D8E9E8` with the string
+`[0x01F3BB20]` names as the key (below), and checks the licence text with that buffer (`0x0071CD10`, which
+calls `0x0071D9E0`). A failure is reported as status
 1 "License is not valid.", 2 "License is expired." or anything else "Unexpected License Error.".
 
+After a first argument it does not read, `0x0071C550` takes an out pointer, an out length, a source, its
+length, a key and the key's length (`0x0071C55E`-`0x0071C575`, `0x0071C5D2`, `0x0071C66B`). For a length of 0 it
+returns with nothing written (`0x0071C56C`-`0x0071C56F`).
+
+Otherwise it asks `0x006DA880` for length + 9 bytes (`0x0071C5A2`), stores length + 1
+in the block's first qword (`0x0071C5B0`) and the address 8 bytes in through the out pointer, null for a null
+block (`0x0071C5AC`-`0x0071C5BA`).
+
+It zero-fills length + 1 bytes there, copies the source in (`0x0071C5BF`, `0x0071C5CD`) and stores the length
+through the out length (`0x0071C5DF`). With a key length other than 0 it XORs each byte with the next key
+byte, starting the key again at its end (`0x0071C660`-`0x0071C68C`); with a key length of 0 it inverts every byte
+(`0x0071C5E7`-`0x0071C65C`).
+
+`0x006DFF40` passes the `0x20` bytes at `0x00D8E9E8` as the source and the 32-character string `[0x01F3BB20]`
+names (`0x00D8E998` in the image) as the key, its length taken at `0x006DFFBF`-`0x006DFFC9`
+(`0x006DFFB8`-`0x006DFFF1`), so its buffer is those bytes XORed with that string, byte for byte. The licence
+text, the pointer `0x02EA0B60`, is first read after that call (`0x006E0064`).
+
 "No text" means the dword `0x02EA0B58` is 0 (`0x006DFF6C`). Otherwise `0x006DFF40` hands `0x0071C550` the
-text pointer `[0x01F3BB20]` and that text's length, with the address `0x00D8E9E8` and the value `0x20`
+string pointer `[0x01F3BB20]` and that string's length, with the address `0x00D8E9E8` and the value `0x20`
 before them, and gets back a buffer pointer and a length (`0x006DFFB8`-`0x006DFFF1`). A null buffer is
 logged as "License is not valid." as well (`0x006DFFFA`-`0x006E0029`). Both refusals answer
 `0x8000FFFF` (`0x006DFFA4`, `0x006E002E`).

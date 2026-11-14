@@ -30,17 +30,19 @@ slots instead (see Party membership).
 `0x0032A810` is `0x00300B80(item, delta, 0)` with the result floored at 0, and `0x0032A830` the same
 through `0x00300BA0`; both end in `0x003008A0(item, n, set, 1, mode)`, the one inventory mutator.
 
-`0x003008A0` returns −1 for ids `0xFFFF` and `0x1000`, classes above `0xE` and an index at or past the
-class's count at `0x01EEBCFC + class × 0x58`. Otherwise it reads the old count (`0x00309F30`) and calls
-the class's handler from `0x01EEBD08 + class × 0x58`; when that slot is null it returns the old count
+`0x003008A0` picks the id's descriptor record by its top nibble, `n = id >> 12`; the record's inventory
+class is `n + 5` ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)). It returns
+−1 for ids `0xFFFF` and `0x1000`, a nibble above `0xE` and an index at or past the record's count at
+`0x01EEBCFC + n × 0x58`. Otherwise it reads the old count (`0x00309F30`) and calls the record's handler
+from `0x01EEBD08 + n × 0x58`; when that slot is null it returns the old count
 and writes nothing.
 
 When its fourth argument is 1, the old count is below 1 and the new count is above 0, it sets
 discovery bits in `[0x02EBF190] + 4`:
 
-- class 3: bit `0x1`, plus `0x01EECF98[s]`, where s is word `+0x2C & 7` (below 5) of the `0x02EBF138` row
-  that byte `+2` of the `0x02EBF0F0` row `id − 0x3000` names;
-- class 4: bit `0x40`;
+- magicks, id nibble 3 (inventory class 8): bit `0x1`, plus `0x01EECF98[s]`, where s is word `+0x2C & 7`
+  (below 5) of the `0x02EBF138` row that byte `+2` of the `0x02EBF0F0` row `id − 0x3000` names;
+- technicks, id nibble 4 (inventory class 9): bit `0x40`;
 - Quickenings `0xC000` to `0xC011`: bit `0x80`; Espers `0xC012` to `0xC01E`: bit `0x100` (`0x0030099A`-`0x003009D4`).
 
 Grants made with another mode set no bits: `0x00300490` (mode 4) and `0x0030C410` (mode 2).
@@ -173,7 +175,7 @@ with flags bit `0x8` clear, grows the record to level 90 with `0x0030C470(record
 with selector below `0x1A`:
 
 - a main character (selector below 7) gets each of the five equipment words at `+0x50` as one owned
-  item (`0x00300B80`) and one equipped count (`0x0030C410`, which counts class-1 ids other than
+  item (`0x00300B80`) and one equipped count (`0x0030C410`, which counts equipment ids, nibble 1, other than
   `0x1000`);
 - on the first activation (flags bit `0x8` clear), each entry of the `+0x88` list selected by the mask
   word at `+0xB8` grants its low half as an item; for a main character the id at `+0x22` of the
@@ -192,8 +194,9 @@ is set, and otherwise returns at once (`0x00323540`-`0x0032355C`); it removes ea
 `takeaway_item_and_equip` (`0x0388`, begin `0x00349F90` → `0x0035A620` → `0x0030FBE0`) walks the nine
 roster indices (`0x00320AB0(i, 3)`), keeping records with `+5` ≠ 0 or a selector outside 7 to `0x19`:
 each copies its five equipment words to `+0x5A` and clears the slots (`0x0031A300`). After
-`0x00324380` it copies the class-0 counts at `[0x02EBF190] + 0x4748` to `+0x4F84` and the class-1
-counts at `+0x47C8` to `+0x5004`, zeroing each through `0x003008A0(id, 0, set)`, bounded by
+`0x00324380` it copies the item counts (id nibble 0) at `[0x02EBF190] + 0x4748` to `+0x4F84` and the
+equipment counts (id nibble 1) at `+0x47C8` to `+0x5004`, zeroing each through `0x003008A0(id, 0, set)`,
+bounded by
 `0x01EEBCD0` and `0x01EEBD28`.
 
 The takeaway skips indices with no record (`0x0030FC02`). Its call for id `0x1000`, which `0x003008A0` refuses
@@ -230,7 +233,7 @@ Only after rebuilding the stats and gambits does `resetJobs` clear the job bytes
 `[0x0209AC30] + 0xAC8` (`0x00282E10`, which skips null pointers and reads `[0x0209AC30]` without a null test, so a null
 `[0x0209AC30]` faults at `0x00282E24`).
 
-With no match `0x00559760` returns and writes nothing (`0x00559771`). With a match it zeroes the class-8 entries
+With no match `0x00559760` returns and writes nothing (`0x00559771`). With a match it zeroes the bank-8 entries
 `sel + 0x4D` and `3 × sel + 0x53` to `3 × sel + 0x55` of the typed store at `[0x020927C0] + 0x90`
 (`0x002527B0(8, index, 0)`, `0x00559786`, `0x005597A3`), the last three being the member's Quickening order the
 [license board](../Menus-And-HUD/license-board-screen.md) shows.
@@ -292,15 +295,16 @@ Mersenne Twister thunk `0x00379CD0`
 ([which roll uses which generator](../Random-Numbers/which-roll-uses-which-generator.md)).
 
 The debug give-all verbs add 99 of every id (`0x003008A0(id, 99, 0, 1, 0)`): items
-(`0x00510850` → `0x0030DD70`, class 0), equipment (`0x00510860` → `0x0030DCB0`, class 1) and event items
-(`0x0050F0E0` → `0x0030DD10`, class 2). Each walks the ids from the class base while the index is below the class
-count at `0x01EEBCFC`, `0x01EEBD54` or `0x01EEBDAC`. The equipment walk starts at `0x1000`, which `0x003008A0` refuses
-(`0x0030DCBC`, `0x003008DD`), so that one id gets nothing.
+(`0x00510850` → `0x0030DD70`, id nibble 0), equipment (`0x00510860` → `0x0030DCB0`, id nibble 1) and event items
+(`0x0050F0E0` → `0x0030DD10`, id nibble 2, the loot ids). Each walks the ids from the nibble's base while the
+index is below the record's count at `0x01EEBCFC`, `0x01EEBD54` or `0x01EEBDAC`. The equipment walk starts at
+`0x1000`, which `0x003008A0` refuses (`0x0030DCBC`, `0x003008DD`), so that one id gets nothing.
 
 ## Layouts
 
 ```python
-inventory call   0x003008A0(item id, n, set, mode, arg): class = id >> 12, index = id & 0xFFF, class count at 0x01EEBCFC + class × 0x58
+inventory call   0x003008A0(item id, n, set, mode, arg): record = id >> 12, index = id & 0xFFF,
+                 inventory class = record + 5, the record's count at 0x01EEBCFC + record × 0x58
 discovery bits   [0x02EBF190] + 4: bit 0x1 and 0x01EECF98[school] for magicks, bit 0x40 technicks, bit 0x80 Quickenings 0xC000..0xC011, bit 0x100 Espers 0xC012..0xC01E
 gil              0x003004B0(n, notify) = max(0, gil + n); 0x00254EE0 stores min(total, 99,999,999) and logs counter 6 or 7
 chest record     +0 index in the field, +8 flags (bit 0x40 random gil), +9 opened-flag id, +0xA presence %, +0xB item %
@@ -308,7 +312,7 @@ chest contents   +0xC/+0xE item words, +0x10/+0x12 alternate item words, +0x14 g
 presence ledger  0x02EC3E60: 3 × {u32 field, u32 value bits, u32 mask bits}, cursor 0x02EC3E84, count 0x02EC3E88
 party record     [0x02EBF190] + 8 + selector × 0x1C8: +0 flags (bit 0x8 first activation, bit 0x10 active), +0x50 u16[5] equipment,
                  +0x5A u16[5] saved equipment, +0x88 u32[] grants with mask +0xB8 and count +0xBA
-backup counts    [0x02EBF190] + 0x4F84 (class 0) and + 0x5004 (class 1), 0x83C bytes
+backup counts    [0x02EBF190] + 0x4F84 (id nibble 0) and + 0x5004 (id nibble 1), 0x83C bytes
 ```
 
 ## Shipped data
@@ -319,7 +323,7 @@ backup counts    [0x02EBF190] + 0x4F84 (class 0) and + 0x5004 (class 1), 0x83C b
 | gil verbs | `addgill` 23, `subgill` 64 |
 | chest sequence | 1,966 chests in 385 files, each calling the five chest verbs once |
 | `questresultwindow` | 56 uses |
-| inventory classes the mutator accepts | 0 to `0xE`, ids `0xFFFF` and `0x1000` refused |
+| id nibbles the mutator accepts | 0 to `0xE` (inventory classes 5 to 19) pass the nibble test; nibbles 5, 7 and `0xB` have a count of 0, so every id of theirs is refused; ids `0xFFFF` and `0x1000` refused |
 
 ## Operations
 

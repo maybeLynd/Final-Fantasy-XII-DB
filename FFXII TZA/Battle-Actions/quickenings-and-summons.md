@@ -221,6 +221,12 @@ Quickenings in the chain have cost, a `u8`:
    `0x0030D810` (from `0x003066C9`) changes each member's Mist pool by `saved - charges x max MP (stats +0x28) - current pool`
    through `0x00300BC0` (`0x0030D850`-`0x0030D889`).
 
+`0x0030D720` makes these stores as well, every one unconditional: 4 to the dwords `0x022C2170` and `0x022C2174`
+(`0x0030D74B`, `0x0030D745`), -1 to the Quickening index `0x022C2178` (`0x0030D722`), 0 to its user's id `0x022C218C`
+and to the target count `0x022C21B4` (`0x0030D758`, `0x0030D75E`), 4.0 (`0x40800000`) to the floats `0x022C2184`
+and `0x022C2188` (`0x0030D76E`, `0x0030D764`), 0 to the qword at `0x022C217C` (`0x0030D751`), and 0 over the `0x100`
+bytes from `0x022C21B8` (`0x0030D780`-`0x0030D7A7`).
+
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x022C2194` | `u8` | 0 | the count of Quickenings used from the third slot | `0x0030D720`, 0 (`0x0030D738`); `0x00313120` (`0x003133A9`) | `0x00313120` (`0x0031339D`); `0x00305F10`, as part of the 8 bytes from `0x022C2190` (`0x00305F1A`); `0x002F8D60` through the address `0x0030DB70` passes (`0x0030DC4E`) |
