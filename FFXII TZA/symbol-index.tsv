@@ -17923,10 +17923,10 @@ function	0x00247950	-	Game-Files-And-Data-Tables/as7-menu-graphics.md	-	9
 function	0x00247980	-	Menus-And-HUD/widgets.md	-	5
 function	0x002479B0	-	Menus-And-HUD/widgets.md	-	6
 function	0x00247AE0	-	Menus-And-HUD/widgets.md	-	11
-function	0x00248030	-	Menus-And-HUD/widgets.md	-	12
+function	0x00248030	-	Menus-And-HUD/widgets.md	-	13
 function	0x00248190	-	Menus-And-HUD/widgets.md	-	8
 function	0x002481A0	-	Menus-And-HUD/widgets.md	-	9
-function	0x002481C0	-	Menus-And-HUD/widgets.md	-	10
+function	0x002481C0	-	Menus-And-HUD/widgets.md	-	11
 function	0x00248220	-	Menus-And-HUD/widgets.md	-	13
 function	0x002482E0	-	Menus-And-HUD/pause-screen.md	-	23
 function	0x00248410	-	Engine-Core/startup-constants.md	-	5
@@ -21189,7 +21189,7 @@ function	0x00303EE0	-	World-Areas-And-Travel/chocobos-and-airships.md	-	14
 function	0x00303F00	-	Graphics/character-effects.md	-	12
 function	0x00304060	-	World-Areas-And-Travel/chocobos-and-airships.md	-	17
 function	0x00304140	-	World-Areas-And-Travel/chocobos-and-airships.md	-	12
-function	0x00304180	-	World-Areas-And-Travel/chocobos-and-airships.md	-	15
+function	0x00304180	-	Engine-Core/party-control-modes.md	-	15
 function	0x00304400	-	World-Areas-And-Travel/chocobos-and-airships.md	-	10
 function	0x00304440	-	World-Areas-And-Travel/chocobos-and-airships.md	-	13
 function	0x003045A0	-	Graphics/model-files-cm-ca.md	-	10
@@ -21795,7 +21795,7 @@ function	0x00322190	-	Engine-Core/frame-update-order.md	-	7
 function	0x003221B0	-	Menus-And-HUD/battle-menu.md	-	8
 function	0x00322200	-	Saving-Loading-And-Settings/save-file-format.md	-	8
 function	0x00322220	-	World-Areas-And-Travel/mpk-map-pack.md	-	7
-function	0x00322280	-	Enemy-Spawning/enemy-respawning.md	-	6
+function	0x00322280	-	Movement-And-Pathfinding/animation-driven-movement.md	-	6
 function	0x00322310	-	Engine-Core/frame-update-order.md	-	8
 function	0x00322350	-	Scripts-And-Script-Commands/party-verbs.md	-	45
 function	0x00322360	BattleUnit_TestActorViewFrustumAtCurrentPosition	Battle-Actions/target-selection.md	-	12
@@ -24373,7 +24373,7 @@ function	0x0036F0F0	-	Characters-And-Objects/actor-model-rebuild.md	-	9
 function	0x0036F240	-	Game-Files-And-Data-Tables/character-se-tables-chse.md	-	5
 function	0x0036F2C0	-	Graphics/graphics-thread-handshake.md	-	8
 function	0x0036F2F0	GraphicsSync_WaitBackendState100ClearAndResetSharedState	Graphics/graphics-thread-handshake.md	-	9
-function	0x0036F360	-	PhyreEngine/the-frame.md	-	9
+function	0x0036F360	-	PhyreEngine/the-frame.md	-	10
 function	0x0036F400	-	World-Areas-And-Travel/mpk-map-pack.md	-	7
 function	0x0036F410	-	Graphics/character-lighting-and-shadows.md	-	7
 function	0x0036F430	-	Graphics/legacy-ps2-gs-layer.md	-	7
@@ -49015,7 +49015,7 @@ global	0x02099DE4	-	Engine-Core/time-stop-and-freeze.md	-	0
 global	0x02099DE5	-	Engine-Core/time-stop-and-freeze.md	-	3
 global	0x02099DE6	-	Engine-Core/time-stop-and-freeze.md	-	1
 global	0x02099DE7	-	World-Areas-And-Travel/area-flags-navimapdata.md	-	4
-global	0x0209A1F0	-	Scripts-And-Script-Commands/party-verbs.md	-	20
+global	0x0209A1F0	-	Scripts-And-Script-Commands/party-verbs.md	-	21
 global	0x0209A200	-	Scripts-And-Script-Commands/party-verbs.md	-	0
 global	0x0209A290	-	EBP-Script-Files/ebp-script-image.md	-	2
 global	0x0209A292	-	EBP-Script-Files/ebp-script-image.md	-	0

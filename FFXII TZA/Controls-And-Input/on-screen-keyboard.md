@@ -36,22 +36,23 @@ Three frame handlers call it while the keyboard is closed and call `0x0027E9E0` 
 `0x0209AC18` already set it returns at once (`0x0027EA0C`). The only
 reference to `0x002878E0` in the image is the `lea` at `0x0027EA18`.
 
-On each update (`0x00287A07`, `0x00287AC8`) the task closes itself (`0x00244F00`) when `0x0017DE60` reports F9 again
-(`0x00287A3B`-`0x00287A4B`). The branch that closes on the cancel button instead (`0x00287A10`-`0x00287A34`,
-`0x00287AD1`-`0x00287AF5`) runs on an update only when `0x0209AC50` is 0, which `0x0027E9E0` never leaves it.
+On its input turn (message 10, `0x00287A07`) and on its update (message 2, `0x00287AC8`) the task closes
+itself (`0x00244F00`) when `0x0017DE60` reports F9 again (`0x00287A3B`-`0x00287A4B`, `0x00287AFC`-`0x00287B0C`). The
+branch that closes on the cancel button instead (`0x00287A10`-`0x00287A34`, `0x00287AD1`-`0x00287AF5`) runs on
+either only when `0x0209AC50` is 0, which `0x0027E9E0` never leaves it.
 
 Destroying the task (message 18) clears `0x0209AC18` and, when `0x0209AC50` is not 0, clears it and sets
 `0x0209AC14` to 1 (`0x00287953`-`0x0028796E`). It then goes on into the update at `0x00287AD1`, after that
 update's test of `0x0209AC50`. With a bit of the word `0x01E0C2A4` set in the word `0x02F9736A` it calls
 `0x002814E0(0x504)`, `0x00249C60(3)`, `0x002CA110()` and `0x00244F00` with the emptied `0x0209AC18`; in either
-case it then makes the ten update calls of step 3 (`0x00287AD1`-`0x00287B7F`). The `0x0017DE60` test at
+case it then makes the ten calls of step 4 (`0x00287AD1`-`0x00287B7F`). The `0x0017DE60` test at
 `0x00287AFC` belongs to the other branch and is not on this path.
 
 ### The task
 
 For every message `0x002878E0` first works out the layout set and the language set the way `0x00287C20` does
-below (`0x002878FB`-`0x00287928`). It hands both to `0x00287400`, `0x002875D0` and the seven panel builders on a
-redraw (`0x0028797D`-`0x002879F5`) and to the seven panel updates, at step 3 (`0x00287A68`-`0x00287ABE`) and again
+below (`0x002878FB`-`0x00287928`). It hands both to `0x00287400`, `0x002875D0` and the seven panel builders on the
+opening (`0x0028797D`-`0x002879F5`) and to the seven panel updates, at step 3 (`0x00287A68`-`0x00287ABE`) and again
 at the copy of that work reached by messages 2 and 18 (`0x00287B29`-`0x00287B7F`). It handles its messages in
 this order of work:
 
@@ -62,10 +63,21 @@ this order of work:
    (`0x00287BA3`-`0x00287BCF`), clears bit `0x800` of its dword `+0x40`
    and zeroes its word `+0x44` (`0x00287BD6`-`0x00287BDF`). When the qword `0x02CA8FE0` or `0x02CA8FE8` is not 0
    it calls `0x00247730(task, 1)` (`0x00287BE3`-`0x00287BFD`).
-2. On a redraw (`0x0028797D`-`0x002879FD`) it resets the keyboard picture (`0x00287400`), colours it (`0x002891A0`),
-   writes the mouse labels (`0x002875D0`), builds the seven panels and writes the hint label (`0x00287850`).
-3. On each update (`0x00287A50`-`0x00287ABE`) it lights the held keys (`0x00289040`), colours the picture again
-   (`0x002891A0`), lights the mouse (`0x00289390`) and updates the seven panels.
+2. On the opening, message 14 (`0x00287945`-`0x00287948`), which `0x00246AD0` sends (`0x00246BFF`) when `0x0027E9E0`
+   opens the keyboard (`0x0027EA57`), it resets the keyboard picture (`0x00287400`), colours it (`0x002891A0`),
+   writes the mouse labels (`0x002875D0`), builds the seven panels and writes the hint label (`0x00287850`)
+   (`0x0028797D`-`0x002879FD`).
+3. On its input turn, message 10 (`0x0028793C`-`0x0028793F`), which the UI ticks give the widget holding the
+   focus (`0x002481C0`-`0x002481FB`), after the close test described above (`0x00287A07`-`0x00287A4B`) it lights
+   the held keys (`0x00289040`), colours the picture again (`0x002891A0`), lights the mouse (`0x00289390`) and
+   updates the seven panels (`0x00287A50`-`0x00287ABE`).
+4. Message 2 (`0x00287933`-`0x00287936`), the update the UI ticks send to each widget of the trees they walk
+   unless its dword `+0x40` has bit `0x40000` or `0x400` (`0x00248086`-`0x002480F9`), runs a second copy of step 3:
+   the same close test (`0x00287AC8`-`0x00287B0C`), then the same ten calls (`0x00287B11`-`0x00287B7F`). Message 18,
+   the destroy, joins that copy at `0x00287AD1` after its own stores (`0x00287953`-`0x00287978`), as described
+   above.
+   - Message 1 is the creation (`0x0028792A`-`0x0028792D`); a message that is none of the five leaves at once
+     (`0x0028794A`-`0x0028794D`).
 
 `0x00287C20` rebuilds the seven panels of an open keyboard and does nothing when `0x0209AC18` is empty
 (`0x00287C24`). The Config screen's binding row calls it after every change (`0x0023C660`, `0x0023C787`, `0x0023C8FF`),

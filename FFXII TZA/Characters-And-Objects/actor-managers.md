@@ -20,7 +20,8 @@ manager ([field runtime](field-runtime.md)).
 
 A manager slot is a `0x288`-byte block; five of them sit at `0x02098E10`, so slot `n` is
 `0x02098E10 + n * 0x288` and the array ends at `0x02099AB7`. `0x02099D70` holds the slot being worked on:
-the bind and the pass store it there, `0x002640C0` returns it and `0x002640D0` returns that slot's index
+the bind, the pass and `0x0026CE60` store it there (`0x0026CE60` puts the old value back before it returns:
+`0x0026CE6D`, `0x0026CE8D`, `0x0026D383`), `0x002640C0` returns it and `0x002640D0` returns that slot's index
 `+0x28`. Three one-byte getters take a slot index: `0x002673F0` returns `+0x13`, `0x00267310` returns
 `+0x201`, and the field pass reads `+0x10`.
 
@@ -78,17 +79,21 @@ holds the slot pointer in `0x02099D70` for the duration):
 2. on slot 0 it calls the `ret` stub `0x0016D6A0` (`0x0026CEE8`), clears the sixteen map-jump group
    pointers at `0x0209A210`, zeroes `0x02099DA6`, runs `0x002EA870(0)`, `0x002EA690` and `0x003DD220(1)`, then runs the
    stamping loops below and `0x00314010`, `0x00314DF0(-1)` and `0x00358BC0`;
-3. it clears `+0x13`, fills `+0x40` with payload + payload `+0x38` when still 0, runs
-   `0x0026D3E0(slot, payload)`, sets `+0x10` bit `0x1` and runs `0x00263660` on slot 3;
+3. if `+0x13` is still set (`0x0026D2D9`-`0x0026D2DD`), it clears it, fills `+0x40` with payload + payload
+   `+0x38` when still 0, runs `0x0026D3E0(slot, payload)`, sets `+0x10` bit `0x1` and runs `0x00263660` on
+   slot 3; otherwise it goes straight to the slot-0 ending of step 5, past steps 3 and 4 and `0x003DB1F0`;
 4. it recomputes `0x02099DB4` as the sum of slots 0, 1 and 2's `+0x1E0` counters (each under its own
    `+0x10` bit `0x1`) and runs `0x002572E0(slot)` when both `+0xD8` and `+0xE0` are set (it fills the
    camera driver block's per-row effect handles from the camera-shot rows' `+0x20` words through
    `0x00257AD0`);
-5. it runs the resource pass `0x003DB1F0(slot)` and, on slot 0, ends with `0x00253A30`, `0x002EA650` and
-   `0x00233CF0`.
+5. after step 4 it runs the resource pass `0x003DB1F0(slot)`; then, on slot 0, it ends with `0x00253A30`,
+   `0x002EA650` and `0x00233CF0` (`0x0026D36A`-`0x0026D37E`) on both paths.
 
-The stamping loops of step 2 walk the slot's records and, through `0x003587C0(ordinal)`, store into
-each record:
+The stamping loops of step 2 walk the slot's records. Each loop's word goes into the record `0x003587C0(s, w)`
+returns: `w` is the walked record's word `+0`, passed whole, and `s` the slot's `+0x28`, or `w >> 16`, which
+is 0, when `w` has bit `0x4000`. `0x0026CE60` stores through the answer with no null test
+(`0x0026CFA4`-`0x0026CFC7`, and the same in the other three loops). Every other store and test below is on the
+walked record:
 
 - the words `+0xC8`, `+0xD6`, `+0xE4` and `+0xDC`, read from four lists in the payload, zeroing the
   record's word `+0xF6` in every loop; each loop stores its word only when the payload is

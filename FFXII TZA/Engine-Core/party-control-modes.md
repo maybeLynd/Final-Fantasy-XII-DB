@@ -142,9 +142,13 @@ The handlers:
     (`0x0031B8C0(3)`, `0x003041A5`).
   - The collection runs only when the saved leader's member record (`0x00327240`) exists with byte `+5` zero and a
     row type from 7 to `0x19` (`0x003041B3`-`0x003041D7`).
-  - The snap sets the unit flag (`0x00304398`), copies the rider's position to the unit's `+0xD0` and `+0xE0` and
-    its heading (`0x00265200`) to `+0x15C` and `+0x160`, and calls `0x0026B0C0` only when the two positions differ
-    (`0x00304322`-`0x00304347`).
+  - The snap sets the unit flag (`0x00304398`), copies 16 bytes to the unit's `+0xD0` and `+0xE0`, the
+    rider's position and a fourth stack dword to which `0x00304180` makes no store (`0x00304371`-`0x00304387`),
+    copies the rider's heading (`0x00265200`) to `+0x15C` and `+0x160`, and calls `0x0026B0C0` only when the
+    two positions differ (`0x00304322`-`0x00304347`).
+  - `0x00304180` makes no test of the rider: when `0x0031ABF0` gives no actor (the leader in no seat or in
+    seats 4 to 8, or a null seat pointer at `0x0209A1F0`), `0x00265020` and `0x00265200` give 0, 0, 0 and 0.0
+    and the snap still runs toward them (`0x003042D3`-`0x003042FC`, `0x00263750`-`0x00263766`).
   - The members come from `0x00320AB0(i, 3)` for i 0 to 8. The three tests above run on
     each, the town test being a non-zero answer of `0x00377C20`, and a kept member's
     pointer goes to the next qword of `0x022C1740` (`0x00304210`-`0x0030425C`). The focus is

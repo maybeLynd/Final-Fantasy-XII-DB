@@ -409,8 +409,9 @@ here, so a use inside one shows the nearest `POPXCJMP` or `POPXNCJMP` around the
 ### Initial values
 
 The binder `0x0026C8C0` sets slot `+0x13` to 1 (`0x0026CC6C`). `0x0026CE60` goes on only while slot `+0x10` has flag `0x1`
-clear and `+0x13` is not 0 (`0x0026CE94`-`0x0026CEA2`). It clears `+0x13`, calls `0x0026D3E0` with the slot and the image
-and then sets the flag (`0x0026D2D9`-`0x0026D305`), so the initializers run once for each bind.
+clear and `+0x13` is not 0 (`0x0026CE94`-`0x0026CEA2`). If `+0x13` is still set at `0x0026D2D9`, it clears it,
+calls `0x0026D3E0` with the slot and the image and then sets the flag (`0x0026D2D9`-`0x0026D305`), so the
+initializers run at most once for each bind.
 The teardown `0x002628B0` clears both again (`0x00262DA8`, `0x00262DB3`).
 
 `0x0026D3E0` walks every record and skips those with second dword 0 (`0x0026D422`-`0x0026D42C`). An array is replaced by

@@ -52,7 +52,7 @@ read the combined mask, and `0x002E1020(row)` reads one row for three of them.
 | `3` | verbs `questresultwindow` `0x37C` and `queststartwindow` `0x386` (`0x00344C84`, `0x00345704`, `0x0034515F`, `0x003464E8`), `0x00268D10`/`0x00263050`, and `0x0026C5D0`, which clears it with `0x002E1CD0(1, 3)` for each of the four slot actors that is not null while `0x02099DB4` is above 0 (`0x0026C61A`-`0x0026C621`, `0x0026C678`-`0x0026C6B0`, `0x0026C70C`) | the mask |
 | `4` | the screen-mask verbs `maskopen` `0x08A`, `maskopenfast` `0x3B5`, `mesvmaskopen` `0x446`, `mesvmaskopenfast` `0x447`, `maskclose` `0x08B`, `maskclosefast` `0x3B6` | `0x100203` |
 | `6` | user control, verbs `ucon` and `ucon_4a5` (`0x0026C80C`, `0x0026C82C`) and `0x00263660`, `0x0026C3E0` | the mask |
-| `7` | the full-screen frame modes: set by `0x00228930` and `0x002E09A0`, cleared by the main loop (`0x0022BBA1`-`0x0022BBC5`) | `0x100203` |
+| `7` | the full-screen frame modes: set by `0x00228930` through `0x002E2240(1)` (`0x00228989`) and by `0x002E09A0`, cleared by `0x00229510` through `0x002E2240(0)` (`0x00229526`) as the Start screen closes and by the main loop (`0x0022BBA1`-`0x0022BBC5`) | `0x100203` |
 | `8` | the menu-request family, below | `0x101BF7` |
 | `9` | verb `crossfade` `0x16F` (`0x002F1AD4`, `0x002F1AE1`) and its completion (`0x002F19D3`, `0x002F19E0`) | `0x100001` |
 | `10` | a timed hold after a menu request (`0x002F1C8B`, `0x002F18AC`) | `0x2` |

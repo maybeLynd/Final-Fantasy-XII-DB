@@ -191,8 +191,10 @@ The 35 codes at `0x01DF13E0` are refused at assignment (`0x00198AC0`) and at loa
    (`0x00195E97`-`0x00195EFA`).
 3. Circle and Cross are exchanged when `0x001DFA70` is false, that is when the Config setting `+0x64` is not 0;
    `0x001DFA70` reads the settings object `[0x01F82D20]` (`0x00195E42`, `0x00195F03`-`0x00195F24`).
-4. The record is copied to the master copy `0x01F80130`.
-5. The manager's rebuild flag `+0x3B` is set (`0x00195FE0`), so the next poll copies the master into the records.
+4. The record is copied to its master copy, `0x01F80130`, `0x01F8028C` or `0x01F803E8`, `0x15C` bytes apart
+   (`0x00195F2C`-`0x00195FCF`).
+5. The manager's rebuild flag `+0x3B` is set (`0x00195FE0`), so the next poll copies the masters into the records
+   (`0x00196290`).
 
 It does not rewrite the record's entries 4-15, the pressure entries from `+0x80`. Group 2 never reaches a record:
 those four controls are read from the profile itself.
@@ -200,8 +202,9 @@ those four controls are read from the profile itself.
 ### Circle and Cross
 
 Changing the Config setting runs `0x0017E6E0` (`0x00240959`), which stores it, calls `0x00198960` and resets the confirm and
-cancel masks (`0x0022A4F0`). `0x00198960` exchanges the Circle and Cross codes of records 2-4 and writes the exchanged pair
-to `0x01F80130` (`0x00198960`-`0x001989C6`); it does not read the new value, so it always exchanges.
+cancel masks (`0x0022A4F0`). `0x00198960` exchanges the Circle and Cross codes of records 2-4 and writes each
+exchanged pair to that record's master copy, `0x01F80130`, `0x01F8028C` and `0x01F803E8` (`0x00198960`-`0x001989C6`);
+it does not read the new value, so it always exchanges.
 
 ### Saving and restoring
 

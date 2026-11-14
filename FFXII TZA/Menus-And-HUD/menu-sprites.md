@@ -109,8 +109,9 @@ In order, `0x002DB080` does this, the draw record being its first argument, the 
 
 1. It returns at once when the dword `0x0215E6D0` is 0 (`0x002DB0B0`, `0x002DB170`).
 2. From the source box words x, y, w, h it takes u0 = max(x, 0), v0 = max(y, 0),
-   u1 = x + w and v1 = y + h, swapping u0 with u1 for record bit `0x1` and v0 with v1 for
-   bit `0x2` (`0x002DB1B8`, `0x002DB1D0`).
+   u1 = x + w and v1 = y + h. For the vertices it swaps the u pair for record bit `0x1` and the v pair
+   for bit `0x2` (`0x002DB1B8`-`0x002DB1E5`); steps 10 and 12 take u0, u1, v0 and v1 unswapped, and step 13
+   the swapped pairs.
 3. It takes the packet cursor `0x02EBEFC0 + 0x18 × [0x02EBEFF0] + 8` and calls `0x00181560`
    (`0x002DB1EA`-`0x002DB218`).
 4. With the record's float `+0x04` equal to 0 it copies the `0x40` bytes at the draw
@@ -125,6 +126,12 @@ In order, `0x002DB080` does this, the draw record being its first argument, the 
    matrix is built by `0x00203170`, `0x00398C50` with the angle, a second `0x00203170` whose
    elements 0 and 5 take the seventh argument, and `0x00397910` twice; the mode is 2
    (`0x002DB3D5`-`0x002DB467`).
+   - With the pivot px, py and the destination's width w and height h, the corners are -px, -py and
+     w - px, h - py for bit `0x4`, and -(w >> 1), -(h >> 1) and w >> 1, h >> 1 otherwise
+     (`0x002DB37D`-`0x002DB3D2`).
+   - Before the second `0x00397910`, row 3 of the matrix takes x + px and y + py of the destination
+     (`0x002DB415`-`0x002DB452`); the finished matrix goes to `0x022D8F30` and to the packet's `+0x20`
+     (`0x002DB45C`-`0x002DB4B2`).
 7. The four corner colours come from the record's pointer `+0x08`; when that pointer is
    null or bit `0x40000` of the draw record's `+0x5C` is set, all four take the draw
    record's bytes `+0x90`-`+0x93` (`0x002DB532`-`0x002DB546`, `0x002DB657`). Every vertex takes
@@ -148,12 +155,19 @@ In order, `0x002DB080` does this, the draw record being its first argument, the 
     `0x00181910(+0x80)`, `0x001816B0(+0x78)` and `0x00181870(3)` (`0x002DB9B5`-`0x002DB9CF`).
 12. It looks for the text `screenCapture` in the atlas name with `strstr` (`0x002DB9D4`-
     `0x002DB9E6`): found, it calls `0x00181890(1, 1, 0, 0, 0, 0)`; not found,
-    `0x00181890(1, 2, u0, u1 - 1, v0, v1 - 1)` (`0x002DB9EC`-`0x002DBA2F`). It closes the packet,
-    calls `0x0016D6A0`, moves the cursor on and calls `0x003A1DB0` (`0x002DBA39`-`0x002DBA9B`).
+    `0x00181890(1, 2, u0, u1 - 1, v0, v1 - 1)` (`0x002DB9EC`-`0x002DBA2F`).
+    - It closes the packet and calls `0x0016D6A0`, a bare `ret`, and then adds 0 to the cursor
+      (`0x002DBA7A`-`0x002DBA96`): the amount added is a stack dword less the packet's start, with its low
+      four bits cleared, and that dword holds the packet's start (`0x002DBA56`).
+    - `0x003A1DB0` then hands the buffer up to the cursor, which leaves this packet out, to `0x0036F360` and
+      starts the other buffer (`0x002DBA9B`; `0x003A1DD4`-`0x003A1DFA`).
 13. It builds four `0x30`-byte vertices (position, depth as a float, 1.0, colours, mode).
     With a pointer at atlas `+0x20` it calls `0x001819A0` with the words `+0x14` and `+0x16`
-    of the object that pointer names and with the atlas, and sets the texture
-    coordinates from u0, v0, u1 and v1 (`0x002DBC93`-`0x002DBD48`).
+    of the object that pointer names, the atlas, the draw record's byte `+0x5C` and a fifth argument
+    (`0x002DBC93`-`0x002DBCDF`), and sets the texture coordinates from the swapped pairs of step 2
+    (`0x002DBCE4`-`0x002DBD48`).
+    - The fifth argument is bit `0x200000` of `+0x5C` as 1 or 0 when the atlas dword `+0x38` has
+      `0x1300` under `0x3F00` and `+0x5C` has bit `0x100000`, and 0 otherwise (`0x002DBC9C`-`0x002DBCCC`).
 14. Otherwise, when the name was found, it calls `0x00181A10(0x00182EB0(), h, atlas)` with
     `h = 0x00182E80() × 512 / 448`, then `0x002DD910` on the quad and `0x001816D0(2)`
     (`0x002DBD4A`-`0x002DBD8B`). On every path it ends with `0x00181460(quad, 4)` and

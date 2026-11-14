@@ -49,14 +49,18 @@ carried in at `+0x30`, here the render record's `+0x110` (`0x0041F311`-`0x0041F3
 battle-state word `0x02089340` has bit `0x10`.
 
 Bit `0x8` writes the
-reach point into `+0x20`-`+0x28`: when `0x00322280()` holds, the target actor exists, either
+reach point into `+0x20`-`+0x28`: when `0x00322280` of the view's `+0x00` holds, the target actor exists, either
 `0x02089340` has neither bit `0x200` nor bit `0x400` or the unit's `+0x698` record has byte `+5` = 1, and the
 unit's reach `0x00320E10(unit, 0)` is non-zero, it is the unit's position moved by the reach along the
 bearing to the target (the sine table at `0x01F004E0`, the unit's own heading `+0x160` when the two
-coincide) and the view's `+0x3C` takes bit `0x1` (otherwise `+0x20` and `+0x28` are written as 0 and the bit
-stays clear).
+coincide) and the view's `+0x3C` takes bit `0x1`. When the `0x200`/`0x400` test or the reach fails, `+0x20`
+and `+0x28` are written as 0 and the bit stays clear.
 
-Its y is the unit's `+0xE4`, or the target's y plus
+When `0x00322280` gives 0 or there is no target actor, bit `0x8` writes nothing: the view keeps the zeros it
+was cleared to, and the routine leaves bit `0x8` out of its answer (`0x0031AF14`-`0x0031AF27`, `0x0031B0B0`).
+
+Whenever bit `0x8` writes, `+0x2C` takes 1.0 (`0x0031B0BD`), and the point's y is the unit's `+0xE4`, or the
+target's y plus
 1.0 when the unit's `+0x698` record has byte `+5` = 1 and its definition `+0x28` bit `0x1`; with a
 reach of 0 the routine skips the target position and that y is 1.0 (`0x0031AF56`, `0x0031AF91`,
 `0x0031B093`-`0x0031B099`).
