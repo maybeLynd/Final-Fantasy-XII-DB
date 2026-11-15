@@ -203,7 +203,8 @@ The list functions:
 - A full list does not take the item away: the handler stored its count first, so the item stays owned and only its
   list entry is missing.
 - After a store, `0x00252E60` calls `0x002CD650` (`0x00252F18`). That sets the category bits at `[0x020927C0] + 0x3244` for
-  each list that is not empty ([Quickening and Esper list](../Battle-Actions/quickening-and-esper-list.md)).
+  each list that is not empty, Key Items only for an id in list 10 outside `0x8000`-`0x805F` (`0x00252FF0`)
+  ([Quickening and Esper list](../Battle-Actions/quickening-and-esper-list.md)).
 - `0x002535D0(list, id << 16)` removes. It writes `0xFFFF` over the id (`0x00253663`-`0x00253668`). Then `0x002534C0`
   closes the gaps in list order and sets the count to the entries left (`0x00253544`-`0x0025359F`).
 - `0x002530E0(list, id, target)` moves an id to the target id's place and shifts the entries between them by one

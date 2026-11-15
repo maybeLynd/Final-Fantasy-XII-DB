@@ -266,7 +266,9 @@ while either is 0, and returns 2 when both are 2, 0 when either is 0, and 1 othe
 (`0x0030C89F`-`0x0030C963`):
 
 - The animation answer is `0x00325A20(unit, event)`: the same cache asked without loading
-  (`0x003DC410`), giving 0 for no room, 2 for `0x80000000` or `0x80000001`, and 1 for any other result
+  (`0x003DC410`), which for a motion not yet held that would fit still releases the ready entries without
+  users when no entry is free (`0x003DCE5E`), giving 0 for no room, 2 for `0x80000000` or `0x80000001`, and 1
+  for any other result
   (`0x00325A78`-`0x00325AB5`).
 - The effect answer is `0x0031A230(id)`: 2 for id -1, else 1 when `0x002FCAC0(id)` agrees and 0 when it
   does not (`0x0031A230`-`0x0031A24D`). `0x002FCAC0` refuses when the effect pool's free list `0x02EC3D70` is

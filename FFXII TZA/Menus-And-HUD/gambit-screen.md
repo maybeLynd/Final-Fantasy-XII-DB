@@ -157,7 +157,11 @@ page's rows in a cache of 17 rows of `0x20` bytes, rows 0 to 16, at `+0xE0`-`+0x
    enumerator stops at 512 entries (`0x0031F9E0`, `0x0031FAD0`) and at the first id the validator refuses.
 3. They write one row per entry, for every entry returned, with no bound at 17 (`0x0056BD50`-`0x0056BDBE`,
    `0x0056A970`-`0x0056AA25`).
-4. They give the list widget the count, at least 1 (`0x002D48C0`), so it scrolls over every row.
+4. They give the list widget the count, 1 for a count of 0 (`0x002D48C0`; `0x0056BDC8`-`0x0056BDDE`,
+   `0x0056AA2B`-`0x0056AA49`), so it scrolls over every row; a negative answer of `0x0031EB20` (−1 for a page at
+   or past the page count, −2 for a unit byte above `0x27`) is passed on as it is.
+5. When the shown row `+0x599` is not `0xFF`, they put the list's cursor on that row with
+   `0x002D4650(widget, row)` (`0x0056BDE3`-`0x0056BE21`, `0x0056AA4E`-`0x0056AA94`).
 
 `GambitListRow` (`0x20` bytes, offsets from the start of the [list+0xE0]+i*0x20):
 

@@ -171,7 +171,14 @@ Resolution size at 60/1 Hz.
 `0x006278B0(device, w, h)` resizes the swap chain itself (`0x0062389D`, `0x007A0663`): it unbinds the targets (vtable
 `+0x108`), releases the colour and depth views (`0x0062B890`), calls `ResizeBuffers` (`+0x68`) with the device's count
 `+0x148` and format `+0x130`, takes buffer 0 again (`GetBuffer`, `+0x48`), rebuilds the views (`0x00620F60`) and the
-viewport (`0x0061D3D0`, `0x00607D10`), and binds the targets again. It returns `0x15` without a swap chain.
+viewport (`0x0061D3D0`, `0x00607D10`), and binds the targets again (`0x00627B67`-`0x00627BA6`), returning 0. It
+returns `0x15` without a swap chain (`0x006278E3`-`0x006278FC`).
+
+A failed `ResizeBuffers` skips to the rebind and still returns 0 (`0x0062799F`-`0x006279A1`). A null buffer 0
+returns `0x15` (`0x006279D0`-`0x006279DD`), and a non-zero answer of `0x0062B890`, `0x00620F60` or `0x0060DD70` is
+returned at once (`0x00627939`, `0x00627963`, `0x00627A8D`, `0x00627ABA`, `0x00627AE9`), both without binding the
+targets again. A target's views are released only when it holds one (`+0x28` or `+0x18` non-zero) and
+rebuilt only when it then holds none (`0x00627921`-`0x0062792D`, `0x00627A77`-`0x00627A81`).
 
 ### The window-size list
 

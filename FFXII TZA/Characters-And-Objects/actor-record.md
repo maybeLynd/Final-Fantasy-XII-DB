@@ -119,7 +119,9 @@ neither (`0x00266BDE`). A separate nibble, bits
    when the row's count is 16 or more), then id 0, then the `+0x14` id (`+0xDA`, else row `+0x14`
    when the count is over 9);
 12. on channel 0 it issues the `+0x04` id (`+0xCA`, else row `+0x04` when the count is over 1), not
-   counted. An id of -1 or an absent row word issues nothing;
+   counted. A negative row word (sign-extended, then tested for its sign: `0x00266921`-`0x00266924`,
+   `0x00266994`-`0x00266997`, `0x002669E3`-`0x002669E6`) or an absent row word issues nothing; an override word
+   other than `0xFFFF` is zero-extended and always issues;
 13. for a class-3 actor it sets `+0x1C` bit `0x4` from the `+0x06` id (`+0xCC`, else row `+0x06` when
    the count is over 2), running `0x00268EA0` when `+0x0B` bit `0x8` is set, else clears bit `0x4`; then bit `0x400`
    from the `+0x16` id (`+0xDC`, else row `+0x16` when the count is over 10) with the same call, and

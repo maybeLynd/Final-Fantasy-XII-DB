@@ -267,7 +267,12 @@ The level is `l = [camera + 0x7C] + [camera + 0xFC] / [camera + 0x100] + [camera
   holds the size only: `[camera + 0x370] = (int)((128 - z) × a / R + z)`, with `z` the dead zone `+0xF4`,
   `a = abs(d)` (`abs(d) / 6` on a first call) and `R = 0.4 × 2π / (30 × [0x01DFE0B4])`, the heading rate at full
   deflection (`0x0032DD65`-`0x0032DDCA`).
-- During a recentre `0x0032DB10` eases the level to 0.483 over `30 × [0x01DFE0B4]` frames.
+- During a recentre `0x0032DB10` eases the level to 0.483 over `30 × [0x01DFE0B4]` frames: with `n` the step
+  count `+0x118` and `D = 30 × [0x01DFE0B4]` it writes `a + (0.483 − a) × (1 + cos(π + π × n / D)) / 2`, `a` the
+  level copy `+0x3C`, to `+0x7C` and to the kept level `+0x114`, and clears byte `+0x40`
+  (`0x0032DB16`-`0x0032DBA1`).
+- While `n` is below `D`, `0x0032DB10` adds 1 to `+0x118` and returns 1; otherwise it returns 0, and its call at
+  `0x0032CA23` then clears the recentre bit `0x200000` (`0x0032DBD0`-`0x0032DBDE`, `0x0032CA2A`-`0x0032CA2C`).
 - Any stick or mouse input sets the divisor `+0x100` to `0x00229E70()` and bit `0x20000000`, and ends a running recentre
   by clearing `0x100000`, `0x200000` and `0x40000000` (`0x0032C9B8`-`0x0032C9D4`); with no input the divisor is 1.0. The
   recentre steps run only on frames with no input on their axis, and once both are done bit `0x40000000` is cleared

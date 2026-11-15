@@ -361,7 +361,7 @@ its destination from its step's `addresses` cell.
 | `trigger` | the door table's exit kind; a call the door table does not list gets the kind that its actor and function names give, the rule that reproduces all 10,619 non-crystal rows of that table |
 | `actor`, `function`, `step`, `line` | where the call is: the step number in the step tables and the `us` listing line |
 | `exit_group` | the argument of `setmapjumpgroup` in the actor's own `init`; `-` for an actor with none |
-| `gate`, `gate_text`, `tests` | the door table's condition, its wording and the kinds of test; a call the door table does not list has the step's condition, and `-` in the other two |
+| `gate`, `gate_text`, `tests` | the door table's condition, its wording and the kinds of test; a call the door table does not list has the step's condition, and `-` in the other two, except that in 178 such rows the step's condition asks for another map's zone or excludes this map's own (`nowmap()`), and `gate_text` names that map and says the way in does not open from this map |
 | `opens` | the story counter value of [zone-openings.tsv](zone-openings.tsv), on a row that is the way dating `destination_zone`; `-` on every other row |
 | `wall_state` | on a way that dates a zone, the verdict of [zone-openings-wall-verdicts.tsv](zone-openings-wall-verdicts.tsv), the result of [zone-openings-wall-gates.tsv](zone-openings-wall-gates.tsv) and the arrival of [zone-openings-saved-arrivals.tsv](zone-openings-saved-arrivals.tsv), or that its basis names no wall; on another row, the number of `setmapidwall` steps in the source script, since a walk with walls is worked out only for the way that dates a zone |
 

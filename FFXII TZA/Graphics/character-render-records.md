@@ -598,13 +598,17 @@ Korean and the two Chinese languages, 544 bytes; its 33 records are on
 | `+0x13` | `u8` | index | i |
 
 - `0x003DCD00(actor, motion, class, file)` returns 0x80000000 while `0x002E80B0(actor)` is non-zero.
-  An entry for the model, motion and class in states 1 to 3 gains a user and its id is returned.
+  An entry for the model, motion and class in states 1 to 3 gains a user (a negative count first
+  becomes 0) and its id is returned (`0x003DCEBB`-`0x003DCEC9`).
   Otherwise the size comes from `0x003DC8D0` (0x80000001 when it fails), rounded up to units, and the
   entry is filed only if the units of entries with users plus the new ones stay within 4.
 - Filing takes the first free entry (`0x003DC380`); with no free entry it releases the idle ready entries
-  (`0x003DC6A0`) and tries again. A new entry has one user and state 1, and the idle entries are
-  released when all held units exceed 4. With `file` 0 the cache stays as it is:
-  0x80000002 says the entry exists or could be filed; `0x003DC410` is that test, `0x003DCCF0` the request.
+  (`0x003DC6A0`) and looks once more, which finds none, since the release leaves them in state 4, so the call
+  returns 0 (`0x003DCE5A`-`0x003DCE79`). A new entry has one user and state 1, and the idle entries are
+  released when all held units exceed 4.
+- With `file` 0 no entry is filed and no user is added: 0x80000002 says the entry exists or could be filed,
+  but for a motion not yet held that would fit, with no free entry the idle ready entries are released all
+  the same and 0 is returned (`0x003DCE5E`, `0x003DCE79`); `0x003DC410` is that test, `0x003DCCF0` the request.
 - `0x003DCD00` answers 0 for a null actor or a negative class (`0x003DCD22`-`0x003DCD2E`), for
   a model id `0x002E96B0(actor)` of 0 or less (`0x003DCD51`), when the units would go above 4
   (`0x003DCE38`-`0x003DCE3E`) and when no entry is free after the release (`0x003DCE79`). The

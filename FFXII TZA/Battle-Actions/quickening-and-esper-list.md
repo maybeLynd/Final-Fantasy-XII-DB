@@ -71,7 +71,8 @@ their ids from lists that `0x00325F40` never puts a `0xC000` id in:
      list's descriptor at `0x02092760 + 8 × list`; both leave through `0x0016D6A0(0x200)` with no further
      call (`0x00252EE7`-`0x00252EFD`, `0x00252F32`-`0x00252F3C`).
    - After appending, it calls `0x002CD650` (`0x00252F18`), which sets the save-wide category bit
-   (`[0x020927C0] + 0x3244`, `0x00252D40`) of each inventory category whose list is now non-empty
+   (`[0x020927C0] + 0x3244`, `0x00252D40`) of each inventory category whose list is now non-empty (for Key
+   Items, whose list 10 holds an id outside `0x8000`-`0x805F`)
    ([Inventory screen](../Menus-And-HUD/inventory-screen.md)).
    - `0x002CD650` takes the categories in the order 1, 3, 2, 8, 5, 4, 7, 6. For each it asks
      `0x00252D10(category)` and goes on to the next when the answer's low byte is not 0; otherwise it calls
@@ -79,8 +80,11 @@ their ids from lists that `0x00325F40` never puts a `0xC000` id in:
 
      The count is `0x00252FA0(list)` of list 1 for category 1, list 4 for 3, list 2 for 2, list 3 for 8,
      list 0 for 4 and list 11 for 6. Category 5 asks list 8 and, when that is 0 or less, list 9
-     (`0x002CD703`-`0x002CD71D`). Category 7 takes `0x00252FF0(10)` instead (`0x002CD75E`-`0x002CD76A`). Every call
-     of `0x00252D40` here has 1 as its second argument; the last one is a jump (`0x002CD79F`).
+     (`0x002CD703`-`0x002CD71D`). Category 7, Key Items, takes `0x00252FF0(10)` instead (`0x002CD75E`-`0x002CD76A`):
+     the count of list 10 less its entries `0x8000`-`0x805F` (`0x0025306C`-`0x002530D7`), so Key Items is marked
+     only for an id outside that range.
+
+     Every call of `0x00252D40` here has 1 as its second argument; the last one is a jump (`0x002CD79F`).
    - `0x00252E60(list, id << 16)` takes the id from the argument's high 16 bits (`0x00252EC1`), and a list number
      above 11 as list 0 after a call to the empty stub `0x0016D6A0` (`0x00252E7C`-`0x00252EA9`). It appends the id at
      entry `count` and raises the count `[0x020927C0] + 0x47B8 + 4 × list` (`0x00252EFF`-`0x00252F12`).

@@ -218,7 +218,7 @@ compiler and library forms by function address; each was profiled against the im
 | List | Members |
 |---|---|
 | `counted-buffer-field-replace-98b`, `-99b` | 21 and 20 field replaces freeing the old buffer through `0x00584730` |
-| `counted-buffer-list-materialisation` | 17 bodies that count a list, allocate (`0x0017D260`) and fill an array |
+| `counted-buffer-list-materialisation` | 17 bodies that count a list, allocate (`0x0017D260`) and fill an array. When the record's count differs (its bit `0x80000000` included in the compare) they allocate that many pointers, zero them, free the old buffer through `0x00584730` when it is not null, is not the new one and the count's bit `0x80000000` is clear, and store the count and pointer; they copy the list in either way and return 0. A failed allocation returns `0xD` and leaves the record as it was, and an empty list stores a null buffer without allocating (`0x008796A9`-`0x008796EA`, `0x00879747` in `0x00879670`). The 17 bodies are the same instruction for instruction apart from the list's global and its link offset, `+0x10` in 11 and `+0x08` in 6 |
 | `counted-buffer-release-and-clear` | 12 releases of a counted buffer |
 | `refflag-dwordflag-alignedfree-reset-returntrue`, `refflag-invertedbit-alignedfree-returntrue` | 7 and 6 releases returning 1 |
 | `refflag-handle-reset`, `refflag-handle-store-with-release` | 13 resets and 15 borrowed-pointer stores |
@@ -262,9 +262,9 @@ compiler and library forms by function address; each was profiled against the im
 - [`object-construction-and-destruction-counted-buffer-field-replace-99b.tsv`](object-construction-and-destruction-counted-buffer-field-replace-99b.tsv):
   the 99-byte form of the same replace, which tests the ownership flag in `edx` (20 rows).
 - [`object-construction-and-destruction-counted-buffer-list-materialisation.tsv`](object-construction-and-destruction-counted-buffer-list-materialisation.tsv):
-  222-byte functions that count the intrusive list at a global and, when the record's count differs, allocate that
-  many pointers through `0x0017D260`, zero them, free the old buffer through `0x00584730`, store the count and pointer
-  and copy the list in (17 rows).
+  222-byte functions that count the intrusive list at a global and copy it into the record's pointer array,
+  replacing the array first when the count differs; they return 0, or `0xD` when that allocation fails (17 rows;
+  the member table above has the exits).
 - [`object-construction-and-destruction-counted-buffer-release-and-clear.tsv`](object-construction-and-destruction-counted-buffer-release-and-clear.tsv):
   68-byte functions that free a counted buffer through `0x00584730` when the record owns it and zero its size and
   pointer either way (12 rows).

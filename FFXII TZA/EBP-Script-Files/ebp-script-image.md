@@ -190,8 +190,9 @@ that is still 0. `0x00266530`:
    `× 0x20` when the version word is below 8 (`0x00266710`–`0x00266731`), and stores it at record `+0x40`;
 2. sets record `+2` to 2 for an index below the type-0 count, a signed 32-bit compare, else 1
    (`0x002666FC`–`0x0026670D`);
-3. for a `partySlot` of `0x80` to `0x83`, files the record in the party table `0x0209A1F0` at
-   `partySlot & 0x7F` (`0x00266738`–`0x00266792`);
+3. for a `partySlot` with bit `0x80` set other than `0xFF` (`0x80` to `0xFE`), files the record in the
+   table `0x0209A1F0` at `partySlot & 0x7F` with no bound check, and sets record `+0x12` to that index and
+   `+0x0F` to 2 for 0 to 3, else 3 (`0x00266738`–`0x00266792`);
 4. sets record `+0x48` to the function table, `+0x50` to the jump table and `+0x58` to the code
    base (`0x00266795`–`0x002667CA`).
 

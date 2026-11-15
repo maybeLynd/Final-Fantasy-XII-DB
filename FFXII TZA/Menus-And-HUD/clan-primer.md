@@ -361,10 +361,22 @@ The record's words, the current one's address first:
 | `+0x2C` | `0x0216423C` | `shown` |
 
 The settle `0x002EED80` copies the request over the current record word by word (`0x002EEE04`-`0x002EEE58`). The loader
-`0x002EE430` fills the weapon words of the current record, one stage per call. The release `0x002EEB20` runs only at stage
-8 (`0x002EEB24`) and clears them through a pointer that starts at `0x02164220` and steps 4 bytes per weapon
-(`0x002EEBAC`-`0x002EEC9B`), while the weapon index is below `0x0216421C`, a signed compare (`0x002EEC95`); it then sets the
-count to 0 (`0x002EECAB`).
+`0x002EE430` fills the weapon words of the current record, one stage per call.
+
+The release `0x002EEB20(entry)` runs only at stage 8 (`0x002EEB24`). For an entry of 0 to 9 whose dword in `0x01EEBAB0`
+is not -1 it first releases that body slot (`0x002EEB3D`-`0x002EEB93`): `0x0042F250(slot)`, then `0x002ED470(slot)`, which
+for a slot other than -1 whose render record `[0x022C6F28]` + slot × `0x740` has a non-zero `+0x284` zeroes its
+`+0x108` and calls `0x003E5E20(record, 0)`, and then calls `0x0042FAE0(slot)`.
+
+For that slot it also lowers the 16-bit use count `+0x1C` of the node `0x002E99C0` finds for the model `0x02164210`; at
+0 or below it calls `0x002EAEB0(node)`, or zeroes the count when the node's byte `+0x19` has any of bits `0x3`. It
+then writes -1 to the entry.
+
+It then clears the weapon words through a pointer that starts at `0x02164220` and steps 4 bytes per weapon
+(`0x002EEBAC`-`0x002EEC9B`), while the weapon index is below `0x0216421C`, a signed compare (`0x002EEC95`). Each weapon's
+render slot gets the same release inline (`0x002EEBC3`-`0x002EEC19`) and its model the same use-count step
+(`0x002EEC1E`-`0x002EEC7F`). It then sets the count to 0 (`0x002EECAB`), a store skipped, with the loop, when the count
+is 0 or less (`0x002EEBA1`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -474,3 +486,5 @@ Calls between the functions this page cites and code in other parts of the progr
   [script binding lifecycle](../Scripts-And-Script-Commands/script-binding-lifecycle.md).
 - Save load settings: `0x003933F0` is called by `0x00582790`; those functions are documented on
   [mrp menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md).
+- Actor entity: `0x002ED470` is called by `0x002E35B0`; `0x003E5E20` is called by `0x002E35B0`; `0x0042F250` is called by
+  `0x002E35B0`; `0x0042FAE0` is called by `0x002E35B0`.

@@ -70,10 +70,21 @@ built from pool values (node flag bit `0x100`), then the extra slots.
 
 ### Bone points
 
-`0x00421E20(record, point, mode, out)` turns a point id into a matrix. Ids `0x107` and `0x108` stand for
-the record's words `+0x2F4` and `+0x2F6`, and `0x300` to `0x3FF` go to `0x003710E0`. Otherwise, with
-bit `0x80` of the skeleton entry's `+0x00` clear, `0x00370E30` finds the bone by the name `0x00422310` gives;
-with it set and an id of `0xFF` or more, `0x00370FA0` finds it by the key from `0x00422380`.
+`0x00421E20(record, point, mode, out)` turns a point id into a matrix. It returns null when the record's model id
+`+0x18` is −1 or has no `0x002ED570` entry (`0x00421E49`-`0x00421E77`). Ids `0x107` and `0x108` stand for the record's
+words `+0x2F4` and `+0x2F6`, and `0x300` to `0x3FF` go to `0x003710E0` with the bone and offset `0x003E5B30` gives,
+returning `out` itself, or null when `0x003E5B30` gives `0xFFFF` or `0x003710E0` returns null
+(`0x00421EA1`-`0x00421F38`).
+
+With bit `0x80` of the skeleton entry's `+0x00` set and an id below `0xFF` (a signed compare, so `0x8000` and
+above too), `0x003E5AD0` takes the bone from the record's `@FCP` at `+0x400`: the word at
+`@FCP + [@FCP + 2] + 0x14C + id × 2`, the id signed, for an id below `0x20`, and none otherwise. `0x004220F0` hands
+it to `0x003710E0` with the point (0, 0, 0, 1) and returns what that returns; no `@FCP` or no bone returns null
+(`0x00421F40`-`0x00421F99`).
+
+Otherwise, with bit `0x80` of the skeleton entry's `+0x00` clear, `0x00370E30` finds the bone by the name
+`0x00422310` gives; with it set and an id from `0xFF` up to `0x7FFF` (the signed compare), `0x00370FA0` finds it by
+the key from `0x00422380`.
 
 Both return null unless the bone is listed. They return the bone matrix (`+0x80`) and write to `out`
 that matrix moved to the point `(x, 0, 0, 1)` (`0x0046D0D0`), where x is 0 for mode 0, the node's length
