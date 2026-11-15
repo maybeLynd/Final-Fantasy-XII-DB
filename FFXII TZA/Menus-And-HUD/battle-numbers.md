@@ -14,7 +14,8 @@ beyond a set distance.
 
 The battle's HP and MP code posts each number popup, drawn as digit pictures from the `battle_4_c` atlas; the result
 reactions post picture popups from `battle_4_p`, and a status taking hold posts a popup that writes the status's name.
-Each popup also flashes its owner's row in the party list.
+A number popup with a non-zero amount and colour slot 1-3 or 5-7 can also flash its owner's row in the
+party list.
 
 ## How it works
 
@@ -30,9 +31,13 @@ The popups live in a ring of 64 records of 0x50 bytes at `[0x02B457D0]`; the byt
 2. it notes the spread positions held by the owner's popups younger than 30 frames (256 for a word) and takes
    position 0 when it is free; otherwise 2 when 1 is held and 2 is free, 4 when 3 is held and 4 is free, 1 when
    only 3 is held, 3 when only 1 is held, and 1 or 3 at random (`rand`) in every other case;
-3. it flashes the owner's party row (`0x0028FBE0`; [Party list](party-list.md));
-4. for a status word it pushes the owner's other words on (their step `+0x3A` grows by 3) and delays the new one
-   until 3 frames after the latest (`+0x44`);
+3. for a number with a non-zero amount and colour slot 1-3 or 5-7 it flashes the owner's party row (`0x0028FBE0`
+   returns for the other kinds and a zero amount (`0x0028FBE6`-`0x0028FBF7`), an owner with no row or no list
+   (`0x0028FC16`, `0x0028FC29`) and the other slots (`0x0028FC31`, table `0x0028FC8C`), and slots 3 and 7 skip a row of
+   kind 3 (`0x0029706D`); [Party list](party-list.md));
+4. for a status word it pushes every live status word in the ring on, whatever its owner (their step `+0x3A` grows
+   by 3, `0x003BBEC0`), and delays the new one until 3 frames after the latest delay `+0x44` among the owner's words
+   not yet shown (age `+0x38` at most 0, `0x003BBECA`); with none it is not delayed;
 5. `0x00506700` fills the record, and the spread offset `+0x14`/`+0x18` is the position's pair at `0x00D11600` times a
    random factor `1 + (rand() & 31) / 32`.
 
@@ -181,5 +186,5 @@ slot or a first dword of -1 it stores 0, 0, 0 and 1.0 (`0x002EA13F`-`0x002EA147`
 - [HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md): the hit and heal numbers.
 - [MP](../Status-Effects-And-KO/mp.md): the MP numbers.
 - [Gaining and losing statuses](../Status-Effects-And-KO/status-changes.md): the status words.
-- [Party list](party-list.md): the row flash each popup starts.
+- [Party list](party-list.md): the row flash a number popup starts.
 - [Subsystem update flags](../Engine-Core/subsystem-update-flags.md): the pump that ages them.

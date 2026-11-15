@@ -146,7 +146,13 @@ Message 2 (`0x0056688D`) does nothing while the byte `+0xE2`, read signed, is 0 
 takes 1 from the byte, and when that leaves 0 it sets bit `0x8` of `+0x40` and closes the bar with
 `0x00244F00` (`0x00566894`-`0x005668B1`).
 
-`0x00565CD0(screen, tab, sort)` sorts the tab's list (`0x00252F40` of the list id at `0x00D23960 + 4 x tab`) through
+`0x00565CD0(screen, tab, sort)` sorts the list of the screen's own tab: `0x00252F40` of the list id at
+`0x00D23960 + 4 x 0x00564380(screen)` (`0x00565CFE`-`0x00565D15`). The `tab` argument, which the sort bar's call
+(`0x0056680B`, the only direct one) takes from its word `+0xE0` (`0x005667F6`), set from `0x00564380` of the same
+pane when the bar opens (`0x005668DF`-`0x005668EC`), only picks the By Strength comparator
+(`0x00565D4C`-`0x00565D5D`).
+
+The sort runs through
 `0x00249CE0` with one of five comparators (`0x00565D43`-`0x00565D7F`), and does nothing for a list of fewer than two items. Each comparator reads the
 two items' query records (`0x0035D330(1, id << 16)`,
 [item and ability ids](../Engine-Core/item-and-ability-ids.md)) and falls back to the next rule on a tie:

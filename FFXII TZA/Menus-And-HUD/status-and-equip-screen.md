@@ -111,7 +111,7 @@ Start, Up, Right, Down, Left, L2, R2, L1, R1, Triangle, Circle, Cross, Square ([
 
 | Where | Press | Does |
 |---|---|---|
-| any, while `0x00368240` answers 2 | | nothing (`0x002C293B`-`0x002C2942`, `0x003FF41B`-`0x003FF422`) |
+| any, while `0x00368240` answers 2 | | nothing, except that the slot pane's turn first shows its grid (`0x002D45C0(grid, 1)`, bit `0x8000000` of the grid's `+0xE0` and `0x002445C0`; `0x003FF400`-`0x003FF416`) (`0x002C293B`-`0x002C2942`, `0x003FF41B`-`0x003FF422`) |
 | the screen, Equip | the turn after the slot pane was cancelled | nothing: `+0x168` bit `0x8`, set by `0x002C22F0` from the pane's cancel (`0x003FF74D`), is cleared instead (`0x002C2960`-`0x002C296D`) |
 | the screen, the slot pane, the list | Square `0x8000` | the Party Menu's member pages, below |
 | the status pane | confirm `0x01E0C2A0` or Square | the same pages (`0x002C5B3A`-`0x002C5B4E`) |
@@ -277,10 +277,10 @@ of layout unit 7. Its grid `+0x170` has 5 rows painted by `0x003FF1F0`, its set 
 | Message | Does |
 |---|---|
 | 8, focus gained | shows the grid and posts its cursor, so `0x8000` follows (`0x003FF560`-`0x003FF593`) |
-| 10, input turn | nothing while a notice is open (its owner's `+0x40` bit `0x80000`, `0x002CE4DC`; `0x003FF428`-`0x003FF431`); else the member pages, the ammunition test, the member steps, then the grid (`0x003FF437`-`0x003FF556`) |
+| 10, input turn | first shows the grid as message 8 does, `0x002D45C0(grid, 1)`, bit `0x8000000` of the grid's `+0xE0` and `0x002445C0` (`0x003FF400`-`0x003FF416`); then nothing more while `0x00368240` answers 2 (`0x003FF41B`-`0x003FF422`) or a notice is open (its owner's `+0x40` bit `0x80000`, `0x002CE4DC`; `0x003FF428`-`0x003FF431`); else the member pages (`0x002C1A80`): when they answer non-zero it undoes those three steps, `0x002D45C0(grid, 0)`, bit `0x8000000` cleared and `0x002445C0`, and stops (`0x003FF437`-`0x003FF488`); otherwise the ammunition test, the member steps, then the grid (`0x003FF48D`-`0x003FF556`) |
 | 12 `0x8000` | the preview for the command and this slot (`0x002C2CD0(slot)`), and the slot's description and the command's help (`0x003FF920`) (`0x003FF76F`-`0x003FF77A`) |
 | 12 `0x8001` | `0x003FF040(pane, slot)` |
-| 12 `0x8002` | clears the warnings `+0xDE2`, `+0xDE3`, closes the description, sets the screen's skip bit and gives up the focus (`0x003FF706`-`0x003FF755`) |
+| 12 `0x8002` | calls `0x003FE6E0`, clears the warnings `+0xDE2`, `+0xDE3`, calls `0x00291D70(0)`, closes the description (`0x00293110(0, 0)`), clears bit `0x8000000` of the grid's `+0xE0` and calls `0x002445C0`, sets the screen's skip bit and gives up the focus (`0x003FF706`-`0x003FF755`) |
 | 18 | clears `+0x108` (`0x003FF8DD`-`0x003FF8E4`) |
 | 19 | the ammunition request, below (`0x003FF892`-`0x003FF8D6`) |
 | `0x11D` | Remove All, Optimize, or the ammunition request's answer (`0x003FF7AB`-`0x003FF7E1`) |

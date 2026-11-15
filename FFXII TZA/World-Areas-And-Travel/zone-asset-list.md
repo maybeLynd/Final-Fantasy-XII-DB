@@ -300,9 +300,10 @@ stores it` with the developer test scripts' stores named when only those store i
 | `crystals` | the zone's save and teleport crystals in [`save-and-teleport-crystals-list.tsv`](save-and-teleport-crystals-list.tsv), as kind and number; `-` when it has no crystal |
 | `explanation` | a one-line summary |
 
-The joined columns place 1,926 of the 1,966 chests, all 267 shops, 1,572 of the 1,575 NPC name rows and 80 of the 81
-crystals. The others belong to scripts that no zone-script entry names, so no field loads them: the 40 chests of
-`bts_z01`, the NPC name rows of `bts_z01`, `pre_a01` and `pre_b01`, and the crystal of `mic_b07`. Every zone lies in
+The joined columns place 1,926 of the 1,966 chests, all 267 shops, 1,578 of the 1,583 NPC name rows and 80 of the 81
+crystals. The others belong to scripts that no zone-script entry names, so no field loads them: the chests of
+`bts_z01` (16), `pre_a01` (12) and `pre_b01` (12), the NPC name rows of `bts_h01`, `bts_y01`, `bts_z01`, `pre_a01`
+and `pre_b01`, and the crystal of `mic_b07`. Every zone lies in
 a music run except field 869, `alc_z04` ([Music table](../Sound-And-Music/music-table.md)); its `music_run` is `-`.
 
 ### Columns of zone-openings.tsv

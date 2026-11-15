@@ -321,7 +321,8 @@ The `+0x03` and `+0x15` bits, by their readers:
 - `+0x03` bit `0x20`: `0x00238BF0` passes it to `0x002E8A10`, which stores it as the render record's shadow kind, mask `0x3000`
   of `+0x304` ([Character lighting and shadows](../Graphics/character-lighting-and-shadows.md)).
 - `+0x15` bit `0x8`: `0x0031AA30` leaves the target-kind word at 0 for an enemy (`0x0031AACF`); bits `0x8` or `0x10`: it leaves the
-  reach word at -1 instead of `0x01EED2D0[action kind]` (`0x0031AB39`). `0x0031AA30` runs from `0x00321060` and `0x00328530`.
+  reach word at -1 instead of `0x01EED2D0[action kind]` (`0x0031AB39`). `0x0031AA30` runs from `0x00321060` and
+  `0x00328530`, and `0x0031AB80` tail-jumps to it (`0x0031ABC5`).
 
 ### Colour and model variants
 

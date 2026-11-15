@@ -334,7 +334,7 @@ the `RGBA8` format (`0x02CF7498`) have bit `0x8`, `0x10` or `0x20` respectively.
 1. It sizes the texture 4×4 (×4 for 3D) in `RGBA8` with no mips and sets `+0x18` bit `0x200`.
 2. It maps the next ring record, fills every level with a checkerboard of `0xFF00FF00` and
    `0xFFFF00FF` (green and magenta in `R8G8B8A8`; `0x005F0590` for the 2D one, inline for the others)
-   and unmaps it (`0x0062C360`, `0x0062C570`, `0x0062C820`).
+   and commits it (`0x0062C360`, `0x0062C570`, `0x0062C820`).
 3. It creates the texture when it is not created yet (`0x0061E200`, `0x0061E270`, `0x0061E2E0`).
 
 It then resets the fields of the sampler at `+0x568` whose word `+0x584` has bit `0x80` clear.
@@ -343,6 +343,16 @@ It then resets the fields of the sampler at `+0x568` whose word `+0x584` has bit
 apart: `0xFFFF00FF` where bit `0x1` of row XOR column is set and `0xFF00FF00` where it is clear, so each square is
 one texel (`0x005F05C0`-`0x005F05DD`). A null `data` or a height of 0 returns with no store (`0x005F059B`, `0x005F05A3`).
 The 2D placeholder gives it the mapped 4×4 level 0 (`0x0060808F`).
+
+The 2D commit `0x0062C360(texture, index, layout)` returns 3 for an index at or past the ring count (`+0x30` without
+bit `0x80000000`, 1 when 0; `0x0062C39D`) and `0x15` for a ring record whose first qword is 0 (`0x0062C3D0`). With
+bit `0x10000` of `+0xB4` set it unmaps subresources 0 to min(`+0x10`, 11), or 0 alone when `+0x18` has bit `0x2`,
+on the immediate context (`+0x110` of `0x005FD050()`, `Unmap` at `+0x78`, `0x0062C51A`) under the context lock
+(`0x00615BC0`), and returns 0.
+
+With the bit clear it unmaps nothing: it copies the `0xC8`-byte layout to `+0xC0`, stores the texture and the
+index at `+0x48` and `+0x50` of the record, in its update entry at `+0x40`, queues that entry for the frame slot
+`0x01F7F590` (`0x0062EB90`, `0x0062C402`-`0x0062C4C7`) and returns 0.
 
 ### Constant buffers
 

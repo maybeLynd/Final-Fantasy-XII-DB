@@ -168,9 +168,14 @@ lines, in slot order, one per line with a bare line feed: 87 lines.
 
 A code is the value the input name registries give a key or a button ([Control names](control-names.md)): 11-26
 are the pad buttons and 28 and up the keyboard keys, with 28-53 the letters A-Z. Codes 1-3, which no name has, are
-the three mouse buttons: the filter `0x001967D0`, which keeps only the cancel binding's input (the Cross slot) when it runs, reads a
+the three mouse buttons: the filter `0x001967D0`, which keeps only the cancel binding's input when it runs (the
+Cross slot `+0x38` while confirm setting `0x01FD4A64` is 0, else Circle `+0x34`; `0x00196851`-`0x00196860`), reads a
 code of 1-3 as one of the mouse device's three button bytes and any other code as a key, code minus 28
 (`0x0019686E`-`0x001968AC`). 0 is no binding.
+
+The filter stops at the first null object among slots `+0x118` to `+0x148` of `[0x00796E20() + 0xDF8]`
+(`0x00196845`). Then in each non-null object of slots `+0x88` to `+0x110` it clears bytes `+0x30` to `+0x40`, all
+but `+0x31` while `0x01FD4A64` is 0 and all but `+0x32` otherwise (`0x00196944`-`0x0019698F`).
 
 ### Circle and Cross
 
@@ -247,3 +252,7 @@ Calls between the functions this page cites and code in other parts of the progr
 - Save load settings: `0x0017D4C0` calls `0x001C1710`, `0x001C18A0`, `0x001C18E0`; those functions are documented on
   [game application](../Engine-Core/game-application.md),
   [frame update order](../Engine-Core/frame-update-order.md).
+- Developer: `0x00796E20` is called by `0x001C2F50`; those functions are documented on
+  [game application](../Engine-Core/game-application.md).
+- UI: `0x00796E20` is called by `0x0018EEE0`; those functions are documented on
+  [graphics settings](../Engine-Core/graphics-settings.md).

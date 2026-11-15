@@ -332,10 +332,10 @@ that say where the change starts and what it tests, and these:
 | `status` | `entry`; `index past the list: zeros`; `entrance chosen at run time`; or `destination is not one zone` |
 | `arrival_x`, `arrival_y`, `arrival_z`, `arrival_angle` | the record's four floats, for `entry` rows |
 
-11,772 rows land on a record. 12 take their entrance from a value the script works out, and 661 have no single
+11,756 rows land on a record. 12 take their entrance from a value the script works out, and 661 have no single
 destination: 551 return to the field the party came from, 10 name a field with no `us` zone file, 3 reload the
 current map, 1 names field 64, which has no map, and 96 name several zones (77 debug menus, 13 Strahl flights and
-6 script functions). On the 199 rows past the list `0x00264B90` gives zeros; the destination's script can still place
+6 script functions). On the 197 rows past the list `0x00264B90` gives zeros; the destination's script can still place
 the party with `setmapjumppos`. The list is the same for every language.
 
 `Database/Tools/catalogues/door_arrivals.py` writes this table.
@@ -365,7 +365,7 @@ its destination from its step's `addresses` cell.
 | `opens` | the story counter value of [zone-openings.tsv](zone-openings.tsv), on a row that is the way dating `destination_zone`; `-` on every other row |
 | `wall_state` | on a way that dates a zone, the verdict of [zone-openings-wall-verdicts.tsv](zone-openings-wall-verdicts.tsv), the result of [zone-openings-wall-gates.tsv](zone-openings-wall-gates.tsv) and the arrival of [zone-openings-saved-arrivals.tsv](zone-openings-saved-arrivals.tsv), or that its basis names no wall; on another row, the number of `setmapidwall` steps in the source script, since a walk with walls is worked out only for the way that dates a zone |
 
-13,412 rows land on an entrance record. 832 name no single zone, 231 are past the list, 12 take their entrance at run
+13,396 rows land on an entrance record. 832 name no single zone, 229 are past the list, 12 take their entrance at run
 time and 28 name one of 11 fields outside the zone list. In 17 rows a way dates a zone through a field held in a
 variable: the step has no row for that zone, so the table adds one, named by zone-openings, with no arrival.
 

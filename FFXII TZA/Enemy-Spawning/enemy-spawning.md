@@ -102,7 +102,10 @@ result: the winning lane, or -1. The selector:
    on and fails the record fetch), tries `0x00234AF0(id, &pos, minR, 0x02089364, &observed, 0)` for
    attempts `0` to `n - 1`, `n` = `0x0208D457` read signed;
 6. an attempt is accepted when the call returns non-zero and `observed` is below `0x02F973B8` (the
-   shared maximum squared distance, `+INF` from `0x002368D0`);
+   shared maximum squared distance, `+INF` from `0x002368D0`) or unordered with it (`comiss`, `jb`,
+   `0x0023595F`-`0x00235962`). Area mode never writes `observed` (`0x00234C43`-`0x00234CF2`), so its attempts test
+   the stack slot `rsp + 0x34` (`0x00235959`), which only an earlier point-mode attempt of the same run writes
+   (`0x00234DA0`, `0x00234E7D`);
 7. a candidate records the lane, the lane's record and the position when its attempt counter
    is not `n` at the end of its attempts (`0x0023597A`-`0x00235990`): with `n` of 1 or more that
    is an accepted attempt. Both loops run on, so the last accepted candidate of the highest

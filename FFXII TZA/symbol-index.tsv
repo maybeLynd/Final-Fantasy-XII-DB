@@ -14719,7 +14719,7 @@ function	0x0018D850	-	Graphics/render-parameters-and-shader-assets.md	-	18
 function	0x0018E470	-	Third-Party-Libraries/yebis-ppfx-post-effects.md	-	11
 function	0x0018E4A0	-	Graphics/post-processing.md	-	9
 function	0x0018EE20	-	Random-Numbers/random-number-generators.md	-	8
-function	0x0018EEE0	-	Graphics/post-processing.md	-	19
+function	0x0018EEE0	-	Graphics/post-processing.md	-	20
 function	0x0018F510	-	Graphics/post-processing.md	-	15
 function	0x0018F6B0	-	Graphics/post-processing.md	-	13
 function	0x0018F8F0	-	Graphics/post-processing.md	-	14
@@ -14810,7 +14810,7 @@ function	0x00196550	-	Controls-And-Input/keymap-file.md	-	8
 function	0x001965E0	-	Controls-And-Input/keymap-file.md	-	7
 function	0x00196680	InputManager_RefreshBoundControlCodeBackendStates	Controls-And-Input/control-remapping.md	-	10
 function	0x00196710	-	Menus-And-HUD/pause-screen.md	-	7
-function	0x001967D0	-	Controls-And-Input/control-remapping.md	-	11
+function	0x001967D0	-	Controls-And-Input/keymap-file.md	-	11
 function	0x001969D0	-	Compiler-And-C-Runtime/msvc-containers.md	-	6
 function	0x00196A50	-	Compiler-And-C-Runtime/exception-handling-catch-funclets.tsv	-	6
 function	0x00196AC0	-	Compiler-And-C-Runtime/msvc-containers-library-members.tsv	-	6
@@ -15615,7 +15615,7 @@ function	0x001C2D50	-	Engine-Core/debug-menu.md	-	5
 function	0x001C2DB0	-	Engine-Core/debug-menu.md	-	7
 function	0x001C2F00	-	Engine-Core/debug-menu.md	-	7
 function	0x001C2F40	-	Engine-Core/debug-menu.md	-	11
-function	0x001C2F50	-	Game-Files-And-Data-Tables/standard-file-formats.md	-	17
+function	0x001C2F50	-	Game-Files-And-Data-Tables/standard-file-formats.md	-	18
 function	0x001C3370	-	PhyreEngine/phyre-application.md	-	13
 function	0x001C3390	-	Engine-Core/game-application.md	-	5
 function	0x001C3420	-	Engine-Core/game-application.md	-	5
@@ -17860,7 +17860,7 @@ function	0x00244200	-	Graphics/legacy-ps2-gs-layer.md	-	5
 function	0x002443D0	-	Graphics/legacy-ps2-gs-layer.md	-	5
 function	0x00244500	-	Menus-And-HUD/menu-sprites.md	-	5
 function	0x002445A0	-	Menus-And-HUD/menu-sprites.md	-	5
-function	0x002445C0	-	Menus-And-HUD/menu-sprites.md	-	7
+function	0x002445C0	-	Menus-And-HUD/status-and-equip-screen.md	-	8
 function	0x002445D0	-	Engine-Core/engine-types-fields.tsv	-	6
 function	0x00244610	-	Menus-And-HUD/widgets.md	-	4
 function	0x00244620	-	Compiler-And-C-Runtime/generated-function-families-trivial-global-accessors.tsv	-	7
@@ -19334,7 +19334,7 @@ function	0x0028FAF0	-	Menus-And-HUD/hud.md	-	9
 function	0x0028FB40	-	Compiler-And-C-Runtime/thunks-and-import-stubs.md	-	7
 function	0x0028FB60	-	Compiler-And-C-Runtime/thunks-and-import-stubs.md	-	9
 function	0x0028FB80	-	Menus-And-HUD/hud.md	-	11
-function	0x0028FBE0	-	Menus-And-HUD/party-list.md	-	7
+function	0x0028FBE0	-	Menus-And-HUD/battle-numbers.md	-	7
 function	0x0028FCB0	-	Menus-And-HUD/map-screens.md	-	10
 function	0x0028FD00	-	Game-Files-And-Data-Tables/menu-map-files.md	-	6
 function	0x0028FD50	-	Menus-And-HUD/battle-menu.md	-	7
@@ -19419,7 +19419,7 @@ function	0x00291C60	-	Game-Files-And-Data-Tables/as7-menu-graphics.md	-	6
 function	0x00291C80	-	Graphics/effect-file-list.md	-	20
 function	0x00291D40	-	Compiler-And-C-Runtime/thunks-and-import-stubs.md	-	8
 function	0x00291D50	-	Menus-And-HUD/menu-screens.md	-	8
-function	0x00291D70	-	Compiler-And-C-Runtime/generated-function-families.md	-	12
+function	0x00291D70	-	Compiler-And-C-Runtime/generated-function-families.md	-	13
 function	0x00291D80	-	Menus-And-HUD/dialogs.md	-	16
 function	0x00291D90	-	Game-Files-And-Data-Tables/as7-menu-graphics.md	-	11
 function	0x00292010	-	Engine-Core/party-control-modes-manager-0209ac60-accesses.tsv	-	5
@@ -19503,7 +19503,7 @@ function	0x00296E90	-	Menus-And-HUD/party-list.md	-	5
 function	0x00296ED0	-	Menus-And-HUD/party-list.md	-	5
 function	0x00296F50	-	Rewards-EXP-Gil-And-Loot/kill-chain.md	-	6
 function	0x00296FB0	-	Menus-And-HUD/party-list.md	-	6
-function	0x00297040	-	Menus-And-HUD/party-list.md	-	5
+function	0x00297040	-	Menus-And-HUD/party-list.md	-	6
 function	0x002970C0	-	Menus-And-HUD/hud.md	-	8
 function	0x00297100	-	Menus-And-HUD/party-list.md	-	8
 function	0x00297170	-	Menus-And-HUD/party-list.md	-	5
@@ -20170,7 +20170,7 @@ function	0x002D3A50	-	Controls-And-Input/controls.md	-	5
 function	0x002D3BA0	-	Menus-And-HUD/status-and-equip-screen.md	-	14
 function	0x002D4330	-	Game-Files-And-Data-Tables/ui-typed-lists.md	-	7
 function	0x002D4570	-	Compiler-And-C-Runtime/generated-function-families-explained-callee-adapters.tsv	-	5
-function	0x002D45C0	-	Controls-And-Input/control-remapping.md	-	9
+function	0x002D45C0	-	Controls-And-Input/control-remapping.md	-	10
 function	0x002D4650	-	Menus-And-HUD/dialogs.md	-	7
 function	0x002D46F0	-	Menus-And-HUD/menu-lists.md	-	9
 function	0x002D47C0	-	Menus-And-HUD/config-screen.md	-	8
@@ -21663,7 +21663,7 @@ function	0x0031A910	-	Game-Files-And-Data-Tables/binmenu-images.md	-	11
 function	0x0031A930	-	Battle-Actions/area-of-effect.md	-	8
 function	0x0031A990	-	Battle-Actions/area-of-effect.md	-	6
 function	0x0031AA30	-	Enemy-Spawning/bestiary.md	-	13
-function	0x0031AB80	-	Battle-Actions/area-of-effect.md	-	8
+function	0x0031AB80	-	Enemy-Spawning/bestiary.md	-	9
 function	0x0031ABE0	-	Party/party-leader.md	-	8
 function	0x0031ABF0	-	Engine-Core/debug-menu.md	-	12
 function	0x0031AC00	-	Party/party-data.md	-	13
@@ -26726,7 +26726,7 @@ function	0x003FE3F0	-	Engine-Core/party-control-modes-manager-0209ac60-accesses.
 function	0x003FE410	-	Menus-And-HUD/status-and-equip-screen.md	-	9
 function	0x003FE490	-	Menus-And-HUD/menu-screens.md	-	6
 function	0x003FE5D0	-	Menus-And-HUD/menu-screens.md	-	9
-function	0x003FE6E0	-	Engine-Core/party-control-modes-manager-0209ac60-accesses.tsv	-	5
+function	0x003FE6E0	-	Menus-And-HUD/status-and-equip-screen.md	-	6
 function	0x003FE720	-	Menus-And-HUD/status-and-equip-screen.md	-	10
 function	0x003FEAD0	-	Menus-And-HUD/status-and-equip-screen.md	-	11
 function	0x003FEDC0	-	Menus-And-HUD/menu-screens.md	-	9
@@ -33399,7 +33399,7 @@ function	0x00615720	-	Graphics/gi-render-commands-render-context-02cc0410-access
 function	0x00615790	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	8
 function	0x00615810	-	Engine-Core/engine-types.tsv	-	7
 function	0x00615840	-	Graphics/gi-render-commands.md	-	14
-function	0x00615BC0	-	PhyreEngine/phyre-application.md	-	10
+function	0x00615BC0	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	10
 function	0x00615C90	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	10
 function	0x00615CD0	-	Graphics/character-lighting-and-shadows.md	-	13
 function	0x00615CF0	-	Engine-Core/engine-types.tsv	-	7
@@ -33820,7 +33820,7 @@ function	0x0062BA00	-	Graphics/render-command-list-pending-completion-queue-01f8
 function	0x0062BA30	-	Graphics/gi-render-commands.md	-	13
 function	0x0062BAB0	-	Engine-Core/engine-types.tsv	-	7
 function	0x0062BB40	-	Engine-Core/engine-types.tsv	-	11
-function	0x0062BCB0	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	17
+function	0x0062BCB0	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	18
 function	0x0062BF40	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	13
 function	0x0062C100	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	13
 function	0x0062C300	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	8
@@ -40184,7 +40184,7 @@ function	0x00796960	-	PhyreEngine/phyre-lua-bindings-member-vcall-optptr-dispatc
 function	0x00796A90	-	PhyreEngine/phyre-lua-bindings-object-pointer-accessors.tsv	-	8
 function	0x00796BC0	-	PhyreEngine/phyre-lua-bindings-object-pointer-accessors.tsv	-	8
 function	0x00796CF0	-	PhyreEngine/phyre-lua-bindings-object-pointer-accessors.tsv	-	9
-function	0x00796E20	-	Scripts-And-Script-Commands/event-scenes.md	-	23
+function	0x00796E20	-	Scripts-And-Script-Commands/event-scenes.md	-	24
 function	0x00796E30	-	PhyreEngine/phyre-reflection-state.tsv	-	6
 function	0x00796E70	-	Third-Party-Libraries/third-party-libraries.md	-	6
 function	0x00796FC0	-	Controls-And-Input/controllers.md	-	9
@@ -48379,7 +48379,7 @@ global	0x01FD4A20	-	Engine-Core/startup-constants.md	-	3
 global	0x01FD4A30	-	Engine-Core/startup-constants.md	-	3
 global	0x01FD4A38	-	Engine-Core/startup-constants.md	-	0
 global	0x01FD4A40	-	Engine-Core/startup-constants.md	-	1
-global	0x01FD4A64	-	Engine-Core/startup-constants.md	-	7
+global	0x01FD4A64	-	Engine-Core/startup-constants.md	-	9
 global	0x01FD4A68	-	Engine-Core/game-application.md	-	4
 global	0x01FD4A6C	-	Graphics/gi-render-commands.md	-	1
 global	0x01FD4A70	-	PhyreEngine/the-frame.md	-	3
@@ -59253,7 +59253,7 @@ data	0x00D120E0	-	Menus-And-HUD/map-screens.md	-	0
 data	0x00D12190	-	Menus-And-HUD/battle-menu.md	-	0
 data	0x00D121F8	-	Engine-Core/startup-constants.md	-	2
 data	0x00D12428	-	Graphics/character-render-records.md	-	1
-data	0x00D12474	-	Graphics/character-render-records.md	-	0
+data	0x00D12474	-	Graphics/character-render-records.md	-	1
 data	0x00D12590	-	Movement-And-Pathfinding/battle-locomotion.md	-	1
 data	0x00D22590	-	Sound-And-Music/audio-effects.md	-	0
 data	0x00D22600	-	Compiler-And-C-Runtime/maths-library.md	-	1

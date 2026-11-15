@@ -150,7 +150,8 @@ On every poll `0x0035F420` calls `0x0035F590` (`0x0035F548`):
      `0x00198E80(input manager, pad, small, large)` (`0x001E1172`-`0x001E1186`), which looks the pad up itself and does
      not use the manager argument (`0x00198E97`-`0x00198EA5`).
 4. `0x00198E80` takes the n-th registered controller of kind 2 (`0x0079D620`, `0x00796FC0(2, n)`) and `0x007A1080` stores the
-   large value at `+0x98`, the small one at `+0x99` and 1 at `+0x9A`.
+   large value at `+0x98`, the small one at `+0x99` and 1 at `+0x9A`; with no such controller it stores nothing
+   (`0x00198EAA`-`0x00198EAD`).
 
 The XInput pad's update `0x007A2140` passes `+0x98` / 255 × 65535 as the left motor and 65535 or 0 for a
 non-zero or zero `+0x99` as the right motor to `XInputSetState` (`0x007A21C5`-`0x007A2224`). The Steam controller's update

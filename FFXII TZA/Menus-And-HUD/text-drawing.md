@@ -260,11 +260,14 @@ with `ex` is UTF-16 (`0x00364980`), as the credits strings are ([Text codes](tex
 | `0x0029CCF0(out, size, plus, x, utf16)`, a sign | the glyph code of `+` or `-` (`0x002B5A20`) | `ex00` and the UTF-16 `+` or `-`, 8 bytes |
 | `0x0029CCD0(x, font)`, a blank's width | the width of token 7 (`0x002ABAA0(0)`) | the advance of `0` in UTF-16 font `font - 1` (`0x003655F0`) |
 
-`0x002DD680` hands the record's palette byte `+0x5C`, size `+0x60` and letter spacing `+0x65` to the context, and its
-colour to `+0x30` (also kept at record `+0x94`): `rgb = (byte +0x90..+0x92 x s16 +0x5A) >> 7` and
-`a = (byte +0x93 x s16 +0x58) >> 7` (`0x002DD6DD`-`0x002DD738`). It places the text at
-(x, y) through `0x00397910` and draws it with `0x002B0280`. `0x002D8550` sets up the same and draws through `0x002AF960`, for
-the confirm windows and the pause task (`0x0057C92A`, `0x00242373`, `0x00227F39`).
+`0x002DD680` hands the record's palette byte `+0x5C`, size `+0x60` and letter spacing `+0x65` to the context, sets
+bit `0x2000000` of the context's `+0xB0` when bit `0x40` of the record's `+0x66` is set (`0x002DD6CC`-`0x002DD6D2`),
+and hands its colour to `+0x30` (also kept at record `+0x94`): `rgb = (byte +0x90..+0x92 x s16 +0x5A) >> 7` and
+`a = (byte +0x93 x s16 +0x58) >> 7` (`0x002DD6DD`-`0x002DD738`).
+
+It places the text at (x, y) through `0x00397910` and draws it with `0x002B0280`. `0x002D8550` does the same colour and
+placement, without the palette, size, spacing or flag, and draws through `0x002AF960`, for the confirm windows and
+the pause task (`0x0057C92A`, `0x00242373`, `0x00227F39`).
 
 `0x00243860(list, record, dx, dy)` draws the type-5 text nodes of a typed list ([UI typed
 lists](../Game-Files-And-Data-Tables/ui-typed-lists.md)) with a draw record; the per-element query `0x002D28E0` runs

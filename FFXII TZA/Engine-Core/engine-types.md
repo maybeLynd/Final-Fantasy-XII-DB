@@ -12,7 +12,7 @@ executable builds and reads. Each row gives what the type is for, the page that 
 page) and its lifetime: where its storage lives, which code creates or fills it, and what releases it.
 Addresses in a row are the instructions and functions that do so.
 
-The table holds 900 types in 25 categories. The largest is `SaveImage` (0x56690 bytes).
+The table holds 901 types in 25 categories. The largest is `SaveImage` (0x56690 bytes).
 
 | Category | Types |
 |---|---|
@@ -31,7 +31,7 @@ The table holds 900 types in 25 categories. The largest is `SaveImage` (0x56690 
 | Movement and pathfinding | 20 |
 | Party | 9 |
 | PhyreEngine | 352 |
-| Random numbers | 7 |
+| Random numbers | 8 |
 | Rewards: EXP, LP, gil and loot | 10 |
 | Saving, loading and settings | 12 |
 | Scripts and script commands | 12 |
@@ -53,7 +53,7 @@ The table holds 900 types in 25 categories. The largest is `SaveImage` (0x56690 
 | `owner_page` | the page that documents the type |
 | `lifetime` | where the type's storage lives, what creates or fills it and what releases it |
 
-[engine-types-fields.tsv](engine-types-fields.tsv) gives the fields of 894 of the 900 types, 9,561 rows, one per
+[engine-types-fields.tsv](engine-types-fields.tsv) gives the fields of 895 of the 901 types, 9,565 rows, one per
 field. A type is listed there with every one of its fields; the other 6 types are in [`engine-types.tsv`](engine-types.tsv) only.
 
 | Column | Meaning |
