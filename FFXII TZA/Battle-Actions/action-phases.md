@@ -97,7 +97,7 @@ Phase 0 chooses the delay threshold `+0x764` this way:
   record with byte `+0x09` = `0x38` and byte `+0x08` = 1, and the last cancelled action's context
   `+0x738` (the cancel's copy of `+0x708`) is null or not such a record; otherwise 0.
 
-`0x002FA1A0` uses the C runtime `rand()` and the frame base `F` = `0x01DFE0B4` (1 as shipped):
+`0x002FA1A0` uses the C runtime `rand()` and the frame base `F` = `0x01DFE0B4` (1 at 30 fps, 2 at 60: `0x001EDDF2`):
 
 ```
 enemy side:  1200 * F + rand() % (900 * F)

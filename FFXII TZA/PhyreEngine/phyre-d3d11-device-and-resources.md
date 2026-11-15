@@ -40,8 +40,14 @@ height that a post effect configured with a zero size takes ([post effect classe
 When a member's constructor throws, the unwind actions of `0x00615840` destroy what has been built:
 
 - `0x00616740` for each render target: `0x0062B890` when its `+0x18` or `+0x28` is set, which releases the
-  views in its two arrays and the four interfaces at `+0x10`–`+0x28`, then `0x005DDB00`, which frees the
-  arrays' storage;
+  views in its two arrays and the four interfaces at `+0x10`–`+0x28`, then `0x005DDB00`:
+  - it frees each array's storage (pointers `+0x48` and `+0x38`) through `0x00584730` unless bit `0x80000000`
+    of its count (`+0x40`, `+0x30`) is set, and zeroes both pointers and counts on every path
+    (`0x005DDB17`-`0x005DDB5A`);
+  - it then jumps to `0x006108C0` (`0x005DDB6A`), which detaches the target from its texture `[target+0x00]` when
+    the texture's `+0x20` points back at the target and the target's byte `+0x08` is 0, 1 or 2: it clears bit
+    `0x100` of the texture's `+0x18` and zeroes the texture's `+0x20` and the target's `+0x00`
+    (`0x006108E5`-`0x00610984`);
 - `0x00616520` and `0x00616780` for the eight `0x18`-byte records at `+0x08` and at `+0x570`, whose element
   destructor (`0x0016D6A0`) does nothing.
 

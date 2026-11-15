@@ -176,8 +176,9 @@ The escape widget is the `0xE0`-byte widget kept at `0x022CBE20` with procedure 
 ## State
 
 The escape widget `0x00366B80` sets these when it is built (message 1, `0x003670A6`-`0x003670D6`), from the frame-time
-base `0x01DFE0B4`, 1 as shipped, beside the delay `0x022CBE08`. Its update (message 2, `0x00366EFB`-`0x003670E8`) moves the
-picture's alpha `+0xD0` and brightness `+0xD2` by 128 divided by them; its draw reads both (`0x00366D6F`, `0x00366DDC`).
+base `0x01DFE0B4` (1 at 30 fps, 2 at 60: `0x001EDDF2`), beside the delay `0x022CBE08`. Its update (message 2,
+`0x00366EFB`-`0x003670E8`) moves the picture's alpha `+0xD0` and brightness `+0xD2` by 128 divided by them; its draw
+reads both (`0x00366D6F`, `0x00366DDC`).
 
 The update does nothing while `0x001EDEC0` answers 0 for the widget's dword `+0xB4`
 (`0x00366EFB`-`0x00366F08`). With no pulse running and neither bit `0x1` nor bit `0x2` in the arming word

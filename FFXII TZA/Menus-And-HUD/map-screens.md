@@ -262,11 +262,22 @@ The minimap is the widget `0x003C5910`, at `0x02B476B0` (`0x003C80C0`):
 1. `0x003C5E00` shows it and `0x003C58B0` hides it (see [Who shows and hides the minimap](#who-shows-and-hides-the-minimap)).
 2. Every world tick, `0x003C6000` keeps it in step while the save-RAM status allows it (`0x00377750`) and copies the party
    position to `0x02B45810` (`0x00359150`).
-3. Its draw callback `0x003C32B0` calls `0x003C4070` in mode 0, which draws the zone's own map picture `[0x02B457F0]` at 4
-   pixels per world unit (`0x004001D0`), a 12-spoke ring (`0x003C34E0`), the blinking party marker (`0x003C2E60`) and up to
-   64 icons (`0x003C3340`, `0x00400CF0`).
+3. Its draw callback `0x003C32B0` calls `0x003C4070` in mode 0, which draws, in this order:
+   - the zone's own map picture `[0x02B457F0]` at 4 pixels per world unit (`0x004001D0`);
+   - the party trail (`0x003C4B20`) while `0x02B45A38` and the trail's point count `0x02B45962` are not 0, at 70/128
+     of the draw's alpha `+0x58` (`0x003C42F8`-`0x003C432D`);
+   - a 12-spoke ring (`0x003C34E0`);
+   - the blinking party marker (`0x003C2E60`) while `0x02B45A28` is not 0 (`0x003C447C`);
+   - up to 64 icons (`0x003C3340`, `0x00400CF0`);
+   - a mark at the controlled character's position (`0x003C29A0`, which finds the character with `0x003588B0` and
+     reads its position with `0x00265020`) while that character's handle `0x022C806C` is not 0 and `0x00264790`
+     returns 0 or less (`0x003C4616`-`0x003C4640`);
+   - and `0x003C37B0` (`0x003C4658`), which returns at once unless `0x02B45970` or the current party record's
+     `+0x08` (`[0x022C8078]`) is not 0 (`0x003C37DA`-`0x003C3807`), and for `0x02B45970` reads the position of the
+     actor `0x003588B0` finds for it (`0x003C3887`-`0x003C389B`).
 4. While the map is jammed (`0x00377780`, verb `setnavimapjamming`), `0x004001D0` draws its jamming passes over the
-   picture (`0x00401620`, `0x004014E0`, `0x004010A0`) and `0x003C4070` leaves out the ring, the party marker and the icons.
+   picture (`0x00401620`, `0x004014E0`, `0x004010A0`) and `0x003C4070` draws nothing after the picture: no trail, ring,
+   party marker, icons or marks (`0x003C42B3`-`0x003C42C3`, which jumps to `0x003C4670`).
 
 The parts of that draw:
 
@@ -626,7 +637,7 @@ passes the record on to `0x004001D0` (`0x003C41AB`), `0x003C3340` (`0x003C4611`,
 | `0x02B45834` | `f32[2]` | 0 | `+0x14`, `+0x18`: the offset `0x003C4070` puts in the view matrix's translation row `0x02B47720` | `0x003C5910`, 0 (`0x003C5AFA`) | `0x003C4070` (`0x003C40B4`, `0x003C40C6`) |
 | `0x02B4583C` | `f32` | 0 | `+0x1C`, the turn, 0 on each draw | `0x003C5910` (`0x003C5C1D`) | `0x003C4070` (`0x003C4101`); `0x004001D0` (`0x004002E5`) |
 | `0x02B45840` | `f32` | 0 | `+0x20`, the scale: the layout record's `+0x0C` over 100 on construction, then `0x001814D0()` on each draw | `0x003C5910` (`0x003C5B1C`, `0x003C5C12`) | `0x003C4070` (`0x003C40D8`); `0x004001D0` (`0x004002D5`, `0x004002DA`) |
-| `0x02B47720` | `f32` | 0 | x of the translation row of the view matrix `0x02B476F0`, the record's `+0x14` | `0x003C4070` (`0x003C40BE`) | through the matrix's address, which `0x003C4070` hands to the matrix helpers (`0x003C412D`, `0x003C416B`, `0x003C4230`, `0x003C4256`, `0x003C4281`, `0x003C42C9`, `0x003C4314`, `0x003C43E0`, `0x003C4453`, `0x003C4514`, `0x003C4607`) |
+| `0x02B47720` | `f32` | 0 | x of the translation row of the view matrix `0x02B476F0`, the record's `+0x14` | `0x003C4070` (`0x003C40BE`) | through the matrix's address, which `0x003C4070` hands to the matrix helpers and draw routines (`0x003C412D`, `0x003C416B`, `0x003C4230`, `0x003C4256`, `0x003C4281`, `0x003C42C9`, `0x003C4314`, `0x003C43E0`, `0x003C4453`, `0x003C4514`, `0x003C4607`, `0x003C4633`, `0x003C464E`) |
 | `0x02B47724` | `f32` | 0 | y of that row, the record's `+0x18` | `0x003C4070` (`0x003C40CB`) | the same |
 | `0x02B47698` | `void*` | 0 | `0x003C4070`'s fourth argument, stored in modes other than 2 before `0x003C3340` runs (`0x003C45DB`-`0x003C4611`); nothing reads it | `0x003C4070` (`0x003C4600`) | no instruction |
 | `0x02B45800` | `f32` | 0 | the world x of the zone's map picture, NPS2 placement `+0x10` ([MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md)), or 0 without one | `0x003C6360` (`0x003C6360`), from `0x00379870` (`0x003798D5`) | `0x003C4070` (`0x003C426C`); the uncovering step `0x003C5500` (`0x003C55CE`) |

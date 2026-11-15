@@ -3916,7 +3916,7 @@ field	PersistentFlagPayload+0x1040	questsClearedTotal	Story-Events-And-Hunts/sto
 field	PersistentFlagPayload+0x1044	field_id	Story-Events-And-Hunts/story-flags.md	-	-
 field	PersistentFlagPayload+0x1048	destinationEntrance	Story-Events-And-Hunts/story-flags.md	-	-
 field	PersistentFlagPayload+0x104C	previousFieldId	Story-Events-And-Hunts/story-flags.md	-	-
-field	PersistentFlagPayload+0x1050	previousDestinationParameter	Story-Events-And-Hunts/story-flags.md	-	-
+field	PersistentFlagPayload+0x1050	previousEntrance	Story-Events-And-Hunts/story-flags.md	-	-
 field	PersistentFlagPayload+0x1054	options	Story-Events-And-Hunts/story-flags.md	-	-
 field	PersistentFlagPayload+0x1058	persistenceGroup	Story-Events-And-Hunts/story-flags.md	-	-
 field	PersistentFlagPayload+0x105C	transitionFieldId	Story-Events-And-Hunts/story-flags.md	-	-
@@ -16164,7 +16164,7 @@ function	0x001EDBB0	-	Graphics/effect-element-runtime.md	-	7
 function	0x001EDC80	-	Scripts-And-Script-Commands/native-commands.md	-	5
 function	0x001EDCD0	m1126	Graphics/model-effects-and-motion-commands.md	-	8
 function	0x001EDDA0	-	Graphics/effect-lifecycle.md	-	33
-function	0x001EDDC0	-	Menus-And-HUD/hud.md	-	18
+function	0x001EDDC0	-	Menus-And-HUD/hud.md	-	21
 function	0x001EDE70	-	Menus-And-HUD/map-screens.md	-	22
 function	0x001EDE80	-	Engine-Core/frame-update-order.md	-	11
 function	0x001EDEC0	-	Saving-Loading-And-Settings/loading-a-save.md	-	20
@@ -18626,7 +18626,7 @@ function	0x002678A0	MapRef_OnPrimaryResourceLoaded	World-Areas-And-Travel/weathe
 function	0x002678C0	-	Engine-Core/time-stop-and-freeze.md	-	15
 function	0x00267930	-	Compiler-And-C-Runtime/memory-and-allocation.md	-	17
 function	0x00267990	-	Story-Events-And-Hunts/event-memory.md	-	7
-function	0x002679F0	ActorStorage_AllocateAndInitializeRecords	Characters-And-Objects/actor-lifecycle.md	-	64
+function	0x002679F0	ActorStorage_AllocateAndInitializeRecords	Characters-And-Objects/actor-lifecycle.md	-	65
 function	0x00267BB0	-	Compiler-And-C-Runtime/memory-and-allocation.md	-	7
 function	0x00267C20	-	Compiler-And-C-Runtime/memory-and-allocation.md	-	7
 function	0x00267C90	-	Saving-Loading-And-Settings/loading-a-save.md	-	10
@@ -19114,7 +19114,7 @@ function	0x0027F2E0	-	World-Areas-And-Travel/game-over.md	-	8
 function	0x0027F360	-	Menus-And-HUD/menu-screens.md	-	9
 function	0x0027F430	-	Menus-And-HUD/menu-screens.md	-	10
 function	0x0027F540	-	Game-Files-And-Data-Tables/json-configs-inputs.tsv	-	9
-function	0x0027F5D0	-	Saving-Loading-And-Settings/saving-and-loading.md	-	14
+function	0x0027F5D0	-	Saving-Loading-And-Settings/saving-and-loading.md	-	15
 function	0x0027FB30	-	Engine-Core/party-control-modes-manager-0209ac60-accesses.tsv	-	6
 function	0x0027FB50	-	Engine-Core/party-control-modes-manager-0209ac60-accesses.tsv	-	6
 function	0x0027FB70	-	Story-Events-And-Hunts/tutorials-scenes.md	-	19
@@ -19365,7 +19365,7 @@ function	0x00290320	-	Menus-And-HUD/hud.md	-	6
 function	0x00290350	-	Menus-And-HUD/hud.md	-	8
 function	0x00290370	-	Menus-And-HUD/hud.md	-	10
 function	0x002903D0	-	Engine-Core/engine-types-fields.tsv	-	7
-function	0x002903F0	-	Engine-Core/engine-types-fields.tsv	-	7
+function	0x002903F0	-	World-Areas-And-Travel/chocobos-and-airships.md	-	8
 function	0x00290410	-	Scripts-And-Script-Commands/verb-table.md	-	10
 function	0x00290430	-	Engine-Core/engine-types-fields.tsv	-	7
 function	0x00290450	-	Menus-And-HUD/hud.md	-	7
@@ -25670,7 +25670,7 @@ function	0x003BCBA0	-	Menus-And-HUD/map-screens.md	-	8
 function	0x003BCCA0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	5
 function	0x003BCDE0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	8
 function	0x003BD040	-	Game-Files-And-Data-Tables/menu-map-files.md	-	6
-function	0x003BD1B0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	6
+function	0x003BD1B0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	7
 function	0x003BD480	-	Game-Files-And-Data-Tables/menu-map-files.md	-	9
 function	0x003BD6F0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	8
 function	0x003BD860	-	Game-Files-And-Data-Tables/menu-map-files.md	-	6
@@ -25718,15 +25718,15 @@ function	0x003C05F0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	5
 function	0x003C06E0	-	Story-Events-And-Hunts/story-flags.md	-	7
 function	0x003C0740	-	Game-Files-And-Data-Tables/menu-map-files.md	-	5
 function	0x003C0890	-	Game-Files-And-Data-Tables/menu-map-files.md	-	6
-function	0x003C08B0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	9
+function	0x003C08B0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	10
 function	0x003C0A00	-	Game-Files-And-Data-Tables/menu-map-files.md	-	8
 function	0x003C0B70	-	Story-Events-And-Hunts/story-flags.md	-	7
 function	0x003C0BE0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	8
-function	0x003C0C50	-	Game-Files-And-Data-Tables/menu-map-files.md	-	6
+function	0x003C0C50	-	Game-Files-And-Data-Tables/menu-map-files.md	-	7
 function	0x003C0CC0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	5
 function	0x003C0CF0	-	Menus-And-HUD/map-screens.md	-	8
 function	0x003C0D30	-	Game-Files-And-Data-Tables/menu-map-files.md	-	5
-function	0x003C0D70	-	Game-Files-And-Data-Tables/menu-map-files.md	-	6
+function	0x003C0D70	-	Game-Files-And-Data-Tables/menu-map-files.md	-	7
 function	0x003C0E30	-	Game-Files-And-Data-Tables/menu-map-files.md	-	5
 function	0x003C0F00	-	Game-Files-And-Data-Tables/menu-map-files.md	-	5
 function	0x003C0F70	-	Menus-And-HUD/map-screens.md	-	8
@@ -25758,7 +25758,7 @@ function	0x003C2E60	-	Engine-Core/ps2-cpu-emulation.md	-	8
 function	0x003C32B0	-	Menus-And-HUD/map-screens.md	-	5
 function	0x003C3340	-	Menus-And-HUD/map-screens.md	-	7
 function	0x003C34E0	-	Menus-And-HUD/map-screens.md	-	68
-function	0x003C37B0	-	Engine-Core/ps2-cpu-emulation.md	-	8
+function	0x003C37B0	-	Engine-Core/ps2-cpu-emulation.md	-	9
 function	0x003C3F90	-	Menus-And-HUD/map-screens.md	-	5
 function	0x003C4070	-	Menus-And-HUD/map-screens.md	-	7
 function	0x003C46B0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	5
@@ -25768,7 +25768,7 @@ function	0x003C4980	-	Engine-Core/ps2-cpu-emulation.md	-	7
 function	0x003C4AB0	-	Menus-And-HUD/map-screens.md	-	5
 function	0x003C4AD0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	8
 function	0x003C4AE0	-	Game-Files-And-Data-Tables/menu-map-files.md	-	8
-function	0x003C4B20	-	Menus-And-HUD/map-screens-subroutines.tsv	-	5
+function	0x003C4B20	-	Menus-And-HUD/map-screens.md	-	6
 function	0x003C5030	-	Menus-And-HUD/map-screens.md	-	7
 function	0x003C5060	-	Menus-And-HUD/map-screens.md	-	7
 function	0x003C5120	-	Compiler-And-C-Runtime/generated-function-families-nativeadapter-constantfirstargumenttailcall.tsv	-	5
@@ -33187,7 +33187,7 @@ function	0x006105F0	-	Engine-Core/engine-types-fields.tsv	-	7
 function	0x00610630	-	PhyreEngine/phyre-modules.md	-	10
 function	0x006106A0	-	Graphics/gi-render-commands.md	-	7
 function	0x006107F0	-	PhyreEngine/phyre-math-and-camera.md	-	6
-function	0x006108C0	-	Compiler-And-C-Runtime/generated-function-families.md	-	14
+function	0x006108C0	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	14
 function	0x00610990	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	9
 function	0x006109D0	-	Engine-Core/vtable-methods.tsv	-	7
 function	0x00610A10	-	Engine-Core/vtable-methods.tsv	-	7
@@ -49573,11 +49573,11 @@ global	0x022C8060	-	Menus-And-HUD/party-list.md	-	8
 global	0x022C8064	-	Menus-And-HUD/party-list.md	-	4
 global	0x022C8066	-	Menus-And-HUD/party-list.md	-	1
 global	0x022C8068	-	Menus-And-HUD/party-list.md	-	1
-global	0x022C806C	-	Menus-And-HUD/hud.md	-	5
+global	0x022C806C	-	Menus-And-HUD/map-screens.md	-	6
 global	0x022C8070	-	Menus-And-HUD/party-list.md	-	1
 global	0x022C8074	-	Menus-And-HUD/party-list.md	-	3
 global	0x022C8076	-	Menus-And-HUD/party-list.md	-	3
-global	0x022C8078	-	Controls-And-Input/controls.md	-	6
+global	0x022C8078	-	Controls-And-Input/controls.md	-	7
 global	0x022C8380	-	Menus-And-HUD/hud.md	-	1
 global	0x022C83A8	-	Menus-And-HUD/hud.md	-	2
 global	0x022C83B8	-	Menus-And-HUD/map-screens.md	-	0
@@ -57029,7 +57029,7 @@ global	0x02EA0670	-	PhyreEngine/phyre-reflection-state.tsv	-	0
 global	0x02EA0698	-	PhyreEngine/phyre-reflection-state.tsv	-	0
 global	0x02EA06D8	-	Compiler-And-C-Runtime/static-initialisation-and-teardown.md	-	1
 global	0x02EA06E0	-	Engine-Core/engine-types.tsv	-	2
-global	0x02EA0748	-	PhyreEngine/phyre-reflection.md	-	1
+global	0x02EA0748	-	PhyreEngine/phyre-reflection.md	-	2
 global	0x02EA0750	-	PhyreEngine/phyre-field-schema-field-schema.tsv	-	1
 global	0x02EA0850	-	PhyreEngine/phyre-asset-files.md	-	5
 global	0x02EA094C	-	PhyreEngine/phyre-reflection.md	-	1
@@ -57970,7 +57970,7 @@ global	0x02EB7F60	-	PhyreEngine/phyre-reflection-phyre-class-parent-chain.tsv	-	
 global	0x02EB8060	-	Engine-Core/engine-types.tsv	-	3
 global	0x02EB815C	-	PhyreEngine/phyre-reflection-state.tsv	-	0
 global	0x02EB8160	-	PhyreEngine/phyre-reflection-phyre-class-parent-chain.tsv	-	3
-global	0x02EB8260	-	Controls-And-Input/phyre-input-semantics.md	-	1
+global	0x02EB8260	-	Controls-And-Input/phyre-input-semantics.md	-	2
 global	0x02EB8270	-	Controls-And-Input/phyre-input-semantics.md	-	2
 global	0x02EB82D8	-	Controls-And-Input/phyre-input-semantics.md	-	2
 global	0x02EB82E0	-	Controls-And-Input/phyre-input-semantics.md	-	2
@@ -57989,7 +57989,7 @@ global	0x02EB936C	-	PhyreEngine/phyre-reflection-state.tsv	-	0
 global	0x02EB9370	-	PhyreEngine/phyre-field-schema-field-schema.tsv	-	4
 global	0x02EB946C	-	PhyreEngine/phyre-reflection-state.tsv	-	0
 global	0x02EB9CD8	-	PhyreEngine/phyre-reflection-state.tsv	-	0
-global	0x02EB9D80	-	Controls-And-Input/control-names.md	-	2
+global	0x02EB9D80	-	Compiler-And-C-Runtime/static-initialisation-and-teardown.md	-	2
 global	0x02EB9D90	-	PhyreEngine/phyre-reflection-state.tsv	-	1
 global	0x02EB9E60	-	Engine-Core/engine-types.tsv	-	4
 global	0x02EB9F5C	-	PhyreEngine/phyre-reflection-state.tsv	-	0
@@ -61003,6 +61003,8 @@ data	0x02B45818	-	Menus-And-HUD/map-screens.md	-	0
 data	0x02B45858	-	Menus-And-HUD/map-screens.md	-	0
 data	0x02B45860	-	Menus-And-HUD/map-screens.md	-	3
 data	0x02B45978	-	Menus-And-HUD/map-screens.md	-	3
+data	0x02B45A28	-	Menus-And-HUD/map-screens.md	-	0
+data	0x02B45A38	-	Menus-And-HUD/map-screens.md	-	0
 data	0x02B45A80	-	Menus-And-HUD/map-screens.md	-	0
 data	0x02B46280	-	Menus-And-HUD/map-screens.md	-	3
 data	0x02B476F0	-	Menus-And-HUD/map-screens.md	-	1

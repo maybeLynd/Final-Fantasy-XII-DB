@@ -134,6 +134,13 @@ On the Sunlit Path (`ozm_b04`, field 533) an Imperial soldier (`帝国兵01_befo
 global byte `0x30A` is 0. Handing it over (`subitem(0, 1)`) sets the byte to 1, and from then on he lends a chocobo
 with no payment.
 
+[`chocobo-lenders.tsv`](chocobo-lenders.tsv) has one row per lender, 14 in all: the eight keepers, the five
+wild chocobos and the Sunlit Path soldier, whose two actors share a row. Each row gives the field, the
+actor and its name, the price, when it lends, what renting does and the steps. The Sea Breeze Lane
+keeper lends only while a Balfonheim byte is below 2. It reaches 2 once a moogle traveller has been sent
+to a strange chocobo and is spoken to again, and at 2 she plays the Cockatrice scene instead, which gives
+the party a Defender.
+
 ### Mounting and dismounting in the scripts
 
 A keeper and a wild chocobo mount the party with the same steps: `suspendbattle`, a fade,
@@ -605,6 +612,16 @@ The private airship's counter in `nac_b01` (`シュトラール受付`) and the 
 jump with `mapjump(dest, entrance, 4)`.
 Everything in a flight is therefore a gil write, a scene that a private cabin can skip, and map jumps
 ([zone changes](zone-changes-and-mapjump.md)).
+
+[`strahl-destinations.tsv`](strahl-destinations.tsv) lists the 18 destinations of the private airship's
+menu (text 3075, "Choose your destination."): its entry, the number the scripts give it, the World Map
+area, the field and arrival zone, the entrance, from when it is offered, and the steps.
+
+The menu (selector 0, id 17) opens the World Map host in mode 2 (`0x0027F98E`, `0x002903F0(2)` at `0x0027FA27`).
+Its area list (`0x003BD1B0`) lists a destination's area while it is the current area, while its area gate
+passes or while one of its persistence groups passes (`0x003C08B0`, with `0x003C0D70`), and otherwise while
+its extra gate passes (`0x003C0C50`, `0x003BD291`-`0x003BD29B`); an area that fails all four is left out of the
+list (`0x003BD288`-`0x003BD29B`).
 
 ## Layouts
 

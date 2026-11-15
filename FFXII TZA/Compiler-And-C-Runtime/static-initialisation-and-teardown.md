@@ -160,9 +160,13 @@ depends on what ran first.
 - 224, nearly all 82 bytes, are list unlinks registered by lazy statics: they splice a node out of an intrusive
   doubly linked list, point the node at itself, and free `+0x18` through `0x00584730` only when bit `0x1` of
   `+0x20` is set (`0x008A8D40`).
-- 327 are 95-byte registry unlinks registered by C++ initialisers: they store the base vtable back
-  into the object and remove it from a singly linked registry list by its `+0x10` link (`0x008B76B0`,
-  list `0x02EA06D8`).
+- 327 are 95-byte registry unlinks registered by C++ initialisers: they store the object's own class vtable
+  (the one the object holds in the image) back into the object and remove it from its class's singly linked
+  registry list by its `+0x10` link (for example `0x008B76B0`). The classes and their lists:
+  - the Phyre input semantics `PInputChannelSemantic` (143, list `0x02EB9D80`), `PInputKeySemantic` (96,
+    `0x02EB83B8`), `PInputJoypadButtonSemantic` (44, `0x02EB8348`), `PInputTypeSemantic` (25, `0x02EB8260`),
+    `PInputAxisSemantic` (10, `0x02EB82D8`) and `PInputMouseButtonSemantic` (4, `0x02EB8428`);
+  - the LOD types `PLODMetricType` (3, `0x02EA06D8`) and `PLODBlendType` (2, `0x02EA0748`).
 - The rest destroy their object inline.
 
 ### The normal quit does not run the teardowns
