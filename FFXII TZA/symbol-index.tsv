@@ -35850,8 +35850,8 @@ function	0x0067F3E0	-	PhyreEngine/phyre-reflection-state.tsv	-	6
 function	0x0067F480	-	PhyreEngine/phyre-reflection-state.tsv	-	6
 function	0x0067F4D0	-	Engine-Core/vtable-methods.tsv	-	7
 function	0x0067F550	-	Engine-Core/vtable-methods.tsv	-	7
-function	0x0067F580	-	PhyreEngine/phyre-animation-binding.md	-	19
-function	0x0067F6F0	-	PhyreEngine/phyre-entities-and-components.md	-	8
+function	0x0067F580	-	Compiler-And-C-Runtime/image-hardening.md	-	19
+function	0x0067F6F0	-	PhyreEngine/phyre-entities-and-components.md	-	9
 function	0x0067F700	-	Compiler-And-C-Runtime/image-hardening.md	-	19
 function	0x0067F9D0	-	Compiler-And-C-Runtime/image-hardening.md	-	10
 function	0x0067FE20	-	PhyreEngine/phyre-entities-and-components.md	-	14
@@ -53172,7 +53172,7 @@ global	0x02CAC7C8	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CAC7D0	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CAC7D8	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CAC7E8	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
-global	0x02CAC7F8	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	2
+global	0x02CAC7F8	-	Compiler-And-C-Runtime/image-hardening.md	-	3
 global	0x02CAC800	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CAC808	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CAC810	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
@@ -53232,7 +53232,7 @@ global	0x02CACA68	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CACA70	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CACA78	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CACA88	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
-global	0x02CACA98	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	2
+global	0x02CACA98	-	Compiler-And-C-Runtime/image-hardening.md	-	3
 global	0x02CACAA0	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CACAA8	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CACAB0	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
@@ -53257,7 +53257,7 @@ global	0x02CACB80	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CACB88	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CACB90	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CACBA0	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
-global	0x02CACBB0	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	2
+global	0x02CACBB0	-	Compiler-And-C-Runtime/image-hardening.md	-	3
 global	0x02CACBB8	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CACBC0	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CACBC8	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
@@ -53267,7 +53267,7 @@ global	0x02CACBF0	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CACBF8	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CACC00	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CACC10	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
-global	0x02CACC20	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	2
+global	0x02CACC20	-	Compiler-And-C-Runtime/image-hardening.md	-	3
 global	0x02CACC28	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CACC30	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0
 global	0x02CACC38	-	Compiler-And-C-Runtime/image-hardening-state.tsv	-	0

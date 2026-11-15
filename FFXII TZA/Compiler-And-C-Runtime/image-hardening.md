@@ -317,6 +317,49 @@ node's parent goes into the `+0x10` of the child that takes its place, with that
 and with no test of the child (`0x0067F5F3`-`0x0067F61C`). For a node with no child that store
 writes the `+0x10` of the tree object.
 
+When the node unlinked is the root's successor and not the root itself (`0x0067F633`), the root has two children,
+and `0x0067F580` puts the successor in the place of the node it removes:
+
+1. It calls `0x0067F9D0` with the tree and the child that took the successor's place, when bit `0x1` of the
+   successor's `+0x10` is clear (`0x0067F638`-`0x0067F641`).
+2. The successor takes the removed node's `+0x10` whole, bit `0x1` included, and its `+0x00` and `+0x08`
+   (`0x0067F646`-`0x0067F658`).
+3. The node in each of the removed node's two links gets the successor in its `+0x10` and keeps its own low bit.
+   There is no test for the tree object, so a link that holds it has the header's `+0x10` written
+   (`0x0067F65C`-`0x0067F67B`).
+4. The successor is stored in the removed node's parent: in `+0x08` when that qword holds the removed node,
+   otherwise in `+0x00` (`0x0067F67F`-`0x0067F699`).
+
+When the node unlinked is the root itself, `0x0067F580` calls `0x0067F9D0` under the same condition, bit `0x1` of the
+root's `+0x10` clear (`0x0067F6AD`-`0x0067F6B6`).
+
+Step 1 runs before the rest, and `0x0067F9D0` can rotate at the root (`0x0067FC70`), so the removed node is not
+always the root when steps 2 to 4 run: `0x0067F580` does not read the root slot again and takes the parent from the
+node's own `+0x10` (`0x0067F67F`-`0x0067F68D`).
+
+In 138 of the 142 two-child removals of a teardown that parent is the root slot `0x01F2CDB8`; the `+0x08` step 4
+tests is then the header's `+0x20`, which holds `0x01F2CDA0`, so the store goes to the root slot. In the other 4
+(`0x02CAC7F8`, `0x02CACA98`, `0x02CACBB0`, `0x02CACC20`) the call has put the node under a new root, and step 4 stores the
+successor in that node's `+0x08`. These counts come from running the image's own `0x0067F700`, `0x0067F580` and
+`0x0067F9D0` in an emulator on the tree the 144 registrars build, not from the running game. The rebuilt tree gives
+the same four.
+
+No instruction names the header's `+0x20` or `+0x28`, and neither the registrars nor `0x0067F700`, `0x0067F580` and
+`0x0067F9D0` store there, so both keep `0x01F2CDA0`. In `0x0067F580` the store at `0x0067F62A` leaves out the root slot
+(`0x0067F620`), and step 4 writes `+0x08` only where it already holds the removed node.
+
+`0x0067F9D0` replaces a node in its parent's link through the same test (`0x0067FA8D`, `0x0067FB44`, `0x0067FBE4`,
+`0x0067FC68`, `0x0067FD41`, `0x0067FDDD`). Its other `+0x08` stores go to the parent of the node it balances, or to nodes
+under that parent, and it leaves when that node is the root it read on entry (`0x0067F9D6`; `0x0067F9DD`, `0x0067FCC3`).
+
+`0x0067F700` replaces a node in its parent's link through the same test (`0x0067F7B1`, `0x0067F84A`, `0x0067F8DD`,
+`0x0067F978`). Its loop runs only while the parent of the node it stands on has bit `0x1` set (`0x0067F718`,
+`0x0067F9A4`); for the root that test reads the header's `+0x28`, so the loop never takes the root slot for a red
+parent and its other `+0x08` stores go to nodes.
+
+A registrar stores into the root slot at `+0x00` only, when the tree is empty (`0x005851E6`, `0x00585255`). `0x0067F6F0`,
+which stores its argument at its own `+0x18`, `+0x20` and `+0x28`, is called by none of these routines.
+
 Before the `0x0067F580` call `0x0059FE20` empties the list at `0x02CA9D88`: each node is
 unlinked first (`0x0059FE60`-`0x0059FE8D`); its array `+0x70` is freed with `0x00584730` only
 when bit `0x80000000` of the count `+0x68` is clear, and both are zeroed; `0x00598040`

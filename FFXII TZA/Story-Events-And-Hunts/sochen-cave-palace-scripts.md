@@ -197,6 +197,10 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
   name, the `c` entries of the script's [actor manifest](../EBP-Script-Files/ebp-actor-manifest.md) read
   against the `model` column of the [party table](../Party/party-table.md), a main member before a guest; else
   the NPC name or string table row whose `in` cell is the actor's name.
+- The actor `REX` of `naf_a0100`, `naf_b0100`, `naf_b0400` and `naf_b0401` (`Rex` in `naf_a0201`) has no `c`
+  entry. Its bind verb names a `C` entry, a high-detail model, `high/c10/c1025/hc1025_02` (`hc1025_01` in
+  `naf_a0201`); `chara/c10/c1025/c1025` is model `c15`, and row 6 of the party table, model `c15`, is Reks, the
+  name the rows of these scenes give that actor.
 - An actor these steps leave unnamed whose bind verbs name one `n` entry of the manifest takes the name the game
   gives the other actors bound to that `n` model, by these steps or as a voice cue's speaker
   ([Voices](../Sound-And-Music/voices.md)), when they all give one name and two or more actors give it or the bestiary
