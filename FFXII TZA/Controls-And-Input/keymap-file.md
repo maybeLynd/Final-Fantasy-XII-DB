@@ -247,7 +247,7 @@ no record byte from `+0x80` on. It then sets byte `+0x3B` of the input manager i
 
 Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
 
-- Audio: `0x0017CF30` calls `0x00182E80`; those functions are documented on
+- Display: `0x0017CF30` calls `0x00182E80`, which returns the display height; those functions are documented on
   [game application](../Engine-Core/game-application.md).
 - Save load settings: `0x0017D4C0` calls `0x001C1710`, `0x001C18A0`, `0x001C18E0`; those functions are documented on
   [game application](../Engine-Core/game-application.md),

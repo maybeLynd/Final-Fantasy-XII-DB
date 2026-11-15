@@ -65,7 +65,7 @@ wdl_a05	Windtrace Dunes (Dalmasca Westersand)	__MJ_CTRL000	mapjump	mapjump	-	-	-
 wdl_a05	Windtrace Dunes (Dalmasca Westersand)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	The Western Divide (Dalmasca Westersand), field 350, entrance 1	-	-	-	1	-
 wdl_a05	Windtrace Dunes (Dalmasca Westersand)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Shimmering Horizons (Dalmasca Westersand), field 347, entrance 3	-	-	-	1	-
 wdl_a05	Windtrace Dunes (Dalmasca Westersand)	wanted_kansi	main	main	-	-	-	-	-	-	-	-	-	-	every foe in a group removed	-	-	1	-
-wdl_a05	Windtrace Dunes (Dalmasca Westersand)	サボテン_アタリ_砂塵	talk	talk	no name shown	1	Dynast-Cactoid There's something buried among the roots...	-	-	-	-	-	receives Wind Globe	-	-	-	-	2	-
+wdl_a05	Windtrace Dunes (Dalmasca Westersand)	サボテン_アタリ_砂塵	talk	talk	Dynast-Cactoid	1	Dynast-Cactoid There's something buried among the roots...	-	-	-	-	-	receives Wind Globe	-	-	-	-	2	-
 wdl_a05	Windtrace Dunes (Dalmasca Westersand)	サボテン_ハズレ_砂塵	talk	talk	Dynast-Cactoid	3	Dynast-Cactoid You examine the cactus, but find nothing.	-	-	-	-	-	-	-	-	-	-	3	-
 wdl_a05	Windtrace Dunes (Dalmasca Westersand)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001c0	-	-	-	-	1	-
 wdl_a05	Windtrace Dunes (Dalmasca Westersand)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001d8	-	-	-	-	1	-

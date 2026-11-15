@@ -255,27 +255,37 @@ the counter.
 
 The sample count n is the first index at or above the routine's fourteenth argument
 whose dword at effect `+0x764C + 4 × n` is not 0; with no such index up to `0x40` the
-routine answers `0x80004001` (`0x0074BE07`-`0x0074BE61`). The side is the integer part of
-what `0x00861F14` gives for n (`0x0074BECB`-`0x0074BEF6`).
+routine answers `0x80004001` (`0x0074BE07`-`0x0074BE61`). Its first call hands that dword to
+slot `+0xD0` of the object at effect `+0x38` (`0x0074BE66`-`0x0074BE81`). The side is the
+integer part of what `0x00861F14` gives for n (`0x0074BECB`-`0x0074BEF6`).
+
+Nothing checks the side against 3: for n below 9 it is under 3, and `0x02EA24A0 + 0x400 × (side - 3)`
+points before the kernels, both where a later run picks the set to rebuild (`0x0074BF09`) and at the
+slot `+0x98` call below (`0x0074C291`-`0x0074C2A7`).
 
 A set of side s holds s × s samples of 16 bytes, row i at `+0x10 × s × i`
 (`0x0074C177`-`0x0074C1A7`). Sample (i, j) takes two draws: the radius is
-`0.99 × sqrt((u1 + i) / s) + 0.01` and the angle `(u2 + j) / s × 2 × π`; the sample's
+`0.99 × sqrt((u1 + i) / s) + 0.01` and the angle `(u2 + j) / s × 2 × 3.141592`
+(the float `0x40490FD8`, a little below π, `0x0074C141`); the sample's
 first two floats are the radius times the cosine and times the sine; the calls are
 `0x00861F14` for `sqrt`, `0x00861F08` for the cosine and `0x00861F0E` for the sine
-(`0x0074C0C6`-`0x0074C177`). The sample's other eight bytes are 0: they copy the stack qword
-that `0x0074C06C` stores from `r15`, which `0x0074BFE7` zeroed (`0x0074C173`-`0x0074C177`).
+(`0x0074C0C6`-`0x0074C177`).
+
+The sample's other eight bytes are 0: they copy the stack qword that `0x0074C06C` stores
+from `r15`, which `0x0074BFE7` zeroed (`0x0074C173`-`0x0074C177`).
 
 After the build the routine hands the set of the current side and n to slot `+0x98`
 of the object at effect `+0x38` under the id `+0x100` (`0x0074C28D`-`0x0074C2AA`), fills
 the floats at `0x02EA1C50` to `0x02EA1C68` from its arguments and constants for two more
 calls of that slot, ids `+0x10C` and `+0x104` (`0x0074C2B1`-`0x0074C394`).
 
-It then calls `0x006F0800(out, matrix)` for the matrix its tenth argument points to, slot
-`+0xB0` of the object at effect `+0x38` with the dword `+0x150`, a copy of the result
-and 2, slot `+0x68` of the object its thirteenth argument points to with 4, and slot
-`+0xB8` of the object at effect `+0x38` with the dword `+0x48` and that thirteenth
-argument, and makes `0x00732D80` its last call (`0x0074C39A`-`0x0074C48C`).
+It then calls `0x006F0800(out, matrix)` for the matrix its tenth argument points to, and
+slot `+0xB0` of the object at effect `+0x38` with the dword `+0x150`, a 128-byte stack
+block and 2: the block is a copy of that matrix (`0x0074C3A5`-`0x0074C3C0`) followed by the
+`0x006F0800` result (`0x0074C3C9`-`0x0074C3F9`), passed at `0x0074C3E1`. Then come slot `+0x68`
+of the object its thirteenth argument points to with 4, and slot `+0xB8` of the object at
+effect `+0x38` with the dword `+0x48` and that thirteenth argument, and `0x00732D80` is its
+last call (`0x0074C39A`-`0x0074C48C`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
