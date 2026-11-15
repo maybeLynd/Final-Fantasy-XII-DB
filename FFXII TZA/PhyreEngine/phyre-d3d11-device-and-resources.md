@@ -222,6 +222,13 @@ shader-resource and unordered-access views when asked.
   9 becomes 8 at quality 16, and a multisampled target gets a second texture.
 - A 3D texture without initial data, render-target or UAV use and with one level is created
   dynamic with CPU write access; asking for that on a render target returns 5.
+- `0x00620630` creates nothing and returns, testing in this order, 5 when its fifth argument is non-zero
+  (`0x00620671`-`0x0062068A`; both callers give 0), 0x17 when the device pointer, qword `+0x108` of the object
+  `0x005FD050` returns, is null (`0x0062069C`-`0x006206B2`), and 5 when the render target at `+0x20` is set and has
+  a non-zero sample count (byte `+0x09`, `0x00620730`-`0x00620747`).
+- It returns 9 at the first failed `CreateTexture2D`, without the description, name or views (`0x006208E0`,
+  `0x006209AF`), and otherwise the first non-zero result of the view creators it was asked for (`0x0061FC50` for a
+  shader view, `0x00620E10` for an unordered-access view, `0x0062095F`-`0x00620983`), else 0.
 
 The "ensure" functions create the ring only when its first texture is missing and then set the
 created word: `0x0061E200` (2D) and `0x0061E270` (3D) pass a shader view and `+0x18` bit `0x400` as the

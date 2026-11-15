@@ -271,7 +271,8 @@ The minimap is the widget `0x003C5910`, at `0x02B476B0` (`0x003C80C0`):
    - up to 64 icons (`0x003C3340`, `0x00400CF0`);
    - a mark at the controlled character's position (`0x003C29A0`, which finds the character with `0x003588B0` and
      reads its position with `0x00265020`) while that character's handle `0x022C806C` is not 0 and `0x00264790`
-     returns 0 or less (`0x003C4616`-`0x003C4640`);
+     returns 0 or less (`0x003C4616`-`0x003C4640`); `0x003C29A0` itself draws nothing when no actor has the handle,
+     when `0x00272DE0` answers 0.0 for it or when `0x0035D3D0` answers null (`0x003C29F7`, `0x003C2A05`, `0x003C2A26`);
    - and `0x003C37B0` (`0x003C4658`), which returns at once unless `0x02B45970` or the current party record's
      `+0x08` (`[0x022C8078]`) is not 0 (`0x003C37DA`-`0x003C3807`), and for `0x02B45970` reads the position of the
      actor `0x003588B0` finds for it (`0x003C3887`-`0x003C389B`).

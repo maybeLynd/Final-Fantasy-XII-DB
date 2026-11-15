@@ -89,8 +89,8 @@ with 256 slots (`0x00369D30`).
 
 Allocation goes to the current arena `0x022D89BC`. `0x0036C1D0(arena, …)` pushes the current arena state
 (arena, a tag byte, flags) onto a 16-byte stack and selects a new one; `0x0036C140` pops it. Popping an
-empty stack spins forever, and `0x0036BC60` spins forever when asked to allocate with nothing pushed
-(`0x022D89C0` = 0).
+empty stack spins forever, and `0x0036BC60` spins forever when asked to allocate with no block given and nothing
+pushed (`0x022D89C0` = 0, `0x0036BC79`-`0x0036BC87`); with a block given it does not read the depth.
 
 `0x0036C1D0` is an entry stub: it passes stack 0 and the qword at its stack pointer + 4, minus 5
 (`0x0036C1D7`), and jumps to the body `0x0036C1F0(arena, category, stack, value)`. The body:
@@ -126,9 +126,10 @@ the words `+0x14`, `+0x16` and `+0x1E` (`0x0036A504`, `0x0036A4CD`, `0x0036A4BC`
 `0x022D8E28` is non-zero (`0x0036A4F6`-`0x0036A514`). It clears the label byte `+0x34` and the dword `+0x3C`, which
 holds the guard word `+0x3E` (`0x0036A550`, `0x0036A554`).
 
-`0x0036BC60(arena, size, block, fromTop)` rounds the size up to a multiple of 64 and, with no block
-given, walks the free list from `+0x90` (bottom up, through `+0x08`) or `+0x98` (top down, through
-`+0x04`) for the first block at least that large.
+`0x0036BC60(arena, size, block, fromTop)` rounds the size up to a multiple of 64, sets the arena record's byte
+`+0x02` to 1 (`0x0036BCC5`) and, with no block given, returns 0 when the arena's bit in `0x022D89B8` is clear
+(`0x0036BCD2`-`0x0036BCE9`) and otherwise walks the free list from `+0x90` (bottom up, through `+0x08`) or `+0x98`
+(top down, through `+0x04`) for the first block at least that large.
 
 It carves the allocation from the bottom or the top
 of that block. When the block holds at least `0x40` bytes beyond the allocation, room for a header
@@ -196,6 +197,16 @@ The carving in `0x0036BC60` uses all of them: it takes the chosen free block off
 the remainder on the address chain where the old block was, and puts the remainder on the free chain beside the old
 block's free neighbours. The free `0x00369860`, the resize `0x0036CB00` and its helpers `0x0036C290` and `0x0036C380`,
 `0x0036B2C0` and `0x0036B980` call them too.
+
+In the carving, a chain end `+0x90` or `+0x98` that held the old block takes the remainder, or with no remainder the
+old block's free-chain neighbour (`0x0036BDE4`-`0x0036BE27`). The page map `+0x28` holds at most one free block per 64 KB
+page: when it holds the old block, `0x0036C900` (`0x0036BE34`) hands that entry to the old block's free-chain next if it
+lies in the same page and otherwise clears the entry and the page's bit in the bitmap `+0x20` (`0x0036C94C`-`0x0036C9AE`).
+
+The remainder takes its page's entry and sets the bit only when the page has no entry or one at a higher address
+(`0x0036B5F0`, `0x0036BEAA`, `0x0036B617`-`0x0036B667`). Last, `0x0036B210` joins the remainder with the free blocks that are
+its neighbours on both chains (`0x0036BF6B`), so the remainder can end up inside a larger free block; neither call is
+made when the carving leaves no remainder (`0x0036BE96`, `0x0036BEEE`, `0x0036BEFF`).
 
 ### The 32-bit address encoding
 

@@ -353,12 +353,15 @@ cursor move:
 - a command row shows its help;
 - an action row shows the action's description;
 - a greyed row shows its refusal first, through `0x0027C150`;
-- a target row opens the target information window (`0x002C0870`) instead of text.
+- a target row opens the target information window (`0x002C0870`) instead of text;
+- a page with no rows (count `+0x40` = 0), and a target row whose value is 0 (below 0 for list `0xF`), fills
+  nothing: the help block is reset instead (`0x0035C080`, which runs `0x0028E900`), with `0x00290CD0(0)`, `0x003C94F0`
+  and `0x002907F0(0)` (`0x0027B896`-`0x0027B8B3`, `0x0027BAA1`-`0x0027BAB4`).
 
-The help block's own calls (`0x0028FEA0`, `0x00290C60`, `0x00290C80`) are listed on [HUD](hud.md). The target information
-window `0x002BFD20` builds its weakness line with `0x00295D90(size, out, mask)` (`0x002C02B2`): "Weak: "
-(`listhelp_common.bin` `0x2331`), an optional part from `0x002AC290`, then one element icon, text `0x4B27` plus the
-element, for each set bit of the mask.
+The calls that open and write the target information window (`0x0028FEA0`, `0x00290C60`, `0x00290C80`) are listed
+on [HUD](hud.md). That window `0x002BFD20` builds its weakness line with `0x00295D90(size, out, mask)`
+(`0x002C02B2`): "Weak: " (`listhelp_common.bin` `0x2331`), an optional part from `0x002AC290`, then one element
+icon, text `0x4B27` plus the element, for each set bit of the mask.
 
 Observed in the game, Reks targeting a Cactite: without Libra on Reks the window shows "Lv. ??" and "HP ????/????".
 With Libra on Reks it shows "Lv. 2 Cactite A", "HP 84/84" and a blue Libra mark at its top right; with augment 41
