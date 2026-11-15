@@ -146,6 +146,8 @@ the rows and the arrow strip only.
 
 - `0x002CA7C0(..., row, diff, id)`, run by `0x002CC4F0` for each of the nine rows with the row at `+0xD0 + 8 x i`
   and its difference widget at `+0x118 + 8 x i` (`0x002CC537`-`0x002CC565`), handles an equipment id:
+  - it does nothing when the member record `0x00282DF0` returns for the row's `+0xD4` has a negative word `+0x60`
+    (`0x002CA7FA`-`0x002CA7FF`);
   - it builds the member's stats as they are and with the piece in its slot (`0x0030A4E0`);
   - it marks the difference widget when the piece is the one worn (its `+0xE0`, `0x002CAA86`);
   - it passes whether the piece can be worn (`0x00317B70`) to `0x002CB360` with the difference widget and to
@@ -157,8 +159,8 @@ the rows and the arrow strip only.
   `0x002CB424`, the start at `0x002CB43A`) and the row's node 0 by writing the row's fade record itself
   (`0x002CA9A0`-`0x002CA9F4`).
 - `0x002CC780(nodes, delta, ...)` writes a difference: the number's absolute value in colour 4 when it is above
-  0 and 5 otherwise, and for a non-zero difference a second node (`0x0029CCF0`, given the sign) placed by the
-  number of digits.
+  0, 5 when it is below 0 and 0 when it is 0 (`0x002CC7A4`-`0x002CC7CD`), and for a non-zero difference a second
+  node (`0x0029CCF0`, given the sign) placed by the number of digits.
 - `0x002CB1F0(..., labels, id)`, given the stat labels at `+0xC8` (`0x002CC51E`), shows them for an equipment id:
   text `0x4A90` for a weapon other than ammunition, `0x4A93` and `0x4A94` for a shield, `0x4A91` and `0x4A92`
   for armour other than classes 21 and 22.
@@ -172,11 +174,11 @@ the rows and the arrow strip only.
 - `0x002CA3B0(widget, node, target, curve, ms)` starts a fade of a node's brightness `+0x3B` toward `target`,
   with the start time from `0x0208F570`, and keeps the fade in the widget it is given (`+0xC0`-`+0xD0`): the
   difference widget at `0x002CA8F6` and `0x002CB43A`.
-- The rows' fades use the same record, written in place without `0x002CA3B0`: `0x002CA7C0` starts node 0 toward
-  `0x80` on entry (`0x002CA869`-`0x002CA8B2`) and toward `0x20` as above, and `0x002CA5D0` starts node 0 toward
-  `0x80`, or toward `0x20` when its flag is set or, with a non-zero mode, the member is not the current one
-  (`0x002CA620`-`0x002CA6AC`). On entry `0x002CA7C0` also starts the difference widget's node 11 toward `0x80`
-  (`0x002CA8E8`-`0x002CA8F6`).
+- The rows' fades use the same record, written in place without `0x002CA3B0`: past the member check (`0x002CA7FF`)
+  `0x002CA7C0` starts node 0 toward `0x80` (`0x002CA869`-`0x002CA8B2`) and toward `0x20` as above, and `0x002CA5D0` starts
+  node 0 toward `0x80`, or toward `0x20` when its flag is set or, with a non-zero mode, the member is not the current
+  one (`0x002CA620`-`0x002CA6AC`).
+- Past the same check `0x002CA7C0` also starts the difference widget's node 11 toward `0x80` (`0x002CA8E8`-`0x002CA8F6`).
 - `0x002CA2E0(widget)`, the message-2 step of both the rows (`0x002CA6FA`) and the difference widgets
   (`0x002CB4EE`), advances a widget's fade through `0x00248F40` and writes the brightness into the node's four
   vertex colours.

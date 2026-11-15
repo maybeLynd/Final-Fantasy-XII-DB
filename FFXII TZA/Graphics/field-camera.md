@@ -343,10 +343,10 @@ contact `0x00232490`, which sets bit `0x20000` on a contact, and the full-distan
 contact, or a ray shorter than 0.27, widens the polygon mask of the sweep that follows from 4 to `0xFFFF`
 (`0x0032BD38`-`0x0032BDCA`).
 
-It then sweeps a 0.27 sphere from the look point to the lifted eye (`0x00230C00`). A hit puts the eye at the hit point,
-sets `0x4040000` and returns 0 (`0x0032BE1B`-`0x0032BE2D`). With no hit the eye stands where the orbit puts it: the lift
-`0x0032BB00` gives for the sweep's output block is stored at `+0x128` and the eye is placed again with it, and
-`0x0032BCC0` returns 1 (`0x0032BE31`-`0x0032BE7B`).
+It then sweeps a 0.27 sphere from the look point to the lifted eye (`0x00230C00`). A non-zero return (a ray hit, or the
+push moved the point) puts the eye at the sweep's output, sets `0x4040000` and returns 0 (`0x0032BE17`-`0x0032BE2D`). With
+a zero return the eye stands where the orbit puts it: the lift `0x0032BB00` gives for the sweep's output block is stored
+at `+0x128` and the eye is placed again with it, and `0x0032BCC0` returns 1 (`0x0032BE31`-`0x0032BE7B`).
 
 The normal branch `0x0032B390` runs Camera Auto-Rotation (`0x0032C650`); then, unless pulled in, the probes (`0x0032D2E0`,
 `0x0032CF50`), clearing bit `0x40000` when no probe hit (`0x0032B3BE`-`0x0032B3CC`); the wall turn `0x0032C180`; the wall lift

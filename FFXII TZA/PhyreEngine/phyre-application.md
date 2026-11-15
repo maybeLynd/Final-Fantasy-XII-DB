@@ -180,7 +180,7 @@ work on the update thread:
 |---|---|---|---|
 | 12 | `0x007A0B10` | `+0x20`, `+0x1E`; mode `+0xD20` | full screen or window at `+0xD24` by `+0xD28`; a failed full-screen switch logs and falls back to window mode |
 | 13 | `0x0079F140` | `+0x21`; argument `+0x26` | `0x0079F0F0`: `ShowWindow` restore (9) or minimise (6) |
-| 18 | `0x007A1180` | `+0x29`; size `+0x2C`, `+0x30` | resize through the device (`0x0062AAB0`) |
+| 18 | `0x007A1180` | `+0x29`; VSync mode `+0x2C`, buffer count `+0x30` | `0x0062AAB0` on the render context `0x00624670` returns, when it returns one (`0x0079C5A6`-`0x0079C5BA`): the VSync word `+0x1848` = 0, 1 or `0x101` for mode 0, 1 or 2 and the buffer count into `+0x184C`; any other mode stores nothing |
 | 19 | `0x007A0AF0` | `+0x22`, or clears `+0x23` | re-checks the monitor's mode |
 | 20 | `0x007A0FB0` | `+0x24` | `0x0079EBA0`: saves the window position into the settings |
 
@@ -292,9 +292,9 @@ PApplication  (base of GameApplication; address in `0x02EA5368`):
 | `+0x0023` | `u8` |  | skip the next re-check |
 | `+0x0024` | `u8` |  | window moved (slot 20) |
 | `+0x0028` | `u8` |  | title-bar or border mouse press (slot 17) |
-| `+0x0029` | `u8` |  | resize pending (slot 18) |
-| `+0x002C` | `i32` | width |  |
-| `+0x0030` | `i32` | height |  |
+| `+0x0029` | `u8` |  | VSync request pending (slot 18) |
+| `+0x002C` | `i32` | VSync mode |  |
+| `+0x0030` | `i32` | buffer count |  |
 | `+0x003C` | `i32` |  | frame rate used for a full-screen switch |
 | `+0x0040` | `f64` |  | total elapsed time |
 | `+0x0048` | `f64` |  | frame delta |

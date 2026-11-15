@@ -17567,7 +17567,7 @@ function	0x00230790	-	Movement-And-Pathfinding/collision-mesh-movement.md	-	14
 function	0x00230A40	-	World-Areas-And-Travel/doors-gates-and-map-changes.md	-	12
 function	0x00230B60	-	Movement-And-Pathfinding/collision-mesh-movement.md	-	8
 function	0x00230C00	-	Graphics/field-camera.md	-	6
-function	0x00230C10	-	Movement-And-Pathfinding/geometry-primitives.md	-	8
+function	0x00230C10	-	Movement-And-Pathfinding/collision-mesh-movement.md	-	8
 function	0x00231400	-	World-Areas-And-Travel/doors-gates-and-map-changes.md	-	5
 function	0x002315E0	-	World-Areas-And-Travel/mpk-map-pack.md	-	7
 function	0x00231690	-	Movement-And-Pathfinding/collision-mesh-movement.md	-	6
@@ -17588,7 +17588,7 @@ function	0x00232490	-	Graphics/field-camera.md	-	7
 function	0x002324F0	-	World-Areas-And-Travel/doors-gates-and-map-changes.md	-	8
 function	0x00232760	-	Movement-And-Pathfinding/collision-mesh-movement.md	-	7
 function	0x002327D0	-	World-Areas-And-Travel/doors-gates-and-map-changes.md	-	11
-function	0x00233050	-	World-Areas-And-Travel/doors-gates-and-map-changes.md	-	10
+function	0x00233050	-	Movement-And-Pathfinding/collision-mesh-movement.md	-	10
 function	0x002330D0	-	Movement-And-Pathfinding/geometry-primitives.md	-	5
 function	0x00233110	-	Movement-And-Pathfinding/collision-mesh-movement.md	-	9
 function	0x00233230	-	World-Areas-And-Travel/doors-gates-and-map-changes.md	-	7
@@ -19146,7 +19146,7 @@ function	0x002826F0	-	Menus-And-HUD/party-marks.md	-	12
 function	0x00282A40	-	Battle-Actions/quickening-and-esper-list.md	-	11
 function	0x00282D90	-	Engine-Core/party-control-modes-manager-0209ac60-accesses.tsv	-	6
 function	0x00282DD0	-	Steam-And-Achievements/achievements.md	-	5
-function	0x00282DF0	-	Items-Equipment-Shops-And-Licenses/license-board.md	-	16
+function	0x00282DF0	-	Menus-And-HUD/menu-screens.md	-	16
 function	0x00282E10	-	Items-Equipment-Shops-And-Licenses/licenses.md	-	8
 function	0x00282E60	-	Menus-And-HUD/license-board-screen.md	-	6
 function	0x00282E80	-	Items-Equipment-Shops-And-Licenses/licenses.md	-	6
@@ -27328,7 +27328,7 @@ function	0x0042D830	-	Graphics/model-effects-and-motion-commands.md	-	8
 function	0x0042D8B0	-	Graphics/character-rig-and-look.md	-	8
 function	0x0042D970	-	Graphics/character-rig-and-look.md	-	5
 function	0x0042D9C0	-	Graphics/character-render-records.md	-	5
-function	0x0042DA00	-	Graphics/character-render-records.md	-	7
+function	0x0042DA00	-	Graphics/character-render-records.md	-	8
 function	0x0042DA30	CharacterRenderRecord_RefreshLoadedResourceBindings	Graphics/character-render-records.md	-	8
 function	0x0042DC10	-	Scripts-And-Script-Commands/battle-verbs.md	-	6
 function	0x0042DCA0	-	Compiler-And-C-Runtime/generated-function-families.md	-	7
@@ -27371,7 +27371,7 @@ function	0x0042ED60	-	Graphics/character-render-records.md	-	8
 function	0x0042EE10	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	8
 function	0x0042EE70	-	Graphics/character-render-records-character-render-system-tail-accesses.tsv	-	6
 function	0x0042EE90	CharacterRenderRecord_UpdateTimedPresentationStates	Graphics/character-rig-and-look.md	-	9
-function	0x0042EF90	CharacterRenderHierarchy_TraverseIndexDepthFirst	Graphics/bone-trails.md	-	19
+function	0x0042EF90	CharacterRenderHierarchy_TraverseIndexDepthFirst	Graphics/bone-trails.md	-	20
 function	0x0042F000	-	Graphics/character-status-visuals.md	-	5
 function	0x0042F030	-	Graphics/character-render-records.md	-	7
 function	0x0042F190	-	Graphics/character-render-records.md	-	6
@@ -33686,7 +33686,7 @@ function	0x00624600	-	Engine-Core/vtable-methods.tsv	-	8
 function	0x00624620	-	Engine-Core/vtable-methods.tsv	-	8
 function	0x00624640	-	Engine-Core/vtable-methods.tsv	-	8
 function	0x00624660	-	Graphics/gi-render-commands.md	-	11
-function	0x00624670	-	Graphics/post-processing.md	-	11
+function	0x00624670	-	Graphics/post-processing.md	-	12
 function	0x00624680	-	PhyreEngine/phyre-reflection-state.tsv	-	8
 function	0x00624690	-	PhyreEngine/phyre-d3d11-draws-and-state.md	-	6
 function	0x006246E0	-	PhyreEngine/phyre-d3d11-draws-and-state.md	-	6

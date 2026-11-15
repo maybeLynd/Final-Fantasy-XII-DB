@@ -439,8 +439,10 @@ The two joint modes look in different places:
 
 - `0x002E7F10(actor, joint, 0, out)` takes the actor's model record (`[0x022C6F28] + slot × 0x740`, the table
   whose address is held at `0x022C6F28` (`0x002E7F3E`), the slot the word at `[actor + 0xC0]`) and hands it to
-  `0x00426770`, which asks that model and the one
-  chained at its `+0x08` for the joint's matrix (`0x00421E20`); it returns 1 when one answered.
+  `0x00426770`, and returns 1 when `0x00426770` returns a matrix (`0x002E7F55`-`0x002E7F5A`).
+- `0x00426770` asks that model, its first child `+0x08` and that child's children and later siblings `+0x0A`,
+  each with its descendants, for the joint's matrix (`0x00421E20`, through `0x0042EF90` and `0x0042DA00`), the last
+  record that answers giving it (`0x00426813`-`0x00426853`).
 - `0x002E7F10` returns 0 for a null actor, a null `[actor + 0xC0]`, a slot dword of -1 or slot word of
   `0xFFFF`, a null model record or a record whose `+0x284` is 0 (`0x002E7F14`-`0x002E7F4E`), and when
   `0x00426770` returns null (`0x002E7F58`).

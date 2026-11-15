@@ -178,6 +178,10 @@ eased over ten frames (`0x0018EF94` to `0x0018F2BD`).
 
 The ease starts when the slot's byte `+0x152` is 0, its byte `+0x150` is set and
 the float the slot saved at `+0x138` is below 0 (`0x0018F0FF`-`0x0018F11B`), not on a change of the distance.
+Outside mode 1 with a positive distance `0x0018EEE0` also saves `+0x128` at the slot's `+0x138` and the block's `+0x114`
+and `+0x118` at `+0x140` and `+0x148`, sets `+0x150` and clears `+0x152`, which ends an ease in progress
+(`0x0018F263`-`0x0018F2B5`). On every path it then copies the command's `+0x20`, `+0x24` and `+0x28` to the slot's
+`+0xFC`, `+0x100` and `+0x108` (`0x0018F2BD`-`0x0018F2EA`).
 
 With `d` the distance and
 `c(x, lo, hi)` a clamp, the f-number is `(1 + 0.33 c(4 - d, -2, 3) + 0.7 c(2.9 - d, 0, 2.7) +
@@ -380,7 +384,7 @@ The post-process command, `0xF0` bytes, that `0x0018EEE0` fills each frame and `
 | `+0x21` | `u8` | autoFocus | the auto-focus byte: the block's `+0x164` (`0x0018F30C`), which also makes the render pass list `0x00187950` draw the focus-point marker; passed to the depth-of-field call (`0x00193ED8`), where a set byte turns the library's auto-focus on (`0x0070EC00`), aims it at `+0x30`/`+0x34` (`0x0070F3C0`) over 0.1 to 100 (`0x0070F300`) and takes the auto-focus distance (`0x006DC650`) as the focus distance (`0x006CC0C5`-`0x006CC131`) |
 | `+0x22` | `u8[2]` | pad022 | written and read by no function; nothing fixes its width |
 | `+0x24` | `f32` | focusDistance | focus distance (`0x00194250`): the block's `+0x128` or `+0x114`, or the eased value, by the mode at `+0x124` of the first argument (`0x0018F19A`, `0x0018F229`, `0x0018F257`); passed at `0x00193EE1` |
-| `+0x28` | `f32` | apertureFNumber | aperture f-number, computed with the focus distance (`0x0018F1B7`, `0x0018F22E`, `0x0018F260`); passed at `0x00193EDC` |
+| `+0x28` | `f32` | apertureFNumber | aperture f-number: in mode 1 with a positive `+0x128` the f-number computed with the focus distance, or its eased value (`0x0018F22E`, `0x0018F1B7`); otherwise the block's `+0x118` (`0x0018F25A`-`0x0018F260`), mode 2 included; passed at `0x00193EDC` |
 | `+0x2C` | `f32` | lens | the block's `+0x120`, the value the cutscene loader sets to 35.0 (`0x0018F2F7`); `0x00193DA0` does not read it and passes the constant 35.0 (`0x008F312C`, `0x00193EF0`) instead |
 | `+0x30` | `f32` | focusPointX | the x of the focus point, the block's `+0x168` (`0x0018F300`): the point the marker draws and the auto-focus samples (`0x00193ED3`, `0x006CC0F0`) |
 | `+0x34` | `f32` | focusPointY | the y of the focus point, the block's `+0x16C` (`0x0018F309`) (`0x00193ECB`, `0x006CC0E7`) |

@@ -420,7 +420,8 @@ producer is `0x001D5620(marker, ctx)`, which posts it when byte `+0x08` of the m
 `0x001889C0(manager)` binds what `0x00188730` binds in its ordinary arm, without the second colour
 target: the manager's target `+0xB08 + 8 × [+0xC30]` to slot 0, nothing to slots 1 and 7, the
 depth target `+0xB58`, and a viewport (`0x0060F6B0`) of the manager's size, or 3,840 × 2,160 while
-`+0xDB8` is set or `+0xC30` is 3. The post-process build `0x0018EEE0` calls it twice.
+`+0xDB8` is set or `+0xC30` is 3. The post-process build `0x0018EEE0` calls it at `0x0018F3C3`, and before that at
+`0x0018F338` when byte `+0x98` of the command it builds is set (`0x0018F323`-`0x0018F32A`).
 
 ## Layouts
 

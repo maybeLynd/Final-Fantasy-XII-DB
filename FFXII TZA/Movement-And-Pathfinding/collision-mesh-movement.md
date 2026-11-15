@@ -266,8 +266,14 @@ push follows the polygon's own normal.
 `0x00230C10(part, out, start, end, kind, radius)` is the camera's sphere sweep: a ray cast from start
 to end (the walker `0x0022F430` with `0x0022CC50`) shortened to its hit, the `0x0022DE60` test with a
 sphere of the radius at the end over banks 0-2 (kind `0x13`), two more ray casts offset by the
-radius at -30 and +30 degrees about the line when the sphere touches, and a final push back toward
-the start by the deepest penetration. `0x00230C00` forwards to it.
+radius at -30 and +30 degrees about the line when the sphere touches, and a final push back toward the start by the
+deepest penetration (`0x00231355`-`0x00231386`). `0x00230C00` forwards to it.
+
+A side hit nearer to its ray's start than the best distance so far (the first ray's hit, else the start-end length)
+moves the result onto the start-end line at that hit's projection (`0x0023119B`-`0x0023123A`), and the sphere test then
+runs again there and gives the depth for the push (`0x0023125B`-`0x00231344`). `0x00230C10` returns 1 when a ray hit or the
+push moved the result, else 0 (`0x00230E90`, `0x002311D3`, `0x00231360`, `0x0023138D`). The part is tested before the ray
+casts (`0x00230D95`, `0x002310C8`) but not before `0x00233050` reads it for the sphere test's cell (`0x00230EC8`).
 
 `0x00231690(part, push, id, axes, centre, kind, dynamic, placement)` runs `0x0022D7E0` once on the
 centre's cell and returns the deepest penetration, with the push and the id written out; kind bit `0x1`

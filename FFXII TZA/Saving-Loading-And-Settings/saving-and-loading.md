@@ -100,6 +100,9 @@ The starting cursor is passed to `0x002D46F0`:
 - In load mode, when slot 0 is not "Unused file", the autosave row is moved down to just after the newest
   manual save, and the cursor goes to the autosave when its counter is the highest, otherwise to that
   manual save.
+- The cursor stays 0 when no listed manual save has a non-zero counter (none is looked at while `+0xE0` bit `0x1` is
+  set, `0x0058007A`), or when the newest one takes row 0 because slot 0 is not listed (a status other than 2 or 4,
+  `0x0058006D`, `0x005800A8`); then, when slot 0's counter is below `+0xE4`, the cursor is -1 (`0x00580126`-`0x00580168`).
 
 `0x0057F8C0` draws a row. For status 2 it fills the row from the slot's cached header (`0x0057FB00`). Any
 other status shows a line through `0x0057FA30` (text through `0x002F9860`), and when the screen was opened
@@ -615,8 +618,8 @@ The slot screen is the `0x1C8`-byte widget with procedure `0x0057FE80` that `0x0
 | `+0x0EA` | `u8` | loadMode | 0 for the save screen, 1 for the load screen, the creation record's `+0x10` (`0x0057FF16`): it chooses the slots listed (`0x0057FF56`, `0x00580055`), the device check's mode (`0x00580F29`), the row draw mode, and how a confirm (`0x00580541`), the text of message `0xE` (`0x0058030F`) and `0x00580B40` (`0x00580B46`) proceed |
 | `+0x0EB` | `u8` | slot | the slot the player confirmed (`0x0058053A`); state 4 opens the save transaction with it (The save and load screen above) |
 | `+0x0EC` | `u8` | rowCount | the rows listed: 0 at construction (the word store at `0x0057FFAB`), 1 more for each listed slot (`0x005800E1`-`0x005800F0`); `0x00580CD0` adds a row after a save (`0x00580E49`-`0x00580E5E`) |
-| `+0x0ED` | `u8` | unusedRows | the listed slots with status 5, "Unused file" (`0x0058002F`); 0 at construction (`0x0057FFAB`) |
-| `+0x0EE` | `u8` | usableRows | the listed slots with status 5, status 2, or room reserved (`0x00580035`, `0x0058004F`); 0 at construction (`0x0057FFB3`) |
+| `+0x0ED` | `u8` | unusedRows | the scanned slots with status 5, "Unused file" (`0x0058002F`), counted before the load-mode filter (`0x00580055`-`0x0058006D`), so in load mode also slots that are not listed; 0 at construction (`0x0057FFAB`) |
+| `+0x0EE` | `u8` | usableRows | the scanned slots with status 5, status 2, or room reserved (`0x00580035`, `0x0058004F`), counted before the load-mode filter as `+0xED`; 0 at construction (`0x0057FFB3`) |
 | `+0x0EF` | `u8[200]` | rowSlot | the slot number of each row: the list build stores each listed slot (`0x005800E8`); in load mode the autosave row is moved down past the newest manual save by swapping neighbours (`0x0058012A`-`0x00580154`); the row draw, the confirm and the cursor move read it (`0x00580437`, `0x0058050C`, `0x00580C5E`, `0x00580D6F`) |
 | `+0x1B7` | `u8` | pad1B7 | read and written by no function; nothing fixes its width |
 | `+0x1B8` | `void*` | list | the slot list widget, layout item 0's `+0x18` (`0x0057FF9A`); the construct message sets it up and starts its cursor (`0x0058018D`-`0x005801D9`); `0x00580B40` (`0x00580C24`) and `0x00580CD0` (`0x00580D2B`) read it |
