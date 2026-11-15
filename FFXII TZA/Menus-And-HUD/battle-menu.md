@@ -354,6 +354,15 @@ cursor move:
 - an action row shows the action's description;
 - a greyed row shows its refusal first, through `0x0027C150`;
 - a target row opens the target information window (`0x002C0870`) instead of text;
+- a row of list `0x18` shows the `+0x08` text of the class 1 row for its id (`0x0035D380(1, id)`), or `help_menu.bin`
+  row 14 (`0xBC6`) for the id `0xFFFF`, the Remove row (`0x0027BABB`-`0x0027BAE3`); that row is empty in the `us` tree, so
+  Remove shows an empty help line;
+- a null text closes the window the help block holds instead (`0x0035C140`, `0x0028FCD4`-`0x0028FCDE`);
+- a page with rows first sets the block's word `+0x10F8` to 0, and to 1 just before a refusal's text (`0x0028E840`,
+  `0x0027B8BF`, `0x0027B915`-`0x0027B91A`); when the block builds a window from pending text, that word becomes the window's
+  picture cell `+0x4E9` (`0x002BE4B7`-`0x002BE4C1`, `0x002BF587`, `0x002BF626`);
+- a page of list `0xE`, `0x11`, `0x16`, `0x17` or `0x19`, or of a list below 6 or above `0x1C`, writes no text and
+  does not reset the block (`0x0027B938`-`0x0027B940`, table `0x0027BB08`);
 - a page with no rows (count `+0x40` = 0), and a target row whose value is 0 (below 0 for list `0xF`), fills
   nothing: the help block is reset instead (`0x0035C080`, which runs `0x0028E900`), with `0x00290CD0(0)`, `0x003C94F0`
   and `0x002907F0(0)` (`0x0027B896`-`0x0027B8B3`, `0x0027BAA1`-`0x0027BAB4`).

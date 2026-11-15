@@ -34,7 +34,8 @@ Primer entries, the story schedule, scene loads, hunt bills, airship routes, exi
 it with their own value, and the `unlocks` column gathers those comparisons.
 
 The table lists every value a script writes to it, from the 1,114 `us` scripts under `plan_master/us` that decode;
-`evt_t0020` has no `EBP2` header and holds no code.
+`evt_t0020`, a bare version-7 script image without the `EBP2` header, declares no variable and uses no variable
+opcode.
 
 ### How scripts write the counter
 

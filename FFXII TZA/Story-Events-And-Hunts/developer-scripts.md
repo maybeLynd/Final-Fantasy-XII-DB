@@ -16,6 +16,11 @@ The nineteenth folder there, `evt_t0020`, holds a bare script image of version 7
 `0x8000`, its length word at +0x4 is `0x970`, the file's 2,416 bytes, and +0x90 holds the build stamp `07/09 18:02`.
 The file is byte-identical in all nine language folders, and no language folder holds an `EBP2` copy of it.
 
+Its directory holds 11 actors in 0x20-byte entries, the size the engine reads below version 8
+([script image](../EBP-Script-Files/ebp-script-image.md)): `Map_Director` of type 0, with `init`, `main` and
+`open`, and ten of type 5, each with `init` and `main`: `door1`, `master1` to `master5` and `camera1` also have
+`talk`, `sample1` to `sample3` do not. The image declares no variable.
+
 No path array names these scripts: the [asset path table](../Game-Files-And-Data-Tables/asset-paths.md) has no
 entry for any of them. An event id `n` names the scene script at index `4n` of the event file table, so none of them
 has an event id. Their `place` cell reads `developer script, named by no path array`, and their kind in the script

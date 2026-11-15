@@ -44,16 +44,17 @@ scripts that decode (`evt_t0020` has no `EBP2` header), two pass selector 6: `gr
 No shipped script requests `men_z0002`:
 
 - Event 438 loads for mode `0x41` on menu `0x16` or on menu 2: the menu dispatcher `0x0027FB70` sends both menus to one arm (table `0x00280090`, entries 0 and 20), which hands modes `0x40` and `0x41` to `0x002D7070` (`0x0027FE8C`).
-- Verbs `0x48D` (`0x00346308`) and `0x472` (`0x00347112`) give menu `0x16` mode `0x41` only for parameter 1 of selector 6
-  (`0x002E1A9A`), and give menu 2, which every selector above 6 opens (`0x002E0E00`), their parameter unchanged. No script
-  of the nine language trees passes selector 6 with parameter 1 or a selector above 6, and no script calls verb
-  `0x472`.
-- The body at `0x003470D0` first calls `0x00267F90(context, 0)` and stores the low byte of the answer of
-  `0x00229EB0()`, zero-extended, in the dword `+0x04` of its third argument and 0 in the dword `+0x08`
-  (`0x003470DA`-`0x003470F8`).
+- Verb `0x48D` (`0x00346308`) gives menu `0x16` mode `0x41` only for parameter 1 of selector 6 (`0x002E1A9A`), and gives
+  menu 2, which every selector above 6 with bit `0x8000` cleared opens (`0x002E0E00`), its parameter unchanged. No
+  script of the nine language trees passes selector 6 with parameter 1 or a selector above 6.
+- Verb `0x472` (`0x00347112`) passes `0x002E1A60` parameter 0, so mode `0x40` for selector 6, unless its value stack
+  already holds 63 entries; no script of the nine language trees calls it, the undecoded `evt_t0020` image included.
+- The body at `0x003470D0` first pushes the integer 0 with `0x00267F90(context, 0)` (nothing is pushed when the stack
+  already holds 63 entries, `0x00267F93`) and stores the low byte of the answer of `0x00229EB0()`, zero-extended, in the
+  dword `+0x04` of its third argument and 0 in the dword `+0x08` (`0x003470DA`-`0x003470F8`).
 
-  It then takes two values with `0x00267E10(context)` and calls `0x002E1A60` with
-  the second taken as its first argument and the first taken as its second (`0x003470FF`-`0x00347112`).
+  It then takes two values with `0x00267E10(context)`, the pushed 0 and then the script's argument, and calls `0x002E1A60`
+  with the second taken as its first argument and the first taken as its second (`0x003470FF`-`0x00347112`).
   `0x002E1690()` follows, and the body ends in a jump to `0x002E0650` (`0x00347117`-`0x00347126`).
 - The ten calls of the developer menus (`bin/ctrl`, `bin/evctrl` and `bin/mapctrl`, in the `in` and `ch` trees) pass `0x8005`: the save menu, selector 5, with bit `0x8000`, which skips the fade ([Menus](../Menus-And-HUD/menus.md)).
 - The other writers of the request's mode word (`0x0215F1A8`) store 0 (`0x002E0B9D`, `0x002E15DF`, `0x002E1AFA`) or, through the native request `0x002E1B10`, 0, `0x21` or, for menu 2, payload word 2 (`global_flag[2]`, `+0x4`), or 1 when that word is 0 (`0x00253F31`-`0x00253F44`).

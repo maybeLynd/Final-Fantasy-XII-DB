@@ -131,7 +131,7 @@ The router is also called directly, without the mailbox:
 | Verb | Id | Does | Scripts |
 |---|---|---|---|
 | `openfullscreenmenu_48d` | `0x48D` | posts a selector and parameter, sets blocked and waits until a menu closes (`0x003462D0`, `0x00352E00`) | 1,274 calls |
-| `openfullscreenmenu` | `0x472` | posts the same, without waiting | 0 |
+| `openfullscreenmenu` | `0x472` | posts its one argument as the selector with parameter 0, the 0 it pushes before taking two values (`0x003470DA`-`0x00347117`; at 63 values nothing is pushed, `0x00267F93`), and sets blocked, without waiting: its poll `0x00347390` answers 0 | 0 |
 | `openspattackwindow` | `0x2A8` | posts id 12 | 1 |
 | `spattackwindowsync` | `0x2A9` | waits on the special-attack window | 1 |
 | `tutorial_sync_partymenu` | `0x3A6` | waits until the next menu closes | 0 |

@@ -19,10 +19,10 @@ exploration field number, which the game uses to look up the save's map-explorat
 
 ## Where it comes from
 
-Section 0 of each `.ebp` container, at file offset `0x80` in every shipped file
-([script container](ebp-script-container.md)). The container walk passes it to `0x0032F850`, which
-binds it to the script manager the file was loaded for. All offsets below are relative to the
-image's first byte.
+Section 0 of each `.ebp` container, at file offset `0x80` in every shipped container
+([script container](ebp-script-container.md)); `evt_t0020.ebp` is a bare image of version 7 with no container. The
+container walk passes it to `0x0032F850`, which binds it to the script manager the file was loaded for. All offsets
+below are relative to the image's first byte.
 
 ## Layouts
 
@@ -32,14 +32,14 @@ All multi-byte fields are little-endian.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | version | 11 in every shipped image; readers below compare it |
+| `+0x00` | `u16` | version | 11 in every container's image, 7 in the bare evt_t0020 image; readers below compare it |
 | `+0x02` | `u16` | marker | `0x8000` |
 | `+0x04` | `u32` | length | bytes of image; the section's slot may be padded beyond it |
 | `+0x08` | `u32` | authorOff | -> NUL-terminated author name |
 | `+0x0C` | `u32` | sourceOff | -> NUL-terminated source file name, "&lt;script&gt;.src" |
 | `+0x10` | `u32` | stampOff | -> NUL-terminated build stamp "MM/DD HH:MM", at `+0x90` |
 | `+0x14` | `i32` | typeCounts | -> u16 8, then u16 count[8]: directory entries per actor type |
-| `+0x18` | `i32` | directory | -> u32 count, then `0x30`-byte actor entries sorted by type |
+| `+0x18` | `i32` | directory | -> u32 count, then `0x30`-byte actor entries (`0x20` below version 8) sorted by type |
 | `+0x1C` | `u32` | zero | 0 |
 | `+0x20` | `i32` | intPool | -> u32 count, s32 values (PUSHI) |
 | `+0x24` | `i32` | floatPool | -> u32 count, f32 values (PUSHF) |
@@ -90,8 +90,11 @@ All multi-byte fields are little-endian.
 | `+0x20` | `u16` | copy | the actor's copy number: `0x00263880` returns it (`0x002638AA`) for an image of version 8 or more |
 | `+0x22` | `u8[14]` |  | rest of the entry |
 
-Function and jump offsets are relative to `codeStart`. The function table's `listOff` follows it
-directly: `jumps = functions + 4 + 8 × count` in every entry.
+Function and jump offsets are relative to `codeStart`. The function table's `listOff` follows it directly:
+`jumps = functions + 4 + 8 × count` in every entry. An image whose version word is below 8 has 0x20-byte entries, the
+fields `+0x00` to `+0x1C` above, and `0x00266530` steps through them by 0x20 (`0x00266710`-`0x00266731`); the one such
+image, `evt_t0020` ([developer scripts](../Story-Events-And-Hunts/developer-scripts.md)), has 11 actors, and
+each one's footer holds 15 entry slots, not 18.
 
 ### Actor lists
 

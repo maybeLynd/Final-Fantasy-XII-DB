@@ -140,8 +140,8 @@ the tables, areas, script containers, motions, weapon classes and models that na
 | `area_records` | how many records of the areas' `.ard` slot 7 name the id, 0 to 9; the areas are listed in `areas`, and the column sums to 1,773 |
 | `script_records` | how many records of the script containers' section 19, slot 7, name the id, 0 to 7; the containers are listed in `scripts`, and the column sums to 2,116 |
 
-One script container's section 19 is not an area block: `evt_t0020.ebp` holds 8 zero bytes and then `03 21 21 21`
-where the `FF12AR03` tag would be.
+`evt_t0020.ebp` is not a script container: it is a bare version-7 script image without the `EBP2` header, so it has no
+section 19 and no row counts it.
 
 Replacing a file:
 

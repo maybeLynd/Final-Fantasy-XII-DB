@@ -18638,7 +18638,7 @@ function	0x00267DB0	-	Scripts-And-Script-Commands/script-interpreter.md	-	36
 function	0x00267E10	-	Scripts-And-Script-Commands/script-interpreter.md	-	213
 function	0x00267E60	-	Story-Events-And-Hunts/story-progress.md	-	9
 function	0x00267F60	-	Scripts-And-Script-Commands/verb-arguments.md	-	14
-function	0x00267F90	-	Scripts-And-Script-Commands/script-interpreter.md	-	117
+function	0x00267F90	-	Scripts-And-Script-Commands/script-interpreter.md	-	118
 function	0x00267FC0	-	Scripts-And-Script-Commands/script-variables.md	-	9
 function	0x00268100	-	Scripts-And-Script-Commands/script-variables.md	-	8
 function	0x002681C0	-	Characters-And-Objects/actor-model-rebuild.md	-	8
@@ -19279,7 +19279,7 @@ function	0x0028E630	-	Menus-And-HUD/map-screens.md	-	7
 function	0x0028E660	-	Menus-And-HUD/map-screens.md	-	8
 function	0x0028E690	-	Menus-And-HUD/menu-screens.md	-	12
 function	0x0028E790	-	Menus-And-HUD/map-screens.md	-	10
-function	0x0028E840	-	Engine-Core/engine-types-fields.tsv	-	6
+function	0x0028E840	-	Menus-And-HUD/battle-menu.md	-	7
 function	0x0028E860	-	Compiler-And-C-Runtime/thunks-and-import-stubs.md	-	10
 function	0x0028E880	-	Saving-Loading-And-Settings/loading-a-save.md	-	7
 function	0x0028E8B0	-	Compiler-And-C-Runtime/thunks-and-import-stubs.md	-	7
@@ -19335,7 +19335,7 @@ function	0x0028FB40	-	Compiler-And-C-Runtime/thunks-and-import-stubs.md	-	7
 function	0x0028FB60	-	Compiler-And-C-Runtime/thunks-and-import-stubs.md	-	9
 function	0x0028FB80	-	Menus-And-HUD/hud.md	-	11
 function	0x0028FBE0	-	Menus-And-HUD/battle-numbers.md	-	7
-function	0x0028FCB0	-	Menus-And-HUD/map-screens.md	-	10
+function	0x0028FCB0	-	Menus-And-HUD/battle-menu.md	-	11
 function	0x0028FD00	-	Game-Files-And-Data-Tables/menu-map-files.md	-	6
 function	0x0028FD50	-	Menus-And-HUD/battle-menu.md	-	7
 function	0x0028FD70	-	World-Areas-And-Travel/chocobos-and-airships.md	-	11
@@ -22698,7 +22698,7 @@ function	0x00346FF0	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	6
 function	0x00347060	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	7
 function	0x00347070	-	Graphics/scripted-camera.md	-	7
 function	0x00347090	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	8
-function	0x003470D0	-	Story-Events-And-Hunts/tutorials-scenes.md	-	7
+function	0x003470D0	-	Story-Events-And-Hunts/tutorials-scenes.md	-	9
 function	0x00347130	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	7
 function	0x00347170	-	Graphics/effect-anchors-and-targets.md	-	9
 function	0x003471B0	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	8
@@ -22707,7 +22707,7 @@ function	0x00347240	-	World-Areas-And-Travel/doors-gates-and-map-changes.md	-	8
 function	0x003472A0	-	Characters-And-Objects/battle-units.md	-	7
 function	0x003472F0	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	7
 function	0x00347310	-	Engine-Core/frame-update-order.md	-	10
-function	0x00347390	-	Compiler-And-C-Runtime/generated-function-families-nativeadapter-callthenreturnzero.tsv	-	7
+function	0x00347390	-	Menus-And-HUD/menus.md	-	8
 function	0x003473A0	-	Game-Files-And-Data-Tables/ard-area-battle-data.md	-	10
 function	0x003473C0	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	7
 function	0x003473E0	-	Scripts-And-Script-Commands/battle-verbs.md	-	10
@@ -23884,7 +23884,7 @@ function	0x0035C070	-	Menus-And-HUD/hud.md	-	6
 function	0x0035C080	-	Menus-And-HUD/hud.md	-	9
 function	0x0035C0D0	-	Menus-And-HUD/hud.md	-	7
 function	0x0035C100	-	Menus-And-HUD/hud.md	-	8
-function	0x0035C140	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	6
+function	0x0035C140	-	Menus-And-HUD/battle-menu.md	-	7
 function	0x0035C150	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	7
 function	0x0035C160	-	Menus-And-HUD/hud.md	-	9
 function	0x0035C3F0	-	Game-Files-And-Data-Tables/small-bin-tables.md	-	7
@@ -23926,7 +23926,7 @@ function	0x0035D280	-	Menus-And-HUD/message-windows.md	-	5
 function	0x0035D2D0	-	Menus-And-HUD/message-windows.md	-	5
 function	0x0035D320	-	Menus-And-HUD/map-screens.md	-	9
 function	0x0035D330	-	Story-Events-And-Hunts/shared-zone-script-actors.md	-	25
-function	0x0035D380	-	Items-Equipment-Shops-And-Licenses/equipment.md	-	9
+function	0x0035D380	-	Items-Equipment-Shops-And-Licenses/equipment.md	-	10
 function	0x0035D3D0	-	Menus-And-HUD/menu-screens.md	-	15
 function	0x0035D3E0	-	Controls-And-Input/controls.md	-	7
 function	0x0035D3F0	-	Menus-And-HUD/hud.md	-	11

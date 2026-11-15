@@ -764,10 +764,14 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
   byte is `area`, or -1 when no destination names it (`0x003C0294`); `0x002901D0` stores it at
   `[0x0209BE80] + 0x10FAC`, which a script reads back after opening the World Map as a destination picker (menu
   states `0x11` and `0x12`, `0x00254710`).
-- `0x003BD1B0(out, region, mode)` builds the World Map's area list for its host `0x00550A00`: a `0x28`-byte
-  entry (`0x003BD040`) for every area of the region, or of all regions for -1, that is shown (`0x003C08B0`) or
-  passes `0x003C0C50`. In mode 6, with `+0xD0` bit `0x400`, an entry with bit `0x20` takes its labels from
-  the selected quest's `QHT0` entry (`0x00473CC0`).
+- `0x003BD1B0(out, region, mode)` builds the World Map's area list for its host `0x00550A00`: a `0x28`-byte entry
+  (`0x003BD040`) for every area from 1 up (area 0 is skipped, `0x003BD232`) of the region, or of all regions for -1, that
+  is shown (`0x003C08B0`) or passes `0x003C0C50`, and returns the count (only the count when `out` is 0, `0x003BD2A4`).
+- In mode 6 an entry with bit `0x20` takes its labels from the selected quest's `QHT0` entry (`0x00473CC0`) only while
+  `+0xD0` has bits `0x100` and `0x200`, the quest's `QHD0` entry is of type 0, the first of its `+0xCB` steps whose
+  `a` is the area has its `shown` bit set for the progress `0x003BC260` gives, `+0xD0` has bit `0x400` and `0x00473CC0`
+  returns 0 (`0x003BD2C3`-`0x003BD44F`).
+- A null label leaves the entry's `+0x10` or `+0x20` as it was (`0x003BD45A`-`0x003BD475`).
 - It then fills each entry's four neighbours: `0x003BFB60(entry, dir, list, n, empty)` follows the authored
   neighbour chain until it meets a listed area, giving -1 for no neighbour (`empty` = 1), a loop or the
   chain's end. When the chain leads nowhere, `0x003BFC70(entry, dir, list, n)` takes the listed area on that
