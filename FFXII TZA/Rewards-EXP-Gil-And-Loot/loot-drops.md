@@ -118,8 +118,9 @@ Each roll is its own function:
   file). In shipped data the three weights always sum to 100, so the fourth never decides.
 - `Loot_RollAdditionalItemChance(item, condition, chance)` (`0x00318510`): returns 0 without drawing when
   the item or condition is `0xFFFF` or when `BattleEncodedId_QueryMode0Positive(condition)` (`0x0030B0E0`)
-  says the party holds no free copy of the condition item (`0x0031851E`-`0x0031853A`); otherwise succeeds
-  when `r < chance`.
+  says the party does not own the condition item (`0x0031851E`-`0x0031853A`); otherwise succeeds when
+  `r < chance`. Every condition is a key item (below), whose class answers mode 0 with its owned bit
+  (`0x002FD970`).
 
 ### How many draws a kill costs
 

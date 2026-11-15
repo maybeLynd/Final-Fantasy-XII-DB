@@ -357,10 +357,20 @@ the auto-rotation `+0x10C`, sets the orbit look `+0xA0` to the look point and, w
 Auto-Rotation is on, turns the heading toward the pulled-in eye `+0x2D0` (`0x003CC130`; `0x0032B4D8`-`0x0032B553`). It then
 adds the rates without the wall and auto terms (`0x0032BA70`) and places the orbit (`0x0032DF40`).
 
-`0x0032BEB0` sweeps again and, on a hit, shrinks the distance scale `+0x120` to the hit's share of the full distance, up
-to two retries; its eye goes to `+0x2E0`, and a hit eye also to `+0x2D0` (`0x0032B57D`-`0x0032B5E2`).
+`0x0032BEB0` sweeps again (`0x0032BF38`). On a hit it places the eye with the distance scale `+0x120` and sweeps
+again, up to two retries (`0x0032C021`-`0x0032C052`); a hit nearer than the current scale first shrinks `+0x120` to
+the hit's share of the full horizontal distance and clears bytes `+0x40` and `+0x80` (`0x0032BFC7`-`0x0032BFDB`).
 
-The hit also sets the count `+0x124` to `T = 60 × [0x01DFE0B4]` (`0x0032BFE2`-`0x0032C008`). `0x0032DE90` counts it
+With a hit its eye is the last sweep's output, the contact or the shortened eye, raised by the lift `0x0032BB00`
+gives, which it stores at `+0x128` (`0x0032C084`-`0x0032C0B4`), and at most 9.0 above the followed position
+(`0x0032C0D1`-`0x0032C0DE`); it replaces the orbit heading `+0xB0` and distance `+0xB8` with those from the look point
+to that output (`0x003CC130`, `0x0032C0EB`, `0x0032C100`), clears byte `+0x80` (`0x0032C0F9`, `0x0032C108`) and returns 0.
+
+With no hit it places the eye with the scale `+0x120` and lift `+0x128` (`0x0032C111`-`0x0032C139`), clears bit
+`0x20000` of `+0xC0` (`0x0032C141`) and returns 1. Its eye goes to `+0x2E0`, and a hit eye also to `+0x2D0`
+(`0x0032B57D`-`0x0032B5E2`).
+
+That shrink also sets the count `+0x124` to `T = 60 × [0x01DFE0B4]` (`0x0032BFE2`-`0x0032C008`). `0x0032DE90` counts it
 down before testing it, so the scale starts easing back toward 1 on the next update, by a fraction that grows as
 the count falls. At count 0 each update still moves it the fraction `1 - √2/2` of the way, so it approaches 1 and
 no update sets it to exactly 1. When a sweep is clear, bit `0x4000000` is cleared

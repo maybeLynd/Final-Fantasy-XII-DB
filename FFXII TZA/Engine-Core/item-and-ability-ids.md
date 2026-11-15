@@ -92,20 +92,26 @@ hops (byte `+2` of the magick's row in `0x02EBF0F0`, `id - 0x3000`, is an action
 technick; `0x80` for a quickening `0xC000` to `0xC011` and `0x100` for `0xC012` to `0xC01E`.
 
 The packed-count classes (items, equipment, loot) keep one 16-bit word per id in region A: mask `0x3FF` the owned
-total (`w & 0x3FF`), capped at 99, mask `0xFC00` the reserved copies. The query handler `0x002FD8D0(id, mode)` returns
-total minus reserved for mode 0 (which can go negative), the total for mode 1, the reserved count for mode 2 and the
+total (`w & 0x3FF`), capped at 99, mask `0xFC00` the copies being worn. The query handler `0x002FD8D0(id, mode)`
+returns total minus worn for mode 0 (which can go negative), the total for mode 1, the worn count for mode 2 and the
 region-B byte for mode 3; any other mode returns 0 (`0x002FD903`), and so does a null region pointer (`0x002FD90D`,
 `0x002FD91E`, `0x002FD932`, `0x002FD949`), so mode 3 answers 0 for items and equipment, which have no region B.
 
+Channels 0 and 2 move the worn count (`0x002FD198`, `0x002FD3E5`-`0x002FD3F1`). None of the 39 calls of `0x003008A0`
+passes channel 0: 32 pass channel 1, the wrappers `0x0030C410` and `0x0030F9A0` that add or remove one worn copy
+pass channel 2, `0x0030B220`-`0x0030B256` and `0x003108E8` pass channel 3 and `0x003004A2` channel 4. The equip setters
+(`0x00318B40`, `0x0031A410`, `0x0031A510`, `0x0031A630`) call the two wrappers, and so do a member joining and leaving
+the party (`0x00316DF0`, `0x00323540`) ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md)).
+
 The mutate handler `0x002FD150` by channel:
 
-- channel 1 sets or adds the total, clamped between the reserved count and 99; when the total
+- channel 1 sets or adds the total, clamped between the worn count and 99; when the total
   rose it sets the id's bit in region C (items' ever-owned bitset at `+0x57C0`, byte `index >> 3`,
   bit `index & 7`); then the derived-index hook `0x00325F40(id, old total, new total)` and, for a
   relative change with flag bit `0x1`, the "You obtain" line `0x0046A630(id, delta)`;
-- channel 0 subtracts `delta` from the reserved count (absolute: reserved = total - `delta`),
-  clamped to 0 to total, and returns total minus reserved; channel 2 adds `delta` to it
-  (absolute: reserved = `delta`), clamped the same way, and returns the reserved count;
+- channel 0 subtracts `delta` from the worn count (absolute: worn = total - `delta`),
+  clamped to 0 to total, and returns total minus worn; channel 2 adds `delta` to it
+  (absolute: worn = `delta`), clamped the same way, and returns the worn count;
 - channel 3 sets or adds the region-B byte, clamped to 0 to 99 (loot's bazaar-sold tally at
   `+0x57C8`).
 
@@ -450,7 +456,7 @@ Party block [`0x02EBF190`]:
 | `+0x59C8` | `u8[128]` | inventoryPackedFlags | masked with `0xF8` by the rebaser |
 
 ```
-packed word: mask 0x3FF total (0..99), mask 0xFC00 reserved
+packed word: mask 0x3FF total (0..99), mask 0xFC00 worn
 ```
 
 EncodedIdQueryRecord (`0x98`); `0x022CA520` the row-form copy, `0x022CA480` the id-form copy:
@@ -504,7 +510,7 @@ Bazaar good row (36):
 | id counts | items 64, equipment 420, loot 512, magicks 81, technicks 24, gambit conditions 256, key items 512 (64 + 32 + 416 + 0), quickenings 32, reward packages 512, selectors 256, bazaar goods 128, gil 4,095; sum 6,892 |
 | validator classes | 32, 29 arms; four without a table (1, 19, 22, 23) |
 | query classes | 32, 28 arms |
-| owned-count cap | 99; reserved field 6 bits |
+| owned-count cap | 99; worn field 6 bits |
 | refused ids | `0xFFFF`, `0x1000` (Unarmed) in the modify path |
 
 ## Operations

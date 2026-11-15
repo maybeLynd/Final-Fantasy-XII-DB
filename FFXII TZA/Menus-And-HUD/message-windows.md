@@ -138,8 +138,13 @@ cursor to `+0x2C`; on answer 2 it copies the answer to `+0x2C` and `+0x0C` once,
 (`0x002E0AE3`-`0x002E0B19`).
 
 `0x002A2A60` returns only 1, 2 or 3, so the drain's arms for 0, 4 and other answers, which write states 0, 5 and 8,
-are not taken (`0x002E0AB1`-`0x002E0AD2`). `0x002A29A0` answers the confirm button whenever a window is skipping
-(`+0x3C5` negative) and 0 while the log of a focused window is open.
+are not taken (`0x002E0AB1`-`0x002E0AD2`).
+
+`0x002A29A0` reads the eight registry slots `0x0209C4D0`-`0x0209C508` in order, and the first that matches decides: a
+window with bit `0x10` of byte `+0x40` set and log mode bits `0x700` of `+0x3E8` non-zero gives 0
+(`0x002A29B8`-`0x002A29C8`), and a skipping window (`+0x3C5` negative) gives the confirm button, `0x2000`, or `0x4000`
+when `0x01FD4A64` is set (`0x002A29CA`, `0x002A29E4`-`0x002A29F5`). When no slot matches it returns the pad word
+`0x02AD9E0C` (`0x0036FFD0`, tail jump at `0x002A29DC`).
 
 The getters the verbs read are `0x002E1130` (the state), `0x002E10F0` (`+0x0C`), `0x002E1080` (`+0x2C`, read by
 `mesisselect`), `0x002E1170` (`+0x40`, read by the `aask_1ff` poll `0x0034BDC0`) and `0x002E10C0` (bit `0x1` of `+0x3E`).

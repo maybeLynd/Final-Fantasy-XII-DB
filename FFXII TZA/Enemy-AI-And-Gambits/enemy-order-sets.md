@@ -97,7 +97,7 @@ below 0 (`0x0031E750`) ([Navigation](../Movement-And-Pathfinding/navigation-mesh
 | 58, 59 | at least `v` units that relation mode `s` admits (0 = every unit) in its own perception list `+0xBC4` | `0x003031C4` |
 | 60, 61 | team byte `+0x54` is `v` | `0x0030329B` |
 | 62, 63 | MP at least `10 * s` % of max MP, through the code of opcodes 44 and 45 from `0x00302F37` (`0x003032AF`-`0x003032BB`), so with the same two kinds of unit kept by neither opcode | `0x003032A7` |
-| 64, 65 | the deciding unit holds at least `10 * s` of the line's item (`0x003093D0`, `0x00309EC0`, read at the first candidate), or the candidate is an enemy | `0x003032C0` |
+| 64, 65 | the party holds at least `10 * s` of the line's item (`0x003093D0`, `0x00309EC0`, read at the first candidate), or the candidate is an enemy | `0x003032C0` |
 | 66, 67 | a unit committed against it (`+0xEA4`) carries: `s` = 0 the same action; 1 an action removing a status it has that this action also removes (`0x0031C500`); 2 an action restoring HP (`+0x2C` bit `0x1000`); 3 one restoring MP (bit `0x8000`) | `0x00303334` |
 | 68, 69 | the whole field: the summon timer (battle state `+0x5AD8`) at least 20, 30, 60, 90 or 120 (`0x00D10380`) | `0x00303523` |
 | 1, 4, 5, 18, 19, 30, 31, 50, 51 | no unit is kept | `0x00301C08`, `0x00303567` |

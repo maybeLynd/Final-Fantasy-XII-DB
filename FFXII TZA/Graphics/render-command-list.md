@@ -87,7 +87,7 @@ Small wrappers file fourteen of the classes. They check that the owner list
 | `0x00180A30` | `0x0018C2A0` | `RenderAfterWaterObj` | with that byte set, first `0x001A8F80` on the map-art context |
 | `0x0017F670`, `0x0017F6B0` | `0x0018C450` | `MaskBorderObj` | `0x0017F670(n)` only when `0x01DF08E8` and `0x01F7F4F0` are set; `0x0017F6B0` passes 3 under its own tests |
 | `0x00182280` | `0x0018B710` | `FastClearObj` | through `0x00185CD0`, which also keeps the four arguments at manager `+0xD00`-`+0xD0C` |
-| `0x00185A10`, `0x001860E0` | `0x0018CBC0` | `SetRendererCameraObj` | the camera at manager `+0x358` with `+0x1C` = 1, or `+0x690` with `+0x1C` = 0 |
+| `0x00185A10`, `0x001860E0` | `0x0018CBC0` | `SetRendererCameraObj` | the camera at manager `+0x358` with `+0x1C` = 1, and, when byte `+0xDC4` is set, byte `+0xDC5` = 1 (`0x00185A35`-`0x00185A3E`); or `+0x690` with `+0x1C` = 0 |
 | `0x00183120` | `0x0018CB30` | `SetPrimIdEnableObj` | only when `0x005C5230()` is non-zero; it returns 0, so nothing is filed |
 | `0x001EB110` | `0x0018C0D0` | `RazorMarkerPopObj` | only when `[0x01F7F4E0]` exists and its byte `+0x08` is set, as for the push `0x001EB150` |
 | `0x001826E0` | `0x0018B970` | `CopyDepthBufferObj` | the render parameters' `+0x2B8` (`0x00193D50`), 0, 0 |

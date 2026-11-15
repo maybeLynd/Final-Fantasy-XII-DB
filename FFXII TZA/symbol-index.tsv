@@ -21133,8 +21133,8 @@ function	0x002FD530	InventoryBundleClass09_ApplyGilAndNestedItems	Items-Equipmen
 function	0x002FD640	InventoryBundleClass0A_ApplyNestedItems	Engine-Core/item-and-ability-ids.md	-	9
 function	0x002FD780	InventoryBundleClass0D_ApplyNestedItems	Engine-Core/item-and-ability-ids.md	-	9
 function	0x002FD880	-	Engine-Core/item-and-ability-ids.md	-	8
-function	0x002FD8D0	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	10
-function	0x002FD970	-	Engine-Core/item-and-ability-ids.md	-	9
+function	0x002FD8D0	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	11
+function	0x002FD970	-	Engine-Core/item-and-ability-ids.md	-	10
 function	0x002FDA60	-	Battle-Actions/battle-orders.md	-	9
 function	0x002FDC30	-	Battle-Actions/battle-orders.md	-	10
 function	0x002FDDA0	BattleUnit_ExecuteDirectStateCommandOrder	Battle-Actions/battle-orders.md	-	24
@@ -21164,7 +21164,7 @@ function	0x003001D0	-	Status-Effects-And-KO/ko-and-game-over.md	-	10
 function	0x00300280	BattleAction_RefundReservedExecutionResources	Rewards-EXP-Gil-And-Loot/gil.md	-	14
 function	0x00300310	BattleUnit_PublishLocomotionPosition	Enemy-Spawning/enemy-spawning.md	-	19
 function	0x003003F0	BattleUnit_PublishLocomotionPositionAndFacing	Enemy-Spawning/spawn-record-fields.md	-	16
-function	0x00300490	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	6
+function	0x00300490	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	7
 function	0x003004B0	-	Rewards-EXP-Gil-And-Loot/gil.md	-	12
 function	0x00300500	-	Rewards-EXP-Gil-And-Loot/gil.md	-	9
 function	0x00300520	-	Damage-And-Battle-Formulas/hp-and-ko.md	-	17
@@ -21329,7 +21329,7 @@ function	0x0030AEA0	-	Menus-And-HUD/message-windows.md	-	6
 function	0x0030AF30	BattleAction_CheckAndHandleExecutionTimeout	Battle-Actions/target-selection.md	-	16
 function	0x0030B050	BattleUnit_HasRelationshipClass2PlusInTrackedActorList	Scripts-And-Script-Commands/battle-verbs.md	-	9
 function	0x0030B0E0	-	Battle-Actions/command-availability.md	-	12
-function	0x0030B180	BattleIdClassD_ResetPurchasedEntryAndNestedPrerequisiteState	Items-Equipment-Shops-And-Licenses/bazaar.md	-	17
+function	0x0030B180	BattleIdClassD_ResetPurchasedEntryAndNestedPrerequisiteState	Items-Equipment-Shops-And-Licenses/bazaar.md	-	18
 function	0x0030B270	BattleIdClassD_RefreshPrerequisiteRuntimeFlags	Items-Equipment-Shops-And-Licenses/bazaar.md	-	9
 function	0x0030B4B0	-	Engine-Core/item-and-ability-ids.md	-	14
 function	0x0030B510	-	Battle-Actions/action-list.md	-	12
@@ -21364,7 +21364,7 @@ function	0x0030C2C0	-	Characters-And-Objects/party-member-status-record.md	-	5
 function	0x0030C300	-	Engine-Core/subsystem-update-flags.md	-	11
 function	0x0030C3C0	-	Characters-And-Objects/battle-units.md	-	6
 function	0x0030C3F0	-	Engine-Core/frame-update-order.md	-	7
-function	0x0030C410	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	11
+function	0x0030C410	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	12
 function	0x0030C470	-	Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md	-	31
 function	0x0030C620	-	Damage-And-Battle-Formulas/unit-stats-fields.tsv	-	7
 function	0x0030C650	BattleStats_AdvanceLevelToTargetAndRecomputeGrowth	Menus-And-HUD/hud.md	-	35
@@ -21422,7 +21422,7 @@ function	0x0030F4D0	-	World-Areas-And-Travel/save-and-teleport-crystals.md	-	6
 function	0x0030F5A0	BattleStats_ReconcileResourcesToEffectiveCapacity	World-Areas-And-Travel/save-and-teleport-crystals.md	-	13
 function	0x0030F690	BattleStats_RemoveStatusesFromMaskAndRecompute	Damage-And-Battle-Formulas/augments.md	-	23
 function	0x0030F760	BattleUnit_CommitAction	Engine-Core/identifier-spaces.md	-	31
-function	0x0030F9A0	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	9
+function	0x0030F9A0	-	Items-Equipment-Shops-And-Licenses/inventory.md	-	10
 function	0x0030FA00	BattleAction_TryContinueComboSequence	Battle-Actions/combos.md	-	12
 function	0x0030FAA0	InventoryEquipment_RestoreTemporarySnapshotAndClearBackup	Party/party-data.md	-	16
 function	0x0030FBE0	InventoryEquipment_SnapshotAndClearTemporaryState	Items-Equipment-Shops-And-Licenses/equipment.md	-	16
@@ -21432,7 +21432,7 @@ function	0x0030FE60	-	Enemy-AI-And-Gambits/gambit-conditions.md	-	9
 function	0x0030FED0	BattleStats_RecomputeDerivedStateAndAutoStatuses	Items-Equipment-Shops-And-Licenses/buying-a-license.md	-	52
 function	0x003105D0	BattleUnit_CancelAndResetCurrentAction	Items-Equipment-Shops-And-Licenses/equipping-an-item.md	-	31
 function	0x00310780	BattleUnit_ReleaseTargetRelationAndActionState	Battle-Actions/action-commit.md	-	17
-function	0x00310870	-	Items-Equipment-Shops-And-Licenses/bazaar.md	-	10
+function	0x00310870	-	Items-Equipment-Shops-And-Licenses/bazaar.md	-	11
 function	0x00310920	-	Scripts-And-Script-Commands/party-during-scenes.md	-	67
 function	0x00310D30	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	-	6
 function	0x00310D90	-	Compiler-And-C-Runtime/generated-function-families-trivial-global-accessors.tsv	-	5
@@ -21585,7 +21585,7 @@ function	0x00316CF0	BattleTargetBuffer_ResetPreservingFlag0	Enemy-AI-And-Gambits
 function	0x00316D30	-	Characters-And-Objects/battle-unit-fields.md	-	11
 function	0x00316D70	BattleTargetBuffer_FindActorWorkIndex	Battle-Actions/area-of-effect.md	-	11
 function	0x00316DA0	-	Enemy-Spawning/enemy-spawning.md	-	6
-function	0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md	-	19
+function	0x00316DF0	DefinitionRuntime_ActivateAndApplyConfiguredSideEffects	Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md	-	20
 function	0x00317090	-	Rewards-EXP-Gil-And-Loot/kill-rewards.md	-	11
 function	0x003170E0	PartyConfiguration_AddSelector07To25ToAvailablePrimaryIndex	Party/party-members.md	-	51
 function	0x003171C0	-	Enemy-Spawning/bestiary.md	-	13
@@ -21622,7 +21622,7 @@ function	0x00318820	Loot_SelectChanceProfileByWeight	Rewards-EXP-Gil-And-Loot/lo
 function	0x00318960	-	Rewards-EXP-Gil-And-Loot/loot-drops.md	-	7
 function	0x00318A00	-	Status-Effects-And-KO/status-changes.md	-	8
 function	0x00318A90	-	Characters-And-Objects/battle-units.md	-	8
-function	0x00318B40	Equipment_ReconcilePrimarySecondarySlotCompatibility	Items-Equipment-Shops-And-Licenses/equipment.md	-	15
+function	0x00318B40	Equipment_ReconcilePrimarySecondarySlotCompatibility	Items-Equipment-Shops-And-Licenses/equipment.md	-	16
 function	0x00318CA0	-	Movement-And-Pathfinding/battle-locomotion.md	-	8
 function	0x00318CD0	-	Menus-And-HUD/battle-menu.md	-	12
 function	0x00319090	-	Characters-And-Objects/battle-units.md	-	13
@@ -21650,9 +21650,9 @@ function	0x00319F50	BattleUnit_HandleActorTimelineEvent	Status-Effects-And-KO/ko
 function	0x0031A230	-	Battle-Actions/action-phases.md	-	5
 function	0x0031A260	-	Items-Equipment-Shops-And-Licenses/equipment.md	-	9
 function	0x0031A300	BattleStats_ClearAllEquipmentSlotsByMappedId	Menus-And-HUD/status-and-equip-screen.md	-	22
-function	0x0031A410	BattleStats_SetEquipmentSlotByStatsIndex	Items-Equipment-Shops-And-Licenses/equipment.md	-	16
-function	0x0031A510	BattleStats_SetEquipmentSlotByMappedId	Items-Equipment-Shops-And-Licenses/equipment.md	-	24
-function	0x0031A630	BattleStats_SetEquipmentSlotDirect	Items-Equipment-Shops-And-Licenses/equipment.md	-	24
+function	0x0031A410	BattleStats_SetEquipmentSlotByStatsIndex	Items-Equipment-Shops-And-Licenses/equipment.md	-	17
+function	0x0031A510	BattleStats_SetEquipmentSlotByMappedId	Items-Equipment-Shops-And-Licenses/equipment.md	-	25
+function	0x0031A630	BattleStats_SetEquipmentSlotDirect	Items-Equipment-Shops-And-Licenses/equipment.md	-	25
 function	0x0031A710	BattleStats_SetEquipmentSlotsByMappedId	Menus-And-HUD/status-and-equip-screen.md	-	13
 function	0x0031A7B0	BattleAction_CheckGlobalCategoryDisableReason	Battle-Actions/command-availability.md	-	12
 function	0x0031A8C0	-	Battle-Actions/battle-orders.md	-	11
@@ -21825,7 +21825,7 @@ function	0x00322C50	BattleEncodedId_IsValidForClass	Engine-Core/item-and-ability
 function	0x003230E0	-	Battle-Actions/target-selection.md	-	11
 function	0x003231F0	Equipment_CheckPrimarySecondaryPairReasonByStatsIndex	Menus-And-HUD/status-and-equip-screen.md	-	10
 function	0x00323350	BattleAction_ApplyKnockbackImpulse	Movement-And-Pathfinding/animation-driven-movement.md	-	9
-function	0x00323540	DefinitionRuntime_DeactivateAndRemoveConfiguredItems	Party/party-members.md	-	15
+function	0x00323540	DefinitionRuntime_DeactivateAndRemoveConfiguredItems	Party/party-members.md	-	16
 function	0x003235C0	-	Items-Equipment-Shops-And-Licenses/buying-a-license.md	-	6
 function	0x00323600	-	Items-Equipment-Shops-And-Licenses/licenses.md	-	10
 function	0x00323630	BattleStats_GetLicenseBoardSelectorB	Controls-And-Input/on-screen-keyboard.md	-	14
@@ -24404,7 +24404,7 @@ function	0x0036FF90	-	Compiler-And-C-Runtime/generated-function-families-trivial
 function	0x0036FFA0	-	Compiler-And-C-Runtime/generated-function-families-trivial-global-accessors.tsv	-	6
 function	0x0036FFB0	-	Compiler-And-C-Runtime/generated-function-families-trivial-global-accessors.tsv	-	6
 function	0x0036FFC0	-	Compiler-And-C-Runtime/generated-function-families-trivial-global-accessors.tsv	-	7
-function	0x0036FFD0	-	Engine-Core/frame-update-order.md	-	12
+function	0x0036FFD0	-	Engine-Core/frame-update-order.md	-	13
 function	0x0036FFE0	-	Engine-Core/frame-update-order.md	-	9
 function	0x0036FFF0	-	Graphics/add-motion-tables.md	-	10
 function	0x00370180	-	Graphics/animation-playback.md	-	8
@@ -48379,7 +48379,7 @@ global	0x01FD4A20	-	Engine-Core/startup-constants.md	-	3
 global	0x01FD4A30	-	Engine-Core/startup-constants.md	-	3
 global	0x01FD4A38	-	Engine-Core/startup-constants.md	-	0
 global	0x01FD4A40	-	Engine-Core/startup-constants.md	-	1
-global	0x01FD4A64	-	Engine-Core/startup-constants.md	-	6
+global	0x01FD4A64	-	Engine-Core/startup-constants.md	-	7
 global	0x01FD4A68	-	Engine-Core/game-application.md	-	4
 global	0x01FD4A6C	-	Graphics/gi-render-commands.md	-	1
 global	0x01FD4A70	-	PhyreEngine/the-frame.md	-	3
@@ -50139,7 +50139,7 @@ global	0x022D9B41	-	Scripts-And-Script-Commands/verb-table.md	-	1
 global	0x02AD9B50	-	Engine-Core/frame-update-order.md	-	0
 global	0x02AD9E00	-	Engine-Core/startup-constants.md	-	7
 global	0x02AD9E08	-	Controls-And-Input/controls.md	-	4
-global	0x02AD9E0C	-	Controls-And-Input/controls.md	-	6
+global	0x02AD9E0C	-	Controls-And-Input/controls.md	-	7
 global	0x02AD9E10	-	Controls-And-Input/controls.md	-	6
 global	0x02AD9E24	-	Controls-And-Input/controls.md	-	0
 global	0x02AD9E28	-	Controls-And-Input/controls.md	-	0

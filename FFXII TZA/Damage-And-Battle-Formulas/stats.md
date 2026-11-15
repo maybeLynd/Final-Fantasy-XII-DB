@@ -78,8 +78,9 @@ The categories come from `0x0031EA90` through the byte map `0x0031EA74`
 | `7`, `8`, `9` | head (class 19), body (class 20), accessories (classes 21-22); `0x00309480` treats them like any category it does not list |
 
 A ranged weapon's ammunition is at hand when `0x003096F0(weapon, worn off hand)` returns 1: the worn off hand holds
-ammunition (ids `0x1184`-`0x11A3`) of the class the weapon's `+0x11` names, or the party holds at least one of
-those ammunition ids (the equipment class's query handler, `0x00309801`-`0x0030988D`).
+ammunition (ids `0x1184`-`0x11A3`) of the class the weapon's `+0x11` names, or the party owns a copy of one of
+those ammunition ids that no member is wearing: the equipment class's query handler, `0x002FD8D0` in mode 0,
+answers owned minus worn (`0x002FD94B`-`0x002FD95D`), and an answer of 1 or more counts (`0x00309801`-`0x00309890`).
 
 `0x003096F0` first calls `0x00322C50(6, weapon, 0)` and returns 0 at once when that answers 0
 (`0x003096FA`-`0x00309715`). Both rows come from the table `[0x02EBF0F8]`: the low 32 bits of the `0x0020E600`

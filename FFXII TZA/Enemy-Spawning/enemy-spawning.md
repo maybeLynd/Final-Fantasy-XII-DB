@@ -549,9 +549,18 @@ So a cause of 0 says the entry is not marked retired by range, whichever store c
 
 [`enemy-placement-conditions-terms.tsv`](enemy-placement-conditions-terms.tsv) gives the same 22,571 rows in the same
 order with every test read in the game's terms. A story-counter value is named by its stage, a global word by its
-meaning and the phrase for the tested value, a roll by its range, and a script word once per row by its writers. Of
-the test cells, 965 story, 159 weather, 1,825 count, 1,944 random and 9,537 other cells hold a test; the rest
-hold `-`.
+meaning and the phrase for the tested value, a roll by its range, and a script word by its meaning where the
+meanings table below gives one and otherwise once per row by its writers. Of the test cells, 965 story, 159
+weather, 1,825 count, 1,944 random and 9,537 other cells hold a test; the rest hold `-`.
+
+[`enemy-spawn-word-meanings.tsv`](enemy-spawn-word-meanings.tsv) gives what 34 script words mean in the game, one
+row per script and word, read in the scripts that store them: the Barheim Passage battery charge stage, the clear
+flag that some maps set once their foes defeated reach the total of their lanes' death limits, the Feywood clear
+bits behind the Behemoth King, the Oversoul flag and the Helvinek flag in the Necrohol of Nabudis, and the way the
+party last came into the North and South maps of Pharos - Subterra.
+
+Its columns are `script`, `variable`, `map_name`, `meaning` (the phrase the terms table prints, with the word's
+name beside it), `how_set` (the steps that store it and what it changes) and `evidence` (the listing lines).
 
 ### Columns of enemy-placement-conditions.tsv
 

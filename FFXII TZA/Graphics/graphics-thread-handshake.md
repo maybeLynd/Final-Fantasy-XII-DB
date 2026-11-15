@@ -194,8 +194,8 @@ The vertical-sync set-up and the Tk threads use a thin layer over the Windows ca
 - `0x00863540(desc)` makes a semaphore from the descriptor's counts (`0x008632E0`, `CreateSemaphoreW`; `0x0035E8A7`);
   `0x00863800` releases it by one, and `0x00863590` closes and frees it (`0x0035E74B`);
 - `0x00863690(sem, ms)` waits on a semaphore (`WaitForSingleObject`, `0x008636C6`), and `0x00863650(sem)` waits with no
-  time-out (`WaitForSingleObject(sem, -1)`, `0x00863676`-`0x0086367C`); both return 0 for a null semaphore and 1 after
-  the wait (`0x00863666`-`0x00863682`, `0x008636AC`-`0x008636D1`);
+  time-out (`WaitForSingleObject` with the handle `[[sem]]` and -1, `0x00863673`-`0x0086367C`); both return 0 for a
+  null semaphore and 1 after the wait (`0x00863666`-`0x00863682`, `0x008636AC`-`0x008636D1`);
 - `0x008635F0(ms)` sleeps (`0x0035E735`, `0x0035EAB3`).
 
 `0x008636E0` returns the address of an 8-byte holder it takes from `0x00210EC0` (`malloc`, through `0x0085E730`;
