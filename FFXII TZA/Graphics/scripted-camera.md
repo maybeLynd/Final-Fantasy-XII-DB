@@ -295,7 +295,7 @@ The update then:
 | `0x02AEDDB0` | view × `0x02AEDD30` |
 | `0x02AEDE30` | view × a projection with near 1.0 and far 1000 (`0x003CBC40`) |
 | `0x02AEDF94` | the heading, `atan2f` of the view's `0x02AEDE90` and `0x02AEDE98` |
-| `0x02B40470` | `0x02AED500` × the working camera's projection (`0x003CBB30`), copied there by `0x003B4150`; the update `0x003820C0` does it on one of its paths, and only while `0x00182570` returns 0; and `0x002F5550` and `0x00474710` also call `0x003B4150` |
+| `0x02B40470` | `0x02AED500` × the working camera's projection (`0x003CBB30`), copied there by `0x003B4150`; the update `0x003820C0` does it on one of its paths, and only while `0x00182570` returns 0; `0x00474710` stores `0x02AED4A0` × the working camera's projection there instead (`0x003CBB30` with the aspect `0x02AED4E0`, `0x004748A1`-`0x004748D1`); `0x002F5550` also calls `0x003B4150` |
 
 `0x003B40B0(z)` and `0x003B40F0(z)` turn a depth into `(m[+0x38] − z × m[+0x28]) / (m[+0x3C] − z × m[+0x2C])`
 with the elements of `0x02B40470`; `0x002F5550`, `0x00474710` and `0x0024FF60` call them.

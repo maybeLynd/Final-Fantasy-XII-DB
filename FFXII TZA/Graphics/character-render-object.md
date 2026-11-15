@@ -49,6 +49,20 @@ A record keeps its object key at `+0x6B0` and the object at `+0x6B8`. The manage
   `0x001BD840` parks an object only when it finds it in the live vector: it appends `{object, 3}` to its key's list
   and moves the vector's last element into the freed place (`0x001BD870`-`0x001BD902`). It ends with a jump to the
   bare `ret` `0x0016D6A0` with the text `Can't find character object when try to remove it!` (`0x001BD907`-`0x001BD92F`).
+- `0x001BDAC0(manager)`, the manager's update, is called on every pass of the pump `0x0017D6E0` (`0x0017D783`). It ages
+  the parked objects only on the pump's first pass, while `0x0017D980()` is 0 (the dword `0x01F7F4B8`, stored 0 at
+  `0x0017D706` and 1 at `0x0017D846` before each further pass), and while the dword `0x01FD4A68` is 0
+  (`0x001BDACB`-`0x001BDAE0`).
+- Each such walk lowers a non-zero count of the `{object, 3}` entries by 1 (`0x001BDB67`); at 0 it calls the object's
+  teardown, slot 3 (`0x001BDB2E`), which returns non-zero, since every parked object is ready (see the ready byte).
+  `0x001BDAC0` then clears the entry's object pointer and frees the 0x20-byte entry (`0x001BDB35`-`0x001BDB62`); the
+  object's own block is not freed.
+- A key whose list is left empty loses its map entry, and the manager's key count `+0x48` falls by 1
+  (`0x001BDB77`-`0x001BDB9B`).
+- `0x001BDAC0` then sets byte `+0x4B5` to 1 on every non-null object in the live list (`0x001BDC10`-`0x001BDC34`), when
+  the list is non-empty and either the dword at `0x001C1990()` (`[0x01F81268]`) is 1 or byte `+0xDCC` of the
+  `[0x01F7F598]` object is set (`0x00189120`, `0x00187530`); the two gates of the parked walk do not apply to it
+  (`0x001BDBCA`-`0x001BDC04`).
 - When the record has a parent with an object, `0x0053AB50` attaches the two through `0x0017EF60` →
   `0x001BD630`, with a per-bone map at record `+0x6D0`.
 
@@ -334,7 +348,7 @@ The object, as its constructor `0x001F4DA0` and the methods above use it:
 | `+0x4AC` | `f32` |  | 1.0; slot 8 stores the light block's ambient alpha |
 | `+0x4B0` | `u32` | mSpecialShadowFlag | (slot 25) |
 | `+0x4B4` | `u8` | ready |  |
-| `+0x4B5` | `u8` |  | value 1 |
+| `+0x4B5` | `u8` |  | 1; set to 1 on the live objects by `0x001BDAC0` (`0x001BDC1B`) while [[`0x01F81268`]] is 1 or [`0x01F7F598`]`+0xDCC` is set |
 | `+0x4B6` | `u8` |  | 1 (slot 21) |
 | `+0x4B7` | `u8` |  | 0 at construction; the ordered draw's ShadowRenderWithRef test |
 | `+0x4B8` | `f32` |  | slot 22 (`0x001F9FE0`): the shadow height, copied to the shadow object's `+0x4C` for m_chrObjHeight (`0x001FB31E`) |
@@ -418,8 +432,10 @@ Slots 6, 7, 10, 12, 14, 19 and 20 are `0x001F9FF0`, `0x001FB080`, `0x001F8C00`, 
 
 ## State
 
-- Objects are never destroyed in play: a returned object is parked under its model and handed to
-  the next record that asks for the same model, after `0x001F89E0` resets its per-frame values.
+- A returned object is parked under its model and handed to the next record that asks for the same model, after
+  `0x001F89E0` resets its per-frame values. One left parked is emptied by its teardown (slot 3) once its count of 3
+  has run out and drops out of the cache; its 0x668-byte block is not freed and no destructor runs, so objects are
+  never destroyed in play (see Getting and returning an object).
 - Bank selection is two bytes of the `[0x01F7F598]` object: `+0x1C` for writing, `+0x1D` for reading.
 
 ## Modding notes
@@ -463,3 +479,5 @@ Calls between the functions this page cites and code in other parts of the progr
   [force fight mode](../Engine-Core/force-fight-mode.md).
 - UI: `0x00229EA0` is called by `0x002468A0`, `0x00246C20`; those functions are documented on
   [clan primer](../Menus-And-HUD/clan-primer.md), [widget messages](../Menus-And-HUD/widget-messages.md).
+- Developer: `0x0017D6E0` calls `0x001C2F50`; those functions are documented on
+  [game application](../Engine-Core/game-application.md).

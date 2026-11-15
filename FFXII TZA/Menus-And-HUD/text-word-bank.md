@@ -121,7 +121,6 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Actor entity: `0x002B58B0` is called by `0x0023A570`; those functions are documented on
   [party control modes](../Engine-Core/party-control-modes.md).
-- Audio: `0x002986E0` calls `0x00225580`; those functions are documented on [menu screens](menu-screens.md).
 - Combat AI: `0x00567B60` calls `0x00327C40`; those functions are documented on
   [gambits](../Enemy-AI-And-Gambits/gambits.md).
 - Gameplay: `0x0035D330` calls `0x0031C5D0`; those functions are documented on

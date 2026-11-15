@@ -208,6 +208,5 @@ An alpha of `0x80` or more draws fully opaque; `0x6F` draws as
 
 Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
 
-- Audio: `0x0062C360` calls `0x00225690`; those functions are documented on [fonts files](../Menus-And-HUD/fonts-files.md).
 - Platform: `0x0060DD70` is called by `0x00625830`; those functions are documented on
   [gi render commands](../Graphics/gi-render-commands.md).

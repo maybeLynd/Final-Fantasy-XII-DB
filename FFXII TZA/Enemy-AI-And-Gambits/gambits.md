@@ -262,7 +262,7 @@ the stats byte `+0x04` (`0x00327DED`-`0x00327E4B`).
 ### The three sets and the presets
 
 `0x00326030(state, k)` resets member `k`'s selected set to 0 and copies the 52-byte gambit block at stats
-`+0x88`-`+0xBB` into all three banks (`0x00326039`-`0x003260D5`).
+`+0x88`-`+0xBB` into all three banks (`0x00326039`-`0x00326109`).
 
 The stats record is the state's own `+8 + k * 0x1C8` while the low byte of `k` is at most `0x27`
 (`0x00326041`-`0x00326054`). For a larger `k` the source pointer stays 0 and the first copy reads address `0x88`

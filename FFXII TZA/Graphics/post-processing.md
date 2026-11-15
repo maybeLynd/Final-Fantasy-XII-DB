@@ -217,7 +217,13 @@ The depth-of-field pass `0x00191560` works only while the block's byte `+0x349` 
 is clear. `0x001828C0(on, mode, a, b, c, d, e, f, g)` sets the byte and the pass's values through
 `0x001944D0`: `+0x349` = (`on` ≠ 0), the mode at `+0x360` (the pass tests it for 1 and 2) and the
 other values at `+0x34C`, `+0x350`, `+0x354`, `+0x358`, `+0x35C`, `+0x364` and `+0x368`. Its caller is `0x00474710`, which
-passes 1 and values from its own record each time it runs.
+passes 1 each time it runs.
+
+It passes its record's `+0x1C` as the mode, its `+0x04`, `+0x08`, `+0x0C`, `+0x14` and `+0x18` as `a`-`e`, and the
+working camera's near `[0x02AED560]` and far `[0x02AED564]` as `f` and `g` (`0x00474850`-`0x0047488A`, `0x00474771`, `0x0047477D`,
+`0x0047487F`, `0x00474878`, `0x0047489C`). `0x001828C0` calls `0x001944D0`, which puts `f` and `g` at `+0x364` and `+0x368`
+(`0x00194506`, `0x0019450E`), only when `0x00193D50` returns the render-parameter block; it returns 0 only when the block's
+first allocation fails (`0x001828E6`, `0x00193D69`-`0x00193D7B`).
 
 The cutscene loader `0x001C3D50` reads `mGlareThreshold` and `mGlareLuminance` into `0x00194310`
 (`0x001C42E4`) and `EnableDof`, `mDofFocusDistance` and `mDofApertureFnumber` into `0x00194250` with

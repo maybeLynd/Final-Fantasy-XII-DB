@@ -348,9 +348,8 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Actor entity: `0x0027E530` calls `0x00272C80`, `0x00272CB0`; those functions are documented on
   [npc names](../Characters-And-Objects/npc-names.md).
-- Audio: `0x001E8070` calls `0x00225690`; `0x00225690` is called by `0x00221F40`, `0x00222410`, `0x002238F0`, `0x00223FA0`,
-  `0x002240B0`, `0x00224180`, `0x00224290`, `0x00224360`, `0x00224470`; those functions are documented on [fonts](fonts.md),
-  [audio manager](../Sound-And-Music/audio-manager.md).
+- Audio: `0x00225690` is called by `0x00221F40`, `0x00222410`, `0x002238F0`, `0x00223FA0`, `0x002240B0`, `0x00224180`, `0x00224290`,
+  `0x00224360`, `0x00224470`; those functions are documented on [audio manager](../Sound-And-Music/audio-manager.md).
 - Core runtime: `0x001E8580` calls `0x001A1470`; `0x00254A10` calls `0x00229E40`; `0x002B0280` calls `0x00229E40`; those functions
   are documented on [text drawing](text-drawing.md),
   [startup constants](../Engine-Core/startup-constants.md).

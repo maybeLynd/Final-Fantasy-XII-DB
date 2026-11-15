@@ -306,6 +306,10 @@ the stub `0x005C5230`), calls
 pointing at itself in `+0x00`, `+0x08` and `+0x10` (`0x0067F69D`-`0x0067F6A4`, `0x0067F6BB`-`0x0067F6C2`). It then clears
 the byte `0x02CA9D91` (`0x0059FF0D`), so the next call of `0x0059A030` runs the 144 registrars again.
 
+`0x0067F580` re-reads the root `+0x18` before each removal and returns when the root is the tree object or 0
+(`0x0067F5B6`, `0x0067F5BF`); a root whose `+0x00` points at itself sends it back to that read with nothing changed, so it
+never returns (`0x0067F5C5`-`0x0067F5CB`).
+
 In `0x0067F580` a child that is the tree object itself counts as missing (`0x0067F5CD`, `0x0067F5D6`). When a
 node is taken out, the node unlinked from its place is the node itself when one of its links is
 the tree object and otherwise the leftmost node under its link `+0x08` (`0x0067F5D2`-`0x0067F5F0`); that
