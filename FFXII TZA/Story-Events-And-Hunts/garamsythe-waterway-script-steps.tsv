@@ -1234,7 +1234,7 @@ grm_a03	SB1_王宮突入_初回用	レクト配置	16	0x02586	476	not (local_var
 grm_a03	SB1_王宮突入_初回用	レクト配置	17	0x02590	478	-	store	local_var_s8f1_1 = local_var_s8f1_1 & 0xffff	variable local_var_s8f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_a03	SB1_王宮突入_初回用	レクト配置	18	0x02593	479	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a03	SB1_王宮突入_初回用	touch	1	0x025A2	484	-	if	(0x040000 bitor getquestscenarioflag(4)) < 0x04001e	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_a03	SB1_王宮突入_初回用	touch	2	0x025A8	486	(0x040000 bitor getquestscenarioflag(4)) < 0x04001e	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+grm_a03	SB1_王宮突入_初回用	touch	2	0x025A8	486	(0x040000 bitor getquestscenarioflag(4)) < 0x04001e	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a03	SB1_王宮突入_初回用	touch	3	0x025AF	487	(0x040000 bitor getquestscenarioflag(4)) < 0x04001e	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a03	SB1_王宮突入_初回用	touch	4	0x025B2	489	(0x040000 bitor getquestscenarioflag(4)) < 0x04001e; not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a03	SB1_王宮突入_初回用	touch	5	0x025B5	491	(0x040000 bitor getquestscenarioflag(4)) < 0x04001e	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2212,7 +2212,7 @@ grm_a04	TUTORIAL_イベント管理	レクト配置	17	0x02E8E	1170	-	store	loca
 grm_a04	TUTORIAL_イベント管理	レクト配置	18	0x02E91	1171	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a04	TUTORIAL_イベント管理	touch	1	0x02E92	1176	-	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	TUTORIAL_イベント管理	touch	2	0x02E9E	1177	-	sysReq	1, Map_Director::レクト用床リセット	actor `Map_Director`	-	-	files Map_Director::レクト用床リセット on channel 1; does not wait	Map_Director.レクト用床リセット	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-grm_a04	TUTORIAL_イベント管理	touch	3	0x02EA2	1178	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+grm_a04	TUTORIAL_イベント管理	touch	3	0x02EA2	1178	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	TUTORIAL_イベント管理	touch	4	0x02EA9	1179	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a04	TUTORIAL_イベント管理	touch	5	0x02EAC	1181	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	TUTORIAL_イベント管理	touch	6	0x02EAF	1183	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4099,7 +4099,7 @@ grm_b02	ボス起動レクト	配置_アマリア登場	17	0x03990	1437	-	store	
 grm_b02	ボス起動レクト	配置_アマリア登場	18	0x03993	1438	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_b02	ボス起動レクト	touch	1	0x03994	1443	-	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b02	ボス起動レクト	touch	2	0x039A0	1444	-	sysReq	1, Map_Director::レクト用床リセット	actor `Map_Director`	-	-	files Map_Director::レクト用床リセット on channel 1; does not wait	Map_Director.レクト用床リセット	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-grm_b02	ボス起動レクト	touch	3	0x039A4	1445	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+grm_b02	ボス起動レクト	touch	3	0x039A4	1445	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b02	ボス起動レクト	touch	4	0x039AB	1446	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_b02	ボス起動レクト	touch	5	0x039AE	1448	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b02	ボス起動レクト	touch	6	0x039B1	1450	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5927,7 +5927,7 @@ grm_c01	ボス起動レクト_プリン	レクト配置	16	0x01C2B	719	not (loca
 grm_c01	ボス起動レクト_プリン	レクト配置	17	0x01C35	721	-	store	local_var_s7f1_1 = local_var_s7f1_1 & 0xffff	variable local_var_s7f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_c01	ボス起動レクト_プリン	レクト配置	18	0x01C38	722	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_c01	ボス起動レクト_プリン	touch	1	0x01C39	727	-	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_c01	ボス起動レクト_プリン	touch	2	0x01C3F	728	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+grm_c01	ボス起動レクト_プリン	touch	2	0x01C3F	728	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c01	ボス起動レクト_プリン	touch	3	0x01C46	729	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_c01	ボス起動レクト_プリン	touch	4	0x01C49	731	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c01	ボス起動レクト_プリン	touch	5	0x01C4C	733	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -21205,7 +21205,7 @@ grm_f01	ボス起動レクト_キュクレイン	レクト配置	17	0x04F66	2157
 grm_f01	ボス起動レクト_キュクレイン	レクト配置	18	0x04F69	2158	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_f01	ボス起動レクト_キュクレイン	touch	1	0x04F6A	2163	-	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_f01	ボス起動レクト_キュクレイン	touch	2	0x04F76	2164	-	sysReq	1, Map_Director::レクト用床リセット	actor `Map_Director`	-	-	files Map_Director::レクト用床リセット on channel 1; does not wait	Map_Director.レクト用床リセット	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-grm_f01	ボス起動レクト_キュクレイン	touch	3	0x04F7A	2165	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+grm_f01	ボス起動レクト_キュクレイン	touch	3	0x04F7A	2165	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_f01	ボス起動レクト_キュクレイン	touch	4	0x04F81	2166	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_f01	ボス起動レクト_キュクレイン	touch	5	0x04F84	2168	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_f01	ボス起動レクト_キュクレイン	touch	6	0x04F87	2170	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

@@ -1473,7 +1473,7 @@ gil_a02	ボス登場	main	34	0x02036	513	g_btl_ダイダロス == 1; シナリ�
 gil_a02	ボス登場	main	35	0x02039	516	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_a02	ボス登場	touch	1	0x02041	521	-	if	g_btl_ダイダロス == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_a02	ボス登場	touch	2	0x02044	523	g_btl_ダイダロス == 1	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-gil_a02	ボス登場	touch	3	0x0204A	524	g_btl_ダイダロス == 1	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+gil_a02	ボス登場	touch	3	0x0204A	524	g_btl_ダイダロス == 1	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 gil_a02	ボス登場	touch	4	0x02051	525	g_btl_ダイダロス == 1	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_a02	ボス登場	touch	5	0x02054	527	g_btl_ダイダロス == 1; not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 gil_a02	ボス登場	touch	6	0x02057	529	g_btl_ダイダロス == 1	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -7181,7 +7181,7 @@ gil_c02	ボス登場	main	19	0x042E9	600	シナリオフラグ < 0x10fe; g_btl_�
 gil_c02	ボス登場	main	20	0x042EC	603	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_c02	ボス登場	touch	1	0x042F4	608	-	if	g_btl_タイラント == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_c02	ボス登場	touch	2	0x042F7	610	g_btl_タイラント == 1	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-gil_c02	ボス登場	touch	3	0x042FD	611	g_btl_タイラント == 1	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+gil_c02	ボス登場	touch	3	0x042FD	611	g_btl_タイラント == 1	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 gil_c02	ボス登場	touch	4	0x04304	612	g_btl_タイラント == 1	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_c02	ボス登場	touch	5	0x04307	614	g_btl_タイラント == 1; not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 gil_c02	ボス登場	touch	6	0x0430A	616	g_btl_タイラント == 1	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -103000,7 +103000,7 @@ gil_h01	ボス登場	main	18	0x0A7B6	2041	g_btl_アルテマ == 1	store	local_va
 gil_h01	ボス登場	main	19	0x0A7B9	2043	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_h01	ボス登場	touch	1	0x0A7C1	2048	-	if	g_btl_アルテマ == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_h01	ボス登場	touch	2	0x0A7C4	2050	g_btl_アルテマ == 1	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-gil_h01	ボス登場	touch	3	0x0A7CA	2051	g_btl_アルテマ == 1	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+gil_h01	ボス登場	touch	3	0x0A7CA	2051	g_btl_アルテマ == 1	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 gil_h01	ボス登場	touch	4	0x0A7D1	2052	g_btl_アルテマ == 1	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_h01	ボス登場	touch	5	0x0A7D4	2054	g_btl_アルテマ == 1; not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 gil_h01	ボス登場	touch	6	0x0A7D7	2056	g_btl_アルテマ == 1	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

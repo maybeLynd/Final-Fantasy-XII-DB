@@ -1643,7 +1643,7 @@ dor_a01	死体発見レクト	init	21	0x10BBC	2511	not (nowjumpindex() == 3)	set
 dor_a01	死体発見レクト	init	22	0x10BBF	2513	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 dor_a01	死体発見レクト	main	1	0x10BC0	2518	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 dor_a01	死体発見レクト	touchoff	1	0x10BC1	2523	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-dor_a01	死体発見レクト	touchon	1	0x10BC5	2535	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+dor_a01	死体発見レクト	touchon	1	0x10BC5	2535	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 dor_a01	死体発見レクト	touchon	2	0x10BCC	2536	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 dor_a01	死体発見レクト	touchon	3	0x10BCF	2538	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 dor_a01	死体発見レクト	touchon	4	0x10BD2	2540	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

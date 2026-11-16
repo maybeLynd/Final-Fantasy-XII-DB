@@ -9463,7 +9463,7 @@ rrp_a06	ムービー開始位置	init	18	0x019DE	649	-	settalkheight	2	argument 
 rrp_a06	ムービー開始位置	init	19	0x019E1	650	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rrp_a06	ムービー開始位置	main	1	0x019E2	655	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rrp_a06	ムービー開始位置	touch	1	0x019E3	660	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rrp_a06	ムービー開始位置	touchon	1	0x019E7	665	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rrp_a06	ムービー開始位置	touchon	1	0x019E7	665	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rrp_a06	ムービー開始位置	touchon	2	0x019EE	666	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rrp_a06	ムービー開始位置	touchon	3	0x019F1	668	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rrp_a06	ムービー開始位置	touchon	4	0x019F4	670	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

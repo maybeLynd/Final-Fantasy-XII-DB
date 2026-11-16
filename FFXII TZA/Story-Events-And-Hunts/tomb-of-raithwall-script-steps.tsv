@@ -811,7 +811,7 @@ rwg_a01	ボス登場	main	19	0x053E5	1872	g_btl_ガルーダ強 == 1; Boss_Enter
 rwg_a01	ボス登場	main	20	0x053E8	1875	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwg_a01	ボス登場	touch	1	0x053F0	1880	-	if	g_btl_ガルーダ強 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwg_a01	ボス登場	touch	2	0x053F3	1882	g_btl_ガルーダ強 == 1	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwg_a01	ボス登場	touch	3	0x053F9	1883	g_btl_ガルーダ強 == 1	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rwg_a01	ボス登場	touch	3	0x053F9	1883	g_btl_ガルーダ強 == 1	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwg_a01	ボス登場	touch	4	0x05400	1884	g_btl_ガルーダ強 == 1	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwg_a01	ボス登場	touch	5	0x05403	1886	g_btl_ガルーダ強 == 1; not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwg_a01	ボス登場	touch	6	0x05406	1888	g_btl_ガルーダ強 == 1	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1000,7 +1000,7 @@ rwg_a01	後半ムービー起動	main	17	0x059D5	2144	シナリオフラグ >= 0
 rwg_a01	後半ムービー起動	main	18	0x059DF	2146	シナリオフラグ >= 0x056e and シナリオフラグ < 0x05aa	store	local_var_s19f1_1 = local_var_s19f1_1 & 0xffff	variable local_var_s19f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rwg_a01	後半ムービー起動	main	19	0x059E2	2148	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwg_a01	後半ムービー起動	touchoff	1	0x059E3	2153	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rwg_a01	後半ムービー起動	touchon	1	0x059E7	2158	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rwg_a01	後半ムービー起動	touchon	1	0x059E7	2158	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwg_a01	後半ムービー起動	touchon	2	0x059EE	2159	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwg_a01	後半ムービー起動	touchon	3	0x059F1	2161	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwg_a01	後半ムービー起動	touchon	4	0x059F4	2163	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -11625,7 +11625,7 @@ rwg_d01	ボス登場	touch	4	0x029B3	626	g_btl_ベリアス == 1	setmapidfloor	1
 rwg_d01	ボス登場	touch	5	0x029BF	627	g_btl_ベリアス == 1	setmapidfloor	1, 1, 1	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwg_d01	ボス登場	touch	6	0x029CB	628	g_btl_ベリアス == 1	setmapidfloor	1, 2, 1	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwg_d01	ボス登場	touch	7	0x029D7	629	g_btl_ベリアス == 1	setmapidfloor	1, 3, 1	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwg_d01	ボス登場	touch	8	0x029DD	630	g_btl_ベリアス == 1	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rwg_d01	ボス登場	touch	8	0x029DD	630	g_btl_ベリアス == 1	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwg_d01	ボス登場	touch	9	0x029E4	631	g_btl_ベリアス == 1	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwg_d01	ボス登場	touch	10	0x029E7	633	g_btl_ベリアス == 1; not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwg_d01	ボス登場	touch	11	0x029EA	635	g_btl_ベリアス == 1	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -12497,7 +12497,7 @@ rwg_e01	暁の断片起動	main	19	0x01C2A	256	local_var_s4f1_1	store	local_var_
 rwg_e01	暁の断片起動	main	20	0x01C2D	258	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwg_e01	暁の断片起動	touchon	1	0x01C2E	263	-	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwg_e01	暁の断片起動	touchon	2	0x01C31	264	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwg_e01	暁の断片起動	touchon	3	0x01C37	265	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rwg_e01	暁の断片起動	touchon	3	0x01C37	265	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwg_e01	暁の断片起動	touchon	4	0x01C3E	266	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwg_e01	暁の断片起動	touchon	5	0x01C41	268	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwg_e01	暁の断片起動	touchon	6	0x01C44	270	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

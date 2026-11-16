@@ -5706,7 +5706,7 @@ fon_b01	イベント起動01	main	20	0x0A9C6	2672	-	return	-	-	-	-	-	-	resolved	
 fon_b01	イベント起動01	touch	1	0x0A9C7	2677	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 fon_b01	イベント起動01	touchon	1	0x0A9CF	2682	-	if	file_var_s20_1 != 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 fon_b01	イベント起動01	touchon	2	0x0A9D8	2684	file_var_s20_1 != 1	if	local_var_s20f1_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-fon_b01	イベント起動01	touchon	3	0x0A9DE	2686	file_var_s20_1 != 1; local_var_s20f1_1	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+fon_b01	イベント起動01	touchon	3	0x0A9DE	2686	file_var_s20_1 != 1; local_var_s20f1_1	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 fon_b01	イベント起動01	touchon	4	0x0A9E5	2687	file_var_s20_1 != 1; local_var_s20f1_1	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 fon_b01	イベント起動01	touchon	5	0x0A9E8	2689	file_var_s20_1 != 1; local_var_s20f1_1; not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 fon_b01	イベント起動01	touchon	6	0x0A9EB	2691	file_var_s20_1 != 1; local_var_s20f1_1	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5927,7 +5927,7 @@ fon_b01	イベント起動02	main	20	0x0B0DF	2982	-	return	-	-	-	-	-	-	resolved	
 fon_b01	イベント起動02	touch	1	0x0B0E0	2987	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 fon_b01	イベント起動02	touchon	1	0x0B0E8	2992	-	if	file_var_s20_1 != 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 fon_b01	イベント起動02	touchon	2	0x0B0F1	2994	file_var_s20_1 != 1	if	local_var_s21f1_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-fon_b01	イベント起動02	touchon	3	0x0B0F7	2996	file_var_s20_1 != 1; local_var_s21f1_1	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+fon_b01	イベント起動02	touchon	3	0x0B0F7	2996	file_var_s20_1 != 1; local_var_s21f1_1	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 fon_b01	イベント起動02	touchon	4	0x0B0FE	2997	file_var_s20_1 != 1; local_var_s21f1_1	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 fon_b01	イベント起動02	touchon	5	0x0B101	2999	file_var_s20_1 != 1; local_var_s21f1_1; not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 fon_b01	イベント起動02	touchon	6	0x0B104	3001	file_var_s20_1 != 1; local_var_s21f1_1	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6147,7 +6147,7 @@ fon_b01	イベント起動03	main	20	0x0B7F5	3291	-	return	-	-	-	-	-	-	resolved	
 fon_b01	イベント起動03	touch	1	0x0B7F6	3296	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 fon_b01	イベント起動03	touchon	1	0x0B7FE	3301	-	if	file_var_s20_1 != 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 fon_b01	イベント起動03	touchon	2	0x0B807	3303	file_var_s20_1 != 1	if	local_var_s22f1_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-fon_b01	イベント起動03	touchon	3	0x0B80D	3305	file_var_s20_1 != 1; local_var_s22f1_1	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+fon_b01	イベント起動03	touchon	3	0x0B80D	3305	file_var_s20_1 != 1; local_var_s22f1_1	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 fon_b01	イベント起動03	touchon	4	0x0B814	3306	file_var_s20_1 != 1; local_var_s22f1_1	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 fon_b01	イベント起動03	touchon	5	0x0B817	3308	file_var_s20_1 != 1; local_var_s22f1_1; not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 fon_b01	イベント起動03	touchon	6	0x0B81A	3310	file_var_s20_1 != 1; local_var_s22f1_1	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

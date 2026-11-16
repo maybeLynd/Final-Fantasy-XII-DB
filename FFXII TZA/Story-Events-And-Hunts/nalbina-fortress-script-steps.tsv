@@ -2740,7 +2740,7 @@ naf_a02	マップ表示説明レクト	main	26	0x0359C	1337	EV_ナルビナ上�
 naf_a02	マップ表示説明レクト	main	27	0x035A8	1339	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	マップ表示説明レクト	touchon	1	0x035AD	1344	-	switch	EV_ナルビナ上層マップ進行	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	マップ表示説明レクト	touchon	2	0x035B0	1346	-	case	27	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	マップ表示説明レクト	touchon	3	0x035B3	1347	EV_ナルビナ上層マップ進行 = 27	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a02	マップ表示説明レクト	touchon	3	0x035B3	1347	EV_ナルビナ上層マップ進行 = 27	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	マップ表示説明レクト	touchon	4	0x035BA	1348	EV_ナルビナ上層マップ進行 = 27	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	マップ表示説明レクト	touchon	5	0x035BD	1350	EV_ナルビナ上層マップ進行 = 27; not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	マップ表示説明レクト	touchon	6	0x035C0	1352	EV_ナルビナ上層マップ進行 = 27	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3374,7 +3374,7 @@ naf_b01	エスケープ説明レクト	main	26	0x020FB	509	EV_ナルビナ上層
 naf_b01	エスケープ説明レクト	main	27	0x02107	511	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	エスケープ説明レクト	touchon	1	0x0210C	516	-	switch	EV_ナルビナ上層マップ進行	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	エスケープ説明レクト	touchon	2	0x0210F	518	-	case	30	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b01	エスケープ説明レクト	touchon	3	0x02112	519	EV_ナルビナ上層マップ進行 = 30	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b01	エスケープ説明レクト	touchon	3	0x02112	519	EV_ナルビナ上層マップ進行 = 30	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	エスケープ説明レクト	touchon	4	0x02119	520	EV_ナルビナ上層マップ進行 = 30	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	エスケープ説明レクト	touchon	5	0x0211C	522	EV_ナルビナ上層マップ進行 = 30; not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	エスケープ説明レクト	touchon	6	0x0211F	524	EV_ナルビナ上層マップ進行 = 30	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4358,7 +4358,7 @@ naf_b04	大広間レクト	touchon	1	0x01B5F	584	-	return	-	-	-	-	-	-	resolved	0
 naf_b04	大広間レクト	touchoff	1	0x01B60	589	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	大広間レクト	touch	1	0x01B68	594	-	if	シナリオフラグ < 25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	大広間レクト	touch	2	0x01B6E	596	シナリオフラグ < 25	sysReqall	2, reqArr2	actor `奥のドア`, actor `イベントドア`	-	-	files each pair of 奥のドア::レクト禁止, イベントドア::レクト禁止 on channel 2; does not wait	奥のドア.レクト禁止, イベントドア.レクト禁止	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	大広間レクト	touch	3	0x01B74	597	シナリオフラグ < 25	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b04	大広間レクト	touch	3	0x01B74	597	シナリオフラグ < 25	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	大広間レクト	touch	4	0x01B7B	598	シナリオフラグ < 25	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	大広間レクト	touch	5	0x01B7E	600	シナリオフラグ < 25; not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	大広間レクト	touch	6	0x01B81	602	シナリオフラグ < 25	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

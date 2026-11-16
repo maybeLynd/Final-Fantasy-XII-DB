@@ -313,6 +313,14 @@ stores its low byte at the spawn record's `+0x12` and writes back `old + 1`, or 
 `0x00254A40()` ([battle unit construction](../Characters-And-Objects/battle-unit-construction.md)). The
 reset `0x00237DF0` clears the parity, not the counters.
 
+`0x00237DF0()` runs `0x0023AF50()`, then `0x0023AC80(record, k)` for each of the 40 stats records at
+`[0x02EBF190] + 8 + k * 0x1C8` (`0x00237DF6`-`0x00237E30`), then `0x0030DA10()`, `0x0032A160()`, `0x003183A0()`, `0x00329CC0()`,
+`0x00313840()` and `0x00304680()` (`0x00237E32`-`0x00237E4B`).
+
+It stores 0 at the dword `0x02089374`, `0xFFFF` at the words `0x02089372` and `0x02089370` and 0 at the parity byte
+`0x0208D454` (`0x00237E53`-`0x00237E6B`), calls `0x002FA230()`, `0x002FA260()`, `0x002FA210()` and `0x00229ED0(0)`, stores 0 at the
+dword `0x0208E6B4` and returns 1 (`0x00237E72`-`0x00237E8D`).
+
 `0x00254A40` answers the constant `0x34` (52) and does nothing else (`0x00254A40`-`0x00254A45`). The installer
 compares the counter it read with that answer, unsigned: a counter below 52 is written back one higher,
 and a counter of 52 or more is written back as 1 (`0x0023A80C`-`0x0023A838`). The byte kept at the spawn
@@ -345,6 +353,19 @@ clear unit flag `0x800` (the script's hide bit) on the masked subset. `0x002352E
 `0x00300520(stats, 0, 0, 0)` on every kind-1 unit, which goes through the HP modifier and therefore
 records a death for each. The mask test keeps 5 bits of the group id, so ids above 32 share a bit
 with `id - 32`.
+
+`0x00234A10(mask)`, which sets bit `0x800` of the unit's dword `+0x00`, and `0x00234A80(mask)`, which clears it, take the
+slot count from the dword `0x0208E6A0` (`0x00234A1E`-`0x00234A24`, `0x00234A60`-`0x00234A66`; `0x00234A8E`-`0x00234A94`,
+`0x00234AD0`-`0x00234AD6`).
+
+Each passes over a slot whose unit `0x00321170(i)` gives is null (it gives null for a slot whose byte `+0x00` has bit
+`0x10` clear, `0x0032117E`-`0x00321183`), whose stats record `+0x698` is null or whose record byte `+0x05` is not 1, and a
+unit whose group byte `+0xE98` names a bit that is clear in the mask (`0x00234A28`-`0x00234A4E`, `0x00234A98`-`0x00234ABE`).
+After the flag change each calls `0x00312700(unit)` (`0x00234A50`-`0x00234A59`, `0x00234AC0`-`0x00234AC9`).
+
+`0x00237080(record)` writes nothing for a null record (`0x00237080`-`0x00237083`). For any other it makes the four stores
+named below: the flags `& 0xFFFFFF7A`, the word `+0x16` = `0x00FF`, the dword `+0x78` = 0 and the byte `+0x7C` = 0
+(`0x00237085`-`0x00237098`).
 
 The teardown `0x00300E40(unit, keepMark)` runs the spawn record clear `0x00237080` (flags
 `& 0xFFFFFF7A`, the word `+0x16` = `0x00FF` so the key `+0x17` is zeroed too, `+0x78`-`+0x7C` zeroed) only
@@ -441,6 +462,27 @@ group table reset `0x00307090`, then the zone
 script re-registers every member and reinstalls the spawn table, whose initialiser rolls only the
 uncommitted entries.
 
+In full, past its up-flag test (`0x002342F4`-`0x002342FB`), `0x002342F0` adds 1 to the counter `0x0208E6B0` and gives the old
+value to `0x00328D80(old)` (`0x00234301`-`0x00234320`). It rewrites the dword `0x02089340`, read after that call, as
+`(0x02089340 & 0xFFFFC01E) | 0x10`, zeroes the qword `0x02089350` and sets the cap byte `0x0208D458` to `0x1C`
+(`0x00234325`-`0x00234343`).
+
+It calls `0x00239960()`, `0x0030FE60()` and `0x00322220()`, then `0x0030E990(record, 0, 0x1F, 0, 0, 0)` for each of the 40
+stats records at `[0x02EBF190] + 8 + k * 0x1C8` (`0x00234349`-`0x0023438E`), then `0x0035D020()`, `0x00306570(0)` and
+`0x0030E010()` (`0x00234390`-`0x0023439C`).
+
+`0x00383740(&a, &b, &c, &d)` is called next. It fills the four floats only on the way that answers non-zero: with the
+pointer `0x02AEDFB0` null it writes nothing and answers 0 (`0x00383768`-`0x0038376B`). Only after a non-zero answer does
+`0x002342F0` take `(d - b) * (c - a)`, load a float by it, 8.0 for a value up to 20000.0, 12.0 up to 30000.0 and 16.0
+above that, and call `0x003924B0()` (`0x002343A1`-`0x0023441E`). The float is loaded in the first float register, but
+`0x003924B0` writes that register before it reads it (`0x00392575`).
+
+After the bank rotation `0x00233780()`, `0x003221B0()` and the group table reset `0x00307090()` come `0x00307FF0()`,
+`0x00322190()`, the pickup pool reset `0x00319B10()` and `0x0031A8F0()` (`0x00234423`-`0x00234441`). `0x002342F0` calls the chain
+reset `0x003183A0()` here only when `0x00377C20()` answers non-zero (`0x00234446`-`0x0023444F`). The last calls are
+`0x0031BD60()`, `0x00327360()`, `0x0030C3F0()` and `0x0033A380()`, and the function ends in a jump to `0x002FA520()`
+(`0x00234454`-`0x0023446C`).
+
 ## State
 
 The live bank and the history bank, the four history and window globals, the step counter and its
@@ -495,3 +537,6 @@ Calls between the functions this page cites and code in other parts of the progr
   [battle units](../Characters-And-Objects/battle-units.md).
 - Input: `0x00313F60` is called by `0x00253C70`; those functions are documented on
   [force fight mode](../Engine-Core/force-fight-mode.md).
+- Core runtime: `0x00306570` is called by `0x002341C0`; `0x0030FE60` is called by `0x002341C0`; `0x00319B10` is called by
+  `0x002341C0`; `0x0031BD60` is called by `0x002341C0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).

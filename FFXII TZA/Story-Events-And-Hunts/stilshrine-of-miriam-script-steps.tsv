@@ -1794,7 +1794,7 @@ mrm_a02	ムービー起動	main	17	0x04B66	1346	シナリオフラグ >= 0x0898 
 mrm_a02	ムービー起動	main	18	0x04B70	1348	シナリオフラグ >= 0x0898 and シナリオフラグ < 0x08ca	store	local_var_s17f1_1 = local_var_s17f1_1 & 0xffff	variable local_var_s17f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mrm_a02	ムービー起動	main	19	0x04B73	1350	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_a02	ムービー起動	touchoff	1	0x04B74	1355	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mrm_a02	ムービー起動	touchon	1	0x04B78	1360	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+mrm_a02	ムービー起動	touchon	1	0x04B78	1360	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_a02	ムービー起動	touchon	2	0x04B7F	1361	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_a02	ムービー起動	touchon	3	0x04B82	1363	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_a02	ムービー起動	touchon	4	0x04B85	1365	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -18802,7 +18802,7 @@ mrm_f01	イベントレクト	main	2	0x02DE3	502	シナリオフラグ < 0x0898	
 mrm_f01	イベントレクト	main	3	0x02DE4	504	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_f01	イベントレクト	touchoff	1	0x02DE5	509	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_f01	イベントレクト	touchon	1	0x02DE6	514	-	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mrm_f01	イベントレクト	touchon	2	0x02DEC	515	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+mrm_f01	イベントレクト	touchon	2	0x02DEC	515	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_f01	イベントレクト	touchon	3	0x02DF3	516	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_f01	イベントレクト	touchon	4	0x02DF6	518	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_f01	イベントレクト	touchon	5	0x02DF9	520	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

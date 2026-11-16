@@ -8533,7 +8533,7 @@ sav_b01	TUTORIAL起動_A01	レクト配置_tutorial	16	0x34DFC	2979	not (local_v
 sav_b01	TUTORIAL起動_A01	レクト配置_tutorial	17	0x34E06	2981	-	store	local_var_s25f1_1 = local_var_s25f1_1 & 0xffff	variable local_var_s25f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 sav_b01	TUTORIAL起動_A01	レクト配置_tutorial	18	0x34E09	2982	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sav_b01	TUTORIAL起動_A01	touch	1	0x34E0D	2987	-	store	global_var_15 = 0	variable global_var_15 (global u_char@0x04a6)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-sav_b01	TUTORIAL起動_A01	touch	2	0x34E13	2988	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+sav_b01	TUTORIAL起動_A01	touch	2	0x34E13	2988	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sav_b01	TUTORIAL起動_A01	touch	3	0x34E1A	2989	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sav_b01	TUTORIAL起動_A01	touch	4	0x34E1D	2991	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sav_b01	TUTORIAL起動_A01	touch	5	0x34E20	2993	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8576,7 +8576,7 @@ sav_b01	TUTORIAL起動_A03	レクト配置_tutorial	16	0x34F63	3088	not (local_v
 sav_b01	TUTORIAL起動_A03	レクト配置_tutorial	17	0x34F6D	3090	-	store	local_var_s26f1_1 = local_var_s26f1_1 & 0xffff	variable local_var_s26f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 sav_b01	TUTORIAL起動_A03	レクト配置_tutorial	18	0x34F70	3091	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sav_b01	TUTORIAL起動_A03	touch	1	0x34F74	3096	-	store	global_var_15 = 1	variable global_var_15 (global u_char@0x04a6)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-sav_b01	TUTORIAL起動_A03	touch	2	0x34F7A	3097	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+sav_b01	TUTORIAL起動_A03	touch	2	0x34F7A	3097	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sav_b01	TUTORIAL起動_A03	touch	3	0x34F81	3098	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sav_b01	TUTORIAL起動_A03	touch	4	0x34F84	3100	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sav_b01	TUTORIAL起動_A03	touch	5	0x34F87	3102	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8619,7 +8619,7 @@ sav_b01	TUTORIAL起動_A04	レクト配置_tutorial	16	0x350CA	3197	not (local_v
 sav_b01	TUTORIAL起動_A04	レクト配置_tutorial	17	0x350D4	3199	-	store	local_var_s27f1_1 = local_var_s27f1_1 & 0xffff	variable local_var_s27f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 sav_b01	TUTORIAL起動_A04	レクト配置_tutorial	18	0x350D7	3200	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sav_b01	TUTORIAL起動_A04	touch	1	0x350DB	3205	-	store	global_var_15 = 2	variable global_var_15 (global u_char@0x04a6)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-sav_b01	TUTORIAL起動_A04	touch	2	0x350E1	3206	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+sav_b01	TUTORIAL起動_A04	touch	2	0x350E1	3206	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sav_b01	TUTORIAL起動_A04	touch	3	0x350E8	3207	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sav_b01	TUTORIAL起動_A04	touch	4	0x350EB	3209	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sav_b01	TUTORIAL起動_A04	touch	5	0x350EE	3211	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

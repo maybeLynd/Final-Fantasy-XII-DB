@@ -71,6 +71,8 @@ of them with a test. Each test is rewritten clause by clause:
   83 rows test it alone;
 - `getplaymin()` is the minutes of the play clock and `getplaytime()` the play time in seconds (`0x00349700`,
   `0x00348970`, both from the save header's hours, minutes and seconds at `+0x18` to `+0x1B` through `0x00254C90`);
+  `0x00254C90(&a, &b, &c)` stores the word `+0x18` and the bytes `+0x1A` and `+0x1B` of the object at `[0x02092758]`, each
+  widened to a dword, through its three pointers in that order (`0x00254C90`-`0x00254CAA`);
 - `btlAtelIsPcOnPoint(-1, N)` holds while the party leader (`0x003272A0`) stands inside region record N of the map
   (`0x0050FFF0`, `0x002374E0`), and call `0x0290(-1, x, z)` is the leader's ground distance to the point x, z
   (`0x003448F0`, `0x004686D0`);
@@ -320,9 +322,32 @@ The `+0x03` and `+0x15` bits, by their readers:
   `0x00301AD0` tests it (`0x0030268D`).
 - `+0x03` bit `0x20`: `0x00238BF0` passes it to `0x002E8A10`, which stores it as the render record's shadow kind, mask `0x3000`
   of `+0x304` ([Character lighting and shadows](../Graphics/character-lighting-and-shadows.md)).
+- `0x002E8A10(actor, v)` stores `v & 3` in that mask and also sets bit `0x400000` of the render record's `+0x290`. It
+  does nothing for a null actor, a null context `+0xC0`, a context whose dword `+0x00` is -1 or whose low word is
+  `0xFFFF`, a record address of 0, or a record whose dword `+0x284` is 0 (`0x002E8A10`-`0x002E8A62`).
 - `+0x15` bit `0x8`: `0x0031AA30` leaves the target-kind word at 0 for an enemy (`0x0031AACF`); bits `0x8` or `0x10`: it leaves the
   reach word at -1 instead of `0x01EED2D0[action kind]` (`0x0031AB39`). `0x0031AA30` runs from `0x00321060` and
   `0x00328530`, and `0x0031AB80` tail-jumps to it (`0x0031ABC5`).
+
+`0x0031AA30(unit, _, id, out)` first stores -1 in the dword `out + 4` and 0 in the dword `out + 0`
+(`0x0031AA48`-`0x0031AA58`), and answers -1 when `0x00322C50(0x14, id, 0)` refuses the id (`0x0031AA60`-`0x0031AA6F`); otherwise
+it answers 0 (`0x0031AB5D`).
+
+For the action row it calls `0x0020E600(table dword +0x0C)` on the table `[0x02EBF138]` twice, for the null test
+(`0x0031AA83`) and for the value (`0x0031AA97`): the row is that section at `id * stride`, the stride being the table's
+word `+0x08`, or address 0 when the table or the section is null (`0x0031AA74`-`0x0031AAAE`). A row address of 0 is not
+handled: no test stands before the row reads at `0x0031AB02`, `0x0031AB10` and `0x0031AB3F`.
+
+The target-kind dword `out + 0` becomes 3, or 4 when the action row's dword `+0x0C` has bit `0x800`, for a party
+member (stats kind 0) and, unless it is the kind-1 unit named below, for a unit whose class nibble `0x00263C20(actor)`
+gives is 3. It becomes 1, or 2 with that bit, for a kind-1 unit of another nibble. It keeps 0 for a kind-1 unit whose
+enemy row byte `+0x15` has bit `0x8`, tested before the nibble (`0x0031AAC2`-`0x0031AAD3`), and for a unit of another
+nibble with no stats record or of a kind above 1 (`0x0031AAB1`-`0x0031AB1D`).
+
+The reach dword `out + 4` becomes `0x01EED2D0[row byte +0x1E]`, except for a kind-1 unit whose enemy row byte `+0x15`
+has a bit of `0x18` (`0x0031AB20`-`0x0031AB4D`), and `0x0031A990(row, out + 8)` fills the rest (`0x0031AB51`-`0x0031AB58`). A
+null unit is not handled once the id is accepted: its test leads to the read of the actor pointer `+0x10`
+(`0x0031AAB1`-`0x0031AAB4`, `0x0031AAE2`).
 
 ### Colour and model variants
 
@@ -395,10 +420,24 @@ chocobo definition has variant 0 and one of these colours:
 
 The other bytes (`08`-`0F`, `13`-`17`, `19`-`1F`, `24`, `2E`-`2F`, `42`-`51`) are 0 in every row.
 
+`0x0031B9A0(unit)` returns the class row's Bestiary entry word `+0x52` (`0x0031B9CE`-`0x0031B9D5`) only for a unit whose
+stats record is of kind 1 and whose class nibble `0x00263C20(actor)` gives is not 3; for a null unit, a unit with no
+stats record and every other unit it returns `0xFFFF` (`0x0031B9A9`-`0x0031B9E4`).
+
 The `+0x12` and `+0x18` bits, by their readers:
 
-- `+0x12` bits `0x7`: `0x00329F80` picks the action effect from the table at `0x00D10720`, five values per effect class,
-  and starts no effect for a value above 4 (`0x00329FB3`).
+- `+0x12` bits `0x7`: `0x00329F80(unit, action)` picks the action effect by the action's class byte `+0x21`, 0 to 8, and
+  starts no effect for a class above 8 or while the unit's dword `+0x774` is not -1 (`0x00329F86`-`0x00329F93`,
+  `0x00329FE7`-`0x00329FEF`).
+- For a unit whose stats record `+0x698` is of kind 1, its byte `+0x05`, the value is entry
+  `5 × class + (+0x12 bits 0x7)` of the table at `0x00D10720`, and a value of those bits above 4 starts no effect
+  (`0x00329F99`-`0x00329FBD`, `0x0032A016`-`0x0032A026`).
+- A party member, kind 0, reads the table at `0x00D106B0`, two values per class, the second for a stats record whose
+  byte `+0x04` is `0x1B` to `0x27` (`0x00329FC5`-`0x00329FDE`, `0x00329FF1`-`0x0032A00C`); any other unit reads column 0 of
+  `0x00D10720`.
+- A value of -1 starts nothing; any other goes to `0x002EACD0(unit dword +0x08, 1, unit + 8, value)`, whose answer is
+  kept at `+0x774` (`0x0032A02E`-`0x0032A045`). Row 0 of both tables holds -1 only, so class 0 starts no effect on any
+  path.
 - `+0x12` bits `0x10` and `0x40`: `0x00238BF0` hands bit `0x10` to `0x0026A3A0` (actor `+0x09` bit `0x40`) and bit `0x40` to `0x0026A430`
   (actor `+0x08` bit `0x8` and `+0x09` bit `0x40`), the bits `partyusecharhit` sets ([Party verbs](../Scripts-And-Script-Commands/party-verbs.md)).
 - `+0x12` bit `0x20`: the view builder `0x0031ADB0` reports kind 1 instead of 2 for a target with it,
@@ -420,6 +459,8 @@ The type `+0x04`, by its readers:
   as a word (`cmp word ptr [r8 + 0x18], 0xd`, with `rbx` for `r8` at `0x0038D561` and `0x0038DE21`) at `0x00387F76`,
   `0x0038825F`, `0x003889FF`, `0x0038D10D`, `0x0038D180`, `0x0038D481`, `0x0038D561`, `0x0038D680`, `0x0038DE21`, `0x0038E09E` and
   `0x0038E7E3`.
+- At `0x0038D680` a context word `+0x18` of 13 stores 1 in the dwords `0x02AEDFBC` and `0x02AEDFB8`; any other stores twice
+  the target's dword `+0x48` in the dword `0x02AEE02C` (`0x0038D680`-`0x0038D6A2`).
 - The drain slot `0x0038D400(source, target, context)` writes the scratch words of
   [Damage formula](../Damage-And-Battle-Formulas/damage-formula.md#the-scratch-block). A source that is its own target sets
   `0x02AEDFB8` and `0x02AEDFBC` to 1 (`0x0038D418`-`0x0038D427`); attack `0x02AEE058` below defence `0x02AEE05C` sets

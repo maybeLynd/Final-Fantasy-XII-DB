@@ -10177,7 +10177,7 @@ slm_a02	制御レクト	パンネロ離脱配置	16	0x1D47C	1976	not (local_var_
 slm_a02	制御レクト	パンネロ離脱配置	17	0x1D486	1978	-	store	local_var_s14f6_1 = local_var_s14f6_1 & 0xffff	variable local_var_s14f6_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 slm_a02	制御レクト	パンネロ離脱配置	18	0x1D489	1979	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 slm_a02	制御レクト	パンネロ離脱touch	1	0x1D48A	1984	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-slm_a02	制御レクト	パンネロ離脱touch	2	0x1D490	1985	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+slm_a02	制御レクト	パンネロ離脱touch	2	0x1D490	1985	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 slm_a02	制御レクト	パンネロ離脱touch	3	0x1D497	1986	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 slm_a02	制御レクト	パンネロ離脱touch	4	0x1D49A	1988	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 slm_a02	制御レクト	パンネロ離脱touch	5	0x1D49D	1990	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

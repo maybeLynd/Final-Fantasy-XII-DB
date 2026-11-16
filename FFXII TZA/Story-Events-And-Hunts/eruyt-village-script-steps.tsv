@@ -539,7 +539,7 @@ vic_a01	SB5_ヨーテ	レクト配置	16	0x04F8B	1136	not (local_var_s12f1_1 & 0
 vic_a01	SB5_ヨーテ	レクト配置	17	0x04F95	1138	-	store	local_var_s12f1_1 = local_var_s12f1_1 & 0xffff	variable local_var_s12f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 vic_a01	SB5_ヨーテ	レクト配置	18	0x04F98	1139	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 vic_a01	SB5_ヨーテ	touch	1	0x04FA0	1144	-	if	get_talk_run_status() == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-vic_a01	SB5_ヨーテ	touch	2	0x04FA6	1146	get_talk_run_status() == 0	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+vic_a01	SB5_ヨーテ	touch	2	0x04FA6	1146	get_talk_run_status() == 0	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 vic_a01	SB5_ヨーテ	touch	3	0x04FAD	1147	get_talk_run_status() == 0	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 vic_a01	SB5_ヨーテ	touch	4	0x04FB0	1149	get_talk_run_status() == 0; not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 vic_a01	SB5_ヨーテ	touch	5	0x04FB3	1151	get_talk_run_status() == 0	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

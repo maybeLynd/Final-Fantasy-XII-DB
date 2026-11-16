@@ -19358,7 +19358,7 @@ alc_b04	RECT_SPLIT_BAL	init	19	0x331C9	2980	シナリオフラグ < 0x0cb5	store
 alc_b04	RECT_SPLIT_BAL	init	20	0x331D5	2981	シナリオフラグ < 0x0cb5	setmapidfloor	1, 0, 0	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 alc_b04	RECT_SPLIT_BAL	init	21	0x331D8	2983	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 alc_b04	RECT_SPLIT_BAL	touchoff	1	0x331D9	2988	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-alc_b04	RECT_SPLIT_BAL	touchon	1	0x331DD	2993	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+alc_b04	RECT_SPLIT_BAL	touchon	1	0x331DD	2993	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 alc_b04	RECT_SPLIT_BAL	touchon	2	0x331E4	2994	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 alc_b04	RECT_SPLIT_BAL	touchon	3	0x331E7	2996	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 alc_b04	RECT_SPLIT_BAL	touchon	4	0x331EA	2998	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -30613,7 +30613,7 @@ alc_c01	RECT_ジャッジ	main	19	0x2DA43	2149	シナリオフラグ and シナ�
 alc_c01	RECT_ジャッジ	main	20	0x2DA4F	2150	シナリオフラグ and シナリオフラグ < 0x0ce4	sysReq	3, SAKIYOMI_alc_a0100::sakiyomi_read	actor `SAKIYOMI_alc_a0100`	-	-	files SAKIYOMI_alc_a0100::sakiyomi_read on channel 3; does not wait	SAKIYOMI_alc_a0100.sakiyomi_read	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 alc_c01	RECT_ジャッジ	main	21	0x2DA50	2152	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 alc_c01	RECT_ジャッジ	touchoff	1	0x2DA51	2157	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-alc_c01	RECT_ジャッジ	touchon	1	0x2DA55	2162	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+alc_c01	RECT_ジャッジ	touchon	1	0x2DA55	2162	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 alc_c01	RECT_ジャッジ	touchon	2	0x2DA5C	2163	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 alc_c01	RECT_ジャッジ	touchon	3	0x2DA5F	2165	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 alc_c01	RECT_ジャッジ	touchon	4	0x2DA62	2167	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -30714,7 +30714,7 @@ alc_c01	RECT_ジュールと再会	main	1	0x2DD3D	2328	-	if	シナリオフラ�
 alc_c01	RECT_ジュールと再会	main	2	0x2DD49	2330	シナリオフラグ >= 0x0ce4	sysReq	3, SAKIYOMI_alc_c0180::sakiyomi_read	actor `SAKIYOMI_alc_c0180`	-	-	files SAKIYOMI_alc_c0180::sakiyomi_read on channel 3; does not wait	SAKIYOMI_alc_c0180.sakiyomi_read	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 alc_c01	RECT_ジュールと再会	main	3	0x2DD4A	2332	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 alc_c01	RECT_ジュールと再会	touchoff	1	0x2DD4B	2337	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-alc_c01	RECT_ジュールと再会	touchon	1	0x2DD4F	2342	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+alc_c01	RECT_ジュールと再会	touchon	1	0x2DD4F	2342	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 alc_c01	RECT_ジュールと再会	touchon	2	0x2DD56	2343	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 alc_c01	RECT_ジュールと再会	touchon	3	0x2DD59	2345	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 alc_c01	RECT_ジュールと再会	touchon	4	0x2DD5C	2347	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

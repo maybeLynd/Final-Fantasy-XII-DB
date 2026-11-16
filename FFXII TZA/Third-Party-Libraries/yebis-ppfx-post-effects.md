@@ -93,6 +93,24 @@ The messages a function prints name its method:
 | `0x00705520` | `CPostEffect::Uninitialize`, which returns `0x80004005` between Begin and End |
 | `0x006E04F0` | `IPfxBaseRenderToTexture::Initialize` |
 | `0x006E07A0` | `IPfxBaseRenderToTexture::Uninitialize` |
+| `0x007067E0` | `CPostEffect::UpdateAlternateFrame` |
+| `0x00707880` | `CPostEffect::SetLightShaftEnable` |
+
+`0x007067E0` is `CPostEffect::UpdateAlternateFrame` by its log string (`0x00D96A70`). With a null `m_pGPUDevice` (`+0x20`)
+it returns `0x80004005`; with the byte `+0x00` set it returns the same, after the ERROR line of `0x00D96A70` (source
+line `0xC33`) when the levels `0x01F3BA80` and `0x01F3BA90` are both at least 1; otherwise it calls
+`0x007247E0(m_pGPUDevice)` and returns 0 (`0x007067E4`-`0x00706833`). The only direct call or jump to it is the jump of the
+thunk `0x006DB460`, which loads `[0x02EA0B70]`; no direct call or jump and no stored address in the image names that
+thunk.
+
+`CPostEffect::SetLightShaftEnable` (`0x00707880`) reads the byte `+0xFC` of `m_pRenderGlare` (`+0x110`) and tests it
+against the enable (`0x00707884`-`0x007078AC`). With it set, the enable byte goes to `+0x60` of the `0x68`-byte record
+`[+0x6F0]` + `+0x6F8` x `0x68`, written 0 and then 1 for a non-zero enable, and the call returns 0
+(`0x007078AE`-`0x007078E8`).
+
+With that byte clear a zero enable returns 0 and a non-zero one returns 1, after the WARNING line
+`CPostEffect::SetLightShaftEnable(): Initialize() with PFXINIT_LIGHTSHAFT flag for light shafts.` (`0x00D94BB0`, source
+line `0x2BDA`) when the levels `0x01F3BA80` and `0x01F3BA8C` are both at least 1 (`0x007078ED`-`0x0070791C`).
 
 ### Render states the D3D11 device refuses
 
@@ -122,6 +140,10 @@ No instruction or stored pointer in the image refers to these texts:
      and zero at `+0x00` and `+0x10` (`0x0067FFB8`-`0x0067FFDA`).
    - It ends by registering the teardown `0x008B6E00` with `atexit` (`0x00808B90`), through a tail jump
      (`0x00167A2E`).
+   - The teardown stores the vtable `0x00D86BD8` in `0x02E5BDE0` (`0x008B6E14`-`0x008B6E1B`). While the root `0x02E5BE10` is
+     neither the head `0x02E5BDF8` nor 0, it erases that node with `0x0067FE20(head, node)` and calls `0x0016D6A0(node)`, an
+     empty function, so nothing is freed there (`0x008B6E30`-`0x008B6E54`). Then it calls `0x006803D0(pool)` and
+     `0x00680030(pool)` on the pool `0x02E5BE28` and `0x0067F580(head)` twice (`0x008B6E56`-`0x008B6E7B`).
 2. The renderer's start-up `0x006253D0` creates the integration object (`0x0065E5D0`, kept at
    `0x02D38540`) and marks it ready: `0x0065E580` (call at `0x0062549D`) sets its byte `+8` to 1.
 3. The first frame that runs the pass calls `0x006CBD20` through `0x0065E5A0`; see the next section.
@@ -194,6 +216,29 @@ and, unlike `0x006DAA70`, never keeps an existing block:
 - otherwise it logs the GPU memory in use, the dword `+0x9F0` of the object at the block's `+0x20`, in bytes, KB
   and MB, and returns 1 (`0x006DEA6C`-`0x006DEB0F`).
 
+`BeginPostEffectScene` (`0x0070B780`) first calls slot `+0x1C0` of the object `+0x20` and keeps the answer (`0x0070B7B5`).
+It stores its second argument at `+0x598`, its fourth, a float, at `+0x59C` and its fifth at `+0x5A0`
+(`0x0070B7CB`-`0x0070B7E0`). It makes the scene slot `+0x4C8` current at `+0x4D8`. A sixth argument of 0 or more stores 0
+in `0x02EA1900`, calls `0x00722900(0x1F, 0, 0, 0, 0, 1.0, 0, 0, 0)`, keeps that answer in place of the first, and makes
+`[+0x4CC]` plus that argument current (`0x0070B805`-`0x0070B850`).
+
+The current slot goes to `+0xA0` of the render buffer `+0x108`, and `0x0075BFC0(buffer, [+0x594], 0x7FFFFFFF)` runs
+(`0x0070B856`-`0x0070B87C`). While the byte `+0x147` is clear it then calls
+`0x0075CD90(buffer, the current slot, 1, the second argument, the third, the float, the fifth, 0, 0, flag)` and keeps
+that answer; the flag is `0x30000` when bit `0x10000000` of the second argument is set, else `0x10000`
+(`0x0070B881`-`0x0070B913`). A float below 0 is passed there as 0 while the byte `+0xCCC` is set and as 1.0 otherwise
+(`0x0070B7C6`-`0x0070B7F8`); `+0x59C` holds the float as it came.
+
+With `+0x147` set it makes no such call. If the output target `+0x60` is then null it answers `0x80004005` and leaves
+the byte `+0x00` as it was (`0x0070B895`-`0x0070B8D8`); when the levels `0x01F3BA80` and `0x01F3BA90` are both at least 1 it
+first logs, through `0x006DF480`, a PPFX ERROR line, source line `0x2728`: "CPostEffect::BeginPostEffectScene(): At
+least SetEffectSource() must be called if Initialize() was called with PFXINIT_RENDERSCENE_EXTERNAL flag."
+
+Otherwise it looks at the answer it kept last. A negative one is returned, after an ERROR line under the same two
+levels, source line `0x273D`: "CPostEffect::BeginPostEffectScene(): m_pRenderBuffer->SetRenderTarget() failed (0x%x:
+%s).", with the answer and the text `0x0071B3C0(answer)` gives for it. Any other answer sets the byte `+0x00` to 1 and
+`BeginPostEffectScene` returns 0 (`0x0070B915`-`0x0070B95B`).
+
 `0x00708110` is `CPostEffect::SetMultisampleMode(mode)`. While the byte `+0x00` is set, which its message calls
 being between `BeginPostEffectScene` and `EndPostEffectScene`, it logs and returns `0x80004005`
 (`0x00708114`-`0x0070814D`). Otherwise it stores the mode at `+0x590` (`0x00708159`) and:
@@ -211,6 +256,35 @@ A refused mode has already been stored at `+0x590`. The game passes mode 0 both 
 `0x006CBD20` calls with 0 (`0x006CBE25`-`0x006CBE27`), jumps here with the global block `[0x02EA0B70]`
 (`0x006DB4C0`-`0x006DB4C7`), and `CPostEffect::Initialize` calls it with 0 (`0x007051B2`-`0x007051B7`).
 
+`CPostEffect::ApplyAmbientOcclusion` (`0x0070BB00`) takes a mode and one more value. It answers `0x80004005`
+while the byte `+0x00` is set, and for a mode other than 2 and 3 while the pointer `+0x60` is null
+(`0x0070BB0A`-`0x0070BB90`).
+
+Each of the two refusals first logs an ERROR line through `0x006DF480` when the levels `0x01F3BA80`
+and `0x01F3BA90` are both at least 1: source line `0x6D77`, "CPostEffect::ApplyAmbientOcclusion(): Cannot be
+called while BeginPostEffectScene() and EndPostEffectScene().", or source line `0x6D84`,
+"CPostEffect::ApplyAmbientOcclusion(): Call SetEffectSource() before call ApplyAmbientOcclusion()."
+(`0x0070BB12`-`0x0070BB3E`, `0x0070BB61`-`0x0070BB8B`).
+
+Otherwise it calls `0x006FC160(object, its third argument)`, `0x006F3BE0(object)`, `0x007142F0()`, whose result it
+keeps, and `0x00714560()` (`0x0070BBC2`-`0x0070BBDE`), and chooses what the pass draws from. For mode 1 and for every
+mode not named here it is the pointer `+0x60`. Modes 2 and 3 pass null, and mode 3 also sets the pass's
+fourth argument to 1 (`0x0070BBE5`-`0x0070BC01`).
+
+Mode 0 also uses `+0x60` while the byte `+0x8E0` of the device `+0x20` is set. With that byte clear it first
+calls `0x007422F0(kept result, pointer +0x60, texture, twelve constants)` with the texture of a work slot of
+the render buffer `+0x108`, and then uses that slot's texture (`0x0070BC06`-`0x0070BCF3`). The slot index is the
+object's dword `+0x4D0`, and -1 stands for the buffer's current slot, its `+0xA0`; the texture is the slot's
+entry in the buffer's list `+0x48`, or null when the slot is not below the buffer's count `+0x3C`.
+
+The other twelve arguments of that `0x007422F0` call are constants: 0, the address of four floats of 1.0, a 0
+dword, two 0 bytes, the floats 0 and 0, the dword 1, the floats 0 and 1.0, the address of two null qwords,
+and 0 (`0x0070BC17`-`0x0070BCC0`).
+
+`ApplyAmbientOcclusion` then calls the pass `0x006F61F0(object, that source, [+0xD38], the mode-3 byte, 1)`
+(`0x0070BD0D`) and `0x006FC200(object)` (`0x0070BD15`), and returns the latter's answer when negative, else 0
+(`0x0070BD22`-`0x0070BD37`). It tests the answer of none of the six calls before `0x006FC200`.
+
 ### Each frame
 
 The frame routine `0x001F3300` returns at once while the byte `0x01DFE0C4` is 0 (`0x001F3317`). Otherwise, when the
@@ -224,10 +298,20 @@ Then it calls `0x00194A30` (`0x001F3346`), which applies a delayed `EnableYebis`
 returns non-null and `0x001FDF70` returns 1 for that result, it calls `0x00193A00` and `0x00193A80` on the
 block and sets `+0x19B`.
 
-`0x001DC510()` returns the `0x18`-byte object `[0x01F82D10]`, made once when `0x001DDAB0` answers non-zero, with the
-defaults 1.0, 0.5 and 0.6 at `+0x0C`, `+0x10` and `+0x14`, then filled by `0x001DC3D0`; `0x001FDF70` returns its
-first word. The setup copies its values into the block, each reader falling back to the default unless the
-first or second word is 1 (the last needs the first word):
+`0x001DC510()` returns the `0x18`-byte object `[0x01F82D10]`, made once when `0x001DDAB0()` answers non-zero and null until
+then, or when `0x00210EC0(0x18)` gives nothing (`0x001DC51F`-`0x001DC54A`, `0x001DC582`). Its dwords `+0x00`, `+0x04` and
+`+0x08` start at 0 (`0x001DC54E`-`0x001DC551`), with the defaults 1.0, 0.5 and 0.6 at `+0x0C`, `+0x10` and `+0x14`
+(`0x001DC554`-`0x001DC562`); `0x001DC3D0(object)` then fills it and the pointer is stored (`0x001DC56C`-`0x001DC576`).
+`0x001FDF70(object)` returns its first dword.
+
+`0x001DC3D0` returns 0 on both paths (`0x001DC44A`); it stores nothing while `0x001DDAB0()` gives null
+(`0x001DC3D9`-`0x001DC3E1`). Otherwise, with h the value `0x002256A0(object)` returns for the object `0x001DDAB0()` gives
+(`0x001DC3E3`-`0x001DC3EB`), it stores 0 at `+0x08`, h / 1080 at `+0x0C` and h / 1080 x 0.6 at `+0x14`, or 1.0 and 0.6
+when h is not above 0, 0.5 at `+0x10` and 1 at `+0x00` (`0x001DC3F8`-`0x001DC444`). It does not store the dword `+0x04`,
+which the constructor left at 0.
+
+The setup copies its values into the block, each reader falling back to the default unless the first or second dword
+is 1 (the last needs the first dword):
 
 | Block field offset | Reader | Value | Clamp |
 |---|---|---|---|
@@ -235,6 +319,12 @@ first or second word is 1 (the last needs the first word):
 | `+0x1A0` | `0x00193A00` through `0x001DC4A0` | `+0x0C`, else 1.0 | at least 0 |
 | `+0x1A4` | `0x001939A0` through `0x001DC480` | `+0x10`, else 0.5 | 0 to 1.0 |
 | `+0x1EC` | `0x00193A80` through `0x001DC4C0` | `+0x14`, else 0.6 | at least 0 |
+
+`0x00193A00` repeats the test itself, `0x001DC510()` not null and `0x001FDF70(object)` equal to 1, and stores nothing when
+it fails (`0x00193A09`-`0x00193A23`). When it passes it calls `0x00193940(block)` (`0x00193A28`), makes the same test once
+more and, only when it holds again, stores `+0x1A0` from `0x001DC4A0(0x001DC510())`, at least 0 (`0x00193A2D`-`0x00193A5D`).
+Either way it ends in a jump to `0x001939A0(block)` (`0x00193A6D`), so that one call fills `+0x19C`, `+0x1A0` and
+`+0x1A4`; `0x00193A80` fills `+0x1EC`.
 
 The frame routine then asks `0x0018E470`, which is true when the integration object is ready and the render
 parameter block's byte `+0xA0` is set. Only then does it build the post-process command (`0x0018EEE0`)
@@ -245,19 +335,40 @@ whose work is `0x00193DA0`:
    releases a context through its slot `+0x08` and a shim through its slot 0 with 1, and clears each
    pointer (`0x006CC2FF`-`0x006CC321`), so step 2 then stops the frame's work.
 2. With no context, it stops.
-3. It passes two blocks of scene values (`0x006CC1F0`, `0x006CC260`).
+3. It passes two blocks of scene values (`0x006CC1F0`, `0x006CC260`). `0x006CC1F0` keeps the last first block: while its
+   byte `+0x24` is 0 it calls `0x006DB900(target, kept block +0x28, 1)` and `0x006DB8C0(target, new block, 1)`, the target
+   being `[[+0x08] + 0x18]` (`0x006CC1FA`-`0x006CC228`), and it always copies the new `0x40` bytes to `+0x28`-`+0x67` and
+   stores 0 at `+0x24` (`0x006CC22D`-`0x006CC24C`).
 4. Glare: with the Glare option on, `0x006CC1E0` hands the command's two glare values to
    `CPostEffect::SetGlareParameters` (`0x00707560`); with it off, 1.0 and 0.0.
 5. `0x006CC170` passes a scale and mode: 2.0 and mode 2 when the command's byte `+0x98` is set
    (`0x00193E7F`, `0x00193E87`); otherwise 1.0 with mode 1 when the byte `+0x9A` is set and mode -1 when it
    is clear (`0x00193E8F`-`0x00193EAE`).
+   `0x006CC170` first asks `0x006DC4B0(target, -1)` for a float (`0x006CC182`-`0x006CC193`) and calls
+   `0x006DC820(target, that float, scale, mode, 32.0, -3.4028235e38)` (`0x006CC198`-`0x006CC1C5`).
 6. Depth of field: with the DepthofField option on, `0x006CC090` passes the enable byte, a 35 mm lens
    (divided by 1000) and the focus values; off, it passes the effect disabled.
+   - `0x006CC090` calls `0x006DBC20(target, enable)` (`0x006CC0B8`) and does the rest only while the byte is set
+     (`0x006CC0BF`).
+   - While enabled it first passes its auto-focus byte, its sixth argument, through `0x006DC600(target, 0, byte)`
+     (`0x006CC0CB`-`0x006CC0D8`); with that byte set (`0x006CC0DF`) it calls `0x006DC760(target, 0, seventh, eighth)` and
+     `0x006DC700(target, 0, 0.1, 100.0)`, and the float `0x006DC650(target, -1)` returns replaces the focus distance
+     (`0x006CC0E1`-`0x006CC131`).
+   - Last it calls `0x006DBC60(target, focus distance, fourth argument, fifth argument / 1000)` (`0x006CC134`-`0x006CC150`).
 7. `0x006CBEA0` passes the three render targets the command holds and runs
    `CPostEffect::ApplyEffects` (`0x0070BA00`, through `0x006DB660`).
    - In `0x006CBEA0` a target whose byte `+0x08` is set counts as null (`0x006CBECF`, `0x006CBF3B`, `0x006CBFCC`). The
      first target's texture and size (`+0x90`, `+0x94`) go to `0x0070D360` through `0x006DD5F0` (`0x006CBF2E`), and
      the second's to `0x007116A0` through `0x006DD700` (`0x006CBFC7`).
+   - `0x007116A0` sets the byte `+0x6FD` to 1 and looks its third argument, the texture, up in the map `+0xC8`
+     (`0x007116AC`-`0x0071170E`). The object found there goes to `SetDepthFactorSource` as its texture:
+     `0x007114F0(this, kind, texture, 0, parameter, float, float)`, the kind being `0x007116A0`'s second argument
+     and the last three its seventh, eighth and ninth (`0x00711798`-`0x007117C9`). `0x007116A0` returns that call's
+     answer.
+   - With no object there, a texture for which the map `+0xB8` holds a non-null entry is passed on as no source
+     at all, both pointers null (`0x00711714`-`0x00711758`). Any other texture is first made through
+     `0x006F1F60(object, texture, the fourth, fifth and sixth arguments, two stack addresses)`; a negative answer
+     of it is returned, and otherwise the pointer it left goes on as the texture (`0x0071175A`-`0x00711793`).
    - The third target's `+0x28`, or `+0x20` while its byte `+0x09` is set, goes to `0x0070D270` through
      `0x006DD570` (`0x006CBFDA`-`0x006CC01A`). The shim's `+0x08` and `+0x10` both take the first target
      (`0x006CBF37`, `0x006CC023`).
@@ -278,6 +389,14 @@ build a `0x20`-byte buffer from two constants of the image, the bytes at `0x00D8
 `[0x01F3BB20]` names as the key (below), and checks the licence text with that buffer (`0x0071CD10`, which
 calls `0x0071D9E0`). A failure is reported as status
 1 "License is not valid.", 2 "License is expired." or anything else "Unexpected License Error.".
+
+`0x0071CD10` builds a record on its stack that starts with the dwords 2000, 1, 1, 2000, 1, 1 and holds three empty
+strings (`0x0071CD3D`-`0x0071CD8B`), stores 0 in the checker's qwords `+0x48` and `+0x50`, and calls
+`0x0071D170(checker, record)` and then, only when that answers 0, `0x0071D9E0(checker, record)` (`0x0071CD8F`-`0x0071CDB4`).
+
+The first answer of the two that is not 0 is `0x0071CD10`'s own answer. When both answer 0 it copies the record's dwords
+`+0x0C`, `+0x10` and `+0x14` to the checker's `+0x4C`, `+0x50` and `+0x54` and answers 0 (`0x0071CDB6`-`0x0071CDC8`).
+Either way it ends by calling `0x0071EF10(record)` (`0x0071CDD4`).
 
 After a first argument it does not read, `0x0071C550` takes an out pointer, an out length, a source, its
 length, a key and the key's length (`0x0071C55E`-`0x0071C575`, `0x0071C5D2`, `0x0071C66B`). For a length of 0 it
@@ -450,9 +569,14 @@ instruction calls it directly. Each of the eight is called only from inside the 
   slot `+0x98` of the `PPFX::IGPUEffect` at `+0x38` (vtable `0x00DAF1B8`) and binds textures through its slot `+0xB8`.
 - `0x0078AD20`, the code of `TinyEffect.cpp`, reflects a shader with `D3DReflect` and allocates its
   `0xC0`-byte variable records through `0x006DA880`.
-- `0x0077FFE0` maps a GPU resource through slot `+0x70` of the object at `[+0x28] + 0x38`, which takes Map's
-  arguments (the resource, subresource 0, type 1, and flag `0x100000`, do-not-wait, when `+0x68` is 2;
-  `0x00780002`-`0x00780040`), copies four bytes of it into `+0xA0` to `+0xA3` and unmaps it (slot `+0x78`).
+- `0x0077FFE0` returns 0 and does nothing else when the float `+0x7C` is 0 or above (`0x0077FFE6`-`0x0077FFF6`). Otherwise
+  it maps a GPU resource, the `+0x38` of the object at `+0x98`, through slot `+0x70` of the object at
+  `[+0x28] + 0x38`, which takes Map's arguments (the resource, subresource 0, type 1, and flag `0x100000`,
+  do-not-wait, when `+0x68` is 2; `0x00780002`-`0x00780040`).
+- When that map answers a negative value, `0x0077FFE0` returns it and stores nothing (`0x00780046`-`0x00780048`). Otherwise
+  the first four bytes it gave go to `+0xA2`, `+0xA1`, `+0xA0` and `+0xA3`, in that order (`0x00780052`-`0x00780079`);
+  `0x0077FFE0` then unmaps the resource (slot `+0x78`, `0x00780095`), calls `0x007804C0(object)` (`0x0078009B`) and returns
+  the map's answer.
 - `0x00788430` is `IGPUBuffer::Unmap`. With the mapped byte `+0xC4` clear it only logs "IGPUBuffer::Unmap(): Buffer
   is not mapped." as a PPFX ERROR line of `GPUInterfaceBuffer.cpp`, line 1001, when the two log levels
   `0x01F3BA80` and `0x01F3BA90` are 1 or more (`0x00788436`-`0x00788471`).
@@ -461,14 +585,49 @@ instruction calls it directly. Each of the eight is called only from inside the 
   (`0x00788476`-`0x007884A0`). A null `+0x18` skips the `+0x30` load (`0x0078848B`-`0x0078848E`), and the vtable
   pointer is then read from address 0 (`0x00788494`).
 - `0x00735E40` stages up to eight float vectors at `0x02EA1C50` and uploads them through slots
-  `+0xD0` and `+0x98` of the same effect at `+0x38` (`0x00789E40`, `0x00789D50`). `0x0074F740` runs it twice
+  `+0xD0` and `+0x98` of the same effect at `+0x38` (`0x00789E40`, `0x00789D50`). `0x00789E40` is a jump to slot `+0x88` of
+  the object at the effect's `+0xE0` (`0x00789E40`-`0x00789E4A`). `0x0074F740` runs `0x00735E40` twice
   (`0x0074FDD9`, `0x007502CD`).
 - `0x00789D50` counts the upload (`0x02EA40B8`, `0x02EA40BC`) and forwards it through slot `+0x58` of the `PPFX::CTinyEffect` at the effect's `+0xE0`
   (`0x0078FCF0`); the GPU device's own slots `+0x98` and `+0xD0` (vtable `0x00D9EA30`: `0x00724EA0`, `0x00725090`) only
   return `0x80004001`.
+- `0x007850C0` stores the low byte of its second argument in the buffer `+0x30` at the index its third argument gives.
+  For a negative index it uses `d % max([0x02EA1970], 1)`, both unsigned, where `d` is the dword `+0x28` of the object
+  at `+0x18` (`0x007850C7`-`0x00785105`).
 - `0x00741680` runs `0x00740BE0` three times (`0x00741B5C`, `0x00741D2A`, `0x00741F18`).
 - `0x007651F0` returns 0 unless its source at `+0x260` is set and three of its intensities are
   positive; otherwise it builds its pass constants from them.
+- `0x0070E1B0` is `CPostEffect::ApplyStaticSceneEffects`, named by its two messages; it takes a dword that selects the
+  depth conversion, two floats, a byte and one more value. It answers `0x80004005` while the byte `+0x00` is set
+  (`0x0070E1BF`-`0x0070E20B`).
+- Otherwise `0x0070E1B0` calls `BeginPostEffectScene` as `0x0070B780(object, 0, 0, lowest float, 0, -1)`
+  (`0x0070E210`-`0x0070E235`), then `0x007142F0()`, whose result it keeps, `0x00714560()` and
+  `0x00731E80(that result, 0x10, 1, 2)` (`0x0070E23A`-`0x0070E257`).
+- Unless the depth-factor kind `+0x470` is 3, `0x0070E1B0` then answers `0x80004005` again, with no call that undoes
+  what `BeginPostEffectScene` did (`0x0070E25C`-`0x0070E299`).
+- Each of those two refusals first logs an ERROR line through `0x006DF480` when the levels `0x01F3BA80` and `0x01F3BA90` are
+  both at least 1: source line `0x79A9`, "CPostEffect::ApplyStaticSceneEffects(): Cannot be called while
+  BeginPostEffectScene() and EndPostEffectScene().", or source line `0x79C0`, "CPostEffect::ApplyStaticSceneEffects():
+  If ApplyStaticSceneEffects() is called, SetDepthFactorSource() must be PFXDFSRC_A."
+- The two ERROR lines are logged at `0x0070E1D7`-`0x0070E201` and `0x0070E265`-`0x0070E28F`.
+- With kind 3 it takes a depth conversion: the constants 1.0, 0, 1.0, 0 when the selecting dword is 7, else what
+  `0x00708D10(object, block, that dword, 0, its two floats)` writes (`0x0070E29E`-`0x0070E2E5`). It runs the update
+  `0x006FC760(object)` while the byte `+0x6FD` is set (`0x0070E2ED`-`0x0070E2F9`, and again at `0x0070E352`-`0x0070E367`).
+- It calls slot `+0x88` of the object `+0x50`, keeps the dword answered and calls that object's slot `+0x78` with 1
+  (`0x0070E333`-`0x0070E34E`); after the draw it calls slot `+0x78` again with the kept dword (`0x0070E47C`-`0x0070E485`). It
+  does not test `+0x50` for null.
+- The draw is `0x007407E0(kept result, the values below)` (`0x0070E477`); in order they are: 0, 0, the dwords `+0x5C` and
+  `+0x60` of the scene slot's texture as floats, 0, 0, 1.0, 1.0, the object `+0x50`, two bytes of 1, the near and far
+  distances `+0x5A4` and `+0x5A8`, the reference distance `+0xCF8`, the float `+0x6D8`, a float `m`, the conversion
+  block, a copy of the 16 bytes at `+0xCE8`, and 0 (`0x0070E3D0`-`0x0070E474`).
+- `m` is `+0x6D8` while the byte `+0x48E` is set and the byte argument is 0, else 1.0 (`0x0070E2FE`-`0x0070E32B`). The
+  scene slot is `+0x4C8`, or the current slot `+0xA0` of the render buffer `+0x108` for -1; its texture is the slot's
+  entry in the buffer's list `+0x48`, taken as null, and still read, when the slot is not below the count `+0x3C`
+  (`0x0070E36C`-`0x0070E3CD`).
+- `0x0070E1B0` ends with `0x006FB810(object, its sixth argument, 0)` (`0x0070E495`). A negative answer is returned, after an
+  ERROR line under the same two levels, source line `0x5D29`: "CPostEffect::EndPostEffectScene():
+  EndPostEffectScene_Process() failed (0x%x: %s).", with the answer and the text `0x0071B3C0(answer)` gives for it. Any
+  other answer gives 0 (`0x0070E4A5`-`0x0070E4E8`).
 
 ## Layouts
 
@@ -488,7 +647,7 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0x038` | `void*` | surfaceDesc | a `0x18`-byte description `+0x28` fills (`0x00700206`-`0x0070024B`); its `+0x08` and `+0x0C` are the width and height Initialize sizes the buffers from (`0x0070033C`-`0x0070034E`) |
 | `+0x040` | `void*` | surfaceDesc2 | the matching `0x18`-byte description `+0x30` fills, or a copy of `+0x38` with its first dword 0 when `+0x30` is null (`0x00700232`-`0x00700280`) |
 | `+0x048` | `void*` | keptDevice | a device Uninitialize keeps for the next Initialize (`0x007055FC`); Initialize prefers it to `+0x20` (`0x006FFA0A`-`0x006FFA14`) and clears it (`0x006FFA5B`) |
-| `+0x050` | `void*` | ptr050 | no instruction stores a pointer here: the constructor clears it (`0x006FF616`) and Uninitialize releases and clears it (`0x00705A68`-`0x00705A77`) |
+| `+0x050` | `void*` | ptr050 | no instruction stores a pointer here: the constructor clears it (`0x006FF616`) and Uninitialize releases and clears it (`0x00705A68`-`0x00705A77`); ApplyStaticSceneEffects `0x0070E1B0` calls its slots `+0x88` and `+0x78` without a null test (`0x0070E333`-`0x0070E34E`, `0x0070E485`) |
 | `+0x058` | `void*` | depthFactorSource | the depth-factor source texture SetDepthFactorSource stores (`0x00711588`, `0x00711615`); the passes test it with `+0x468` before using the depth-factor path (`0x006F91A2`, `0x006F8073`) |
 | `+0x060` | `void*` | outputTarget | the output target `0x0070D340` and `0x0070D360` set (`0x0070D340`, `0x0070D3ED`); ApplyEffects requires it while the byte `+0x147` is set (`0x0070BA53`, `0x0070BA5C`); EndPostEffectScene_Process swaps in its own target for the alpha pass and restores it (`0x006FBB20`, `0x006FBD89`) |
 | `+0x068` | `u32` | outputKind | the kind stored with `+0x60` (`0x0070D346`, `0x0070D3E8`); 1 during the alpha pass (`0x006FBB2B`); with 1 the internal process takes format code `0x15` (`0x006F9219`-`0x006F9222`) |
@@ -496,29 +655,29 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0x078` | `u8` | auxFlag | cleared by Initialize (`0x00704C3B`) and written by nothing else; UpdateParameters_Base tests it (`0x006F78A9`) |
 | `+0x07C` | `u32` | auxValue | 0 from Initialize (`0x00704C43`), written by nothing else; passed with `+0x70` (`0x006F3664`, `0x006F94AE`) |
 | `+0x088` | `f32` | auxScale | 0 from Initialize (`0x00704C52`), written by nothing else; passed with `+0x70` (`0x006F3674`, `0x006F94BE`) |
-| `+0x090` | `void*` | glareModulatorSource | the source texture of SetGlareModulatorSource (`0x0070D41A`-`0x0070D479`) |
-| `+0x098` | `u32` | glareModulatorKind | the source kind of SetGlareModulatorSource (`0x0070D40E`, `0x0070D461`); with a kind and no source texture the internal process uses m_pGlareModulatorWork (`+0x128`) instead (`0x006F9174`-`0x006F9185`, `0x006F9260`) |
+| `+0x090` | `void*` | glareModulatorSource | the source texture of SetGlareModulatorSource (`0x0070D414`-`0x0070D479`): its third argument for a non-zero kind while the byte `+0x143` is set, cleared for kind 0 and for a non-zero kind while `+0x143` is 0 |
+| `+0x098` | `u32` | glareModulatorKind | the source kind of SetGlareModulatorSource (`0x0070D40E`, `0x0070D461`): a kind above 5 answers `0x80070057` with nothing stored, after the ERROR line when the levels `0x01F3BA80` and `0x01F3BA90` are both at least 1 (`0x0070D409`-`0x0070D40C`, `0x0070D488`-`0x0070D4B7`); a non-zero kind while `+0x143` is 0 is stored as 0 with the answer 1, after the WARNING line (line `0x7A9B`) when `0x01F3BA80` and `0x01F3BA8C` are both at least 1 (`0x0070D427`-`0x0070D46E`); every other call answers 0; with a kind and no source texture the internal process uses m_pGlareModulatorWork (`+0x128`) instead (`0x006F9174`-`0x006F9185`, `0x006F9260`) |
 | `+0x0A0` | `void*` | glareModulatorTexture | the glare-modulator texture of the current frame: EndPostEffectScene_InternalProcess sets it (`0x006F9304`-`0x006F9548`) and UpdateParameters_Base clears it (`0x006F825F`) |
-| `+0x0A8` | `void*` | mapA | the header of the map built by `0x00714800` (`0x006FF643`-`0x006FF648`), keyed by texture: `0x0070D270` looks a source texture up in it for its view (`0x0070D276`-`0x0070D2BE`); `0x006FF840` walks it at shutdown (`0x006FF8B7`) |
+| `+0x0A8` | `void*` | mapA | the header of the map built by `0x00714800` (`0x006FF643`-`0x006FF648`), keyed by texture: `0x0070D270` looks a source texture up in it for its view (`0x0070D276`-`0x0070D2BE`) and on a miss calls `0x006F1E00`(this, texture, its third to seventh arguments, &view), returning a negative answer with nothing stored (`0x0070D2C7`-`0x0070D2FB`); `0x006FF840` walks it at shutdown (`0x006FF8B7`) |
 | `+0x0B0` | `u64` | mapASize | the second word of the `+0xA8` map, cleared by the constructor (`0x006FF63C`) |
 | `+0x0B8` | `void*` | mapB | the header of the map built by `0x007147A0` (`0x006FF661`-`0x006FF666`); walked by `0x006FF840` (`0x006FF88B`) |
 | `+0x0C0` | `u64` | mapBSize | the second word of the `+0xB8` map, cleared by the constructor (`0x006FF65A`) |
 | `+0x0C8` | `void*` | mapC | the header of the map built by `0x00714740` (`0x006FF67F`-`0x006FF684`); walked by `0x006FF840` (`0x006FF85F`) |
 | `+0x0D0` | `u64` | mapCSize | the second word of the `+0xC8` map, cleared by the constructor (`0x006FF678`) |
-| `+0x0D8` | `void*` | effectSourceView | the effect source as a view, set by `0x0070D270` (`0x0070D325`); `0x006FD070` uses it first (`0x006FD076`-`0x006FD085`) |
-| `+0x0E0` | `void*` | effectSourceTexture | the effect source as a texture; `0x006FD070` asks it for a view through its vtable `+0xA0` when `+0xD8` is null (`0x006FD094`-`0x006FD0BF`); cleared by `0x0070D240` and `0x0070D270` |
-| `+0x0E8` | `void*` | effectSourceBuffer | the effect source as a render buffer, set by `0x0070D240` (`0x0070D242`); `0x006FD070` takes its current texture when `+0xD8` and `+0xE0` are null (`0x006FD0CA`-`0x006FD0E8`) |
+| `+0x0D8` | `void*` | effectSourceView | the effect source as a view, set by `0x0070D270` (`0x0070D325`); `0x006FD070` uses it first (`0x006FD076`-`0x006FD085`); cleared by `0x0070D240` (`0x0070D249`) |
+| `+0x0E0` | `void*` | effectSourceTexture | the effect source as a texture; `0x006FD070` asks it for a view through its vtable `+0xA0` when `+0xD8` is null (`0x006FD094`-`0x006FD0BF`): a negative answer is returned as it is (`0x006FD0B7`), otherwise the view the call wrote stays in `+0xD38` and `0x006FD070` calls slot `+0x08` of that view (`0x006FD0B9`-`0x006FD0BF`) and returns 0; cleared by `0x0070D240` and `0x0070D270` |
+| `+0x0E8` | `void*` | effectSourceBuffer | the effect source as a render buffer, set by `0x0070D240` (`0x0070D242`); `0x006FD070` takes its current texture when `+0xD8` and `+0xE0` are null (`0x006FD0CA`-`0x006FD0E8`); cleared by `0x0070D270` (`0x0070D30F`) |
 | `+0x0F0` | `void*` | ptr0F0 | cleared by the constructor (`0x006FF687`) and Initialize (`0x00704C34`), stored by `0x0070DC90` (`0x0070DD14`); read by UpdateParameters_Base (`0x006F786A`) and the internal process (`0x006FB3E1`) |
 | `+0x0F8` | `u8` | initBit31 | 1 when init flag `0x80000000` was given (`+0x145`, `0x00704C24`-`0x00704C2E`); UpdateParameters_Base tests it (`0x006F7861`) |
 | `+0x100` | `u64` | qword100 | cleared by Initialize (`0x00704D60`); read by no instruction |
 | `+0x108` | `void*` | renderBuffer | m_pRenderBuffer, the `0xA8`-byte render buffer Initialize allocates under that name (`0x00700977`-`0x007009BB`, constructor `0x0075B710`); its texture array (`+0x48`, current index `+0xA0`) holds the slots the `+0x4C8`.. indices name |
 | `+0x110` | `void*` | renderGlare | m_pRenderGlare, the `0x310`-byte glare object (`0x007009C2`-`0x00700A06`, constructor `0x007687E0`); its Initialize, GenerateGlare and TonemapToSurface run from `0x00702223` and the internal process (`0x006FB14E`, `0x006FB6F6`) |
-| `+0x118` | `void*` | depthOfField | m_pDepthOfField, the `0x4C0`-byte depth-of-field object (`0x00700AB5`-`0x00700AF9`, constructor `0x007790E0`); ApplyEffects_DepthOfField runs it (`0x006F60A1`) |
+| `+0x118` | `void*` | depthOfField | m_pDepthOfField, the `0x4C0`-byte depth-of-field object (`0x00700AB5`-`0x00700AF9`, constructor `0x007790E0`); ApplyEffects_DepthOfField runs it (`0x006F60A1`). While `+0x130` is set, `0x00711820` stores its float argument at `+0x184` and its third argument, a dword, at `+0x188` of it and returns 0 (`0x0071182F`-`0x0071184E`); while `+0x130` is 0 it stores nothing and returns 1 (`0x00711820`-`0x0071182E`) |
 | `+0x120` | `void*` | effectColorAlphaDestinationWork | m_pEffectColorAlphaDestinationWork, a `0xA8`-byte render buffer made when `+0x146` is set (`0x00700A61`-`0x00700AAE`); for the alpha output EndPostEffectScene_Process takes its current texture as the effect source (`0x006FB9B5`-`0x006FB9D5`) |
 | `+0x128` | `void*` | glareModulatorWork | m_pGlareModulatorWork, a `0xA8`-byte render buffer made when `+0x143` is set (`0x00700A0D`-`0x00700A5A`); the glare-modulator step uses it (`0x006F9260`) |
-| `+0x130` | `u8` | dofBuilt | 1 when the depth-of-field quality argument of Initialize is not negative (`0x007004C3`-`0x007004CA`); the depth-of-field setters `0x00708710`, `0x007111C0` and `0x00711820` do nothing without it |
+| `+0x130` | `u8` | dofBuilt | 1 when the depth-of-field quality argument of Initialize is not negative (`0x007004C3`-`0x007004CA`). Without it `0x00711820` stores nothing and returns 1 (`0x00711829`), `0x007111C0` skips only its store at `+0x250` of m_pDepthOfField (`0x007111D1`-`0x007111DA`), and `0x00708710` stores a 0 enable (`0x00708720`) |
 | `+0x133` | `u8` | airyDiscBuilt | aperture Airy disc: 1 with init flag `0x40000` (`0x006FFFB9`-`0x006FFFD3`); SetApertureAiryDiscEnable refuses while it is 0 (`0x0070A066`) |
-| `+0x136` | `u8` | temporalAntialiasBuilt | temporal anti-alias: 1 with init flag `0x100000` when the device's `+0x8EB` is 0 (`0x00700283`-`0x007002AA`); Initialize then makes the history buffers (`0x007017E6`); SetTemporalAntialiasEnable refuses while it is 0 (`0x0070AB86`) |
+| `+0x136` | `u8` | temporalAntialiasBuilt | temporal anti-alias: 1 with init flag `0x100000` when the device's `+0x8EB` is 0 (`0x00700283`-`0x007002AA`); Initialize then makes the history buffers (`0x007017E6`); while it is 0 SetTemporalAntialiasEnable (`0x0070AB80`) stores 0 at `+0xC24` and returns 1, for a non-zero enable after the WARNING line when the levels `0x01F3BA80` and `0x01F3BA8C` are both at least 1 (`0x0070AB86`-`0x0070ABCC`) |
 | `+0x137` | `u8` | geometryBlurBuilt | geometry blur: 1 with init flag `0x40000` (`0x006FFE82`-`0x006FFE9C`); Initialize tests it at `0x00701131` |
 | `+0x138` | `u8` | gaussianBlurBuilt | Gaussian blur: 1 with init flag `0x40000` (`0x006FFFD9`-`0x006FFFF3`); SetGaussianBlurEnable refuses while it is 0 (`0x0070A0F6`) |
 | `+0x13D` | `u8` | heatShimmerParticleBuilt | heat-shimmer particles: 1 when `+0x13C` is set (`0x006FFF43`-`0x006FFF59`); SetHeatShimmerParticleEnable refuses while it is 0 (`0x0070A356`) |
@@ -536,17 +695,17 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0x180` | `void*` | aoResultReducedVertical | m_pAmbientOcclusion_Result_ReducedVertical (`0x00702EFC`-`0x00702F3F`); read by `0x006F61F0` (`0x006F62BB`) |
 | `+0x188` | `void*` | aoResult | m_pAmbientOcclusion_Result: Initialize sets it to null (`0x00703238`) and initialises its device only when present (`0x00704089`-`0x007040DF`) |
 | `+0x190` | `void*` | temporalAntialiasHistory | m_ppTemporalAntialias_History, one history buffer per effect view, made when `+0x136` is set (`0x007017F3`-`0x00701831`, `0x00701980`-`0x00701A67`); read by the temporal anti-alias pass `0x006F65A0` (`0x006F663C`) |
-| `+0x198` | `void*` | taaWeightA | temporal anti-alias: a per-view float array made with the history buffers (`0x00701847`-`0x0070187E`); `0x0070E7A0` resets each view's entry to 1.0 (`0x0070E7F5`-`0x0070E7FC`); read by the temporal anti-alias pass (`0x006F68A0`) |
-| `+0x1A0` | `void*` | taaWeightB | temporal anti-alias: a second per-view float array (`0x00701885`-`0x007018BC`), reset to 1.0 by `0x0070E7A0` (`0x0070E803`-`0x0070E80A`); read by `0x006F65A0` |
-| `+0x1A8` | `void*` | taaLuminanceScale | temporal anti-alias: a per-view float array (`0x007018C3`-`0x007018FA`) that `0x0070E7A0` resets to the scene luminance scale `+0x6D8` (`0x0070E811`-`0x0070E81F`); read by `0x006F65A0` |
-| `+0x1B0` | `void*` | taaPerView16 | temporal anti-alias: a per-view array of 16-byte entries (`0x00701901`-`0x0070195E`) that `0x0070E7A0` clears (`0x0070E822`-`0x0070E82D`); read by `0x006F65A0` |
+| `+0x198` | `void*` | taaWeightA | temporal anti-alias: a per-view float array made with the history buffers (`0x00701847`-`0x0070187E`); `0x0070E7A0` resets an entry to 1.0 (`0x0070E7F5`-`0x0070E7FC`): the view its second argument names, -1 meaning the active view `+0x1F0`, and every view only for `0x7FFFFFFF` (`0x0070E7C0`-`0x0070E7F3`, `0x0070E832`-`0x0070E843`); it answers 1 with nothing done while `+0x136` is 0 (`0x0070E7A4`-`0x0070E7B7`), else 0; read by the temporal anti-alias pass (`0x006F68A0`) |
+| `+0x1A0` | `void*` | taaWeightB | temporal anti-alias: a second per-view float array (`0x00701885`-`0x007018BC`); `0x0070E7A0` resets the same entry to 1.0 (`0x0070E803`-`0x0070E80A`); read by `0x006F65A0` |
+| `+0x1A8` | `void*` | taaLuminanceScale | temporal anti-alias: a per-view float array (`0x007018C3`-`0x007018FA`); `0x0070E7A0` resets the same entry to the scene luminance scale `+0x6D8` (`0x0070E811`-`0x0070E81F`); read by `0x006F65A0` |
+| `+0x1B0` | `void*` | taaPerView16 | temporal anti-alias: a per-view array of 16-byte entries (`0x00701901`-`0x0070195E`); `0x0070E7A0` clears the same entry (`0x0070E822`-`0x0070E82D`); read by `0x006F65A0` |
 | `+0x1B8` | `void*` | feedbackBuffers | m_ppFeedbackBuffer, one `0xA8`-byte render buffer per effect view, made when `+0x13E` is set (`0x0070347D`-`0x007035E7`); read by `0x006F6D80` and `0x0070B150` |
-| `+0x1C0` | `void*` | feedbackTonemapTexture | m_pFeedbackTonemapTexture, allocated from the texture pool (`0x0075E2D0`) when `+0x1C8` and the device's `+0x8E0` are 0 (`0x00703706`-`0x00703733`); read by `0x006F6D80` (`0x006F6DF0`) |
+| `+0x1C0` | `void*` | feedbackTonemapTexture | m_pFeedbackTonemapTexture, allocated from the texture pool (`0x0075E2D0`, which calls `0x0075E330`(this, 1, its second to eighth arguments), `0x0075E2D4`-`0x0075E311`) when `+0x1C8` and the device's `+0x8E0` are 0 (`0x00703706`-`0x00703733`); read by `0x006F6D80` (`0x006F6DF0`) |
 | `+0x1D0` | `void*` | tonemapConvolutionTexture | m_pTonemapConvolutionTexture, allocated from the texture pool when `+0x13F` is set and `+0x13E` is not (`0x00703809`-`0x00703855`); read by `0x0070B150` (`0x0070B22A`) |
 | `+0x1D8` | `u32` | textureCount1D8 | Initialize counts textures into it and then stores 0 (`0x0070389B`-`0x00703916`), so it is always 0; Uninitialize reads it as the count for `+0x1E0` (`0x0070612A`) |
 | `+0x1E0` | `void*` | textureArray1E0 | cleared by the constructor (`0x006FF728`) and only released by Uninitialize (`0x0070606F`-`0x00706158`); nothing stores a pointer here |
 | `+0x1E8` | `void*` | viewFrameCounts | a per-view dword array (`0x00700DAF`-`0x00700DE9`); EndPostEffectScene_PreProcess increments the active view's entry each frame (`0x006F87A6`-`0x006F87AD`) |
-| `+0x1F0` | `i32` | activeView | the active effect view, set by SetActiveView (`0x007067B5`, 0 to m_nEffectViews); -1 in a per-view call means this view |
+| `+0x1F0` | `i32` | activeView | the active effect view, set by SetActiveView (`0x007067B5`, 0 to m_nEffectViews); -1 in a per-view call means this view. The setter `0x00706760` answers `0x80004005` while the byte `+0x00` is set, after the ERROR line when the levels `0x01F3BA80` and `0x01F3BA90` are both at least 1 (`0x00706764`-`0x00706798`), and `0x80070057` for a view below 0 or above `+0x328` (`0x007067A2`-`0x007067CD`); it also stores the view at `+0x20C` of m_pRenderGlare (`+0x110`) when that pointer is not null (`0x007067AE`-`0x007067C0`) and returns 0 |
 | `+0x1F8` | `void*` | autoExposureParams | m_pAutoExposureParam, one `0x68`-byte record per effect view (`0x00700B5A`-`0x00700BBF`); its `+0x60` holds m_pQuerySceneLuminance (`0x00700CAC`) and its `+0x58` the exposure the game reads (`0x006DC4B0`) |
 | `+0x200` | `void*` | autoFocusParams | m_pAutoFocusParam, one `0x48`-byte record per effect view (`0x00700BC6`-`0x00700C04`); its `+0x40` holds m_pQuerySceneDepth (`0x00700D63`) and its `+0x38` the focused distance the game reads (`0x006DC650`) ; `0x0070F200`(object, view, byte, float, float) first stores 1.0 in the object's dword `+0xC60` (`0x0070F252`), then writes the record's `+0x20` (its first float, below 0 as 0 and above 1.0 as 1.0, `0x0070F20D`-`0x0070F226`), its float `+0x28` (fifth argument, 0 unless above 0, `0x0070F229`-`0x0070F234`) and byte `+0x24` (the low byte of its byte argument) (`0x0070F2C1`-`0x0070F2D1`): for the view named when it is 0 or more and below the signed count `+0x328` (any other view gets no write and the answer 0), for the view of field `+0x1F0` when -1 is named, and for every view below the signed count `+0x328` when `0x7FFFFFFF` is named (`0x0070F25C`-`0x0070F29C`, `0x0070F2D6`-`0x0070F2E0`) ; it answers 1 when a record it wrote has a null `+0x40`, else 0 (`0x0070F2BB`-`0x0070F2C7`, `0x0070F2EC`). The tests at `0x0070F237`-`0x0070F24C` end in the answer `0x80070057` (`0x0070F2F1`) and are not true after the two clamps |
 | `+0x208` | `u32` | initFlags | the init flag word as given to Initialize (`0x006FFB86`), before the adjustments made to the copy at `+0x20C` |
@@ -558,7 +717,7 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0x360` | `u32[2]` | descCopy38 | descriptor copy `+0x38` |
 | `+0x380` | `u32[2]` | descCopy58 | descriptor copy `+0x58` and `+0x5C`, the two format codes |
 | `+0x394` | `u32` | descCopy6C | descriptor copy `+0x6C`, copied into the glare initialisation record (`0x00702120`) |
-| `+0x440` | `u8` | depthTexture | the depth texture is used: 1 when init flag `0x10000` (PFXINIT_DEPTHTEXTURE, named by the message at `0x007000C1`) is given and the device's `+0x8E4` is set, 0 when `0x0071BB00` accepts descriptor `+0x38` and `+0x3C` (`0x00700465`-`0x0070049A`); SetDepthFactorSource and UpdateParameters_Base test it (`0x00711526`, `0x006F8079`) |
+| `+0x440` | `u8` | depthTexture | the depth texture is used: 1 when init flag `0x10000` (PFXINIT_DEPTHTEXTURE, named by the message at `0x007000C1`) is given and the device's `+0x8E4` is set, else 0 (`0x00700465`-`0x00700486`); then 0 when `0x0071BB00` answers 1 for the dwords `+0x248` and `+0x24C`, descriptor `+0x38` and `+0x3C` (`0x0070048C`-`0x0070049A`). `0x0071BB00` answers 0 when the first of them is 0 or 1 and 1 for every other first value, whatever the second is (`0x0071BB03`-`0x0071BB63`). SetDepthFactorSource and UpdateParameters_Base test it (`0x00711526`, `0x006F8079`) |
 | `+0x448` | `void*` | reductionTextures | an array of `+0x450` textures made when slots `+0x4C8` and `+0x4D0` differ (`0x00701BD3`-`0x00701C3B`); read by `0x006F2AF0` (`0x006F2BB0`) |
 | `+0x450` | `i32` | reductionCount | ceil(log(size ratio of slots `+0x4D0` to `+0x4C8`) / log 0.5) - 1, at least 0 (`0x00701AD4`-`0x00701BD1`); the length of `+0x448` |
 | `+0x458` | `void*` | array458 | an array Initialize makes (`0x00701DA3`-`0x00701DFD`); read by the internal process (`0x006F9E50`-`0x006FA151`) |
@@ -566,11 +725,11 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0x464` | `u8` | initBit17 | bit `0x20000` of the init flags (`0x007004D0`-`0x007004DB`); SetDepthFactorSource tests it (`0x0071164A`) |
 | `+0x465` | `u8` | needsDepth | 1 when ambient occlusion, motion blur, depth of field, heat shimmer, init bit `0x10000000` or the antialias falloff (`+0x141`) is on together with `+0x440` or `+0x464` (`0x007004F4`-`0x00700547`); Initialize then checks the depth format (`0x00700693`, `0x0070107B`) |
 | `+0x468` | `void*` | depthFactorTexture | the depth-factor texture of SetDepthFactorSource (`0x0071158C`, `0x0071160E`); the passes take the depth-factor path while it or `+0x58` is set |
-| `+0x470` | `i32` | depthFactorKind | the kind SetDepthFactorSource stores (`0x007115B1`); the passes compare it with 8 (`0x006F3864`, `0x006F7883`) |
-| `+0x474` | `u32` | depthFactorParam | stored by SetDepthFactorSource (`0x0071159F`); read by `0x00708D10` (`0x00708D4C`) |
+| `+0x470` | `i32` | depthFactorKind | the kind SetDepthFactorSource stores (`0x007115B1`); the passes compare it with 8 (`0x006F3864`, `0x006F7883`); ApplyStaticSceneEffects requires 3, which its message calls PFXDFSRC_A (`0x0070E25C`, the text at `0x00D931D0`) |
+| `+0x474` | `u32` | depthFactorParam | stored by SetDepthFactorSource (`0x0071159F`); `0x00708D10` takes it as the depth form when it is called with form 6 (`0x00708D4C`, `0x00708D58`) |
 | `+0x478` | `f32` | depthFactorA | the first float SetDepthFactorSource stores (`0x00711593`-`0x007115B7`, as the first of 16 bytes); the passes take the 16 bytes from here (`0x006DBE4C`, `0x006F31CC`, `0x006F3D77`) |
 | `+0x47C` | `f32` | depthFactorB | the second float SetDepthFactorSource stores (`0x00711599`-`0x007115B7`) |
-| `+0x480` | `f32` | depthFactorC | `+0x478` divided by itself, 1.0, written by SetDepthFactorSource (`0x007115BE`-`0x007115E5`) |
+| `+0x480` | `f32` | depthFactorC | 1.0 / `+0x478`, written by SetDepthFactorSource (`0x007115BE`-`0x007115E5`) |
 | `+0x484` | `f32` | depthFactorD | -(`+0x47C` / `+0x478`), written by SetDepthFactorSource (`0x007115C6`-`0x007115DD`) |
 | `+0x488` | `u8` | separateSceneBuffer | 1 when the effects need their own copy of the scene: the descriptor's `+0x110`, `+0x48B`, `+0x147`, `+0x48C`, a format or size different from the render buffer, or `0x0071B9C0` (`0x0070060B`-`0x00700670`, `0x00700FC6`-`0x00701074`); tested by the internal process (`0x006F9088`) |
 | `+0x489` | `u8` | initBit2 | bit `0x4` of the init flags (`0x007002D1`-`0x007002DD`) |
@@ -585,9 +744,13 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0x494` | `u8` | byte494 | cleared and set by `0x006FD110` (`0x006FD1CB`, `0x006FD388`); tested by the internal process (`0x006F9B18`) |
 | `+0x498` | `f32` | sceneScaleX | set by `0x0070D190` (`0x0070D1BF`, 0 becomes 1.0); the internal process multiplies by it (`0x006FB1A4`); 1.0 during the alpha pass (`0x006FB9E6`) |
 | `+0x49C` | `f32` | sceneScaleY | set by `0x0070D190` (`0x0070D1C7`, 0 becomes 1.0); the internal process multiplies by it (`0x006FB1B1`) |
+| `+0x4A0` | `f32` | sceneScale4A0 | the third float of `0x0070D190` (`0x0070D1CF`), stored as it is |
+| `+0x4A4` | `f32` | sceneScale4A4 | the stack float of `0x0070D190` (`0x0070D1AF`-`0x0070D1B7`), stored as it is; `0x0070D190` returns 0 (`0x0070D1B5`), and turns a first or second float of 0 into 1.0 before it stores them (`0x0070D19B`-`0x0070D1AC`) |
 | `+0x4A8` | `void*` | effectMaskColorSource | the source of SetEffectMaskColorSource (`0x0070D5DA`-`0x0070D639`); read by EndPostEffectScene_Process (`0x006FBEF4`) |
 | `+0x4B0` | `void*` | effectMaskAlphaSource | the source of SetEffectMaskAlphaSource (`0x0070D79A`-`0x0070D7F9`); read by EndPostEffectScene_Process (`0x006FBEFB`) |
-| `+0x4C0` | `i32` | alphaOutputType | the alpha output type of SetAlphaOutputParameters (`0x0070DBFA`); with 2 EndPostEffectScene_Process runs a second internal pass with neutral colour values for the alpha (`0x006FB92F`, `0x006FBA8E`) |
+| `+0x4B8` | `u32` | effectMaskColorKind | the kind of SetEffectMaskColorSource (`0x0070D5CE`): above 4 answers `0x80070057` with nothing stored (`0x0070D5C9`-`0x0070D5CC`, `0x0070D648`-`0x0070D677`); kind 0 clears the source `+0x4A8`; a non-zero kind while the byte `+0x144` is 0 clears both and answers 1 (`0x0070D5D4`-`0x0070D62E`); the accepting paths answer 0 (`0x0070D5D8`, `0x0070D640`); the ERROR line (`0x7AEF`) and the WARNING line (`0x7B06`) print under the same two level tests as SetGlareModulatorSource's |
+| `+0x4BC` | `u32` | effectMaskAlphaKind | the kind of SetEffectMaskAlphaSource (`0x0070D78E`), with the same rules for `+0x4B0` (`0x0070D789`-`0x0070D837`; the ERROR line `0x7B59` and the WARNING line `0x7B70`; the accepting paths answer 0 at `0x0070D798` and `0x0070D800`) |
+| `+0x4C0` | `i32` | alphaOutputType | the alpha output type of SetAlphaOutputParameters (`0x0070DBFA`): -1 means the dword `+0x43C` (`0x0070DBA4`-`0x0070DBA9`), and a type above `+0x43C` answers `0x80070057` with nothing stored, after the ERROR line (line `0x7BCD`) when the levels `0x01F3BA80` and `0x01F3BA90` are both at least 1 (`0x0070DBAF`-`0x0070DBE6`); with 2 EndPostEffectScene_Process runs a second internal pass with neutral colour values for the alpha (`0x006FB92F`, `0x006FBA8E`); the storing path answers 0 (`0x0070DBF8`) |
 | `+0x4C4` | `f32` | alphaOutputScale | the scale of SetAlphaOutputParameters (`0x0070DBF0`); applied at `0x006FBF55` |
 | `+0x4C8` | `i32` | slotScene | a render-buffer slot index (-1 = the buffer's current one): 0 from Initialize (`0x007011AD`); BeginPostEffectScene copies it to `+0x4D8` (`0x0070B805`) |
 | `+0x4CC` | `i32` | slotSceneOffset | 1 when the descriptor's `+0x40` count is not 0 (`0x007011B4`-`0x007011C0`); BeginPostEffectScene adds it to its slot argument (`0x0070B846`) |
@@ -619,7 +782,7 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0x534` | `i32` | slotLensDistortionResult | the lens-distortion result: a ring slot of its own while `+0xD27` is set, else `+0x530` (`0x006F8D0D`-`0x006F8D47`); `0x00743410`'s destination (`0x006FA711`) |
 | `+0x538` | `i32` | slotChromaticAberrationSource | the chromatic-aberration source, the same slot as `+0x54C` (`0x006F8C89`); the chromatic-aberration step `0x00743930`, which takes the parameters `+0x9D8`..+`0xA14`, reads it while `+0x9D5` is set (`0x006FA416`-`0x006FA569`) |
 | `+0x53C` | `i32` | slotChromaticAberrationResult | the chromatic-aberration result: a ring slot of its own while `+0x9D5` is set, else `+0x538` (`0x006F8C8F`-`0x006F8CC2`); `0x00743930`'s destination (`0x006FA48F`) |
-| `+0x540` | `i32` | slotChromaticAberrationCopySource | the source of the chromatic-aberration copy, the same slot as `+0x53C` (`0x006F8CC8`); `0x007422F0` copies it to `+0x544` while `+0x9DD` is set (`0x006FA56E`-`0x006FA66F`); `+0x9DD` needs `+0x9DC`, which is always 0 (`0x0070476B`; `0x00709FB0`'s only caller `0x006DCCD0` passes 0 at `0x006DCCED`), so the copy never runs |
+| `+0x540` | `i32` | slotChromaticAberrationCopySource | the source of the chromatic-aberration copy, the same slot as `+0x53C` (`0x006F8CC8`); `0x007422F0` copies it to `+0x544` while `+0x9DD` is set (`0x006FA56E`-`0x006FA66F`); `+0x9DD` needs `+0x9DC`, which is always 0: its only caller `0x006DCCD0` calls it as `0x00709FB0`([`0x02EA0B70`], its second argument, 0, its third, fourth, fifth) (`0x0070476B`, `0x006DCCD4`-`0x006DCCF0`), so the copy never runs |
 | `+0x544` | `i32` | slotChromaticAberrationCopyResult | the destination of the chromatic-aberration copy: a ring slot of its own while `+0x9DD` is set, else `+0x540` (`0x006F8CCE`-`0x006F8D01`), so always `+0x540`; read at `0x006FA5E7` |
 | `+0x548` | `i32` | slotAntialiasSource | the antialias source, the same slot as `+0x52C` (`0x006F8C4A`); the antialias step `0x0074DC40`, which takes the falloff distances `+0xC58`/`+0xC5C`, reads it while `+0xC55` is set (`0x006FA2C1`-`0x006FA30D`, `0x006FA405`) |
 | `+0x54C` | `i32` | slotAntialiasResult | the antialias result: a ring slot of its own while `+0xC55` is set, else `+0x548` (`0x006F8C50`-`0x006F8C83`); `0x0074DC40`'s destination (`0x006FA33A`) |
@@ -636,13 +799,18 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0x590` | `i32` | multisampleMode | the mode of SetMultisampleMode (`0x00708159`) |
 | `+0x594` | `i32` | multisampleValue | set by SetMultisampleMode (`0x00708163`-`0x00708257`); read by BeginPostEffectScene (`0x0070B86F`) and the internal process |
 | `+0x598` | `i32` | sceneArgSlot | BeginPostEffectScene's second argument (`0x0070B7CB`) |
-| `+0x59C` | `f32` | sceneArgValue | BeginPostEffectScene's fourth argument, a float (`0x0070B7E0`) |
+| `+0x59C` | `f32` | sceneArgValue | BeginPostEffectScene's fourth argument, a float, as it came (`0x0070B7E0`) |
+| `+0x5A0` | `i32` | sceneArgFifth | BeginPostEffectScene's fifth argument (`0x0070B7D1`), which it also hands to `0x0075CD90` (`0x0070B8FE`) |
+| `+0x5A4` | `f32` | cameraNear | the first float of `0x00706C20`, 1.0 when not positive (`0x00706C53`-`0x00706C81`); the float before the far distance, read with it by the depth-of-field update `0x006FC760` (`0x006FC7E2`) |
 | `+0x5A8` | `f32` | cameraFar | the far distance of the render-scene perspective: `0x00706C20` stores its second float, 1000.0 when not positive (`0x00706C60`-`0x00706C90`); the game passes the camera's far value (`0x006CC260`) |
-| `+0x5AC` | `f32` | cameraFieldOfView | twice the arctangent of `+0x5B0`, the field-of-view angle (`0x00706CA0`-`0x00706CB9`) |
-| `+0x5B0` | `f32` | cameraTanHalfAngle | tan of half `0x00706C20`'s third float, or tan(0.392699) when that tangent is not positive (`0x00706C26`-`0x00706C98`) |
-| `+0x5C0` | `f32` | prevCameraFar | the previous frame's far distance: `0x00706D90` stores it (`0x00706E00`), the game passing last frame's values (`0x006CC2A3`) |
-| `+0x5C4` | `f32` | prevCameraFieldOfView | the previous frame's field-of-view angle (`0x00706E29`) |
-| `+0x5C8` | `f32` | prevCameraTanHalfAngle | the previous frame's tan of half the angle (`0x00706E08`) |
+| `+0x5AC` | `f32` | cameraFieldOfView | twice the arctangent of `+0x5B0`, the field-of-view angle (atanf through the import thunk, `0x00861F44`(`+0x5B0`); `0x00706CA0`-`0x00706CB9`) |
+| `+0x5B0` | `f32` | cameraTanHalfAngle | tan of half `0x00706C20`'s third float, or tan(0.392699) when that tangent is not positive (tanf through the import thunk: `0x00861F1A`(half the float), `0x00861F1A`(0.392699); `0x00706C26`-`0x00706C98`) |
+| `+0x5B4` | `f32[2]` | cameraPair5B4 | set to 0 by `0x00706C20` as one qword (`0x00706C89`); both floats are read by `0x006FC760` (`0x006FCC11`, `0x006FCC1F`) |
+| `+0x5BC` | `f32` | prevCameraNear | the previous frame's first float: `0x00706D90` stores it, 1.0 when not positive (`0x00706DC3`-`0x00706DF1`) |
+| `+0x5C0` | `f32` | prevCameraFar | the previous frame's far distance: `0x00706D90` stores it, 1000.0 when not positive (`0x00706DD0`-`0x00706E00`), the game passing last frame's values (`0x006CC2A3`) |
+| `+0x5C4` | `f32` | prevCameraFieldOfView | the previous frame's field-of-view angle (`0x00861F44`(`+0x5C8`); `0x00706E10`-`0x00706E29`) |
+| `+0x5C8` | `f32` | prevCameraTanHalfAngle | the previous frame's tan of half the angle, tan(0.392699) when not positive (`0x00861F1A`(half the float), `0x00861F1A`(0.392699); `0x00706DB4`-`0x00706E08`) |
+| `+0x5CC` | `u64` | prevCameraQword5CC | set to 0 by `0x00706D90` as one qword (`0x00706DF9`) |
 | `+0x5D4` | `f32` | viewMatrix00 | cell [0][0] of the camera matrix at `+0x5D4`..+`0x613` that `0x00706F60` copies (`0x00706F89`) and converts with `0x006E3E00` unless its flag is set; identity without a matrix (`0x00707048`) |
 | `+0x5E8` | `f32` | viewMatrix11 | cell [1][1] of the camera matrix (`0x0070703E`) |
 | `+0x5FC` | `f32` | viewMatrix22 | cell [2][2] of the camera matrix (`0x00707034`) |
@@ -658,19 +826,22 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0x6A8` | `f32` | prevViewInverse11 | cell [1][1] of the previous inverse (`0x0070734C`) |
 | `+0x6D0` | `f32` | prevViewInverse33 | cell [3][3] of the previous inverse (`0x00707338`) |
 | `+0x6D4` | `f32` | timeStep6D4 | the fifth argument of SetRenderSceneLuminanceScale (`0x00706B98`), 1/60 by default (`0x00704D6E`, `0x00705017`); a value of 0 or less sets `+0x55B` each frame (`0x006FB8C3`-`0x006FB8CE`); read by the auto-exposure pass `0x006F4390`, `0x006F4C40` and `0x006F6D80` |
-| `+0x6D8` | `f32` | sceneLuminanceScale | SceneLuminanceScale, the sixth argument of SetRenderSceneLuminanceScale, which must be above 0 (`0x00706BA0`-`0x00706BE6`); 1.0 during the alpha pass (`0x006FBC02`) |
+| `+0x6D8` | `f32` | sceneLuminanceScale | SceneLuminanceScale, the sixth argument of SetRenderSceneLuminanceScale (`0x00706B70`), which must be above 0: otherwise the setter leaves the field and returns `0x80070057`, after the ERROR line when the levels `0x01F3BA80` and `0x01F3BA90` are both at least 1 (`0x00706BA0`-`0x00706BD9`); 1.0 during the alpha pass (`0x006FBC02`). The setter first runs `0x00706C20`(this, its three floats) (`0x00706B7F`), stores `+0x6D4` in either case (`0x00706B98`) and returns `0x00706C20`'s answer when that is negative, else 0, after storing the accepted value at `+0x6D8` (`0x00706BE6`-`0x00706BFF`); `0x00706C20` returns 0 at its one exit (`0x00706CAD`), so the negative case does not arise |
 | `+0x6DC` | `f32` | luminanceFactor6DC | 1.0 from Initialize (`0x00704EE8`), forced to 1.0 for the alpha pass and restored (`0x006FBBF8`, `0x006FBDB2`); written by nothing else |
 | `+0x6EC` | `u8[4]` | unusedSpan6EC | written and read by no function; nothing fixes its width |
 | `+0x6F8` | `i32` | lightShaftIndex | the light shaft the light-shaft setters act on: Initialize sets it to each shaft while it sets them up and then to 0 (`0x00704884`, `0x0070492F`); read by SetLightShaftEnable (`0x00707880`), `0x00707950` and `0x00707A40` |
-| `+0x700` | `f32` | focusDistance | depth of field: the focus distance; `0x00708540` stores the game's value (`0x00708542`, from `0x006CC090`), which is the auto-focus distance while the command's auto-focus byte is set |
-| `+0x704` | `f32` | focalLength | depth of field: the lens focal length in metres, stored when not negative (`0x00708560`); the game passes 35 / 1000 (`0x006CC144`); 0.024 by default (`0x00704C59`) |
+| `+0x6FD` | `u8` | changeFlag6FD | a change flag for the update `0x006FC760`, which clears it (`0x006FC7D0`). Set to 1 by `0x00706C20` and `0x00706D90` (`0x00706C4C`, `0x00706DBC`), `0x00706F60` and `0x00707220` (`0x00706F6A`, `0x0070722A`), `0x00708470`, `0x007084E0` and `0x00708540`, each twice (`0x00708486` and `0x007084C2`, `0x007084ED` and `0x00708510`, `0x0070854D` and `0x00708570`), `0x00708710` (`0x00708717`), `0x007114F0` (`0x007114F6`) and `0x007116A0` (`0x007116AC`), among others: the library's code holds 48 byte stores of 1 at displacement `+0x6FD`, 31 in 22 listed functions from `0x006F2690` to `0x007116A0` and 17 outside the function list, and one store of 0, the update's. `0x00708CD0` runs the update first while it is set (`0x00708CD6`-`0x00708CE2`) |
+| `+0x700` | `f32` | focusDistance | depth of field: the focus distance; `0x00708540` stores the game's value (`0x00708542`, from `0x006CC090`), which is the auto-focus distance while the command's auto-focus byte is set; `0x00708470` and `0x007084E0` store their first float (`0x0070847B`, `0x007084E2`) |
+| `+0x704` | `f32` | focalLength | depth of field: the lens focal length in metres, stored when not negative (`0x0070855E`-`0x00708560`; `0x00708494`-`0x00708496` from the seventh argument of `0x00708470`, `0x007084FE`-`0x00708500` from the third float of `0x007084E0`); the game passes 35 / 1000 (`0x006CC144`); 0.024 by default (`0x00704C59`) |
 | `+0x708` | `i32` | lensMode | depth of field: 0 from `0x00708540`, 1 from `0x007084E0`, the argument of `0x00708470` (`0x00708577`, `0x00708517`, `0x007084C9`) |
-| `+0x70C` | `f32` | apertureFNumber | depth of field: the aperture f-number (`0x00708568`); the game passes its f-number |
+| `+0x70C` | `f32` | apertureFNumber | depth of field: the aperture f-number (`0x00708568`, `0x007084BA`, `0x00708508`); the game passes its f-number |
 | `+0x710` | `f32` | lensParam710 | 1.0 from `0x00708540`, 0 from `0x007084E0`, a stack argument of `0x00708470` (`0x0070857D`, `0x00708521`, `0x007084AA`) |
 | `+0x714` | `f32` | lensAngle714 | π/4 from `0x00708540` and `0x007084E0`, a stack argument of `0x00708470` (`0x00708587`, `0x00708527`, `0x007084B2`) |
 | `+0x718` | `f32` | dofScale718 | 1.0 from Initialize (`0x00704C84`), written by nothing else; read by ApplyEffects_DepthOfField |
+| `+0x720` | `f32[2]` | lensPair720 | set to 0 as one qword by `0x00708470`, `0x007084E0` and `0x00708540` (`0x0070848D`, `0x007084F7`, `0x00708557`); both floats are read by `0x006FC760` (`0x006FCB97`, `0x006FCBA6`) |
 | `+0x728` | `f32` | exposure | the first float of `0x0070B390`, clamped to at least FLT_MIN (`0x0070B390`-`0x0070B3A8`); the game passes the active view's auto-exposure value (`0x006DC4B0` through `0x006CC170`); 1.0 during the alpha pass |
-| `+0x72C` | `f32` | exposureScale | the second float of `0x0070B390` (`0x0070B420`); the game passes 2.0 when the device byte is set, else 1.0 (`0x00193E7F`, `0x00193EA6`) |
+| `+0x72C` | `f32` | exposureScale | the second float of `0x0070B390`, stored as 0 when it is 0 or below (`0x0070B3FA`-`0x0070B420`); the game passes 2.0 when the device byte is set, else 1.0 (`0x00193E7F`, `0x00193EA6`) |
+| `+0x730` | `i32` | exposureMode | the fourth argument of `0x0070B390`, stored on every call (`0x0070B3B7`) |
 | `+0x734` | `f32` | hdrRange | the HDR range of `0x0070B390` (stack argument, the game passes 32.0), or 1.0 when `+0x48E` is set and `+0x738` takes 1 / range (`0x0070B3B0`-`0x0070B3F0`); `0x006FC370` keeps `+0x734` / `+0x738` clamped to 0.1..16 or 32 at `+0xC68` |
 | `+0x740` | `f32` | block73C_04 | the second float of the 16 bytes Initialize copies from `0x008C5FD0` to `+0x73C` (`0x00704FC7`); read by no instruction |
 | `+0x744` | `f32` | block73C_08 | the third float of that copy; read by no instruction |
@@ -678,7 +849,7 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0x74C` | `f32` | param74C | `0x0070AE10`'s float clamped to 0..1 (`0x0070AE18`-`0x0070AE30`); Initialize passes its default at `0x00704FBB`; read by the internal process and `0x006F4390` |
 | `+0x758` | `f32` | focusNear | `+0x750` clamped between the near distance `+0x5A4` and 0.99 × far (`0x006FC7BC`-`0x006FC806`, `0x006FC760`) |
 | `+0x75C` | `f32` | focusFar | `+0x754` clamped to the far distance and above `+0x758` (`0x006FC7C4`-`0x006FC846`) |
-| `+0x764` | `i32` | vignetteMode | vignette: 0 off, 1 from `0x0070B4B0`, 2 from CPostEffect::SetVignetteByOptics `0x0070B500`, 3 from CPostEffect::SetVignetteByOpticsImageCircle `0x0070B610`, 4 from `0x0070B700` (`0x0070B4EC`, `0x0070B5F9`, `0x0070B6E2`, `0x0070B764`); each setter first stores 0; Initialize leaves it 0 through `0x0070B4B0`(0, 0.05) (`0x0070502C`); read by `0x006FD110` and `0x006FC760` |
+| `+0x764` | `i32` | vignetteMode | vignette: 0 off, 1 from `0x0070B4B0`, 2 from CPostEffect::SetVignetteByOptics `0x0070B500`, 3 from CPostEffect::SetVignetteByOpticsImageCircle `0x0070B610`, 4 from `0x0070B700` (`0x0070B4EC`, `0x0070B5F9`, `0x0070B6E2`, `0x0070B764`); the two optics setters store 0 first (`0x0070B511`, `0x0070B630`) and the other two store 0 only when they refuse (`0x0070B4CD`, `0x0070B724`); Initialize leaves it 0 through `0x0070B4B0`(0, 0.05) (`0x0070502C`); read by `0x006FD110` and `0x006FC760` |
 | `+0x768` | `f32` | vignetteA | vignette: `0x0070B4B0`'s first float (`0x0070B4DA`) |
 | `+0x76C` | `f32` | vignetteB | vignette: `0x0070B4B0`'s second float (`0x0070B4E4`), `0x0070B700`'s stack float (`0x0070B75C`) or SetVignetteByOpticsImageCircle's stack float (`0x0070B66A`) |
 | `+0x770` | `f32` | vignetteC | vignette: the first float of SetVignetteByOptics (`0x0070B54D`), SetVignetteByOpticsImageCircle (`0x0070B64C`) and `0x0070B700` (`0x0070B744`) |
@@ -686,15 +857,18 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0x778` | `f32` | vignetteOpticsB | vignette by optics: its third float (`0x0070B579`); read by `0x006FC760` and `0x006FD110` |
 | `+0x77C` | `f32` | vignetteOpticsC | vignette by optics: its first stack float (`0x0070B581`); read by `0x006FC760` and `0x006FD110` |
 | `+0x780` | `f32` | vignetteOpticsD | vignette by optics: its second stack float (`0x0070B589`); read by `0x006FC760` and `0x006FD110` |
+| `+0x784` | `u8` | vignetteOpticsFlagA | vignette by optics: SetVignetteByOptics's third stack argument, a byte (`0x0070B555`-`0x0070B55A`) |
+| `+0x785` | `u8` | vignetteOpticsFlagB | its fourth stack argument (`0x0070B566`-`0x0070B56B`), or the third stack argument of SetVignetteByOpticsImageCircle (`0x0070B641`-`0x0070B646`) |
 | `+0x788` | `f32` | vignetteCircleA | vignette by optics image circle: SetVignetteByOpticsImageCircle's second float (`0x0070B654`); read by `0x006FC760` and `0x006FD110` |
 | `+0x78C` | `f32` | vignetteCircleB | vignette by optics image circle: its third float (`0x0070B65F`); read by `0x006FC760` |
 | `+0x790` | `f32` | vignetteCircleC | vignette by optics image circle: its second stack float (`0x0070B672`); read by `0x006FC760` |
 | `+0x794` | `f32` | vignetteD | vignette: `0x0070B700`'s second float (`0x0070B74C`) |
 | `+0x798` | `f32` | vignetteE | vignette: `0x0070B700`'s third float (`0x0070B754`) |
-| `+0x7A0` | `f32` | hdrLimit | `0x0070B390`'s last stack float, FLT_MAX becoming `0x7EFFFFFF` (`0x0070B40D`-`0x0070B42A`); the game passes -FLT_MAX (`0x006CC198`) |
-| `+0x96C` | `i32` | colourSpaceA | 0 from Initialize (`0x0070500C`); when it differs from `+0x970`, `0x0070B2A0` composes the matrices `0x006E2C30` and `0x006E3000` build from the two onto the matrix at `+0x92C` (`0x0070B2DE`-`0x0070B32B`) |
+| `+0x79C` | `u8` | vignetteFlag79C | vignette: `0x0070B700`'s third stack argument, a byte (`0x0070B731`-`0x0070B73C`); not stored when the setter refuses |
+| `+0x7A0` | `f32` | hdrLimit | `0x0070B390`'s last stack float, FLT_MAX becoming `0x7EFFFFFF` (`0x0070B40D`-`0x0070B42A`); the game passes -FLT_MAX (`0x006CC198`). `0x0070B390` returns 0; its `0x80070057` return (`0x0070B433`) sits behind a test of 0 above 0 (`0x0070B405`-`0x0070B40B`) and is never taken |
+| `+0x96C` | `i32` | colourSpaceA | 0 from Initialize (`0x0070500C`). `0x0070B2A0` copies the 64 bytes at `+0x92C` to its second argument (`0x0070B2AD`-`0x0070B2DA`) and returns that pointer; when `+0x96C` differs from `+0x970` it first calls `0x006E2C30`(&a, `+0x96C`), `0x006E3000`(&b, `+0x970`) and `0x006F1070`(&c, &a, &b) (`0x0070B2DE`-`0x0070B318`) and then `0x006F1070`(copy, copy, &c) (`0x0070B32B`); `+0x92C` itself is not written |
 | `+0x970` | `i32` | colourSpaceB | 0 from Initialize (the qword at `0x0070500C`); the second value `0x0070B2A0` compares |
-| `+0x974` | `u8` | dofEnable | the depth-of-field enable: `0x00708710` stores the game's enable byte when `+0x130` is set, else 0 (`0x00708710`-`0x0070872D`); read by the depth-of-field update `0x006FC760` |
+| `+0x974` | `u8` | dofEnable | the depth-of-field enable: `0x00708710` stores the game's enable byte when `+0x130` is set and returns 0, else stores 0 and returns 1 (`0x00708710`-`0x00708733`), setting `+0x6FD` in both cases (`0x00708717`); read by the depth-of-field update `0x006FC760` |
 | `+0x975` | `u8` | feedbackEnable | the feedback enable of SetFeedbackEnable (`0x0070AFE7`), 0 when `+0x13E` is clear (`0x0070AFD5`); read by the internal process and `0x0070B150` |
 | `+0x978` | `f32` | feedbackParam978 | 0 from Initialize (`0x00704BBB`), written by nothing else; read by `0x006F6D80` (`0x006F71DE`) |
 | `+0x9CC` | `f32` | lensParam9CC | π from Initialize (`0x00704582`); read by `0x006F4C40`, the internal process and `0x006FD760` |
@@ -731,6 +905,7 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0xC10` | `f32` | aoParamC10 | the fourth 0.5 of that vector |
 | `+0xC14` | `f32` | aoParamC14 | ambient occlusion: 1.0 from Initialize (`0x007046DA`); read by `0x006F61F0` |
 | `+0xC18` | `f32` | aoParamC18 | ambient occlusion: 1.0 from Initialize (`0x007046E4`); read by `0x006F61F0` |
+| `+0xC24` | `u8` | temporalAntialiasEnable | the enable byte of SetTemporalAntialiasEnable: its argument while `+0x136` is set (`0x0070ABD7`, answer 0), else 0 (`0x0070ABC5`, answer 1) |
 | `+0xC28` | `i32` | taaParamC28 | temporal anti-alias: 2 from Initialize (`0x00704668`); read by the temporal anti-alias pass `0x006F65A0` and UpdateParameters_Base |
 | `+0xC30` | `f32` | taaBlend | temporal anti-alias: `0x0070ABF0`'s first float clamped to 0..1 (`0x0070ABF6`-`0x0070AC49`); 0.05 by default (`0x0070464B`) |
 | `+0xC34` | `f32` | taaParamC34 | temporal anti-alias: `0x0070ABF0`'s second float (`0x0070AC04`) |
@@ -742,7 +917,7 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0xC4C` | `i32` | tonemapResampleFilter | the filter of SetTonemapResampleFilter (`0x0070B0CF`); read by the internal process and `0x0070B150` |
 | `+0xC50` | `f32` | tonemapResampleScale | \|SetTonemapResampleFilter's float\|, at most 1.0 (`0x0070B0C1`-`0x0070B0FF`) |
 | `+0xC60` | `f32` | autoFocusSet | 1.0 once `0x0070F200` accepts auto-focus values (`0x0070F252`); read by the auto-focus pass `0x006F4C40` |
-| `+0xC64` | `f32` | autoExposureSet | 1.0 once `0x0070EC90` accepts auto-exposure values (`0x0070ED70`); read by the auto-exposure pass `0x006F4390` |
+| `+0xC64` | `f32` | autoExposureSet | 1.0 from every call of `0x0070EC90`, whose one refusing return no input reaches (`0x0070ED70`); read by the auto-exposure pass `0x006F4390` |
 | `+0xC68` | `f32` | hdrRangeRatio | `+0x734` / `+0x738` clamped to 0.1..16 when `+0x48E` is set, else 0.1..32 (`0x006FC6D1`-`0x006FC74A`); read by `0x006F4390` (`0x006F488E`) |
 | `+0xC6C` | `i32` | glareMode | the glare mode of SetGlareParameters (`0x007075C4`); the game passes 1 (`0x006CC1E0`); read by the internal process |
 | `+0xC70` | `f32` | glareRemapFactor | SetGlareParameters' fifth argument, refused when not above 0 (`0x0070756D`); 0.001 (`0x3A83126F`) is stored when it is 0.001 or below (`0x007075AB`-`0x007075E1`); read by the internal process (`0x006FAB86`, `0x006FB015`) |
@@ -754,7 +929,7 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0xCDC` | `f32` | paramCDC | 1.0 from Initialize (`0x00705187`); read by the internal process (`0x006FAE38`) |
 | `+0xCF0` | `f32` | depthOfFieldDepthScaleInverse | 1 / `+0xCE8` (`0x006FD02E`-`0x006FD037`), set by the depth-of-field update `0x006FC760`; with `+0xCF4` it undoes the `+0xCE8`/`+0xCEC` depth map, the last step of `0x00708D10`'s depth conversion (`0x00708E92`-`0x00708ECB`); `0x006FE620` starts the motion-blur depth window from it (`0x006FE671`) |
 | `+0xCF4` | `f32` | depthOfFieldDepthOffsetInverse | -(`+0xCEC` / `+0xCE8`) (`0x006FD033`-`0x006FD04C`), the offset that goes with `+0xCF0`; added in `0x00708D10`'s last step (`0x00708EAB`) and in `0x006FE620` (`0x006FE681`) |
-| `+0xCF8` | `f32` | depthReferenceDistance | the reference distance of the first step of `0x00708D10`'s depth conversion, which also uses the near and far distances (`0x00708DEF`-`0x00708E36`): the focus distance `+0x700` while depth of field is on (`0x006FCEAA`-`0x006FCEB0`); otherwise the near end of the depth window that motion blur (`+0xA64`/`+0xA68`), heat shimmer (`+0xB10`/`+0xB14`) and the antialias falloff (`+0xC58`/`+0xC5C`) need, the whole near-to-far range when `0x006FD760` asks or motion blur is type 2, raised to at least `+0x758`, and the far distance when nothing needs a window (`0x006FC9DA`-`0x006FCB26`, `0x006FCEDD`), or that window's far end capped at near x 64000 when both scene textures have depth formats and `+0x760` is clear (`0x006FCF3C`-`0x006FCFF5`); also read by `0x006F2CB0`, `0x006FD760`, `0x006FE620`, `0x00708CD0` and `0x0070E1B0` |
+| `+0xCF8` | `f32` | depthReferenceDistance | the reference distance of the first step of `0x00708D10`'s depth conversion, which also uses the near and far distances (`0x00708DEF`-`0x00708E36`): the focus distance `+0x700` while depth of field is on (`0x006FCEAA`-`0x006FCEB0`); otherwise the near end of the depth window that motion blur (`+0xA64`/`+0xA68`), heat shimmer (`+0xB10`/`+0xB14`) and the antialias falloff (`+0xC58`/`+0xC5C`) need, the whole near-to-far range when `0x006FD760` asks or motion blur is type 2, raised to at least `+0x758`, and the far distance when nothing needs a window (`0x006FC9DA`-`0x006FCB26`, `0x006FCEDD`), or that window's far end capped at near x 64000 when both scene textures have depth formats and `+0x760` is clear (`0x006FCF3C`-`0x006FCFF5`); also read by `0x006F2CB0`, `0x006FD760`, `0x006FE620`, `0x0070E1B0` and `0x00708CD0`, which returns it after running the update `0x006FC760`(this) when `+0x6FD` is set (`0x00708CD6`-`0x00708CF5`) |
 | `+0xCFC` | `u8` | effectsBeforeTonemap | 1 when any effect draws before the tonemap this frame: depth of field (`+0xCE3`), ambient occlusion (`+0xD30`), antialias (`+0xC55`), temporal anti-alias (`+0xD31`), chromatic aberration (`+0x9D5`, `+0x9DD`), lens distortion (`+0xD27`), Airy disc (`+0xD01`), Gaussian blur (`+0xD08`), motion blur (`+0xD09`) or heat shimmer (`+0xD24`) (`0x006F832C`-`0x006F8394`); while it is set the chain cannot start in the scene buffer (`0x006F8862`) |
 | `+0xCFD` | `u8` | depthResolveNeeded | 1 when the frame needs the depth buffer: `+0xCE5` or `+0xCE0`, or ambient occlusion (`+0xD30`) or the velocity temporal anti-alias (`+0xD32`) working from the depth texture (`+0x440`) rather than a depth-factor source (`+0x468`, `+0x58`) (`0x006F839A`-`0x006F83F1`); EndPostEffectScene_PreProcess then resolves the depth-stencil texture (`0x00722800`, `0x00722900`) and sets `+0x558` (`0x006F8DD3`-`0x006F8DDC`, `0x006F8E3A`-`0x006F8E66`, `0x006F8F6F`-`0x006F8FAD`) and `0x02EA1900` is cleared while it is clear (`0x006F8D40`-`0x006F8D64`) |
 | `+0xCFE` | `u8` | hdrEncodingsMatch | 1 when the two 16-bit halves of the HDR encoding word `+0x730` are equal (`0x006FC3EE`-`0x006FC422`); EndPostEffectScene_PreProcess lets HDR input (`+0x48E`) start the chain in the scene buffer only while it is set (`0x006F886B`-`0x006F887B`) |
@@ -772,7 +947,29 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 | `+0xD1C` | `f32` | motionBlurDepthOffset | the offset that goes with `+0xD18`: written by `0x006FE620` (`0x006FE68D`, `0x006FE78A`), cleared with it (`0x006F7B79`) |
 | `+0xD20` | `f32` | velocityMapScale | the velocity-map scale: 0 each frame (`0x006F78E0`); for motion-blur type 2 the length `0x007472C0` returns divided by the work texture's size `+0x60` (`0x006F7EDE`-`0x006F7EF2`, stored `0x006F7F45`); raised to at least the temporal anti-alias value `+0xC38` when temporal anti-alias reprojects (`+0xC28` 1 or 2) (`0x006F8008`-`0x006F8044`); `0x006F36D0` and the motion-blur pass give it to the velocity-map draw `0x007485F0` (`0x006F3AF6`, `0x006F5DC2`) |
 | `+0xD34` | `u8[4]` | unusedSpanD34 | written and read by no function; nothing fixes its width |
-| `+0xD38` | `void*` | effectSourceCurrent | the effect source in use: `0x006FD070` picks it from `+0xD8`, `+0xE0`, `+0xE8` or `+0x28` (`0x006FD085`-`0x006FD0FB`); EndPostEffectScene_Process sets and restores it around the alpha pass (`0x006FB9D5`, `0x006FBE90`) |
+| `+0xD38` | `void*` | effectSourceCurrent | the effect source in use: `0x006FD070` picks it from `+0xD8`, `+0xE0`, `+0xE8` or `+0x28` (`0x006FD085`-`0x006FD0FB`); EndPostEffectScene_Process sets and restores it around the alpha pass (`0x006FB9D5`, `0x006FBE90`); cleared by `0x0070D240` (`0x0070D257`), which also clears `+0xD8` and `+0xE0` (`0x0070D249`, `0x0070D250`), and by `0x0070D270` (`0x0070D31A`), which also clears `+0xE0` and `+0xE8` (`0x0070D302`, `0x0070D30F`) |
+
+`SetDepthFactorSource` (`0x007114F0`) takes a kind, a texture, a second source object, a parameter and two
+floats, and first sets the byte `+0x6FD` to 1 (`0x007114F6`). It has a source when either pointer is set
+(`0x007114FD`-`0x0071150C`). A kind of 9 is resolved first (`0x0071151C`-`0x00711557`): with no source it becomes 8
+while the byte `+0x440` is set and 3 otherwise; with a source it becomes 0 when the source's format code is
+`0x14`, `0x28`, `0x2D` or `0x37` and 3 otherwise. The format code is the texture's dword `+0x44`, or the
+second object's `+0xB0` when no texture is given.
+
+A parameter of 5 is resolved next (`0x0071156B`-`0x00711640`): with a source it becomes 0 for those four format
+codes and 2 for any other; with no source it becomes 0 when the kind, as resolved, is 8 and 2 otherwise.
+
+With a source while the byte `+0x464` is 0, the call stores nothing more and answers `0x80004001`
+(`0x00711645`-`0x00711682`). When the levels `0x01F3BA80` and `0x01F3BA90` are both at least 1 it first logs, through
+`0x006DF480`, a PPFX ERROR line, source line `0x8001`: "CPostEffect::SetDepthFactorSource(): Initialize() with
+PFXINIT_DEPTHFACTORSOURCETEXTURE flag for user depth factor texture."
+
+Otherwise it answers 0 and stores the kind at `+0x470` and the parameter at `+0x474`. With a source and a kind
+other than 8 it keeps the texture at `+0x468`, the second object at `+0x58` and the two floats at `+0x478` and
+`+0x47C` (`0x007115F8`-`0x00711619`); in every other case it stores 0 in both pointers and the floats 1.0 and 0
+(`0x00711585`-`0x0071158C`). The 16-byte store that carries the floats also puts 0 in `+0x480` and `+0x484`
+(`0x007115A7`-`0x007115B7`); the last two stores replace that with `1.0 / [+0x478]` at `+0x480` and
+`-([+0x47C] / [+0x478])` at `+0x484` (`0x007115BE`-`0x007115E5`).
 
 `EndPostEffectScene_PreProcess` (`0x006F8740`) gives each effect that is on its own render-buffer slots from the ring `+0x4D0`, `+0x4D4` .. `+0x4D4` + `+0x36C` - 1 (`0x006F8904`-`0x006F8D53`). An effect that is off passes its source slot on as its result. `EndPostEffectScene_InternalProcess` (`0x006F9030`) then draws the effects in this order:
 
@@ -796,6 +993,39 @@ The library's global block, `CPostEffect`, is `0xD40` bytes at `[0x02EA0B70]`: t
 
 Each result slot is the next step's source slot: `+0x4E0` = `+0x4E4`, `+0x52C` = `+0x548`, `+0x54C` = `+0x538`, `+0x53C` = `+0x540`, `+0x544` = `+0x530` and `+0x534` = `+0x550` = `+0x554` are stored from one register (`0x006F8967`-`0x006F8D53`). Motion blur takes its slots from `0x006FE080` at whichever of the two places `+0xD14` picks.
 
+`0x00708D10` writes a depth conversion to its second argument: 16 bytes holding a scale `a`, an offset `b`, `1.0 / a`
+and `-(b / a)` (`0x00708F65`-`0x00708FA2`), and returns 0. Its third and fourth arguments name the depth form converted
+from and to; a 6 stands for the parameter `+0x474` (`0x00708D46`-`0x00708D58`). While the byte `+0x6FD` is set it runs the
+update `0x006FC760(object)` first (`0x00708D5E`-`0x00708D67`, and once more at `0x00708DDE`-`0x00708DEA` when the two forms
+differ).
+
+It starts from `a = 1.0`, `b = 0` and, when the two forms differ, applies each step that lies between the lower and
+the higher of them, in rising order (`0x00708D8F`-`0x00708ECB`). Step 0 to 1 uses the near distance `n` (`+0x5A4`), the
+far distance `f` (`+0x5A8`) and the reference distance `r` (`+0xCF8`): `a = (f - n) × r / (f × n)` and
+`b = 1.0 - r / n`. Step 1 to 2 applies the depth-of-field map: `a = a × [+0xCE8]`, `b = b × [+0xCE8] + [+0xCEC]`.
+
+Step 2 to 3 applies the inverse map the same way, `a = a × [+0xCF0]`, `b = b × [+0xCF0] + [+0xCF4]`, and then
+`a = a × k`, `b = b × k` with `k` the float `0x00709540(object)` returns (`0x00708E92`-`0x00708ECB`). When the form
+converted to is the lower of the two, the result is then inverted: `b = -(b / a)`, `a = 1.0 / a`
+(`0x00708ED9`-`0x00708EFA`). Last, on every path, come its two stack floats `s` and `o`, unless `s` is 1.0 and `o` is 0:
+`b = b - (o / s) × a`, then `a = a × (1.0 / s)` (`0x00708F00`-`0x00708F5F`).
+
+`0x0070EC90`, the auto-exposure setter, takes a view, two floats `p` and `q` and five stack floats `t1` to `t5`. It
+holds `p` to 0..1.0 and `q` and `t1` to 0 or more (`0x0070ECA7`-`0x0070ECD9`). `t2`, `t3` and `t4`, each when below 0,
+take `p`, `q` and `t1` as just limited (`0x0070ECDC`-`0x0070ED03`), and are then held to the same limits: `t2` to 0..1.0,
+`t3` and `t4` to 0 or more (`0x0070ED06`-`0x0070ED25`).
+
+It stores 1.0 at `+0xC64` (`0x0070ED70`) and writes the values to the `0x68`-byte auto-exposure record of the view,
+`[+0x1F8] + 0x68 × view`: the view named when it is 0 or more and below the signed count `+0x328`, the active view
+`+0x1F0` standing for -1, and every view below the count for `0x7FFFFFFF`; any other view gets no record
+(`0x0070ED7A`-`0x0070EE0E`). The record takes `t5` at `+0x30`, `p` at `+0x34`, `q` at `+0x38`, `t1` at `+0x3C` and `t2`,
+`t3`, `t4` at `+0x40`, `+0x44` and `+0x48`.
+
+`0x0070EC90` answers 1 when a record it wrote has a null qword `+0x60`, else 0 (`0x0070EDD9`-`0x0070EDE3`, `0x0070EE15`). Its
+`0x80070057` return (`0x0070EE26`) is never taken: the eight tests before it (`0x0070ED28`-`0x0070ED6A`) ask whether a value
+lies outside the limit it has just been held to, and each is a `comiss` / `ja` pair, which a value that is not a
+number does not take either.
+
 The init descriptor, `PFX_INITPARAM` (named by Initialize's check of its first field), is `0x118` bytes. `0x006CBBC0` writes its defaults; `0x006CBD20` builds one on its stack and changes four fields before `0x006DAA70` passes it on (`0x006CBDD7` to `0x006CBDF3`). Initialize copies it to `+0x210` and again to `+0x328` (`0x006FFA65`, `0x006FFB0B`) and works from the second copy.
 
 `PpfxInitDescriptor` (`0x118` bytes, offsets from the start of the record):
@@ -803,7 +1033,7 @@ The init descriptor, `PFX_INITPARAM` (named by Initialize's check of its first f
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x000` | `i32` | effectViews | PFX_INITPARAM::m_nEffectViews, the number of effect views: default 1 (`0x006CBBC2`); Initialize refuses a value below 1 with "PFX_INITPARAM::m_nEffectViews must be greater than or equal to 0." (`0x006FFDBB`) and allocates one auto-exposure record (`0x68` bytes) and one auto-focus record (`0x48` bytes) per view (`0x00700B5A`-`0x00700D9E`) |
-| `+0x004` | `u32` | sceneFormat | a texture format code for the effect buffers; 0 (the default) lets `0x006F2380` choose, or the value at rbp-`0x80` when CPostEffect `+0x48F` is set (`0x00700F2B`-`0x00700F59`); read at `0x007003ED` |
+| `+0x004` | `u32` | sceneFormat | a texture format code for the effect buffers; 0 (the default) lets `0x006F2380` choose, or the value at rbp-`0x80` when CPostEffect `+0x48F` is set (`0x00700F2B`-`0x00700F59`); read at `0x007003ED`. `0x006F2380` returns `0x00726FB0`(CPostEffect `+0x20`, flags, 3, list, 7, `0xA`): the flags 1 plus `0x80000` when bit `0x1000` of CPostEffect `+0x20C` is set, the list `0xA`, `0xA`, `0xB`, 2, `0x18`, `0x1C`, `0x57`, its count and the fallback `0xA` (`0x006F2393`-`0x006F23F2`) |
 | `+0x008` | `u32` | sourceFormat | a second format code (`0x007003F7`); 0 takes `+0x04`'s value unless CPostEffect `+0x48C` is set (`0x00700443`); when it differs from `+0x04`'s result Initialize sets CPostEffect `+0x488` (`0x00700FB8`-`0x00700FC6`) |
 | `+0x00C` | `u32` | sampleLimit | read at `0x00700402`; 0 becomes `0x7FFFFFFF` (`0x00701002`-`0x00701011`), the limit Initialize passes to `0x0071B9C0` (`0x0070104D`-`0x0070106A`); 2 or more back from that call sets CPostEffect `+0x488` |
 | `+0x010` | `u32` | renderWidth | the render width; 0 (the default) takes the width of the device surface description at CPostEffect `+0x38` (`+0x08`) (`0x00700340`-`0x0070035D`) |
@@ -821,7 +1051,7 @@ The init descriptor, `PFX_INITPARAM` (named by Initialize's check of its first f
 | `+0x04C` | `u8[4]` | glareScale | the glare buffer scale, a float; 0 or less takes `+0x00` of the glare quality row at `0x01F3C5B0` (8 bytes per row, indexed by the glare quality argument) (`0x00701EE7`-`0x00701EF7`); default 0 |
 | `+0x050` | `u32[2]` | glareSize | `+0x50`: the glare buffer width, 0 = from the scale (`0x00701F64`-`0x00701F69`); `+0x54`: overrides the glare quality row's `+0x04` (`0x00701F6F`-`0x00701F7C`); default 0 (`0x006CBBE5`) |
 | `+0x058` | `u32` | formatA | a texture format code; 0 lets `0x006F2410` choose (`0x00700F5C`-`0x00700F74`); passed into the glare initialisation record (`0x007020F0`) |
-| `+0x05C` | `u32` | formatB | a texture format code; 0 lets `0x006F24F0` choose, or `0x1D` when CPostEffect `+0x48D` is set (`0x00700F77`-`0x00700FB4`); passed into the glare initialisation record (`0x007020F9`) |
+| `+0x05C` | `u32` | formatB | a texture format code; 0 lets `0x006F24F0` choose, or `0x1D` when CPostEffect `+0x48D` is set (`0x00700F77`-`0x00700FB4`); passed into the glare initialisation record (`0x007020F9`). `0x006F24F0` returns `0x00726FB0`(CPostEffect `+0x20`, `0x20001`, 3, list, 5, `0x18`): the list `0x18`, `0x18`, `0x1C`, `0x57`, `0x58`, its count and the fallback `0x18` (`0x006F2503`-`0x006F253D`) |
 | `+0x060` | `f32[2]` | glareParams | `+0x60` (default 0.25, `0x006CBC19`) and `+0x64`: the first two values of the record Initialize hands m_pRenderGlare->Initialize (`0x007020C6`-`0x007020DC`, record at rbp+`0xB0`, call at `0x007021E0`) |
 | `+0x068` | `u8[2]` | glareFlags | two bytes, default 1 and 1 (`0x006CBC21`), copied into the glare initialisation record (`0x0070213C`-`0x00702150`) |
 | `+0x06A` | `u8[2]` | pad06A | written and read by no function; nothing fixes its width |
@@ -850,6 +1080,10 @@ The init descriptor, `PFX_INITPARAM` (named by Initialize's check of its first f
 | `+0x111` | `u8[3]` | pad111 | written and read by no function; nothing fixes its width |
 | `+0x114` | `u32` | externalMode | default 0 (`0x006CBCF5`); 1 or 2 sets CPostEffect `+0x438`, and 2 also adds init flag `0x400` (`0x006FFC99`-`0x006FFDB1`) |
 
+`0x00713820`, which picks the velocity format of `+0xF8`, turns seven texture format codes into others and returns every
+other code as it came: `0x1D` gives `0x1C`, `0x48` gives `0x47`, `0x4B` gives `0x4A`, `0x4E` gives `0x4D`, `0x5B`
+gives `0x57`, `0x5D` gives `0x58` and `0x63` gives `0x62` (`0x00713822`-`0x00713897`).
+
 The integration object at `0x02D38540`, `0x10` bytes from `0x0065E5D0`:
 
 `PostProcessingLibraryWrapper` (`0x10` bytes, offsets from the start of the record):
@@ -857,7 +1091,7 @@ The integration object at `0x02D38540`, `0x10` bytes from `0x0065E5D0`:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `void*` | record | the `0x78`-byte integration record built by `0x006CBAA0` (`0x0065E553`-`0x0065E56D`); every wrapper of `0x00193DA0` loads it first |
-| `+0x08` | `u8` | ready | the ready flag: 0 from the constructor `0x0065E530` (`0x0065E54C`), 1 from `0x0065E580` after `0x006CBD10` (`0x0065E591`, called at `0x0062549D`); `0x0018E470` reads it through `0x001976E0` (`0x0018E481`) and builds the post-process command only while it and the render parameter block's `+0xA0` are set |
+| `+0x08` | `u8` | ready | the ready flag: 0 from the constructor `0x0065E530` (`0x0065E54C`), 1 from `0x0065E580` after `0x006CBD10` (`0x0065E591`, called at `0x0062549D`), which only stores its second argument's low byte at `+0x74` of the record (`0x006CBD10`); `0x0018E470` reads the flag through `0x001976E0` (`0x0018E481`) and builds the post-process command only while it and the render parameter block's `+0xA0` are set |
 | `+0x09` | `u8[7]` | pad009 | written and read by no function; nothing fixes its width |
 
 The render parameter block's switch fields (the block is `0x4A8` bytes; the rest is on
@@ -938,6 +1172,11 @@ One row per body, 732 rows, each inside the span between two functions of
 | `0x006DE780` | shut down: uninitialise, clear the block's maps, clear `0x02EA0B70`. It sets the vtable `0x00D8F8E8` (`0x006DE7AD`); with `[0x02EA0B70]` null it goes straight to the closing banner (`0x006DE7E9`). Otherwise it releases `0x02EA0B78` and `0x02EA0B80` through their slot `+0x08` and clears them (`0x006DE7F2`-`0x006DE81F`), runs `0x00705520(block, 0)`, `CPostEffect::Uninitialize` (`0x006DE82F`), and on a negative result prints an ERROR line with the code and its text from `0x0071B3C0` (`0x006DE859`-`0x006DE873`). Then `0x006FF840` clears the block's maps (`0x006DE8C2`), `0x006DA8A0` frees the block through `[0x01F3BA68]` (`0x006DE8CE`), `0x02EA0B70` is cleared (`0x006DE8D4`) and the object's `+0x10` is zeroed (`0x006E0370`, `0x006DE8E4`). It ends by a tail jump to `0x006E03C0`, which stores the vtable `0x00D8F9E8` (`0x006DE939`). The opening banner, the success line and the closing banner print only while `0x01F3BA80` and `0x02EA0B40` are non-zero, and the closing banner is skipped after a failed Uninitialize (`0x006DE8E9`) | `IPfxBaseContext::~IPfxBaseContext()` |
 | `0x006FF900` | build the effect chain on the GPU device | `CPostEffect::Initialize()` |
 | `0x00707560` | glare parameters: refuses a fifth argument (GlareRemapFactor) of 0 or below with the ERROR line "GlareRemapFactor must be greater than 0.0." and returns `0x80004005` (`0x0070756D`, `0x007075A1`); otherwise it stores the mode at `+0xC6C` (`0x007075C4`), the two values at `+0x6E4` and `+0x6E0` (`0x007075CB`, `0x007075D3`) and the factor at `+0xC70`, or 0.001 when `factor <= 0.001` (`0x007075AB`, `0x007075DB`, `0x007075E1`), and returns 0 (`0x007075E7`) | `CPostEffect::SetGlareParameters()` |
+| `0x0070B4B0` | vignette, mode 1: clears the byte `+0x3B8` of the object `+0x118` when that object is set (`0x0070B4B0`-`0x0070B4BC`); a first float of 0 stores mode 0 at `+0x764` and neither float (`0x0070B4C6`-`0x0070B4D7`); any other value stores both floats at `+0x768` and `+0x76C` and mode 1; it returns 0 either way | |
+| `0x0070B500` | vignette by optics: stores mode 0, clears the byte `+0x3B8` of the object `+0x118` with no pointer test (`0x0070B504`-`0x0070B51B`) and stores its five floats and two bytes at `+0x770`-`+0x785`. It returns 0 with mode 0 when the first float is 0 or below and the optics values are unusable: the second float 0 or below, the second stack float 0, or the third float and the first stack float both 0 (`0x0070B50E`-`0x0070B549`, `0x0070B591`-`0x0070B595`). Otherwise, while the byte `+0x132` is 0, it returns 1 with mode 0, after the WARNING line "CPostEffect::SetVignetteByOptics(): Initialize() with PFXINIT_OPTICALVIGNETTING flag for optical vignetting." (line `0x298E`) when the levels `0x01F3BA80` and `0x01F3BA8C` are both at least 1 and the optics values are usable or the first float is above 0 (`0x0070B597`-`0x0070B5D8`); with `+0x132` set it stores its fifth stack argument, a byte, at `+0x3B8` of the object `+0x118`, when that is set, and mode 2, and returns 0 (`0x0070B5E2`-`0x0070B603`) | `CPostEffect::SetVignetteByOptics()` |
+| `0x0070B610` | vignette by optics image circle: stores mode 0, clears the byte `+0x3B8` of the object `+0x118` without testing the pointer (`0x0070B630`-`0x0070B63A`), stores its third stack argument, a byte, at `+0x785` (`0x0070B646`) and its five floats. With the first and the second float both 0 or below it returns 0 with mode 0 (`0x0070B62D`, `0x0070B65C`-`0x0070B67E`). Otherwise, while the byte `+0x132` is 0, it returns 1, after the same WARNING text under its own name (line `0x29CE`) when the levels `0x01F3BA80` and `0x01F3BA8C` are both at least 1 and, besides, the second float is not 0 or below, or the first is above 0 (`0x0070B680`-`0x0070B6C1`); with `+0x132` set it stores its fourth stack argument, a byte, at `+0x3B8` of the object, when that is set, and mode 3, and returns 0 (`0x0070B6CB`-`0x0070B6EC`) | `CPostEffect::SetVignetteByOpticsImageCircle()` |
+| `0x0070B700` | vignette, mode 4: stores its second stack argument, a byte, at `+0x3B8` of the object `+0x118` when that object is set (`0x0070B700`-`0x0070B711`). When its first float is 0 or below and its third is below 0 it stores mode 0 and nothing else (`0x0070B71A`-`0x0070B72E`); otherwise it stores its third stack argument, a byte, at `+0x79C`, the four floats and mode 4 (`0x0070B731`-`0x0070B764`). It returns 0 either way | |
+| `0x0070B990` | end the scene: calls `0x006FB810(its own first three arguments, unchanged)` (`0x0070B996`) and returns 0, or the negative result it gave, after the ERROR line "CPostEffect::EndPostEffectScene(): EndPostEffectScene_Process() failed (0x%x: %s)." (line `0x5D29`, the result and its name from `0x0071B3C0(result)`) when the levels `0x01F3BA80` and `0x01F3BA90` are both at least 1 (`0x0070B99D`-`0x0070B9E4`) | `CPostEffect::EndPostEffectScene()` |
 | `0x0070BA00` | run the effects on a frame: refused with `0x80004005` while the byte `+0x00` is set ("Cannot be called while BeginPostEffectScene() and EndPostEffectScene()", `0x0070BA0A`, `0x0070BA43`), and while the byte `+0x147` is set with no output target at `+0x60` ("At least SetEffectSource() must be called", `0x0070BA53`-`0x0070BA92`); otherwise it calls `BeginPostEffectScene` (`0x0070B780`, `0x0070BAC2`) with 0, 0, the float `0xFF7FFFFF`, 0 and -1, then `EndPostEffectScene` (`0x0070B990`, `0x0070BACF`) with its own second argument and 0, and returns End's result when it is negative, else 0 (`0x0070BAD9`-`0x0070BADE`) | `CPostEffect::ApplyEffects()` |
 | `0x006DF480` | write a diagnostic line | |
 
@@ -985,10 +1224,39 @@ texture bound to slot *n* at `0x02EA18C0` + 8*n* and the surface of it in use at
 `0x007224C0` stores both (`0x007225A9`, `0x007225B1`); a caller passing surface -1 gets the stored one (`0x0071FD78`). Every
 loop over the slots stops at 8.
 
+The binder takes the texture, the slot, a flag word, a byte, the surface index and one more value. The surface pointer
+is the entry for that index in the list at the texture's `+0xD0 + 8 × [+0xA0]` (`0x007224D0`-`0x00722500`). It first
+calls `0x007226E0(slot, flag word, flag word, 0, 1.0, 0, &local)`, unless bit `0x2` of the flag word is set while the
+tiling flag `0x02EA18B1` is 0, and returns a negative answer of that call at once (`0x00722504`-`0x0072253B`).
+
+Then it binds the surface through slot `+0x30` of the device at the texture's `+0x28`, passing the slot, the surface
+pointer and its last argument; it returns a negative answer of that call and otherwise stores the two array entries
+(`0x0072257F`-`0x007225B1`). It calls `BeginTiling`, `0x00722A40(8, 0, 1.0, 0)` (`0x007225E9`), unless bit `0x4` of the flag
+word or bit `0x80000000` of the texture's `+0x38` is set, or the texture's second list, at `+0xE0 + 8 × [+0xA0]`,
+holds null for that surface (`0x007225B9`-`0x007225DC`).
+
+Last, when the byte argument is set, the binder hands slot `+0x78` of the device a block of four dwords and two floats
+taken from the texture: `([+0x64] >> s) + [+0x9C]`, `([+0x68] >> s) + [+0x9C]`, `[+0x5C] >> s` and `[+0x60] >> s`,
+with `s` the surface index, then the texture's floats `+0x6C` and `+0x70` (`0x0072261D`-`0x0072266A`). It returns a
+negative answer of that call, and 0 in every other case (`0x0072266D`-`0x00722671`).
+
+That last call is made only when one of three things holds, every offset here being the texture's: `+0x9C` is not 0;
+the surface's recorded size, the dwords `+0x08` and `+0x0C` of its `0x18`-byte entry in the list at `+0x80`, differs
+from `[+0x5C] >> s` and `[+0x60] >> s`; or the floats `+0x6C` and `+0x70` are not 0 and 1.0 (`0x00722541`-`0x0072257C`,
+`0x007225EE`-`0x0072261B`).
+
 - `0x02EA1914` counts the render textures attached to the current device. Slots 0 (`0x007214A0`) and 5 (`0x007215C0`)
   add 1 when a texture attaches to a new device; slot 1 (`0x00721B10`) subtracts 1 when it detaches. An attach at 0
   stores the device in `0x02EA1918` and clears both arrays; a detach back to 0 clears `0x02EA1918` and both arrays. No
   instruction reads `0x02EA1918`.
+- Slot 0 (`0x007214A0`) answers 1 at once when bit `0x80000000` of the texture's dword `+0x38` is set
+  (`0x007214AF`-`0x007214C2`). Otherwise it calls `0x007273E0(its own two arguments)` and returns a negative answer as it is
+  (`0x007214D7`-`0x007214DE`).
+- Slot 0 counts the attach in `0x02EA1914` when its second argument, the device, is not null and the texture's `+0x28`
+  after that call differs from the value read before it; with the count at 0 it first stores the device in `0x02EA1918`
+  and zeroes the four qwords from `0x01F3CB18` and the nine from `0x02EA18C0` (`0x007214B9`, `0x007214EB`-`0x00721564`).
+- Slot 0 then calls `0x00720320(texture)` when the texture's `+0x28` and the dword `+0x44` are both set and `+0xA8` or
+  `+0xB8` is 0, and returns its answer when negative; in every other case it returns 0 (`0x0072156A`-`0x00721598`).
 - `CRenderTexture::BeginTiling` (`0x00722A40`) counts the bound targets into `0x02EA190C` and keeps its first, third and
   fourth arguments and the 16 bytes at its second in `0x02EA1908`, `0x01F3CB38`, `0x02EA1910` and `0x02EA1938`. No
   instruction reads those five. `EndTiling` (`0x00722C80`) clears both arrays and `0x02EA1908`.
@@ -1005,13 +1273,35 @@ loop over the slots stops at 8.
 - `0x02EA1948` is the current `IGPUDevice` (vtable `0x00D9EA30`): `IGPUDevice::InitializeDevice` (`0x00723760`) stores
   it and `~IGPUDevice` (`0x00724500`) clears it. The texture creators `0x007875F0` and `0x00787A90` use it when their
   caller passes no device.
-- `0x02EA1960` is a 0x28-byte device description that `InitializeDevice` and slot 5 (`0x00724940`) copy from their
-  argument, or clear. `InitializeDeviceBuffers` (`0x00723440`) replaces a 0 width (`0x02EA1960`) or height (`0x02EA1964`)
+- `0x02EA1960` is a 0x28-byte device description. `InitializeDevice` copies it from its argument or clears it; slot 5
+  (`0x00724940`) copies it when an argument is given and otherwise leaves it (`0x00724955`-`0x00724974`).
+- Slot 5 then calls `0x00724830(device)` (`0x0072497C`). When the argument's `+0x18` is set and differs from the device's
+  `+0x30`, it calls slot `+0x10` of the old one, if any, and stores 0 there (`0x007249A5`), then stores the new one
+  there and calls its slot `+0x08` (`0x00724983`-`0x007249B4`). It ends with `InitializeDeviceBuffers`, `0x00723440(device)`
+  (`0x007249BA`), and returns that answer when it is negative, else 0 (`0x007249C4`-`0x007249C9`).
+- `0x00724830` calls slot `+0x08` of each pointer that is set among the eight from the device's `+0x8F0` and those at
+  `+0x930`, `+0x9B8`, `+0x9E0` and `+0x9E8`, stores 0 in each of these, and returns 0 (`0x00724847`-`0x007248D9`).
+- `InitializeDeviceBuffers` (`0x00723440`) replaces a 0 width (`0x02EA1960`) or height (`0x02EA1964`)
   with the one the device reports through its slot `+0x80` (`0x00723473`), and takes a reference to the back buffer at
   `+0x20` (`0x02EA1980`) when one is given.
 - `0x02EA1998` and `0x02EA19A8` are the resource registry of `GPUResourceManage.cpp`: the device of the first
-  registration (`0x00727460`, through `0x00727800`) and a 0x18-byte list of the registered resources. The last
-  unregistration (`0x007276F0`) frees the list and clears both (`0x00727870`).
+  registration (`0x00727460`, through `0x00727800`) and a 0x18-byte list of the registered resources.
+- `0x00727800` stores its argument at `0x02EA1998` (`0x00727808`), sets the count `0x02EA19A0` to 0 (`0x00727823`) and stores at
+  `0x02EA19A8` the list with its three qwords at 0, or 0 when the allocation
+  `0x006DA880([0x01F3BA68], 0x18, 0x00D9ECE8, 0x12A, 0)` answers null (`0x00727831`-`0x00727855`); it returns 0 either way.
+- The unregistration `0x007276F0` does nothing and returns 0 for a resource whose `+0x28` is 0 (`0x00727707`-`0x00727710`).
+  Otherwise it takes 1 from the count `0x02EA19A0` (`0x00727715`) and looks the resource up in the list
+  (`0x00727729`-`0x00727741`). Found, it closes the gap with `memmove` (the import slot `0x008C2A40`) and takes 8 from the
+  list's end pointer `+0x08` (`0x007277B2`-`0x007277C3`).
+- Not found, it builds the text `WORN: "<name>" is not registered.` from the name at the resource's `+0x18` with
+  `0x007195B0(&first, 0x00D9ED98, resource + 0x18)` and `0x00719460(its answer, &second, 0x00D9EE08)` (`0x00727743`-`0x00727768`)
+  and calls `0x00715C70(&first)` on the first temporary string (`0x00727773`).
+- It then logs the text through `0x006DF480` as a PPFX WARNING line, source line `0x1C8`, only when the levels
+  `0x01F3BA80` and `0x01F3BA8C` are both at least 1 (`0x00727778`-`0x007277A0`); logged or not, it goes on and calls
+  `0x00715C70(&second)` on the second temporary string (`0x007277AB`).
+- Either way `0x007276F0` then clears the resource's byte `+0x30` (`0x007277C8`). When the count is 0 or less it frees the
+  list and clears both statics and the count through `0x00727870()` (`0x007277CC`-`0x007277D6`). It returns the count
+  (`0x007277DB`).
 - `CRenderTextureArray::InitializeDevice` (`0x0075C080`) hands each member's `InitializeDevice` (`0x00720320`) its
   depth-stencil format through `0x02EA1920` (`0x2D` when the array's `+0x58` is 0) and `0x02EA1924` (the same when its
   flag `0x10000` is set, else 0), and clears both after the call.
@@ -1032,6 +1322,19 @@ slot `+0x98` of `IGPUEffect` (vtable `0x00DAF1B8`, built by `0x00789900`):
 parameter's size, in 16-byte vectors, with `memcpy` (`0x0078FD45`). Nothing reads `0x02EA40B8` or `0x02EA40BC` except
 their own adds.
 
+`0x0078FCF0` answers `0x80070057` and copies nothing when its second argument minus 1 is negative or not below the
+number of pointers between `+0xD0` and `+0xD8`, or when the dword `+0x20` of the parameter that pointer names is not 2
+(`0x0078FCF4`-`0x0078FD27`, `0x0078FD51`).
+
+Otherwise the copy, a `memcpy` through the import thunk, `0x00861EBA(destination, source, length)`, takes its source
+from the function's third argument (`0x0078FCF7`, `0x0078FD42`), goes to the address in the parameter's `+0x50`, is
+`[0x01F3D9F4] × min(count, s)` bytes long with `s` the parameter's dword `+0x30`, and `0x0078FCF0` answers 0
+(`0x0078FD29`-`0x0078FD4A`).
+
+`0x00789900`, the constructor, first runs the base constructor `0x00784E80(this)` (`0x00789909`), then stores the vtable
+`0x00DAF1B8` at `+0x00` (`0x00789915`), 0 in the four qwords `+0xC8` to `+0xE0` (`0x0078991A`-`0x0078992F`) and `0xA` in the
+dword `+0x10` (`0x00789939`), and returns the object. The getter `0x0072F920` returns the address of buffer A, `0x02EA1A50`.
+
 Every call is a row of
 [yebis-ppfx-post-effects-constant-uploads.tsv](yebis-ppfx-post-effects-constant-uploads.tsv) with its vector count. A
 staged vector is read when a call's count reaches it; the state table lists those calls in each vector's `read_by`.
@@ -1044,8 +1347,65 @@ The loops that write the buffers through a pointer:
 | A | `0x00735E40` | packs its floats, zero-filled (`0x00736343`, `0x00736365`) |
 | A | `0x00774260` | `0x00774A6C`-`0x00774AC4` |
 | B | `0x00735E40` | copies up to 8 vectors and zeroes the rest (`0x00735FE8`, `0x00736017`), then the second set (`0x007360CE`-`0x007362E7`) |
-| B | `0x00734EB0` | `0x00734F39`-`0x0073509F` |
+| B | `0x00734EB0` | copies the first vectors (`0x00734F30`-`0x00734F41`), then stores the later ones less the first (`0x00734FF0`-`0x007351B2`); zeros fill each part (`0x00734F50`-`0x00734F8F`, `0x007351C1`-`0x007351FF`) |
 | B | `0x00774260`, `0x00777590`, `0x007788A0` | through `0x0072F910`, which returns `0x02EA1C50` (`0x00774AD6`-`0x00774B5E`; `0x00777AE4`-`0x00777CFD`; `0x00778D31`-`0x00778D40`) |
+
+`0x00734EB0` uploads one vector list in two parts. It takes a count, the vectors, a second count (0 stands for the
+first, `0x00734ED9`-`0x00734EE4`) and a limit. The first part is `min(count, limit)` vectors copied to `0x02EA1C50` as they
+are, or as many zeros when no vectors are given, with zeros after them up to `min(second count, limit)`; that many
+vectors are uploaded through slot `+0x98` of the effect `+0x38` under the handle `+0xFC` (`0x00734F14`-`0x00734FA5`).
+
+The second part starts at `0x02EA1C50` again: the `max(count - limit, 0)` vectors from vector [limit] on, each stored
+less vector [0] of the list, float by float (`0x00734FAE`-`0x007351B2`), or as many zeros when no vectors are given
+(`0x007351B6`-`0x007351D0`), with zeros after them up to `max(second count - limit, 0)`. That many vectors are uploaded
+under the handle `+0x100` by a jump to the same slot, whose answer is thus the function's (`+0x98` again;
+`0x007351D2`-`0x00735231`). A second count not above the limit makes that an upload of 0 vectors.
+
+`0x0073AC70` is a weighted draw of 1 to 8 source textures; any other count answers `0x80004001` (`0x0073ACA2`-`0x0073ACA8`,
+`0x0073B13B`). Its technique is a dword of a table in the object, at index `count × 0x16 + v`, with `v` its fifteenth
+argument (`0x0073ACEA`-`0x0073ACF9`): the table `+0x1B348`, or `+0x1B608` when a remap pair, its twelfth argument, is
+given whose first float is not 0; an entry of 0 falls back to the tables `+0x1ADC8` and `+0x1B088`
+(`0x0073ACD6`-`0x0073AD27`).
+
+It sets the technique through slot `+0xD0` of the effect `+0x38` (`0x0073AD39`) and hands the textures to slot `+0xB0`
+under the handle `+0x150` (`0x0073AD57`).
+
+The weights go to `0x02EA1A50`: the caller's vectors, its thirteenth argument, when given, else `1.0 / count` in all
+four floats of each tap (`0x0073AD74`-`0x0073ADDB`). Vector [count] is their sum, float by float (`0x0073ADE9`-`0x0073AF7C`),
+and count + 1 vectors are uploaded through slot `+0x98` under the handle `+0x108` (`0x0073AF92`). An extra texture, when
+given, is bound through slot `+0xB8` under the handle `+0x40` (`0x0073AFA8`-`0x0073AFB7`).
+
+Its sixth to ninth arguments are a rectangle `x0`, `y0`, `x1`, `y1`. `0x02EA1C50` takes `(x1 - x0) × 0.5`,
+`-(y1 - y0) × 0.5`, `x0 + (x1 - x0) × 0.5` and `y0 + (y1 - y0) × 0.5` (`0x0073AFBD`-`0x0073B028`). With a remap pair
+`p`, `q` whose `p` is not 0 a second vector follows: `u = p / 0.99609375`, `v = q - 0.00390625`, `1.0 / u` and
+`-(v / u)` (`0x0073B030`-`0x0073B07A`). One vector, or two in that case, is uploaded through slot `+0x98` under the handle
+`+0x118` (`0x0073B093`-`0x0073B0A1`); with no pair or `p` = 0 there is no second vector.
+
+`0x0073AC70` then sets the 16 bytes at `0x00DA5E90` (the floats 1.0, 1000.0, 0, 0) under the handle `+0xDC` through slot
+`+0x88` (`0x0073B0C5`) and ends in
+`0x00732D80(object, its first three floats, its fifth argument, -1.0, 1.0, 1.0, -1.0, its last argument)`, whose answer
+it returns (`0x0073B10C`).
+
+`0x0073B5A0` is the same weighted draw of 1 to 8 taps with the rectangle handed on to the draw; any other count answers
+`0x80004001` (`0x0073B5D5`-`0x0073B5DB`, `0x0073BB1D`). It binds no list of textures: the count is that of the weight
+vectors. It asks `0x0075B260(this, count, byte, w > 0, 1, 1, dword)` for the technique, the byte and the dword being
+arguments of its own and `w` its stack float, and sets it through slot `+0xD0` (`0x0073B5E1`-`0x0073B641`).
+
+It stages the weights and their sum in `0x02EA1A50` as `0x0073AC70` does and uploads count + 1 vectors through slot
+`+0x98` under the handle `+0x108` (`0x0073B659`-`0x0073B8BE`).
+
+It then uploads five vectors from `0x02EA1C50` through slot `+0x98` under the handle `+0x10C` (`0x0073B8C4`-`0x0073BA2B`).
+Vector 0 is the 16 bytes `a` its first pointer argument names; vector 1 is `p0 × a0`, `p1 × a1`, `p0 × a2`,
+`p1 × a3` for the pair `p` its second pointer names. Vector 2 is `p0`, `p1`, a stack float and `w`; vector 3 is two
+more stack floats and two zeros. Vector 4 is `2.0 / (x1 - x0)`, `2.0 / (y1 - y0)`, `-1.0 - x0 × 2.0 / (x1 - x0)` and
+`-1.0 - y0 × 2.0 / (y1 - y0)`.
+
+An optional texture object has its slot `+0x70` called and the dword answered kept, its slot `+0x68` called with 4,
+and is bound through slot `+0xB8` under the handle `+0x40`; a second optional texture is bound under `+0x44`
+(`0x0073BA3C`-`0x0073BA86`). The draw is
+`0x00732D80(object, the first three floats, the fifth argument, x0, y0, x1, y1, the last argument)` (`0x0073BACF`);
+afterwards slot `+0x68` of the first texture is called with the kept dword (`0x0073BAF8`-`0x0073BB05`), and the draw's
+answer is returned.
 
 ### Columns of yebis-ppfx-post-effects-constant-uploads.tsv
 
@@ -1084,6 +1444,12 @@ Four more first-call tables fill with an 8-byte store of -1 and then their value
 | `0x02EA1540` | `i32` | 0 (zero-filled tail) | entry 0 of a two-entry table, 1 | `0x006F9030` (`0x006FAFE0`, 8 bytes over both entries, -1; `0x006FAFF0`) | `0x006F9030` (`0x006FB01D`, index the dword `+0xC6C`, sign-extended, not bounded) |
 | `0x02EA1544` | `i32` | 0 (zero-filled tail) | entry 1, 3 | `0x006F9030` (`0x006FAFE0`; `0x006FAFFD`) | `0x006F9030` (`0x006FB01D`) |
 | `0x02EA1548` | `u8` | 0 (zero-filled tail) | 1 once that table is filled | `0x006F9030` (`0x006FAFF6`) | `0x006F9030` (`0x006FAFD7`) |
+
+`0x007091B0` leaves through a jump to `0x00729870(dword +0x44 of its second argument)` when its third argument is set, or
+when that dword is `0x14`, `0x28`, `0x2D` or `0x37` (the mask `0x80210000100000`, `0x007091B0`-`0x007091D0`,
+`0x00709256`-`0x00709259`). Otherwise it takes the dword `+0x470` of the object, or 3 when its fourth argument is set, as
+the index into the four-entry table `0x02EA1510` and returns the entry when that is 0 to 3 and -1 for any other value
+(`0x007091D6`-`0x00709255`).
 
 `0x006FE7F0` hands the effect pass two colour matrices through its last two out-parameters (`0x006FEC8D`,
 `0x006FECA4`): the matrix at `+0x7A4` when the byte `+0x924` is set and the one at `+0x7E4` when `+0x925` is set,
@@ -1161,18 +1527,42 @@ at least 1 (unsigned compares, `0x00773316`-`0x00773326`).
 
 ### Glare definitions and colours
 
+`CRenderGlare`'s constructor `0x007687E0` runs the base constructor `0x00727200(this, 0)` (`0x00768802`), stores the vtable
+`0x00DA8420` at `+0x00` (`0x0076880F`) and its member defaults, and allocates the one-byte definition object through
+`0x006DA880([0x01F3BA68], 1, 0x00DA7960, 0x118, 0)` (source line 280). When that allocation answers it runs `0x0075F160()` and
+`0x0075F960()`; it stores the pointer, or 0, in `0x02EA3D50` (`0x00768919`-`0x00768951`). It ends with
+`0x007603E0(object, its second argument)` (`0x0076895E`) and returns the object.
+
+The member defaults (`0x00768814`-`0x0076890D`) are 0 in the qwords `+0x38` and `+0x40`, the dword `+0x48`, the byte
+`+0x4C`, the six qwords `+0x50` to `+0x78`, the three qwords `+0x9C` to `+0xAC`, the dword `+0xB4`, the byte `+0xB8`,
+the six qwords `+0xBC` to `+0xE4` and the qword `+0x108`. At `+0x80` and again at `+0xEC` stands a block of the same
+shape: the word `0x0101`, a 0 byte at the block's `+0x02`, the dword 1 at `+0x04`, a 0 byte at `+0x08`, the dword 2 at
+`+0x0C`, a 0 byte at `+0x10`, the dword 1 at `+0x14` and a 0 word at `+0x18`.
+
 The glare code builds its look tables from two `.data` row lists when `CRenderGlare`'s constructor (`0x007687E0`)
 allocates the definition object `0x02EA3D50`:
 
 - `0x02EA3D40`: the star-line types, from the seven rows at `0x01F3CF20` (Disable, Cross, CrossFilter, SnowCross,
   SunnyCross, Vertical, Anamorphic), built by `0x0075F160`.
 - `0x02EA3D48`: the glare types, from the 14 rows at `0x01F3D000` (Disable, Bloom, Lens Flare, Standard, Cheap Lens
-  Camera, Afterimage, the cross filters and the streaks), built by `0x0075F960`.
+  Camera, Afterimage, the cross filters and the streaks), built by `0x0075F960`, which does nothing when the pointer is
+  already set (`0x0075F964`-`0x0075F96C`) and returns 0 either way.
+- Otherwise `0x0075F960` runs `0x0075F160()` (`0x0075F981`) and allocates `0x628` bytes through
+  `0x006DA880([0x01F3BA68], 0x628, 0x00DA6F38, 0x28C, 0)` (`0x0075F9A6`-`0x0075F9B1`): the number 14 in the first qword, then 14
+  records of `0x70` bytes, in each of which it stores 0 in the qwords `+0x00`, `+0x08`, `+0x18`, `+0x28`, `+0x38` and
+  `+0x48` to `+0x68` and in the dword `+0x30` (`0x0075F9B7`-`0x0075FA0F`).
+- It stores the first record's address in `0x02EA3D48`, or 0 when the allocation answered null (`0x0075F9B3`, `0x0075FA11`),
+  and in both cases calls `0x0075FC50(record k, row k)` for the 14 rows of `0x38` bytes, record k being at
+  `[0x02EA3D48] + 0x70 × k` (`0x0075FA18`-`0x0075FA40`).
 - `0x0075F160` also writes two colour orders for the lines: `0x02EA3D60` white, red, green, blue and `0x02EA3DA0` white,
   blue, green, red. `0x00764240` picks one (`0x007644C3`) and hands it to the effect (`0x00764FA1`).
 
 The destructor `0x007693B0` frees both tables and the object (`0x0075FA60`, `0x0075F390`). `0x00707670` copies a glare type
 by index, but the thunk `0x006DBA00`, which jumps to it, is referenced by no instruction or table.
+
+For an index (its third argument) from 0 to 13, compared unsigned, and a non-null output (its second), `0x00707670`
+takes the `0x70`-byte record `[0x02EA3D48]` + `0x00713F60(index)` x `0x70` and copies 18 fields into the output's
+`+0x00`-`+0x44`, returning the output pointer; otherwise it returns 0 (`0x00707677`-`0x00707728`).
 
 `0x0075B2F0` returns a seven-entry hexagon pattern built once (flag `0x02EA3D24`): `0x02EA3CB0` is (0, 0, 0, 0) and
 entry *i* + 1 is (-sin 60*i*°, cos 60*i*°, 0, 0) for *i* = 0 to 5.
@@ -1245,8 +1635,11 @@ The last group has the dword `+0x408` as its count `n`, and the body skips its l
   (`0x0067F700`, `0x0067F9D0`) and erases (`0x0067FE20`) rewrite the root and the nil node's parent word (`0x02E5BE08`), and
   read the second link and the colour bit of the root's parent position (`0x02E5BE18`, `0x02E5BE20`).
 - `0x01F3C500` lets `0x006F1270` fill the eleven maximum vectors at `0x02EA13C0` once.
-- `0x02EA17B0` is the text `0x0071B070` builds for the texture-creation log lines (`GPUUSAGE_RENDERTARGET`,
-  `GPUUSAGE_DEPTHSTENCIL`).
+- `0x02EA17B0` is the text `0x0071B070` builds for the texture-creation log lines. It empties the text (`0x0071B086`),
+  appends `GPUUSAGE_RENDERTARGET` for bit `0x1` of its first argument and `GPUUSAGE_DEPTHSTENCIL` for bit `0x2`, with
+  ` | ` between them when both are set, and returns the text's address (`0x0071B09D`-`0x0071B160`).
+- With its second argument, a byte, set, `0x0071B070` appends the short forms `RT` and `DS` in their place, with `|`
+  between them. Each piece is written at the text's end by `0x0017D2E0(end, format, name)` (`0x0071B0EA`, `0x0071B156`).
 
 ## Modding notes
 

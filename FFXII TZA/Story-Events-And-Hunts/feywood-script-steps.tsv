@@ -4400,7 +4400,7 @@ mfr_a04	イベントレクト	main	2	0x03883	1225	シナリオフラグ >= 0x100
 mfr_a04	イベントレクト	main	3	0x03884	1227	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_a04	イベントレクト	touchoff	1	0x03885	1232	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_a04	イベントレクト	touchon	1	0x03886	1237	-	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mfr_a04	イベントレクト	touchon	2	0x0388C	1238	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+mfr_a04	イベントレクト	touchon	2	0x0388C	1238	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	イベントレクト	touchon	3	0x03893	1239	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_a04	イベントレクト	touchon	4	0x03896	1241	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	イベントレクト	touchon	5	0x03899	1243	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

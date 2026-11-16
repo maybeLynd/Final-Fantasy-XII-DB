@@ -23825,7 +23825,7 @@ mic_d01	ボス登場	main	1	0x44C4B	1033	-	return	-	-	-	-	-	-	resolved	01 ../Scr
 mic_d01	ボス登場	touch	1	0x44C4C	1043	-	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_d01	ボス登場	touch	2	0x44C52	1044	-	store	ザルエラ制御_状況 = 10	variable ザルエラ制御_状況 (global u_char@0x0236)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mic_d01	ボス登場	touch	3	0x44C55	1045	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mic_d01	ボス登場	touch	4	0x44C5B	1046	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+mic_d01	ボス登場	touch	4	0x44C5B	1046	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_d01	ボス登場	touch	5	0x44C62	1047	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_d01	ボス登場	touch	6	0x44C65	1049	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_d01	ボス登場	touch	7	0x44C68	1051	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -24578,7 +24578,7 @@ mic_e02	宝レクト	touchon	1	0x03C80	863	-	return	-	-	-	-	-	-	resolved	01 ../S
 mic_e02	宝レクト	touchoff	1	0x03C81	868	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e02	宝レクト	touch	1	0x03C82	873	-	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e02	宝レクト	touch	2	0x03C88	874	-	startscene	0	scene cut 0, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
-mic_e02	宝レクト	touch	3	0x03C8E	875	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+mic_e02	宝レクト	touch	3	0x03C8E	875	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e02	宝レクト	touch	4	0x03C95	876	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e02	宝レクト	touch	5	0x03C98	878	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e02	宝レクト	touch	6	0x03C9B	880	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

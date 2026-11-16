@@ -59,7 +59,7 @@ offsets from the start of the file: `0x00238850` passes the file to `0x003846F0`
 | `+0x10` | `u8` | power | action power (31 formula slots) |
 | `+0x11` | `u8` | power2 | second power byte (`0x00388C10`, `0x0038A9D0`, `0x0038EB30`) |
 | `+0x12` | `u8` | hit | hit threshold into `0x02AEDFE0` (`0x00389040` at `0x00389089`) |
-| `+0x13` | `u8` | element | one bit per element (`0x0038B220`, `0x0038B6A0`) |
+| `+0x13` | `u8` | element | one bit per element (`0x0038B220`, `0x0038B6A0`); ORed in as the low eight bits of the kind-10 AI operand mask (`0x00312206`-`0x00312211`) |
 | `+0x14` | `u8` | statusChance | on-hit status chance, percent (`0x0038F970` at `0x0038F9B0`) |
 | `+0x15` | `u8` | boostPercent | percent added to the working magnitude `0x02AEE004` (`0x0038F8E0` at `0x0038F93B`) |
 | `+0x16` | `u8[2]` | pad16 | 0 on every row |
@@ -83,7 +83,7 @@ offsets from the start of the file: `0x00238850` passes the file to `0x003846F0`
 | `+0x36` | `u16` | targetFlags | third flag word; table below |
 | `+0x38` | `u8` | menuPage | command list page (`0x00237FC0` at `0x00238033`) |
 | `+0x39` | `u8` | menuRow | row on that page (`0x00237FC0` at `0x00238043`) |
-| `+0x3A` | `u8` | aiReaction | bit number set in the AI operand mask of kind 10 (`0x00312170` at `0x003121F5`) |
+| `+0x3A` | `u8` | aiReaction | bit number, taken modulo 32, set in the AI operand mask of kind 10 for a value of 1 to `0xFE` (`0x00312170`, `0x003121F5`-`0x00312203`) |
 | `+0x3B` | `u8` | pad3B | 0 on every row |
 
 ### The kind byte
@@ -215,6 +215,16 @@ Each bit of `+0x13` is one element; no shipped row sets more than one:
 
 Bits `0x2000` and `0x4000` are also copied into the kind-10 AI operand mask as its bits `0x100` and `0x200` (`0x00312213`-`0x00312232`).
 Bits `0x80`, `0x400`, `0x8000`, `0x40000` and `0x100000` are set on 324, 292, 24, 1 (Attack) and 81 rows and are read by no instruction.
+
+`0x00312170(user, target, action)` builds that mask from the action's row and writes nothing unless both units
+are non-null and `0x0030AB40(user, target, 0)` answers above 1 (`0x003121D0`-`0x003121F3`). A mask of 0 writes
+nothing either (`0x00312235`-`0x00312237`); otherwise the mask is ORed onto the target's present value, the dword
+`+0xB90` of the unit, read with `0x00321190(10, target, 0, &old)` and stored with
+`0x00329E60(10, target, 0, mask | old)` (`0x00312239`-`0x0031225E`).
+
+The row comes from the table `0x02EBF138`. When that pointer is 0 or `0x0020E600` answers 0 for its section, the
+function does not end: the row pointer stays 0 (`0x0031219A`, `0x003121A7`, `0x003121CD`), and past the guards above
+the reads of `+0x3A`, `+0x13` and `+0x0C` are then of the addresses `0x3A`, `0x13` and `0x0C`.
 
 The 60 instructions that read the word test other bits; those that take it whole keep bit `0x2000` (`0x0030770D`, masked by a
 0-or-1 register; `0x002F8689`), bits `0x2000` and `0x4000` (`0x00312213`), bits `0x1000000` and `0x2000000` (`0x0030D3AE`), bits `0x1000`, `0x200000`, `0x1000000` and `0x2000000`

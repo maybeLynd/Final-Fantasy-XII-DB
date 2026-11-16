@@ -20,7 +20,7 @@ disk because the game compresses and encrypts a much larger image before writing
 ## Where it comes from
 
 The save directory is built by `0x00862A40`: the Documents folder (`SHGetFolderPathW`, CSIDL 5), then
-`\My Games\` (`0x01F44D08`), then `FINAL FANTASY XII THE ZODIAC AGE` (`0x01F44D10`), then, when the
+`\My Games\` (`0x01F44D08`), then `FINAL FANTASY XII THE ZODIAC AGE\` (`0x01F44D10`), then, when the
 user-id string from `0x001F3ED0` is non-empty, that id and a backslash; the result is kept at
 `0x02EAF6E0`, created on first use, and `0x00862A20` returns it. A slot's file name is `FFXII_` (`0x003935C0`)
 followed by the three-digit slot number (`sprintf("%s%03d")` in `0x0057E310` and `0x00584610`); the slot icon

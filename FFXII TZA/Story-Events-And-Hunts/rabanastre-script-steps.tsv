@@ -13115,7 +13115,7 @@ rbn_a03	制御レクト	init	1	0x1D775	2775	-	sysDVAR	3, local_var_s24f0_1	nothi
 rbn_a03	制御レクト	init	2	0x1D776	2776	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rbn_a03	制御レクト	main	1	0x1D777	2781	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rbn_a03	制御レクト	touch	1	0x1D77F	2791	-	if	local_var_s24f2_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rbn_a03	制御レクト	touch	2	0x1D785	2793	local_var_s24f2_1 == 0	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rbn_a03	制御レクト	touch	2	0x1D785	2793	local_var_s24f2_1 == 0	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rbn_a03	制御レクト	touch	3	0x1D78C	2794	local_var_s24f2_1 == 0	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rbn_a03	制御レクト	touch	4	0x1D78F	2796	local_var_s24f2_1 == 0; not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rbn_a03	制御レクト	touch	5	0x1D796	2798	local_var_s24f2_1 == 0	switch	local_var_s24f0_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -13312,7 +13312,7 @@ rbn_a03	制御レクト	touch_van_bash	2	0x1DDB7	3107	-	if	getucstatus() and not
 rbn_a03	制御レクト	touch_van_bash	3	0x1DDBA	3109	getucstatus() and not (get_talk_run_status())	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 rbn_a03	制御レクト	touch_van_bash	4	0x1DDC3	3113	not (getucstatus() and not (get_talk_run_status()))	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rbn_a03	制御レクト	touch_van_bash	5	0x1DDC6	3114	not (getucstatus() and not (get_talk_run_status()))	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rbn_a03	制御レクト	touch_van_bash	6	0x1DDCC	3116	getucstatus() and not (get_talk_run_status())	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rbn_a03	制御レクト	touch_van_bash	6	0x1DDCC	3116	getucstatus() and not (get_talk_run_status())	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rbn_a03	制御レクト	touch_van_bash	7	0x1DDD3	3117	getucstatus() and not (get_talk_run_status())	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rbn_a03	制御レクト	touch_van_bash	8	0x1DDD6	3119	not (istownmap()); getucstatus() and not (get_talk_run_status())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rbn_a03	制御レクト	touch_van_bash	9	0x1DDD9	3121	getucstatus() and not (get_talk_run_status())	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -13387,7 +13387,7 @@ rbn_a03	制御レクト２	touch	3	0x1DFAF	3228	getucstatus() and not (get_talk_
 rbn_a03	制御レクト２	touch	4	0x1DFB8	3232	not (getucstatus() and not (get_talk_run_status()))	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rbn_a03	制御レクト２	touch	5	0x1DFBB	3233	not (getucstatus() and not (get_talk_run_status()))	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rbn_a03	制御レクト２	touch	6	0x1DFBE	3235	getucstatus() and not (get_talk_run_status())	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rbn_a03	制御レクト２	touch	7	0x1DFC4	3236	getucstatus() and not (get_talk_run_status())	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rbn_a03	制御レクト２	touch	7	0x1DFC4	3236	getucstatus() and not (get_talk_run_status())	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rbn_a03	制御レクト２	touch	8	0x1DFCB	3237	getucstatus() and not (get_talk_run_status())	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rbn_a03	制御レクト２	touch	9	0x1DFCE	3239	not (istownmap()); getucstatus() and not (get_talk_run_status())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rbn_a03	制御レクト２	touch	10	0x1DFD1	3241	getucstatus() and not (get_talk_run_status())	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -21064,7 +21064,7 @@ rbn_a04	制御レクト	init	1	0x1B47C	1622	-	return	-	-	-	-	-	-	resolved	01 ../
 rbn_a04	制御レクト	main	1	0x1B47D	1627	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rbn_a04	制御レクト	touch	1	0x1B47E	1632	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rbn_a04	制御レクト	touchon	1	0x1B47F	1642	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rbn_a04	制御レクト	touchon	2	0x1B485	1643	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rbn_a04	制御レクト	touchon	2	0x1B485	1643	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rbn_a04	制御レクト	touchon	3	0x1B48C	1644	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rbn_a04	制御レクト	touchon	4	0x1B48F	1646	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rbn_a04	制御レクト	touchon	5	0x1B492	1648	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -44680,7 +44680,7 @@ rbn_a16	制御レクト	最速の飛空艇レクト配置	15	0x1E2B1	1111	local_
 rbn_a16	制御レクト	最速の飛空艇レクト配置	16	0x1E2BA	1115	not (local_var_s9f6_1 & 0x100000)	settouchuconly	0	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rbn_a16	制御レクト	最速の飛空艇レクト配置	17	0x1E2C4	1117	-	store	local_var_s9f6_1 = local_var_s9f6_1 & 0xffff	variable local_var_s9f6_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rbn_a16	制御レクト	最速の飛空艇レクト配置	18	0x1E2C7	1118	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rbn_a16	制御レクト	最速の飛空艇touch	1	0x1E2CB	1123	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rbn_a16	制御レクト	最速の飛空艇touch	1	0x1E2CB	1123	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rbn_a16	制御レクト	最速の飛空艇touch	2	0x1E2D2	1124	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rbn_a16	制御レクト	最速の飛空艇touch	3	0x1E2D5	1126	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rbn_a16	制御レクト	最速の飛空艇touch	4	0x1E2D8	1128	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

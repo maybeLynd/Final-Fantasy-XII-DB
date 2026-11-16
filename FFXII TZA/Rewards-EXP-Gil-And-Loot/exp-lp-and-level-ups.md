@@ -66,7 +66,7 @@ if (party control mode != 1) {                        // 0x003135C0: 0x0030D9A0(
         party records with type id 0x1A or 0x1B-0x27;
     exp = n ? amount / n : 0;                         // integer division
 } else {
-    exp = (recipient == 0x00320AB0(0x00313800(), 1)) ? amount : 0;
+    exp = (!recipient || recipient == 0x00320AB0(0x00313800(), 1)) ? amount : 0;
 }
 if (recipient.b[+0x6B] & 8 || recipient.b[+0x7B] & 8)     exp *= 2;
 if (recipient.b[+0x6B] & 0x20 || recipient.b[+0x7B] & 0x20) exp = 0;
@@ -88,9 +88,17 @@ variants, `0x1A` the Chocobo and `0x1B`-`0x27` the thirteen Espers (see the stat
 
 Party control mode 1 is bit `0x1` of `[0x02EBF190] + 0x5B04` with the bits under mask `0xE` clear outside town areas
 (`0x0030D9A0`). The script verb `btlAtelSetSummonMode` sets and clears that bit through `0x00313550`. In
-that mode the receiving unit is the one whose id equals byte `[0x02EBF190] + 0x5AD5`, looked up in the
-slot table at `+0x5A48` by `0x00320890`; it must still pass the recipient gate above, or nobody
-receives EXP.
+that mode the receiving unit is found in two steps.
+
+First `0x00313800()` finds the position, 0 to 8, of byte `[0x02EBF190] + 0x5AD5` in the slot table at
+`+0x5A48` through `0x00320890`, or -1 when the byte is `0xFF` or no slot holds it (`0x002F8C3D`).
+`0x00320AB0(position, 1)` then reads the member byte of the table at `+0x5A5A` for that position and answers
+the record `[0x02EBF190] + 8 + byte × 0x1C8`, or null for a position `0x00322C50(0x17, position, 0)` refuses and
+for a byte above `0x27` (`0x002F8C47`-`0x002F8C4E`).
+
+The recipient must be that record (`0x002F8C53`-`0x002F8C56`) and must still pass the recipient gate above, or
+nobody receives EXP. A call with no record skips the comparison and returns the whole amount
+(`0x002F8C42`-`0x002F8C45`, `0x002F8D21`-`0x002F8D24`).
 
 `0x00320890(id)` answers the index, 0 to 8, of the first of the nine table words whose
 low byte equals the id, and -1 for an id of `0xFF` or no match (`0x00320890`-`0x003208BE`).

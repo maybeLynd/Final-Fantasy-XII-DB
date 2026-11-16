@@ -17477,7 +17477,7 @@ nal_c01	アンロック	NAL_C01_RECT_SET	19	0x02F5D	688	local_var_s15f1_1	store	
 nal_c01	アンロック	NAL_C01_RECT_SET	20	0x02F60	690	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nal_c01	アンロック	touchon	1	0x02F68	695	-	if	シナリオフラグ == 0x0138	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nal_c01	アンロック	touchon	2	0x02F6B	697	シナリオフラグ == 0x0138	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-nal_c01	アンロック	touchon	3	0x02F71	698	シナリオフラグ == 0x0138	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+nal_c01	アンロック	touchon	3	0x02F71	698	シナリオフラグ == 0x0138	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nal_c01	アンロック	touchon	4	0x02F78	699	シナリオフラグ == 0x0138	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nal_c01	アンロック	touchon	5	0x02F7B	701	シナリオフラグ == 0x0138; not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nal_c01	アンロック	touchon	6	0x02F7E	703	シナリオフラグ == 0x0138	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -18250,7 +18250,7 @@ nal_c02	装備変更	レクト配置	18	0x0279E	873	-	return	-	-	-	-	-	-	resolve
 nal_c02	装備変更	touch	1	0x027A2	878	-	startscene	100	scene cut 100, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 nal_c02	装備変更	touch	2	0x027A5	879	-	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nal_c02	装備変更	touch	3	0x027B1	880	-	sysReq	1, Map_Director::レクト用床リセット	actor `Map_Director`	-	-	files Map_Director::レクト用床リセット on channel 1; does not wait	Map_Director.レクト用床リセット	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-nal_c02	装備変更	touch	4	0x027B5	881	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+nal_c02	装備変更	touch	4	0x027B5	881	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nal_c02	装備変更	touch	5	0x027BC	882	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nal_c02	装備変更	touch	6	0x027BF	884	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nal_c02	装備変更	touch	7	0x027C2	886	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

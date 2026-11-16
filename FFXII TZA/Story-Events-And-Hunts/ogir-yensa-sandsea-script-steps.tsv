@@ -273,7 +273,7 @@ ene_a01	ムービーレクト	main	3	0x02A86	767	-	return	-	-	-	-	-	-	resolved	0
 ene_a01	ムービーレクト	touchon	1	0x02A87	772	-	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ene_a01	ムービーレクト	touchon	2	0x02A8D	773	-	stopenvsound_3de	240	argument 1: the frames over which the area's weather ambience fades out	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ene_a01	ムービーレクト	touchon	3	0x02A96	774	-	spotsoundtrans	240, 0	argument 1: the frames of the map sound volume fade / argument 2: the map sound volume to fade 0x022CBA94 to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ene_a01	ムービーレクト	touchon	4	0x02A9C	775	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ene_a01	ムービーレクト	touchon	4	0x02A9C	775	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ene_a01	ムービーレクト	touchon	5	0x02AA3	776	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ene_a01	ムービーレクト	touchon	6	0x02AA6	778	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ene_a01	ムービーレクト	touchon	7	0x02AA9	780	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5739,7 +5739,7 @@ ene_a07	はぐれウルタン戻るのレクト	begin	18	0x03FDA	741	file_var_s7
 ene_a07	はぐれウルタン戻るのレクト	begin	19	0x03FDD	743	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ene_a07	はぐれウルタン戻るのレクト	touchoff	1	0x03FDE	748	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ene_a07	はぐれウルタン戻るのレクト	touchon	1	0x03FDF	753	-	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ene_a07	はぐれウルタン戻るのレクト	touchon	2	0x03FE5	754	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ene_a07	はぐれウルタン戻るのレクト	touchon	2	0x03FE5	754	-	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ene_a07	はぐれウルタン戻るのレクト	touchon	3	0x03FEC	755	-	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ene_a07	はぐれウルタン戻るのレクト	touchon	4	0x03FEF	757	not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ene_a07	はぐれウルタン戻るのレクト	touchon	5	0x03FF2	759	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

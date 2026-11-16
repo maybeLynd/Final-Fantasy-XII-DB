@@ -5002,7 +5002,7 @@ ozm_c01	イベント起動	main	19	0x045D1	1295	-	return	-	-	-	-	-	-	resolved	01
 ozm_c01	イベント起動	touch	1	0x045D2	1300	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_c01	イベント起動	touchon	1	0x045DA	1305	-	if	シナリオフラグ == 0x06fe	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_c01	イベント起動	touchon	2	0x045DD	1307	シナリオフラグ == 0x06fe	lockmapjump	-	map jumps, held by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_c01	イベント起動	touchon	3	0x045E3	1308	シナリオフラグ == 0x06fe	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene hands control back (sysucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ozm_c01	イベント起動	touchon	3	0x045E3	1308	シナリオフラグ == 0x06fe	ucoff_resetmotion	0	argument 1: whether the party's motions are reset when the scene takes control away (ucoff with a choice)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_c01	イベント起動	touchon	4	0x045EA	1309	シナリオフラグ == 0x06fe	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_c01	イベント起動	touchon	5	0x045ED	1311	シナリオフラグ == 0x06fe; not (istownmap())	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_c01	イベント起動	touchon	6	0x045F0	1313	シナリオフラグ == 0x06fe	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

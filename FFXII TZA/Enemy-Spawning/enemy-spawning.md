@@ -247,6 +247,12 @@ id of that lane with `0x00328370` and generates a position with `0x00236450(id, 
 the offset is rotated into the record's frame by `0x00319390` with the record's heading. On success
 the position is stored at `+0x50` and `+0x60` and bit `0x4000000` set.
 
+Each `%` of those formulas is a signed `idiv` (`0x0023653C`, `0x0023657C`, `0x0023659E`, `0x002365C0`), and no instruction of
+`0x00236450` tests its divisor first. For x, and for a type-1 z, the divisor is `(int)(h * 100)` with `h` the half
+extent: it is 0 exactly when the single-precision product `h * 100` lies strictly between -1 and 1. For a type-2 z it
+is `(int)(r * 100)` with `r` the square root above (`0x0023656E`-`0x00236572`), 0 under the same condition on `r * 100`,
+whatever the two half extents are. An `idiv` by 0 faults.
+
 `0x002355A0` also returns 0 when the actor has no battle unit (`0x002355D1`), the candidate table pointer is
 null (`0x00235613`), the lane does not resolve through the lane map (`0x0023562F`-`0x00235676`), or `0x00236450`
 returns 0 (`0x002356C9`). The range is `table[2 + lane] - table[1 + lane]` and the id the signed word at
@@ -282,6 +288,15 @@ bit of `0x80000003`, a town (`0x00313F60()` non-zero, `0x00233BAB`-`0x00233BCB`)
 return ends with `0x00312700(unit)` and `0x00386C10([unit + 0x698])` (`0x00233BED`-`0x00233BFC`); an inactive unit
 runs `0x00312700(unit)` before bit `0x4000000` is cleared (`0x00233AF6`-`0x00233AFB`) and returns.
 
+Three of the functions `0x00233AD0` uses are small. `0x0037C8C0(actor)` answers the actor's byte `+0x23`, or 0 for a null
+actor (`0x0037C8C0`-`0x0037C8CA`). `0x00324450(unit)` calls `0x003243F0(unit)` and then clears bit `0x40` of the unit's first
+dword, both only when that bit is set (`0x00324456`-`0x00324463`).
+
+`0x002FED60(unit, flag)` sets bit `0x800000` of the unit's first dword, stores a dword 0 at `+0xDCC` and stores at the
+qword `+0x6E8` the address of the set `0x01EEC3C0` for stats kind 0 and of `0x01EEC410` for any other kind or no stats
+record (`0x002FED60`-`0x002FED9E`). With `flag` not 0 it ends in a jump to `0x002ECF10(actor, 1, 0)`, the actor being the
+unit's `+0x10`; with `flag` 0 it returns after that store (`0x002FEDA5`-`0x002FEDB9`).
+
 `0x00239E10` loads twelve unit parameters through `0x003204D0` (`0x00239E78`-`0x00239F5B`), ten of them into fields
 between `+0x164` and `+0x1B0` and numbers 24 and 26 into locals the later writes use, with alternate parameter
 numbers for a kind-1 unit whose definition byte `+0x13` is not `0xFF`:
@@ -305,6 +320,28 @@ byte `+0x1F6`: 1 for a kind-0 stats record; for any other
 kind, or no stats record, from the class row's byte `+0x18` (`[unit + 0xE68]`): 8 when bit
 `0x10` is set, else 2 when bit `0x20` is set, else 1, with 4 added when bit `0x40` is set. For a kind-1 unit with
 the probe bit it also stores `0x00236210(unit)` at `+0x188`, the vertical lift; otherwise `+0x188` = 0.
+
+`0x00236210(unit)` answers 0.0 for a null unit, a null stats record `+0x698`, a stats kind other than 1, or a class row
+whose byte `+0x18` has neither bit `0x10` nor bit `0x20` (`0x00236219`-`0x00236277`). Otherwise the lift is the float
+`0x003204D0(unit, 6, &out)` writes (`0x00236279`-`0x00236286`). It is returned as it is only when the stats record is
+non-null and of kind 1 and bit `0x10` of the byte `+0x03` of the row at the unit's `+0xE60` is set
+(`0x0023628B`-`0x002362A8`); in every other case `(draw % 50) / 100` is added, with a signed `%` and the draw from
+`0x00328370()` (`0x002362B6`-`0x002362EC`).
+
+The refresh `0x00236300(unit)`, with which `0x00239E10` ends, copies the byte `+0xEA9` to `+0x1F7` (`0x0023630A`-`0x00236314`)
+and takes three floats from the actor at `+0x10`: `0x00263CC0(actor)` into `+0x15C`, `0x00263C80(actor)` into `+0x174` and
+`0x00265200(actor)` into `+0x160` (`0x0023631A`-`0x0023634A`). It clears bit `0x40000` of the flags and stores a dword 0 at
+`+0x158` (`0x00236352`-`0x00236359`).
+
+It then sets bit `0x40000` again in two cases. When `0x003273B0(unit dword +0x08)` answers non-zero, the bit is set if
+`0x00265830(actor)` is not 0.0 (a value that is not a number counts as not 0.0), and `0x00311E20()` is called either way
+(`0x00236363`-`0x00236389`). When bit `0x1000` of the dword `+0x1F0` is set, the bit is set on the same test of
+`0x00265830(actor)` (`0x0023638E`-`0x002363AA`).
+
+`0x00265020(actor, unit + 0xE0, unit + 0xE4, unit + 0xE8)` then fills the position,
+`0x00265090(actor, unit + 0x18C, unit + 0x190)` is given two floats to fill, `0x00264670(actor)` gives the float `+0x194`
+and `0x00233A20(unit)` the float `+0x17C` (`0x002363B1`-`0x002363FF`). When `0x00383C80()` is not 0 and
+`0x00384130(unit + 0xE0)` is not `0xFF`, the 16 bytes at `+0xE0` are copied to `+0xD0` (`0x00236407`-`0x0023642A`).
 
 Verb `0x304C` `btlAtelSetUnitFinish` (`0x00510250`, a jump) runs `0x0023A410(actor)` on the unit's own
 record; it does nothing when `0x0031B760` finds no battle unit (`0x0023A421`):
@@ -331,6 +368,11 @@ actor's position differs from `pos`, and the actor object `0x00263F40` returns i
 It stores `pos` whole at unit `+0xD0` and `+0xE0`, runs `0x00392170(actor)`, copies `pos` to the record's `+0x50`
 only when `keep` is non-zero and the stats record is kind 1 (`0x003003AE`-`0x003003CE`), and sets unit flag bit
 `0x4000000` (`0x003003D2`). `0x0023A410` gives `keep` 0, so it leaves `+0x50` alone.
+
+`0x00392170(actor)` does nothing without the grid `0x02AEE0A0` or with the count `0x02AEE0BC` at 128 or above
+(`0x00392176`-`0x0039218F`). Otherwise it stores the actor in the list `0x02AEE0C0` at the count, takes its position with
+`0x002646C0(actor, &x, &y, &z)` and two extents with `0x00265090(actor, &e1, &e2)`, calls
+`0x00392200(count, x, z, the larger extent)` and raises the count by 1 (`0x00392191`-`0x003921E8`).
 
 ### Facing, inhibit, category and the lifecycle float
 

@@ -137,6 +137,18 @@ Three more read the unit behind a handle, through `0x003588B0` and, while `0x020
   `0x002C7660` asks it (`0x002C780D`) right after `0x003229A0` (`0x002C77F6`). It too answers 0 while `0x02089340`
   bit `0x10` is clear and when `0x003588B0` or `0x00263E30` gives null (`0x00322954`-`0x00322985`, `0x0032298C`).
 
+`0x002392D0(actor, flags)` is where the verb `btlAtelSetEntryFlag` ends: its handler `0x00510300` jumps there with
+the popped argument as `flags` (`0x0051030C`-`0x0051031B`). It takes the unit with `0x0031B760(actor)` and does nothing
+when there is none (`0x002392E4`-`0x002392EF`). Otherwise, in this order:
+
+- with flag bit `0x10`, `0x002E83B0(actor, 0)` (`0x002392F1`-`0x002392FB`);
+- with flag bit `0x8` clear, `0x002EACD0(unit dword +0x08, 1, unit + 8, 0x7B)` (`0x00239300`-`0x00239316`);
+- with flag bit `0x1`, bit `0x1000` set in the unit's dword `+0x1F0` (`0x0023931B`-`0x00239320`);
+- bit `0x1` of the unit's dword `+0xE9C` made equal to flag bit `0x4000` (`0x0023932A`-`0x00239339`);
+- when byte `+0x00` of the spawn record `[unit + 0x6A0]` has neither bit `0x1` nor bit `0x4`,
+  `0x00321810(unit, v)` with `v` = 1 for flag bit `0x8000` clear and 0 for it set (`0x0023933F`-`0x00239358`). The
+  record pointer is read with no null test (`0x00239346`).
+
 ### Release
 
 `0x00234200(_, actor)` releases the actor's unit. With no unit it runs `0x00263980` and `0x003589A0` on
@@ -186,18 +198,40 @@ nibble (`0x00263C20`). The class decides what code accepts the actor:
 ### The refresh from the unit
 
 `0x00238BF0(unit)` brings the bound actor (`+0x10`) in line with the unit's stats record and is what
-sets the class nibble and the byte `+0x0F` of a fighting actor. It does nothing without an actor or
-a stats record, or for a stats kind other than 0 and 1.
+sets the class nibble and the byte `+0x0F` of a fighting actor. It does nothing for a null unit, without an actor or a
+stats record, or for a stats kind other than 0 and 1 (`0x00238BF0`-`0x00238BF3`, `0x00238C29`-`0x00238C2C`,
+`0x00238C54`-`0x00238C63`, `0x00238CCD`-`0x00238CDA`).
 
 - A party member (kind 0) gets `+0x0F` = 3 and nibble 8 when its type is 27-39, and `+0x0F` = 2 and
-  nibble 1 otherwise (`0x00269F30` writes `+0x0F`).
+  nibble 1 otherwise: `0x00269F30(actor, 3)` or `0x00269F30(actor, 2)` writes `+0x0F` (`0x00238C91`-`0x00238CC8`).
 - An enemy (kind 1) whose spawn record byte `+0` has bit `0x20` clear turns a unit byte `+0x58` of 4 into
-  1; with `+0x58` = 1 it runs `0x002659A0` and `0x0025D5E0(actor, 10)`, and raises `+0x58` to 7 when the
-  enemy row's byte `+0x03` has bit `0x10`.
-- An enemy whose spawn record has bit `0x20` set runs `0x00267CC0` and `0x0026B4A0(actor, 10)` instead.
+  1; with `+0x58` = 1 it runs `0x002659A0(actor)` and `0x0025D5E0(actor, 10)`, and raises `+0x58` to 7 when the stats
+  record is still of kind 1 and the enemy row's byte `+0x03` has bit `0x10` (`0x00238DBD`-`0x00238E02`).
+- An enemy whose spawn record has bit `0x20` set runs `0x00267CC0(actor)` and `0x0026B4A0(actor, 10)` instead
+  (`0x00238D98`-`0x00238DAE`).
 - The nibble is then written by `0x00269FE0(actor, n)` with the value above, or the unit's `+0x58` for
-  an enemy when it is not 0, and `0x0026AD00(actor, on)` sets `+0x13` bit `0x80` for an enemy whose class
-  row byte `+0x18 & 0xE` is 4 and clears it otherwise.
+  an enemy, when it is not 0 (`0x00238E06`-`0x00238E0D`, `0x00238E34`-`0x00238E3E`), and `0x0026AD00(actor, on)` sets `+0x13`
+  bit `0x80` for an enemy whose class row byte `+0x18 & 0xE` is 4 and clears it otherwise (`0x00238E11`-`0x00238E2F`,
+  `0x00238EC9`-`0x00238ECF`).
+- The push weight comes from a signed word `w`, the party row's `+0x7A` for a party member and the class row's `+0x10`
+  for an enemy: `w / 10.0` when `w` is above 0, else `w` (`0x00238C65`-`0x00238C81`, `0x00238CE0`-`0x00238CFC`); an enemy
+  whose spawn record has bit `0x20` gets -1.0 whatever the row holds (`0x00238DB3`).
+- The weight goes to `0x0026DAC0(actor, weight)`, and `0x002EC5B0(actor, v)` gets `0x10` for a weight below 0 and 0
+  otherwise (`0x00238E57`-`0x00238E75`).
+- The scale given to `0x002E5FD0(actor, x, y, z)` is 1.0 on each axis for a party member; an enemy takes the three
+  signed words `+0x0A`, `+0x0C` and `+0x0E` of its row `+0xE60`, each as `w / 100.0`, with a word of 0 read as 1.0
+  (`0x00238D04`-`0x00238D68`, `0x00238E43`-`0x00238E52`).
+- `0x0026A430(actor, a)` and `0x0026A3A0(actor, b)` get 1 and 1 for a party member; for an enemy `a` is bit `0x40` and `b`
+  bit `0x10` of the class row's byte `+0x12`. `0x002E8A10(actor, c)` gets 0 for a party member and bit `0x20` of the
+  enemy row's byte `+0x03`, read through the unit's `+0xE60`, for an enemy (`0x00238C18`-`0x00238C27`,
+  `0x00238D6C`-`0x00238D94`, `0x00238E7A`-`0x00238E8D`, `0x00238EBD`-`0x00238EC4`).
+- Between `0x0026A3A0` and `0x002E8A10` it calls `0x002E8220(actor, 0)` and `0x00269F20(actor, unit qword +0x18, n)`, with `n`
+  the spawn record's byte `+0x12`, or 0 for a null record pointer `+0x6A0` (`0x00238E92`-`0x00238EB8`). Only a party
+  member can reach that 0: the enemy way has read through the pointer before, with no null test (`0x00238D98`).
+- After `0x0026AD00` it reads `0x002361B0(unit)`, calls `0x0026A7F0(actor, 0)`, `0x0026A7C0(actor, 0)` and
+  `0x00269E20(actor, 0.0)`; with bit `0x2` of that answer it calls `0x0026A7C0(actor, 1)` and gives `0x00269E20(actor, f)`
+  the float `f` that `0x00236210(unit)` returns, and with bit `0x8` it calls `0x0026A7F0(actor, 1)`
+  (`0x00238ED4`-`0x00238F38`). It ends with `0x0026A330(actor, 0.0)` and `0x00312700(unit)` (`0x00238F3D`-`0x00238F4D`).
 
 The writers:
 
