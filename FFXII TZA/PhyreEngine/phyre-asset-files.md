@@ -780,7 +780,8 @@ Related).
   `0x01F2EA70` gets its six links pointed at itself and the exit routine `0x008B1C00` goes to `0x00808B90`
   (`0x0067650C`-`0x0067656D`).
 - Under the lock (`0x005CD4F0`, released by `0x005CD820`), `0x006750C0` looks the reference up, a hit giving
-  `0x12`, and `0x0067F700` inserts its node (`0x006764FA`-`0x006765A4`). After the last reference it returns 0
+  `0x12`; on a miss `0x006750C0` itself links the node at the end of its walk (`0x0067516D`-`0x0067517F`) and
+  `0x0067F700` rebalances the tree (`0x006764FA`-`0x006765A4`). After the last reference it returns 0
   (`0x006765D2`).
 - The registry orders keys with `0x00675EF0`: by hash, then, when both names contain `#`, by the text
   after the last `#` (case-sensitive) and then by the part before it (length first, then

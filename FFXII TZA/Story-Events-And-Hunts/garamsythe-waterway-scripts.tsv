@@ -371,6 +371,6 @@ grm_g0100	scene, event 235	Mes	m009	requested by Director.main	Vaan	8	"I got oth
 grm_g0100	scene, event 235	Mes	m010	requested by Director.main	Vaan	9	Hey, lock this place up for me, will you?	-	-	-	-	-	-	-	-	-	-	1	-
 grm_g0100	scene, event 235	Mes	m011	requested by Director.main	Vaan	10	If Migelo finds out we've been down here, he'll tan our hides.	-	-	-	-	-	-	-	-	-	-	1	-
 grm_g0101	scene, event 267	Mes	m001	requested by Director.main	-	0	Vaan! Hurry it up or they'll find us!	-	-	-	-	-	-	-	-	-	-	1	-
-grm_g0101	scene, event 267	Mes	m002	requested by Director.main	no name shown	1	I know, I know! Just a little more.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0101	scene, event 267	Mes	m002	requested by Director.main	Vaan	1	I know, I know! Just a little more.	-	-	-	-	-	-	-	-	-	-	1	-
 grm_g0101	scene, event 267	Mes	m003	requested by Director.main	no name shown	2	You keep an eye out for me up there, Kytes.	-	-	-	-	-	-	-	-	-	-	1	-
-grm_g0101	scene, event 267	Mes	m004	requested by Director.main	no name shown	3	One...two...three more. Right. Time to clean house.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0101	scene, event 267	Mes	m004	requested by Director.main	Vaan	3	One...two...three more. Right. Time to clean house.	-	-	-	-	-	-	-	-	-	-	1	-

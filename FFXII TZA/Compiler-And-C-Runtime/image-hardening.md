@@ -317,6 +317,10 @@ node's parent goes into the `+0x10` of the child that takes its place, with that
 and with no test of the child (`0x0067F5F3`-`0x0067F61C`). For a node with no child that store
 writes the `+0x10` of the tree object.
 
+The child that takes the place is stored in the parent's `+0x00` (`0x0067F630`) when the parent is the root slot
+(`0x0067F620`) or when the parent's `+0x00` holds the node unlinked (`0x0067F625`), and otherwise in the parent's
+`+0x08` (`0x0067F62A`).
+
 When the node unlinked is the root's successor and not the root itself (`0x0067F633`), the root has two children,
 and `0x0067F580` puts the successor in the place of the node it removes:
 
@@ -351,6 +355,10 @@ No instruction names the header's `+0x20` or `+0x28`, and neither the registrars
 `0x0067F9D0` replaces a node in its parent's link through the same test (`0x0067FA8D`, `0x0067FB44`, `0x0067FBE4`,
 `0x0067FC68`, `0x0067FD41`, `0x0067FDDD`). Its other `+0x08` stores go to the parent of the node it balances, or to nodes
 under that parent, and it leaves when that node is the root it read on entry (`0x0067F9D6`; `0x0067F9DD`, `0x0067FCC3`).
+
+It also leaves when the node it balances has bit `0x1` set (`0x0067F9F8`). On every exit it clears bit `0x1` of the
+node it stops on, which after a last rotation is the root it read on entry (`0x0067FDF7`, `0x0067FE03`-`0x0067FE13`);
+when that node is the tree object the store goes to the header's `+0x10`.
 
 `0x0067F700` replaces a node in its parent's link through the same test (`0x0067F7B1`, `0x0067F84A`, `0x0067F8DD`,
 `0x0067F978`). Its loop runs only while the parent of the node it stands on has bit `0x1` set (`0x0067F718`,

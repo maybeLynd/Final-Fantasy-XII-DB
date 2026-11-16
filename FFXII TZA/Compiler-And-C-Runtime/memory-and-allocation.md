@@ -286,8 +286,8 @@ It is built on first use, under the lock `0x02D3E880`, by a guarded one-time ini
 
 - `0x00677BA0(object)` registers one object. A null name at `+0x30` (bit `0x1` masked off) returns `0x15`.
   Otherwise it resets the node at `+0x08`, stores the name's hash (`0x00677350`, seed `0x7B5`) at
-  `+0x20` and the name at `+0x28`, looks the object up with `0x006750C0`, and inserts it with
-  `0x0067F700`; an object whose name is already present returns `0x12`.
+  `+0x20` and the name at `+0x28`, and calls `0x006750C0`, which links the node when the name is not present
+  (`0x0067516D`-`0x0067517F`); `0x0067F700` then rebalances (`0x00677CB1`). A name already present returns `0x12`.
 - `0x00675460(object)` removes one: when the object is linked it erases the node under the same lock
   (`0x0067FE20`), then frees an owned name at `+0x30` (bit `0x1` clear) with `0x00584730`. It is reached
   through `0x00674A30`, slot 11 of the three `PAssetReference` class-descriptor vtables `0x00D6BA78`,

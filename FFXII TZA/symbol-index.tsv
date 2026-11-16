@@ -14192,7 +14192,7 @@ function	0x0017E7A0	-	Engine-Core/debug-menu-commands-inputs.tsv	-	7
 function	0x0017E7D0	_guard_check_icall	Engine-Core/jump-thunks.md	-	22
 function	0x0017E7E0	-	Graphics/lens-flares.md	-	8
 function	0x0017E8E0	-	Compiler-And-C-Runtime/memory-and-allocation.md	-	10
-function	0x0017EBD0	-	Game-Files-And-Data-Tables/binmenu-images.md	-	10
+function	0x0017EBD0	-	Game-Files-And-Data-Tables/binmenu-images.md	-	11
 function	0x0017ECB0	-	Graphics/gi-render-commands.md	-	6
 function	0x0017ECC0	-	Graphics/gi-render-commands.md	-	5
 function	0x0017ECE0	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	9
@@ -14464,7 +14464,7 @@ function	0x00182EB0	-	Graphics/render-command-list.md	-	12
 function	0x00182EE0	-	Graphics/screen-mode-and-aspect.md	-	8
 function	0x00182F10	-	Graphics/screen-fades.md	-	8
 function	0x00182F30	-	Story-Events-And-Hunts/script-language-differences.md	-	8
-function	0x00182F50	-	Graphics/screen-mode-and-aspect.md	-	11
+function	0x00182F50	-	Graphics/screen-mode-and-aspect.md	-	12
 function	0x00182F70	-	Engine-Core/game-application.md	-	7
 function	0x00182FB0	-	Engine-Core/frame-update-order.md	-	7
 function	0x00182FD0	-	Game-Files-And-Data-Tables/json-configs-inputs.tsv	-	9
@@ -15037,7 +15037,7 @@ function	0x001A1240	-	Engine-Core/call-signatures.md	-	7
 function	0x001A1310	-	Game-Files-And-Data-Tables/async-load-manager.md	-	7
 function	0x001A1420	-	Graphics/gi-render-commands.md	-	7
 function	0x001A1460	-	Graphics/gi-render-commands.md	-	10
-function	0x001A1470	-	Graphics/gi-render-commands.md	-	17
+function	0x001A1470	-	Graphics/gi-render-commands.md	-	18
 function	0x001A14D0	-	Graphics/gi-render-commands.md	-	9
 function	0x001A14E0	-	Graphics/gi-render-commands.md	-	7
 function	0x001A1500	-	Engine-Core/game-application.md	-	7
@@ -16163,7 +16163,7 @@ function	0x001EDAD0	-	Graphics/model-effects-and-motion-commands.md	-	7
 function	0x001EDBB0	-	Graphics/effect-element-runtime.md	-	7
 function	0x001EDC80	-	Scripts-And-Script-Commands/native-commands.md	-	5
 function	0x001EDCD0	m1126	Graphics/model-effects-and-motion-commands.md	-	8
-function	0x001EDDA0	-	Graphics/effect-lifecycle.md	-	33
+function	0x001EDDA0	-	Graphics/effect-lifecycle.md	-	34
 function	0x001EDDC0	-	Menus-And-HUD/hud.md	-	21
 function	0x001EDE70	-	Menus-And-HUD/map-screens.md	-	22
 function	0x001EDE80	-	Engine-Core/frame-update-order.md	-	11
@@ -16546,7 +16546,7 @@ function	0x00202880	-	Engine-Core/debug-menu.md	-	9
 function	0x002028B0	-	Third-Party-Libraries/third-party-libraries-jsonbox.tsv	-	5
 function	0x00202930	-	Game-Files-And-Data-Tables/standard-file-formats.md	-	7
 function	0x00202B10	-	Graphics/animation-playback.md	-	15
-function	0x00202B70	-	Menus-And-HUD/map-screens.md	-	26
+function	0x00202B70	-	Graphics/effect-element-types.md	-	26
 function	0x00202B90	-	Graphics/scripted-camera.md	-	11
 function	0x00202C50	-	Menus-And-HUD/hud.md	-	6
 function	0x00202C70	-	Menus-And-HUD/license-board-screen.md	-	18
@@ -17030,7 +17030,7 @@ function	0x002165B0	-	Third-Party-Libraries/third-party-libraries.md	-	6
 function	0x00216660	-	Menus-And-HUD/hud.md	-	5
 function	0x00216720	-	Engine-Core/jump-thunks.tsv	-	5
 function	0x00216FC0	-	Menus-And-HUD/hud.md	-	5
-function	0x00217060	-	Graphics/legacy-ps2-gs-layer.md	-	11
+function	0x00217060	-	Graphics/legacy-ps2-gs-layer.md	-	12
 function	0x00217150	-	Movement-And-Pathfinding/collision-mesh-movement.md	-	15
 function	0x00217610	-	Movement-And-Pathfinding/collision-mesh-movement.md	-	11
 function	0x00217790	-	Movement-And-Pathfinding/battle-locomotion.md	-	6
@@ -18311,7 +18311,7 @@ function	0x00259030	VFXSystem_RenderGroupedLayerPassWithGraphicsFence	Graphics/e
 function	0x002590F0	VFXSystem_RenderSpecialPassWithGraphicsFence	Graphics/gi-render-commands.md	-	9
 function	0x00259170	-	Compiler-And-C-Runtime/generated-function-families-trivial-global-accessors.tsv	-	6
 function	0x00259180	-	Engine-Core/startup-constants.md	-	22
-function	0x00259240	-	Engine-Core/frame-update-order.md	-	6
+function	0x00259240	-	Engine-Core/frame-update-order.md	-	7
 function	0x00259250	-	Graphics/effect-element-runtime.md	-	7
 function	0x00259360	-	Graphics/effect-element-types.md	-	6
 function	0x00259370	-	Graphics/field-camera.md	-	6
@@ -20752,7 +20752,7 @@ function	0x002EA7F0	-	Party/party-leader.md	-	14
 function	0x002EA870	-	Characters-And-Objects/actor-managers.md	-	12
 function	0x002EA880	-	Graphics/effect-element-types.md	-	9
 function	0x002EA890	-	EBP-Script-Files/ebp-camera-tables.md	-	5
-function	0x002EA8B0	-	Graphics/character-status-visuals.md	-	10
+function	0x002EA8B0	-	Graphics/character-status-visuals.md	-	11
 function	0x002EA8E0	-	Engine-Core/party-control-modes.md	-	10
 function	0x002EA910	-	Movement-And-Pathfinding/facing-and-steering.md	-	9
 function	0x002EA970	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	10
@@ -21511,7 +21511,7 @@ function	0x003148F0	WorldTransition_GetActiveOrPendingFieldId	World-Areas-And-Tr
 function	0x00314910	WorldTransition_GetTransitionFieldId	World-Areas-And-Travel/zone-asset-list.md	-	15
 function	0x00314930	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	9
 function	0x00314940	-	Engine-Core/startup-constants.md	-	5
-function	0x00314960	-	Menus-And-HUD/widgets.md	-	9
+function	0x00314960	-	Menus-And-HUD/widgets.md	-	10
 function	0x00314970	WorldTransition_ResetState	Saving-Loading-And-Settings/save-data-fields.md	-	11
 function	0x003149E0	WorldTransition_ClearFlag1062_Bit04	World-Areas-And-Travel/save-and-teleport-crystals.md	-	11
 function	0x00314A00	-	World-Areas-And-Travel/save-and-teleport-crystals.md	-	12
@@ -24244,7 +24244,7 @@ function	0x00369D30	-	Game-Files-And-Data-Tables/resource-arena-and-relocation.m
 function	0x0036A000	-	Game-Files-And-Data-Tables/resource-arena-and-relocation.md	-	15
 function	0x0036A0B0	-	Game-Files-And-Data-Tables/resource-arena-and-relocation.md	-	6
 function	0x0036A100	-	Game-Files-And-Data-Tables/resource-lifecycle.md	-	40
-function	0x0036A190	-	Game-Files-And-Data-Tables/resource-lifecycle.md	-	35
+function	0x0036A190	-	Game-Files-And-Data-Tables/resource-lifecycle.md	-	36
 function	0x0036A1A0	-	Game-Files-And-Data-Tables/resource-arena-and-relocation.md	-	11
 function	0x0036A230	-	Graphics/effect-element-runtime.md	-	8
 function	0x0036A240	-	Game-Files-And-Data-Tables/resource-arena-and-relocation.md	-	8
@@ -24282,7 +24282,7 @@ function	0x0036BFE0	-	Game-Files-And-Data-Tables/resource-arena-and-relocation.m
 function	0x0036C0F0	-	Game-Files-And-Data-Tables/resource-arena-and-relocation.md	-	6
 function	0x0036C100	-	World-Areas-And-Travel/mpk-map-pack.md	-	6
 function	0x0036C110	-	Game-Files-And-Data-Tables/resource-arena-and-relocation.md	-	10
-function	0x0036C140	-	Game-Files-And-Data-Tables/resource-arena-and-relocation.md	-	48
+function	0x0036C140	-	Game-Files-And-Data-Tables/resource-arena-and-relocation.md	-	49
 function	0x0036C1A0	-	Game-Files-And-Data-Tables/resource-arena-and-relocation.md	-	12
 function	0x0036C1D0	-	Game-Files-And-Data-Tables/resource-arena-and-relocation.md	-	53
 function	0x0036C1F0	-	Game-Files-And-Data-Tables/resource-arena-and-relocation.md	-	10
@@ -24540,7 +24540,7 @@ function	0x00378120	-	World-Areas-And-Travel/mpk-map-pack.md	-	19
 function	0x00378230	-	World-Areas-And-Travel/mpk-map-pack.md	-	20
 function	0x003784A0	-	World-Areas-And-Travel/mpk-map-pack.md	-	7
 function	0x00378530	-	Compiler-And-C-Runtime/generated-function-families-trivial-global-accessors.tsv	-	6
-function	0x00378540	-	World-Areas-And-Travel/area-flags-navimapdata.md	-	27
+function	0x00378540	-	World-Areas-And-Travel/area-flags-navimapdata.md	-	28
 function	0x003788F0	-	Graphics/effect-files-efx-efb.md	-	9
 function	0x003789A0	-	Graphics/effect-files-efx-efb.md	-	12
 function	0x00378A50	-	Story-Events-And-Hunts/event-memory.md	-	6
@@ -25372,7 +25372,7 @@ function	0x003AB910	-	Graphics/model-effects-and-motion-commands.md	-	6
 function	0x003AB940	-	Game-Files-And-Data-Tables/resource-arena-and-relocation.md	-	7
 function	0x003AB960	-	Graphics/effect-element-types.md	-	12
 function	0x003ABB60	-	Graphics/character-lighting-and-shadows.md	-	8
-function	0x003ABCA0	-	Graphics/character-lighting-and-shadows.md	-	14
+function	0x003ABCA0	-	Graphics/character-lighting-and-shadows.md	-	15
 function	0x003ABD00	-	Graphics/lens-flares.md	-	7
 function	0x003ABD20	-	Graphics/character-lighting-and-shadows.md	-	5
 function	0x003ABD50	-	Graphics/character-lighting-and-shadows.md	-	7
@@ -25381,7 +25381,7 @@ function	0x003AC870	-	Engine-Core/startup-constants.md	-	6
 function	0x003AC890	-	Engine-Core/startup-constants.md	-	8
 function	0x003AC8F0	-	Engine-Core/party-control-modes.md	-	6
 function	0x003AC900	-	Engine-Core/startup-constants.md	-	6
-function	0x003AC920	-	Graphics/character-lighting-and-shadows.md	-	6
+function	0x003AC920	-	Graphics/effect-element-types.md	-	6
 function	0x003ACA60	-	Game-Files-And-Data-Tables/small-bin-tables.md	-	6
 function	0x003ACA70	-	Game-Files-And-Data-Tables/small-bin-tables.md	-	6
 function	0x003ACA80	-	Engine-Core/party-control-modes.md	-	9
@@ -25510,7 +25510,7 @@ function	0x003B40F0	-	Graphics/scripted-camera.md	-	5
 function	0x003B4140	-	Compiler-And-C-Runtime/generated-function-families-explained-callee-adapters.tsv	-	5
 function	0x003B4150	-	Graphics/scripted-camera.md	-	5
 function	0x003B4160	-	Graphics/character-fades.md	-	11
-function	0x003B42B0	-	Graphics/character-fades.md	-	7
+function	0x003B42B0	-	Graphics/character-fades.md	-	8
 function	0x003B4310	-	Graphics/character-fades.md	-	8
 function	0x003B4750	-	Graphics/character-fades.md	-	5
 function	0x003B4770	-	Graphics/character-fades.md	-	8
@@ -25908,7 +25908,7 @@ function	0x003D7F10	-	Engine-Core/startup-constants.md	-	5
 function	0x003D7F30	-	Graphics/effect-file-list.md	-	6
 function	0x003D7FF0	-	Graphics/effect-element-types.md	-	9
 function	0x003D8190	-	Graphics/effect-element-runtime.md	-	6
-function	0x003D8300	-	Graphics/character-render-records.md	-	6
+function	0x003D8300	-	Graphics/effect-element-types.md	-	6
 function	0x003D83A0	-	Graphics/effect-element-types.md	-	9
 function	0x003D8C30	-	Engine-Core/startup-constants.md	-	8
 function	0x003D8D60	-	Graphics/effect-element-types.md	-	9
@@ -27396,7 +27396,7 @@ function	0x004304F0	-	Graphics/effect-element-types.md	-	9
 function	0x00430540	-	Game-Files-And-Data-Tables/authored-expressions.md	-	8
 function	0x004307C0	-	Game-Files-And-Data-Tables/authored-expressions.md	-	6
 function	0x004308D0	-	Game-Files-And-Data-Tables/authored-expressions.md	-	6
-function	0x004309C0	-	Game-Files-And-Data-Tables/authored-expressions.md	-	9
+function	0x004309C0	-	Game-Files-And-Data-Tables/authored-expressions.md	-	10
 function	0x00430A60	-	Graphics/effect-element-types.md	-	5
 function	0x00430AF0	-	Graphics/effect-element-types.md	-	10
 function	0x00430B90	-	Game-Files-And-Data-Tables/authored-expressions.md	-	18
@@ -28220,7 +28220,7 @@ function	0x00501520	-	Game-Files-And-Data-Tables/resource-lifecycle.md	-	8
 function	0x00501610	-	Graphics/effect-element-runtime.md	-	7
 function	0x00501750	-	Graphics/effect-files-efx-efb.md	-	6
 function	0x00501820	-	Engine-Core/ps2-cpu-emulation.md	-	8
-function	0x00501950	-	Graphics/effect-element-runtime-switch-family-record-store-5x.tsv	-	6
+function	0x00501950	-	Graphics/effect-element-types.md	-	7
 function	0x005019D0	-	Graphics/effect-files-efx-efb.md	-	6
 function	0x00501A40	-	Compiler-And-C-Runtime/thunks-and-import-stubs-internal-tail-call-forwarders.tsv	-	8
 function	0x00501A50	-	Graphics/effect-element-types.md	-	7
@@ -28235,7 +28235,7 @@ function	0x00503180	-	Graphics/effect-files-efx-efb.md	-	5
 function	0x005032D0	-	Graphics/effect-files-efx-efb.md	-	6
 function	0x00503790	-	Graphics/effect-files-efx-efb.md	-	6
 function	0x00503830	-	Graphics/effect-element-runtime-switch-family-record-store-5x.tsv	-	6
-function	0x00503880	-	Game-Files-And-Data-Tables/resource-lifecycle.md	-	9
+function	0x00503880	-	Graphics/effect-element-types.md	-	9
 function	0x005039A0	-	Graphics/effect-element-types.md	-	7
 function	0x00503A80	-	Graphics/effect-element-types.md	-	6
 function	0x00503BA0	-	Game-Files-And-Data-Tables/resource-lifecycle.md	-	6
@@ -33824,7 +33824,7 @@ function	0x0062BCB0	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	18
 function	0x0062BF40	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	13
 function	0x0062C100	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	13
 function	0x0062C300	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	8
-function	0x0062C360	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	14
+function	0x0062C360	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	15
 function	0x0062C570	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	9
 function	0x0062C820	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	7
 function	0x0062C9A0	-	PhyreEngine/phyre-d3d11-draws-and-state.md	-	6
@@ -35624,7 +35624,7 @@ function	0x00674E50	-	PhyreEngine/phyre-asset-files.md	-	13
 function	0x00674E90	-	Engine-Core/vtable-methods.tsv	-	8
 function	0x00674F00	-	Engine-Core/vtable-methods.tsv	-	12
 function	0x00674F60	-	PhyreEngine/phyre-asset-files.md	-	7
-function	0x006750C0	-	Compiler-And-C-Runtime/memory-and-allocation.md	-	8
+function	0x006750C0	-	PhyreEngine/phyre-asset-files.md	-	8
 function	0x006751A0	-	PhyreEngine/phyre-asset-files.md	-	19
 function	0x00675250	-	PhyreEngine/phyre-reflection-class-flag-sites.tsv	-	17
 function	0x00675300	-	PhyreEngine/phyre-asset-files.md	-	6
@@ -35720,7 +35720,7 @@ function	0x00679330	-	Engine-Core/vtable-methods.tsv	-	6
 function	0x006793B0	-	Engine-Core/vtable-methods.tsv	-	7
 function	0x006793E0	-	Engine-Core/vtable-methods.tsv	-	6
 function	0x006794D0	-	Sound-And-Music/sound-engine.md	-	9
-function	0x00679570	-	Game-Files-And-Data-Tables/binmenu-images.md	-	7
+function	0x00679570	-	Graphics/effect-element-types.md	-	8
 function	0x00679600	-	Third-Party-Libraries/media-decoder-libraries.md	-	6
 function	0x00679A40	-	Third-Party-Libraries/media-decoder-libraries.md	-	7
 function	0x00679A50	-	Third-Party-Libraries/media-decoder-libraries.md	-	7
@@ -43358,7 +43358,7 @@ function	0x00863C80	-	Random-Numbers/random-number-generators.md	-	9
 function	0x00863D30	-	Random-Numbers/random-number-generators.md	-	10
 function	0x00863D80	-	Graphics/effect-element-types.md	-	9
 function	0x008641B0	-	Graphics/gi-render-commands.md	-	8
-function	0x00864210	-	Graphics/gi-render-commands.md	-	5
+function	0x00864210	-	Graphics/effect-element-types.md	-	6
 function	0x008642A0	-	Graphics/effect-element-types.md	-	6
 function	0x00864330	-	Game-Files-And-Data-Tables/standard-file-formats.md	-	9
 function	0x00864750	-	Graphics/gi-render-commands.md	-	8
@@ -47056,7 +47056,7 @@ global	0x01EF9214	-	Battle-Actions/quickenings-and-summons.md	-	3
 global	0x01EF9218	-	Graphics/effect-element-runtime.md	-	5
 global	0x01EF9234	-	Movement-And-Pathfinding/player-movement.md	-	0
 global	0x01EF93E8	-	Random-Numbers/random-number-generators.md	-	4
-global	0x01EF93F0	-	Engine-Core/ps2-cpu-emulation.md	-	8
+global	0x01EF93F0	-	Engine-Core/ps2-cpu-emulation.md	-	9
 global	0x01EF93F4	-	Engine-Core/ps2-cpu-emulation.md	-	3
 global	0x01EF93F8	-	Engine-Core/ps2-cpu-emulation.md	-	1
 global	0x01EF93FC	-	Movement-And-Pathfinding/geometry-primitives.md	-	5
@@ -47863,7 +47863,7 @@ global	0x01F7E350	-	Engine-Core/game-application.md	-	5
 global	0x01F7F48C	-	Engine-Core/game-application.md	-	0
 global	0x01F7F4B0	-	Engine-Core/game-application.md	-	2
 global	0x01F7F4B8	-	Engine-Core/game-application.md	-	5
-global	0x01F7F4C0	-	Engine-Core/game-application.md	-	9
+global	0x01F7F4C0	-	Engine-Core/game-application.md	-	10
 global	0x01F7F4C8	-	Engine-Core/game-application.md	-	1
 global	0x01F7F4D0	-	Engine-Core/game-application.md	-	2
 global	0x01F7F4D8	-	Engine-Core/game-application.md	-	4
@@ -47901,7 +47901,7 @@ global	0x01F7F58C	-	Graphics/lens-flares.md	-	0
 global	0x01F7F590	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	2
 global	0x01F7F594	-	Graphics/render-command-list.md	-	1
 global	0x01F7F598	-	Engine-Core/game-application.md	-	8
-global	0x01F7F5A0	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	5
+global	0x01F7F5A0	-	PhyreEngine/phyre-d3d11-device-and-resources.md	-	6
 global	0x01F7F5A4	-	Engine-Core/game-application.md	-	0
 global	0x01F7F5AC	-	Engine-Core/game-application.md	-	0
 global	0x01F7F5B8	-	PhyreEngine/phyre-modules.md	-	2
@@ -48957,7 +48957,7 @@ global	0x02096D38	-	Graphics/effect-files-efx-efb.md	-	0
 global	0x02096D40	-	Graphics/effect-files-efx-efb.md	-	0
 global	0x02096ED8	-	Graphics/effect-element-types.md	-	0
 global	0x02096EE0	-	Graphics/effect-element-types.md	-	0
-global	0x020972E0	-	Compiler-And-C-Runtime/generated-function-families-trivial-global-accessors.tsv	-	2
+global	0x020972E0	-	Graphics/effect-element-types.md	-	3
 global	0x020972F0	-	Graphics/scripted-camera.md	-	0
 global	0x020972F8	-	Graphics/scripted-camera.md	-	0
 global	0x02097B80	-	Graphics/scripted-camera.md	-	2
@@ -51831,7 +51831,7 @@ global	0x02B3F501	-	Graphics/character-status-visuals.md	-	4
 global	0x02B3F502	-	Graphics/character-lighting-and-shadows.md	-	4
 global	0x02B3F503	-	Graphics/character-lighting-and-shadows.md	-	1
 global	0x02B3F504	-	Engine-Core/startup-constants.md	-	2
-global	0x02B3F508	-	Graphics/character-lighting-and-shadows.md	-	1
+global	0x02B3F508	-	Graphics/character-lighting-and-shadows.md	-	2
 global	0x02B3F510	-	Engine-Core/startup-constants.md	-	2
 global	0x02B3F518	-	Graphics/character-status-visuals.md	-	2
 global	0x02B3F51C	-	Engine-Core/startup-constants.md	-	2
@@ -51849,7 +51849,7 @@ global	0x02B404B3	-	Graphics/character-fades.md	-	1
 global	0x02B404C0	-	Graphics/character-fades.md	-	2
 global	0x02B404C1	-	Graphics/character-fades.md	-	1
 global	0x02B404C4	-	Graphics/character-fades.md	-	3
-global	0x02B404C8	-	Graphics/character-fades.md	-	2
+global	0x02B404C8	-	Graphics/character-fades.md	-	3
 global	0x02B404D0	-	Graphics/character-fades.md	-	2
 global	0x02B404E0	-	PhyreEngine/the-frame.md	-	8
 global	0x02B404E8	-	Graphics/character-fades.md	-	0
@@ -59694,7 +59694,7 @@ data	0x01CCFA18	-	Graphics/gi-render-commands.md	-	4
 data	0x01CCFA30	-	Graphics/gi-render-commands.md	-	4
 data	0x01CCFA88	-	Graphics/graphics-thread-handshake.md	-	3
 data	0x01CCFAB0	-	Graphics/gi-render-commands.md	-	4
-data	0x01CCFAF0	-	Graphics/gi-render-commands.md	-	4
+data	0x01CCFAF0	-	Graphics/effect-element-types.md	-	5
 data	0x01CCFB08	-	Graphics/gi-render-commands.md	-	4
 data	0x01CCFB20	-	Graphics/gi-render-commands.md	-	4
 data	0x01CCFB38	-	Graphics/gi-render-commands.md	-	4
@@ -60787,7 +60787,7 @@ data	0x02AD9EC0	-	Graphics/animation-playback.md	-	3
 data	0x02ADB6E0	-	Engine-Core/startup-constants.md	-	1
 data	0x02ADB720	-	Engine-Core/startup-constants.md	-	1
 data	0x02ADBFE0	-	Graphics/effect-element-types.md	-	2
-data	0x02ADCFC0	-	Engine-Core/startup-constants.md	-	0
+data	0x02ADCFC0	-	Engine-Core/startup-constants.md	-	1
 data	0x02ADD010	-	World-Areas-And-Travel/mpk-map-pack.md	-	4
 data	0x02ADD030	-	World-Areas-And-Travel/mpk-map-pack.md	-	2
 data	0x02ADD0E4	-	World-Areas-And-Travel/mpk-map-pack.md	-	1
@@ -60957,6 +60957,7 @@ data	0x02AEDF90	-	Engine-Core/startup-constants.md	-	1
 data	0x02AEE04F	-	Damage-And-Battle-Formulas/damage-formula.md	-	1
 data	0x02AEE0C0	-	Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md	-	3
 data	0x02AEE898	-	Menus-And-HUD/fonts.md	-	0
+data	0x02AEE9A0	-	Graphics/effect-element-types.md	-	0
 data	0x02AEEA20	-	Graphics/position-to-scalar.md	-	2
 data	0x02AEEA24	-	Graphics/effect-element-types.md	-	0
 data	0x02AEEA28	-	Graphics/effect-element-types.md	-	0

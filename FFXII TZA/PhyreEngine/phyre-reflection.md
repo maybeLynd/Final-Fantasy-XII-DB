@@ -137,8 +137,9 @@ steps back 8 bytes to call the object's own destructor.
 
 `0x006388C0` registers a descriptor in the global type tree whose header is `0x01F2E780` (returned by
 `0x00637440`). It hashes the name `+0x30` from `0x7B5`, multiplying by 33 and adding the low five bits of each
-byte (`0x00638920`-`0x0063892A`), stores the hash at `+0x20` and the name at `+0x28` (`0x00638976`, `0x0063897C`), and
-inserts `+0x08` into an ordered tree (`0x0067F700`, `0x00638998`), returning true.
+byte (`0x00638920`-`0x0063892A`) and stores the hash at `+0x20` and the name at `+0x28` (`0x00638976`, `0x0063897C`).
+`0x006314B0` then links `+0x08` into the ordered tree at the end of its walk (`0x00631589`-`0x0063159F`), `0x0067F700`
+rebalances the tree (`0x00638998`), and `0x006388C0` returns true.
 
 It returns false when the name is already present (`0x006311D0` finds it, `0x0063894A`); when the name `+0x30` is
 null, before the tree is touched (`0x006388D4`-`0x006388E2`); and when `0x006314B0` returns non-zero, after `+0x20` and
