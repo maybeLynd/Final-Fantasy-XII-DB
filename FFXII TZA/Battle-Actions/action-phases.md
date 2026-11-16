@@ -64,13 +64,18 @@ next call. Phase 12 returns 1: the action is finished.
 | `3` | `0x00304A4C` | `0x00305230(unit, id)`; `0x0030E360(stats, 0, 24, 0, ...)` removes status 24 (Invisible); range bands `0x002FEB80`; saved charge restored (below); charge limit `+0x76C` = `0x002F8410(unit)`; `0x00469AF0` unless the saved charge was restored for the same order; movement reset `0x003291B0`; `0x00329F80`, `0x00306010`; the three presentation slots `+0x694`-`+0x696` released | at once |
 | `4` | `0x00304BA5` | presentation event; movement goal and the bands copied to the movement block (mode 1); approach point from `0x00339630`, which always answers 1 (`0x00339A24`), so the arm for a 0 answer (the target's position, stop distance 0.1, `0x00304CAF`-`0x00304CC8`) is not taken; `0x00319110`; while `+0x768` < `+0x76C`, `+0x768` += `0x002F9C00(unit)` and `+0x770` = `+0x768`; `0x0033A1E0` sets bit `0x80` of `+0x04` (in reach) | in reach and fully charged; a scene action also waits while bit `0x2` of `0x022C2158` is set (`0x00304D3F`-`0x00304D54`); otherwise a navigation step `0x00325BB0` and wait |
 | `5` | `0x00304D73` | presentation event; movement reset | at once |
-| `6` | `0x00304DA5` | for action `0x9F` unit bit `0x800000000` set; presentation event; the phase-0 flag clears again, bit `0x80` of `+0x04` set; a presentation slot acquired (`0x0030CFB0`) | at once |
+| `6` | `0x00304DA5` | for action `0x9F` unit bit `0x800000000` set; presentation event; the phase-0 flag clears again, bit `0x80` of `+0x04` set; a presentation slot asked for (`0x0030CFB0`) | at once |
 | `7` | `0x00304E2C` | `0x0030CA80` checks the slot; when it asks for the unit to be shown, the unit id goes into the 64-entry ring at `0x022BEDA4` (write index `0x022BEDA1`) and unit bit `0x1000` is set; presentation event | slot ready and unit bit `0x1000` clear |
 | `8` | `0x00304EB3` | `0x00319420(unit+0x6B0)` | at once |
 | `9` | `0x00304EBE` | `+0x770` = 0; targets built (`0x0030D160`); `0x00305430`; unit bit `0x400000000000` set; for ids other than `0xD0`-`0xF1` (the Quickenings and Concurrences, which skip both), the previews `0x00303830` and, for a scene action (row `+0x0C` bit `0x40000000`), the cost payment `0x00305640`; a scene action then starts its scene (`0x00306760`); any other action posts its resolved presentation event (`0x0030FE10`) | at once |
 | `10` | `0x00304F62` | a scene action waits while the scene state `0x022C2160` is 5 or 6, then moves on; any other action: once `+0x690` has bits `0x2` and `0x8`, unit bit `0x400000000000` is cleared and, for the controlled member with unit bit `0x40000`, bit `0x1` of `+0x690` set; bit `0x1` of `+0x690` posts event `0x2001` | scene actions: scene over; others: `0x0030BC40` returns 1 (`+0x690` bits `0x1` and `0x4`) |
 | `11` | `0x00304FE9` | unit bit `0x2000` cleared | at once |
 | `12` | `0x00304FF3` | returns 1 | - |
+
+`0x0030BC40(unit)`, which phase 10 asks (`0x00304FDD`), answers 1 when bits `0x1` and `0x4` of the unit's `+0x690` are
+both set, and 0 otherwise (`0x0030BC96`-`0x0030BCA4`). While bit `0x4` is clear it first takes the effect handle `+0x24`
+of the slot the byte `+0x695` names, or -1 for a byte above `0x1F`, and when `0x00322310(handle)` answers non-zero it
+calls `0x002EB4A0(unit qword +0x10)` and sets bit `0x4` (`0x0030BC46`-`0x0030BC8F`).
 
 `0x00303830(unit, row, list)` previews the action in one of two ways (`0x00303854`-`0x00303868`).
 With a non-zero count byte `+0x6B6` it walks that many bytes from `+0x6B9`: each names
@@ -195,21 +200,27 @@ slot number in `+0x694` (`0xFF` when it holds no slot).
 
 ### Taking a slot
 
-Phase 6 calls `0x0030CFB0(unit + 0x690, unit id, action id)` with the effective action id from
-`0x00387090` (`0x00304E12`-`0x00304E24`):
+Phase 6 calls `0x0030CFB0(unit + 0x690, unit id, action id, unit byte +0xEA9)` with the effective action id from
+`0x00387090` (`0x00304E0B`-`0x00304E24`):
 
-1. Nothing happens when `+0x694` already holds a slot (`0x0030CFBF`).
+1. Nothing happens when the byte `+0x694` is not `0xFF`, that is when it already holds a slot (`0x0030CFBF`-`0x0030CFCC`).
 2. A scene action (row `+0x0C` bit `0x40000000`) takes the single scene reservation, bit `0x2` of `0x022C2158`, and
    gets no slot while that bit is already set. A Quickening or Concurrence id (`0xD0`-`0xF1`) skips
    the reservation while the scene state `0x022C2160` is 5 or 6 (`0x0030D011`-`0x0030D046`).
 3. `0x0030D070(unit id, action id)` takes the first slot whose action id `+0x1C` is `0xFFFF`, appends
    it to the chain, sets its three load states to 1 and stores both ids; with all 32 in use it
-   returns `0xFF` (`0x0030D070`-`0x0030D154`). The result goes to `+0x694` (`0x0030D056`).
+   returns `0xFF` (`0x0030D070`-`0x0030D154`). The result goes to `+0x694` (`0x0030D04C`-`0x0030D056`).
 
-The script verb `spattackread` (`0x29B`, `0x00348870`) calls `0x0030EEA0(unit, n)`: while `0x022C2170` is
-4 it stores `0xD0 + n` (or -1 for `n` = -1) in the unit's `+0x758`, takes a slot for that id through
-`0x0030CFB0` and sets `0x022C2170` to 1; it returns -1 when the unit does not resolve and -2 in any other
-state (`0x0030EEA0`-`0x0030EF16`).
+In step 2 the row is `0x0020E600([0x02EBF138] dword +0x0C)` plus the action id times the table's word `+0x08`, in 32 bits;
+when `0x02EBF138` is 0 or `0x0020E600` answers 0, the row pointer is 0 and the flag test reads the address `0x0C`
+(`0x0030CFD2`-`0x0030D011`). Neither `0x0030CFB0` nor `0x0030D070` reads the fourth argument (`0x0030D070` writes `r9` before
+any read of it).
+
+The script verb `spattackread` (`0x29B`, `0x00348870`) calls `0x0030EEA0(handle, n)`. It forms the id `0xD0 + n` in 16
+bits, or `0xFFFF` for `n` = -1, and returns -1 when `0x0031B7E0(handle)` answers null, then -2 while `0x022C2170` is not 4
+(`0x0030EEA0`-`0x0030EEE2`). Otherwise, for the unit that call answers, it stores the id in the unit's word `+0x758`, asks
+`0x0030CFB0(unit + 0x690, unit id +0x08, id, unit byte +0xEA9)` for a slot, sets `0x022C2170` to 1 and returns 0
+(`0x0030EEE3`-`0x0030EF16`).
 
 ### Loading, once a frame
 
@@ -249,6 +260,11 @@ flag bit `0x10` or a stats record, or has KO, Stone or X-Zone outside a field wi
 
 The answer goes to `+0x28`: 0 stays at 1, `0x80000000` gives 3, `0x80000001` gives 3 and sets unit
 flag bit `0x80000000`, any other 2. State 2 becomes 3 once `0x003DCB90` reports 3 for it (`0x0030CD1B`-`0x0030CD74`).
+
+`0x003DCB90(id)`, which the loader reaches through the jump `0x00325B30` (`0x0030CD63`), answers 3 for a negative id and 0
+for an id of 0. Otherwise it takes the skill-motion entry the id's low four bits name, of the sixteen `0x14`-byte
+entries at `0x02B57F70` ([Character render records](../Graphics/character-render-records.md)), and
+answers its state byte `+0x06` when its dword `+0x08` is the id, and 0 when it is not (`0x003DCB90`-`0x003DCBBA`).
 
 ### Loading the scene
 

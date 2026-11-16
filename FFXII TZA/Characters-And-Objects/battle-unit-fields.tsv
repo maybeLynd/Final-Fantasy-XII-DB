@@ -766,7 +766,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00236A60	BattleUnit_ResetStateForReuse	0x00236B12	0x80	addr	lea rcx, [rdi + 0x80]	arg0 from 0x0023A570 at 0x0023A5B0	
 0x00236A60	FUN_00236a60	0x00236BF0	0x80	set	call 0x861ec0	arg0 from 0x0023A570 at 0x0023A5B0	memset, 0x610 bytes: +0x80 to +0x68F in the reuse reset
 0x00301830	AiOrder_CheckActionPreconditions	0x0030185B	0x80	addr	lea rax, [rcx + 0x80]	arg0 from 0x003014C0 at 0x003015DA	
-0x00301830	AiOrder_CheckActionPreconditions	0x00301887	0x80	r	movups xmm0, xmmword ptr [rax]	arg0 from 0x003014C0 at 0x003015DA	
+0x00301830	AiOrder_CheckActionPreconditions	0x00301887	0x80	r	movups xmm0, xmmword ptr [rax]	arg0 from 0x003014C0 at 0x003015DA	loop pass 0 of 12: the copy loop advances the pointer 0x80 per pass (lea at 0x0030188E, edx=12), so this site also reaches +0x100..+0x600 in passes 1-11; this row gives pass 0 only
 0x00304850	BattleUnit_AdvanceStandardActionState	0x003048EF	0x80	addr	lea rbx, [rdi + 0x80]	arg0 from 0x00307BE0 at 0x00307C19	
 0x003082F0	FUN_003082f0	0x0030831F	0x80	addr	lea rcx, [rbx + 0x80]	arg0 from 0x003250F0 at 0x0032516B	
 0x00308610	BattleUnit_UpdateCombatFrame	0x00308673	0x80	addr	lea rcx, [rbx + 0x80]	arg0 from 0x00233F70 at 0x00234011	
@@ -775,14 +775,14 @@ function	name	site	disp	kind	instruction	route	note
 0x003105D0	BattleUnit_CancelAndResetCurrentAction	0x003105F9	0x80	addr	lea rsi, [rcx + 0x80]	arg0 from 0x00300140 at 0x0030014D	
 0x00317E60	FUN_00317e60	0x00317E9D	0x80	addr	lea rcx, [rax + 0x80]	0x00263E30	
 0x00325BB0	BattleUnit_UpdateCombatNavigationStep	0x00325BC4	0x80	addr	lea rbx, [rcx + 0x80]	arg0 from 0x003082F0 at 0x00308341	
-0x00301830	AiOrder_CheckActionPreconditions	0x0030188A	0x90	r	movups xmm1, xmmword ptr [rax + 0x10]	arg0 from 0x003014C0 at 0x003015DA	
-0x00301830	AiOrder_CheckActionPreconditions	0x00301899	0xA0	r	movups xmm0, xmmword ptr [rax - 0x60]	arg0 from 0x003014C0 at 0x003015DA	
-0x00301830	AiOrder_CheckActionPreconditions	0x003018A1	0xB0	r	movups xmm1, xmmword ptr [rax - 0x50]	arg0 from 0x003014C0 at 0x003015DA	
-0x00301830	AiOrder_CheckActionPreconditions	0x003018A9	0xC0	r	movups xmm0, xmmword ptr [rax - 0x40]	arg0 from 0x003014C0 at 0x003015DA	
+0x00301830	AiOrder_CheckActionPreconditions	0x0030188A	0x90	r	movups xmm1, xmmword ptr [rax + 0x10]	arg0 from 0x003014C0 at 0x003015DA	loop pass 0 of 12: the copy loop advances the pointer 0x80 per pass (lea at 0x0030188E, edx=12), so this site also reaches +0x110..+0x610 in passes 1-11; this row gives pass 0 only
+0x00301830	AiOrder_CheckActionPreconditions	0x00301899	0xA0	r	movups xmm0, xmmword ptr [rax - 0x60]	arg0 from 0x003014C0 at 0x003015DA	loop pass 0 of 12: the copy loop advances the pointer 0x80 per pass (lea at 0x0030188E, edx=12), so this site also reaches +0x120..+0x620 in passes 1-11; this row gives pass 0 only
+0x00301830	AiOrder_CheckActionPreconditions	0x003018A1	0xB0	r	movups xmm1, xmmword ptr [rax - 0x50]	arg0 from 0x003014C0 at 0x003015DA	loop pass 0 of 12: the copy loop advances the pointer 0x80 per pass (lea at 0x0030188E, edx=12), so this site also reaches +0x130..+0x630 in passes 1-11; this row gives pass 0 only
+0x00301830	AiOrder_CheckActionPreconditions	0x003018A9	0xC0	r	movups xmm0, xmmword ptr [rax - 0x40]	arg0 from 0x003014C0 at 0x003015DA	loop pass 0 of 12: the copy loop advances the pointer 0x80 per pass (lea at 0x0030188E, edx=12), so this site also reaches +0x140..+0x640 in passes 1-11; this row gives pass 0 only
 0x00304850	BattleUnit_AdvanceStandardActionState	0x00304BEC	0xC0	w	mov dword ptr [rbx + 0x40], 1	arg0 from 0x00307BE0 at 0x00307C19	
 0x00236300	BattleUnit_SnapshotWorldActorRuntimeState	0x0023642A	0xD0	w	movups xmmword ptr [rbx + 0xd0], xmm0	arg0 from 0x00239E10 at 0x0023A047	
 0x00300310	BattleUnit_PublishLocomotionPosition	0x00300398	0xD0	w	movups xmmword ptr [rdi + 0xd0], xmm0	arg0 from 0x0023A410 at 0x0023A4F1	
-0x00301830	AiOrder_CheckActionPreconditions	0x003018B1	0xD0	r	movups xmm1, xmmword ptr [rax - 0x30]	arg0 from 0x003014C0 at 0x003015DA	
+0x00301830	AiOrder_CheckActionPreconditions	0x003018B1	0xD0	r	movups xmm1, xmmword ptr [rax - 0x30]	arg0 from 0x003014C0 at 0x003015DA	loop pass 0 of 12: the copy loop advances the pointer 0x80 per pass (lea at 0x0030188E, edx=12), so this site also reaches +0x150..+0x650 in passes 1-11; this row gives pass 0 only
 0x00304180	FUN_00304180	0x0030437A	0xD0	w	movups xmmword ptr [r15 + 0xd0], xmm0	0x0031B8C0	
 0x00304850	BattleUnit_AdvanceStandardActionState	0x00304B4D	0xD0	addr	lea rdx, [rbx + 0x50]	arg0 from 0x00307BE0 at 0x00307C19	
 0x00304850	BattleUnit_AdvanceStandardActionState	0x00304D93	0xD0	addr	lea rdx, [rbx + 0x50]	arg0 from 0x00307BE0 at 0x00307C19	
@@ -811,7 +811,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00265020	Actor_GetWorldPosition	0x00265043	0xE0	w	mov dword ptr [rdx], eax	arg1+0xE0 from 0x00236300 at 0x002363CA	
 0x00265020	Actor_GetWorldPosition	0x00265054	0xE0	w	mov dword ptr [rdx], eax	arg1+0xE0 from 0x00236300 at 0x002363CA	
 0x00300310	BattleUnit_PublishLocomotionPosition	0x003003A2	0xE0	w	movups xmmword ptr [rdi + 0xe0], xmm0	arg0 from 0x0023A410 at 0x0023A4F1	
-0x00301830	AiOrder_CheckActionPreconditions	0x003018B9	0xE0	r	movups xmm0, xmmword ptr [rax - 0x20]	arg0 from 0x003014C0 at 0x003015DA	
+0x00301830	AiOrder_CheckActionPreconditions	0x003018B9	0xE0	r	movups xmm0, xmmword ptr [rax - 0x20]	arg0 from 0x003014C0 at 0x003015DA	loop pass 0 of 12: the copy loop advances the pointer 0x80 per pass (lea at 0x0030188E, edx=12), so this site also reaches +0x160..+0x660 in passes 1-11; this row gives pass 0 only
 0x00301AD0	AiOrder_EvaluateTargetSelector	0x003029FA	0xE0	addr	lea rcx, [r15 + 0xe0]	0x00236820	
 0x00301AD0	AiOrder_EvaluateTargetSelector	0x00302B36	0xE0	addr	lea rdx, [r15 + 0xe0]	0x00236820	
 0x00304180	FUN_00304180	0x00304387	0xE0	w	movups xmmword ptr [r15 + 0xe0], xmm0	0x0031B8C0	
@@ -895,7 +895,7 @@ function	name	site	disp	kind	instruction	route	note
 0x003A1960	Vector3_ComputeSquaredXZDistance	0x003A1969	0xE8	r	subss xmm0, dword ptr [rdx + 8]	arg1+0xE0 from 0x0031E620 at 0x0031E620	
 0x004686D0	Vector3_ComputeXZDistance	0x004686D4	0xE8	r	movss xmm0, dword ptr [rcx + 8]	arg0+0xE0 from 0x0031E6F0 at 0x0031E72E	
 0x004686D0	Vector3_ComputeXZDistance	0x004686D9	0xE8	r	subss xmm0, dword ptr [rdx + 8]	arg1+0xE0 from 0x0031E6F0 at 0x0031E72E	
-0x00301830	AiOrder_CheckActionPreconditions	0x003018C1	0xF0	r	movups xmm1, xmmword ptr [rax - 0x10]	arg0 from 0x003014C0 at 0x003015DA	
+0x00301830	AiOrder_CheckActionPreconditions	0x003018C1	0xF0	r	movups xmm1, xmmword ptr [rax - 0x10]	arg0 from 0x003014C0 at 0x003015DA	loop pass 0 of 12: the copy loop advances the pointer 0x80 per pass (lea at 0x0030188E, edx=12), so this site also reaches +0x170..+0x670 in passes 1-11; this row gives pass 0 only
 0x00325BB0	BattleUnit_UpdateCombatNavigationStep	0x00325C51	0xF0	addr	lea r8, [rbx + 0x70]	arg0 from 0x003082F0 at 0x00308341	
 0x00336710	BattleLocomotion_BuildSolverContext	0x00336757	0xF0	r	mov eax, dword ptr [rdx + 0x70]	arg1+0x80 from 0x0033A240 at 0x0033A269	
 0x00383670	Navigation_SelectNextWaypointXZ	0x00383713	0xF0	w	movss dword ptr [rbp], xmm0	arg2+0xF0 from 0x00325BB0 at 0x00325C6D	
@@ -903,8 +903,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00383670	Navigation_SelectNextWaypointXZ	0x00383721	0xF4	w	mov dword ptr [rbp + 4], ecx	arg2+0xF0 from 0x00325BB0 at 0x00325C6D	
 0x00336710	BattleLocomotion_BuildSolverContext	0x00336763	0xF8	r	mov eax, dword ptr [rdx + 0x78]	arg1+0x80 from 0x0033A240 at 0x0033A269	
 0x00383670	Navigation_SelectNextWaypointXZ	0x00383718	0xF8	w	movss dword ptr [rbp + 8], xmm1	arg2+0xF0 from 0x00325BB0 at 0x00325C6D	
-0x00301830	AiOrder_CheckActionPreconditions	0x0030188E	0x100	addr	lea rax, [rax + 0x80]	arg0 from 0x003014C0 at 0x003015DA	
-0x00301830	AiOrder_CheckActionPreconditions	0x003018D3	0x100	r	movups xmm0, xmmword ptr [rax]	arg0 from 0x003014C0 at 0x003015DA	
+0x00301830	AiOrder_CheckActionPreconditions	0x0030188E	0x100	addr	lea rax, [rax + 0x80]	arg0 from 0x003014C0 at 0x003015DA	loop pass 0 of 12: the copy loop advances the pointer 0x80 per pass (lea at 0x0030188E, edx=12), so this site also reaches +0x180..+0x680 in passes 1-11; this row gives pass 0 only
 0x00319110	BattleLocomotion_SetApproachAndReferenceTargets	0x0031911C	0x100	w	movups xmmword ptr [rcx + 0x80], xmm0	arg0+0x80 from 0x00304850 at 0x00304CD8	
 0x00325BB0	BattleUnit_UpdateCombatNavigationStep	0x00325C15	0x100	addr	lea rdx, [rbx + 0x80]	arg0 from 0x003082F0 at 0x00308341	
 0x00325BB0	BattleUnit_UpdateCombatNavigationStep	0x00325C60	0x100	addr	lea rdx, [rbx + 0x80]	arg0 from 0x003082F0 at 0x00308341	
@@ -1172,6 +1171,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00383C90	Navigation_AdjustPortalWaypointForClearance	0x00383D80	0x290	addr	lea rax, [rsi + 0x90]	arg0+0x200 from 0x00383670 at 0x003836ED	
 0x00383C90	Navigation_AdjustPortalWaypointForClearance	0x00383D8B	0x290	addr	lea r8, [rax + r15*8]	arg0+0x200 from 0x00383670 at 0x003836ED	idx*8
 0x00383C90	Navigation_AdjustPortalWaypointForClearance	0x00383ED6	0x290	w	mov qword ptr [rsi + r14*8 + 0x90], rax	arg0+0x200 from 0x00383670 at 0x003836ED	idx*8
+0x00301830	AiOrder_CheckActionPreconditions	0x003018D3	0x680	r	movups xmm0, xmmword ptr [rax]	arg0 from 0x003014C0 at 0x003015DA	loop tail: this move runs after the 12-pass x 0x80 copy loop, with the pointer at +0x80+12*0x80 = +0x680
 0x00304850	BattleUnit_AdvanceStandardActionState	0x00304886	0x690	addr	lea r12, [rcx + 0x690]	arg0 from 0x00307BE0 at 0x00307C19	
 0x00304850	BattleUnit_AdvanceStandardActionState	0x00304971	0x690	w	mov dword ptr [r12], r14d	arg0 from 0x00307BE0 at 0x00307C19	
 0x00304850	BattleUnit_AdvanceStandardActionState	0x00304DE7	0x690	w	mov dword ptr [r12], r14d	arg0 from 0x00307BE0 at 0x00307C19	

@@ -279,6 +279,10 @@ answer it returns 0 without asking for a line and without closing the unit's lin
 The list append `0x00316CD0` answers the count after the append, or the count as it
 stands when it refuses (`0x00316CE4`, `0x00316CE7`).
 
+The lookup `0x00316D70(list, actorWork)` walks the 16-byte entries from `list + 0x08`, as many as the count, the i32 at
+`list + 0x04`, and answers, as a 32-bit int, the index of the first whose qword `+0x00` equals `actorWork`, and -1
+when none does or the count is 0 or below (`0x00316D70`-`0x00316D9E`).
+
 ## Layouts
 
 | Offset | Type | Name | Meaning |

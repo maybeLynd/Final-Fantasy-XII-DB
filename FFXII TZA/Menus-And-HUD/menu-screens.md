@@ -353,8 +353,9 @@ window (`0x00244F00`).
 
 ### The special-attack window
 
-The special-attack window `0x002D5EB0` shows one party member's entry (status record `0x0035BB20(+0x140)`) from a
-table of 24-byte entries:
+The special-attack window `0x002D5EB0` lists up to four party members, each in a row widget (procedure `0x002D5C80`;
+`+0x748` of them, `0x158` bytes each from `+0x180`) that shows the member's entry (status record
+`0x0035BB20(row word +0x140)`, the member the row was created for) from a table of 24-byte entries:
 
 - `0x002D5280(window, entries, n, step)` finds the member's entry by its handle, keeps it at `+0x150`, picks the current
   choice among its `+0x12` choices (`+0x06` words), sets `+0x142` bit `0x4` from bit `0x1` of the entry's `+0x14`, or
@@ -364,10 +365,9 @@ table of 24-byte entries:
   `0x46B4` with `+0x142` bit `0x4` or `plain`, followed by the member's name (`0x00296600`).
 - `0x002D53F0(window, value, max)` writes value x 100 into node 1 (`0x0029F6E0`, grey `0x80808080`) and gives node
   0's gauge value x 100 / max (`0x00225580`), 0 for a max of 0.
-- On opening (message 1, `0x002D5F30`) the time `+0x740` and its maximum `+0x744` both take the value `0x00309E40`
-  stores: `0x022C2188 = min(4.0, 0x022C2184 + (0x022C2188 - 0x022C2184) x 0.5)` (`0x002F8B90`). `0x0030D720` sets both
-  globals to 4.0, and `0x0030DB70` writes `0x022C2184` (`0x0030DC8B`). Each message 2 takes 1/30 off `+0x740`; at 0 the
-  window plays sound `0x5B`, calls `0x0030DB70(0, 0)` and closes (`0x00244DD0`).
+- On opening the time `+0x740` and its maximum `+0x744` both take the value `0x00309E40` stores:
+  `0x022C2188 = min(4.0, 0x022C2184 + (0x022C2188 - 0x022C2184) x 0.5)` (`0x002F8B90`). `0x0030D720` sets both globals to 4.0, and
+  `0x0030DB70` writes `0x022C2184` (`0x0030DC8B`). The procedure below counts the time down.
 - `0x002D5500(window, n)` shows the first n of three marks in the child list of node 2, and `0x002D5C30(window)`
   runs it with the entry's count `+0x13`.
 - The child `0x0028B860`, built by `0x002899A0` under the window, takes its box from the HUD sprite set
@@ -384,6 +384,73 @@ table of 24-byte entries:
   It first sets the draw's palette byte `+0x5C` from the set's table and the piece's byte `+7`.
 - `0x002D50B0(window, keep)` closes every row widget (`0x158` bytes from `+0x180`, `+0x748` of them) except row
   `keep`, which is marked to stay, and then the window (`0x00244DD0`).
+
+`0x002D5EB0(window, message)` (1,821 bytes) is the window's procedure. It dispatches on the message's dword `+0` through
+a table of 20 (`0x002D5ED1`-`0x002D5EF5`): 1 opens, 2 ticks, 10 takes input, and 14, 15 and 18 are told below; 4 and 20
+return 0, and any other goes to `0x005C5230(window, message)`, whose answer it returns (`0x002D65A2`-`0x002D65A9`). Every
+way out passes the stack-cookie check `0x00808C40(cookie)` (`0x002D65AE`-`0x002D65B6`).
+
+Message 1 calls `0x003678F0()`, sets the window's dword `+0x98` to 0 and its words `+0x9C` and `+0x9E` to `[0x01E0C1D8]`
+and `[0x01E0C1DC]` when the window is not null, sets the time and its maximum from `0x00309E40()`, creates the gauge child
+with `0x00245000(window + 0xC0, 0xC0, 0x002D5E00, 0)` and adds it with `0x00244960(window, window + 0xC0)`
+(`0x002D5EF7`-`0x002D5F69`). It then fills the entry table with `0x00309C40(window + 0x6E0, 4)` and zeroes the word `+0x752`
+(`0x002D5F6E`-`0x002D5F82`).
+
+For each of the four 24-byte entries whose dword `+0` is not 0, it looks for the first party member `i` below
+`0x0035BB60()` whose status record `0x0035BB20(i)` has that dword at `+4`, and lists `i`; the count goes to byte `+0x748`
+(`0x002D5F89`-`0x002D5FEA`). Each listed member `k` gets a row at `+0x180 + k x 0x158`:
+`0x00245000(row, 0x158, 0x002D5C80, params)`, with the params' qwords `+0x08` and `+0x10` holding `count - 1 - k` and the
+member, then `0x002D5280(row, window + 0x6E0, 4, 0)`, `0x002D5170(row, k, 0)` and `0x00244960(window, row)`
+(`0x002D5FF1`-`0x002D6065`).
+
+The answer of that `0x00245000` call has its words `+0x98` and `+0x9A` raised by the gauge child's `+0x98` and `+0x9A`,
+the window's `+0x158` and `+0x15A` (`0x002D606A`-`0x002D609B`). The window then clears byte `+0x74B`, clears bit `0x2` of
+each row's byte `+0x142` and sets it on row 0 (`0x002D60A8`-`0x002D60F2`), draws the gauge with
+`0x002D53F0(window + 0xC0, time, maximum)`, and calls `0x0029E0E0()`, `0x0029E770([0x0209E664], [0x01E0C1DC] - [0x0209E668])`,
+`0x0029E330(0xE)` and `0x0029E6D0(0)` (`0x002D60F4`-`0x002D6134`).
+
+Last it sets byte `+0x74A` to 25, calls `0x00247570(window, 0x002735E0(5))`, sets the sound handle `+0x74C` to -1 and
+returns 0 (`0x002D6139`-`0x002D6166`).
+
+Message 2 returns 0 unless `0x001EDEC0(window dword +0xB4)` answers non-zero and bit `0x1` of byte `+0x749` is clear
+(`0x002D636C`-`0x002D6386`). While byte `+0x74A` is above 0 it counts it down; when it reaches 0 it keeps `0x00271500(0x5A)`
+at `+0x74C`, calls `0x0029E6D0(1)` and returns 0 (`0x002D638C`-`0x002D63C3`). With the byte at 0, a word `+0x752` of 1
+returns 0 (`0x002D63C8`-`0x002D63D2`).
+
+With the word at 2, word `+0x750` counts up. Below 8, each row steps its choice index, word `+0x148`, back to 0 at the
+entry's choice count byte `+0x12`, clears bit `0x4` of its byte `+0x142` and shows the entry's word
+`+0x06 + 2 x index` with `0x002D54B0(row, action)` (`0x002D63D8`-`0x002D63F2`, `0x002D6472`-`0x002D64CE`).
+
+At 8 it calls `0x0029E6D0(1)`, zeroes the word `+0x752`, and for each row shows the entry's action, word `+0x04`, with
+`0x002D54B0`, copies bit `0x1` of the entry's byte `+0x14` to bit `0x4` of the row's byte `+0x142` and calls
+`0x002D5170(row, k, 0)` (`0x002D63F4`-`0x002D6470`).
+
+Then, for any word `+0x752` but 1, it takes `[0x009171D0]`, 1/30, off the time `+0x740`, not below 0, and redraws the
+gauge with `0x002D53F0(window + 0xC0, time, maximum)` (`0x002D64D0`-`0x002D650D`). At 0 it stops the sound with
+`0x002716F0(+0x74C)`, sets the handle to -1, plays sound `0x5B` (`0x00249C60(0x5B)`), calls `0x0030DB70(0, 0.0)`, closes
+with `0x00244DD0(window)`, calls `0x00290740()` and returns 0 (`0x002D6512`-`0x002D6557`).
+
+Message 10 returns 0 when bit `0x1` of byte `+0x749` is set, word `+0x752` is not 0, byte `+0x74A` is above 0 or the
+time is 0 (`0x002D6193`-`0x002D61CB`). It tests the word `[0x02F9736A]` against three masks, `0x1000`, `0x8000`, and
+`0x4000` when `0x001E0C10()` answers non-zero, else the word `[0x01E0C2A4]`, one per row while the row exists, and the
+first mask with a bit set in that word picks its row (`0x002D61D1`-`0x002D622B`).
+
+For a picked row, when bit `0x1` of its entry's byte `+0x14` is set it returns 0; otherwise it calls
+`0x0030DB70(entry, time)` (`0x002D62E1`-`0x002D630D`). An answer of 0 plays sound 2 (`0x00249C60(2)`), stops the sound with
+`0x002716F0(+0x74C)` and sets the handle to -1, sets word `+0x752` to 1, and calls `0x0029DF90()`, `0x002470C0(window)` and
+`0x002D50B0(window, row)`, and returns 0 (`0x002D6312`-`0x002D6367`). Any other answer plays sound `0x5C` (`0x00249C60(0x5C)`)
+and shuffles as below without sound `0x53` (`0x002D6319`-`0x002D6323`).
+
+With no match, the window shuffles when `0x0029DBE0(0x112)` has a bit in the word `[0x02F9736C]`, else returns 0
+(`0x002D622D`-`0x002D6240`). The shuffle plays sound `0x53` (`0x00249C60(0x53)`), sets word `+0x750` to 0 and word `+0x752`
+to 2 (one dword store of `0x20000`), calls `0x0029E6D0(0)`, refills the entries with `0x00309C40(window + 0x6E0, 4)`, and
+for each row calls `0x002D5280(row, window + 0x6E0, 4, 8)` and `0x002D5170(row, k, 1)`, then returns 0
+(`0x002D6246`-`0x002D62DC`).
+
+Message 14 calls `0x00309C00(&a, &b)` with two locals, `0x0035D060(5)` and `0x002470D0(window)`, and returns 0
+(`0x002D616B`-`0x002D618E`). Message 15 sets bit `0x1` of byte `+0x749`, stops the sound with `0x002716F0(+0x74C)` and sets
+the handle to -1, calls `0x0029DF90()` and returns 0 (`0x002D6559`-`0x002D657C`). Message 18 stops the sound with
+`0x002716F0(+0x74C)`, sets the handle to -1, calls `0x0035D060(1)` and `0x00182DA0()` and returns 0 (`0x002D657E`-`0x002D65A4`).
 
 ### Screens and their procedures
 

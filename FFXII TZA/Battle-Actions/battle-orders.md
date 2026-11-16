@@ -22,13 +22,19 @@ table at `0x01EEC460` (359 eight-byte pointers, `0x01EEC460`-`0x01EECF97`) is em
 the handler with the unit as argument (`0x003050A0`-`0x0030510E`). Handlers keep their progress in the
 phase byte `+0x6B4`; one-shot handlers set it to 2 and return 1 at once.
 
+`0x00307BE0(unit)` answers -1 when the action context `+0x708` is null (`0x00307BE6`-`0x00307BF3`). Otherwise it clears bit
+`0x100` of the unit's `+0x1F0`, runs `0x00304850(unit)` for an action id `+0x714` up to `0x21E` and `0x00305080(unit)`
+above it, and adds 1 to the counter `+0x75C` when the dword `+0x768` is not below `+0x76C`, a signed compare; it
+answers that call's answer (`0x00307BFC`-`0x00307C35`, `0x00307C5C`). An answer of 1 first calls
+`0x004697C0(stats record +0x698, action id, 0xFFFF, 0)` (`0x00307C3B`-`0x00307C57`).
+
 `0x002FDDA0` tests that phase byte first: when it is not 0 on entry it returns 1 and does nothing else
 (`0x002FDDB7`-`0x002FDDCE`).
 
 ### Availability
 
 `0x00301830(unit, record)` refuses an id outside the table or an empty slot, then applies these
-id-specific rules (`0x003018DD`-`0x00301AA5`); every other id passes:
+id-specific rules (`0x003018DD`-`0x00301AA4`); every other id passes:
 
 | Ids | Rule |
 |---|---|
@@ -36,6 +42,40 @@ id-specific rules (`0x003018DD`-`0x00301AA5`); every other id passes:
 | `0x4022`, `0x4124` | must have a movement block `+0xD4` that is not negative (`0x00301978`) and a reachable movement goal (`0x00312730`, and `0x0033A120` must not report arrival); `0x4022` then stores the goal at `+0x6C0` and `0x00309A90()` at `+0x6D0` |
 | `0x4165` | `0x00312730` must find a goal |
 | `0x414D` | `0x00308130` (party side) or `0x00308040(unit, 0)`, tested against unit bit `0x800000` |
+
+`0x00301830` reads the id as the record's word `+0x00`, zero-extended, and the parameter as its word `+0x02`, read
+signed, and works on a copy: it copies `0x610` bytes of the unit's movement block from `+0x80` to its stack, and no
+rule writes the unit's own block (`0x00301857`-`0x003018DA`). It answers 0 for an id whose `id - 0x4000` is above `0x166`
+or whose slot of the order table `0x01EEC460` is null, then picks the rule by id, and answers 1 for an id with no rule
+(`0x003018DD`-`0x00301935`, `0x00301A1B`-`0x00301A36`).
+
+An id of `0x4051`-`0x4121` except `0x4091`, or `0x414B` (the first row of the table above), with a parameter of 0
+answers 1. Otherwise it takes `0x00328370() % 100`, signed, and answers 0 when that value is not below the parameter, a
+signed compare, and 1 when it is (`0x0030193B`-`0x0030196B`).
+
+For `0x4022` and `0x4124` it answers 0 when the copy's float `+0xD4` is below 0 (`0x00301970`-`0x00301980`) or when
+`0x00312730(unit, record, copy + 0x80, copy + 0x90, copy + 0xD0)` answers 0 (`0x00301986`-`0x003019B0`). It then adds 0.4
+(`0x009153EC`) to the copy's stop distance `+0xD0`, zeroes the copy's dwords `+0x40` and `+0x160`, and answers 0 when
+`0x0033A120(copy, id)` answers non-zero (`0x003019B6`-`0x003019EB`). Otherwise `0x4124` answers 1, and `0x4022` stores
+`0x00309A90()` at the unit's float `+0x6D0` and the copy's 16 bytes `+0x80` at the unit's `+0x6C0` and answers 1
+(`0x003019F1`-`0x00301A16`).
+
+`0x4165` answers `0x00312730(unit, record, copy + 0x80, copy + 0x90, copy + 0xD0)` (`0x00301A38`-`0x00301A60`). `0x414D`
+calls `0x00308130(unit)` when the stats record `+0x698` is not null and its byte `+0x05` is 0, and `0x00308040(unit, 0)`
+otherwise, and answers, as 0 or 1, that call's answer exclusive-or unit bit `0x800000`, the unit's dword `+0x00`
+(`0x00301A62`-`0x00301AA2`). Every way out of `0x00301830` passes the stack-cookie check `0x00808C40(cookie)`
+(`0x00301AA4`-`0x00301AB1`).
+
+Besides those two stores of `0x4022`, `0x414D` writes the unit through `0x00308130`, the engagement test of [force fight
+mode](../Engine-Core/force-fight-mode.md#what-fleeing-changes), which tells its paths. Its first call, the
+engagement update `0x00307D10(unit)`, sets or clears bit `0x10000` of the unit's dword `+0x04` on every path, and each
+path that clears it first clears bits `0x200` and `0x400`; the fleeing path also clears bits `0x2` and `0x4` of
+`0x022C1F48` and zeroes the qword `0x022C1F40` and the unit's dword `+0xDCC` (`0x00307D1D`-`0x00307DE2`).
+
+`0x00308130` then calls `0x003081E0(unit)` only when the stats record's dword `+0x64` or `+0x3C` has a bit of `0x8000020`
+or `0x00253B90()` answers 0, bit `0x10000` of the unit's dword `+0x04` is clear, and bit `0x1` of `0x022C1F48` is set
+(`0x0030814C`-`0x00308192`). That call stores a new `+0xDCC` when unit bit `0x800000` is clear and `+0xDCC` is 0, and its
+draw `0x00328370()` writes the generator state `0x022C256C` (`0x003081E6`-`0x0030825C`).
 
 ## Columns
 
@@ -79,6 +119,21 @@ The ids fall into these groups (full rows in the `.tsv`):
 
 341 slots hold a handler and 18 are empty; 249 ids go to `0x002FDDA0`.
 
+`0x0033A120(block, id)` builds a movement context with `0x00336710(context, block, 1)` (`0x0033A13B`-`0x0033A14C`). It answers
+1 when the block's dword `+0x40` has any bit other than `0x2` set (`0x0033A151`-`0x0033A160`). It answers 0 when
+`0x004686D0(context, context + 0x30)` is above the context's float `+0xAC`, and, for the id `0x4124`, when
+`0x0033D3E0(context, context + 0x20, block byte +0x174)` answers 1 (`0x0033A162`-`0x0033A1A7`). Otherwise it answers 1 when
+`0x00335640(context, id)` is not 0, and 0 when it is (`0x0033A1A9`-`0x0033A1BE`).
+
+`0x003291B0(block, first, second)` calls `0x003839F0(block + 0x180)`, then copies 16 bytes from `first` to the block's
+`+0x80` and from `second` to its `+0x90`, a null pointer being replaced by the block's own `+0x50`
+(`0x003291C5`-`0x003291F8`).
+
+`0x00313400(unit)` calls `0x002ECF10(unit qword +0x10, 1, 1)`, sets unit bit `0x800000`, stores 0 at the unit's `+0xDCC`
+and stores at its `+0x6E8` the address `0x01EEC3C0` when the stats record `+0x698` has a byte `+0x05` of 0, and
+`0x01EEC410` for any other byte or no record (`0x00313406`-`0x00313458`). It then sets unit bits `0x1000000` and
+`0x4000000000000` and ends with a jump to `0x00312EE0(unit)` (`0x0031345F`-`0x00313471`).
+
 ## Related
 
 - [Action phases](action-phases.md) - the path ordinary actions (ids up to `0x21E`) take instead.
@@ -89,3 +144,10 @@ The ids fall into these groups (full rows in the `.tsv`):
   lists that issue these orders and the per-party-member table of `0x4163`/`0x4164`.
 - [Battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md)
   - the movement goals of the move orders.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Input gameplay: `0x00253B90` is called by `0x00313A00`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).

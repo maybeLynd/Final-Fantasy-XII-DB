@@ -74,8 +74,9 @@ search runs only when the unit's record `+0x698` is not null, its byte `+0x05` i
 
 ### The choice
 
-`0x0030DB70(entry, f)` is called from `0x002D5EB0` twice (`0x002D630D`, `0x002D6543`). At `0x002D6543` the entry is null
-(`xor ecx, ecx`), and the call reads the last action `0x022C2190`. Unless it is already a Concurrence,
+`0x0030DB70(entry, f)` is called from the special-attack window `0x002D5EB0` ([Menu
+screens](../Menus-And-HUD/menu-screens.md#the-special-attack-window)) twice (`0x002D630D`, `0x002D6543`). At `0x002D6543` the entry
+is null (`xor ecx, ecx`), and the call reads the last action `0x022C2190`. Unless it is already a Concurrence,
 `0xE2`-`0xF1`, it asks `0x002F8D60(0x022C2192)` (`0x0030DC55`):
 
 1. `0x002F8D60` walks the rows from the last to the first (`0x002F8D60`-`0x002F8E49`).

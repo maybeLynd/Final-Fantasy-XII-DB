@@ -108,8 +108,12 @@ ownership rule for each):
 
 ### The action lists
 
-`0x002376F0` sorts the action ids into lists by kind. It is called only by the first-screen set-up `0x00236A40`
-(`0x00236A4E`), and it does nothing while the action table slot `0x02EBF138` is 0 (`0x002376FF`).
+`0x00236A40()`, one of the calls of the first-screen set-up of the start-up state `0x0022B6E0` (`0x0022B77C`), stores the
+dword 1 in the battle system's up flag `0x02089300`, calls `0x002376F0()` and ends with a jump to `0x00237CA0()`
+(`0x00236A44`-`0x00236A57`).
+
+`0x002376F0` sorts the action ids into lists by kind. It is called only by `0x00236A40` (`0x00236A4E`), and it does nothing
+while the action table slot `0x02EBF138` is 0 (`0x002376FF`).
 
 For each list it walks rows 0-542, a signed 32-bit compare against `0x21F` (`0x00237786` and the same compare after each
 list), and appends the id of each matching row as a `u16` to one array at `0x0208CEC0`, `0x02089340` + `0x3B80`
@@ -242,7 +246,7 @@ No shipped row sets bits `0x400000` or `0x800000`.
 | `0x100` | 61 | the effect test of `0x0030CA80` is skipped (`0x0030CB71`) |
 | `0x400`, `0x800` | 195, 65 | the target wakes from Sleep and loses Confuse, or loses Invisible (`0x00390F20` at `0x00391112`, `0x00391192`) |
 | `0x2000` | 98 | no License needed ([Command availability](command-availability.md); `0x00323F52`) |
-| `0x4000` | 93 | returned by `0x0030BB30` for categories 1-8 (`0x0030BC0C`) |
+| `0x4000` | 93 | returned by `0x0030BB30`, as 0 or 1, for categories 1-8 (`0x0030BC0C`-`0x0030BC13`) |
 
 Bits `0x200`, `0x1000` and `0x8000` (3, 20 and 10 rows) are read through the whole word by the AI order selectors
 (`0x00303434`, `0x00303492`, `0x00308CF2`) and by `0x003851F0` and `0x003872D0` (`0x003852AB`, `0x00387382`).
@@ -252,6 +256,19 @@ word test or keep other bits: bits `0x7` (`0x002377FF`, `0x00237885`, `0x00300B3
 `0x0032A46F` among them), bits `0x8` and `0x10` (`0x002F9323`, `0x002F9377`), bits `0x40` and `0x80` (`0x002FFAF5`, `0x002FFB30`, `0x00322B67`,
 `0x00322B78` among them) and the mask `0xFF00` (the word tests above, `0x0030847E`, `0x003084B8`, `0x00308CFB`, `0x00308D02`,
 `0x0030BC10`).
+
+`0x0030BB30(unit)` answers 0 when the unit's action id `+0x714` is above `0x21E`, an unsigned 16-bit compare, or
+`0x0031B7E0(unit dword +0x710)` answers null (`0x0030BB3A`-`0x0030BB69`), and 1 when `0x0030AB40(unit, target, 0)` answers
+above 1 (`0x0030BB6B`-`0x0030BB7C`).
+
+Otherwise it takes the action's row, the low 32 bits of `0x0020E600([0x02EBF138] dword +0x0C)` plus the action id times
+the table's word `+0x08`, in 32 bits (`0x0030BB82`-`0x0030BBC1`), and answers 1 when the row's category byte `+0x1C` is
+outside 1-8 (`0x0030BBCD`-`0x0030BBD5`). Else it answers 1 when bit `0x4000` of the row's word `+0x2C` is set and 0 when
+it is clear, the row taken again the same way (`0x0030BBD7`-`0x0030BC13`).
+
+When `0x02EBF138` is 0 or `0x0020E600` answers 0, the row pointer is 0, so the category read is of the address `0x1C`,
+and, should that read not fault, the flag read of the address `0x2C` (`0x0030BB89`-`0x0030BB9C`, `0x0030BBC3`-`0x0030BBCD`,
+`0x0030BBDA`, `0x0030BBE8`, `0x0030BC0C`).
 
 ### The flag word at +0x36
 
@@ -331,3 +348,12 @@ The table arrives with the battle data resource:
 - [Action phases](action-phases.md) - the charge base and the scene flag.
 - [Quickenings and summons](quickenings-and-summons.md) - `+0x26` and the scene rows.
 - [Steal](../Damage-And-Battle-Formulas/steal.md) - one recipe from `+0x08` end to end.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Input: `0x0022B6E0` calls `0x00249C30`, `0x0035E9A0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Save load settings: `0x0022B6E0` calls `0x002EF650`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).

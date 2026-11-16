@@ -94,6 +94,10 @@ by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic ma
 14. Bits `0x4` and `0x8` of the target unit's `+0xE9A` are cleared; when anything above changed and bit `0x200` of
     `flags` is clear, the target's stats are rebuilt (`0x0030FED0(target, 0)`) (`0x00311AA3`-`0x00311AC5`).
 
+`0x00300C90(stats, value, tag)`, the MP set of steps 8 and 9, calls `0x00300CE0(stats, value - i16 +0x4C, tag)`, and, when
+`value` is above the i16 `+0x06` read after that call, the secondary-resource add
+`0x00300BC0(stats, value - i16 +0x06, tag)` (`0x00300C9F`-`0x00300CC4`).
+
 ## Layouts
 
 | Offset | Type | Name | Meaning |

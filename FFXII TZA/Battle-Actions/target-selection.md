@@ -56,20 +56,27 @@ lists (`0xD`, `0xE`, `0xF`) are slot walks.
 
 ### Slot filter
 
-`0x00322A80(user, candidateStats, action, frustum, allowAlly, allowFoe)` (456 bytes)
-returns -1 to leave the candidate out, 0 to list it greyed, and 1-4 to list it:
+`0x00322A80(user, candidateStats, action, frustum, allowAlly, allowFoe)` (456 bytes) returns -1 to leave the candidate
+out, 0 to list it greyed, and 1-4 to list it. For the action row it calls `0x0020E600([0x02EBF138] dword +0x0C)` twice,
+tests only the first answer for null, and takes the low 32 bits of the second plus the action id times the table's
+word `+0x08`; when `[0x02EBF138]` is 0 or the first answer is null the row is 0, so that the row tests then read the
+addresses `0x0C` and `0x2C` (`0x00322A92`-`0x00322AE2`).
 
-1. If the candidate belongs to a battle unit whose actor class nibble (`0x00263C20`) is 3 or 5, it
-   returns -1 (`0x00322B8B`-`0x00322B9C`).
-2. `0x003230E0` must pass, else -1 (`0x00322B43`-`0x00322B4A`).
-3. If the candidate has status bit `0x1`, `0x2` or `0x80000000` and `0x00377C20()` is 0: it goes to step 5 when the
-   action row's word `+0x2C` has bit `0x40` and the candidate has bit `0x1` (KO), or bit `0x80`
-   and the candidate has bit `0x2` (Stone); otherwise it returns 0 (`0x00322B4C`-`0x00322B86`).
-4. A living candidate that is a battle unit must pass `0x00322490` (else -1, `0x00322BAF`); with
-   `frustum` set it must also pass `0x00322360` and `0x00322630` must return 0 (`0x00322BB8`-`0x00322BD3`).
-5. The result: with flag word `+0x0C` bit `0x40`, 2 for the user itself and 1 for others (`0x00322BDD`-`0x00322BEB`);
-   with bit `0x20`, `0x0031C500(user, candidate, action)` non-zero gives 3 for others and 2 for the user, zero gives
-   4 for the user and 1 for others; otherwise 1 (`0x00322BD5`-`0x00322C26`).
+It then finds the battle unit that owns the candidate, the first `0x00236820(i)`, for `i` below `0x00236850()`, whose
+stats record `+0x698` is the candidate; a null candidate skips the walk and has no unit (`0x00322AEF`-`0x00322B23`):
+
+1. If that unit's actor class nibble `0x00263C20(unit qword +0x10)` is 3 or 5, it returns -1 (`0x00322B8B`-`0x00322B9C`).
+2. `0x003230E0(user, candidateStats, action, allowAlly, allowFoe)` must pass, else -1 (`0x00322B26`-`0x00322B4A`).
+3. If the candidate has status bit `0x1`, `0x2` or `0x80000000` in its dwords `+0x3C` and `+0x64` and `0x00313F60()`, a
+   jump to `0x00377C20`, answers 0: it goes to step 5 when the action row's word `+0x2C` has bit `0x40` and the
+   candidate has bit `0x1` (KO), or bit `0x80` and the candidate has bit `0x2` (Stone); otherwise it returns 0
+   (`0x00322B4C`-`0x00322B86`).
+4. A living candidate that has a battle unit must pass `0x00322490(unit qword +0x10)` (else -1, `0x00322BAF`-`0x00322BB6`);
+   with `frustum` set it must also pass `0x00322360(unit)` and `0x00322630(unit)` must return 0 (`0x00322BB8`-`0x00322BD3`).
+5. The result: with flag word `+0x0C` bit `0x40`, 2 for the user itself (the user's stats record `+0x698` is the
+   candidate) and 1 for others (`0x00322BD5`-`0x00322BEB`); with bit `0x20`,
+   `0x0031C500(user stats record +0x698, candidate, action)` non-zero gives 3 for others and 2 for the user, zero gives
+   4 for the user and 1 for others; otherwise 1 (`0x00322BED`-`0x00322C26`).
 
 The builder sets entry flag bit `0x2` (greyed) for a 0, and remembers a 2 (the last one), a 3 (the
 first, if no 2) or a 4 (as the default entry `+0x44`); a remembered 2 or 3 gets entry flag bit `0x1` and
@@ -78,13 +85,17 @@ the default entry becomes -2. The entry value is the unit's id `+0x08` (slot wal
 
 ### Ally, foe, self
 
-`0x003230E0(user, candidateStats, action, allowAlly, allowFoe)` (262 bytes) treats
-the candidate as on the user's side when no battle unit owns that stats record, or when
-`0x0030BB10(user, unit, 0)` returns 0 (relationship class 1; see [Area of effect](area-of-effect.md)).
-It passes when `allowAlly` and flag bit `0x4` and same side, or `allowFoe` and flag bit `0x8` and not same
-side, or `allowAlly` and flag bit `0x1` and the candidate is the user's own stats record
-(`0x00323195`-`0x003231CE`). It passes 0 as the flags to `0x0030BB10`, so Confuse on the acting member swaps
-which side counts as its own.
+`0x003230E0(user, candidateStats, action, allowAlly, allowFoe)` (262 bytes) takes the action row as `0x00322A80` does,
+from the second of two `0x0020E600` calls, and 0 when `[0x02EBF138]` is 0 or the first answer is null, so that the flag
+tests then read the address `0x0C` (`0x003230F3`-`0x00323144`). It treats the candidate as on the user's side when the
+stats record is null, when no battle unit owns it (the same walk, `0x0032314A`-`0x00323177`), or when
+`0x0030BB10(user, unit, 0)` returns 0 (relationship class 1; see [Area of effect](area-of-effect.md))
+(`0x00323147`-`0x0032318B`).
+
+`0x003230E0` passes when `allowAlly` and flag bit `0x4` and same side, or `allowFoe` and flag bit `0x8` and not same
+side, or `allowAlly` and flag bit `0x1` and the candidate is the user's own stats record `+0x698`
+(`0x00323195`-`0x003231CE`), and returns 0 otherwise (`0x003231D0`). It passes 0 as the flags to `0x0030BB10`, so Confuse on
+the acting member swaps which side counts as its own.
 
 ### The 24-unit test
 
@@ -123,10 +134,14 @@ returns 0 (`0x0046B7E0`-`0x0046B7FE`). A listed record's entry is the dword
 `((word +0x16 & 0x7FF) << 20) | (i << 16) | record index`, and the count is the number listed
 (`0x0046B806`-`0x0046B831`).
 
-`0x0046B4C0` (code `0x1A`) calls `0x0046BAC0(i, 1)` for managers 0-2, which applies the 24-unit test
-through `0x00322480`, a jump to `0x00322490` (out of range: `+0x0A` bit `0x2`). For all three codes the builder
-appends every listed record (for `0x1B`/`0x1C` after `0x003230E0` passes) and makes the entry nearest
-the controlled member the default (`0x0031E630`; entries whose `0x002647E0(id)` has bit `0x1` are not
+`0x0046B4C0` (code `0x1A`) first clears bit `0x2` of byte `+0x09` of every record of the active actor managers 0-3, as
+the two lists above do: each record `0x00358940(manager, i)` of each `0x00263FF0(m)` with bit `0x1` of `+0x10`, for `i`
+from `+0x1DE` while below `+0x1DE + +0x1D6` (`0x0046B4DA`-`0x0046B52A`). It then calls `0x0046BAC0(m, 1)` for the managers
+`m` 0-2 (`0x0046B530`-`0x0046B541`), which applies the 24-unit test through `0x00322480`, a jump to `0x00322490` (out of
+range: `+0x0A` bit `0x2`).
+
+For all three codes the builder appends every listed record (for `0x1B`/`0x1C` after `0x003230E0` passes) and makes the
+entry nearest the controlled member the default (`0x0031E630`; entries whose `0x002647E0(id)` has bit `0x1` are not
 considered).
 
 ### While the action runs
@@ -148,15 +163,31 @@ phase `+0x6B4` below 9, in this order; a failed gate, or no reason applying, ret
 | `7` | bit `0x2000` of the word at `[+0x708]+4` is clear and `0x0030AF30` times the action out |
 
 `0x002FFA60(action, target)` returns 0 for an action id above `0x21E` (`0x002FFA6E`-`0x002FFA73`). Otherwise it
-returns 1 when the target has a stats record with none of status bits `0x1`, `0x2`, `0x80000000` (or
-`0x00377C20()` is non-zero), or when the action row's `+0x2C` has bit `0x40` or bit `0x80`; a target without a
-stats record goes straight to the row test (`0x002FFA87`-`0x002FFB43`).
+returns 1 when the target's stats record `+0x698` has none of status bits `0x1`, `0x2` and `0x80000000` in its dwords
+`+0x64` and `+0x3C`, or when `0x00377C20()` answers non-zero, a call that reads no argument (`0x002FFA7B`-`0x002FFAA4`).
+Else, and for a target without a stats record, it returns 1 when the action row's byte `+0x2C` has bit `0x40` or bit
+`0x80`, and 0 when it has neither (`0x002FFAAA`-`0x002FFB43`).
 
-`0x0030AF30` compares the counter `+0x75C` with `30 * (int)(30.0 * [0x01DFE0B8])` for an action id below
-`0x21F`, 10 times that factor above it, and 60 times it when the word at `[+0x708]+4` is negative. On a
-timeout it also performs the cancel: it zeroes the action's timers and targets, clears unit bit `0x4000`
-(except while the unit's word `+0xBA0` is `0x113` or `0x95`, `0x0030AFD5`, `0x0030AFE5`), entry flag bit `0x400` of `+0x788` and bit `0x2` of `+0x6B0`, sets bit
-`0x200000` of the unit's word `+0x04`, and calls `0x004697C0` and `0x00290540`.
+Each of the two bit tests works the row out again. It calls `0x0020E600([0x02EBF138] dword +0x0C)` twice, tests only the
+first answer for null, and takes the low 32 bits of the second plus the action id times the table's word `+0x08`; when
+`[0x02EBF138]` is 0 or the first answer is null the row is 0 and the test reads the address `0x2C`
+(`0x002FFAAA`-`0x002FFAF5`, `0x002FFAFB`-`0x002FFB30`).
+
+`0x0030AF30(unit, action id)` times the action out when the unit's counter `+0x75C` is above a limit, a signed compare,
+and answers 0 while it is not (`0x0030AF67`-`0x0030AF6F`, `0x0030AFA7`-`0x0030AFAD`). The limit is 60 times
+`(int)(30.0 * [0x01DFE0B8])` when the action context `+0x708` is not null and its word `+0x04` is negative
+(`0x0030AF36`-`0x0030AF64`); otherwise it is 30 times that factor for an action id `+0x714` up to `0x21E` and 10 times it
+above (`0x0030AF77`-`0x0030AFA4`).
+
+On a timeout it performs the cancel. It zeroes the unit's qword `+0x6F8` and dwords `+0x748` and `+0x770`, clears unit
+bit `0x4000` (except while the unit's word `+0xBA0` is `0x113` or `0x95`, `0x0030AFD5`, `0x0030AFE5`), entry flag bit
+`0x400` of `+0x788` and bit `0x2` of `+0x6B0`, zeroes the qword `+0x750` and the dword `+0x74C`, sets bit `0x200000`
+of the unit's dword `+0x04`, calls `0x004697C0(stats record +0x698, action id, 0xFFFF, 1)` and
+`0x00290540(unit dword +0x08)`, and answers 1 (`0x0030AFAF`-`0x0030B042`).
+
+`0x00290540(handle)` calls `0x00296E00(pointer, handle)` with the pointer stored at `[0x0209BE80] + 0x10F78` when that
+pointer is not null (`0x00290546`-`0x0029055D`). Then, when `0x00273320(handle)` answers 0 or more, it ends with a jump to
+`0x00289F50([0x0209BE80] + 0x5380, handle, 0)` (`0x00290562`-`0x00290585`).
 
 None of `0x002FFB60`, `0x002FFA60` or `0x0030AF30` reads a position or a distance, and neither does the
 availability check behind reason 6 (`0x002FFCF0` and its callees `0x0030E9C0`, `0x0031A7B0`, `0x00306480`,

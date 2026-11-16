@@ -102,6 +102,12 @@ to `+0x695` when free, posts `0x003299B0(unit, 0x003098D0(), 0)` when row byte `
 Then it clears bits `0x100` and `0x200` of every battle unit's flags, starts scene manager 3 (`0x00332130(3)`) and
 sets state 5 (`0x00306ADF`).
 
+`0x00306D90(list, unit id, b)`, called for kinds 2 to 4 above, gathers the targets for `0x003B6F70`, a jump to `0x003B6DE0`.
+For a non-null list it walks the signed count `+0x04` of 16-byte entries from `+0x08` and keeps, in a local array, the
+dword `+0x08` of each non-null `0x0031B760(entry qword +0x00)` (`0x00306DC5`-`0x00306E09`). It then calls
+`0x003B6F70(unit id, kept count, array, b as a byte)`, with a null array and a count of 0 for a null list
+(`0x00306E23`-`0x00306E39`).
+
 ### The chain's choices (`0x002F88B0`)
 
 During a Quickening chain, `0x00309C40` gives each member a set of choices and draws one of them for the member.
@@ -133,6 +139,22 @@ share of 10,922.
 
 `0x002F88B0` also finds the largest `L` among the members first, but the value is dropped before it is read
 (`0x002F88E0`-`0x002F891E`, `0x002F8977`, `0x002F8A94`).
+
+`0x002F88B0(members, n, chain count, entries)` writes one 16-byte entry per member into `entries`, in member order
+(`0x002F8B5D`-`0x002F8B69`), and returns 1; for an `n` of 0 or below it returns 1 having written nothing
+(`0x002F88C0`-`0x002F88CD`, `0x002F8920`-`0x002F8923`, `0x002F8B79`). The word `+0x00` is the drawn action and the dword `+0x04`
+the number offered: `L + 1` with Mist Charge (`0x002F8975`-`0x002F8979`) and `L` without (`0x002F8A96`). With Mist Charge
+the word `+0x08` is `0xF4` and the `L` slot bytes follow as words from `+0x0A` (`0x002F897D`, `0x002F8A09`); without it
+they start at `+0x08` (`0x002F8B1D`).
+
+`L` is `0x00324020(stats)` of the member's stats record `[unit + 0x698]`, or 0 for a null record (`0x002F88E3`-`0x002F88F6`,
+read the same way each time, the last at `0x002F8B29`-`0x002F8B41`); in the second walk the Mist Charge test reads that
+record's bytes `+0x37` and `+0x4E` before that walk's null test (`0x002F895A`-`0x002F8967`). The slot bytes come from the
+row `0x0020E600([0x02EBF130] dword +0x0C)` plus the record's byte `+0x04` times the table's word `+0x08`, in 32 bits
+(`0x002F89AC`-`0x002F89F2`, `0x002F8A33`-`0x002F8A7F`, `0x002F8AC7`-`0x002F8B06`).
+
+When `0x02EBF130` is 0 or `0x0020E600` answers 0, the row pointer is 0, so the slot reads are of the addresses from `0x4`
+(`0x002F89F6`, `0x002F8B0A`, `0x002F8B27`).
 
 `0x00309C40` keeps one 24-byte entry per member:
 
@@ -244,10 +266,12 @@ No other instruction reaches these cells. The block's addresses are taken by `0x
 The chain's choices and the script's Quickening scene keep three more words:
 
 - `0x00309C40`, from `0x002D5EB0`, draws the chain's choices through `0x002F88B0` and then adds one to `0x022C217C`. It hands
-  `0x022C217C + 1` to `0x002F88B0` in `r8d` (`0x00309C70`-`0x00309C8C`), but `0x002F88B0` overwrites `r8d` before any read of it
-  (`0x002F89E5`), so the count does not change the draw.
+  `0x022C217C + 1` to `0x002F88B0` in `r8d` (`0x00309C70`-`0x00309C8C`), but no instruction of `0x002F88B0` reads the incoming
+  `r8d`: its only reads, `0x002F89EE` and `0x002F8B02`, follow loads of the record's byte `+0x04` into it (`0x002F89E5`,
+  `0x002F8AF9`), so the count does not change the draw.
 - `getspattackskillinfo(&unit, &action)` (`0x029A`, `0x00348330`) asks `0x00309C00` for the Quickening the chain reported.
-  When `0x022C2178` is not -1, `0x00309C00` writes that index and the user `0x022C218C`, and sets `0x022C2178` back to -1.
+  `0x00309C00(&user, &index)` answers 0 while `0x022C2178` is -1; else it writes that index and the user `0x022C218C`, each
+  through a non-null pointer only, sets `0x022C2178` to -1 and answers 1 (`0x00309C00`-`0x00309C31`).
   Then, reported or not, the bridge copies the two script variables into a two-deep history (`0x0034838F`-`0x003483B3`).
 - `spattackplay(n)` (`0x029D`, `0x003495A0`) runs the chain step `0x00313120(n)`. It then looks for `n` among the two
   users, newer first (`0x003495BC`-`0x003495DD`), and on a match stores that entry's index in `0x01EF9218`
