@@ -162,6 +162,100 @@ Before it resolves a target, the applier turns the entry's low byte back into an
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Outcome (`0x002FEE20`) | `0` | `5` | `1` | `3` | `2` | `4` | `6` | `7` | `8` | `10` | `11` | `9` |
 
+The applier as a whole, `0x00307300(action, user, target, entry, first, flag)`, works in this order, which is
+the order of its code. It first looks up the action's row: `row` is
+`0x0020E600([t+0x0C]) + [t+0x08] × action` with `t` the table pointer `[0x02EBF138]` and `[t+0x08]` a word, or
+null when `t` or that answer is null (`0x0030732D`-`0x00307385`). The applier calls `0x0020E600([t+0x0C])` twice
+in each lookup, once for the null test and once for the sum, and repeats the lookup inline before each later
+test of the row: six lookups, twelve calls.
+
+With `first` = 1 it then returns at once when `0x002FFCF0(action, user)` answers non-zero, and otherwise calls
+`0x0030EF20(user, row)` and `0x00305640(user, row, 0)` (`0x00307388`-`0x003073B9`). It clears a `0x148`-byte result
+on its stack through `0x00861EC0(result, 0, 0x148)` (`0x003073C5`-`0x003073D2`).
+
+When the user's count `+0x6B6` is not 0 it handles the stats-index list as told above: each byte that
+`0x00320A40(byte)` resolves to a record is resolved with outcome 9, `0x00385F60(action, user stats, record,
+result)`, and applied with `0x003112F0(result, user stats, record, action, 0)`, and a byte for which
+it gives null is passed over with neither call (`0x003073FF`). It then stores 0 in the count and
+returns (`0x003073D7`-`0x00307452`).
+
+Otherwise it returns unless there is a target whose first byte has bit `0x10` (`0x00307457`-`0x00307463`). For
+an action up to `0x115` whose row byte `+0x2C` has bit `0x40` or `0x80` it clears bit `1 << [user+0xEA9]` of
+the target's dword `+0xEA0` (`0x00307469`-`0x00307511`). The result's dword `+0x00` takes bit `0x2` when `flag` is
+not 0, bit `0x1` when bit `0x800000000` of the user's first qword is set and bit `0x4` when its bit
+`0x400000` is set (`0x00307517`-`0x0030754E`).
+
+Each test of a row byte looks the row up again through `0x0020E600([t+0x0C])`, with the same null tests as the first
+lookup: here (`0x00307481`-`0x003074FB`), and in the two steps of entry code 0 below (`0x003077BF`-`0x0030783D`,
+`0x003078B7`-`0x003078EC`).
+
+It then turns the entry's code back into an outcome with `0x002FEE20(entry byte +0x08)`, stores it in the
+result's byte `+0x04` and resolves with `0x00385F60(action, user stats, target stats, result)` (`0x00307552`-`0x00307577`).
+
+After that call it asks `0x0017D360()`. When that answers non-zero, the user has a stats record whose
+byte `+0x05` is 0, and the target has no stats record or one whose byte `+0x05` is not 0, the result's dword
+`+0x24` becomes `0xFFFE7961`, -99,999 (`0x0030757C`-`0x003075AD`).
+
+Then the entry's low byte `+0x08` is set
+from `0x0030DAE0(the result's byte +0x04)` and its bits `0x100`, `0x400`, `0x200` and `0x800` from bits `0x8`,
+`0x2`, `0x4` and `0x1` of the result's dword `+0x18`, as told under Entry flags,
+and `0x003216E0(user, target, row)` runs (`0x003075B5`-`0x0030760A`), before a dispatch on the entry code
+through the table `0x00307BB4` (`0x0030760F`-`0x0030762E`):
+
+| Entry code | The applier's step |
+|---|---|
+| 0 | `0x0030AD90(user)`. Only when it answers other than -1 (`0x0030763A`-`0x0030763D`): `0x002EACD0([user+0x08], 1, target + 8, that answer)` and, for action `0x96`, the user's byte `+0x6B8` goes up by 1 and, when it is then above 1, `0x0028E920([user+0x08], the byte)` runs. In either case `0x00312170(user, target, action)` follows (`0x00307630`-`0x00307685`) |
+| 1 | `0x00328480(target, 4)` (`0x003076B2`-`0x003076BA`) |
+| 2, 4 | `0x00328480(target, 0)`, then `0x002EACD0([user+0x08], 1, target + 8, c)` with `c` = `0x82` when the word `+0x50` of the target's stats record is `0x1000`, else `0x80` (`0x003076C4`-`0x003076E9`, `0x0030773F`-`0x00307749`) |
+| 3, 5 | `0x00328480(target, 0)`, then the same `0x002EACD0` call with `0x81` (`0x003076EF`-`0x003076F9`) |
+| 6 | `0x0030B9B0(target, user)`; when it answers 0, `0x00328480(target, 1)` (`0x0030768F`-`0x003076A8`) |
+| 7, 9 | `0x00329F70(target, 4, v)` with `v` = `0x79` when bit `0x2000` of `[row+0x0C]` is clear, else `0x78`, `0x00328480(target, 5)`, then the same `0x002EACD0` call with `0x82` (`0x0030770D`-`0x00307739`) |
+| 8, and any code above 10 | no call (`0x00307617`, `0x0030774E`) |
+| 10 | `0x00328480(target, 0)` (`0x00307701`-`0x00307706`) |
+
+An entry with bit `0x800` then gets `0x00328480(target, 2)` and, for entry code 0 when `0x0030AD90` did not answer
+-1, `0x002EACD0([user+0x08], 1, target + 8, 0x86)` (`0x00307751`-`0x0030777D`). An entry with bit `0x200` stores the
+user's dword `+0x08` at the target's `+0x28` unless bit `0x400000` of the user's flag dword is set
+(`0x00307782`-`0x00307798`).
+
+Entry code 0 has two more steps before the result is applied (`0x0030779B`-`0x00307A97`). For an action up to
+`0x115` whose row byte `+0x2C` has bit `0x40` or `0x80`, it calls `0x00311F70(user, target, 0)` after two
+tests, in this order. A target with a stats record must have any of bits `0x80000003` in that record's
+dwords `+0x3C` and `+0x64`, and `0x00377C20()` must then answer 0 (`0x0030784C`-`0x00307870`); a target without a
+stats record skips that test. Then `0x002E9600(the target's actor)` must answer 0
+(`0x00307876`-`0x00307881`); it is not called when the first test fails.
+
+For an action from `0x116` to `0x21E` whose row byte `+0x2C` has bit `0x40`, on a target whose stats byte
+`+0x05` is 1, it calls `0x002E8060(the target's actor)` and `0x003299B0(target, 0x200D, 0)`, clears bit `0x10`
+of the dword at `[target+0x6A0]`, calls `0x0026DC60(actor, 0x003125E0(target) == 0)` and sets bit `0x1000000` of
+the target's first qword (`0x0030789A`-`0x0030790C`, `0x00307A5C`-`0x00307A97`).
+
+Action `0x1C7` first moves that target onto the user (`0x00307912`-`0x00307A54`). It reads the user's position
+with `0x00265020(user's actor, &x, &y, &z)` and heading with `0x00265200(user's actor)`, and the target's position
+with `0x00265020(target's actor, &x, &y, &z)`.
+
+When the positions differ and
+`0x00263F40(target's actor)` gives an object, it passes the user's position to `0x0026B0C0(object, x, y, z)` on that
+object. It stores 16 bytes, the user's three position floats and the dword after them on its stack, at the
+target's `+0xD0` and `+0xE0`, calls `0x00392170(target's actor)`, and for a target whose stats byte
+`+0x05` is 1 stores them at `[target+0x6A0] + 0x50` too
+(`0x00307992`-`0x003079F4`).
+
+It then sets bit `0x4000000` of the target's first qword, stores the heading at `+0x15C` and `+0x160`, passes
+it to `0x0026A0D0(object, heading)` and `0x0026B620(object, heading)` on the object `0x00263F40(target's actor)`
+gives, when there is one, and for the same kind of
+target stores it at `[target+0x6A0] + 0x70` (`0x003079FC`-`0x00307A4F`).
+
+Every path that gets this far applies the result with `0x003112F0(result, user stats, target stats, action, 0)`
+(`0x00307A9E`-`0x00307ABD`). An entry with bit `0x100` then calls `0x00323350(user, target, the float at result
++0x134, n)`; `n` is 0 when the target has a stats record with none of bits `0x80000003` in `+0x3C` and
+`+0x64`, or one for which `0x00377C20()` answers non-zero, and 1 otherwise (`0x00307AC2`-`0x00307B04`).
+
+A result whose dword `+0x2C` has bit `0x100` and not bit `0x8` passes what `0x002F91A0(user, target, v,
+action)` returns to `0x00300CE0(target stats, that, 0x10)`, and what `0x002F9240(user, target, v, action, k)`
+returns to `0x00300CE0(user stats, that, 0x10)`; `v` is the dword value at the result's `+0x24` and `k`
+follows the same rule as `n`, with its own call of `0x00377C20()` (`0x00307B09`-`0x00307B8C`).
+
 ### The shape reader
 
 `0x0031A990(row, out)` (154 bytes) describes the same fields as a shape: it
@@ -280,3 +374,8 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - RNG random selection: `0x003087E0` calls `0x00328370`; those functions are documented on
   [force fight mode](../Engine-Core/force-fight-mode.md).
+- Audio: `0x00265020` is called by `0x00362850`; `0x003112F0` calls `0x002DF220`, `0x003A1180`; those functions are documented
+  on [frame update order](../Engine-Core/frame-update-order.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Platform online achievements: `0x00305640` calls `0x00316440`; those functions are documented on
+  [item use](../Items-Equipment-Shops-And-Licenses/item-use.md).

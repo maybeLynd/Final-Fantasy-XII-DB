@@ -546,11 +546,15 @@ whose byte `+0x14` is at or above `0x80`, only while the manager's `+0x28` is 0,
 
 For each of them it first calls `0x00234480(0, record)`, calls `0x00234A00(+0x30, 1)` when the record's `+0x30` is set,
 clears the class-3 flag bits (bits `0x100` and `0x2000` of `+0x1C` for a record whose `+0x03 & 0xE0` is `0x60`), sets
-the low bits of byte `+0x0E` (`+0x0E` = `(old & 0xF1) | 1`), calls `0x00238FA0(record, 0x0031C4C0(row))` for a party row
-(byte `+0x12` from 0 to 3), and zeroes the `0x00359B80` object's `+0x40`-`+0x63` and byte `+0x65` when it exists
+the low bits of byte `+0x0E` (`+0x0E` = `(old & 0xF1) | 1`), calls `0x00238FA0(record, 0x0031C4C0(byte +0x12))` for
+a byte `+0x12` of 0 to 3, and zeroes the `0x00359B80` object's `+0x40`-`+0x63` and byte `+0x65` when it exists
 (`0x00265A94`-`0x00265B0B`).
 
-It clears bit `0x10` of `+0x14` on the 33rd record and beyond, and keeps the count at the manager's `+0x1E8`
+`0x00238FA0` only sets flag bit `0x4000000` of the record's unit and does not read its second argument
+([battle units](../Characters-And-Objects/battle-units.md)).
+
+`0x00265A20` clears bit `0x10` of `+0x14` on the 33rd record and beyond, and keeps the count at the manager's
+`+0x1E8`
 (`0x00265B3B`; 0 for a manager whose `+0x28` is not 0 or that has no records, `0x00265B4D`). The actor drive pass calls
 the callback per record ([field runtime](../Characters-And-Objects/field-runtime.md)).
 

@@ -112,6 +112,14 @@ The body takes one of these branches after the refusals:
 5. With flags3 bit `0x80` clear and flags bit `0x20` clear the main work runs: the init core, the roster loop,
    the all-records loop, the trigger bit and the field-settled sequence, described below.
 
+`0x0025B740`, which branch 1 runs after each record on slot 0, jumps to `0x00238B20(1)` only when all of these
+hold, tested in this order: the actor `0x003588B0(0x003590D0())` exists; `0x003B7730()` is non-zero; the actor's secondary
+context `+0xC0`, when present, has bit `0x1` of `+0x14F` clear and a non-null `+0x138`; the actor's byte
+`+0x09` has bit `0x1` and its byte `+0x08` bit `0x2`; `0x00265680()` is non-zero; and the secondary context is present
+with a `+0x138` object whose word `+0x88` is not 0 (`0x0025B746`-`0x0025B7C8`).
+
+A test of `0x0025B740` that fails ends in a plain return, with no call and no store (`0x0025B7CD`-`0x0025B7D2`).
+
 The two holds of branch 4:
 
 - With flags3 bit `0x80` set, the current track is the byte `+0x1534` of the persistent save payload `0x002EF2B0()` when
@@ -193,40 +201,85 @@ its fade request passes a fourth argument of 0, `0x002EFA70(2, 8, 1, 0)` (`0x002
 `0x0025DF00(slot, record)` is what every drive above calls. For a record whose `+0x18` is not 1 it
 first runs `0x002E4A10(record)`; then, for sequence class 3 only, when the steering request
 `[[record + 0xB8] + 0xF0]` has a non-zero mode at `+0x29`, it calls `0x0026D6F0(record, speed * [0x01DFE0BC], mode)`
-with the request's `+0x7C` as the speed and mode 0 when the speed is positive, 2 otherwise.
+with the request's `+0x7C` as the speed and mode 0 when the speed is positive, 2 otherwise
+(`0x0025DF21`-`0x0025DF83`).
 
 Then it resolves the current wait slot `[record + 0xA8] + (i8 record +0x11) * 0x28` in a loop:
 
 1. when `0x001ED180()` is non-zero and `0x001EDE80()` is 0 the resolver leaves the loop (the half-rate
-   gate);
+   gate) (`0x0025DFA0`-`0x0025DFB0`);
 2. the slot's `parked` byte `+0x16` is cleared; when `0x001EDDA0()` is 0 and the byte was set, a zero
-   `0x001ED180()` leaves the loop;
-3. the slot's `waitKind` `+0x14` selects the arm in the table below; a completed wait sets
-   `waitKind` to 1 and loops, a held wait sets `parked` and leaves.
+   `0x001ED180()` leaves the loop (`0x0025DFB6`-`0x0025DFEC`);
+3. the slot's `waitKind` `+0x14` selects the arm in the table below through the eight-entry jump table at
+   `0x0025E3CC` (`0x0025DFF0`-`0x0025E008`); a completed wait sets `waitKind` to 1 and loops, a held wait sets
+   `parked` `+0x16` and leaves (`0x0025E127`); kind 5's arm, `0x002674B0(slot, &targetRef)` and the store of
+   `+0x14`, is `0x0025E00A`-`0x0025E022`.
 
 | Kind | Arm | Held while | On completion |
 |---|---|---|---|
-| 1, 2 | the bytecode interpreter `0x0025E4C0(slot, record, waitSlot)`, with `0x02099D80` = the record and `0x00357760()` before it | the interpreter returns non-zero, or `0x001ED130()` with slot index 1 or 2 and `0x001EC5C0()` = 0, or slot index 3 with `0x001EC5E0()`, or `0x022C7F84` non-zero; in each case only while `0x00357770()` = 0 | leaves the loop |
-| 3 | `0x003DBF60(0x0020E600(targetRef), waitResourceId, -1)` | the entry is found (not `0xFF`) | `waitKind` = 1, `settled` = 1 |
-| 4 | `0x003DC050(record, record +0x11, stamp - record +0x58)` | no entry (`0xFF`) | `0x003DB2A0(record, entry)` removes it when it is the detached head `+0x61`; a later match that is the list's tail stays in place, and one with a successor never returns from `0x003DB2A0` (`0x003DB326`-`0x003DB33F`); `waitKind` = 1 after the call (`0x0025E0B5`) |
+| 1, 2 | the bytecode interpreter `0x0025E4C0(slot, record, waitSlot)`, with `0x02099D80` = the record and `0x00357760()` before it | the interpreter returns non-zero, or `0x001ED130()` with slot index 1 or 2 and `0x001EC5C0()` = 0, or slot index 3 with `0x001EC5E0()`, or `0x022C7F84` non-zero; in each case only while `0x00357770()` = 0, and then `parked` `+0x16` is set to 1 (`0x0025E11A`; the arm is `0x0025E0BE`-`0x0025E11E`) | leaves the loop, with `0x02099D80` zeroed on every path (`0x0025E11E`) |
+| 3 | `0x003DBF60(0x0020E600(targetRef), waitResourceId, -1)` | the entry is found (not `0xFF`) | `waitKind` `+0x14` = 1, `settled` `+0x27` = 1 (`0x0025E027`-`0x0025E053`) |
+| 4 | `0x003DC050(record, record +0x11, stamp - record +0x58)` | no entry (`0xFF`) | `0x003DB2A0(record, entry)` removes it when it is the detached head `+0x61`; a later match that is the list's tail stays in place, and one with a successor never returns from `0x003DB2A0` (`0x003DB326`-`0x003DB33F`); `waitKind` `+0x14` = 1 after the call (`0x0025E091`-`0x0025E0B9`) |
 | 5 | `0x002674B0(slot, &targetRef)`: walks the list `listRef` names from the cursor `listCursor`, resolving each entry's low word as a record ordinal (`0x00358940`) and its high word as a resource id, and stops at the first `0x003DBF60(record, id, -1)` that is not `0xFF`; `listCursor` advances past each entry that is `0xFF` (`0x0026751C`) and stays on the one found, so the next visit resumes there and entries already passed are not tested again; a null list holds nothing (`0x002674D3`) | an entry is found | `waitKind` = 1 |
-| 6 | `0x003DB640(0x0020E600(targetRef), waitChannel)` | the channel bit is set | `waitKind` = 1, `settled` = 1 |
-| 7 | `0x00267420(slot, &targetRef)`: the same walk, stopping at the first record whose channel bit `waitChannel` is set (`0x003DB640`); `listCursor` advances past each record without the bit (`0x00267471`) and stays on the one found; a null list holds nothing (`0x00267443`) | an entry is found | `waitKind` = 1, `settled` = 1 |
-| 0, 8 and above | nothing | always | `parked` = 1 |
+| 6 | `0x003DB640(0x0020E600(targetRef), waitChannel)` | the channel bit is set | `waitKind` `+0x14` = 1, `settled` `+0x27` = 1 (`0x0025E058`-`0x0025E07E`) |
+| 7 | `0x00267420(slot, &targetRef)`: the same walk, stopping at the first record whose channel bit `waitChannel` is set (`0x003DB640`); `listCursor` advances past each record without the bit (`0x00267471`) and stays on the one found; a null list holds nothing (`0x00267443`) | an entry is found | the same two stores as kind 6, which it jumps to (`0x0025E083`-`0x0025E08F`, `0x0025E06E`-`0x0025E07E`; `+0x14`, `+0x27`) |
+| 0, 8 and above | nothing | always | `parked` `+0x16` = 1 (`0x0025E127`) |
 
 After the loop the resolver finishes the visit:
 
-1. record `+0x108` is cleared;
+1. record `+0x108` is cleared (`0x0025E134`);
 2. record `+0x0C` bit `0x1` is set when `+0x1C` bit `0x800` is on, `+0x14` bit `0x40` is off, `+0x18` is not 1,
    and the entry `0x003DB550(record, +0x62)` has the non-zero id the record's `+0xDE` names (or, when that is
    -1, the word `+0x18` of the payload row reached through `+0x40`, used only when that row's count
-   exceeds 11); otherwise it is cleared;
+   exceeds 11); otherwise it is cleared (`0x0025E12B`-`0x0025E1A9`);
 3. `+0x0D` bit `0x40` is cleared; for a record with `+0x10` = 0 that is settled or matched, with `+0x13`
    bit `0x2` and `+0x09` bit `0x80` clear, no `0x00359B80` value at `+0x40`, `+0x14` bit `0x10` set, `+0x18` = 0,
    `+0x09` bit `0x20` clear and a callback at `+0x38`, the bit is set and `[record + 0x38](slot index,
-   record)` runs: the battle unit frame `0x00233F70` for a record bound to a battle unit;
+   record)` runs: the battle unit frame `0x00233F70` for a record bound to a battle unit
+   (`0x0025E1AD`-`0x0025E222`);
 4. the steering update runs: `0x002E97B0`, `0x002681E0`, `0x002E5030` and `0x002E5750` when `+0x13` bit `0x1` is
-   clear and `+0x10C` is 0, or `+0x0B` bit `0x20` is set; otherwise `0x002E6310`.
+   clear and `+0x10C` is 0, or `+0x0B` bit `0x20` is set; otherwise `0x002E6310(record)`
+   (`0x0025E224`-`0x0025E3AA`).
+
+In step 2, the payload row is payload + the low 32 bits of `0x0020E600(dword +0x18 of the record's +0x40
+object)`; when its count is 11 or less the id compared is `0xFFFF` (`0x0025DF97`, `0x0025E16A`-`0x0025E192`). The
+entry's word `+0x04` is read between the `+0x18` compare and its branch (`0x0025E14E`-`0x0025E157`), so also for
+a record whose `+0x18` is 1, and with no null test, though `0x003DB550(record, index)` answers null for an
+index of `0xFF` (`0x0025E142`-`0x0025E149`).
+
+In step 3, the `0x00359B80` value is that of `0x00359B80(record)`: a null answer counts as 0, and otherwise the
+dword `+0x40` of the object it answers must be 0. The call is made whenever `+0x10` is 0 and the record is
+settled or matched, before the `+0x13` and `+0x09` bits are tested (`0x0025E1BE`-`0x0025E1FA`).
+
+The four-call branch first zeroes two 16-byte locals (`0x0025E24B`-`0x0025E261`) and calls `0x002E97B0(record)`,
+which answers the secondary context `[record+0xC0]`. A null answer goes straight to `0x002681E0(record)`, with
+a flag of 0 for both later calls (`0x0025E266`-`0x0025E271`, `0x0025E389`-`0x0025E38C`). Otherwise the context first
+loses bit `0x4` of its byte `+0x10` (`0x0025E277`).
+
+The record tests below are three: the context's word `+0x00` is not -1, the render record
+`[0x022C6F28] + 0x740 × (that word, sign-extended)` is not at address 0, and its dword `+0x284` is not 0.
+
+When the context's dword `+0x00` is not -1 and the record is of sequence class 3,
+`0x003DA710([record+0xB8] + 0x50, &f0, &f1)` first copies the floats `+0x50` and `+0x54` of the movement context
+`[record+0xB8]` into two locals, before the record tests and whatever `+0x13` holds (`0x0025E27B`-`0x0025E2A5`).
+
+For another class the call is skipped (`0x0025E28E`) and no instruction of the resolver writes the two locals;
+`0x00266AD0` plants a null `+0xC0` for sequences 0 to 4, which the descriptor table `0x01E0C328` gives classes 0
+to 2 ([the actor record](actor-record.md)), so a record of another class as planted takes the null-answer
+way and does not come here.
+
+A render record that passes the tests then gets `0x003E6EF0(render record, &first, &second, f)` and, tested
+again, `0x003E68B0(render record)`; one that fails gets neither (`0x0025E2AA`-`0x0025E326`). `f` is 1000000.0
+(`0x0091573C`) when the record's byte `+0x13` is `0x80` or more, else the smaller of `f0` and `f1`. Before
+the last two calls, `0x003E6EF0` is the only call that is given the addresses of the two zeroed locals.
+
+Only with `+0x0D` bit `0x2` set, a non-zero `0x003E68B0` answer and the tests passed once more does it call
+`0x003E6A70(render record)`: bit `0x2` of that answer goes to bit `0x4` of the context's `+0x10` and sets the
+record's `+0x0C` bit `0x10`, and it is the flag of `0x002E5030`; bit `0x1` of the answer is the flag of
+`0x002E5750` (`0x0025E328`-`0x0025E385`). Both flags are 0 unless `0x003E6A70` is called and answers non-zero.
+
+The branch ends with `0x002681E0(record)`, `0x002E5030(record, flag, &first)` and
+`0x002E5750(record, flag, &second)` (`0x0025E389`-`0x0025E3AA`).
 
 ### The wait slots
 

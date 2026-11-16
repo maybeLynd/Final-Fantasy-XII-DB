@@ -36,6 +36,12 @@ report a directory (`0x00862AEC`-`0x00862B0F`, `0x00862B6F`-`0x00862B98`); a fai
 With a user id the final folder is the id's folder inside `FINAL FANTASY XII THE ZODIAC AGE\`, which itself gets no
 create call. Only after the last create does it copy the path to `0x02EAF6E0` (`0x00862BB1`).
 
+With an empty user id, the first character of the string from `0x001F3ED0()` being 0, the path ends at the game
+folder: `Documents\My Games\FINAL FANTASY XII THE ZODIAC AGE\`, the folder string itself ending in the
+backslash (`0x00862B15`-`0x00862B36`, `0x00862B57`-`0x00862B6A`). That folder is then the one created, and the slot
+files lie directly in it. A run with no Steam user signed in showed exactly that path at `0x02EAF6E0`
+(measured).
+
 The container is read by `0x008666B0(path, mode)`, called from the stream opener `0x008624D0`
 (`0x00862543`), and written by `0x00866200`, called from `0x008624D0` (`0x00862508`) and the stream closer
 `0x008620E0` (`0x008620F4`).

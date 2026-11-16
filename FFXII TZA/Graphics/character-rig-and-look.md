@@ -305,6 +305,19 @@ through `0x00519880`.
   `0x00512EF0`, run with `0x0040DB70` from `0x003E0720`, numbers the 32 16-byte entries of the table at
   `0x02CA81F0` in their byte `+0x0C` (`0x00512F13`), clears the low nibble of their `+0x0F` (`0x00512F10`), and clears
   `0x02CA83F0`, `0x02EBA480` and `0x02EBA481`.
+- `0x00512D80(block, out)` first sets both dwords of `out` to -1 (`0x00512D95`) and drops what is gone: for kind 1,
+  the low nibble of the block's `+0x0F`, the nibble is cleared when `0x002E9B80(dword +0x08)` is negative; for
+  kind 3 it is cleared when the word `+0x08` is `0xFFFF` or the render record it indexes has dword `+0x284` at
+  0 (`0x00512D9F`-`0x00512DFA`).
+- It then walks the table `0x02CA81F0` from the block's head byte `+0x0C`, when that byte is not `0xFF`: an entry whose
+  `0x002E9B80(entry dword +0x08)` is negative is unlinked with `0x00512CD0(block, entry)`, and the walk goes on by
+  the entry's byte `+0x0E` until that is `0xFF` (`0x00512DFE`-`0x00512E39`).
+- Its answer is 1 with `out` filled, or 0 with `out` left at -1: kind 1 gives `0x002E9B80(dword +0x00)` and
+  `0x002E9B80(dword +0x08)` (`0x00512E3B`-`0x00512E5D`); kind 3 the dwords `+0x00` and `+0x08` as they are
+  (`0x00512E64`-`0x00512E72`); any other kind, when the head byte is not `0xFF`, `0x002E9B80` of the head entry's
+  dwords `+0x00` and `+0x08`, `0x002E9B80(entry dword +0x00)` first (`0x00512E79`-`0x00512E9B`); else 0 (`0x00512EA2`).
+- `0x002E9B80(handle)` is the dword `+0x00` of the context `+0xC0` of the actor `0x003588B0(handle)`, and -1
+  when there is no actor or no context (`0x002E9B80`-`0x002E9BA4`).
 
 - `0x002E7C10(actor, target, …, keep)` aims an actor's record at another's: it hands
   `{3, own index, own index, target index}` to `0x00512F30` on the record's `+0x650` block, which for

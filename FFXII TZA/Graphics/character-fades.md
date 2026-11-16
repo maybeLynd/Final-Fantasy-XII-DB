@@ -176,6 +176,12 @@ outside, and 0 otherwise (`0x003B4064`-`0x003B4078`).
   children (`0x0042BCDE`-`0x0042BDAA`).
 - Each of those copies is made only when `0x00426220` answers 0 for the record it would change
   (`0x0042BD0B`-`0x0042BD12`, `0x0042BD54`-`0x0042BD5B`, `0x0042E764`-`0x0042E76B`).
+- `0x002E83B0(actor, on)` writes bit `0x2` of `+0xD2` on the render record of the actor's context `+0xC0`:
+  set for a non-zero `on`, cleared for 0, the other bits kept (`0x002E83EC`-`0x002E83F9`). It does nothing for a
+  null actor, a null context, a context whose dword `+0x00` is -1 or whose low word is `0xFFFF`, a record
+  address of 0, or a record whose dword `+0x284` is 0 (`0x002E83B0`-`0x002E83EA`).
+- `0x002392D0(actor, flags)` calls `0x002E83B0(actor, 0)` when `0x0031B760(actor)` answers non-null and `flags`
+  has bit `0x10` (`0x002392E4`-`0x002392FB`).
 
 When record `+0x6E0` is non-zero the bits are cleared and no distance fade applies; the other term of that test,
 `0x005C5230()`, returns 0. A culled record gets channels 0 and 4 ramped to 0 over one frame. Otherwise
@@ -398,3 +404,26 @@ Calls between the functions this page cites and code in other parts of the progr
   [actor managers](../Characters-And-Objects/actor-managers.md).
 - World area: `0x0026C8C0` calls `0x0026DB30`; those functions are documented on
   [party verbs](../Scripts-And-Script-Commands/party-verbs.md).
+- Combat AI: `0x0031B760` is called by `0x00239040`, `0x003014C0`, `0x00301AD0`, `0x003087E0`, `0x0030F130`; those functions are
+  documented on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
+  [glossary](../Engine-Core/glossary.md), [area of effect](../Battle-Actions/area-of-effect.md).
+- Combat AI: and on [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md).
+- Combat action: `0x0031B760` is called by `0x00303830`, `0x00306010`, `0x0030EC00`; those functions are documented on
+  [action phases](../Battle-Actions/action-phases.md), [action results](../Battle-Actions/action-results.md).
+- Gameplay: `0x0031B760` is called by `0x0030B050`, `0x0030BA30`, `0x0030BFB0`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md),
+  [battle units](../Characters-And-Objects/battle-units.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
+- Spawn encounter lifecycle: `0x0031B760` is called by `0x002350C0`, `0x00235360`, `0x002354F0`, `0x002355A0`, `0x00235720`,
+  `0x00235EF0`, `0x00235F50`, `0x00235FB0`, `0x00236030`, `0x00236140`, `0x00236670`, `0x002366E0`; `0x0031B760` is also called by
+  `0x00236860`, `0x00238FC0`, `0x002391C0`, `0x002393E0`, `0x00239410`, `0x00239710`, `0x00239840`, `0x002398F0`, `0x0023A200`,
+  `0x0023A2E0`, `0x0023A3B0`, `0x0023A410`.
+- Spawn encounter lifecycle: those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [native limits](../Engine-Core/native-limits.md), [battle units](../Characters-And-Objects/battle-units.md),
+  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md).
+- Spawn encounter lifecycle: and on [enemy respawning](../Enemy-Spawning/enemy-respawning.md),
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
+  [enemy spawning](../Enemy-Spawning/enemy-spawning.md),
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md); and on
+  [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md).

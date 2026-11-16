@@ -57,23 +57,45 @@ returns without doing anything when all are in use. For the free slot it:
 
 ### Who gets a unit
 
-`0x00265A20(slot)` is the allocator's only caller. For the primary manager only (slot index 0) it
-walks the slot's records (`0x00358940`, `recordCount` at `+0x20`) and, for each record whose byte
-`+0x14` has bit `0x80` set, either enters the bind branch or, once 32 records have entered it in this
-walk, clears the record's `+0x14` bit `0x10` instead. Every record that enters the branch is counted,
-whether or not `0x00234480` found a slot; the branch gives the record:
+`0x00265A20(slot)` is the allocator's only caller. It walks the slot's records, `0x00358940(slot, i)` for `i`
+below the `recordCount` at `+0x20` (`0x00265A2C`-`0x00265A68`, back branch `0x00265B26`). A record passes when the
+slot's `+0x28` is 0, which holds for the primary manager only (slot index 0; `0x00265A70`-`0x00265A74`), the
+record pointer is not null (`0x00265A7A`-`0x00265A7D`) and its byte `+0x14` is `0x80` or more, that is, has bit
+`0x80` set (`0x00265A83`-`0x00265A89`).
 
-- the frame callback `0x00233F70` at `+0x38` ([field runtime](field-runtime.md));
-- `0x00234A00(unit, 1)` (unit `+0x20` = 1) when the back-pointer `+0x30` is set, which is how the walk
-  notices a silent allocation failure;
-- for a class-3 actor, bits `0x100` and `0x2000` of `+0x1C` cleared; `+0x0E` = `(old & 0xF1) | 1`;
-- `0x00238FA0(record, 0x0031C4C0(row))`, with the row byte `+0x12` (`0x00265AD2`-`0x00265AE5`), when byte `+0x12` is
-  below 4;
-- the `0x00359B80` object's `+0x40`-`+0x63` and byte `+0x65` cleared.
+The first 32 records that pass enter the bind branch; for each later one the
+record's `+0x14` loses bit `0x10` instead (`0x00265A8F`-`0x00265A92`, `0x00265B11`-`0x00265B13`). Every record that
+enters the branch is counted, whether or not `0x00234480` found a slot; the branch gives the record:
+
+- a unit, `0x00234480(0, record)` (`0x00265A94`-`0x00265A9F`);
+- the frame callback `0x00233F70` at `+0x38` (`0x00265AA8`; [field runtime](field-runtime.md));
+- `0x00234A00(unit, 1)` (unit `+0x20` = 1) when the back-pointer `+0x30` is set (`0x00265AA4`-`0x00265AB4`), which
+  is how the walk notices a silent allocation failure;
+- for a class-3 actor (`+0x03 & 0xE0` = `0x60`), bits `0x100` and `0x2000` of `+0x1C` cleared
+  (`0x00265AB9`-`0x00265AC3`);
+- for every record of the branch, `+0x0E` = `(old & 0xF1) | 1` (`0x00265ACA`-`0x00265ACE`), so the class nibble
+  `0x00263C20` reads from that byte is 1 after the bind;
+- when byte `+0x12`, sign-extended and compared unsigned, is 0 to 3, so that `0xFF` fails
+  (`0x00265AD2`-`0x00265AD9`): `0x0031C4C0(byte +0x12)` and then
+  `0x00238FA0(record, seat byte)` with its answer (`0x00265ADB`-`0x00265AE5`);
+- `0x00359B80(record)` and, when it answers an object, the unit's `+0xED0` (`0x00265AED`-`0x00265AF5`), that
+  object's `+0x40`-`+0x63`
+  cleared, as the qwords `+0x40`, `+0x48`, `+0x54` and `+0x5C` and the dword `+0x50`, and its byte `+0x65`
+  (`0x00265AF7`-`0x00265B0B`).
 
 The number of records that entered the branch is stored at the slot's `+0x1E8` (`0x00265B3B`). Records of the other four managers never get a
 unit: the walk tests the slot's `+0x28` for every record (`0x00265A70`) and stores 0 at `+0x1E8` for them, as it
 does for a slot with no records (`0x00265B4D`).
+
+`0x00238FA0(record, seat byte)` takes the record's unit with `0x0031B760(record)` and, when there is one, sets unit
+flag bit `0x4000000` (`0x00238FA0`-`0x00238FB9`). It never reads its second argument, so the byte `0x0031C4C0`
+answered has no effect. No direct call or jump instruction but the bind's call at `0x00265AE5` has it as its target,
+and no pointer to it is stored in the file.
+
+It installs no definition: the unit of a record with byte `+0x12` of 0 to 3 leaves the bind with that flag
+and no stats record. `0x00326B0A` in the seat rebuild `0x003266C0` is the one call found that can pass a party
+id to the installer `0x0023A570`, and it does so only when the seat word differs from the unit's present id
+([Party slots](../Party/party-slots.md)).
 
 ### The handle
 

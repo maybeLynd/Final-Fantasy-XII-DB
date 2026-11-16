@@ -99,8 +99,8 @@ result: the winning lane, or -1. The selector:
    (`test qword ptr [rsi], r10` with `0x0002200000000000`, `0x002358EB`), else 0.0;
 5. for each candidate id of the lane (the table's words from `table[1 + lane]` to
    `table[2 + lane] - 1`, a short; an id of `0x00FF` is skipped, `0x00235919`-`0x00235925`, and a -1 is passed
-   on and fails the record fetch), tries `0x00234AF0(id, &pos, minR, 0x02089364, &observed, 0)` for
-   attempts `0` to `n - 1`, `n` = `0x0208D457` read signed;
+   on and fails the record fetch), tries `0x00234AF0(id, &pos, minR, 0x02089364, &observed, 0)`, the call
+   at `0x00235950`, for attempts `0` to `n - 1`, `n` = `0x0208D457` read signed;
 6. an attempt is accepted when the call returns non-zero and `observed` is below `0x02F973B8` (the
    shared maximum squared distance, `+INF` from `0x002368D0`) or unordered with it (`comiss`, `jb`,
    `0x0023595F`-`0x00235962`). Area mode never writes `observed` (`0x00234C43`-`0x00234CF2`), so its attempts test

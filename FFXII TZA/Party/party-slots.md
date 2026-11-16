@@ -96,15 +96,79 @@ saving map 4 (`0x003266F4`-`0x0032674B`). Then it adjusts the four active seats 
 In modes 4 and 5 the leader's seat is that of the leader selector `+0x5AA4`, or with the area's town bit the area's leader at the controlled
 member's seat (`0x003267B7`-`0x003267E8`, `0x0032686E`-`0x0032689F`).
 
-Then, for each active seat whose battle unit holds a different member than map 1 now says, the unit is given
-the new member (`0x0023A570`). A unit that changes from one member to another gets `0x00300E40(unit, 0)` before that
-when its first byte has bit `0x2` clear and either it has no stats record `+0x698` or that record's dwords
-`+0x64` and `+0x3C` together have a bit of `0x80000003` set while `0x00313F60()` answers 0 (`0x00326AAE`-`0x00326ADA`;
-whole loop `0x00326A40`-`0x00326B18`).
+Then, for each seat `s` from 0 to 3, the loop takes the roster actor `0x00263750(s)` and its unit `0x00263E30(actor)`;
+a seat without either is passed over (`0x00326A40`-`0x00326A5E`, back branch `0x00326B18`). The unit's present id is
+its stats record's word `+0x04` when unit flag bit `0x4` is set, else `0xFFFF`; the new id is the whole word of
+map 1's seat `s`; equal ids leave the unit as it is (`0x00326A64`-`0x00326A82`).
+
+A unit that holds no member goes straight to `0x0023A570(unit, new id)` (`0x00326A88`-`0x00326A8C`,
+`0x00326B04`-`0x00326B0A`). A unit whose seat is now empty first loses flag bit `0x4000000` (`0x00326A8E`-`0x00326A92`,
+`0x00326AFD`). A unit that changes from one member to another gets, before that same clear and the install:
+
+- `0x002ECF10(a, b, 0)`, with `a` the unit's actor pointer `+0x10` and `b` the bit `0x800000` of the unit's
+  flags, and `0x003105D0(unit)`
+  (`0x00326A94`-`0x00326AA9`);
+- `0x00300E40(unit, 0)` when its first byte has bit `0x2` clear and either it has no stats record `+0x698` or that
+  record's dwords `+0x64` and `+0x3C` together have a bit of `0x80000003` set while `0x00313F60()` answers 0
+  (`0x00326AAE`-`0x00326ADA`);
+- `0x002E42D0(a)`, `0x002699D0(a)` and `0x002ECEC0(a)`, and flag bit `0x40` set (`0x00326ADF`-`0x00326AFA`).
+
+The call at `0x00326B0A` is the one call found that can pass a party id to the installer
+([Battle unit construction](../Characters-And-Objects/battle-unit-construction.md)); it passes the seat's word for
+the unit of the roster actor with the seat's index.
 
 At the end `0x00326500` picks the controlled member, and `0x022C2670` counts the seats 0 to 3 that
 `0x00322C50(0x17, seat, 0)` accepts, whose member byte is `0x27` or less and whose party record has none of the bits
 `0x80000003` set, or has them while `0x00313F60()` answers non-zero (`0x00326B1E`-`0x00326B97`).
+
+### Who asks for a seat's unit
+
+Twenty-seven direct call or jump instructions have `0x0031B810` as their target, one in each of twenty-seven
+functions, and no pointer to it is stored in the file: each of them takes its unit from a seat of map 1.
+
+In the table a seat unit is in play when it has a stats record whose
+dwords `+0x64` and `+0x3C` have none of the bits `0x80000003`, or has them while `0x00377C20()` answers non-zero.
+`0x00313F60`, named in the loop above, is a jump to `0x00377C20`: the two are one test.
+
+| Function | Its call of `0x0031B810` | Page, and its use of the seat's unit |
+|---|---|---|
+| `0x00234150` | `0x0023416A` | listed on [Field runtime](../Characters-And-Objects/field-runtime.md): for each seat unit with flag bit `0x10`, `0x002FED60(unit, 1)` when `0x00308010(unit, 1)` answers non-zero, else `0x002FEDC0(unit, 1)` (`0x00234168`-`0x002341A6`) |
+| `0x00234DA0` | `0x00234DE2` | [Enemy spawning](../Enemy-Spawning/enemy-spawning.md) |
+| `0x002350C0` | `0x00235215` | [Enemy spawning](../Enemy-Spawning/enemy-spawning.md) |
+| `0x00235DD0` | `0x00235DFE` | [Verb table](../Scripts-And-Script-Commands/verb-table.md) |
+| `0x00237140` | `0x00237152` | [KO and Game Over](../Status-Effects-And-KO/ko-and-game-over.md) |
+| `0x002371B0` | `0x002371C2` | [KO and Game Over](../Status-Effects-And-KO/ko-and-game-over.md) |
+| `0x00237260` | `0x00237272` | [KO and Game Over](../Status-Effects-And-KO/ko-and-game-over.md) |
+| `0x002372E0` | `0x002372F2` | [KO and Game Over](../Status-Effects-And-KO/ko-and-game-over.md) |
+| `0x00237460` | `0x002374A8` | [Verb table](../Scripts-And-Script-Commands/verb-table.md) |
+| `0x002F8BB0` | `0x002F8C96` | [Battle unit construction](../Characters-And-Objects/battle-unit-construction.md) |
+| `0x002FB8C0` | `0x002FB912` | [Traps](../World-Areas-And-Travel/traps.md) |
+| `0x003001D0` | `0x003001FA` | named on [KO and Game Over](../Status-Effects-And-KO/ko-and-game-over.md): `0x002ECEC0(a)`, with `a` the unit's actor pointer `+0x10`, for each in-play seat unit (`0x003001F8`-`0x00300263`) |
+| `0x00301310` | `0x00301344` | named on [KO and Game Over](../Status-Effects-And-KO/ko-and-game-over.md): `(u, v, w)` stores `w` in the dword `+0xBB8` of each in-play seat unit that holds `v` there (0 with flag bit `0x4000` clear) and whose word `+0xBA0` is `0x115` or less, when that word's row of the table `0x02EBF138` has byte `+0x2C` bit `0x40` and byte `+0x64` of `u`'s stats record has bit `0x1`, or bit `0x80` and bit `0x2` (`0x00301342`-`0x00301493`) |
+| `0x00301AD0` | `0x00302712` | [Enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md): for opcodes 34 and 35 with `s` = 18, takes the least (34) or the greatest (35) `0x0031E6F0` answer over the in-play seat units, collected on the first candidate (`0x003026EC`-`0x003027C1`) |
+| `0x00307E70` | `0x00307E9A` | [Force fight mode](../Engine-Core/force-fight-mode.md) |
+| `0x00309FB0` | `0x0030A054` | [Reward verbs](../Scripts-And-Script-Commands/reward-verbs.md): raises its count by one for each in-play seat unit whose word `+0xDC8` equals the id (`0x0030A052`-`0x0030A0DE`) |
+| `0x0030A8A0` | `0x0030A8D4` | [Enmity](../Enemy-AI-And-Gambits/enmity.md) |
+| `0x0030D160` | `0x0030D482` | [Area of effect](../Battle-Actions/area-of-effect.md): when the target handle gives a unit (`0x0030D18A`-`0x0030D195`), the user's byte `+0x6B6` is 0 and bit `0x2` of the action row's `+0x0C` is set, adds the actor of each in-play seat unit the list does not hold yet to the targets (`0x0030D205`-`0x0030D20C`, `0x0030D461`-`0x0030D50A`) |
+| `0x0030D600` | `0x0030D636` | [Quickenings and summons](../Battle-Actions/quickenings-and-summons.md) |
+| `0x0030F130` | `0x0030F268` | [Gambits](../Enemy-AI-And-Gambits/gambits.md): adds to the candidates each seat member whose statuses meet the action's mask in the bits `0x80000003` (`0x0030F266`-`0x0030F2B2`) |
+| `0x00310920` | `0x00310972` | [Navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md) |
+| `0x00311B20` | `0x00311BF7` | [Battle verbs](../Scripts-And-Script-Commands/battle-verbs.md): with `all` set and past its two -1 exits (`0x00311B3E`-`0x00311B74`), issues to each in-play seat unit through `0x00311CF0` (`0x00311BE6`-`0x00311C86`) |
+| `0x00311E90` | `0x00311EBA` | [Battle verbs](../Scripts-And-Script-Commands/battle-verbs.md) |
+| `0x00313670` | `0x0031369A` | [Navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md): re-places each in-play seat unit but the leader with `0x00311F70(0, unit, 0)` (`0x0031368A`-`0x0031370A`) |
+| `0x00313B30` | `0x00313BD4` | [Action commit](../Battle-Actions/action-commit.md) |
+| `0x00338490` | `0x003385C2` | [Party leader](party-leader.md) |
+| `0x00388D50` | `0x00388DF2` | [Weapon formulas](../Damage-And-Battle-Formulas/weapon-formulas.md) |
+
+Twelve of these functions collect their seat units in the one staging list `0x022C1788`, each with its own walk,
+and so overwrite what the last of them left there: `0x003001D0`, `0x00301310`, `0x00301AD0`, `0x00307E70`, `0x00309FB0`,
+`0x0030D160`, `0x0030D600`, `0x00310920`, `0x00311B20`, `0x00311E90`, `0x00313670` and `0x00313B30` (the stores at `0x00300230`,
+`0x0030137A`, `0x00302747`, `0x00307ED0`, `0x0030A089`, `0x0030D4B8`, `0x0030D685`, `0x003109A8`, `0x00311C2D`, `0x00311EF0`,
+`0x003136D0` and `0x00313C0A`). `0x0030A880` hands the same list to the party list builder
+([Enmity](../Enemy-AI-And-Gambits/enmity.md)).
+
+`0x00235DD0` and `0x00237460` hand on an index their caller supplies, so they can ask for seats 4 to 8 of map 1 as
+well; the other twenty-five ask for seats 0 to 3 only.
 
 ### The snapshot a menu takes
 
@@ -226,3 +290,5 @@ Calls between the functions this page cites and code in other parts of the progr
   [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md).
 - Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on
   [battle units](../Characters-And-Objects/battle-units.md).
+- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).

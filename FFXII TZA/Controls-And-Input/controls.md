@@ -530,10 +530,40 @@ the polls the game frame has caught up with (`0x0024992D`-`0x002499A4`, `0x0036F
 
 `0x0036FDF0` keeps a second copy of set 0's words for each channel. It ORs the polls' repeat, pressed and released
 words (frame `+0x08`, `+0x0C`, `+0x10`) into the globals below, then passes each through the channel's button map,
-sixteen signed bytes at record `+0x284` that `0x0035F260` sets to 0-15 (`0x0035F3C3`-`0x0035F3DB`): bit i of the result
-is bit `map[i]`, and a negative entry drops the bit (`0x0035EDE0`). The mapped words go to `0x02AD9E08`, `0x02AD9E0C` and
+sixteen signed bytes at record `+0x284` that `0x0035F260` sets to 0-15 (`0x0035F3C3`-`0x0035F3DB`): input bit i sets
+result bit `map[i]`, and a negative entry drops the bit (`0x0035EDE0`). The mapped words go to `0x02AD9E08`,
+`0x02AD9E0C` and
 `0x02AD9E10` + 2 × channel (`0x0036FEEA`, `0x0036FF01`, `0x0036FF30`). The held word, frame `+0x04`, goes the same way
 through `0x02AD9E20`.
+
+By address, `0x0036FDF0` first zeroes both channels' ORed repeat, pressed and released words and their mapped
+words `0x02AD9E08`, `0x02AD9E0C` and `0x02AD9E10` (`0x0036FE14`-`0x0036FE3D`), then runs channel `c`, 0 then 1 (back
+branch `0x0036FF47`); a third channel would end in the range-check failure `0x00809728()` (`0x0036FE4B`-`0x0036FE4F`,
+`0x0036FF68`).
+
+Per channel it first stores 0 in the ORed held word `0x02AD9E20 + 2c` (`0x0036FE5A`), so that word
+too starts each game frame at 0. It then ORs the polls' held word into it from `0x0035EF10(c, k)`, beside
+`0x0035EF70(c, k)`, `0x0035EFD0(c, k)` and `0x0035F030(c, k)` for the other three (`0x0036FE63`-`0x0036FEB8`).
+
+The four ORed words then pass through the map: `0x0035EDE0(c, held)` is stored at `0x02AD9E04 + 2c`
+(`0x0036FEBA`-`0x0036FED3`), and `0x0035EDE0(c, repeat)`, `0x0035EDE0(c, pressed)` and `0x0035EDE0(c, released)` at the
+three addresses named above (`0x0036FEDB`-`0x0036FF30`). The repeat word is then copied to `0x02AD9E14 + 2c`, the
+pressed word to `0x02AD9E18 + 2c` and the released word to `0x02AD9E1C + 2c` (`0x0036FF0E`-`0x0036FF38`).
+
+Eight functions return one of these words each, with no argument and no store:
+
+| Function | Word it returns | What the word is |
+|---|---|---|
+| `0x0036FF70()` | `0x02AD9E04` | channel 0, held, after the button map |
+| `0x0036FF80()` | `0x02AD9E18` | channel 0, the copy of the pressed word `0x02AD9E0C` |
+| `0x0036FF90()` | `0x02AD9E06` | channel 1, held, after the button map |
+| `0x0036FFA0()` | `0x02AD9E0A` | channel 1, repeat, after the button map |
+| `0x0036FFB0()` | `0x02AD9E0E` | channel 1, pressed, after the button map |
+| `0x0036FFC0()` | `0x02AD9E08` | channel 0, repeat, after the button map |
+| `0x0036FFD0()` | `0x02AD9E0C` | channel 0, pressed, after the button map |
+| `0x0036FFE0()` | `0x02AD9E10` | channel 0, released, after the button map |
+
+`0x0046DB40` is a jump to `0x0036FF80`.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
@@ -546,8 +576,12 @@ through `0x02AD9E20`.
 `0x0036FD90(channel)` clears the channel's three ORed words and its mapped words at `0x02AD9E08`-`0x02AD9E10`. It sign-extends
 the channel and doubles it, `rax = channel + channel` (`0x0036FD94`-`0x0036FD97`), and the result must be below 4 as an
 unsigned 64-bit compare (`cmp rax, 4`, `jae`), so only channels 0 and 1 pass; any other value ends in the
-range-check failure (`0x0036FD9A`, `0x0036FDDE`). The field tick `0x00314020` calls `0x0036FD90(0)` when `0x00228480()`
-answers 0 (`0x003142B0`-`0x003142B6`).
+range-check failure `0x00809728()` (`0x0036FD9A`-`0x0036FD9E`, `0x0036FDDE`). The field tick `0x00314020` calls
+`0x0036FD90(0)` when `0x00228480()` answers 0 (`0x003142B0`-`0x003142B6`).
+
+It leaves the held words `0x02AD9E04` and `0x02AD9E06`, their sources at `0x02AD9E20` and the copies
+`0x02AD9E14`-`0x02AD9E1E` as they are: its six stores are the three ORed words and the mapped words `0x02AD9E08`,
+`0x02AD9E0C` and `0x02AD9E10` of the channel (`0x0036FDA9`-`0x0036FDD1`).
 
 No other instruction reaches `0x02AD9E24`-`0x02AD9E2F`, and the two record bytes are reached only through the record
 addresses at the sites listed.

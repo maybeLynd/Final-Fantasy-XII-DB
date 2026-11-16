@@ -179,6 +179,10 @@ context's `+0xD0`, `0x0026A640` keeps the raw speed at `+0x7C`, `0x0026AE30` sto
 `movecancel`, `ucmovecancel`, the `setpos` family, `setposparty`, the push and the actor teardown
 `0x002693D0` (twice) all hand in 0.
 
+The mode is the byte `+0x29` of the object at `+0xF0` of the actor's movement context `+0xB8`.
+`0x00264E10(actor)` returns that byte for a class-3 actor (`+0x03 & 0xE0` = `0x60`) and 0 for any other class;
+it tests none of the three pointers (`0x00264E10`-`0x00264E2F`).
+
 `0x00269C30(actor, accel, mode)` (`setaccr`) stores `+0x2C` = `accel * [0x01DFE0BC]` and `+0x2B` =
 `mode`; `0x0026B450` (`setreachr`) stores the reach `+0x20`.
 

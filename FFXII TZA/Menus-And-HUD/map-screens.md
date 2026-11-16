@@ -395,6 +395,11 @@ The actors come from a list the minimap tick rebuilds first: `0x003C6000` calls 
 128: handles to `0x022C8500` (`0x0035D500`), actors to `0x022C8700` (`0x0035D4F0`), the total at `0x022C8B00` (`0x0035D510`),
 and each manager's start and count at `0x022C8B02 + i` and `0x022C8B04 + i`.
 
+Before it builds a list, `0x0046B560` clears bit `0x2` of byte `+0x09` in every record of each manager 0 to 3 whose
+slot byte `+0x10` has bit `0x1` set, the slot being `0x00263FF0(m)`: the records from the word `+0x1DE` for the
+count in the word `+0x1D6`, each through `0x00358940(manager, index)`, whose answer it uses without a null test
+(`0x0046B590`-`0x0046B5DA`).
+
 `0x0046BD60(m)`, which `0x0046B560` calls for a manager number (`0x0046B612`), fills the list of the manager that
 `0x00263FF0(m)` returns. For a manager whose byte `+0x10` has bit `0x1` clear it only stores 0 as the dword
 count `+0x1F8` (`0x0046BD6C`-`0x0046BD7A`, `0x0046BE6D`). Otherwise it walks the records from the word `+0x1DE` for

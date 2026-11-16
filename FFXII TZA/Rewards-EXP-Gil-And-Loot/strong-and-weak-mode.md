@@ -79,6 +79,9 @@ On a confirm, Config's switch (`0x00240065`-`0x00240080`) sends all three comman
 `0x0023FC58`) as the list's status (`0x0024022F`-`0x0024023E`, `0x00394620`), `fsttl_getconfigstatus` (`0x005120E0`, `0x00394430`) returns it, and the title script calls
 `fsttl_newgamestart` (`ttl_c01` `configcommand.doconfig`; `ttl_a01` `コンフィグ起動`).
 
+The status is the byte `0x01EFAC11`, 3 in the image: `0x00394620(value)` stores its low byte there and
+`0x00394430()` returns it zero-extended (`0x00394620`-`0x00394626`, `0x00394430`-`0x00394437`).
+
 `0x02089344` lies outside the save image, so a request survives the new game's image reset.
 
 ### The first area start moves the request into the party block

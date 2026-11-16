@@ -23,7 +23,7 @@ distance fade and keep alpha `0x80`.
 
 The distance-fade record is the one at `+0x2F0` of the effect container being drawn, `[0x02F97348]`, unless
 that record's first byte is `0xFF`; then it is the definition's own record at `+0x50`. A record
-whose kind byte is 0 leaves the alpha at `0x80`.
+whose kind byte is 0, or 5 or more, leaves the alpha at `0x80` (`0x002F1FBC`, `0x002F2072`-`0x002F2093`).
 
 ### The three distance modes
 
@@ -34,6 +34,7 @@ Byte `+1` of the record picks how the position becomes a distance:
 | 0 | `0x0039B550` installs the matrix `0x02AEECB0` in the workbench as the rows `vf01` to `vf04` (`0x0039B569`-`0x0039B5D4`) and raises lane 2 of `vf04` (`0x022D91E8`) by the depth offset `[0x02AEE7F0]` as a float (`0x0039B5F3`-`0x0039B60A`, [menu effects](menu-effects.md)), a lane that does not enter w. On the way it leaves the sign-extended offset in both halves of `v0` (`0x022D8F30`) and its four 32-bit words converted to float in `vf26` (`0x022D9340`) (`0x0039B55F`-`0x0039B5FA`). `0x0039ABF0` returns lane 3 (w) of the transformed point (`0x0039ADA7` `psrldq xmm1, 0xC`, `0x0039ADAC` `movd eax, xmm1`) |
 | 1 | the point goes through the matrix `0x02AEEA20` (`0x0039AF70`, `0x00398F90`), then `0x002F1D90` returns its Euclidean distance from the vector `0x02AED5F0` |
 | 2 | as mode 1, with lane 1 zeroed in the vector before the transform (`0x002F1FF2`) and in the point after it (`0x002F200F`): a distance in the other two axes |
+| 3 or more | no call: the distance stays 0.0 (`0x002F1F8F`, `0x002F1FD6`), and kinds 1, 2 and 4 fade with that |
 
 In mode 0, `0x0039ABF0(p)` computes the depth `w = p.x × vf01.w + p.y × vf02.w + p.z × vf03.w + vf04.w` from
 the rows `vf01` to `vf04` (`0x022D91B0` to `0x022D91EC`) that `0x0039B550` fills (`0x0039AC54`-`0x0039AD29`); the

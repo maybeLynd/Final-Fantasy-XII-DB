@@ -21,7 +21,8 @@ manager ([field runtime](field-runtime.md)).
 A manager slot is a `0x288`-byte block; five of them sit at `0x02098E10`, so slot `n` is
 `0x02098E10 + n * 0x288` and the array ends at `0x02099AB7`. `0x02099D70` holds the slot being worked on:
 the bind, the pass and `0x0026CE60` store it there (`0x0026CE60` puts the old value back before it returns:
-`0x0026CE6D`, `0x0026CE8D`, `0x0026D383`), `0x002640C0` returns it and `0x002640D0` returns that slot's index
+`0x0026CE6D`, `0x0026CE8D`, `0x0026D383`; the bind does the same at `0x0026CDC0`), `0x002640C0` returns it and
+`0x002640D0` returns that slot's index
 `+0x28`. Three one-byte getters take a slot index: `0x002673F0` returns `+0x13`, `0x00267310` returns
 `+0x201`, and the field pass reads `+0x10`.
 
@@ -39,75 +40,131 @@ until `0x02099ACF`, and answer 1 only when every slot whose `+0x10` has bit `0x1
 `0x0026C8C0(slot, payload, callback)` binds a loaded definition payload to a slot (its stack frame
 holds the slot pointer in `0x02099D70` for the duration):
 
-1. it zeroes the eight qwords `+0x244`-`+0x27C`, clears `+0x200` bit `0x4`, writes the slot index to
-   `+0x28` and the payload pointer to `+0x00`;
-2. on slot 0 it also runs `0x00238B00`, zeroes `+0x204`-`+0x243` of slots 0-3, runs `0x002EF350(1)` and
-   releases the two kind `0xD` and `0xE` registrations at `0x02099DD0` and `0x02099DD8` (`0x00369760`,
-   `0x0036D160`, `0x003697F0`);
-3. still on slot 0: `0x0025A990` when `0x00377440(field)` is non-zero and `0x0025AA30` when
-   `0x00377480(field)` is 0, then `0x003ACA90(8)`, `0x00360110`, `0x002E24B0`, `0x00408AD0`, `0x0036E3B0`,
-   `0x0026FFA0(1)`, `0x002700C0(1)`, `0x002EC590(1)`, `0x002EC5A0(1)`, the clears of `0x02099DE8[0..7]` and
-   `0x0209A2A0[0..7]`, and `0x0042ED30`;
-4. between the slot-0 extras and the pointer block it calls the `ret` stub `0x0016D6A0`
+1. it stores the slot pointer in `0x02099D70`, zeroes the eight qwords `+0x244`-`+0x27C`, clears `+0x200` bit
+   `0x4`, and writes the slot index to `+0x28` and the payload pointer to `+0x00` (`0x0026C911`-`0x0026C95A`);
+2. on slot 0 (`0x0026C95D`-`0x0026C95F`) it also runs `0x00238B00(0)`, zeroes `+0x204`-`+0x243` of slots 0-3 and
+   runs `0x002EF350(1, -1)`; then, for each of `0x02099DD0` (kind `0xD`) and `0x02099DD8` (kind `0xE`) that is set,
+   it runs `0x00369760(kind)`, `0x0036D160(kind)` and `0x003697F0(pointer)` and stores 0 in the pointer
+   (`0x0026C965`-`0x0026CA17`);
+3. on slot 0, with `v` the answer of `0x0032F240(0)`: `0x0025A990()` when
+   `0x00377440(v)` is non-zero and `0x0025AA30()` when `0x00377480(v)` is 0, then `0x003ACA90(8)`, `0x00360110()`,
+   `0x002E24B0()`, `0x00408AD0()` by the thunk `0x003EC850()`, `0x0036E3B0()`, `0x0026FFA0(1)`, `0x002700C0(1)`,
+   `0x002EC590(1)`, `0x002EC5A0(1)`, clears `0x02099DE8[0..7]` and `0x0209A2A0[0..7]`, and `0x0042ED30()` by
+   the thunk `0x002E8050()` (`0x0026C9B5`-`0x0026C9C3`, `0x0026CA1E`-`0x0026CAC0`);
+4. between the slot-0 extras and the pointer block it calls the `ret` stub `0x0016D6A0(index)`
    (`0x0026CACC`), which does nothing;
-5. it fills the pointer block: `+0x88` = the callback or `0x00267930` when no callback was given, `+0x48` =
-   the persistent save payload (`0x002EF2B0()`), `+0x50` = payload + payload `+0x48`, `+0x58` =
-   `0x02099DF0`, `+0x60` = `0x02099FF0`, `+0x98` = `0x00264E30`;
+5. it fills the pointer block: `+0x88` = the callback or `0x00267930` when no callback was given, `+0x98` = 0
+   and `+0x40` = 0, and only then `+0x48` = the persistent save payload (`0x002EF2B0()`), `+0x50` = payload +
+   its dword `+0x48` zero-extended, `+0x58` = `0x02099DF0`, `+0x60` = `0x02099FF0`, and last `+0x98` = `0x00264E30`
+   (`0x0026CAE6`-`0x0026CB76`);
 6. it sets `+0x68`, `+0x70`, `+0x78` and `+0x80` = payload + its dwords `+0x20`, `+0x24`, `+0x28` and
-   `+0x2C`, and zeroes `+0x40`, `+0x1E0`, `+0x1F0` and `+0x1F8`;
-7. it sums the `u16` entries of the payload's table at payload `+[0x14]` (a count followed by the
-   entries, added in pairs with the odd tail) into `+0x20`, the record count;
-8. it resets the flag bytes: `+0x10` = `0x82` (bits `0x2` and `0x80` only), `+0x11` = `(old & 0xF8) | 1` (bit `0x1`
-   set, bits `0x2` and `0x4` cleared, so a bind un-suspends the slot), `+0x13` and `+0x14` = 1, `+0x15` =
-   (slot index is not 3), `+0x16` = 1, `+0x17` = `(old & 0x40) | 0x23` with bit `0x80` set only on slot 0;
-9. it sets `+0x12` = (the payload's `i16 +0x50` is not negative), `+0x200` bit `0x1`, and bit `0x2` on slot 0
-   (cleared elsewhere), and zeroes `+0x201`, `+0x24`, `+0x30` and `+0x38`;
-10. it zeroes `+0xA0`-`+0xB8`, `+0xC8`-`+0xF8`, `+0x100`, `+0x108`, `+0x1D0`, `+0x1E8` and `+0x1FC`,
-   runs `0x00263660` and `0x003DDC20(index, 0)`, and on slot 3 `0x00359200(1)` after a `0x0026D6F0` on the
-   focus actor;
-11. `0x02099DA1` becomes 1 when any slot's `+0x17` bit `0x8` is set; on slot 0 the field state is reset
-   (`0x0026DB30`, `0x002EBDB0(0)`, `0x002ECB70(0)`, `0x0209A2C4[1..3]` = 1, `0x002EDA60`, `0x002EDA80`, `0x002EDA50`,
-   `0x002EDA70`, `0x002EDA40`, `0x002E83A0`, `0x002EDA30`, `0x002EBC30`); `0x003DD790(index)` ends the bind.
+   `+0x2C`, each sign-extended (`0x0026CB3C`-`0x0026CB6B`); it zeroes `+0x1F0` and `+0x1F8` before `0x002EF2B0`
+   (`0x0026CAD9`-`0x0026CAE0`) and `+0x1E0` after it (`0x0026CB1F`);
+7. it sums the `u16` entries of the payload's table at payload + its dword `+0x14`, sign-extended (a count
+   followed by the entries, added in pairs with the odd tail) into `+0x20`, the record count
+   (`0x0026CB7D`-`0x0026CBD9`);
+8. it resets the flag bytes: `+0x10` = `0x82` (bits `0x2` and `0x80` only), `+0x11` = `(old & 0xF8) | 1`
+   (bit `0x1` set, bits `0x2` and `0x4` cleared, so a bind un-suspends the slot; `0x0026CAD1`,
+   `0x0026CBE0`-`0x0026CBF6`), `+0x13` and `+0x14` = 1 (`0x0026CC6C`), `+0x15` = (slot index is not 3)
+   (`0x0026CBF9`-`0x0026CC0D`), `+0x16` = 1 (`0x0026CCD3`), `+0x17` = `0x23`, or `0xA3` on slot 0;
+9. it sets `+0x12` = (the payload's `i16 +0x50` is not negative) (`0x0026CD1A`-`0x0026CD28`) and `+0x200` bit
+   `0x1` (`0x0026CBC7`), sets `+0x200` bit `0x2` on slot 0 and clears it on the others (`0x0026CD2B`-`0x0026CD38`),
+   and zeroes `+0x201`, `+0x30` and `+0x38` (`0x0026CC38`-`0x0026CC42`) and `+0x24` (`0x0026CD59`);
+10. it zeroes `+0xA0`-`+0xB8`, `+0xC8`-`+0x100`, `+0x108`, `+0x1E8` and `+0x1FC` (`0x0026CBE6`-`0x0026CC65`) and
+   `+0x1D0` (`0x0026CD52`), and runs `0x00263660()` and `0x003DDC20(index, 0)` (`0x0026CC72`-`0x0026CC7C`); on slot 3 it
+   then calls `0x0026D6F0(actor, [0x01DFE0BC] × 0.0, 2)` when `0x003588B0(0x003590D0())` finds the focus actor, and
+   `0x00359200(1, 3)` in either case (`0x0026CC81`-`0x0026CCBA`);
+11. `0x02099DA1` becomes 1 when any slot's `+0x17` bit `0x8` is set and 0 otherwise (`0x0026CCC3`-`0x0026CD1F`);
+   on slot 0 (`0x0026CD5C`-`0x0026CD5E`) the field state is reset: `0x0026DB30()`, `0x002EBDB0(0)`, `0x002ECB70(0)`,
+   `0x0209A2C4[1..3]` = 1, then `0x002EDA80(0x002EDA60())`, `0x002EDA70(0x002EDA50())`, `0x002E83A0(0x002EDA40())` and
+   `0x002EBC30(0x002EDA30())`, each setter taking the float the call before it returned (`0x0026CD60`-`0x0026CDB9`);
+12. `0x02099D70` gets its old value back and `0x003DD790(index)` ends the bind (`0x0026CDBE`-`0x0026CDE3`).
+
+Each of the two clear loops of step 3 carries a bounds test that leads to `0x00809728()` for an index of 8 or
+more (`0x0026CA87`-`0x0026CA8B`, `0x0026CAA5`-`0x0026CAA9`, `0x0026CDE8`, `0x0026CDEE`); the loops count from 0 to 7, so
+it is not taken.
+
+Step 8 gives what the bind leaves. On `+0x17` its own instructions are `| 3` (`0x0026CAD5`), `& 0xE7`
+(`0x0026CBD2`), `& 0xFB` and `| 0x20` (`0x0026CCBF`, `0x0026CCC5`), which keep bits `0x40` and `0x80` of the old
+byte. `0x003DDC20(index, 0)` of step 10 clears bit `0x40` in the slot's `+0x17` (`0x003DDC2D`) before the bind
+reads the byte back (`0x0026CCCF`) and stores it with bit `0x80` set on slot 0 and clear on the others
+(`0x0026CD43`-`0x0026CD4F`).
+
+On `+0x10` the stores are: anded with `0xE7` (`0x0026CB0B`), stored with bit `0x1` clear (`0x0026CB67`), stored
+again with `0x82` or-ed in (`0x0026CC45`), and anded with `0x9B` (`0x0026CD3F`). The calls of step 10 come
+between the last two: `+0x10` is `(old & 0x64) | 0x82` and `+0x17` is `(old & 0xE4) | 3` when `0x00263660` is
+entered. Also stored only after those calls: bits `0x4`, `0x20` and `0x80` of `+0x17`, `+0x16`, `0x02099DA1`,
+`+0x12`, bit `0x2` of `+0x200`, `+0x1D0` and `+0x24`.
+
+Within `0x002EF2B0`, `0x00263660`, `0x003DDC20`, `0x003DD6C0`, `0x003590D0`, `0x003588B0`, `0x0026D6F0`, `0x00359200` and
+`0x003DD790` themselves, the store at `0x003DDC2D` and the one after it (`0x003DDC39`, which ors in nothing for a
+second argument of 0) are the only ones to a slot's `+0x10`, `+0x11` or `+0x17`.
 
 ### The record pool
 
 `0x0026CE60(slot)` runs after the bind for a slot whose `+0x10` bit `0x1` is clear and `+0x13` is set:
 
-1. it allocates the record pool with `0x002679F0(slot)` and stores it at `+0x08`
-   ([the actor record](actor-record.md)), then runs `0x00266C50`,
-   `0x002342F0` on slot 0, and `0x00265A20` ([battle units](battle-units.md));
-2. on slot 0 it calls the `ret` stub `0x0016D6A0` (`0x0026CEE8`), clears the sixteen map-jump group
-   pointers at `0x0209A210`, zeroes `0x02099DA6`, runs `0x002EA870(0)`, `0x002EA690` and `0x003DD220(1)`, then runs the
-   stamping loops below and `0x00314010`, `0x00314DF0(-1)` and `0x00358BC0`;
-3. if `+0x13` is still set (`0x0026D2D9`-`0x0026D2DD`), it clears it, fills `+0x40` with payload + payload
-   `+0x38` when still 0, runs `0x0026D3E0(slot, payload)`, sets `+0x10` bit `0x1` and runs `0x00263660` on
-   slot 3; otherwise it goes straight to the slot-0 ending of step 5, past steps 3 and 4 and `0x003DB1F0`;
+1. it allocates the record pool with `0x002679F0(slot pointer)` and stores it at `+0x08`. The pool's
+   records are the subject of [the actor record](actor-record.md). It then runs
+   `0x00266C50(slot pointer)`, `0x002342F0()` on slot 0, and
+   `0x00265A20(slot pointer)` ([battle units](battle-units.md)) (`0x0026CEA8`-`0x0026CECE`);
+2. on slot 0 (`0x0026CED5`-`0x0026CED8`) it calls the `ret` stub `0x0016D6A0()` (`0x0026CEE8`), clears the sixteen
+   map-jump group pointers at `0x0209A210`, zeroes `0x02099DA6`, runs `0x002EA870(0)`, `0x002EA690()` and
+   `0x003DD220(1)` (`0x0026CEED`-`0x0026CF3E`), then runs the stamping loops below and `0x00314010()`, `0x00314DF0(-1)`
+   and `0x00358BC0()` through the thunk `0x00358BB0()` (`0x0026D2C2`-`0x0026D2CF`);
+3. if `+0x13` is still set (`0x0026D2D9`-`0x0026D2DD`), it clears it, fills `+0x40` with payload + its dword
+   `+0x38`, zero-extended, when still 0, runs `0x0026D3E0(slot pointer, payload)`, sets `+0x10` bit `0x1` and
+   runs `0x00263660()` on slot 3 (`0x0026D2E3`-`0x0026D30F`); otherwise it goes straight to the slot-0 ending of
+   step 5, past steps 3 and 4 and `0x003DB1F0`;
 4. it recomputes `0x02099DB4` as the sum of slots 0, 1 and 2's `+0x1E0` counters (each under its own
-   `+0x10` bit `0x1`) and runs `0x002572E0(slot)` when both `+0xD8` and `+0xE0` are set (it fills the
+   `+0x10` bit `0x1`) and runs `0x002572E0(index)` when both `+0xD8` and `+0xE0` are set (it fills the
    camera driver block's per-row effect handles from the camera-shot rows' `+0x20` words through
-   `0x00257AD0`);
-5. after step 4 it runs the resource pass `0x003DB1F0(slot)`; then, on slot 0, it ends with `0x00253A30`,
-   `0x002EA650` and `0x00233CF0` (`0x0026D36A`-`0x0026D37E`) on both paths.
+   `0x00257AD0`) (`0x0026D314`-`0x0026D35D`);
+5. after step 4 it runs the resource pass `0x003DB1F0(index)` (`0x0026D362`-`0x0026D365`); then, on slot 0, it
+   ends with `0x00253A30()`, `0x002EA650()` and `0x00233CF0()` (`0x0026D36A`-`0x0026D37E`) on both paths.
 
-The stamping loops of step 2 walk the slot's records. Each loop's word goes into the record `0x003587C0(s, w)`
+The entry test of `+0x10` and `+0x13` is `0x0026CE94`-`0x0026CEA2`. The clear loop of step 2 limits its index
+to 0-15 (`0x0026CF00`-`0x0026CF0F`); it counts 0 to 15 (`0x0026CF11`-`0x0026CF1A`), so the limit changes nothing.
+
+The stamping loops of step 2 walk the slot's records: each of the five takes its record from
+`0x00358940(slot pointer, i)` for `i` from 0 while `i` is below the slot's `+0x20`, a signed compare made on
+every pass, and stores 0 in the answer's word `+0xF6` with no null test (`0x0026CF45`-`0x0026CFD3`, `0x0026CFE0`-`0x0026D07C`,
+`0x0026D089`-`0x0026D146`, `0x0026D154`-`0x0026D263`, `0x0026D284`-`0x0026D2C0`).
+
+Each loop's word goes into the record `0x003587C0(s, w)`
 returns: `w` is the walked record's word `+0`, passed whole, and `s` the slot's `+0x28`, or `w >> 16`, which
 is 0, when `w` has bit `0x4000`. `0x0026CE60` stores through the answer with no null test
-(`0x0026CFA4`-`0x0026CFC7`, and the same in the other three loops). Every other store and test below is on the
-walked record:
+(`0x0026CFA4`-`0x0026CFC7`, `0x0026D04D`-`0x0026D070`, `0x0026D117`-`0x0026D13A`, `0x0026D1DA`-`0x0026D1FC`). Every other
+store and test below is on the walked record:
 
 - the words `+0xC8`, `+0xD6`, `+0xE4` and `+0xDC`, read from four lists in the payload, zeroing the
   record's word `+0xF6` in every loop; each loop stores its word only when the payload is
   present with word `+0` above 3, its list is not empty, the stamp is not negative and bit
-  `0x8000` is clear in the record's word `+0` (`0x0026CF6D`-`0x0026CFB0`, `0x0026D00B`-`0x0026D059`,
-  `0x0026D0B1`-`0x0026D123`, `0x0026D18C`-`0x0026D1E5`);
+  `0x8000` is clear in the record's word `+0` (`0x0026CF6D`-`0x0026CFC7`, `0x0026D00B`-`0x0026D070`,
+  `0x0026D0B1`-`0x0026D13A`, `0x0026D18C`-`0x0026D1FC`);
 - in the `+0xDC` loop, `+0x1C` bit `0x400` set unless the record's word `+0xDC` is `0xFFFF` and the
   row has 10 entries or fewer or its word `+0x16` is negative (`0x0026D203`-`0x0026D238`); when the
-  bit is set it then runs `0x00268EA0` when `+0x0B` bit `0x8` is set, and clears `+0x1C` bit `0x4`
+  bit is set it then runs `0x00268EA0(record)` when `+0x0B` bit `0x8` is set, and clears `+0x1C` bit `0x4`
   (`0x0026D23A`-`0x0026D24F`); otherwise only bit `0x400` is cleared (`0x0026D255`);
-- in a last loop, `+0xF6` zeroed once more.
+- in a last loop, `+0xF6` zeroed once more; it makes the same call, `0x0020E600(that dword)`, for a payload that
+  is present and whose word `+0x00` is above 3, and uses nothing of the answer (`0x0026D29A`-`0x0026D2B6`).
+
+Each stamp comes from the walked record's directory: payload + the low 32 bits of `0x0020E600(dword +0x18 of
+the record's +0x40 object)`, a run of lists, each a signed count word followed by that many words. The
+stamp is the first word of the list reached by stepping over one list for `+0xC8`, two for `+0xD6`, five
+for `+0xE4` and three for `+0xDC`, and it is taken only when that list's count is above 0
+(`0x0026CF78`-`0x0026CF96`, `0x0026D016`-`0x0026D03F`, `0x0026D0BC`-`0x0026D109`, `0x0026D197`-`0x0026D1CC`).
+
+The `+0xDC` loop's row test decodes the directory again, `0x0020E600(the same dword +0x18)`
+(`0x0026D210`-`0x0026D21A`), without
+the payload tests the stamps carry.
 
 The pool is a count dword followed by the record pointers: `0x00358940(slot, ordinal)` returns
 `[pool + 8 + ordinal * 8]` for an ordinal from 0 to count - 1 and null otherwise.
+
+For manager 0 that pointer, the slot's `+0x08`, is the qword at `0x02098E18`. It holds what `0x002679F0(slot)`
+answered, stored by `0x0026CE60` (`0x0026CEB0`-`0x0026CEB8`): the count and the pointer table, not an array of
+records.
 
 ### The variable homes
 
@@ -141,6 +198,10 @@ the camera-shot table `[slot + 0xD8]` and side B at `+0x170` against the camera-
 | clear one | `0x003DA4D0(slot, entry)`: word `+0x08` = 0 (`+0x118 + 0x18 x entry`, `0x003DA4E8`), only for an entry of at most 3 and a non-null `+0xD8` (`0x003DA4D0`-`0x003DA4DD`); `camerastop` `0x0053` and `camerastop_54` `0x0054` call it (`0x00350696`, `0x0035030C`) | `0x003DD320(slot, entry)`: word `+0x178 + 0x18 x entry` = 0, only for an entry of at most 3 and a non-null `+0xF0` (`0x003DD320`-`0x003DD338`); `camerashakestop` `0x019D` and `camerashakestop_19e` `0x019E` call it (`0x0034A3A6`, `0x00349EFC`) |
 | republish | `0x003DA570(slot, entry)`: `+0x18[entry +0x04]` = entry | |
 | set rate | `0x003DA2D0(slot, entry, rate)`: writes `+0x120 + entry * 0x18` with no bound or table test | `0x003DD1F0(slot, entry, rate)`: the same at `+0x180 + entry * 0x18` |
+
+The `camerastop` handler `0x00350660` calls `0x00267F90(context, 0)`, takes the slot from `0x002640C0()`, calls
+`0x00267E10(context)` and jumps to `0x003DA4D0(slot, what 0x00267E10 returned)`; the context is its fourth
+argument (`0x0035066A`-`0x00350696`).
 
 `0x00257230(index, value, entry)` initialises the camera driver block `0x02092830 + index * 0xBB0 + entry * 0x2E0`
 (or `0x02096520` for a negative entry): its `+0x178` = the value's row `[0x02092810[index * 0x176] + 0x18 + value * 0x40]`
@@ -276,3 +337,10 @@ In this access table, `function`, `name` and `site` give the function, its name 
 `disp` the offset in the payload, `kind` a read (`r`) or the address taken (`addr`), `instruction` the instruction
 itself, and `route` how the payload reached it: in `rdx` at the entry of `0x0026C8C0`, which keeps it in `r15`
 (`0x0026C8F7`) and stores it to the slot's `+0x00` (`0x0026C95A`).
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Gameplay: `0x003590D0` is called by `0x0031ADB0`; those functions are documented on
+  [bestiary](../Enemy-Spawning/bestiary.md).

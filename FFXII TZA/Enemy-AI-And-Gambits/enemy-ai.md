@@ -58,7 +58,7 @@ wait record `0x01EEC298` has no count header; `0x00305AB0` commits it directly w
 | `0x01EEC370` | `0x0096` Attack | - | a party record with Berserk (`0x00305BDE`) |
 | `0x01EEC3C0` | `0x4022`, follow the party | `0x2000` | party re-plan set |
 | `0x01EEC410` | `0x414D`, flip the combat stance | - | enemy re-plan set |
-| `0x01EEC2D0` | `0x0096` Attack, relation mode 10 | - | an issued command: attack the unit in `+0x748` |
+| `0x01EEC2D0` | `0x0096` Attack, relation mode 10 | - | an issued command: attack the unit in `+0x748`; the set's count byte for subgroup 0 is 1, the other eleven are 0, and its one order record is at `0x01EEC2F0`, the set's `+0x20` |
 | `0x01E09350` | `0x4124`, follow the leader | `0x2000` | the default set |
 | `0x01EEC298` | `0x4021`, wait | `0x2000` | the last resort, committed as a single order |
 

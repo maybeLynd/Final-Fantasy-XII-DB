@@ -23,15 +23,18 @@ table makes the installer read from address 0, and the game crashes.
 ### The installer and the definition id
 
 `0x0023A570(unit, id)` applies definition `id` to a unit. The id's high byte is the kind (0 party, 1
-enemy, anything else installs nothing and clears unit flag bit `0x4000000`) and its low byte the row index.
-Before anything else the installer:
+enemy, anything else installs nothing, clears unit flag bit `0x4000000` and returns 0) and its low byte the
+row index (`0x0023A580`-`0x0023A594`, `0x0023A626`-`0x0023A63C`). Before anything else the installer:
 
 1. remembers the unit's previous id, the stats record's word `+0x04`, when unit flag bit `0x4` is set
-   (`0xFFFF` otherwise), and resets the unit with `0x00236A60` ([battle unit fields](battle-unit-fields.md));
-2. returns 0 when the battle system is down (`0x02089300` = 0);
-3. re-keys the unit (`0x00322050`) when the kind byte is not 0 or the previous id differs from both
-   the new id and `0xFFFF`; with `0x00303EC0()` set, the check is skipped only when `0x00304630()`
-   (`0xFF` read as `0xFFFF`) equals the previous id and the new id is `0xFFFF`.
+   (`0xFFFF` otherwise, and for a null unit pointer), and resets the unit with `0x00236A60(unit)`
+   (`0x0023A597`-`0x0023A5B0`; [battle unit fields](battle-unit-fields.md)). The null test covers only that
+   read: `0x00236A60` reads the unit's flags at `0x00236A6F` with no test;
+2. returns 0 when the battle system is down (`0x02089300` = 0; `0x0023A5B5`-`0x0023A5BE`);
+3. re-keys the unit, `0x00322050(unit)`, when the kind byte is not 0 or the previous id differs from both
+   the new id and `0xFFFF` (`0x0023A5F4`-`0x0023A60A`); with `0x00303EC0()` set, the re-key is skipped, without
+   that check, when `0x00304630()` (`0xFF` read as `0xFFFF`) equals the previous id and the new id is `0xFFFF`
+   (`0x0023A5CD`-`0x0023A5F2`).
 
 `0x00322050(unit)` zeroes the attacker mask `+0xEA4` and count `+0xEA8` and stores
 `0x003220E0(actor)` at `+0x08`: that function encodes the actor's current handle, advances the actor's
@@ -47,16 +50,18 @@ record, the dword is `0xFF` (`0x00322130`-`0x00322164`). `0x003220E0` returns th
 
 ### The enemy path
 
-With kind 1 the unit must have flag bit `0x4000000` set. The installer then:
+With kind 1 the unit must have flag bit `0x4000000` set, else the installer returns 0
+(`0x0023A641`-`0x0023A648`); it also returns 0 when step 2 finds no spawn record (`0x0023A77E`-`0x0023A781`). It then:
 
 1. takes row `index` of the enemy table `0x02EBF120` (count at `+0x04`, row stride at `+0x08`,
-   rows from the section at `+0x0C`), and the class row the enemy row's word `+0x00` names in
-   `0x02EBF150`, and makes five bound tests, returning 0 (`0x0023A63A`) at the first that fails:
-   - the row index against the enemy table's count (`0x0023A65D`-`0x0023A662`);
-   - the enemy row's word `+0x00` against the class table's count at `+0x04` (`0x0023A6B4`-`0x0023A6BB`);
-   - the word `+0x50` against the count word at `+0` of `0x02EBF168` (`0x0023A71E`-`0x0023A726`);
-   - the word `+0x22` against the count at `+0x04` of `0x02EBF148` (`0x0023A73F`-`0x0023A747`);
-   - the word `+0x24` against the count at `+0x04` of `0x02EBF140` (`0x0023A760`-`0x0023A768`).
+   rows from the section `0x0020E600(table dword +0x0C)`; `0x0023A664`-`0x0023A694`), and the class row the enemy
+   row's word `+0x00` names in `0x02EBF150`, found the same way (`0x0023A6C1`-`0x0023A6FC`), and makes five bound
+   tests, returning 0 (`0x0023A63A`) at the first that fails:
+   - the row index against the enemy table's count (`0x0023A64A`-`0x0023A662`);
+   - the enemy row's word `+0x00` against the class table's count at `+0x04` (`0x0023A6A1`-`0x0023A6BB`);
+   - the word `+0x50` against the count word at `+0` of `0x02EBF168` (`0x0023A70B`-`0x0023A726`);
+   - the word `+0x22` against the count at `+0x04` of `0x02EBF148` (`0x0023A72C`-`0x0023A747`);
+   - the word `+0x24` against the count at `+0x04` of `0x02EBF140` (`0x0023A74D`-`0x0023A768`).
 
    Each test compares the index with `count - 1`, the count read as 0 for a null table. Four are unsigned (`ja`):
    with a null table or a count of 0, `count - 1` is `0xFFFFFFFF` and they pass every index.
@@ -69,52 +74,119 @@ With kind 1 the unit must have flag bit `0x4000000` set. The installer then:
 2. resolves the spawn record: `0x00236100(unit +0x40, unit +0x57)` reads the lane map's byte
    `1 + lane` (lane below the map's count byte, entry not `0xFF`) and returns
    `[0x0208E690] + entry * 0x250`, from the bank pointer held at `0x0208E690` (`0x0023612D`); a null map, a
-   negative lane (`0x00236107`), a lane at or past the count or a `0xFF` entry returns 0. The stats record is
-   that record's `+0x80`;
-3. for a fresh record (record byte `+0` without bits `0x1` and `0x4`) it initialises the stats record
-   (`0x0023AC80`, below) and sets the steal bits at record `+0x14`: bits `0x1`, `0x2` and `0x4` when the row's
-   words `+0x32`, `+0x34` and `+0x36` are not `0xFFFF`;
+   negative lane (`0x00236107`), a lane at or past the count or a `0xFF` entry returns 0
+   (`0x0023A76E`-`0x0023A787`). The stats record is that record's `+0x80`;
+3. for a fresh record (record byte `+0` without bits `0x1` and `0x4`) it initialises the stats record,
+   `0x0023AC80(stats record, id)` (below), and stores record byte `+0x14` = the steal bits, the byte being
+   zeroed first (`0x0023A7AE`): bits `0x1`, `0x2` and `0x4` when the row's words `+0x32`, `+0x34` and `+0x36`
+   are not `0xFFFF` (`0x0023A791`-`0x0023A7E4`);
 4. still for a fresh record, when the row's byte `+0x02` is not `0xFF`, it reads the spawn counter
    `0x0208D354 + (0x0208D454 * 64 + byte) * 2`, stores the old value's low byte at record `+0x12` and
    writes back `old + 1`, or 1 once `old` reaches `0x00254A40()`; with a byte of `0xFF` it stores 0 at
-   `+0x12`;
+   `+0x12` (`0x0023A7E7`-`0x0023A840`);
 5. resolves the name text: the row's word `+0x08` split as bank (high 5 bits) and entry (low 11
-   bits) through `0x02EBF170`, then `0x002B58B0(block, 0)`. `0x00269F20` stores that text and the `+0x12` ordinal at the
+   bits) through `0x02EBF170`, each step an offset turned into an address by `0x0020E600(offset)`, then
+   `0x002B58B0(block, 0)` (`0x0023A84A`-`0x0023A8E1`). `0x00269F20` stores that text and the `+0x12` ordinal at the
    actor's `+0xF8` and `+0x100` (`0x00238EB8`);
-6. stores `+0xE60` = the enemy row, `+0xE68` = the class row, `+0x6E0` = the `0x02EBF168` row named by
-   word `+0x50`, `+0xE70` = the `0x02EBF148` row named by word `+0x22`, `+0xE78` = the `0x02EBF140` row
-   named by word `+0x24`;
-7. registers the unit (`0x00328FF0(0, row byte +0x03 & 3, unit +0xEA9)`: the class to `0x02EC1384` and
-   the slot to `0x02EC1380`, written only when the class is not 0 or the slot is negative), and sets
-   flag bit `0x80000000000` when `row byte +0x03 & 3` or `row byte +0x15` bit `0x4` is set, else clears it.
+6. stores `+0xE60` = the enemy row, `+0xE68` = the class row (`0x0023A915`-`0x0023A91C`), `+0x6E0` = the
+   `0x02EBF168` row named by word `+0x50`, `0x0020E600(table dword +0x04 + 4 * word)` (`0x0023A92F`-`0x0023A95E`),
+   `+0xE70` = the `0x02EBF148` row named by word `+0x22` (`0x0023A965`-`0x0023A9A5`), `+0xE78` = the `0x02EBF140` row
+   named by word `+0x24` (`0x0023A9AC`-`0x0023A9F4`), the last two from `0x0020E600(table dword +0x0C)`;
+7. registers the unit, `0x00328FF0(0, row byte +0x03 & 3, unit byte +0xEA9)`: the class to `0x02EC1384` and
+   the slot to `0x02EC1380`, written only when the class is not 0 or the slot is negative
+   (`0x0023A9EC`-`0x0023AA04`), and sets flag bit `0x80000000000` when `row byte +0x03 & 3` or
+   `row byte +0x15` bit `0x4` is set, else clears it (`0x0023AA09`-`0x0023AA41`).
+
+In step 7 the slot is zero-extended (`0x0023A9EC`), so from this call the write happens exactly when the class
+is not 0.
+
+The row addresses of this path and of the party path are formed in 32 bits, the stride times the index plus
+the low dword of the section address: the enemy row (`0x0023A690`-`0x0023A694`), the class row
+(`0x0023A6F8`-`0x0023A6FC`), `+0xE70` (`0x0023A99C`-`0x0023A99F`), `+0xE78` (`0x0023A9E3`-`0x0023A9E6`) and the party
+row (`0x0023AA99`-`0x0023AA9D`). A section address of 0 from `0x0020E600` is treated like a null table (`0x0023A674`,
+`0x0023A6D1`, `0x0023A97C`, `0x0023A9C3`, `0x0023AA7D`), and a null `0x02EBF168` stores 0 at `+0x6E0` (`0x0023A94B`).
+
+With the row's table, its section or `0x02EBF170` null, the name block is 0, `0x002B58B0(0, 0)` answers 0 and the
+name text stored at `+0x18` is null (`0x0023A84D`-`0x0023A868`, `0x0023AAC7`-`0x0023AAE1`, `0x002B58B0`-`0x002B58B5`).
+
+For the party table the two cases differ. `0x00322C50` refuses every index for a null table, so the null test
+at `0x0023AA70` is not taken; it does not test the section. With a table whose section address is 0
+(`0x0023AA7D`) the index is accepted, the row address is 0, and `0x0023AB5F` reads the byte at address `0x2B`.
 
 The name drawer `0x00272CE0` adds a letter to that name when the actor's word `+0x102` is negative, so that the
 name is the text at `+0xF8` (`0x00263990`, `0x00263A10`), and the ordinal is not 0 (`0x00272D3A`). `0x002B58F0`, through
 `0x0024ABE0`, writes entry `0x21` + (ordinal - 1) mod 26 of the text the font sheet names at `+0x14`, or at `+0x18`
 when the language test `0x00254A10` is true (`0x002B5957`-`0x002B5997`).
 
-The common stores then take, from the class row: `+0x64` = byte `+0x22` times 2π/360, `+0x55` =
-byte `+0x04`, `+0x68` = float(byte `+0x23`), `+0x56` = byte `+0x05`, `+0x6C` = float(byte `+0x27`),
-`+0x52` = word `+0x06`.
+The common stores then take, from the class row (read at `0x0023A8E6`-`0x0023A940`): `+0x64` = byte `+0x22`
+times 2π/360 (`0x01CEBC78` over `0x00902438`), `+0x55` = byte `+0x04`, `+0x68` = float(byte `+0x23`), `+0x56` =
+byte `+0x05`, `+0x6C` = float(byte `+0x27`), `+0x52` = word `+0x06`.
 
 ### The party path
 
-With kind 0 the index must pass `0x00322C50(2, index, 1)`, the party table's count. The installer
-takes row `index` of the party table `0x02EBF130`, points the stats at the party block's
-element `[0x02EBF190] + 8 + index * 0x1C8` with no spawn record, resolves the name from the row's
-word `+0x30` the same way, and stores `+0x6E0` = `0x02089378 + index * 0x170`, `+0x6F0` = `0x01E09350`,
+With kind 0 the index must pass `0x00322C50(2, index, 1)`, the party table's count, else the installer
+returns 0 (`0x0023AA49`-`0x0023AA60`). It takes row `index` of the party table `0x02EBF130`, from the section
+`0x0020E600(table dword +0x0C)` (`0x0023AA66`-`0x0023AA9F`), points the stats at the party block's element
+`[0x02EBF190] + 8 + index * 0x1C8` with no spawn record (`0x0023AAAA`-`0x0023AAC1`), and resolves the name from the
+row's word `+0x30` the same way as the enemy path, ending in `0x002B58B0(block, 0)` (`0x0023AAC4`-`0x0023AB5A`).
+
+Its stores (`0x0023AB5F`-`0x0023ABC3`, the floats and bytes with the common stores below) are:
+`+0x6E0` = `0x02089378 + index * 0x170`, `+0x6F0` = `0x01E09350`,
 `+0xE60` = the row, `+0x64` = 2π, `+0x6C` = row byte `+0x2B` times 1.5, `+0x68` = float(row byte
 `+0x2B`), `+0x55` = `0xFF`, `+0x56` = `0xFF`, `+0x52` = `0xFFFF`.
+
+The party path reads the party table (its count, section, stride, and the row's word `+0x30` and byte
+`+0x2B`), the party block pointer `[0x02EBF190]`, of which it only forms the member's record address, and the
+name table `0x02EBF170`; it reads nothing of the unit's actor: no actor field, no seat map and not the roster
+array `0x0209A1F0` (`0x0023AA49`-`0x0023ABC3`). The path does not call the fresh-stats function `0x0023AC80`: the
+member's record is used as it stands.
+
+The installer's own first read of the record is at `0x0023AC35`, in the common stores. Before it,
+`0x00237040(unit)` at `0x0023AC1C` reads the record through `0x00308010(unit, 1)`: the kind byte `+0x05`
+(`0x00308021`) and, for kind 0, the status words `+0x64` and `+0x3C` (`0x0030814C`).
+
+An index the check refuses returns 0 with the unit reset and its flag bit `0x4000000` as it was
+(`0x0023AA59`-`0x0023AA60`, `0x0023A63A`); an accepted one neither tests nor sets that bit, which the enemy path
+requires (`0x0023A643`), though the common stores can clear it for a member with any of the status bits `0x80000003`
+in `+0x64 | +0x3C` outside a town (`0x0023AC4B`).
+
+Three direct calls reach the installer: no other direct call or jump instruction has it as its target, and no
+pointer to it is stored in the file.
+
+`0x0023A3B0(actor, row)`, which the begin handler `0x00510160` of the script verb `btlAtelSetUnit` calls
+(`0x0051017D`), takes the unit `0x0031B760(actor)` and returns 0 without one; with one it calls
+`0x002355A0(actor)` and then `0x0023A570(unit, row | 0x100)`, or `0x0023A570(unit, 0xFFFF)` for a row of `0xFF`,
+and returns the installer's answer (`0x0023A3C4`-`0x0023A3F1`;
+[Enemy spawning](../Enemy-Spawning/enemy-spawning.md)). The teardown `0x00300E40` calls
+`0x0023A570(unit, 0xFFFF)` for a unit with no stats record or with one of a kind other than 0
+(`0x00300EDA`-`0x00300EEC`, `0x00300F6D`-`0x00300F75`).
+
+Of the three, only the call in the seat rebuild `0x003266C0` can pass a party id: for seat
+0 to 3 it takes the roster actor `0x00263750(seat)` and that actor's unit `0x00263E30(actor)`, and calls
+`0x0023A570(unit, seat word)` with the whole word of map 1's seat (`0x00326A40`-`0x00326B0A`;
+[Party slots](../Party/party-slots.md)).
+
+A seat with no roster actor, or whose actor has no unit, is
+skipped (`0x00326A4A`, `0x00326A5E`); otherwise the call is made only when the seat word differs from the unit's
+present id (`0x00326A7F`-`0x00326A82`). When the present id is not `0xFFFF`, the rebuild itself clears flag bit
+`0x4000000` before the call (`0x00326AFD`).
 
 ### The common stores
 
 Both paths end with: `+0x48` = 0 (the HP floor), `+0x698` = the stats record, `+0x6A0` = the spawn
-record or null, `+0x18` = the name text, `+0x54` = `0xFF`, then `0x00237040(unit)` and
-`0x002FEAB0(unit)`, which clears the 8 bytes at `+0xEAC`. When the stats record is null, or the OR of its status words
-`+0x3C` and `+0x64` carries bits `0x1`, `0x2` or `0x80000000` outside a town (`0x0023AC29`-`0x0023AC49`, through the jump
-`0x00313F60`
-to `0x00377C20`), flag bit `0x4000000` is cleared and bit `0x2` set. Bit `0x4` is set and the
-installer returns 1.
+record or null, `+0x18` = the name text, `+0x54` = `0xFF`, and `+0x64`, `+0x6C`, `+0x68`, `+0x55`, `+0x56`
+and `+0x52` as given above (`0x0023ABCA`-`0x0023AC18`), then `0x00237040(unit)` and `0x002FEAB0(unit)`, which
+clears the 8 bytes at `+0xEAC` (`0x0023AC1C`-`0x0023AC24`). `0x00237040(unit)` calls `0x00308010(unit, 1)` and jumps
+to `0x002FED60(unit, 1)` when that answered non-zero, else to `0x002FEDC0(unit, 1)` (`0x00237046`-`0x00237074`).
+
+When the stats record is null, or the OR of its status words
+`+0x3C` and `+0x64` carries bits `0x1`, `0x2` or `0x80000000` outside a town (`0x0023AC29`-`0x0023AC52`, through
+the jump `0x00313F60()` to `0x00377C20`), flag bit `0x4000000` is cleared and bit `0x2` set. Bit `0x4` is set and
+the installer returns 1 (`0x0023AC56`-`0x0023AC59`).
+
+The party path writes none of `+0xE68`, `+0xE70` and `+0xE78`, makes no `0x00328FF0` call and leaves flag bit
+`0x80000000000` as it was. The reset `0x00236A60` nulls `+0xE60` and `+0xE68` (`0x00236ABB`, `0x00236AC2`) and
+not `+0xE70` or `+0xE78`, so a unit that was an enemy keeps those two pointers after a party install.
 
 ### The fresh stats record
 

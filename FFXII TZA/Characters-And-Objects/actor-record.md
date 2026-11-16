@@ -137,7 +137,8 @@ chains them (`+0x00` next, `+0x01` previous, `+0x04` = `0x80000000`, `+0x10` = 0
 `+0x24` and `+0x26` (one dword store at `+0x24`, `0x003DB59B`) and the flags byte `+0x63` (`0x003DB626`).
 
 The `+0x10` store is a word, clearing the mode and the run state (`0x003DB5C7`). `0x003DB550(record, index)` returns
-`[+0xA0] + index * 0x14`, null for `0xFF`.
+`[+0xA0] + index * 0x14`, null for `0xFF` and for a null record (`0x003DB550`-`0x003DB55B`); the index is
+taken as a signed 32-bit value (`0x003DB55D`).
 
 - `0x003DBF60(record, id, class)` walks every channel whose bit in `+0x06` is set, from channel 0 upward
   (`0x003DC016`) and on each from its head, returning the first entry whose `+0x04` word equals `id` or whose

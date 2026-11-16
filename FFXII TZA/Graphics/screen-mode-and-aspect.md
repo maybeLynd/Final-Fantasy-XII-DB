@@ -98,7 +98,8 @@ outside the fit and the constructor.
   positions by it; the full-screen quad `0x001D8B20` spans `±factor` across, keeping a 16:9 quad
   centred on a wider screen.
 - With no display object (`0x001DDAB0` returns 0), `0x0017FFD0` divides the 16/9 at `0x008C5B38` by 0.0,
-  `16/9 ÷ 0`, and returns positive infinity (`0x0017FFF5`, `0x00180025`-`0x00180028`).
+  `16/9 ÷ 0`, and returns positive infinity while the divide-by-zero exception is masked, which the body
+  does not change (`0x0017FFF5`, `0x00180025`-`0x00180028`).
 - The viewport: `0x00186B80` in Normal Mode (`0x00182F50` false) sets the viewport width to 16/9 of
   the height it is given and centres it on the given rectangle; in Super Wide Mode it uses the
   rectangle as given. The width is `w - (int)(w - h × 16/9)` and the left edge moves right by

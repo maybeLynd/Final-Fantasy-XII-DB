@@ -45,13 +45,21 @@ The callers of the wrappers:
 - `0x0031FEC0` from `0x002BFD20` (copies it into its widget at `+0xC0`);
 - `0x0031FF70` from `0x00272E10`, `0x00273270` and `0x003C3340`.
 
+`0x00272E70(out, type)` fills `out` through `0x00320040(3, i, out)` for `i` from 8 down to 0 and answers 1 at the
+first index whose record's type `+0x60`, read as a signed word, equals `type`, leaving that record in `out`;
+it answers 0 when none does (`0x00272E84`-`0x00272EC8`). It tests the pointer `0x00320040` answers for null
+(`0x00272E9F`), but that pointer is `out` on every path, so a record with only its header filled, type -1, is
+compared as well.
+
 ### In execution order
 
-1. The record is zeroed, `+0x60` is set to `0xFFFF`; a null stats record returns here
-   (`0x0032923A`-`0x00329265`). Flag bit `0x8` stays 0 unless a focus unit exists.
-2. The owning unit is found by scanning the unit pool (`0x00236850`, `0x00236820`) for the unit whose
-   `+0x698` is this record; the focus unit is the current party focus (`0x003590D0`, `0x003588B0`,
-   `0x00263E30`) when `0x02089340` bit `0x10` is set and that unit's flag bit `0x8` is set.
+1. The record is zeroed (`0x00861EC0(out, 0, 0xC0)`), `+0x88`, `+0x00` and `+0x10` are stored as 0 again and
+   `+0x60` is set to `0xFFFF`; a null stats record returns here (`0x0032923A`-`0x00329268`). Flag bit `0x8`
+   stays 0 unless a focus unit exists.
+2. The owning unit is found by scanning the unit pool for the unit whose `+0x698` is this record: the
+   count is `0x00236850()`, read again on every pass and compared signed, so a count of 0 or less gives no
+   unit; a null answer of `0x00236820(i)` is passed over (`0x0032927B`-`0x003292A7`). Then the focus unit is
+   looked up (below).
 3. The flag bits written before the unit-side block are computed: `0x400`, `0x800`, `0x10`, `0x4000`, `0x10000` and
    `0x20000` (the table under The flag word); `0x10`, `0x4000` and `0x20000` read the unit found in step 2.
 4. The stats fields are copied: HP and MP, charges and bars, the two status words, type and kind,
@@ -61,29 +69,36 @@ The callers of the wrappers:
    bytes are copied; flag bits `0x2` and `0x4` classify the type.
 6. Flag bit `0x80` is copied from stats `+0x00` bit `0x4`; with `full`, level, experience, points to the
    next level, LP, licence count and the six equipment words follow.
-7. `+0x04` becomes the actor handle of the roster's member `memberSlot` (`0x00263750`, `0x003589B0`).
-8. When a unit owns the record, the unit-side fields and flag bits `0x1`, `0x40`, `0x100`, `0x200`, `0x1000`, `0x2000`, `0x8000` and `0x8` are
-   written, the name pointer is replaced by the empty string and `+0x04` by the unit's own handle.
+7. `+0x04` becomes the actor handle `0x003589B0(member)` gives for the roster's member `0x00263750(memberSlot)`, or 0
+   when `0x00263750` answers null (`0x00329746`-`0x00329760`).
+8. When a unit owns the record, the unit-side fields and flag bits `0x1`, `0x40`, `0x100`, `0x200`, `0x1000`,
+   `0x2000`, `0x8000` and `0x8` are
+   written, the name pointer is replaced by the empty string and `+0x04` by the unit's own handle; with no
+   unit the builder goes straight to its end (`0x00329763`-`0x00329766`). It returns `out` (`0x0032999D`).
+
+The focus unit of step 2 is the current party focus: `0x003590D0()` is called first; then, when `0x02089340`
+bit `0x10` is set, `0x003588B0(its answer)` and `0x00263E30(that actor)` give the unit, which counts only
+with its flag bit `0x8` set. A null answer of either lookup gives no focus unit (`0x003292AF`-`0x003292DE`).
 
 ### The flag word
 
 | Bit value | Set when |
 |---|---|
-| `0x1` | the member counts as KO'd: no stats record, or status bits `0x1`, `0x2` or `0x80000000` (KO, Stone, bit `0x80000000`) in `+0x3C` or `+0x64` while the current area's town flag (`0x00313F60`, area word bit `0x8000`) is clear (`0x0032978D`-`0x003297A8`) |
-| `0x2` | type `+0x60` is 7 to 25 |
-| `0x4` | type is 27 to 39 |
-| `0x8` | the squared XZ distance between the unit's and the focus unit's positions (`+0xE0`, `0x003A1960`) is above `400.0` (`0x00915A08`): the member is out of range |
+| `0x1` | the member counts as KO'd: no stats record, or status bits `0x1`, `0x2` or `0x80000000` (KO, Stone, bit `0x80000000`) in `+0x3C` or `+0x64` while the current area's town flag (`0x00313F60()`, area word bit `0x8000`) is clear (`0x00329788`-`0x003297A8`) |
+| `0x2` | the record is of kind 0 and its type `+0x60` is 7 to 25 (`0x00329660`-`0x00329677`) |
+| `0x4` | the record is of kind 0 and its type is 27 to 39 (`0x0032967A`-`0x00329691`) |
+| `0x8` | the squared XZ distance between the unit's and the focus unit's positions, `0x003A1960(unit + 0xE0, focus + 0xE0)`, is above `400.0` (`0x00915A08`): the member is out of range (`0x00329876`-`0x003298A3`) |
 | `0x10` | `0x0031FDA0(unit)`: 1 when the unit is null, its flag bit `0x10` is clear or bit `0x80000000000` is set (`0x0031FDA3`-`0x0031FDBA`); for a kind-0 stats record (`+0x698`), 1 when the type is `0x1A` and 0 otherwise (`0x0031FDC8`-`0x0031FDE3`); else 1 when the spawn record `[unit + 0x6A0]` has flag bit `0x8` or `0x40` (`0x0031FDE4`-`0x0031FDF5`), otherwise status bit `0x1000000` of the stats words `+0x64` or `+0x3C` (`0x0031FDF7`-`0x0031FE00`), which for a unit with no stats record reads address `0x64` |
-| `0x40` | unit flag bit `0x2` |
-| `0x80` | stats `+0x00` bit `0x4` |
-| `0x100` | unit flag bit `0x1000000`, or an action id at most `0x21E` with phase `+0x6B4` at least 9 |
-| `0x200` | unit flag bit `0x800000` |
-| `0x400` | block `+0x5B04` bit `0x1` is set (`0x003135E0`) and `0x00320890(block +0x5AD5)` equals `memberSlot` (`0x00313800`) |
-| `0x800` | block `+0x5B04` bit `0x2` is set (`0x00303EE0`) and the position of block byte `+0x5AA4` in the nine bytes at `+0x5A48` (stride 2, `0x00327200`) equals `memberSlot` |
-| `0x1000` | action id at most `0x21E` and phase at least 9 |
-| `0x2000` | action id at most `0x21E` and phase at least 3 |
+| `0x40` | unit flag bit `0x2` (`0x003297AB`-`0x003297B5`) |
+| `0x80` | stats `+0x00` bit `0x4` (`0x00329694`-`0x003296A1`) |
+| `0x100` | unit flag bit `0x1000000`, or an action id at most `0x21E` with phase `+0x6B4` at least 9 (`0x003297B8`-`0x003297E0`) |
+| `0x200` | unit flag bit `0x800000` (`0x003297E6`-`0x003297F7`) |
+| `0x400` | block `+0x5B04` bit `0x1` is set (`0x003135E0()`) and `0x00320890(block +0x5AD5)` equals `memberSlot` (`0x00313800()`) (`0x003292E1`-`0x003292FC`) |
+| `0x800` | block `+0x5B04` bit `0x2` is set (`0x00303EE0()`) and the position of block byte `+0x5AA4` in the nine bytes at `+0x5A48` (stride 2, `0x00327200`) equals `memberSlot` (`0x00329302`-`0x0032931D`) |
+| `0x1000` | action id `+0x714` at most `0x21E` and phase `+0x6B4` at least 9 (`0x003297FD`-`0x00329822`) |
+| `0x2000` | action id `+0x714` at most `0x21E` and phase `+0x6B4` at least 3 (`0x00329828`-`0x0032984A`) |
 | `0x4000` | the unit has flag bit `0x10`, its stats record is null or of a kind other than 0, and the spawn record has flag bit `0x40` or the status words carry bit `0x1000000` (`0x00329337`-`0x0032937B`) |
-| `0x8000` | idle: no action context `+0x708`, action id `0xFFFF`, or phase 0 |
+| `0x8000` | idle: no action context `+0x708`, action id `0xFFFF`, or phase `+0x6B4` 0 (`0x00329850`-`0x00329870`) |
 | `0x10000` | `0x003879C0(stats)`: for a kind-1 owner, bit `0x80` of byte `+0x12` of the class row `[unit + 0xE68]` (`0x00387A21`-`0x00387A2C`); 0 for a null stats record, with no owning unit (`0x0031B860`, kept at `[0x02EBF188]`), when the owner's stats record `+0x698` is null or not of kind 1, or with a null class row (`0x003879C9`-`0x003879F9`, `0x00387A44`) |
 | `0x20000` | `0x0030C2C0(unit)`: unit flag bit `0x10000000000000` (dword `+4` bit `0x100000`), after `0x002FEAD0` when `0x003278C0()` is 0 (bit `0x1` of the dword at `0x022C25A0` clear, `0x0030C2D6`-`0x0030C2E2`); 0 for a null unit (`0x0030C2CE`) |
 
@@ -91,13 +106,40 @@ Block offsets are offsets into the party block `[0x02EBF190]`
 ([its field map](../Party/party-data.md)); `+0x5AA4` is
 the party leader byte and `+0x5AD5` the special-presentation actor there.
 
+For bit `0x800` the builder takes the
+position from `0x00304650()`, called only when `0x00303EE0()` answered non-zero (`0x00329302`-`0x0032931D`). It stores
+what `0x0031FDA0(unit)` answers in bit `0x10` (`0x00329323`-`0x00329334`), what `0x003879C0(stats)` answers in bit
+`0x10000` (`0x0032937B`-`0x0032938F`) and what `0x0030C2C0(unit)` answers in bit `0x20000`
+(`0x00329395`-`0x003293A9`).
+
+`0x0031FDA0` reads the spawn record pointer `[unit + 0x6A0]` with no null test (`0x0031FDE4`-`0x0031FDEB`), and a
+unit with no stats record goes the same way as one of a kind other than 0 (`0x0031FDBC`-`0x0031FDC6`). The
+builder's own test for bit `0x4000` reads that pointer with no null test too (`0x00329355`-`0x0032935C`).
+
+`0x003879C0` looks the owner up twice with `0x0031B860(stats)` and stores each answer at `[0x02EBF188]`
+(`0x003879CE`-`0x003879D3`, `0x003879FB`-`0x00387A03`). When the second answer is null, or its stats record `+0x698`
+is null or not of kind 1, it reads the byte at address `0x12` (`0x00387A0A`-`0x00387A37`). The second lookup
+repeats the first with nothing written between them but `[0x02EBF188]`, so that happens only if the unit pool
+changes between the two.
+
+The rows of bits `0x1`, `0x4000` and `0x10000` give a null stats record as one of their cases because the code
+tests for it (`0x00329788`, `0x00329348`, `0x003879E6`). From this builder none of the three tests can be met: a
+null stats record has already returned at `0x00329268`, and the unit of step 2 is the one whose `+0x698` is
+that record.
+
 ### HP, MP and the countdowns
 
 - `+0x20` is HP (`+0x48`). `+0x24` is the effective maximum: `max(HP, 1)` while status bit `0x10000` is set
-  in either status word, else `+0x24`. `+0x28` is the cap: the same under status bit `0x10000`, else
+  in either status word, else `+0x24`. `+0x28` is the cap (all three `0x003293AF`-`0x00329400`): the same under
+  status bit `0x10000`, else
   `+0x24` doubled when status bit `0x10000000` is set.
-- `+0x2C` is MP (`i16 +0x4C`), `+0x30` the capacity (`+0x28`), `+0x34` the capacity when bit `0x80` of
-  both layer bytes `+0x6C` and `+0x7C` is clear and 0 otherwise, `+0x38` the `i16` at `+0x06`.
+- `+0x2C` is MP (`i16 +0x4C`), `+0x30` the capacity (`i16 +0x28`), `+0x34` the capacity when bit `0x80` of
+  both layer bytes `+0x6C` and `+0x7C` is clear and 0 otherwise, `+0x38` the `i16` at `+0x06`
+  (`0x00329403`-`0x00329438`).
+- `+0x86` and `+0x87` are stats bytes `+0x4E` and `+0x37`; `+0x44` is the two status words `+0x64` and `+0x3C`
+  or-ed and `+0x48` the word `+0x3C` alone; `+0x60` and `+0x62` are the type and kind bytes `+0x04` and
+  `+0x05`; the sixteen bytes from `+0x4C` are stats `+0x68` to `+0x77` or-ed with `+0x78` to `+0x87`;
+  `+0x89` to `+0x8D` are stats bytes `+0x40` to `+0x44` (`0x00329441`-`0x003294ED`).
 - `+0x66 + s` for `s` from 0 to 31 is the low byte of the duration dword `+0xBC + 4 * s` minus 1
   when status `s` is present and `s` is 2 or 6, and `0xFE` otherwise (`0x00329500`-`0x00329539`).
 
@@ -109,12 +151,23 @@ banks at `[0x02EBF170]`, and `0x002B58B0(block, 0)` gives the pointer stored at 
 returns row byte `+4 + i` for `i` below 3, which fill the words `+0xB4`, `+0xB6` and `+0xB8`. When a
 unit owns the record the name pointer is replaced by the empty string at `0x01CEB638`.
 
+Every reference on that way is an offset that `0x0020E600(offset)` turns into an address by adding a base: the
+section (dword `+0x0C` of `[0x02EBF130]`, five calls), the bank (dword `+4 + 4 x bank index` of `[0x02EBF170]`)
+and the text block (dword `+4 + 4 x entry` of the bank), whose pointer is used with no null test
+(`0x00329545`-`0x003295DA`, `0x003295F2`-`0x00329615`).
+
+With the party table `[0x02EBF130]`, its section or the text banks `[0x02EBF170]` null, the name stored at
+`+0x10` is `0x002B58B0(0, 0)` (`0x00329545`-`0x003295EE`). With the table or its section null, or a row address of 0,
+`0x0030A310(row, i)` is not called and the words `+0xB4`, `+0xB6` and `+0xB8` keep the 0 of the record's clear
+(`0x003295F2`-`0x0032965C`). A record of a kind other than 0 skips the whole block, which also leaves flag
+bits `0x2` and `0x4` at 0 (`0x0032953B`-`0x0032953F`).
+
 ### Experience, LP and equipment
 
 With `full` set: `+0xBA` is the level (`+0x1C2`), `+0x90` the experience (`+0x18C`), `+0xB0` the LP
 (`+0x190`), `+0xBB` the number of licence bits set among the bits under mask `0x3FFFF` of the licence bytes at `+0x194`
-(`0x00324020`), and `+0x98`-`+0xAC` the six words `+0x50`-`+0x5A` each shifted left by 16. `+0x94` is
-the points to the next level:
+(`0x00324020(stats)`), and `+0x98`-`+0xAC` the six words `+0x50`-`+0x5A` each shifted left by 16
+(`0x003296A3`-`0x00329740`). `+0x94` is the points to the next level, from `0x002F8F20(level)`:
 
 ```python
 curve(level) = sum for k = 2 .. level + 1 of trunc(float(k * k * k) * 0.4 + float(12 * k * k))   (0x002F8F20; 0 for level 0, -1 for level 99 and above)
@@ -125,20 +178,23 @@ curve(level) = sum for k = 2 .. level + 1 of trunc(float(k * k * k) * 0.4 + floa
 
 While a unit owns the record:
 
-- `+0x88` is the spawn record's `+0x12` (`[unit + 0x6A0]`), `+0x04` the unit's handle (`+0x08`),
-  `+0x18` and `+0x1C` the unit's `+0x64` and `+0x68`;
+- the name pointer `+0x10` becomes the empty string `0x01CEB638`; `+0x88` is the spawn record's `+0x12`
+  (`[unit + 0x6A0]`), or 0 for a unit whose spawn record pointer is null; `+0x04` is the unit's handle
+  (`+0x08`), `+0x18` and `+0x1C` the unit's `+0x64` and `+0x68` (`0x003298A6`-`0x003298DB`);
 - `+0x64` is the word `+0x52` of the class row `[unit + 0xE68]` for a kind-1 record whose actor class
-  nibble (`0x00263C20`, byte `+0x0E` of the actor) is not 3, else `0xFFFF`;
+  nibble (`0x00263C20(the unit's actor +0x10)`, byte `+0x0E` of the actor) is not 3, else `0xFFFF`
+  (`0x003298DE`-`0x0032990D`);
 - while the unit is acting (context `+0x708` set, id at most `0x21E`, phase not 0): `+0x3C` and
   `+0x40` are the unit's `+0x768` and `+0x76C`, `+0x08` the focus `+0x710`, and `+0x5C` the action
-  id, or `0x00387090(stats)` once the phase is 9 or more; otherwise they are 0, 0, 0 and `0xFFFF`;
+  id, or `0x00387090(stats)` once the phase is 9 or more; otherwise they are 0, 0, 0 and `0xFFFF`
+  (`0x00329911`-`0x00329976`);
 - `0x00387090(stats)` returns the owning unit's action id `+0x714`, except that for action `0x9F` it returns word
   `+0x10` of the unit's 64-byte record (`0x00387100`-`0x0038710E`): `0x0208D480 + type * 0x40` for a kind-0 stats record,
   else `0x0208DE80 + unit[+0xEA9] * 0x40`, a record of 0 without a unit (`0x003870A3`-`0x003870E7`;
   [Status timers](../Status-Effects-And-KO/status-timers.md));
 - `0x00387090` keeps the unit at `[0x02EBF188]` for a record of a kind other than 0 (`0x003870C4`) and reads address
   `0x714` when no unit owns the record (`0x00387118`);
-- `+0x5E` is the unit's `+0xBA0` while unit flag bit `0x4000` is set, else `0xFFFF`.
+- `+0x5E` is the unit's `+0xBA0` while unit flag bit `0x4000` is set, else `0xFFFF` (`0x0032997A`-`0x0032998A`).
 
 ## Layouts
 

@@ -67,6 +67,12 @@ through `0x0062EFD0(descriptor, member, third)`; a non-zero answer is returned w
 (`0x006392E5`-`0x006392EE`). After the two counts it calls `0x0063D930(descriptor, third)` and answers 0
 (`0x006392F0`-`0x00639304`).
 
+`0x0063D930(descriptor, third)` runs `0x0063AE50(descriptor)`, clears flag bit `0x80000000` of `+0xFC` and runs
+`0x00639A60(descriptor, third)` and `0x00639C80(descriptor, third)` (`0x0063D940`-`0x0063D960`). For a null `third`,
+when the default instance `+0xC0` exists, the class is `0x02E4E720` or reaches it through `+0x78`, and the size
+`+0x38` is `0x18` or more, it stores the descriptor at `[+0xC0] + [+0xF8] + 0x10`, the dword `+0xF8` taken
+signed (`0x0063D965`-`0x0063D9A6`).
+
 `0x0063D550` itself rebuilds when the two words differ or are both 0, and keeps the descriptor when they are equal
 and non-zero (`0x0063D556`-`0x0063D56C`). The rebuild points the six lists `+0x50`, `+0x80`, `+0x90`, `+0xA0`, `+0xB0`
 and `+0x60` at themselves and zeroes both words (`0x0063D572`-`0x0063D5E0`). With a parent `+0x78` it also stores the
@@ -717,6 +723,17 @@ Other constructors and destructors of this page's classes:
 - `0x006161A0` runs `0x005DCC40` on the object, clears the dword `+0x30` and calls `0x00627800(object + 0x30, 1)`,
   clears the qwords `+0x78`, `+0x80`, `+0x88`, `+0x90`, `+0x98` and `+0xA0`, and returns the object
   (`0x006161B6`-`0x00616205`).
+- `0x00627800(ring, count)` answers 0 at once when the count equals the dword `+0x00` (`0x0062781F`-`0x00627821`).
+  Otherwise it asks `0x0061CFA0(ring, count)` for a block; a null block for a non-zero count answers `0xD` with
+  nothing changed (`0x0062783A`-`0x0062784E`).
+- The old block of `0x00627800`, the pointer at `+0x08` for an old count above 1 and
+  the inline slot `+0x08` itself for an old count of 1 (`0x00627823`-`0x00627838`), the old count being the
+  dword `+0x00` without bit `0x80000000` (`0x0062781B`), is released with
+  `0x00584730(old block)` when it is not
+  the new block, not the inline slot and not null, and bit `0x80000000` of the count dword is clear
+  (`0x0062785C`-`0x00627879`). No record is copied.
+- It then stores the new block at `+0x08`, unless that is the inline slot, and the count at `+0x00`, and
+  answers 0 (`0x0062787E`-`0x0062788D`).
 - `0x006332A0` installs the vtable `0x00D580B0`; when the node at `+0x08` is linked (its first qword is not its
   own address) it calls slot `+0x48` of the owner at `+0x18` with the member; it runs `0x006B6700` on `+0x38`;
   and it frees the name at `+0x20` with `0x00584730` when bit `0x1` of the byte `+0x28` is set

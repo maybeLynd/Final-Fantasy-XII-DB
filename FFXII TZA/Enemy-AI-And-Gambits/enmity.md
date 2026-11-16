@@ -99,6 +99,23 @@ same rules as `0x00321850` (`0x00321B90`-`0x00321CF7`). Unlike `0x00321850`, whi
 (`0x0030A880`-`0x0030A89A`). Every caller is therefore handed the same list, which the next call fills
 again.
 
+The builder takes its members from the fighting seats alone: for seat 0 to 3 it asks `0x0031B810(seat)`
+([Party slots](../Party/party-slots.md)) and passes over a seat with no unit (`0x0030A8D2`-`0x0030A8DF`, back
+branch `0x0030A94B`). The mode narrows the list:
+
+- with mode bit `0x4` only a unit whose flag bit `0x10` is set (`0x0030A8E1`-`0x0030A8EA`);
+- with mode bit `0x1` only a unit with a stats record whose dwords `+0x64` and `+0x3C` have none of the bits
+  `0x80000003`, or has them while `0x00377C20()` answers non-zero (`0x0030A8EC`-`0x0030A911`);
+- with mode bit `0x2` only a unit whose stats record is of kind 0 with a type byte `+0x04` of 6 or less
+  (`0x0030A913`-`0x0030A931`).
+
+A unit that passes is counted, and stored in the list when the list pointer is not null and fewer than
+`capacity` are stored (`0x0030A933`-`0x0030A943`); the count is the answer (`0x0030A952`).
+
+The direct call and jump instructions that have `0x0030A880` as their target are at
+`0x00234651`, `0x00234937`, `0x00237EF8`, `0x00237F9B`, `0x0032166A`, `0x00321B5E`, `0x003246E3`, `0x0032666C` and
+`0x00326D9A`.
+
 ### Decay
 
 The periodic maintenance step `0x00310DB0` calls `0x00321530(enemy)` for each unit (`0x003112A4`). For an
@@ -158,3 +175,24 @@ enemy is null or has no table (`0x0032163E`, `0x0032165B`), and when the list is
 - [Battle orders](../Battle-Actions/battle-orders.md) - orders `0x4163` and `0x4164`.
 - [Action phases](../Battle-Actions/action-phases.md) - the frame base.
 - [Area of effect](../Battle-Actions/area-of-effect.md) - the 16-byte list layout the AI candidate list shares.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Input: `0x00377C20` is called by `0x00253C70`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Presentation: `0x0031B810` is called by `0x00307E70`, `0x00313B30`; `0x00377C20` is called by `0x00307E70`, `0x003125E0`,
+  `0x00313B30`, `0x003714A0`.
+- Presentation: those functions are documented on [force fight mode](../Engine-Core/force-fight-mode.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [battle units](../Characters-And-Objects/battle-units.md),
+  [add motion tables](../Graphics/add-motion-tables.md).
+- Script VM: `0x00377C20` is called by `0x00344740`, `0x00352FA0`, `0x003537D0`, `0x00355680`; those functions are documented on
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md),
+  [script censuses](../Story-Events-And-Hunts/script-censuses.md).
+- Spawn encounter lifecycle: `0x0031B810` is called by `0x00234DA0`, `0x002350C0`; those functions are documented on
+  [enemy spawning](../Enemy-Spawning/enemy-spawning.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
