@@ -153,13 +153,33 @@ hue, saturation, value and alpha and packs the same four bytes:
 - alpha is the fourth value capped at 255 with no lower clamp, `a > 255 ? 255 : a` (`0x004304A2`,
   `0x004304DA`-`0x004304E7`).
 
-`0x00430B90(out, record, x)` is the float RGB form, alpha always 1.0, with the mode byte `+0x30`:
-bits `0xC` of 0 give black and of 1 white; otherwise bits `0x3` and the bytes `+0x31` and `+0x32` choose
-which components have their own curves and which share one, and whether the spread is applied
-per component (`0x004307C0`) or as one shared draw (`0x004308D0`).
+`0x00430B90(out, record, x)` is the float RGB form over three consecutive expression records (r, g, b), alpha
+always 1.0 (`0x00431032`), with the mode byte `+0x30`: bits `0xC` of 0 give black and of 1 white
+(`0x00430BAC`-`0x00430BDA`). Otherwise bits `0x3` and the bytes `+0x31` and `+0x32` choose:
 
-`0x004308D0(record, a, b, d)` combines `a` with a draw `d` that its caller made once (`0x00430DA3`-`0x00430DB5` in
-`0x00430B90`), under the record's operator, as `0x00431430` does in integers: operator 1 gives `a + d`, 2 `a − d`,
+- bits `0x3` = 0: each component is its own expression (`0x004309C0`, `0x00430BF6`-`0x00430C1A`);
+- bits `0x3` = 3 with `+0x31` and `+0x32` both 0: one value for r, g and b, the first record's two operands
+  (`0x00430540`) combined once by `0x004307C0` (`0x00430C29`-`0x00430C71`);
+- in every other case operand A is taken first (`0x00430540(record, x, 0)`): with bit `0x1` clear each component
+  takes its own record's (`0x00430D22`-`0x00430D54`);
+- with bit `0x1` set, `+0x31` = 0 gives the first record's A to r, g and b, 1 the first record's to r and g
+  and the third's to b, 2 the first record's to r and b and the second's to g, and 3 the second record's to g
+  and b and the first's to r (`0x00430C83`-`0x00430D54`). Any other `+0x31` stores nothing, and the next step
+  works on what `out` held (`0x00430C95`-`0x00430C98`);
+- the spread follows (`b` = `0x00430540(record, x, 1)`): with bit `0x2` clear each component is combined with
+  its own record's `b` by `0x004307C0` (`0x00430F9F`-`0x0043100B`);
+- with bit `0x2` set `+0x32` groups the components as `+0x31` does, and a group shares one `b` and one draw
+  `d = 0x003D8E50(b)`, 0 when `b` is 0, through `0x004308D0`: the first record's for r, g and b (0), for r and g
+  (1), for r and b (2), the second record's for g and b (3) (`0x00430D68`-`0x00430F98`);
+- the component left over then goes to `0x004307C0` under its own record, the third, second or first, with
+  `0x003D8E50(b)` in place of that record's `b` when `b` is not 0, a value `0x004307C0` draws on again under
+  operators 1 to 5
+  (`0x00430F1D`-`0x00430F2D` and `0x00430FFA`-`0x0043100B`, `0x00430E89`-`0x00430EAB`, `0x00430DF8`-`0x00430E18`). Any other
+  `+0x32` applies no spread (`0x00430D86`-`0x00430D89`).
+
+`0x004308D0(record, a, b, d)` combines `a` with a draw `d` that its caller made once (`0x00430DA3`-`0x00430DB5`,
+`0x00430E37`-`0x00430E49`, `0x00430ECB`-`0x00430EDD` and `0x00430F4D`-`0x00430F59` in `0x00430B90`), under the record's
+operator, as `0x00431430` does in integers: operator 1 gives `a + d`, 2 `a − d`,
 3 `a − b + 2d`, 4 `a + a × d`, and 5 draws afresh, `a + f(b − a)` with `0x003D8E50`, or `a` when `b` equals `a`
 (`0x0043090B`-`0x004309A3`). Operators 0 and 6-15 give `a`, and with `b` = 0 every operator gives `a` except 5
 (`0x004308D4`-`0x004308FE`).

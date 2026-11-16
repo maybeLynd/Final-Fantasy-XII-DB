@@ -83,6 +83,9 @@ record is gone (the entry's `+0x1E` is negative, `0x002E4C37`) or its stamp `+0x
 | 22 | places the actor when record bit `0x80` is set and the slot is not negative; shows it (`0x002EBB80(actor, 1)`), `0x00233AD0(actor)`, `0x00263560()` for a slot, `0x00359B10()`, restores `0x002DEB90(+0x0B)` | 23 |
 | 23 | done | returns 1 |
 
+`0x002E96B0(actor)` answers the dword `+0x04` of the actor's context `+0xC0`, and -1 for a null actor or a null
+context (`0x002E96B0`-`0x002E96C5`).
+
 `0x0031C250` takes the definition's selector: for an actor in roster slots 0-3 the byte at
 `[0x02EBF190] + 0x5A90 + slot × 2` (`0xFFFF` when `0x00322C50(0x17, slot)` fails or the byte is `0xFF`),
 otherwise word `+4` of the unit's record `+0x698` (`0xFFFF` without one). `0x0031C2F0` maps it to a
@@ -180,6 +183,13 @@ then calls `0x002681D0`, sets the position (`0x0026AF80`), the facing and moveme
 separation weight from `0x00265950` (`0x0026DAC0`), and calls `0x002EAC90`, `0x002ECA00(actor, 1)`,
 `0x002E49B0(actor, 0)` and `0x002E4A40`.
 
+`0x002E49B0(actor, point)` acts only on an actor whose byte `+0x03` has `0x60` under the mask `0xE0`, with a
+context at `+0xC0` and a body at the context's `+0x138` (`0x002E49B6`-`0x002E49E5`). A null point is replaced by
+the address of the body's `+0x30` (`0x002E49D9`-`0x002E49DE`). It calls `0x0026E530(point, body + 0x50)` and
+writes bit `0x1` of the answer's low byte to bit `0x80` of the actor's byte `+0x0B` (`0x002E49E7`-`0x002E49FA`).
+`0x0026E530` itself stores 16 bytes through its second argument on every call (`0x0026E5A1`), so each such
+call also rewrites the 16 bytes at the body's `+0x50`.
+
 ### What runs it
 
 | Runner | Record | How |
@@ -198,6 +208,9 @@ returns 1, adds the step to the slot, and repeats until `0x0037CB50` reports the
 pointer `0x02EBF400` is 0, or the slot is 4 or more with a step above 0, or below 0 with a step of 0 or
 less (`0x0037CB50`-`0x0037CB7B`). It then calls `0x00233AA0` (`0x0030D8B0(1)`, `0x00326500`,
 `0x00311E10(0)`, `0x00311E20`) and clears the task pointer `0x02EBF400`.
+
+`0x00233AA0` makes its four calls in that order, `0x0030D8B0(1)`, `0x00326500()`, `0x00311E10(0)` and `0x00311E20()`, and
+answers 1 (`0x00233AA4`-`0x00233ABF`).
 
 In the read-in record `0x0037C730` stores the state byte `0x02EBF3F8` as 0 (`0x0037C7DB`), the slot `0x02EBF3F9` (`0x0037C7E1`),
 the pass `0x02EBF3FA` as 0 (`0x0037C7D4`) and the saved byte `0x02EBF3FB` from `0x002DEBD0` (`0x0037C7F1`). The world tick's

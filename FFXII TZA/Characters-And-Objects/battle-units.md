@@ -106,12 +106,14 @@ record 0, so the read at `0x00358986` is of address 3.
 Three more read the unit behind a handle, through `0x003588B0` and, while `0x02089340` bit `0x10` is set, `0x00263E30`:
 
 - `0x003229A0(handle)` returns bit `0x1` of the unit's `+0xE9C`, which `0x002392D0` copies from bit `0x4000` of its flag argument
-  (`0x0023932A`-`0x00239339`).
+  (`0x0023932A`-`0x00239339`). It answers 0, with no lookup, while `0x02089340` bit `0x10` is clear, and 0 when
+  `0x003588B0` or `0x00263E30` answers null (`0x003229A4`-`0x003229C2`, `0x003229D2`); the read is at `0x003229C4`.
 - `0x00273910(handle)` is true when the actor's class nibble is 3 and `0x003229A0` returns 0 (`0x00273934`); the HUD's
   `0x002BFD20` asks it (`0x002BFE2A`).
 - `0x00322950(handle)` is true when `0x00321770(unit, 0)` returns 0: none of the unit's 40 enmity bytes (`+0x1A` of
   `[unit+0x6A0]`, for the ids `0x00322C50(2, i)` accepts) is above 0 ([Enmity](../Enemy-AI-And-Gambits/enmity.md)).
-  `0x002C7660` asks it (`0x002C780D`) right after `0x003229A0` (`0x002C77F6`).
+  `0x002C7660` asks it (`0x002C780D`) right after `0x003229A0` (`0x002C77F6`). It too answers 0 while `0x02089340`
+  bit `0x10` is clear and when `0x003588B0` or `0x00263E30` gives null (`0x00322954`-`0x00322985`, `0x0032298C`).
 
 ### Release
 
@@ -133,6 +135,20 @@ the actor and returns. Otherwise:
 
 The town test of step 2 is `0x00313F60`, a jump to `0x00377C20` (`0x00234275`), and a null stats record skips the step
 (`0x0023425B`).
+
+`0x00319140(unit, bits)` makes two calls by the bits of its second argument: with bit `0x1` it first calls
+`0x00290B90` with the unit's dword `+0x08` (`0x0031914F`-`0x00319157`), and with bit `0x2` it then calls `0x003BBC80`
+with the unit's `+0x10`, the actor (`0x0031915C`-`0x00319166`). `0x00234200` passes 2, so only the second is made
+there. `0x00319140` sets no return value of its own.
+
+`0x00290B90(handle)` walks the list at `[[0x0209BE80] + 0x10F10]`, linked through `+0x868`. In each node whose
+dword `+0x810` equals the handle it turns a word `+0x850` of 2 into 3, and it answers 1 when any node
+matched and 0 otherwise (`0x00290B90`-`0x00290BDD`).
+
+`0x003589A0(actor)` answers the actor's byte `+0x03` shifted right by 5, its top three bits
+(`0x003589A0`-`0x003589A4`). `0x00234200` reaches it by a jump (`0x00234232`), so that value is what `0x00234200`
+answers for an actor with no unit (`0x00234210`-`0x0023421B`). On the path with a unit `0x00234200` sets no
+return value before it returns (`0x002342D6`-`0x002342E0`).
 
 ### The actor class
 

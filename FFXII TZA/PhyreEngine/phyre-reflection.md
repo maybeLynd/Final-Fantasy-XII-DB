@@ -61,6 +61,12 @@ Its attach slot
 first rebuilds the descriptor through `0x0063D550` (empty the six lists, copy the parent's size and
 alignment, recompute the offsets through `0x0063E410`).
 
+Its attach slot `0x00639290(descriptor, member, third)` answers 0 at once, counting nothing, for a member whose
+qword `+0x20` equals the qword at `0x01F2DF28` (`0x0063929F`-`0x006392B5`). Otherwise, after the rebuild, it attaches
+through `0x0062EFD0(descriptor, member, third)`; a non-zero answer is returned with nothing counted
+(`0x006392E5`-`0x006392EE`). After the two counts it calls `0x0063D930(descriptor, third)` and answers 0
+(`0x006392F0`-`0x00639304`).
+
 `0x0063D550` itself rebuilds when the two words differ or are both 0, and keeps the descriptor when they are equal
 and non-zero (`0x0063D556`-`0x0063D56C`). The rebuild points the six lists `+0x50`, `+0x80`, `+0x90`, `+0xA0`, `+0xB0`
 and `+0x60` at themselves and zeroes both words (`0x0063D572`-`0x0063D5E0`). With a parent `+0x78` it also stores the
@@ -175,6 +181,21 @@ A type object's `+0x40` and `+0x48` hold two hooks that are null in most types. 
 
 The loader reaches `+0x48` through `0x0063DC30`, which returns `0x15` when the hook is null.
 
+The set-up `0x00634830` first runs `0x006388C0` on the descriptor `0x02CF8470` and stores the two hooks. Once, under
+the guard `0x02CF9070`, it asks `0x005A7A40(0x02CF8470, 0x00D58488)` for the method `isTypeOf`; when that answers
+null it links the node `0x01F2DFB0` at the tail `0x02CF8508` of the descriptor's method list `0x02CF8500`
+(`+0x90`); either way it registers the exit routine `0x008AF510` with `0x00808B90` (`0x00634844`-`0x006348F6`).
+
+It then fills that node's caller, on every call: the caller object's address `0x01F2DFE0` at the node's
+`+0x28` (`0x01F2DFD8`), the vtable `0x00D59010` at `0x01F2DFE0`, and at `0x01F2DFE8` the member-function pointer
+`0x0063CB60` with a 0 adjustment in the dword `0x01F2DFF0`. It calls `0x00639160(the qword
+0x02CF84E0, 0x02CF8470)` and sets bit `0x40000000` of `0x02CF856C`. With bit `0x1` of that dword set it points
+`0x02CF8478`, `0x02CF8480` and `0x02CF8488` at `0x02CF8478`, clears the dword `0x02CF8490` and the qword
+`0x02CF8498` and ends in a jump to `0x006388C0(0x02CF8470)` (`0x006348FB`-`0x0063499A`).
+
+The `PType` name hook `0x00637350` first calls slot `+0x08` of the type; when that returns an object whose byte
+`+0xFC` has bit `0x1` set, the hook answers `0x12` and stores nothing (`0x0063736B`-`0x0063737C`).
+
 `0x0063DC90` installs such a pair. The `PAssetReferenceImport` descriptor `0x02D3E780` (registered by
 `0x00675DA0`) gets `0x00676F50` and `0x00677470`, which store a reference as a byte-swapped 16-bit index into
 the cluster's list of `0x18`-byte import records instead of a name. Reading one, `0x00677470` chains
@@ -256,6 +277,14 @@ the executable are a `PAnnotationWithValue<unsigned int>` keyed by `0x02CF8570`,
 names `WriteMask`, with the value `0x7FFFFFFF`, on the `m_count` member of a `PArray<T>` or
 `PSharray<T>` descriptor.
 
+`0x006B66C0(annotation, key, type, value)` points the two links of the node at `+0x08` at the node,
+installs the vtable `0x00D80930` at `+0x00`, stores the key at `+0x18`, the type at `+0x20` and the value
+dword at `+0x28`, and returns the annotation (`0x006B66C0`-`0x006B66E0`).
+
+`0x006B67D0(list head, annotation)` puts the annotation's node `+0x08` at the front of the list: the
+node's next is the old first, its previous is the head, and the head and the old first then point at the
+node (`0x006B67D0`-`0x006B67E1`).
+
 `0x006B67F0(list, key)` finds an annotation by key: it walks the annotation list it is given from its first node and
 returns the first annotation whose key `+0x18` is the given pointer, or 0 at the end of the list
 (`0x006B67F0`-`0x006B681D`).
@@ -307,6 +336,15 @@ So `+0xC8` marks the bytes no member describes and `+0xD0` the bits that belong 
 `0x0063C5E0` and `0x0063C1A0` build a class's buffers when needed and return its `+0xD0` and `+0xC8`;
 `0x00639C80` uses them for the
 masks of inline object members.
+
+`0x0063BB10` returns the qword `+0xC0` at once when bit `0x80000000` of the flags `+0xFC` is set. Otherwise it
+calls the descriptor's slot `+0x60` when bit `0x40000000` is clear, then `0x00639A60(class, 0)` and
+`0x00639C80(class, 0)`, and returns `+0xC0` (`0x0063BB16`-`0x0063BB50`).
+
+`0x0063BC00` returns the qword `+0xD8` when it is not null. Otherwise it builds the buffers the same way when
+bit `0x80000000` is clear; with a default instance at `+0xC0` it sets bit `0x20000000` and returns that
+instance plus the signed dword `+0xF8`; with no default instance it returns the null `+0xD8`
+(`0x0063BC06`-`0x0063BC63`).
 
 ### Creating instances
 
@@ -360,6 +398,19 @@ through the type's slot `+0x58` (`0x0063CA84`). It then builds the type's buffer
    (`0x006395F5`-`0x00639607`), enters it in the world's per-type table through `0x00639320` when the cluster has a
    world `+0x78` (`0x0063960B`-`0x00639617`), and returns the list.
 
+The record set-up `0x00633120(record, descriptor, cluster)` points the record's two links `+0x00` and `+0x08` at
+itself, calls `0x0067FFB0(record + 0x10, the descriptor's size +0x38, 0, its alignment +0x3C, its name +0x30)`,
+points the two links at `+0x38` and `+0x40` at `+0x38`, stores the cluster at `+0x48` and the descriptor
+at `+0x50`, clears the qwords `+0x58` to `+0x70` and the dword `+0x78`, stores `0x101` in the word `+0x7C`
+and returns the record (`0x0063312F`-`0x0063318B`).
+
+`0x00639780(record, count, bytes, storage)` itself answers 0 when `count * [descriptor+0x38] > bytes`
+(`0x006397A9`-`0x006397B8`), and 1 on success (`0x00639822`). It allocates only when bytes is not 0 and no storage
+is given, and the owned flag `+0x7C` is 1 when no storage was given (`0x006397D0`-`0x0063981F`).
+
+`0x00631180(pool, record)` calls `0x0063B3E0(record)` and `0x00680030(record + 0x10)` and ends in a jump to
+`0x00680200(pool, record)` (`0x0063119D`-`0x006311BC`).
+
 ### The cluster's script methods
 
 `0x00635470` publishes four `PCluster` methods on the cluster descriptor `0x02CF8780`:
@@ -367,7 +418,8 @@ through the type's slot `+0x58` (`0x0063CA84`). It then builds the type's buffer
 - `create` (`0x0063AA50`) makes one object: it logs the same "no default constructor" message for bit
   `0x8`, and otherwise builds a one-object instance list through `0x00639510`, initialises the object
   at the list's `+0x58` with `0x0063C910` and returns the object with its descriptor.
-- `deleteObject` is `0x0063AD20`.
+- `deleteObject` is `0x0063AD20`: it answers 1 for a null object and otherwise jumps to `0x0063ABF0` with its
+  arguments unchanged (`0x0063AD20`-`0x0063AD29`).
 - `deleteInstancesOfType` (`0x0063AAD0`) removes every instance list of exactly one class: it unlinks
   the list, takes it off the per-type table, destroys its objects (`0x0063B3E0`), frees its blocks
   (`0x00680030`) and returns the list record to the cluster's pool at `+0x50` (`0x00680200`).
@@ -378,6 +430,21 @@ appended to the descriptor's method list, whose anchor is `0x02CF8810`, the desc
 `0x02CF8818`. Each append reads the tail, links the node after it and stores the node as the new tail (`0x006354EE`,
 `0x0063550D`; `0x0063559E`, `0x006355BD`; `0x0063564C`, `0x0063566B`; `0x006356FA`, `0x00635719`). The teardowns `0x008AF2B0`,
 `0x008AF370`, `0x008AF310` and `0x008AF220` unlink the nodes at exit.
+
+Each of the four stores the node's previous link in `[next + 8]` and its next link in `[previous]`, then
+points the node's two qwords at the node itself: `0x008AF220` for the node `0x01F2E230` (`0x008AF22D`-`0x008AF250`),
+`0x008AF2B0` for `0x01F2E140` (`0x008AF2BD`-`0x008AF2E0`), `0x008AF310` for `0x01F2E1E0` (`0x008AF31D`-`0x008AF340`) and
+`0x008AF370` for `0x01F2E190` (`0x008AF37D`-`0x008AF3A0`).
+
+Each also frees the node's name, copied into owned storage, through `0x00584730` when bit `0x1` of its
+attribute word `+0x20` is set: `0x008AF220` the pointer the qword `0x01F2E248` (`+0x18`) holds, under the byte
+`0x01F2E250`; `0x008AF2B0` `0x01F2E158` under `0x01F2E160`; `0x008AF310` `0x01F2E1F8` under `0x01F2E200`; and `0x008AF370`
+`0x01F2E1A8` under `0x01F2E1B0` (`0x008AF257`-`0x008AF267`, `0x008AF2E7`-`0x008AF2F7`, `0x008AF347`-`0x008AF357`,
+`0x008AF3A7`-`0x008AF3B7`).
+
+`0x008AF490` walks the whole class list from the qword `0x01F2E340` at exit, each class being its node less
+`0x50` and the next node read from the class's `+0x50` before the class is used, and calls vtable slot
+`+0x38` with 1 on every class whose byte `+0xFC` has bit `0x1` set (`0x008AF49A`-`0x008AF4ED`).
 
 A cluster's `+0x78` points at the world it belongs to, whose per-type table (count `+0x10`, entries
 `+0x18`) holds `0x20`-byte entries indexed by each descriptor's
@@ -588,6 +655,8 @@ One class overrides slot `+0x68`: `PEntity` (`0x006AB3F0`, which reorders the ar
 name up in the namespace (`0x0063BA10`), returns -1 unless that class is `PComponent` or derives from it, and
 otherwise pushes every component of the entity whose class is that class or derives from it (`0x00684090`)
 and returns how many it pushed.
+`0x00684090` loads the qword `+0x10` of its second argument as the third argument and jumps to `0x00682D20`
+(`0x00684090`-`0x00684094`).
 
 For a `PMatrix4x3` the wrapper's slot `+0x20` (`0x006B3A90` to `0x006B3610`) builds a 64-byte matrix from the
 twelve floats, as (`+0xC`, `+0x1C`, `+0x2C`, 0), (`+0`, `+4`, `+8`, 0), (`+0x10`, `+0x14`, `+0x18`, 0) and
@@ -596,6 +665,62 @@ twelve floats, as (`+0xC`, `+0x1C`, `+0x2C`, 0), (`+0`, `+4`, `+8`, 0), (`+0x10`
 ### Reflected members
 
 The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
+
+The placement constructors named in the fences each skip a null block and answer 1. Fifteen of the eighteen
+also make stores that the fences do not list, and so does `0x005A1510`, the placement constructor of
+`PBlendableAnimationSource` (slot `+0x50` of its vtable `0x00D288E0`):
+
+- `0x005A1510` stores 1.0 in the dwords `+0x08` and `+0x0C` and in the low dword of the qword `+0x50` (high dword
+  0), the vtables `0x00D313B0`, `0x00D313E0` and `0x00D314E0` at `+0x10`, `+0x38` and `+0x58`, and 0 in the qwords
+  `+0x00`, `+0x20`, `+0x28`, `+0x48`, `+0x68`, `+0x70` and `+0x78` and the dwords `+0x18`, `+0x30`, `+0x40`
+  and `+0x60` (`0x005A1510`-`0x005A1577`).
+- `0x005CEEF0` also clears the qword `+0x00` (`0x005CEEF7`).
+- `0x005D3C60` also clears the qwords `+0x10`, `+0x20` and `+0x30` and the dwords `+0x18` and `+0x28`
+  (`0x005D3C70`-`0x005D3C7E`).
+- `0x005D5FE0` stores `0x01010105` in the dword `+0x00` and `0x400` in the qword `+0x18` (`0x005D5FE5`,
+  `0x005D5FFF`).
+- `0x005D7B60` stores the address `0x02CF7A30` in the qword `+0x00`, 2 in the dword `+0x18` and 0 in the qword
+  `+0x20` (`0x005D7B65`-`0x005D7B82`).
+- `0x005D7DE0` also clears the word `+0x00` (`0x005D7DE7`).
+- `0x0065EC80` stores `0x334` in the word `+0x0C` (`0x0065EC8D`).
+- `0x00660A20` also clears the dword `+0x08`, the qword `+0x10` and the dword `+0x18` (`0x00660A2A`-`0x00660A31`).
+- `0x006611F0` also clears the dword `+0x08`, the qword `+0x10`, the dword `+0x20` and the qword `+0x28`
+  (`0x006611F9`-`0x00661206`).
+- `0x005D1700` stores the address `0x02CF7A30` in the qword `+0x00`, `0x300` in the word `+0x08`, 0 in the qword
+  `+0x0C`, the dword `+0x14` and the qword `+0x20`, and 2 in the dword `+0x18` (`0x005D1705`-`0x005D171E`,
+  `0x005D1725`).
+- `0x005D27B0` stores the address `0x01F2DD80` in the qword `+0x00` and 0 in the dwords `+0x08`, `+0x18`, `+0x28`
+  and `+0x38` and the qwords `+0x10`, `+0x20`, `+0x30` and `+0x40` (`0x005D27B5`-`0x005D27D9`).
+- `0x0065EA30` stores -1 in the dword `+0x04`, 0 in the dword `+0x08` and the qword `+0x10`, 6 in the dword
+  `+0x18`, and -1 in the qword `+0x1C` and the dword `+0x24` (`0x0065EA37`-`0x0065EA56`).
+- `0x006A7B10` stores the address `0x01F31F78` in the qword `+0x00` and 1.0 in the floats `+0x24`, `+0x2C` and
+  `+0x38`; it leaves 0 in the dword `+0x08`, the qwords `+0x10` and `+0x18`, the dwords `+0x20`, `+0x28`,
+  `+0x30`, `+0x34` and `+0x3C`, the qword `+0x40` and the dwords `+0x48` and `+0x4C` (`0x006A7B15`-`0x006A7B5E`).
+- `0x006C2960` stores -1 in the qword `+0x00` and 0 in the qwords `+0x08`, `+0x10` and `+0x18`
+  (`0x006C2967`-`0x006C2976`).
+- `0x006C4A60` also clears the qword `+0x00`, the dword `+0x08` and the qword `+0x10`; its qword store of
+  10000.0 at `+0x1C` clears the dword `+0x20`. When the address block + `0x28` is not null it then stores 1.0
+  in the float `+0x28` with 0 in the dword above it, 4 in the dword `+0x30` and 1 in the dword `+0x20`
+  (`0x006C4A78`-`0x006C4AA4`).
+- `0x006CFA50` also clears the qwords `+0x10`, `+0x28`, `+0x38`, `+0x40`, `+0x48` and `+0x68` and the dword
+  `+0x30` (`0x006CFA5A`-`0x006CFA7C`).
+
+Other constructors and destructors of this page's classes:
+
+- `0x005ACFA0`, slot `+0x00` of the `PTimeIntervalController` vtable `0x00D313B0`, is that class's deleting
+  destructor: it installs the base vtable `0x00D312F0`; with bit `0x1` of its second argument set and bit `0x4`
+  clear it frees the object through `0x00584730`; with both set it calls the empty `0x0016D6A0` with the size
+  `0x28` and frees nothing; it returns the object (`0x005ACFB2`-`0x005ACFE1`).
+- `0x005DBF60` installs the vtable `0x00D498B0` at `+0x00`; `0x005DC0B0` installs `0x00D498B0` and then `0x00D498D0`,
+  stores its second argument at `+0x08` and clears the dwords `+0x10` and `+0x18` and the qword `+0x20`;
+  both return the object (`0x005DBF60`-`0x005DBF6A`, `0x005DC0B0`-`0x005DC0D7`).
+- `0x006161A0` runs `0x005DCC40` on the object, clears the dword `+0x30` and calls `0x00627800(object + 0x30, 1)`,
+  clears the qwords `+0x78`, `+0x80`, `+0x88`, `+0x90`, `+0x98` and `+0xA0`, and returns the object
+  (`0x006161B6`-`0x00616205`).
+- `0x006332A0` installs the vtable `0x00D580B0`; when the node at `+0x08` is linked (its first qword is not its
+  own address) it calls slot `+0x48` of the owner at `+0x18` with the member; it runs `0x006B6700` on `+0x38`;
+  and it frees the name at `+0x20` with `0x00584730` when bit `0x1` of the byte `+0x28` is set
+  (`0x006332B7`-`0x006332EC`).
 
 `PConstantBufferBase` (`0xC` bytes, offsets from the start of the record):
 
@@ -771,6 +896,9 @@ The members below are the ones the code of this page's classes uses or the refle
 | `+0x20` | `f32` | m_localRange | the interval's length: `0x005C5330` wraps the elapsed parent time into it with fmodf (`0x005C5362`-`0x005C5392`); a negative length runs the interval backwards (sign -1.0, `0x005C5371`); m_localRange (f32), registered by `0x005B2990` (`0x00632960` at `0x005B2B7A`); no shipped .phyre file declares PTimeIntervalController |
 | `+0x24` | `u8[4]` | bytes24 | the bytes after m_localRange (`+0x20`) up to the end of the `0x28`-byte class; no registered member covers it (`0x005A9340` registers the `0x28`-byte class at `0x005A938A`) |
 
+For a negative `fmodf` result r, `0x005C5330` goes on with `r + sign * range` before it applies the sign and
+adds `m_localBase` (`0x005C5397`-`0x005C53B5`).
+
 `PTrigger` (`0x58` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
@@ -833,6 +961,40 @@ The members below are the ones the code of this page's classes uses or the refle
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x04` | `u8[4]` | bytes04 | `+0x4` to `+0x7`; no registered member covers it (`0x005DB7C0` registers the `0x10`-byte class at `0x005DB810`) |
+
+Three class registrations, a constructor, three deleting destructors and a placement constructor, read at
+the bytes:
+
+- `0x006625D0` registers `PShape`: `0x00632D80(descriptor, the result of 0x006373D0, the name 0x00D66048, 0x38, 8,
+  the result of 0x006372A0, 0)` at `0x00662620`; it then installs the vtable `0x00D66600`, sets bit `0x2` of
+  `+0xFC` and hands `0x02D395D0`, `0x02D39610` and `0x02D39650` to `0x0063DC80`, `0x0063DF90` and `0x0063DFA0`
+  (`0x006625EB`-`0x0066265F`).
+- `0x006BBAD0` registers `PModifierNetworkDynamicMesh`, a `0x78`-byte class, the same way at `0x006BBB1A` with
+  the name at `0x00D81778`, the alignment 8, the base `0x02D3A140` and 0; the vtable is `0x00D81268`, bit `0x2` of
+  `+0xFC` is set and
+  `0x02E57DE0`, `0x02E57E60` and `0x02E57EE0` go to the same three functions (`0x006BBAE6`-`0x006BBB59`).
+- `0x00791C20` registers `PDebugUtils`, name `0x01CB09D0`, size `0x58`, at `0x00791C70` with the alignment 8, the
+  result of `0x006372A0` and 0; the vtable is `0x01CB0BD0`, bit `0x2` of `+0xFC` is set and `0x02EAC0A0`,
+  `0x02EAC100` and `0x02EAC160` go to the same three functions (`0x00791C3B`-`0x00791CAF`).
+- Each of the three returns its descriptor (`0x00662665`, `0x006BBB5F`, `0x00791CB5`).
+- `0x00662A50` installs the vtable `0x00D68DF0`, clears the qword `+0x08`, the dword `+0x10`, the qword `+0x18`,
+  the dword `+0x20`, the qword `+0x28` and the dword `+0x30`, and returns the object (`0x00662A50`-`0x00662A71`).
+- `0x00675700`, slot 0 of `0x00D6C378`, the vtable of the `m_asset` member's helper, stores that vtable, runs
+  `0x00633770` on the object, frees the `0x20`-byte object through `0x00809950` when bit `0x1` of its second
+  argument is set, and returns the object (`0x0067570A`-`0x00675730`).
+- `0x0067E690` and `0x006B4170`, slot 0 of the caller objects' vtables under State, install the vtable
+  `0x00D27B80`, free the object through `0x00809950` when bit `0x1` of the second argument is set, with the
+  size `0x10` in `0x0067E690` and `0x18` in `0x006B4170`, and return the object (`0x0067E696`-`0x0067E6B2`,
+  `0x006B4176`-`0x006B4192`).
+- `0x006BE990`, the placement constructor of `PLight` (slot `+0x50` of the vtable `0x00D82B58`), skips a null
+  block and answers 1 (`0x006BE990`-`0x006BE9E1`).
+- On a block `0x006BE990` stores 0.5 in the floats `+0x00`, `+0x04` and `+0x08` and 1.0 in `+0x0C`, 0 in the
+  qwords `+0x10` and `+0x18`, the address `0x01F2ED48` in the qword `+0x20`, 0 in the dword `+0x28`, the float
+  `0x3EC90FDB` in `+0x2C`, 1.0 in the float `+0x30` with 0 in the dword above it, and `0x7F7FFFFF` in the
+  dword `+0x38` with 0 in the dword above it (`0x006BE995`-`0x006BE9D7`).
+
+`0x00819990`, which the note on the `+0x20` and `+0x18` reads under Project notes names, is the Lua collector's
+sweep of a table list's keys; it is described on [Lua runtime](../Third-Party-Libraries/lua-runtime.md).
 
 ## Shipped data
 
@@ -1228,11 +1390,19 @@ The core descriptors `PBase` (`0x02CF8270`), `PClassDataMemberDynamic`, `PClassD
 `PClassDescriptorDynamic`, `PClassMember`, `PCluster`, `PClusterDependencyList`, `PNamespace`, `PWorld`
 (`0x02CF8370`-`0x02CF8A80`) and `PSharray<PString>` (`0x02CF9530`) are built by their own code. Their rows cover:
 
-- `+0xC0`, `+0xC8`, `+0xD0`: the three static buffers, stored by the initialiser;
+- `+0xC0`, `+0xC8`, `+0xD0`: the three static buffers, stored by the initialiser, for `PBase` by its registrar
+  `0x006344A0` (`0x006344C0`-`0x006344DC`);
 - `+0x08`-`+0x28`: reset by the registrar only when bit `0x1` of `+0xFC` is set (`0x006344F8` and the same test
   in the others), which the class's own code leaves clear;
 - `PBase` `+0x38`: `0x006318A0` stores 1 through the descriptor (`0x00631913`), then the initialiser `0x00164180`
-  stores 0 (`0x00164197`).
+  stores 0 (`0x00164197`), installs the vtable `0x00D582D0` at `+0x00` and registers the teardown `0x008AF190` with
+  `0x00808B90` (`0x00164190`-`0x001641B3`).
+
+`0x006344A0` is the registrar of `PBase` `0x02CF8270`. It sets bit `0x20` of the flags `0x02CF836C`, stores the
+addresses `0x02CF8FA0`, `0x02CF8FA1` and `0x02CF8FA2` at the descriptor's `+0xC0`, `+0xC8` and `+0xD0`, calls
+`0x00639160(the qword 0x02CF82E0, 0x02CF8270)` and sets bit `0x40000000`. With bit `0x1` of the flags set it points
+the three qwords `0x02CF8278`, `0x02CF8280` and `0x02CF8288` at `0x02CF8278`, clears the dword `0x02CF8290` and the
+qword `0x02CF8298` and ends in a jump to `0x006388C0(0x02CF8270)` (`0x006344A4`-`0x00634532`).
 
 The default namespace `0x01F2E330` is built behind guard `0x02CF94EC` by whichever of `0x006316C0`-`0x00632780`,
 `0x00637A70`, `0x00638C90` and `0x0063C730` runs first, each storing the same empty lists. Its state word
@@ -1374,9 +1544,15 @@ The exit teardown, and the destructor `0x006BEC40` or `0x006C0FE0` (reached from
 `0x11` for a record with no name and `0x12` for a name already present.
 
 - `0x00167C50` registers the static record `0x01F31F78`, `UnsetTrigger`, and `0x008B6FC0` unlinks it at exit.
-- `0x006CD390`, `PNamedSemanticDynamic::FindOrCreateDynamic`, finds a name with `_stricmp`. On a miss it takes a
-  record from the pool `0x02E5C218` and a name slot from `0x02E5C240`, copies the name, sets the flag to 1 and
-  registers the record.
+- `0x006CD390`, `PNamedSemanticDynamic::FindOrCreateDynamic`, answers null for a null name and finds a name in
+  the list `0x02E5C210` with `_stricmp`, returning the record found (`0x006CD39D`-`0x006CD3C7`).
+- On a miss it reports through `0x005CDAA0(1, 0x00D4E5C0, name)` and takes a record from the pool `0x02E5C218`
+  and a name slot from `0x02E5C240`; an empty pool is grown first with `0x00680150(pool, the dword 0x02E5C234)`
+  for the records and `0x00680150(pool, the dword 0x02E5C25C)` for the slots (`0x006CD3DD`-`0x006CD455`).
+- With both in hand it copies the name and its terminator with `0x00861EBA`, stores the slot at the record's
+  `+0x00`, 0 at `+0x08` and 1 in the byte `+0x10`, and registers the record with `0x006CD4F0`. Without a
+  record or without a slot it does none of this and returns the record it has, null or unfilled
+  (`0x006CD45C`-`0x006CD4A4`).
 - `0x006CD5B0`, slot `+0x50` of `PNamedSemanticDescriptorForDynamicType<PTriggerType>` (`0x00D89F40`, the descriptor
   `0x006CD270` builds at `0x02E5C270`), copies every record's address into an array.
 
@@ -1386,12 +1562,33 @@ The engine set-up `0x005A08E0` calls `0x00638AE0` (`0x005A0AB7`), which walks ev
 `+0x10` of the object `0x006373D0` returns, linked through `+0x50`), gives every
 descriptor its per-type table entry at `+0xEC` (`0x00638C0A`). It stores the number of descriptors it walked. The run
 setup `0x0079F150` calls `0x0063C730` (`0x0079F539`), which reads that number and, when the world's per-type table (count
-`+0x10`, entries `+0x18`) does not already hold one more than it, gives the table that many `0x20`-byte entries and
-links each entry's list to itself.
+`+0x10`, entries `+0x18`) does not already hold one more than it, gives the table that many `0x20`-byte entries.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
 | `0x02CF8264` | `u32` | 0 (zero-filled tail of `.data`) | the number of class descriptors `0x00638AE0` numbered | `0x00638AE0` (`0x00638C40`) | `0x0063C730` (`0x0063C744`) |
+
+`0x0063C730(table)` takes n = the dword `0x02CF8264`. When n + 1 is not the table's count `+0x10` it asks
+`0x006343E0(n + 1, the array +0x18, the smaller of n + 1 and the count without its top bit)` for a new
+array; a null answer with n + 1 not 0 ends the function with the result `0xD`. It frees the old array with
+`0x00584730` when that differs from the new one, is not null and the count's bit `0x80000000` is clear,
+then stores the new array and the count n + 1 (`0x0063C744`-`0x0063C7A7`).
+
+`0x006343E0(count, old, keep)` returns null for a count of 0 or when `0x0017D260(count * 0x20, 8)` gives
+nothing. It copies the first keep entries of `0x20` bytes from old, and gives each further entry two links
+at the entry itself, a null qword `+0x10` and -1 in the dword `+0x18` (`0x006343FE`-`0x00634474`). Whether or
+not the array was replaced, `0x0063C730` then links entries 1 to n at the tail of the list headed by entry 0
+(`0x0063C7AA`-`0x0063C7E6`).
+
+Once, under the guard `0x02CF94EC`, it makes the default namespace `0x01F2E330`: the two links at
+`0x01F2E330` point at it, the links `0x01F2E340` and `0x01F2E348` at `0x01F2E340`, the dword `0x01F2E350` is 0,
+the links `0x01F2E358` and `0x01F2E360` point at `0x01F2E358`, and `0x008AF490` is registered with `0x00808B90`
+(`0x0063C892`-`0x0063C900`).
+
+It then walks the class list from the qword `0x01F2E340`, each class being its node less `0x50` and the
+next node the class's `+0x50`. For a class whose dword `+0xEC` is not negative it counts the links of the
+chain through `+0x78` and stores that count in the dword `+0x18` of the entry numbered by `+0xEC`. The
+result is 0 (`0x0063C814`-`0x0063C87B`).
 
 ### Two `PCameraProjection` script methods
 
@@ -1437,6 +1634,17 @@ and `getAssetType` in the method list `+0x90` (looked up with `0x005A7A40`), and
 `0x005A0470`). Each record's `+0x28` is set to 0 inside its guarded block. The caller object and the record's pointer
 to it are stored after the guard, on every call. The exit teardowns (`0x008B1CE0`, `0x008B1C20`, `0x008B1C80`, `0x008B1B40`,
 `0x008B1BA0`) unlink the records as above.
+
+Each of the five unlinks its record the same way and points the record's two qwords at the record itself:
+`0x008B1B40` for `0x02D3EB20` (`0x008B1B4D`-`0x008B1B70`), `0x008B1BA0` for `0x02D3EB80` (`0x008B1BAD`-`0x008B1BD0`),
+`0x008B1C20` for `0x02D3EA60` (`0x008B1C2D`-`0x008B1C50`), `0x008B1C80` for `0x02D3EAC0` (`0x008B1C8D`-`0x008B1CB0`) and
+`0x008B1CE0` for `0x02D3EA00` (`0x008B1CED`-`0x008B1D10`).
+
+Each also frees the record's name, copied into owned storage, through `0x00584730` when bit `0x1` of its
+attribute word `+0x20` is set: `0x008B1B40` the pointer the qword `0x02D3EB38` (`+0x18`) holds, under the byte
+`0x02D3EB40`; `0x008B1BA0` `0x02D3EB98` under `0x02D3EBA0`; `0x008B1C20` `0x02D3EA78` under `0x02D3EA80`; `0x008B1C80`
+`0x02D3EAD8` under `0x02D3EAE0`; and `0x008B1CE0` `0x02D3EA18` under `0x02D3EA20` (`0x008B1B77`-`0x008B1B87`,
+`0x008B1BD7`-`0x008B1BE7`, `0x008B1C57`-`0x008B1C67`, `0x008B1CB7`-`0x008B1CC7`, `0x008B1D17`-`0x008B1D27`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

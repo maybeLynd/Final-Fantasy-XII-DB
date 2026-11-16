@@ -225,6 +225,20 @@ Five kinds of record live inside these objects and are never collected on their 
 - a prototype's local-variable and upvalue descriptors are `0x10` bytes each, in vectors its loader allocates
   (`0x0082E103` in `0x0082E050`, `0x0082E7D7` in `0x0082E790`).
 
+`0x00819990(global state, first, end)` sweeps the keys of a list of tables; it does nothing when first equals
+end. Its caller `0x00819610` loads the global state from the `+0x18` of its Lua state (`0x00819631`).
+For each table from first, following the link `+0x30` until end, it visits every `0x28`-byte node of the
+hash part at `+0x20`, `1 << [+0x0B]` nodes in all. A node whose value tag, the dword `+0x08`, is 0, or
+whose key tag, the dword `+0x18`, lacks bit `0x40`, is passed over (`0x00819990`-`0x008199EC`).
+
+For a key tag whose low four bits are 4 the key object at `+0x10`, when not null and with either of bits
+`0x3` set in its byte `+0x09`, goes to `0x0081AE20(global state, key)` (`0x008199EE`-`0x00819A06`).
+
+For any other key tag, when the key object's byte `+0x09` has either of bits `0x3` set, the node's value tag
+becomes 0 (`0x00819A1F`) and its key tag `0xB` (`0x00819A2B`). Before the key-tag store the code tests bit `0x40`
+of the key tag (`0x00819A1A`) and bits `0x3` of the byte `+0x09` (`0x00819A25`) once more; both hold on this
+path, so the store is always made (`0x00819A0D`-`0x00819A2B`).
+
 ### Interpreter bodies outside the member list
 
 Three of the largest Lua functions are not in [`lua-runtime-members.tsv`](lua-runtime-members.tsv); each carries Lua's own

@@ -213,8 +213,25 @@ set, or the action id `+0x714` is at most `0x21E` with `+0x6B4` at 6 or more, it
 (`0x0030F02A`), copies the action state `+0x6B0`-`+0xB9F` into it, clears the action state and stores the slot at
 `+0xB88` (`0x0030F0F1`). With all 8 slots taken, `0x0030DFA0` returns 0 and nothing is saved.
 
+`0x0030EFF0` tests flag bit `0x1000000`, then the action id and `+0x6B4`, and answers 0 when either refuses
+(`0x0030EFFF`-`0x0030F01F`, `0x0030F114`) or when `0x0030DFA0` gives no slot (`0x0030F02A`-`0x0030F035`). The copy of the
+`0x4F0` bytes is `0x0030F047`-`0x0030F0E1`, and the clear of the action state is a fill through `0x00861EC0`
+(`0x0030F0EC`). After the store of `+0xB88` it clears flag bits `0x20` and `0x10000000` (`0x0030F0FD`) and
+answers 1.
+
 The next-action selector's
 `0x00308270` calls `0x0030EDA0` (`0x003082C6`), which copies the slot back and frees its bit.
+
+`0x0030EDA0` copies the `0x4F0` bytes back in nine passes of `0x80` and a tail of `0x70` from `+0xB30`
+(`0x0030EDB6`-`0x0030EE44`). The copy covers `+0xB88` itself (`0x0030EE3A`), so after it the pointer holds what the
+block held when it was saved. The slot search uses the pointer read at entry (`0x0030EDA0`) and, for one of the
+8 slots at `0x022BEFC0`, `0x4F0` bytes apart, clears the slot's bit in `0x022BEFB0` (`0x0030EE50`-`0x0030EE97`).
+`0x0030EDA0` answers 1 whether or not the pointer was one of the slots (`0x0030EE69`, `0x0030EE92`).
+
+`0x0030EDA0` uses the pointer `+0xB88` as the copy source without a null test (`0x0030EDBD`), and it makes no
+store to the flag dword, so it does not set again the two bits the save cleared. A save on a unit that
+already holds a slot copies the earlier pointer into the new slot with the rest of the state (`0x0030F0D9`);
+the restore then leaves `+0xB88` at that earlier slot, whose bit in `0x022BEFB0` stays set.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

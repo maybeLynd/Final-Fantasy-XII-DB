@@ -395,6 +395,19 @@ The actors come from a list the minimap tick rebuilds first: `0x003C6000` calls 
 128: handles to `0x022C8500` (`0x0035D500`), actors to `0x022C8700` (`0x0035D4F0`), the total at `0x022C8B00` (`0x0035D510`),
 and each manager's start and count at `0x022C8B02 + i` and `0x022C8B04 + i`.
 
+`0x0046BD60(m)`, which `0x0046B560` calls for a manager number (`0x0046B612`), fills the list of the manager that
+`0x00263FF0(m)` returns. For a manager whose byte `+0x10` has bit `0x1` clear it only stores 0 as the dword
+count `+0x1F8` (`0x0046BD6C`-`0x0046BD7A`, `0x0046BE6D`). Otherwise it walks the records from the word `+0x1DE` for
+the count in the word `+0x1D6`, each through `0x00358940`, whose answer it uses without a null test
+(`0x0046BD85`-`0x0046BDC3`).
+
+A record is left out when its byte `+0x18` is 1, when `0x00263C20` gives 6, when bit `0x20` of its byte `+0x0E`
+is clear, when `0x002E9FE0` or `0x002EA6A0` answers 0, or when `0x00263BE0` gives 1 while `0x002647B0` and `0x002675C0`
+both answer 0 (`0x0046BDC3`-`0x0046BE17`). Each listed record adds one dword to the list the qword `+0x1F0`
+points to (`0x0046BDA1`, `0x0046BE36`): `((w & 0x7FF) << 4 | (m & 0xF)) << 16 | index`, with `w` the record's word
+`+0x16` and `index` its 16-bit record index. The number listed goes to the dword `+0x1F8`
+(`0x0046BE19`-`0x0046BE5E`).
+
 `0x003C5130` rebuilds the minimap's marker list: one 32-byte entry per actor at `0x02B45A80` (count `0x02B45A70`), then the
 navigation icons (`0x00400550`), then `0x004000E0` merges them into the live list at `0x02B46280`:
 

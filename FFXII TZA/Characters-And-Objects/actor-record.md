@@ -157,6 +157,17 @@ The `+0x10` store is a word, clearing the mode and the run state (`0x003DB5C7`).
      and clears bit `channel` of `+0x06`, `+0x24` and `+0x26` when the channel empties;
   3. pushes the entry on the free list (`0x003DB650`), sets `+0x63` bit `0x2` and makes it the head.
 
+`0x003DB650(record, head, index)` links entry `index` in front of entry `head` in the 20-byte entries at record
+`+0xA0`, whose byte `+0x00` is the next index and byte `+0x01` the previous. The entry's next becomes `head`
+(`0x003DB6D1`) and, for a `head` other than `0xFF`, `head`'s previous becomes `index` (`0x003DB6C8`-`0x003DB6CD`).
+
+The entry's
+previous becomes `0xFF` when `head` is `0xFF` or has no previous (`0x003DB678`-`0x003DB6C3`); otherwise it takes the
+previous byte of the entry before `head`, and that entry's next becomes `index` (`0x003DB6B5`-`0x003DB6BE`). The
+function does not test its own entry pointer, which is null for an `index` of `0xFF` or a null record
+(`0x003DB656`-`0x003DB675`); with a null record the store at `0x003DB6C3` is made through that null pointer, to
+address 1.
+
 `0x002697A0(record)` re-issues a record's standing requests. It removes the first entry with a
 non-zero byte `+0x11` from channel 1 and then from channel 0 (`0x003DB420(record, channel, 3)`, which
 walks only that channel and only when its bit in `+0x06` is set), then runs `0x00269640`.
@@ -193,6 +204,13 @@ small accessors. Each takes the calling actor unless the row says otherwise:
 | `unkCall_5d0(v)` | `0x05D0` | `0x00269F60` | through the render record the secondary context's `+0x00` names (`0x003EC200`), dword `+0x738` = `v`, with the debug print `set root bone physical` |
 | `enable_by_chocobo(v)` | `0x040A` | `0x0033F650` | `+0x0B` bit `0x1` = `v != 0` (`0x0033F661`-`0x0033F66A`); the bit is read only while the leader rides (below) |
 
+`0x00269FC0` writes nothing for a null actor (`0x00269FC3`; its two stores to `+0x0E` are `0x00269FC5` and `0x00269FD1`).
+`0x00269EE0` writes nothing when the actor's `+0xC0` or
+the body at its `+0x138` is null (`0x00269EEA`, `0x00269EF6`; the store of `+0x119` is `0x00269EF8`). `0x00269F60` takes
+the secondary context from `0x002E97B0(actor)`
+and does nothing when that is null or its dword `+0x00` is -1; otherwise it ends in a jump to `0x003EC200` with
+that context's word `+0x00` and `v` (`0x00269F68`-`0x00269F81`).
+
 The distance verbs `distance3d`, `distance`, `distance_290`, `distance3d_291` (`0x028E`-`0x0291`) and
 `isrange`, `isrange_296` (`0x0295`, `0x0296`) read positions through `0x00265060(actor)`, which
 returns the movement context of a class-1 or class-3 actor and the static block `0x02099DC0` for any
@@ -213,6 +231,25 @@ without the bit as no candidate:
   `0x002675F6`-`0x00267603`).
 
 The initialiser's `+0x0B &= 0xC0` clears the bit, so every load starts with it clear.
+
+`0x0025BE50(entry, actor, other, bit, angle)`, the class-1 talk test, works on the context `c` at the actor's
+`+0xB8`, which it loads at `0x0025BE63` and uses without a null test.
+After the chocobo test above it goes on only when bits `0x1` and `0x4` of `c`'s byte `+0x5D` are both
+set, bit `0x1` of the actor's byte `+0x08` is set and bit `0x2` of its byte `+0x0C` is set
+(`0x0025BE92`-`0x0025BEC1`).
+
+While `c`'s byte `+0x5C` is 0 it tests the height: the float `+0x04` of `other`, its Y, must be at or above
+`c.Y - c[+0x6C] - other[+0xC0] × other[+0x24]` and at or below `c.Y + c[+0x68]`, with `c.Y` the float `+0x04`
+of `c`. Outside that band it clears bit `0x2` of the actor's byte `+0x0C` and returns (`0x0025BEC7`-`0x0025BF04`).
+
+Bit number `bit` of `c`'s dword `+0x60` must be set (`0x0025BF09`-`0x0025BF10`), the float `d` that
+`0x003A1960(other, c)` returns must be below the float `0x0209A2B0` (`0x0025BF12`-`0x0025BF30`), and
+`0x003A1BB0(angle, c[+0x50], other[+0x00], other[+0x08], c[+0x10], c[+0x18])` must answer non-zero
+(`0x0025BF32`-`0x0025BF67`).
+
+It then stores the entry's dword `+0x28` at `0x0209A2B4`, the actor's word `+0x00` as a dword at `0x0209A2B8`, `d` at
+`0x0209A2B0` and 1 in the byte `0x0209A2AA` (`0x0025BF69`-`0x0025BF84`), so `0x0209A2B0` falls with every candidate
+accepted.
 
 `0x002637D0(actor, default)` returns bit `0x2` of the secondary byte `+0x29` when the context exists (`0x002E97B0`), its
 dword `+0x00` is not -1 and that byte's bit `0x1` is set, and `default` otherwise. `0x002ED530(actor)` returns
