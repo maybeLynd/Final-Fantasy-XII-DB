@@ -86,6 +86,11 @@ record is gone (the entry's `+0x1E` is negative, `0x002E4C37`) or its stamp `+0x
 `0x002E96B0(actor)` answers the dword `+0x04` of the actor's context `+0xC0`, and -1 for a null actor or a null
 context (`0x002E96B0`-`0x002E96C5`).
 
+`0x0025AB30(actor)`, the per-`+0x04` teardown, reads the actor's byte `+0x04`: for 1 it calls `0x002E3AF0(actor)` and
+answers what that returns; for 2 it calls `0x003DE5F0(actor)` and for 3 `0x002E3D00(actor)`, both answering 0; for any
+other value it calls nothing and answers 0. In every case it then stores the word `0xFF00` at `+0x04`
+(`0x0025AB3A`-`0x0025AB8F`).
+
 `0x0031C250` takes the definition's selector: for an actor in roster slots 0-3 the byte at
 `[0x02EBF190] + 0x5A90 + slot × 2` (`0xFFFF` when `0x00322C50(0x17, slot)` fails or the byte is `0xFF`),
 otherwise word `+4` of the unit's record `+0x698` (`0xFFFF` without one). `0x0031C2F0` maps it to a

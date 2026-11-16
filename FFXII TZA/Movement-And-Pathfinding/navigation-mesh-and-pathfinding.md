@@ -237,6 +237,10 @@ run from four combat sites (`0x002FDBE9`, `0x002FDD69`, `0x00304D5B`, `0x0030834
    (`0x00325D61`-`0x00325D72`). In step 4 a null order record `+0x708` leaves bits `0x1` and `0x2` clear
    (`0x00325C7C`, `0x00325CA3`).
 
+`0x00313500(unit)` calls `0x003299B0(unit, 0x2002, 0)` and `0x002EACD0(unit dword +0x08, 1, unit + 0x08, 0x83)`, then ORs
+`0x40` into the unit's dword `+0x04`, `0x2000100` into its dword `+0x00` and `0x1000000` into its qword `+0x00`
+(`0x00313506`-`0x00313537`).
+
 ### The obstacle grid
 
 Beside the mesh the area keeps a coarse grid, built once per area (`0x003924B0`, in one block named
@@ -245,6 +249,10 @@ Beside the mesh the area keeps a coarse grid, built once per area (`0x003924B0`,
 `0x02AEE090`, a record of `0x02AEE0B8` = `0x24` bytes per cell at `[0x02AEE0A0]`, an occupancy byte per
 cell at `[0x02AEE0A8]` and a mask scratch at `[0x02AEE0B0]`. Each record is a bitset of 288 obstacle
 ids.
+
+`0x00384580(size, name, third, flags)` calls `0x0036C1D0(4, flags)` and `0x0036C1A0(6)`, takes the block from
+`0x0036A190(size)`, labels a block that is not null with `0x0036C660(block, name, third)`, calls `0x0036C110()` and
+`0x0036C140()` and answers the block (`0x00384594`-`0x003845DA`).
 
 `0x003924B0`, run by the area initialisation `0x002342F0` (`0x0023441E`), takes the grid's extent from `0x00383740`. That
 returns four floats: the low x and z from the dataset's words `+4` and `+6`, and the high x and z, the low value
@@ -267,6 +275,9 @@ every record, every occupancy byte and the 128-slot actor list at `0x02AEE0C0`, 
 | 0-127 | the actors of the actor manager's three slot groups (`0x00263FF0`, `0x00263C50(g, 3)`, `0x00263B50(g, 3)`, `0x00358940`), while the count is below 128; each is stored at `list[id]` | `0x002646C0` position; the larger of `0x00265090`'s two radii |
 | 128-159 | the dataset's trailer records, kinds 0 and 1 only (other kinds consume an id and mark nothing; the registry base 160 is fixed) | floats `+4`, `+8`; `+0xC`, or the larger of `+0xC` and `+0x10` for kind 1 |
 | 160-287 | a registry's active entries (`0x0032A6B0` count, `0x0032A6C0` active, `0x0032A6E0` position and radii), at most 128 | the entry's position; the larger of its two radii |
+
+`0x0032A6C0(index)` answers the first dword of the 12-byte entry `index`, the index taken as a signed dword, in the
+array at qword `+0x1D8` of the object `[0x0209A670]` (`0x0032A6C0`-`0x0032A6D8`).
 
 `0x00392200(id, x, z, r)` takes the cells under the square `[x - r, x + r] x [z - r, z + r]`, clamped to
 the grid, tests each cell's rectangle against the circle (`0x004690B0`), and for a hit sets bit value
@@ -296,6 +307,21 @@ Bits 128-159 test the segment against the trailer record of that index as a circ
 through `0x00468580`, handed the five dwords `+4` to `+0x14`), bits 160-287 against the registry entry's shape (`0x00468E50`); the first hit
 returns 1, else 0. Actor ids 0-127 are never tested here; `0x00391710` is the query that walks the
 listed actors.
+
+Both shape tests take a segment record (start `+0x00`, end `+0x10`, half-width float `+0x20`) and the shape.
+`0x00468D50(segment, circle)`, for a segment whose ends are equal in x and in z, takes `dx`, `dy` and `dz` from the
+start to the circle's first three floats (`0x00468D6B`-`0x00468DB8`). For any other segment it takes the closest point,
+`0x004691A0(&point, segment, segment + 0x10, circle)`, answers 0 when that point equals the start in x and in z, and
+takes them from the point (`0x00468DBD`-`0x00468E24`).
+
+It answers 1 when `halfWidth + [circle + 0x10]` is above `0x00861F14(dx^2 + dy^2 + dz^2)`, a jump to the import
+`[0x008C2BB8]`, and 0 for any other (`0x00468E28`-`0x00468E32`).
+
+`0x00468E50(segment, shape)` takes the closest point, `0x004691A0(&point, segment, segment + 0x10, shape)`, first
+(`0x00468E5A`-`0x00468E77`). Unless the ends are equal in x and in z, a point that equals the start in x and in z makes it
+answer 0 (`0x00468E7C`-`0x00468EC1`). Otherwise it answers 1 when `0x00468580(shape, &point) + halfWidth` is above
+`0x00861F14(dx^2 + dy^2 + dz^2)`, the differences being from the point to the shape's first three floats, and 0 for any
+other (`0x00468ED1`-`0x00468F60`).
 
 ### The actor queries
 
@@ -506,3 +532,18 @@ obstacle grid's records, occupancy bytes, mask scratch, count and actor list.
 
 In the `route` cells of these tables, `NavRunStateBlock` names the dataset's header, whose offsets are decoded at
 run time.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Resource: `0x0036A190` is called by `0x00249210`, `0x0024A1D0`, `0x00259DF0`, `0x0032E7C0`, `0x00379E90`, `0x00384420`,
+  `0x0051ED10`; `0x0036C110` is called by `0x00259DF0`, `0x00384420`; `0x0036C1A0` is called by `0x00259DF0`, `0x00384420`;
+  `0x0036C660` is called by `0x00384420`.
+- Resource: those functions are documented on
+  [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md),
+  [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md),
+  [startup constants](../Engine-Core/startup-constants.md).
+- Resource: and on
+  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md),
+  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).

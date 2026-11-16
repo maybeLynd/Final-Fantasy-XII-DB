@@ -38,6 +38,16 @@ unit's `+0x698` record and returns 0 before the waypoint step and the solver (`0
 solver, block flag bit `0x400` (`+0x170`) zeroes the block's `+0xD8` and runs `0x00313500`, and flag bit `0x80`
 zeroes `+0xD8`, clears itself and calls `0x003003F0` (`0x00325D0F`-`0x00325D5C`).
 
+`0x00325D90(unit)` answers 0 when the unit's dword `+0x1F0` has bit `0x1000` or `0x2000`; when the dwords `+0x3C` and
+`+0x64` of the record `+0x698`, taken together, have a bit of `0x8000401B`; when the unit's dword `+0x60` is `0x2006`,
+`0x2037` or `0x2039` to `0x203C`; when its byte `+0x6B7` is not 0; or when the object at its `+0x708` exists and bit
+`0x4` of that object's byte `+0x04` is set (`0x00325D96`-`0x00325DF8`). The record pointer `+0x698` is read with no null
+test.
+
+Past those it answers 1 when `0x003590D0()` is not the unit's dword `+0x08`, when the same two record dwords have a bit
+of `0x08000020`, or when the unit's word `+0x714` is `0x414E`. Otherwise it answers 0 when `0x0030BCD0(unit)` answers 0
+or bit `0x40000` of the unit's dword `+0x00` is set, and 1 when neither holds (`0x00325DFA`-`0x00325E50`).
+
 The solver writes its results back: the block's `+0xD8` from the context's speed `+0xB0`; `+0xDC`,
 `+0xF4` and `+0xE0` from the desired heading, pitch and limited heading `+0xB4`-`+0xBC`; `+0x170`
 from the flags copy `+0xCC`; `+0xC0`-`+0xC8` from the detour point `+0x50`-`+0x58` (written by
@@ -46,24 +56,48 @@ from the flags copy `+0xCC`; `+0xC0`-`+0xC8` from the detour point `+0x50`-`+0x5
 
 ### The solver context
 
-`0x00336710(ctx, block, 1)` fills a working context from the block: four positions at `+0x60`,
-`+0x70`, `+0x80` and `+0x90` into `ctx + 0x00`, `+0x10`, `+0x20` and `+0x30` with `w` = 1.0; the
-larger collision radius `max(+0x10C, +0x110)` at `+0xA0`; the three heading floats `+0xDC`, `+0xF4`,
-`+0xE0` at `+0xB4`, `+0xB8`, `+0xBC`; the unit from the slot byte `+0x177` (`0x00236820`) at `+0xF0`
-and its actor handle's record at `+0xD8`; the flags `+0x170` at `+0xCC`; the step scale `+0x108`
-at `+0xC0`, raised to 2.0 below 2.0 unless the unit's definition byte `+0x18` has mode 2.
+`0x00336710(ctx, block, t)` fills a working context from the block: four positions at `+0x60`, `+0x70`, `+0x80` and
+`+0x90` into `ctx + 0x00`, `+0x10`, `+0x20` and `+0x30` with `w` = 1.0 (`0x00336733`-`0x003367AD`); the block's own
+address at both `+0x108` and `+0x100` (`0x003367B4`-`0x003367BB`); the larger collision radius `max(+0x10C, +0x110)` at
+`+0xA0`; 0 at the speed `+0xB0`; and the three heading floats `+0xDC`, `+0xF4`, `+0xE0` at `+0xB4`, `+0xB8`, `+0xBC`
+(`0x003367C2`-`0x003367FF`).
 
-It also stores the party leader's actor at `+0xE8` and its position at `+0x60`, and the distance
-to the goal at `+0xC8`.
+The unit comes from the slot byte `+0x177`: `0x00236820(slot)` is called twice. The first answer's dword `+0x08`, read
+with no null test, goes to `0x0031ABE0(handle)`, whose answer, the actor handle's record, is stored at `+0xD8`
+(`0x00336805`-`0x00336819`); the second answer is the unit stored at `+0xF0` (`0x0033684F`-`0x00336869`). Between them the
+flags `+0x170` go to `+0xCC`, and `0x00203080(ctx + 0x80, ctx + 0x20, ctx)` and `0x00203080(ctx + 0x70, ctx + 0x10, ctx)`
+store the goal minus the position and the step point minus the position (`0x00336820`-`0x0033684A`).
 
-When the goal kind `+0x160` is 3, or `+0x40` is 1 or 2, the target unit of the handle `+0x150`
-(`0x0031B7E0`, `0x003588B0`) is stored at `+0xF8`/`+0xE0`, its position at `+0x40`, its radius at
-`+0xA4`, its bearing at `+0xA8` and the distance to it at `+0xC8`. The stop distance `+0xAC` is
-`radius + targetRadius + 0.1` when `+0x40` is 1, else the block's `+0xD0`.
+The step scale `+0x108` goes to `+0xC0`; it becomes 2.0 when 2.0 is above it, unless the unit has a definition
+`+0xE68` whose byte `+0x18` has mode 2 (`0x00336870`-`0x003368AC`). The builder then clears bit `0x1` of `+0xD0`
+(`0x003368B6`).
 
-For a unit with order
-`0x4124`, or `0x4022` while the party is fleeing (`0x00253B90` non-zero, [force fight mode](../Engine-Core/force-fight-mode.md)), `0x0033D3E0(ctx, leader, 1)`
-sets `+0xD0` bit `0x1` when it does not return 1: the leader is reachable in a straight walk.
+When `0x003272A0()` answers a unit, the party leader, a second `0x003272A0()` call gives it again (`0x003368C7`); the actor
+`+0x10` of that second answer, read with no null test, is stored at `+0xE8`, and the actor's position at `+0x60` with
+`0x00265020(actor, ctx + 0x60, ctx + 0x64, ctx + 0x68)` (`0x003368BD`-`0x003368E3`); with no leader it stores 0 at `+0xE8`
+(`0x0033693B`).
+
+With a leader, for a unit with order `0x4124`, or `0x4022` while the party is fleeing (`0x0030C0D0()`, a jump to
+`0x00253B90`, non-zero; [force fight mode](../Engine-Core/force-fight-mode.md)),
+`0x0033D3E0(ctx, ctx + 0x60, 1)` sets `+0xD0` bit `0x1` when it does not return 1: the leader is reachable in a straight
+walk (`0x003368E8`-`0x00336932`). The unit `+0xF0` is read there with no null test.
+
+The distance to the goal, `0x004686D0(ctx, ctx + 0x20)`, goes to `+0xC8` (`0x00336942`-`0x0033694E`). The builder then
+zeroes the target unit `+0xF8`, the target position `+0x40` and the vector `+0x90`, each with `w` 1.0, and the target
+radius `+0xA4` (`0x00336956`-`0x00336984`).
+
+The target is sought only when `t` is 1, and then only when the goal kind `+0x160` is 3 or the block's `+0x40` is 1 or
+2 (`0x0033698B`-`0x003369AD`): `0x0031B7E0(handle)` with the block's handle `+0x150` is stored at `+0xF8` and
+`0x003588B0(handle)` at `+0xE0` (`0x003369B3`-`0x003369D0`).
+
+With both found, `0x002646C0(actor, ctx + 0x40, ctx + 0x44, ctx + 0x48)` gives the target position;
+`0x00203080(ctx + 0x90, ctx, ctx + 0x40)` stores the position minus it; the radius `+0xA4` is the larger of the two
+floats of `0x00265090(actor, &a, &b)`; the bearing `+0xA8` is `0x004687F0(v)` with `v` the target position minus the
+position; and `+0xC8` becomes `0x004686D0(ctx, ctx + 0x40)` (`0x003369D7`-`0x00336A6D`).
+
+`0x00336710` does not set `a` and `b` before that call, so for a target actor that is not class 3, for which `0x00265090`
+writes nothing, the radius is whatever the two stack slots held. The stop distance `+0xAC` is
+`[+0xA0] + [+0xA4] + 0.1` when the block's `+0x40` is 1, else the block's `+0xD0` (`0x00336A75`-`0x00336AAA`).
 
 ### Which solver runs
 
@@ -88,7 +122,8 @@ that slot holds.
 
 ### The default solver
 
-`0x0033BED0(ctx)`: when `0x00336040()` is 0 it zeroes the speed and runs `0x00469A50` on the unit pair.
+`0x0033BED0(ctx)`: when `0x00336040()` is 0 it calls `0x00469A50([ctx+0xF0], [ctx+0xF8])`, the unit and its target, and
+zeroes the speed `+0xB0` (`0x0033BEE4`-`0x0033BF00`).
 Otherwise it sets the speed `+0xB0` from the step distance, clears `+0xCC` bit `0x80`, and runs in order
 the detour recovery `0x0033C870` and the stall recovery `0x0033C200`; when neither claims the step and
 the flag word's countdown bits (`0x7FE0`) are clear, it runs the spacing pass `0x00338140` for goal
@@ -97,6 +132,14 @@ steering dispatcher `0x00339F00` instead.
 
 Those three paths end in `0x0033BFB0`; a step claimed by
 `0x0033C870` or `0x0033C200`, and the `0x00336040` = 0 path, return without it.
+
+`0x00469A50(a, b)` calls `0x0046AB10(h, m, &context)` and returns what that call leaves in rax: `h` is `0x00320A30(a)`, or 0
+for a null `a`, and `m` is `0x0A` when `a` equals what `0x003272A0()` answers, a null `a` against an answer of 0
+included, and 8 otherwise. The context is 48 zeroed bytes with `h` at `+0x00`, `0x00320A30(b)` at `+0x08`, 0 for a null
+`b`, and at `+0x28` the word `+0x714` of `a` as a dword, 0 for a null `a` (`0x00469A5C`-`0x00469AE0`).
+
+`0x0046AB10` returns at once when that context dword `+0x28` is `0x1FF` or more, a signed test (`0x0046AB19`-`0x0046AB29`);
+the order words `0x4124`, `0x4022` and `0x414E` named above are all in that range.
 
 When `0x0033A570` stops the unit (speed `+0xB0` = 0, `0x0033A5F7`) it also turns the limited heading `+0xBC` from
 the current heading by the slow rate `+0xEC` (`0x00334120`): for a block goal kind `+0x160` of 1 toward the
@@ -269,6 +312,11 @@ normalises it, leaving zero for a vector within `1e-6` of zero, and `0x00202FE0`
 `0x00202F00`, `0x00202E90` and `0x00202F70` copy a matrix and turn it about y, x and z (`0x00217880`,
 `0x00217790`, `0x00217970`).
 
+`0x00468700(v)` is the pitch of a vector: 0 when 0.01 is above its y and that y is above -0.01 (`0x00468715`-`0x00468733`).
+Otherwise it makes two copies of `v` with x and z exchanged, `(z, y, x, 1.0)` and `(z, 0, x, 1.0)`, passes each to
+`0x00469320(copy)`, takes `c = 0x00202D20(first, second)`, the sum of the three float products, and answers `0x0046F460(c)`,
+or `0x0046F460(c - 1.0)` for a `c` above 1.0, negated when 0 is above y (`0x00468749`-`0x004687D4`).
+
 `0x00203170` writes the identity matrix that `0x0033CC80`, `0x0033D890` and the
 collision sweep's `0x0022EF20` start from. The same vector library holds `0x00203030` (x, y and z times a
 scalar, the fourth float copied as it is, `0x0020306E`), `0x00202CA0` (the four floats times the reciprocal
@@ -299,22 +347,42 @@ into `+0x2D` and stores the new bearing.
 
 ### The flier's pitch and the look-ahead point
 
-`0x00337470(ctx)` returns 0 for any mover class but 3. A flier takes a reference point: the target
-position `+0x40` when the goal is kind 1, the step point is the goal and the unit is not of
-definition mode 2; else the step point. Two points lie along the route toward the current region's
-waypoint (the path record's `+0x90`): `A` at `+0x110 + 0.1`, `B` at the waypoint's flat distance
-plus `+0x110`.
+`0x00337470(ctx)` returns 0.0 unless the block's mover class byte `+0x174` is 3 (`0x00337490`-`0x003374A1`, `0x003376D7`). A
+flier takes a reference point `R`: the context's target position `+0x40` when the block's goal kind, its `+0x40`, is
+1, the step point `+0x10` equals the goal `+0x20` in x and z, and the unit `+0xF0` is null, has no definition `+0xE68`
+or is not of definition mode 2; else the step point `+0x10` (`0x003374A7`-`0x003374F7`).
 
-Each takes the terrain height (`0x003208C0`) when its ground is walkable for the mover class
-(`0x0026E100`), else the reference's. The aim is `B` or the reference, whichever is higher, when `A`
-plus the step scale is not above the unit; otherwise the higher of `A` and `B` when either is above
-the reference, else the reference. The pitch is `0x00468700` toward the aim raised by the step scale.
+Two points lie along the route toward the waypoint `W` of the route's start region, `(x, 0, z, 1.0)` from the path
+record's `+0x90` (`0x00337500`-`0x00337542`). The bytes read these as the block's dword `+0x184` for the region `r` and
+its floats `+0x210 + 8 * r` and `+0x214 + 8 * r`: the page's path `+0x04` and path record `+0x90` are those offsets
+less `0x180`, and its `+0x188` and `+0x190 + r` are path `+0x08` and `+0x10 + r`.
+
+`0x00203080(v, W, ctx)` gives `v = W - position`, whose y is then set to 0; `0x004692F0(v, len)` rescales it and
+`0x00202B10(P, v, ctx)` gives the point `P = v + position`: `A` with `len = [+0x110] + 0.1`, and `B` with
+`len = 0x004686D0(W, ctx) + [+0x110]`, the waypoint's flat distance and the block's `+0x110` (`0x00337547`-`0x003375B5`).
+
+`0x003208C0(R.x, R.z, &R.y)` first replaces the reference's own height by the terrain height under it
+(`0x003375BA`-`0x003375C8`). `A` and `B` each take theirs the same way when its ground is walkable for the mover class
+(`0x0026E100`): `0x0032A6A0(point, class, 0)`, a jump to `0x0026E100`, answering other than 0. A point for which it answers
+0 becomes a copy of the whole reference, not only of its height (`0x003375CD`-`0x0033764B`).
+
+With `s` the step scale `+0xC0`: when `A.y + s` is above the unit's y `+0x04`, the aim is `R` if `R.y` is at or above
+both `A.y` and `B.y`, else `A` if `A.y` is at or above `B.y`, else `B`. When it is not above, the aim is `R` if `R.y`
+is at or above `B.y`, else `B` (`0x0033764F`-`0x003376A9`). The aim's y is then raised by `s`, and the function returns
+the pitch `0x00468700(v)`, with `v` from `0x00203080(v, aim, ctx)`, the aim minus the position; it stores it nowhere
+(`0x003376AE`-`0x003376D0`).
+
+`0x0026E100(point, w, c)` jumps to `0x00231400(part, point, w, c)` with `w` cut to a word and `c` passed as a dword; the
+part is `[0x0209A678]` while the qword `0x0209A670` is not 0, and null otherwise (`0x0026E100`-`0x0026E11E`).
 
 `0x00335180(out, ctx)` is the look-ahead point. Starting from the route's start region (path `+0x04`)
 it takes that region's waypoint, and while the region is not the goal and has a next region it
 advances when the unit's position lies inside a triangle of the next region (all three edge crosses
 of one sign) or within 0.2 of one of its edges (`0x00468F70`); at most 128 steps. The point's height
 is the terrain height plus the step scale for a flier, else the unit's own.
+
+`0x00468F70(record, c)` jumps to `0x00469410(record, record + 0x10, w, c)` with `w` the record's float `+0x20`
+(`0x00468F70`-`0x00468F7C`).
 
 ### The definition modes and the circling formation
 
@@ -330,19 +398,21 @@ limited heading back to the block's `+0xD8`, `+0xDC`, `+0xF4` and `+0xE0`.
 
 `0x0033D890(ctx)` is mode 2. While the unit's status words (`+0x3C | +0x64` of the stats record) lack
 KO (bit `0x1`) and the battle-state word `0x02089340` lacks bit `0x20`, the unit moves at `speedA` along its
-limited heading with pitch 0. A KO'd mode-2 unit whose `0x40`-byte slot record (`0x0208DE80` indexed
-by unit byte `+0xEA9`) has `+0x1C` bit `0x1` joins the circling formation instead:
+limited heading with pitch 0. A KO'd mode-2 unit whose `0x40`-byte slot record has `+0x1C` bit `0x1` joins the
+circling formation instead; the slot record is `0x0208D480` indexed by the stats record's byte `+0x04` when that
+record's byte `+0x05` is 0, and otherwise `0x0208DE80` indexed by the byte `+0xEA9` of the unit `0x0031B860` answers:
 
-1. the first such unit in a frame runs `0x00337C10`, which counts the KO'd mode-2 enemies into
-   `0x022C7CEB`, finds an enemy of mode 5 (the last one in the unit table) and advances the shared
-   angle `0x022C7CE0` by `0x02EC0F84`, wrapped by `0x0033CB70` (`0x00337CBA`-`0x00337CD6`);
+1. a circling unit runs `0x00337C10` while `0x022C7D04` bit `0x1` is clear: the first in a frame when a mode-5 enemy
+   exists, every one when none does (the bit is set only once it is found, `0x00337CB4`, `0x00337D6D`). `0x00337C10` counts
+   the KO'd mode-2 enemies into `0x022C7CEB`, finds an enemy of mode 5 (the last one in the unit table) and advances the
+   shared angle `0x022C7CE0` by `0x02EC0F84`, wrapped by `0x0033CB70` (`0x00337CBA`-`0x00337CD6`);
 2. `0x00337C10` also samples the centre `0x022C7CF0` from that enemy's position: on a call
    with the counter `0x022C7D00` at 0, which starts counting when the enemy moves (speed `+0x158`
    non-zero); then, from the tenth call on, on every call until a call finds it stopped and resets
    the counter; it sets `0x022C7D04` bit `0x1`;
 3. each circling unit takes the next place `0x022C7CE9`: its goal `+0x20` is 1.0 from the centre at
-   the angle `0x022C7CE0 + place * 2pi / count` (0 apart with fewer than two), raised to its step scale
-   plus 3.2, and its step scale `+0x108` becomes 1.5;
+   the angle `0x022C7CE0 + place * 2pi / count` (0 apart with fewer than two), its y replaced by the context's step
+   scale `+0xC0` plus 3.2, and the block's step scale `+0x108` becomes 1.5;
 4. within 0.1 of the goal the slot record's `+0x1C` bit `0x2` is set; until then the speed is `3.0 / (30 *
    [0x01DFE0B8])`, after it the distance capped at `7.0 / (30 * [0x01DFE0B8])`;
 5. the desired heading and pitch aim at the goal (`0x004687F0`, `0x00468700`) and the limited heading
@@ -351,10 +421,46 @@ by unit byte `+0xEA9`) has `+0x1C` bit `0x1` joins the circling formation instea
 With no mode-5 enemy `0x00337C10` returns after the count, leaving the angle, the centre and `0x022C7D04` as they
 were (`0x00337CB4`).
 
+By address: `0x0033D890` reads the stats record `+0x698` of the unit at context `+0xF0`, and its two status dwords with
+no null test (`0x0033D8A8`-`0x0033D8C1`). With bit `0x1` clear in both, it ends at once when the byte `0x02089340` has bit
+`0x20`; otherwise it stores the limited heading `+0xBC` at `+0xB4`, the block's dword `+0xF8`, read through the
+context's block pointer `+0x108`, at `+0xB0`, and 0 at `+0xB8`, and ends (`0x0033D8C3`-`0x0033D8F9`).
+
+The slot record: when the stats record is not null and its byte `+0x05` is 0, the slot is `0x0208D480 + 0x40 * n` with
+`n` its byte `+0x04`. Otherwise `0x0031B860(stats record)` answers a unit, kept at `0x02EBF188`; a null answer ends the
+body, and the slot is `0x0208DE80 + 0x40 * n` with `n` that unit's byte `+0xEA9` (`0x0033D906`-`0x0033D94D`). A slot whose
+byte `+0x1C` has bit `0x1` clear ends the body as well (`0x0033D953`-`0x0033D957`).
+
+While the byte `0x022C7D04` has bit `0x1` clear it first calls `0x00337C10()` (`0x0033D95D`-`0x0033D976`). It stores 1.5 in
+the block's step scale `+0x108`, through the same pointer (`0x0033D97B`-`0x0033D982`), and takes the place angle
+`0x0033CB70(a)` with `a = place * (2pi / count) + [0x022C7CE0]`, the place the byte `0x022C7CE9` and the count the byte
+`0x022C7CEB`; for a count of 0 or 1, an unsigned test, the quotient is not formed and the first term is 0
+(`0x0033D98C`-`0x0033D9CC`).
+
+The bit `0x1` of `0x022C7D04` and the place byte `0x022C7CE9` are the mode 1 body's too (`0x0033DFD0`): in a frame with
+units of both modes the places run across both bodies, and whichever sampler sets the bit first keeps the other from
+running.
+
+The goal: `0x00202FE0(v, 0x01F004C0, 1.0)` gives `v = 1.0 * {0, 0, 1.0, 1.0}`, all four floats of the axis; `0x00203170(m)`
+and `0x00202F00(m, m, 0x0033CB70(angle))` build the turn about y; `0x00202B70(v, m, v)` turns the vector; and
+`0x00202B10(ctx + 0x20, 0x022C7CF0, v)` stores centre plus vector as the goal `+0x20`. Its y `+0x24` then becomes
+`[ctx+0xC0] + [0x00D10B04]`, the step scale plus 3.2 (`0x0033D9D1`-`0x0033DA51`).
+
+`d = 0x004686D0(ctx, ctx + 0x20)` is the flat distance from the position to the goal. When 0.1 is above `d` it sets bit
+`0x2` of the slot's dword `+0x1C`. With that bit clear the speed `+0xB0` is `3.0 / ([0x01DFE0B8] * 30.0)`; with it set
+it is `min(d, 7.0 / ([0x01DFE0B8] * 30.0))` (`0x0033DA56`-`0x0033DAC3`).
+
+Last it takes `g = goal - position` with `0x00203080(g, ctx + 0x20, ctx)`, stores `0x004687F0(g)` at `+0xB4` and
+`0x00468700(g)` at `+0xB8`; takes the centre minus the position with `0x00203080(g, 0x022C7CF0, ctx)` and stores
+`0x004687F0(g)` at `+0xBC`; and makes the place byte `[0x022C7CE9] + 1` (`0x0033DACB`-`0x0033DB2E`).
+
 The field frame clears `0x022C7D04` bit `0x1` and the place counter `0x022C7CE9` each frame (`0x0033B6D0`, after
 `0x00338490`), and the area initialisation clears the block (`0x0033A380`). `0x00337A00`, at start-up, sets the angle step
 `0x02EC0F84` to `2 / (30 * [0x01DFE0B4])` radians and stores `[0x01DFE0B4] * 240` beside it at `0x02EC0F80`.
 `[0x01DFE0B4]` is the integer 1 in the image, so the formation turns 2 radians a second.
+
+`0x0033A380()` stores 0 in the six qwords `0x022C7CE0`, `0x022C7CE8`, `0x022C7CF0`, `0x022C7CF8`, `0x022C7D00` and `0x022C7D08`,
+calls `0x004696A0()` and then stores 0 in the dword `0x022C7D10` (`0x0033A380`-`0x0033A3B5`).
 
 ### Spacing and avoidance
 
@@ -380,26 +486,39 @@ Then:
 `0x0033D660(ctx, a, b)` is the pair clearance: with both radii from `0x00265090` it takes
 `a.+0x1A8 - (ra + rb)`, halved for a party unit `a` and divided by 3 otherwise, and returns 1 when the
 distance to `b` is below `a.+0x1A8` and either unit's definition byte `+0x12` is negative, or
-`0x00334C90` is at most that margin, and the raised segment between them (`0x00318CA0`) returns below 2.
+`0x00334C90` is at most that margin, and the raised segment between them (`0x00318CA0`) returns 0 or 1, an unsigned test,
+so that its -1 fails (`0x0033D843`-`0x0033D846`).
 
 A null `a` or `b` returns 0 (`0x0033D68C`, `0x0033D695`). Each radius is the larger of the two floats `0x00265090` gives
-for the unit's actor `+0x10`, 0 without an actor (`0x0033D6D1`-`0x0033D71E`). The spacing `+0x1A8` is `a`'s
-(`0x0033D72E`, `0x0033D765`); `a` counts as a party unit when its record `+0x698` has byte `+5` 0, and without a
-record the margin `m` is divided by 3, `m / 3.0` (`divss`, `0x0033D751`), where a party unit's is `m × 0.5`
-(`mulss`, `0x0033D747`; `0x0033D723`-`0x0033D751`).
+for the unit's actor `+0x10`, 0 without an actor (`0x0033D6D1`-`0x0033D71E`); for an actor that is not class 3 `0x00265090`
+writes nothing and `0x0033D660` has not set the two stack slots, so the radius is then whatever they held.
+
+The spacing `+0x1A8` is `a`'s (`0x0033D72E`, `0x0033D765`); `a` counts as a party unit when its record `+0x698` has byte
+`+5` 0, and without a record the margin `m` is divided by 3, `m / 3.0` (`divss`, `0x0033D751`), where a party unit's is
+`m × 0.5` (`mulss`, `0x0033D747`; `0x0033D723`-`0x0033D751`).
 
 The distance is flat (`0x004686D0`), from the position `ctx + 0x00` to `b`'s actor position (`0x002646C0`, the origin
 when `b` has no actor; `0x0033D69E`-`0x0033D6CD`, `0x0033D760`). The `+0x12` test counts a unit only when its record
 `+0x698` has byte `+5` 1 and its definition `+0xE68` is present; it reads bit `0x80` of byte `+0x12`, `a` first
 (`0x0033D776`-`0x0033D7C6`).
 
-The segment runs from the position to `b`'s, each raised by its actor's height `0x00263940` (0 without an actor),
-with 0 for both other arguments (`0x0033D7DF`-`0x0033D83E`). Every other path returns 0 (`0x0033D87C`).
+The segment runs from the position to `b`'s, each raised by its actor's height `0x00263940` (0 without an actor):
+`0x00318CA0(from, to)` (`0x0033D7DF`-`0x0033D83E`). The 0 the caller also puts in r8d and r9d is overwritten unread
+(`0x00318CB3`, `0x002315FC`). Every other path returns 0 (`0x0033D87C`).
 
 It reads only the first 16 bytes of the context, the position. Its callers are the spacing pass `0x00338140`
 (`0x003382F2`), the orbit `0x0033BAA0` (`0x0033BB1F`), the approach point `0x00339630`, which hands it a point in place of
 a context (`0x0033994A`), and `0x0033A1E0(block)`, which builds a context with `0x00336710(ctx, block, 1)` and returns
 `0x0033D660(ctx, unit +0xF0, target unit +0xF8)` (`0x0033A1F9`-`0x0033A221`); `0x0033A1E0`'s caller is `0x00304D15`.
+
+`0x00265090(actor, out1, out2)` writes only for a class-3 actor (byte `+0x03 & 0xE0` = `0x60`): it jumps to
+`0x003DA710(o + 0x50, out1, out2)`, `o` being the object at the actor's `+0xB8`, which copies the dwords `+0x00` and
+`+0x04` it is given, that object's `+0x50` and `+0x54`, to the two outputs and skips a null output
+(`0x00265090`-`0x002650A5`, `0x003DA710`-`0x003DA724`). For any other class the outputs keep what they held; neither the actor
+nor its `+0xB8` pointer is tested for null.
+
+`0x00318CA0(a, b)` answers -1 while the qword `0x02EC1378` is null, and otherwise the word `0x002315E0([0x02EC1378], a, b)`
+answers, sign-extended (`0x00318CA0`-`0x00318CC4`).
 
 `0x00334C30(ctx)` is the orbit step angle: with `c = 2pi * d`, `d` the flat distance from the target position
 `+0x40` to the unit, it returns `speedA / c * 2pi` radians, or 0.0 when `speedA` exceeds `c`
@@ -485,6 +604,9 @@ distance `0x00334950` is compared with the stored `+0x10`: a drop of over 0.01 r
 step is then claimed as well. With the leader animating a move it answers 0 at once, even after a 2
 (`0x0033C298`-`0x0033C2A5`).
 
+`0x00265830(actor)` answers the float `+0x24` of the object at `+0xF0` of the actor's movement context `+0xB8` for a
+class-3 actor, and 0.0 for any other class, with no null test (`0x00265830`-`0x00265851`).
+
 `0x00334950(ctx)` is the length from the unit's position along the route's waypoints, region by region from the
 start region `+0x184` of the object at context `+0x108` (`0x00334987`, `0x003349B4`; `+0x188`, `+0x190` and `+0x210`
 below are in the same object), until the region holding the leader position, context `+0x60` (`0x00384130`), the goal
@@ -502,11 +624,29 @@ distance `0x004686D0`, `w[r]` the route's x and z at `+0x210 + 8 × r` and the n
 [gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md).
 
 A taken point also zeroes the stall counter `+0x14` and answers 1 (`0x0033BEB0`-`0x0033BEC8`); a sample whose x and
-z equal the destination `+0x30` ends the search with 0 (`0x0033BE5E`-`0x0033BE78`). `0x003347C0(out, ctx, length)`
-walks from the position along the same waypoints (path record `+0x90`, each with y 0, at most 128 regions from
-the start region to the goal region or a `0xFF` link), subtracting each leg's flat length, and returns the point
-where the length runs out, the leg vector rescaled to what is left (`0x004692F0`), or the last waypoint
-(`0x00334802`-`0x0033491D`).
+z equal the destination `+0x30` ends the search with 0 (`0x0033BE5E`-`0x0033BE78`).
+
+`0x003347C0(out, ctx, length)` walks from the position along the same waypoints, those of the object at context
+`+0x108`, each with y 0. It first counts the regions of the route: from the start region `+0x184` it follows the link
+bytes `+0x190 + r` until the goal region `+0x188` or a `0xFF` link, 128 links at most (`0x003347E8`-`0x00334832`).
+
+It then copies the 16 bytes of the context's position `+0x00` to `out`, height included (`0x00334834`-`0x00334838`). A
+count of 1 or less would end the function there (`0x0033483C`-`0x0033483E`); the count starts at 1 and the loop adds 1
+before its first test, so it is 2 or more.
+
+For waypoint `i`, counted from 1, it takes the region reached after `i - 1` links from the start region, stopping at
+the goal region or a `0xFF` link, and the point `(x, 0, z, 1.0)` with x and z the floats `+0x210 + 8 × r` and
+`+0x214 + 8 × r` of that region `r`; `d = 0x004686D0(out, waypoint)` is the flat distance to it
+(`0x00334844`-`0x003348D0`).
+
+When `d` is above the length left, the walk ends there: `0x00203080(v, waypoint, out)` gives the leg
+`v = waypoint - out`, `0x004692F0(v, length)` rescales it to the length left, and `0x00202B10(out, v, out)` makes
+`out = v + out` (`0x003348D5`-`0x0033491D`). Otherwise `length -= d`, `out` becomes the waypoint and the walk goes on;
+when the waypoints run out, `out` is the last one (`0x003348DA`-`0x003348F1`). It returns `out`.
+
+The rescale runs only on the leg where the walk ends, and `0x004692F0` normalises over x, y and z while `d` was flat.
+When that leg is the first, `out` is still the full position while the waypoint has y 0, so the leg vector carries
+minus the position's y into the rescale; on any later leg `out` is a waypoint, with y 0.
 
 `0x0033C310` runs under the same order gate (`0x4124`, or `0x4022` while fleeing) with the
 leader present and not animating a move and the remaining route under 6 units. When the unit's
@@ -525,9 +665,14 @@ and returns 1.
 
 `0x0033BFB0(ctx)` handles a unit whose flags `+0x170` have bit `0x200`: when the angle between the
 block's `+0x140` direction and the step exceeds 135 degrees, it probes the heading stored as a
-byte at block `+0x20` (`byte * pi / 128`) and, when clear and `+0x21` bit `0x1` set, takes that
+byte at block `+0x20` (`byte * pi / 128`, less `2pi` above pi: bytes 129 to 255 give negative headings) and, when
+clear and `+0x21` bit `0x1` set, takes that
 heading with the rate `+0xE8` and clears the countdown. Otherwise it stores the desired heading as
-that byte, `(wrap(h) * 128 / pi)`, 0-256 wrapped, and sets `+0x21` bit `0x1`.
+that byte, the low byte of `min(n, 256)` with `n = (int)(wrap(h) * 128 / pi)` and 256 added to a negative `n`, so 0 to
+255, and sets `+0x21` bit `0x1`.
+
+The flags, the direction, the heading `+0xE0` and the rate `+0xE8` are the block's, read through the context's block
+pointer `+0x108`; the byte, its flag and the countdown are read and written through `+0x100`.
 
 The step is the step point `+0x10` minus the position, `s = [+0x10] - p` (`0x00203080`, `0x0033BFE0`-`0x0033BFEF`).
 The angle is `0x0046F460` of the dot product of the two normalised vectors, `a = 0x0046F460(c > 1.0 ? c - 1.0 : c)`
@@ -539,9 +684,31 @@ In bytes, with `d` the block's `+0x140` direction: `a = cross(d, s).y < 0 ? 2pi 
 `a > pi ? a - 2pi : a < -pi ? a + 2pi : a` (`0x0033C090`-`0x0033C0C9`). The byte is read at `0x0033C0EC` and `0x0033C144`
 and written at `0x0033C1CE`.
 
-The probe is `0x00335B60(ctx, heading, 0, 0.1, 0.8, 0)` (`0x0033C114`-`0x0033C135`). Taking the heading sets `+0xB4`
-to it and `+0xBC` to `0x00334120(+0xE0, heading, +0xE8)`, leaves the byte as it was and answers 1; every other
+The probe is `0x00335B60(ctx, heading, 0, 0.1, 0.8, 0)` (`0x0033C114`-`0x0033C135`). Taking the heading sets the context's
+`+0xB4` to it and the context's `+0xBC` to `0x00334120(e0, heading, e8)`, `e0` and `e8` being the block's `+0xE0` and
+`+0xE8`, leaves the byte as it was and answers 1; every other
 path stores the byte and answers 0 (`0x0033C164`-`0x0033C1D1`).
+
+By address: `0x0033BFB0` reaches the block through the context's two block pointers: `+0x100` for the byte `+0x20`, its
+flag byte `+0x21` and the countdown, and `+0x108` for the flags `+0x170`, the direction `d` at `+0x140`, the heading
+`+0xE0` and the rate `+0xE8`. The step `s` is `0x00203080(s, ctx + 0x10, ctx)` (`0x0033BFD9`-`0x0033C02D`). With bit `0x200`
+of the flags clear it goes straight to the store path (`0x0033C035`-`0x0033C03F`).
+
+Otherwise it normalises a stack copy of the direction, `0x004692E0(d)` (the block's `+0x140` is only read: `d` is x, y,
+z with `w` 1.0, copied at `0x0033C003`-`0x0033C02D`), and the step, `0x004692E0(s)`, takes `c = 0x00202D20(d, s)` and the
+angle `0x0046F460(c)`, or `0x0046F460(c - 1.0)` for a `c` above 1.0, and the cross product `0x00202E10(x, d, s)`
+(`0x0033C045`-`0x0033C090`); it goes on to the probe only when the absolute value of the folded angle is above
+`[0x00915730]`, 3pi/4 (`0x0033C0CD`-`0x0033C0E6`).
+
+The byte's heading is `g = byte * pi / 128`, with `[0x00915624]`, -2pi, added when `g` is above pi; it is formed twice,
+for the probe and for the store to the context's `+0xB4` (`0x0033C0EC`-`0x0033C110`, `0x0033C144`-`0x0033C16B`). The heading
+is taken only when the probe answers 0 and the block's byte `+0x21` has bit `0x1` (`0x0033C13A`-`0x0033C142`); taking it
+stores `0x00334120`'s answer at the context's `+0xBC` and clears bits `0x7FE0` of the block's dword `+0x00`
+(`0x0033C173`-`0x0033C195`).
+
+The store path takes `n = (int)(0x0033CB70(h) * 128.0 / pi)`, `h` the context's `+0xB4`, truncated toward zero, adds 256
+to a negative `n`, `n + 256`, and takes `min(n, 256)`. It sets bit `0x1` of the block's byte `+0x21` and stores the
+low byte of `n` at the block's `+0x20`, so 256 is stored as 0 (`0x0033C19D`-`0x0033C1CE`).
 
 `0x0033BC80(ctx, point)` is the ground check for class 3 against a non-class-3 target: it probes the
 terrain height under the point (`0x003208C0`), floors it at the target's y (`+0x44`), and when
@@ -568,6 +735,15 @@ Five predicates test a step. Every non-zero exit returns a literal small integer
 The straight walk `0x0033D3E0` goes region by region: from each region it takes the first portal, in region order,
 that is open to `class` and that the segment crosses, never stepping back into the region it has just left, and
 after 128 crossings without reaching `B`'s region it returns 0 (`0x0033D4A3`-`0x0033D612`).
+
+`0x00335E50(A, B, w, class)` builds its offset `o` in four calls: `0x00203080(o, A, B)`, the difference `A - B` float by
+float, after which the y of `o` is set to 0; `0x00202DE0(o, o)`; `0x00202E10(o, o, axis)`, the cross product with the axis
+`{0, 1.0, 0}` at `0x01F004B0`; and `0x00202FE0(o, o, w)` (`0x00335E86`-`0x00335EC6`).
+
+It then runs the straight walk up to three times and answers 1 at the first that returns 1:
+`0x0033D3E0(A + o, B + o, class)`, `0x0033D3E0(A - o, B - o, class)` and `0x0033D3E0(B + o, B - o, class)`; otherwise it
+answers 0. The sums come from `0x00202B10(out, a, b)` and the differences from `0x00203080(out, a, b)`, each over four
+floats (`0x00335ECB`-`0x00335F62`).
 
 The probes read the mover class `+0x174` afresh at each test. The forward clearance clamps its
 tolerance to `[0.2, 0.8]` (callers hand in 0.8) and divides the distance by `cos(pitch)` for a
@@ -760,8 +936,11 @@ x, y and z of the sampled enemy's position through the three pointer arguments o
 `0x022C7CE0`-`0x022C7D0F`.
 
 The mode 1 and mode 3 bodies drive formations of their own with six more words of the block, which `0x0033A380` clears
-with its first two 8-byte stores (`0x0033A386`, `0x0033A38D`). Once a frame, while `0x022C7D04` bit `0x1` is clear, the mode 1
-body `0x0033DFD0` runs `0x00337D90` (`0x0033E000`). That sampler counts the enemies in mode 1 into `0x022C7CEA` (`0x00337DAB`,
+with its first two 8-byte stores (`0x0033A386`, `0x0033A38D`). While `0x022C7D04` bit `0x1` is clear the mode 1 body
+`0x0033DFD0` runs `0x00337D90` (`0x0033E000`): once a frame when an enemy in mode 4 exists, and on every call when none
+does, as the sampler sets the bit only after finding one (`0x00337E47`, `0x0033811C`).
+
+That sampler counts the enemies in mode 1 into `0x022C7CEA` (`0x00337DAB`,
 `0x00337E17`), takes the centre from the enemy in mode 4, and runs the phase byte `0x022C7CE6` on the frame count `0x022C7CE4`,
 which it lowers by one a call while it is above 0 (`0x00338115`):
 
@@ -775,10 +954,68 @@ which it lowers by one a call while it is above 0 (`0x00338115`):
 - phase 3: the centre is sampled again (`0x00337EFB`); while `0x022C7CE7` is 0 (`0x00337F00`) the angle advances by twice the
   phase 1 step, and the phase stays 3 while the order word is `0x13` and becomes 0 otherwise (`0x00337F3A`).
 
+By address, `0x00337D90()` first stores 0 in `0x022C7CEA` (`0x00337DAB`) and walks the `0x00236850()` entries of
+`0x00321170(i)`. An entry counts only when the unit is not null, its stats record `+0x698` is not null and has byte
+`+0x05` equal to 1, and `0x003125E0(unit)` answers 0 (`0x00337DB2`-`0x00337DFB`). Of those, each unit with a definition
+`+0xE68` (tested for null) of mode 1 adds one to `0x022C7CEA`, and the last one of mode 4 is the enemy the rest uses
+(`0x00337DFD`-`0x00337E3D`).
+
+With no entries or no mode 4 enemy the sampler returns there: the phase, the angle, the frame count and `0x022C7D04`
+stay as they were (`0x00337DBC`-`0x00337DBE`, `0x00337E44`-`0x00337E47`).
+
+The centre `0x022C7CF0` is `0x00265020(actor, 0x022C7CF0, 0x022C7CF4, 0x022C7CF8)` with the actor `0x003588B0(enemy dword +0x08)`:
+three dwords, with `0x022C7CFC` not written. It is taken under the counter byte `0x022C7D00`. While the enemy's float
+`+0x158` compares equal to 0.0 the counter is set to `0xFF` and the centre is taken. Otherwise a counter of `0xFF`
+becomes 15 and the centre is not taken; a counter above 0, signed, becomes `counter - 1` and the centre is taken only
+when that is 0 or below; a counter of 0 or below takes the centre (`0x00337E4D`-`0x00337EAC`).
+
+The phase byte `0x022C7CE6` picks the rest (`0x00337EB1`-`0x00337ED5`); a value above 3 goes straight to the end. Phase 0
+calls the import `[0x008C3098]()` and stores the word 1 at `0x022C7CE6`: that word makes the phase 1 and `0x022C7CE7` 0. It
+then stores the count and goes on as phase 1 (`0x0033801D`-`0x0033804D`); a dword `[0x01DFE0B4]` of 0 gives the `div ecx` at
+`0x0033803C` a zero operand.
+
+Phase 1 tests the count first and the order word after it, so an order word of `0x13` wins over a count of 0, and it
+adds the angle step to `0x022C7CE0` on every call, also on the call that moves the phase (`0x00338014`-`0x003380E9`).
+
+Phase 2 acts only on a count of 0 (`0x00337F93`-`0x00337F9B`): `0x022C7CE7` 0 becomes 1 with a count of
+`30 x word [0x01DFE0B4]`; 1 becomes 2 with `(30 x dword [0x01DFE0B4]) >> 1`; 2 makes the phase 0 and `0x022C7CEC`
+`(old - 1) & 1`; any other value changes nothing (`0x00337FA1`-`0x0033800F`).
+
+Phase 3 takes the centre again, `0x003588B0(enemy dword +0x08)` and `0x00265020(actor, 0x022C7CF0, 0x022C7CF4, 0x022C7CF8)`
+(`0x00337EDB`-`0x00337EFB`). With `0x022C7CE7` not 0 it changes neither the phase nor the angle; otherwise the phase stays 3
+for an order word of `0x13` and becomes 0 for any other, and `2 * step` goes onto `0x022C7CE0` on that call too
+(`0x00337F00`-`0x00337F86`).
+
+Every call that found a mode 4 enemy ends the same way: the angle `0x022C7CE0` becomes `0x0033CB70(angle)`, a count other
+than 0 becomes `count - 1`, and bit `0x1` of `0x022C7D04` is set (`0x003380F1`-`0x0033811C`).
+
 The body then places each mode 1 unit. Unit `0x022C7CE9` of the `0x022C7CEA` (`0x0033E02B`, `0x0033E005`) stands at the angle
 `0x022C7CE0 + place x 2pi / count`, 0 apart with one unit, 2.2 from the centre (`0x00D10AF0`), and in phase 3 at 1.2 plus
 `0x022C7CE4 / (90 x [0x01DFE0B4])` (`0x0033E04A`, `0x0033E067`, `0x008FCC90`). In phase 3 with `0x022C7CE7` at 1 its limited heading turns
 by 0.4189 radians a call, the sign from `0x022C7CEC` (`0x0033E14A`, `0x0033E153`, `0x0033E164`, `0x0091602C`).
+
+By address: while the byte `0x022C7D04` has bit `0x1` clear `0x0033DFD0` first calls `0x00337D90()` (`0x0033DFF4`-`0x0033E000`).
+The place angle is `0x0033CB70(a)` with `a = place x (2pi / count) + [0x022C7CE0]`, the first term 0 for a count of 0 or
+1, an unsigned test (`0x0033E005`-`0x0033E045`). The radius `r` is `[0x00D10AF0]`, 2.2, outside phase 3, the byte `0x022C7CE6`
+equal to 3; in phase 3 it is `(float) [0x022C7CE4] / (float) (90 x [0x01DFE0B4]) + [0x008FCC90]`, a word over a dword
+product, the last being 1.2 (`0x0033E04A`-`0x0033E088`).
+
+The goal: `0x00202FE0(v, 0x01F004C0, r)` is given the axis `{0, 0, 1.0}` and the radius; `0x00203170(m)` and
+`0x00202F00(m, m, 0x0033CB70(angle))` build the turn about y; `0x00202B70(v, m, v)` turns the vector; and
+`0x00202B10(ctx + 0x20, 0x022C7CF0, v)` stores centre plus vector as the goal `+0x20`, whose 16 bytes are then copied to
+the destination `+0x30` (`0x0033E090`-`0x0033E0EE`).
+
+The speed `+0xB0` is `min(0x00339BF0(ctx), 0x004686D0(ctx + 0x20, ctx))` (`0x0033E0F3`-`0x0033E117`), and the desired heading
+`+0xB4` is `0x004687F0(g)` with `g` the goal minus the position, `0x00203080(g, ctx + 0x20, ctx)` (`0x0033E11F`-`0x0033E135`).
+
+For the limited heading it first takes the position minus the centre, `0x00203080(g, ctx, 0x022C7CF0)`
+(`0x0033E12E`-`0x0033E145`). In phase 3 with the byte `0x022C7CE7` at 1 the heading is
+`0x0033CB70([ctx+0xBC] + k x [0x0091602C])`, `k` being 1 while the byte `0x022C7CEC` is not 0 and -1 otherwise
+(`0x0033E14A`-`0x0033E185`). In every other case it is `0x00334120(e0, 0x004687F0(g), e8)` with `e0` and `e8` the block's
+floats `+0xE0` and `+0xE8`, read through the context's block pointer `+0x108` (`0x0033E18C`-`0x0033E1B7`).
+
+Either heading is stored at `+0xBC`, and the place byte becomes `[0x022C7CE9] + 1` (`0x0033E1BC`-`0x0033E1C4`). `0x0033DFD0`'s
+own instructions store nothing at the pitch `+0xB8`.
 
 The mode 3 body `0x0033DB60` drives one walk on the same count and phase words, lowering `0x022C7CE4` by one a call while it
 is above 0 (`0x0033DD0F`).
@@ -870,3 +1107,13 @@ hop:
   loaded from the context's `+0x100` or `+0x108` at S; `+slot`: kept in a stack slot;
 - `note`: the nine rows that reach neither, the stack slots and home-space saves and two pointers to other objects,
   each with what it reaches instead.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Input: `0x003590D0` is called by `0x00226BE0`; those functions are documented on
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
+- World area: `0x003590D0` is called by `0x0025E400`, `0x002623A0`; those functions are documented on
+  [actor record fields](../Characters-And-Objects/actor-record-fields.md),
+  [frame update order](../Engine-Core/frame-update-order.md).

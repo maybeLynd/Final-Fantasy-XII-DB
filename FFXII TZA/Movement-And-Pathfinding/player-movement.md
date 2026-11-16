@@ -34,6 +34,9 @@ the four lock bytes, and resets the camera basis (`0x004745B0(0x022C7FA0)`) and 
 `0x022C7FF4` in one 8-byte store (`0x00359130`). In retail
 play the stick always goes to `0x022C7FE0`.
 
+The reset `0x004745B0(basis)` stores 1 at the basis's dword `+0x00`, the stale mark, `0x12` at its dword `+0x04` and 0
+at its dword `+0x0C`, and nothing else (`0x004745B0`-`0x004745BD`).
+
 `0x003593A0` stops the controlled character (`0x0026D6D0`) when it sets an override while no override is set
 (`0x003593B2`-`0x003593C9`). When a different override is already set, also on the clearing call with 0, it stops that
 override's actor and runs `0x00259800(0)` (`0x003593D4`-`0x003593F0`). The handle is then stored (`0x003593F5`); a call
@@ -235,6 +238,11 @@ Bit `0x2` is set by `0x00322920` on the same
 two values, unit bit `0x1000000`, or an action `+0x714` below `0x21F` with `+0x6B4` above 8. The status
 words set bits `0x1` and `0x4` under `0x8800403B` and bit `0x2` under `0x8800003B`.
 
+`0x00322600(value)` answers 1 for `0x2006`, `0x2037`, `0x2039`, `0x203A`, `0x203B` and `0x203C` and 0 for every other
+dword: it tests bit `value - 0x2006` of the mask `0x7A000000000001` when that difference, unsigned, is `0x36` or less
+(`0x00322600`-`0x00322623`). `0x00322920(value)` answers 0 for `0x2001`, `0x2009` and `0x2031` and 1 for every other dword,
+from bit `value - 0x2001` of the mask `0x1000000000101` for a difference of `0x30` or less (`0x00322920`-`0x00322943`).
+
 The tail writes lock byte 1 bit `0x2` (the facing lock) from mask bit `0x4`, suppression bit `0x2` (the speed)
 from mask bit `0x1`, and the byte `0x0209A2C5` (`0x0026BD40`, read by `0x00265460` and `0x0026DFB0`, also
 written by `0x0026C8C0` and `0x002628B0`) from the inverse of mask bit `0x2`, which is not a stick lock.
@@ -269,6 +277,7 @@ Camera basis at `0x022C7FA0`:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | stale |  |
+| `+0x04` | `u32` |  | `0x12` at the reset `0x004745B0` (`0x004745B6`) |
 | `+0x08` | `f32` |  | cached stick yaw |
 | `+0x0C` | `f32` |  | smoothed output bearing |
 | `+0x10` | `f32[4]` |  | row 0 |

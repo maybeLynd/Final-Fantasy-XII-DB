@@ -58,11 +58,15 @@ Its callers are the actor's presentation set-up `0x002E28E0` and `0x002E3580`, w
 presentation and re-creates; the releasers `0x002E3D00` and `0x002E3AF0` run from the per-type
 presentation release and the manager release ([actor record](../Characters-And-Objects/actor-record.md)).
 A body lives exactly as long as its actor's presentation.
+`0x002E3D00(record)` frees the body, `0x003DAD00(body)` with the controller's `+0x138`, and stores 0 there; with no
+controller or no body it does nothing (`0x002E3D09`-`0x002E3D2D`).
 
 `0x0026A7C0(record, on)` (verb `setfloatstatus`) sets or clears the controller's `+0x151` bit `0x2` and
 re-runs `0x002682D0`; `0x0026ACE0` writes the same byte's bit `0x20`. `0x002646A0` returns an actor's body,
 `0x00264670` the ground height kept at the movement context's `+0xD4`, and `0x002644C0` and `0x00264EA0`
 the controller's `+0x151` bits `0x1` and `0x80`.
+`0x00264EA0(actor)` answers the controller's byte `+0x151 >> 7`, and 0 for an actor with no controller; the actor itself
+is not tested (`0x00264EA0`-`0x00264EB7`).
 
 ### The shape
 
@@ -84,7 +88,13 @@ The facing writer re-sizes the same way ([facing and steering](facing-and-steeri
 
 `0x0026A490(record)` sets the three percentages from the actor's character parameters (`0x003E6150`
 of the render record id, times 50): `0x9002322` to `+0x104`, `0x9002524` to `+0x105` and `0x9002423`
-to `+0x106`, or `{37, 50, 37}` without a render record, and re-sizes.
+to `+0x106`. Each is `(int)(0x003E6150(id, property) * [0x008F3130])`, the constant being 50.0 and the id the low word of
+the dword at the pointer `0x002E97B0(record)` answers (`0x0026A4B8`-`0x0026A4FF`).
+
+It takes `{37, 50, 37}` when `0x002E97B0(record)` answers null or the dword at its answer is -1 (`0x0026A4A7`-`0x0026A4B6`,
+`0x0026A505`-`0x0026A50C`). The three bytes `+0x104`, `+0x105` and `+0x106` are stored at the movement context `+0xB8`,
+and `0x00268380(record)` re-sizes, only for a class-3 actor; any other class gets no store and no re-size
+(`0x0026A50F`-`0x0026A53C`).
 
 ### Scale, radii and the interaction ellipses
 
@@ -206,6 +216,8 @@ The presentation set-up `0x002E28E0` gives `+0xE0` the model's parameter `0x0900
 the parameter `0x09000707` times `[0x01DFE0BC]`, both 0 without a render record, and then runs
 `0x00263640` (`0x002E2CF6`), which hands `+0xE4` to the render record as the verb does. The verb stores
 its value as given, without the `[0x01DFE0BC]` factor.
+`0x00263640(actor)` jumps to `0x002E86B0(actor, v)` with `v` the float `+0xE4` of the movement context `+0xB8` for a
+class-3 actor, and does nothing for any other class (`0x00263640`-`0x0026365E`).
 
 `0x002E86B0(actor, v)` writes the render record's `+0x420` (`[0x022C6F28] + id * 0x740`, only when its
 `+0x284` is non-zero); a null actor, a null controller, or a controller whose dword `+0` or word `+0` (the
@@ -253,6 +265,9 @@ argument before running their body: `rcmove`/`cmove` (`0x003E`/`0x0059`, `0x0035
 `rcmovea`/`cmovea` (`0x0040`/`0x005B`, `0x00348240`), `rmove`/`move` (`0x0042`/`0x005D`, `0x003488B0`),
 `rmovea`/`movea` (`0x0044`/`0x005F`, `0x00349080`), `ramove` (`0x04CE`, `0x00349680`) and `ramovea`
 (`0x04D0`, `0x00349D90`). The camera-side update reads it too ([player movement](player-movement.md)).
+
+`0x00348240(a, actor, c, d)` calls `0x002640E0(actor)`, hands its answer to `0x00267F60(d, speed)` and jumps to
+`0x00357980(a, actor, c, d)` (`0x00348254`-`0x00348293`).
 
 `fieldsign` (`0x00355A00`) also reads a third point record, or reuses the one it read last when the
 third index is negative: `0x0026BDD0` stores its three coordinates at a class-1 object's
@@ -354,6 +369,14 @@ tail `0x02B57CD0`, linked through the placement's `+0xA0`; `0x003DB0D0`) when ac
 controller's `+0x151` bit `0x80` (`0x00264EA0`). `0x003DAE20` returns the list's head; the highest-top search
 `0x0046DB50` walks it ([geometry primitives](geometry-primitives.md)).
 
+Before those tests `0x002E6330` needs the actor's byte `+0x18` not to be 1, a controller, and the controller's byte
+`+0x14F` bit `0x1` clear (`0x002E6336`-`0x002E6352`). Then come the actor's byte `+0x09` bit `0x40`, `0x002E9FE0(actor)`
+answering other than 0, and `0x00263FB0()`: an answer of 1 selects the test `0x00264EA0(actor)`, which must answer other
+than 0, and any other answer skips that test (`0x002E6354`-`0x002E6377`).
+
+After them it needs a body, the controller's `+0x138`, and last a controller byte `+0x14E` other than 0. It is the
+body it hands on, by a jump to `0x003DB0D0(body)` (`0x002E6379`-`0x002E639A`).
+
 ### The separation pass
 
 `World_UpdateSimulationTick` (`0x00314020`) runs `0x003DAA40` at `0x003140C5`, after its calls at
@@ -389,15 +412,25 @@ handed, so a mis-indexed call pushes only when the bodies really overlap.
 
 ### The pair resolver
 
-`0x00314F30(A, B)` calls `0x00314F50(A, B, 1, &out)`. In push mode (`mode` 1) it refuses, returning 0,
-unless both bodies have positive radii `+0xF0` and `+0xF4`, both are active this tick, their layer
-bytes `+6` are equal, and A's owner byte `+0x119` is zero or differs from B's; query mode (`mode`
-0, from `0x00313F80`) skips the active test and every write.
+`0x00314F30(A, B)` calls `0x00314F50(A, B, 1, &out)`. `0x00314F50(A, B, mode, out)` returns 0 for a null A
+(`0x00314F78`-`0x00314F7F`); B is read with no null test. It refuses, returning 0, when a radius `+0xF0` or `+0xF4` of
+either body is 0 or below (`0x00314F97`-`0x00314FCC`), when the layer bytes `+6` differ (`0x00314FEA`-`0x00314FF1`), and when
+A's owner byte `+0x119` is not 0 and equals B's (`0x00314FF7`-`0x00315008`). In push mode (`mode` other than 0; `0x00314F30`
+passes 1) it also refuses unless both bodies are active this tick, byte `+7` (`0x00314FD2`-`0x00314FE4`).
 
-With `0x003DAE00` reading each position
-offset by the accumulated pushes `+0x100`/`+0x108`, the vertical spans `[y + base, y + base +
-height]` must overlap, and `0x003DA5A0` must return a negative separation: the horizontal distance
-minus each body's ellipse extent along the joining line (`0x003DA730`: the offset rotated by the
+Query mode (`mode` 0, from `0x00313F80`) skips the active test, the two overlap tests below and every write to the
+bodies (`0x00314FD2`, `0x00315084`-`0x00315086`), so it answers for any pair that passes the radius, layer and owner tests,
+touching or not.
+
+In push mode `0x003DAE00(body, &position)` copies each body's position `+0x30`-`+0x38` and adds nothing
+(`0x0031508C`-`0x0031509E`, `0x003DAE05`-`0x003DAE13`). With `bottom = y + base` (`+0xE4`) and `top = bottom + height`
+(`+0xE0`), the resolver returns 0 when A's bottom is above B's top or B's bottom is above A's top, so a touch goes on
+(`0x003150A3`-`0x003150DE`). It then adds each body's accumulated push `+0x100` to its x and `+0x108` to its z
+(`0x003150E0`-`0x0031514C`).
+
+`0x003DA5A0(&v, A + 0xF0, &positionA, B + 0xF0, &positionB)` gives the separation (`0x003150E6`-`0x00315152`). The resolver
+returns 0 for a separation of 0 or above (`0x00315157`-`0x0031515C`); the separation is the horizontal distance minus each
+body's ellipse extent along the joining line (`0x003DA730`: the offset rotated by the
 body's heading, `(x^2 + z^2) / (x^2 / a^2 + z^2 / b^2)`) and the margins `+0xFC`.
 
 The rotation is by the negated heading (`0x003DA743`), `0x003DA730` returns 0 for a zero offset (`0x003DA7BF`,
@@ -417,13 +450,31 @@ A negative `wA` gives 0, a negative `wB` 1. These two tests run after the mask c
 last, so two negative weights give 1 (`0x00314E96`-`0x00314EA3`); only the `0xFF0000` overlap returns 0 at once,
 before them (`0x00314E83`).
 
-Then A receives `w * separation` and B `(1 - w) * separation` along the joining
-direction, added to `+0x100` (x) and `+0x108` (z), each body's `+0xE8` holding the squared length
-of the other's increment and `+0xEC` set.
+For any other separation the resolver zeroes the y and the fourth float of the vector `v` that `0x003DA5A0` wrote, runs
+`0x00202DE0(v, v)` and takes `p = -|separation| * v` in x and z (`0x003151C5`-`0x00315211`). The share is
+`w = 0x00314E10(A, B, wA, wB)`, in both modes, with the weights prepared as above (`0x00315017`-`0x0031506E`,
+`0x0031522E`-`0x00315241`).
+
+`0x00202DE0(v, v)` copies `v`, has `0x00216660` scale its x, y and z to length 1, or zero all four floats when the squared
+length is a NaN, infinite, or `[0x00907698]` (1.17549435e-38) or below, and then zeroes the fourth float
+(`0x00202DE6`-`0x00202DF4`, `0x00216666`-`0x00216711`). So two bodies at one x and z get `p` = 0 and are still counted and
+marked, and the push answer is still 1.
+
+A's increment is `w * p` and B's `-(1 - w) * p`, added to `+0x100` (x) and `+0x108` (z); the y `+0x104` is not written
+(`0x003152B2`-`0x00315369`). Each body's `+0xE8` is stored with the squared length of the other's increment, not added up,
+so it holds the last pair's value (`0x00315303`, `0x0031533F`), and both `+0xEC` bytes are set to 1 whatever `w` is
+(`0x0031531F`, `0x00315359`).
 
 `w` = 0 counts and marks (`+0xED`, `+0xEE` = 1) B only; `w` = 1 A only; otherwise both count and
-both `+0xEE` are cleared. In push mode every resolved pair returns 1. In query mode nothing is
-written to the bodies, `w` goes to `out`, and the return is 3 for `w` = 0, 4 for `w` = 1, else 2.
+both `+0xEE` are cleared (`0x00315244`-`0x003152AB`). In push mode every resolved pair returns 1 (`0x003152C2`). In query
+mode nothing is written to the bodies, `w` goes to `out` with no null test (`0x00315377`), and the return is 3 for `w` =
+0, 4 for `w` = 1, else 2.
+
+A refused query returns 0 and leaves `out` unwritten. `0x00313F80(first, second, out)` takes the two bodies
+`0x002646A0(first)` and `0x002646A0(second)` and returns 0, calling no query and writing nothing, when either is null
+(`0x00313F95`-`0x00313FAD`, `0x00313FE1`). Otherwise it hands the query a stack slot it has not set, copies that slot to its
+own caller's `out`, when that is not null, whatever the query returned, and returns the query's answer
+(`0x00313FAF`-`0x00313FE0`).
 
 Pairs resolved later in the tick see the pushes of pairs resolved earlier, because the resolver
 reads the accumulators it writes.
@@ -460,6 +511,28 @@ The same steps in bytes, with `d` the displacement and the focus actor `0x002640
 - else, when `d > 0`, `(record[+0x0C] & 0x10) == 0` and `record == 0x00264010(-1)`:
   `d = max(0x002E8000(record), d)` (`maxss xmm0, xmm6`, `0x002E52BE`-`0x002E52DA`);
 - `context[+0xEC] = d` (`0x002E52E2`) and, on the way out, `record[+0x0C] = record[+0x0C] & 0xEF` (`0x002E5353`).
+
+By address, the calls of `0x002E5180` in their order: `0x003590D0()` first, its answer not used (`0x002E51AC`); then the
+controller's byte `+0x151` loses bit `0x4`, when there is a controller (`0x002E51B1`-`0x002E51BD`); the focus
+`0x00264010(-1)` (`0x002E51C4`-`0x002E51C7`); `0x003DADE0(body)` for the ground height, stored at the context's `+0xD4`
+(`0x002E5217`-`0x002E521F`).
+
+When the body's byte `+0xEC` is not 0 comes the re-run `0x002E5610(record, body, context, &delta, 1)` with a delta of
+three zero floats; its answer is added to the context's float `+0xB8`, and the controller's byte `+0x151` gets bit
+`0x4` when there is a controller (`0x002E5227`-`0x002E5278`). When the byte is 0 comes `0x003DA9F0(body)` instead, with the
+body's `+0xEF` zeroed (`0x002E522E`, `0x002E5281`-`0x002E5289`).
+
+The measure is `0x003A1920(context, context + 0x10)` when record byte `+0x08` has bit `0x4` and
+`0x004686D0(context, context + 0x10)` otherwise (`0x002E5290`-`0x002E52A4`). After the `0x002E8000(record)` call of the list
+above (`0x002E52D1`) comes `0x00420A10(render record, d)`, only when there is a controller, its dword `+0` and word `+0`
+are not -1, the render record's address is not 0 and its dword `+0x284` is not 0 (`0x002E52F9`-`0x002E532C`); then, with
+no test, `0x00329A80(record, d)`, `0x002E4A40(record)` and `0x002E6000(record, 0)` (`0x002E5331`-`0x002E5349`).
+
+`0x002E8000(record)` answers 0.0 for a null record, no controller or a controller whose dword `+0` is -1
+(`0x002E8000`-`0x002E8014`, `0x002E804A`). It answers `[0x00D0F8E0]`, 0.011111, when the controller's word `+0` is -1, the
+render record's address is 0 or its dword `+0x284` is 0 (`0x002E8016`-`0x002E8043`), and otherwise jumps to
+`0x003E58B0(render record)` (`0x002E8045`). `0x00420A10(render record, d)` stores `d` at the record's `+0x23C`, or 0 when
+the record's dword `+0xC4` is -1 or its dword `+0x304` has bit `0x4000` (`0x00420A10`-`0x00420A2E`).
 
 ### The mask word
 
@@ -528,6 +601,21 @@ Three ranges the table above does not list:
 | `+0x010` | `u8[8]` | cleared010 | the eight bytes before the pair bitmap `+0x18`: the allocation `0x003DA8A0` zeroes them with the bitmap (`0x003DA9A0`) and the pool initialiser `0x003DAE30` zeroes them for every body (`0x003DAE6D`) |
 | `+0x050` | `f32[4]` | modelTint | the colour the actor's models are tinted with (red, green, blue, fourth): `0x002E4A40` hands the first three to `0x002EDD70` for each of the actor's models (`0x002E4AD9`-`0x002E4B44`), white when the controller's `+0x151` bit `0x20` is set; `0x002ED6A0` refreshes it from the ground tint `+0x60` (`0x002ED6CF`-`0x002ED6E4`) or, with actor byte `+0xB` bit `0x40` set, from a fresh sample at the position through `0x0026E530` (`0x0026E5A1`); four 1.0 at allocation (`0x00380C05`-`0x00380C1A`) |
 | `+0x118` | `u8` | cleared118 | set to 0 with the owner byte `+0x119` by the allocation's word store (`0x003DA995`) |
+
+The placement set-up `0x00380B80(placement)` writes every field that the table and the listing above mark "at
+allocation".
+
+In body offsets and in its order: bits `0x1F` of `+0x90` cleared (`0x00380B80`); `0xFFFF` in the words `+0x82`, `+0x86`,
+`+0x88`, `+0x8A` and `+0x80` (`0x00380B84`-`0x00380B97`); 0 in `+0xB0`-`+0xB7`, `+0xC0` and `+0xD0`-`+0xD7`
+(`0x00380B9B`-`0x00380BAA`); the two triples `+0x94` and `+0xA0` with 0 at `+0xAC` (`0x00380BB1`-`0x00380BD4`); 18.0 at
+`+0xC8` (`0x00380BDC`); the position `+0x30` and the orientation `+0x40` (`0x00380BE6`-`0x00380BFE`); and 1.0 in the eight
+floats `+0x50`-`+0x6F` (`0x00380C05`-`0x00380C36`).
+
+It writes nothing else of the body: not the displacement `+0x70`, the second cell `+0x84`, the word `+0x8C` or the
+blocked mask `+0x8E`. On a new body those keep the zeroes of the allocation's fill `0x00861EC0(body + 0x30, 0, 0xB0)`,
+which `0x003DA8A0` runs before the set-up (`0x003DA947`-`0x003DA975`), and the `0xFFFF` at `+0x88` replaces the 0 that
+`0x003DA8A0` stores there just before the call (`0x003DA96E`). The ground height `+0xAC` and the orientation's first float
+`+0x40` get their 0 as the upper dwords of two qword stores (`0x00380BD4`, `0x00380BEC`).
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
@@ -616,3 +704,10 @@ centre, each body's placement, accumulators, counters and pair bitmap.
 - [`movement-bodies-separation-cell-masks-accesses.tsv`](movement-bodies-separation-cell-masks-accesses.tsv): every
   access to the sector masks `0x02B57CE0` (32 sectors, two words each) through a register holding their
   address (81 rows).
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- UI: `0x003590D0` is called by `0x00299BD0`, `0x002C7660`; those functions are documented on
+  [party list](../Menus-And-HUD/party-list.md), [battle units](../Characters-And-Objects/battle-units.md).

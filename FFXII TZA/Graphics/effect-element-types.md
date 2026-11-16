@@ -585,6 +585,41 @@ to null (`0x0020E600`) it takes the first of the 32 handles that does not, or 0 
 count of 1 or 0 it stores 0. With the bit clear it does not write `+0x294`. It returns 1
 (`0x00449A16`-`0x00449A90`).
 
+`0x0044A180(element)` is the tail the birth calls. At the frame `+0x44` it samples three vector tracks through
+`0x00430B90(&local, track, frame)`: definition `+0xD0` into the element's `+0x110`, plus the element's `+0xE0` when
+definition byte `+0x49` has bit `0x8`; definition `+0x110` into the element's `+0x120`, times the element's `+0x100`
+float by float when it has bit `0x4`; and definition `+0x150` into the element's `+0x230` (`0x0044A1AB`-`0x0044A330`).
+
+It stores the integer track `+0x1A0`, `0x004314E0(definition + 0x1A0, frame)`, at `+0x290` and the colour track `+0x80`,
+`0x0042FDB0(definition + 0x80, frame)`, at `+0x240`, and calls `0x0026EE00(+0x240, +0x240, +0x1F0)` unless the element
+colour `+0x1F0` is `0x80808080` (`0x0044A335`-`0x0044A376`).
+
+With `v` the integer track `+0x30`, `0x004314E0(definition + 0x30, frame)`, unless `v` is 100 the byte `+0x243` becomes
+`[+0x243] × v / 100`: the byte is taken unsigned, the product is 32-bit, the division by 100 is signed and truncates
+toward zero, and only the low byte is stored (`0x0044A37B`-`0x0044A3A7`). The dword `+0x240` is then copied to `+0x1F4`
+(`0x0044A3AD`-`0x0044A3BA`).
+
+It builds the matrix `+0x250` with `0x00398480(+0x110, +0x250, definition byte +0x48)`, adds the element's `+0x60` to
+`+0x230`, moves `+0x90` to `+0xA0` and stores the new `+0x230` at `+0x90` (`0x0044A3C0`-`0x0044A466`). With a parent
+`+0x10` it runs `0x0039AF70(parent)` and `0x00398F90(+0x230, +0x230)`, and then `0x00397ED0(parent + 0x40, +0x250)` when
+definition byte `+0x4A` has no bit of `0x1C` (`0x0044A46E`-`0x0044A494`). It moves `+0x70` to `+0x80` and stores `+0x230`
+at `+0x70` (`0x0044A499`-`0x0044A4A9`).
+
+Each of the three vector operations above, `+0x110 + [+0xE0]`, `+0x120 × [+0x100]` and `+0x230 + [+0x60]`, works in
+the globals `0x022D92E0` and `0x022D92F0`: it stores its first operand at `0x022D92E0` and its second at `0x022D92F0`, writes
+the four result floats over `0x022D92E0`, and copies those 16 bytes to the element (`0x0044A1DC`-`0x0044A255`,
+`0x0044A28A`-`0x0044A303`, `0x0044A3D8`-`0x0044A43C`).
+
+The value `([definition+0x4A] >> 2) & 7` then picks one more step: for 3 it takes the 64 bytes that
+`0x002F3570(local, element)` returns, for 6 those that `0x002F35C0(local, element, +0xA0, +0x90)` returns, and passes a
+copy of them to `0x00397910(copy, +0x250, +0x250)`; any other value makes no call (`0x0044A4AE`-`0x0044A523`). It runs
+`0x003970F0(+0x250, +0x120)` when definition byte `+0x4B` has bit `0x2` and `0x0039ADE0(+0x250, +0x120)` otherwise
+(`0x0044A528`-`0x0044A53F`).
+
+Last it copies `+0x230` to `+0x280` with 1.0 at `+0x28C` and ends in the fork the other tails have:
+`0x005002E0(definition, +0x230)`, on 0 the release `0x002F31C0(element, [+0x08])`, otherwise `0x003A8950(2, element)`
+(`0x0044A544`-`0x0044A57E`).
+
 The draw `0x00449AB0` returns at once when the element's byte `+0` is 0, when bits `0x1C` of definition byte
 `+0x4A` are `0xC` and the element's `+0x40` is 0, or when the first handle, definition `+0x5A0`, decodes to
 null (`0x00449ACC`-`0x00449B07`). It then calls `0x0039B620` with the element's `+0x290`, and fills the composer's
@@ -633,8 +668,27 @@ count word `+0x16`), each called with the two decoded arrays, the output, the co
 the count (`0x00434F38`-`0x00434F47`). `0x00434CD0` returns 1, or 0 when state byte `+0x1F1` has bit `0x8` clear
 and `0x00399B80` answers non-zero (`0x00434ED9`-`0x00434F04`, `0x00435012`).
 
-Both call `0x00434C50(state, byte +0x1F1 & 7)`, which multiplies the state's matrix by `0x02AEEC30`
-(mode 1), `0x02AEEC70` (mode 2) or `0x02AEEA60` (modes 4 and 5); mode 4 first turns the matrix toward
+By address in `0x00434CD0`: it keeps the 64 bytes at `0x02AEECB0` in registers from the start (`0x00434D25`-`0x00434D72`) and
+writes them back on both paths (`0x00434E77`-`0x00434E8F`, `0x00434EE2`-`0x00434EFC`). While loading them it also stores two
+scratch pointers: `[0x02AEED58]` = `[0x02AEED50] + 32 × word +0x16` (`0x00434D62`) and `[0x02AEED90]` = that
+`+ 16 × word +0x14 + 24 × word +0x18` (`0x00434D8D`). Its call `0x00434C50(state, byte +0x1F1 & 7)`, told below, is at
+`0x00434D9E`.
+
+Bit `0x8` of byte `+0x1F1` is tested at `0x00434DF1`-`0x00434E07`: set, the positions go through
+`0x0039A150(positions, positions, e, count)`, with `e` the pointer the function stored at `0x02AEED90`, and then to the
+`0x0024E410()` test (`0x00434E0D`-`0x00434E19`); clear, they go through `0x00399B80(positions, positions, e, count)`
+(`0x00434ED9`). Bit `0x10` is tested at `0x00434E97`-`0x00434E9F`: set, the object's own 4-byte array is decoded through
+`0x0020E600(object dword +0x28)` (`0x00434EA8`) and handed unblended to
+`0x00432300(decoded array, state + 0x40, output, count)`.
+
+Bits `0x20` and `0x40` are tested at `0x00434F4C` and `0x00434FAF`: set, the object's own 8-byte or vector array, decoded
+the same way, is copied to the output by `memcpy` through the import thunk, `0x00861EBA(output, decoded array, length)`,
+the length `8 × word +0x18` for the 8-byte array (`0x00434F6D`) and `16 × word +0x16` for the vectors (`0x00434FD0`)
+(`0x00434F56`-`0x00434F74`, `0x00434FB9`-`0x00434FD7`). The blends decode each of their two arrays through `0x0020E600(handle)`
+as well (`0x00434DB2`-`0x00434DC5`, `0x00434F09`-`0x00434FF1`).
+
+`0x00434CD0` and `0x00435050` both call `0x00434C50(state, byte +0x1F1 & 7)`, which multiplies the state's matrix by
+`0x02AEEC30` (mode 1), `0x02AEEC70` (mode 2) or `0x02AEEA60` (modes 4 and 5); mode 4 first turns the matrix toward
 the point `0x02AEEAD0` from the position `+0x30` (`0x00434900`), and mode 5 turns it about one axis by
 the `atan2` of the same direction (`0x00434A70`). Then they project the positions; a rejected mesh
 draws nothing (`0x00399B80` at `0x00434ED9` and `0x0043526E`).
@@ -643,6 +697,10 @@ draws nothing (`0x00399B80` at `0x00434ED9` and `0x0043526E`).
   four (`0x00435050`) projected vertices are overwritten with fixed screen values, one set for locale ids 1–6
   (`0x00229E40`) and another for the rest. In `0x00435050` the rest takes one of two sets: one when the first vertex's
   screen x is below the second's (`0x00435218`), the other when it is not.
+- In `0x00434CD0` the six vertices lie 16 bytes apart. The word `+0x00` becomes `0x7233` in vertices 0, 2 and 4 and
+  `0x8DCC` in vertices 1, 3 and 5 (`0x00434E1B`-`0x00434E38`). The word `+0x02` becomes `0x80FF`, `0x80FF`, `0x7813`,
+  `0x7813`, `0x7FCC`, `0x7FCC` in vertices 0 to 5 for a locale id, `0x00229E40()`, of 1 to 6 (`0x00434E3C`-`0x00434E73`),
+  and `0x7ED0`, `0x7ED0`, `0x75E3`, `0x75E3`, `0x7D9C`, `0x7D9C` for any other (`0x00434EB8`-`0x00434ED7`).
 - Byte `+0x1F1` at `0x80` or above hands the mesh to `0x00438860`; bit `0x8` hands it to `0x00437130`.
   Otherwise `0x004355D0` runs its own loop over the `+0x1F0` layers.
 
@@ -862,8 +920,19 @@ and the grid's point counts (`+0x3F0`, `+0x3F4`) into the element block at `+0x2
 
 `0x005263F0` is the update tail. Definition byte `+0x3FF` bits `0x8`, `0x2` and `0x4` enable three disturbances,
 each a strength track (`+0x250`, `+0x260`, `+0x270`) and a position track (`+0x280`, `+0x2C0`,
-`+0x300`) in grid units. A disturbance with a non-zero strength stamps the grid; it then runs the
+`+0x300`) whose first two floats `p.x` and `p.y` are fractions of the grid: the point is `[block+0x10] × p.x`,
+`[block+0x14] × p.y`. A disturbance with a non-zero strength stamps the grid; it then runs the
 step `0x00545650` as many times as the integer track `+0x3C0` gives, at most 5.
+
+Before its disturbances `0x005263F0` samples tracks through `0x004309C0(track, frame)` at the frame `[+0x44] + [+0x2F0]`
+of the element. Four float tracks, definition `+0x90`, `+0xA0`, `+0xB0` and `+0xC0`, go to the block's `+0x70`,
+`+0x74`, `+0x78` and `+0x7C` (`0x00526421`-`0x00526492`). With bit `0x1` of the block's byte `+0x64`, four more, `+0x380`,
+`+0x390`, `+0x3A0` and `+0x3B0`, go to the block's `+0x90`, `+0x94`, `+0x98` and `+0x9C` (`0x0052656B`-`0x005265DD`).
+
+With bit `0x1` of the element's byte `+0x2FA` it also samples the vector tracks `+0x120` and `+0x160` through
+`0x00430B90(&local, track, frame)`. With `v1` and `v2` their first two floats and `a`, `b` the element's floats `+0x314`
+and `+0x318`, the block's `+0x20` and `+0x24` become `a + v2.x` and `b + v2.y`, and its `+0x28` and `+0x2C` become
+`a + v1.x + v2.x` and `b + v1.y + v2.y` (`0x00526497`-`0x00526566`). Without the bit those four floats keep their values.
 
 - `0x00545310(grid, x, y, h)` sets a 3 × 3 stamp: `h` at the point, `h / 2` at its four neighbours and
   `h / 4` at the corners; `0x00545490` adds the same stamp. Points within two of the edge are left alone.
@@ -873,8 +942,26 @@ step `0x00545650` as many times as the integer track `+0x3C0` gives, at most 5.
 - `0x00545650` updates every interior point from itself, its previous height and its four neighbours
   with `k1`, `k2` and `k3`.
 
+The three disturbances are coded alike: bit `0x8` at `0x005265E5`-`0x005266C0`, bit `0x2` at `0x005266C5`-`0x005267A0` and bit
+`0x4` at `0x005267A5`-`0x00526880`. Each samples its strength (`0x004309C0(track, frame)`) and its position
+(`0x00430B90(&local, track, frame)`) at the frame `[+0x44] + [+0x2F0]` and goes no further when the strength is 0.
+
+The stamp's point is `x = (int)([block+0x10] × p.x)` and `y = (int)([block+0x14] × p.y)`, the two block dwords read
+as unsigned and `p` the position's first two floats. Each product is truncated into a 64-bit register (`cvttss2si`,
+`0x0052666A` for `x`, `0x00526665` for `y`); the four stamp functions take the low dwords and compare both unsigned (the
+line forms after moving `y` back by `w >> 1`).
+
+The stamp call gets the block, `x`, `y` and the strength: `0x00545310(block, x, y, strength)`, or
+`0x00545490(block, x, y, strength)` when definition byte `+0x3F9` is not 0. With bit `0x20` of `+0x3FF` it is
+`0x00546DB0(block, x, y, strength, w, f1, f2)`, or `0x00547060(block, x, y, strength, w, f1, f2)` when `+0x3F9` is not 0,
+the last three being the element's word `+0x2F4` and its floats `+0x2FC` and `+0x308` (`0x00526632`-`0x005266C0`,
+`0x00526712`-`0x005267A0`, `0x005267F2`-`0x00526880`).
+
+The step count comes from `0x004314E0(track +0x3C0, frame)` at the same frame; a negative count runs no step and a count
+above 5 runs 5 steps of `0x00545650(block)` (`0x00526903`-`0x0052693C`).
+
 Before the steps the tail builds the surface's matrix: the identity (`0x00203170`) with the vector track at
-definition `+0x340` plus the element position `+0x60` as its position, which
+definition `+0x340` (`0x00430B90(&local, track, frame)`) plus the element position `+0x60` as its position, which
 `0x00202D70(matrix, matrix, parent)` replaces, when there is a parent, by the product with the 64 bytes at
 the parent's `+0x00` on the left (`0x00526885`-`0x005268E9`). With bit `0x80` of `+0x3FF` it then calls
 `0x00545FB0(grid, matrix)`, the grid being the element block `+0x230` (`0x00526424`, `0x005268EE`-`0x005268FE`).
@@ -884,6 +971,26 @@ the parent's `+0x00` on the left (`0x00526885`-`0x005268E9`). With bit `0x80` of
 For every record it first calls `0x00421E20(record, 0x100, 0, local)` and does not test the answer
 (`0x005463BD`-`0x005463C2`): for a record that call leaves without writing, one with no skeleton entry (`+0x18`
 is -1, `0x00421E49`) among its exits, the point p below is what the local held before.
+
+The four corners are made flat before they are turned (`0x00545FF1`-`0x005460D3`). With `a` and `b` the grid block's
+floats `+0x40` and `+0x44`, `w = ([+0x10] - 1) × [+0x48]` and `h = ([+0x14] - 1) × [+0x4C]`, they are `(a, 0, b)`,
+`(a - w, 0, b)`, `(a - w, 0, b - h)` and `(a, 0, b - h)`, each with 1.0 as its fourth float, and
+`0x00202B70(corner, matrix, corner)` turns each in place. In `w` and `h` the count is a dword, 1 is taken from it in 32
+bits, and the result goes to the float as an unsigned value before the product.
+
+From the turned corners `c0` to `c3` it takes `e1 = c1 - c0` and `e2 = c0 - c3` and calls `0x00202E10(n, e1, e2)`, which
+writes to `n` the cross product `e1 × e2` with 0 as the fourth float. It takes the length of `n` with
+`0x00861F14(squared length)` (`0x00546187`) and brings `n` to length 1, or to 0 when that length is below the float at
+`0x00908E10`, 0.000001 (`0x005460D8`-`0x005461E2`).
+
+It keeps the lengths of `e1` and `e2`, each `0x00861F14(squared length)`, the `sqrtf` of the squared length
+(`0x005461A2`-`0x00546241`). It then builds four vectors `(-(t.z - s.z), 0, t.x - s.x)`, one for each edge from `s` to
+`t`: `c0` to `c1`, `c1` to `c2`, `c2` to `c3` and `c3` to `c0`, and passes each to `0x00380800(v, v)`
+(`0x0054621A`-`0x0054631D`).
+
+The walk starts at the index in the dword `[0x022C6F28] + 0x48800` and ends at an index of -1. The record of index `i`
+is `[0x022C6F28] + 0x740 × i`, and the next index is the record's signed word `+0x04` (`0x00546322`-`0x00546332`,
+`0x005463A0`-`0x005463BA`, `0x00546656`-`0x00546666`).
 
 It takes a record whose word `+6` is -1, whose `+0x284` has bits `0x4000` and `0x4` set and whose `+0x2AE`
 has bit `0x2` clear (`0x005463C2`-`0x005463EA`), and for it:

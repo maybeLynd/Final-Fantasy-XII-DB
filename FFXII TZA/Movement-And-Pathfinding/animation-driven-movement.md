@@ -43,6 +43,9 @@ actor gets the 64 bytes zeroed again and nothing more (`0x002ED503`-`0x002ED52A`
 `0x0031B4B0`, which hands the unit `0x00263E30(actor)`, the selector and the view on to `0x0031ADB0`
 (`0x0031B4C8`-`0x0031B4DF`).
 
+`0x0031B4B0(actor, selector, view)` with a null actor skips `0x00263E30` and passes unit 0; either way it ends in a jump
+to `0x0031ADB0(unit, selector, view)` (`0x0031B4BA`-`0x0031B4DF`).
+
 Bit `0x4` writes the world position (`0x00265020`) of the actor behind the handle the view
 carried in at `+0x30`, here the render record's `+0x110` (`0x0041F311`-`0x0041F317`,
 `0x0031ADD1`, `0x0031AE7C`), into the view's `+0x10`-`+0x18` with `+0x1C` = 1.0, while the
@@ -136,6 +139,12 @@ with `0x003E56C0()` null or its byte `+0x111` zero the heading is zeroed, otherw
 90 degrees either way is flipped by `pi` and wrapped; then `0x003AED70` as usual. Modes 14 and 15 are
 the two profile rows no authored command names.
 
+`0x002E70E0(handle, request)` resolves the handle with `0x003588B0(handle)`. It does nothing for a null actor, a null
+controller `+0xC0`, a controller dword `+0x00` of -1, an actor byte `+0x0D` with bit `0x2` clear, a controller word
+`+0x00` of -1, a record address `[0x022C6F28] + 0x740 * n` of 0, with `n` that word, signed, or a record dword `+0x284`
+of 0, tested in that order (`0x002E70E9`-`0x002E712E`). Otherwise it ends in a jump to `0x003E65E0(record, request)` with
+that record (`0x002E7130`-`0x002E7138`).
+
 ### The profiles
 
 Every animation container carries one `@FRM` child ([container](../Graphics/model-files-cm-ca.md)).
@@ -157,6 +166,15 @@ whose `0x0020E600` gives 0 is left as it was. `0x003E6E60` returns the table add
 way (`0x003E6ECA`-`0x003E6EDB`), or 0 without a presentation entry, when `0x0020E600` of `+0xE0` gives 0
 or when `+0xE8` is -1 (`0x003E6E71`, `0x003E6EBF`-`0x003E6EC8`). That result is the list owner that
 `0x003E6340`, `0x003E68B0`, `0x003E6A70` and `0x003E6EF0` test.
+
+`0x004233D0(record, motion)` first resolves the resource, `0x003AB7F0(0x0020E600(record dword +0x42C))`, and in it the
+`@FRM` child: `0x00408F90(resource, 0x4D524640, 0)` gives an index and `0x00408F80(resource, index)` an answer `c`, taken
+as a signed dword (`0x004233DF`-`0x00423428`). It keeps the low 12 bits of the motion id, and an id below `0x100` is its
+own answer, with or without a resource (`0x0042342C`-`0x0042343A`).
+
+For a higher id it searches nine words at the 32-bit sum `c + 0x30 + [c + 0x34]`, zero-extended, skipping `0xFFFF`; a
+match at index `i` answers `0x3E + i` (`0x00423451`-`0x00423493`). The answer is -1 with no resource, an index of -1, a
+dword `[c + 0x34]` of 0 or no match (`0x0042344C`-`0x0042347B`).
 
 ```
 table[mode]   u32   offset of the profile from the table (a 0 is not tested: the consumer reads the table head as the profile)
