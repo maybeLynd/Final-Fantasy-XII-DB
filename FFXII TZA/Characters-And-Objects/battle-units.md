@@ -291,6 +291,11 @@ and capacity `+0x24` for `which` = 0 and MP `i16 +0x4C` and capacity `i16 +0x28`
 (`0x00320726`) and the current value for a percent of 0 or less (`0x0032073C`-`0x00320740`); its product is 64-bit
 and the division signed (`0x00320752`-`0x00320774`).
 
+`0x00320CA0(handle, out)` makes those tests in this order: `0x02089340` bit `0x10`, the handle through `0x003588B0`, the
+actor's unit through `0x00263E30` and the stats record `+0x698` (`0x00320CA6`-`0x00320CD3`). When all pass it writes the
+record's status words, `+0x64 | +0x3C`, to the dword `+0x00` of `out` and answers 1 (`0x00320CD5`-`0x00320CDD`); its 0
+leaves `out` unwritten (`0x00320CE8`).
+
 `0x0031BDC0(words, slot)` reads the stats record's equipment words `+0x50` (`0x0031BD80`): slots 0-4
 give the word itself and slots above 8 give `0xFFFF`. Slots 5, 7 and 8 give word 0 when
 `0x00322560` reports that word 0's row in the equipment table `[0x02EBF0F8]` has byte `+0x26` equal

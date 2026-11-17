@@ -182,6 +182,10 @@ outside, and 0 otherwise (`0x003B4064`-`0x003B4078`).
   address of 0, or a record whose dword `+0x284` is 0 (`0x002E83B0`-`0x002E83EA`).
 - `0x002392D0(actor, flags)` calls `0x002E83B0(actor, 0)` when `0x0031B760(actor)` answers non-null and `flags`
   has bit `0x10` (`0x002392E4`-`0x002392FB`).
+- The record initialiser `0x00420480` sets bits `0x1B` of `+0xD2`, bit `0x2` among them (`0x004204A7`).
+  `0x002E83B0(actor, 1)` would put back that default; its one native call passes 0 (`0x002392FB`), reached from
+  `btlAtelSetEntryFlag` (handler `0x00510300`, `0x0051031B`) through `0x002392D0` when the flags have bit `0x10`, so in the
+  game the bit, once cleared, stays clear until the initialiser runs again.
 
 When record `+0x6E0` is non-zero the bits are cleared and no distance fade applies; the other term of that test,
 `0x005C5230()`, returns 0. A culled record gets channels 0 and 4 ramped to 0 over one frame. Otherwise

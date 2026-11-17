@@ -62,6 +62,15 @@ and `0x01000010`-`0x01000016`. An id without bit `0x1000000` plays as the render
 `0x1000` (`0x003DDB85`-`0x003DDB8E`), the slot of that number of kind 1; the US scripts give 0, 1, 5, 10 and 53 this
 way (27, 26, 26, 1 and 1 steps).
 
+`0x003DDAD0(actor, unused, id)` is the same body with the float it passes to `0x002EB3E0` fixed at -1.0 (`0x01CEBC9C`,
+`0x003DDB1A`), where `0x003DDB40` passes its fourth argument (`0x003DDB52`, `0x003DDB92`). As in `0x003DDB40`, it overwrites its
+second argument, `edx`, at once with bit `0x80` of byte `+0xD` of `0x00263F40(actor)` for `0x002E8170`
+(`0x003DDAE0`-`0x003DDAEF`). The id is played as above (`0x003DDAF4`-`0x003DDB16`), and the call ends in `0x002EB3E0`
+(`0x003DDB2F`).
+
+Its callers are the untimed turn body `0x002690D0`, on its body-turn way (`0x0026937C`), and Mode 3 of the per-frame
+integrator `0x002E5750` (`0x002E59CC`), on [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md).
+
 | Entry | Id | Render event | Slot | Slot name in the motion archives |
 |---:|---|---|---:|---|
 | 0 | `0x01000000` | `0x1001` | 1 | `ready` (791 archives) |
@@ -109,3 +118,11 @@ Calls between the functions this page cites and code in other parts of the progr
 - Movement: `0x00267F60` is called by `0x00345430`, `0x003488B0`, `0x00349680`, `0x003548B0`; those functions are documented on
   [native commands](native-commands.md),
   [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md).
+- Actor entity: `0x00263F40` calls `0x003587C0`; those functions are documented on
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
+- Combat action: `0x00263F40` is called by `0x00307300`; those functions are documented on
+  [game over](../World-Areas-And-Travel/game-over.md).
+- Party: `0x00263F40` is called by `0x00304180`; those functions are documented on
+  [party control modes](../Engine-Core/party-control-modes.md).
+- Presentation: `0x00263F40` is called by `0x003B70B0`; those functions are documented on
+  [party during scenes](party-during-scenes.md).

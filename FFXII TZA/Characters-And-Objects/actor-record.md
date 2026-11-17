@@ -26,16 +26,16 @@ record count at `+0x20` ([actor managers](actor-managers.md)):
 1. the payload's table at payload `+[0x14]` holds a `u16` count of sequences followed by a `u16`
    per sequence; the pool's payload size is the sum over sequences of the descriptor's size,
    rounded up to 16, times that count;
-2. the header is `(count * 8 + 0x17) & ~0xF` bytes and is allocated twice over: the block is
-   `2 * header + payload` bytes from the allocator at `[slot + 0x88]`, zeroed, with the count at
-   `+0x00`; `[slot + 0x1F0]` keeps `block + header`;
+2. the header is `(count * 8 + 0x17) & ~0xF` bytes and is allocated twice over: the block is `2 * header + payload`
+   bytes from the allocator at `[slot + 0x88]` (`0x00267A79`), zeroed (`0x00267A8B`), with the count at `+0x00`;
+   `[slot + 0x1F0]` keeps `block + header`;
 3. records are carved from `block + 2 * header` in sequence order; the pointer table at `block + 8`
    receives each, and each record's byte `+0x03` becomes `(class << 5) | sequence`; the slot's
    per-class counts at `+0x1D0` (four `u16`) are added up and their running offsets written to
    `+0x1D8`;
 4. `0x00266530(slot, block, i)` initialises every record, for `i` from 0 to the count `+0x20` less one
-   (`0x00267B63`-`0x00267B82`), and the block is returned (`0x00267B89`). The per-class counts are added to the
-   words already at `+0x1D0` (`0x00267AD4`), and the byte `+0x03` keeps the sequence's low five bits
+   (`0x00267B63`-`0x00267B82`, the call at `0x00267B79`), and the block is returned (`0x00267B89`). The per-class counts are
+   added to the words already at `+0x1D0` (`0x00267AD4`), and the byte `+0x03` keeps the sequence's low five bits
    (`0x00267AE8`-`0x00267B13`).
 
 `0x0046BA50(m)` returns `[slot + 0x1F0]` of manager `m` (`0x00263FF0`) when the slot's `+0x10` bit `0x1` is set, and

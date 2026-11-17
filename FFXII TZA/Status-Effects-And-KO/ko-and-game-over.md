@@ -55,9 +55,9 @@ record of type 0-6; a guest is a party record of type 7-25. Each test returns 0 
 | Test | Returns 1 when | Used |
 |---|---|---|
 | `0x002372E0` | no main character in the four or in the roster is up | at the KO, latch `0x400` |
-| `0x00237260` | no member of the four who is not a guest is up | at the KO, latch `0x200`; every frame |
+| `0x00237260` | no member of the four who is not a guest is up | at the KO, latch `0x200`; every frame; the Escape Mode applier `0x00252B60` (`0x00252BA8`), only while input snapshot bit `0x2000000` and bits `0x40`, `0x200` and `0x400` of the action availability mask `0x002E0FA0()` are clear (`0x00252B7A`-`0x00252BA6`): a 1 zeroes the toggle with `force` 1 (`0x00252BAD`-`0x00252BB3`) unless bits `0x1`, `0x4` or `0x8` of `0x0035C6F0()` replace it |
 | `0x002371B0` | every main character in the four is torn down, and no main character in the roster is up | every frame, Game Over |
-| `0x00237140` | every member of the four who is not a guest is torn down | every frame, the `0x18` screen |
+| `0x00237140` | every member of the four who is not a guest is torn down | every frame, the `0x18` screen; closing the Party Menu, `0x00280B70` (`0x00280C00`), while the `0x18` arming is set |
 
 Torn down is unit flag bit `0x2`, set when a party member's body is torn down (below). So the frame tests count a
 fallen character as gone only once its body has been torn down.
@@ -106,6 +106,32 @@ Later in the same frame the field frame keeps three latches current (`0x0023471C
 rises and disarming it with `0x0035C8E0` when it falls; and `0x800` from the summoner test. The falling edge of
 `0x200` also calls `0x0035C8E0`, with `0x18`, which that function ignores, so the `0x18` arming stays
 (`0x0023475B`).
+
+`0x0035C8E0` acts only on `0x17`: it clears bit `0x10` of `0x022C83E8` and jumps to `0x002548F0(0)`; any other kind, `0x0B`
+among them, returns at once (`0x0035C8E0`-`0x0035C8F8`). `0x0035D8D0` clears bits `0x1` and `0x10` after calling
+`0x00254850(1)` when bit `0x2` is set (`0x0035D958`-`0x0035D96F`).
+
+The `0x18` arming, bit `0x1` of `0x022C83E8`, is re-decided when the Party Menu closes: while it is set, `0x00280B70`
+stores `0x00237140()` in it and hands that answer to `0x00254940` through `0x0035C940` (`0x00280BF7`-`0x00280C07`,
+`0x0035C940`-`0x0035C955`), so the close leaves it armed only when every member of the four who is not a guest is torn
+down by then.
+
+Otherwise, while the `0x17` arming, bit `0x10`, is set (`0x00280C0E`-`0x00280C15`), `0x00280B70` answers 1 when any of the
+nine records at `[0x0209AC30] + 0xAC8` whose word `+0x60` is not negative and equals the low byte of `0x003271D0()`, and
+whose byte `+0x00` has bit `0x2` clear, has a bit of `0x80000003` in its dword `+0x44`, and 0 otherwise
+(`0x00280C17`-`0x00280C5C`); `0x0035C920` stores that answer in bit `0x10` and jumps to `0x002548F0` with it
+(`0x0035C920`-`0x0035C938`).
+
+Within an area nothing clears the wipe's battle flag or the Game Over arm. Battle flag `0x400` is set only at the KO
+(`0x0030106C`) and cleared only by the boot `0x002368D0`, which stores 0 (`0x002369FB`), and the area init `0x002342F0`,
+which, while the up flag `0x02089300` is non-zero (`0x002342F4`-`0x002342FB`), keeps only bits `0x2`-`0x10` and `0xC000` and
+up and then sets `0x10` (`0x0023432D`-`0x00234343`).
+
+The Game Over arm, bit `0x2` of `0x022C83E8`, is cleared only at boot, by `0x0035C560`, which zeroes the `0x23C8` bytes
+from `0x022C8060` and then sets bit `0x20` (`0x0035C566`-`0x0035C578`), and by the field teardown `0x0035BB70`: its
+`and 0xFFFC02EC` at `0x0035BB8A` clears bits `0x1`, `0x2`, `0x10`, `0x100` and `0x400`-`0x20000`, so the three arms and
+the posted bit `0x100` together. `0x0035C560` is called from `0x00253970` (`0x002539C5`), `0x0035BB70` from `0x00253A30`
+(`0x00253A3E`) and from `0x003C5E50` (`0x003C5EA7`).
 
 ### The two signals from the fall
 
@@ -276,3 +302,5 @@ Calls between the functions this page cites and code in other parts of the progr
   [game application](../Engine-Core/game-application.md).
 - Platform online achievements: `0x003148F0` is called by `0x003160C0`; those functions are documented on
   [handbook files](../Game-Files-And-Data-Tables/handbook-files.md).
+- RNG random selection: `0x002342F0` calls `0x00328D80`; those functions are documented on
+  [enemy respawning](../Enemy-Spawning/enemy-respawning.md).

@@ -114,6 +114,9 @@ The verbs `reqenable` (`0x0026B4A0`) and `reqdisable` (`0x0025D5E0`) set
 and clear one bit; `reqdisable` refuses slots 4 and 5 while `+0x0C` bit `0x20` marks a stop zone, and
 for slot 16 clears `+0x0B` bit `0x4` and runs `0x00262740`, for 17 runs `0x002626C0`.
 
+`0x0026B4A0(actor, slot)` sets bit `slot` of the arming mask `+0x1C` (`0x0026B4A3`-`0x0026B4AC`) and, when the actor's byte
+`+0x0B` has bit `0x8`, jumps to `0x00268EA0(actor)` (`0x0026B4B0`-`0x0026B4BA`).
+
 Every engine filing goes through `0x003DBB60(actor, channel, function, mode, flag)` or its
 two-actor twin `0x003DBBF0(actor, requester, …)`. Both build the descriptor with requester ordinal
 `0x8000` and mode byte 1 (`0x003DBBC9`, `0x003DBC58`), so an engine filing never posts a start or end notification;
@@ -125,11 +128,81 @@ and re-selects when the requester differs, exactly as the script path does: only
 promotion only while `+0x63` is non-zero (`0x003DBC7F`-`0x003DBCC1`). Given a null requester, `0x003DBBF0` files in
 state 1 and does not re-select (`0x003DBC68`, `0x003DBCD6`).
 
+`0x0025BAD0(manager, record, focus context, slot)` is the talk test. It first clears bit `0x2` of the record's byte
+`+0x0C` (`0x0025BAF2`). The class nibble, the low four bits of `+0x0E`, gates it: 4 passes with any slot, 5 only with
+slot 2, 1 and 7 only with slot 10, and any other value returns at once (`0x0025BB2D`-`0x0025BB4B`, `0x0025BCDB`). While
+`0x0037C860()` answers non-zero, a record whose byte `+0x0B` has bit `0x1` clear is left out (`0x0025BB69`-`0x0025BB77`).
+
+The test point is the position of the record's movement context `+0xB8`, its y raised by the floats `+0x140` and
+`+0x144` of the record's `+0xC0` object when there is one and, with context byte `+0x107` bit `0x1`, moved by `+0x40`
+to `+0x48` (`0x0025BB7D`-`0x0025BBFB`). Unless context byte `+0xDD` is non-zero, the focus context's y must lie between
+`y-a*[+0xCC]-[focus+0xC0]*[focus+0x24]` and `y+a*[+0xC8]`, `a` being the context's `+0x24` (`0x0025BC01`-`0x0025BC51`).
+
+The box test `0x003DA5A0` on the context's `+0x70` must then answer below 0 (`0x0025BC57`-`0x0025BC7C`); inside the box it
+sets `+0x0C` bit `0x2` (`0x0025BC82`). With `+0x0B` bit `0x4` set and bit `0x8` clear it lowers the countdown `+0x118`
+by one (`0x0025BC86`-`0x0025BCBD`) and, when `+0x1C` has bit `0x10000`, files slot 16 through
+`0x003DBB60(record, channel, function, 1, 5)`, on channel 4 for type 7 and 6 for any other (`0x0025BCC3`-`0x0025BD65`).
+
+The function is the cache word `+0xE8` unless it is `0xFFFF`, else entry 16 of the footer `0x0020E600` locates when its
+count is above 16; a negative function and a record whose `+0x18` is 1 file nothing (`0x0025BCD0`-`0x0025BD50`). The
+filing does not wait for the countdown to reach 0.
+
+The record becomes the talk candidate when `0x003A1BB0` answers non-zero, the distance (the `0x003DA5A0` answer plus the
+float it leaves at `+0x0C` of its output) is below the float at `0x0209A2B0`, and `+0x1C` has bit `0x4` for slot 2 or
+bit `0x400` for any other slot (`0x0025BB0A`-`0x0025BB1B`, `0x0025BD74`-`0x0025BDC2`). It writes the manager's `+0x28` to
+`0x0209A2B4`, the record's word `+0` to `0x0209A2B8`, the distance to `0x0209A2B0`, 1 to the byte `0x0209A2AA` and the slot to
+`0x0209A2BC` (`0x0025BDC4`-`0x0025BDE6`).
+
+When the countdown has reached 0, or the `0x0037C860` test, the height test or the box test left the record out, a
+record whose `+0x0B` has bit `0x4` set and bit `0x8` clear gets bit `0x4` cleared and `+0x118` zeroed
+(`0x0025BDED`-`0x0025BE08`); a class nibble or slot that does not pass returns without this (`0x0025BE23`).
+
+`0x0025C230(manager, record)` is the touch test. It keeps the old contact mask, the dword `+0x100` of the movement
+context, and zeroes it and the context's dword `+0x228` (`0x0025C311`, `0x0025C34C`, `0x0025C357`). Its point, with the
+`+0xC0` floats and the `+0x107` shift, and height band are those of `0x0025BAD0`, the band skipped when the record's
+byte `+0x08` has bit `0x80` or context byte `+0xDD` is non-zero (`0x0025C268`-`0x0025C33D`). The walk is skipped while
+`0x0037C860()` answers non-zero and the record's `+0x0B` bit `0x1` is clear (`0x0025C35E`-`0x0025C36A`, `0x0025C38D`).
+
+The walk takes the four roster actors at `0x0209A1F0` whose bit is in the mask `0x0030A6E0(0xF)` answers
+(`0x0025C36E`-`0x0025C3B9`, `0x0025C6B9`-`0x0025C6DC`). An actor is passed over when it is null or the record itself, when
+`0x002EA6A0` answers 0 for it, when the record's byte `+0x08` has bit `0x20` and the actor is not the focus actor
+`[0x02099D78]`, or when `0x002E9FE0` then answers 0 for it (`0x0025C3BF`-`0x0025C3FA`). The actor's y must lie in the band
+(`0x0025C407`-`0x0025C432`) and the outer box test `0x003DA5A0` on the context's `+0x60` must answer below 0
+(`0x0025C438`-`0x0025C457`).
+
+An actor inside the outer box gets its bit in the context's `+0x228` (`0x0025C6A8`). Its bit goes into `+0x100` too, and
+the filings below run, only when `0x002EA6A0` and `0x002E9FE0` both answer non-zero for the record itself
+(`0x0025C45D`-`0x0025C477`, `0x0025C6A1`). With `+0x1C` bit `0x8` the filing is slot 3,
+`0x003DBB60(record, 3, function, 1, 0)` (`0x0025C47D`-`0x0025C4F4`). Without it only the focus actor goes on
+(`0x0025C4FE`-`0x0025C503`), to a second `0x003DA5A0` test on the context's `+0x70`, the inner box (`0x0025C509`-`0x0025C528`).
+
+Outside the inner box, `+0x1C` bit `0x100` files slot 8 on channel 3 through `0x003DBB60` and fills field-sign slot 1
+through `0x003DF760(handle, 1, 1, [manager + 0xB0], 0x00263990(record))`, live word 1, the handle being `0x003589B0(record)`
+(`0x0025C5F3`-`0x0025C69C`).
+
+Inside it, a record whose `+0x0B` bit `0x4` is clear files slot 13 on channel 6, mode 1, when `+0x1C` has bit `0x2000`
+(`0x0025C543`-`0x0025C5B9`); one whose bit `0x4` is set files nothing and goes on only with `+0x1C` bit `0x10000`
+(`0x0025C52E`-`0x0025C541`). Both then fill sign slot 2 instead, its live word the byte `+0xF4`, so a byte of 0 fills a
+slot that is not live (`0x0025C5BE`-`0x0025C5EE`).
+
+Once its bit test passes, the sign slot is filled whether or not a function was filed, and not at all for a null
+`0x00263990` answer (`0x0025C5CC`, `0x0025C67C`).
+
+Each function is the slot's cache word (`+0xCE`, `+0xD8`, `+0xE2`, `+0xD0`, `+0xD2`) unless it is `0xFFFF`, else the
+entry of the footer `0x0020E600` locates when its count is above the slot (`0x0025C483`-`0x0025C4DE`, `0x0025C550`-`0x0025C5A7`,
+`0x0025C600`-`0x0025C657`, `0x0025C721`-`0x0025C76E`, `0x0025C786`-`0x0025C7D1`); every filing goes through `0x003DBB60`
+(`0x0025C4F4`, `0x0025C5B9`, `0x0025C669`, `0x0025C7E7`); a negative function and a record whose `+0x18` is 1 file nothing.
+
+After the walk `+0x0C` bit `0x4` is set while the contact mask `+0x100` is non-zero and cleared otherwise
+(`0x0025C6F2`-`0x0025C701`). A mask that went from non-zero to 0 files slot 5 on channel 2 with `+0x1C` bit `0x20`, and
+one that went from 0 to non-zero files slot 4 on channel 4 with bit `0x10`, both mode 0 (`0x0025C705`-`0x0025C7E7`). A
+skipped walk leaves the mask 0, so it ends a contact the same way.
+
 | Filer | Slot, channel, mode | Fires when |
 |---|---|---|
 | `0x00266530` | slot 15, the actor's function 0 and 9 `initevent` on the top channel, then 1 `main` on channel 0, all mode 2 | the record is initialised; the first three raise `+0x10` by one each; slot 15 only for images with version word 10 or more |
 | `0x0025C230` | 3 `touch` ch 3 / 8 `fieldsign1` ch 3 / 13 `fieldsign2` ch 6, mode 1; 4 `touchon` ch 4 and 5 `touchoff` ch 2, mode 0 | a class-3 actor whose record box contains a party actor (`0x003DA5A0`); the on and off edges of the contact mask at `+0x100` of the actor's movement context (`0x0025C268`, `0x0025C311`) |
-| `0x0025C830` | the same slots at the same channels | a class-1 trigger record with `+0x5D` bit `0x1` placed and bit `0x2` (outer box) or bit `0x4` (inner box) set; `touchon` with flag 2 raises a stop zone |
+| `0x0025C830` | the same slots at the same channels | a class-1 trigger record whose `+0xB8` block has `+0x5D` bit `0x1` placed and bit `0x2` (outer box) or bit `0x4` (inner box) set; `touchon` with flag 2 raises a stop zone; the box test takes, of the four roster pointers `0x0209A1F0`-`0x0209A208` whose bits are in `0x0030A6E0(0xF)`, each non-null actor that is the focus actor `[0x02099D78]` when the record's byte `+8` has bit `0x20`, and that passes `0x002EA6A0` and `0x002E9FE0`, and `0x00233D70` when the record's `+0x0C` has bit `0x20` (`0x0025CC3E`-`0x0025CCC6`); the script verb `settouchuconly` (`0x26E`) sets that `+8` bit when its argument is not 0 and clears it otherwise (`0x00341013`-`0x00341020`) |
 | `0x0025BAD0` | 16 `talkhold` ch 6 (ch 4 for type 7), mode 1, flag 5 | the focus actor stands in the talk box of a talk-armed actor; the actor is also registered as the talk candidate at `0x0209A2B4` |
 | `0x00268D10` | 2 `talk` or 10 (the slot at `0x0209A2BC`), ch 7, mode 0, flag 1 for slot 2 and 0 for any other, through `0x003DBBF0` with the record as its own requester (state 2, no re-selection) | the talk button gate `0x0026DFB0` passes for the registered candidate (`0x0026DFB0(1)`, `0x00268D24`), the candidate's manager slot `0x0209A2B4` is not negative and that manager is live (`+0x10` bit `0x1`, `0x00268D4F`), `+0x1C` bit `0x4` is set for slot 2 (`0x00268DA2`) or bit `0x400` for any other slot (`0x00268DAC`), and `+0x18` is not 1 (`0x00268DB7`); a filed slot 2 with the count `0x02099DB4` at 0 or below (`0x00268DDE`) sets `+0x0B` bit `0x8`, runs `0x00268EA0`, runs the selection `0x003DB6E0` at once (`0x00268DF9`) and takes action availability row 3 (`0x002E1CD0(0, 3)`), then sets `0x02099DE5` to 1, sets `0x02099DE7` to 1 when `0x00377700()` is 0 and to 0 otherwise, and runs `0x00263480(record, 2)` when `+0x0C` bit `0x80` is set, else `0x00263480(record, 1)` (`0x00268E30`); every resolved candidate then runs `0x00317E60` (`0x00268E35`), clears the talk request byte `0x0209A2C4` (`0x00268E41`) and, with `+0x1C` bit `0x2000` set and a name whose first byte is not 0 (`0x00263990`, `0x00268E58`), passes the name to `0x003DF760` (`0x00268E7F`); a candidate ordinal that resolves to no record makes the bit test at `0x00268E3A` read address `0x1C`, which faults |
 | `0x00268EA0` | 16 `talkhold` ch 6/4 mode 1 flag 5; 17 `talkterm` ch 5 (3 for type 7) mode 2 flag 4; both through `0x003DBBF0` with the record as its own requester (state 2, no re-selection) | the talk countdown `+0x118` is re-armed: `talkhold` is filed when `+0x1C` bit `0x10000` is set and slot 16 names a function (`0x00268F2B`, `0x00268FB8`), `talkterm` when bit `0x20000` is set and slot 17 names one (`0x00268EDC`, `0x00268FF7`), neither while `+0x18` is 1 (`0x00268FD7`, `0x00269011`); with bit `0x10000` set and either a slot-16 function or `+0x18` at 1, `+0x0B` bit `0x4` is set and `+0x118` = the word `+0x11A` (`0x00268F7D`, `0x00268F81`), otherwise bit `0x4` is cleared and `+0x118` = 0 (`0x00268F8A`, `0x00268F8E`); a set `+0x0B` bit `0x8` clears `+0x0B` bit `0x10` (`0x00268F9E`), and `0x002626C0` and `0x00262740` run on every call before the filings (`0x00268FA6`, `0x00268FAE`) |
@@ -141,6 +214,11 @@ state 1 and does not re-select (`0x003DBC68`, `0x003DBCD6`).
 | `0x00268B10` | each `(actor, function)` pair of a list in the image's `+0x30` table, mode 0 | a scripted group request; a flag marks `+0x24` bit *channel* and raises `+0x10` on the target; a list index at or above the table's count files nothing (`0x00268B4B`); a requester whose `+2` is 1 with `+0x10` = 0 files through `0x003DBB60` (state 1), any other through `0x003DBBF0` (state 2, re-selecting a target that differs from it) (`0x00268B74`-`0x00268B86`); a pair whose actor's `+0x18` is 1 is skipped (`0x00268BBE`, `0x00268C60`); after a filing that returns 1, the flag marks only when the target's manager has `+0x10` at `0x80` or above or `+0x11` bit `0x2` set, and then also sets that bit (`0x00268BF8`-`0x00268C0B`), and a target whose `+0x10` is then non-zero gets `+0x26` bit *channel* and a call of `0x0025B580` (`0x00268C0F`-`0x00268C1C`); an ordinal that resolves to no record makes the test at `0x00268BBE` (or `0x00268C60`) read address `0x18`, which faults |
 | `0x00269BA0` | slot *n* on one actor, mode 0 | bit *n* or the force argument; `0x00269BA0(slot, ordinal, channel, n, force)` is reached only by the tail jump at `0x00269ABD` in `0x00269A90`, which passes an `n` below 18 and an ordinal from 0 to below the live manager's record count `+0x20`; it returns 3 without filing when bit *n* of `+0x1C` is clear and the force argument is not 1 (`0x00269BCD`), when the record's `+0x18` is 1 (`0x00269BD4`, `0x00269BEF`) or when `0x002652D0` gives function 0 (`0x00269BED`); otherwise it files on the given channel with flag 1 for slot 2 and 0 for any other (`0x00269BFB`-`0x00269C0D`) and returns the admission result, so a slot that names no function (-1) reaches admission as function `0xFFFF`; a null record from `0x00358940` makes it read address `0x1C` (`0x00269BC5`), which faults |
 | `0x00269AD0` | slot *n* on every record of one manager, on the given channel, mode 0, flag 1 for slot 2 and 0 for any other | an `n` below 18 (`0x00269AD0`) and a live manager (`+0x10` bit `0x1`, `0x00269B0A`): each record 0 to `+0x20` - 1 is filed when bit *n* of its `+0x1C` is set (`0x00269B34`), its `+0x18` is not 1 (`0x00269B39`, `0x00269B52`) and `0x002652D0` gives a function other than 0 (`0x00269B4D`); a null record from `0x00358940` makes it read address `0x1C` (`0x00269B31`), which faults |
+
+`0x003A17D0(A, B, C, D)` asks `0x003A1C90(A, B, C)` and `0x003A1C90(A, B, D)` (`0x003A1800`, `0x003A1811`) and answers 0 when
+the product of the two answers is not 0 or below (`0x003A181C`-`0x003A1827`); it then asks `0x003A1C90(C, D, A)` and
+`0x003A1C90(C, D, B)` (`0x003A1832`, `0x003A1843`) and answers 0 on the same test (`0x003A1848`-`0x003A184F`). Otherwise it
+answers 1 when the answer for `(A, B, D)` is above 0 and -1 for any other (`0x003A1851`-`0x003A185D`).
 
 ### Admission
 
@@ -159,6 +237,34 @@ A filed entry is copied from the descriptor, appended at the channel's tail, bec
 when the channel was idle, sets the channel's busy bit and `+0x63` bit `0x2` (re-select). A descriptor
 whose mode byte is 4 is instead pushed on the detached list at `+0x61` without touching the
 channel state: that is how notifications travel.
+
+`0x003DB7A0(actor, descriptor, index, state)` answers 1 for a filed entry (`0x003DB97D`, `0x003DBAA7`) and 3 for a refused
+one (`0x003DBAC0`). It tests the kind, byte `+0` of the descriptor, before the mode byte (`0x003DB7DC`-`0x003DB7F0`), but
+the mode-4 test (`0x003DB894`-`0x003DB898`) comes before the kind's answer is used, so no kind refuses a mode-4
+descriptor; any other is refused for a kind other than 0, 2 and 4 (`0x003DB995`-`0x003DB997`).
+
+Kind 4 files without the search when the channel's busy bit is clear (`0x003DB7FB`, `0x003DB81B`). Otherwise it walks the
+channel from its head, or from `+0x61` for a negative channel, and refuses when an entry's function word `+0x04` is
+the descriptor's; after more steps than the entry count `+0x89` it stops and files (`0x003DB81D`-`0x003DB865`).
+
+A filed entry, detached or on a channel, at `[actor + 0xA0] + index * 0x14` takes the descriptor's words `+0x04` and
+`+0x06`, its byte `+0x03`, its dwords `+0x0C` and `+0x10` at `+0x08` and `+0x0C`, its mode byte `+0x01` at `+0x10` and
+its flags byte `+0x08` at `+0x12`, `state` at `+0x11` and the channel `ch` above at `+0x02` (`0x003DB89E`-`0x003DB906`,
+`0x003DB99D`-`0x003DBA08`); an index of `0xFF` makes these writes go to address 0 and up, which faults.
+
+On the detached list the entry becomes the head `+0x61`, its next byte `+0x00` the old head and the old head's prev
+byte `+0x01` the entry (`0x003DB90A`-`0x003DB980`). Its `+0x01` is `0xFF` unless the old head's `+0x01` named an entry,
+whose `+0x00` then becomes the new entry and whose own `+0x01` passes to it (`0x003DB948`-`0x003DB96E`).
+
+On a channel the entry's `+0x01` is the old tail `+0x8C[channel]`, or `0xFF` for an empty channel, the old tail's
+`+0x00` becomes the entry and the entry becomes the tail (`0x003DBA0C`-`0x003DBA7B`). Its `+0x00` is `0xFF`, or, when the
+old tail's `+0x00` named an entry, the entry itself, that entry's `+0x01` becoming the new one
+(`0x003DBA4E`-`0x003DBA75`). The re-select bit, the head and the busy bit follow, in that order (`0x003DBA83`-`0x003DBAA2`).
+
+A negative channel, which the clamp keeps, uses bit `channel & 31` of `+0x06` for the busy test and the set, so
+channels -16 to -1 always test clear and set nothing, and its tail and head are the bytes `channel` places below
+`+0x8C` and `+0x94` (`0x003DB9F2`, `0x003DBA0C`, `0x003DBA7B`-`0x003DBAA2`). The kind-4 walk from `+0x61` is reached only when
+bit `channel & 31` of `+0x06` is set.
 
 ### Selection and start
 
@@ -264,6 +370,24 @@ entry precedes it on its list: `0x0025B400` (`0x0025B456`) and the driver `0x002
 `0x003DC050` matched, and `0x002626C0` (`0x00262708`) and `0x00262740` (`0x00262788`) the entry with flags `>> 1` of 4 or 5
 that `0x003DBEA0` finds on the `talkterm` or `talkhold` channel.
 
+`0x003DBEA0(actor, channel, id, class)` answers `0xFF` when the busy word `+0x06` has the channel's bit clear, the bit
+number being the channel's low five bits (`0x003DBEB6`-`0x003DBECC`). It starts at the head `+0x94[channel]`, or at the
+detached head `+0x61` for a negative channel (`0x003DBECE`-`0x003DBEDF`), answers `0xFF` for an empty list
+(`0x003DBEE3`-`0x003DBEEC`), and walks the 20-byte entries at `[actor + 0xA0]` (`0x003DBEEE`-`0x003DBEF9`).
+
+It answers the index of the first entry whose word `+0x04` equals a non-negative `id` (`0x003DBEFD`-`0x003DBF08`) or whose
+byte `+0x12 >> 1` equals a non-negative `class` (`0x003DBF0A`-`0x003DBF19`), following each entry's byte `+0` to the next
+until `0xFF` (`0x003DBF20`-`0x003DBF2A`). After more steps than the entry count `+0x89` it answers `0xFF`
+(`0x003DBF1B`-`0x003DBF1E`).
+
+`0x002626C0` removes the `talkterm` entries: with id -1 and class 4 it asks `0x003DBEA0` on channel 3 when the type,
+`+0x03` under mask `0x1F`, is 7 and on channel 5 for any other (`0x002626CA`-`0x002626F7`), and while the answer is not
+`0xFF` it hands the entry to `0x003DB2A0(actor, index)` and asks again (`0x002626FC`-`0x00262726`). `0x00262740` does the same
+with class 5 on channel 4 for type 7 and 6 for any other, the `talkhold` channel (`0x0026274A`-`0x002627A6`).
+
+Entries of another class stay on the channel. `0x003DB2A0` removes an entry only when it is its channel's head
+(`0x003DB32B`), so when a found entry has another entry ahead of it, it is not removed and the loop does not end.
+
 `0x003DB2A0` returns 1 at once for index `0xFF` (`0x003DB2B0`); a null actor makes it read the flags byte at address
 `0x12` (`0x003DB2EA`), which faults. When the entry's list head is `0xFF` it removes nothing (`0x003DB320`).
 
@@ -289,9 +413,15 @@ entry's `prev` (`0x003DB3D1`-`0x003DB3E0`). The entry then goes back on the free
 list and `+0x63` bit `0x2` asks for a re-selection. Its return value is bit `0x1` of the entry's flags, not
 a delivery result.
 
-`REQCHG` (`0x34`, `0x0025AF60`) writes a cache word: slot below 18, target by the same encoding as a
-request, refused when bit `0x8000` of the target or of the value is set, value stored at
-`actor + 0xC8 + 2 × slot`, so a script can re-point an entry slot at another function.
+`REQCHG` (`0x34`, `0x0025AF60`) writes a cache word, so a script can re-point an entry slot at another function.
+`0x0025AF60(slot, n, target, value)` returns at once when bit `0x8000` of the target (`0x0025AF60`-`0x0025AF65`) or of the
+value (`0x0025AF77`-`0x0025AF7C`) is set, or when the entry slot `n`, taken unsigned, is above 17, so a negative `n` too
+(`0x0025AF7E`-`0x0025AF81`). A target with bit `0x4000` names manager `target >> 16`, an arithmetic shift, and record
+`target & 0xFFFF`; any other names the record `target` of the running script's own manager `[slot + 0x28]`
+(`0x0025AF83`-`0x0025AF96`).
+
+The value goes to the word `+0xC8 + 2 × n` of the record `0x003587C0` finds, with no null test (`0x0025AF99`-`0x0025AFA1`):
+a target that resolves to no record makes the store address `0xC8 + 2 × n`, which faults.
 
 ## Layouts
 
@@ -387,18 +517,34 @@ immediate re-selection. Per `RET`: unhook, notify, free, re-select.
 The entry pool, channel heads and tails, the busy mask, the detached list, the wait slots and the
 arming mask of every actor record, and the talk candidate at `0x0209A2B4` to `0x0209A2BC`.
 
-`0x0209A2B8` is the candidate's record index, the record's `u16` at `+0x000`, beside its manager slot `0x0209A2B4`. The talk
-tests `0x0025BAD0` (`0x0025BDD1`) and `0x0025BE50` (`0x0025BF76`) set it, and so does `0x0025AAD0` (`0x0025AAF2`) when its first
-argument is 0; `0x0025D650` (`0x0025D66A`) and the boot `0x00266D10` (`0x002670F8`) set it to -1. The talk filer `0x00268D10` passes it to `0x00358940` (`0x00268D58`), and
-`0x00268650` passes it to `0x003587C0` (`0x00268668`).
+`0x0209A2B8` is the candidate's record index, the record's `u16` at `+0x000`, beside its manager slot `0x0209A2B4`. The
+talk tests `0x0025BAD0` (`0x0025BDD1`) and `0x0025BE50` (`0x0025BF76`) set it, and the boot `0x00266D10` (`0x002670F8`) sets it to
+-1. The talk filer `0x00268D10` passes it to `0x00358940` (`0x00268D58`).
 
-The talk button gate `0x0026DFB0(1)`, which the talk filer runs first (`0x00268D1D`), passes only when the count
-`0x02099DB4` is 0 and the four bytes at `0x0209A2C4` are all 1 (`0x0026E012`-`0x0026E044`). Byte 0 is the talk request:
-`0x0026BC60(1)` sets it on the confirm press (`0x0025415A`, in `0x00253C70`) and for the developer verb `debug_talkrequire`
-(`0x0050DF60`), and `0x0025AAD0` sets it with the candidate (`0x0025AB15`).
+`0x0025AAD0(v, id)` looks the actor up with `0x003588B0(id)` (`0x0025AADA`) and acts only when `v` is 0 and the actor exists
+(`0x0025AADF`-`0x0025AAE6`): it stores the actor's word `+0` in `0x0209A2B8`, 0.0 in the float `0x0209A2B0`, the value
+`0x0025BAD0` must go below to replace the candidate (`0x0025BDB1`), the actor's byte `+0x15` in the manager slot
+`0x0209A2B4` and 2 in the slot word `0x0209A2BC` (`0x0025AAE8`-`0x0025AB06`), runs `0x002F1710` (`0x0025AB10`) and sets the
+request byte `0x0209A2C4` to 1 (`0x0025AB15`).
 
-The filer clears it on every run in which the gate passes, the candidate's manager is live and its record
-resolves, whether or not it files the talk (`0x00268E41`), as `0x0025D650` does (`0x0025D674`).
+`0x0025D650` stores 1.0e10 (`0x00915740`) in `0x0209A2B0`, -1 in `0x0209A2B4` and `0x0209A2B8`, 0 in the request byte `0x0209A2C4`
+and 2 in `0x0209A2BC` (`0x0025D650`-`0x0025D67B`). `0x00268650` zeroes `0x0209A2C0` (`0x0026865A`) and, when `0x0209A2B4` and
+`0x0209A2B8` are both 0 or above, passes them to `0x003587C0` (`0x00268668`); when that finds the record it stores the
+record's packed id `0x003589B0(record)`, the form `0x003588B0` takes, in `0x0209A2C0` (`0x00268664`-`0x00268684`).
+
+The talk button gate `0x0026DFB0(1)`, which the talk filer runs first (`0x00268D1D`), refuses, answering 0, when the focus
+actor's id `0x003590D0()` is 0 (`0x0026DFC1`-`0x0026DFD4`), when `0x002373A0` of the focus actor `0x003588B0(id)` is not 0 while
+`0x00233D70` of it is 0 (`0x0026DFCA`, `0x0026DFEB`-`0x0026DFFE`), when `0x002E05C0()` is not 0 (`0x0026E000`-`0x0026E007`) and when
+`0x00265680()` is 0 (`0x0026E009`-`0x0026E010`).
+
+After those tests it passes only when the count `0x02099DB4` is 0 (`0x0026E012`-`0x0026E019`) and, with an argument other
+than 0, bit `0x1` of the four bytes at `0x0209A2C4` ANDed together is set (`0x0026E01F`-`0x0026E044`); with an argument of 0
+it passes without the bytes (`0x0026E01B`-`0x0026E01D`).
+
+Byte 0 is the talk request: `0x0026BC60(v)` stores `v != 0` in `0x0209A2C4` (`0x0026BC62`); `0x0026BC60(1)` sets it on the
+confirm press (`0x0025415A`, in `0x00253C70`) and for the developer verb `debug_talkrequire` (`0x0050DF60`). The filer
+clears it on every run in which the gate passes, the candidate's manager is live and its record resolves, whether or
+not it files the talk (`0x00268E41`).
 
 Byte 1 is the control lock's bit `0x2` inverted (`0x0026BD40`, [Party leader](../Party/party-leader.md)); byte 2 is 0
 while the event lock stands (`0x00307140` through `0x0026BD20`, `0x003071F2`); byte 3 stays 1. The boot sets bytes 1-3 to 1
@@ -446,3 +592,5 @@ Calls between the functions this page cites and code in other parts of the progr
 - UI: and on [frame update order](../Engine-Core/frame-update-order.md),
   [actor managers](../Characters-And-Objects/actor-managers.md), [party list](../Menus-And-HUD/party-list.md),
   [battle units](../Characters-And-Objects/battle-units.md).
+- Combat formula: `0x0030A6E0` calls `0x00320A40`; those functions are documented on
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).

@@ -198,8 +198,11 @@ answers a value other than 0 and 2, the target being `0x0031B7E0` of the candida
 
 ### The registers
 
-A register is named by a kind and an index: kind = relation word `>> 12`, index = its low byte. `0x00321190` reads
-it (`0x003211A4`-`0x003211B8`) and `0x00329E60` writes it:
+A register is named by a kind and an index: kind = relation word `>> 12`, index = its low byte. `0x00321190` reads it
+(`0x003211A4`-`0x003211B8`) and `0x00329E60` writes it: kinds 6 and 7, whose entries in the table at `0x00329F40` lead to
+`0x00329F38`, and any kind outside 1-10 (`0x00329E64`-`0x00329E69`) write nothing and return -1 (`0x00329F38`-`0x00329F3F`);
+kind 9 with an index above 15 and kind 10 with a null unit or an index other than 0 write nothing and return 0
+(`0x00329F03`-`0x00329F37`):
 
 | Kind | Register | Reader |
 |---|---|---|
@@ -234,8 +237,9 @@ deciding unit's handle `+0x710` (`0x002FE6C4`-`0x002FE6D7`). It reads the regist
 writing nothing, when that returns -1 (`0x002FE6EE`).
 
 It then changes the value as the table above says, with `parameter` the order's `(s16)` word `+0x02` (`0x002FE68D`),
-writes it back with `0x00329E60`, sets the phase to 2 and returns 1 (`0x002FE74E`-`0x002FE757`). The orders
-`0x4124`-`0x4154` that are not in the table return -1 after the read (`0x002FE6F8`, `0x002FE75E`).
+writes it back with `0x00329E60`, whose answer it does not test, sets the phase to 2 and returns 1
+(`0x002FE74E`-`0x002FE757`). The orders `0x4124`-`0x4154` that are not in the table return -1 after the read (`0x002FE6F8`,
+`0x002FE75E`).
 
 ## Columns
 

@@ -154,6 +154,45 @@ record array, and tail bit `0x1` goes back to its earlier value after it (`0x004
 tail flag bit `0x20` (`0x00428863`). The promoter reads the next pending index before the work, and at the end
 sets the pending head and tail to -1, also when the list was empty (`0x0042888C`-`0x00428893`).
 
+`0x0042C410(record)`, the root callback, does not read the record array it is passed. It does nothing unless bit `0x4`
+of the record's `+0x284` is set, bit `0x1` of byte `+0x2AE` is clear and the word `+0x06` is -1
+(`0x0042C42A`-`0x0042C44C`). Its steps, in order:
+
+- While `0x003E7D10(the dword +0x6A4, 0x1A)` is not 0 and `+0x64C` is 0, it stores `0x003B0C30(its own index +0x00, 0x63)`
+  there; when the answer is 0, a non-zero `+0x64C` is given to `0x0024CFF0` and zeroed (`0x0042C452`-`0x0042C49F`).
+- Each nibble of byte `+0x66C` that is not 0 goes down by 1 (`0x0042C4A5`-`0x0042C4DB`).
+- `0x00420A40(record, 0)` and `0x0041EC00(record)` run (`0x0042C4E9`-`0x0042C4FB`).
+- With a skeleton entry (`0x002ED570` of the qword `+0xD98` of `0x0020E600(+0x10)` and the index `+0x18`, when that is not
+  -1) it calls `0x00373030(entry, record + 0x180)`; when the entry's dword `+0x94` decodes to a non-null object
+  (`0x0020E600`), `0x003E4140(that object, 0x003E5770(record), 0x003E5790(record), 0x003E57B0(record))`; and when bit `0x800` of
+  the entry's first dword is set, it sets bit `0x400000` of `+0x284` (`0x0042C500`-`0x0042C599`).
+- `0x00421120(record)` runs (`0x0042C5A6`).
+
+Only when the current event `+0xCC` masked with `0xF000` is `0x2000` do three checks follow:
+
+- For `0x2009` or `0x2031` with the handle `+0x69C` resolving through `0x0020E600`: unless the float `+0x23C` is below
+  `0x003E58B0(record)` and `0x00424280([+0x124] * 57.29578 - [+0x254] * 57.29578)`, the change of the y angle in degrees
+  wrapped, is 0, it calls `0x00424D80(record, the +0x68 object, the +0x69C object, 0x2001, 1, 1, 0)`
+  (`0x0042C5AB`-`0x0042C689`).
+- For `0x200A` or `0x2032`: when `0x00423050(record)` is not 0 and the record has an active presentation entry
+  (`0x00422D50`, null-tested at `0x0042C6C5`) whose word `+0x324` is `0x200A` or `0x2032` and byte `+0x328` is 3, and
+  `+0x23C` is not below `0x003E58B0(record)`, it sets bit `0x1000` of the entry's qword `+0x2C8`, calls `0x0041CEC0` on it
+  and clears bit `0x200` of its `+0x0C` (`0x0042C68E`-`0x0042C712`).
+- For `0x200B` when the model name `+0x3C` begins with "s" (byte `0x73`): when `0x00423050(record)` is not 0 and the
+  record has an active presentation entry (`0x00422D50`, null-tested at `0x0042C74F`) whose word `+0x324` is `0x200B` and
+  byte `+0x328` is 1, and `+0x23C` is not below `0x003E58B0(record)`, it sets bit `0x1000` of the entry's qword
+  `+0x2C8`, calls `0x0041CEC0` on it and clears bit `0x200` of its `+0x0C` (`0x0042C719`-`0x0042C793`).
+
+Then, in order:
+
+- `0x003E47C0(record)` runs, bit `0x4` of byte `+0x4B7` is cleared and the word `+0x40F` set to `0xFFFF`; with a dword
+  `+0x450` other than -1 it calls `0x00477480(that dword, 0x003E6F50(record))` (`0x0042C7A2`-`0x0042C7E9`).
+- `0x0042D830(record, 0)`, `0x003E4370(record, 0)` and `0x003E6910(record)` run (`0x0042C7EE`-`0x0042C805`).
+- The float `+0x25C` is set last. With an aim target in the word `+0x24C` whose record (at `[0x022C6F28]` + index *
+  `0x740`) has a non-zero `+0x284`, the target's position less the record's own (`+0x140` to `+0x148`) is passed
+  through `0x005213F0`, and `+0x25C` becomes `atan2f` (`0x00861F02`) of its x and z, or 0 when both are 0. With no target,
+  or a target record that is not live, it becomes 0 (`0x0042C80A`-`0x0042C8B8`).
+
 Removal is in two steps. `0x00429140(record)` is the request:
 
 | Record state | What `0x00429140` does |

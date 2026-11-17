@@ -552,8 +552,8 @@ menu screens share.
 | `+0x000` | `void*[23]` | layoutUnits | the 23 layout units of mrppack_ys.bin, unit u at +8 x u: `0x00280980` fills each empty one with the pack's address plus the pack's u32 at 4 x u (`0x002809A3`-`0x002809B7`) and relocates it (`0x002A00F0`); the screens read their layout records from it through `0x002432B0` (the unit table below) |
 | `+0x0B8` | `void*` | modeScreenTask | the open mode-screen task, the `0xD8`-byte widget `0x0027FB70` that `0x00280A00` builds for a menu request (`0x00280A6F`-`0x00280A76`): it stores itself when it opens (`0x0027FE02`) and clears this on message `0x12` (`0x0027FBAB`); `0x00280A00` opens nothing while this or areaController is set (`0x00280A1A`-`0x00280A30`) (Game over) |
 | `+0x0C0` | `void*` | areaController | the open area controller, the `0xD8`-byte widget `0x00280140` that `0x00280A00` builds beside the mode-screen task (`0x00280A85`-`0x00280A8C`): set when it opens (`0x00280429`) and cleared on its message `0x12` (`0x002802A0`); `0x00280120` answers 1 while this is 0 (`0x00280129`), and `0x0027EFA0` writes 2 to its `+0xC8` before a game over (`0x0027EFDA`-`0x0027EFE8`) |
-| `+0x0C8` | `void*` | eventSkipTask | the event-skip task, the `0xD8`-byte widget `0x00228130` that `0x00228700` builds for Start's skip arm (`0x0022875F`-`0x00228777`) and that clears this when it ends (`0x002281E9`); `0x00228700` builds no task while it is set (`0x0022871A`) (Action availability) |
-| `+0x0D0` | `void*` | pauseTask | the pause task `0x00228C70` (Game over): set when it opens (`0x00228DC6`) and cleared when it ends (`0x0022946D`) |
+| `+0x0C8` | `void*` | eventSkipTask | the event-skip task, the `0xD8`-byte widget `0x00228130` that `0x00228700` builds for Start's skip arm (`0x0022875F`-`0x00228777`) and that clears this when it ends (`0x002281E9`); `0x00228700` builds no task while it is set (`0x0022871A`); it builds the pause task `0x00228C70` at `+0xD0` first, through `0x002289D0` (`0x00228755`) (Action availability) |
+| `+0x0D0` | `void*` | pauseTask | the pause task, the `0xF8`-byte widget `0x00228C70` that `0x002289D0` builds (`0x00228A01`-`0x00228A09`), where the player closes it, skips the event, returns to the title or quits (Game over); `0x002289D0` builds none while this is set (`0x002289EA`); set when it opens (`0x00228DC6`) and cleared when it ends (`0x0022946D`) |
 | `+0x0D8` | `void*` | partyMenu | the open Party Menu `0x00280DE0`, stored by its menu task `0x00281AE0` (`0x00281B23`, called from `0x00280E4E`) and cleared by `0x00281E00` (`0x00281EB4`); the script menu host `0x002D70F0` stores itself here when a script opens a menu (`0x002D735A`); `0x00280B70` closes it (`0x00280C6A`-`0x00280C71`) |
 | `+0x0E0` | `void*` | scriptResourceTask | the `0xC0`-byte task `0x002D6EE0` that the script verb fsmenu_loadresource builds through `0x002D7840` (`0x002D7862`-`0x002D786E`): it requests the picture tuto_win_c into tutoWinPicture (`0x002D6F39`-`0x002D6F65`), stores itself (`0x002D6F80`) and clears this on message `0x12` (`0x002D6F0F`); `0x002D7840` builds no task while it or tutoWinPicture is set (`0x002D784B`-`0x002D785D`) |
 | `+0x0E8` | `void*` | autoWindow | the auto window `0x002D66D0` that the script verbs fsmenu_showauto and fsmenu_showautofast build through `0x002D7B40` (`0x002D7B7C`-`0x002D7B9C`): it stores itself (`0x002D673A`) and clears this (`0x002D6708`); `0x002D7B40` builds no window while it is set (`0x002D7B5F`) |
@@ -699,12 +699,37 @@ The layout units of `layoutUnits` and the functions that read them:
 | Bits | Meaning |
 |---|---|
 | `0xFF` | the controller's state: 0 when it opens (`0x00280453`); its step runs state 1 (`0x00280357`), which ends in 2 (`0x002803CC`), and state 2 (`0x002802C8`); `0x0027F2E0` writes 2, or 1 when bit `0x200` is set and bit `0x400` clear (`0x0027F31E`-`0x0027F33B`) |
-| `0x100` | a field change is requested: set with `requestedField` by `0x00285EC0` (`0x00285EC7`), and with field 0 by the controller's state 1 (`0x002803A3`-`0x002803B3`); cleared by the controller when it closes (`0x0028024E`) |
+| `0x100` | a field change is requested: set with `requestedField` by `0x00285EC0` (`0x00285EC7`), and with field 0 by the controller's state 1 (`0x002803A3`-`0x002803B3`); cleared by the controller when it closes (`0x0028024E`), and by the event-skip task's message 18 when bit `0x2000` is clear, which then calls `0x003603E0` (`0x002281CC`-`0x002281D9`) |
 | `0x200`, `0x400` | set together by `0x00285E60` (`0x00285E6B`, `0x00285E7C`); cleared by the controller's state 1 after it resets the save image (`0x00280380`-`0x00280395`), and bit `0x200` makes the controller's close restore the world (`0x002801E4`-`0x00280246`) |
 | `0x800` | bit `0x8000` of the request that opened the controller (`0x00280481`-`0x0028049B`); `0x0027F2E0` closes slot 0 over 1 frame instead of 200 while it is set, then clears it (`0x0027F2F2`-`0x0027F301`, `0x0027F349`) |
 | `0x1000` | set by the event-skip task when it opens (`0x00228295`) |
-| `0x2000` | set or cleared by `0x00285EA0(on)` (`0x00285EAA`-`0x00285EB6`), cleared by the event-skip task when it opens (`0x002282A3`) |
+| `0x2000` | set or cleared by `0x00285EA0(on)` (`0x00285EAA`-`0x00285EB6`), cleared by the event-skip task when it opens (`0x002282A3`) and, after `0x00360880()`, by its message 18 when it is set (`0x002281B1`-`0x002281C3`); the pause task's state 4, the skip, calls it with 1 (`0x0022917A`) |
 | `0x4000` | passed to `0x00244630` when the event-skip task ends (`0x002281FB`-`0x00228204`); none of the writers above sets it |
+
+The pause task `0x00228C70` steps on its word `+0xE6` through the table at `0x002294EC` (`0x00228E76`-`0x00228E94`): 1
+`0x00228E96`, 2 `0x00229073`, 3 `0x002290D9`, 4 `0x00229159`, 5 `0x00229196`, 6 `0x00229093`, 7 `0x002291CD`. State 2 closes the
+task: it clears `+0xE6` and calls `0x00244F00(task)` and `0x00227DD0(100)` (`0x00229073`-`0x00229087`). State 4, the skip:
+when `0x002CCC70(2)` answers non-zero it clears `+0xE6` and calls `0x00285EA0(1)`, `0x00244F00(task)` and `0x00227DD0(1)`
+(`0x00229159`-`0x0022918A`).
+
+State 5, once `0x002EFD20(2)` answers 2, clears `+0xE6` and calls `0x00285EC0(0x0C)`, which requests field `0x0C`, the
+title map, then `0x00244F00(task)` and `0x00227DD0(1)` (`0x00229196`-`0x002291C1`). State 7 clears `+0xE6`, calls
+`0x00244F00(task)` and `0x00227DD0(1)`, then `0x002EFA70(0, 0, 0, 0)` and `0x00227E20` (`0x002291CD`-`0x00229215`).
+
+When the confirmation box of menu text `0x85F` or `0x890` answers `0x8100` (message 12), state 6 leads on to states 3
+and 5 or to state 7 (`0x002293E4`-`0x0022940A`, `0x0022921A`-`0x002292B4`): returning to the title and quitting. Its answers
+`0x8101` and `0x8102` store 6 in `+0xE6` and 1 in `+0xE8` (`0x00229226`-`0x00229243`), and state 6 then leads back to
+state 1 (`0x002290A2`-`0x002290CB`).
+
+`0x00227DD0(n)` passes `n * 60 / 1000` to `0x00251EE0`, which writes it to word `+0x122` of the object at `[0x020927F0]`
+when there is one, and calls `0x00250F30` (`0x00227DD4`-`0x00227DED`); then, when `[0x0209AC30] + 0xC8` holds the event-skip
+task, it writes 2 to that task's `+0xCC` (`0x00227DF2`-`0x00227E05`). The pause task's closing states 2, 4, 5 and 7 all
+call it, so the event-skip task's `+0xCC` becomes 2 whichever was chosen; of them state 4 alone sets bit `0x2000`.
+
+The event-skip task, on message 2, when its `+0xCC` is 2, `0x00251D50()` answers non-zero and `[0x0209AC30] + 0xD0` is
+null, releases itself through `0x00245020` and zeroes `+0xCC` (`0x0022821F`-`0x00228258`). Its message 18 calls `0x00360880()`
+and clears bit `0x2000` when that bit is set, else, when bit `0x100` is set, clears it and calls `0x003603E0()`
+(`0x002281A7`-`0x002281D9`).
 
 `partyFlags` (`+0xD3C`), rebuilt by `0x00283270` each time it rebuilds the party records:
 

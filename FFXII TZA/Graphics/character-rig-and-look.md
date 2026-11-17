@@ -290,6 +290,31 @@ Controller 14's apply `0x0051A280` (`0x003E0624`) multiplies the rotations of th
 `+0xC0`, `+0xC4` and `+0xC8`, by the controller's three 3 × 3 matrices at `+0x00`, `+0x40` and `+0x80`
 through `0x00519880`.
 
+`0x00516220(controller)`, the solve of controller 8, turns the slope of the ground ahead of and behind the record into
+two eased angles, whose rotations the apply `0x00516970` puts on the bones `+0x88` and `+0x8C`.
+
+Its record is the pointer `0x0020E600` resolves from the handle `+0xA8` (`0x0051628D`). From the record's heading `+0x124`
+it reads a sine and a cosine in the table `0x01F004E0`, and with the controller's floats `+0x90` and `+0x94`, each times
+its float `+0xA0`, it places one point that far ahead of the record's position `+0x140` along the heading and one that
+far behind (`0x0051627C`-`0x00516484`).
+
+Each point takes a height. It is the record's own height `+0x144` when `0x003E7D10(the record's dword +0x6A4, 0x1A)` is
+not 0, which also sets bits 2 to 5 of the controller's byte `+0xA5` to 10; while those bits are not 0 the own height
+is used again and they count down by 1 a call. Otherwise each point asks `0x0026E350`, and an answer of -1 gives it the
+own height (`0x00516493`-`0x0051653C`).
+
+The work is done in the scratch floats `0x022D9198`-`0x022D929F` and `0x022D9330`-`0x022D936F`, with `0x0036DD80` (which stores
+(0, 0, 0, 1.0) at `0x01EF93F0`-`0x01EF93FF`) run between the steps (`0x005163A8`, `0x00516598`, `0x005165E5`).
+
+The two offsets from the position are made unit vectors with the square root `0x00861F14` (`0x005166C5`, `0x0051673D`), a
+zero length giving the factor `0x7F7FFFFF`. The angle `0x0046F460` returns for the dot product of the forward direction
+with the front vector is negated when that vector's y is below 0; the angle for the backward direction and the back
+vector is negated when that vector's y is above 0 (`0x00516541`-`0x0051689A`).
+
+Each angle is eased: the controller's float `+0x80` (front) or `+0x84` (back) moves toward it by the fraction `+0x98`.
+The cosine and sine of the eased front angle are stored at `+0x00` and `+0x14` (cosine), `+0x10` (sine) and `+0x04`
+(minus sine); those of the back angle at `+0x40` and `+0x54`, `+0x50` and `+0x44` (`0x005167D6`-`0x00516909`).
+
 - `0x003E12A0(rig, n, on)` fades controller 9 or 13 instead of cutting it: off sets bit `0x40` of byte `+1` on the lip
   flap and of byte `+9` on the nod (`0x00517610` keeps the lip flap's current values at `+0x88` and `+0x8C`; `0x00471B20`
   clears the nod's byte `+8`), and on restarts a controller that was fading. Its callers are `0x0041DD40` and
@@ -320,10 +345,44 @@ through `0x00519880`.
   when there is no actor or no context (`0x002E9B80`-`0x002E9BA4`).
 
 - `0x002E7C10(actor, target, …, keep)` aims an actor's record at another's: it hands
-  `{3, own index, own index, target index}` to `0x00512F30` on the record's `+0x650` block, which for
-  kind 3 stores the three values there and sets the low bits of `+0x65F` to 3 unless the target is
-  the record itself, and it stores the target in word `+0x24C` when `keep` is set, else −1. Its
-  record form `0x003E6C10(record, target, …, keep)` does the same.
+  `{3, own index, own index, target index}` to `0x00512F30` on the record's `+0x650` block (a kind-3 request, below; a
+  target equal to the record clears the aim), and it stores the target in word `+0x24C` when `keep` is set, else −1.
+  Its record form `0x003E6C10(record, target, …, keep)` does the same.
+
+`0x00512F30(block, request)` reads the request as a kind byte `+0x00`, a byte `+0x01` and three dwords a `+0x04`, b
+`+0x08` and c `+0x0C`; kind 1 goes to `0x005130FD` and kind 3 to `0x005130CB` (`0x00512F36`-`0x00512F4D`). Kinds 1 and 3 keep
+their values in the block itself: dwords `+0x00`, `+0x04` and `+0x08` and the low nibble of `+0x0F`. Kind 3 with
+`+0x01` at 1, or with b equal to c, clears that nibble (`0x005130CB`-`0x005130D7`, `0x00513110`); otherwise it stores a, b
+and c at `+0x00`, `+0x04` and `+0x08` and makes that nibble 3 (`0x005130D9`-`0x005130FC`).
+
+Kind 1 with `+0x01` at 1 clears the nibble when the block's `+0x08` equals c, and otherwise returns at `0x00512FEB` with
+the block unchanged (`0x005130FD`-`0x0051310A`). With `+0x01` other than 1 it clears the nibble when b equals c
+(`0x0051311B`-`0x0051311E`), and otherwise stores a, b and c and makes the nibble 1 (`0x00513120`-`0x00513143`). The two kinds
+share the block, so a kind-1 store replaces a kind-3 aim and the reverse, and either kind's clear drops the other's.
+
+Every other kind works on a chain of the 32 16-byte entries of the table `0x02CA81F0`: the block's byte `+0x0C` is the
+first entry's number, `+0x0D` the last one's and `+0x0E` their count, each entry's byte `+0x0E` names the next, and
+`0xFF` ends the chain. The function looks along the chain for an entry whose low nibble of `+0x0F` is the kind and
+whose `+0x04` equals b (`0x00512F53`-`0x00512F92`).
+
+For a found entry, with `+0x01` at 1 and the entry's `+0x08` equal to c, it first calls `0x00512CD0(block, entry)`
+(`0x00512FF1`-`0x00513005`). Then, when a equals c, it jumps to `0x00512CD0(block, entry)` (`0x0051300A`-`0x00513022`), so both
+calls are made on the same entry when the two tests hold; otherwise the entry's `+0x08` becomes c (`0x00513027`), so
+with `+0x01` at 1, an entry whose `+0x08` differs from c and with a other than c stays linked and only its `+0x08`
+becomes c.
+
+With no such entry, `+0x01` at 0 and a different from c, it takes the first entry with a low nibble of `+0x0F` at 0,
+looking from the number in byte `0x02CA83F0` to 31 and then, with `0x02CA83F0` zeroed, from 0 (`0x00512F94`-`0x00512FF0`);
+with all 32 entries in use it takes none and returns with `0x02CA83F0` left at 0 (`0x00512FC6`, `0x00512FE6`).
+
+The taken entry gets a, b and c at `+0x00`, `+0x04` and `+0x08`, the kind in the low nibble of its `+0x0F`, `0xFF` at
+`+0x0E` and the block's old last number `+0x0D` at its own `+0x0D` (`0x00513067`-`0x0051308D`). When the chain was empty
+the entry's number, its byte `+0x0C`, becomes the block's `+0x0C` (`0x00513090`-`0x0051309B`); when the block's old last
+`+0x0D` named an entry, that entry's `+0x0E` becomes the new number (`0x0051309F`-`0x005130B3`); and the block's `+0x0D`
+becomes the new number (`0x005130C1`).
+
+Before those stores, byte `0x02EBA481` and the block's count `+0x0E` rise by 1, byte `0x02CA83F0` becomes `n + 1`, `n`
+being the entry's number, and byte `0x02EBA480` becomes `max(0x02EBA480, 0x02EBA481)` (`0x00513035`-`0x00513060`).
 
 ### Binding the rig
 
@@ -725,3 +784,10 @@ it starts the pattern (`0x00472A34`). The scale of bone *n* of pattern *p* is th
 - [Facing and steering](../Movement-And-Pathfinding/facing-and-steering.md): the steering record.
 - [Verb table](../Scripts-And-Script-Commands/verb-table.md): the verbs and their handlers.
 - [HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md): events `0x2005` and `0x2006`.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Gameplay: `0x0046F460` is called by `0x00339630`; those functions are documented on
+  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).

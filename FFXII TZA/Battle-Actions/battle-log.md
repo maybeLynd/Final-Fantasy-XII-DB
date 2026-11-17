@@ -184,6 +184,11 @@ through `0x0031B860` is kept at `[0x02EBF188]` (`0x00469610`, `0x0046962A`, `0x0
 24.0 (`0x008F3128`) units from the party leader, measured with height zeroed (`0x003A1920`); with no leader
 it uses the leader position last stored at `0x01EEBB00` (`0x002FA3E2`-`0x002FA451`).
 
+Both positions come through `0x00265020`, which copies an object's position only when the object is not null and its
+kind (byte `+3` >> 5) is 1 or 3 (`0x00265020`-`0x00265051`), and stores (0, 0, 0) otherwise (`0x00265052`-`0x0026505C`). A
+leader whose `+0x10` object fails that test sets `0x01EEBB00`-`0x01EEBB08` to 0 (`0x002FA405`), and an actor that is not
+null but of a kind other than 1 or 3 is measured from (0, 0, 0) (`0x002FA426`).
+
 ### Building the line
 
 `0x005369C0(stats, event, context)` (1,000 bytes) first builds a header for the formatter: its word `+0x00` is
@@ -300,7 +305,7 @@ entry the index `0x02EBB54C` names (`0x0046AC00`-`0x0046AC3B`). Every field is 0
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x01EEBB04` | `f32` | 0 | the height of the party leader's position kept at `0x01EEBB00` for the visibility filter: `0x002FA3B0` stores the leader's position there and then zeroes the height | `0x00265020`, through the address (`0x002FA3F7`); `0x002FA3B0` (`0x002FA40A`) | `0x003A1920`, the distance, through the address `0x01EEBB00` (`0x002FA42B`) |
+| `0x01EEBB04` | `f32` | 0 | the height of the party leader's position kept at `0x01EEBB00` for the visibility filter: `0x002FA3B0` stores the leader's position there, or (0, 0, 0) when the leader's `+0x10` object is null or not of kind 1 or 3 (`0x00265052`-`0x0026505C`), and then zeroes the height | `0x00265020`, through the address (`0x002FA3F7`); `0x002FA3B0` (`0x002FA40A`) | `0x003A1920`, the distance, through the address `0x01EEBB00` (`0x002FA42B`) |
 | `0x02CA6028` | `void*` | 0 | the stats record of the last resumed gambit commit for which `0x004697C0` was called with kind 4, a previous action below `0x21F`, action `0x4022` or `0x4124` and `0x002F8E90` answering 1 (`0x004697FF`-`0x0046982A`) | `0x004697C0` (`0x0046984A`) | `0x004697C0` (`0x0046982C`) |
 | `0x02CA6030` | `u16` | 0 | that call's action; a call with the same stats record and action posts nothing (`0x0046982C`-`0x00469843`), and any other posts event 6 unless the previous action is `0x96` | `0x004697C0` (`0x00469851`) | `0x004697C0` (`0x0046983C`) |
 

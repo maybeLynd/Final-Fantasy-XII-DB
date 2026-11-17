@@ -45,6 +45,14 @@ Fortress scenes](nalbina-fortress-scenes.md).
 - In Aerial Gardens Basch explains the viewing angle, moving, the Talk Icon and the Action Icon (`元読み込み監督`),
   help messages point to the iron gate (`ヘルプメッセージ`), and `チュートリアル.終了`, requested by the gate actor
   `鉄柵.talk`, jumps to the Inner Ward, field `275`, entrance 1.
+- The Aerial Gardens lessons run on the file variable `file_var_s2_2`: `常駐監督.main` sets 0 for the viewing
+  angle and 1 for moving; `BASH_RECT.touch` in state 1 sets 2; `DAL_SOLDIER_A.talk` in state 2 plays the field-sign
+  lesson, sets 5 and arms the gate's field sign and `GATE_RECT` (`鉄柵.フィールドサインアクティブ`,
+  `GATE_RECT.有効`).
+- `鉄柵.talk` runs `チュートリアル.終了` for a state from 4 to 6. `GATE_RECT.touch` in state 5 runs
+  `BASH.フィールドサイン2チュートリアル`, which sets 6, and `BASH.talk` in state 6 sets 6 again;
+  `チュートリアル.フィールドサイン02` also sets 6, but no step of the script requests it. No step
+  writes 4, so leaving the area needs state 5 first, which only `DAL_SOLDIER_A.talk` writes.
 - Inner Ward: `常駐監督.main` releases flag `0x00FC`, loads scene `naf_a0201`, sets the flag again and writes 16. Basch
   explains the Party Menu, the target lines and the Minimap. Touching `レモラレクト` shows the boss gauge and removes the
   foes of a group, and touching `レモラ通行制限レクト` shows Basch's "Stand your ground, Reks! We cannot fail! Dalmasca's future

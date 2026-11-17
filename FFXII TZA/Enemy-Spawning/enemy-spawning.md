@@ -82,6 +82,15 @@ the game started are they 0: the candidate generator then refuses an empty band 
 retire fires for every monster on its first frame. The
 shipped scripts never get there (Shipped data).
 
+Bit `0x4` of manager 0's flags byte `0x02098E20` is the field-initialised bit ([actor
+managers](../Characters-And-Objects/actor-managers.md)). The bind clears it (`0x0026CD3F`) and `0x002620E0` sets it (`0x002621A4`)
+in the pass `0x0025D9E0`: when the payload names a designated record (i16 `+0x50` not negative), in the pass whose drive
+of that record leaves its `+0x14` bit `0x40` set (`0x0025DB4C`-`0x0025DB7D`); otherwise in the first pass that reaches the
+main work, before any record is driven (`0x0025DC27`).
+
+From the area entry's cap reset until the setup's writes in that pass, the six placement globals hold the cap 28 with
+the previous zone's arc, attempts and three floats.
+
 ### Automatic placement
 
 Verb `0x301A` `btlAtelDecideEntryPointAuto` (`0x0050F520`) calls `0x00235720(actor)` and pushes its
@@ -518,6 +527,10 @@ all; 13 install the defaults and spawn nothing). What the overriding zones autho
   2 and 9 in 1 each; the native 28 is never authored;
 - `btlAtelCanselInitialSpawnFlag`, 253 scripts, 11,571 calls, on the fresh-placement branch;
 - `btlAtelSetMapJumoKeep`: no script.
+
+The seven reachable maps whose retire range is not 43 all use the automatic selector: 555 `rsn_b01`, 557 `rsn_b03` and
+561 `rsn_c01` (`(50, 60, 70)`), 556 `rsn_b02` and 558 `rsn_b04` (`(10, 90, 100)`), and 1123 `rbl_g01` and 1126
+`rbl_h01` (`(39, 100, 110)`, arc 360). `rsn_b01` authors no cap and runs with 28.
 
 [`enemy-placement-conditions.tsv`](enemy-placement-conditions.tsv) gives the spawn condition of each of the 6,229
 placements in [`enemy-placements.tsv`](enemy-placements.tsv), in 22,571 rows. A placement is the `entryNN` function of

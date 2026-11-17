@@ -166,7 +166,10 @@ new position:
   `0x200` and leaves `+0x1C0` as it was (`0x00329B52`);
 - the measure is planar, `dx^2 + dz^2`, when `0x00264460` is 0 and actor byte `+0x08` bit `0x4` is clear,
   else three-dimensional;
-- the context's position `+0x00`-`+0x08` becomes the candidate.
+- the context's position `+0x00`-`+0x08` becomes the candidate through three stores before the return (`0x002E5729`,
+  `0x002E5730`, `0x002E573B`): the commit of each record the per-frame driver `0x002E5030` does not refuse (`0x002E5101`), and
+  of each record that `0x002E5180` (from `0x002623A0` or `0x0025E400`) runs on whose `+0x18` is not 1, whose `+0xC0` context
+  is of class 3 and whose body `+0x138` has a non-zero `+0xEC` (`0x002E5197`-`0x002E5257`).
 
 `0x002E5380` does extra work only when `mode` is non-zero, which the walking path never passes: it
 sets the body's `+0xEF` from `+0xEC`, `+0xE8` and `+0xEE`, adds the body's `+0x100`-`+0x108` to the

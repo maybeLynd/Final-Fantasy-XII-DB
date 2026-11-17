@@ -311,10 +311,13 @@ Mode 1 calls `0x0026B5A0(actor, w)` with `w` the one-pass wrap of the sum `t0 = 
 what `0x00263CC0(actor)` answers (`0x002E5A78`-`0x002E5A94`).
 
 Mode 3 takes the target from `0x00265550(actor)` and tests `0x002654E0(actor)` (`0x002E595C`-`0x002E5972`). With an answer of
-0 the new facing is `0x003A1AD0(facing, target, step)` (`0x002E5A21`-`0x002E5A30`). Otherwise it reads the direction
-`0x002655D0(actor)` and the index `0x00265630(actor)`; when `0x00265510(actor)` answers other than 0 and the index is not
-below `0x00265530(actor)`, a signed test, it calls `0x0026C070(actor, 0)` and, for a controller present whose first dword
-is not -1, `0x003DDAD0(actor, b, 0x1000000)` with `b` the controller's byte `+0x12`, signed (`0x002E5978`-`0x002E59CC`).
+0 the new facing is `0x003A1AD0(facing, target, step)` (`0x002E5A21`-`0x002E5A30`).
+
+Otherwise it reads the direction `0x002655D0(actor)` and the index `0x00265630(actor)`; when `0x00265510(actor)` answers
+other than 0 and the index is not below `0x00265530(actor)`, a signed test, it calls `0x0026C070(actor, 0)` and, for a
+controller present whose first dword is not -1, `0x003DDAD0(actor, b, 0x1000000)` with `b` the controller's byte
+`+0x12`, signed (`0x002E5978`-`0x002E59CC`), which `0x003DDAD0` overwrites at once ([standard
+motions](../Scripts-And-Script-Commands/verb-arguments.md#standard-motions)).
 
 Mode 3 then takes its new facing by the controller: one present whose first dword is 0 or above, a signed test, gives
 `0x003EC040(that dword, target, direction, 0)`; a null controller or a negative dword gives

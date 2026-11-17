@@ -96,6 +96,9 @@ between the last two: `+0x10` is `(old & 0x64) | 0x82` and `+0x17` is `(old & 0x
 entered. Also stored only after those calls: bits `0x4`, `0x20` and `0x80` of `+0x17`, `+0x16`, `0x02099DA1`,
 `+0x12`, bit `0x2` of `+0x200`, `+0x1D0` and `+0x24`.
 
+Bit `0x4`, field initialised, is set by `0x002620E0` (`0x002621A4`), only for the slot whose `+0x28` is 0, manager 0's
+byte `0x02098E20` (`0x002620E6`-`0x002620ED`); the `and 0x9B` clears it at the next bind (`0x0026CD3F`).
+
 Within `0x002EF2B0`, `0x00263660`, `0x003DDC20`, `0x003DD6C0`, `0x003590D0`, `0x003588B0`, `0x0026D6F0`, `0x00359200` and
 `0x003DD790` themselves, the store at `0x003DDC2D` and the one after it (`0x003DDC39`, which ors in nothing for a
 second argument of 0) are the only ones to a slot's `+0x10`, `+0x11` or `+0x17`.

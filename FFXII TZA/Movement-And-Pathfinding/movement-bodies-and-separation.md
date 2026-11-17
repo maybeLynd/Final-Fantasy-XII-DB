@@ -531,8 +531,11 @@ no test, `0x00329A80(record, d)`, `0x002E4A40(record)` and `0x002E6000(record, 0
 `0x002E8000(record)` answers 0.0 for a null record, no controller or a controller whose dword `+0` is -1
 (`0x002E8000`-`0x002E8014`, `0x002E804A`). It answers `[0x00D0F8E0]`, 0.011111, when the controller's word `+0` is -1, the
 render record's address is 0 or its dword `+0x284` is 0 (`0x002E8016`-`0x002E8043`), and otherwise jumps to
-`0x003E58B0(render record)` (`0x002E8045`). `0x00420A10(render record, d)` stores `d` at the record's `+0x23C`, or 0 when
-the record's dword `+0xC4` is -1 or its dword `+0x304` has bit `0x4000` (`0x00420A10`-`0x00420A2E`).
+`0x003E58B0(render record)` (`0x002E8045`).
+
+`0x00420A10(render record, d)` stores `d` at the record's `+0x23C`, or 0 when the record's dword `+0xC4` is -1, no
+current presentation entry ([render events](../Graphics/character-render-records.md#render-events)),
+or its dword `+0x304` has bit `0x4000` (`0x00420A10`-`0x00420A2E`).
 
 ### The mask word
 

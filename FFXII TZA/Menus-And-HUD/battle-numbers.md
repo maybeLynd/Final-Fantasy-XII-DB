@@ -76,8 +76,10 @@ Where `0x00506700` takes each field from:
 
 `0x003283D0(unit, amount, isHeal, b)` (167 bytes) posts nothing unless `0x002FA3B0(actor)` answers non-zero, `actor` being
 the unit's `+0x10`: the actor must be less than 24.0 units from the party leader, measured with the height zeroed, or
-from the leader position last stored at `0x01EEBB00` when there is no leader (`0x003283E6`-`0x003283F6`). `0x002FA3B0` is told
-on [Battle log](../Battle-Actions/battle-log.md).
+from the leader position last stored at `0x01EEBB00` when there is no leader (`0x003283E6`-`0x003283F6`); a null actor
+answers 0 (`0x002FA3CB`), and an actor of a kind other than 1 or 3, or a leader whose `+0x10` object is null or of such
+a kind, counts as (0, 0, 0) (`0x00265052`-`0x0026505C`). `0x002FA3B0` is told on [Battle
+log](../Battle-Actions/battle-log.md).
 
 `0x003283D0` then fills a request on its stack with the actor at `+0x00`, the absolute value of `amount` as the dword
 `+0x08` (`0x0032840C`-`0x00328418`), the kind 0 at byte `+0x0C` and the colour slot at byte `+0x0D`, and posts it with

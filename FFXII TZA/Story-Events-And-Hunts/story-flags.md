@@ -102,10 +102,11 @@ Besides the script verbs:
   and setting it off sets the flag (`0x002F8243`-`0x002F8253`).
 - **Primary writers.** The setter `0x0032AB60` has five callers and no others: the new-game list (`0x00379198`), the
   release and set verbs (`0x0034DDA4`, `0x0034EE37`), the chocobo dismount, which clears id `0x73` (`0x0035CE79`), and the
-  thunk `0x0032ABE0`. Battle orders use that thunk to set or clear ids 0-255 through the register writer `0x00329E60`,
-  kind 8 (`0x00329EEC`-`0x00329EF7`). The AI operand resolver reads them through the gate, kind 8 (`0x00321244`).
-- **Readers of the gate.** 58 call sites in 30 functions, plus the AI resolver: the main menu, the map screens and map
-  icons, the field's records (`0x00264920`), the save screen and the Clan Primer.
+  thunk `0x0032ABE0`. Battle orders use that thunk to set or clear ids 2-255 through the register writer `0x00329E60`,
+  kind 8 (`0x00329EEC`-`0x00329EF7`).
+- **Readers of the gate.** 58 call sites in 30 functions, plus the register reader `0x00321190`, kind 8 (`0x00321244`,
+  through the thunk `0x0032A920`): the main menu, the map screens and map icons, the field's records (`0x00264920`), the
+  save screen and the Clan Primer.
 
 ### Starting flags
 
@@ -199,3 +200,5 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Spawn encounter lifecycle: `0x00229B40` calls `0x00233440`; those functions are documented on
   [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
+- Combat AI: `0x00321190` is called by `0x00301AD0`; those functions are documented on
+  [glossary](../Engine-Core/glossary.md).
