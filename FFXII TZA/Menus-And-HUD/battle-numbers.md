@@ -62,8 +62,8 @@ sets the step `+0x3A` to 1 and the kind `+0x3C` from the request's byte `+0x0C`:
 
 Where `0x00506700` takes each field from:
 
-- a number's amount is the request's `+0x08` (`0x00506834`), the absolute value `0x003283D0` stores there
-  (`0x0032840C`-`0x00328418`), and its colour slot the request's byte `+0x0D` (`0x00506874`, `0x00506888`);
+- a number's amount is the request's dword `+0x08` (`0x00506834`), and its colour slot the request's byte `+0x0D`
+  (`0x00506874`, `0x00506888`);
 - a picture's frame is the request's byte `+0x08`, and its two colours go to `+0x0C` and `+0x10`
   (`0x005067EA`-`0x0050682F`);
 - a status word reads the record `0x0035D330(0x1A, status)`, the status from the request's `+0x08` (`0x00506760`), keeps
@@ -74,9 +74,18 @@ Where `0x00506700` takes each field from:
 
 ### Number colours
 
-`0x003283D0` picks the colour slot from `0x01EED300[(isHeal x 2 | b) + side]`, where `side` is 4 when the unit's
-`+0x698` record is absent or its byte `+5` is set and `0x00263C20` does not return 3, and 0 otherwise. The slot
-names an entry of the menu colour table through `0x00D227A8`:
+`0x003283D0(unit, amount, isHeal, b)` (167 bytes) posts nothing unless `0x002FA3B0(actor)` answers non-zero, `actor` being
+the unit's `+0x10`: the actor must be less than 24.0 units from the party leader, measured with the height zeroed, or
+from the leader position last stored at `0x01EEBB00` when there is no leader (`0x003283E6`-`0x003283F6`). `0x002FA3B0` is told
+on [Battle log](../Battle-Actions/battle-log.md).
+
+`0x003283D0` then fills a request on its stack with the actor at `+0x00`, the absolute value of `amount` as the dword
+`+0x08` (`0x0032840C`-`0x00328418`), the kind 0 at byte `+0x0C` and the colour slot at byte `+0x0D`, and posts it with
+`0x003BBD00(request)`, dropping its answer (`0x00328408`-`0x00328476`).
+
+`0x003283D0` picks the colour slot from `0x01EED300[(isHeal x 2 | b) + side]`, where `side` is 4 when the unit's `+0x698`
+record is absent or its byte `+5` is set and `0x00263C20(actor)` does not return 3, and 0 otherwise
+(`0x0032841C`-`0x00328455`). The slot names an entry of the menu colour table through `0x00D227A8`:
 
 | `isHeal`, `b` | side 0 slot | colour | side 4 slot | colour |
 |---|---:|---|---:|---|

@@ -88,6 +88,21 @@ The relay `0x00275F10` sends a chosen id to a chosen widget when it is destroyed
 World Map (`0x00275F55`-`0x00275F82`, `0x002747B0`). Ids 285-289 each belong to one screen: 285 the yes-or-no and notice
 boxes, 286 the item sort bar, 287 the main menu's lists, 288 the script menu host, 289 the gambit lists.
 
+The relay is made by `0x002747B0(object, id, key, target)` (137 bytes), under a stack cookie (`0x00808C40`). `0x002747B0`
+fills a stack record with `target` at `+0x00`, `id` at `+0x08` and `key` at `+0x0C`, and a creation record whose dword
+`+0x00` and qword `+0x10` are 0 and whose qword `+0x08` points at the first; message 1 below copies those three fields
+(`0x002747B7`-`0x002747E1`).
+
+With a non-null `object` it builds the `0xD8`-byte relay there through
+`0x00245000(object, 0xD8, 0x00275F10, creation record)`, else through the factory
+`0x00244F50(0xD8, 0x00275F10, creation record)`, and returns that call's answer (`0x002747E5`-`0x00274838`). Both builders are
+told on [Widgets](widgets.md).
+
+Every call of `0x002747B0` passes a null `object`, the key `0x101` and the caller's own object as `target`: id 35 from
+the map containers `0x002B7590` (`0x002B76A3`) and `0x002BA700` (`0x002BA811`) and from the field-time container `0x003CB650`
+(`0x003CB746`), which draws nothing, and id 40 from the World Map's `0x00552250` (`0x005523A4`). `0x003CB650` is told on [Map
+screens](map-screens.md).
+
 The relay acts on three messages. Message 1 copies from the record its qword `+0x08` points at: the
 qword `+0x00` to the relay's `+0xC0` (the target), the dword `+0x08` to `+0xC8` (the id) and the dword
 `+0x0C` to `+0xCC` (`0x00275FC1`-`0x00275FDC`). Message 16 calls `0x00244F00` on the relay when its qword

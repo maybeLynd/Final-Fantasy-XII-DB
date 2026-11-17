@@ -58,12 +58,24 @@ The add and remove polls leave that check to `0x003172E0` and `0x00328B20`, whic
 of 6 or below (`0x003172ED`, `0x00328B27`); `setbattlemember` uses the main-character mask instead and
 does not check the leader it sets.
 
-The guest activation `0x00316DF0` also grants goods. For a record of type 0 to 6 it adds each of
-its five equipment words to the inventory and equips it (`0x00300B80`, `0x0030C410`); unless the
-record's bit `0x8` is set it then adds up to ten items with their counts (`0x00300B80`) and an amount of
-gil (`0x003004B0`) from a row of the party definitions `0x02EBF130`
-([inventory](../Items-Equipment-Shops-And-Licenses/inventory.md),
-[gil](../Rewards-EXP-Gil-And-Loot/gil.md)).
+The member activation `0x00316DF0` also grants goods. The main add `0x003172E0` (`0x003173D2`) and the seating step
+`0x00326110` (`0x003261A6`) that the guest add `0x003170E0` tail-jumps to run it.
+
+So does the seat writer `0x00329080(seat, sel, flags)`, when `0x00322C50(0x17, seat, 1)` accepts the seat, `sel` is not
+`0xFF`, `0x00322C50(2, sel, 1)` accepts it, it is at most `0x27` and bit `0x1` of `flags` is set
+(`0x003290B0`-`0x0032916A`). The new-game fill `0x00329CC0` runs it with second argument 1 behind the same two tests of the
+selector (`0x00329D63`-`0x00329D92`).
+
+It grants only to a party record, kind `+5` 0 with a selector `+4` of 0-25, that is not yet active, bit `0x10` clear
+(`0x00316DFE`, `0x00316E42`-`0x00316E6A`). Rows 0-6 add each of their five equipment words to the inventory and equip it
+(`0x00300B80`, `0x0030C410`, `0x00316E82`-`0x00316E85`).
+
+Then, for rows 0-25, unless the record's bit `0x8` is set (`0x00316EB3`), it adds each enabled gambit slot's condition
+and, for rows 0-6 only, the id its action row names at `+0x22` (`0x00316EC3`-`0x00316F92`), and up to ten items with their
+counts (`0x00300B80`) and an amount of gil (`0x003004B0`) from a row of the party definitions `0x02EBF130`.
+
+See [Party members](../Party/party-members.md), [inventory](../Items-Equipment-Shops-And-Licenses/inventory.md) and
+[gil](../Rewards-EXP-Gil-And-Loot/gil.md).
 
 `0x00328DB0(list, 3)` builds a fixed mask from map 1's first four units (a stats record with bit `0x1`,
 the lock, or a guest keeps its slot), looks each requested selector up in map 0 (a missing one

@@ -181,6 +181,55 @@ The payload ends with the register pairs ST, CLAMP_1, RGBAQ, XYZF2 = 0 as its la
 (`0x15000000` at `+0x440`), FLUSHA (`0x13000000` at `+0x444`) and the zero words at `+0x448` and `+0x44C` (`0x00476E57`,
 `0x00476E62`).
 
+`0x004B0000(object)` (555 bytes), the builder of `startup/7`, which `0x0037DF90` calls with the object `0x02AE31F0`, is
+another template read end to end, and makes no test. It clears the object's `0x140` bytes with `memset` (`0x00861EC0`),
+calls `0x008631E0(object, 0x004ADD10, 0)`, stores BASE 170 (`0x030000AA`) at the object's `+0x08` and OFFSET 421
+(`0x020001A5`) at its `+0x0C`, calls `0x008631D0(object + 0x10, 0x12)`, and stores STCYCL 4,4 (`0x01000404`) at `+0x18`
+and UNPACK V4-32 of 18 quadwords to address 0 (`0x6C120000`) at `+0x1C` (`0x004B0000`-`0x004B004D`).
+
+In the UNPACK payload, `+0x20` to `+0x13F`, the first quadword stays 0; the second holds only `0x8000` at `+0x3C`,
+then come the integers (128, 128, 128, 128) at `+0x40` and (0.5, 0.5, 0, 0) at `+0x50` (`0x004B0054`-`0x004B007E`). The
+same sixteen words are stored twice, at `+0x60` to `+0x9F` and at `+0xB0` to `+0xEF` (`0x004B0085`-`0x004B019A`).
+
+To six significant figures, the sixteen words are the quadwords (0.999998, -0.000574693, 0.00191565, 0), (0,
+-0.957826, -0.287347, 0), (-0.00200000, -0.287347, 0.957825, 0) and (5.96046e-08, -1.52588e-05, 522.016, 1.0); between
+the two copies, `+0xA0` to `+0xAF` holds (4090.0, 4090.0, 16777000.0, 255.0) (`0x457FA000`, `0x4B7FFF28`,
+`0x437F0000`).
+
+The payload's last five quadwords are GIF data (`0x004B01A4`-`0x004B021A`). At `+0xF0` an A+D tag (NLOOP 2, EOP, NREG 1,
+REGS `0xE`) is followed by two pairs, `object + 0x100` and `object + 0x110`, that write 0 to CLAMP_1 and TEX0_1
+(registers 8 and 6). At `+0x120` and `+0x130` come two tags with NLOOP 0, EOP, PRE set, NREG 3 and REGS `0x412` (ST,
+RGBAQ, XYZF2): PRIM `0x5C`, a triangle strip, and PRIM `0x5D`, a triangle fan.
+
+`0x004B0000` writes nothing past `+0x13F` and returns (`0x004B0225`-`0x004B022A`). The draw `0x0045AEE0` of effect element
+type `0x94` goes on to its arm `0x0045AEF0`; its test of the type byte `+0x00` against 0 is never met, since its one
+caller, the draw dispatcher `0x002F4020` (`0x002F42A8`), calls it for type `0x94` only (`0x0045AEE0`-`0x0045AEE3`).
+
+The arm first hands the two copies to `0x00397910`, which writes the 4x4 product of its first two arguments, sixteen
+floats, over its third: `0x00397910(local, local, 0x02AE32A0)` for `+0xB0` and `0x00397910(0x02AEDDF0, local, 0x02AE3250)` for
+`+0x60` (`0x0045AFBC`-`0x0045AFF6`, `0x00397A75`-`0x00397AE0`).
+
+The rest of the arm runs only when the element's definition (element `+0x20`) has byte `+0x240` equal to 2 or 4
+(`0x0045AFFB`-`0x0045B006`) and `0x00431830(definition + 0x1A0, local, 0, element dword +0x44)` answers non-zero
+(`0x0045B00C`-`0x0045B02E`). The arm then stores the two qwords that call left in the local as the A+D data, the first at
+`+0x110` and the second at `+0x100` (`0x0045B06D`, `0x0045B078`).
+
+It sets `+0x50` to `0x004309C0(definition + 0x1A0, element dword +0x44) + element float +0x29C` and `+0x54` to
+`0x004309C0(definition + 0x1B0, element dword +0x44) + element float +0x2A0` (`0x0045B07F`-`0x0045B0D4`). Each of `+0x40` to
+`+0x4C` then takes one byte of a local colour built by `0x002F1F40(element, element + 0x230, local)`,
+`0x0026EE00(local, element + 0x240, local)`, `0x0042FDB0(definition + 0x1E0, element dword +0x44)` and a second `0x0026EE00`
+(`0x0045B0DC`-`0x0045B13A`).
+
+A registrar runs only when `0x0020E600(definition dword [+0x2A0 + 4 * element dword +0x298])` is non-zero
+(`0x0045B140`-`0x0045B159`): `0x003A2F70` when bits `0x7` of the definition's byte `+0x24A` are clear, else `0x003A33B0`,
+which, with bit `0x1` of the definition's byte `+0x4B` clear, runs only when `0x00399600(element + 0x230, local)`
+returns 0 (`0x0045B15F`-`0x0045B1CC`).
+
+Both registrars get the template's words `+0x08` and `+0x0C`, the program `0x004ADD10` and the template's `+0x18`,
+`0x128` bytes from `0x02AE3208` (`0x0045B173`-`0x0045B227`; [Templates the type arms
+patch](../Graphics/effect-element-types.md#templates-the-type-arms-patch)). The word `+0x3C`, the
+quadword `+0xA0` and the three GIF tags keep the builder's values.
+
 ### Columns of ps2-vif1-vu1-emulation-programs.tsv
 
 One row per installed program, 57 rows. The three counts add up to the 141 call sites.
@@ -527,3 +576,9 @@ integer words in `.data` at `0x02CA7F40` to `0x02CA7F78` instead of in the index
 - [PS2 CPU emulation](ps2-cpu-emulation.md): the vector unit 0 register bank the other
   translated assembly uses, and the boot routine shared with this layer.
 - [Game application](game-application.md): the render pass list that drains the commands.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- UI: `0x00397910` is called by `0x00368010`; those functions are documented on [menu lists](../Menus-And-HUD/menu-lists.md).

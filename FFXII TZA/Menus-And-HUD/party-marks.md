@@ -42,7 +42,8 @@ record has a member number 0-5 at `+0x60` and bit `0x2` of `+0x00` clear:
 
 1. `0x00282EE0(record)` gives the record's place among the nine `0xC0`-byte records at `[0x0209AC30] + 0x408`, and
    `0x0031C4C0` its party slot.
-2. For each id of the category lists 1-4 (`0x00252F40`, `0x00252FA0`), it clears the bit, fills a class-6 query record
+2. For each id of the category lists 1-4 (`0x00252F40`, `0x00252FA0`,
+   [Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md)), it clears the bit, fills a class-6 query record
    (`0x0031C5D0`), and sets the bit unless the record's `+0x38` is `0x17`-`0x1A` (`0x002CCA00`) or the member can wear the
    item in its slot `+0x4C` (`0x00317B70`, [Equipment](../Items-Equipment-Shops-And-Licenses/equipment.md)).
 3. For each id of the category lists 9 and 8, it clears the bit and sets it when the member owns the magick or

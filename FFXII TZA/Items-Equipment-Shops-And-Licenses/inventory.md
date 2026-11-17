@@ -210,9 +210,13 @@ The list functions:
 - `0x002530E0(list, id, target)` moves an id to the target id's place and shifts the entries between them by one
   (`0x00253170`-`0x00253214`). The inventory screen's move calls it (`0x00565BD0`,
   [Inventory screen](../Menus-And-HUD/inventory-screen.md)).
-- `0x00252F40(list)` returns the list's 8-byte record in `0x02092760` (`0x00252F58`-`0x00252F5F`). Its callers are
+- `0x00252F40(list)` returns the address of the list's 8-byte record, `0x02092760 + 8 x list` (`0x00252F55`-`0x00252F5F`); for
+  a list above 11 (unsigned) it calls `0x0016D6A0(0x200)` and returns list 0's (`0x00252F44`-`0x00252F53`). Its callers are
   `0x00564430` and `0x00565CD0` (the inventory screen and its dialogs), `0x0057B500`, `0x0057CF20` and `0x0057D620` (the shop
   screens), `0x002CCA40` and `0x003FCEE0` (equipment), and `0x002826F0` and `0x00282A40` (party marks).
+- `0x00252FA0(list)` returns the list's entry count, the dword at `[0x020927C0] + 0x47B8 + 4 x list`
+  (`0x00252FCD`-`0x00252FD7`); for a list above 11 it calls the empty stub `0x0016D6A0(0x200)` and reads list 0's count; a
+  second such call after it is never reached (`0x00252FA6`-`0x00252FC8`).
 
 ### Writes that bypass the change function
 

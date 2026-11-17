@@ -74,9 +74,10 @@ range is 7-25 (`0x003288F4`-`0x003288F9`) and the main range 0-6 (`0x00328B27`).
 
 `0x00316DF0(record)` activates a member record that is not yet active, record flag bit `0x10` (`0x00316DFE`):
 
-1. It runs the catch-up below (`0x00316E1D`), unless its second argument has bit `0x2` set and flag bit `0x2000` of the party
-   block is clear (`0x00316E0F`-`0x00316E1B`). The adds give 0; the seat writer `0x00329080(seat, selector, 3)` of the
-   scenario presets gives 3 (`0x00329167`-`0x0032916A`), so a member seated there gets no catch-up.
+1. It runs the catch-up below (`0x00316E1D`), unless its second argument has bit `0x2` set and flag bit `0x2000` of the
+   party block, read by `0x00236740()`, is clear; it then skips steps 1 and 2 (`0x00316E0F`-`0x00316E1B`). The adds give 0;
+   the seat writer `0x00329080(seat, selector, 3)` of the scenario presets gives 3 (`0x00329167`-`0x0032916A`), so a member
+   seated there gets no catch-up and no level 90 only while that bit is clear.
 2. When flag bit `0x2000` of the party block is set and the record has never been active, flag bit `0x8`, the level is set
    to 90 with `0x0030C470(record, 90, 0)` (`0x00316E25`-`0x00316E3D`).
 3. For a main character, each of the five equipment words is added to the inventory, and to the count of equipped
@@ -129,9 +130,18 @@ because the first 64 KB of a Windows x64 process are never mapped.
    actors left over (`0x00326340`-`0x00326404`); the four are then installed with `0x00269C70` (`0x00326416`,
    `0x00326435`).
 3. The nine seats of map 0 are written with `0x00329080(seat, selector, 0)` (`0x00326450`-`0x00326467`).
-4. With mode 0, the party rows of the four fighting units are recorded at `0x022C257C` and the model read-in starts
-   with `0x0037CA80` (`0x00326471`-`0x003264B8`); with mode 1, `0x003266C0` rebuilds the maps instead (`0x003264BF`). Every
-   function on this page calls it with 0.
+4. With mode 0, for each fighting unit `0x00236820(i)`, i 0-3, `0x003261D0` first clears byte `+0x23` of the unit's actor
+   `+0x10` with `0x0037B4B0(actor)` when both are present, then records at `0x022C257C` the unit's party row, or `0xFF`
+   for no unit or one whose byte `+0x00` bit `0x4` is clear; the model read-in then starts with `0x0037CA80()`
+   (`0x00326471`-`0x003264B8`), which rebuilds the maps too (below).
+
+   With mode 1, `0x003266C0` rebuilds the maps instead (`0x003264BF`). Every function on this page calls `0x003261D0` with
+   0.
+
+When the allocator `0x002F16B0` gives `0x0037CA80` a task, `0x0037CA80` ends with a tail jump to `0x00233CF0` (`0x0037CA9A`,
+`0x0037CAE7`), which calls `0x0030D8B0(0)`, `0x003266C0()` and `0x00311E10(1)` in that order (`0x00233CF6`-`0x00233D05`), so mode
+0 also runs the control-mode transition dispatcher `0x0030D8B0`, which mode 1's direct `0x003266C0` call does not.
+`0x00233CF0` is told on [Party control modes](../Engine-Core/party-control-modes.md).
 
 Every membership verb raises bit `0x13` of the busy mask `0x022CB720` with `0x003601B0`
 ([Zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)). The verbs' poll handlers wait until
@@ -155,8 +165,15 @@ Every membership verb raises bit `0x13` of the busy mask `0x022CB720` with `0x00
 The table lists the verbs that change membership and two that test it; `0x357` `getbattlemember` (`0x0034F5A0`) and
 `0x35D` `isbattlemember` (`0x00353780`) are further queries.
 
-`setbattlemember`, `setbattlememberone` and `addguestbattlemember` first take the four roster actors out of the
-target group with `0x002ECD50(actor, 0)`, through its thunk `0x0026DC40` (`0x0034D520`-`0x0034D53B`, `0x00350CF5`-`0x00350D10`, `0x003521A6`-`0x003521C1`).
+`setbattlemember`, `setbattlememberone` and `addguestbattlemember` first hide the four roster actors of slots 0 to 3
+(`0x00263750`) with `0x002ECD50(actor, 0)`, through its thunk `0x0026DC40` (`0x0034D520`-`0x0034D53B`, `0x00350CF5`-`0x00350D10`,
+`0x003521A6`-`0x003521C1`).
+
+For a class-3 actor whose bind state `+0x18` is not 1, `0x002ECD50(actor, 0)` clears bit `0x1` of byte `+0x10` of the
+presentation record `[actor + 0xC0]`, since `0x002ECD50` writes the low bit of its second argument there, and then
+tail-jumps to `0x002E8FD0(actor)`, which refreshes the actor's visibility; `0x002ECD50` itself takes nothing out of a
+group (`0x002ECD50`-`0x002ECD76`). `0x002ECD50` is told on [Party during
+scenes](../Scripts-And-Script-Commands/party-during-scenes.md).
 
 ### Choosing who fights
 
@@ -357,3 +374,12 @@ Calls between the functions this page cites and code in other parts of the progr
   [glossary](../Engine-Core/glossary.md).
 - Platform: `0x001CCB20` calls `0x005CC930`; those functions are documented on
   [game application](../Engine-Core/game-application.md).
+- Actor entity: `0x002E8FD0` is called by `0x00265B60`, `0x002E35B0`; those functions are documented on
+  [actor record](../Characters-And-Objects/actor-record.md).
+- Input: `0x00263750` is called by `0x00226BE0`; those functions are documented on
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
+- Save load settings: `0x00236740` is called by `0x00583D60`; those functions are documented on
+  [native limits](../Engine-Core/native-limits.md).
+- UI: `0x00236820` is called by `0x0031EB20`, `0x00322A80`; those functions are documented on
+  [action definition row](../Battle-Actions/action-definition-row.md),
+  [target selection](../Battle-Actions/target-selection.md).

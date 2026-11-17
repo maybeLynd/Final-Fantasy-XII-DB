@@ -218,9 +218,9 @@ previews the action again with the unit's `+0x698` record, keeping that preview'
 (`0x00303B75`-`0x00303B90`). With no bounce unit the slot gets 0 (`0x00303B4A`-`0x00303B4D`, `0x00303B97`-`0x00303B9D`), and an
 entry that is not bounced keeps its slot (`0x00303B34`-`0x00303B37`).
 
-The target step `0x003191B0` works a bounced entry through its slot when the slot is set (`0x003192C3`-`0x0031932E`),
-and `0x00322760` returns the bounce unit's actor handle (`0x003589B0`) for an entry whose code at `+0x788` is 8
-(`0x00322810`-`0x00322839`).
+The per-target step `0x003191B0` ([Area of effect](area-of-effect.md#entry-flags)) works a bounced entry through its
+slot when the slot is set (`0x003192C3`-`0x0031932E`), and `0x00322760` returns the bounce unit's actor handle (`0x003589B0`)
+for an entry whose code at `+0x788` is 8 (`0x00322810`-`0x00322839`).
 
 ### Tutorial limits on the command lists
 

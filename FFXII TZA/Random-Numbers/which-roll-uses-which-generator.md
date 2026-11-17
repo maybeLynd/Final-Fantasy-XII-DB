@@ -68,7 +68,7 @@ its three steps. Every draw, inline or not, advances the same word.
 | AI order evaluation and preconditions, `draw % 100` | `0x003014C0`, `0x00301830` | `0x0030160F`, `0x0030193F` |
 | AI final target choice | `0x003087E0` | `0x00308B13` |
 | weighted action id: walk the weight bytes until the running sum exceeds `draw % 100` | `0x00308EC0` | `0x00308F61` |
-| party stance recheck timer: `now + 30 × scalar × ((draw & 3) × 0.25 + 0.5)` frames | `0x003081E0` | `0x003081FF` |
+| party stance recheck timer, drawn only when unit bit `0x800000` is clear and `+0xDCC` is 0 (`0x003081E6`-`0x003081F8`): `+0xDCC = (int)(now + (int)(30.0 × scalar) × ((draw & 3) × 0.25 + 0.5))` frames, with `now` = `0x0032A150()` and both conversions truncating, so `now` + 15, 22, 30 or 37 at a scalar of 1.0 (`0x00308204`-`0x0030825C`) | `0x003081E0` | `0x003081FF` |
 
 ### Rolls on the C runtime rand
 

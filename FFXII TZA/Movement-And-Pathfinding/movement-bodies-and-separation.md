@@ -574,16 +574,16 @@ the body's mask word `+0x110` (`0x002E9BB0`, `0x002EC5B0`) and, for a negative `
 | `+0x0D0` | `void*` | frameLink | next placement in the frame list (`0x003DB0D0`); zero at allocation (`0x00380B80`) |
 | `+0x0E0` | `f32` | height | from `0x00268380` |
 | `+0x0E4` | `f32` | base | from `0x00268380` |
-| `+0x0E8` | `f32` | partnerPushSq | squared length of the partner's increment |
-| `+0x0EC` | `u8` | pushed | a pair pushed this body this tick |
-| `+0x0ED` | `u8` | contacts | counted by the pair resolver for each pair that moves the body |
-| `+0x0EE` | `u8` | soleMover | 1 when the body took a pair's whole push, cleared when a push was split |
+| `+0x0E8` | `f32` | partnerPushSq | squared length of the partner's increment, stored, not added, by the pair resolver `0x00314F50`, so it holds the last pair's value (`0x00315303`, `0x0031533F`); 0 at allocation (`0x003DA8A0`) and when `0x003DA9F0` clears the accumulators (`0x003DAA06`) |
+| `+0x0EC` | `u8` | pushed | 1 on both bodies of each pair the pair resolver `0x00314F50` resolves in push mode, whatever the split, so a body given a zero increment is marked too (`0x0031531F`, `0x00315359`); 0 at allocation (`0x003DA8A0`) and cleared by `0x003DA9F0` (`0x003DA9FF`) |
+| `+0x0ED` | `u8` | contacts | counted up by one by the pair resolver `0x00314F50` in push mode: on B for `w` = 0, on A for `w` = 1 and on both otherwise (`0x00315244`-`0x003152AB`); 0 at allocation (`0x003DA8A0`) and cleared by `0x003DA9F0` with `+0xEC` (`0x003DA9FF`) |
+| `+0x0EE` | `u8` | soleMover | 1 on the body that took a pair's whole push (B for `w` = 0, A for `w` = 1), 0 on both when a push was split (`0x00315244`-`0x003152AB`); 0 at allocation (`0x003DA8A0`) and cleared by `0x003DA9F0` (`0x003DAA0C`) |
 | `+0x0EF` | `u8` | pushSummary | set by `0x002E5380` from `+0xEC`, `+0xE8` and `+0xEE`, with a non-zero mode only: 1 when `+0xEC` is non-zero, `+0xE8` is exactly 0.0 and `+0xEE` is non-zero, else 0 (`0x002E53AB`-`0x002E53D8`); cleared with the accumulators, though `0x003DA9F0` itself does not write it |
 | `+0x0F0` | `f32` | radiusA | ellipse radius; -1.0 on a freed body (`0x003DADA4`) |
 | `+0x0F4` | `f32` | radiusB | ellipse radius; -1.0 on a freed body |
 | `+0x0F8` | `f32` | heading | the ellipse's angle |
 | `+0x0FC` | `f32` | margin | added to the separation |
-| `+0x100` | `f32[3]` | push | accumulated x, y and z |
+| `+0x100` | `f32[3]` | push | the accumulated push: the pair resolver `0x00314F50` adds each pair's increment to x `+0x100` and z `+0x108` and leaves y `+0x104` unwritten (`0x003152B2`-`0x00315369`); 0 at allocation (`0x003DA8A0`) and cleared by `0x003DA9F0` (`0x003DA9F2`, `0x003DA9F9`) |
 | `+0x110` | `u32` | maskA | the mask word `0x00314E10` and `0x0025B470` read |
 | `+0x114` | `u32` | maskB | the second mask word |
 | `+0x119` | `u8` | owner | equal non-zero owners never pair |

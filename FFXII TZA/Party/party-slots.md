@@ -87,7 +87,7 @@ saving map 4 (`0x003266F4`-`0x0032674B`). Then it adjusts the four active seats 
 | Mode | Seats 0-3 of maps 1, 2 and 4 | Sites |
 |---|---|---|
 | 0, normal, or any other value | as copied | - |
-| 1, summon | seat 3 holds the Esper (`0x003137E0`), the summoner's seat (`0x00313800`) is kept, the others are emptied | `0x003269D2`-`0x00326A32` |
+| 1, summon | seat 3 holds the Esper (`0x003137E0`); of seats 0-2 only the summoner's is kept, the map-0 seat `0x00313800` finds for the summoner's row among all nine, when it is seat 0, 1 or 2; a summoner in seat 3, in seats 4-8 or not found keeps no seat, and the others are emptied | `0x003269D2`-`0x00326A32` |
 | 2, chocobo | seat 3 of maps 1 and 4 holds party row 26, the chocobo, and the other seats of map 1 are emptied; map 2 keeps only the rider's seat (`0x00327200`) when it is seat 0, 1 or 2, and its seat 3 is emptied in every case (`0x003269AB`) | `0x00326991`-`0x003269D0` |
 | 3, town | map 4 is restored; the area's leader (`0x00377C70`) fills its seat of maps 1, 2 and 4, or seat 3, and the other seats of maps 1 and 2 are emptied | `0x003268F3`-`0x0032698C` |
 | 4, event party | only the leader's seat is kept, in maps 1, 2 and 4 | `0x0032683F`-`0x003268EE` |

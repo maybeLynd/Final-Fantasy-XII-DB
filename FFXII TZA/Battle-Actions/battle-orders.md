@@ -129,6 +129,28 @@ The ids fall into these groups (full rows in the `.tsv`):
 `+0x80` and from `second` to its `+0x90`, a null pointer being replaced by the block's own `+0x50`
 (`0x003291C5`-`0x003291F8`).
 
+`0x00312B40(unit, record, &facing, &kind)` derives the facing of a turn order from the record's id `+0x00` and its
+parameter `+0x02`, read signed, and answers 1, or 0 when it can give none (`0x00312B57`-`0x00312B5D`, `0x00312D6F`). It
+stores kind 2 first; an id below `0x4126` or above `0x4154`, and the ids `0x4128`, `0x4139`-`0x414A` and
+`0x414D`-`0x414F`, keep that kind and answer 0 (`0x00312B67`-`0x00312B9C`, the jump table `0x00312D88` and its index bytes
+`0x00312DB4`). `0x4126` gives `0x00316DA0(parameter * 2pi / 360.0, 0)`, the parameter in degrees, wrapped
+(`0x00312B9E`-`0x00312BC7`).
+
+`0x4127`, `0x4129`-`0x4138` and `0x414B` give, with kind 3, the bearing `0x0031AC90(unit + 0xE0, other + 0xE0, facing)`
+to another unit: the party leader `0x003272A0()`, the unit `0x002367A0(id - 0x4129)` or the unit
+`0x0031B7E0(unit dword +0x710)`. They answer 0 when that unit is null, and the last two also when it is the unit itself
+(`0x00312BCC`-`0x00312C58`).
+
+`0x414C` copies the dword `+0x70` of the record at the unit's `+0x6A0` as the facing, and answers 0 unless the unit is
+not null, its stats record `+0x698` is not null and that record's byte `+0x05` is 1 (`0x00312C5A`-`0x00312C8E`). `0x4150`
+turns the facing by `(draw % 340 + 10) * 2pi / 360.0` with `0x00316DA0(facing, turn)`, the draw `0x00328370()` from the
+gameplay generator `0x022C256C` and `draw % 340` a signed one (`0x00312C93`-`0x00312CDF`). `0x4151`, `0x4152` and `0x4153`
+turn it by -pi/2, pi/2 and pi with `0x00316DA0(facing, angle)` (`0x00312CE4`-`0x00312D36`).
+
+`0x4154` gives, with kind 1, the bearing `0x0031AC90(unit + 0xE0, &point, facing)` to the point that
+`0x00320940(parameter, &point)` fills, and answers 0 when that call answers below 0 (`0x00312D38`-`0x00312D6D`). Every way
+out passes the stack-cookie check `0x00808C40(cookie)` (`0x00312D71`-`0x00312D79`).
+
 `0x00313400(unit)` calls `0x002ECF10(unit qword +0x10, 1, 1)`, sets unit bit `0x800000`, stores 0 at the unit's `+0xDCC`
 and stores at its `+0x6E8` the address `0x01EEC3C0` when the stats record `+0x698` has a byte `+0x05` of 0, and
 `0x01EEC410` for any other byte or no record (`0x00313406`-`0x00313458`). It then sets unit bits `0x1000000` and
@@ -151,3 +173,5 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Input gameplay: `0x00253B90` is called by `0x00313A00`; those functions are documented on
   [force fight mode](../Engine-Core/force-fight-mode.md).
+- UI: `0x0031B7E0` is called by `0x0031EB20`; `0x003272A0` is called by `0x00318CD0`; those functions are documented on
+  [action definition row](action-definition-row.md), [battle menu](../Menus-And-HUD/battle-menu.md).

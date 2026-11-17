@@ -175,8 +175,15 @@ more (`0x003299CA`-`0x003299E4`; the low 12 bits of these events are below `0x10
 actor `[unit+0x10]` with `0x002EB030` (`0x003299E9`). `0x003299B0` then keeps the event in unit `+0x5C` and sets `+0x2C`
 back to 0 (`0x003299EE`-`0x003299F6`).
 
-`0x002EB030` stores the event in actor `+0xF0` and posts it through `0x002EB0D0` unless actor byte `+0x18` is 1
-(`0x002EB04D`-`0x002EB073`).
+`0x002EB030(actor, event)` (77 bytes) clears bit `0x1` of actor byte `+0x0D`, sets byte `+0xF5` to `0xFF`, the dword
+`+0xEC` to 0 and the dword `+0xF0` to the event, and then, unless actor byte `+0x18` is 1, calls
+`0x002EB0D0(actor, [actor + 0xC0], event, 1, -1.0)` (`0x002EB034`-`0x002EB07C`). It differs from `0x002EB330`, which sets that
+bit and passes 0 for the 1 ([Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)).
+
+`0x002EB0D0` returns at once for a null context `[actor + 0xC0]` or a context whose dword `+0x00` is -1
+(`0x002EB0D0`-`0x002EB0F4`). It hands the event on only through `0x00427320(entry, event)`, and only when the context's word
+`+0x00` is not -1 and selects a `0x740`-byte entry of `[0x022C6F28]` that is not null and whose dword `+0x284` is not 0
+(`0x002EB129`-`0x002EB154`).
 
 At Frame Rate 60, Reks's Attack hit a Cactite (72 HP) twice. `0x00300749` stored 72 to 32
 (delta -40) and then 32 to 0 (delta -41), each time with the Cactite's unit as the target and Reks's as the
@@ -212,3 +219,10 @@ and 41,046; `dgl_n01` 222,462; `dor_b01` 18,247; `dst_a01` 67; `lus_c01` 98,482,
 - [Battle message list](../Battle-Actions/battle-message-list.md) - message `0x10`.
 - [Elements](elements.md) - the absorb and Reverse rules that decide loss or gain.
 - [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md) - the field record bit `0x8000` exception.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Resource: `0x00427320` calls `0x002ED570`; those functions are documented on
+  [resource sections](../Game-Files-And-Data-Tables/resource-sections.md).

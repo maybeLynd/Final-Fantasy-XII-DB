@@ -425,7 +425,7 @@ The menu works the list through small calls:
 | `0x00290470` | 3 when there is no list |
 | `0x002969F0(list, handler, context)`, `0x002969E0(list, hook)` | set the handler `+0xB20` with its context `+0xB30`, and the draw hook `+0xB28` |
 | `0x00296ED0(list, on)` | sets bit `0x100` of `+0xB4A`, which opens the frame `0x0029C770` round the rows; off clears the row marks |
-| `0x00296E00(list, handle)` | writes 3 into the member's cell `+0x1A` |
+| `0x00296E00(list, handle)` | for the first member `i` below the row count `+0xB42` whose handle, the dword at `0x022C8084 + i x 0xC0` (`0x0035D320()` gives `0x022C8060`), is `handle`, writes the word 3 at `+0x1A` of the cell pointer `+0x880 + i x 0xD8`; it writes nothing for a null list, a count of 0 or no match, or when the pointer `+0x880` (row 0's, not row `i`'s) is null (`0x00296E00`-`0x00296E6E`) |
 
 The frame and the leader-mode overlay `0x0029C9D0` take their box from `0x002974E0`: the first row of kind 1, stretched
 over the height of all rows.

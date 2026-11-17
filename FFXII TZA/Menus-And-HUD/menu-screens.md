@@ -382,8 +382,14 @@ The special-attack window `0x002D5EB0` lists up to four party members, each in a
   half the piece's height above `y`. Each row is one pixel high and its half width alternates between
   `w - (w x s >> 8)` and `w + (w x s >> 8)`, with `w` half the piece's width; `0x002D8C80` draws each row.
   It first sets the draw's palette byte `+0x5C` from the set's table and the piece's byte `+7`.
-- `0x002D50B0(window, keep)` closes every row widget (`0x158` bytes from `+0x180`, `+0x748` of them) except row
-  `keep`, which is marked to stay, and then the window (`0x00244DD0`).
+- `0x002D50B0(window, keep)` calls `0x00244DD0(row)`, which closes a row widget, for every row (`0x158` bytes from
+  `+0x180`, `+0x748` of them, a signed count) except row `keep`. It then ends with a jump to
+  `0x00244DD0(window + 0xC0)`, which closes the gauge child, not the window (`0x002D50E2`-`0x002D5167`).
+
+On row `keep` `0x002D50B0` sets bits `0x3` of byte `+0x142`, copies its word `+0x98` to word `+0x144`, stores `0x10` at
+byte `+0x143`, and stores the window's word `+0x15A` plus the word `+0x0E` at `[[window + 0x120]]` at word `+0x146`
+(`0x002D50DB`-`0x002D514A`); it reads that pointer after testing `window + 0xC0` against null, a test that is never met
+(`0x002D50C3`-`0x002D50D5`).
 
 `0x002D5EB0(window, message)` (1,821 bytes) is the window's procedure. It dispatches on the message's dword `+0` through
 a table of 20 (`0x002D5ED1`-`0x002D5EF5`): 1 opens, 2 ticks, 10 takes input, and 14, 15 and 18 are told below; 4 and 20

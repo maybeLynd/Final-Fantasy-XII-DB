@@ -212,8 +212,10 @@ thunks; the level-1 predicate has 7 direct and 9 through its thunk. The ones rea
   entries) is copied whole to `+0x5A5A` and `+0x5A7E`; entries 4 to 8 of the first copy are then
   set to -1 and it is copied again to `+0x5A6C` and `+0x5A90`. The per-level loops touch entries
   0 to 3 only, and `+0x5A7E` keeps all of map 0.
-  - level 1: only the summoner's entry (`0x00313800`) and entry 3 (the Esper's row `+0x5AD4`)
-    survive in the three maps;
+  - level 1: entry 3 becomes the Esper's row `+0x5AD4` (`0x003137E0`) in the three maps, -1 for row `0xFF`; of entries 0
+    to 2 only the summoner's survives, the map-0 seat that `0x00313800` finds for the summoner's row `+0x5AD5` among all
+    nine (`0x00320890`), and only when that seat is 0, 1 or 2: a summoner in seat 3, in seats 4 to 8 or not found keeps
+    no entry (`0x003269D2`-`0x00326A32`);
   - level 2: entry 3 becomes row `0x1A` in the first and third maps and -1 in the second; the
     other entries are -1 except the rider's in the second map and entries 0 to 2 of the third;
   - level 3: the third map is first restored to its contents from before the rebuild, the town's

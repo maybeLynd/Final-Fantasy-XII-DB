@@ -109,11 +109,16 @@ is **1,000,000**.
 - `0x002F9820` does not report the unit as a party member with augment 32 (Offering), bit `0x1` of stats byte
   `+0x6C` or `+0x7C`.
 
-A null unit, or a unit with no record at `+0x698`, does not take the enemy exit and goes on to the
-other tests (`0x00309070`-`0x0030907F`). The action row is the low 32 bits of the `0x0020E600` answer for
-the dword `+0x0C` of `[0x02EBF138]`, plus the id times the table's word `+0x08` (`0x0030909D`-`0x003090CA`).
-With a null `[0x02EBF138]` or a null answer the row address is 0 and the byte is read at address `0x1E`
-(`0x00309098`-`0x003090A8`, `0x003090CE`-`0x003090D0`).
+The tests run in the order listed, each answering 0 (`0x00309070`-`0x0030908F`, `0x003090D0`-`0x003090E4`, `0x003090FB`), and
+`0x002F9820(unit)` takes only the unit. A null unit, or a unit with no record at `+0x698`, does not take the enemy exit
+and goes on to the other tests (`0x00309070`-`0x0030907F`); unless one of them answers 0 first, `0x002F9820` then reads
+`+0x698` of the null unit or byte `+0x6C` of the null record (`0x002F9823`-`0x002F9841`).
+
+The action row is the low 32 bits of the second of two `0x0020E600` calls for the dword `+0x0C` of `[0x02EBF138]`, plus
+the id times the table's word `+0x08`, a 32-bit sum; only the first answer is tested for null (`0x0030909D`-`0x003090CA`).
+With a null `[0x02EBF138]` or a null first answer the row address is 0 and the byte is read at address `0x1E`
+(`0x00309098`-`0x003090A8`, `0x003090CE`-`0x003090D0`). The last step, `0x002F95D0(unit, action)` below, is a tail jump
+(`0x003090E6`-`0x003090F6`).
 
 Augment row 32's description (id 13032) reads "Enables casting of magicks with gil, rather than
 MP.", and the shipped equipment row with augment byte `+0x1A` = 32 is the Turtleshell Choker

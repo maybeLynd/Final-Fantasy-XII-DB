@@ -56,8 +56,10 @@ It is called from four places:
 - the standard action, `0x00304F38`;
 - the effect applier `0x00307300`, with `flag` 0, when its fifth argument is 1 and the availability check `0x002FFCF0`
   passes (`0x00307388`-`0x003073B9`);
-- `Battle_ProcessActionTargetEntry`, once per action, guarded by unit `+0x700` bit `0x2`, with `flag` 1
-  (`0x003192B7`-`0x003192BC`);
+- the per-target step `0x003191B0`, once per action, on a pass with `again` 0 (`0x00319200`), while unit `+0x700` bit
+  `0x2` is clear and only when `0x0030B9B0(target unit, unit)` answers 0 and `0x002FFA60(action, target unit)` answers
+  non-zero, with `flag` 1 (`0x00319241`-`0x003192BC`; [Area of
+  effect](../Battle-Actions/area-of-effect.md#entry-flags));
 - the handler of script verb `0x29D` `spattackplay`, with `flag` 1 (`0x003132B7`).
 
 The effect applier's call never runs: `0x00307300` has one caller, which passes 0 as the fifth argument

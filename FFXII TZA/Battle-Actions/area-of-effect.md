@@ -162,6 +162,30 @@ Before it resolves a target, the applier turns the entry's low byte back into an
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Outcome (`0x002FEE20`) | `0` | `5` | `1` | `3` | `2` | `4` | `6` | `7` | `8` | `10` | `11` | `9` |
 
+The applier has one caller, the per-target step `0x003191B0(unit, entry, again)` (471 bytes). The actor timeline handler
+`0x00319F50` (`0x0031A022`) and the action timeline handler `0x00325260` (`0x00325515`) call it as
+`0x003191B0(unit, unit + 0x780 + 0x10 * i, 0)` for an entry `i` of the unit's target list. It returns at once when the
+entry's actor `+0x00` is null or `0x00263E30(actor)` gives no unit, the target unit below (`0x003191E0`-`0x003191F7`).
+
+Two steps run only with `again` 0; a bounce pass (`again` 1) jumps past both to the code byte (`0x003191FD`-`0x00319200`).
+First it sets the target unit's dword `+0xDD4 + 4 * slot`, for a user slot byte `+0xEA9` up to 31, to the tick counter
+`[0x0208D45C]` less `10 * (int)([0x01DFE0B8] * -30.0)`, 300 ticks ahead as shipped ([Enemy
+AI](../Enemy-AI-And-Gambits/enemy-ai.md)) (`0x00319206`-`0x0031923F`).
+
+Second, while the user's dword `+0x700` has bit `0x2` clear, it pays the action once: with the action id the user's
+word `+0x714`, when `0x0030B9B0(target unit, unit)` answers 0 and `0x002FFA60(action, target unit)` answers non-zero, it
+calls `0x00305640(unit, row, 1)` and sets that bit (`0x00319241`-`0x003192BC`). The row is the action's row of `[0x02EBF138]`
+from the second of two `0x0020E600` calls, 0 when the table or the first answer is null. It leaves the bit clear when a
+gate refuses, so a later entry of the same action can pay.
+
+It then reads the entry's code byte `+0x08`. Any code but 8 calls `0x002FFA60(action, target unit)` and, when that
+answers non-zero, the applier `0x00307300(action, unit, target unit, entry, 0, again)` (`0x00319333`-`0x00319362`).
+
+For code 8, a bounced entry, it looks for the target unit's actor, its qword `+0x10`, among the actors of the unit's
+target list (`+0x780`, count `+0x77C`, `0x10` bytes each). When it is at index `k` and the bounce slot
+`+0x988 + 0x10 * k` holds an actor, it starts over with that slot as the entry and `again` 1, so the mark and the
+payment are skipped for it (`0x003192C3`-`0x0031932E`). It returns when no entry matches or that slot is empty.
+
 The applier as a whole, `0x00307300(action, user, target, entry, first, flag)`, works in this order, which is
 the order of its code. It first looks up the action's row: `row` is
 `0x0020E600([t+0x0C]) + [t+0x08] × action` with `t` the table pointer `[0x02EBF138]` and `[t+0x08]` a word, or
@@ -170,8 +194,9 @@ in each lookup, once for the null test and once for the sum, and repeats the loo
 test of the row: six lookups, twelve calls.
 
 With `first` = 1 it then returns at once when `0x002FFCF0(action, user)` answers non-zero, and otherwise calls
-`0x0030EF20(user, row)` and `0x00305640(user, row, 0)` (`0x00307388`-`0x003073B9`). It clears a `0x148`-byte result
-on its stack through `0x00861EC0(result, 0, 0x148)` (`0x003073C5`-`0x003073D2`).
+`0x0030EF20(user, row)` and `0x00305640(user, row, 0)` (`0x00307388`-`0x003073B9`); its one caller, the per-target step above,
+passes `first` 0 (`0x00319354`), so this step does not run as shipped. It clears a `0x148`-byte result on its stack
+through `0x00861EC0(result, 0, 0x148)` (`0x003073C5`-`0x003073D2`).
 
 When the user's count `+0x6B6` is not 0 it handles the stats-index list as told above: each byte that
 `0x00320A40(byte)` resolves to a record is resolved with outcome 9, `0x00385F60(action, user stats, record,
@@ -383,3 +408,5 @@ Calls between the functions this page cites and code in other parts of the progr
   [force fight mode](../Engine-Core/force-fight-mode.md).
 - Platform online achievements: `0x00305640` calls `0x00316440`; those functions are documented on
   [item use](../Items-Equipment-Shops-And-Licenses/item-use.md).
+- Resource: `0x00319F50` calls `0x001D6AE0`; those functions are documented on
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md).
