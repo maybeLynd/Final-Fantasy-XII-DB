@@ -325,12 +325,14 @@ clear, 2 when both are set) and clears bit `0x800`.
 `0x00285EC0(field)` sets `[0x0209AC30] + 0x400` bit `0x100` and writes `+0x3FC = field`. Its callers are the
 game-over task (`0x003EFB32`, field `0x0C`) and the pause task `0x00228C70` (`0x002291B1`, field `0x0C`).
 
-The pause task shows "This will return you to the title screen. Are you sure?" (menu text `0x85F`,
-key `0x114`) or "This will close FINAL FANTASY XII THE ZODIAC AGE" (text `0x890`, key `0x115`). A
-confirmed return fades (`0x002EFA70(2, 0x18, 0)`), waits for `0x002EFD20(2)` to report 2 and calls
-`0x00285EC0(0x0C)`; a confirmed quit calls `0x001E0FB0(0)`. The same task's skip path calls
-`0x00285EA0(1)`, which sets bit `0x2000` of `+0x400`
-([the native command lifecycle](../Scripts-And-Script-Commands/native-commands.md)).
+The pause task shows "This will return you to the title screen. Are you sure?" (menu text `0x85F`, key `0x114`) or
+"This will close FINAL FANTASY XII THE ZODIAC AGE" (text `0x890`, key `0x115`). A confirmed return fades
+(`0x002EFA70(2, 0x18, 0)`), waits for `0x002EFD20(2)` to report 2 and calls `0x00285EC0(0x0C)`; a confirmed quit calls
+`0x001E0FB0(0)`.
+
+The same task's skip path, its state 4, waits for `0x002CCC70(2)` to answer non-zero and calls `0x00285EA0(1)`
+(`0x0022917A`, the one direct call of `0x00285EA0`), which sets bit `0x2000` of `+0x400` ([the native command
+lifecycle](../Scripts-And-Script-Commands/native-commands.md)).
 
 The consumer is the area controller `0x00280140`, in its message `0x12` arm (`0x00280248` to
 `0x0028027C`): with bit `0x100` set it clears the bit and tests `+0x3FC` against `0x0C`. For `0x0C` it

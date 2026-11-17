@@ -24,10 +24,20 @@ Two sets of options exist.
 
 ### The settings object
 
-`0x007980A0`, the program's main routine, allocates `0x65C` bytes, builds the object with
-`0x001DE050(object, path)` (`0x00798257`) and keeps it at `0x01F82D20` (`0x00798261`). The path is the
-save directory (see the [saving and loading page](saving-and-loading.md)) joined with
-`GameSetting.ini` (`0x01CB35F8`, `0x00798218`) and stored at `+0x450` as a wide string.
+`0x007980A0`, the program's main routine, allocates `0x65C` bytes, builds the object with `0x001DE050(object, path)`
+(`0x00798257`) and keeps it at `0x01F82D20` (`0x00798261`). The path, stored at `+0x450` as a wide string, is built here,
+apart from the save directory `0x02EAF6E0` ([saving and loading](saving-and-loading.md)), though it names the same
+folder.
+
+The pieces are `SHGetFolderPathW` (CSIDL 5, `0x0079817E`), `\My Games\` and `FINAL FANTASY XII THE ZODIAC AGE\`
+(`%s%s`), the user id from `0x001F3ED0` and a backslash (`%s%s\`), each folder made with `_wmkdir` when `_waccess` does
+not find it (`0x001F3EA0`), and `GameSetting.ini` (`0x01CB35F8`) joined with `%s\%s` (`0x00798190`-`0x00798234`).
+
+`0x0079FA00` makes `Documents\My Games\` (`%s%s`) and then, in one path, `FINAL FANTASY XII THE ZODIAC AGE\` with the
+user id from `0x001F3ED0` and a backslash inside it (`%s%s%s\`, both through `0x00408ED0`), each with `CreateDirectoryW`
+when `GetFileAttributesW` fails or shows no directory; the game folder itself gets no create of its own unless the id
+is empty. It does nothing when `SHGetFolderPathW` fails, stops when the first create fails, and keeps both paths on
+its own stack (`0x0079FA32`-`0x0079FAE4`) ([Phyre application](../PhyreEngine/phyre-application.md)).
 
 `0x001DE050` fills the object in three steps:
 
@@ -248,6 +258,10 @@ normalise), switching on the id through their index tables at `0x002407C0` and `
 | 4 | 38 | `v != 1` |
 | 3, 5 | 17; every other id | unchanged |
 
+Both take the value by pointer, `0x002407F0(id, &value)` and `0x00240750(id, &value)`: `0x002407F0` keeps the pointer in
+`rbx` (`0x002407F9`) and each setter arm reads the value through it (`0x00240818` and the others); the normalising arms of
+`0x00240750` rewrite it in place before they jump to `0x002407F0` (`0x00240776`-`0x002407A3`).
+
 In `0x002407F0` the ids 7, 15, 18, 22-27 and 31-37, and any id outside 4-38, go straight to `0x0016D6A0` and set
 nothing (`0x002407F6`-`0x002407FF`, `0x0024095E`). Id 8 passes the same value to both of its setters
 (`0x0024084B`-`0x00240854`), id 14 calls `0x0023B2E0` after its setter (`0x002408B8`-`0x002408BF`), and id 17 loads its value
@@ -280,7 +294,7 @@ the three volumes to 100 (`0x001DBA60(1.0, channel)`), and runs the platform app
 | 11 | Subtitles | `0x002DE230` | dword 0 bit `0x1000` | `0x002DDD70` |
 | 12 | Camera Y-Axis | `0x002DE190` | dword 1 bit `0x100`, pushed to `0x001E1020` | `0x002DDD20` |
 | 13 | Camera X-Axis | `0x002DE160` | dword 1 bit `0x200`, pushed to `0x001E0FF0` | `0x002DDD00` |
-| 14 | Speed Mode Multiplier | `0x002DE250`, `0x0023B2E0` | dword 1 bits `0x7800000`: the getter returns `(dword1 >> 23) & 0xF` (`0x002DDDAA`-`0x002DDDAD`); the setter clears the bits with `dword1 & 0xF87FFFFF` and sets `(v & 0xF) << 23` (`0x002DE257`-`0x002DE264`) | `0x002DDDA0` |
+| 14 | Speed Mode Multiplier | `0x002DE250` (`0x0023B2E0` does not write it: when the speed index `0x01FD4A98` (`0x00229E20`) is not 0, it sets it to 1 when `0x002DDDA0()` is 0 and to 2 when it is 1, through `0x00229ED0`, and passes the same value to `0x00182FB0`; any other `0x002DDDA0()` value changes nothing (`0x0023B2E4`-`0x0023B32D`, [frame update order](../Engine-Core/frame-update-order.md)) | dword 1 bits `0x7800000`: the getter returns `(dword1 >> 23) & 0xF` (`0x002DDDAA`-`0x002DDDAD`); the setter clears the bits with `dword1 & 0xF87FFFFF` and sets `(v & 0xF) << 23` (`0x002DE257`-`0x002DE264`) | `0x002DDDA0` |
 | 16 | Voice language | `0x002DE2F0` | dword 1 bit `0x400` | `0x002DDE20` |
 | 17 | Music version | `0x002DE110` | `+0x0E` u16, pushed to `0x002DF530` | `0x002DDCA0` |
 | 19, 20, 21 | Music, Sound Effects, Voice volume | `0x002DE0B0`, `0x002DE290`, `0x002DE310` | `+0x08`, `+0x0A`, `+0x0C` u16, at most 100, pushed to `0x002DF2B0` on channels 1-3 | `0x002DDC70`, `0x002DDDE0`, `0x002DDE40` |
@@ -572,3 +586,5 @@ Calls between the functions this page cites and code in other parts of the progr
 - World area: those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
   [frame update order](../Engine-Core/frame-update-order.md),
   [game over](../World-Areas-And-Travel/game-over.md).
+- Gameplay: `0x00229ED0` is called by `0x00237DF0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).

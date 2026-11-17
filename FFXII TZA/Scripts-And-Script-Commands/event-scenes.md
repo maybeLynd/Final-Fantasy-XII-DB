@@ -54,6 +54,11 @@ clears bit `0x1` (`0x00332154`). When the mask is then empty it also clears mana
 A second call on an empty mask clears `+0x11` bit `0x8` again and does not run the finaliser; while other bits are
 still pending the call only clears bit `0x1`.
 
+Neither `eventplay` (`0x00EB`) nor `eventplay_ec` (`0x00EC`) has a begin or a poll callback: each runs its result
+callback once at its step and does not wait for the files. `eventreadsync` and `eventreadsync_ea` wait for them; they
+share the poll `0x003541B0` (`eventreadsync`'s `0x00354740` is a jump to it). `moviestandby`'s ready test `0x0035B7A0` also
+waits while manager 3's loads are pending (`0x00254A80`, `0x0035B7B4`-`0x0035B7BB`).
+
 For a manager above 0 the finaliser resets light group `m` (`0x0037B230`, `0x0032F1D4`) and clears its ready byte
 (`0x003DE920(m, 0)`, `0x0032F1E0`). When the payload's lighting section `0x022C6E20[m]` is set (`0x0032F1F2`) it binds it
 (`0x0037AA90`, `0x0032F1F9`), sets the ready byte again (`0x0032F207`) and stores the first cut id plus 1 at manager
@@ -93,6 +98,10 @@ loader's gate byte `0x01DF6E48` ships as 1 (`0x001C5958`); the
 | `getmoviestatus` | `0x036F` | `0x00340870` (→ `0x0035B740`) | returns the player's state `0x00184860` when it is 1, 2 or 3, else 0, and pumps the opening player (`0x00184880`) while it is 1 |
 | `moviecancel` | `0x036E` | `0x0033FEC0` (→ `0x0035B720`) / `0x00357300` / `0x0033FA20` | asks the player to stop, waits while the status is 1 to 3, then ends |
 | `movieend` | `0x036D` | `0x0033FA20` → `0x0035B8D0` | stops the player (`0x001848E0(0)`, `0x0035B8D6`), frees the buffer `0x022C8058` when it is set and zeroes it (`0x0035B8E5`, `0x0035B8EC`), clears busy bit `0x10000` (`0x003601C0(0x10)`, `0x0035B8FC`) and switches the field systems back on: `0x00358750(0, 0)`, the same siblings with 1, `0x00358650(1)` and `0x00358700(1)`, which set bits `0x4` and `0x8` of `0x022C7F92` and which `movieplay` does not touch (`0x0035B953`, `0x0035B95D`), `0x002E1CD0(1, 0)`, which clears the action row 0 mask `0x139203` and with it the bits `0x1` and `0x100000` that `moviestandby` set, `0x002E1C40(1, 4)` and `0x00368AA0(0, 1)`; it ends by setting the arena mode back to 0 through its tail jump to `0x0037B450(0)` (`0x0035B98B`) |
+
+`0x0033FA20` and `0x0033FEC0` are reached through the verb table: `0x0033FA20` is the result callback of both `movieend`
+(`0x01EF44C0`) and `moviecancel` (`0x01EF44E0`), and `0x0033FEC0` is `moviecancel`'s begin (`0x01EF44C8`); nothing calls or
+jumps to either directly, and no other pointer to them is stored.
 
 The player object at `0x01F81218` keeps its state at `+4`: 0 idle, 1 opening, 2 ready, 3 playing,
 4 the last 233 ms, 5 ending, 6 the skip fade. A script therefore reads "finished" from the last

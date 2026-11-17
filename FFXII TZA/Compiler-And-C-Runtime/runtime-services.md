@@ -39,6 +39,56 @@ The functions in `0x00158DE0`-`0x0015B5F0` load DLLs and resolve functions thems
 from `LocalAlloc` (`0x008C2348`) and `LocalFree` (`0x008C21F8`); `GetLastError` is `0x008C20A8` and
 `SHGetFolderPathW` `0x008C27E8`.
 
+The narrow file calls, by site (`fopen` `0x008C2EF8`, `freopen` `0x008C2E48`, `CreateFileA` `0x008C2178`, `remove`
+`0x008C2B18`, `rename` `0x008C2B00`):
+
+| Site | Call | In | What it opens |
+|---|---|---|---|
+| `0x00187597` | `fopen`, `wb` | `0x00187550` | `/capture.tga`, the screenshot ([game application](../Engine-Core/game-application.md)) |
+| `0x00187771` | `fopen`, `wb` | `0x001876E0` | the numbered `/Capture 4K/` screenshot ([game application](../Engine-Core/game-application.md)) |
+| `0x001F43A9` | `fopen`, `rb` | `0x001F4340` | the archive, to read and check its index, at the path it copies to the record's `+0x78` ([bigfile archive](../Game-Files-And-Data-Tables/bigfile-archive.md)) |
+| `0x002152AD` | `fopen`, `rb` | `0x00215290` | the archive, once in each reader ([bigfile archive](../Game-Files-And-Data-Tables/bigfile-archive.md)) |
+| `0x002E0421` | `fopen`, `rb` | `0x002DF9A0` | the locale's file size table, read whole into `0x02EC3EE0` ([file size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)) |
+| `0x005CCAE8`, `0x0079B298` | `CreateFileA`, `GENERIC_WRITE` | `0x005CCAB0`, `0x0079B1E0` | the crash dumps (below) |
+| `0x007162F0` | `fopen`, `r` | `0x007162D0` | the file its second argument's string names, its text appended to the first's (`fgets` through `0x007155E0`, `0x00716345`); a failed open empties the first |
+| `0x007163CB` | `fopen`, `w` | `0x007163B0` | the file its second argument's string names, written from the first with `fputs` (`0x007163E0`); nothing calls `0x007163B0` or stores its address |
+| `0x0078DA33` | `fopen`, `rb` | `0x0078D920` | a `.tfxo` effect file, in the function its messages call `CTinyEffect::CreateFromFile`; another name is read as text through `0x007162D0` (`0x0078DB29`) ([YEBIS and PPFX](../Third-Party-Libraries/yebis-ppfx-post-effects.md)) |
+| `0x0081307A`, `0x0081310F` | `fopen`, `r`; `freopen`, `rb` | `0x00812FA0` | `luaL_loadfilex`'s file ([Lua runtime](../Third-Party-Libraries/lua-runtime.md)) |
+| `0x0082571C`, `0x00826729` | `fopen` | `0x00825660`, `0x008266D0` | `io.open` and `opencheckfile`, on the name a chunk passes |
+| `0x00826ACF`, `0x00826B31` | `remove`, `rename` | `0x00826AB0`, `0x00826B00` | `os.remove` and `os.rename`, on the names a chunk passes |
+| `0x00829553` | `fopen`, `r` | `0x00829460` | `searchpath`'s readability test |
+
+The last four rows are the embedded Lua library's; `io.open`, `opencheckfile`, `os.remove`, `os.rename` and
+`searchpath` belong to its `io`, `os` and `package` libraries, which no code opens ([Lua
+runtime](../Third-Party-Libraries/lua-runtime.md)).
+
+`0x00828B80`, which `package.loadlib` (`0x008285B4`) and `loadfunc` (`0x00828CE8`, `0x00828D11`) call, loads the library its
+caller names (for `package.loadlib`, the chunk's two arguments; for `loadfunc`, the file and `luaopen_` followed by
+the name it loads) with `LoadLibraryExA` (`0x00828BE4`) unless `_CLIBS` already holds a handle for that path, and,
+unless the symbol starts with `*`, looks it up with `GetProcAddress` (`0x00828C2C`); a failed load returns 1 and a
+failed lookup 2 (`0x00828BDA`-`0x00828C44`).
+
+`GetProcAddress` (`0x008C2130`) is called at 51 sites, each with a fixed name in `rdx` except two: `0x00862CC0` passes
+ordinal 100, and `0x00828C2C` passes the symbol its caller gives, a path only the unopened `package` library reaches.
+None of the fixed names is a function that opens, creates, copies, moves or deletes a file:
+
+| Function | Sites | Looks up | Page |
+|---|---|---|---|
+| `0x00158DE0` | `0x00158DF3`, `0x00158E8B` | `nvapi_QueryInterface`, `nvapi_pepQueryInterface` | [graphics adapters](../Steam-And-Achievements/graphics-adapters-and-vendor-libraries.md) |
+| `0x00159B10` | `0x00159BCA` | `SHGetFolderPathW` | [driver DLL search](../Steam-And-Achievements/driver-dll-search.md) |
+| `0x00159F90` | `0x0015A02F` | `RegQueryValueExW` | [driver DLL search](../Steam-And-Achievements/driver-dll-search.md) |
+| `0x0015A0E0`, `0x0015AC50` | `0x0015A184`, `0x0015A1B5`; `0x0015ACED`, `0x0015AD19` | `RegOpenKeyExW`, `RegCloseKey` | [driver DLL search](../Steam-And-Achievements/driver-dll-search.md) |
+| `0x0015AE60` | `0x0015AEEF`, `0x0015AF1B`, `0x0015AF47` | `RegOpenKeyExW`, `RegEnumValueW`, `RegCloseKey` | [driver DLL search](../Steam-And-Achievements/driver-dll-search.md) |
+| `0x0015A330` | `0x0015A3FD`, `0x0015A42D`, `0x0015A459`, `0x0015A485` | `SetupDiGetClassDevsW`, `SetupDiEnumDeviceInterfaces`, `SetupDiGetDeviceInterfaceDetailW`, `SetupDiDestroyDeviceInfoList` | [driver DLL search](../Steam-And-Achievements/driver-dll-search.md) |
+| `0x0015A780` | `0x0015A81B`, `0x0015A84B`, `0x0015A877`, `0x0015A8A3` | `OpenSCManagerW`, `OpenServiceW`, `QueryServiceConfigW`, `CloseServiceHandle` | [driver DLL search](../Steam-And-Achievements/driver-dll-search.md) |
+| `0x0015A9B0`, `0x0015B5F0` | `0x0015AA65`, `0x0015AA91`; `0x0015B6E0`, `0x0015B70C` | `SetupDiGetDeviceRegistryPropertyW`, `SetupDiDestroyDeviceInfoList` | [driver DLL search](../Steam-And-Achievements/driver-dll-search.md) |
+| `0x0015B110` | `0x0015B227`, `0x0015B253`, `0x0015B27F` | `SetupDiGetDevicePropertyW`, `SetupGetInfDriverStoreLocationW`, `SetupDiDestroyDeviceInfoList` | [driver DLL search](../Steam-And-Achievements/driver-dll-search.md) |
+| `0x0020D2F0` | 17, `0x0020D3E2`-`0x0020D574` | `ADL2_Main_Control_Create` and `_Destroy`, `ADL2_Adapter_NumberOfAdapters_Get`, `ADL2_Adapter_AdapterInfo_Get`, `ADL2_Adapter_Active_Get`, `ADL2_Overdrive_Caps` and eleven `ADL2_OverdriveN_` functions | [graphics adapters](../Steam-And-Achievements/graphics-adapters-and-vendor-libraries.md) |
+| `0x0079E700` | `0x0079E82B`, `0x0079E846`, `0x0079E861` | `OpenDesktopA`, `CloseDesktop`, `SwitchDesktop` | [lazy statics](lazy-statics-and-one-time-init.md) |
+| `0x00809124` | `0x0080916A`, `0x0080917D`, `0x00809190` | `InitializeConditionVariable`, `SleepConditionVariableCS`, `WakeAllConditionVariable` | [lazy statics](lazy-statics-and-one-time-init.md) |
+| `0x00828B80` | `0x00828C2C` | the symbol its caller passes (`rdx` = `rsi`, `0x00828C26`) | [Lua runtime](../Third-Party-Libraries/lua-runtime.md) |
+| `0x00862C70` | `0x00862CC0` | ordinal 100 of `xinput1_3.dll` (`edx` = `0x64`, `0x00862CBB`) | [controllers](../Controls-And-Input/controllers.md) |
+
 ### Start-up
 
 The C runtime entry `0x00808D78` calls `0x007A3770` (`0x00808E8A`), the game's `WinMain`. `0x007A3770`

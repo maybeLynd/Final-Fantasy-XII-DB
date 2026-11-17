@@ -99,6 +99,12 @@ the flag dword `+0x04`:
 2. A request bit `0x2` becomes bit `0x2000` and is cleared from `0x02089344` (`0x00239A45`-`0x00239A66`).
 3. A request bit `0x4` becomes bit `0x4000` and is cleared (`0x00239A6C`-`0x00239A7E`).
 
+Of the stores that name `0x02089344`, only these two clear bits `0x2` and `0x4`: `0x00233C7C` and `0x00238A30` change only
+bit `0x1` (`0x00238A43` for `0x00238A30`), and `0x00238A20` and `0x00238A50` set the requests. An area start that applies no
+preset (an area init that returns at once because `0x02089300` is 0, `0x002342F4`-`0x002342FB`; none pending, the value -2,
+which runs `0x00237DF0` instead, any other negative value, or a number at or past the preset count,
+`0x00239966`-`0x002399BB`) leaves a request set, and so does a return to the title.
+
 The prologue's end asks for preset 1 (`naf_b04`, `btlAtelSetNextSetSaveData(1)`). That second pass keeps the bits
 the same way.
 

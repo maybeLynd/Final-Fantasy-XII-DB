@@ -163,8 +163,15 @@ When status 0 (KO) is cleared, `0x0030F690` first finds the record's battle unit
 keeps the bit. The null test of `+0x698` (`0x0030F6E3`) never leads to the clear, since the unit's
 `+0x698` is the record itself.
 
-`btladjustsystem(n)` (`0x517`, `0x0034AAB0`) calls `0x002FEAC0(n)`: for an odd `n` it clears bit `0x1` of
-`0x022C3178`, zeroes `0x022C3158`, `0x022C3160` and `0x022C3170` and sets `0x022C3168` to -1.
+`btladjustsystem(n)` (`0x517`, `0x0034AAB0`) calls `0x002FEAC0(n)`: for an odd `n` it clears bit `0x1` of `0x022C3178`,
+zeroes `0x022C3158`-`0x022C3167` and `0x022C3170`-`0x022C3177` and sets `0x022C3168` and `0x022C316C` to -1, with qword stores
+(`0x003183A0`-`0x003183BE`).
+
+That reset, `0x003183A0`, is reached directly from `0x002FEAC0`'s jump for an odd argument (`0x002FEAC3`), from the area
+initialisation `0x002342F0`, with the battle system's up flag `0x02089300` non-zero, when `0x00377C20` answers non-zero
+(`0x002342F4`, `0x00234446`-`0x0023444F`), from the scenario presets' function `0x00239960` for a valid pending preset
+(`0x00239A85`) and from the battle-state reset `0x00237DF0` (`0x00237E3C`) ([kill
+chain](../Rewards-EXP-Gil-And-Loot/kill-chain.md)).
 
 ### The save menu
 
@@ -471,3 +478,10 @@ position, and `facing` gives the heading in radians. All 81 entries carry a spot
 - [Game over](game-over.md): what a party wipe does instead.
 - [`group-persistent-bank-accesses.tsv`](group-persistent-bank-accesses.tsv): every access to the group
   persistent bank `0x02099FF0` (`0x200` bytes): its copy out to the save (`0x0025D8E0`) and back (`0x00269A20`) (70 rows).
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- RNG random selection: `0x002342F0` calls `0x00328D80`; those functions are documented on
+  [enemy respawning](../Enemy-Spawning/enemy-respawning.md).

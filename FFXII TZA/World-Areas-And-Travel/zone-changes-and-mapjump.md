@@ -76,6 +76,11 @@ return 0;
 while `0x01EED064` is non-negative is dropped without error. `0x0026A5F0(0)` ORs the bits under mask `0xF` into the
 manager request mask `0x02099ABC` (requesting manager 0 also requests 1, 2 and 3).
 
+A request dropped this way answers 0, as an accepted one does (`0x00314471`-`0x00314478`, `0x00314512`), so the poll
+`0x00355350` moves to state 1 as it would for an accepted jump (`0x003553CF`-`0x003553D8`). The poll does not read
+`0x01EED064`: in state 0 it waits only on the two tests of step 2 (`0x0035539C`-`0x003553B6`) and on a non-zero answer from
+`0x00314440`, which step 4 retries (`0x003553D4`-`0x003553D6`), so it cannot tell a dropped request from an accepted one.
+
 Callers of `0x00314440`: the mapjump poll (`0x003553CF`), `0x00280140` (`0x0028027C`), `0x00394130`
 (`0x003941FC`), `0x0050C8A0` (`0x0050C8B6`), the load-completion callbacks `0x00331920` (`0x0033194E`,
 `0x0033197F`) and `0x003318C0` (`0x003318E5`, `0x00331914`), and `0x00319F50` (`0x0031A0F1`).

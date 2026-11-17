@@ -29,7 +29,9 @@ reads from its area file, one order per switched-on line, copying each line's te
 
 ### What runs before the gambits
 
-`0x00305AB0(unit, resume)` picks the next action (`0x00305AB0`-`0x00305CB4`). A unit with flag bit `0x400000` first runs
+`0x00305AB0(unit, resume)` picks the next action (`0x00305AB0`-`0x00305CB4`). Its only direct callers are the combat frame
+`0x00308610`, with `resume` 1 (`0x0030874C`, [enemy AI](enemy-ai.md)), and the idle-unit drain `0x00313CD0`, with 0
+(`0x00313D89`, [action commit](../Battle-Actions/action-commit.md)). A unit with flag bit `0x400000` first runs
 `0x00308270` (`0x00305AC1`-`0x00305AC8`). Then:
 
 1. **A pending command.** When unit flag `0x4000` is set it is cleared (`0x00305AEB`); the command's action

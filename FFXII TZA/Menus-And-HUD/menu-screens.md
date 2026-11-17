@@ -726,10 +726,10 @@ when there is one, and calls `0x00250F30` (`0x00227DD4`-`0x00227DED`); then, whe
 task, it writes 2 to that task's `+0xCC` (`0x00227DF2`-`0x00227E05`). The pause task's closing states 2, 4, 5 and 7 all
 call it, so the event-skip task's `+0xCC` becomes 2 whichever was chosen; of them state 4 alone sets bit `0x2000`.
 
-The event-skip task, on message 2, when its `+0xCC` is 2, `0x00251D50()` answers non-zero and `[0x0209AC30] + 0xD0` is
-null, releases itself through `0x00245020` and zeroes `+0xCC` (`0x0022821F`-`0x00228258`). Its message 18 calls `0x00360880()`
-and clears bit `0x2000` when that bit is set, else, when bit `0x100` is set, clears it and calls `0x003603E0()`
-(`0x002281A7`-`0x002281D9`).
+The event-skip task zeroes its `+0xCC` when it opens, on message 1 (`0x00228277`). On message 2, when its `+0xCC` is 2,
+`0x00251D50()` answers non-zero and `[0x0209AC30] + 0xD0` is null, it releases itself through `0x00245020` and zeroes
+`+0xCC` (`0x0022821F`-`0x00228258`). Its message 18 calls `0x00360880()` and clears bit `0x2000` when that bit is set, else,
+when bit `0x100` is set, clears it and calls `0x003603E0()` (`0x002281A7`-`0x002281D9`).
 
 `partyFlags` (`+0xD3C`), rebuilt by `0x00283270` each time it rebuilds the party records:
 

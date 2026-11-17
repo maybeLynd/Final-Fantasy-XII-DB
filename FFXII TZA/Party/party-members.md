@@ -282,6 +282,12 @@ other scripts are these:
 | 4 Basch | `slm_a01` | `naf_a01` |
 | 5 Penelo | `rsn_b01`, `sav_b01` | `naf_a01`, `slm_a02` |
 
+In the prologue at Nalbina (`naf_a01`, `naf_a02`) Basch is neither a party member nor a guest: each area makes him one
+of its own battle units, the actor `BASH` set up with `btlAtelSetUnit` (unit 0 in `naf_a01`, unit 2 in `naf_a02`). The
+`naf_a01` leaves in the table above are the main function of its actor `常駐監督` removing each of members 1 to 5
+that is in the party while `EV_ナルビナ上層マップ進行` is below 10, and `naf_a02` calls none of the four
+member and guest verbs.
+
 | Guest | Joins (`addguestbattlemember`) | Leaves (`removeguestbattlemember`) |
 |---|---|---|
 | 7 Amalia | `grm_b02` | `slm_a01` |

@@ -102,6 +102,12 @@ sets `+0xBA4` bit `0x8000` and flag `0x4000`, stores the target at `+0xBB8` (wit
 argument stores the target at `+0x748` and the transient set `0x01EEC2D0` at `+0x6F8`; then it calls `0x00317E60`.
 It returns 0 otherwise, including when a status drops the command silently.
 
+After step 1's commit `+0x708` holds `unit + 0xBA0` (`0x00305B19`, `0x0030F7F9`), so `0x00325D90` reaches the issued flags
+through it. `0x00325D90` returns 0 at once when `+0x1F0` has a bit of `0x3000`, when the record's statuses meet
+`0x8000401B`, when `+0x60` is `0x2006`, `0x2037` or `0x2039`-`0x203C`, or when byte `+0x6B7` is non-zero
+(`0x00325D96`-`0x00325DE6`). Otherwise, when `+0x708` is set, it tests bit `0x4` of the byte at `[+0x708] + 4`, the low
+byte of `+0xBA4` after that commit, and returns 0 while it is set (`0x00325DE8`-`0x00325DF8`).
+
 The menu path `0x00311B20(actor handle, target handle, arg, id, all)`, a caller named below, returns -1
 without issuing when the acting handle resolves to no unit (`0x0031B7E0`), or when a non-zero target handle
 resolves to no unit for an id other than `0x414E` (`0x00311B3E`-`0x00311B74`). It passes a transient argument of 1
@@ -115,7 +121,11 @@ With `all` non-zero `0x00311B20` issues to every party-slot unit 0-3 that has a 
 Its callers are the menu path `0x00311B20` (two sites), which the battle menu `0x002778C0` calls ([battle
 menu](../Menus-And-HUD/battle-menu.md)), and `0x003138D0`.
 
-`resetJobs` (`0x05D6`, `0x00342230` → `0x00328BD0`) reaches it: resetting the character recorded at
+`0x00311CD0(actor handle, target handle, id, all)` calls `0x00311B20(actor handle, target handle, 0, id, all)` with `id`
+as a word (`0x00311CD4`-`0x00311CE0`). Besides its direct call to `0x00311B20` (`0x0027869B`), the battle menu `0x002778C0`
+calls `0x00311CD0` (`0x00278766`), as do `0x0027AA70` (`0x0027AB01`) and `0x0027C3D0` (`0x0027C5FE`, `0x0027C642`, `0x0027C665`).
+
+`resetJobs` (`0x05D6`, `0x00342230` → `0x00328BD0`) reaches `0x00311CF0`: resetting the character recorded at
 `[0x02EBF190] + 0x5AD5` (`0x003137F0`) runs `0x003138D0(1)`, which issues the fixed command `0x113` to the party-slot-3
 unit (`0x0031B8C0(3)`) with itself as target.
 
@@ -372,7 +382,7 @@ Battle unit:
 | `+0x750` | `...` |  | shared target |
 | `+0x754` | `...` |  | shared target |
 | `+0xBA0` | `u16` |  | issued command id |
-| `+0xBA4` | `u16` | issued order flags | the flags word of the issued order at `+0xBA0`: bit `0x8000` set on issue (`0x00311DBB`) |
+| `+0xBA4` | `u16` | issued order flags | bit `0x8000` set on issue (`0x00311DBB`); bit `0x4` read by `0x00325D90` (`0x00325DF4`) |
 | `+0xBB8` | `...` |  | issued target |
 | `+0xDCC` | `u32` | stanceRecheckDeadlineTick |  |
 | `+0xE80` | `u64[2]` |  | script abilities |

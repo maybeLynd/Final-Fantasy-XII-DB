@@ -62,6 +62,13 @@ read the combined mask, and `0x002E1020(row)` reads one row for three of them.
 
 No holder sets a bit in rows 5, 11 and 14; only the two clears `0x002E0670` and `0x002E1450` write them (`0x002E0680`/`0x002E1572`, `0x002E0695`/`0x002E1587`, `0x002E06A3`/`0x002E1595`).
 
+`ucon` and `ucon_4a5` run `0x0026C5D0`, which calls `0x00265680` twice, a test that also zeroes the stick's speed in
+[Player movement](../Movement-And-Pathfinding/player-movement.md) (manager 0 live, every active manager's byte
+`+0x17` bits `0x1` and `0x2` set). When the first answer is non-zero it clears row 12's mask through `0x00307140(0)`
+(`0x0026C71E`-`0x0026C738`; [Enemy respawning](../Enemy-Spawning/enemy-respawning.md)). After the second it
+clears row 6's mask when the answer is non-zero and sets it when the answer is 0 (`0x0026C7AB`, `0x0026C7FB`-`0x0026C80C`,
+`0x0026C82A`-`0x0026C82C`).
+
 ### Row 8
 
 Five helpers write most of row 8, each setting or clearing a fixed group of bits:
@@ -241,3 +248,10 @@ No other instruction reaches `0x01FD46F8`; only `0x00228922` stores to it.
 - [Escape Mode](escape.md) - the toggle bits `0x40`, `0x200` and `0x400` force off.
 - [Keymap file](keymap-file.md) - the buttons the arbiter reads.
 - [Menu requests](../Menus-And-HUD/menus.md) - the request ids and the router.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Spawn encounter lifecycle: `0x00307140` is called by `0x00306F00`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).

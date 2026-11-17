@@ -140,6 +140,17 @@ and it writes no count (`0x00316F62`-`0x00316F82`).
 These are every call of `0x003008A0` and its wrappers in the image; the one indirect call is `0x00316F82`, to
 `0x00300B80` or `0x00300490`.
 
+The shop purchase `0x002FEEB0` and sale `0x00310870` change the item count through `0x003008A0` and then gil through the
+setter `0x00254EE0`, with no branch before either call (`0x002FEEDB`, `0x002FEEF3`; `0x003108A6`, `0x003108BD`).
+
+After a shop purchase of equipment, when the player accepts the equip offer, the member picker `0x0057AC10` calls
+`0x0031A510` for the member under the cursor at a confirm (`0x0057AF18`), only when its countdown byte `+0xC7` is 0
+(`0x0057ADE8`-`0x0057AE06`; a call sets it to `0x18` while copies are left, `0x0057AF8D`, and message 2 lowers it by one,
+`0x0057AD8F`-`0x0057ADA6`), that member can equip the item, a bought copy is left and the member's slot does not already
+hold it, so at most once per copy bought; a refused confirm plays sound 5 (`0x0057AF9B`).
+
+[Shop screens](../Menus-And-HUD/shop-screens.md) has the picker; that call is the equipping row above.
+
 ### The inventory lists
 
 Each category of the inventory screen reads one of these lists, and Abilities reads two. Moving a row there
@@ -290,3 +301,15 @@ Calls between the functions this page cites and code in other parts of the progr
   `0x00328DB0`, `0x00329080`; those functions are documented on
   [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party data](../Party/party-data.md),
   [party control modes](../Engine-Core/party-control-modes.md).
+- Presentation: `0x00312280` calls `0x0028FB80`; those functions are documented on
+  [exp lp and level ups](../Rewards-EXP-Gil-And-Loot/exp-lp-and-level-ups.md).
+- World area: `0x00312280` calls `0x00377C20`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Input: `0x00377C20` is called by `0x00253C70`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Core runtime: `0x00253C70` calls `0x001EDE70`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Story event quest hunt: `0x00253C70` calls `0x0032A8A0`; those functions are documented on
+  [identifier spaces](../Engine-Core/identifier-spaces.md).

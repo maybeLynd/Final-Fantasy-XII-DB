@@ -39,6 +39,12 @@ editor is a `0x368`-byte widget from `0x00244F50` whose create record holds 0, a
 | `0` | the character's name; its switch is bit `0x4` of the party record (`0x00309B40`) |
 | 1 to the slot count | one gambit line: condition and action names, "-" (`0x3EB`) when empty, and ON or OFF from the set's mask |
 
+`0x00311AF0(index, on)` and `0x00309B40(index)` take a party record index, not a unit: both resolve it with `0x00320A40`,
+which compares the index's low byte unsigned and answers the record at `[0x02EBF190] + 8 + index * 0x1C8` for 0 to
+`0x27` and null for `0x28` to `0xFF` (`0x00320A40`-`0x00320A60`). `0x00311AF0` sets bit `0x4` of the record's first dword
+when `on` is non-zero and clears it when `on` is 0, and writes nothing else; for a null record it does nothing
+(`0x00311B00`-`0x00311B0F`). `0x00309B40` answers that bit, or 0 for a null record (`0x00309B4C`-`0x00309B58`).
+
 The slot count is the set's byte `+0x32` ([Gambits](../Enemy-AI-And-Gambits/gambits.md)); the script verb
 `setgambit_slotmax` adds to it for all three sets, between 0 and 12 (`0x00327930`). A line is coloured one way for a Foe
 condition and another for Ally or Self (`0x0031D0D2`, `0x01EED270`), or greyed when it is off (`0x00568BB0`).

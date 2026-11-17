@@ -326,8 +326,18 @@ The equip offer checks each party member (`0x00317B70`):
 1. When someone can equip it, it asks "Equip your purchase now?" (`0x803`).
 2. When the item's class is one of the eight in `0x00D23910`, the ranged weapons and their ammunition, it says instead
    that the item cannot be equipped at a shop and to use the Equip command in the Party Menu (`0xCF8`, `0x0057AB32`).
-3. Yes opens the member picker `0x0057AC10`, "Select a character to equip." (`0xC70`), which equips through
-   `0x0031A510` (`0x0057AF18`) once per copy bought.
+3. Yes opens the member picker `0x0057AC10`, "Select a character to equip." (`0xC70`), which calls `0x0031A510`
+   (`0x0057AF18`) for the member under the cursor at a confirm, only when its countdown byte `+0xC7` is 0
+   (`0x0057ADE8`-`0x0057AE06`), that member can equip the item, a bought copy is left and the member's slot does not
+   already hold it, so at most once per copy bought; a refused confirm plays sound 5 (`0x0057AF9B`).
+
+`0x0031A510`, once the seat is accepted (`0x0031A53C`-`0x0031A55F`) and, for an id other than `0xFFFF`, the eligibility test
+passes (`0x0031A59C`-`0x0031A5A3`), moves one worn copy from the old piece to the new with `0x0030F9A0` and `0x0030C410`
+(`0x0031A5A5`-`0x0031A5BF`) before it stores the id (`0x0031A5C8`;
+[Equipment](../Items-Equipment-Shops-And-Licenses/equipment.md)); otherwise it returns -1 with no move.
+
+After the store, `0x00318B40(…, slot, 1)` (`0x0031A5C4`-`0x0031A5D5`) can take the other hand's piece off and move its
+worn copy too (`0x00318C4A`-`0x00318C79`). The picker itself calls none of `0x003008A0`, `0x0030F9A0` and `0x0030C410` directly.
 
 `0x00D23910` is `u8[8]`, equipment classes: the equipment row's byte `+0x09`, which the class-6 query `0x0035D380(6, id)`
 copies to `+0x38` (`0x0031C9BD`-`0x0031C9C1`; [Equipment row](../Items-Equipment-Shops-And-Licenses/equipment-row.md)).

@@ -37,7 +37,9 @@ stack of the function that starts the action or status change, which first clear
 
 `0x003112F0(record, sourceStats, targetStats, actionId, flags)` (2,040 bytes) is called
 by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic maintenance `0x00310DB0`
-(three calls), the effect-bit write `0x0030E130` and the status write `0x0030E360`. In order:
+(three calls), the effect-bit write `0x0030E130` and the status write `0x0030E360`. The last three pass a null
+`sourceStats` at all five calls (`0x0030E2D8`, `0x0030E636`, `0x00310FA5`, `0x003110A2`, `0x0031126A`); the effect applier
+passes the user's stats record `+0x698` (`0x0030741E`, `0x00307AAA`). In order:
 
 1. **Skip test.** Unless bit `0x1` of `flags` is set, nothing is applied when `0x0030B9B0(targetUnit,
    sourceUnit)` is non-zero - the global part `0x0030B770` or the unit part `0x0030B7F0` of the eligibility

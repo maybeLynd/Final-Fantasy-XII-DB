@@ -67,6 +67,21 @@ The order comes from those tests, not from the store. `POPV` (`0x00267E60`) pops
 reading the old one (`0x0026D5C4`-`0x0026D5E3`). A write of a value below the counter's lowers it, and a write in item
 3 runs whenever its function runs, whatever the counter holds.
 
+`0x0026ABA0(i, v)` stores the word `v`, as it is, as word `i` of the payload `[0x02098E58]`, the counter when `i` is 0,
+for an `i` below `0x100` (a signed test), while bit `0x1` of `0x02098E20` is set and the pointer is not null
+(`0x0026ABA0`-`0x0026ABC0`). For kind 3, `0x00329E60(kind, unit, q, v)` calls it with `q` as `i` and the low word of `v`
+(`0x00329EAB`-`0x00329EB2`; [Quests](quests.md)).
+
+The one call of `0x00329E60` in the action effect applier `0x00312170` passes kind 10 (`0x0031225A`-`0x0031225E`). `0x002FE660`
+calls it for the battle orders `0x4149` and `0x4155`-`0x4157` while the unit's phase byte `+0x6B4` is 0, with the kind
+from the order record's word `+0x06 >> 12` and `q` the low byte of that word (`0x002FE67B`-`0x002FE6AD`; [Battle
+orders](../Battle-Actions/battle-orders.md)).
+
+`0x002FE660` reads the old value through `0x00321190` (`0x002FE6E7`) and writes the record's signed word `+0x02` for
+`0x4149`, the old value plus it for `0x4155`, and the old value with the bit that word numbers set or cleared for
+`0x4156` and `0x4157` (`0x002FE71A`-`0x002FE74E`). An order record of kind 3 and a low byte of 0 therefore writes the
+counter.
+
 ### Values only the developer menus set
 
 The developer scripts `evt_t*` write 88 values no shipping script writes, reachable or not, among them 0 and 10. The clan board ladder
@@ -99,3 +114,14 @@ Calls between the functions this page cites and code in other parts of the progr
 - Script VM: `0x00267E60` calls `0x00262440`; `0x00267E60` is called by `0x0025E4C0`; `0x0026D530` is called by `0x00267E60`;
   those functions are documented on [script variables](../Scripts-And-Script-Commands/script-variables.md),
   [script interpreter](../Scripts-And-Script-Commands/script-interpreter.md).
+- Combat AI: `0x002FE660` calls `0x00321190`; `0x00312170` calls `0x00321190`; `0x00321190` is called by `0x00301AD0`; those
+  functions are documented on [frame update order](../Engine-Core/frame-update-order.md),
+  [glossary](../Engine-Core/glossary.md).
+- Combat action: `0x00312170` calls `0x0030AB40`; `0x00312170` is called by `0x00307300`, `0x0030EC00`; `0x00321190` is called by
+  `0x002FE660`, `0x00312170`; `0x00329E60` is called by `0x002FE660`, `0x00312170`.
+- Combat action: those functions are documented on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [game over](../World-Areas-And-Travel/game-over.md), [action results](../Battle-Actions/action-results.md),
+  [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md); and on
+  [action definition row](../Battle-Actions/action-definition-row.md).
+- Party: `0x002FE660` calls `0x0031B7E0`; those functions are documented on
+  [identifier spaces](../Engine-Core/identifier-spaces.md).

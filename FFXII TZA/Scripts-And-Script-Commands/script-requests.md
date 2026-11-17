@@ -519,7 +519,10 @@ arming mask of every actor record, and the talk candidate at `0x0209A2B4` to `0x
 
 `0x0209A2B8` is the candidate's record index, the record's `u16` at `+0x000`, beside its manager slot `0x0209A2B4`. The
 talk tests `0x0025BAD0` (`0x0025BDD1`) and `0x0025BE50` (`0x0025BF76`) set it, and the boot `0x00266D10` (`0x002670F8`) sets it to
--1. The talk filer `0x00268D10` passes it to `0x00358940` (`0x00268D58`).
+-1. The talk filer `0x00268D10` passes it to `0x00358940` (`0x00268D58`). When that answers 0 (the manager's qword `+8`
+null, the index out of range or the entry null, `0x00358944`-`0x0035895B`), the jump at `0x00268D76` skips `0x00317E60`
+(`0x00268E35`) and goes to the bit test at `0x00268E3A`, which faults (the `0x00268D10` row of the filer table), before the
+clear (`0x00268E41`).
 
 `0x0025AAD0(v, id)` looks the actor up with `0x003588B0(id)` (`0x0025AADA`) and acts only when `v` is 0 and the actor exists
 (`0x0025AADF`-`0x0025AAE6`): it stores the actor's word `+0` in `0x0209A2B8`, 0.0 in the float `0x0209A2B0`, the value

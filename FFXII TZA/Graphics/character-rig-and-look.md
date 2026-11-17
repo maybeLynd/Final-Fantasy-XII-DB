@@ -473,6 +473,13 @@ The cosine and sine of the eased front angle are stored at `+0x00` and `+0x14` (
   `{3, own index, own index, target index}` to `0x00512F30` on the record's `+0x650` block (a kind-3 request, below; a
   target equal to the record clears the aim), and it stores the target in word `+0x24C` when `keep` is set, else −1.
   Its record form `0x003E6C10(record, target, …, keep)` does the same.
+- `0x003E6B50(record, request)` is `0x00512F30` on the record's `+0x650` block: it adds `0x650` to `rcx` and jumps to
+  `0x00512F30` (`0x003E6B50`-`0x003E6B57`). Its one direct reach, with no stored address, is the jump in
+  `0x002ED2A0(handle, event)` (`0x002ED2F2`; [action commit](../Battle-Actions/action-commit.md)).
+- `0x002ED2A0` jumps only when the actor `0x003588B0(handle)` has a context `+0xC0` whose dword `+0x00` is not -1 and
+  whose word `+0x00`, `index`, is not `0xFFFF`, and the character record `[0x022C6F28] + index * 0x740`, with `index`
+  read signed, is not null and has a non-zero dword `+0x284` (`0x002ED2B1`-`0x002ED2E8`). It passes that record and the
+  event.
 
 `0x00512F30(block, request)` reads the request as a kind byte `+0x00`, a byte `+0x01` and three dwords a `+0x04`, b
 `+0x08` and c `+0x0C`; kind 1 goes to `0x005130FD` and kind 3 to `0x005130CB` (`0x00512F36`-`0x00512F4D`). Kinds 1 and 3 keep

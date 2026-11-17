@@ -74,6 +74,10 @@ With no goods table bound at `0x02EBF058` the refresh checks nothing. It returns
 The flag bytes are one per good at `+0x59C8` of the party block. The shop menu lists every good whose bit `0x2` is
 set (mode 2 of `0x002FA920`, [Shops](shops.md)).
 
+Of the fourteen instructions that address `+0x59C8`, the refresh's `or` (step 5 above) is the only one that sets bit
+`0x1`. `0x0030B630(id, on)`, for a bazaar id that `0x00322C50(1, id)` accepts, stores bit `0x4` as `on & 1`
+(`0x0030B63A`-`0x0030B686`; [Shop screens](../Menus-And-HUD/shop-screens.md)).
+
 ### Buying a good
 
 The shop's transaction function `0x0056D370` reads the price from the good's query record, clears its bit `0x80000000` and
@@ -129,6 +133,24 @@ Whenever the party block is bound, by `0x00233C10` (`0x00233C3A`) or `0x00238A80
 clears every sold tally (`0x0030B702`-`0x0030B737`) and
 bits `0x7` of every flag byte (`0x0030B739`-`0x0030B75B`).
 
+`0x00233C10` is called by the load-complete call `0x00285E60` (`0x00285E86`), which the save and load screen `0x00582860` runs
+on message 12 with code `0x10` (`0x00582B2C`-`0x00582B4E`; `0x00582CD0`, `0x00582CE6`), by the after-load sequence `0x0036FCC0`
+(`0x0036FCF2`), which `debug_load_mapjump` and `debug_loadjfdata` reach, and, when the image header `+0x68` passes
+`0x00255260`, by two frame messages ([Loading a save](../Saving-Loading-And-Settings/loading-a-save.md)):
+
+- the area controller `0x00280140`'s, while its state byte is 1 and `0x0032E4D0` answers 0 (`0x002802B4`-`0x002802C2`,
+  `0x00280357`-`0x00280379`, `0x002803B8`);
+- the new-game widget `0x00394130`'s, once `0x001EDEC0(+0xB4)` answers non-zero, its state is 1 and its counter `+0xC2`
+  has run out (`0x00394184`-`0x003941E3`, `0x00394222`).
+
+`0x00233C10` binds the block, and so clears it, only while `[0x02EBF190]` is null (`0x00233C19`-`0x00233C3A`); once the block
+is bound, a load through any of these callers clears nothing.
+
+`0x00238A80` is the tail of the image reset `0x002EF650` (`0x002EF67D`), which clears the whole image
+(`0x002EF656`-`0x002EF663`). The same two frame messages run it when the header fails (`0x0028037B`, `0x003941E5`), the
+new-game widget runs it when it opens, on message 1 (`0x003942F2`), and `0x0022B6E0` runs it when `0x0032E520(1)` answers 0
+and `0x0209273C` is 5 (`0x0022B737`-`0x0022B78B`).
+
 ## Columns
 
 [`bazaar.tsv`](bazaar.tsv), one row per good:
@@ -170,3 +192,31 @@ Calls between the functions this page cites and code in other parts of the progr
 - Status periodic terminal: `0x00322C50` is called by `0x0030E130`, `0x0030FED0`, `0x00310DB0`; those functions are documented
   on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
   [frame update order](../Engine-Core/frame-update-order.md).
+- Input: `0x0022B6E0` calls `0x00249C30`, `0x0035E9A0`; `0x0032E4D0` is called by `0x00291D90`; `0x00582860` calls `0x00182D40`;
+  those functions are documented on [frame update order](../Engine-Core/frame-update-order.md),
+  [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md).
+- Presentation: `0x001EDEC0` is called by `0x002B7B80`, `0x002BAF80`, `0x002BC3E0`, `0x002D2DB0`, `0x00366B80`; `0x0022B6E0` calls
+  `0x00252A20`, `0x002E65A0`, `0x0036D400`, `0x0036F2C0`, `0x0036F2F0`; `0x0032E4D0` is called by `0x003B21E0`, `0x003B25D0`;
+  `0x0032E520` is called by `0x003B53C0`.
+- Presentation: those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md), [controls](../Controls-And-Input/controls.md),
+  [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md), [escape](../Controls-And-Input/escape.md),
+  [effect file loading](../Graphics/effect-file-loading.md).
+- Presentation: and on [effect element runtime](../Graphics/effect-element-runtime.md),
+  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
+- RNG random selection: `0x0022B6E0` calls `0x00379CD0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Resource: `0x0022B6E0` calls `0x0032E520`; `0x00280140` calls `0x0032E4D0`; `0x0032E4D0` is called by `0x003EADE0`; `0x0032E520`
+  calls `0x0032E070`, `0x0046DFE0`; `0x0032E520` is called by `0x0024AC30`.
+- Resource: those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
+  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
+- World area: `0x0022B6E0` calls `0x003318C0`; `0x00280140` calls `0x00267C90`, `0x00268320`, `0x00314440`; `0x0032E520` is called
+  by `0x003145E0`; `0x0036FCC0` calls `0x00267C90`, `0x00268320`; `0x00394130` calls `0x00267C90`, `0x00268320`, `0x00314440`,
+  `0x00314DC0`; `0x00582860` calls `0x005843E0`.
+- World area: those functions are documented on [frame update order](../Engine-Core/frame-update-order.md),
+  [loading a save](../Saving-Loading-And-Settings/loading-a-save.md),
+  [script variables](../Scripts-And-Script-Commands/script-variables.md),
+  [debug menu](../Engine-Core/debug-menu.md).
+- World area: and on [changing areas](../World-Areas-And-Travel/changing-areas.md),
+  [game over](../World-Areas-And-Travel/game-over.md), [native limits](../Engine-Core/native-limits.md).

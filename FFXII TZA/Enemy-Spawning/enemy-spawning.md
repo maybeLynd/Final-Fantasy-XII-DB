@@ -46,6 +46,10 @@ into the script's data area and jumps to `0x0023A2E0(actor, map)`, which stores 
 `+0x16` = `0xFF`, clears flag bits `0x1`, `0x4` and `0x80`, zeroes `+0x78`-`+0x7C` and restores the persistence
 key `+0x17` from `+0x18`.
 
+The store (`0x0023A2FD`) comes before the walk, and the walk reads the map back through `+0x40` for every lane and for
+the count (`0x0023A313`, `0x0023A369`-`0x0023A373`), so the records reset are the ones the new map names, and a record that
+only the old map named is left as it is.
+
 `0x0023A2E0` does nothing when `0x0031B760` finds no battle unit for the actor (`0x0023A2F4`). It reads the map's
 count byte with no null test (`0x0023A304`), and the walk runs the lanes 0 to count - 1 (`0x0023A36D`-`0x0023A379`).
 

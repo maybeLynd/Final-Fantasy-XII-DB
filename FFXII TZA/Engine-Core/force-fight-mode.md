@@ -19,7 +19,9 @@ state a moment later.
 ### The flag and its two readers
 
 `0x01E0C2B8` is a dword holding 1 in the image, so the game boots in force fight mode. The predicate `0x00253B90()` (thunk
-`0x0030C0D0`) returns `flag == 0`: true means fleeing. Every gameplay reader tests it that way round.
+`0x0030C0D0`) returns `flag == 0`: true means fleeing. Every gameplay reader tests it that way round. The predicate
+takes no argument and reads only that dword (`0x00253B90`-`0x00253B9B`): there is one fleeing state, which the readers
+below that take a unit apply to each unit they handle.
 
 The second reader `0x00253BA0()` returns the flag only while the enable `0x003BA2E0()` holds and 0 otherwise; its two
 callers are the battle menu's opener `0x00276650` (the `0x61F0` widget), which returns without building the menu while
@@ -129,6 +131,12 @@ With bit `0x200` set, `0x0030B050(unit)` non-zero clears bit `0x400` and sets bi
 It runs when a status is added or removed (`0x0030E360`, at `0x0030E7AC`, [status
 changes](../Status-Effects-And-KO/status-changes.md)) and when the stats block is recomputed (`0x002FEF30`,
 [stats](../Damage-And-Battle-Formulas/stats.md)).
+
+`0x00311F50(actor)` sets bits `0x200` and `0x400` of the actor's unit `+4` (`or [+4], 0x600`, `0x00311F5E`), and does
+nothing for an actor without a unit (`0x0031B760`, `0x00311F5C`); the verbs `setemergency_one` (`0x0546`, `0x003460C0`) and
+`0x05CC` (`0x00346620`) run it on the actor they resolve ([battle
+verbs](../Scripts-And-Script-Commands/battle-verbs.md)). While the party flees, the next engagement update clears both
+bits again for a unit other than the party's chocobo that has neither status (above).
 
 Battle locomotion (`0x00336710`, `0x00339BF0`, `0x0033A720`, `0x0033C310`, `0x0033CEF0`): order `0x4022` counts as the engaged
 order `0x4124` while fleeing; the arrival curve of `0x00339BF0` divides the remaining distance, `d / 1.5` while

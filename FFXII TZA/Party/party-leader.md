@@ -85,6 +85,23 @@ standing (or with `0x00377C20()`), of kind `+0x05` 0 and type `+0x04` below 7. T
 A summon goes the same way: the summon arm of `0x00306760` passes the summoner to `0x00327810` (`0x0030696F`), so the
 summoner becomes the controlled member ([Quickenings and summons](../Battle-Actions/quickenings-and-summons.md)).
 
+`0x00327810(unit)` writes byte `+4` of the unit's `+0x698` record, or `0xFF` for a null unit or record, zero-extended
+into the dword at `[0x02EBF190] + 0x5AA4`, and `0x00327850(sel)` writes the low byte of `sel` there the same way
+(`0x00327813`-`0x00327836`, `0x00327857`-`0x0032785A`).
+
+Six instructions store the selector by its displacement `0x5AA4`, and `0x00326500` runs right after each: those two,
+`0x00327870(seat)`, which stores the selector held in seat `seat` of map 0, or `0xFF` when `0x00322C50(0x17, seat, 0)`
+refuses the seat (`0x00327879`-`0x003278AF`), `0x003220E0` (`0x00322173`), `0x00326620` (`0x003266A3`) and the new-game fill
+`0x00329CC0` (`0x00329DC2`). No other store has that displacement.
+
+`0x003220E0(actor)` stores only when the actor's handle, taken before `0x002659D0(actor)` runs, is that of the selector's
+unit (`0x00327150`); it stores the actor's own selector, found again from its handle, while bit `0x10` of `0x02089340` is
+set, and `0xFF` when that bit is clear or the actor, its unit or its record is missing (`0x0032211F`-`0x00322173`).
+
+Whole-block writes also reach it ([Party data](party-data.md)): the reset `0x002370C0` clears it with `memset`
+(`0x002370D3`), `0x002EF5F0` and `0x002EF650` clear the image that holds the block (`0x002EF603`, `0x002EF663`), and `0x002EF4A0`
+copies a loaded block's first `0x6000` bytes back over it (`0x002EF4A0`-`0x002EF504`).
+
 ### The default controlled member
 
 `0x00326500` turns the party's leader selector, `+0x5AA4` of the party block ([Party slots](party-slots.md),
@@ -314,3 +331,8 @@ Calls between the functions this page cites and code in other parts of the progr
 
 - Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on
   [battle units](../Characters-And-Objects/battle-units.md).
+- Save load settings: `0x002EF650` is called by `0x00280140`; those functions are documented on
+  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).
+- Save load settings: `0x002EF650` calls `0x00238A80`, `0x00253A80`, `0x002EF2D0`; those functions are documented on
+  [item and ability ids](../Engine-Core/item-and-ability-ids.md),
+  [frame update order](../Engine-Core/frame-update-order.md).

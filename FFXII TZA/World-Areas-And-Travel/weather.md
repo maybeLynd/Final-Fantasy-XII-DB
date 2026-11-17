@@ -656,7 +656,8 @@ A zone script choosing the weather:
 2. `0x0026D910(n)` commits slot n, publishes its combat classes and refreshes the map wind; `0x0026D8F0` arms
    the restore flag.
 3. `0x0025DB79` clears `+0x12`, and `0x002620E0` rolls: the result is dropped (`0x0026D951`), slot n stays,
-   the flag is cleared (`0x0026DA92`), and effects, models, textures and lighting are bound to slot n.
+   the flag is cleared (`0x0026DA92`), and effects, models, textures and lighting are bound to slot n, so the flag the
+   verb armed is 0 once the zone has started.
 4. A later `setweatherslot` in that visit fails the `+0x12` test (`0x003565E2`) and does nothing.
 
 ## State

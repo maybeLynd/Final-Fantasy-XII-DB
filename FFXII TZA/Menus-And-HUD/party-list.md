@@ -332,6 +332,8 @@ An allowed confirm makes the row's member the leader (`0x0035BAA0` with its type
 `0x003C93E0(0)`, `0x0035C080` and `0x0035C050(0)` (`0x0029C008`-`0x0029C033`); an allowed cancel closes the mode through
 `0x0035D8D0` (`0x0029C04C`-`0x0029C058`).
 
+Before it stores the type, `0x0035BAA0` (`0x0029C011`) runs `0x003C8950` (`0x0035BAB0`).
+
 Moving the cursor in this mode shows the member in a member window. `0x0029B440(member)` rings the member
 (`0x002BE080`), builds the window when it is not there (`0x002906D0`, `0x0029B46E`) and hands it the member's handle
 (`0x00290680`, `0x0029B47E`), which `0x00296960` shows while the window's `+0x710` is still 0 (`0x0029696A`-`0x00296976`).

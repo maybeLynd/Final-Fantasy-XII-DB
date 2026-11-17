@@ -78,6 +78,17 @@ scenario presets set the slots with `update` 0.
 | the scenario presets and the party record set-up | `0x0031A630(…, 0)` | `0x00239C6F`-`0x00239CBF`, `0x0023AE99`-`0x0023AEE9` |
 | the enemy record set-up: slot 0 from the enemy row's `+0x16`, slot 1 from `+0x1C`, slots 2-4 empty | `0x0031A630(…, 0)` | `0x0023ADB5`-`0x0023ADFA` |
 
+The set-up sites of the last two rows are in the record initialiser `0x0023AC80`, apart from `0x00239960`'s own. It first
+clears the `0x1C8`-byte record and empties its five slots (`0x0023ACA4`-`0x0023ACD0`), then takes the kind from bits 8-15
+of `edx` (`0x0023ACA1`, `0x0023ACB2`), returns 0 while the dword `0x02089300` is 0 (`0x0023ACE4`-`0x0023ACEE`), and runs the
+party sites for kind 0 and the enemy sites for kind 1, returning 0 for any other kind (`0x0023ACF7`-`0x0023ACFA`,
+`0x0023AD9F`-`0x0023ADA2`).
+
+`0x0023AC80` is called with kind 0 for each of the 40 records by the battle reset `0x00237DF0` (`0x00237E26`) and by the
+scenario presets' function `0x00239960` for a valid pending preset, before its own sites (`0x00239AC4`), and with kind 1
+by the spawn installer `0x0023A570`, for a unit with flag bit `0x4000000` whose row checks pass, once `0x00236100` gives
+it a spawn record whose flag bits `0x5` are clear (`0x0023A641`-`0x0023A79D`, `0x0023A7A9`).
+
 No battle action calls a setter, and ammunition is never used up: the battle's item reservation takes only item
 actions ([Using an item](item-use.md)).
 
@@ -304,3 +315,8 @@ Calls between the functions this page cites and code in other parts of the progr
   [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
   [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md),
   [script censuses](../Story-Events-And-Hunts/script-censuses.md).
+- Core runtime: `0x00237DF0` calls `0x00229ED0`, `0x0032A160`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
+- Save load settings: `0x00237DF0` is called by `0x00238A80`; those functions are documented on
+  [item and ability ids](../Engine-Core/item-and-ability-ids.md).

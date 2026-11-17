@@ -146,7 +146,9 @@ of the current field's map-info word.
 
 The effect applier `0x00307300` writes each entry's `+0x08`: the low byte is the
 outcome code from `0x0030DAE0` (`0x003075BF`), and bits `0x100`, `0x200`, `0x400` and `0x800` are set from result flags 3, 2, 1
-and 0 (bit `0x400` only when bit `0x200000` of the user's word `+0x04` is clear, `0x003075C3`-`0x003075EC`).
+and 0 (bit `0x400` only when bit `0x200000` of the user's word `+0x04` is clear, `0x003075C3`-`0x003075EC`). None of these
+steps clears a bit: the code is a byte store (`0x003075BF`) and the four bits are ORed in (`0x003075CB`-`0x003075F9`), so a
+bit already set in `+0x08` stays set.
 
 Readers: the HP write `0x00300530` (bit `0x100`, `0x0030071A`), `0x0031ADB0` (bits `0x100` and `0x800`; the
 first entry's low byte against 0, 2-5 and 7, `0x0031B0F1`-`0x0031B105`, `0x0031B30B`-`0x0031B32B`; low byte 10
@@ -161,6 +163,10 @@ Before it resolves a target, the applier turns the entry's low byte back into an
 | Entry code | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | other |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Outcome (`0x002FEE20`) | `0` | `5` | `1` | `3` | `2` | `4` | `6` | `7` | `8` | `10` | `11` | `9` |
+
+`0x0030DAE0` is the forward map, through the table `0x0030DB40`: outcomes 0 to 8 give codes 0, 2, 4, 3, 5, 1, 6, 7 and 8,
+outcome 9 gives 11, 10 gives 9 and 11 gives 10, and any outcome above 11 gives 11 (`0x0030DAE0`-`0x0030DAF9`, `0x0030DB3A`).
+Code 11 is one of the codes above 10, for which the applier's dispatch below calls nothing.
 
 The applier has one caller, the per-target step `0x003191B0(unit, entry, again)` (471 bytes). The actor timeline handler
 `0x00319F50` (`0x0031A022`) and the action timeline handler `0x00325260` (`0x00325515`) call it as
@@ -323,7 +329,7 @@ when none does or the count is 0 or below (`0x00316D70`-`0x00316D9E`).
 |---|---|---|---|
 | `+0x00` | `u64` | actorWork | the unit's `+0x10` object; stored by `0x00316CDC`, compared by `0x00316D83` |
 | `+0x08` | `u32` | entryFlags | low byte the outcome code (`0x0030DAE0`), bits `0xF00` result flags; written by the effect applier `0x00307300` |
-| `+0x0C` | `u32` | tail | cleared with the whole list by the clear's memset of `0x208` bytes (`0x00316CFF`-`0x00316D0B`); the append (`0x00316CDC`) writes only `+0x00`, and the effect applier `+0x08` |
+| `+0x0C` | `u32` | tail | cleared with the whole list by the clear's memset of `0x208` bytes (`0x00316CFF`-`0x00316D0B`); the append (`0x00316CDC`) writes only `+0x00`, and the effect applier `+0x08`; neither the per-target step `0x003191B0` nor the applier reads it: their entry reads are `+0x00` and `+0x08` (`0x003191E0`, `0x003192C3`, `0x003192F0`, `0x0031930C`; `0x00307552`-`0x00307AC2`) |
 
 ## Shipped data
 

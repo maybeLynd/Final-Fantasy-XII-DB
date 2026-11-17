@@ -72,8 +72,11 @@ first or last; the entry's own `+0x18` and `+0x20` keep their values (`0x0051BC2
 `0x0051C380(handle, v)` stores `(+5 & (v >> 2)) | (v & 3)` and returns 1, or returns 0 without writing for a stale
 handle (`0x0051C392`-`0x0051C3B1`). `0x00421280` gives it 4 or 6, which clear or set bit `0x2` (do not draw), and
 `0x004213E0` 8 or 9, which clear or set bit `0x1` (do not update), for each of the record's four handles that is not
-`0xFFFF` (`0x0042135F`, `0x0042138F`, `0x004214F5`, `0x0042152F`). When it returns 0, `0x004213E0` frees the handle with
-`0x0051BC10` and sets it to `0xFFFF` (`0x004214FA`-`0x00421505`, `0x00421534`-`0x0042153F`).
+`0xFFFF` (`0x0042135F`, `0x0042138F`, `0x004214F5`, `0x0042152F`).
+
+When `0x0051C380` returns 0, `0x004213E0` calls `0x0051BC10` with the same handle, which makes the same test (`0x0051BC21`, as
+`0x0051C392`) and so frees nothing, and sets the slot to `0xFFFF` (`0x004214FA`-`0x00421505`, `0x00421534`-`0x0042153F`): only
+that reset takes effect.
 
 `0x003E70F0(record, v)`, from `0x0042CBF0` and `0x0042D050`, passes the opacity to each of the record's
 four handles that is not `0xFFFF` (`0x0051CDC0`). `0x003E74C0(record)` frees each such entry at once

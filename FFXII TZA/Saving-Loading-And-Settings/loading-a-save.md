@@ -28,8 +28,8 @@ options stored in the save take effect: the Config screen's options are the ones
    the active image, `0x56690` bytes ([saving and loading](saving-and-loading.md#the-save-and-load-screen),
    [save file format](save-file-format.md)).
 4. **Load complete.** State 9 reports the load
-   ([saving and loading](saving-and-loading.md#the-save-and-load-screen)). On message `0x10` the screen `0x00582860`
-   records the load mode (`0x00238A30(1)` for mode 3, else `0x00238A30(0)`) and calls `0x00285E60(-1)`
+   ([saving and loading](saving-and-loading.md#the-save-and-load-screen)). On message 12 with code `0x10` the screen
+   `0x00582860` records the load mode (`0x00238A30(1)` for mode 3, else `0x00238A30(0)`) and calls `0x00285E60(-1)`
    (`0x00582CBA`-`0x00582CE6`), which sets bits `0x200` and `0x400` of the area controller's word `[0x0209AC30] + 0x400`
    (`0x00285E64`-`0x00285E7C`) and runs steps 5 and 6.
 5. **`btlCallBackAfterReadSaveRam()`.** `0x00233C10` (`0x00285E86`) binds the party block `0x02EBF190` to the loaded

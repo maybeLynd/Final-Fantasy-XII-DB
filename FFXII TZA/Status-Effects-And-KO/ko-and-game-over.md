@@ -72,6 +72,9 @@ fallen character as gone only once its body has been torn down.
 | `0x18`, the active party down | `0x01` | `0x00254940(1)` |
 | `0x17`, the controlled character down | `0x10` | `0x002548F0(1)` |
 
+`0x0035C8A0` is called by the defeat cleanup `0x00300FC0` with `0x0B` (`0x00301080`), `0x18` (`0x003010B1`) and `0x17`
+(`0x003010F1`), and by the field frame's `0x18` and `0x17` latches (`0x00234736`, `0x002347D9`).
+
 While Game Over is armed (bit `0x2` of `0x022C83E8`, read by `0x0035C740`) or a mode request is stored in `0x0215F1A0`
 (`0x002E12D0`), or `0x00228380` answers non-zero (`0x00253CC3`), the input arbiter `0x00253C70` returns before reading
 any field button (`0x00253C97`-`0x00253CCC`,
@@ -126,6 +129,12 @@ Within an area nothing clears the wipe's battle flag or the Game Over arm. Battl
 (`0x0030106C`) and cleared only by the boot `0x002368D0`, which stores 0 (`0x002369FB`), and the area init `0x002342F0`,
 which, while the up flag `0x02089300` is non-zero (`0x002342F4`-`0x002342FB`), keeps only bits `0x2`-`0x10` and `0xC000` and
 up and then sets `0x10` (`0x0023432D`-`0x00234343`).
+
+So after a wipe that sets battle flag `0x400`, the battle-wide mask of `0x0030B770` has bit `0x4`
+(`0x0030B7B4`-`0x0030B7BE`), and `0x0030B9B0` refuses every change it gates, for any target and source
+(`0x0030B9E2`-`0x0030B9F6`; [status changes](status-changes.md)), until the area init `0x002342F0`, with the up flag set, or
+the boot `0x002368D0` clears it. Its six direct calls are at `0x0030060F`, `0x00301E61`, `0x00307695`, `0x0030E42C`, `0x00311360`
+and `0x00319257`, and each branches away on that answer.
 
 The Game Over arm, bit `0x2` of `0x022C83E8`, is cleared only at boot, by `0x0035C560`, which zeroes the `0x23C8` bytes
 from `0x022C8060` and then sets bit `0x20` (`0x0035C566`-`0x0035C578`), and by the field teardown `0x0035BB70`: its

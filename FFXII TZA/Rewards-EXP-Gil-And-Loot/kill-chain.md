@@ -123,14 +123,14 @@ display (`0x003184D9`-`0x003184F6`). The pickup count `0x022C3174` is incremente
 
 ### Reset
 
-`0x003183A0` (42 bytes) clears the coin bit and zeroes `0x022C3158`-`0x022C3167` and
-`0x022C3170`-`0x022C3177`, and sets `0x022C3168` and `0x022C316C` to -1 (`0x003183A0`-`0x003183BE`). It is reached
+`0x003183A0` (42 bytes) clears the coin bit and zeroes `0x022C3158`-`0x022C3167` and `0x022C3170`-`0x022C3177` with qword stores
+(`0x003183A9`-`0x003183BE`), and sets `0x022C3168` and `0x022C316C` to -1 (`0x003183A0`-`0x003183BE`). It is reached
 four ways:
 
 1. **Save crystals.** The script verb `btladjustsystem` (`0x517`, handler `0x0034AAB0`) passes its
    argument to `0x002FEAC0`, which jumps to `0x003183A0` when bit `0x1` is set (`0x002FEAC3`). The save crystal's
    talk function calls `btladjustsystem(1)` (see [teleport and save crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md)).
-2. **Entering a town.** The area initialisation `0x002342F0` resets the chain when the town flag is
+2. **Entering a town.** The area initialisation `0x002342F0` resets the chain (`0x0023444F`) when the town flag is
    set (see the town reset below).
 3. **A preset party state.** `0x002342F0` calls `0x00239960` (`0x00234349`), which consumes the pending
    preset byte `0x0208D455` and sets it back to -1 (`0x00239966`-`0x0023997B`). For a preset index in range
@@ -255,15 +255,18 @@ then the clock value (`0x00863D4D`-`0x00863D6A`). It does not touch `0x022C256C`
 
 | Global | Width | Meaning | Written by |
 |---|---|---|---|
-| `0x022C3158` | `u32` | chain level 0-3 | `0x003183D0` (rise); zeroed on a break (`0x00318098`) |
-| `0x022C315C` | `u32` | chain length, cap 999 or 998 | `0x00317F64`; zeroed on a break |
-| `0x022C3160` | `u32` | quantity-group run, cap 999 | `0x00317F70`-`0x00317FB6`; zeroed on a break (`0x0031809F`) |
+| `0x022C3158` | `u32` | chain level 0-3 | `0x003183D0` (rise); zeroed on a break (`0x00318098`) and by the chain reset (`0x003183B7`) |
+| `0x022C315C` | `u32` | chain length, cap 999 or 998 | `0x00317F64`; zeroed on a break (`0x00318098`) and by the chain reset (`0x003183B7`) |
+| `0x022C3160` | `u32` | quantity-group run, cap 999 | `0x00317F70`-`0x00317FB6`; zeroed on a break (`0x0031809F`) and by the chain reset (`0x003183B0`) |
 | `0x022C3164` | `u32` | breaks in a row, cap 999 | `0x003180B5`; zeroed by a continuing kill (`0x00317F6A`) and by the chain reset `0x003183A0` (`0x003183B0`, a qword store from `0x022C3160`) |
-| `0x022C3168` | `i32` | previous kill's class byte; negative before the first kill | `0x003180D0` |
+| `0x022C3168` | `i32` | previous kill's class byte; negative before the first kill | `0x003180D0`; `0x003183BE` (-1) |
 | `0x022C316C` | `u32` | quantity group (class row `+0x40`) stored by the last continuing kill whose group differed from it; -1 after a reset | `0x00317FB6`; `0x003183BE` (-1) |
-| `0x022C3170` | `u32` | chain length at the last level rise | `0x003184DC`; zeroed on a break (`0x00318091`) |
-| `0x022C3174` | `u32` | loot pickups since the last level rise | `0x00319974` (+1); `0x003184EC` (0); zeroed on a break |
-| `0x022C3178` | `u32` | bit `0x1`: the coin | `0x003180C6` |
+| `0x022C3170` | `u32` | chain length at the last level rise | `0x003184DC`; zeroed on a break (`0x00318091`) and by the chain reset (`0x003183A9`) |
+| `0x022C3174` | `u32` | loot pickups since the last level rise | `0x00319974` (+1); `0x003184EC` (0); zeroed on a break (`0x00318091`) and by the chain reset (`0x003183A9`) |
+| `0x022C3178` | `u32` | bit `0x1`: the coin | `0x003180C6`; bit `0x1` cleared by the chain reset (`0x003183A0`) |
+
+Of the instructions that address `0x022C3158`-`0x022C317B`, every write is in `0x00317ED0`, the chain reset `0x003183A0`, the
+level rise `0x003183D0` or `0x00319920`, whose write is the pickup count (`0x00319974`).
 
 ## Modding notes
 

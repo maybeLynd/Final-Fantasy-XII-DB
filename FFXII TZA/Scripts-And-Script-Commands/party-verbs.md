@@ -66,9 +66,18 @@ So does the seat writer `0x00329080(seat, sel, flags)`, when `0x00322C50(0x17, s
 (`0x003290B0`-`0x0032916A`). The new-game fill `0x00329CC0` runs it with second argument 1 behind the same two tests of the
 selector (`0x00329D63`-`0x00329D92`).
 
-It grants only to a party record, kind `+5` 0 with a selector `+4` of 0-25, that is not yet active, bit `0x10` clear
-(`0x00316DFE`, `0x00316E42`-`0x00316E6A`). Rows 0-6 add each of their five equipment words to the inventory and equip it
-(`0x00300B80`, `0x0030C410`, `0x00316E82`-`0x00316E85`).
+With `sel` = `0xFF`, `0x00329080` empties the seat instead, when `0x00322C50(0x17, seat, 0)` accepts it and the selector
+there is at most `0x27`: only when bit `0x1` of `flags` is set it hands that record to `0x00323540`, which deactivates
+only an active main character (rows 0-6) and leaves any other record as it is (`0x0032354A`-`0x0032355C`), and it writes
+`0xFFFF` (`0x003290C2`-`0x00329122`).
+
+`0x00329080` returns 1 when it writes the seat and 0 when it refuses (`0x0032911D`, `0x0032917E`, `0x00329185`). The scenario
+presets pass `flags` 3 (`0x00239DC3`), and the commit `0x003261D0` and the list fill `0x003273D0` pass it as 0 (`0x00326454`,
+`0x00327763`), so these write the seats without activating or deactivating anyone.
+
+`0x00316DF0` grants only to a party record, kind `+5` 0 with a selector `+4` of 0-25, that is not yet active, bit `0x10`
+clear (`0x00316DFE`, `0x00316E42`-`0x00316E6A`). Rows 0-6 add each of their five equipment words to the inventory and equip
+it (`0x00300B80`, `0x0030C410`, `0x00316E82`-`0x00316E85`).
 
 Then, for rows 0-25, unless the record's bit `0x8` is set (`0x00316EB3`), it adds each enabled gambit slot's condition
 and, for rows 0-6 only, the id its action row names at `+0x22` (`0x00316EC3`-`0x00316F92`), and up to ten items with their

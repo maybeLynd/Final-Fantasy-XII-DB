@@ -129,6 +129,16 @@ clear (`0x0030868B`-`0x003086DA`), once the frame has passed its two early retur
 3. Its id is written into the 64-entry ring at `0x022BE984` (8-byte entries) at the write index
    `0x022BE981`, which then advances modulo 64.
 
+`0x00307DF0(unit)` answers 0 when the unit is null, has no stats record or one whose byte `+5` is not 0, when bit `0x20`
+of `0x02089340` is set, or when the record's status words `+0x64 | +0x3C` have a bit of `0x8000201B`
+(`0x00307DF9`-`0x00307E2E`, `0x00307E5B`).
+
+Otherwise it runs `0x00308130(unit)` ([force fight mode](../Engine-Core/force-fight-mode.md)); when that
+answer differs from unit bit `0x800000` it calls `0x00313F20(unit)`, which, unless unit bit `0x1000000` is set or the
+action word `+0x714` is at most `0x21E` while byte `+0x6B4` is 9 or more, runs `0x00313480` for a set bit `0x800000` and
+`0x00313400` for a clear one (`0x00307E33`-`0x00307E47`, `0x00313F20`-`0x00313F4C`). It answers unit bit `0x1000000`
+(`0x00307E4C`-`0x00307E52`).
+
 Draining is done by `0x00313CD0`, called from `0x00234520` (`0x00234582`). The simulation tick `0x00314020`
 calls `0x00234520` for every manager slot in tick mode 0 (`0x003141E2`; it does nothing for any slot but 0):
 once in the first pass, and again in each of up to 15 further passes of the same tick while the slot's

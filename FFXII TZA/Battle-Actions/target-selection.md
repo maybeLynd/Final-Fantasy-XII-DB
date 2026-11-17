@@ -106,6 +106,9 @@ set, the leader handle (`0x003590D0`, [Party leader](../Party/party-leader.md)) 
 XZ distance between the two actors' world positions (`0x00265020`) is at most 576.0 (`0x00D1081C`, 24
 squared; `comiss`/`setbe` at `0x00322535`).
 
+Its direct callers are `0x00322A80` (`0x00322BAF`), `0x0046B690` (`0x0046B7E3`), `0x0046B870` (`0x0046B9C3`) and `0x0046BAC0`
+(`0x0046BCC9`, and `0x0046BCE5` through the jump `0x00322480`).
+
 ### Actor-manager lists
 
 `0x0046B870` (code `0x1B`) and `0x0046B690` (code `0x1C`) first clear bit `0x2` of byte `+0x09` of every record of

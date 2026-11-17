@@ -26,6 +26,13 @@ user-id string from `0x001F3ED0` is non-empty, that id and a backslash; the resu
 followed by the three-digit slot number (`sprintf("%s%03d")` in `0x0057E310` and `0x00584610`); the slot icon
 assets are named `icon.sys` and `static.ico` by the same formatter.
 
+`0x00862A20` is called at `0x00408E20` when `0x01E02810` is 0 or above 1000 (`0x00408DCB`-`0x00408DE4`), in the `0x01E02810`
+branch of the FF12CONFIG loader `0x00408C30`, which does not run in the shipped game ([game
+settings](game-settings.md)). The path is built at startup (`0x008624C0`, [startup
+constants](../Engine-Core/startup-constants.md)), and the stream opener `0x008624D0`, the delete `0x00862130`
+and the name probe `0x008621E0` read `0x02EAF6E0` directly, as the first `%s` of the formats `%s%S` and `%s%S%03d`
+(`0x01CCF970`, `0x01CCF980`; `0x00862514`, `0x00862160`, `0x00862241`, `0x00862389`).
+
 `0x00862A40` keeps a path already at `0x02EAF6E0` while `GetFileAttributesW` reports it as a directory (bit `0x10`);
 otherwise it zeroes the `0x200` bytes there and builds the path again (`0x00862A62`-`0x00862A96`). It returns with
 `0x02EAF6E0` left empty when `SHGetFolderPathW` fails (`0x00862ABC`). It joins the pieces with `0x00408ED0`, 256
@@ -217,9 +224,15 @@ failed copy after a save without the flag can restore the `sav_org` of an earlie
 |---|---|---|---|---|---|
 | `0x02EB386C` | `i32` | 0 (zero-filled tail of `.data`) | non-zero when the `sav_org` copy succeeded | `0x00866200`: its old value, or 0 while `0x02B40E04` is set (`0x008665A9`); the `CopyFileW` result of the backup (`0x008665CD`) | `0x00866200`: `0x00866593`; `0x008665F3`, after a failed copy, to choose between copying `sav_org` back and removing the slot file |
 
-The two paths are the temp directory (`GetTempPathW`, 260 characters) joined with the wide names at `0x01CCFD70`
-and `0x01CCFD80` by `0x008656B0(out, directory, name)`, which appends the name to the directory string
-(`0x00865FF0`) and moves the result into `out` (`0x008662C3`, `0x00866328`).
+The two paths are the temp directory (`GetTempPathW`, 260 characters) joined with the wide names at `0x01CCFD70` and
+`0x01CCFD80` by `0x008656B0(out, directory, name)`, which appends the name to the directory string (`0x00865FF0`) and moves
+the result into `out` (`0x008662C3`, `0x00866328`). Nothing else enters either path (`0x00866248`-`0x00866268`, `0x0086626C`):
+there is no per-process or per-slot part, and every save uses the same two files.
+
+The slot file's path is the object's `+0x08`, the wide copy of the path that `0x008666B0(path, mode)` keeps there
+(`0x00866730`-`0x0086673F`); `0x00866200` uses it at `0x0086635A`, `0x00866579`, `0x008665BD`, `0x008665E2`, `0x008665FE` and
+`0x0086660D`. All three `CopyFileW` calls pass `bFailIfExists` 0, and the copy of `sav_org` back over the slot file is
+at `0x00866605`.
 
 `0x00866200` answers 0 or -1 (`0x00866672`, `0x0086652A`). Its argument is the open file's object at `0x02EAF8E8`, which both
 callers pass (`0x00862508`, `0x008620F4`):

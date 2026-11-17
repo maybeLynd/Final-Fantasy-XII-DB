@@ -219,6 +219,13 @@ With `0x0017E4E0()` non-zero the frame runs `0x002506D0` and, when `0x001EC560()
 (its `0x00314370(1)` and `0x0037D4C0` each only while `0x02064AA0` is 0) followed by `0x0035AE30`,
 `0x00360120` and the `0x00358370()` pair, and nothing else.
 
+`0x003143D0`, in both camera blocks (`0x0022ADBF`, `0x0022A926`), runs `0x003DAA20`, passes 0.0 to `0x003DA2F0` and `0x003DD210`,
+as the frozen pass does, runs `0x00255810` and `0x0037D890`, and then the frozen pass `0x0025E400` for slots 0 to 4 through
+`0x0025E3F0`, which passes 0 as its unused second argument (`0x003143D6`-`0x00314403`; [field
+runtime](../Characters-And-Objects/field-runtime.md)). So on a frame with no whole step the focus record `0x02099D78` is still
+republished and `0x002E5180` still runs for each live slot's class-3 records whose `+0xC0` object has a `+0x138`
+(`0x0025E458`-`0x0025E49B`).
+
 At the end of every pass the accumulator gains `[0x02064AC8] × [0x02064AC4]` (`0x0022AE18`-`0x0022AE34`). The step gain
 `0x02064AC8` is 1.0 at boot (`0x0022A1C8`) and after `0x002628B0` and `0x003601D0`; the verb `gameratio` (`0x14F`, `0x00343EE0`)
 sets it to its float argument when that is at least 0.05. With the gain and the speed factor at 1.0 every pass runs one
@@ -240,6 +247,9 @@ that is `0x003BBA60`, `0x00250896`-`0x0025089F`); `0x00184960` sets the suppress
   bit `0x400` (0 to 1, or 0 to 2 when `0x002DDDA0()` is 1; any other value back to 0), `0x00233640` while
   held (through `0x002335D0`), the two below, and the resets to 0 `0x002370A0` (from `0x003603C0`), `0x00237DF0`
   and `0x00233C10`.
+- `0x01FD4A98` is read at four places: `0x00229E00`, `0x00229E20`, inline in the frame loop at `0x0022AAAF` (the speed factor,
+  `0x0022AAA6`-`0x0022AABD`) and in the draw `0x0022B0B0` at `0x0022B0F2`; no other instruction names it (no other
+  RIP-relative or 32-bit offset reference), and its one store is `0x00229ED0` (above).
 - The speed keys' `0x00239790(k)` store index 0, 1 or 2 for k = 1, 2 or 4, or 0 when the index already holds
   it, and `0x0023B2E0` sets a non-zero index to 1 when `0x002DDDA0()` is 0 and to 2 when it is 1.
 - `0x00233700` reads the index through `0x00229E20`. From 0 it stores 1 when `0x002DDDA0()` is 0 (`0x00233751`) or 2

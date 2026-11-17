@@ -44,7 +44,7 @@ file, and a load reads it back in one piece.
 | `+0x014F4` | 64 | the primary story flag bank, ids 2-511 | `0x0032AB60` | `0x0032A8A0` |
 | `+0x01534` | 1 | the music track override, used while `+0x1063` bit `0x40` is set | `0x0026A720`, `0x002628B0` | `0x0026DE20`, `0x0025D9E0`, `0x00261F90` |
 | `+0x01535` | 1 | a byte the options apply `0x002DDA30` writes as 1 and the verb handler `0x0050D180` writes from its operand, through `0x002EF370` | `0x002EF370` | |
-| `+0x02000` | 24576 | a copy of the party block's first `0x6000` bytes | `0x00229B40`, `0x005844A0` | `0x00235AF0`; `0x002EF4A0` copies the span out to `0x021B290C` |
+| `+0x02000` | 24576 | a copy of the party block's first `0x6000` bytes | `0x00229B40`, `0x005844A0` (called at `0x003147DF` and `0x0027F953`) | `0x00235AF0`; `0x002EF4A0` copies the span out to `0x021B290C` |
 | `+0x08000` | 18456 | the image-backed state block, `*(0x020927C0)` | see its table below | |
 | `+0x0E000` | 4 | the plain CRC of image `+0x8`-`+0xE1FF` (`0x003BB220`), whose complement the header carries at `+0x00`; computed over the active buffer `0x002EF640()` but stored into the buffer `0x00583D60`'s third argument selects (the staging buffer when it is not 0, as `0x003145E0` passes through `0x005844A0`) | `0x00583D60` | |
 | `+0x0E040` | 512 | group persistent bank A, a copy of `0x02099FF0` | `0x0025D8E0` from `0x00229B40` and `0x00584580` | `0x00269A20` from `0x005843E0` and `0x00584210`; `0x005844A0`; `0x002EF7C0` copies the bank out to `0x021C8B80` |
@@ -133,9 +133,9 @@ Its readers are
 
 ### The image-backed state block
 
-`0x00253970` binds `0x02092758` to the image itself, the header (`0x0025397E`), and `0x020927C0` to image `+0x8200`,
-payload `+0x8000` (`0x00253990`), both from the active buffer `0x002EF640()`, and `0x00253A80` initialises the
-block in four steps:
+`0x00253970` binds `0x02092758` to the image itself, the header (`0x0025397E`), and `0x020927C0` to image `+0x8200`, payload
+`+0x8000` (`0x00253990`), both from the active buffer `0x002EF640()`, which returns the address `0x02164280` (`0x002EF640`),
+so `0x020927C0` holds `0x0216C480` and the block's `+8` is `0x0216C488`; and `0x00253A80` initialises the block in four steps:
 
 1. it zeroes the `0x58` header bytes at `[0x02092758]` (`0x00253A86`-`0x00253A93`) and all `0x4818` bytes of the
    block at `[0x020927C0]` (`0x00253A98`-`0x00253AA7`);
