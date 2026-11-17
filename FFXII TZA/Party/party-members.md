@@ -58,8 +58,10 @@ The seated test looks for the selector in map 0's nine seats (`0x00317100`-`0x00
 refusal and when seats 3, 2 and 1 all fail (`0x00317159`-`0x0031715E`, `0x00317170`); otherwise it tail-jumps to
 `0x00326110` (`0x003171AE`) and returns what that returns.
 
-`0x00326110(sel, seat, 0, 1)` then copies map 0 to the staging map, writes the selector to the seat if it is empty
-there, activates the record with `0x00316DF0` and commits with `0x003261D0(0)` (`0x00326129`-`0x003261B1`).
+`0x00326110(sel, seat, 0, 1)` then copies map 0 to the staging map (`0x00326129`-`0x00326140`). When the seat's word there
+is not `0xFFFF` (empty), or the selector is `0xFF`, it returns -1 without writing, activating or committing
+(`0x0032615A`-`0x0032616A`, `0x003261BE`); otherwise it writes the selector to the seat, activates the record with
+`0x00316DF0`, commits with `0x003261D0(0)` and returns 0 (`0x00326185`-`0x003261B6`).
 
 ### Removing a member or a guest
 

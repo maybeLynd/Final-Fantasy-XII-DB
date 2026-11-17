@@ -16,7 +16,7 @@ Nothing moves while the screen is dark, and a second jump asked for in that time
    game-over and KO paths, the debug menu and the load-completion callbacks all reach the one funnel `0x00314440`; a
    request while a jump is pending is dropped ([zone changes](zone-changes-and-mapjump.md#the-request),
    [save and teleport crystals](save-and-teleport-crystals.md), [game over](game-over.md)).
-2. **Staging.** `0x003145E0` drains the resource queue, requests actor managers 1 to 3 for reinitialisation, writes
+2. **Staging.** `0x003145E0` drains the resource queue, requests actor managers 1 to 3 for unloading, writes
    the transition record in the save payload (the old and new map and entrance, the mode and the persistence group)
    and calls `0x002EFA70(3, 0, 1, 0)` on fade slot 3 (`0x00314700`)
    ([zone changes](zone-changes-and-mapjump.md#staging-and-the-transition-record),
@@ -33,10 +33,21 @@ Nothing moves while the screen is dark, and a second jump asked for in that time
 4. **The fade-out.** After staging returns, the funnel requests manager 0 with `0x0026A5F0(0)` (`0x003144A1`); then,
    unless the mode's bit `0x1` is set (`0x003144A6`), fade slot 2 starts when `0x002EFD20(2)` reports it idle
    (`0x003144B1`-`0x003144E5`) ([screen fades](../Graphics/screen-fades.md)).
-5. **The teardown.** On the next simulation tick `0x00314020` reinitialises and unloads every requested manager before
-   any actor runs, releasing what each manager held
-   ([actor managers](../Characters-And-Objects/actor-managers.md),
-   [resource ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md)).
+   - After `0x002E1C40(0, 2)` sets bit `0x4` of the script hide word `0x0215F1AC` and clears it in `0x0215F1B4`
+     (`0x003144EA`-`0x003144F1`), the funnel calls `0x00254AC0()` (`0x003144F6`), which returns at once while the dword
+     `0x02092744` is not 0 (`0x00254AC4`-`0x00254ACB`).
+   - Otherwise, unless bits `0x40` and `0x80` of `0x01E0C320` are both set (`0x00254ACD`-`0x00254ADA`), `0x00254AC0` runs
+     `0x003C8990()`, `0x0035DAC0()`, `0x0028FF20()`, `0x003C58B0()`, `0x002B6140()`, `0x0035D5A0()`, `0x0035D0E0([0x020927EC])`,
+     `0x003C9900()` and `0x003BBFA0(0)` in that order and clears bit `0x80` of `0x020927EC` (`0x00254ADC`-`0x00254B11`).
+   - Either way it then clears bits `0xC` of the HUD draw word `0x01E0C2AC` and ends with a tail jump to `0x0017E7D0()`
+     (`0x00254B1B`-`0x00254B2B`). These are the nine calls of the hide branch of `0x00255330`, in the same order, with the
+     same ending (`0x00255348`-`0x00255397`). `0x00255330` is told on [HUD](../Menus-And-HUD/hud.md#the-hud-switch).
+5. **The teardown.** On the next simulation tick `0x00314020` unloads every requested manager before any actor runs
+   (`0x00314078`), releasing what each manager held ([actor managers](../Characters-And-Objects/actor-managers.md), [resource
+   ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md)).
+
+   The `0x0026CE60(m)` pass of `0x0025BFB0` before the unloads returns at once for a manager that is still running. See
+   [zone changes](zone-changes-and-mapjump.md#the-tick-tears-the-old-zone-down-and-starts-the-load).
 6. **The area data.** `0x0032FC30(0, map)` first reads the area data (`0x003EA6E0`)
    ([area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md)).
 7. **The loads.** It then queues the zone's files from namespace 5 at index `map × 3`, each load setting a pending
@@ -66,7 +77,8 @@ destination from the transition record already in the payload and starts fade sl
 ## Outcomes
 
 - The save payload's transition record holds the previous map and entrance beside the new ones.
-- Actor managers 0 to 3 have been reinitialised; the new zone's scripts run in manager 0.
+- Actor managers 0 to 3 have been unloaded and manager 0 loaded again with the new zone; the new zone's scripts run in
+  manager 0.
 - A scene's jump completes in the scene and the scene continues; the zone's own jump ends with the zone's script.
 
 ## Related

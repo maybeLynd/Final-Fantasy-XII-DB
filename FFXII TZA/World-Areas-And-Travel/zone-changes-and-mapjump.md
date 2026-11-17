@@ -60,7 +60,7 @@ if (0x00408B00() == 0 && map == 0) map = 0xC;          // byte 0x02B62DB9: input
 if (0x01EED064 < 0) {                                   // no jump pending
     r = 0x003145E0(map, entrance, mode, nonblocking);   // staging
     if (nonblocking && r != 0) return r;              // resource queue busy: caller retries
-    0x0026A5F0(0);                                      // request managers 0..3 for reinitialisation
+    0x0026A5F0(0);                                      // request managers 0..3 for the tick's unload
     if ((mode & 1) == 0 && 0x002EFD20(2) == 0) {        // fade slot 2 idle
         0x002EFE40(6); 0x002EFE50(0xFF);
         0x002EFA70(2, ~(mode * 2) & 8, 0, (mode >> 1) & 1);
@@ -120,9 +120,17 @@ fade always starts. `0x003145E0` is also called by the area initialisation `0x00
 
 `0x00314020`, the simulation tick, runs this before any actor:
 
-1. `0x0025BFB0` drains the request mask `0x02099ABC`: when bit `0x1` is set, `0x0026CE60(m)` reinitialises every
-   requested manager from 4 down to 0 and the party roster `0x0209A1F0` to `0x0209A208` is cleared; then
-   every requested manager is unloaded with `0x002628B0(m)` and its bit cleared.
+1. `0x0025BFB0` drains the request mask `0x02099ABC`. When bit `0x1` is set, it calls `0x0026CE60(m)` for every requested
+   manager from 4 down to 0 and clears the party roster `0x0209A1F0` to `0x0209A208` (`0x0025BFD6`-`0x0025C01F`). Whether or
+   not that bit is set, it then unloads every requested manager, again from 4 down to 0, with `0x002628B0(m)` and clears
+   its bit (`0x0025C027`-`0x0025C052`).
+
+   `0x0026CE60` changes nothing for a manager that is still running: it returns at once while the manager's `+0x10` bit
+   `0x1` is set or its `+0x13` is 0 (`0x0026CE94`-`0x0026CEA2`), and `0x002628B0` clears that bit afterwards (`0x00262DA8`).
+
+   Past that test, `0x0026CE60` sets that bit only if `+0x13` is still set, clearing it (`0x0026D2D9`-`0x0026D305`); for m 0
+   it ends either way with `0x00253A30()`, `0x002EA650()` and `0x00233CF0()` (`0x0026D374`-`0x0026D37E`). `0x0026CE60` is told on
+   [Actor managers](../Characters-And-Objects/actor-managers.md#the-record-pool).
 2. `0x01EED060` is reset to -1 when non-negative.
 3. When `0x01EED064` is non-negative: two console lines (`0x00D103E0`, `0x00D10420`), `0x0032FC30(0, map)`,
    then `0x01EED064` = -1.
@@ -398,11 +406,11 @@ and 10 further branches of those ways. `script_kind` marks the 1,910 developer r
 |---|---|
 | `0x00354D00` | mapjump Start: pops map, entrance, mode |
 | `0x00355350` | mapjump Poll: waits for quiet, requests, waits for the context to change |
-| `0x00314440` | the request: staging, manager reinitialisation, fade, file-cache notice |
+| `0x00314440` | the request: staging, manager unload requests, fade, file-cache notice |
 | `0x003145E0` | staging: transition record, busy bit `0x1000`, autosave decision |
 | `0x00314530` | the restore path's re-request of the current field |
 | `0x00314020` | the tick: drains `0x02099ABC`, consumes `0x01EED064` |
-| `0x0025BFB0` | reinitialises and unloads the requested managers |
+| `0x0025BFB0` | unloads the requested managers (`0x002628B0`); its `0x0026CE60` pass leaves a running manager as it is |
 | `0x0026A5F0(m)` | ORs manager `m` into `0x02099ABC`; 0 also requests 1 to 3 |
 | `0x0032FC30(m, ctx)` | area refresh (`0x003EA6E0`, manager 0 only), begins the load (`0x0032FCA0`), clears bit `0x2` of the manager slot's `+0x10` (`0x0025D4D0`), sets pending bit `0x1` (manager 0 only, `0x0032FC87`-`0x0032FC8B`) |
 | `0x0032FCA0(m, ctx)` | chooses kind and index, queues the loads |

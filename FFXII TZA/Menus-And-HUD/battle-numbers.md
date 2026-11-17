@@ -81,7 +81,8 @@ on [Battle log](../Battle-Actions/battle-log.md).
 
 `0x003283D0` then fills a request on its stack with the actor at `+0x00`, the absolute value of `amount` as the dword
 `+0x08` (`0x0032840C`-`0x00328418`), the kind 0 at byte `+0x0C` and the colour slot at byte `+0x0D`, and posts it with
-`0x003BBD00(request)`, dropping its answer (`0x00328408`-`0x00328476`).
+`0x003BBD00(request)`, returning that call's answer (`0x00328408`-`0x00328476`); when `0x002FA3B0` answers 0 it posts nothing
+and returns that 0 (`0x003283F4`-`0x00328407`).
 
 `0x003283D0` picks the colour slot from `0x01EED300[(isHeal x 2 | b) + side]`, where `side` is 4 when the unit's `+0x698`
 record is absent or its byte `+5` is set and `0x00263C20(actor)` does not return 3, and 0 otherwise
@@ -131,10 +132,17 @@ writes into the next of 64 `0x130`-byte entries on the stack, advanced by what `
 2. The position is the owner's (`0x003588B0`, `0x002EA0E0`), or the last one kept at `+0x20` when the owner is gone.
 3. Beyond 30 units from the camera `0x02AED5F0` the opacity falls by `1 - (distance - 30)`, so the number is gone past
    31 units.
-4. The spread scale is `8 / distance` clamped to 0.2-1.8 and the digit size `6 / distance + 0.3` clamped to 0.8-1.8,
-   both times `0x00254A00` when `0x002DDC50` holds.
+4. The spread scale is `8 / distance` clamped to 0.2-1.8 and the digit size `6 / distance + 0.3` clamped to 0.8-1.8
+   (`0x00505F92`-`0x00505FF8`). The digit size goes to the stack floats `rsp + 0x5C` and `rsp + 0x58` of `0x00505E00`, and
+   half of it to `rsp + 0x54` and `rsp + 0x50` (`0x00505FFB`-`0x00506015`).
+   - When `0x002DDC50()` answers non-zero, the floats `rsp + 0x50`, `rsp + 0x54` and `rsp + 0x5C` are each multiplied by
+     `0x00254A00()`, which returns 0.75 (`0x0050601B`-`0x0050605D`); `rsp + 0x58` and the spread scale are not multiplied
+     there. The four floats go as one 16-byte vector to `+0x20` of each digit's draw entry, `0xA0` bytes apart
+     (`0x00506167`-`0x0050616C`, `0x005065AA`).
+   - `0x002DDC50` answers 1 when `0x0053DD10()` returns 1 and 0 otherwise (`0x002DDC54`-`0x002DDC61`), and `0x0053DD10` always
+     returns 1, so that test always passes.
 5. Digit `i` is raised by `0x00D227D0[clamp(age - i, 0, 17)]`, so each digit bounces one frame after the one before,
-   and the next digit is placed 12 times the size to the right.
+   and the next digit is placed 12 times the multiplied size `rsp + 0x5C` to the right (`0x005065B1`-`0x005065C0`).
 
 ```
 0x00D227D0  0 2 10 18 25 30 32 30 25 18 10 2 0 -2 -4 -2 -1 0
@@ -197,3 +205,13 @@ slot or a first dword of -1 it stores 0, 0, 0 and 1.0 (`0x002EA13F`-`0x002EA147`
 - [Gaining and losing statuses](../Status-Effects-And-KO/status-changes.md): the status words.
 - [Party list](party-list.md): the row flash a number popup starts.
 - [Subsystem update flags](../Engine-Core/subsystem-update-flags.md): the pump that ages them.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Core runtime: `0x0053DD10` is called by `0x0022B6E0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Input: `0x0053DD10` is called by `0x002E09A0`, `0x0035FCA0`, `0x0035FDD0`, `0x0046DD50`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md), [controls](../Controls-And-Input/controls.md),
+  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).

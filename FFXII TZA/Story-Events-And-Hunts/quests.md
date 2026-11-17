@@ -54,11 +54,24 @@ and the story flag banks begin at `+0x1384`.
 | `0x2BC` `setquestok(q, v)` | `0x00353B20` | `0x0046B380` | OK bit *q* set or cleared (`0x0046B3B5`, `0x0046B3D1`) |
 | `0x2BD` `isquestok(q)` | `0x00353E80` | `0x0046B1F0` | OK bit *q* |
 
-Two dispatchers reach the same bodies outside the verbs. `0x00329E60(kind, unit, q, v)` sets an ordered bit for kind
-4 and a cleared bit for kind 5 (`0x00329EC9`, `0x00329EE0`); the action effect applier `0x00312170` (`0x0031225E`) and
-`0x002FE660` (`0x002FE74E`) call it. Its reader twin `0x00321190(kind, unit, q, out)` answers ordered, cleared, scenario
-flag and contract word for kinds 4-7 (`0x003211FC`-`0x00321232`); `0x00301AD0`, `0x002FAD40`, `0x002FE660` and `0x00312170` call
-it. The developer verb `0x206C` `debug_clearquestall` does nothing: its handler `0x0017E7D0` returns at once.
+Two dispatchers reach the same bodies outside the verbs. `0x00329E60(kind, unit, q, v)` reaches the `setquestorder` body
+for kind 4 and the `setquestclear` body for kind 5 (`0x00329EC9`, `0x00329EE0`); the action effect applier `0x00312170`
+(`0x0031225E`) and `0x002FE660` (`0x002FE74E`) call it. Its reader twin `0x00321190(kind, unit, q, out)` answers ordered,
+cleared, scenario flag and contract word for kinds 4-7 (`0x003211FC`-`0x00321232`); `0x00301AD0`, `0x002FAD40`, `0x002FE660` and
+`0x00312170` call it. The developer verb `0x206C` `debug_clearquestall` does nothing: its handler `0x0017E7D0` returns at
+once.
+
+`0x00329E60` jumps through the ten-entry table at `0x00329F40` for kinds 1-10 (`0x00329E64`-`0x00329E83`) and returns 0 for
+every kind in 1-10 but 6 and 7. Kinds 1, 2 and 3 pass the low word of `v` to `0x0026ADC0(q, v)`, `0x0026AD10(q, v)` and
+`0x0026ABA0(q, v)` (`0x00329E85`-`0x00329EBD`); kinds 4, 5 and 8 pass `v != 0` to the `setquestorder` body
+`0x0046B3F0(q, set)`, the `setquestclear` body `0x0046B290(q, set)` and the story-flag thunk `0x0032ABE0(q, set)`
+(`0x00329EBE`-`0x00329F02`).
+
+Kind 9 stores the low word of `v` in word *q* of the sixteen at `0x0208D334` only for a *q* of 0-15, unsigned
+(`0x00329F03`-`0x00329F1B`), and kind 10 stores `v` in the unit's dword `+0xB90` only for a unit that is not null and a
+*q* of 0 (`0x00329F1C`-`0x00329F29`); both return 0 also when they write nothing (`0x00329F31`-`0x00329F37`). Kinds 6 and 7,
+and any kind outside 1-10, write nothing and return -1 (`0x00329F38`-`0x00329F3F`). The registers are listed on [Enemy
+order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md#the-registers).
 
 ### The wrong ordered bit
 
@@ -162,3 +175,10 @@ The variable id of `rbn_a14`'s hunt clear is 167 or 170 (lines 2614, 2634), both
 - [Save data](../Saving-Loading-And-Settings/save-data-fields.md) - the payload the quest fields sit in.
 - [Shops](../Items-Equipment-Shops-And-Licenses/shops.md) - the clan rank that counts quests.
 - [Hunts](hunts.md) - the 45 hunts, quests 128 to 172.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Spawn encounter lifecycle: `0x0026ADC0` is called by `0x00307030`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).

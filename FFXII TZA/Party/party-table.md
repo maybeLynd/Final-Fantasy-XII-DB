@@ -52,7 +52,7 @@ Each line is read from the shipped files in these steps:
 | `+0x04` | `u8[3]` | quickenings | `0x0030A310`, `0x0030A330`, `0x00313120`, `0x002F88B0` | the action rows of the member's three Quickenings, `0xD0`-`0xE1` |
 | `+0x07` | `u8` | cameraType | `0x0031B8E0` | the field camera type `0x0025A160` selects (below) |
 | `+0x08` | `u8[2]` | unread08 | no instruction | read by no instruction, and written by no instruction after `battle_pack.bin` is loaded; nothing fixes its width |
-| `+0x0A` | `u16[5]` | equipment | `0x0023AC80` (`0x0031A630`), `0x00316DF0` | starting equipment, slots 0-4 (main hand, off hand, head, body, accessory) |
+| `+0x0A` | `u16[5]` | equipment | `0x0023AC80` (`0x0031A630`) | starting equipment, slots 0-4 (main hand, off hand, head, body, accessory) |
 | `+0x14` | `u16` | gambitPreset | `0x0023AC80`, `0x00328BD0` (`0x00327CB0`), `0x00235AF0` | the preset gambit list, `0x5000` + row of `gambit_data` |
 | `+0x16` | `u16` | startHp | `0x0030C470` | raw HP at level 0, which the `+0x18` row turns into max HP |
 | `+0x18` | `u8` | hpFactor | `0x002FEF30` (`0x002F8E50`) | max HP = (`+0x18` + 1) × HP × `+0x19` / 100 |

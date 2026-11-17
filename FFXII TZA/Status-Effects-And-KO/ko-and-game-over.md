@@ -133,6 +133,10 @@ save's persistent payload `0x002EF2B0()` gives, read as 0 when negative (`0x0031
 therefore belongs to the area: a down unit in an area whose word has that bit goes on like a unit that
 is not down.
 
+`0x00319F50` does nothing for a unit with flag bit `0x2`, answering 0, or while `0x00306BB0()` reports `0x022C2160` at 5 or
+6, answering 1 (`0x00319FA3`-`0x00319FB3`). Code 7 sets flag bit `0x200` and refreshes visibility with `0x00312700(unit)`
+for a unit whose byte `+4` has bit `0x40` (`0x0031A1AB`-`0x0031A1BA`).
+
 Timeline codes reach `0x00319F50` through `0x002EB740` from two senders: the battle effect program `0x003B8670`
 (`0x003B887D`, `0x003B8988`, `0x003B8A1C`, `0x003B9208`), and `0x002FC010`, which sends each queued value of a finished entry
 of the list `0x02EC3D60` with timeline code 0 (`0x002FC085`, `0x002FC103`) and then timeline code 1 with the value 0
