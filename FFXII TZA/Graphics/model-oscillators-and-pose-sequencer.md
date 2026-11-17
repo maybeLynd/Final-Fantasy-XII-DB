@@ -122,6 +122,21 @@ and, over the chain's links except the last, up to the first whose bone is `0xFF
 `0x0040EDDE`-`0x0040EE3B`), sets bit `0x2` of the bone's
 `+0x28A` to the flag and clears bit `0x4` of its `+0x28B`.
 
+`0x0040B180(record, -, step)`, slot 0's update in the rig frame, returns at once on the same test as `0x0040D890`, made
+through `0x0020E600` (`0x0040B189`-`0x0040B1AC`); it ignores its second argument. It walks the entries, skipping one whose
+byte `+0x02` is 0 (the handle `+0x00`, `0x0040B1B2`-`0x0040B229`, `0x0040B349`-`0x0040B358`), and ends the fades `0x003E0B50`
+and `0x003E0F00` start. With the low nibble of `+0x29` at 1 the weight `+0x20` falls, with any other non-zero value it
+rises, by `step * [0x01DFE0BC]`, or by `step` alone when the weight is exactly 0 or exactly 1.0 (`0x0040B22F`-`0x0040B259`).
+
+A weight that falls to 0 or below becomes 0 and one that rises to 1.0 or above becomes 1.0, and the nibble is cleared
+(`0x0040B25B`-`0x0040B29A`). Bones are marked only in the call where a rising weight reaches 1.0, and for an entry with
+the nibble clear and `+0x2A` bit `0x1` set (`0x0040B29D`-`0x0040B2A3`).
+
+Over the entry's chains (at the handle `+0x08`; each with its link count `+0x03` and its links at the handle `+0x04`),
+each chain whose first link's bone has bit `0x4` of `+0x28B` clear gets that bit set on the bone of every link but the
+last, a link whose bone is `0xFFFF` passed over; the bones are the `0x290`-byte records of the array the record's
+`+0x08` leads to, each handle resolved through `0x0020E600` (`0x0040B2A9`-`0x0040B343`).
+
 `0x003E4140(rig, x, y, z)`, from `0x0042C410` and `0x0042C8F0` with the record's three scale factors (`0x003E5770`,
 `0x003E5790`, `0x003E57B0`), gives the oscillator record their mean through `0x004158F0`, which stores it at `+0x10` and its
 reciprocal at `+0x14` and scales values kept in the entries' chains by it, except that the innermost `0x50`-byte

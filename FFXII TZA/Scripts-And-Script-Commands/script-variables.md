@@ -244,9 +244,9 @@ gives the kinds of steps its tests choose, and the scripts that use it.
 | map-set position | 4 | `getmapdestposbyindex` fills them with a map exit's destination: the angle at `0x900`, then x, y and z at `0x904`, `0x908` and `0x90C` |
 | weather slot | 1 | walk exits store `getweatherslot()` in it before the map jump |
 | conversation counter | 17 | a talk function adds 1 to it and switches or tests on it |
-| battle word | 15 | a map's foe setup (`setup.map` or `setup.battle`) tests it |
+| battle word | 14 | a map's foe setup (`setup.map` or `setup.battle`) tests it |
 | control bit word | 57 | bit tests and bit writes make up at least half of its uses |
-| area state | 328 | its other uses lie in the maps of one area (one three-letter map prefix, such as `rbn`) |
+| area state | 329 | its other uses lie in the maps of one area (one three-letter map prefix, such as `rbn`) |
 | game-wide state | 172 | its other uses lie in more than one area |
 | debug display | 16 | the debug display (`sysDVAR`) or a developer menu of the controller scripts is all that uses it |
 | declared | 13 | no statement of the story scripts reads or writes it; 12 of them appear in the developer test scripts |

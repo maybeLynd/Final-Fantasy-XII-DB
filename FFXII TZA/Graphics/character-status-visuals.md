@@ -41,10 +41,16 @@ and then updates the looks.
 bytes at `0x02B59D80`, one per battle-unit slot, skipping records whose word `+0` is 0. `0x003E7500` sets a record up: word
 `+0` = 1, `+4` = the character's render-record index, both blocks initialised with that index (`0x004700C0`, `0x0051E140`).
 
-Two readers give other code a record's dwords from `+0xC0`: `0x003E7D10(slot, n)` takes the record of a
-battle-unit slot when its word `+0` is set, and `0x003E7CD0(index, n)`, from `0x003B0C50` and `0x0046CC70`,
-the record whose `+4` is a render-record index; both return dword `+0xC0 + 4n`, and 0 while the byte
-`0x02B59D71` is set.
+Two readers give other code a record's dwords from `+0xC0`. `0x003E7D10(slot, n)` answers 0 while the byte `0x02B59D71` is
+set (`0x003E7D10`-`0x003E7D17`), for slot -1 (`0x003E7D1C`-`0x003E7D1F`) and for a slot whose record has word `+0` at 0
+(`0x003E7D35`-`0x003E7D39`). Callers pass a render record's dword `+0x6A4` as the slot (among them `0x0041C479`, `0x0041C677`,
+`0x00421446`, `0x00423CD6`, `0x00424DDA`, `0x0042506C`, `0x0042508C`, `0x004257E9`, `0x0042735C`, `0x0042C46A`, `0x00516499`), which the
+clear `0x0041F730` sets to -1 (`0x0041FB4E`).
+
+`0x003E7CD0(index, n)`, from `0x003B0C50` and `0x0046CC70`, answers 0 for the same byte (`0x003E7CD5`-`0x003E7CDB`) and
+otherwise walks the 32 records (`0x003E7CF9`-`0x003E7CFC`) for the first in use (word `+0` set, `0x003E7CE4`-`0x003E7CE8`)
+whose `+4` is the render-record index (`0x003E7CEA`-`0x003E7CEE`), answering 0 when none has it (`0x003E7CFE`). Both return
+dword `+0xC0 + 4n`.
 
 For each record it reads the unit's status word through `0x00320BB0`: the OR of the stats record's `+0x64` and `+0x3C`
 ([Statuses](../Status-Effects-And-KO/statuses.md)). Stop is left out of the word while the unit's action id

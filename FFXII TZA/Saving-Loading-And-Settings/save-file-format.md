@@ -203,11 +203,11 @@ The buffers are `0x566C0` apart, 48 bytes more than the image.
 
 ### Writing the container
 
-`0x00866200` writes `{ "SAFH", length, rotation }`, compresses the stream with `compress2` level 9,
-encrypts, and writes to a temporary file `sav_tmp` in the Windows temp directory. When the slot
-file exists and the flag `0x02B40E04` is set, the previous save is first copied to `sav_org` (the
-flag is then cleared); the temporary file is copied over the slot's file (`CopyFileW`), and on
-failure `sav_org` is copied back when one was made, else the slot file is removed.
+`0x00866200` writes `{ "SAFH", length, rotation }`, compresses the stream with `compress2` level 9, encrypts, and writes
+to a temporary file `sav_tmp` in the Windows temp directory. When the slot file exists and the flag `0x02B40E04` is set,
+the flag is cleared (`0x008665B7`) and the previous save is then copied to `sav_org`; on the other path the flag is
+cleared at `0x008665D9`. The temporary file is copied over the slot's file (`CopyFileW`), and on failure `sav_org` is
+copied back when one was made, else the slot file is removed.
 
 "When one was made" is a word that outlives the save. `0x00866200` loads it (`0x00866593`) and zeroes it only while
 `0x02B40E04` is set (`0x00866599`-`0x008665A9`); with the flag clear it keeps whatever an earlier save left there. So a
@@ -220,6 +220,28 @@ failed copy after a save without the flag can restore the `sav_org` of an earlie
 The two paths are the temp directory (`GetTempPathW`, 260 characters) joined with the wide names at `0x01CCFD70`
 and `0x01CCFD80` by `0x008656B0(out, directory, name)`, which appends the name to the directory string
 (`0x00865FF0`) and moves the result into `out` (`0x008662C3`, `0x00866328`).
+
+`0x00866200` answers 0 or -1 (`0x00866672`, `0x0086652A`). Its argument is the open file's object at `0x02EAF8E8`, which both
+callers pass (`0x00862508`, `0x008620F4`):
+- 0 at once, writing nothing, when the object's dword `+4`, the `mode` that `0x008666B0(path, mode)` keeps there
+  (`0x00866726`), is not 0 (`0x0086623F`-`0x00866242`, to `0x00866663`; `esi` is 0 from `0x00866238`-`0x0086623D`).
+- -1 when `_wfopen_s` (`0x008C2E00`) cannot open `sav_tmp` (`0x00866396`-`0x0086639E`, to `0x008664D4`; `edi` is -1 from
+  `0x00866272`).
+- 0 when `compress2` (`0x0087AF40`) fails (`0x0086646C`-`0x0086647A`) or `0x00865AE0` answers 0 (`0x00866493`-`0x00866498`): the
+  test at `0x008664AE`-`0x008664B3` falls through, `sav_tmp` is closed by `fclose` (`0x008C2F00`, `0x008664C2`) with only its
+  12-byte header written by `fwrite` (`0x008C2F40`, `0x008663FB`), and `edi` becomes 0 (`0x008664D0`-`0x008664D2`). The slot
+  file is not written, and the 0 is the same answer as a save that succeeds.
+- -1 when the body's `fwrite` (`0x008C2F40`) writes fewer bytes than the encrypted length (`0x00866547`-`0x00866555`,
+  `0x0086656A`, to `0x00866619`): nothing is copied and the slot file keeps the previous save. The header's `fwrite` has
+  no test of its result.
+- -1 when the backup `CopyFileW` (`0x008C23E8`) to `sav_org` fails (`0x008665C7`-`0x008665D7`, to `0x00866617`; on success the
+  test at `0x008665D3`-`0x008665D5` goes on to the copy over the slot): the slot file keeps the previous save.
+- -1 after a failed `CopyFileW` (`0x008C23E8`) over the slot (`0x008665E9`-`0x008665F1`, then `0x00866617`), and 0 when that
+  copy succeeds.
+
+Every answer but the first comes after `SetFileAttributesW` (`0x008C23F8`) has set the attributes of the slot file,
+`sav_tmp` and `sav_org` to 0 (`0x0086636B`, `0x00866376`, `0x00866381`), which runs before `sav_tmp` is opened. No exit
+removes `sav_tmp`: the one `_wremove` (`0x008C2B08`, `0x00866611`) is of the slot file.
 
 ### What a load checks
 
